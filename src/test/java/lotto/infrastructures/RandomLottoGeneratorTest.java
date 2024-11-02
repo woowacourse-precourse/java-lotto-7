@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.common.constant.Constants;
-import lotto.domain.Lotto;
-import lotto.domain.LottoCreator;
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoCreator;
+import lotto.domain.lotto.LottoGenerator;
+import lotto.domain.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

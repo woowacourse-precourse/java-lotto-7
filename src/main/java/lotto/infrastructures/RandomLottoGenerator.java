@@ -3,9 +3,9 @@ package lotto.infrastructures;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.common.constant.Constants;
-import lotto.domain.Lotto;
-import lotto.domain.LottoCreator;
-import lotto.domain.LottoGenerator;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoCreator;
+import lotto.domain.lotto.LottoGenerator;
 
 public class RandomLottoGenerator implements LottoGenerator {
 

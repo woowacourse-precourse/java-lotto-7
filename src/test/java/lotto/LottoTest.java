@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.stream.IntStream;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
