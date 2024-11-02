@@ -18,14 +18,19 @@ public class Bonus {
     private final int bonus;
 
     public Bonus(String bonusNumber) {
+        int bonus = parse(bonusNumber);
+        validate(bonus);
+        this.bonus = bonus;
+    }
+
+    private static int parse(String bonusNumber) {
         int bonus;
         try {
             bonus = Integer.parseInt(bonusNumber);
         }catch (Exception e){
             throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
         }
-        validate(bonus);
-        this.bonus = bonus;
+        return bonus;
     }
 
     private void validate(int bonus) {
