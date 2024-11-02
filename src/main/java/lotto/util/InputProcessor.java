@@ -33,10 +33,11 @@ public class InputProcessor {
 
     public WinningInfo getWinningInfo() {
         Lotto winningNumbers = createWinningNumbers();
-        BonusNumber bonusNumber = createBonusNumber();
+        BonusNumber bonusNumber;
         WinningInfo winningInfo;
         while (true) {
             try {
+                bonusNumber = createBonusNumber();
                 winningInfo = new WinningInfo(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
