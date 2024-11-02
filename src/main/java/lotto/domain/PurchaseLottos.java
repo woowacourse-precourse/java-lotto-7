@@ -4,8 +4,13 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.domain.Lotto.LOTTO_END_NUMBER;
+import static lotto.domain.Lotto.LOTTO_SIZE;
+import static lotto.domain.Lotto.LOTTO_START_NUMBER;
 
 public class PurchaseLottos {
+    public static final Integer LOTTO_UNIT = 1_000;
+
     private final Integer money;
     private final List<Lotto> lottos;
 
@@ -37,12 +42,12 @@ public class PurchaseLottos {
 
     private List<Lotto> purchaseLottos(Integer money){
         return Stream.generate(this::purchaseLotto)
-                .limit(money / 1_000)
+                .limit(money / LOTTO_UNIT)
                 .toList();
     }
 
     private Lotto purchaseLotto() {
-        List<Integer> lotto = pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotto = pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_SIZE);
         return new Lotto(lotto);
     }
 }

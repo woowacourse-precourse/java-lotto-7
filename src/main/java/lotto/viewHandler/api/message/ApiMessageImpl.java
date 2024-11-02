@@ -8,6 +8,7 @@ public class ApiMessageImpl implements ApiMessage {
         this.message = message;
         this.code = code;
     }
+
     @Override
     public String getMessage() {
         return message;

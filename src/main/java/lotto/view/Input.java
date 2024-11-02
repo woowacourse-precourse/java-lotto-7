@@ -6,7 +6,6 @@ import static lotto.view.ViewConstant.GET_BONUS_NUMBER;
 import static lotto.view.ViewConstant.GET_PURCHASE_MONEY;
 import static lotto.view.ViewConstant.GET_WIN_LOTTO_NUMBER;
 
-
 public class Input {
     public Input() {
     }

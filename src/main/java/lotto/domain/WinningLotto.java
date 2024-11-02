@@ -4,6 +4,8 @@ import lotto.viewHandler.exception.DulplicateBonusNumber;
 
 import java.util.Objects;
 
+import static lotto.viewHandler.exception.MyExceptionConstant.DUPLICATE_BONUS_NUMBER;
+
 public class WinningLotto {
     private final Lotto winLotto;
     private final Integer bonusNumber;
@@ -20,7 +22,7 @@ public class WinningLotto {
 
     private static void validation(Lotto winningLotto, Integer bonusNumber) {
         if(winningLotto.getNumbers().stream().anyMatch(one -> Objects.equals(one, bonusNumber))){
-            throw new DulplicateBonusNumber("당첨 번호랑 겹치면 안됩니다.");
+            throw new DulplicateBonusNumber(DUPLICATE_BONUS_NUMBER);
         }
     }
 

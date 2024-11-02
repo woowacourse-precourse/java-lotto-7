@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PurchaseLottosDto {
+    private final String COMMA = ", ";
+    private final String LOTTO_NUMBER_START = "[";
+    private final String LOTTO_NUMBER_END = "]";
+
     private final List<String> lottos;
 
     public PurchaseLottosDto(List<Lotto> lottos) {
@@ -17,8 +21,8 @@ public class PurchaseLottosDto {
     private String transformDto(Lotto lotto) {
         String lottoNumbers = lotto.getNumbers().stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
-        return "[" + lottoNumbers + "]";
+                .collect(Collectors.joining(COMMA));
+        return LOTTO_NUMBER_START + lottoNumbers + LOTTO_NUMBER_END;
     }
 
     public List<String> getLottos() {

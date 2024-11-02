@@ -11,6 +11,10 @@ import lotto.viewHandler.api.dto.input.MoneyDto;
 import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 import lotto.viewHandler.exception.MyException;
 
+import java.util.Objects;
+
+import static lotto.viewHandler.exception.MyExceptionConstant.SERVER_SUCCESS_CODE;
+
 public class ViewHandler {
     private final ApiHandler apiHandler;
     private final Input input;
@@ -63,25 +67,25 @@ public class ViewHandler {
     }
 
     private void exceptionHandler(Api api) {
-        if(api.getCode() != 200) {
+        if (!Objects.equals(api.getCode(), SERVER_SUCCESS_CODE)) {
             output.viewExceptionMessage(api.getMessage());
         }
     }
 
     private void purchaseHandler(Api api) {
-        if(api.getData() instanceof PurchaseLottosDto) {
+        if (api.getData() instanceof PurchaseLottosDto) {
             output.viewPurchaseLottos(api);
         }
     }
 
     private void resulLottoHandler(Api api) {
-        if(api.getData() instanceof ResultLottosDto) {
+        if (api.getData() instanceof ResultLottosDto) {
             output.viewResultLottos(api);
         }
     }
 
     private void resultAmountHandler(Api api) {
-        if(api.getData() instanceof ResultAmountDto) {
+        if (api.getData() instanceof ResultAmountDto) {
             output.viewResultAmount(api);
         }
     }

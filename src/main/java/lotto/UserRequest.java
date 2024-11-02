@@ -5,15 +5,15 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseLottos;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoGameDto;
-import lotto.dto.output.PurchaseLottosDto;
 import lotto.viewHandler.ViewHandler;
 import lotto.viewHandler.api.Api;
 import lotto.viewHandler.api.dto.input.BonusNumberDto;
 import lotto.viewHandler.api.dto.input.MoneyDto;
 import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 import lotto.viewHandler.api.message.ApiMessageImpl;
-import lotto.viewHandler.api.message.ServerMessage;
 import lotto.viewHandler.exception.MyException;
+
+import static lotto.viewHandler.exception.MyExceptionConstant.CLIENT_ERROR_CODE;
 
 public class UserRequest {
     private final LottoController lottoController;
@@ -48,7 +48,7 @@ public class UserRequest {
                 Api<WinningLottoNumbersDto> api = viewHandler.getWinningNumbers();
                 return lottoController.createWinningLotto(api.getData());
             } catch (MyException e) {
-                viewApi(new Api<>(new ApiMessageImpl(e.getMessage(), 400)));
+                viewApi(new Api<>(new ApiMessageImpl(e.getMessage(), CLIENT_ERROR_CODE)));
             }
         }
     }
@@ -59,7 +59,7 @@ public class UserRequest {
                 Api<BonusNumberDto> api = viewHandler.getBonusNumber();
                 return lottoController.createWinningLottoDto(winningLotto, api.getData());
             } catch (MyException e) {
-                viewApi(new Api<>(new ApiMessageImpl(e.getMessage(), 400)));
+                viewApi(new Api<>(new ApiMessageImpl(e.getMessage(), CLIENT_ERROR_CODE)));
             }
         }
     }

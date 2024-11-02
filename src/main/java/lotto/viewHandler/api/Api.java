@@ -6,7 +6,7 @@ public class Api<T> {
     private final ApiMessage apiMessage;
     private final T data;
 
-    public Api(ApiMessage apiMessage , T data) {
+    public Api(ApiMessage apiMessage, T data) {
         this.apiMessage = apiMessage;
         this.data = data;
     }

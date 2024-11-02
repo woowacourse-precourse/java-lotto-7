@@ -7,6 +7,9 @@ import lotto.dto.LottoGameDto;
 
 import java.util.Objects;
 
+import static lotto.domain.Lotto.LOTTO_BONUS_COUNT;
+import static lotto.viewHandler.exception.MyExceptionConstant.ZERO;
+
 public class LottoGameService {
     public LottoGameService() {
     }
@@ -34,8 +37,8 @@ public class LottoGameService {
 
     private Integer matchBonusNumber(Lotto lotto, WinningLotto winningLotto) {
         if(lotto.getNumbers().stream().anyMatch(oneNumber -> Objects.equals(oneNumber, winningLotto.getBonusNumber()))) {
-            return 1;
+            return LOTTO_BONUS_COUNT;
         }
-        return 0;
+        return ZERO;
     }
 }

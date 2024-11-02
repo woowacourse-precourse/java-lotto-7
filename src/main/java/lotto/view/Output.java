@@ -7,9 +7,11 @@ import lotto.dto.output.ResultLottosDto;
 
 import java.util.List;
 
-public class Output {
-    private final String EXCEPTION_PREFIX = "[ERROR] ";
+import static lotto.view.ViewConstant.EXCEPTION_PREFIX;
+import static lotto.view.ViewConstant.RESULT_AMOUNT_PREFIX;
+import static lotto.view.ViewConstant.RESULT_AMOUNT_SUFFIX;
 
+public class Output {
     public Output() {
     }
 
@@ -29,6 +31,6 @@ public class Output {
 
     public void viewResultAmount(Api<ResultAmountDto> api) {
         Double amount = api.getData().getAmount();
-        System.out.println("총 수익률은 " + amount +"%입니다.");
+        System.out.println(RESULT_AMOUNT_PREFIX + amount + RESULT_AMOUNT_SUFFIX);
     }
 }
