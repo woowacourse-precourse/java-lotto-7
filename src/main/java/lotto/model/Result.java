@@ -5,9 +5,6 @@ import java.util.HashMap;
 public class Result {
     private final HashMap<Rank, Integer> results;
     private int lottoCount = 0;
-    private final int HUNDRED = 100;
-    private final int TEN = 10;
-    private final long INIT = 0L;
     private final int DELIMITER = 5;
 
     public Result() {
@@ -53,14 +50,14 @@ public class Result {
 
     private int findRightDecimal(long total) {
         int decimal = (int) (total % 100) / 10;
-        if (total % TEN >= DELIMITER) {
+        if (total % 10 >= DELIMITER) {
             decimal++;
         }
         return decimal;
     }
 
     private long getTotalPrice() {
-        long result = INIT;
+        long result = 0;
 
         for (Rank rank : results.keySet()) {
             result += getPrice(rank);
