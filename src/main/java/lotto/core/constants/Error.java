@@ -35,4 +35,8 @@ public class Error {
 
         public static final String INVALID_NUMBER_FORMAT = "당첨 번호는 숫자만 입력해주세요.";
     }
+
+    public static final class LottoTicket {
+        public static final String FAILED_PUBLISHED = "로또 발행에 실패하였습니다.";
+    }
 }
