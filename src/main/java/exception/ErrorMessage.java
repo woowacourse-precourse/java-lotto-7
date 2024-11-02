@@ -10,9 +10,8 @@ public enum ErrorMessage {
     NOT_POSITIVE_NUMBER("양수로 입력해야 합니다."),
     NOT_ONE_BETWEEN_FORTY_FIVE("1과 45 사이의 값이어야 합니다.");
 
-    private final String message;
-
     private static final String PREFIX_ERROR_MSG = "[ERROR] ";
+    private final String message;
 
     ErrorMessage(String message) {
         this.message = PREFIX_ERROR_MSG + message;

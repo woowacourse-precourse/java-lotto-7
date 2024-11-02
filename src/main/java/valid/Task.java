@@ -1,8 +1,6 @@
 package valid;
 
 public interface Task<T> {
-    T run();
-
     static <T> T reTryTaskUntilSuccessful(Task<T> task) {
         while (true) {
             try {
@@ -12,4 +10,6 @@ public interface Task<T> {
             }
         }
     }
+
+    T run();
 }

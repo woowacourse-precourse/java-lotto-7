@@ -5,6 +5,7 @@ import convert.InputConvertor;
 import java.util.List;
 
 public class InputView {
+
     private final InputConvertor inputConvertor;
 
     public InputView(InputConvertor inputConvertor) {

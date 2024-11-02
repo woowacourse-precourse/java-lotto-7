@@ -6,6 +6,17 @@ import valid.Validate;
 
 public class InputConvertor {
 
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        Validate.isDuplicated(winningNumbers);
+        Validate.isSixNumbers(winningNumbers);
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        Validate.isNotInWinningNumbers(winningNumbers, bonusNumber);
+        Validate.isPositiveNumber(bonusNumber);
+        Validate.isOneBetweenFortyFive(bonusNumber);
+    }
+
     public int convertPurchaseAmount(String inputPurchaseAmount) {
         isNumber(inputPurchaseAmount);
 
@@ -32,11 +43,6 @@ public class InputConvertor {
         return winningNumbers;
     }
 
-    private static void validateWinningNumbers(List<Integer> winningNumbers) {
-        Validate.isDuplicated(winningNumbers);
-        Validate.isSixNumbers(winningNumbers);
-    }
-
     private void generateWinningNumbers(String inputWinningNumbers, List<Integer> winningNumbers) {
         for (String inputWinningNumber : inputWinningNumbers.split(",")) {
             isNumber(inputWinningNumber);
@@ -52,12 +58,5 @@ public class InputConvertor {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
-    }
-
-    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        // TODO : 당첨 번호와 다른지 검증하기
-        Validate.isNotInWinningNumbers(winningNumbers, bonusNumber);
-        Validate.isPositiveNumber(bonusNumber);
-        Validate.isOneBetweenFortyFive(bonusNumber);
     }
 }

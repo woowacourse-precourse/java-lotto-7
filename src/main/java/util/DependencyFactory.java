@@ -6,6 +6,7 @@ import view.InputView;
 import view.OutputView;
 
 public class DependencyFactory {
+
     private final InputConvertor inputConvertor = new InputConvertor();
     private final InputView inputView = new InputView(inputConvertor);
     private final OutputView outputView = new OutputView();

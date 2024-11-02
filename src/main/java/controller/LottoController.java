@@ -23,7 +23,6 @@ public class LottoController {
         this.userService = factory.getUserService();
     }
 
-
     public void run() {
         initLottoPlay();
         playLotto();

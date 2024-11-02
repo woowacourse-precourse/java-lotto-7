@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Validate {
-    
+
     private static final int THOUSAND_UNIT = 1_000;
     private static final int SIX_SIZE = 6;
     private static final String NUMERIC_PATTERN = "^\\d+$";
