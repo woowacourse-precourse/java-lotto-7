@@ -4,13 +4,14 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
     private static final String PURCHASE_COUNT_FORMAT = "%d개를 구매했습니다.";
-    private static final String WINNING_RANK_FORMAT = "%s (%d원) - %d개";
-    private static final String RETURN_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String WINNING_RANK_FORMAT = "%s (%,d원) - %d개";
+    private static final String RETURN_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
 
 
     public void printPurchaseCount(int count) {
@@ -19,6 +20,7 @@ public class OutputView {
 
     public void printLottos(List<Lotto> lottos) {
         lottos.forEach(i -> System.out.println(i.getNumbers()));
+        System.out.println();
     }
 
     public void printResult(LottoResult lottoResult) {
