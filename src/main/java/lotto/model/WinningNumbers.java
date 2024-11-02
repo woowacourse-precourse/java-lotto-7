@@ -6,21 +6,11 @@ import java.util.List;
 
 public class WinningNumbers {
     private final Lotto winningNumbers;
-    private int bonusNumber;
+    private final int bonusNumber;
 
-    public WinningNumbers(Lotto winningNumbers) {
+    public WinningNumbers(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
-    }
-
-    public void setBonusNumber(int bonusNumber) {
-        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    private void validate(int bonus){
-        if(winningNumbers.getNumbers().contains(bonus)){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER.getMessage());
-        }
     }
 
     public List<Integer> getWinningNumbers() {
