@@ -8,6 +8,8 @@ public class LottoController {
         int lottoPurchase = LottoInputView.lottoPurchaseAmount();
         List<Lotto> makePurchasedLottos = LottoFactory.createLottos(count(lottoPurchase));
         LottoOutputView.printPurchasedLottoCount(makePurchasedLottos);
+
+        List<Integer> winningNumbers = LottoInputView.lottoWinningNumbers();
     }
 
     public int count (int lottoPurchase) {

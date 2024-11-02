@@ -38,6 +38,13 @@ public class LottoInputView
 
     }
 
+    public static int lottoBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        return bonusNumber;
+    }
+
     public static List<Integer> tempWinningNumbers(String numbers) {
         String[] splitNumbers = splitWinningNumbers(numbers);
         List<String> trimNumbers = trimWinningNumbers(splitNumbers);
