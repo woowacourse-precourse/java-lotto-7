@@ -39,6 +39,8 @@ public class Application {
             }
         }
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        winningNumbers.add(readBonusNumber());
 
     }
 
@@ -70,6 +72,10 @@ public class Application {
 
         result.forEach(Application::validateLottoNumber);
         return result;
+    }
+
+    private static int readBonusNumber(){
+        return Integer.parseInt(Console.readLine());
     }
 
     private static void validateLottoNumber(int num){
