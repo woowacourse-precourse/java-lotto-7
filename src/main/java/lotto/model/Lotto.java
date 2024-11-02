@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.constant.LottoConstants;
 import lotto.exception.DuplicateBonusNumberException;
 import lotto.exception.DuplicateLottoNumberException;
@@ -26,16 +27,17 @@ public class Lotto {
     }
 
     private static void lottoNumbersDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() < 6) {
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount < 6) {
             throw new DuplicateLottoNumberException();
         }
     }
 
     public void bonusNumberDuplicate(int bonusNumber) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        uniqueNumbers.add(bonusNumber);
-        if (uniqueNumbers.size() != 7) {
+        long distinctCount = Stream.concat(numbers.stream(), Stream.of(bonusNumber))
+                .distinct()
+                .count();
+        if (distinctCount != 7) {
             throw new DuplicateBonusNumberException();
         }
     }
