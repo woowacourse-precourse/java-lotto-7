@@ -19,8 +19,11 @@ public class Application {
         amountToPurchase = readAmountToPurchase();
 
         numOfLotto = calcNumOfLottos();
+        System.out.println(numOfLotto + "개를 구매했습니다.");
 
         lottos = createLottos();
+        lottos.forEach(System.out::println);
+
     }
 
     private static int readAmountToPurchase(){
