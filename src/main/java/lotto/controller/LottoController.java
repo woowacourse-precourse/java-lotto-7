@@ -2,10 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
-import lotto.view.LottoStaticsOutputHandler;
-import lotto.view.NumberOfLottoOutputHandler;
-import lotto.view.PurchaseAmountInputHandler;
-import lotto.view.WinningNumbersInputHandler;
+import lotto.view.*;
 
 import java.util.List;
 
@@ -15,12 +12,16 @@ public class LottoController {
     LottoStaticsOutputHandler lottoStaticsOutputHandler = new LottoStaticsOutputHandler(lottoService);
 
     public void run() {
-        String purchaseAmountInput = PurchaseAmountInputHandler.promptPurchaseAmount();
-        PurchaseAmountInputHandler.validatePurchaseAmount(purchaseAmountInput);
-        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        int purchaseAmount = PurchaseAmountInputHandler.promptPurchaseAmount();
+
         numberOfLottoOutputHandler.displayNumberOfLottos(purchaseAmount);
+
         List<Lotto> lottos = lottoService.issueLottos(purchaseAmount);
+
         List<Integer> winningNumbers = WinningNumbersInputHandler.promptGetWinningNumbers();
 
+        int bonusNubmer = BonusNumberInputHandler.promptGetBonusNumber();
+
+//        lottoStaticsOutputHandler.displayLottoStatics();
     }
 }

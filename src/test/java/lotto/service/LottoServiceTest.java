@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +38,24 @@ public class LottoServiceTest {
 
         // when
         List<Integer> result = lottoService.sortLottoNumbersAscending(lottoNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void 발행된_로또들의_랭크_리스트를_올바르게_반환하는지_테스트() {
+        // given
+        List<Lotto> lottos = new ArrayList<>(List.of(
+                new Lotto(List.of(1,2,3,4,5,6)),
+                new Lotto(List.of(1,2,3,4,5,7))
+        ));
+        List<Integer> winningNubmers = new ArrayList<>(List.of(1,2,3,4,5,6));
+        int bonusNumber = 7;
+        List<Rank> expected = new ArrayList<>(List.of(Rank.FIRST, Rank.SECOND));
+
+        // when
+        List<Rank> result = lottoService.getRanks(lottos);
 
         // then
         assertThat(result).isEqualTo(expected);

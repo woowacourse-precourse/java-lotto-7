@@ -4,14 +4,16 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class PurchaseAmountInputHandler {
 
-    public static String promptPurchaseAmount() {
+    public static int promptPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        String input = Console.readLine();
+        return validatePurchaseAmount(input);
     }
 
-    public static void validatePurchaseAmount(String input) {
+    public static int validatePurchaseAmount(String input) {
         int purchaseAmount = validatePurchaseAmountIsInteger(input);
         validatePurchaseAmountIsThousandUnit(purchaseAmount);
+        return purchaseAmount;
     }
 
     public static int validatePurchaseAmountIsInteger(String purchaseAmount) {
