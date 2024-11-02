@@ -7,7 +7,7 @@ public final class Validator {
         validateNotBlank(moneyInput);
         validateIsInteger(moneyInput);
         validateIsPositive(moneyInput);
-        validateValidMoney(moneyInput);
+        validateIsValidMoney(moneyInput);
     }
 
     private static void validateNotBlank(String input) {
@@ -30,7 +30,7 @@ public final class Validator {
         }
     }
 
-    private static void validateValidMoney(String input) {
+    private static void validateIsValidMoney(String input) {
         if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MONEY.getMessage());
         }
