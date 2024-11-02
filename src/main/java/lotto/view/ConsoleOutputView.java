@@ -33,9 +33,9 @@ public class ConsoleOutputView implements OutputView {
         StringBuilder result = new StringBuilder();
         result.append(rank.getMatchCount()).append("개 일치");
         if (rank.isBonusRequired()) {
-            result.append(", 보너스 볼 일치 ");
+            result.append(", 보너스 볼 일치");
         }
-        result.append("(").append(formatNumber(rank.getPrize())).append("원)");
+        result.append(" (").append(formatNumber(rank.getPrize())).append("원)");
         result.append(" - ").append(countRank(lottoRanks, rank)).append("개");
         return result.toString();
     }
