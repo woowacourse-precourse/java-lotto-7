@@ -4,7 +4,7 @@ import lotto.constants.ErrorMessageConstants;
 
 public class PurchaseAmountValidator {
     private PurchaseAmountValidator() {
-        throw new IllegalArgumentException(ErrorMessageConstants.INSTANCE_CREATION_ERROR);
+        throw new IllegalStateException(ErrorMessageConstants.INSTANCE_CREATION_ERROR);
     }
 
     public static void validatePurchaseAmountInput(String purchaseAmountInput) {
