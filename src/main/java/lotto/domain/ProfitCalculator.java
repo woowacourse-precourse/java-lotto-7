@@ -16,8 +16,10 @@ public class ProfitCalculator {
     }
 
     public double calculateProfitRate(long totalWinningAmount, long purchaseAmount) {
-        BigDecimal profit = BigDecimal.valueOf(totalWinningAmount - purchaseAmount);
-        BigDecimal profitRate = profit.divide(BigDecimal.valueOf(purchaseAmount), 1, RoundingMode.HALF_UP);
+        BigDecimal profit = BigDecimal.valueOf(totalWinningAmount);
+        BigDecimal profitRate = profit.divide(BigDecimal.valueOf(purchaseAmount), 10, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(1, RoundingMode.HALF_UP);
         return profitRate.doubleValue();
     }
 
