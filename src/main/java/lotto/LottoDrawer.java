@@ -28,8 +28,6 @@ public class LottoDrawer {
             }
             LottoResult lottoResult = new LottoResult(winningCount,bonusCount);
             lottoResult.tt();
-            System.out.println("win"+winningCount);
-
         }
     }
 

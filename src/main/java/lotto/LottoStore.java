@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 public class LottoStore {
     private final int money;
     private int tickets;
+    private List<Integer> winningNumbers;
     InputView inputView;
 
     public LottoStore(InputView inputView) {
@@ -15,7 +16,13 @@ public class LottoStore {
     }
 
     public List<Integer> getLottoNumbers() {
-        return Stream.of(inputView.inputWinningNumber().split(",")).map(Integer::parseInt).collect(Collectors.toList());
+        this.winningNumbers = inputView.inputWinningNumber();
+        return winningNumbers;
+        //return Stream.of(inputView.inputWinningNumber().split(",")).map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public void changeTickets() {
@@ -28,7 +35,7 @@ public class LottoStore {
     }
 
     public int getBonusNumber() {
-        return Integer.parseInt(inputView.inputBonusNumber());
+        return inputView.inputBonusNumber(winningNumbers);
     }
 
 }

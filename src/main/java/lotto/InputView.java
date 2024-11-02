@@ -1,12 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputView {
-
-    private static final String WINNING_NUMBER_REGEX_PATTERN = "(\\d{1,2},)\\d{1,2}";
-    private static final String BONUS_NUMBER_REGEX_PATTERN = "\\d+";
 
     public String inputMoney() {
         InputMoneyValidator inputMoneyValidator = new InputMoneyValidator();
@@ -17,21 +15,40 @@ public class InputView {
                 inputMoneyValidator.validate(money);
                 return money;
             }catch (IllegalArgumentException e){
-                System.out.println("no");
+                System.out.println(e.getMessage());
             }
         }
 
 
     }
 
-    public String inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+    public List<Integer> inputWinningNumber() {
+        InputLottoValidator inputLottoValidator = new InputLottoValidator();
+
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String winningNumber = Console.readLine();
+                return inputLottoValidator.getWinningNumber(winningNumber);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Console.readLine();
-    }
+    public int inputBonusNumber(List<Integer> winningNumber) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusNumber = Console.readLine();
+                InputBonusValidator inputBonusValidator = new InputBonusValidator(bonusNumber);
 
+                return inputBonusValidator.getBonusNumber(winningNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
+    }
 }

@@ -27,7 +27,6 @@ public class LottoResult {
                 str.setTotalCount();
                 return;
             }
-            System.out.println("ekdcja"+str.totalCount);
         }
 
         Arrays.stream(WinningPrize.values()).filter(e -> e.winningCount == winningCount && e.bonusCount == bonusCount).count();

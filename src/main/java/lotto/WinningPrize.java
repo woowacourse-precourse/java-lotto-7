@@ -25,8 +25,8 @@ public enum WinningPrize {
 
     }
 
-    public void getTotalMessage() {
-        System.out.println(winningCount+"개 일치 " +"(%) - "+totalCount + "개");
+    public int getPrizeMoney() {
+        return prizeMoney*totalCount;
     }
 
 }
