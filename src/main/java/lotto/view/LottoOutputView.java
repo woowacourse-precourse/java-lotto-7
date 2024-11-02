@@ -35,7 +35,7 @@ public class LottoOutputView {
                 result.append(", 보너스 볼 일치");
             }
             System.out.printf(result.toString());
-            System.out.printf(" (%d원) - %d개\n", rank.getPrize(), rankResults.get(rank));
+            System.out.printf(" (%,d원) - %d개\n", rank.getPrize(), rankResults.get(rank));
         }
     }
 
