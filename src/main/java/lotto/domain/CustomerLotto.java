@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottoResult;
 
@@ -18,5 +19,9 @@ public class CustomerLotto {
         return tickets.stream()
                 .map(winningLotto::checkLotto)
                 .toList();
+    }
+
+    public List<Lotto> getTickets() {
+        return new ArrayList<>(tickets);
     }
 }
