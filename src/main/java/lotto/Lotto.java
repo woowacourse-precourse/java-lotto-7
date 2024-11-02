@@ -18,18 +18,6 @@ public class Lotto {
         }
     }
 
-    private List<Integer> randomNumber(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
-    }
-
-    public List<List<Integer>> generateLotto(int lottoCount){
-        List<List<Integer>> lottos = new ArrayList<>();
-        for(int i = 0 ; i < lottoCount ; i++) {
-            List<Integer> lottoNumbers = randomNumber();
-            lottos.add(lottoNumbers);
-        }
-        return lottos;
-    }
 }
 
 

@@ -7,15 +7,13 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private final int lottoPurchase;
-    private final int bonusNumber;
-    private final List<Integer> lottoNumbers;
+    private int bonusNumber;
+    private List<Integer> lottoNumbers;
     private final int lottoCount;
     final int LOTTO_PURCHASE_COUNT = 1000;
 
     public InputView() {
         this.lottoPurchase = lottoPurchase();
-        this.lottoNumbers = lottoNumbers();
-        this.bonusNumber = bonusNumber();
         this.lottoCount = lottoPurchase/LOTTO_PURCHASE_COUNT;
     }
 
@@ -25,13 +23,13 @@ public class InputView {
         return Integer.parseInt(lottoPurchase);
     }
 
-    public int bonusNumber() {
+    public void bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
-        return Integer.parseInt(bonusNumber);
+        this.bonusNumber =  Integer.parseInt(bonusNumber);
     }
 
-    public List<Integer> lottoNumbers() {
+    public void lottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String rawNumbers = Console.readLine();
         String[] rawNumberSplit = rawNumbers.split(",");
@@ -42,7 +40,13 @@ public class InputView {
             int number = Integer.parseInt(numberInput);
             lottoNumbers.add(number);
         }
-        return lottoNumbers;
+        this.lottoNumbers = lottoNumbers;
+    }
+
+    public void inputStart(OutputView outputView) {
+        outputView.outputLottoNumbers();
+        lottoNumbers();
+        bonusNumber();
     }
 
     public int getBonusNumber() {
