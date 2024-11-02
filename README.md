@@ -163,8 +163,10 @@
   - 당첨 번호와 보너스 번호를 보유
   - 로또 객체와 비교해 당첨 여부를 판별
 
+
 - 로또순위
   - 로또순위에 대한 상금, 조건을 보유
+
 
 - 로또결과
   - 로또티켓의 당첨 상태를 기록
@@ -172,10 +174,10 @@
 
 
 ### 3. 객체 간 관계 설정
-![스크린샷 2024-11-02 오후 6.33.56.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fhc%2Fchqxlqcj31vfglq9bl31d3f00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_TEf306%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-11-02%20%EC%98%A4%ED%9B%84%206.33.56.png)
+![스크린샷 2024-11-02 오후 6.53.47.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fhc%2Fchqxlqcj31vfglq9bl31d3f00000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_7iwQJL%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-11-02%20%EC%98%A4%ED%9B%84%206.53.47.png)
+
 - 로또기계
   - 사용자가 입력한 금액에 따라 로또티켓을 생성한다.
-  - 당첨로또를 생성한다.
 
 
 - 로또티켓
