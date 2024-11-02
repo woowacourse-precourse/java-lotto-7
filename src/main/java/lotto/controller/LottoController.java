@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 import java.util.Set;
 
 public class LottoController {
@@ -26,8 +26,8 @@ public class LottoController {
     public void run(){
         int lottoCount = readLottoCount();
         Lottos lottos = IssueLottos(lottoCount);
-        Set<Integer> winningNumbers = readWinningNumbers();
-//        int bonusNumber =
+        WinningNumbers winningNumbers = readWinningNumbers();
+        readBonusNumber(winningNumbers);
     }
 
     public int readLottoCount(){
@@ -42,8 +42,13 @@ public class LottoController {
         return lottos;
     }
 
-    public Set<Integer> readWinningNumbers(){
+    public WinningNumbers readWinningNumbers(){
         outputView.winningNumberMessage();
-        return inputView.readWinningNumbers();
+        return new WinningNumbers(inputView.readWinningNumbers());
+    }
+
+    public void readBonusNumber(WinningNumbers winningNumbers){
+        outputView.bonusNumberMessage();
+        inputView.readBonusNumber(winningNumbers);
     }
 }

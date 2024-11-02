@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.*;
 
 public class Lottos {
-    List<Lotto> lottos;
+    private List<Lotto> lottos;
 
     public Lottos(Collection<Lotto> lottos) {
         this.lottos = new LinkedList<>(lottos);

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningNumbers;
 import lotto.exception.ErrorMessage;
 import lotto.exception.ExceptionHandler;
 import lotto.util.LottoValueUtil;
@@ -25,6 +26,16 @@ public class InputView {
             return LottoValueUtil.toWinningNumbers(input);
         }catch (IllegalArgumentException e){
             return readWinningNumbers();
+        }
+    }
+
+    public void readBonusNumber(WinningNumbers winningNumbers){
+        try {
+            String input = readLine();
+            int bonusNumber = LottoValueUtil.toBonusNumber(input);
+            winningNumbers.setBonusNumber(bonusNumber);
+        }catch (IllegalArgumentException e){
+            readBonusNumber(winningNumbers);
         }
     }
 
