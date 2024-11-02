@@ -8,7 +8,6 @@ import lotto.view.input.TicketInputView;
 import lotto.view.output.TicketOutputView;
 
 public class TicketController {
-
     private final TicketInputView inputView;
     private final TicketOutputView outputView;
     private final CreateLottoTicketUsecase createLottoTicketUsecase;
@@ -25,12 +24,6 @@ public class TicketController {
         this.getLottoTicketUsecase = getLottoTicketUsecase;
     }
 
-    //TODO InputView - 구입금액을 입력해 주세요 [x]
-    //TODO CreateLottoTicketUsecase - 로또티켓을 생성하라
-    //TODO GetLottoTicketUsecase - 로또티켓을 조회하라
-    //TODO OutputView - { }개를 구매했습니다. [x]
-    //TODO OutputView - {로또목록들} [x]
-
     public TicketResponse create() {
         ThousandWons krMoney = inputView.initialize();
 
@@ -41,4 +34,5 @@ public class TicketController {
 
         return ticketResponse;
     }
+
 }

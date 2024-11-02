@@ -27,29 +27,87 @@
 
 # java-lotto-precourse 기능 목록서
 
+| 도메인                  | 기능          | 세부 기능              | 상태 |
+|----------------------|-------------|--------------------|----|
+| Common(ThousandWons) | 천원 단위 금액 생성 | 정상적인 천원 단위 금액 생성   | ✅  |
+|                      |             | 천원 단위가 아닌 금액 검증    | ✅  |
+|                      |             | 음수,0 금액 검증         | ✅  |
+|                      |             | 숫자가 아닌 입력값 검증      | ✅  |
+|                      | 금액 비교       | 목표 금액보다 크거나 같은지 확인 | ✅  |
+|                      |             | 목표 금액보다 작은지 확인     | ✅  |
+|                      | 금액 나누기      | 나누어 떨어지는 경우 처리     | ✅  |
+|                      |             | 나누어 떨어지지 않는 경우 처리  | ✅  |
+
+| 도메인         | 기능                      | 세부 기능              | 상태 |
+|-------------|-------------------------|--------------------|----|
+| Payment 도메인 | 로또 가격(LottoPrice) 관리    | 기본 가격(1000원)으로 생성  | ✅  |
+|             |                         | 구매 가능한 금액 검증       | ✅  |
+|             |                         | 천원 단위 금액으로 검증      | ✅  |
+|             |                         | 구매 가능 수량 계산        | ✅  |
+|             | 로또 수량(LottoQuantity) 관리 | 유효한 수량(1~100) 생성   | ✅  |
+|             |                         | 최소/최대 수량(1~100) 검증 | ✅  |
+|             |                         | 수량값 조회             | ✅  |
+|             | 결제(Payment) 처리          | 결제 정보 초기화          | ✅  |
+|             |                         | 결제 가능 여부 검증        | ✅  |
+|             |                         | 중복 검증 방지           | ✅  |
+|             |                         | 결제 실행              | ✅  |
+|             |                         | 중복 실행 방지           | ✅  |
+|             |                         | 로또 수량 계산           | ✅  |
+|             | 결제 결과(PaymentResult) 관리 | 결제 결과 생성           | ✅  |
+|             |                         | 완료된 결제 정보 조회       | ✅  |
+
+| 도메인        | 기능               | 세부 기능          | 상태 |
+|------------|------------------|----------------|----|
+| Ticket 도메인 | 로또(Lotto) 관리     | 6개의 번호로 로또 생성  | ✅  |
+|            |                  | 번호 범위 검증(1~45) | ✅  |
+|            |                  | 번호 개수 검증(6개)   | ✅  |
+|            |                  | 중복 번호 검증       | ✅  |
+|            | 로또 목록(Lottos) 관리 | 유효한 로또 목록 생성   | ✅  |
+|            |                  | null 로또 목록 검증  | ✅  |
+|            |                  | 빈 로또 목록 검증     | ✅  |
+|            |                  | 로또 목록 불변성 보장   | ✅  |
+|            | 티켓(Ticket) 관리    | 티켓 발행          | ✅  |
+|            |                  | ID와 로또 목록으로 생성 | ✅  |
+|            |                  | null ID 검증     | ✅  |
+|            |                  | null 로또 목록 검증  | ✅  |
+|            | 티켓 정보 조회         | 티켓 ID 조회       | ✅  |
+|            |                  | 로또 목록 조회       | ✅  |
+
+---
+
+| 도메인        | 기능                     | 세부 기능                 | 상태 |
+|------------|------------------------|-----------------------|----|
+| Winner 도메인 | 당첨 번호(WinnerNumber) 관리 | 6개의 당첨 번호 생성          | ⬜️ |
+|            |                        | 보너스 번호 생성             | ⬜️ |
+|            |                        | 번호 범위 검증(1~45)        | ⬜️ |
+|            |                        | 중복 번호 검증              | ⬜️ |
+|            |                        | 당첨 번호와 보너스 번호 간 중복 검증 | ⬜️ |
+|            |                        | 당첨 번호 조회              | ⬜️ |
+
+---
+
+| 도메인            | 기능       | 세부 기능                | 상태 |
+|----------------|----------|----------------------|----|
+| Statistics 도메인 | 당첨 결과 계산 | 구매한 로또와 당첨번호 비교      | ⬜️ |
+|                |          | 일치하는 번호 개수 확인        | ⬜️ |
+|                |          | 보너스 번호 일치 여부 확인      | ⬜️ |
+|                | 당첨 등수 관리 | 1등(6개 일치) 확인         | ⬜️ |
+|                |          | 2등(5개+보너스) 확인        | ⬜️ |
+|                |          | 3등(5개) 확인            | ⬜️ |
+|                |          | 4등(4개) 확인            | ⬜️ |
+|                |          | 5등(3개) 확인            | ⬜️ |
+|                | 당첨금 계산   | 등수별 당첨금액 계산          | ⬜️ |
+|                |          | 총 당첨금액 계산            | ⬜️ |
+|                | 수익률 계산   | 수익률 계산(소수점 둘째자리 반올림) | ⬜️ |
+|                | 통계 정보 관리 | 당첨 통계 생성             | ⬜️ |
+|                |          | 당첨 통계 조회             | ⬜️ |
+|                |          | 등수별 당첨 내역 포맷팅        | ⬜️ |
+
 # 로또 발매기(LottoTicketMachine)
 
 - 컨트롤러간의 흐름 제어를 한다.
 
 ## 📌 컨트롤러
-
-### LottoTicketController (로또 티켓 컨트롤러)
-
-- InputView - 구입금액을 입력해 주세요
-- CreateLottoTicketUsecase - 로또티켓을 생성하라
-- GetLottoTicketUsecase - 로또티켓을 조회하라
-- OutputView - { }개를 구매했습니다.
-- OutputView - {로또목록들}
-
-```java
-InputView-구입금액을 입력해 주세요
-
-        Long ticketId=CreateLottoTicketUsecase.execute(ThousandWons money);
-        TicketResult ticketResponse=GetLottoTicketUsecase.execute(Long ticketId);
-
-        OutputView-{ticketResponse.getCount}개를 구매했습니다.
-        OutputView-{ticketResponse.getAll}
-```
 
 ### WinnerNumberController (당첨 번호 컨트롤러)
 
@@ -91,34 +149,12 @@ InputView-당첨 통계
 
 ## 📌 유스케이스
 
-- CreateLottoTicketUsecase - 로또티켓을 생성하라(ThousandWons money)
-- GetLottoTicketUsecase - 로또티켓을 조회하라(Long ticketId);
-
-
 - CreateWinnerNumberUsecase - 당첨 번호를 생성하라.
 - GetWinnerNumberUsecase - 당첨 번호를 조회하라.
 
 
 - CreateWinnerStatisticsUsecase - 당첨 통계를 생성하라
 - GetWinnerStatisticsUsecase - 당첨 통계를 조회하라
-
-### CreateLottoTicketUsecase - 로또티켓을 생성하라(ThousandWons money)
-
-- PaymentService - 로또 금액을 지불하라
-- TicketService - 로또 티켓을 생성하라
-
-```java
-LottoCount lottoQuantity=PaymentService.pay(ThousandWons money);
-        Long ticketId=TicketService.create(LottoCount lottoQuantity);
-```
-
-### GetLottoTicketUsecase - 로또티켓을 조회하라(Long ticketId);
-
-- LottoTicketService - 로또 티켓을 조회하라
-
-```java
-LottoTicket lottoTicket=LottoTicketService.getById(Long ticketId);
-```
 
 ### CreateWinnerNumberUsecase - 당첨 번호를 생성하라.
 
@@ -155,35 +191,6 @@ WinnerStatistics winStatistics=WinnerStatistics.getById(Long winStatisticsId);
 ---
 
 # 📌 서비스
-
-### PaymentService - 결제하라
-
-- Payment - 지불하라
-- PaymentRepositroy - 저장하라
-
-```java
-Payment payment=Payment.pay(ThousandWodns money);
-        Long savedId=PaymentRepository.save(payment);
-```
-
-### TicketService - 생성하라
-
-- Ticket - 생성하라
-- TicketRepository - 저장하라
-- Long LottoTicketService.pay(ThousandWons money);
-
-```java
-Ticket ticketResponse=Ticket.of(LottoCount lottoQuantity);
-        Long savedId=TicketRepository.save(ticketResponse);
-```
-
-### TicketService - 조회하라
-
-- TicketService - 조회하라
-
-```java
-Ticket ticketResponse=TicketRepository.getById(Long ticketId);
-```
 
 ### WinnerNumberService - 생성하라
 
@@ -225,24 +232,6 @@ WinnerStatistics winStatistics=WinnerStatisticsRepository.getById(Long winStatis
 ---
 
 # 📌 도메인
-
-- 로또 가격
-    - 1000원 단위가 아닐시 예외처리를한다.
-
-
-- 로또 숫자
-    - 로또 번호의 숫자 범위는 1~45까지이다.
-    - 그 외 범위는 예외처리
-
-
-- Payment - 지불하라
-    - 로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
-    - 지불이 실패하면 예외처리
-
-
-- Ticket - 생성하라
-    - 로또들을 생성한다.
-
 
 - WinnerNumber - 생성하라
     - 당첨 번호를 생성한다.
