@@ -35,22 +35,6 @@ public class AdditionalApplicationTest {
 //
 //
 //    @Test
-//    void 보너스번호_null일시_예외() {
-//        String testNumber = null;
-//
-//        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
-//                .withMessage("[ERROR] 값을 입력해주세요.");
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = {"", " "})
-//    void 보너스번호_빈_문자열일시_예외(String testNumber) {
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> Application.validateInputValue(testNumber))
-//                .withMessage("[ERROR] 값을 입력해주세요.");
-//    }
-//
-//    @Test
 //    void 보너스번호를_저장한다() {
 //        Lotto defaultWinningNumbers = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
 //        String testNumber = "7";

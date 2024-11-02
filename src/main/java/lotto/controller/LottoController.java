@@ -1,10 +1,13 @@
 package lotto.controller;
 
 import lotto.WinningRank;
+import lotto.model.BonusNumber;
 import lotto.model.LottoAmount;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
 import lotto.model.WinningNumberGenerator;
+import lotto.model.WinningResult;
+import lotto.model.WinningResults;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -25,6 +28,7 @@ public class LottoController {
         Lottos lottos = lottoMachine.issueLottos(lottoAmount);
         outputView.outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
+        String bonusNumberInput = inputView.inputBonusNumber();
     }
 
     private LottoAmount purchaseLottos() {
@@ -46,4 +50,5 @@ public class LottoController {
             return pickWinningNumber();
         }
     }
+
 }

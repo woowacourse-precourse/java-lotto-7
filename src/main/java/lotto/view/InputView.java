@@ -18,4 +18,12 @@ public class InputView {
         InputValidator.validateGeneralValueInput(winningNumbersInput);
         return winningNumbersInput;
     }
+
+    public String inputBonusNumber() {
+        System.out.println(System.lineSeparator()
+                + "보너스 번호를 입력해 주세요.");
+        String bonusNumberInput = Console.readLine();
+        InputValidator.validateInputInteger(bonusNumberInput);
+        return bonusNumberInput;
+    }
 }

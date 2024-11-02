@@ -73,6 +73,19 @@ public class InputValidatorTest {
                 .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
+    @Test
+    void 보너스번호_null일시_예외() {
+        String testNumber = null;
 
+        assertThatIllegalArgumentException().isThrownBy(() -> InputValidator.validateInputInteger(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 보너스번호_빈_문자열일시_예외(String testNumber) {
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> InputValidator.validateInputInteger(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
 }
