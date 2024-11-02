@@ -9,6 +9,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
 
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void 로또_번호의_개수가_6개보다_적으면_예외가_발생한다(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -25,8 +32,8 @@ class LottoTest {
 
     @DisplayName("로또 번호에 1~45 이외의 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_허동되는_범위_이외의_숫자가_있으면_예외가_발생한다(){
-        assertThatThrownBy(() -> new Lotto(List.of(1,3,6,8,13,53)))
+    void 로또_번호에_허동되는_범위_이외의_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 3, 6, 8, 13, 53)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
