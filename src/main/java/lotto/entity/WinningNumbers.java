@@ -25,7 +25,7 @@ public class WinningNumbers {
                 System.out.println(NotificationMessage.WINNING_NUMBERS.getMessage());
 
                 String[] inputs = Console.readLine().trim().split(DELIMITER);
-                validateNumbersCount(inputs);
+                validateMainNumber(inputs);
 
                 List<Integer> mainNumbers = Arrays.stream(inputs)
                         .map(input -> Integer.parseInt(input.trim()))
@@ -55,21 +55,38 @@ public class WinningNumbers {
         }
     }
 
-    private void validateNumbersCount(String[] inputs) {
+    private void validateMainNumber(String[] inputs) {
+        validateMainNumbersCount(inputs);
+
+        for (String input : inputs) {
+            int number = Integer.parseInt(input.trim());
+            validateNumberInRange(number);
+        }
+    }
+
+    private void validateMainNumbersCount(String[] inputs) {
         if (inputs.length != LottoConstants.LOTTO_NUMBERS_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < LottoConstants.MIN_LOTTO_NUMBER.getValue() || bonusNumber > LottoConstants.MAX_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
+    private void validateNumberInRange(int number) {
+        if (number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage());
         }
+    }
 
+    private void validateBonusNumber(int bonusNumber) {
+        validateNumberInRange(bonusNumber);
+        validateBonusNumberDuplication(bonusNumber);
+    }
+
+    private void validateBonusNumberDuplication(int bonusNumber) {
         if (mainNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
+
 
     public List<Integer> getMainNumbers() {
         return mainNumbers;
