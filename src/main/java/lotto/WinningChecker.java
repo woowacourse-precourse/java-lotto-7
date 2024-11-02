@@ -15,20 +15,21 @@ public class WinningChecker {
         for (Lotto lotto : lottos.getLottos()) {
             Integer count = lotto.howManyMatches(winningNumber);
             WinningInfo winningInfo = WinningInfo.getWinningInfo(count);
-            if (winningInfo.getInfo().equals("undefined")) {
-                calculateFiveMatches(lotto);
+            if (winningInfo.equals(WinningInfo.UNDEFINED)) {
+                winningInfo = checkBonusNumber(lotto);
             }
             result.updateResult(winningInfo);
         }
     }
 
-    private void calculateFiveMatches(Lotto lotto) {
+    private WinningInfo checkBonusNumber(Lotto lotto) {
         if (lotto.contains(bonusNumber)) {
-            result.updateResult(WinningInfo.SECOND_WINNER);
+            return WinningInfo.SECOND_WINNER;
         }
         if (!lotto.contains(bonusNumber)) {
-            result.updateResult(WinningInfo.THIRD_WINNER);
+            return WinningInfo.THIRD_WINNER;
         }
+        return WinningInfo.NOT_MATCH;
     }
 
 }

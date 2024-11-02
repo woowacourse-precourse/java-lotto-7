@@ -12,15 +12,19 @@ public class LottoResult {
     }
 
     private void initResult() {
+        totalBenefit = 0;
         result.put(WinningInfo.FIRST_WINNER, 0);
         result.put(WinningInfo.SECOND_WINNER, 0);
         result.put(WinningInfo.THIRD_WINNER, 0);
         result.put(WinningInfo.FOURTH_WINNER, 0);
         result.put(WinningInfo.FIFTH_WINNER, 0);
+        result.put(WinningInfo.NOT_MATCH, 0);
     }
 
     public void updateResult(WinningInfo winningInfo) {
-        result.put(winningInfo, result.get(winningInfo) + 1);
+        if(!winningInfo.equals(WinningInfo.UNDEFINED)) {
+            result.put(winningInfo, result.get(winningInfo) + 1);
+        }
     }
 
     public Double getProfitRate(Lottos lottos) {

@@ -6,7 +6,8 @@ public enum WinningInfo {
     THIRD_WINNER(5,"5개 일치 (1,500,000원)", 1_500_000),
     FOURTH_WINNER(4,"4개 일치 (50,000원)", 50_000),
     FIFTH_WINNER(3,"3개 일치 (5,000원)", 5_000),
-    UNDEFINED(-1, "undefined", 0);
+    UNDEFINED(-1, "undefined", 0),
+    NOT_MATCH(0, "not match", 0);
 
     private final int match;
     private final String info;
@@ -33,13 +34,13 @@ public enum WinningInfo {
 
     public static WinningInfo getWinningInfo(int count) {
         for (WinningInfo winningInfo : WinningInfo.values()) {
-            if (winningInfo.getMatch() == 5) {
+            if (count == 5) {
                 return UNDEFINED;
             }
             if (winningInfo.getMatch() == count) {
                 return winningInfo;
             }
         }
-        return UNDEFINED;
+        return NOT_MATCH;
     }
 }

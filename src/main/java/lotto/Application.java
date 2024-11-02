@@ -13,10 +13,10 @@ public class Application {
     private final WinningChecker winningChecker;
 
     public Application() {
+        this.price = Integer.parseInt(Input.inputPrice());
         Lotto winningNumber = Lotto.generateWinningNumber(Input.inputWinningNumber(), COMMA);
         Integer bonusNumber = Integer.parseInt(Input.inputBonusNumber());
 
-        this.price = Integer.parseInt(Input.inputPrice());
         this.lottoGenerator = new LottoGenerator();
         this.lottoResult = new LottoResult();
         this.winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
