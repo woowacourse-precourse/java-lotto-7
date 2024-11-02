@@ -10,8 +10,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-
-        // 추가 검증 로직 호출
         checkForNullValues(numbers);
         checkForDuplicates(numbers);
         checkNumberRange(numbers);
@@ -24,8 +22,10 @@ public class Lotto {
     }
 
     private void checkForNullValues(List<Integer> numbers) {
-        if (numbers.contains(null)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 빈 값이 포함될 수 없습니다.");
+        for (Integer number : numbers) {
+            if (number == null) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호에 빈 값이 포함될 수 없습니다.");
+            }
         }
     }
 
