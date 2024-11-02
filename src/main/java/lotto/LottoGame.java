@@ -53,9 +53,6 @@ public class LottoGame {
     }
 
     private static void getEarningRate() {
-        double earningRate = lottoResult.keySet().stream()
-                .mapToDouble(rank -> ((double) (rank.getPrize()) / (amount * 1000) * (lottoResult.get(rank)) * (100))).sum();
-
-        outputView.printEarningRate(earningRate);
+        outputView.printEarningRate(inputView.getEarningRate(lottoResult, amount));
     }
 }

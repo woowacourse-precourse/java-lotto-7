@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.dto.request.EarningRateRequest;
 import lotto.dto.request.LottoAmountRequest;
 import lotto.dto.request.LottoResultRequest;
+import lotto.dto.response.EarningRateResponse;
 import lotto.dto.response.LottoResultResponse;
 import lotto.dto.response.LottoesResponse;
 import lotto.service.LottoService;
@@ -21,5 +23,9 @@ public class LottoController {
 
     public LottoResultResponse getLottoResult(LottoResultRequest request) {
         return lottoService.getLottoResult(request);
+    }
+
+    public EarningRateResponse getEarningRate(EarningRateRequest request) {
+        return lottoService.getEarningRate(request);
     }
 }

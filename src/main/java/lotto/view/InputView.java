@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
+import lotto.dto.request.EarningRateRequest;
 import lotto.dto.request.LottoAmountRequest;
 import lotto.dto.request.LottoResultRequest;
+import lotto.dto.response.EarningRateResponse;
 import lotto.dto.response.LottoResultResponse;
 import lotto.dto.response.LottoesResponse;
 import lotto.util.BonusNumberValidator;
@@ -53,5 +55,10 @@ public class InputView {
     public Map<Ranking, Integer> getLottoResult(List<Integer> winningNumbers, int bonusNumber) {
         LottoResultResponse response = lottoController.getLottoResult(LottoResultRequest.of(winningNumbers, bonusNumber));
         return response.lottoResult();
+    }
+
+    public double getEarningRate(Map<Ranking, Integer> lottoResult, int amount) {
+        EarningRateResponse response = lottoController.getEarningRate(EarningRateRequest.of(lottoResult, amount));
+        return response.earningRate();
     }
 }

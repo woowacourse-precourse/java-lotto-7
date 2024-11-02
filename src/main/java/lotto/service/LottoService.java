@@ -3,8 +3,10 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
+import lotto.dto.request.EarningRateRequest;
 import lotto.dto.request.LottoAmountRequest;
 import lotto.dto.request.LottoResultRequest;
+import lotto.dto.response.EarningRateResponse;
 import lotto.dto.response.LottoResultResponse;
 import lotto.dto.response.LottoesResponse;
 
@@ -12,12 +14,7 @@ import java.util.*;
 
 public class LottoService {
 
-    private List<Integer> lottoNumbers = new ArrayList<>();
-    private List<Lotto> lottoes = new ArrayList<>();
-
-    private final int LOTTO_MIN_NUMBER = 1;
-    private final int LOTTO_MAX_NUMBER = 45;
-    private final int LOTTO_SIZE = 6;
+    private final List<Lotto> lottoes = new ArrayList<>();
 
     public LottoesResponse makeLottoes(LottoAmountRequest request) {
         for (int i = 0; i < request.amount(); i++) {
@@ -32,8 +29,9 @@ public class LottoService {
     }
 
     private List<Integer> setRandomNumbers() {
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lottoNumbers);
+
         return lottoNumbers;
     }
 
@@ -49,5 +47,12 @@ public class LottoService {
         }
 
         return LottoResultResponse.from(result);
+    }
+
+    public EarningRateResponse getEarningRate(EarningRateRequest request) {
+        double earningRate = request.lottoResult().keySet().stream()
+                .mapToDouble(rank -> ((double) (rank.getPrize()) / (request.amount() * 1000) * (request.lottoResult().get(rank)) * (100))).sum();
+
+        return EarningRateResponse.from(earningRate);
     }
 }
