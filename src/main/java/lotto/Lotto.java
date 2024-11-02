@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.LottoRule.NUMBER_LENGTH;
+import static lotto.LottoRule.RANGE_HIGH;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +16,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != NUMBER_LENGTH) {
+            String message = String.format("[ERROR] 로또 번호는 %d개여야 합니다.", NUMBER_LENGTH);
+            throw new IllegalArgumentException(message);
         }
-        boolean[] check = new boolean[46];
+        boolean[] check = new boolean[RANGE_HIGH];
         for (Integer number : numbers) {
             if (check[number])
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 있으면 안됩니다.");
@@ -34,12 +38,7 @@ public class Lotto {
                 isBonusMatch = true;
         }
 
-        if (matchCount == 6) return 1;
-        if (matchCount == 5 && isBonusMatch) return 2;
-        if (matchCount == 5) return 3;
-        if (matchCount == 4) return 4;
-        if (matchCount == 3) return 5;
-        return 0;
+        return LottoRule.getPlace(matchCount, isBonusMatch);
     }
 
     public List<Integer> getSortedNumbers() {

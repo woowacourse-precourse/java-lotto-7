@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.LottoRule.LOTTO_PRICE;
+import static lotto.LottoRule.NUMBER_LENGTH;
 import static lotto.LottoRule.WINNING_PRIZE_TABLE;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Player {
 
     private List<Lotto> lottos = new ArrayList<>();
     private LottoMachine machine = new LottoMachine();
-    private int[] winningCounts = new int[6];
+    private int[] winningCounts = new int[NUMBER_LENGTH];
     private int totalPrize = 0;
     private int purchaseAmount = 0;
     private int lottoAmount = 0;
@@ -33,14 +34,16 @@ public class Player {
     public void evalutateLottos(List<Integer> winningNumbers, int bonusNumber) {
         if (lottos.size() == 0)
             throw new IllegalStateException("[ERROR] 로또를 구매하지 않았습니다.");
+        if (evaluated)
+            throw new IllegalStateException("[ERROR] 이미 평가가 완료된 상태입니다.");
 
         totalPrize = 0;
-        winningCounts = new int[6];
+        winningCounts = new int[NUMBER_LENGTH];
         for (Lotto lotto : lottos) {
             int place = lotto.getPlace(winningNumbers, bonusNumber);
             winningCounts[place] += 1;
         }
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < NUMBER_LENGTH; i++) {
             totalPrize += winningCounts[i] * WINNING_PRIZE_TABLE[i];
         }
         evaluated = true;

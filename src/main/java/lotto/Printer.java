@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.LottoRule.NUMBER_LENGTH;
 import static lotto.LottoRule.WINNING_PRIZE_TABLE;
 
 import java.io.PrintStream;
@@ -45,7 +46,7 @@ public class Printer {
     public void summary(Player player) {
         out.println("당첨 통계");
         out.println("---");
-        for (int i = 5; i > 0; i--) {
+        for (int i = NUMBER_LENGTH - 1; i > 0; i--) {
             out.println(String.format(
                 winningPlaceDescriptionFormats[i],
                 WINNING_PRIZE_TABLE[i],

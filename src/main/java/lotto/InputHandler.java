@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.LottoRule.LOTTO_PRICE;
+import static lotto.LottoRule.NUMBER_LENGTH;
 import static lotto.LottoRule.RANGE_HIGH;
 import static lotto.LottoRule.RANGE_LOW;
 
@@ -20,8 +21,8 @@ public abstract class InputHandler {
                 String message = String.format("구입금액은 %,d원 단위여야 합니다.", LOTTO_PRICE);
                 throw createArgumentException(message, input);
             }
-
             return purchaseAmount;
+
         } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 금액 형식입니다.", input);
         } catch (IllegalArgumentException e) {
@@ -31,11 +32,13 @@ public abstract class InputHandler {
 
     public static List<Integer> parseWinningNumbers(String input) {
        try {
-            List<Integer> winningNumbers = new ArrayList<>(6);
+            List<Integer> winningNumbers = new ArrayList<>(NUMBER_LENGTH);
             String[] segments = input.split("\\s*,\\s*");
 
-            if (segments.length != 6)
-                throw createArgumentException("당첨 번호는 정확히 6개여야 합니다.", input);
+            if (segments.length != NUMBER_LENGTH) {
+                String message = String.format("당첨 번호는 정확히 %d개여야 합니다.", NUMBER_LENGTH);
+                throw createArgumentException(message, input);
+            }
 
             boolean[] check = new boolean[RANGE_HIGH];
 
@@ -53,8 +56,8 @@ public abstract class InputHandler {
                 check[number] = true;
                 winningNumbers.add(number);
             }
-
             return winningNumbers;
+
        } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 번호 형식입니다.", input);
        } catch (IllegalArgumentException e) {
@@ -69,8 +72,8 @@ public abstract class InputHandler {
                 String message = String.format("당첨 번호는 %d 부터 %d 사이여야 합니다. ", RANGE_LOW, RANGE_HIGH);
                 throw createArgumentException(message, input);
             }
-
             return bonusNumber;
+
         } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 보너스 변호 형식입니다.", input);
         } catch (IllegalArgumentException e) {
