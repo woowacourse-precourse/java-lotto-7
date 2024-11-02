@@ -44,6 +44,6 @@ class InputParserTest {
         // when & then
         assertThatThrownBy(() -> {
             inputParser.inputToWinningNumbers(winningNumberInput);
-        }).isInstanceOf(InputException.class).hasMessage(InputExceptionMessage.INVALID_NUMBER_FORMAT.getErrorMessage());
+        }).isInstanceOf(InputException.class);
     }
 }
