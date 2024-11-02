@@ -124,6 +124,8 @@ public class InputTest {
         // given
         User user = new User();
         user.setMoney("10000");
+
+        // when
         int lottoCount = InputService.getLottoPurchaseAmount(user);
 
         // then
