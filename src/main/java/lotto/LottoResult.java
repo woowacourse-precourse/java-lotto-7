@@ -7,7 +7,6 @@ public class LottoResult {
     private int countOf5MatchAndBonus = 0;
     private int countOf6Match = 0;
 
-
     public void winningResult(int matchCount, boolean bonusMatch) {
         if (matchCount == 3) {
             countOf3Match++;
@@ -24,32 +23,26 @@ public class LottoResult {
         }
     }
 
-
     public int getCountOf3Match() {
         return countOf3Match;
     }
-
 
     public int getCountOf4Match() {
         return countOf4Match;
     }
 
-
     public int getCountOf5Match() {
         return countOf5Match;
     }
-
 
     public int getCountOf5MatchAndBonus() {
         return countOf5MatchAndBonus;
     }
 
-
     public int getCountOf6Match() {
         return countOf6Match;
     }
-
-
+    
     public int totalWinningPrize() {
         int winningPrize = 0;
         winningPrize += countOf3Match * 5000;
