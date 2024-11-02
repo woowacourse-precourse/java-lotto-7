@@ -62,8 +62,8 @@ public class Money implements Comparable<Money> {
         return (int) (this.value / LOTTO_PRICE.value);
     }
 
-    public static boolean hasSmallChange(Money money) {
-        return money.value % LOTTO_PRICE.value != 0;
+    public boolean hasSmallChange() {
+        return this.value % LOTTO_PRICE.value != 0;
     }
 
     @Override

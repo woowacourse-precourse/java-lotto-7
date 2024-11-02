@@ -1,7 +1,6 @@
 package lotto.io.validator.money;
 
 import static lotto.io.exception.SmallChangeException.invalidUnit;
-import static lotto.model.money.Money.hasSmallChange;
 
 import lotto.io.preprocessor.IOPreprocessor;
 import lotto.io.validator.InputValidator;
@@ -20,7 +19,7 @@ public class ThousandUnitValidator extends InputValidator {
     public void check(final String source) {
         Money money = IOPreprocessor.stringToMoney(source);
 
-        if (hasSmallChange(money)) {
+        if (money.hasSmallChange()) {
             throw invalidUnit();
         }
 
