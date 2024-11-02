@@ -45,7 +45,7 @@ class PurchaseMoneyValidatorTest {
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
                 // when
-                () -> PurchaseMoneyValidator.validateEmptyValue(testTarget));
+                () -> PurchaseMoneyValidator.validateEmptyValue(testTarget,null));
     }
 
     @Test
@@ -55,7 +55,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = " 1000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget));
+                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget,null));
     }
 
     @Test
@@ -65,7 +65,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "1000 ";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget));
+                () -> PurchaseMoneyValidator.validateWhitespaceAtHeadOrTail(testTarget,null));
     }
 
     @Test
@@ -75,7 +75,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "100 000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget));
+                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget,null));
     }
 
     @Test
@@ -85,7 +85,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "-1000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget));
+                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget,null));
     }
 
     @Test
@@ -95,7 +95,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "3,000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget));
+                () -> PurchaseMoneyValidator.validateEachCharacterIsDigit(testTarget,null));
     }
 
     @Test
@@ -105,7 +105,7 @@ class PurchaseMoneyValidatorTest {
         String testTarget = "001000";
         // then
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> PurchaseMoneyValidator.validateStartWithZero(testTarget));
+                () -> PurchaseMoneyValidator.validateStartWithZero(testTarget,null));
     }
 
     @Test
