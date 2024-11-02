@@ -2,6 +2,7 @@ package lotto;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public enum WinningRank {
@@ -34,6 +35,12 @@ public enum WinningRank {
         @Override
         int calculateRevenue() {
             return FIRST.reward * FIRST.successMatch;
+        }
+    },
+    NONE(0, 0) {
+        @Override
+        int calculateRevenue() {
+            return 0;
         }
     };
 
@@ -75,15 +82,18 @@ public enum WinningRank {
     }
 
     private static WinningRank getWinningRank(int requiredMatch) {
-        WinningRank winningRank = Arrays.stream(WinningRank.values())
-                .filter(rank -> rank != WinningRank.SECOND)
+        Optional<WinningRank> winningRank = Arrays.stream(WinningRank.values())
+                .filter(rank -> rank != SECOND)
                 .filter(rank -> rank.requiredMatch == requiredMatch)
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
 
-        increase(winningRank);
+        if (winningRank.isEmpty()) {
+            return NONE;
+        }
 
-        return winningRank;
+        increase(winningRank.get());
+
+        return winningRank.get();
     }
 
     private static void increase(WinningRank rank) {
@@ -92,6 +102,7 @@ public enum WinningRank {
 
     public static String winningStatus() {
         return Arrays.stream(WinningRank.values())
+                .filter(rank -> rank != NONE)
                 .map(WinningRank::selectStatus)
                 .collect(Collectors.joining("\n"));
     }
