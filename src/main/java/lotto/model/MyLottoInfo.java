@@ -54,7 +54,8 @@ public class MyLottoInfo {
     }
 
     public void lottoResult(int count, boolean isBonusNumberMatch){
-
+        Rank rank = Rank.findRank(count, isBonusNumberMatch);
+        myResult.put(rank, myResult.get(rank) + 1);
     }
 
     public List<Lotto> getMyLotteries() {
