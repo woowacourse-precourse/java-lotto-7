@@ -3,6 +3,8 @@ package lotto.domain.lotto;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Number;
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
 
 public class Lotto {
     private final List<Number> numbers;
@@ -51,7 +53,7 @@ public class Lotto {
 
         private static void validateSize(List<Integer> numbers) {
             if (isNotCorrectSize(numbers)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+                throw new LottoException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE);
             }
         }
 
@@ -61,7 +63,7 @@ public class Lotto {
 
         private static void validateDuplicate(List<Integer> numbers) {
             if (isDuplicatedIn(numbers)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+                throw new LottoException(ErrorMessage.INVALID_DUPLICATION_NUMBER);
             }
         }
 

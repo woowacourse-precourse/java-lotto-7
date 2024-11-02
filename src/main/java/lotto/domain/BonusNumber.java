@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
+
 public class BonusNumber {
 
     private final Number bonusNumber;
@@ -20,7 +23,7 @@ public class BonusNumber {
     private static class Validator {
         private static void validate(WinningNumbers winningNumbers, Number number) {
             if (isBonusNumberInWinningNumbers(winningNumbers, number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함된 숫자는 입력할 수 없습니다.");
+                throw new LottoException(ErrorMessage.INVALID_BONUS_NUMBER);
             }
         }
 

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
+
 public class Payment {
 
     private static final int PRICE = 1000;
@@ -30,7 +33,7 @@ public class Payment {
     private static class Validator {
         private static void validateDivisibleByPrice(int money) {
             if (isNotDivisibleByPrice(money)) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요");
+                throw new LottoException(ErrorMessage.INVALID_PAYMENT_FORMAT);
             }
         }
 

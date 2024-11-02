@@ -6,6 +6,8 @@ import lotto.domain.Number;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lotto;
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
 import lotto.view.console.Reader;
 import lotto.view.console.Writer;
 
@@ -49,14 +51,14 @@ public class InputView {
 
         private static String validateSeparator(String input) {
             if (hasContinuousSeparator(input) || hasEdgeSeparator(input)) {
-                throw new IllegalArgumentException("[ERROR] 잘못된 입력 형식입니다.");
+                throw new LottoException(ErrorMessage.INVALID_INPUT_FORMAT);
             }
             return input;
         }
 
         private static void validateZero(String input) {
             if (isZero(input)) {
-                throw new IllegalArgumentException("[ERROR] 0원은 구매할 수 없습니다.");
+                throw new LottoException(ErrorMessage.INVALID_NUMBER_FORMAT);
             }
         }
 
@@ -66,7 +68,7 @@ public class InputView {
 
         private static int validateNumber(String input) {
             if (isNotNumeric(input)) {
-                throw new IllegalArgumentException("[ERROR] 양의 정수만 입력이 가능합니다.");
+                throw new LottoException(ErrorMessage.INVALID_INPUT_FORMAT);
             }
             return Integer.parseInt(input);
         }

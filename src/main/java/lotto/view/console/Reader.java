@@ -1,6 +1,8 @@
 package lotto.view.console;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
 
 public class Reader {
 
@@ -11,7 +13,7 @@ public class Reader {
     private static class Validator {
         private static String validate(String input) {
             if (isBlank(input)) {
-                throw new IllegalArgumentException("[ERROR] 빈 문자열 또는 공백은 입력할 수 없습니다.");
+                throw new LottoException(ErrorMessage.INVALID_BLANK_INPUT);
             }
             return input;
         }

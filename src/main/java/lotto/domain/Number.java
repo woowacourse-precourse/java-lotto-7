@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.global.exception.ErrorMessage;
+import lotto.global.exception.LottoException;
+
 public class Number implements Comparable<Number> {
 
     private final int value;
@@ -37,7 +40,7 @@ public class Number implements Comparable<Number> {
 
         private static void validateRange(int value) {
             if (isInvalidRange(value)) {
-                throw new IllegalArgumentException("[ERROR] 올바른 범위의 값이 아닙니다.");
+                throw new LottoException(ErrorMessage.INVALID_NUMBER_RANGE);
             }
         }
 
