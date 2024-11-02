@@ -28,10 +28,10 @@ public enum Rank {
     }
 
     private String getNormalMessage() {
-        return this.matchCount + "개 일치 (" + getFormattedPrizeMoney() + ")";
+        return this.matchCount + "개 일치 (" + getFormattedPrizeMoney() + "원)";
     }
 
     private String getBonusMessage() {
-        return this.matchCount + "개 일치, 보너스 볼 일치 (" + getFormattedPrizeMoney() + ")";
+        return this.matchCount + "개 일치, 보너스 볼 일치 (" + getFormattedPrizeMoney() + "원)";
     }
 }
