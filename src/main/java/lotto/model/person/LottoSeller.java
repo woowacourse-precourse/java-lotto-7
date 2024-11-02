@@ -15,7 +15,7 @@ public class LottoSeller {
     }
 
     public Lottos sellTo(final int amount) {
-        validateAmount(amount);
+        validate(amount);
         int count = calculateLottoCount(amount);
         return lottoMachine.execute(count);
     }
@@ -24,9 +24,20 @@ public class LottoSeller {
         return amount / UNIT_AMOUNT;
     }
 
+    private void validate(final int amount) {
+        validateAmountRange(amount);
+        validateAmount(amount);
+    }
+
     private void validateAmount(final int amount) {
-        if (amount < UNIT_AMOUNT || amount % UNIT_AMOUNT != 0) {
+        if (amount % UNIT_AMOUNT != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로 투입되어야 합니다.");
+        }
+    }
+
+    private void validateAmountRange(final int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 양수인 숫자를 입력해주세요.");
         }
     }
 }
