@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Model.Lotto;
 import lotto.Model.LottoGenerator;
+import lotto.Model.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -20,6 +22,18 @@ class ApplicationTest extends NsTest {
         List<Lotto> lottos = generator.generateLottos(3000);
         assertThat(lottos).hasSize(3);
     }
+
+    @Test
+    void 구입_금액_유효성_검사_테스트() {
+        assertThatThrownBy(() -> Validator.validatePrice(-1000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("금액은 양의 정수로 입력되어야 합니다.");
+
+        assertThatThrownBy(() -> Validator.validatePrice(1500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("금액은 1000단위로 입력되어야 합니다.");
+    }
+
 
     @Test
     void 기능_테스트() {
