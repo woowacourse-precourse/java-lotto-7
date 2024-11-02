@@ -10,15 +10,11 @@ import static lotto.utils.DefaultErrorMessage.NULL_OR_EMPTY_INPUT;
 
 public class WinningLotto extends Lotto {
 
-    private int  bonusNumber;
+    private int bonusNumber;
 
     public WinningLotto(List<Integer> numbers) {
         super(numbers);
 
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 
     public void setBonusNumber(String bonusNumber) {

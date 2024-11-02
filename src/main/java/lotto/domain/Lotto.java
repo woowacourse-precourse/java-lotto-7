@@ -7,6 +7,7 @@ import lotto.domain.rule.LottoRules;
 import java.util.*;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -30,16 +31,15 @@ public class Lotto {
         return new WinningLotto(winningLottoNumberList);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
 
     private void validate(List<Integer> numbers) {
         validateLottoNumCount(numbers);
         validateLottoNumbersInRange(numbers);
         checkNoDuplicateNumbers(numbers);
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     private void validateLottoNumCount(List<Integer> numbers) {
@@ -65,7 +65,6 @@ public class Lotto {
     private boolean isLottoCountValid(List<Integer> numbers) {
         return numbers.size() == LottoRules.NUMBER_COUNT.getValue();
     }
-
 
     private boolean isLottoNumberInRange(int lottoNumber) {
         return lottoNumber >= LottoRules.MIN_NUMBER.getValue() && lottoNumber <= LottoRules.MAX_NUMBER.getValue();
