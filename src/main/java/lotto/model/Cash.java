@@ -2,16 +2,16 @@ package lotto.model;
 
 public class Cash {
     private static final int CASH_UNIT = 1000;
-    private final int amountInUnits;
+    private final int totalAmount;
 
     public Cash(String inputAmount) {
-        this.amountInUnits = parseAmount(inputAmount);
+        this.totalAmount = parseAmount(inputAmount);
         validateAmountInUnits();
     }
 
     private void validateAmountInUnits() {
-        if (amountInUnits % CASH_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] " + CASH_UNIT + "원 단위만 입력 가능합니다.");
+        if (totalAmount % CASH_UNIT != 0 || totalAmount <=0) {
+            throw new IllegalArgumentException("[ERROR] " + CASH_UNIT + "원 단위의 자연수만 입력 가능합니다.");
         }
     }
 
