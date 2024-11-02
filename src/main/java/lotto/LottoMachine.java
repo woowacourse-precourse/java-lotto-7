@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoBuyer;
+import lotto.domain.LottoCenter;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoProcessor;
 import lotto.domain.calculator.Calculator;
@@ -12,6 +13,17 @@ public class LottoMachine {
     private Calculator calculator;
     private LottoGenerator lottoGenerator;
     private LottoDrawer lottoDrawer;
+    private LottoCenter lottoCenter;
+
+    public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, Calculator calculator,
+                        LottoGenerator lottoGenerator, LottoDrawer lottoDrawer, LottoCenter lottoCenter) {
+        this.lottoProcessor = lottoProcessor;
+        this.lottoBuyer = lottoBuyer;
+        this.calculator = calculator;
+        this.lottoGenerator = lottoGenerator;
+        this.lottoDrawer = lottoDrawer;
+        this.lottoCenter = lottoCenter;
+    }
 
     public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, Calculator calculator,
                         LottoGenerator lottoGenerator, LottoDrawer lottoDrawer) {
@@ -24,5 +36,6 @@ public class LottoMachine {
     public void run(){
         lottoProcessor.purchaseProcess(lottoBuyer.purchaseLotto());
         lottoProcessor.createLotto();
+        lottoCenter.drawWinningNumbers(lottoBuyer.drawWinningNumbers());
     }
 }

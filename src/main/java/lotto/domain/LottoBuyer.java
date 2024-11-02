@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.dto.Lotto;
+import lotto.dto.LottoDto;
 import lotto.dto.Receipt;
 import lotto.utils.LottoMessages;
 
@@ -26,14 +27,14 @@ public class LottoBuyer {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<Integer> drawWinningNumbers(){
+    public LottoDto drawWinningNumbers(){
         askForLottoNumbers();
         List<Integer> numbers = extractNumbers(receiveLottoNumbers());
 
         askForBonusNumbers();
-        numbers.add(receiveBonusNumbers());
+        LottoDto lottoDto = new LottoDto(numbers, receiveBonusNumbers());
 
-        return numbers;
+        return lottoDto;
     }
     private void askForLottoNumbers() {
         System.out.println(LottoMessages.ENTER_WINNING_NUMBERS.getMessage());

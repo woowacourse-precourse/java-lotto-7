@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.LottoBuyer;
 import lotto.dto.Lotto;
+import lotto.dto.LottoDto;
 import lotto.dto.Receipt;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,10 +42,10 @@ public class LottoBuyerTest {
         System.setIn(in);
 
         // when
-        List<Integer> winningNumbers = lottoBuyer.drawWinningNumbers();
+        LottoDto winningNumbers = lottoBuyer.drawWinningNumbers();
 
         // then
-        assertEquals(7, winningNumbers.size());
+        assertEquals(7, winningNumbers.getNumbers().size());
         assertEquals(List.of(1, 2, 3, 4, 5, 6, 7), winningNumbers);
     }
 

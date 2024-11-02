@@ -2,6 +2,7 @@ package lotto.utils;
 
 import lotto.LottoMachine;
 import lotto.domain.LottoBuyer;
+import lotto.domain.LottoCenter;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoProcessor;
 import lotto.domain.calculator.Calculator;
@@ -24,6 +25,9 @@ public class AppConfig {
     }
     public LottoDrawer lottoDrawer(){
         return new LottoDrawer();
+    }
+    public LottoCenter lottoCenter() {
+        return new LottoCenter(lottoGenerator());
     }
     public LottoMachine lottoMachine(){
         return new LottoMachine(lottoProcessor(), lottoBuyer(), calculator(), lottoGenerator(), lottoDrawer());
