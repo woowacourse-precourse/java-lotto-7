@@ -45,14 +45,6 @@ public class LottoGenerator {
         numberOfLottoTickets = purchaseAmount / LOTTO_PRICE;
     }
 
-    // 발행된 로또를 출력하는 메서드
-    public void printPurchasedLotto(){
-        OutputHandler.promptPurchasedQuantity(numberOfLottoTickets);
-        for (Lotto lotto : lotto) {
-            System.out.println(lotto);
-        }
-    }
-
     public Lotto[] getLotto() {
         return lotto;
     }
