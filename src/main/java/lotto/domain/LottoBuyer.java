@@ -1,14 +1,14 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.dto.Lotto;
 import lotto.dto.LottoDto;
 import lotto.dto.Receipt;
+import lotto.dto.ResultDto;
+import lotto.utils.ErrorMessages;
 import lotto.utils.LottoMessages;
 
 public class LottoBuyer {
@@ -24,7 +24,14 @@ public class LottoBuyer {
     }
 
     private int receiveMoney() {
-        return Integer.parseInt(Console.readLine());
+        int money = 0;
+        try {
+            money = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e){
+            System.out.println(ErrorMessages.NUMERIC_INPUT_ONLY_MESSAGE.getMessage());
+            receiveMoney();
+        }
+        return money;
     }
 
     public LottoDto drawWinningNumbers(){
@@ -37,7 +44,8 @@ public class LottoBuyer {
         return lottoDto;
     }
     private void askForLottoNumbers() {
-        System.out.println(LottoMessages.ENTER_WINNING_NUMBERS.getMessage());
+        System.out.println(LottoMessages.ENTER.getMessage()+
+                LottoMessages.ENTER_WINNING_NUMBERS.getMessage());
     }
 
     private String receiveLottoNumbers() {
@@ -51,18 +59,23 @@ public class LottoBuyer {
                 .collect(Collectors.toList());
     }
     private void askForBonusNumbers() {
-        System.out.println(LottoMessages.ENTER_BONUS_NUMBER.getMessage());
+        System.out.println(LottoMessages.ENTER.getMessage()+
+                LottoMessages.ENTER_BONUS_NUMBER.getMessage());
     }
 
     private int receiveBonusNumbers() {
         return Integer.parseInt(Console.readLine());
     }
-    public void receiveReceipt(Receipt receipt){
+    private void receiveReceipt(Receipt receipt){
         this.purchaseReceipt = receipt;
     }
 
-    public void receiveLottos(List<Lotto> lottos){
+    private void receiveLottos(List<Lotto> lottos){
         this.purchasedLottos = lottos;
+    }
+    public void receiveResult(ResultDto resultDto){
+        receiveReceipt(resultDto.getReceipt());
+        receiveLottos(resultDto.getLottos());
     }
 
     public Receipt getReceipt() {

@@ -13,4 +13,7 @@ public class LottoCenter {
     public void drawWinningNumbers(LottoDto lottoDto){
         winningLotto = lottoGenerator.generateWinningLotto(lottoDto.getNumbers(), lottoDto.getBonus());
     }
+    public WinningLotto getWinningLotto(){
+        return winningLotto;
+    }
 }

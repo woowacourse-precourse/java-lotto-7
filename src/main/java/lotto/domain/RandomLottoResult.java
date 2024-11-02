@@ -1,18 +1,16 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.dto.Lotto;
 
 public class RandomLottoResult {
-    private List<Lotto> lottos;
-
-    public RandomLottoResult(List<Lotto> lottos){
-        this.lottos = lottos;
-    }
-
-    public void printResult(){
-        for(Lotto lotto : lottos){
-            System.out.println(lotto.getNumbers());
+    public void printResult(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            numbers.sort(Comparator.naturalOrder());
+            System.out.println(numbers);
         }
     }
 }

@@ -2,30 +2,34 @@ package lotto;
 
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoCenter;
-import lotto.domain.LottoDrawer;
 import lotto.domain.LottoProcessor;
-import lotto.domain.calculator.Calculator;
-import lotto.domain.lottoGeneratir.LottoGenerator;
+import lotto.domain.LottoResultPrinter;
+import lotto.domain.lottoMatchChecker.LottoMatchChecker;
 
 public class LottoMachine {
     private LottoProcessor lottoProcessor;
     private LottoBuyer lottoBuyer;
-    private Calculator calculator;
-    private LottoGenerator lottoGenerator;
-    private LottoDrawer lottoDrawer;
     private LottoCenter lottoCenter;
+    private LottoMatchChecker lottoMatchChecker;
+    private LottoResultPrinter lottoResultPrinter;
 
-    public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, Calculator calculator,
-                        LottoGenerator lottoGenerator, LottoDrawer lottoDrawer) {
+    public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, LottoCenter lottoCenter,
+                        LottoMatchChecker lottoMatchChecker, LottoResultPrinter lottoResultPrinter) {
         this.lottoProcessor = lottoProcessor;
         this.lottoBuyer = lottoBuyer;
-        this.calculator = calculator;
-        this.lottoGenerator = lottoGenerator;
-        this.lottoDrawer = lottoDrawer;
+        this.lottoCenter = lottoCenter;
+        this.lottoMatchChecker = lottoMatchChecker;
+        this.lottoResultPrinter = lottoResultPrinter;
     }
+
     public void run(){
         lottoProcessor.purchaseProcess(lottoBuyer.purchaseLotto());
-        lottoProcessor.createLotto();
+        lottoBuyer.receiveResult(lottoProcessor.createLotto());
         lottoCenter.drawWinningNumbers(lottoBuyer.drawWinningNumbers());
+        lottoResultPrinter.printResult(
+                lottoMatchChecker.countMatchingNumbers(
+                        lottoCenter.getWinningLotto(),
+                        lottoBuyer.getPurchasedLottos()),
+                lottoBuyer.getReceipt());
     }
 }
