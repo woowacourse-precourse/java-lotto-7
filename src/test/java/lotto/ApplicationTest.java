@@ -111,6 +111,18 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    public void 당첨번호테스트(){
+        assertSimpleTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "golden Numbers: [1, 2, 3, 4, 5, 6]"
+                    );
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
