@@ -30,10 +30,11 @@ public class IssuedRandomLottoTest {
             IssuedRandomLotto issuedLotto = new IssuedRandomLotto(1000);
 
             // when
-            issuedLotto.generateRandomLotto();
+            issuedLotto.selectLottoNumbers();
 
             // then
-            assertThat(issuedLotto.getLottos.get(0).s는ize()).isEqual(6);
+            assertThat(issuedLotto.getIssuedLottos().get(0).getNumbers().size())
+                    .isEqualTo(6);
         }, 1, 2, 3, 4, 5, 5, 6);
     }
 
