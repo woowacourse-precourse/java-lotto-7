@@ -18,15 +18,16 @@ public class OutputView {
 
 
     public void printPurchaseCount(int count) {
+        System.out.println();
         System.out.printf((PURCHASE_COUNT_FORMAT) + "%n", count);
     }
 
     public void printLottos(List<Lotto> lottos) {
         lottos.forEach(i -> System.out.println(i.getNumbers()));
-        System.out.println();
     }
 
     public void printResult(LottoResult lottoResult) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -52,10 +53,12 @@ public class OutputView {
     }
 
     public void printWinningNumbersMessage() {
+        System.out.println();
         System.out.println(WINNING_NUMBERS_MESSAGE);
     }
 
     public void printBonusNumberMessage() {
+        System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
     }
 }
