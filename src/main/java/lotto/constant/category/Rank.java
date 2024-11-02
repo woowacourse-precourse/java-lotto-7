@@ -30,4 +30,21 @@ public enum Rank {
     public Integer getPrizeAmount() {
         return prizeAmount;
     }
+
+    public static Rank getRankByMatch(Integer matchCount, boolean isBonusNumberMatched) {
+        for (Rank rank : Rank.values()) {
+            if (isRankMatched(rank, matchCount, isBonusNumberMatched)) {
+                return rank;
+            }
+        }
+        return LAST_PLACE;
+    }
+
+    private static boolean isRankMatched(Rank rank, Integer matchCount, boolean isBonusNumberMatched) {
+        if (rank.isRequireBonusNumberMismatch()) {
+            return rank.getMatchCount().equals(matchCount) && !isBonusNumberMatched;
+        }
+        return rank.getMatchCount().equals(matchCount) ||
+                (rank.getMatchCount().equals(matchCount + 1) && isBonusNumberMatched);
+    }
 }
