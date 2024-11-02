@@ -7,12 +7,12 @@ import lotto.model.Lotto;
 import lotto.model.LottoCalculator;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
-import lotto.parser.BonusNumberParser;
-import lotto.parser.PurchaseAmountParser;
-import lotto.parser.WinningNumberParser;
-import lotto.validator.BonusNumberValidator;
-import lotto.validator.PurchaseAmountValidator;
-import lotto.validator.WinningNumbersValidator;
+import lotto.util.parser.BonusNumberParser;
+import lotto.util.parser.PurchaseAmountParser;
+import lotto.util.parser.WinningNumberParser;
+import lotto.util.validator.BonusNumberValidator;
+import lotto.util.validator.PurchaseAmountValidator;
+import lotto.util.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

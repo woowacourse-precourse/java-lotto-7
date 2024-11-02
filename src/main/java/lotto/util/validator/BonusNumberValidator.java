@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.util.validator;
 
 import static lotto.message.ErrorMessage.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_RANGE_BONUS_NUMBER_ERROR_MESSAGE;

@@ -1,4 +1,4 @@
-package lotto.parser;
+package lotto.util.parser;
 
 import static lotto.message.ErrorMessage.NOT_NUMERIC_BONUS_NUMBER_ERROR_MESSAGE;
 

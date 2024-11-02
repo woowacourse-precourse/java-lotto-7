@@ -1,4 +1,4 @@
-package lotto.parser;
+package lotto.util.parser;
 
 import static lotto.message.ErrorMessage.EMPTY_INPUT_PURCHASE_AMOUNT_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.NOT_INTEGER_RANGE_INPUT_ERROR_MESSAGE;

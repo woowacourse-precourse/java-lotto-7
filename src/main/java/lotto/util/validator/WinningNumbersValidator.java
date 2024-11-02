@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.util.validator;
 
 import static lotto.message.ErrorMessage.CHAINED_COMMA_WINNING_NUMBERS_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.EMPTY_INPUT_WINNING_NUMBERS_ERROR_MESSAGE;

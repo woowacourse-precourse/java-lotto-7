@@ -1,4 +1,4 @@
-package lotto.parser;
+package lotto.util.parser;
 
 import static lotto.message.ErrorMessage.INVALID_INTEGER_RANGE_WINNING_NUMBERS_ERROR_MESSAGE;
 

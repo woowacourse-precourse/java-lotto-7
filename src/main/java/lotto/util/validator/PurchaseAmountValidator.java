@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.util.validator;
 
 import static lotto.message.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_ERROR_MESSAGE;
 
