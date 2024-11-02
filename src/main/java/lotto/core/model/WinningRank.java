@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public enum WinningRank {
 
@@ -48,24 +49,37 @@ public enum WinningRank {
                 return bonusRank;
             }
         }
-        WinningRank[] notBonusRank = Arrays.stream(WinningRank.values())
-                .filter(it -> !it.isBonus).toArray(WinningRank[]::new);
+
+        WinningRank[] notBonusRank = filterRank(it -> !it.isBonus);
         return findMatchRank(notBonusRank, matchCount);
     }
 
     private static WinningRank findBonusRank(int matchCount) {
-        WinningRank[] bonusRank = Arrays.stream(WinningRank.values())
-                .filter(it -> it.isBonus).toArray(WinningRank[]::new);
+        WinningRank[] bonusRank = filterRank(it -> it.isBonus);
         return findMatchRank(bonusRank, matchCount);
     }
 
-    private static WinningRank findMatchRank(WinningRank[] ranks, int matchCount) {
+    private static WinningRank[] filterRank(Predicate<WinningRank> predicate) {
+        return Arrays.stream(WinningRank.values())
+                .filter(predicate)
+                .toArray(WinningRank[]::new);
+    }
+
+    private static WinningRank find(WinningRank[] ranks, Predicate<WinningRank> predicate) {
+        return findFirst(ranks, predicate);
+    }
+
+    private static WinningRank findFirst(WinningRank[] ranks, Predicate<WinningRank> predicate) {
         for (WinningRank rank : ranks) {
-            if (rank.getMatchCount() == matchCount) {
+            if (predicate.test(rank)) {
                 return rank;
             }
         }
         return null;
+    }
+
+    private static WinningRank findMatchRank(WinningRank[] ranks, int matchCount) {
+        return findFirst(ranks, it -> it.getMatchCount() == matchCount);
     }
 
     public static List<WinningRank> sortedListByRankDescending() {
