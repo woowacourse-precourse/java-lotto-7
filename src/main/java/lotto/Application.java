@@ -19,9 +19,13 @@ public class Application {
 
         // 구매한 로또 티켓 입력받기
         List<Lotto> userTickets = inputUserTickets(lottoCount); // 로또 번호 생성
-        calculateResults(userTickets, winningNumbers, bonusNumber); // 당첨 결과 계산
+        calculateResults(userTickets, winningNumbers, bonusNumber, purchaseAmount); // 당첨 결과 계산
     }
     
+    /**
+     * 사용자로부터 로또 구입 금액을 입력받고 유효성 검사 후 반환
+     * @return 유효한 로또 구입 금액 (1,000원 단위)
+     */
     private static int getPurchaseAmount() {
         while (true) {
             try {
@@ -42,6 +46,11 @@ public class Application {
         }
     }
 
+    /**
+     * 당첨 번호 입력 메서드
+     * 사용자에게 6개의 중복 없는 당첨 번호를 입력받아 리스트로 반환
+     * @return 유효한 6개의 당첨 번호 리스트
+     */
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요 (쉼표로 구분):");
         String input = Console.readLine();
@@ -68,6 +77,12 @@ public class Application {
         return winningNumbers;
     }
 
+    /**
+     * 보너스 번호 입력 메서드
+     * 사용자에게 1개의 보너스 번호를 입력받고, 유효성 검사 후 반환
+     * @param winningNumbers 당첨 번호 리스트 (보너스 번호와 중복 검사에 사용)
+     * @return 유효한 보너스 번호
+     */
     private static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요:");
         int bonusNumber = Integer.parseInt(Console.readLine().trim());
@@ -82,6 +97,12 @@ public class Application {
         return bonusNumber;
     }
 
+    /**
+     * 구매한 로또 티켓 입력 메서드
+     * 사용자로부터 지정된 개수의 로또 번호를 입력받아 리스트로 반환
+     * @param count 구매한 로또 티켓 개수
+     * @return 유효한 로또 티켓 리스트
+     */
     private static List<Lotto> inputUserTickets(int count) {
         List<Lotto> userTickets = new ArrayList<>();
 
@@ -114,7 +135,14 @@ public class Application {
         return userTickets;
     }
 
-    private static void calculateResults(List<Lotto> userTickets, List<Integer> winningNumbers, int bonusNumber) {
+    /**
+     * 당첨 결과 계산 메서드
+     * 사용자 로또 번호와 당첨 번호를 비교하여 당첨 결과를 계산합니다.
+     * @param userTickets 사용자 로또 티켓 리스트
+     * @param winningNumbers 당첨 번호 리스트
+     * @param bonusNumber 보너스 번호
+     */
+    private static void calculateResults(List<Lotto> userTickets, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         int[] matchCount = new int[6]; // 각 등수별 일치 개수 저장 (3~6개 일치)
 
         for (Lotto ticket : userTickets) {
@@ -135,8 +163,17 @@ public class Application {
         }
 
         printResults(matchCount);
+        double yield = calculateYield(matchCount, purchaseAmount); // 수익률 계산
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
     }
 
+    /**
+     * 번호 일치 개수 카운트 메서드
+     * 사용자 로또 티켓의 번호와 당첨 번호를 비교하여 일치하는 번호 개수를 반환
+     * @param ticket 사용자 로또 티켓
+     * @param winningNumbers 당첨 번호 리스트
+     * @return 일치하는 번호 개수
+     */
     private static int countMatches(Lotto ticket, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : ticket.getNumbers()) {
@@ -147,6 +184,11 @@ public class Application {
         return matchCount;
     }
 
+    /**
+     * 당첨 결과 출력 메서드
+     * 당첨 결과를 각 등수별로 출력합니다.
+     * @param matchCount 각 등수별 일치 개수
+     */
     private static void printResults(int[] matchCount) {
         System.out.println("당첨 결과:");
         System.out.println("3개 일치 (5,000원) - " + matchCount[1] + "개");
@@ -154,5 +196,18 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + matchCount[3] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCount[4] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchCount[5] + "개");
+    }
+
+    private static double calculateYield(int[] matchCount, int purchaseAmount) {
+        int[] prizeMoney = {0, 5000, 50000, 1500000, 30000000, 2000000000}; // 각 등수의 상금
+        int totalPrize = 0;
+
+        // 총 당첨 금액 계산
+        for (int i = 1; i < matchCount.length; i++) {
+            totalPrize += matchCount[i] * prizeMoney[i];
+        }
+
+        // 수익률 계산 (총 당첨 금액 / 구입 금액) * 100
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 }
