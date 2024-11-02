@@ -2,5 +2,5 @@ package lotto.validator;
 
 public interface Validator <T>{
 
-    boolean validate(T value);
+    void validate(T value);
 }

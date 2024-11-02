@@ -12,7 +12,7 @@ public class NumberValidator implements Validator<String> {
     private static final int LOTTO_NUMBER_COUNTING = 6;
 
     @Override
-    public boolean validate(String value) {
+    public void validate(String value) {
         if (isWinningNumbers(value)) {
             String[] values = value.split(DELIMITER);
             if (values.length != LOTTO_NUMBER_COUNTING) {
@@ -25,13 +25,11 @@ public class NumberValidator implements Validator<String> {
                 int number = isNumber(input.trim());
                 oneBetweenFortyFive(number);
             }
-            return true;
+            return;
         }
         // BonusNumber Check
         isNumber(value);
         oneBetweenFortyFive(Integer.parseInt(value));
-
-        return true;
     }
 
     private static void oneBetweenFortyFive(int number) {
