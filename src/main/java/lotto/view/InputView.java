@@ -15,6 +15,15 @@ public class InputView {
         return new Money(amount);
     }
 
+    public static void printInputWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static String inputWinningNumber() {
+        printInputWinningNumber();
+        return readLine();
+    }
+
     private static long parseAmount(String input) {
         try {
             return Long.parseLong(input);
