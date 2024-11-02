@@ -20,4 +20,8 @@ public class LottoNumber {
 	private static boolean isNumberOutOfRange(int number) {
 		return number < MIN_NUMBER || number > MAX_NUMBER;
 	}
+
+	public int getNumber() {
+		return number;
+	}
 }
