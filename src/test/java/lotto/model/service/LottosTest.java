@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import lotto.model.domain.BonusBall;
-import lotto.model.domain.Lotto;
 import lotto.model.domain.Rank;
 import lotto.model.domain.WinningBalls;
 import org.junit.jupiter.api.DisplayName;
@@ -24,8 +23,7 @@ class LottosTest {
     @DisplayName("로또들의 일치결과를 알려준다.")
     @Test
     void test_2() {
-        Lotto userLotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lottos lottos = new Lottos(List.of(userLotto1));
+        Lottos lottos = Lottos.from(1L, () -> List.of(1, 2, 3, 4, 5, 7));
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         BonusBall bonusBall = BonusBall.of(7, winningBalls);
 

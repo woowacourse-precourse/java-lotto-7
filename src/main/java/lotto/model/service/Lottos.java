@@ -21,7 +21,7 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public Lottos(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
@@ -36,7 +36,7 @@ public class Lottos {
     }
 
     private Rank calculateRankForLotto(Lotto lotto, WinningBalls winningBalls, BonusBall bonusBall) {
-        int sameWinningCount= lotto.countDuplicatingCount(winningBalls.getLottoNumbers());
+        int sameWinningCount = lotto.countDuplicatingCount(winningBalls.getLottoNumbers());
         int sameBonusCount = lotto.countDuplicatingCount(bonusBall.getLottoNumber());
         return Rank.valueOf(sameWinningCount, sameBonusCount);
     }
