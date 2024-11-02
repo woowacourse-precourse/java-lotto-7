@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +18,15 @@ public class WinningLotto {
     }
 
     private List<LottoNumber> parse(String winningNumbers) {
-        return splitBySeparator(winningNumbers).stream()
+        List<LottoNumber> lottoNumbers = splitBySeparator(winningNumbers).stream()
                 .map(number -> LottoNumber.from(toInt(number)))
                 .toList();
+
+        if (lottoNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
+        }
+
+        return lottoNumbers;
     }
 
     private List<String> splitBySeparator(String text) {
