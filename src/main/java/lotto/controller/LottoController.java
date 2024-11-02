@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +29,7 @@ public class LottoController {
         responseLottoTickets(lottoTickets);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
-        Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
-
-        double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
-        outputView.displayWinningResult(result, rateOfReturn);
+        responseWinningResult(lottoTickets, winningNumbers, purchasePrice);
     }
 
     private PurchasePrice requestPurchasePrice() {
@@ -41,11 +37,11 @@ public class LottoController {
         return new PurchasePrice(inputView.getInteger());
     }
 
-    private void responsePurchaseQuantity(PurchasePrice purchasePrice) {
+    private void responsePurchaseQuantity(final PurchasePrice purchasePrice) {
         outputView.displayPurchaseQuantity(purchasePrice.calculateQuantity());
     }
 
-    private LottoTickets generateLottoTickets(PurchasePrice purchasePrice) {
+    private LottoTickets generateLottoTickets(final PurchasePrice purchasePrice) {
         List<Lotto> lottoTickets = new ArrayList<>();
         int quantity = purchasePrice.calculateQuantity();
         for (int count = 0; count < quantity; count++) {
@@ -55,7 +51,7 @@ public class LottoController {
         return new LottoTickets(lottoTickets);
     }
 
-    private void responseLottoTickets(LottoTickets lottoTickets) {
+    private void responseLottoTickets(final LottoTickets lottoTickets) {
         outputView.displayLottoNumbers(lottoTickets.tickets());
     }
 
@@ -70,7 +66,7 @@ public class LottoController {
         return new WinningNumbers(numbers, bonusNumber);
     }
 
-    private List<Integer> parseNumbers(String input) {
+    private List<Integer> parseNumbers(final String input) {
         List<String> numbers = List.of(input.split(","));
         // TODO: List<String> validate 필요함
         return numbers.stream()
@@ -78,15 +74,24 @@ public class LottoController {
                 .toList();
     }
 
-    private Map<Prize, Integer> calculateResult(LottoTickets lottoTickets, WinningNumbers winningNumbers) {
-        return lottoTickets.aggregateWinningResult(winningNumbers);
+    private void responseWinningResult(
+            final LottoTickets lottoTickets,
+            final WinningNumbers winningNumbers,
+            final PurchasePrice purchasePrice
+    ) {
+        Map<Prize, Integer> result = lottoTickets.aggregateWinningResult(winningNumbers);
+        double rateOfReturn = calculateRateOfReturn(result, purchasePrice);
+        outputView.displayWinningResult(result, rateOfReturn);
     }
 
-    private double calculateRateOfReturn(Map<Prize, Integer> result, int purchasePrice) {
-        int totalPrizeMoney = result.entrySet().stream()
+    private double calculateRateOfReturn(final Map<Prize, Integer> result, final PurchasePrice purchasePrice) {
+        int totalPrizeMoney = calculateTotalPrizeMoney(result);
+        return ((double) totalPrizeMoney / purchasePrice.value()) * 100;
+    }
+
+    private int calculateTotalPrizeMoney(final Map<Prize, Integer> result) {
+        return result.entrySet().stream()
                 .mapToInt(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
                 .sum();
-
-        return ((double) totalPrizeMoney / purchasePrice) * 100;
     }
 }

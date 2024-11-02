@@ -32,12 +32,15 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void displayWinningResult(final Map<Prize, Integer> result,final double rateOfReturn) {
+    public void displayWinningResult(final Map<Prize, Integer> result, final double rateOfReturn) {
         System.out.println("\n당첨 통계\n---");
-        String resultMessage = result.entrySet().stream()
+        System.out.println(buildResult(result));
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", rateOfReturn);
+    }
+
+    private String buildResult(final Map<Prize, Integer> result) {
+        return result.entrySet().stream()
                 .map(entry -> String.format(entry.getKey().getResultMessage(), entry.getValue()))
                 .collect(Collectors.joining("\n"));
-        System.out.println(resultMessage);
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", rateOfReturn);
     }
 }
