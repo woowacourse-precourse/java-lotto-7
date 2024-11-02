@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.constants.OutputMessages;
 
 public class Result {
     private final Map<PrizeLevel, Integer> resultMap = new EnumMap<>(PrizeLevel.class);
@@ -47,12 +48,12 @@ public class Result {
 
     public void printResult(int purchaseAmount) {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(OutputMessages.WINNING_STATISTICS_TITLE);
+        System.out.println(OutputMessages.SEPARATOR_LINE);
         long totalPrize = calculateTotalPrize();
         printResultCounts();
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
-        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+        System.out.printf((OutputMessages.TOTAL_RATE_OF_RETURN) + "%n", String.format("%.1f", rateOfReturn));
     }
 
     private long calculateTotalPrize() {
@@ -68,7 +69,7 @@ public class Result {
     private void printResultCounts() {
         for (PrizeLevel level : PrizeLevel.values()) {
             int count = resultMap.get(level);
-            System.out.println(level.getDisplayName() + " - " + count + "개");
+            System.out.printf((OutputMessages.PRIZE_COUNT_FORMAT) + "%n", level.getDisplayName(), count);
         }
     }
 }
