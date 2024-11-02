@@ -18,6 +18,10 @@ public class LottoMatchService {
     }
 
     public void matchLottos() {
+        if (randomLottos.isEmptyRandomLotto()) {
+            throw new IllegalStateException("랜덤 로또가 생서되지 않았습니다.");
+        }
+        
         List<Rank> matchedResults = randomLottos.matchLottoAsRank(userLotto);
         winningLotto.addAllMatchedRank(matchedResults);
     }

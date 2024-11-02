@@ -18,7 +18,6 @@ public class RandomLottos {
         List<Rank> ranksResult = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.toString());
             int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
             boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
             Rank rank = Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
@@ -42,6 +41,9 @@ public class RandomLottos {
         return new Lotto(randomNumbers);
     }
 
+    public boolean isEmptyRandomLotto() {
+        return lottos.isEmpty();
+    }
 
     @Override
     public String toString() {
