@@ -13,8 +13,16 @@ public class LottoPurchaseRepository {
         lottoPurchases.add(lottoPurchase);
     }
 
+    public void deleteByIndex(int index) {
+        lottoPurchases.remove(index);
+    }
+
     public void delete(LottoPurchase lottoPurchase) {
         lottoPurchases.remove(lottoPurchase);
+    }
+
+    public void deleteAll() {
+        lottoPurchases.clear();
     }
 
     public List<LottoPurchase> findAll() {
@@ -26,7 +34,7 @@ public class LottoPurchaseRepository {
     }
 
     public LottoPurchase findOne() {
-        return lottoPurchases.getFirst();
+        return lottoPurchases.getLast();
     }
 
     public int size() {

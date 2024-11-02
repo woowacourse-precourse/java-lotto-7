@@ -10,4 +10,8 @@ public class Input {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 
+    public void printWinningNumberInputMessage() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
+    }
+
 }

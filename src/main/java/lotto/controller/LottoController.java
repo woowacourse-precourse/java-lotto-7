@@ -33,4 +33,18 @@ public class LottoController {
         lottoService.saveLottoPurchase(input);
         output.printPurchaseLotto(lottoService.createLottoNumbers());
     }
+
+    public void getLottoWinningNumberInputMessage() {
+        input.printWinningNumberInputMessage();
+    }
+
+    public void saveLottoWinningNumberInput() {
+        String input = Console.readLine();
+
+        LottoException.throwIllegalArgumentException(
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(input)
+        );
+
+        lottoService.saveWinningNumber(input);
+    }
 }

@@ -17,5 +17,7 @@ public class Output {
         for (int i = 0; i < response.amount(); i++) {
             System.out.println(lottoList.get(i).getNumbers());
         }
+
+        System.out.println();
     }
 }

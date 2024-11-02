@@ -10,6 +10,9 @@ public class LottoApplication {
     public static void run() {
         controller.getLottoAmountInputMessage();
         controller.saveLottoAmountInput();
+
+        controller.getLottoWinningNumberInputMessage();
+        controller.saveLottoWinningNumberInput();
     }
 
 }

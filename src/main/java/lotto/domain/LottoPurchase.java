@@ -1,8 +1,9 @@
 package lotto.domain;
 
-import lotto.exception.ExceptionMessage;
 import lotto.exception.LottoException;
 import lotto.utils.LottoUtils;
+
+import static lotto.exception.ExceptionMessage.*;
 
 public class LottoPurchase {
 
@@ -43,10 +44,10 @@ public class LottoPurchase {
 
     private static void validate(int input) {
         LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_GREATER_THEN_MAX_PRICE, isGreaterThenMaxPrice(input)
+            NOT_GREATER_THEN_MAX_PRICE, isGreaterThenMaxPrice(input)
         );
 
-        LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_RIGHT_PRICE,
+        LottoException.throwIllegalArgumentException(NOT_RIGHT_PRICE,
             !isDivisibleByLottoPrice(input) || isLessThenMinPrice(input)
         );
     }

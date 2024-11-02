@@ -29,4 +29,8 @@ public class LottoRepository {
         lottoList.remove(index);
     }
 
+    public void deleteAll() {
+        lottoList.clear();
+    }
+
 }
