@@ -1,13 +1,15 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.enums.Prize;
 import lotto.model.BonusNumber;
-import lotto.model.CalculatePrize;
 import lotto.model.Lotto;
 import lotto.model.LottoArchive;
 import lotto.model.LottoMaker;
 import lotto.model.Money;
 import lotto.model.NumberMatchCounter;
+import lotto.model.PrizeCalculator;
 import lotto.model.WinningNumber;
 import lotto.view.BonusNumberInputView;
 import lotto.view.MoneyInputView;
@@ -28,7 +30,9 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(winningNumber.getNumberList());
 
         NumberMatchCounter numberMatchCounter = new NumberMatchCounter(lottoArchive, winningNumber, bonusNumber);
-        CalculatePrize calculatePrize = new CalculatePrize(numberMatchCounter.getPrizeCounts(), money.getMoney());
+        PrizeCalculator prizeCalculator = new PrizeCalculator(numberMatchCounter.getPrizeCounts(), money.getMoney());
+
+        displayResult(numberMatchCounter.getPrizeCounts(), prizeCalculator.calculatePrizeRate());
     }
 
     public Money userMoneyInput() {
@@ -78,6 +82,11 @@ public class LottoController {
                 outView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void displayResult(Map<Prize, Integer> prizeCounts, double earnRate) {
+        outView.printLottoResult(prizeCounts);
+        outView.printEarnRate(earnRate);
     }
 
 }
