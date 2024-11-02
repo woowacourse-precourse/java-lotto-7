@@ -11,7 +11,6 @@ import lotto.model.shop.LottoShop;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.response.LottoNumberResponse;
 import lotto.view.response.LottoScoreResponse;
 import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
@@ -33,7 +32,7 @@ public class LottoController {
     public void run() {
         Lottos lottos = Retryer.retryOnCustomException(this::purchaseLotto);
 
-        outputView.printPurchasedLottos(getPurchaseLottoResponse(lottos));
+        outputView.printPurchasedLottos(PurchaseLottoResponse.from(lottos));
 
         WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
@@ -71,15 +70,6 @@ public class LottoController {
     private void printResult(LottoScoreResponses lottoScoreResponses, double profitRate) {
         outputView.printScores(lottoScoreResponses);
         outputView.printProfitRate(profitRate);
-    }
-
-    private PurchaseLottoResponse getPurchaseLottoResponse(Lottos lottos) {
-
-        List<LottoNumberResponse> lottoNumberResponses = lottos.getAllLottoNumbers().stream()
-                .map(LottoNumberResponse::from)
-                .toList();
-
-        return PurchaseLottoResponse.from(lottoNumberResponses);
     }
 
     private LottoScoreResponses getLottoScoreResponses(List<Score> scores) {
