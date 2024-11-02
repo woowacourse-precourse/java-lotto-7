@@ -24,9 +24,9 @@ public class InputView {
         return input;
     }
 
-    public static int readBonusNumber() {
+    public static String readBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_VIEW);
-        int input = Integer.parseInt(Console.readLine().trim());
+        String input = Console.readLine().trim();
 
         Console.close();
         return input;
