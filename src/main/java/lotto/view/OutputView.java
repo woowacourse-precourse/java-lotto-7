@@ -11,6 +11,7 @@ public class OutputView {
             당첨 통계
             ---""";
     private static final String WINNING_STATISTICS_FORMAT = "%s - %d개";
+    private static final String RETURN_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void printPurchaseResult(Lottos lottos) {
         System.out.println();
@@ -34,5 +35,9 @@ public class OutputView {
                         prize,
                         result.getOrDefault(prize, 0))
         );
+    }
+
+    public void printReturnRate(double returnRate) {
+        System.out.printf(RETURN_RATE_FORMAT, returnRate);
     }
 }
