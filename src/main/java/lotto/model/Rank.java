@@ -23,8 +23,10 @@ public enum Rank {
 
     public static Rank assignRank(int matchCount, boolean hasBonus) {
         for (Rank rank : values()) {
-            if (rank.matchCount == matchCount && (!rank.hasBonus || hasBonus)) {
-                return rank;
+            if (rank.matchCount == matchCount) {
+                if (rank.hasBonus == hasBonus) {
+                    return rank;
+                }
             }
         }
 
