@@ -50,7 +50,7 @@ public class ConsoleInputTest {
 
             // when
             ConsoleInput consoleInput = new ConsoleInput(new MockInputProvider(inputs));
-            String result = consoleInput.getWinnerNumbers();
+            String result = consoleInput.getWinningNumbers();
 
             // then
             assertThat(result).isEqualTo(expect);
@@ -63,7 +63,7 @@ public class ConsoleInputTest {
 
             // when
             ConsoleInput consoleInput = new ConsoleInput(new MockInputProvider(inputs));
-            String result = consoleInput.getWinnerNumbers();
+            String result = consoleInput.getWinningNumbers();
 
             // then
             assertThat(result).isEqualTo(expect);

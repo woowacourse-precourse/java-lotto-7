@@ -38,7 +38,7 @@ public class LottoController {
 
         while (true) {
             try {
-                String userInput = consoleInput.getWinnerNumbers();
+                String userInput = consoleInput.getWinningNumbers();
                 numbers = InputParser.parseIntegers(userInput);
                 LottoValidator.validate(numbers);
                 break;
