@@ -20,5 +20,6 @@ public class LottoController {
         model.setWinningNumbers(view.inputWinningNumbersView());
         int bonusNumber = view.inputBonusNumberView(model.getWinningNumbers());
         model.setBonusNumber(bonusNumber);
+        model.compareLotto();
     }
 }
