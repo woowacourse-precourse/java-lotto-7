@@ -1,20 +1,31 @@
 package lotto.purchase.domain;
 
-import lotto.lotto.domain.LottoResults;
+import lotto.common.util.IdHolder;
 
 public class Purchase {
 
-    private final LottoResults lottoResults;
+    private final String id;
+    private final String lottoResultId;
     private final Money money;
 
-    public Purchase(LottoResults lottoResults, Money money) {
-        this.lottoResults = lottoResults;
+    private Purchase(String id, String lottoResultId, Money money) {
+        this.id = id;
+        this.lottoResultId = lottoResultId;
         this.money = money;
     }
 
-    public LottoResults getLottoResults() {
-        return lottoResults;
+    public static Purchase of(String lottoResultId, Money money) {
+        return new Purchase(IdHolder.generateID(), lottoResultId, money);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLottoResultId() {
+        return lottoResultId;
+    }
+
 
     public Money getMoney() {
         return money;
