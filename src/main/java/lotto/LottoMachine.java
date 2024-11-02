@@ -33,6 +33,7 @@ public class LottoMachine {
         checkWinningResult(winningNumbers, bonusNumber);
         double earningRate = calculateEarningRate(budget);
 
+        OutputView.displayWinningStatistics(earningRate);
     }
 
     private Budget inputBudget() {
