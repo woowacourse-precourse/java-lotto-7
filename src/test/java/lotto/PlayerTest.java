@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * UserTest
  */
-public class UserTest {
+public class PlayerTest {
 
     @Test
     void buy_lotto_and_calculate_result() {
