@@ -6,40 +6,71 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static lotto.LottoShop.*;
+
 public class Reader {
     public int readMoney() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                return readInt();
+                return validateMoney(readInt());
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 구입금액은 로또 한 개의 가격 보다 큰 정수만 입력해야 합니다.");
-                System.out.println("현재 로또 금액: " + LottoShop.PRICE + "원");
+                System.out.println("현재 로또 가격: " + PRICE + "원");
             }
         }
+    }
+
+    private int validateMoney(int money) {
+        if (money < PRICE) {
+            throw new IllegalArgumentException();
+        }
+        return money;
     }
 
     public List<Integer> readLottoNumbers() {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                return readIntStream();
+                return validateLottoNumbers(readIntStream());
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자를 쉼표(,)로 구분해서 입력해야 합니다.");
+                System.out.println("[ERROR] 로또 번호는 " + START + "부터 "
+                        + END + " 사이의 숫자를 중복 없이 쉼표(,)로 구분해서 "
+                        + COUNT + "개 입력해야 합니다.");
             }
         }
     }
 
-    public int readBonusNumber() {
+    private List<Integer> validateLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != COUNT
+                || numbers.size() != numbers.stream().distinct().count()
+                || !numbers.stream().allMatch(n -> START <= n && n <= END)
+        ) {
+            throw new IllegalArgumentException();
+        }
+        return numbers;
+    }
+
+    public int readBonusNumber(List<Integer> lottoNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                return readInt();
+                return validateBonusNumber(readInt(), lottoNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 "
+                        + START + "부터 "
+                        + END + " 사이의 정수여야 합니다.");
             }
         }
+    }
 
+    private int validateBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+        if (!(START <= bonusNumber && bonusNumber <= END)
+                || lottoNumbers.contains(bonusNumber)
+        ) {
+            throw new IllegalArgumentException();
+        }
+        return bonusNumber;
     }
 
     private List<Integer> readIntStream() {
@@ -58,5 +89,4 @@ public class Reader {
             throw new IllegalArgumentException(e);
         }
     }
-
 }
