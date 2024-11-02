@@ -1,6 +1,5 @@
 package lotto.util;
 
-import lotto.validator.Errors;
 import lotto.view.Outputs;
 
 public class MessageParser {

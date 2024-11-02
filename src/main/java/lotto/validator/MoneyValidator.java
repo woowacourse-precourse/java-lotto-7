@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.regex.Pattern;
+import lotto.util.Errors;
 import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 

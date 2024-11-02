@@ -1,8 +1,8 @@
 package lotto.model;
 
 import lotto.util.Constants;
+import lotto.util.Errors;
 import lotto.util.MessageParser;
-import lotto.validator.Errors;
 import org.assertj.core.util.VisibleForTesting;
 
 /*

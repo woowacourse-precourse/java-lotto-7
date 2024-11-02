@@ -1,7 +1,4 @@
-package lotto.validator;
-
-import lotto.util.Constants;
-import lotto.util.InputParser;
+package lotto.util;
 
 public enum Errors {
     ERROR("[ERROR]"),
