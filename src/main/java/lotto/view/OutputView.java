@@ -27,4 +27,9 @@ public class OutputView {
         System.out.println();
         System.out.println(Outputs.LOTTO_REQUEST.getMessage());
     }
+
+    public void printBonusRequest() {
+        System.out.println();
+        System.out.println(Outputs.BONUS_REQUEST.getMessage());
+    }
 }

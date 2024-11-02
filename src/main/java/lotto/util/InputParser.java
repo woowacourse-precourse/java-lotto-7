@@ -16,4 +16,8 @@ public class InputParser {
     public static List<Integer> parseListOfInteger(String input) {
         return Arrays.stream(input.split(Regex.COMMA.getValue())).map(Integer::parseInt).toList();
     }
+
+    public static int parseInt(String input) {
+        return Integer.parseInt(input);
+    }
 }

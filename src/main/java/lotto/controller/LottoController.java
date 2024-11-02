@@ -2,11 +2,13 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Ticket;
 import lotto.service.TicketGenerator;
 import lotto.util.InputParser;
+import lotto.validator.BonusValidator;
 import lotto.validator.LottoValidator;
 import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
@@ -31,6 +33,7 @@ public class LottoController {
         outputView.printTicketNumbers(tickets);
 
         Lotto lotto = tryUntilSuccess(() -> new Lotto(getLotto()));
+        Bonus bonus = tryUntilSuccess(() -> new Bonus(getBonus()));
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
@@ -61,5 +64,15 @@ public class LottoController {
         validator.validate();
 
         return InputParser.parseListOfInteger(lotto);
+    }
+
+    private int getBonus() {
+        outputView.printBonusRequest();
+        String bonus = inputView.getUserInput();
+
+        BonusValidator validator = new BonusValidator(bonus);
+        validator.validate();
+
+        return InputParser.parseInt(bonus);
     }
 }
