@@ -17,6 +17,7 @@ public class GameManager {
     }
 
     public void start() {
+        outputView.printPurchaseInputMessage();
         int price = readPrice();
         LottoShop lottoShop = new LottoShop();
         LottoJudge lottoJudge = new LottoJudge();

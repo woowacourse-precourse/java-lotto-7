@@ -1,5 +1,7 @@
 package lotto.io;
 
+import static lotto.global.constant.Message.PURCHASE_INPUT_MESSAGE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
@@ -12,7 +14,7 @@ public class OutputView {
         println(LottosToString);
     }
 
-    private void println(String string) {
-        System.out.println(string);
+    public void printPurchaseInputMessage() {
+        println(PURCHASE_INPUT_MESSAGE);
     }
 }
