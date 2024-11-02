@@ -66,6 +66,50 @@
   - 잘못된 구입 금액 입력 시 재입력 요청
   - 잘못된 로또 번호 입력 시 재입력 요청
   - 오류 메시지 "[ERROR]"로 시작하도록 예외 처리
+
+### <Validator (검증)>
+**LottoValidator**
+- validateNumberCount(List<Integer> numbers)
+  - 로또 번호의 개수를 검증합니다.
+  - 조건: 반드시 6개의 번호여야 합니다.
+  - 예외: 6개가 아닌 경우 IllegalArgumentException 발생.
+
+
+- validateNumberRange(List<Integer> numbers)
+  - 로또 번호의 범위를 검증합니다.
+  - 조건: 모든 번호는 1부터 45 사이여야 합니다.
+  - 예외: 범위를 벗어난 경우 IllegalArgumentException 발생.
+
+
+- validateUniqueNumbers(List<Integer> numbers)
+  - 로또 번호의 중복 여부를 검증합니다. 
+  - 조건: 모든 번호는 서로 다르게(unique)해야 합니다. 
+  - 예외: 중복된 번호가 있는 경우 IllegalArgumentException 발생.
+
+
+- validatePurchaseAmount(int amount)
+  - 로또 구매 금액의 유효성을 검증합니다.
+  - 조건: 금액은 1,000원 단위로 양수여야 합니다.
+  - 예외: 조건을 만족하지 않는 경우 IllegalArgumentException 발생.
+
+**BonusNumberValidator**
+- validateBonusNumberRange(int number)
+  - 보너스 번호가 1부터 45 사이의 숫자인지 검증합니다.
+  - 조건: 보너스 번호는 1 이상 45 이하의 값이어야 합니다.
+  - 예외: 조건을 만족하지 않는 경우 IllegalArgumentException 발생.
+
+
+- validateBonusNumberNotDuplicate(int bonusNumber, List<Integer> winningNumbers)
+  - 보너스 번호가 당첨 번호와 중복되지 않는지 검증합니다.
+  - 조건: 보너스 번호는 당첨 번호 리스트에 포함되어서는 안 됩니다.
+  - 예외: 조건을 만족하지 않는 경우 IllegalArgumentException 발생.
+
+
+- validateBonusNumberIsNumeric(String input)
+  - 입력된 문자열이 숫자인지 검증합니다.
+  - 조건: 입력은 숫자로 변환 가능해야 합니다.
+  - 예외: 숫자가 아닌 경우 IllegalArgumentException 발생.
+
   
 ### 세부 기능 구현 흐름
 **1. 구입 금액 입력**
