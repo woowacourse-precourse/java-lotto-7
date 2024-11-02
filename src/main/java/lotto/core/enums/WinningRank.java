@@ -14,10 +14,10 @@ public enum WinningRank {
     RANK_4(4, 4, false, BigDecimal.valueOf(50_000L)),
     RANK_5(5, 3, false, BigDecimal.valueOf(5_000L));
 
-    private int rank;
-    private int matchCount;
-    private boolean isBonus;
-    private BigDecimal winningAmount;
+    private final int rank;
+    private final int matchCount;
+    private final boolean isBonus;
+    private final BigDecimal winningAmount;
 
     WinningRank(int rank, int matchCount, boolean isBonus, BigDecimal winningAmount) {
         this.rank = rank;
