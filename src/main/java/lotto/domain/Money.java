@@ -18,6 +18,10 @@ public class Money {
         return new Money(money);
     }
 
+    public int calculateTicketCount() {
+        return money / UNIT_PRICE;
+    }
+
     private static void validate(int money) {
         validateNegativeNumber(money);
         validateLessThanUnitPrice(money);
