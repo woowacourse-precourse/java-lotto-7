@@ -18,10 +18,12 @@ public class LottoMachineController {
   private WinningStatistic winningStatistic;
   private final InputView inputView;
   private final OutputView outputView;
+  private final LottoMachineFactory factory;
 
-  public LottoMachineController() {
-    this.inputView = new InputView();
-    this.outputView = new OutputView();
+  public LottoMachineController(LottoMachineFactory factory) {
+    this.factory = factory;
+    this.inputView = factory.createInputView();
+    this.outputView = factory.createOutputView();
   }
 
   public void runLottoMachine() {
@@ -57,7 +59,7 @@ public class LottoMachineController {
 
   private void tryMakeLotto(int buyedLottosQuantity) {
     try {
-      lottos = Lottos.createLottos(buyedLottosQuantity);
+      lottos = factory.createLottos(buyedLottosQuantity);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       tryMakeLotto(buyedLottosQuantity);
@@ -80,14 +82,12 @@ public class LottoMachineController {
   }
 
   private List<WinningType> getWinningStatistic(WinningNumbers winningNumbers, Lottos lottos) {
-    winningStatistic = WinningStatistic.createWinningStatistic(winningNumbers, lottos);
-
+    winningStatistic = factory.createWinningStatistic(winningNumbers, lottos);
     return winningStatistic.getWinningStatistic();
   }
 
   private double getReturnRate(List<WinningType> winningResults) {
-    totalPrice = TotalPrice.sumAllPrice(winningResults);
-
+    totalPrice = factory.createTotalPrice(winningResults);
     return totalPrice.calculateReturnRate(money);
   }
 
