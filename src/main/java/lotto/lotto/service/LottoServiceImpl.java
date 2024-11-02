@@ -6,21 +6,32 @@ import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoResult;
 import lotto.lotto.domain.LottoResults;
 import lotto.lotto.domain.LottoWinning;
+import lotto.lotto.service.port.LottoRepository;
 
 public class LottoServiceImpl implements LottoService {
 
     private final LottoFactory lottoFactory;
     private final LottoRankCalculator lottoRankCalculator;
+    private final LottoRepository lottoRepository;
 
-    public LottoServiceImpl(LottoFactory lottoFactory) {
+    public LottoServiceImpl(LottoRepository lottoRepository, LottoFactory lottoFactory) {
+        this.lottoRepository = lottoRepository;
         this.lottoFactory = lottoFactory;
         this.lottoRankCalculator = new LottoRankCalculator();
     }
 
     @Override
     public LottoResults createLottos(long count) {
-        List<LottoResult> lottoResults = lottoFactory.generateMultipleLottos(count);
-        return new LottoResults(lottoResults);
+        List<LottoResult> lottoResultList = lottoFactory.generateMultipleLottos(count);
+        LottoResults lottoResults = LottoResults.of(lottoResultList);
+        lottoRepository.save(lottoResults);
+        return lottoResults;
+    }
+
+    @Override
+    public LottoResults createLottoWinningAndUpdateRank(List<Integer> numbers, int bonusNumber, String lottoResultsId) {
+        LottoWinning winningLotto = createWinningLotto(numbers, bonusNumber);
+        return updateLottoRanks(lottoResultsId, winningLotto);
     }
 
     @Override
@@ -29,7 +40,16 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public LottoResults updateLottoRanks(LottoResults lottoResults, LottoWinning lottoWinning) {
-        return lottoResults.updateAllLottoRanks(lottoRankCalculator, lottoWinning);
+    public LottoResults updateLottoRanks(String lottoResultsId, LottoWinning lottoWinning) {
+        LottoResults lottoResults = lottoRepository.findById(lottoResultsId);
+        LottoResults updatedLottoResults = lottoResults.updateAllLottoRanks(lottoRankCalculator, lottoWinning);
+        lottoRepository.save(updatedLottoResults);
+        return updatedLottoResults;
     }
+
+    @Override
+    public LottoResults getLottoResults(String lottoResultsId) {
+        return lottoRepository.findById(lottoResultsId);
+    }
+
 }

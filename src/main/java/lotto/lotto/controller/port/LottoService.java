@@ -10,9 +10,12 @@ public interface LottoService {
 
     LottoWinning createWinningLotto(List<Integer> numbers, int bonusNumber);
 
-    LottoResults updateLottoRanks(LottoResults lottoResults, LottoWinning lottoWinning);
-}
+    LottoResults updateLottoRanks(String lottoResultsId, LottoWinning lottoWinning);
 
+    LottoResults getLottoResults(String lottoResultsId);
+
+    LottoResults createLottoWinningAndUpdateRank(List<Integer> numbers, int bonusNumber, String lottoResultsId);
+}
 
 
 
