@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.constant.core.LottoServiceConstant.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,6 +48,12 @@ public class LottoService {
         return rankCounter;
     }
 
+    public double calculateEarningRate(RankCounter rankCounter, Integer lottoPurchaseAmount) {
+        double totalPrizeAmount = calculateTotalPrizeAmount(rankCounter);
+        double earningRate = totalPrizeAmount / lottoPurchaseAmount;
+        return roundToDecimalPlaces(earningRate);
+    }
+
     private Lotto createLottoTicket() {
         List<Integer> numbers = randomUtil.issueLottoTicket(
                 MIN_LOTTO_NUMBER.getIntegerValue(),
@@ -71,5 +79,21 @@ public class LottoService {
 
     private boolean compareBonusNumber(Integer bonusNumber, Lotto lottoTicket) {
         return lottoTicket.getNumbers().contains(bonusNumber);
+    }
+
+    private double calculateTotalPrizeAmount(RankCounter rankCounter) {
+        double totalPrizeAmount = 0.0;
+        for (Rank rank : Rank.values()) {
+            Integer rankCount = rankCounter.getRankCount(rank);
+            Integer prizeAmount = rank.getPrizeAmount();
+            totalPrizeAmount += rankCount * prizeAmount;
+        }
+        return totalPrizeAmount;
+    }
+
+    private double roundToDecimalPlaces(double value) {
+        BigDecimal roundedValue = new BigDecimal(value)
+                .setScale(EARNING_RATE_DECIMAL_PLACE.getIntegerValue(), RoundingMode.HALF_UP);
+        return roundedValue.doubleValue();
     }
 }
