@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,12 +24,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoControllerTest {
 
     private LottoController lottoController;
+//    private InputStream originalIn;
 
     @BeforeEach
     void setUp() {
+//        originalIn = System.in;
         lottoController = new LottoController(
             new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator()),
             new BonusNumberValidator(new DefaultRangeValidator()), new InputView());
+    }
+
+    @AfterEach
+    void tearDown() {
+        Console.close();
+//        System.setIn(originalIn); // 원래 입력 스트림으로 복원
     }
 
     @Test
@@ -75,9 +85,41 @@ public class LottoControllerTest {
     }
 
     @Test
-    void 잘못된_입력_형식으로_예외가_발생한다() {
-        String input = "1@2";
-        assertThatThrownBy(() -> lottoController.parseInt(input))
+    void 구매_금액을_잘못된_입력_형식으로_입력시_예외가_발생한다() {
+        // Given
+        String input = "wrong\n1,2,3,4,5,6\n7\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //when & then
+        assertThatThrownBy(() -> lottoController.setUp())
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("입력 형식이 올바르지 않습니다.");
+
+    }
+
+    @Test
+    void 당첨_로또를_잘못된_입력_형식으로_입력시_예외가_발생한다() {
+        // Given
+        String input = "3000\n1,wrong,3,4,5,6\n7\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //when & then
+        assertThatThrownBy(() -> lottoController.setUp())
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("입력 형식이 올바르지 않습니다.");
+    }
+
+    @Test
+    void 보너스_번호를_잘못된_입력_형식으로_입력시_예외가_발생한다() {
+        // Given
+        String input = "3000\n1,2,3,4,5,6\nwrong\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        //when & then
+        assertThatThrownBy(() -> lottoController.setUp())
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("입력 형식이 올바르지 않습니다.");
     }
@@ -85,8 +127,8 @@ public class LottoControllerTest {
     @Test
     void 구매_금액에_맞게_로또_발행하는지_확인() {
         // Given
-        InputStream input = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("3000\n1,2,3,4,5,6\n7\n".getBytes());
+        String input = "3000\n1,2,3,4,5,6\n7\n";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         //when
