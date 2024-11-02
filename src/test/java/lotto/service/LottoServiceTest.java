@@ -1,69 +1,103 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.common.Winning;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoServiceTest {
-    private static LottoService lottoService;
-    private static LottoResultService lottoResultService;
+    private LottoService lottoService;
 
-    @BeforeAll
-    static void init() {
+    @BeforeEach
+    void init() {
         lottoService = new LottoService();
-        lottoResultService = new LottoResultService();
+    }
+
+    @DisplayName("지불액 입력 시, 빈칸이 포함되어 입력되는 경우")
+    @Test
+    void 지불액_빈칸_입력_테스트() {
+        // given
+        String input = "50 00";
+
+        // when
+        int payment = lottoService.parsePayment(input);
+
+        //then
+        assertThat(payment).isEqualTo(5000);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5})
-    void issueLottos(int payCount) {
+    @ValueSource(strings = {"5500", "6500", "7500"})
+    void 지불액_예외_테스트(String input) {
+        assertThrows(IllegalArgumentException.class, () -> lottoService.parsePayment(input));
+    }
+
+    @DisplayName("당첨번호 입력 시, 맨 뒤에 쉼표가 입력되는 경우")
+    @Test
+    void 당첨번호_쉼표_입력_테스트() {
+        // given
+        String input = "1,2,3,4,5,6,";
+
+        // when
+        List<Integer> winningNumbers = lottoService.parseWinningNumbers(input);
+
+        // then
+        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @DisplayName("당첨번호 입력 시, 빈칸이 포함되어 입력되는 경우")
+    @Test
+    void 당첨번호_빈칸_입력_테스트() {
+        // given
+        String input = "1, 2, 3,4 ,5 ,6 ";
+
+        // when
+        List<Integer> winningNumbers = lottoService.parseWinningNumbers(input);
+
+        // then
+        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "1,2,2,3,4,5",
+            "1,2,3,4,5,6,7",
+            "1,2,3,4,5,46"
+    })
+    void 당첨번호_예외_테스트(String input) {
+        assertThrows(IllegalArgumentException.class, () -> lottoService.parseWinningNumbers(input));
+    }
+
+    @DisplayName("보너스 번호 입력 시, 빈칸이 포함되어 입력되는 경우")
+    @Test
+    void 보너스_번호_빈칸_입력_테스트() {
+        // given
+        String input = "7 ";
+
+        // when
+        int bonus = lottoService.parseBonus(input);
+
+        //then
+        assertThat(bonus).isEqualTo(7);
+    }
+
+    @DisplayName("로또 발행 시, 중복이 포함되지 않는지 검증")
+    @ParameterizedTest
+    @ValueSource(ints = {3000, 4000, 5000})
+    void 로또_발행_테스트(int payment) {
         // given
 
         // when
-        List<Lotto> lottos = lottoService.issueLottos(payCount);
-        List<Lotto> distintLottos = lottos.stream().distinct().toList();
+        List<Lotto> lottos = lottoService.issueLottos(payment);
+        List<Lotto> distinctLottos = lottos.stream().distinct().toList();
 
         // then
-        assertThat(lottos).isEqualTo(distintLottos);
-    }
-
-    @Test
-    void getWinnings() {
-        //given
-        List<Integer> lotto = List.of(7, 8, 9, 10, 11, 12);
-        List<Lotto> lottos = List.of(new Lotto(lotto));
-        List<Integer> winningNumbers = List.of(4, 5, 6, 7, 8, 9);
-        int bonus = 10;
-
-        // when
-        Map<Winning, Integer> countWinnings = lottoResultService.getWinnings(lottos, winningNumbers, bonus);
-
-        // then
-        assertThat(countWinnings).isEqualTo(Map.of(
-                Winning.THREE, 1
-        ));
-    }
-
-    @Test
-    void calculateYield() {
-        //given
-        int payment = 5000;
-        Map<Winning, Integer> winnings = Map.of(
-            Winning.THREE, 1
-        );
-        int totalWinnings = 5000;
-
-        // when
-        double yield = lottoResultService.calculateYield(payment, totalWinnings);
-
-        // then
-        assertThat(yield).isEqualTo(100.0);
+        assertThat(lottos).isEqualTo(distinctLottos);
     }
 }
