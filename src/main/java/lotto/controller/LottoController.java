@@ -20,8 +20,8 @@ public class LottoController {
     }
 
     public void run(){
-        List<String> lottoPurchaseAmount = inputView.inputLottoPurchaseAmount();
-        lottoService.purchaseLotto(lottoPurchaseAmount);
+        List<String> lottoPrice = inputView.inputLottoPrice();
+        lottoService.purchaseLotto(lottoPrice);
 
         String lottoWinningNumbers = inputView.inputLottoWinningNumbers();
         String lottoBonusNumber = inputView.inputLottoBonusNumber();
