@@ -3,8 +3,8 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.SoldLotto;
+import lotto.model.WinningLotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
@@ -13,9 +13,11 @@ public class LottoService {
     private static final int MAX_NUM = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
     private final SoldLotto soldLotto;
+    private final WinningLotto winningLotto;
 
-    public LottoService(SoldLotto soldLotto){
+    public LottoService(SoldLotto soldLotto, WinningLotto winningLotto){
         this.soldLotto = soldLotto;
+        this.winningLotto = winningLotto;
     }
 
     public String buyLotto(int lottoCount) {
@@ -28,6 +30,10 @@ public class LottoService {
     }
 
     public void saveWinningNumbers(List<Integer> winningNumbers){
-        new Lotto(winningNumbers);
+        winningLotto.addWinningLotto(winningNumbers);
+    }
+
+    public void validateBonusNumber(int bonusNumber){
+        winningLotto.validateBonusNumber(bonusNumber, MAX_NUM, MIN_NUM);
     }
 }

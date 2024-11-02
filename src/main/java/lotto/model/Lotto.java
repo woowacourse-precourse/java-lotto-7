@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     public List<Integer> getLottoDetails(){
-        return numbers;
+        return new ArrayList<>(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
