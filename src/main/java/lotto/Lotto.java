@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lotto {
     
@@ -34,5 +37,26 @@ public class Lotto {
         System.out.println(numbers.toString());
     }
     
-    
+    public void checkWinningLotto(List<Lotto> generatedLottos, Integer bonusLottoNumber) {
+        Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
+        
+        Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NONE)
+                .forEach(rank -> rankCount.put(rank, 0));
+        
+        for (Lotto lotto : generatedLottos) {
+            List<Integer> userLotto = lotto.getNumbers();
+            int matchCount = (int) userLotto.stream()
+                    .filter(userNumber -> numbers.contains(userNumber))
+                    .count();
+            
+            boolean matchBonus = userLotto.contains(bonusLottoNumber);
+            
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            
+            if (rank != Rank.NONE) {
+                rankCount.put(rank, rankCount.get(rank) + 1);
+            }
+        }
+    }
 }

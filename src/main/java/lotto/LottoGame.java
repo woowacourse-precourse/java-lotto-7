@@ -21,6 +21,18 @@ public class LottoGame {
         
         // 보너스 번호 입력 받기
         Integer bonusLottoNumber = generateBonusLottoNumber(winningLotto);
+        
+        // 당첨 확인하기
+        checkWinningResult(generatedLottos, winningLotto, bonusLottoNumber);
+    }
+    
+    private void checkWinningResult(List<Lotto> generatedLottos, Lotto winningLotto, Integer bonusLottoNumber) {
+        
+        System.out.println();
+        System.out.println("당첨 통계\n---");
+        
+        winningLotto.checkWinningLotto(generatedLottos, bonusLottoNumber);
+    
     }
     
     public Integer generateBonusLottoNumber(Lotto winningLotto) {
