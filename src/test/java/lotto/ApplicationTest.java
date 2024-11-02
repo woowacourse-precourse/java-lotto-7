@@ -8,8 +8,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -69,6 +68,33 @@ class ApplicationTest extends NsTest {
 
         assertThat(winningLotto.getMatchResult(new Lotto(List.of(1, 2, 3, 4, 5, 8))))
                 .isEqualTo(LottoResult.FIVE);
+    }
+
+    @Test
+    void 총_당첨_금액_계산_테스트() {
+        LottoStatistics statistics = new LottoStatistics(3000);
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        statistics.processTickets(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+        ), winningLotto);
+
+        int totalPrize = statistics.calculateTotalPrize();
+        assertThat(totalPrize).isEqualTo(2000000000 + 30000000);
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        LottoStatistics statistics = new LottoStatistics(3000);
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        statistics.processTickets(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6))
+        ), winningLotto);
+
+        double profitRate = statistics.calculateProfitRate();
+        assertThat(profitRate).isCloseTo(66666666.7, within(0.1));
     }
 
     @Test
