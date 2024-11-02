@@ -13,31 +13,19 @@ public class AmountValidator {
     public int processSetAmount() {
         return Integer.parseInt(
                 InputUtils.retryRequest(Input.request(Input.PURCHASE_AMOUNT_PROMPT),
-                        request -> inputAmountValidation(request)
+                        this::inputAmountValidation
                 )
         );
     }
 
     private Boolean inputAmountValidation(String request) {
-        String viewMessage = Input.PURCHASE_AMOUNT_PROMPT;
+        final String viewMessage = Input.PURCHASE_AMOUNT_PROMPT;
 
-        if (!nonEmpty(viewMessage, request)) {
-            return false;
-        }
-
-        if (!isNumeric(viewMessage, request)) {
-            return false;
-        }
-
-        if (!isPositiveNumber(viewMessage, request)) {
-            return false;
-        }
-
-        if (!isThousandUnit(viewMessage, request)) {
-            return false;
-        }
-
-        return isPurchaseAmountExceeded(viewMessage, request);
+        return nonEmpty(viewMessage, request) &&
+               isNumeric(viewMessage, request) &&
+               isPositiveNumeric(viewMessage, request) &&
+               isThousandUnit(viewMessage, request) &&
+               !isPurchaseAmountExceeded(viewMessage, request);
     }
 
     private Boolean isThousandUnit(String viewMessage, String input) {

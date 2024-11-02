@@ -4,26 +4,22 @@ import lotto.exception.RetryInputException;
 import lotto.status.ErrorMessages;
 import lotto.util.RegexUtils;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
 public class InputValidator {
     private final int amount;
-    private int bonus;
-    private Set<Integer> winningNumbers;
-    private Set<String> duplicateCheck;
+    private final int bonus;
+    private List<Integer> winningNumbers;
 
-    public InputValidator(AmountValidator amountValidator) {
+    public InputValidator(AmountValidator amountValidator, WinningNumbersValidator winningNumbersValidator,
+            BonusNumberValidator bonusValidator) {
         this.amount = amountValidator.processSetAmount();
+        this.winningNumbers = winningNumbersValidator.convertTypeSetNumbers();
+        this.bonus = bonusValidator.convertTypeSetBounus();
 
-    }
-
-    public Set<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonus() {
-        return bonus;
     }
 
     public static Boolean nonEmpty(String viewMessage, String input) {
@@ -42,7 +38,7 @@ public class InputValidator {
         throw new RetryInputException(viewMessage, ErrorMessages.NON_NUMERIC.getMessage());
     }
 
-    public static Boolean isPositiveNumber(String viewMessage, String input) {
+    public static Boolean isPositiveNumeric(String viewMessage, String input) {
         if (RegexUtils.isPositiveNumeric(input)) {
             return true;
         }
@@ -50,7 +46,26 @@ public class InputValidator {
         throw new RetryInputException(viewMessage, ErrorMessages.NON_POSITIVE_NUMERIC.getMessage());
     }
 
+    public static Boolean hasNoDuplicates(String viewMessage, List<String> numbers) {
+        Set<String> hashSet = new HashSet<>(numbers);
 
+        if (hashSet.size() == numbers.size()) {
+            return true;
+        }
 
+        throw new RetryInputException(viewMessage, ErrorMessages.HAS_DUPLICATE_NUMBER.getMessage());
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
 
 }
