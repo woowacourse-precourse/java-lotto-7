@@ -41,4 +41,8 @@ public class Lotto {
             .distinct()
             .count();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
