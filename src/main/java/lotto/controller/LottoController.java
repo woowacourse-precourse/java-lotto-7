@@ -32,5 +32,6 @@ public class LottoController {
         String bonusNumber = InputView.getInput();
 
         Map<Integer, Integer> winningResult = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+        OutputView.displayWinningResult(winningResult);
     }
 }
