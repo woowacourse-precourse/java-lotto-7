@@ -23,17 +23,20 @@ public class Lotto {
 
     public void search(List<Integer> intList, int bonus) {
         int count = 0;
-
         for (int i = 0; i < intList.size(); i++) {
             if (numbers.contains(intList.get(i))) {
                 count++;
             }
         }
 
-        System.out.println("\ncount : " + count);
-
-        if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
+        if (count == Constant.LOTTO_BONUS_APPLY + 1) {
+            // 6개 당첨 시
+            count++;
+        } else if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
             // Enum - 5개 hit, 보너스볼 hit (+1)
+            count++;
         }
+
+        LottoEnum.increaseWinnerCount(count);
     }
 }
