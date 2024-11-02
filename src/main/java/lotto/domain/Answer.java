@@ -3,18 +3,18 @@ package lotto.domain;
 import java.util.List;
 
 public class Answer {
-    private final LottoNumbers lottoNumbers;
+    private final Lotto lottoNumbers;
     private final LottoNumber bonusNumber;
 
-    Answer(List<Integer> numbers, int bonus) {
-        LottoNumbers lottoNumbers = new LottoNumbers(numbers);
+    public Answer(List<Integer> numbers, int bonus) {
+        Lotto lottoNumbers = new Lotto(numbers);
         LottoNumber bonusNumber = new LottoNumber(bonus);
         validate(lottoNumbers, bonusNumber);
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    LottoResult getResult(List<Lotto> lottos) {
+    public LottoResult getResult(List<Lotto> lottos) {
         List<LottoPrize> prizes = lottos.stream().map(this::match).toList();
         return new LottoResult(prizes);
     }
@@ -25,7 +25,7 @@ public class Answer {
         return LottoPrize.getPrize(matches, bonus);
     }
 
-    private void validate(LottoNumbers lottoNumbers, LottoNumber bonusNumber) {
+    private void validate(Lotto lottoNumbers, LottoNumber bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정답 번호와 중복될 수 없습니다.");
         }
