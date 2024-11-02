@@ -18,7 +18,7 @@ public class Application {
             System.out.println("구입금액을 입력해 주세요.");
             String purchasePriceInput = Console.readLine();
             try {
-                int purchasePrice = validatePurchasePrice(purchasePriceInput);
+                int purchasePrice = Validator.validatePurchasePrice(purchasePriceInput);
 
                 if (purchasePrice % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위만 허용됩니다.");
@@ -50,7 +50,7 @@ public class Application {
                 }
 
                 for (String winningNumber : winningNumbersInput) {
-                    int number = validateNumber(winningNumber);
+                    int number = Validator.validateNumber(winningNumber);
                     winningNumbers.add(number);
                 }
 
@@ -68,7 +68,7 @@ public class Application {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumberInput = Console.readLine();
             try{
-                bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbersLotto);
+                bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbersLotto);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -136,43 +136,13 @@ public class Application {
         }
     }
 
-    static int validatePurchasePrice(String purchasePriceInput) {
-        try{
-            return Integer.parseInt(purchasePriceInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위의 숫자만 허용됩니다.");
-        }
-    }
 
-    static int validateNumber(String numberInput) {
-        try{
-            return Integer.parseInt(numberInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
-        }
-    }
     static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             lotto.printLotto();
         }
     }
-    static int validateBonusNumber(String bonusNumberInput, Lotto winningNumbersLotto) {
-        try {
-           int bonusNumber = Integer.parseInt(bonusNumberInput);
 
-           if (bonusNumber < 1 || bonusNumber > 45) {
-               throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
-           }
-
-           if (winningNumbersLotto.contains(bonusNumber)) {
-               throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-           }
-
-           return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
-        }
-    }
 
     public static double getRateOfReturn(Map<PrizeRank, Integer> prizeRankCounts, int purchaseAmount) {
         // 수익률 = 총상금 / 구입금액 * 100
