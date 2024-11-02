@@ -28,10 +28,14 @@ public enum LottoPrize {
     }
 
     public static LottoPrize findBy(int correctCount, boolean isBonusCorrect) {
-        if (correctCount == 5 && isBonusCorrect) {
-            return LottoPrize.SECOND;
-        }
+        if (correctCount == 5) {
+            if (isBonusCorrect) {
+                return LottoPrize.SECOND;
+            }
+            return LottoPrize.THIRD;
 
+        }
+        
         return Arrays.stream(LottoPrize.values())
                 .filter(prize -> prize.correctCount == correctCount)
                 .findFirst()
