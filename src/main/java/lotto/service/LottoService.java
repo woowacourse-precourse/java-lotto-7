@@ -1,14 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoService {
@@ -20,6 +15,15 @@ public class LottoService {
         return new Lottos(newLottos);
     }
 
+    public LottoResult getLottoResult(Lottos lottos, WinningNumbers winningNumbers) {
+
+        return new LottoResult(lottos.getLottos().stream()
+                .map(winningNumbers::matchedResult)
+                .filter(lottoPrize -> !LottoPrize.NONE.equals(lottoPrize))
+                .toList());
+
+    }
+
     private Lotto issueLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
                 .stream()
@@ -27,4 +31,5 @@ public class LottoService {
                 .toList();
         return new Lotto(numbers);
     }
+
 }
