@@ -1,5 +1,6 @@
 package view;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,17 @@ public class InputViewTest extends NsTest {
         assertSimpleTest(() -> {
             run(" 1234");
             assertThat(inputView.purchaseAmount()).isEqualTo("1234");
+        });
+    }
+
+    @Test
+    void 문자열_입력_테스트() {
+        InputView inputView = new StubInputView();
+        assertSimpleTest(() -> {
+            run("abc");
+            inputView.purchaseAmount();
+            String output = output();
+            assertThat(output).contains("ERROR");
         });
     }
 

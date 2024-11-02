@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import validation.Validation;
 
 public class InputView {
 
@@ -14,7 +15,14 @@ public class InputView {
 
     public String purchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
-        return Console.readLine().strip();
+        String input = Console.readLine().strip();
+        try{
+            validateInput(input);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            input = purchaseAmount();
+        }
+        return input;
     }
 
     public String winingNumber() {
@@ -27,5 +35,11 @@ public class InputView {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine().strip();
+    }
+
+    private static void validateInput(String str) {
+        Validation.blankInput(str);
+        Validation.numberInput(str);
+        Validation.overInput(Integer.parseInt(str));
     }
 }

@@ -31,7 +31,6 @@ public class LottoController {
 
     public void run() {
         String str = inputView.purchaseAmount();
-        validateInput(str);
         purchaseAmount = new Amount(Integer.parseInt(str));
         lottoAmount = new LottoAmount(purchaseAmount.getPurchaseAmount());
         outputView.printLottoAmount(lottoAmount);
@@ -45,11 +44,7 @@ public class LottoController {
         outputView.printResult(resultFactory,purchaseAmount);
     }
 
-    private static void validateInput(String str) {
-        Validation.blankInput(str);
-        Validation.numberInput(str);
-        Validation.overInput(Integer.parseInt(str));
-    }
+
 
     private void makeWinningNum() {
         WinningLottoNumFactory winningLottoNumFactory = new WinningLottoNumFactory(inputView.winingNumber());
