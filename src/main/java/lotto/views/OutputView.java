@@ -8,7 +8,7 @@ public class OutputView {
         System.out.println(amount + "개를 구매했습니다.");
     }
 
-    public void displayIssuedNumbers (ArrayList<ArrayList<Integer>> allIssuedNumbers) {
+    public void displayIssuedNumbers(ArrayList<ArrayList<Integer>> allIssuedNumbers) {
         for (ArrayList<Integer> issuedNumbers : allIssuedNumbers) {
             System.out.println(issuedNumbers);
         }
@@ -42,4 +42,9 @@ public class OutputView {
             System.out.println(prize.getWinningPrompt() + " - " + count + "개");
         }
     }
+
+    public void displayRateOfReturn (float rateOfReturn) {
+        System.out.printf("총 수익률은 %f입니다.%n", rateOfReturn);
+    }
+
 }
