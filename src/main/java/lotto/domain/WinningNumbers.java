@@ -8,12 +8,17 @@ public class WinningNumbers {
 
     private static final String DELIMITER = ",";
 
+    private static final int NUMBERS_RANGE_START = 1;
+
+    private static final int NUMBERS_RANGE_END = 45;
+
     public final List<Integer> numbers;
 
     public WinningNumbers(String inputNumbers) {
         List<String> numbersInString = parse(inputNumbers);
         this.numbers = validateInteger(numbersInString);
         validateSixNumbers(numbers);
+        validateRange(numbers);
     }
 
     private List<String> parse(String inputNumbers) {
@@ -38,6 +43,15 @@ public class WinningNumbers {
     private void validateSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new NumberFormatException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        boolean isRange = numbers.stream()
+                .allMatch(number -> number >= NUMBERS_RANGE_START && number <= NUMBERS_RANGE_END);
+
+        if (!isRange) {
+            throw new IllegalArgumentException();
         }
     }
 }
