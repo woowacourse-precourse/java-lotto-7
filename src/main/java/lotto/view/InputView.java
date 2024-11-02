@@ -12,7 +12,7 @@ import lotto.utils.Utils;
 public class InputView {
 
     //inputPurchasePrice 구현
-    public static BigDecimal inputPurchasePrice() {
+    public static BigDecimal inputPurchaseAmount() {
         OutputView.printPrompt(OutputViewEnum.PURCHASE_AMOUNT_INPUT.getMessage());
         String userInput = Console.readLine();
         validateInput(userInput);

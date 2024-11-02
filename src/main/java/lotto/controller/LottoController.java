@@ -29,10 +29,10 @@ public class LottoController {
         while (true) {
             try {
                 List<Lotto> tickets;
-                BigDecimal purchasePrice;
+                BigDecimal PurchaseAmount;
 
-                purchasePrice = InputView.inputPurchasePrice();
-                tickets = lottoMachine.createLottoTicket(purchasePrice);
+                PurchaseAmount = InputView.inputPurchaseAmount();
+                tickets = lottoMachine.createLottoTicket(PurchaseAmount);
                 return tickets;
             } catch (NumberFormatException e) {
                 OutputView.errorPrint(e.getMessage());

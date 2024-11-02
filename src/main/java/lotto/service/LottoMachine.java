@@ -12,10 +12,10 @@ public class LottoMachine {
     private List<Lotto> tickets = new ArrayList<>();
     private int purchaseAmount;
 
-    public List<Lotto> createLottoTicket(BigDecimal purchasePrice) {
-        validatePurchasePrice(purchasePrice);
-        this.purchaseAmount = purchasePrice.intValue();
-        int count = calculatorLottoCount(purchasePrice.intValue());
+    public List<Lotto> createLottoTicket(BigDecimal purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
+        this.purchaseAmount = purchaseAmount.intValue();
+        int count = calculatorLottoCount(purchaseAmount.intValue());
 
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(createRandomLottoNum());
@@ -24,11 +24,11 @@ public class LottoMachine {
         return tickets;
     }
 
-    private void validatePurchasePrice(BigDecimal purchasePrice) {
-        if (!Utils.isInRange(new BigDecimal("1000"), new BigDecimal("100000"), purchasePrice)) {
+    private void validatePurchaseAmount(BigDecimal purchaseAmount) {
+        if (!Utils.isInRange(new BigDecimal("1000"), new BigDecimal("100000"), purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
         }
-        if (!Utils.isDivisibleByThousand(purchasePrice.intValue())) {
+        if (!Utils.isDivisibleByThousand(purchaseAmount.intValue())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }
