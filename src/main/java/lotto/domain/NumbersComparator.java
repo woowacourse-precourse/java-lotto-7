@@ -21,6 +21,7 @@ public class NumbersComparator {
         for (int i=0; i<myLottos.size(); i++) {
             List<Integer> myNumbers = myLottos.get(i).getNumbers();
             int matchCount = countMatchedNumbers(myNumbers);
+            boolean bonusHit = isBonusMatched(myNumbers);
         }
 
         return rank;
@@ -30,5 +31,9 @@ public class NumbersComparator {
         return (int) myNumbers.stream()
                 .filter(winningNumbers.getWinningNumbers()::contains)
                 .count();
+    }
+
+    private boolean isBonusMatched(List<Integer> myNumbers) {
+        return myNumbers.contains(winningNumbers.getBonusNumber());
     }
 }
