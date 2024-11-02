@@ -22,9 +22,7 @@ public class ValidatorService {
 
     public void validateParsing(String input) {
         try {
-            Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .forEach(Integer::parseInt);
+            Arrays.stream(input.split(",")).map(String::trim).forEach(Integer::parseInt);
         } catch (NumberFormatException e) {
             throw new CommonException(ErrorCode.PARSING_INTEGER_ERROR);
         }

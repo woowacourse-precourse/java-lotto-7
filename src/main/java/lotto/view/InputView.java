@@ -8,7 +8,6 @@ import static lotto.constants.CommonConstants.INPUT_PROMPT_WINNING_NUMBERS;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Guess;
-import lotto.enums.ErrorCode;
 import lotto.exception.CommonException;
 import lotto.exception.FormatException;
 import lotto.service.LottoService;

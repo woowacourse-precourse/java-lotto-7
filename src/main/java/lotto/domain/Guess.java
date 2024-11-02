@@ -7,10 +7,10 @@ import java.util.List;
 import lotto.enums.ErrorCode;
 import lotto.exception.CommonException;
 
-public class Guess extends Lotto{
+public class Guess extends Lotto {
     private final int bonusNumber;
 
-    public Guess(List<Integer> numbers, int bonusNumber){
+    public Guess(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         validateBonusNumber(bonusNumber, numbers);
         this.bonusNumber = bonusNumber;

@@ -7,8 +7,7 @@ public class ProfitCalculatorService {
 
     public double calculateProfit(Map<Rank, Long> rankCount, int totalCost) {
         long totalProfit = rankCount.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
-                .sum();
+                .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue()).sum();
 
         if (totalCost == 0) {
             return 0.0;
