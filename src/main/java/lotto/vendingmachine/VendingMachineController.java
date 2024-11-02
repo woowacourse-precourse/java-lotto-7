@@ -11,7 +11,7 @@ public class VendingMachineController {
     }
 
     public void generateLottoTickets(int amount) {
-        List<Lotto> lottos = vendingMachineService.ticket(amount);
+        List<Lotto> lottos = vendingMachineService.generate(amount);
         vendingMachineService.recordLottos(lottos);
     }
 
