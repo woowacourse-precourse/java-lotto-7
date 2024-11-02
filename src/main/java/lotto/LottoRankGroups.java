@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public class LottoRankGroups {
@@ -12,16 +13,17 @@ public class LottoRankGroups {
 
     public Long getAllPrize() {
         return ranks.stream()
+                .filter(Objects::nonNull)
                 .mapToLong(LottoRank::getPrice)
                 .sum();
     }
 
     public Long getCount(LottoRank targetRank) {
-        return filterCount(rank -> rank.equals(targetRank));
+        return filterCount(targetRank::equals);
     }
 
     public Long getPrize(LottoRank targetRank) {
-        return filterPrize(rank -> rank.equals(targetRank));
+        return filterPrize(targetRank::equals);
     }
 
     public int getRankSize() {
