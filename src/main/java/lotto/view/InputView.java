@@ -2,7 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import lotto.dto.request.LottoAmountRequest;
+import lotto.dto.request.LottoResultRequest;
+import lotto.dto.response.LottoResultResponse;
 import lotto.dto.response.LottoesResponse;
 import lotto.util.BonusNumberValidator;
 import lotto.util.Container;
@@ -10,6 +14,7 @@ import lotto.util.LottoAmountValidator;
 import lotto.util.WinningNumberParser;
 
 import java.util.List;
+import java.util.Map;
 
 public class InputView {
 
@@ -30,8 +35,9 @@ public class InputView {
         return lottoAmountValidator.validate(price);
     }
 
-    public LottoesResponse setLottoes(int amount) {
-        return lottoController.makeLottoes(LottoAmountRequest.from(amount));
+    public List<Lotto> setLottoes(int amount) {
+        LottoesResponse response = lottoController.makeLottoes(LottoAmountRequest.from(amount));
+        return response.lottoes();
     }
 
     public List<Integer> setWinningNumbers() {
@@ -42,5 +48,10 @@ public class InputView {
     public int setBonusNumber() {
         String bonusNumber = Console.readLine();
         return bonusNumberValidator.validate(bonusNumber);
+    }
+
+    public Map<Ranking, Integer> getLottoResult(List<Integer> winningNumbers, int bonusNumber) {
+        LottoResultResponse response = lottoController.getLottoResult(LottoResultRequest.of(winningNumbers, bonusNumber));
+        return response.lottoResult();
     }
 }

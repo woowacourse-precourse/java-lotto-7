@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.dto.request.LottoAmountRequest;
+import lotto.dto.request.LottoResultRequest;
+import lotto.dto.response.LottoResultResponse;
 import lotto.dto.response.LottoesResponse;
 import lotto.service.LottoService;
 import lotto.util.Container;
@@ -15,5 +17,9 @@ public class LottoController {
 
     public LottoesResponse makeLottoes(LottoAmountRequest request) {
         return lottoService.makeLottoes(request);
+    }
+
+    public LottoResultResponse getLottoResult(LottoResultRequest request) {
+        return lottoService.getLottoResult(request);
     }
 }
