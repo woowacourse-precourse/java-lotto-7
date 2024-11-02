@@ -11,7 +11,7 @@ public class InputValidator {
     private static final String DELIMITER = ",";
     private static final Integer ZERO = 0;
     private static final Pattern TRAILING_DELIMITER_PATTERN = Pattern.compile(".*,$");
-    private static final Pattern DELIMITER_PATTERN = Pattern.compile("^([a-zA-Z가-힣\\d]+,)*[a-zA-Z가-힣\\d]+$");
+    private static final Pattern DELIMITER_PATTERN = Pattern.compile("^([a-zA-Z가-힣\\d-]+,)*[a-zA-Z가-힣\\d-]+$");
     private static final Pattern POSITIVE_NUMBER_PATTERN = Pattern.compile("\\d+");
 
     private InputValidator() {
@@ -24,8 +24,8 @@ public class InputValidator {
 
     public static void validateWinNumbers(final String input) {
         checkEmptyInput(input);
-        checkSeparatedNumbers(input);
         checkTrailingComma(input);
+        checkSeparatedNumbers(input);
         checkAllPositiveNumbers(input);
     }
 
