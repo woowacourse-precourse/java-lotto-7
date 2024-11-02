@@ -37,13 +37,19 @@ public class OutputView {
         System.out.println(NEXT_LINE + "보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningResultMessage() {
-        System.out.println(NEXT_LINE + "당첨 통계" + NEXT_LINE + "---");
-    }
-
     public void printLottoWinningResult(Map<LottoRank, Integer> winningResult) {
+        printWinningResultMessage();
         StringJoiner formatResult = formatWinningResult(winningResult);
         System.out.println(formatResult);
+    }
+
+    public void printRateOrReturn(double rateOfReturn) {
+        String formatRateOfReturn = String.format("%.1f", rateOfReturn);
+        System.out.println("총 수익률은 " + formatRateOfReturn + "%입니다.");
+    }
+
+    private void printWinningResultMessage() {
+        System.out.println(NEXT_LINE + "당첨 통계" + NEXT_LINE + "---");
     }
 
     private StringJoiner formatWinningResult(Map<LottoRank, Integer> winningResult) {
