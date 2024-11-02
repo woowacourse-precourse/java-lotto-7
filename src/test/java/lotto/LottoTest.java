@@ -26,7 +26,7 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호가 오름차순으로 정렬된 형식으로 반환된다.")
-    void formattedNumbersTest() {
+    void 오름차순_테스트() {
         // given
         List<Integer> lottoNumbers = Arrays.asList(15, 3, 22, 8, 35, 1);
         Lotto lotto = new Lotto(lottoNumbers);
@@ -40,7 +40,7 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호가 당첨 번호와 몇 개 일치하는지 확인한다")
-    void countMatchingNumbersTest() {
+    void 당첨_번호_일치_테스트() {
         // given
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
@@ -55,7 +55,7 @@ class LottoTest {
 
     @Test
     @DisplayName("보너스 번호가 로또 번호에 포함되는지 확인한다")
-    void containsBonusNumberTest() {
+    void 보너스_번호_일치_테스트() {
         // given
         List<Integer> lottoNumbers = Arrays.asList(7, 14, 23, 29, 35, 42);
         Lotto lotto = new Lotto(lottoNumbers);
