@@ -2,6 +2,7 @@ package utils;
 
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomNumber {
@@ -16,6 +17,7 @@ public class RandomNumber {
     public static List<Integer> create() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER,
                 LOTTO_LENGTH);
+        Collections.sort(randomNumbers);
         return randomNumbers;
     }
 
