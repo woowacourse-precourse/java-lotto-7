@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoShop {
+    public static final int MAX_PURCHASE_AMOUNT = 100_000;
     public static final int LOTTO_UNIT_PRICE = 1_000;
     public static final int NO_REMAINDER = 0;
 
@@ -14,7 +15,7 @@ public class LottoShop {
     }
 
     public List<Lotto> purchaseLottoTickets(int money) {
-        validateMinimumPurchaseAmount(money);
+        validatePurchaseAmount(money);
         validateThousandUnitAmount(money);
         return lottoTicketFactory.generateLottoTickets(calculateTicketCount(money));
     }
@@ -29,9 +30,13 @@ public class LottoShop {
         }
     }
 
-    private void validateMinimumPurchaseAmount(int money) {
+    private void validatePurchaseAmount(int money) {
         if (money < LOTTO_UNIT_PRICE) {
             throw new IllegalArgumentException("최소 구입 금액은 1,000원 입니다.");
+        }
+
+        if (money > MAX_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException("최대 구입 금액은 100,000원 입니다.");
         }
     }
 }

@@ -14,7 +14,7 @@ class LottoShopTest {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1500, 2500, 3500, 4200, 10001, Integer.MAX_VALUE})
+    @ValueSource(ints = {1500, 2500, 3500, 4200, 10001})
     void 로또구입_금액이_천원단위가_아니면_예외발생(int money) {
         assertThatThrownBy(() -> lottoShop.purchaseLottoTickets(money))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -27,6 +27,14 @@ class LottoShopTest {
         assertThatThrownBy(() -> lottoShop.purchaseLottoTickets(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("최소 구입 금액은 1,000원 입니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {100001, Integer.MAX_VALUE})
+    void 로또구입_금액이_10만원_이상이면_예외발생(int money) {
+        assertThatThrownBy(() -> lottoShop.purchaseLottoTickets(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최대 구입 금액은 100,000원 입니다.");
     }
 
 }
