@@ -4,6 +4,8 @@ import lotto.constant.LottoRange;
 
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -20,7 +22,7 @@ public class Lotto {
 
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(NUMBERS_SIZE_ERROR.getMessage());
         }
     }
 
@@ -30,13 +32,13 @@ public class Lotto {
                 .count() != numbers.size();
 
         if (isDuplicate) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 당첨번호를 입력하셨습니다");
+            throw new IllegalArgumentException(NUMBERS_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private void validateLottoRange(List<Integer> numbers) {
         if (!LottoRange.isAvailableRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 범위를 벗어나는 숫자가 입력되었습니다");
+            throw new IllegalArgumentException(NUMBERS_RANGE_ERROR.getMessage());
         }
     }
 }
