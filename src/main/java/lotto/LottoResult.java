@@ -64,5 +64,17 @@ public class LottoResult {
         profitRate = Math.round(profitRate * 10) / 10.0;
         System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
     }
+    public double calculateProfitRate(int purchaseAmount) {
+        double totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrize += rank.getPrizeMoney() * resultMap.get(rank);
+        }
+        double profitRate = (totalPrize / purchaseAmount) * 100;
+        profitRate = Math.round(profitRate * 100) / 100.0;
+        return profitRate;
+    }
 
+    public Map<Rank, Integer> getResultMap() {
+        return resultMap;
+    }
 }
