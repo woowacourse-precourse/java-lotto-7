@@ -58,4 +58,11 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLottoNumbers(winningLottoInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 랜덤_번호가_6개_보다_많은_경우_예외가_발생한다() {
+        List<Integer> winningLottoInput = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7));
+        assertThatThrownBy(() -> Validator.validateLottoNumbers(winningLottoInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
