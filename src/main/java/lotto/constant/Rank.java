@@ -1,6 +1,5 @@
 package lotto.constant;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -11,8 +10,6 @@ public enum Rank {
     SECOND(5, 30_000_000, Rank::getBonusMessage),
     FIRST(6, 2_000_000_000, Rank::getNormalMessage);
 
-    private static final int MIN_MATCH_COUNT = 3;
-    private static final int MAX_MATCH_COUNT = 6;
     private static final Map<Integer, Rank> rankMap = Map.of(
             3, FIFTH,
             4, FOURTH,

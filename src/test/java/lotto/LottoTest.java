@@ -1,22 +1,21 @@
 package lotto;
 
-import lotto.constant.Rank;
-import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoTest {
-    private Lotto lotto;
+import java.util.List;
+import lotto.constant.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-    @BeforeEach
-    void setUp() {
+class LottoTest {
+    private static Lotto lotto;
+
+    @BeforeAll
+    static void setUp() {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
