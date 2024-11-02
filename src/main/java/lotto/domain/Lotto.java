@@ -57,6 +57,10 @@ public class Lotto {
         return this.numbers.contains(lottoNumber);
     }
 
+    public List<Integer> toIntList() {
+        return this.numbers.stream().map(LottoNumber::value).toList();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

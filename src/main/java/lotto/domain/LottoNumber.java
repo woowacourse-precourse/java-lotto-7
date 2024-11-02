@@ -27,6 +27,10 @@ public class LottoNumber {
         return number < LottoSettings.MIN_NUMBER.value() || LottoSettings.MAX_NUMBER.value() < number;
     }
 
+    public int value() {
+        return number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
