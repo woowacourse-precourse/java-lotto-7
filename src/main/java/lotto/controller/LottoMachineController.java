@@ -7,14 +7,15 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class LottoMachineController {
-    public static List<Lotto> issueLotto(int lottoTicketNumber){
+    public static List<Lotto> issueLotto(int lottoTicketNumber) {
         List<Lotto> lottoTickets = new ArrayList<>();
         int current = 0;
-        while(current < lottoTicketNumber) {
+        while (current < lottoTicketNumber) {
             List<Integer> ticket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(ticket);
             Lotto newLotto = new Lotto(ticket);
-            if(!lottoTickets.contains(newLotto)) {
+
+            if (!lottoTickets.contains(newLotto)) {
                 lottoTickets.add(newLotto);
                 current++;
             }

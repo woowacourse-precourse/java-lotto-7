@@ -10,6 +10,6 @@ public class LottoMachineControllerTest {
     @Test
     void 개수만큼_로또를_발행한다() {
         List<Lotto> lottoTickets = LottoMachineController.issueLotto(6);
-        assertEquals(6,lottoTickets.size());
+        assertEquals(6, lottoTickets.size());
     }
 }

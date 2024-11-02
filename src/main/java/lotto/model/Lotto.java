@@ -20,21 +20,21 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Result compareWithWinningLotto(Lotto winningLotto, int bonusNumber){
+    public Result compareWithWinningLotto(Lotto winningLotto, int bonusNumber) {
         boolean isBonusMatch = false;
         int duplicateNumber = 0;
-        for(Integer number : winningLotto.numbers){
-            if(numbers.contains(number)){
-                duplicateNumber ++;
+        for (Integer number : winningLotto.numbers) {
+            if (numbers.contains(number)) {
+                duplicateNumber++;
             }
         }
-        if(duplicateNumber == 5 && numbers.contains(bonusNumber)){
+        if (duplicateNumber == 5 && numbers.contains(bonusNumber)) {
             isBonusMatch = true;
         }
-        return Result.findResult(duplicateNumber,isBonusMatch);
+        return Result.findResult(duplicateNumber, isBonusMatch);
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

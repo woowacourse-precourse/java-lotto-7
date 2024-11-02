@@ -20,21 +20,21 @@ public class LottoController {
         this.output = output;
     }
 
-    public void proceed(){
+    public void proceed() {
         int lottoAmount = inputLottoAmount();
         int lottoTicketNumber = Calculator.calculateLottoTicketNumber(lottoAmount);
         List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketNumber);
-        output.printLottoTicket(userLottos,lottoTicketNumber);
+        output.printLottoTicket(userLottos, lottoTicketNumber);
 
         Lotto winningLotto = new Lotto(inputWinningNumber());
         int bonusNumber = inputBonusNumber(winningLotto);
 
-        Map<Result,Integer> results = compareLottoWithWinningNumber(userLottos, winningLotto, bonusNumber);
-        output.printProfit(Calculator.calculateRateOfReturn(lottoAmount,results));
+        Map<Result, Integer> results = compareLottoWithWinningNumber(userLottos, winningLotto, bonusNumber);
+        output.printProfit(Calculator.calculateRateOfReturn(lottoAmount, results));
     }
 
-    public int inputLottoAmount(){
-        try{
+    public int inputLottoAmount() {
+        try {
             return input.inputLottoAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -42,8 +42,8 @@ public class LottoController {
         }
     }
 
-    public List<Integer> inputWinningNumber(){
-        try{
+    public List<Integer> inputWinningNumber() {
+        try {
             return input.inputWinningNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -51,8 +51,8 @@ public class LottoController {
         }
     }
 
-    public int inputBonusNumber(Lotto winningLotto){
-        try{
+    public int inputBonusNumber(Lotto winningLotto) {
+        try {
             int bonusNumber = input.inputBonusNumber();
             Validator.validateBonusDuplicate(winningLotto, bonusNumber);
             return bonusNumber;
@@ -62,28 +62,30 @@ public class LottoController {
         }
     }
 
-    public Map<Result,Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber){
-        Map<Result,Integer> results = new LinkedHashMap<>();
-        for(int i = 1; i < Result.values().length ; i++){
+    public Map<Result, Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, Lotto winningLotto,
+                                                              int bonusNumber) {
+        Map<Result, Integer> results = new LinkedHashMap<>();
+        for (int i = 1; i < Result.values().length; i++) {
             results.put(Result.values()[i], 0);
         }
-        for(Lotto userLotto : userLottos) {
+        for (Lotto userLotto : userLottos) {
             Result result = userLotto.compareWithWinningLotto(winningLotto, bonusNumber);
-            if(result == Result.NOTHING){
+            if (result == Result.NOTHING) {
                 continue;
             }
-            results.put(result, results.get(result)+1);
+            results.put(result, results.get(result) + 1);
         }
         printResults(results);
         return results;
     }
 
-    public void printResults(Map<Result,Integer> results){
+    public void printResults(Map<Result, Integer> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(Result result : results.keySet()){
-            output.printResult(result.getMatchCount(), result.getPrizeMoney(), result.getIsBonusMatch(), results.get(result));
+        for (Result result : results.keySet()) {
+            output.printResult(result.getMatchCount(), result.getPrizeMoney(), result.getIsBonusMatch(),
+                    results.get(result));
         }
     }
 }

@@ -30,7 +30,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.FIRST,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.FIRST, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -40,7 +40,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.SECOND,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.SECOND, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -50,7 +50,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.THIRD,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.THIRD, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -60,7 +60,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.FORTH,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.FORTH, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -70,7 +70,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.FIFTH,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.FIFTH, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -80,7 +80,7 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.NOTHING,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.NOTHING, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 
     @Test
@@ -90,6 +90,6 @@ class LottoTest {
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(Result.NOTHING,lotto.compareWithWinningLotto(winningLotto,bonusNumber));
+        assertEquals(Result.NOTHING, lotto.compareWithWinningLotto(winningLotto, bonusNumber));
     }
 }

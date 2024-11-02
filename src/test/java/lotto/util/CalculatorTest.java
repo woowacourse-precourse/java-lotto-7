@@ -14,13 +14,13 @@ public class CalculatorTest {
     }
 
     @Test
-    void 수익률을_계산한다(){
-        Map<Result,Integer> results = new HashMap<>();
-        results.put(Result.FIRST,0);
-        results.put(Result.SECOND,0);
-        results.put(Result.THIRD,0);
-        results.put(Result.FORTH,0);
-        results.put(Result.FIFTH,1);
+    void 수익률을_계산한다() {
+        Map<Result, Integer> results = new HashMap<>();
+        results.put(Result.FIRST, 0);
+        results.put(Result.SECOND, 0);
+        results.put(Result.THIRD, 0);
+        results.put(Result.FORTH, 0);
+        results.put(Result.FIFTH, 1);
         assertEquals("62.5", Calculator.calculateRateOfReturn(8000, results));
     }
 }

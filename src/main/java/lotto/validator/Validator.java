@@ -70,20 +70,20 @@ public class Validator {
 
     public static void validateLottoDuplicate(List<Integer> winningLotto) {
         Set<Integer> checkDuplicate = new HashSet<>(winningLotto);
-        if(checkDuplicate.size()!= winningLotto.size()){
+        if (checkDuplicate.size() != winningLotto.size()) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER_DUPLICATE);
         }
     }
 
-    public static void validateInputWinningLottoFormat(String input){
+    public static void validateInputWinningLottoFormat(String input) {
         String regex = "[^0-9,]";
-        if(Pattern.compile(regex).matcher(input).find()){
+        if (Pattern.compile(regex).matcher(input).find()) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);
         }
     }
 
-    public static void validateBonusDuplicate(Lotto winningLotto, int bonusNumber){
-        if(winningLotto.getNumbers().contains(bonusNumber)){
+    public static void validateBonusDuplicate(Lotto winningLotto, int bonusNumber) {
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_INVALID_BONUS_DUPLICATE);
         }
     }
