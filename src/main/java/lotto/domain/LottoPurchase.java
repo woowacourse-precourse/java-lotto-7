@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class LottoPurchase {
+
     private static final int LOTTO_PER_PRICE = 1000;
 
     private final int amount;
@@ -25,9 +26,5 @@ public class LottoPurchase {
 
     public int getPurchaseAmount() {
         return amount / LOTTO_PER_PRICE;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

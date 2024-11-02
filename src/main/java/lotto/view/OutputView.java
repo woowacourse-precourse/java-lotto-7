@@ -1,11 +1,11 @@
 package lotto.view;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.messages.WinningMessage;
 
 public class OutputView {
+
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
