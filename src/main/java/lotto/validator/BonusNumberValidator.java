@@ -6,6 +6,8 @@ public class BonusNumberValidator {
 
     public static final int MAX_BONUS_NUMBER = 45;
     public static final int MIN_BONUS_NUMBER = 1;
+    public static final String ERROR_MESSAGE_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.";
+    public static final String ERROR_MESSAGE_BONUS_NUMBER_SAME_AS_WINNING_NUMBER = "[ERROR] 보너스 번호는 로또 당첨 번호와 중복되지 않는 번호를 입력해야 합니다.";
 
     public static void validateBonusNumber(Lotto lotto, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
@@ -14,7 +16,7 @@ public class BonusNumberValidator {
 
     private static void validateBonusNumberRange(int bonusNumber) {
         if (isOutOfRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_BONUS_NUMBER_RANGE);
         }
     }
 
@@ -24,7 +26,7 @@ public class BonusNumberValidator {
 
     private static void validateBonusNumberNotInLotto(Lotto lotto, int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 당첨 번호와 중복되지 않는 번호를 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_BONUS_NUMBER_SAME_AS_WINNING_NUMBER);
         }
     }
 }
