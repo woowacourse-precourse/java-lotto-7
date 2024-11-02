@@ -10,7 +10,7 @@ class LottoSellerTest {
     private final LottoSeller lottoSeller = new LottoSeller();
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1500, 300})
+    @ValueSource(ints = {-100, 0, 1500, 300})
     @DisplayName("금액 오류 테스트")
     void invalidInputAmount(final int input) {
         assertThatThrownBy(() -> lottoSeller.sellTo(input))
