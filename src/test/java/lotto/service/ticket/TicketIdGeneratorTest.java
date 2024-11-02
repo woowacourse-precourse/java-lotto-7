@@ -1,4 +1,4 @@
-package lotto.service.payment;
+package lotto.service.ticket;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -6,14 +6,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("PaymentIdGenerator - 결제 ID 생성기")
-class PaymentIdGeneratorTest {
-
+@DisplayName("TicketIdGenerator - 티켓 ID 생성기")
+class TicketIdGeneratorTest {
     @Test
     @DisplayName("ID는 1부터 시작한다")
     void ID는_1부터_시작() {
         // given
-        PaymentIdGenerator generator = new PaymentIdGenerator();
+        TicketIdGenerator generator = new TicketIdGenerator();
 
         // when
         Long id = generator.generate();
@@ -26,7 +25,7 @@ class PaymentIdGeneratorTest {
     @DisplayName("ID는 순차적으로 증가한다")
     void ID는_순차적으로_증가() {
         // given
-        PaymentIdGenerator generator = new PaymentIdGenerator();
+        TicketIdGenerator generator = new TicketIdGenerator();
 
         // when
         Long firstId = generator.generate();
