@@ -13,7 +13,7 @@
   - [X] 로또 1장의 가격은 1,000원이다.
   - [X] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
   - [X] 1개의 로또를 발행할 때 숫자 범위는 1~45에서 중복되지 않는 6개의 숫자를 뽑는다.
-- [ ] 발행한 로또 수량 출력하고 로또 번호를 오름차순으로 출력하는 기능
+- [X] 구매한 로또 수량 출력하고 로또 번호를 오름차순으로 출력하는 기능
 - [ ] 당첨 번호를 쉼표로 구분하여 입력 받는 기능
   - [ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
   - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.

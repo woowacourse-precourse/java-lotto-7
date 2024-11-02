@@ -1,10 +1,23 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
         String purchaseAmountInput = promptPurchaseAmount();
+        LottoPurchaser lottoPurchaser = new LottoPurchaser(purchaseAmountInput);
+        List<List<Integer>> purchasedLottos = lottoPurchaser.purchaseLotto();
+        printPurchasedLottos(purchasedLottos);
+    }
+
+    private static void printPurchasedLottos(List<List<Integer>> purchasedLottos) {
+        System.out.println("\n" + purchasedLottos.size() + "개를 구매했습니다.");
+        for (List<Integer> purchasedlotto : purchasedLottos){
+            Collections.sort(purchasedlotto);
+            System.out.println(purchasedlotto);
+        }
     }
 
     private static String promptPurchaseAmount() {
