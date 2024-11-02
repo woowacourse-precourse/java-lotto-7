@@ -42,6 +42,18 @@ class WinningLottoTest {
     }
 
     @Test
+    void testWinningLottoCreation_bonusNumberZero() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 0;
+
+        assertSoftly(softly -> {
+            softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+    }
+
+    @Test
     void testWinningLottoCreation_bonusNumberDuplicated() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 6;
