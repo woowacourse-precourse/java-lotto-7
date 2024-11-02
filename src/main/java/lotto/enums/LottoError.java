@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import java.util.regex.Pattern;
+
 public enum LottoError {
 
     LOTTO_PURCHASE_PRICE_NOT_DIGIT("로또 구입 가격에 숫자가 아닌 값이 포함되어 있습니다."),
@@ -22,7 +24,9 @@ public enum LottoError {
 
     INVALID_NUMBER("유효하지 않은 수의 형식입니다.");
 
-    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] %s";
+    private static final String ERROR_MESSAGE_FORMAT_TEXT = "\\[ERROR\\] .+";
+    private static final Pattern ERROR_MESSAGE_FORMAT = Pattern.compile(ERROR_MESSAGE_FORMAT_TEXT);
     private String message;
 
 
@@ -30,12 +34,12 @@ public enum LottoError {
         this.message = message;
     }
 
-    public static String getErrorMessageFormat() {
+    public static Pattern getErrorMessageFormat() {
         return ERROR_MESSAGE_FORMAT;
     }
 
     public String getMessage() {
-        return String.format(ERROR_MESSAGE_FORMAT, message);
+        return String.format(ERROR_MESSAGE_PREFIX, message);
     }
 
 
