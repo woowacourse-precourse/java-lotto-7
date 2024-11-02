@@ -85,7 +85,13 @@ public class WinningNumbers {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getWinningNumbers() {
+        List<Integer> winningNumbers = numbers;
+        winningNumbers.add(bonusNumber.getBonusNumber());
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
     }
 }
