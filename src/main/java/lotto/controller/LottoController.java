@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
-import lotto.domain.LottoPurchaseAmount;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,6 +20,8 @@ public class LottoController {
         OutputView.printLottoPurchaseCount(lottoCount);
         OutputView.printLottoListPrompt(lottos);
 
+        InputView.printWinningNumbersPrompt();
+        List<Integer> winningNumbers = WinningNumbers.from(readInput()).getNumbers();
     }
 
 }
