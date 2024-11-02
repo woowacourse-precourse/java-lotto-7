@@ -1,8 +1,11 @@
 package lotto.drawsystem;
 
-import lotto.drawsystem.result.DrawResults;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 
 public class DrawMachine {
+
+    DrawResults drawResults;
 
     public DrawResults runDraws(Integer amount) {
         DrawMachine drawMachine = new DrawMachine();
@@ -13,14 +16,20 @@ public class DrawMachine {
     }
 
 
-    public DrawMachine runSingleDraw() {
-        Integer drawnMainNumber;
-        Integer drawnBonusNumber;
+    public void runSingleDraw() {
 
+        drawMainNumbers();
+        drawBonusNumber();
 
-        return DrawMachine();
     }
 
+    private List<Integer> drawMainNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private Integer drawBonusNumber() {
+
+    }
 
 
 }
