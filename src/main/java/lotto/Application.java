@@ -24,8 +24,10 @@ public class Application {
         // 보너스 번호 입력 기능
         int bonusNumber = inputBonusNumber(lotto.getLotto());
 
+        Result result = new Result(inputMoney);
         Result.compareLottoNumber(lottoList.getLottoList(), lotto.getLotto(), bonusNumber);
         Result.printResults();
+        result.printRateOfReturn();
     }
 
     private static int inputBonusNumber(List<Integer> winningNumber) {
