@@ -6,12 +6,14 @@ import lotto.constants.ErrorMessage;
 public class InputAmount {
 
     private static final Pattern HAS_CHARACTER_PATTERN = Pattern.compile("[^0-9]");
+    private static final String AMOUNT_ZERO = "0";
 
     private int inputAmount;
 
     public InputAmount(String inputAmount) {
         validateIsBlank(inputAmount);
         validateHasCharacter(inputAmount);
+        validateIsZero(inputAmount);
     }
 
     private void validateIsBlank(String inputAmount) {
@@ -23,6 +25,12 @@ public class InputAmount {
     private void validateHasCharacter(String inputAmount) {
         if (HAS_CHARACTER_PATTERN.matcher(inputAmount).find()) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_CAN_NOT_HAVE_CHARACTER.get());
+        }
+    }
+
+    private void validateIsZero(String inputAmount) {
+        if (inputAmount.equals(AMOUNT_ZERO)) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_CAN_NOT_BE_ZERO.get());
         }
     }
 }
