@@ -10,39 +10,43 @@ import java.util.List;
 /**
  * InputHandler
  */
-public class InputHandler {
+public abstract class InputHandler {
 
-    public int parsePurchaseAmount(String input) {
+    public static int parsePurchaseAmount(String input) {
         try {
             int purchaseAmount = Integer.parseInt(input);
 
-            if (purchaseAmount % LOTTO_PRICE != 0)
-                throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+            if (purchaseAmount % LOTTO_PRICE != 0) {
+                String message = String.format("구입금액은 %,d원 단위여야 합니다.");
+                throw createArgumentException(message, input);
+            }
 
             return purchaseAmount;
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 금액 형식입니다.");
+            throw createArgumentException("잘못된 금액 형식입니다.", input);
         }
     }
 
-    public List<Integer> parseWinningNumbers(String input) {
+    public static List<Integer> parseWinningNumbers(String input) {
        try {
             List<Integer> winningNumbers = new ArrayList<>(6);
             String[] segments = input.split(",");
 
             if (segments.length != 6)
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 정확히 6개여야 합니다. ");
+                throw createArgumentException("당첨 번호는 정확히 6개여야 합니다.", input);
 
             boolean[] check = new boolean[RANGE_HIGH];
 
             for (String segment : segments) {
                 int number = Integer.parseInt(segment);
 
-                if (number < RANGE_LOW || number > RANGE_HIGH)
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + RANGE_LOW + " 부터 " + RANGE_HIGH + " 사이여야 합니다.");
+                if (number < RANGE_LOW || number > RANGE_HIGH) {
+                    String message = String.format("당첨 번호는 %d 부터 %d 사이여야 합니다. ", RANGE_LOW, RANGE_HIGH);
+                    throw createArgumentException(message, input);
+                }
 
                 if (check[number])
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복이 있으면 안됩니다.");
+                    throw createArgumentException("당첨 번호에 중복이 있으면 안됩니다.", input);
 
                 check[number] = true;
                 winningNumbers.add(number);
@@ -50,21 +54,27 @@ public class InputHandler {
 
             return winningNumbers;
        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 번호 형식입니다.");
+            throw createArgumentException("잘못된 번호 형식입니다.", input);
        } 
     }
 
-    public int parseBonusNumber(String input) {
+    public static int parseBonusNumber(String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
-            if (bonusNumber < RANGE_LOW || bonusNumber > RANGE_HIGH)
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + RANGE_LOW + " 부터 " + RANGE_HIGH + " 사이여야 합니다.");
+            if (bonusNumber < RANGE_LOW || bonusNumber > RANGE_HIGH) {
+                String message = String.format("당첨 번호는 %d 부터 %d 사이여야 합니다. ", RANGE_LOW, RANGE_HIGH);
+                throw createArgumentException(message, input);
+
+            }
 
             return bonusNumber;
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 보너스 번호 형식입니다.");
+            throw createArgumentException("잘못된 보너스 변호 형식입니다.", input);
         }
     }
 
-    
+    private static IllegalArgumentException createArgumentException(String message, String input) {
+        String prettyMessage = String.format("[ERROR] %s (%s)", message, input);
+        return new IllegalArgumentException(prettyMessage);
+    }
 }

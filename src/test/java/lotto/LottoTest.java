@@ -56,10 +56,14 @@ class LottoTest {
 
     @Test
     void print_the_numbers_of_lottery_in_ascending_order() {
-        Lotto lotto = new Lotto(List.of(35, 2, 9, 17, 23, 22));
+        List<Integer> numbers = List.of(35, 2, 9, 17, 23, 22);
+        Lotto lotto = new Lotto(numbers);
 
-        String lottoNumbers = lotto.describe();
+        List<Integer> lottoNumbers = lotto.getSortedNumbers();
 
-        assertThat(lottoNumbers).isEqualTo("[2, 9, 17, 22, 23, 35]");
+        assertThat(lottoNumbers)
+            .hasSize(6)
+            .containsAll(numbers)
+            .isSorted();
     }
 }

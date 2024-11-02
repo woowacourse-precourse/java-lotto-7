@@ -8,11 +8,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         Printer printer = new Printer(System.out);
-        InputHandler inputHandler = new InputHandler();
         Player player = new Player();
 
         printer.purchaseAmountPrompt();
-        int purchaseAmount = getInput(inputHandler::parsePurchaseAmount);
+        int purchaseAmount = getInput(InputHandler::parsePurchaseAmount);
         player.buyLottos(purchaseAmount);
 
         printer.linebreak();
@@ -20,11 +19,11 @@ public class Application {
 
         printer.linebreak();
         printer.winningNumberPrompt();
-        List<Integer> winningNumbers = getInput(inputHandler::parseWinningNumbers);
+        List<Integer> winningNumbers = getInput(InputHandler::parseWinningNumbers);
 
         printer.linebreak();
         printer.bonusNumberPrompt();
-        int bonusNumber = getInput(inputHandler::parseBonusNumber);
+        int bonusNumber = getInput(InputHandler::parseBonusNumber);
 
         player.evalutateLottos(winningNumbers, bonusNumber);
 

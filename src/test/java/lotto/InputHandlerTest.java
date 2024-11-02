@@ -12,14 +12,13 @@ import org.junit.jupiter.api.Test;
  */
 public class InputHandlerTest {
 
-    InputHandler inputHandler = new InputHandler();
     final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void parse_purchase_amount() {
         String input = "15000";
 
-        int purchaseAmount = inputHandler.parsePurchaseAmount(input);
+        int purchaseAmount = InputHandler.parsePurchaseAmount(input);
 
         assertThat(purchaseAmount).isEqualTo(15_000);
     }
@@ -28,7 +27,7 @@ public class InputHandlerTest {
     void throw_exception_on_invalid_purchase_amount_input() {
         String input = "2300won";
 
-        Throwable result = catchThrowable(() -> inputHandler.parsePurchaseAmount(input));
+        Throwable result = catchThrowable(() -> InputHandler.parsePurchaseAmount(input));
 
         assertIllegalArgumentException(result);
     }
@@ -37,7 +36,7 @@ public class InputHandlerTest {
     void throw_exception_on_wrong_amount_is_given() {
         String input = "1523";
 
-        Throwable result = catchThrowable(() -> inputHandler.parsePurchaseAmount(input));
+        Throwable result = catchThrowable(() -> InputHandler.parsePurchaseAmount(input));
 
         assertIllegalArgumentException(result);
     }
@@ -46,7 +45,7 @@ public class InputHandlerTest {
     void parse_winning_numbers() {
         String input = "1,2,3,4,5,6";
 
-        List<Integer> winningNumbers = inputHandler.parseWinningNumbers(input);
+        List<Integer> winningNumbers = InputHandler.parseWinningNumbers(input);
 
         assertThat(winningNumbers)
             .hasSize(6)
@@ -58,8 +57,8 @@ public class InputHandlerTest {
         String more = "1,2,3,4,5,6,7";
         String less = "1,2,3,4,5";
 
-        Throwable moreResult = catchThrowable(() -> inputHandler.parseWinningNumbers(more));
-        Throwable lessResult = catchThrowable(() -> inputHandler.parseWinningNumbers(less));
+        Throwable moreResult = catchThrowable(() -> InputHandler.parseWinningNumbers(more));
+        Throwable lessResult = catchThrowable(() -> InputHandler.parseWinningNumbers(less));
 
         assertIllegalArgumentException(moreResult);
         assertIllegalArgumentException(lessResult);
@@ -69,7 +68,7 @@ public class InputHandlerTest {
     void throw_exception_on_invalid_delimiter_is_given() {
         String invalid = "1;2;3;4;5;6";
 
-        Throwable result = catchThrowable(() -> inputHandler.parseWinningNumbers(invalid));
+        Throwable result = catchThrowable(() -> InputHandler.parseWinningNumbers(invalid));
 
         assertIllegalArgumentException(result);
     }
@@ -78,7 +77,7 @@ public class InputHandlerTest {
     void throw_exception_when_numbers_are_not_unique() {
         String notUnique = "1,2,3,1,2,3";
 
-        Throwable result = catchThrowable(() -> inputHandler.parseWinningNumbers(notUnique));
+        Throwable result = catchThrowable(() -> InputHandler.parseWinningNumbers(notUnique));
 
         assertIllegalArgumentException(result);
     }
@@ -87,7 +86,7 @@ public class InputHandlerTest {
     void throw_exception_when_number_is_out_of_range() {
         String outOfRange = "100,2,3,1,2,3";
 
-        Throwable result = catchThrowable(() -> inputHandler.parseWinningNumbers(outOfRange));
+        Throwable result = catchThrowable(() -> InputHandler.parseWinningNumbers(outOfRange));
 
         assertIllegalArgumentException(result);
     }
@@ -96,7 +95,7 @@ public class InputHandlerTest {
     void parse_bonus_number() {
         String input = "7";
 
-        int bonusNumber = inputHandler.parseBonusNumber(input);
+        int bonusNumber = InputHandler.parseBonusNumber(input);
 
         assertThat(bonusNumber).isEqualTo(7);
     }
@@ -105,7 +104,7 @@ public class InputHandlerTest {
     void throw_exception_when_bonus_number_is_not_a_number() {
         String notANumber = "5h3l";
 
-        Throwable result = catchThrowable(() -> inputHandler.parseBonusNumber(notANumber));
+        Throwable result = catchThrowable(() -> InputHandler.parseBonusNumber(notANumber));
 
         assertIllegalArgumentException(result);
     }
@@ -114,7 +113,7 @@ public class InputHandlerTest {
     void throw_exception_when_bonus_number_is_out_of_range() {
         String outOfRange = "395";
 
-        Throwable result = catchThrowable(() -> inputHandler.parseBonusNumber(outOfRange));
+        Throwable result = catchThrowable(() -> InputHandler.parseBonusNumber(outOfRange));
 
         assertIllegalArgumentException(result);
     }
