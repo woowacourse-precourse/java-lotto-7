@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,19 +12,20 @@ public class LottoController {
 
     final InputView inputView;
     final OutputView outputView;
+    final LottoService lottoService;
 
     public LottoController(){
         inputView = new InputView();
         outputView = new OutputView();
+        lottoService = new LottoService();
     }
 
     public void run(){
         try{
             // todo : Lotto Main Logic 작성
             int purchaseAmount = inputView.inputPurchaseAmount();
-
-            // todo : 금액에 맞춰서 로또 발급
-            List<Lotto> purchasedLottos = new ArrayList<>();
+            
+            List<Lotto> purchasedLottos = lottoService.purchaseLotto(purchaseAmount);
             outputView.printPurchasedLottos(purchasedLottos);
 
             List<Integer> winningLottoNumbers = inputView.inputWinningNumber();
