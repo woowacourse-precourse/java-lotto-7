@@ -1,16 +1,18 @@
 package lotto.model;
 
+import static lotto.model.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.model.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.model.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.model.LottoErrorConstants.DUPLICATE_NUMBER_ERROR_MESSAGE;
+import static lotto.model.LottoErrorConstants.INVALID_NUMBER_COUNT_ERROR_MESSAGE;
+import static lotto.model.LottoErrorConstants.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class WinningNumber {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final String INVALID_NUMBER_COUNT_ERROR_MESSAGE = "로또 번호는 " + LOTTO_NUMBER_COUNT + "개 입니다.";
-    private static final String INVALID_NUMBER_RANGE_ERROR_MESSAGE =
-            "로또 숫자는 " + MIN_LOTTO_NUMBER + "이상 " + MAX_LOTTO_NUMBER + " 이하입니다.";
-    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "중복된 번호가 있습니다.";
+
     List<Integer> numberList;
 
     public WinningNumber(List<Integer> numberList) {
@@ -47,8 +49,9 @@ public class WinningNumber {
     }
 
     public int checkSameCount(List<Integer> numbers) {
-        numbers.retainAll(numberList);
-        return numbers.size();
+        List<Integer> copyOfNumbers = new ArrayList<>(numbers);
+        copyOfNumbers.retainAll(numberList);
+        return copyOfNumbers.size();
     }
 
     public List<Integer> getNumberList() {

@@ -1,12 +1,13 @@
 package lotto.model;
 
+import static lotto.model.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.model.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.model.LottoErrorConstants.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
+
 import java.util.List;
 
 public class BonusNumber {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final String INVALID_NUMBER_RANGE_ERROR_MESSAGE =
-            "로또 숫자는 " + MIN_LOTTO_NUMBER + "이상 " + MAX_LOTTO_NUMBER + " 이하입니다.";
+
     private static final String DUPLICATE_WITH_WINNING_NUMBER_ERROR_MESSAGE = "보너스 번호는 당첨 번호에 없는 번호이어야합니다.";
 
     int bonusNumber;
