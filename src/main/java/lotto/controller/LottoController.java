@@ -68,8 +68,13 @@ public class LottoController {
 
         System.out.println("당첨 통계\n---");
         for (Prize prize : Prize.values()) {
-            if (prize != Prize.NONE) {
-                System.out.printf("%d개 일치 (%d원) - %d개\n",
+            if (prize == Prize.SECOND) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",
+                        prize.getCount(),
+                        prize.getPrize(),
+                        prizeResult.getPrizeCount().get(prize));
+            }else{
+                System.out.printf("%d개 일치 (%,d원) - %d개\n",
                         prize.getCount(),
                         prize.getPrize(),
                         prizeResult.getPrizeCount().get(prize));

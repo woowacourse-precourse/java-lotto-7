@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 public class OutputView {
 
     public void showTicket(int amount) {
-        System.out.print(amount + "개를 구입했습니다.\n");
+        System.out.print(amount + "개를 구매했습니다.\n");
     }
 
     public void showLottos(List<Lotto> lottos) {
