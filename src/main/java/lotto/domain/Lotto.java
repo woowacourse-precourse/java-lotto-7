@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,12 +39,6 @@ public class Lotto { // 일급컬렉션으로 사용
     }
 
     public List<Integer> getNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-
-        for (Integer number : numbers) {
-            lottoNumbers.add(number);
-        }
-
-        return lottoNumbers;
+        return Collections.unmodifiableList(numbers);
     }
 }
