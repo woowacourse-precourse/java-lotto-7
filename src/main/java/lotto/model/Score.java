@@ -26,7 +26,7 @@ public enum Score {
         return Arrays.stream(values()).filter(score -> score.matchCount == matchCount)
                 .filter(score -> !isBonusNumberMatches || score != FIFTH)
                 .findFirst()
-                .orElseGet(() -> ZERO);
+                .orElse(ZERO);
     }
 
     public int getMatchCount() {
