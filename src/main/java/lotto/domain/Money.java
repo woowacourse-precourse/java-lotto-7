@@ -11,6 +11,7 @@ public class Money {
 
     private void validateMoney(long money) {
         validateMinimumAmount(money);
+        validateUnit(money);
 
     }
 
@@ -20,6 +21,11 @@ public class Money {
         }
     }
 
+    private void validateUnit(long money) {
+        if (money % MINIMUM_LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("로또 구매는 1000원 단위로 가능합니다");
+        }
+    }
 
 
 }
