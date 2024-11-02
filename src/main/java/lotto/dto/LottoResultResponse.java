@@ -9,11 +9,13 @@ import java.util.stream.Stream;
 
 public record LottoResultResponse(
         List<String> lottoResultResponse
-)
-{
-    public static LottoResultResponse from(LottoResult lottoResult){
+) {
+
+    public static final String LOTTO_RESULT_RESPONSE_FORMAT = "%s - %d개";
+
+    public static LottoResultResponse from(LottoResult lottoResult) {
         List<String> lottoResultResponse = Stream.of(LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND, LottoRank.FIRST)
-                .map(rank -> String.format("%s - %d개", rank.getDescription(), lottoResult.getLottoResults(rank)))
+                .map(rank -> String.format(LOTTO_RESULT_RESPONSE_FORMAT, rank.getDescription(), lottoResult.getLottoResults(rank)))
                 .collect(Collectors.toList());
 
         return new LottoResultResponse(lottoResultResponse);
