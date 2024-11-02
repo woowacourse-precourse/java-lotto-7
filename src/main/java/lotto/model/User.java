@@ -16,7 +16,7 @@ public class User {
 
     private int bonusNumber;
 
-    private List<List<Integer>> lotteryTickets;
+    public List<List<Integer>> lotteryTickets;
 
     public int getMoney() {
         return money;

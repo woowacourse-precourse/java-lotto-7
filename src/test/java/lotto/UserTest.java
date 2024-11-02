@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
@@ -42,6 +43,7 @@ public class UserTest {
     @Test
     void 수익률() {
         User user = new User("8000"); // 8장 발행 한다고 치고
+        user.lotteryTickets = new ArrayList<>();
         user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
         user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
         user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
