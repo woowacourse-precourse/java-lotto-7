@@ -1,8 +1,7 @@
-package lotto;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.util.Validator;
 
 public class InputHandler {
     public static String handleAmountInput() {
