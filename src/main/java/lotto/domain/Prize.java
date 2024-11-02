@@ -44,11 +44,7 @@ public enum Prize {
     public int getRewards() {
         return rewards;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
+    
     @Override
     public String toString() {
         return description + " (" + String.format("%,d", rewards) + "원) - ";
