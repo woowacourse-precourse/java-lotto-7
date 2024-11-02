@@ -1,6 +1,9 @@
 package lotto.io;
 
+import java.util.Arrays;
+import lotto.domain.Lotto;
 import lotto.domain.LottoPrize;
+import lotto.service.LottoGenerator;
 import lotto.service.LottoResultAnalyzer;
 
 public enum OutputHandler {
@@ -8,11 +11,22 @@ public enum OutputHandler {
     ENTER_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
+    private String message;
+
     private OutputHandler(String message) {
+        this.message = message;
     }
 
-    public static void printPurchasedQuantity(int quantity){
-        System.out.println(quantity + "개를 구매했습니다.");
+    public static void printPurchasedLotto(LottoGenerator generator){
+        Lotto[] lotto = generator.getLotto();
+        Arrays.stream(lotto)
+                .forEach(System.out::println);
+    }
+
+    public static void printPurchasedQuantity(LottoGenerator generator){
+        int purchaseAmount = generator.getPurchaseAmount();
+        int purchasedQuantity = generator.calculateNumberOfLottoTickets(purchaseAmount);
+        System.out.println( purchasedQuantity + "개를 구매했습니다.");
     }
 
     public static void printCompareResult(LottoResultAnalyzer analyzer){
@@ -27,11 +41,16 @@ public enum OutputHandler {
         );
     }
 
-    public static void printTotalYield(double yield){
-        System.out.println("총 수익률은 " + yield + "입니다.");
+    public static void printTotalYield(LottoResultAnalyzer analyzer, LottoGenerator generator){
+        System.out.println("총 수익률은 " + analyzer.computeYield(generator) + "%입니다.");
     }
 
     public static void print(OutputHandler handlerMessage) {
         System.out.println(handlerMessage);
+    }
+
+    @Override
+    public String toString() {
+        return message;
     }
 }
