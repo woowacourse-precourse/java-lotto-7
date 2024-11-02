@@ -1,7 +1,6 @@
 package lotto;
 
-import java.util.List;
-import java.util.HashSet;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,15 +26,16 @@ public class Lotto {
     }
 
     public int getRank(List<Integer> comp, int bonus) {
-        numbers.removeAll(comp);
-        if(numbers.size() == 3)
+        List<Integer> test = new ArrayList<>(numbers);
+        test.removeAll(comp);
+        if(test.size() == 3)
             return 5;
-        if(numbers.size() == 2)
+        if(test.size() == 2)
             return 4;
-        if(numbers.isEmpty())
+        if(test.isEmpty())
             return 1;
-        if(numbers.size() == 1) {
-            if(numbers.contains(bonus))
+        if(test.size() == 1) {
+            if(test.contains(bonus))
                 return 2;
             return 3;
         }
