@@ -37,6 +37,10 @@ public enum Rank {
                 .collect(Collectors.toMap(rank -> rank, rank -> 0));
     }
 
+    public int calculateRankAmount(int count) {
+        return amount * count;
+    }
+
     private static boolean isSecondRank(int count, boolean isMatchBonusNumber) {
         return count == SECOND.matchingCount && isMatchBonusNumber;
     }

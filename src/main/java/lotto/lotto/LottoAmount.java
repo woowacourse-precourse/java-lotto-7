@@ -27,4 +27,8 @@ public class LottoAmount {
             throw new IllegalArgumentException("[ERROR] 로또 금액은 " + LOTTO_PURCHASE_UNIT_AMOUNT + "원 단위로만 가능합니다.");
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
