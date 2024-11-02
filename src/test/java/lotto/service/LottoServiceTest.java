@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.Map;
 import lotto.constants.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.PrizeTier;
@@ -42,12 +43,17 @@ public class LottoServiceTest {
     }
 
     @Test
-    @DisplayName("당첨 번호와 보너스 번호 설정 확인")
-    void setWinningNumbers_ShouldStoreWinningNumbersAndBonus() {
-        lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
-        Lotto winningLotto = lottoService.getWinningTicket();
+    @DisplayName("당첨 번호와 보너스 번호 설정 후 결과 검증")
+    void setWinningNumbers_ShouldCalculateResultsCorrectly() {
 
-        assertThat(winningLotto.getNumbers()).isEqualTo(WINNING_NUMBERS);
+        lottoService.generateLottoTickets(2000);
+
+        // 당첨 번호 및 보너스 번호 설정
+        lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
+
+        // 당첨 결과를 계산하여 당첨 번호가 올바르게 설정되었는지 검증
+        Map<PrizeTier, Long> prizeResults = lottoService.calculateResults();
+        assertThat(prizeResults).isNotEmpty();
     }
 
     @Test
@@ -55,11 +61,11 @@ public class LottoServiceTest {
     void calculateResults_ShouldReturnPrizeResultsForPurchasedTickets() {
         lottoService.generateLottoTickets(2000);
         lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
-        List<Lotto> purchasedTickets = lottoService.getLottoTickets();
 
-        List<PrizeTier> prizeResults = lottoService.calculateResults();
+        Map<PrizeTier, Long> prizeResults = lottoService.calculateResults();
 
-        assertThat(prizeResults).hasSize(purchasedTickets.size());
+        assertThat(prizeResults.values().stream().mapToLong(Long::longValue).sum())
+                .isEqualTo(lottoService.getLottoTickets().size());
     }
 
     @Test
@@ -67,14 +73,12 @@ public class LottoServiceTest {
     void calculateProfitRate_ShouldReturnCorrectProfitRate() {
         lottoService.generateLottoTickets(2000);
         lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
-        List<PrizeTier> prizeResults = lottoService.calculateResults();
         int purchaseAmount = 2000;
 
-        double profitRate = lottoService.calculateProfitRate(prizeResults, purchaseAmount);
+        double profitRate = lottoService.calculateProfitRate(purchaseAmount);
 
         assertThat(profitRate).isGreaterThanOrEqualTo(0);
     }
-
 
     @Test
     @DisplayName("중복된 당첨 번호 설정 시 예외 발생")

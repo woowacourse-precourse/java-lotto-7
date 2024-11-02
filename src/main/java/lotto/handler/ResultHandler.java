@@ -1,7 +1,7 @@
 package lotto.handler;
 
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.model.PrizeTier;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
@@ -9,25 +9,29 @@ import lotto.view.OutputView;
 public class ResultHandler {
     private final LottoService lottoService;
     private final OutputView outputView;
-    private List<PrizeTier> prizeResults;
 
     public ResultHandler(LottoService lottoService, OutputView outputView) {
         this.lottoService = lottoService;
         this.outputView = outputView;
-        this.prizeResults = List.of();
     }
 
-    public void calculateResults() {
-        this.prizeResults = lottoService.calculateResults();
-    }
+    public void calculateAndPrintResults() {
+        // 당첨 결과 계산 및 출력
+        Map<PrizeTier, Long> prizeCounts = lottoService.calculateResults();
 
-    public void printWinningResults() {
-        Map<PrizeTier, Integer> prizeCounts = lottoService.getWinningCounts(prizeResults);
-        outputView.printWinningResults(prizeCounts);
+        // Long 값을 Integer로 변환하여 OutputView에 전달
+        Map<PrizeTier, Integer> prizeCountsAsIntegers = prizeCounts.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> entry.getValue().intValue()
+                ));
+
+        outputView.printWinningResults(prizeCountsAsIntegers);
     }
 
     public void printProfitRate(int purchaseAmount) {
-        double profitRate = lottoService.calculateProfitRate(prizeResults, purchaseAmount);
+        // 수익률 계산 및 출력
+        double profitRate = lottoService.calculateProfitRate(purchaseAmount);
         outputView.printProfitRate(profitRate);
     }
 
