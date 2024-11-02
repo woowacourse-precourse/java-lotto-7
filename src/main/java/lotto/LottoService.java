@@ -25,4 +25,18 @@ public class LottoService {
 
         return tickets;
     }
+
+    public List<Integer> checkWinningNumber(String winningNumberBeforeCheck) {
+        List<Integer> winningNumber = new ArrayList<>();
+
+        for (String number : winningNumberBeforeCheck.split(",")) {
+            if (!number.matches(InputRegix.LOTTO.getRegix())) {
+                throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자여야 합니다.");
+            }
+
+            winningNumber.add(Integer.parseInt(number));
+        }
+
+        return winningNumber;
+    }
 }

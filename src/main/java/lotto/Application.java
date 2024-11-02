@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
         LottoService lottoService = new LottoService();
 
@@ -14,6 +15,11 @@ public class Application {
         int numberOfTickets = lottoService.getNumberOfTickets(purchase);
         System.out.println(numberOfTickets + "개를 구매했습니다.");
         List<List<Integer>> tickets = lottoService.getTickets(numberOfTickets);
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumberBeforeCheck = Console.readLine();
+        Lotto winningNumber = new Lotto(lottoService.checkWinningNumber(winningNumberBeforeCheck));
         System.out.println();
 
     }
