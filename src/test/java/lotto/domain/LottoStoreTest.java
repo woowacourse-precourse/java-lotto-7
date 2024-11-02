@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static lotto.constants.ErrorMessage.ERROR_LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoStoreTest {
@@ -29,7 +30,8 @@ public class LottoStoreTest {
         LottoStore lottoStore = new LottoStore(testNumbersGenerator);
 
         assertThatThrownBy(() -> lottoStore.buyLottoTicket(price))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_LOTTO_PRICE.getMessage());
 
     }
 }
