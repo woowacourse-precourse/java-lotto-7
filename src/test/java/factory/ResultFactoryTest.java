@@ -5,6 +5,7 @@ import java.util.Map;
 import model.Lotto;
 import model.BonusNumber;
 import model.LottoCollection;
+import model.Prize;
 import model.WinningLottoNum;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,9 +32,9 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(1)).isEqualTo(1);
+        assertThat(result.get(Prize.FIRST)).isEqualTo(1);
     }
 
     @Test
@@ -43,9 +44,9 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "6");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(2)).isEqualTo(1);
+        assertThat(result.get(Prize.SECOND)).isEqualTo(1);
     }
 
     @Test
@@ -55,9 +56,9 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(3)).isEqualTo(1);
+        assertThat(result.get(Prize.THIRD)).isEqualTo(1);
     }
 
     @Test
@@ -67,9 +68,9 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(4)).isEqualTo(1);
+        assertThat(result.get(Prize.FOURTH)).isEqualTo(1);
     }
 
     @Test
@@ -79,9 +80,9 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(5)).isEqualTo(1);
+        assertThat(result.get(Prize.FIFTH)).isEqualTo(1);
     }
 
     @Test
@@ -91,8 +92,8 @@ public class ResultFactoryTest {
         BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
 
-        assertThat(result.get(0)).isEqualTo(1);
+        assertThat(result.get(Prize.ZERO)).isEqualTo(1);
     }
 }

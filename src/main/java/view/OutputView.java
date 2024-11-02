@@ -6,6 +6,7 @@ import model.Lotto;
 import model.Amount;
 import model.LottoAmount;
 import model.LottoCollection;
+import model.Prize;
 
 public class OutputView {
 
@@ -35,7 +36,7 @@ public class OutputView {
 
     public void printResult(ResultFactory resultFactory, Amount amount) {
         StringBuilder sb = new StringBuilder();
-        Map<Integer, Integer> result = resultFactory.getResult();
+        Map<Prize, Integer> result = resultFactory.getResult();
         float earningRate = resultFactory.getEarningRate(amount);
 
         /*

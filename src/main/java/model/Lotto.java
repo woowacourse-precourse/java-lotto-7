@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import validation.Validation;
 
@@ -34,5 +35,15 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public int getMatchCount(WinningLottoNum winningLottoNum){
+        List<Integer> lottoNums = new ArrayList<>(numbers);
+        lottoNums.retainAll(winningLottoNum.getWinningNums());
+        return lottoNums.size();
+    }
+
+    public boolean isContain(BonusNumber bonusNumber){
+        return numbers.contains(bonusNumber.get());
     }
 }

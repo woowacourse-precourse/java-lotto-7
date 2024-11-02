@@ -1,6 +1,8 @@
 package factory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import model.Lotto;
 import model.Amount;
 import model.BonusNumber;
 import model.LottoCollection;
+import model.Prize;
 import model.WinningLottoNum;
 
 public class ResultFactory {
@@ -25,7 +28,8 @@ public class ResultFactory {
     private final int THIRD_PRIZE = 1500000;
     private final int FOURTH_PRIZE = 50000;
     private final int FIFTH_PRIZE = 5000;
-    private Map<Integer, Integer> result;
+    //private Map<Integer, Integer> result;
+    private Map<Prize, Integer> result;
 
     public ResultFactory(LottoCollection lottoCollection
         , WinningLottoNum winningLottoNum, BonusNumber bonusNumber) {
@@ -35,40 +39,25 @@ public class ResultFactory {
         result = initResult();
     }
 
-    private Map<Integer, Integer> initResult() {
-        Map<Integer, Integer> result = new HashMap<>();
-        for (int i = 0; i <= FIFTH; i++) {
-            result.put(i, 0);
-        }
+    private Map<Prize,Integer> initResult(){
+        result = new EnumMap<>(Prize.class);
+        Arrays.stream(Prize.values())
+            .forEach(prize -> result.put(prize,0));
         return result;
     }
 
-    public Map<Integer, Integer> getResult() {
+    public Map<Prize, Integer> getResult() {
         List<Lotto> lottos = lottoCollection.getLottos();
         for (Lotto lotto : lottos) {
-            int winPosition = checkLottoResult(lotto, winningLottoNum, bonusNumber);
-            int winCount = result.get(winPosition);
-            winCount += 1;
-            result.put(winPosition, winCount);
+            int matchCount = lotto.getMatchCount(winningLottoNum);
+            Prize prize = Prize.getPrize(matchCount,lotto.isContain(bonusNumber));
+            result.put(prize,result.get(prize)+1);
         }
         return result;
     }
-
-    public float getEarningRate(Amount amount) {
-        int purchaseAmount = amount.getPurchaseAmount();
-        int prizeAmount = 0;
-        prizeAmount += result.get(FIRST) * FIRST_PRIZE;
-        prizeAmount += result.get(SECOND) * SECOND_PRIZE;
-        prizeAmount += result.get(THIRD) * THIRD_PRIZE;
-        prizeAmount += result.get(FOURTH) * FOURTH_PRIZE;
-        prizeAmount += result.get(FIFTH) * FIFTH_PRIZE;
-
-        return prizeAmount / (float) purchaseAmount * 100;
-    }
-
-
+    /*
     private int checkLottoResult(Lotto lotto, WinningLottoNum winningLottoNum, BonusNumber bonusNumber) {
-        int intersectCount = intersectNumCount(lotto, winningLottoNum);
+        int intersectCount = lotto.getMatchCount(winningLottoNum);
         if (intersectCount == 6) {
             return FIRST;
         }
@@ -87,13 +76,20 @@ public class ResultFactory {
         return 0;
     }
 
-    private int intersectNumCount(Lotto lotto, WinningLottoNum winningLottoNum) {
-        List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
-        numbers.retainAll(winningLottoNum.getWinningNums());
-        return numbers.size();
-    }
+     */
 
-    private boolean isContainBonus(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber.get());
+    public float getEarningRate(Amount amount) {
+        int purchaseAmount = amount.getPurchaseAmount();
+        int prizeAmount = 0;
+        /*
+        prizeAmount += result.get(FIRST) * FIRST_PRIZE;
+        prizeAmount += result.get(SECOND) * SECOND_PRIZE;
+        prizeAmount += result.get(THIRD) * THIRD_PRIZE;
+        prizeAmount += result.get(FOURTH) * FOURTH_PRIZE;
+        prizeAmount += result.get(FIFTH) * FIFTH_PRIZE;
+
+         */
+        //prizeAmount +=
+        return prizeAmount / (float) purchaseAmount * 100;
     }
 }
