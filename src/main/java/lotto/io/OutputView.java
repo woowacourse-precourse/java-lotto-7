@@ -3,6 +3,7 @@ package lotto.io;
 import static lotto.global.constant.Message.BONUS_NUMBER_INPUT_MESSAGE;
 import static lotto.global.constant.Message.PURCHASE_INPUT_MESSAGE;
 import static lotto.global.constant.Message.WINNING_NUMBER_INPUT_MESSAGE;
+import static lotto.global.constant.Message.WINNING_STATISTIC_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,10 @@ public class OutputView {
 
     public void printBonusNumberInputMessage() {
         println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printWinningStatisticMessage() {
+        println(WINNING_STATISTIC_MESSAGE + "\n" + "---");
     }
 
     private void println(String string) {

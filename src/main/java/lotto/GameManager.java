@@ -28,6 +28,7 @@ public class GameManager {
         outputView.printLottos(lottos);
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
         Map<Prize, Integer> lottoScore = lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
+        outputView.printWinningStatisticMessage();
         int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
     }
 
