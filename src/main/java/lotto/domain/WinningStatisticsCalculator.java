@@ -5,7 +5,7 @@ public class WinningStatisticsCalculator {
     public static WinningStatistics calculateStatistics(Lottos lottos, Lotto winningNumbers, int bonusNumber) {
         WinningStatistics winningStatistics = new WinningStatistics();
 
-        for (Lotto lotto : lottos.lottos()) {
+        for (Lotto lotto : lottos.getLottos()) {
             long matchCount = calculateMatchCount(lotto, winningNumbers);
             boolean bonusMatch = isBonusMatch(lotto, bonusNumber);
             updateStatistics(matchCount, bonusMatch, winningStatistics);

@@ -55,7 +55,7 @@ public class LottoController {
     }
 
     private void printLottos(Lottos lottos) {
-        List<Lotto> lottoList = lottos.lottos();
+        List<Lotto> lottoList = lottos.getLottos();
 
         outputView.printLottoPurchaseCountMessage(lottoList.size());
         for (Lotto lotto : lottoList) {
