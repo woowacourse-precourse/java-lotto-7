@@ -1,4 +1,4 @@
-package lotto.domain.ticket;
+package lotto.service.service;
 
 import static lotto.domain.ticket.LottoNumberRule.END_INCLUSIVE;
 import static lotto.domain.ticket.LottoNumberRule.SIZE;
