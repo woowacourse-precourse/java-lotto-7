@@ -11,17 +11,28 @@ import java.util.List;
 
 public class LottoOutlet {
 
-    public static int buyTicketsByAmount(int lottoAmounts){
+    public static LottoTicket purchaseLottoTickets(int lottoAmount) {
+        int ticketCount = LottoOutlet.buyTicketsByAmount(lottoAmount);
+        return generateLottoNumbersTicket(ticketCount);
+    }
+
+    private static int buyTicketsByAmount(int lottoAmounts){
         return lottoAmounts / WON_1000;
     }
 
-    public static LottoTicket generateLottoNumbersTicket(int totalTickets) {
+    private static LottoTicket generateLottoNumbersTicket(int totalTickets) {
         List<Lotto> lottoNumbersTicket = new ArrayList<>();
 
         for (int i = 0; i < totalTickets; i++){
-            lottoNumbersTicket.add(new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT)));
+            lottoNumbersTicket.add(makeRandomNumbers());
         }
 
         return new LottoTicket(lottoNumbersTicket);
+    }
+
+    private static Lotto makeRandomNumbers() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT);
+
+        return new Lotto(randomNumbers);
     }
 }
