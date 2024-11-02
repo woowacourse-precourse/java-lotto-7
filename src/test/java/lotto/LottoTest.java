@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,5 +49,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 중복되지 않는 숫자를 입력해야 합니다.");
     }
+
+    @Test
+    void 보너스_번호의_입력_값_중복_있으면_예외가_발생한다(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThatThrownBy(() -> new Bonus(lotto, 6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 입력하신 로또 번호와 중복되지 않아야 합니다.");
+    }
+
+
 
 }
