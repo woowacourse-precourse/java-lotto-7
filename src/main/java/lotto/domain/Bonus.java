@@ -23,7 +23,7 @@ public class Bonus {
         this.bonus = bonus;
     }
 
-    private static int parse(String bonusNumber) {
+    private int parse(String bonusNumber) {
         int bonus;
         try {
             bonus = Integer.parseInt(bonusNumber);
