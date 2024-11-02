@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.custom.model.Lottos;
 import lotto.custom.service.BonusNumberService;
 import lotto.custom.service.LottoPurchaseService;
+import lotto.custom.service.LottoResultCheckerService;
 import lotto.custom.service.WinningNumberService;
 import lotto.custom.view.InputView;
 import lotto.custom.view.OutputView;
@@ -12,6 +13,7 @@ public class LottoController {
     private final LottoPurchaseService lottoPurchaseService;
     private final WinningNumberService winningNumberService;
     private final BonusNumberService bonusNumberService;
+    private final LottoResultCheckerService lottoResultCheckerService;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -20,6 +22,7 @@ public class LottoController {
         this.lottoPurchaseService = new LottoPurchaseService();
         this.winningNumberService = new WinningNumberService();
         this.bonusNumberService = new BonusNumberService();
+        this.lottoResultCheckerService = new LottoResultCheckerService();
 
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -32,6 +35,9 @@ public class LottoController {
 
         List<Integer> winningNumbers = selectWinningNumbers();
         int bonusNumber = selectBonusNumber(winningNumbers);
+
+        List<Integer> result = lottoResultCheckerService.run(myLottoTickets, winningNumbers, bonusNumber);
+        outputView.displayLottoResult(result);
     }
 
     public Lottos tryPurchaseLotto() {
