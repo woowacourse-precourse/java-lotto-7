@@ -18,10 +18,24 @@ public class PaymentController {
     }
 
     private Payment payMoney() {
-        outputView.printlnMessage(PrintMessage.INPUT_LOTTO_PURCHASE_AMOUNT);
-        String money = inputView.inputUser();
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
-        return Payment.create(money);
+        while (true) {
+            Payment newPayment = pay();
+            outputView.printlnMessage(PrintMessage.LINE_SPACE);
+            if (newPayment != null) {
+                return newPayment;
+            }
+        }
+    }
+
+    private Payment pay() {
+        try {
+            outputView.printlnMessage(PrintMessage.INPUT_LOTTO_PURCHASE_AMOUNT);
+            String money = inputView.inputUser();
+            return Payment.create(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR");
+        }
+        return null;
     }
 
     public Payment getPayment() {

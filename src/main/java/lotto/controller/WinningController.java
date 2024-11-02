@@ -14,15 +14,28 @@ public class WinningController {
     public WinningController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.winningGenerator = inputLottoWinning();
+        this.winningGenerator = inputWinning();
+    }
+
+    private WinningGenerator inputWinning() {
+        while (true) {
+            WinningGenerator newWinningGenerator = inputLottoWinning();
+            outputView.printlnMessage(PrintMessage.LINE_SPACE);
+            if (newWinningGenerator != null) {
+                return newWinningGenerator;
+            }
+        }
     }
 
     private WinningGenerator inputLottoWinning() {
-        outputView.printlnMessage(PrintMessage.INPUT_LOTTO_WINNING_NUMBER);
-        String lottoWinning = inputView.inputUser();
-
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
-        return WinningGenerator.create(lottoWinning);
+        try {
+            outputView.printlnMessage(PrintMessage.INPUT_LOTTO_WINNING_NUMBER);
+            String lottoWinning = inputView.inputUser();
+            return WinningGenerator.create(lottoWinning);
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR");
+        }
+        return null;
     }
 
     public WinningGenerator getWinningGenerator() {

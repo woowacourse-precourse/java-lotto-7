@@ -15,15 +15,29 @@ public class BonusController {
     public BonusController(InputView inputView, OutputView outputView, Lotto winnings) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bonusGenerator = inputLottoBonus(winnings);
+        this.bonusGenerator = inputBonus(winnings);
+    }
+
+    private BonusGenerator inputBonus(Lotto winning) {
+        while (true) {
+            BonusGenerator newBonusGenerator = inputLottoBonus(winning);
+            outputView.printlnMessage(PrintMessage.LINE_SPACE);
+            if (newBonusGenerator != null) {
+                return newBonusGenerator;
+            }
+        }
     }
 
     private BonusGenerator inputLottoBonus(Lotto winning) {
-        outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
+        try {
+            outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
 
-        String lottoBonus = inputView.inputUser();
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
-        return BonusGenerator.create(winning, lottoBonus);
+            String lottoBonus = inputView.inputUser();
+            return BonusGenerator.create(winning, lottoBonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERROR");
+        }
+        return null;
     }
 
     public BonusGenerator getBonusGenerator() {
