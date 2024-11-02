@@ -30,4 +30,12 @@ class LottoTempTest {
         assertThat(lottoTemp.createSingleLotto()).isInstanceOf(Lotto.class);
     }
 
+    @Test
+    @DisplayName("구입 숫자만큼 로또를 발행하는지 확인하는 테스트")
+    void issueTicketByCount(){
+        assertThat(lottoTemp.createMultipleLottos(5)).hasSize(5);
+        assertThat(lottoTemp.createMultipleLottos(1)).hasSize(1);
+        assertThat(lottoTemp.createMultipleLottos(100)).hasSize(100);
+    }
+
 }

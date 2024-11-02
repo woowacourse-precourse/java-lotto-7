@@ -38,4 +38,11 @@ public class LottoTemp {
         return new Lotto(singleLottoNumber);
     }
 
+    public List<Lotto> createMultipleLottos(int ticketCount) {
+        List<Lotto> lottos = IntStream.range(0, ticketCount)
+                .mapToObj(i -> createSingleLotto())
+                .toList();
+
+        return lottos;
+    }
 }
