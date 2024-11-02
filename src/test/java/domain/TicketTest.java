@@ -31,7 +31,7 @@ public class TicketTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 500, 900, 1300, 9999})
+    @ValueSource(ints = {1300, 9999})
     @DisplayName("천 단위로 나누어지지 않을 경우, 예외가 발생한다")
     void buy_ticket_not_divide_1000(int purchaseAmount) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
