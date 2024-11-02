@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -7,6 +11,61 @@ import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
 
+    @Test
+    public void 모든_로또번호가_일치할_때_일치하는_숫자_개수는_6이다() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+
+        // when
+        int matchingCount = winningLotto.countMatchingNumbers(userLotto);
+
+        // then
+        assertEquals(6, matchingCount);
+    }
+
+    @Test
+    public void 일부_로또번호만_일치할_때_일치하는_숫자_개수를_반환한다() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 10);
+
+        // when
+        int matchingCount = winningLotto.countMatchingNumbers(userLotto);
+
+        // then
+        assertEquals(3, matchingCount);
+    }
+
+    @Test
+    public void 보너스번호가_일치할_때_true를_반환한다() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto userLotto = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 10);
+
+        // when
+        boolean isBonusMatched = winningLotto.isBonusNumberMatched(userLotto);
+
+        // then
+        assertTrue(isBonusMatched);
+    }
+
+    @Test
+    public void 보너스번호가_일치하지_않을_때_false를_반환한다() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto userLotto = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 13);
+
+        // when
+        boolean isBonusMatched = winningLotto.isBonusNumberMatched(userLotto);
+
+        // then
+        assertFalse(isBonusMatched);
+    }
 
     @Test
     public void 당첨번호의_개수가_6개_미만일경우_예외발생() {

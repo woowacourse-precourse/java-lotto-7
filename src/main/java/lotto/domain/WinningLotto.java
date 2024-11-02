@@ -3,13 +3,21 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningLotto {
-    private final Lotto lotto;
+    private final Lotto winningLotto;
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.lotto = new Lotto(numbers);
+        this.winningLotto = new Lotto(numbers);
         validateBonusNumber(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public int countMatchingNumbers(Lotto userLotto) {
+        return winningLotto.countMatchingNumbers(userLotto);
+    }
+
+    public boolean isBonusNumberMatched(Lotto userLotto) {
+        return userLotto.containsNumber(bonusNumber);
     }
 
     private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
