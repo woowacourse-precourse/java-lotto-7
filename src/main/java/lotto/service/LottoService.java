@@ -6,7 +6,6 @@ import lotto.domain.lottomachine.AutoNumberGenerator;
 import lotto.domain.lottomachine.LottoMachine;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 public class LottoService {
 
@@ -29,14 +28,7 @@ public class LottoService {
     }
 
     public double calculateEarningRate(PurchasedLottos purchasedLottos, EnumMap<Ranking, Integer> statistics) {
-        Money totalPrize = Money.ZERO;
-        for (Map.Entry<Ranking, Integer> rank : statistics.entrySet()) {
-            int amount = rank.getKey().getPrize() * rank.getValue();
-            Money prize = Money.from(amount);
-            totalPrize = totalPrize.plus(prize);
-        }
-        Money purchasedAmount = Money.from(purchasedLottos.getLottos().size() * 1000);
-        Money divide = totalPrize.divideWithRoundHalfUp(purchasedAmount);
-        return divide.doubleValue() * 100;
+        EarningRateCalculator earningRateCalculator = new EarningRateCalculator();
+        return earningRateCalculator.calculateEarningRate(purchasedLottos, statistics);
     }
 }
