@@ -1,32 +1,42 @@
 package lotto.domain.buyer;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoFactory;
 import lotto.domain.lotto.Lottos;
 
 public class Buyer {
     private final PurchaseCount purchaseCount;
     private final Lottos purchasedLottos;
 
-    private Buyer(final PurchaseCount purchaseCount) {
+    Buyer(final PurchaseCount purchaseCount, Lottos purchasedLottos) {
         this.purchaseCount = purchaseCount;
-        this.purchasedLottos = purchaseLottos(purchaseCount.getPurchaseCount());
+        this.purchasedLottos = purchasedLottos;
     }
 
-    public static Buyer from(final int purchaseMoney) {
-        PurchaseCount purchaseCount = PurchaseCount.from(purchaseMoney);
-        return new Buyer(purchaseCount);
+    public int getPurchaseCount() {
+        return purchaseCount.getPurchaseCount();
     }
 
-    private Lottos purchaseLottos(final int purchaseCount) {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos.getLottos();
+    }
 
-        for (int idx = 0; idx < purchaseCount; idx++) {
-            lottos.add(LottoFactory.createRandomLotto());
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Buyer otherBuyer = (Buyer) obj;
+        return Objects.equals(purchaseCount, otherBuyer.purchaseCount) &&
+                Objects.equals(purchasedLottos, otherBuyer.purchasedLottos);
+    }
 
-        return Lottos.of(lottos);
+    @Override
+    public int hashCode() {
+        return Objects.hash(purchaseCount, purchasedLottos);
     }
 }
