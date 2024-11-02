@@ -34,6 +34,12 @@ public class InputViewTest extends NsTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.NOTNUMBERBUYAMOUNT.getMessage())
         );
+
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("0"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ErrorMessage.NOTNUMBERBUYAMOUNT.getMessage())
+        );
     }
 
     @Test
