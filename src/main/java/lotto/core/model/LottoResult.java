@@ -29,7 +29,7 @@ public class LottoResult {
         BigDecimal purchaseAmount = BigDecimal.valueOf(ticket.getAmount().getValue());
         BigDecimal totalWinningAmount = Collections.sumOf(this.winningRanks, WinningRank::getWinningAmount);
         return totalWinningAmount
-                .divide(purchaseAmount, 4, RoundingMode.HALF_UP)
+                .divide(purchaseAmount, 3, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
                 .setScale(1, RoundingMode.HALF_UP);
     }
