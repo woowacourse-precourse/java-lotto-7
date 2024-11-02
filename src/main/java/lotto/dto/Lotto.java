@@ -1,4 +1,4 @@
-package lotto;
+package lotto.dto;
 
 import java.util.List;
 
@@ -17,4 +17,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto Numbers: " + numbers;
+    }
 }
