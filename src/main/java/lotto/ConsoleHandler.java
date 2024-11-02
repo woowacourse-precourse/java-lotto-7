@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ConsoleHandler {
@@ -86,4 +88,9 @@ public class ConsoleHandler {
         System.out.print(" (" + prizeInfo.getPrize() + "원) - ");
         System.out.println(winningCount + "개");
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 "+ profitRate +"% 입니다.");
+    }
+
 }
