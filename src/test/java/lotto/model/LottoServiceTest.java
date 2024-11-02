@@ -144,4 +144,22 @@ class LottoServiceTest {
         // then
         assertThat(earningRate).isEqualTo(518.3);
     }
+
+    @Test
+    @DisplayName("수익률 계산 확인: 당첨 없음 시 0.0")
+    void calculateEarningRate_noWinning() {
+        // given
+        WinningLotto winningTicket = lottoService.createWinningTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        List<Lotto> lottoTickets = Arrays.asList(
+                Lotto.of(Arrays.asList(8, 9, 10, 11, 12, 13)),
+                Lotto.of(Arrays.asList(14, 15, 16, 17, 18, 19))
+        );
+        RankCounter rankCounter = lottoService.determineWinning(winningTicket, lottoTickets);
+
+        // when
+        double earningRate = lottoService.calculateEarningRate(rankCounter, lottoTickets.size());
+
+        // then
+        assertThat(earningRate).isEqualTo(0.0);
+    }
 }
