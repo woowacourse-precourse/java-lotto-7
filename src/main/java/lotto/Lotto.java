@@ -36,24 +36,17 @@ public class Lotto {
         System.out.println(sortedNumbers);
     }
 
-    public static PointResult compareLotto(Lotto winningLotto, Integer bonusNumber, Lotto purchasedLotto) {
-        int point = 0;
-        int bonusPoint = 0;
+    public static LottoRank compareLotto(Lotto winningLotto, Integer bonusNumber, Lotto purchasedLotto) {
+        int point = (int) purchasedLotto.numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
 
-        for (Integer number : purchasedLotto.numbers) {
-            if (winningLotto.numbers.contains(number)) {
-                point += 1;
-            }
-            if (number.equals(bonusNumber)) {
-                bonusPoint = 1;
-            }
+        boolean isBonusMatched = false;
+
+        if (point == 5) {
+            isBonusMatched = purchasedLotto.numbers.contains(bonusNumber);
         }
 
-        if (point != 5) {
-            bonusPoint = 0;
-        }
-
-        PointResult pointResult = new PointResult(point, bonusPoint);
-        return pointResult;
+        return LottoRank.valueOf(point, isBonusMatched);
     }
 }
