@@ -9,11 +9,11 @@ public class InputView {
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private String readLine() {
-        String input = Console.readLine();
-        if (input == null) {
+        String rawInput = Console.readLine();
+        if (rawInput == null) {
             throw new IllegalArgumentException(ErrorMessage.NULL_INPUT_ERROR);
         }
-        return input.trim();
+        return rawInput.trim();
     }
 
     public String getPurchaseAmount() {
