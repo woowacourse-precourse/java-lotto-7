@@ -6,6 +6,7 @@ import java.util.Set;
 public class Numbers {
 
     private static final int COUNT_OF_NUMBER = 6;
+
     private final Set<Number> values;
 
     public Numbers(List<Number> values) {
