@@ -29,7 +29,7 @@ public class PriceValidate {
     }
 
     private void validatePrice(int price) {
-        if (price % 1000 != 0) {
+        if (price % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR + PRICE_NOT_SUITABLE);
         }
     }
