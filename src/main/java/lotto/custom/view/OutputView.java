@@ -9,6 +9,7 @@ public class OutputView {
     }
 
     public void displayLottoCount(int lottoCount) {
+        System.out.println();
         System.out.println(lottoCount + PromptMessages.DISPLAY_LOTTO_COUNT_PROMPT);
     }
 
