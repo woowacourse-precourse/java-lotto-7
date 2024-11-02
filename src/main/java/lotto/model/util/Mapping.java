@@ -42,10 +42,10 @@ public class Mapping {
             return WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr();
         } else if (count == 4) {
             return WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr();
-        } else if (count == 5) {
-            return WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr();
         } else if (count == 5 && bonusCount == 1) {
             return WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr();
+        } else if (count == 5) {
+            return WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr();
         } else if (count == 6) {
             return WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr();
         }
