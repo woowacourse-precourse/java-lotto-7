@@ -7,8 +7,8 @@ import lotto.view.InputView;
 
 public class InputViewImpl implements InputView {
     @Override
-    public void startLottoGameAndReadBuyingPrice() {
+    public String startLottoGameAndReadBuyingPrice() {
         GAME_PRINT_MESSAGE.printGameMessage();
-        Console.readLine();
+        return Console.readLine();
     }
 }
