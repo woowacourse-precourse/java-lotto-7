@@ -10,6 +10,8 @@ public class Message {
     public final static String PRIZE_MATCH_MESSAGE = "개 일치";
     public final static String PRIZE_BONUS_MESSAGE = ", 보너스 볼 일치";
     public final static String PRIZE_MONEY_PREFIX = " (";
-    public final static String PRIZE_MONEY_SUFFIX = ") - ";
+    public final static String PRIZE_MONEY_SUFFIX = "원) - ";
     public final static String PRIZE_COUNT_SUFFIX = "개";
+    public final static String PROFIT_RATE_PREFIX = "총 수익률은 ";
+    public final static String PROFIT_RATE_SUFFIX = "%입니다.";
 }

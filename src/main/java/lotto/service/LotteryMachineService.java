@@ -8,6 +8,8 @@ import static lotto.constant.Policy.LOTTO_PRICE_FORMAT;
 import static lotto.constant.Policy.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -121,5 +123,20 @@ public class LotteryMachineService {
 
         sb.append(count);
         sb.append(Message.PRIZE_COUNT_SUFFIX);
+    }
+
+    public void getProfitRate(StringBuilder sb) {
+        sb.append(Message.PROFIT_RATE_PREFIX);
+        BigDecimal profitRate = computeProfitRate(statisticModel.getPrizeMoney(), statisticModel.getPurchaseAmount());
+        sb.append(profitRate);
+        sb.append(Message.PROFIT_RATE_SUFFIX);
+    }
+
+    private BigDecimal computeProfitRate(long prizeMoney, PurchaseAmount purchaseAmount) {
+        BigDecimal numerator = BigDecimal.valueOf(prizeMoney);
+        BigDecimal denominator = BigDecimal.valueOf(purchaseAmount.purchaseAmount());
+
+        return numerator.multiply(BigDecimal.valueOf(100))
+                .divide(denominator, 1, RoundingMode.HALF_UP);
     }
 }

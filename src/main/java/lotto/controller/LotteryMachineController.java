@@ -19,5 +19,9 @@ public class LotteryMachineController {
         StringBuilder sb = new StringBuilder();
         lotteryMachineService.getStatistic(sb);
         outputView.print(sb.toString());
+
+        sb = new StringBuilder();
+        lotteryMachineService.getProfitRate(sb);
+        outputView.print(sb.toString());
     }
 }

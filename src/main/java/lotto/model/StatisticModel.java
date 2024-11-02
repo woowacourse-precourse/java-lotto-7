@@ -28,6 +28,14 @@ public class StatisticModel {
         return prizes;
     }
 
+    public PurchaseAmount getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public long getPrizeMoney() {
+        return prizeMoney;
+    }
+
     public void setPurchaseAmount(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }

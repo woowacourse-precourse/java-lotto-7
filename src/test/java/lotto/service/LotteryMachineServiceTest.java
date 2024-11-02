@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import lotto.entity.Lotto;
 import lotto.entity.PurchaseAmount;
 import lotto.model.LotteryMachineModel;
+import lotto.model.StatisticModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +15,13 @@ class LotteryMachineServiceTest {
 
     private LotteryMachineService lotteryMachineService;
     private LotteryMachineModel lotteryMachineModel;
+    private StatisticModel statisticModel;
 
     @BeforeEach
     void init() {
         lotteryMachineModel = new LotteryMachineModel();
-        lotteryMachineService = new LotteryMachineService(lotteryMachineModel);
+        statisticModel = new StatisticModel();
+        lotteryMachineService = new LotteryMachineService(lotteryMachineModel, statisticModel);
     }
 
     @Test
