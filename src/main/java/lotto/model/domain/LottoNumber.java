@@ -5,6 +5,9 @@ import lotto.model.ErrorMessage;
 
 public class LottoNumber {
 
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 45;
+
     private final int number;
 
     public LottoNumber(int number) {
@@ -12,8 +15,8 @@ public class LottoNumber {
         this.number = number;
     }
 
-    private void validateRange(int number) {
-        if (number < 0 || number > 45) {
+    public void validateRange(int number) {
+        if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
