@@ -3,9 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.exception.ErrorMessages.COST_POSITIVE_INTEGER_ERROR_MESSAGE;
-
-import static lotto.exception.ErrorMessages.DIVISIBLE_BY_THOUSAND_COST_ERROR_MESSAGE;
+import static lotto.exception.ErrorMessages.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CostTest {
@@ -14,7 +12,7 @@ class CostTest {
     void 로또_구입_금액_TEST(){
         assertThatThrownBy(()-> new Cost("장진영"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(COST_POSITIVE_INTEGER_ERROR_MESSAGE);
+                .hasMessage(COST_POSITIVE_INTEGER_ERROR);
     }
 
     @Test
@@ -22,7 +20,7 @@ class CostTest {
     void 로또_구입_금액_TEST2(){
         assertThatThrownBy(()-> new Cost("-1000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(COST_POSITIVE_INTEGER_ERROR_MESSAGE);
+                .hasMessage(COST_POSITIVE_INTEGER_ERROR);
     }
 
     @Test
@@ -30,7 +28,7 @@ class CostTest {
     void 로또_구입_금액_TEST3(){
         assertThatThrownBy(()-> new Cost("1100"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(DIVISIBLE_BY_THOUSAND_COST_ERROR_MESSAGE);
+                .hasMessage(DIVISIBLE_BY_THOUSAND_COST_ERROR);
     }
 
 }
