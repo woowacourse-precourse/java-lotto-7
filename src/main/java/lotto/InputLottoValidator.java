@@ -10,13 +10,9 @@ public class InputLottoValidator {
 
     Lotto lotto;
 
-    public void validate(String winningNumber) {
-        getWinningNumber(winningNumber);
-    }
-
     public void validateNumber(String winningNumber) {
         if (Pattern.matches(WINNING_NUMBER_REGEX_PATTERN, winningNumber)) {
-            throw new IllegalArgumentException("pattern");
+            ErrorMessageUtil.WINNING_LOTTO_NOT_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
@@ -31,13 +27,14 @@ public class InputLottoValidator {
         try {
             return Arrays.stream(winningNumber.split(",")).map(Integer::parseInt).toList();
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("e");
+            ErrorMessageUtil.WINNING_LOTTO_COMA_ERROR_MESSAGE.errorException();
         }
+        return List.of();
     }
 
     public void checkEmpty(String winningNumber) {
-        if (winningNumber.isEmpty()) {
-            throw new IllegalArgumentException("empty");
+        if (winningNumber.contains(" ")) {
+            ErrorMessageUtil.WINNING_LOTTO_EMPTY_ERROR_MESSAGE.errorException();
         }
     }
 }

@@ -13,13 +13,13 @@ public class InputMoneyValidator {
 
     public void validateNumber(String money) {
         if (!Pattern.matches(MONEY_REGEX_PATTERN, money)) {
-            throw new IllegalArgumentException("[ERROR]num");
+            ErrorMessageUtil.PURCHASE_MONEY_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
     public void validateTicketPrice(String money) {
         if (Integer.parseInt(money)%1000 != 0 || Integer.parseInt(money)/1000 == 0) {
-            throw new IllegalArgumentException("tic");
+            ErrorMessageUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }
     }
 

@@ -9,25 +9,36 @@ public class InputBonusValidator {
 
     String bonusNumber;
 
+    public void validate() {
+
+    }
+
     public InputBonusValidator(String bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
     public void validateBonusNumber() {
         if (!Pattern.matches(BONUS_NUMBER_REGEX_PATTERN, bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR]pattern");
+            ErrorMessageUtil.BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
-    public void checkWrongSeparator(List<Integer> winningNumber, int bonusNumber) {
+    public void checkSameNumberInWinningNumber(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR]b중");
+            ErrorMessageUtil.BONUS_NUMBER_REPEAT_ERROR_MESSAGE.errorException();
+        }
+    }
+
+    public void validateNumberRange() {
+        if (Integer.parseInt(bonusNumber) > 45 || Integer.parseInt(bonusNumber) < 0) {
+            ErrorMessageUtil.BONUS_NUMBER_RANGE_ERROR_MESSAGE.errorException();
         }
     }
 
     public int getBonusNumber(List<Integer> winningNumber) {
         validateBonusNumber();
-        checkWrongSeparator(winningNumber,Integer.parseInt(bonusNumber));
+        checkSameNumberInWinningNumber(winningNumber,Integer.parseInt(bonusNumber));
+        validateNumberRange();
         return Integer.parseInt(bonusNumber);
     }
 }
