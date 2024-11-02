@@ -124,8 +124,8 @@ public class Application {
         Map<Rank, Integer> resultMap = new HashMap<>();
 
         for (Lotto ticket : lottoTickets) {
-            int matchCount = getMatchCount(ticket, winningNumbers);
-            boolean matchBonus = ticket.getNumbers().contains(bonusNumber);
+            int matchCount = ticket.getMatchCount(winningNumbers);
+            boolean matchBonus = ticket.containsBonus(bonusNumber);
             Rank rank = Rank.valueOf(matchCount, matchBonus);
 
             resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
