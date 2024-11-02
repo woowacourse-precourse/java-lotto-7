@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.EnumMap;
 
 public class LottoRankSummary {
+
     private final EnumMap<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
 
     public LottoRankSummary() {
@@ -24,5 +25,9 @@ public class LottoRankSummary {
         return rankCounts.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .sum();
+    }
+
+    public EnumMap<LottoRank, Integer> getRankCounts() {
+        return this.rankCounts;
     }
 }

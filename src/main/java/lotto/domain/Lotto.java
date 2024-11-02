@@ -8,7 +8,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         isSixNumbers(numbers);
         isDuplicatedNumber(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
+    }
+
+    public boolean contains(int number) {
+        return this.numbers.contains(number);
     }
 
     private void isSixNumbers(List<Integer> numbers) {
@@ -27,8 +31,8 @@ public class Lotto {
         }
     }
 
-    public boolean contains(int number) {
-        return this.numbers.contains(number);
+    private List<Integer> sortNumbers(List<Integer> numbers){
+        return numbers.stream().sorted().toList();
     }
 
     public List<Integer> getNumbers(){

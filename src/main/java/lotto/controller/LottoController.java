@@ -3,18 +3,16 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.strategy.LottoCreateStrategy;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
     private static LottoCreateStrategy lottoCreateStrategy;
-    private static LottoRankSummary lottoRankSummary;
 
-    public LottoController(LottoCreateStrategy lottoCreateStrategy,
-                           LottoRankSummary lottoRankSummary) {
+    public LottoController(LottoCreateStrategy lottoCreateStrategy) {
         this.lottoCreateStrategy = lottoCreateStrategy;
-        this.lottoRankSummary = lottoRankSummary;
     }
 
     public void start() {
@@ -22,8 +20,9 @@ public class LottoController {
         WinningNumber winningNumber = InputView.inputWinningNumber();
         InputView.inputBonusNumber(winningNumber);
         List<Lotto> lottos = generateLotto(purchaseAmount);
-        calculateLottoRank(lottos, winningNumber);
+        LottoRankSummary lottoRankSummary = calculateLottoRank(lottos, winningNumber);
         double rateOfReturn = lottoRankSummary.calculateRateOfReturn(purchaseAmount);
+        OutputView.printResult(lottos, rateOfReturn, lottoRankSummary);
     }
 
     private List<Lotto> generateLotto(PurchaseAmount purchaseAmount) {
@@ -38,14 +37,16 @@ public class LottoController {
         return lottos;
     }
 
-    private void calculateLottoRank(List<Lotto> lottos, WinningNumber winningNumber) {
+    private LottoRankSummary calculateLottoRank(List<Lotto> lottos, WinningNumber winningNumber) {
+        LottoRankSummary lottoRankSummary = new LottoRankSummary();
         for (Lotto lotto : lottos) {
             int correctCount = winningNumber.calculateCorrectCount(lotto);
-            findOutRank(correctCount, winningNumber, lotto);
+            findOutRank(correctCount, winningNumber, lotto, lottoRankSummary);
         }
+        return lottoRankSummary;
     }
 
-    private void findOutRank(int correctCount, WinningNumber winningNumber, Lotto lotto) {
+    private void findOutRank(int correctCount, WinningNumber winningNumber, Lotto lotto, LottoRankSummary lottoRankSummary) {
         if (correctCount == 3) {
             lottoRankSummary.incrementCount(LottoRank.FIFTH_RANK);
         } else if (correctCount == 4) {
