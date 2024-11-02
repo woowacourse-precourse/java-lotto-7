@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.constant.LottoConstants;
+import lotto.exception.DuplicateBonusNumberException;
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.LottoNumberNotInRangeException;
 import lotto.validation.InputValidation;
@@ -21,14 +22,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (NumbersDuplicate(numbers)) {
+        lottoNumbersDuplicate(numbers);
+    }
+
+    private static void lottoNumbersDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() < 6) {
             throw new DuplicateLottoNumberException();
         }
     }
 
-    private static boolean NumbersDuplicate(List<Integer> numbers) {
+    public void bonusNumberDuplicate(int bonusNumber) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() < numbers.size();
+        uniqueNumbers.add(bonusNumber);
+        if (uniqueNumbers.size() != 7) {
+            throw new DuplicateBonusNumberException();
+        }
     }
 
     public static int getNumberIfInRange(final String lottoNumber) throws IllegalArgumentException {
