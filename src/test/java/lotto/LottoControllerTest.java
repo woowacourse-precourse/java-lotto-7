@@ -34,4 +34,21 @@ class LottoControllerTest {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                 "6개 일치 (2,000,000,000원) - 0개");
     }
+
+
+    @Test
+    void getLottoSatus() {
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1,2,3,4,5,6)),
+                new Lotto(List.of(7,8,9,10,11,12)),
+                new Lotto(List.of(13,14,15,16,17,18)));
+        LottoController lottoController = new LottoController();
+
+        assertThat(lottoController.getLottoStatus(lottos)).contains(
+                "3개를 구매했습니다.",
+                "[1, 2, 3, 4, 5, 6]",
+                "[7, 8, 9, 10, 11, 12]",
+                "[13, 14, 15, 16, 17, 18]"
+        );
+    }
 }

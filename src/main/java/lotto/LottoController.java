@@ -26,17 +26,27 @@ public class LottoController {
         return lottos;
     }
 
-    public String getLottoCount(int n){
+    public List<String> getLottoStatus(List<Lotto> lottos) {
+        List<String> status = new ArrayList<>();
 
+        status.add(String.format("%d개를 구매했습니다.", lottos.size()));
+        status.addAll(lottosToString(lottos));
+        return status;
     }
-    
+
     public List<String> getWinningDetails(LottoRankGroups groups) {
         List<String> winningDetails = new ArrayList<>();
         for (LottoRank rank : LottoRank.values()) {
-            winningDetails.add( String.format("%s (%s원) - %s개",
+            winningDetails.add(String.format("%s (%s원) - %s개",
                     getRankCondition(rank), getRankPrice(rank), getRankCount(groups, rank)));
         }
         return winningDetails;
+    }
+
+    private List<String> lottosToString(List<Lotto> lottos) {
+        return lottos.stream()
+                .map(Lotto::numbersToString)
+                .toList();
     }
 
     private String getRankCondition(LottoRank rank) {
