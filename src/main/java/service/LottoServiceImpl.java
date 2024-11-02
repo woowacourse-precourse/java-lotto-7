@@ -1,10 +1,13 @@
 package service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import dto.LottoWinningNumbers;
 import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import model.Money;
@@ -34,8 +37,21 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public List<Lotto> issueLotto(BigInteger purchasableLottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
 
-        return null;
+        BigInteger i = new BigInteger("0");
+        while (purchasableLottoCount.compareTo(i) > 0) {
+            lottos.add(issueOneLotto());
+            i = i.add(new BigInteger("1"));
+        }
+
+        return lottos;
+    }
+
+    public Lotto issueOneLotto() {
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lotto);
+        return new Lotto(lotto);
     }
 
     @Override
