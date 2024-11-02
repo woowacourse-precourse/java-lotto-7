@@ -14,6 +14,7 @@ public class Parser {
     }
 
     public int parsePayment(String input) {
+        input = removeEmptySpaces(input);
         try {
             int payment = Integer.parseInt(input);
             validator.validatePayment(payment);
@@ -37,6 +38,7 @@ public class Parser {
     }
 
     public int parseBonus(String input) {
+        input = removeEmptySpaces(input);
         try {
             int bonus = Integer.parseInt(input);
             validator.validateLottoNumber(bonus);
@@ -47,6 +49,10 @@ public class Parser {
     }
 
     private String[] split(String input) {
-        return input.replaceAll(Constants.SPACE, Constants.EMPTY_STRING).split(Constants.DELIMITER);
+        return removeEmptySpaces(input).split(Constants.DELIMITER);
+    }
+
+    private String removeEmptySpaces(String input) {
+        return input.replaceAll(Constants.SPACE, Constants.EMPTY_STRING);
     }
 }
