@@ -55,7 +55,7 @@ class LottoMachinTest {
 
         LottoMachin lottoMachin = new LottoMachin();
         lottoMachin.sellTo(consumer);
-        assertEquals(5, consumer.getPurchasedLottos().size());
+        assertEquals(5, consumer.getPurchasedLottoCount());
 
     }
 
@@ -70,7 +70,7 @@ class LottoMachinTest {
         );
         String expectedOutput2 = "[1, 2, 3, 4, 5, 6]\r\n[7, 8, 9, 10, 11, 12]\r\n";
 
-        consumer.getPurchasedLottos().forEach(System.out::println);
+        consumer.printPurchasedLottos();
         assertEquals(expectedOutput2, output.toString());
     }
 

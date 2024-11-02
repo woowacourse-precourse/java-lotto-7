@@ -40,10 +40,10 @@ public class LottoMachin {
         StringBuilder LottoInfo = new StringBuilder();
         LottoInfo
                 .append(InputMessage.NEW_LINE.getInputMessage())
-                .append(consumer.getPurchasedLottos().size())
+                .append(consumer.getPurchasedLottoCount())
                 .append(InputMessage.PURCHASE_LOTTO_COUNT.getInputMessage());
         Output.println(LottoInfo.toString());
-        consumer.getPurchasedLottos().forEach(Output::println);
+        consumer.printPurchasedLottos();
     }
 
     public void inputWinningNumbersTo(Consumer consumer) {
