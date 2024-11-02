@@ -9,6 +9,7 @@ import java.util.List;
 public class Validator {
 
     public static void validateLottoPurchaseAmount(Integer lottoAmount) {
+        validateNonNegative(lottoAmount);
         validateMultiple(lottoAmount);
     }
 
@@ -27,6 +28,12 @@ public class Validator {
         validateRange(bonusNumber);
     }
 
+    private static void validateNonNegative(Integer number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(INVALID_NEGATIVE_NUMBER.getMessage());
+        }
+    }
+
     private static void validateMultiple(Integer number) {
         if ((number % LOTTO_PRICE.getIntegerValue()) != 0) {
             throw new IllegalArgumentException(INVALID_MULTIPLE_AMOUNT.getMessage(LOTTO_PRICE.getIntegerValue()));
@@ -35,7 +42,7 @@ public class Validator {
 
     private static void validateNoDuplicate(List<Integer> numbers, Integer number) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(INVALID_DUPLICATE_NUMBER.getMessage());
         }
     }
 
