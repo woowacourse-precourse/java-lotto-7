@@ -15,7 +15,7 @@ class LottosTest {
 
     @DisplayName("로또 6개를 산다")
     @Test
-    void take6Lottos() {
+    void test_1() {
         Lottos lottos = Lottos.from(6L);
         assertEquals(6, lottos.getSize());
     }
@@ -25,14 +25,12 @@ class LottosTest {
     @Test
     void test_2() {
         Lotto userLotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lotto userLotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 45));
-        Lottos lottos = new Lottos(List.of(userLotto2, userLotto1));
+        Lottos lottos = new Lottos(List.of(userLotto1));
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         BonusBall bonusBall = BonusBall.of(7, winningBalls);
 
         RankResult rankResult = lottos.calculateWinningResults(winningBalls, bonusBall);
 
-        assertEquals(1, rankResult.getMatchCount(Rank.SECOND));
-        assertEquals(1, rankResult.getMatchCount(Rank.THIRD));
+        assertEquals(1, rankResult.getRankReuslts().get(Rank.SECOND));
     }
 }

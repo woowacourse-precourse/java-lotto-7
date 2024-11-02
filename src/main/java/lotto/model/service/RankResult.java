@@ -1,10 +1,7 @@
 package lotto.model.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumMap;
-import java.util.List;
 import lotto.model.domain.Rank;
 
 public class RankResult {
@@ -15,11 +12,12 @@ public class RankResult {
     private EnumMap<Rank, Integer> rankResults;
 
     public RankResult() {
-        EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> rankResults = new EnumMap<>(Rank.class);
         Arrays.stream(Rank.values())
-                .forEach(rank -> ranks.put(rank, 0));
+                .forEach(rank -> rankResults.put(rank, 0));
+        rankResults.remove(Rank.NONE);
 
-        this.rankResults = ranks;
+        this.rankResults = rankResults;
     }
 
     public Float calculateReturnRate(Long totalLottoPrice) {
@@ -45,26 +43,15 @@ public class RankResult {
 
     @Override
     public String toString() {
-        return getRankResults();
-    }
-
-    private String getRankResults() {
         StringBuilder sb = new StringBuilder();
-        List<Rank> sortedRanks = getSortedRanksExceptNone();
 
-        for (Rank rank : sortedRanks) {
+        for (Rank rank : rankResults.keySet()) {
             sb.append(formatRankResult(rank));
         }
 
         return sb.toString();
     }
 
-    private List<Rank> getSortedRanksExceptNone() {
-        List<Rank> sortedRanks = new ArrayList<>(rankResults.keySet());
-        sortedRanks.remove(Rank.NONE);
-        Collections.sort(sortedRanks, Collections.reverseOrder());
-        return sortedRanks;
-    }
 
     private String formatRankResult(Rank rank) {
         if (rank == Rank.SECOND) {
@@ -76,10 +63,6 @@ public class RankResult {
                 rank.getMatchCount(),
                 rank.getMoney(),
                 rankResults.get(rank));
-    }
-
-    public int getMatchCount(Rank rank) {
-        return this.rankResults.get(rank);
     }
 
     protected EnumMap<Rank, Integer> getRankReuslts() {
