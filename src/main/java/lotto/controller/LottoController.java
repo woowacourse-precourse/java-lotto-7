@@ -2,7 +2,6 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Money;
-import lotto.domain.Prize;
 import lotto.domain.PrizeResult;
 import lotto.domain.ProfitCalculator;
 import lotto.domain.generator.LottoGenerator;
@@ -24,9 +23,11 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
 
-        double profitRatio = calculateResult(money, lottos, winningLotto);
+        PrizeResult prizeResult = getPrizeResult(lottos, winningLotto);
+        outputView.showPrizeResults(prizeResult);
+
+        double profitRatio = getProfitRate(money, prizeResult);
         outputView.showProfitRate(profitRatio);
-        displayResults(lottos, winningLotto, money, outputView);
     }
 
     private Money getMoney() {
@@ -64,17 +65,13 @@ public class LottoController {
             }
         }
     }
-    private double calculateResult(Money money, List<Lotto> lottos, WinningLotto winningLotto) {
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
-        ProfitCalculator profitCalculator = new ProfitCalculator(money, prizeResult);
 
-        return profitCalculator.calculateProfitRatio();
+    private PrizeResult getPrizeResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        return new PrizeResult(lottos, winningLotto);
     }
 
-    public void displayResults(List<Lotto> lottos, WinningLotto winningLotto, Money money, OutputView outputView) {
-        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
-        outputView.showPrizeResults(prizeResult);
-        double profitRatio = calculateResult(money, lottos, winningLotto);
-        outputView.showProfitRate(profitRatio);
+    private double getProfitRate(Money money, PrizeResult prizeResult) {
+        ProfitCalculator profitCalculator = new ProfitCalculator(money, prizeResult);
+        return profitCalculator.calculateProfitRatio();
     }
 }

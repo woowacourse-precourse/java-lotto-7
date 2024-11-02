@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
+import lotto.domain.PrizeResult;
 
 public class OutputView {
 
@@ -17,5 +19,23 @@ public class OutputView {
 
     public void showProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+
+    public void showPrizeResults(PrizeResult prizeResult) {
+        System.out.println("당첨 통계\n---");
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.SECOND) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",
+                        prize.getCount(),
+                        prize.getPrize(),
+                        prizeResult.getPrizeCount().get(prize));
+            }
+            if (prize != Prize.NONE && prize != Prize.SECOND) {
+                System.out.printf("%d개 일치 (%,d원) - %d개\n",
+                        prize.getCount(),
+                        prize.getPrize(),
+                        prizeResult.getPrizeCount().get(prize));
+            }
+        }
     }
 }
