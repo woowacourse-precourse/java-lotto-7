@@ -1,13 +1,12 @@
-package lotto;
-
-import lotto.model.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+package model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import lotto.model.Lotto;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -24,7 +23,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_toString_재정의() {
+    void 로또_toString_재정의_기능_테스트() {
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
         assertThat(integers.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
 

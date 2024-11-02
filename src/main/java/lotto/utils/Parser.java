@@ -23,19 +23,14 @@ public class Parser {
             return stream(input.split(DELIMITER, -1)).map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WINNING_NUMBERS_NOT_A_NUMBER.getDescription());
-        } finally {
-            System.out.println(WINNING_NUMBERS_NOT_A_NUMBER.getDescription());
         }
     }
 
-    // 보너스 번호
     public static int parseBonusNumber(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BONUS_NUMBER_NOT_A_NUMBER.getDescription());
-        } finally {
-            System.out.println(BONUS_NUMBER_NOT_A_NUMBER.getDescription());
         }
     }
 }
