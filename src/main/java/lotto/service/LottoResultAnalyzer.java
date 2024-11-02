@@ -45,12 +45,12 @@ public class LottoResultAnalyzer {
         return rankCount.get(prize);
     }
 
-    public int computeYield(){
+    public double computeYield(LottoGenerator generator){
         int result = 0;
         for (LottoPrize prize : rankCount.keySet()) {
             result += prize.getPrize() * rankCount.get(prize);
         }
 
-        return result;
+        return ((double) result / generator.getPurchaseAmount()) * 100;
     }
 }
