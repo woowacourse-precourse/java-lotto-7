@@ -26,4 +26,10 @@ public class Lotto {
     public String toString() {
         return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
+
+    public long matchingCountWith(Lotto lotto) {
+        return numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
 }
