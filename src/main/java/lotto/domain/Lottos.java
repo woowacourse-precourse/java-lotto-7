@@ -14,7 +14,7 @@ public class Lottos {
     private Map<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
     private final int bonusNumber;
 
-    public Lottos(int purchaseAmount,List<Integer> winningNumbers, int bonusNumber) {
+    public Lottos(int purchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
         this.lottos = new ArrayList<>();
         this.lottoCount = purchaseAmount / 1000;
         this.winningNumbers = winningNumbers;
@@ -56,5 +56,9 @@ public class Lottos {
             }
         }
         return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    public Map<LottoRank, Integer> getStatistics() {
+        return this.statistics;
     }
 }
