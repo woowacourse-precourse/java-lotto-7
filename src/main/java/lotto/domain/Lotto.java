@@ -23,6 +23,10 @@ public class Lotto {
         }
     }
 
+    public boolean contains(int number){
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
