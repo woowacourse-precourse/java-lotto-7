@@ -18,15 +18,13 @@ public class WinningLotto extends Lotto {
     }
 
     private void checkDuplicateNumber(int bonusNumber) {
-        for (Integer winningLottoNumber : super.getNumbers()){
-            if (winningLottoNumber == bonusNumber){
-                throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
-            }
+        if (super.getNumbers().contains(bonusNumber)){
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
     public Rank calculateRank(Lotto lotto) {
-        int sameNumberCount = countSameNumber(lotto);
+        int sameNumberCount = super.countSameNumber(lotto);
         boolean isBonusNumberWinning = checkBonusNumberWinning(lotto);
         return Rank.getRank(sameNumberCount, isBonusNumberWinning);
     }

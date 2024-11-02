@@ -35,10 +35,10 @@ public class OutputView {
     public void printResult(Map<Rank, Integer> rankResult, double rateOfReturn) {
         System.out.println(NEW_LINE + WINNING_STATISTIC_STRING);
         System.out.println(FIFTH_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
-        System.out.println(FOURTH_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
-        System.out.println(THIRD_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
-        System.out.println(SECOND_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
-        System.out.println(FIRST_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
-        System.out.println(RETURN_RATE_BEGIN_STRING + String.format("0.1f", rateOfReturn) + RETURN_RATE_END_STRING);
+        System.out.println(FOURTH_RANK + rankResult.get(Rank.FOURTH) + COUNT_STRING);
+        System.out.println(THIRD_RANK + rankResult.get(Rank.THIRD) + COUNT_STRING);
+        System.out.println(SECOND_RANK + rankResult.get(Rank.SECOND) + COUNT_STRING);
+        System.out.println(FIRST_RANK + rankResult.get(Rank.FIRST) + COUNT_STRING);
+        System.out.println(RETURN_RATE_BEGIN_STRING + String.format("%.1f", rateOfReturn) + RETURN_RATE_END_STRING);
     }
 }

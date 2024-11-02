@@ -63,7 +63,7 @@ public class LottoGame {
     private void makeWinningNumber() {
         List<Integer> winningLottoNumbers = inputView.getWinningLottoNumber();
         int bonusNumber = inputView.getBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+        winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
     private void makeRankResult() {

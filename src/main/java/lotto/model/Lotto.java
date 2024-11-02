@@ -57,10 +57,7 @@ public class Lotto {
     }
 
     public boolean hasNumber(Integer number) {
-        if (numbers.contains(number)) {
-            return true;
-        }
-        return false;
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
