@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import static lotto.ui.ErrorMessage.ERROR_CONSTRAINTS_OF_LOTTO_LENGTH;
+import static lotto.ui.ErrorMessage.ERROR_OVERLAP_WINNINGS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +19,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_CONSTRAINTS_OF_LOTTO_LENGTH);
         }
     }
 
@@ -25,11 +27,10 @@ public class Lotto {
         Set<Integer> nums = new HashSet<>(numbers);
 
         if(nums.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 존재합니다.");
+            throw new IllegalArgumentException(ERROR_OVERLAP_WINNINGS);
         }
     }
 
-    // TODO: 추가 기능 구현
     public String toString() {
         List<Integer> numbers = new ArrayList<>(this.numbers);
         numbers.sort(Integer::compareTo);

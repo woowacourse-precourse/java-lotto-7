@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.Prize.FIFTH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

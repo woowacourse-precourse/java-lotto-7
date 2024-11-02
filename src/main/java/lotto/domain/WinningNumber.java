@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import static lotto.ui.ErrorMessage.ERROR_OVERLAP_BONUS_AND_WINNING;
+
 public class WinningNumber {
     private Lotto numbers;
     private int bonus;
@@ -20,6 +22,6 @@ public class WinningNumber {
 
     private void numbersValid(Lotto numbers, int bonus) {
         if(numbers.contains(bonus))
-            throw new IllegalArgumentException("[ERROR] 당첨번호에 보너스번호가 포함되어 있습니다.");
+            throw new IllegalArgumentException(ERROR_OVERLAP_BONUS_AND_WINNING);
     }
 }
