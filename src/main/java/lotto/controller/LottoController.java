@@ -38,6 +38,7 @@ public class LottoController {
 
     private  Lotto inputLotto(){
         View.promptForWinningLotto();
+        String lottoNumberString = View.inputWinningLotto();
 
     }
 

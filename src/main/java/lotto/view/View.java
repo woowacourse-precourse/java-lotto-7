@@ -22,6 +22,14 @@ public class View {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    public static String inputWinningLotto() {
+        String winningLottoInput = Console.readLine();
+
+
+
+        return winningLottoInput;
+    }
+
 
 
     private static void validatePurchaseAmount(String inputValue) {
