@@ -39,4 +39,10 @@ public class InputView {
             return readPurchaseAmount();
         }
     }
+
+    public Lotto readWinningNumber() {
+        writer.printSout(ASK_WINNING_NUMBER);
+        String input = reader.readInput();
+        return PreProcessor.stringToLotto(input);
+    }
 }
