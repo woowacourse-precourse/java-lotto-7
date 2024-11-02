@@ -14,6 +14,16 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public int countMatchingNumbers(Lotto lotto) {
+        Set<Integer> matchedNumbers = new HashSet<>(winningNumbers);
+        matchedNumbers.retainAll(lotto.getNumbers());
+        return matchedNumbers.size();
+    }
+
+    public boolean isBonusMatched(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
     private static void validateBonusNumberNotDuplicate(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
