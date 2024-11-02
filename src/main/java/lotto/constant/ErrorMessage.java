@@ -8,6 +8,7 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBERS_TYPE("당첨 번호는 숫자여야 합니다."),
     INVALID_WINNING_NUMBERS_REPETITION("당첨 번호는 중복되면 안됩니다."),
     INVALID_BONUS_NUMBER_TYPE("보너스 번호는 숫자여야 합니다."),
+    INVALID_BONUS_NUMBER_RANGE("보너스 번호는 1부터 45사이여야 합니다.")
     ;
 
     private final String message;

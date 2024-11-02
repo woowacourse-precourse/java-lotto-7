@@ -46,5 +46,9 @@ public class Validator {
         if (!bonusNumberInput.matches("\\d+")) {
             throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_TYPE);
         }
+
+        if (Integer.parseInt(bonusNumberInput) < 1 || Integer.parseInt(bonusNumberInput) > 45) {
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
+        }
     }
 }
