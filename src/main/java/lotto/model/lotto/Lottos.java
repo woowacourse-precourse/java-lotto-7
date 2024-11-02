@@ -23,10 +23,7 @@ public class Lottos {
 
     private int buyAmount;
 
-    public Lottos(List<String> winNumbersStr, int buyAmount,int bonusNumber) {
-        if (validateWinNumberNotNumber(winNumbersStr)) {
-            throw new IllegalArgumentException(ErrorMessage.NOTNUMBERWINNUMBERS.getMessage());
-        }
+    public Lottos(List<String> winNumbersStr, int buyAmount, int bonusNumber) {
 
         this.buyAmount = buyAmount;
         winNumbers = ParseLotto.winNumberStrToInteger(winNumbersStr);
@@ -41,22 +38,13 @@ public class Lottos {
     }
 
     public double calculateProfitRate() {
-        return profitRate = CalculatorProfit.calProfitRate(winstatus.getStatus(),buyAmount);
+        return profitRate = CalculatorProfit.calProfitRate(winstatus.getStatus(), buyAmount);
     }
 
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
 
-    private boolean validateWinNumberNotNumber(List<String> winNumbersStr) {
-        try {
-            winNumbersStr.stream().map(Integer::parseInt).toList();
-        } catch (NumberFormatException e) {
-            return true;
-        }
-
-        return false;
-    }
 
     public void lottosSort() {
         for (Lotto lotto : lottos) {
