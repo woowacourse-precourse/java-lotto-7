@@ -20,7 +20,7 @@ public class PurchaseLottos {
     }
 
     protected PurchaseLottos(List<Lotto> lottos) {
-        this.money = lottos.size();
+        this.money = lottos.size() * LOTTO_UNIT;
         this.lottos = lottos;
     }
 

@@ -8,6 +8,7 @@ public enum ResultLotto {
     당첨3위(3, 1_500_000, 5, 0, 0),
     당첨4위(4, 50_000, 4, 0, 0),
     당첨5위(5, 5_000, 3, 0, 0);
+
     private final Integer rank;
     private final Integer lottoAmount;
     private final Integer winLottoNumberCount;
