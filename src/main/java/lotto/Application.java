@@ -1,13 +1,10 @@
 package lotto;
 
-
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Application {
     public static void main(String[] args) {
@@ -16,7 +13,6 @@ public class Application {
         List<Lotto> lottoList = new ArrayList<>();
         List<Integer> winningNumbers;
         int bonusNumber;
-
 
         while (true) {
             try {
@@ -30,14 +26,12 @@ public class Application {
         int count = countLotto(money);
         outputCount(count);
 
-
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = randomNumbers();
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
         }
         outputnumbers(lottoList);
-
 
         while (true) {
             try {
@@ -47,7 +41,6 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
-
 
         while (true) {
             try {
@@ -66,12 +59,10 @@ public class Application {
         profitRateResult(money, result.totalWinningPrize());
     }
 
-
     private static int getMoney() {
         System.out.println("로또 구매 금액을 입력하세요.");
         return Integer.parseInt(Console.readLine());
     }
-
 
     private static void exception (int money) {
         if (money <= 0) {
@@ -82,16 +73,13 @@ public class Application {
         }
     }
 
-
     private static int countLotto(int money) {
         return money / 1000;
     }
 
-
     private static void outputCount(int count) {
         System.out.println(count + "개를 구매했습니다.");
     }
-
 
     private static List<Integer> randomNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -99,13 +87,11 @@ public class Application {
         return numbers;
     }
 
-
     private static void outputnumbers(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers());
         }
     }
-
 
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
@@ -130,7 +116,6 @@ public class Application {
         return winningNumbers;
     }
 
-
     private static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
@@ -144,7 +129,6 @@ public class Application {
         }
         return bonusNumber;
     }
-
 
     private static LottoResult calculateResult(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
         LottoResult result = new LottoResult();
@@ -164,7 +148,6 @@ public class Application {
         }
         return result;
     }
-
 
     private static void outputResult(LottoResult result) {
         System.out.println("당첨 통계");
