@@ -23,17 +23,18 @@ import lotto.logic.LottoResultEvaluator;
 
 public class Output {
 
-    public void purchaseCountOutput(Purchase purchase) {
+    public static void purchaseCountOutput(Purchase purchase) {
         System.out.printf(PURCHASE_RESULT.getMessage(), purchase.getCount());
     }
 
-    public void generateLottosOutput(LottoNumbersGenerator lottos) {
+    public static void generateLottosOutput(LottoNumbersGenerator lottos) {
+        System.out.println();
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(Arrays.toString(lotto.getNumbers().toArray()));
         }
     }
 
-    public void resultOutput(LottoResultEvaluator lottoResultEvaluator) {
+    public static void resultOutput(LottoResultEvaluator lottoResultEvaluator) {
         System.out.println("\n" + WINNING_STATISTICS_HEADER.getMessage());
         System.out.printf(MATCHED_THREE.getMessage(), lottoResultEvaluator.getResult().getOrDefault(FIFTH.getNumber(), 0));
         System.out.printf(MATCHED_FOUR.getMessage(), lottoResultEvaluator.getResult().getOrDefault(FOURTH.getNumber(), 0));
