@@ -20,6 +20,7 @@ public class Winning {
         validateNumberRange(bonusNumber);
         validateNumberRange(numbers);
         validateDuplicateNumber(numbers);
+        validateNumberSize(numbers);
         verifyLottoContainsBonusNumber(numbers, bonusNumber);
     }
 

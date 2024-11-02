@@ -2,7 +2,7 @@ package exception;
 
 public enum ErrorMessage {
 
-    LOTTO_NUMBER_SIZE_ERROR("[ERROR] 로또 번호는 6개여야 합니다."),
+    NUMBER_SIZE_ERROR("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUMBER_CONTAINS_BONUS_NUMBER("[ERROR] 당첨 번호에 보너스 번호가 이미 존재합니다."),
     NUMBER_RANGE_ERROR("[ERROR] 번호는 1~45 사이의 숫자만 가능합니다."),
     DUPLICATE_NUMBER_ERROR("[ERROR] 로또 번호는 중복될 수 없습니다"),
