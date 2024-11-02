@@ -21,14 +21,14 @@ public class Validator {
             throw new IllegalArgumentException("당첨 번호는 6개 입니다.");
         }
         validateUniqueNumbers(drawNumbers);
-        drawNumbers.forEach(Validator::validateWinningNumber);
+        drawNumbers.forEach(Validator::validateNumberRange);
     }
 
-    public static void validateWinningNumber(int drawNumber) {
+    public static void validateNumberRange(int drawNumber) {
         if (drawNumber >= MIN_VALUE && drawNumber <= MAX_VALUE) {
             return;
         }
-        throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+        throw new IllegalArgumentException("번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     public static void validateUniqueNumbers(List<Integer> numbers) {
