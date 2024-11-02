@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
+import lotto.domain.dto.LottoDetail;
 import lotto.io.Input;
 import lotto.io.Output;
 import lotto.view.dto.BonusNumberDTO;
@@ -31,4 +33,11 @@ public class LottoView {
     }
 
 
+    public void printSellLottos(List<LottoDetail> lottoDetails) {
+        lottoDetails.forEach(
+            lottoDetail -> {
+                System.out.println(lottoDetail.lottoNumbers().toString());
+            }
+        );
+    }
 }
