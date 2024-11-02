@@ -5,6 +5,7 @@ import lotto.model.LottoAmount;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
 import lotto.model.NumberGenerator;
+import lotto.model.WinningResults;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,6 +27,7 @@ public class LottoController {
         outputView.outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
+        lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
     }
 
 

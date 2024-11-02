@@ -20,7 +20,7 @@ public class NumberGenerator {
     public static BonusNumber registerBonusNumber(String bonusNumberInput, WinningNumber winningNumber) {
         try {
             int bonusNumber = Integer.parseInt(bonusNumberInput);
-            if (winningNumber.isDuplicateWith(bonusNumber)) {
+            if (winningNumber.contains(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 값입니다.");
             }
             return new BonusNumber(bonusNumber);

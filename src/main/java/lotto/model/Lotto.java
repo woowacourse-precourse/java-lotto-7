@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +35,18 @@ public class Lotto {
             }
         }
     }
+
+    public int checkMatchingAmountWith(List<Integer> numbers) {
+        int matchingAmount = 0;
+        for (int number : numbers) {
+            if (numbers.contains(number)) {
+                matchingAmount++;
+            }
+        }
+        return matchingAmount;
+    }
+
+
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);

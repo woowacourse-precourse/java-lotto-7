@@ -32,7 +32,7 @@ public class WinningNumber {
         }
     }
 
-    public boolean isDuplicateWith(int number) {
+    public boolean contains(int number) {
         if (numbers.contains(number)) {
             return true;
         }

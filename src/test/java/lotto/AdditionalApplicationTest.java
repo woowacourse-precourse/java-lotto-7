@@ -22,37 +22,7 @@ public class AdditionalApplicationTest {
     private final int defaultBonusNumber = 7;
 
 
-//    @ParameterizedTest
-//    @ValueSource(ints = {0, 1, 2, 3, 4})
-    // 현재 수정된 기능으로 임시 보류
-//    void 숫자를_뽑을_때_오름차순으로_정렬한다(int lottoNumbersIndex) {
-//        List<Integer> testNumbers = Application.pickAscendingNumbers();
-//
-//        assertThat(testNumbers.get(lottoNumbersIndex)).isLessThan(testNumbers.get(lottoNumbersIndex + 1));
-//    }
 
-
-//
-//    @ParameterizedTest
-//    @MethodSource("lottoWithMatchingNumberProvider")
-//    void 당첨번호와_로또의_일치개수를_확인한다(int expectedMatchingAmount, List<Integer> numbers) {
-//        Lotto lotto = new Lotto(numbers);
-//
-//        assertThat(defaultWinningNumbers.drawEachLotto(lotto)).isEqualTo(expectedMatchingAmount);
-//    }
-//
-//    static Stream<Object[]> lottoWithMatchingNumberProvider() {
-//        return Stream.of(
-//                new Object[]{6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
-//                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
-//                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 8)}, //5개 일치
-//                new Object[]{4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
-//                new Object[]{3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
-//                new Object[]{2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
-//                new Object[]{1, Arrays.asList(1, 8, 9, 10, 11, 12)}, //1개 일치
-//                new Object[]{0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
-//        );
-//    }
 //
 //    @Test
 //    void 보너스번호가_일치하면_true를_반환한다() {

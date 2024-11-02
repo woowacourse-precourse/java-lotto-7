@@ -1,11 +1,14 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,5 +46,28 @@ class LottoTest {
 
         assertThat(lotto.getNumbers().get(lottoNumbersIndex))
                 .isLessThan(lotto.getNumbers().get(lottoNumbersIndex + 1));
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoWithMatchingNumberProvider")
+    void 숫자_6개_중_당첨번호와_일치하는_개수를_확인한다(int expectedMatchingAmount, List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> winningNumber = new ArrayList<>(
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+
+        assertThat(lotto.checkMatchingAmountWith(winningNumber)).isEqualTo(expectedMatchingAmount);
+    }
+    static Stream<Object[]> lottoWithMatchingNumberProvider() {
+        return Stream.of(
+                new Object[]{6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
+                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
+                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 8)}, //5개 일치
+                new Object[]{4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
+                new Object[]{3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
+                new Object[]{2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
+                new Object[]{1, Arrays.asList(1, 8, 9, 10, 11, 12)}, //1개 일치
+                new Object[]{0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
+        );
     }
 }
