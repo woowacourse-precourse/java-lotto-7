@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.model.Ticket;
-import lotto.util.InputParser;
+import lotto.util.MessageParser;
 
 public class OutputView {
 
@@ -16,7 +16,7 @@ public class OutputView {
 
     public void printTicketNumbers(List<Ticket> tickets) {
         System.out.println();
-        System.out.println(InputParser.getComma(tickets.size()) + Outputs.TICKETS_BOUGHT.getMessage());
+        System.out.println(MessageParser.getComma(tickets.size()) + Outputs.TICKETS_BOUGHT.getMessage());
 
         for (Ticket ticket : tickets) {
             System.out.println(ticket.getNumbers());
