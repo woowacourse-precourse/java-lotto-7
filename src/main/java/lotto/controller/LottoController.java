@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.RandomLottos;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 
@@ -15,7 +16,8 @@ public class LottoController {
 
     public void run() {
         String priceInput = inputView.getPriceInput();
-        int price = lottoService.changeToTicket(priceInput);
+        int ticket = lottoService.changeToTicket(priceInput);
 
+        RandomLottos randomLottos = lottoService.createRandomLottos(ticket);
     }
 }
