@@ -171,8 +171,11 @@ View
         <td rowspan="1"><b><em>LottoProfitCommand</em></b></td>
             <td>✅`MatchResult` & `ProfitRate`당첨 금액 및 수익률 출력 커맨드 생성</td> </tr><tr>
         <td rowspan="1">View</td>
-            <td>✅ `LottoProfitCommand`로 수익률 출력</td> </tr><tr>
             <td>✅`LottoProfitCommand`로 수익률 출력</td> </tr><tr>
+    <td rowspan="1">출력 리팩토링</td>
+        <td rowspan="1">OutputCommand</td>
+            <td>✅출력 로직 개선</td> 
+                <td rowspan="1">refactor-output</tr><tr> 
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
             <td>⬜ 컴포넌트 의존성 주입</td> 
