@@ -4,19 +4,17 @@ import java.util.Arrays;
 
 public enum WinningLotto {
 
-    FIRST(1, 6, 2_000_000_000),
-    SECOND(2, 5, 30_000_000),
-    THIRD(3, 5, 1_500_000),
-    FOURTH(4, 4, 50_000),
-    FIFTH(5, 3, 5_000),
-    NO_RANK(6, 0, 0);
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
+    NO_RANK(0, 0);
 
-    private final int rank;
     private final int correctCount;
     private final int prizeMoney;
 
-    WinningLotto(int rank, int correctCount, int prizeMoney) {
-        this.rank = rank;
+    WinningLotto(int correctCount, int prizeMoney) {
         this.correctCount = correctCount;
         this.prizeMoney = prizeMoney;
     }
