@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
     private void printEachNumber(Lotto lotto) {
