@@ -20,14 +20,17 @@ public class Lotto {
     public Result compareWithWinningLotto(Lotto winningLotto, int bonusNumber) {
         boolean isBonusMatch = false;
         int duplicateNumber = 0;
+
         for (Integer number : winningLotto.numbers) {
             if (numbers.contains(number)) {
                 duplicateNumber++;
             }
         }
+
         if (duplicateNumber == 5 && numbers.contains(bonusNumber)) {
             isBonusMatch = true;
         }
+
         return Result.findResult(duplicateNumber, isBonusMatch);
     }
 

@@ -14,7 +14,6 @@ public class LottoController {
     private final InputView input;
     private final OutputView output;
 
-
     public LottoController(InputView input, OutputView output) {
         this.input = input;
         this.output = output;
@@ -23,7 +22,6 @@ public class LottoController {
     public void proceed() {
         int lottoAmount = inputLottoAmount();
         int lottoTicketCount = Calculator.calculateLottoTicketNumber(lottoAmount);
-
         List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketCount);
         output.printLottoTicket(userLottos, lottoTicketCount);
 
@@ -69,6 +67,7 @@ public class LottoController {
         for (int i = 1; i < Result.values().length; i++) {
             results.put(Result.values()[i], 0);
         }
+
         for (Lotto userLotto : userLottos) {
             Result result = userLotto.compareWithWinningLotto(winningLotto, bonusNumber);
             if (result == Result.NOTHING) {
