@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Lotto;
 import lotto.view.InputTest;
 import lotto.view.Input;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,13 +76,30 @@ class HandlerTest {
   @Test
   void compareNumbersTest() {
     // given : 일치성 횟수 계산 결과 예시
+    String given = "3개 일치 (5,000원) - 1개\n" +
+        "4개 일치 (50,000원) - 0개\n" +
+        "5개 일치 (1,500,000원) - 0개\n" +
+        "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
+        "6개 일치 (2,000,000,000원) - 0개";
+
     // 구매 금액 만큼의 로또 수 조회
+    int lottoCounts = input.getLottoCounts(8000);
     // 로또 수 만큼 로또 발행 후 전달
+    List<Integer> generated = handler.generateLotto(lottoCounts);
     // 전달된 로또 결과 조회
+
     // 당첨 번호와 보너스 번호 조회
+    List<Integer> winning = handler.getWinning();
+    int bonus = handler.getBonus();
     // 로또 번호, 당첨 번호, 보너스 번호 조회
+    Lotto<Integer> actualLotto = new Lotto(generated);
+
     // 실제 일치성 횟수 계산 결과 조회
+    String actual = handler.compareNumbersResult(actualLotto, winning, bonus);
     // 예시와 실제값 일치 여부 검증
+
+
+    assertEquals(given, actual);
   }
 
   @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
