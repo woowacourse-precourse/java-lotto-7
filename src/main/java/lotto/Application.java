@@ -2,6 +2,7 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.LottoConstants.LOTTO_PRICE;
+import static lotto.LottoConstants.NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,16 @@ public class Application {
             lottoCount = money / LOTTO_PRICE;
         } else {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나눠 떨어지는 값을 입력해야 합니다.");
+        }
+
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> randomNumbers = RandomMaker.getRandomNumbers(NUMBER_COUNT);
+            Lotto lotto = new Lotto(randomNumbers);
+            lottos.add(lotto);
+        }
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 }
