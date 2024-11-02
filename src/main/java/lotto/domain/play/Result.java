@@ -14,4 +14,16 @@ public class Result {
     public int findCount(PrizeRank prizeRank) {
         return prizeRankCounts.get(prizeRank);
     }
+
+    public int calculateTotalProfit() {
+        return prizeRankCounts.entrySet()
+                .stream()
+                .map(this::calculateProfit)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
+    private int calculateProfit(Map.Entry<PrizeRank, Integer> entry) {
+        return entry.getValue() * entry.getKey().getPrize();
+    }
 }
