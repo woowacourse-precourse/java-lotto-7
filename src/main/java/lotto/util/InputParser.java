@@ -13,8 +13,7 @@ public class InputParser {
         return Long.parseLong(input);
     }
 
-    public static List<Integer> parseList(String input, String regex) {
-        return Arrays.stream(input.split(regex)).map(Integer::parseInt).toList();
+    public static List<Integer> parseList(String input) {
+        return Arrays.stream(input.split(Regex.COMMA.getValue())).map(Integer::parseInt).toList();
     }
-
 }

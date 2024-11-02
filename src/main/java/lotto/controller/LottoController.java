@@ -59,6 +59,6 @@ public class LottoController {
         LottoValidator validator = new LottoValidator(lotto);
         validator.validate();
 
-        return InputParser.parseList(lotto, ",");
+        return InputParser.parseList(lotto);
     }
 }
