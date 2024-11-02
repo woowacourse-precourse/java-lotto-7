@@ -5,20 +5,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchasePriceTest {
 
-    @Test
-    @DisplayName("정수가 아닌 금액이 입력되었을 때 예외가 발생한다.")
-    void validateIntegerExceptionPrice() {
-        assertThatThrownBy(() -> PurchasePrice.validatePrice("1000j"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("1000으로 나누어떨어지지 않는 금액이 입력되었을 때 예외가 발생한다.")
-    void validateDivideExceptionPrice() {
-        assertThatThrownBy(() -> PurchasePrice.validatePrice("1200"))
+    @ParameterizedTest
+    @DisplayName("금액 입력의 예외를 확인한다.")
+    @ValueSource(strings = {"1000j", "1200"})
+    void validatePriceException(String price) {
+        assertThatThrownBy(() -> PurchasePrice.validatePrice(price))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
