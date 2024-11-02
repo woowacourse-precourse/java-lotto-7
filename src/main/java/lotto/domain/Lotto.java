@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.LottoResult;
-
 import java.util.List;
 
 public class Lotto {
@@ -35,21 +33,15 @@ public class Lotto {
                 bonusCount++;
             }
         }
-        if (winningCount == 6) {
-            return LottoResult.FIRST_PRIZE;
-        }
-        if (winningCount == 5 && bonusCount == 1) {
-            return LottoResult.SECOND_PRIZE;
-        }
-        if (winningCount == 5) {
-            return LottoResult.THIRD_PRIZE;
-        }
-        if (winningCount == 4) {
-            return LottoResult.FOURTH_PRIZE;
-        }
-        if (winningCount == 3) {
-            return LottoResult.FIFTH_PRIZE;
-        }
+        return matchPrize(winningCount, bonusCount);
+    }
+
+    private static LottoResult matchPrize(int winningCount, int bonusCount) {
+        if (winningCount == 6) return LottoResult.FIRST_PRIZE;
+        if (winningCount == 5 && bonusCount == 1) return LottoResult.SECOND_PRIZE;
+        if (winningCount == 5) return LottoResult.THIRD_PRIZE;
+        if (winningCount == 4) return LottoResult.FOURTH_PRIZE;
+        if (winningCount == 3) return LottoResult.FIFTH_PRIZE;
         return LottoResult.NO_PRIZE;
     }
 
