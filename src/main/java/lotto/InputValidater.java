@@ -42,7 +42,7 @@ public class InputValidater {
     }
 
     public static int validateMoney(String inputMoney) {
-        int money = Integer.parseInt(inputMoney);
+        int money = isNumber(inputMoney);
 
         if (money < 1000) {
             throw new IllegalArgumentException("[ERROR] 입력 금액은 최소 1000원 이상이어야 합니다.");
@@ -57,6 +57,14 @@ public class InputValidater {
     private static void validateNumberRange(int number) {
         if (number > 45 || number < 1) {
             throw new IllegalArgumentException("[ERROR] 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    static private int isNumber(String target){
+        try {
+            return Integer.parseInt(target);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 숫자 형식이 아닙니다.");
         }
     }
 }
