@@ -94,9 +94,8 @@ public class LottoService {
 
     public LottoResult calculateRate(LottoResult result, int lottoPriceInt) {
         int amount = sumAmount(result.getLottoResult());
-        double rate = (amount / lottoPriceInt) * 100.0;
+        double rate = ((double) amount / lottoPriceInt) * 100.0;
         rate = Math.round(rate * 100) / 100.0;
-
         result.setRate(rate);
 
         return result;
@@ -104,17 +103,11 @@ public class LottoService {
 
     private int sumAmount(Map<LottoRank, Integer> lottoResults) {
         int amount = 0;
-        for(LottoRank lottoRank: lottoResults.keySet()){
-            int price = convertToInt(lottoRank.getPrice());
+        for(LottoRank lottoRank : LottoRank.values()){
+            int price = lottoRank.getPrice();
             amount += price * lottoResults.get(lottoRank);
         }
 
         return amount;
-    }
-
-    public static int convertToInt(String str) {
-        // 쉼표를 모두 제거하고 int로 변환
-        String noCommaStr = str.replace(",", "");
-        return Integer.parseInt(noCommaStr);
     }
 }
