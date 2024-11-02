@@ -12,13 +12,14 @@ public class LottoService {
     private List<Lotto> lottoList;
     private InputValidator inputValidator;
     private LottoWinningNumbers lottoWinning;
+    private int lottoNum;
 
     public LottoService() {
         inputValidator = new InputValidator();
     }
 
     public int purchaseLotto(int lottoPrice) {
-        int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
+        lottoNum = lottoPrice / Constants.PURCHASE_FORM;
 
         return lottoNum;
     }
@@ -75,8 +76,11 @@ public class LottoService {
     }
 
     public Map<LottoRank, Integer> resultWinningLotto() {
-        int count = compareWinningLotto();
-
+        LottoResult lottoResult = new LottoResult();
+        for(int i=0; i<lottoNum; i++){
+            int count = compareWinningLotto();
+            lottoResult.getRankByMatchCount(count);
+        }
     }
 
     private int compareWinningLotto() {

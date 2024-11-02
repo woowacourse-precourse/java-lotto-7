@@ -14,4 +14,22 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.price = price;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public static LottoRank getRankByMatchCount(int count) {
+        for (LottoRank rank : values()) {
+            if (rank.getMatchCount() == count) {
+                return rank;
+            }
+        }
+        return null; // 매치되는 것이 없을 경우 null 반환
+    }
+
 }
