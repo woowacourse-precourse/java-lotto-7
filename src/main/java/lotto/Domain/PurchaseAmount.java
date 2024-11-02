@@ -7,10 +7,15 @@ import lotto.Utils.Validator;
 public class PurchaseAmount {
     private int value = 0;
 
-    public PurchaseAmount(String input) {
+    private PurchaseAmount(int value) {
+        this.value = value;
+    }
+
+    public static PurchaseAmount from(String input) {
         validateInput(input);
         int value = Parser.stringToInteger(input);
-
+        validateValue(value);
+        return new PurchaseAmount(value);
     }
 
     private static void validateInput(String input) {
@@ -40,7 +45,17 @@ public class PurchaseAmount {
 
     private static void checkInteger(String input) {
         if (!Validator.isInteger(input)) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.RANGE_OUT_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private static void validateValue(int value) {
+        checkPositive(value);
+    }
+
+    private static void checkPositive(int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PURCHASE_AMOUNT.getMessage());
         }
     }
 

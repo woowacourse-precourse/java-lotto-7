@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import lotto.Domain.PurchaseAmount;
 import lotto.Utils.UserInput;
 
 public class LottoGameController {
@@ -14,7 +15,8 @@ public class LottoGameController {
     }
 
     private void ready() {
-        String purchaseAmountInput = userInput.purchaseAmount();
+        String amountInput = userInput.purchaseAmount();
+        PurchaseAmount amount = PurchaseAmount.from(amountInput);
     }
 
 }
