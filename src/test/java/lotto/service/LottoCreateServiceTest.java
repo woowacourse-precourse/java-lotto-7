@@ -41,7 +41,7 @@ public class LottoCreateServiceTest {
     }
 
     @Test
-    void 구입금액만큼_로또를_생성한다(){
+    void 구입금액만큼_로또를_생성한다() {
         //given
         int money = 14000;
 
@@ -53,7 +53,7 @@ public class LottoCreateServiceTest {
     }
 
     @Test
-    void 구입금액은_1000원으로_나누어_떨어져야_한다(){
+    void 구입금액은_1000원으로_나누어_떨어져야_한다() {
         //given
         int money = 14001;
 
