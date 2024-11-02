@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MoneyParserTest {
+public class InputParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"12312", "0", "000", "003", "-13021"})
