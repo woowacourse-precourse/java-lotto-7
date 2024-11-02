@@ -1,10 +1,11 @@
 package lotto.Factory;
 
+import lotto.domain.Lotto;
 import lotto.service.BonusGenerator;
 
 public class BonusGeneratorFactory {
 
-    public static BonusGenerator create(String bonus) {
-        return new BonusGenerator(bonus);
+    public static BonusGenerator create(Lotto winning, String bonus) {
+        return new BonusGenerator(winning, bonus);
     }
 }
