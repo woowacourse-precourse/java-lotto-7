@@ -41,13 +41,9 @@ public class Application {
         while (true) {
             System.out.println("Enter the winning numbers (comma-separated):");
             String input = Console.readLine();
+            List<Integer> numbers = parseWinningNumbers(input);
 
             try {
-                List<Integer> numbers = Arrays.stream(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-
                 validateWinningNumbers(numbers);
                 return numbers;
             } catch (IllegalArgumentException e) {
@@ -127,5 +123,12 @@ public class Application {
         for (List<Integer> ticket : lottoTickets) {
             System.out.println(ticket);
         }
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
