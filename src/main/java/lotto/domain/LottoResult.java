@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.util.LottoConstant;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,14 @@ public class LottoResult {
         this.rankCount = new HashMap<>();
         this.purchaseAmount = lottos.size() * LottoConstant.LOTTO_PURCHASE_AMOUNT.getIntValue();
         this.winningLotto = winningLotto;
+
+        initializeRankCount();
+        calculateTotalRank(lottos);
+    }
+
+    private void initializeRankCount() {
+        Arrays.stream(Rank.values())
+                .forEach(i-> rankCount.put(i, 0));
     }
 
     private void calculateTotalRank(List<Lotto> lottos) {
