@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+
 import java.util.HashSet;
 import java.util.Set;
 import lotto.constants.ErrorMessages;
@@ -22,6 +26,22 @@ public class WinningNumbers {
                 throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
             }
         }
+        return numbers;
+    }
+
+    private void validateWinningNumbers() {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
+        }
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+        }
+    }
+
+    public Set<Integer> getNumbers() {
         return numbers;
     }
 }
