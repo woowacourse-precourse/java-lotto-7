@@ -2,30 +2,37 @@ package lotto.domain;
 
 import lotto.common.CommonValidator;
 import lotto.common.ErrorMessage;
+import lotto.common.RegexPattern;
 
 
 public class PaymentInput {
-    private static final int UNIT=1000;
-    int payment;
-    int lottoCounts;
+    private static final long UNIT=1000;
+    private final long payment;
+    private final int lottoCounts;
+
+    public PaymentInput(String input){
+        CommonValidator.validateNullAndBlank(input);
+        this.payment=validatePositiveNumber(input);
+        validateUnit(payment);
+        this.lottoCounts= (int) (payment/UNIT);
+    }
 
     public int getLottoCounts() {
         return lottoCounts;
     }
 
-    public int getPayment() {
+    public long getPayment() {
         return payment;
     }
 
-
-    public PaymentInput(String input){
-        CommonValidator.validateNullAndBlank(input);
-        this.payment=CommonValidator.validateInteger(input);
-        validateUnit(payment);
-        this.lottoCounts=payment/UNIT;
+    private static Long validatePositiveNumber(String input) {
+        if (!RegexPattern.INTEGER_INPUT.matches(input)){
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT);
+        }
+        return Long.parseLong(input);
     }
 
-    private void validateUnit(int payment) {
+    private void validateUnit(long payment) {
         if (payment%UNIT!=0 || payment==0){
             throw new IllegalArgumentException(ErrorMessage.NOT_UNIT_INPUT);
         }

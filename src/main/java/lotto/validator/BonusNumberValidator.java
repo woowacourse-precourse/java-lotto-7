@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.common.CommonValidator;
 import lotto.common.ErrorMessage;
-import lotto.domain.WinningNumbers;
+import lotto.common.RegexPattern;
 
 import java.util.List;
 
@@ -10,22 +10,20 @@ public class BonusNumberValidator {
     private static final Integer MININUM_NUMBER = 1;
     private static final Integer MAXIM1UM_NUMBER = 45;
 
-    public static void validateBonusNumber(String input,List<Integer> winningNumbers){
+    public static int validateBonusNumber(String input){
         CommonValidator.validateNullAndBlank(input);
-        CommonValidator.validateInteger(input);
-
-        int bonusNumber=Integer.parseInt(input);
-
+        int bonusNumber=validatePositiveNumber(input);
         validateBonusNumberInRange(bonusNumber);
-        validateDistinctToWinnerNumbers(bonusNumber,winningNumbers);
+
+        return bonusNumber;
     }
 
-    private static void validateDistinctToWinnerNumbers(int bonusNumber,List<Integer> winningNumbers) {
-       boolean haveDuplicatedNumber=winningNumbers.stream().anyMatch(winningNumber->winningNumber==bonusNumber);
+    private static int validatePositiveNumber(String input){
+        if (!RegexPattern.INTEGER_INPUT.matches(input)){
+            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER_INPUT);
+        }
+        return Integer.parseInt(input);
 
-       if (haveDuplicatedNumber){
-           throw new IllegalArgumentException(ErrorMessage.DUPLICATED_TO_WINNING_NUMBERS);
-       }
     }
 
     private static void validateBonusNumberInRange(int bonusNumber) {
