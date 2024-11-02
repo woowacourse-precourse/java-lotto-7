@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoNumberRangeConstant;
 import lotto.constant.LottoNumbersValidatorConstant;
 
 import java.math.BigInteger;
@@ -21,8 +22,8 @@ public class LottoNumbersValidator {
         if (isOutOfRangeNumber(lottoNumbersInput)) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_LOTTO_NUMBERS.getMessage());
         }
-        if (isDuplicateNumber(lottoNumbersInput)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        if (hasDuplicatedNumber(lottoNumbersInput)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 
@@ -42,9 +43,9 @@ public class LottoNumbersValidator {
     private boolean isOutOfRangeNumber(String lottoNumbersInput) {
         String[] numbers = lottoNumbersInput.split(",");
         BigInteger minNumber = BigInteger.valueOf(
-                LottoNumbersValidatorConstant.MIN_LOTTO_NUMBER.getValue());
+                LottoNumberRangeConstant.MIN_LOTTO_NUMBER.getValue());
         BigInteger maxNumber = BigInteger.valueOf(
-                LottoNumbersValidatorConstant.MAX_LOTTO_NUMBER.getValue());
+                LottoNumberRangeConstant.MAX_LOTTO_NUMBER.getValue());
 
         for (String number : numbers) {
             BigInteger num = new BigInteger(number);
@@ -56,7 +57,7 @@ public class LottoNumbersValidator {
         return false;
     }
 
-    private boolean isDuplicateNumber(String lottoNumbersInput) {
+    private boolean hasDuplicatedNumber(String lottoNumbersInput) {
         Set<String> uniqueNumbers = new HashSet<>();
         String[] numbers = lottoNumbersInput.split(",");
 

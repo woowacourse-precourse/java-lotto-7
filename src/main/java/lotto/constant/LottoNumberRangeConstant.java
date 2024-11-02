@@ -1,11 +1,12 @@
 package lotto.constant;
 
-public enum LottoNumbersValidatorConstant {
-    LOTTO_NUMBERS_LENGTH(6);
+public enum LottoNumberRangeConstant {
+    MIN_LOTTO_NUMBER(1),
+    MAX_LOTTO_NUMBER(45);
 
     private final int value;
 
-    LottoNumbersValidatorConstant(int value) {
+    LottoNumberRangeConstant(int value) {
         this.value = value;
     }
 

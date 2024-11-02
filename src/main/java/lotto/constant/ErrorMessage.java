@@ -10,7 +10,10 @@ public enum ErrorMessage {
     INVALID_FORMAT_LOTTO_NUMBERS("[ERROR]: 로또 번호는 [숫자,숫자,숫자..] 형식만 가능합니다."),
     NOT_SIX_LOTTO_NUMBERS("[ERROR]: 로또 번호는 6개의 숫자만 가능합니다."),
     OUT_OF_RANGE_LOTTO_NUMBERS("[ERROR]: 로또 번호는 1부터 45사이의 숫자만 가능합니다."),
-    DUPLICATE_LOTTO_NUMBERS("[ERROR]: 로또 번호는 중복될 수 없습니다.");
+    DUPLICATED_LOTTO_NUMBER("[ERROR]: 로또 번호와 보너스 번호는 중복될 수 없습니다."),
+    INVALID_FORMAT_BONUS_NUMBER("[ERROR]: 보너스 번호는 [+숫자] 또는 [숫자] 형식만 가능합니다.");
+
+
 
     private final String message;
 
