@@ -58,5 +58,5 @@ LottoUtils : Lotto 관련 utils 기능 담당 객체
 - [x] 당첨 로또 번호 입력을 숫자로 변경해준다.
 
 View : 입 출력 담당 객체
-- [ ] OutPut View : 출력 담당
-- [ ] InPut View : 입력 담당
+- [x] OutPut View : 출력 담당
+- [x] InPut View : 입력 담당
