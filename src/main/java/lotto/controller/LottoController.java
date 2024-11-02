@@ -11,11 +11,13 @@ public class LottoController {
 
     public void start() {
         Budget budget = setUpBudget();
-        WinningNumber winningNumber = setUpWinningNumber();
         List<Lotto> lottoTickets = buyLotto(budget);
-        LottoRankSummary lottoRankSummary = calculateLottoRank(lottoTickets, winningNumber);
-        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(budget);
-        OutputView.printResult(lottoTickets, rateOfReturn, lottoRankSummary);
+
+        WinningNumber winningNumber = setUpWinningNumber();
+
+        LottoSummary lottoSummary = new LottoSummary(lottoTickets, winningNumber);
+        double rateOfReturn = lottoSummary.calculateRateOfReturn(budget);
+        OutputView.printResult(lottoTickets, rateOfReturn, lottoSummary);
     }
 
     private Budget setUpBudget() {
@@ -27,6 +29,10 @@ public class LottoController {
         }
     }
 
+    private List<Lotto> buyLotto(Budget budget) {
+        return LottoGenerator.generateLotto(budget, new RandomLottoCreateStrategy());
+    }
+
     private WinningNumber setUpWinningNumber() {
         try {
             List<Integer> winningNumber = InputView.inputWinningNumber();
@@ -35,34 +41,6 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]" + e.getMessage());
             return setUpWinningNumber();
-        }
-    }
-
-    private List<Lotto> buyLotto(Budget budget) {
-        return LottoGenerator.generateLotto(budget, new RandomLottoCreateStrategy());
-    }
-
-    private LottoRankSummary calculateLottoRank(List<Lotto> lottos, WinningNumber winningNumber) {
-        LottoRankSummary lottoRankSummary = new LottoRankSummary();
-        for (Lotto lotto : lottos) {
-            int correctCount = winningNumber.calculateCorrectCount(lotto);
-            findOutRank(correctCount, winningNumber, lotto, lottoRankSummary);
-        }
-        return lottoRankSummary;
-    }
-
-    private void findOutRank(int correctCount, WinningNumber winningNumber, Lotto lotto, LottoRankSummary lottoRankSummary) {
-        if (correctCount == 3) {
-            lottoRankSummary.incrementCount(LottoRank.FIFTH_RANK);
-        } else if (correctCount == 4) {
-            lottoRankSummary.incrementCount(LottoRank.FOURTH_RANK);
-        } else if (correctCount == 5) {
-            if (winningNumber.correctBonus(lotto)) {
-                lottoRankSummary.incrementCount(LottoRank.SECOND_RANK);
-            }
-            lottoRankSummary.incrementCount(LottoRank.THIRD_RANK);
-        } else if (correctCount == 6) {
-            lottoRankSummary.incrementCount(LottoRank.FIRST_RANK);
         }
     }
 }

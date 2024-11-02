@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import lotto.util.ValidatorUtils;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumber {
     private final Lotto winningNumbers;

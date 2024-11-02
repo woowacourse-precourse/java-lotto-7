@@ -7,13 +7,13 @@ import java.util.List;
 
 public class LottoGenerator {
     public static List<Lotto> generateLotto(Budget budget, LottoCreateStrategy lottoCreateStrategy) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottoTickets = new ArrayList<>();
         int lottoCounts = budget.findLottoCounts();
 
         while (lottoCounts > 0) {
-            lottos.add(new Lotto(lottoCreateStrategy.createRandomLottoNumbers()));
+            lottoTickets.add(new Lotto(lottoCreateStrategy.createRandomLottoNumbers()));
             lottoCounts--;
         }
-        return lottos;
+        return lottoTickets;
     }
 }

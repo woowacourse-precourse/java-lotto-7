@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoRankSummary;
+import lotto.domain.LottoSummary;
 
 import java.util.List;
 import java.util.Map;
@@ -21,11 +21,11 @@ public class OutputView {
     private static final String ITEMS = "개";
     private static final String FINAL_MESSAGE = "입니다.";
 
-    public static void printResult(List<Lotto> lottos, double rateOfReturn, LottoRankSummary lottoRankSummary) {
+    public static void printResult(List<Lotto> lottos, double rateOfReturn, LottoSummary lottoSummary) {
         System.out.println(makeStatisticsStartMessageString());
         System.out.println(makePurchaseSizeMessageString(lottos.size()));
         System.out.print(makeShowLottoNumberString(lottos));
-        System.out.print(makeStatisticsResultString(lottoRankSummary));
+        System.out.print(makeStatisticsResultString(lottoSummary));
         System.out.println(makeRateOfReturnString(rateOfReturn));
     }
 
@@ -49,9 +49,9 @@ public class OutputView {
         return str.toString();
     }
 
-    private static String makeStatisticsResultString(LottoRankSummary lottoRankSummary) {
+    private static String makeStatisticsResultString(LottoSummary lottoSummary) {
         StringBuilder str = new StringBuilder();
-        for (Map.Entry<LottoRank, Integer> entry : lottoRankSummary.getRankCounts().entrySet()) {
+        for (Map.Entry<LottoRank, Integer> entry : lottoSummary.getRankCounts().entrySet()) {
             LottoRank rank = entry.getKey();
             int count = entry.getValue();
             str.append(rank.getMessage()).append(count).append(ITEMS).append(NEW_LINE);
