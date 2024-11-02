@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum LottoStore {
+public enum LottoManager {
     INSTANCE;
 
     private static final int LOTTO_PRICE = 1000;

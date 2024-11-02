@@ -18,7 +18,15 @@ public class LottoController {
         return lottoService.purchaseLottos(purchaseAmount);
     }
 
-    public getLottoResultResponse getLottoResult(List<Integer> winLottoNumbers, Integer bonusNumber) {
-        return lottoService.getLottoResult(winLottoNumbers, bonusNumber);
+    public void setWinLottoNumbers(List<Integer> numbers) {
+        lottoService.setWinLottoNumbers(numbers);
+    }
+
+    public void setWinLottoBonusNumber(Integer number) {
+        lottoService.setWinLottoBonusNumber(number);
+    }
+
+    public getLottoResultResponse getLottoResult() {
+        return lottoService.getLottoResult();
     }
 }

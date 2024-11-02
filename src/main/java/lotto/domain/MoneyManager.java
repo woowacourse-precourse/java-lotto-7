@@ -25,10 +25,14 @@ public class MoneyManager {
     }
 
     public double getReturnRate() {
+        validateNullPrizeMoney();
+
+        return ((double) prizeMoney / purchaseMoney) * 100;
+    }
+
+    private void validateNullPrizeMoney() {
         if (prizeMoney == null) {
             throw new IllegalArgumentException("로또 당첨 금액부터 입력주세요.");
         }
-
-        return ((double) prizeMoney / purchaseMoney) * 100;
     }
 }
