@@ -36,13 +36,13 @@ public class WinningNumbersInputHandler {
         }
     }
 
-    private void validateScope(int number) {
+    public void validateScope(int number) {
         if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END){
             throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
         }
     }
 
-    private int convertToInteger(String inputNum) {
+    public int convertToInteger(String inputNum) {
         try {
             return Integer.parseInt(inputNum);
         } catch (NumberFormatException e) {
