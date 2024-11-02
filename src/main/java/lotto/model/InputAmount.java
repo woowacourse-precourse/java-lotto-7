@@ -14,6 +14,7 @@ public class InputAmount {
         validateIsBlank(inputAmount);
         validateHasCharacter(inputAmount);
         validateIsZero(inputAmount);
+        validateCanDivideByThousand(inputAmount);
     }
 
     private void validateIsBlank(String inputAmount) {
@@ -31,6 +32,12 @@ public class InputAmount {
     private void validateIsZero(String inputAmount) {
         if (inputAmount.equals(AMOUNT_ZERO)) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_CAN_NOT_BE_ZERO.get());
+        }
+    }
+
+    private void validateCanDivideByThousand(String inputAmount) {
+        if (Integer.parseInt(inputAmount) % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_SHOULD_BE_DIVIDED_BY_THOUSAND.get());
         }
     }
 }
