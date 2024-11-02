@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model.lotto;
 
-import lotto.message.LottoErrorMessage;
+import lotto.error.LottoErrorMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,10 +25,14 @@ public class Lotto {
     }
 
     public String numbersToString() {
-        String joinedNumbers = numbers.stream()
+        return LottoFormat.PREFIX + getJoinedNumbers() + LottoFormat.SUFFIX;
+    }
+
+    private String getJoinedNumbers() {
+        numbers.sort(Integer::compareTo);
+        return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LottoFormat.DELIMITER));
-        return LottoFormat.PREFIX + joinedNumbers + LottoFormat.SUFFIX;
     }
     // TODO: 추가 기능 구현
 }
