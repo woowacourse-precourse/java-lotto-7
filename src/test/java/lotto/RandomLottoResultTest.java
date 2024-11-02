@@ -17,13 +17,13 @@ public class RandomLottoResultTest {
         Lotto lotto2 = new Lotto(Arrays.asList(3, 5, 11, 16, 32, 38));
         Lotto lotto3 = new Lotto(Arrays.asList(7, 11, 16, 35, 36, 44));
 
-        RandomLottoResult randomLottoResult = new RandomLottoResult(Arrays.asList(lotto1, lotto2, lotto3));
+        RandomLottoResult randomLottoResult = new RandomLottoResult();
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
         // when
-        randomLottoResult.printResult();
+        randomLottoResult.printResult(Arrays.asList(lotto1, lotto2, lotto3));
 
         // then
         String expectedOutput = "[8, 21, 23, 41, 42, 43]\r\n" +

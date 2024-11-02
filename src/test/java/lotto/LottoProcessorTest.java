@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoProcessor;
+import lotto.domain.RandomLottoResult;
 import lotto.domain.calculator.PurchaseCalculator;
 import lotto.domain.lottoGeneratir.RandomLottoGenerator;
 import lotto.utils.LottoMessages;
@@ -20,7 +21,7 @@ public class LottoProcessorTest {
 
     @BeforeEach
     void beforeEach() {
-        lottoProcessor = new LottoProcessor(new PurchaseCalculator(), new LottoDrawer(), new RandomLottoGenerator(), new LottoBuyer());
+        lottoProcessor = new LottoProcessor(new PurchaseCalculator(), new LottoDrawer(), new RandomLottoGenerator(), new RandomLottoResult());
     }
 
     @Test
