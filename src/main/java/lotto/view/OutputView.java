@@ -8,8 +8,8 @@ public class OutputView {
     public void printLottos(List<Lotto> lottos) {
         System.out.printf("%d개를 구매했습니다.%n", lottos.size());
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = new ArrayList<>(lotto.getNumbers()); // 수정 가능한 리스트로 변환
-            numbers.sort(Integer::compareTo); // 오름차순 정렬
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            numbers.sort(Integer::compareTo);
             System.out.println(numbers);
         }
     }
