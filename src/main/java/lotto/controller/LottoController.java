@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,5 +17,10 @@ public class LottoController {
             purchaseLottos.add(new Lotto(numbers));
         }
         OutputView.printLottoTicket(purchaseLottos);
+
+        List<Integer> winNumbers = InputView.WinNumbers();
+        int bonusNumber = InputView.BonusNumber();
+        WinningNumbers winningNumbers = new WinningNumbers(new Lotto(winNumbers), bonusNumber);
+        
     }
 }
