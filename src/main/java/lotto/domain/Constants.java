@@ -1,7 +1,8 @@
 package lotto.domain;
 
-public class PrintConstants { // 하드 코딩되어있는 것들
+public class Constants { // 하드 코딩되어있는 것들
 
+    public static final int PURCHASE_FORM = 1000;
     public static final String PURCHASE_LOTTO_INPUT = "구입금액을 입력해 주세요.";
     public static final String PURCHASE_LOTTO_OUTPUT = "개를 구매했습니다."; //
 

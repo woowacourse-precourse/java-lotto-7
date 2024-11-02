@@ -1,16 +1,18 @@
 package lotto.validator;
 
+import lotto.domain.Constants;
+
 public class InputValidator {
     public int validate(String lottoPriceString) {
         validateEmpty(lottoPriceString);
         int lottoPrice = validateNumber(lottoPriceString);
         validateForm(lottoPrice);
-        
+
         return lottoPrice;
     }
 
     private void validateForm(int lottoPrice) {
-        if(lottoPrice % 1000 != 0)
+        if(lottoPrice % Constants.PURCHASE_FORM != 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야합니다.");
     }
 

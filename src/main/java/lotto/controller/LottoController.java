@@ -21,7 +21,8 @@ public class LottoController {
 
     public void run(){
         int lottoPrice = inputView.inputLottoPrice();
-        List<String> lottoNum = lottoService.randomLottoNum(lottoPrice);
+        int lottoNum = lottoService.purchaseLotto(lottoPrice);
+        List<String> lottoNum = lottoService.randomLottoNum(lottoNum);
         outputView.printLottoNum();
 
         String lottoWinningNumbers = inputView.inputLottoWinningNumbers();
