@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.lottoForm.WinningNumbers;
 import lotto.handler.MoneyInputHandler;
 import lotto.handler.WinningNumbersInputHandler;
 

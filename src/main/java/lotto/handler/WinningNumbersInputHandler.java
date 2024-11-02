@@ -1,6 +1,6 @@
 package lotto.handler;
 
-import lotto.domain.WinningNumbers;
+import lotto.domain.lottoForm.WinningNumbers;
 
 import static lotto.LottoConstants.LOTTO_NUMBER_END;
 import static lotto.LottoConstants.LOTTO_NUMBER_START;
