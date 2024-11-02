@@ -1,20 +1,17 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Constants;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.LottoWinningNumbers;
+import lotto.domain.*;
 import lotto.validator.InputValidator;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
 
     private List<Lotto> lottoList;
     private InputValidator inputValidator;
+    private LottoWinningNumbers lottoWinning;
 
     public LottoService() {
         inputValidator = new InputValidator();
@@ -75,5 +72,20 @@ public class LottoService {
         List<Integer> winNumbers = splitLottoWinningNumbers(lottoWinningNumbers);
         int bonusNumber = Integer.parseInt(lottoBonusNumber); // 따로 빼기
         LottoWinningNumbers lottoWinning = new LottoWinningNumbers(winNumbers, bonusNumber);
+    }
+
+    public Map<LottoRank, Integer> resultWinningLotto() {
+        int count = compareWinningLotto();
+
+    }
+
+    private int compareWinningLotto() {
+        Set<Integer> set1 = new HashSet<>(lottoList.get(i));
+        Set<Integer> set2 = new HashSet<>(lottoWinning.getLottoWinningNumbers());
+
+        set1.retainAll(set2);
+        int count = set1.size();
+
+        return count;
     }
 }

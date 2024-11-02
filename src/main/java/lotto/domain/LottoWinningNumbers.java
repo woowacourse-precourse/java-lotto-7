@@ -11,5 +11,9 @@ public class LottoWinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getLottoWinningNumbers() {
+        return lottoWinningNumbers;
+    }
+
     //validate
 }
