@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constants.Ranking;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -34,7 +34,17 @@ class LottoTest {
         WinningLotto winningLotto = WinningLotto.of(Lotto.from(winningNumbers), bonusNumber);
         Ranking ranking = lotto.checkRanking(winningLotto);
 
-        Assertions.assertThat(ranking).isEqualTo(expectedRanking);
+        assertThat(ranking).isEqualTo(expectedRanking);
+    }
+
+    @Test
+    void 로또의_모든_번호를_조회하는_기능_테스트(){
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = Lotto.from(numbers);
+
+        List<Integer> numberValues = lotto.getNumberValues();
+
+        assertThat(numberValues).isEqualTo(numbers);
     }
 
     static Stream<Arguments> provideRankingResult() {
