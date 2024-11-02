@@ -131,6 +131,7 @@
 
 - 입력값이 비어있는 경우 `IllegalArgumentException`을 발생시킨다.
 - 입력값에 쉼표가 아닌 문자가 있는 경우 `IllegalArgumentException`을 발생시킨다.
+- 번호가 6개가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 - 번호의 범위가 1~45가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 - 번호가 중복될 경우 `IllegalArgumentException`을 발생시킨다.
 
