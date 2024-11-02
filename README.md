@@ -53,41 +53,41 @@
 
 ## **클래스 설계**
 
-### **1. Lotto 클래스**
+새 계획: 파일 구조
+Lotto 클래스를 제공받았으므로, 다른 클래스들은 Lotto와 협력하면서 기능을 담당하는 방식으로 설계해야 합니다.
 
-- 로또 번호를 관리하는 클래스입니다. 각 로또 객체는 6개의 숫자를 가지고 있습니다.
-- **필드**
-    - `private final List<Integer> numbers`: 로또 번호 리스트 (크기 6).
-- **생성자**
-    - `public Lotto(List<Integer> numbers)`: `numbers` 리스트를 초기화하고 유효성 검사를 수행합니다.
-- **유효성 검사**
-    - `private void validate(List<Integer> numbers)`: 번호 개수가 6개가 아닐 경우 예외를 발생시킵니다.
+다음은 추천하는 파일 구조입니다:
 
-### **2. LottoMachine 클래스**
+scss
+코드 복사
+src/
+└── lotto/
+    ├── Lotto.java               // 문제에서 제공된 Lotto 클래스
+    ├── LottoMachine.java        // 메인 로직을 관리하는 클래스
+    ├── PurchaseValidator.java   // 금액 유효성 검증 클래스
+    ├── LottoTicketGenerator.java // 로또 티켓 생성 클래스
+    └── LottoResult.java         // 당첨 결과를 저장하고 처리하는 클래스
+클래스별 역할 및 수정 사항
+Lotto (제공된 클래스 활용)
 
-- 로또 발행을 처리하는 클래스입니다.
-- **메서드**
-    - `public List<Lotto> generateLottoTickets(int amount)`: 구매한 금액에 해당하는 로또 티켓을 발행하고 리스트로 반환합니다.
-    - `private List<Integer> generateSingleLotto()`: 중복되지 않는 6개의 번호로 구성된 로또 번호 리스트를 생성합니다.
+기존 Lotto 클래스는 로또 번호(numbers)를 보관하고, 번호가 6개인지 검증합니다.
+Lotto 인스턴스를 생성할 때 중복되지 않는 6개의 번호를 담도록 LottoTicketGenerator에서 생성하고 전달하도록 설계하면 됩니다.
+추가적인 번호 비교 기능이 필요하다면, Lotto 클래스의 메서드로 추가할 수 있습니다.
+LottoMachine
 
-### **3. WinningNumber 클래스**
+로또 구매 금액 입력과 유효성 검사, 티켓 생성, 당첨 검사를 순차적으로 관리하는 클래스입니다.
+PurchaseValidator, LottoTicketGenerator, LottoResult와 협력하여 각 단계의 작업을 수행하도록 메서드를 구성합니다.
+PurchaseValidator
 
-- 당첨 번호와 보너스 번호를 관리하는 클래스입니다.
-- **필드**
-    - `private final List<Integer> winningNumbers`: 6개의 당첨 번호 리스트.
-    - `private final int bonusNumber`: 보너스 번호.
-- **생성자**
-    - `public WinningNumber(List<Integer> winningNumbers, int bonusNumber)`: 당첨 번호와 보너스 번호를 초기화합니다.
-- **유효성 검사**
-    - 입력된 번호의 개수 및 범위를 검사하고, 유효하지 않은 경우 예외를 발생시킵니다.
+구매 금액이 1,000원 단위인지 확인하고, 올바르지 않다면 IllegalArgumentException을 던집니다.
+LottoTicketGenerator
 
-### **4. ResultChecker 클래스**
+generateTickets(int count) 메서드를 통해 로또 티켓을 생성하고, 각 티켓에는 Lotto 객체를 사용하여 중복되지 않는 6개의 번호를 생성하도록 합니다.
+생성된 Lotto 인스턴스를 리스트에 담아 반환합니다.
+LottoResult
 
-- 당첨 결과와 수익률을 계산하고 출력하는 클래스입니다.
-- **메서드**
-    - `public Map<String, Integer> checkResults(List<Lotto> tickets, WinningNumber winningNumber)`: 각 티켓을 당첨 번호와 비교하여 당첨 결과를 계산하고, 결과를 매핑하여 반환합니다.
-    - `public double calculateEarningsRate(int totalSpent, int totalPrize)`: 수익률을 계산하여 반환합니다.
-
+구매한 로또와 당첨 번호를 비교해 당첨 등수를 확인하고, 결과와 수익률을 계산하여 저장합니다.
+LottoMachine에서 당첨 번호와 보너스 번호를 입력받고 LottoResult에서 비교하여 당첨 여부를 판단하도록 합니다.
 ---
 
 ## **예외 처리 규칙**
