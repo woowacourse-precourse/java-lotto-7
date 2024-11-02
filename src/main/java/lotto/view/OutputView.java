@@ -1,11 +1,15 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 
 public class OutputView {
 
     private static final String NEXT_LINE = System.lineSeparator();
+    private static final long NO_LUCK_AMOUNT = 0L;
 
     public void printPurchaseAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -31,5 +35,32 @@ public class OutputView {
 
     public void printBonusNumberMessage() {
         System.out.println(NEXT_LINE + "보너스 번호를 입력해 주세요.");
+    }
+
+    public void printWinningResultMessage() {
+        System.out.println(NEXT_LINE + "당첨 통계" + NEXT_LINE + "---");
+    }
+
+    public void printLottoWinningResult(Map<LottoRank, Integer> winningResult) {
+        StringJoiner formatResult = formatWinningResult(winningResult);
+        System.out.println(formatResult);
+    }
+
+    private StringJoiner formatWinningResult(Map<LottoRank, Integer> winningResult) {
+        StringJoiner sj = new StringJoiner(NEXT_LINE);
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (isWinningAmount(lottoRank)) {
+                appendWinningResult(winningResult, lottoRank, sj);
+            }
+        }
+        return sj;
+    }
+
+    private boolean isWinningAmount(LottoRank lottoRank) {
+        return lottoRank.getWinningAmount() > NO_LUCK_AMOUNT;
+    }
+
+    private void appendWinningResult(Map<LottoRank, Integer> winningResult, LottoRank lottoRank, StringJoiner sj) {
+        sj.add(lottoRank.getDescription() + " - " + winningResult.getOrDefault(lottoRank, 0) + "개");
     }
 }
