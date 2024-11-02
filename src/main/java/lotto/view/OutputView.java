@@ -8,6 +8,18 @@ import lotto.model.RankCounter;
 
 public class OutputView {
 
+    public static void printLottoPurchaseAmountInput() {
+        System.out.println(LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
+    }
+
+    public static void printWinningTicketInput() {
+        System.out.println(WINNING_TICKET_INPUT_MESSAGE.getMessage());
+    }
+
+    public static void printBonusNumberInput() {
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+    }
+
     public static void printLottoCount(Integer lottoCount) {
         System.out.println(PURCHASE_NUMBER_OUTPUT_MESSAGE.getMessage(lottoCount));
     }

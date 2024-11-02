@@ -30,6 +30,7 @@ public class LottoController {
     }
 
     private Integer getLottoPurchaseAmount() {
+        OutputView.printLottoPurchaseAmountInput();
         String lottoPurchaseAmountInput = InputView.getLottoPurchaseAmountInput();
         Integer lottoPurchaseAmount = Parser.parseInputToInt(lottoPurchaseAmountInput);
         Validator.validateLottoPurchaseAmount(lottoPurchaseAmount);
@@ -47,6 +48,7 @@ public class LottoController {
     }
 
     private List<Integer> getWinningTicket() {
+        OutputView.printWinningTicketInput();
         String winningTicketInput = InputView.getWinningTicketInput();
         List<Integer> winningTicket = Parser.parseInputsToIntList(winningTicketInput);
         Validator.validateWinningTicket(winningTicket);
@@ -54,6 +56,7 @@ public class LottoController {
     }
 
     private Integer getBonusNumber(List<Integer> winningTicket) {
+        OutputView.printBonusNumberInput();
         String bonusNumberInput = InputView.getBonusNumberInput();
         Integer bonusNumber = Parser.parseInputToInt(bonusNumberInput);
         Validator.validateBonusNumber(winningTicket, bonusNumber);
