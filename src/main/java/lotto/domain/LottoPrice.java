@@ -7,5 +7,5 @@ public class LottoPrice {
         this.amount = amount;
     }
 
-    // 금액 유효성 검사
+    // 로또 구입 금액이 0이상인지 검증
 }
