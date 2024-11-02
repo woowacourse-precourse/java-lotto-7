@@ -4,10 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.util.CommonIo;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTemp {
@@ -56,5 +54,19 @@ public class LottoTemp {
 
     public void printRequestWinningNumbers(){
         io.printMessage("당첨 번호를 입력해 주세요.");
+    }
+
+    public String inputWinningNumbers() {
+        return io.receiveInput();
+    }
+
+
+    // TODO: 문자열 분리와 정수 리스트 변경을 한번에 하고 있음. 수정 필요
+    public List<Integer> createWinningNumbers(String rawWinningNumbers) {
+        String[] numbers = rawWinningNumbers.split(",");
+
+        return Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .toList();
     }
 }
