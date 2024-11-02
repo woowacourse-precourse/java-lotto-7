@@ -12,13 +12,16 @@ public class LottoRankingService {
     public static int[] calculateLottoRank(Lotto lotto, ArrayList<List<Integer>> purchasedLottoNumbers, BonusNumber bonusNumber) {
         int[] rank = new int[5];
 
-        for (List<Integer> purchasedLottoNumber : purchasedLottoNumbers) {
-            int matchCount = countMatches(lotto, purchasedLottoNumber);
-            updateRank(rank, matchCount, purchasedLottoNumber.contains(bonusNumber.getBonusNumber()));
-        }
+        purchasedLottoNumbers
+                .forEach(purchasedLottoNumber -> {
+                    int matchCount = countMatches(lotto, purchasedLottoNumber);
+                    boolean hasBonus = purchasedLottoNumber.contains(bonusNumber.getBonusNumber());
+                    updateRank(rank, matchCount, hasBonus);
+                });
 
         return rank;
     }
+
     public static int countMatches(Lotto lotto, List<Integer> purchasedLottoNumber) {
         return (int) purchasedLottoNumber.stream()
                 .filter(lotto.getNumbers() :: contains)
