@@ -24,7 +24,15 @@ public enum LottoPrize {
     }
 
     public String getCommaPrize() {
-        return String.format("%,d", prize);
+        return String.format("%,d", prize) + "원";
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public boolean isBonusCorrect() {
+        return isBonusCorrect;
     }
 
     public static LottoPrize findBy(int correctCount, boolean isBonusCorrect) {
@@ -41,4 +49,6 @@ public enum LottoPrize {
                 .findFirst()
                 .orElse(null);
     }
+
+
 }

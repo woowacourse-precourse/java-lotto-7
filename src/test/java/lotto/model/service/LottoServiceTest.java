@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoWinningNumbers;
 import org.junit.jupiter.api.Test;

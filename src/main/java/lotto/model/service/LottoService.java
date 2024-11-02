@@ -22,7 +22,6 @@ public class LottoService {
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(generator.getLottoNumbers()));
         }
-
         return lottos;
     }
 
@@ -57,7 +56,7 @@ public class LottoService {
     }
 
     private double calculatePercent(int part, int whole) {
-        double percent = ((double) part / whole) * 100;
+        double percent = ((double) part / (double) whole) * 100;
         return Math.round(percent * 10) / 10.0;
     }
 

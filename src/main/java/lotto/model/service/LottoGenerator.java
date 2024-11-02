@@ -4,10 +4,14 @@ import static lotto.model.domain.LottoConstant.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGenerator {
 
     public List<Integer> getLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, SIZE);
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
