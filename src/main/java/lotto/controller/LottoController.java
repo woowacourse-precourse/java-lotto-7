@@ -38,7 +38,7 @@ public class LottoController {
             ticket = convertValidValue.purchaseAmount(purchaseAmount);
             ticketCount = ticket;
         }catch (IllegalArgumentException e){
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
             lottoAmount();
         }
     }
@@ -58,7 +58,7 @@ public class LottoController {
             List<Integer> li = convertValidValue.winningNumbers(userInput);
             lotto = new Lotto(li);
         }catch (IllegalArgumentException e){
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
             return getWinningLotto();
         }
 
@@ -72,7 +72,7 @@ public class LottoController {
         try {
             bonusNumber = convertValidValue.bonusNumber(UserInput);
         }catch (IllegalArgumentException e){
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
             return getBonusNumber();
         }
 
@@ -86,7 +86,7 @@ public class LottoController {
         try{
             winningNumber = new WinningNumber(winningLotto, bonusNumber);
         }catch (IllegalArgumentException e){
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
             getWinningNumber();
         }
     }
