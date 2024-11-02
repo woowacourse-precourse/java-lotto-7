@@ -61,7 +61,11 @@ public class Application {
 
     private static int getMoney() {
         System.out.println("로또 구매 금액을 입력하세요.");
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException error) {
+            throw new IllegalArgumentException("금액은 숫자로 입력해야 합니다.");
+        }
     }
 
     private static void exception (int money) {
@@ -82,7 +86,7 @@ public class Application {
     }
 
     private static List<Integer> randomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         numbers.sort(Integer::compareTo);
         return numbers;
     }
@@ -152,11 +156,11 @@ public class Application {
     private static void outputResult(LottoResult result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + result.getCountOf3Match());
-        System.out.println("4개 일치 (50,000원) - " + result.getCountOf4Match());
-        System.out.println("5개 일치 (1,500,000원) - " + result.getCountOf5Match());
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getCountOf5MatchAndBonus());
-        System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountOf5MatchAndBonus());
+        System.out.println("3개 일치 (5,000원) - " + result.getCountOf3Match() + "개");
+        System.out.println("4개 일치 (50,000원) - " + result.getCountOf4Match() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.getCountOf5Match() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getCountOf5MatchAndBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountOf5MatchAndBonus() + "개");
     }
 
     private static void profitRateResult(double money, double winningPrize) {

@@ -42,7 +42,7 @@ public class LottoResult {
     public int getCountOf6Match() {
         return countOf6Match;
     }
-    
+
     public int totalWinningPrize() {
         int winningPrize = 0;
         winningPrize += countOf3Match * 5000;
