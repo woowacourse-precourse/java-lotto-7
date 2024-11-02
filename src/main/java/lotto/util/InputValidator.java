@@ -19,6 +19,11 @@ public class InputValidator {
     public void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbersSize(winningNumbers);
         validateNoDuplicateWinningNumbers(winningNumbers);
+        winningNumbers.forEach(InputValidator::validateLottoRange);
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        validateLottoRange(bonusNumber);
     }
 
     private static void validateNoDuplicateWinningNumbers(List<Integer> winningNumbers) {
@@ -33,6 +38,12 @@ public class InputValidator {
             throw new IllegalArgumentException(
                     ErrorMessage.WINNING_NUMBERS_SIZE_ERROR.getMessage()
                             + "입력한 당첨 개수: " + winningNumbers.size());
+        }
+    }
+
+    private static void validateLottoRange(int number) {
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR.getMessage());
         }
     }
 

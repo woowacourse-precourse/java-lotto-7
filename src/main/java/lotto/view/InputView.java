@@ -18,12 +18,21 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String getBonusNumber() {
+        promptBonusNumber();
+        return Console.readLine();
+    }
+
     private static void promptPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }
 
     private static void promptWinningNumbers() {
         System.out.println(WINNING_NUMBERS_MESSAGE);
+    }
+
+    private static void promptBonusNumber() {
+        System.out.println(BONUS_NUMBER_MESSAGE);
     }
 
 }

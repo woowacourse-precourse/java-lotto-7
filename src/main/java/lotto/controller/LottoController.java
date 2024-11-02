@@ -19,6 +19,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
         List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private int getPurchaseAmount() {
@@ -31,6 +32,16 @@ public class LottoController {
         List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
         inputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
+    }
+
+    private int getBonusNumber() {
+        int bonusNumber = toInt(InputView.getBonusNumber());
+        inputValidator.validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private int toInt(String input) {
+        return Integer.parseInt(input);
     }
 
 }
