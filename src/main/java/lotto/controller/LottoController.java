@@ -94,7 +94,7 @@ public class LottoController {
         Map<LottoScoreResponse, Integer> lottoScoreResponseMap = new LinkedHashMap<>();
 
         for (Score score : Score.values()) {
-            LottoScoreResponse response = getLottoScoreResponse(score);
+            LottoScoreResponse response = LottoScoreResponse.from(score);
             lottoScoreResponseMap.put(response, 0);
         }
 
@@ -103,13 +103,7 @@ public class LottoController {
 
     private void mergeToLottoScoreResponses(List<Score> scores, Map<LottoScoreResponse, Integer> lottoScoreResponses) {
         scores.forEach(score ->
-                lottoScoreResponses.merge(getLottoScoreResponse(score), 1, Integer::sum)
+                lottoScoreResponses.merge(LottoScoreResponse.from(score), 1, Integer::sum)
         );
-
     }
-
-    private LottoScoreResponse getLottoScoreResponse(Score score) {
-        return LottoScoreResponse.from(score.getMatchCount(), score.equals(Score.FIFTH_WITH_BONUS), score.getPrize());
-    }
-
 }
