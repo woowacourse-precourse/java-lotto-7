@@ -1,12 +1,21 @@
 package lotto;
 
-import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
-import static lotto.LottoConstants.LOTTO_PRICE;
-import static lotto.LottoConstants.MAX_LOTTO_NUMBER;
-import static lotto.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.domain.LottoConstants.LOTTO_PRICE;
+import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 
 import java.math.BigInteger;
 import java.util.List;
+import lotto.controller.LottoController;
+import lotto.domain.LottoBuyer;
+import lotto.domain.LottoMachine;
+import lotto.domain.LottoNumberGenerator;
+import lotto.domain.LottoSeller;
+import lotto.domain.LottoTicket;
+import lotto.service.LottoRetailer;
+import lotto.view.InputValidator;
+import lotto.view.InputView;
 
 public class Application {
     public static void main(String[] args) {

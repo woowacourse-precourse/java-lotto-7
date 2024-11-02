@@ -1,9 +1,9 @@
 package lotto;
 
-import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
-import static lotto.LottoConstants.MAX_LOTTO_NUMBER;
-import static lotto.LottoConstants.MIN_LOTTO_NUMBER;
-import static lotto.ViewConstants.VIEW_DELIMITER_LABEL;
+import static lotto.domain.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.view.ViewConstants.VIEW_DELIMITER_LABEL;
 
 public class MessageContainer {
     public static final String ENTER_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요.";

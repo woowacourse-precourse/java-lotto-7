@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoConstants.LOTTO_PRICE;
+import static lotto.domain.LottoConstants.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigInteger;

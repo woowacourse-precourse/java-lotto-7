@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.domain.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 

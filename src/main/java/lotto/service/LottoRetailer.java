@@ -1,7 +1,10 @@
-package lotto;
+package lotto.service;
 
 import java.math.BigInteger;
 import java.util.List;
+import lotto.domain.LottoTicket;
+import lotto.domain.LottoBuyer;
+import lotto.domain.LottoSeller;
 
 public class LottoRetailer {
     private final LottoSeller lottoSeller;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.MessageContainer.ERROR_LABEL;
 import static lotto.MessageContainer.NEITHER_DIGIT_NOR_DELIMITER_ERROR;

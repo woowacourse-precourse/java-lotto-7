@@ -1,9 +1,11 @@
-package lotto;
+package lotto.controller;
 
-import static lotto.ViewConstants.VIEW_DELIMITER;
+import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.view.InputValidator;
+import lotto.view.InputView;
 
 public class LottoController {
     private final InputView inputView;

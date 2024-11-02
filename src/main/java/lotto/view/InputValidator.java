@@ -1,7 +1,7 @@
-package lotto;
+package lotto.view;
 
 import static lotto.MessageContainer.NEITHER_DIGIT_NOR_DELIMITER_ERROR;
-import static lotto.ViewConstants.DIGIT_AND_DELIMITER_ONLY_PATTERN;
+import static lotto.view.ViewConstants.DIGIT_AND_DELIMITER_ONLY_PATTERN;
 
 import java.util.regex.Matcher;
 

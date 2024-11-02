@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
-import static lotto.LottoConstants.MAX_LOTTO_NUMBER;
-import static lotto.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
 import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
 import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;

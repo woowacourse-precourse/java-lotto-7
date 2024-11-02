@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.MessageContainer.ENTER_PURCHASE_AMOUNT;
 import static lotto.MessageContainer.ENTER_WINNING_LOTTO_NUMBERS;
