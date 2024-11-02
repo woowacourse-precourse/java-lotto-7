@@ -30,5 +30,6 @@ public class LottoController {
         LotteryMachine lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
         lotteryMachine.draw(lottos);
         WinningStatistic winningStatistic = lotteryMachine.generateWinningStatisticBy(price);
+        outputHandler.showWinningStatistic(winningStatistic);
     }
 }

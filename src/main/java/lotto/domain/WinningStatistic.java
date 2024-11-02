@@ -2,13 +2,16 @@ package lotto.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class WinningStatistic {
 
+    private static final String PROFIT_MESSAGE_TEMPLATE = "총 수익률은 %.1f%%입니다.";
     private static final int INIT_FREQUENCY = 0;
+    private static final int INCREASE_VALUE = 1;
     private final Map<WinningState, Integer> stateFrequencyAccumulator = new EnumMap<>(WinningState.class);
     private final double profitRate;
 
@@ -60,7 +63,21 @@ public class WinningStatistic {
     private void accumulateWinningState(WinningState winningState) {
         this.stateFrequencyAccumulator.put(
                 winningState,
-                stateFrequencyAccumulator.get(winningState) + 1
+                stateFrequencyAccumulator.get(winningState) + INCREASE_VALUE
         );
+    }
+
+    public List<WinnerFrequency> getWinnerFrequency() {
+        List<WinnerFrequency> frequencies = new ArrayList<>();
+        for (WinningState state : stateFrequencyAccumulator.keySet()) {
+            Integer frequency = stateFrequencyAccumulator.get(state);
+            frequencies.add(new WinnerFrequency(state, frequency));
+        }
+
+        return frequencies;
+    }
+
+    public String getFormattedProfitRate() {
+        return String.format(PROFIT_MESSAGE_TEMPLATE, profitRate);
     }
 }
