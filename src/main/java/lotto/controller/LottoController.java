@@ -91,18 +91,11 @@ public class LottoController {
         while (true) {
             try {
                 int number = inputView.getBonusNumber();
-                checkBonusNumberDuplicate(number);
-                bonusNumber = new BonusNumber(number);
+                bonusNumber = new BonusNumber(number, winningNumber.get());
                 break;
             } catch (InvalidBonusNumberException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void checkBonusNumberDuplicate(int number) {
-        if (winningNumber.get().contains(number)) {
-            throw new InvalidBonusNumberException(ALREADY_EXIST_IN_WINNING_NUMBERS.getMessage());
         }
     }
 
