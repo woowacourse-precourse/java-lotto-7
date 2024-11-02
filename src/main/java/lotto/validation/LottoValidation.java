@@ -44,10 +44,4 @@ public class LottoValidation {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어져야 합니다.");
         }
     }
-
-    public void validateSize(List<String> input){
-        if (input.size()!=LOTTO_NUMBER_COUNT){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해야 합니다.");
-        }
-    }
 }
