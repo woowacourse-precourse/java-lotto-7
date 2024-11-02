@@ -21,7 +21,7 @@ public class Application {
         PurchaseAmount amount = UserInputConsole.readPurchaseAmount();
         int purchasedLottoCnt = amount.amount() / 1000;
 
-        // 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다.
+        // 2. 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다.
         System.out.println(purchasedLottoCnt + "개를 구매했습니다.");
 
         for (int i = 0; i < purchasedLottoCnt; i++) {
@@ -29,14 +29,11 @@ public class Application {
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto);
         }
+
+        // 3. 로또 당첨 번호를 입력 받는다.
+        Lotto lottoWinningNumbers = UserInputConsole.readLottoWinningNumber();
     }
 
-    /**
-     * 고유한 로또 번호 리스트를 생성한다.
-     * 중복된 숫자가 있을 경우, 중복을 제거하고 새로운 숫자를 다시 뽑아 리스트를 채운다.
-     *
-     * @return 고유한 로또 번호 리스트
-     */
     private static List<Integer> generateUniqueNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Set<Integer> uniqueSet = new HashSet<>(numbers);
@@ -45,9 +42,6 @@ public class Application {
             int newNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1).getFirst();
             uniqueSet.add(newNumber);
         }
-
         return new ArrayList<>(uniqueSet);
     }
 }
-
-
