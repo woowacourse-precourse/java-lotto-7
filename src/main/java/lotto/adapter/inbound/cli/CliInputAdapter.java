@@ -88,6 +88,6 @@ public class CliInputAdapter implements InputAdapter {
     private void writeResult(RankResult rankResult, RevenueRate rate) {
         outputPort.writeMessage(PromptMessage.RESULT_OUTPUT);
         outputPort.writeMessage(rankResult.toString());
-        outputPort.writeMessage(PromptMessage.REVENUE_RATE_OUTPUT(rate.value()));
+        outputPort.writeMessage(PromptMessage.REVENUE_RATE_OUTPUT(rate.toString()));
     }
 }

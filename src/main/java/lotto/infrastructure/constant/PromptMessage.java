@@ -8,7 +8,7 @@ public final class PromptMessage {
     public static String PURCHASE_COUNT_OUTPUT(int count) {
         return String.format("%d개를 구매했습니다.", count);
     }
-    public static String REVENUE_RATE_OUTPUT(float rate) {
-        return String.format("총 수익률은 %.1f%%입니다.", rate);
+    public static String REVENUE_RATE_OUTPUT(String rate) {
+        return String.format("총 수익률은 %s입니다.", rate);
     }
 }
