@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public enum LottoManager {
     INSTANCE;
@@ -21,5 +23,16 @@ public enum LottoManager {
         }
 
         return lottos;
+    }
+
+    public Map<LottoRank, Integer> drawResult(List<Lotto> lottos, WinLotto winLotto) {
+        Map<LottoRank, Integer> result = new HashMap<>();
+        lottos.forEach(lotto ->
+                result.merge(
+                        LottoRank.matchNumbers(lotto, winLotto.getNumbers(), winLotto.getBonusNumber()), 1, Integer::sum
+                )
+        );
+
+        return result;
     }
 }

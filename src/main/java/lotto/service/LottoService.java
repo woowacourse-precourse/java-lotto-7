@@ -7,7 +7,6 @@ import lotto.domain.repository.WinLottoRepository;
 import lotto.dto.response.PurchaseLottosResponse;
 import lotto.dto.response.getLottoResultResponse;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,25 +37,11 @@ public class LottoService {
     }
 
     public getLottoResultResponse getLottoResult() {
-        WinLotto winLotto = winLottoRepository.getWinLotto();
-        List<Lotto> lottos = lottoRepository.getLottos();
-        Map<LottoRank, Integer> result = playLotto(lottos, winLotto);
+        Map<LottoRank, Integer> result = lottoManager.drawResult(lottoRepository.getLottos(), winLottoRepository.getWinLotto());
         MoneyManager moneyManager = moneyManagerRepository.getMoneyManger();
         moneyManager.setPrizeMoney(calculatePrizeMoney(result));
 
         return getLottoResultResponse.of(result, moneyManager.getReturnRate());
-    }
-
-    private Map<LottoRank, Integer> playLotto(List<Lotto> lottos, WinLotto winLotto) {
-        Map<LottoRank, Integer> result = new HashMap<>();
-        lottos.forEach(lotto ->
-                result.merge(
-                        LottoRank.matchNumbers(lotto, winLotto.getNumbers(), winLotto.getBonusNumber()), 1, Integer::sum
-                )
-        );
-        result.remove(LottoRank.FAIL);
-
-        return result;
     }
 
     private Long calculatePrizeMoney(Map<LottoRank, Integer> result) {
