@@ -1,8 +1,10 @@
 package lotto.controller;
 
 public class MainController {
-    private static ViewController viewController = ViewController.getInstance();
+    private static ViewControllerImpl viewController = ViewControllerImpl.getInstance();
+
     public static void run(){
-        viewController.getMoney();
+        String money = viewController.getMoney();
+        System.out.println(money);
     }
 }
