@@ -30,8 +30,7 @@ class LottoTest extends NsTest {
     @DisplayName("번호_정렬: List<Integer>로 받은 번호를 정렬한다.")
     @Test
     void 번호가_정렬_후_저장된다() {
-        assertSimpleTest(() -> new Lotto(List.of(42, 43, 41, 21, 8, 23)));
-        assertThat(output().contains("[8, 21, 23, 41, 42, 43]"));
+        assert(new Lotto(List.of(42, 43, 41, 21, 8, 23)).getNumbers()).equals(List.of(8, 21, 23, 41, 42, 43));
     }
 
     @Override

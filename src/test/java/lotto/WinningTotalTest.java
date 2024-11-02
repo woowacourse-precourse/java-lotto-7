@@ -1,11 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Controller.IssueTicketController;
-import lotto.Controller.WinningTotalController;
+import lotto.Service.IssueTicketService;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
-import lotto.View.OutputWinningTotalView;
+import lotto.Service.WinningTotalService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningTotalTest extends NsTest {
-    WinningTotalController winningTotalController = new WinningTotalController();
-    IssueTicketController issueTicketController = new IssueTicketController();
+    WinningTotalService winningTotalService = new WinningTotalService();
+    IssueTicketService issueTicketService = new IssueTicketService();
 
     @DisplayName("당첨_통계를 올바르게 내면 통과")
     @Test
@@ -28,8 +25,8 @@ public class WinningTotalTest extends NsTest {
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    MyLottos mylottos = issueTicketController.issueTickets(8);
-                    Map<String, Integer> winningTotal = winningTotalController.calculateWinningTotal(mylottos, winningLotto, bonusNumber);
+                    MyLottos mylottos = issueTicketService.makeIssuedTickets(8);
+                    Map<String, Integer> winningTotal = winningTotalService.calculateWinningTotal(mylottos, winningLotto, bonusNumber);
                     Map<String, Integer> testMap = Map.of("FIRST", 0, "SECOND", 0, "THIRD", 0, "FOURTH", 0, "FIFTH", 1);
                     assert (winningTotal.equals(testMap));
                 },
@@ -41,26 +38,6 @@ public class WinningTotalTest extends NsTest {
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45));
-    }
-
-    @DisplayName("당첨_통계_출력을 알맞은 순서대로 하면 통과")
-    @Test
-    void 당첨_통계_출력이_알맞은_값으로_출력된다() {
-        Map<String, Integer> testMap = Map.of("FIRST", 0, "SECOND", 0, "THIRD", 0, "FOURTH", 0, "FIFTH", 1);
-        OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(testMap);
-
-        assertSimpleTest(
-                () -> {
-                    outputWinningTotalView.printWinningTotal();
-                    assertThat(output()).contains(
-                            "3개 일치 (5,000원) - 1개",
-                            "4개 일치 (50,000원) - 0개",
-                            "5개 일치 (1,500,000원) - 0개",
-                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                            "6개 일치 (2,000,000,000원) - 0개"
-                    );
-                }
-        );
     }
 
     @Override

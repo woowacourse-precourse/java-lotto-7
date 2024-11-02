@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Controller.EarningRateController;
+import lotto.Service.EarningRateService;
 import lotto.View.OutputEarningRateView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EarningRateTest extends NsTest {
-    EarningRateController earningRateController = new EarningRateController();
+    EarningRateService earningRateService = new EarningRateService();
     OutputEarningRateView outputEarningRateView = new OutputEarningRateView();
 
     @DisplayName("수익률을 알맞게 계산하여 형식에 맞게 출력하면 통과")
@@ -22,10 +22,7 @@ public class EarningRateTest extends NsTest {
         Map<String, Integer> testMap = Map.of("FIRST", 0, "SECOND", 0, "THIRD", 0, "FOURTH", 0, "FIFTH", 1);
         assertSimpleTest(
                 () -> {
-                    earningRateController.earningRate(price, testMap);
-                    assertThat(output()).contains(
-                            "총 수익률은 62.5%입니다."
-                    );
+                    assertThat(earningRateService.calculateEarningRate(price, testMap)).isEqualTo(62.5);
                 }
         );
     }
