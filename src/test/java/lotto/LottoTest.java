@@ -39,4 +39,11 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호와 보너스 번호가 겹칠 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호와_보너스_번호가_겹칠_경우_예외_발생(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6), 5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
