@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -80,6 +79,27 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호 6개와 중복될 수 없습니다.");
         }
 
+        Map<WinningKind, Integer> lottoResult = new HashMap<>();
+        for (WinningKind winningKind : WinningKind.values()) {
+            lottoResult.put(winningKind, 0);
+        }
+
+        for (Lotto lotto : lottos) {  // `lottos`는 구입한 로또 목록
+            int matchCount = Lotto.getMatchCount(winningNumbers);
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            if (matchCount == 6) {
+                lottoResult.put(WinningKind.MATCH_6, lottoResult.get(WinningKind.MATCH_6) + 1);
+            } else if (matchCount == 5 && bonusMatch) {
+                lottoResult.put(WinningKind.MATCH_5_BONUS, lottoResult.get(WinningKind.MATCH_5_BONUS) + 1);
+            } else if (matchCount == 5) {
+                lottoResult.put(WinningKind.MATCH_5, lottoResult.get(WinningKind.MATCH_5) + 1);
+            } else if (matchCount == 4) {
+                lottoResult.put(WinningKind.MATCH_4, lottoResult.get(WinningKind.MATCH_4) + 1);
+            } else if (matchCount == 3) {
+                lottoResult.put(WinningKind.MATCH_3, lottoResult.get(WinningKind.MATCH_3) + 1);
+            }
+        }
 
     }
 }
