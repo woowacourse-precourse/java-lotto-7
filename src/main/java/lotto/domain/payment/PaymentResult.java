@@ -16,4 +16,8 @@ public class PaymentResult {
     public LottoQuantity getLottoCount() {
         return lottoQuantity;
     }
+
+    public int getLottoQuantity() {
+        return lottoQuantity.getValue();
+    }
 }
