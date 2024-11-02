@@ -39,7 +39,7 @@ public class LottoSalesService {
     }
 
     private void validatePayment(int payment) {
-        if (payment < 0) {
+        if (payment <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
         }
     }

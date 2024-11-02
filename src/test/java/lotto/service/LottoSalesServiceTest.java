@@ -11,6 +11,7 @@ import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoSalesServiceTest {
 
@@ -62,12 +63,10 @@ class LottoSalesServiceTest {
         assertThat(quantity).isEqualTo(expected);
     }
 
-    @DisplayName("구매금액이 음수이면 예외를 발생시킨다.")
-    @Test
-    public void givenInvalidPayment_thenThrowException() {
-        //given
-        int payment = -1000;
-
+    @DisplayName("구매금액이 0원이거나 음수라면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -1000, -100_000_000})
+    public void givenInvalidPayment_thenThrowException(int payment) {
         //when & then
         assertThrows(IllegalArgumentException.class,
             () -> lottoSalesService.getAvailableLottoQuantity(payment));
