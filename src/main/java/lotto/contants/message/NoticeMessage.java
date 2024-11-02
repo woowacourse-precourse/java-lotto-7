@@ -5,7 +5,7 @@ public enum NoticeMessage {
     CONUT_BUY("개를 구매했습니다."),
     PRIZE_NUMBER("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    TOTAL("당첨 통계\n ---"),
+    TOTAL("당첨 통계\n---"),
     RANK_FIRST_PRIZE("6개 일치 (2,000,000,000원) - "),
     RANK_SECOND_PRIZE("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     RANK_THIRD_PRIZE("5개 일치 (1,500,000원) - "),

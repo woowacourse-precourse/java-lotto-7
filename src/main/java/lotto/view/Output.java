@@ -1,20 +1,14 @@
 package lotto.view;
 
 import lotto.contants.message.NoticeMessage;
-import lotto.contants.value.LottoValue;
 import lotto.model.Lotto;
 
-import java.text.NumberFormat;
 import java.util.List;
 
-public class OutputView {
-    public void printNoticeToPayMent() {
-        System.out.println(NoticeMessage.PAYMENT);
-    }
-
-    public void printNoticeCountBuy(int count) {
+public class Output {
+    public void printCountLotto(int countLotto) {
         System.out.println();
-        System.out.println(count + NoticeMessage.CONUT_BUY);
+        System.out.println(countLotto + NoticeMessage.CONUT_BUY.getMessage());
     }
 
     public void printLottoList(List<Lotto> lottos) {
@@ -24,34 +18,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printNoticePrizeNumber() {
-        System.out.println(NoticeMessage.PRIZE_NUMBER);
-    }
-
-    public void printNoticeBonusNumber() {
-        System.out.println();
-        System.out.println(NoticeMessage.BONUS_NUMBER);
-    }
-
     public void printLottoResult(List<Integer> lottoSameSize, double rate) {
-        System.out.println(NoticeMessage.TOTAL);
-        System.out.println("---");
-        System.out.println();
-        System.out.println("3개 일치 " +
-                "(" + NumberFormat.getInstance().format(LottoValue.RANK_FIFTH_MONEY) + ")"
-                + " - " + lottoSameSize.get(4));
-        System.out.println("4개 일치 " +
-                "(" + NumberFormat.getInstance().format(LottoValue.RANK_FOURTH_MONEY) + ")"
-                + " - " + lottoSameSize.get(3));
-        System.out.println("5개 일치 " +
-                "(" + NumberFormat.getInstance().format(LottoValue.RANK_THRID_MONEY) + ")"
-                + " - " + lottoSameSize.get(2));
-        System.out.println("5개 일치, 보너스 볼 일치 " +
-                "(" + NumberFormat.getInstance().format(LottoValue.RANK_SECOND_MONEY) + ")"
-                + " - " + lottoSameSize.get(1));
-        System.out.println("6개 일치 " +
-                "(" + NumberFormat.getInstance().format(LottoValue.RANK_FIRST_MONEY) + ")"
-                + " - " + lottoSameSize.get(0));
+        System.out.println(NoticeMessage.TOTAL.getMessage());
+        System.out.println(NoticeMessage.RANK_FIFTH_PRIZE.getMessage() + lottoSameSize.get(4) + "개");
+        System.out.println(NoticeMessage.RANK_FOURTH_PRIZE.getMessage() + lottoSameSize.get(3) + "개");
+        System.out.println(NoticeMessage.RANK_THIRD_PRIZE.getMessage() + lottoSameSize.get(2) + "개");
+        System.out.println(NoticeMessage.RANK_SECOND_PRIZE.getMessage() + lottoSameSize.get(1) + "개");
+        System.out.println(NoticeMessage.RANK_FIRST_PRIZE.getMessage() + lottoSameSize.get(0) + "개");
 
         System.out.println("총 수익률은 " + rate + "%입니다.");
     }

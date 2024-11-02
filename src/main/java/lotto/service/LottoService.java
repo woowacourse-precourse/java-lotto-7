@@ -7,6 +7,8 @@ import lotto.model.LottoResult;
 import lotto.model.PrizeNumber;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -30,7 +32,7 @@ public class LottoService {
     }
 
     public int calculPayment(int payment) {
-        return payment / LottoValue.AMOUNT_UNIT;
+        return payment / LottoValue.PRICE_UNIT.getValue();
     }
 
     //구입한 금액에 맞게 로또 구입과 로또 번호 생성
@@ -41,8 +43,8 @@ public class LottoService {
     }
 
     public Lotto createLotto() {
-        List<Integer> randoms = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        randoms.sort(null);
+        List<Integer> randoms = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(randoms);
         return new Lotto(randoms);
     }
 
@@ -80,19 +82,19 @@ public class LottoService {
     public void matchRankAndUpdateRankSize(List<Integer> intersection, List<Integer> lottoNumbers) {
         int sameSize = intersection.size();
         if (sameSize == 6) {
-            lottoResult.updateLottoRankSize(LottoValue.RANK_FIRST);
+            lottoResult.updateLottoRankSize(1);
         }
         if (sameSize == 5 && matchBonusNumber(lottoNumbers)) {
-            lottoResult.updateLottoRankSize(LottoValue.RANK_SECOND);
+            lottoResult.updateLottoRankSize(2);
         }
         if (sameSize == 5 && !matchBonusNumber(lottoNumbers)) {
-            lottoResult.updateLottoRankSize(LottoValue.RANK_THRID);
+            lottoResult.updateLottoRankSize(3);
         }
         if (sameSize == 4) {
-            lottoResult.updateLottoRankSize(LottoValue.RANK_FOURTH);
+            lottoResult.updateLottoRankSize(4);
         }
         if (sameSize == 3) {
-            lottoResult.updateLottoRankSize(LottoValue.RANK_FIFTH);
+            lottoResult.updateLottoRankSize(5);
         }
     }
 

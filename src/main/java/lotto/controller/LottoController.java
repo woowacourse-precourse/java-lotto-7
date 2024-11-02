@@ -1,40 +1,36 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.service.LottoService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.Input;
+import lotto.view.Output;
 
 import java.util.List;
 
 public class LottoController {
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final Input input;
+    private final Output output;
     private final LottoService lottoService;
 
     public LottoController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+        this.input = new Input();
+        this.output = new Output();
         this.lottoService = new LottoService();
     }
 
     public void start() {
         //지불할 금액 입력
-        outputView.printNoticeToPayMent();
-        int payment = inputView.payAmount();
+        int payment = input.payment();
         int countLotto = lottoService.calculPayment(payment);
-        outputView.printNoticeCountBuy(countLotto);
 
         //로또 수 만큼 구입
+        output.printCountLotto(countLotto);
         lottoService.buyLotto(countLotto);
-        outputView.printLottoList(lottoService.getLottos());
+        output.printLottoList(lottoService.getLottos());
 
         //당첨 번호와 보너스 번호 입력
-        outputView.printNoticePrizeNumber();
-        List<Integer> prizeNumbers = inputView.prizeNumbers();
-        outputView.printNoticeBonusNumber();
-        int bonusNumber = inputView.bonusNumber();
+        List<Integer> prizeNumbers = input.prizeNumbers();
+        int bonusNumber = input.bonusNumber(prizeNumbers);
 
         //당첨 번호와 보너스 번호 객체 생성 및 저장
         lottoService.updateWinningNumber(prizeNumbers, bonusNumber);
@@ -43,6 +39,6 @@ public class LottoController {
         //당첨 통계 출력
         LottoResult lottoResult = lottoService.getLottoResult();
         double rate = lottoService.calculRate(payment);
-        outputView.printLottoResult(lottoResult.getLottoSameSize(),rate);
+        output.printLottoResult(lottoResult.getLottoSameSize(), rate);
     }
 }

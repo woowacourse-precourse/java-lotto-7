@@ -29,11 +29,11 @@ public class LottoResult {
     public int calculPrizeMoney() {
         int sum = 0;
 
-        sum += lottoSameSize.get(0) * LottoValue.RANK_FIRST_MONEY;
-        sum += lottoSameSize.get(1) * LottoValue.RANK_SECOND_MONEY;
-        sum += lottoSameSize.get(2) * LottoValue.RANK_THRID_MONEY;
-        sum += lottoSameSize.get(3) * LottoValue.RANK_FOURTH_MONEY;
-        sum += lottoSameSize.get(4) * LottoValue.RANK_FIFTH_MONEY;
+        sum += lottoSameSize.get(0) * LottoValue.RANK_FIRST_PRIZE.getValue();
+        sum += lottoSameSize.get(1) * LottoValue.RANK_SECOND_PRIZE.getValue();
+        sum += lottoSameSize.get(2) * LottoValue.RANK_THRID_PRIZE.getValue();
+        sum += lottoSameSize.get(3) * LottoValue.RANK_FOURTH_PRIZE.getValue();
+        sum += lottoSameSize.get(4) * LottoValue.RANK_FIFTH_PRIZE.getValue();
 
         return sum;
     }
