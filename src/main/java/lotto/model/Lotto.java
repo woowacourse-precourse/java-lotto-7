@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.validator.LottoValidator;
+
 import java.util.List;
 
 public class Lotto {  //개수, 범위, 중복 유효성 검사
