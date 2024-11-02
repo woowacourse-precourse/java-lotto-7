@@ -2,11 +2,17 @@ package lotto.core.service;
 
 import lotto.core.dto.LottoPurchaseAmountDto;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CreateLottoPurchaseAmountServiceTest {
 
-    private final CreateLottoPurchaseAmountService service = new CreateLottoPurchaseAmountService();
+    private CreateLottoPurchaseAmountService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new CreateLottoPurchaseAmountService();
+    }
 
     @Test
     void create_should_be_pass() {

@@ -3,11 +3,17 @@ package lotto.core.service;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PublishLottoServiceTest {
 
-    private final PublishLottoTicketService service = new PublishLottoTicketService();
+    private PublishLottoTicketService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new PublishLottoTicketService();
+    }
 
     @Test
     void publish_should_be_pass() {
