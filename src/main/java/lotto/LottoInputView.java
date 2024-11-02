@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoInputView
@@ -22,11 +24,18 @@ public class LottoInputView
     }
 
     public static List<Integer> lottoWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String numbers = Console.readLine().trim();
-        List<Integer> finalwinningNumbers = tempWinningNumbers(numbers);
 
-        return finalwinningNumbers;
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String numbers = Console.readLine().trim();
+            List<Integer> finalwinningNumbers = tempWinningNumbers(numbers);
+            validateWinningLotto(finalwinningNumbers);
+            return finalwinningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return lottoWinningNumbers();
+        }
+
     }
 
     public static List<Integer> tempWinningNumbers(String numbers) {
@@ -56,6 +65,23 @@ public class LottoInputView
     private static void validatePurchaseLotto(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해주세요.");
+        }
+    }
+
+    private static void validateWinningLotto(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호를 6개 입력해야 합니다.");
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException("당첨 번호에는 중복된 값이 없어야 합니다.");
+        }
+        for (int number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }
