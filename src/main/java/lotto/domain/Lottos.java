@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -14,4 +15,12 @@ public class Lottos {
         return lottos.size();
     }
 
+    public List<Rank> draw(Draw draw) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Rank rank = draw.compare(lotto);
+            ranks.add(rank);
+        }
+        return ranks;
+    }
 }
