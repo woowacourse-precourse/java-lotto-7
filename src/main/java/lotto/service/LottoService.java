@@ -7,6 +7,9 @@ import lotto.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.domain.CalculationUnit.PERCENTAGE;
+import static lotto.domain.CalculationUnit.ROUND_UP_TO_TWO_DECIMAL_PLACES;
+
 public class LottoService {
     public LottoTicketsDto createLottoTickets(int money) {
         UserMoney userMoney = new UserMoney(money);
@@ -32,6 +35,7 @@ public class LottoService {
             prizeSum += rank.getPrize();
         }
 
-        return (prizeSum / userMoney) * CalculationUnit.PERCENTAGE.getUnit();
+        return (double) Math.round((prizeSum / userMoney) * PERCENTAGE.getUnit() * ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit())
+                / (ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit());
     }
 }
