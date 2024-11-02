@@ -19,7 +19,6 @@ public class LottoController {
 
     private final LottoService lottoService;
     private final OutputView outputView;
-    private final FilterConfig filterConfig = FilterConfig.getInstance();
 
     public LottoController(LottoService lottoService, OutputView outputView) {
         this.lottoService = lottoService;
@@ -41,7 +40,7 @@ public class LottoController {
         return executeWithRetry(() -> {
             outputView.printInputAmountNotice();
             String amountInput = Console.readLine();
-            filterConfig.getPositiveIntegerFilterChain().doFilter(amountInput);
+            FilterConfig.getInstance().getPositiveIntegerFilterChain().doFilter(amountInput);
             int amount = Integer.parseInt(amountInput);
             return lottoService.purchaseTickets(amount);
         });
@@ -51,7 +50,7 @@ public class LottoController {
         return executeWithRetry(() -> {
             outputView.printInputWinningLottoNotice();
             String winningLottoInput = Console.readLine();
-            filterConfig.getCommaSeparatedNumberFilterChain().doFilter(winningLottoInput);
+            FilterConfig.getInstance().getCommaSeparatedNumberFilterChain().doFilter(winningLottoInput);
             return Lotto.create(separateInputWinningLotto(winningLottoInput));
         });
     }
@@ -60,7 +59,7 @@ public class LottoController {
         return executeWithRetry(() -> {
             outputView.printInputBonusNumberNotice();
             String bonusNumberInput = Console.readLine();
-            filterConfig.getPositiveIntegerFilterChain().doFilter(bonusNumberInput);
+            FilterConfig.getInstance().getPositiveIntegerFilterChain().doFilter(bonusNumberInput);
             return lottoService.createWinningNumbers(
                     winningLottoWithoutBonusNumber,
                     Integer.parseInt(bonusNumberInput)
