@@ -1,6 +1,7 @@
 package view;
 
 import model.Money;
+import view.validator.InputValidatorFacade;
 
 public class InputView {
 
@@ -26,12 +27,18 @@ public class InputView {
     }
 
     public Money readPurchaseAmount() {
-        writer.printSout(ASK_PURCHASE_AMOUNT);
-        String input = reader.readInput();
-        return stringToMoney(input);
+        try {
+            writer.printSout(ASK_PURCHASE_AMOUNT);
+            String input = reader.readInput();
+            InputValidatorFacade.MoneyValidators(input);
+            return stringToMoney(input);
+        } catch (IllegalArgumentException e) {
+            writer.printErrorMessage(e.getMessage());
+            return readPurchaseAmount();
+        }
     }
 
-    private Money stringToMoney(String input) {
+    public Money stringToMoney(String input) {
         long purchaseAmount = Long.parseLong(input);
         return Money.from(purchaseAmount);
     }
