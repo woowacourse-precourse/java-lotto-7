@@ -37,8 +37,8 @@ class LottoTest {
     @Test
     void 로또_번호_맞은_개수() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.getCorrectCount(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
-        assertThat(lotto.getCorrectCount(new Lotto(List.of(1, 7, 8, 9, 10, 11)))).isEqualTo(1);
+        assertThat(lotto.winningCount(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
+        assertThat(lotto.winningCount(new Lotto(List.of(1, 7, 8, 9, 10, 11)))).isEqualTo(1);
     }
 
     @Test
@@ -63,7 +63,7 @@ class LottoTest {
 
     @Test
     void 정렬(){
-        assertThat(new Lotto(List.of(6,5,4,3,2,1)).getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(new Lotto(List.of(6,5,4,3,2,1)).numbersToString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
 }
