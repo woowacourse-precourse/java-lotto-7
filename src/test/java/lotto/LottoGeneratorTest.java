@@ -1,19 +1,17 @@
 package lotto;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class LottoGeneratorTest {
 
-    LottoGenerator lottoGenerator = new LottoGenerator();
+    @DisplayName("생성되는 로또의 번호 수가 " + LottoFormat.NUMBER_COUNT + "개가 아니면 예외가 발생한다.")
+    @Test
+    void createNumberTest() {
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        LottoGenerator lottoGenerator = new LottoGenerator(lottoNumberGenerator);
 
-    @ParameterizedTest
-    @ValueSource(longs = {
-            1000L,
-            8000L
-    })
-    void generateTest(long payment) {
-        Assertions.assertEquals(payment / 1000, lottoGenerator.generate(payment).size());
+        Assertions.assertEquals(LottoFormat.NUMBER_COUNT, lottoGenerator.createNumbers().size());
     }
 }
