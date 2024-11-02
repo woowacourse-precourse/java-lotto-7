@@ -99,7 +99,7 @@ lotto/
  │    └── Output.java                      # 결과 출력
  └── util/                              
       ├── Validator.java                   # 입력값 유효성 검사
-      ├── Constants.java                   # 상수값 정의 클래스
+      ├── Constants.java                   # 상수값 정의 (enum)
       └── ErrorMessage.java                # 에러 메시지 정의 (enum)
 ```
 
