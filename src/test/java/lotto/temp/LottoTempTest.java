@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -47,6 +48,19 @@ class LottoTempTest {
                 .containsExactly(1,2,3,4,5,6);
         assertThat(lottoTemp.createWinningNumbers("3,5,14,26,34,45"))
                 .containsExactly(3,5,14,26,34,45);
+    }
+
+
+    @Test
+    @DisplayName("구입한 로또와 당첨번호가 몇 개 일치하는지 확인하는 테스트")
+    void compareLottos(){
+        assertThat(lottoTemp.compareLottos(
+                List.of(new Lotto(List.of(1,2,3,4,5,6)),
+                        new Lotto(List.of(1,2,3,4,5,7)),
+                        new Lotto(List.of(1,2,3,4,7,8)),
+                        new Lotto(List.of(1,2,3,7,8,9)),
+                        new Lotto(List.of(1,2,7,8,9,10))),
+                List.of(1,2,3,4,5,6))).containsExactly(6,5,4,3,2);
     }
 
 }

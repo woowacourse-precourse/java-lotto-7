@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.util.CommonIo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -81,6 +82,20 @@ public class LottoTemp {
     public void printStaticsFormat(){
         io.printMessage("당첨 통계");
         io.printMessage("---");
+    }
+
+    // TODO : 일치 숫자 계산과 결과를 리스트로 만드는 기능의 분리 필요
+    public List<Integer> compareLottos(List<Lotto> lottos, List<Integer> winningNumbers) {
+        List<Integer> matches = new ArrayList<>();
+
+        lottos.forEach(lotto -> {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+            matches.add(matchCount);
+        });
+
+        return matches;
     }
 
     public void printProfit(int profit) {
