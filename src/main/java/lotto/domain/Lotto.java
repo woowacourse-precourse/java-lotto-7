@@ -6,7 +6,9 @@ import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
+
+    public Lotto(){}
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,5 +27,9 @@ public class Lotto {
             if(number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
