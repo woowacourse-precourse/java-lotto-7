@@ -48,4 +48,27 @@ public class LottoServiceTest {
         assertThat(matchCounts.get(3)).isEqualTo(1);
         assertThat(matchCounts.get(-5)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("총 수익률을 계산한다.")
+    void 수익률_계산_테스트() {
+        // given
+        String winningNumbers = "1, 2, 3, 4, 5, 6";
+        String bonusNumber = "27";
+
+        List<Lotto> lottos = Arrays.asList(
+                new Lotto(Arrays.asList(10, 20, 30, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 27)),
+                new Lotto(Arrays.asList(1, 2, 3, 9, 10, 11)),
+                new Lotto(Arrays.asList(3, 4, 5, 6, 7, 8))
+        );
+
+        // when
+        Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+        int purchaseAmount = 4000;
+        double calculatedYield = lottoService.calculateYield(matchCounts, purchaseAmount);
+
+        // then
+        assertThat(calculatedYield).isEqualTo(751500.0);
+    }
 }
