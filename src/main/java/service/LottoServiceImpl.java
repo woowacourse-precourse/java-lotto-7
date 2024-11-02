@@ -26,7 +26,10 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public BigInteger calculatePurchasableLottoCount(Money _money) {
-        return null;
+
+        BigInteger money = new BigInteger(_money.getMoney());
+
+        return money.divide(new BigInteger("1000"));
     }
 
     @Override
