@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.BonusController;
 import lotto.controller.LottoController;
 import lotto.controller.PaymentController;
 import lotto.controller.WinningController;
@@ -18,5 +19,7 @@ public class Application {
         lottoController.showLottoDetail(paymentController.getPayment());
 
         WinningController winningController = new WinningController(inputView, outputView);
+        BonusController bonusController = new BonusController(inputView, outputView,
+                winningController.getWinningGenerator().getWinning());
     }
 }
