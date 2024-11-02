@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Winning {
 
@@ -20,6 +20,28 @@ public class Winning {
 
     public int getCount(Rank rank) {
         return winningCount.get(rank);
+    }
+
+    public List<Rank> getAllRanks() {
+        EnumSet<Rank> rankWithoutLose = getRankWithoutLose();
+        return sortRanks(rankWithoutLose);
+    }
+
+    public long getPrizeOfRank(Rank rank) {
+        return (long) winningCount.get(rank) * rank.getPrize();
+    }
+
+    private EnumSet<Rank> getRankWithoutLose() {
+        EnumSet<Rank> rankWithoutLose = EnumSet.allOf(Rank.class);
+        rankWithoutLose.remove(Rank.RANK_LOSE);
+
+        return rankWithoutLose;
+    }
+
+    private List<Rank> sortRanks(EnumSet<Rank> ranks) {
+        return ranks.stream()
+                .sorted(Comparator.comparingInt(Rank::ordinal))
+                .collect(Collectors.toList());
     }
 
 }
