@@ -21,18 +21,18 @@ public class LottoOuputService {
         this.issueLottoMessageFormatter = new LottoIssueMessageFormatter();
     }
 
-    public void outputIssueLotto(LottoIssue lottoIssue) {
-        lottoView.println(OUTPUT_PURCHASE_COUNT, lottoIssue.getLottos().size());
+    public void outputLottoIssue(LottoIssue lottoIssue) {
+        lottoView.printLine(OUTPUT_LOTTO_PURCHASE_MONEY_COUNT, lottoIssue.getLottos().size());
         lottoView.output(issueLottoMessageFormatter, lottoIssue);
     }
 
-    public void outPutLottoRank(LottoMatch ranks) {
-        lottoView.println(OUTPUT_LOTTO_STATISTIC);
-        lottoView.print(OUTPUT_LOTTO_STATISTIC_DELIMITER);
+    public void outputLottoMatch(LottoMatch ranks) {
+        lottoView.printLine(OUTPUT_LOTTO_MATCH_MESSAGE);
+        lottoView.print(OUTPUT_LOTTO_MATCH_DELIMITER);
         lottoView.output(lottoRankMessageFormatter, ranks);
     }
 
-    public void outPutProfitPercent(double profitPercent) {
-        lottoView.print(OUTPUT_TOTAL_PROFIT, profitPercent);
+    public void outputProfitPercent(double profitPercent) {
+        lottoView.print(OUTPUT_LOTTO_TOTAL_PROFIT, profitPercent);
     }
 }

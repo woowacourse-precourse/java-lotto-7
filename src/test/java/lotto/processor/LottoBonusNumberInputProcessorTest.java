@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoBonusNumberProcessorTest {
+class LottoBonusNumberInputProcessorTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "0", "a", "46"})
     void 입력값_보너스_번호_예외(String input) {
-        assertThatThrownBy(() -> new LottoBonusNumberProcessor().process(input))
+        assertThatThrownBy(() -> new LottoBonusNumberInputProcessor().process(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,8 +24,8 @@ class LottoBonusNumberProcessorTest {
     @MethodSource("보너스_번호_입력")
     void 입력값_보너스_번호_처리_성공(String input, int expected) {
         //when
-        LottoBonusNumberProcessor lottoBonusNumberProcessor = new LottoBonusNumberProcessor();
-        LottoBonusNumber lottoBonusNumber = lottoBonusNumberProcessor.process(input);
+        InputProcessor<LottoBonusNumber> lottoBonusNumberInputProcessor = new LottoBonusNumberInputProcessor();
+        LottoBonusNumber lottoBonusNumber = lottoBonusNumberInputProcessor.process(input);
 
         //then
         assertThat(lottoBonusNumber.getNumber()).isEqualTo(expected);

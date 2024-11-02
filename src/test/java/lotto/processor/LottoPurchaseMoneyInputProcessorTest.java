@@ -24,7 +24,7 @@ class LottoPurchaseMoneyInputProcessorTest {
     @MethodSource("구매_금액_입력")
     void 입력값_구매_금액_처리_성공(String input, long expectedMoney, long expectedCount) {
         //when
-        LottoPurchaseMoneyInputProcessor lottoPurchaseMoneyInputProcessor = new LottoPurchaseMoneyInputProcessor();
+        InputProcessor<LottoPurchaseMoney> lottoPurchaseMoneyInputProcessor = new LottoPurchaseMoneyInputProcessor();
         LottoPurchaseMoney lottoPurchaseMoney = lottoPurchaseMoneyInputProcessor.process(input);
 
         //then

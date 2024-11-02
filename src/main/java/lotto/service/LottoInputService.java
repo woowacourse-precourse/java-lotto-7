@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoBonusNumber;
 import lotto.domain.LottoPurchaseMoney;
 import lotto.processor.InputProcessor;
-import lotto.processor.LottoBonusNumberProcessor;
+import lotto.processor.LottoBonusNumberInputProcessor;
 import lotto.processor.LottoInputProcessor;
 import lotto.processor.LottoPurchaseMoneyInputProcessor;
 import lotto.view.LottoView;
@@ -21,22 +21,22 @@ public class LottoInputService {
     public LottoInputService(LottoView lottoView) {
         this.lottoView = lottoView;
         this.lottoInputProcessor = new LottoInputProcessor();
-        this.lottoBonusNumberInputProcessor = new LottoBonusNumberProcessor();
+        this.lottoBonusNumberInputProcessor = new LottoBonusNumberInputProcessor();
         this.lottoPurchaseMoneyInputProcessor = new LottoPurchaseMoneyInputProcessor();
     }
 
     public LottoPurchaseMoney inputLottoPurchaseMoney() {
-        lottoView.print(INPUT_PURCHASE_MONEY);
+        lottoView.print(INPUT_LOTTO_PURCHASE_MONEY);
         return lottoView.input(lottoPurchaseMoneyInputProcessor);
     }
 
-    public Lotto inputJackPotLotto() {
-        lottoView.println(INPUT_JACKPOT_LOTTO);
+    public Lotto inputLottoJackPot() {
+        lottoView.printLine(INPUT_LOTTO_JACKPOT);
         return lottoView.input(lottoInputProcessor);
     }
 
     public LottoBonusNumber inputLottoBonusNumber() {
-        lottoView.println(INPUT_BONUS_NUMBER);
+        lottoView.printLine(INPUT_LOTTO_BONUS_NUMBER);
         return lottoView.input(lottoBonusNumberInputProcessor);
     }
 }

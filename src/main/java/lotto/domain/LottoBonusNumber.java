@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.LottoNumberRange.excludeRange;
-import static lotto.message.ErrorMessage.EXCLUDE_BONUS_RANGE;
+import static lotto.message.ErrorMessage.ERROR_LOTTO_BONUS_NUMBER_RANGE;
 
 public class LottoBonusNumber {
 
@@ -18,7 +18,7 @@ public class LottoBonusNumber {
 
     private void validate(int number) {
         if (excludeRange(number)) {
-            throw new IllegalArgumentException(EXCLUDE_BONUS_RANGE.message());
+            throw new IllegalArgumentException(ERROR_LOTTO_BONUS_NUMBER_RANGE.message());
         }
     }
 }

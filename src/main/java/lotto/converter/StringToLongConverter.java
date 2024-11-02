@@ -1,15 +1,15 @@
 package lotto.converter;
 
-import static lotto.message.ErrorMessage.CONVERT_STRING_TO_NUMBER;
+import static lotto.message.ErrorMessage.ERROR_CONVERT_STRING_TO_NUMBER;
 
 public class StringToLongConverter implements TypeConverter<String, Long> {
 
     @Override
-    public Long convert(String target) {
+    public Long convert(String value) {
         try {
-            return Long.valueOf(target);
+            return Long.valueOf(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(CONVERT_STRING_TO_NUMBER.message());
+            throw new IllegalArgumentException(ERROR_CONVERT_STRING_TO_NUMBER.message());
         }
     }
 }

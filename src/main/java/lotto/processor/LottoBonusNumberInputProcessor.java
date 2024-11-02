@@ -4,11 +4,11 @@ import lotto.converter.StringToIntegerConverter;
 import lotto.converter.TypeConverter;
 import lotto.domain.LottoBonusNumber;
 
-public class LottoBonusNumberProcessor implements InputProcessor<LottoBonusNumber> {
+public class LottoBonusNumberInputProcessor implements InputProcessor<LottoBonusNumber> {
 
     private final TypeConverter<String, Integer> converter;
 
-    public LottoBonusNumberProcessor() {
+    public LottoBonusNumberInputProcessor() {
         this.converter = new StringToIntegerConverter();
     }
 

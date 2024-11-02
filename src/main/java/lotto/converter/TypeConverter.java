@@ -2,5 +2,5 @@ package lotto.converter;
 
 public interface TypeConverter<T, R> {
 
-    R convert(T target);
+    R convert(T value);
 }

@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import static lotto.message.ErrorMessage.INVALID_MIN_PURCHASE_MONEY;
-import static lotto.message.ErrorMessage.INVALID_UNIT_PURCHASE_MONEY;
+import static lotto.message.ErrorMessage.ERROR_LOTTO_PURCHASE_MONEY_POSITIVE;
+import static lotto.message.ErrorMessage.ERROR_LOTTO_PURCHASE_MONEY_UNIT;
 
 public class LottoPurchaseMoney {
 
     private static final int LOTTO_MONEY_UNIT = 1000;
-    private static final int MIN_LOTTO_PURCHASE_MONEY = 0;
 
     private final long money;
     private final long count;
@@ -26,19 +25,19 @@ public class LottoPurchaseMoney {
     }
 
     private void validate(long money) {
-        validateMinMoney(money);
-        validateUnitMoney(money);
+        validatePostive(money);
+        validateUnit(money);
     }
 
-    private void validateUnitMoney(long money) {
-        if (money % LOTTO_MONEY_UNIT != 0) {
-            throw new IllegalArgumentException(INVALID_UNIT_PURCHASE_MONEY.message());
+    private void validatePostive(long money) {
+        if (money <= 0) {
+            throw new IllegalArgumentException(ERROR_LOTTO_PURCHASE_MONEY_POSITIVE.message());
         }
     }
 
-    private void validateMinMoney(long money) {
-        if (money <= MIN_LOTTO_PURCHASE_MONEY) {
-            throw new IllegalArgumentException(INVALID_MIN_PURCHASE_MONEY.message());
+    private void validateUnit(long money) {
+        if (money % LOTTO_MONEY_UNIT != 0) {
+            throw new IllegalArgumentException(ERROR_LOTTO_PURCHASE_MONEY_UNIT.message());
         }
     }
 }

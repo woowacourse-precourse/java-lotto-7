@@ -5,7 +5,7 @@ import lotto.format.MessageFormatter;
 import lotto.message.Message;
 import lotto.processor.InputProcessor;
 
-import static lotto.message.SymbolMessage.NEW_LINE;
+import static lotto.message.SymbolMessage.SYMBOL_NEW_LINE;
 
 public class LottoView {
 
@@ -22,12 +22,12 @@ public class LottoView {
         print(formatter.format(target));
     }
 
-    public void println(Message message, Object... args) {
-        print(NEW_LINE.message() + message.format(args));
+    public void printLine(Message message, Object... args) {
+        print(SYMBOL_NEW_LINE.message() + message.format(args));
     }
 
-    public void println(Message message) {
-        print(NEW_LINE.message() + message.message());
+    public void printLine(Message message) {
+        print(SYMBOL_NEW_LINE.message() + message.message());
     }
 
     public void print(Message message, Object... args) {

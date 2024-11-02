@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.message.ErrorMessage.EQUALS_LOTTO_BONUS;
+import static lotto.message.ErrorMessage.ERROR_LOTTO_AND_BONUS_NUMBER_DUPLICATE;
 
 public class LottoJackpot {
 
@@ -8,7 +8,7 @@ public class LottoJackpot {
     private final LottoBonusNumber bonusNumber;
 
     public LottoJackpot(Lotto lotto, LottoBonusNumber bonusNumber) {
-        validate(lotto, bonusNumber);
+        validateDuplicate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
@@ -21,9 +21,9 @@ public class LottoJackpot {
         return bonusNumber;
     }
 
-    private void validate(Lotto lotto, LottoBonusNumber bonusNumber) {
+    private void validateDuplicate(Lotto lotto, LottoBonusNumber bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(EQUALS_LOTTO_BONUS.message());
+            throw new IllegalArgumentException(ERROR_LOTTO_AND_BONUS_NUMBER_DUPLICATE.message());
         }
     }
 }

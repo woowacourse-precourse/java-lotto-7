@@ -25,7 +25,7 @@ class LottoInputProcessorTest {
     @MethodSource("로또_번호_입력")
     void 입력값_로또_번호_처리_성공(String input, List<Integer> expected) {
         //when
-        LottoInputProcessor lottoInputProcessor = new LottoInputProcessor();
+        InputProcessor<Lotto> lottoInputProcessor = new LottoInputProcessor();
         Lotto lotto = lottoInputProcessor.process(input);
 
         //then

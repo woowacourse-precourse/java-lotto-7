@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.service.*;
 import lotto.strategy.AutoIssueStrategy;
+import lotto.strategy.IssueStrategy;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -18,7 +19,7 @@ public class LottoController {
         this.lottoInputService = new LottoInputService(lottoView);
         this.lottoOuputService = new LottoOuputService(lottoView);
 
-        AutoIssueStrategy autoIssueStrategy = new AutoIssueStrategy();
+        IssueStrategy autoIssueStrategy = new AutoIssueStrategy();
         this.lottoIssueService = new LottoIssueService(autoIssueStrategy);
 
         this.lottoMatchService = new LottoMatchService();
@@ -29,16 +30,16 @@ public class LottoController {
         LottoPurchaseMoney lottoPurchaseMoney = lottoInputService.inputLottoPurchaseMoney();
 
         LottoIssue lottoIssue = lottoIssueService.issue(lottoPurchaseMoney.getCount());
-        lottoOuputService.outputIssueLotto(lottoIssue);
+        lottoOuputService.outputLottoIssue(lottoIssue);
 
-        Lotto lotto = lottoInputService.inputJackPotLotto();
+        Lotto lotto = lottoInputService.inputLottoJackPot();
         LottoBonusNumber lottoBonusNumber = lottoInputService.inputLottoBonusNumber();
         LottoJackpot lottoJackpot = new LottoJackpot(lotto, lottoBonusNumber);
 
         LottoMatch lottoMatch = lottoMatchService.match(lottoIssue, lottoJackpot);
-        lottoOuputService.outPutLottoRank(lottoMatch);
+        lottoOuputService.outputLottoMatch(lottoMatch);
 
         double profitPercent = lottoProfitService.calculateProfitPercent(lottoMatch, lottoPurchaseMoney);
-        lottoOuputService.outPutProfitPercent(profitPercent);
+        lottoOuputService.outputProfitPercent(profitPercent);
     }
 }

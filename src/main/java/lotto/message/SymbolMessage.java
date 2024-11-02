@@ -2,8 +2,8 @@ package lotto.message;
 
 public enum SymbolMessage implements Message {
 
-    BASIC_DELIMITER(", "),
-    NEW_LINE("\n")
+    SYMBOL_BASIC_DELIMITER(", "),
+    SYMBOL_NEW_LINE("\n")
     ;
 
     private final String message;

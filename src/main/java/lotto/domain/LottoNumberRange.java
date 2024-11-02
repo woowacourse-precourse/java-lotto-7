@@ -16,6 +16,6 @@ public enum LottoNumberRange {
     }
 
     public static boolean excludeRange(int number) {
-        return MIN.getValue() > number || number > MAX.getValue();
+        return number < MIN.getValue() || number > MAX.getValue();
     }
 }
