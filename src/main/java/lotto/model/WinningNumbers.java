@@ -2,6 +2,8 @@ package lotto.model;
 
 import lotto.enums.ExceptionMessage;
 
+import java.util.List;
+
 public class WinningNumbers {
     private final Lotto winningNumbers;
     private int bonusNumber;
@@ -21,8 +23,8 @@ public class WinningNumbers {
         }
     }
 
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
     }
 
     public int getBonusNumber() {
