@@ -40,7 +40,7 @@ public class LottoController {
     }
 
     private User initUser() {
-        User user = Task.reTryTaskUntilSuccessful(() -> userService.init(inputView.inputPurchaseAmount()));
+        User user = Task.reTryTaskUntilSuccessful(() -> new User(inputView.inputPurchaseAmount()));
         userService.issueLotto(user);
         outputView.outputPurchaseLottoAmount(user.getLottos());
         return user;
@@ -49,6 +49,6 @@ public class LottoController {
     private LottoMachine initLottoMachine() {
         List<Integer> winningNumbers = Task.reTryTaskUntilSuccessful(() -> inputView.inputWinningNumbers());
         int bonusNumber = Task.reTryTaskUntilSuccessful(() -> inputView.inputBonusNumber());
-        return lottoMachineService.initLottoMachine(winningNumbers, bonusNumber);
+        return new LottoMachine(winningNumbers, bonusNumber);
     }
 }

@@ -16,10 +16,6 @@ public class UserService {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public User init(int amount) {
-        return new User(amount);
-    }
-
     public void issueLotto(User user) {
         int purchaseCount = user.getPurchaseCount();
         List<Lotto> lottos = new ArrayList<>();
