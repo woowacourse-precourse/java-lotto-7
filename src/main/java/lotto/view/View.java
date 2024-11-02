@@ -15,9 +15,9 @@ public class View {
     }
 
     private static void validatePurchaseAmount(String inputValue) {
-        validateNumeric(inputValue);
         validateEmpty(inputValue);
-        validateNegative(inputValue);
+        validateNumeric(inputValue);
+
     }
 
     private static void validateEmpty(String inputValue) {
@@ -26,18 +26,23 @@ public class View {
         }
     }
 
+
     private static void validateNumeric(String inputValue) {
         try {
-            Long.parseLong(inputValue);
+            long amount = Long.parseLong(inputValue);
+            validateNegative(amount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자 형식이 아닙니다.");
         }
     }
 
-    private static void validateNegative(String inputValue) {
-        if (Long.parseLong(inputValue) < 0) {
+    private static void validateNegative(long amount) {
+        if (amount < 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 음수가 될 수 없습니다.");
         }
     }
+
+
+
 
 }
