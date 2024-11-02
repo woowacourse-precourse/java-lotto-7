@@ -3,16 +3,15 @@ package lotto;
 import lotto.store.Lotto;
 import lotto.store.LottoNumber;
 
-import java.util.List;
-
-public class WinningNumbers extends Lotto {
+public class WinningNumbers {
+    private final Lotto winningLotto;
     private final LottoNumber bonus;
 
-    public WinningNumbers(List<LottoNumber> winningNumber, LottoNumber bonus) {
-        super(winningNumber);
-        if(winningNumber.contains(bonus))
+    public WinningNumbers(Lotto winningLotto, LottoNumber bonus) {
+        if(winningLotto.contains(bonus))
             throw new IllegalArgumentException("당첨 번호에 bonus 번호가 이미 존재합니다.");
 
+        this.winningLotto = winningLotto;
         this.bonus = bonus;
     }
 }
