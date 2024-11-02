@@ -17,4 +17,12 @@ class LottoShopTest {
                 .hasMessage("로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {-1000, 0, 999})
+    void 로또구입_금액이_천원미만이면_예외발생(int money) {
+        assertThatThrownBy(() -> lottoShop.buyLotto(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("최소 구입 금액은 1,000원 입니다.");
+    }
+
 }
