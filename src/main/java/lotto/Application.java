@@ -46,6 +46,11 @@ public class Application {
                 .filter(x -> !x.isEmpty())
                 .toList();
 
+        if (inputs.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호는 6개 입니다.");
+        }
+
+
 
     }
 }
