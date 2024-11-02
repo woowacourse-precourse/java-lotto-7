@@ -75,5 +75,10 @@ Lotto라는 것의 Component. 즉, 로또의 구성을 Inteface화 하여 확장
 
 TO DO 
 - [ ] 기능 명세서 작성하기
-- [ ] 회고 작성하기
+- [x] 회고 작성하기
 - [ ] 테스트 코드 다 쓰기
+
+
+CSV source value source???<< 테스트에 사용해보자
+
+소수 구분자는 애초에 Delimiter 이외의 문자열에서 걸러짐.
