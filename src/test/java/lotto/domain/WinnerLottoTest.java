@@ -93,8 +93,8 @@ class WinnerLottoTest {
     }, delimiter = ':')
     void test9(String winnerNums, String bonusNum) {
         WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
-        LottoNum lottoNum = new LottoNum(bonusNum);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            LottoNum lottoNum = new LottoNum(bonusNum);
             winnerLotto.addBonusNum(lottoNum);
         });
 
