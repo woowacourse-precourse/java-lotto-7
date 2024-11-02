@@ -20,9 +20,9 @@
     - Exception이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 ## 🎯 구현 기능 목록
-- [ ] 테스트 코드 작성
+- [x] 테스트 코드 작성
 - [ ] 입력
-    - [ ] 구입금액 입력
+    - [x] 구입금액 입력
     - [ ] 당첨 번호 입력
     - [ ] 추가 번호 입력
 - [ ] 출력
