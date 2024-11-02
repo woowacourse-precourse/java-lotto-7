@@ -5,8 +5,8 @@ import lotto.domain.Lotto;
 
 public class OutputView {
 
-    public void showTicket(int amount) {
-        System.out.print(amount + "개를 구매했습니다.\n");
+    public void showTicket(int ticket) {
+        System.out.print(ticket + "개를 구매했습니다.\n");
     }
 
     public void showLottos(List<Lotto> lottos) {
