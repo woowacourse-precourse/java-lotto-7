@@ -8,17 +8,17 @@ import lotto.enums.LottoRank;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> rankCount;
-    private final LottoProfit lottoProfit;
+    private final double lottoProfitRate;
 
-    private LottoResult(List<LottoRank> lottoRanks, LottoProfit lottoProfit) {
+    private LottoResult(List<LottoRank> lottoRanks, double lottoProfitRate) {
         this.rankCount = new HashMap<>();
-        this.lottoProfit = lottoProfit;
+        this.lottoProfitRate=lottoProfitRate;
         initRankCount();
         makeRankCount(lottoRanks);
     }
 
-    public static LottoResult ofRanksAndProfit(List<LottoRank> lottoRanks, LottoProfit lottoProfit) {
-        return new LottoResult(lottoRanks, lottoProfit);
+    public static LottoResult ofRanksAndProfitRate(List<LottoRank> lottoRanks, double lottoProfitRate) {
+        return new LottoResult(lottoRanks, lottoProfitRate);
     }
 
     private void initRankCount() {
@@ -35,8 +35,8 @@ public class LottoResult {
         return rankCount;
     }
 
-    public LottoProfit getLottoProfit() {
-        return lottoProfit;
+    public double getLottoProfitRate() {
+        return lottoProfitRate;
     }
 
 }

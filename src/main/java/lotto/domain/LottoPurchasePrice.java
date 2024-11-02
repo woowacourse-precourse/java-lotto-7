@@ -4,6 +4,7 @@ import lotto.enums.LottoConfig;
 import lotto.enums.LottoError;
 
 public class LottoPurchasePrice {
+    private static final int PERCENTAGE = 100;
     private final int purchasePrice;
     private final int lottoCount;
 
@@ -45,8 +46,8 @@ public class LottoPurchasePrice {
         return lottoCount;
     }
 
-    public LottoProfit calculateProfit(double totalPrizeMoney){
-        return LottoProfit.ofProfitAndPurchasePrice(totalPrizeMoney, purchasePrice);
+    public double calculateProfit(double totalPrizeMoney) {
+        return (totalPrizeMoney / purchasePrice) * PERCENTAGE;
     }
 
 }

@@ -19,8 +19,8 @@ public class LottoBundle {
         return new LottoBundle(lottos, lottoPurchasePrice);
     }
 
-    private void validateLottoCount(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice){
-        if(lottos.size() != lottoPurchasePrice.getLottoCount()){
+    private void validateLottoCount(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice) {
+        if (lottos.size() != lottoPurchasePrice.getLottoCount()) {
             throw new IllegalArgumentException(LottoError.LOTTO_BUNDLE_LOTTOS_COUNT_INVALID.getMessage());
         }
     }
@@ -32,9 +32,9 @@ public class LottoBundle {
     public LottoResult makeLottoResult(WinningLotto winningLotto, BonusNumber bonusNumber) {
         List<LottoRank> lottoRanks = checkLottoRank(winningLotto, bonusNumber);
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
-        LottoProfit lottoProfit = lottoPurchasePrice.calculateProfit(totalPrizeMoney);
+        double lottoProfitRate = lottoPurchasePrice.calculateProfit(totalPrizeMoney);
 
-        return LottoResult.ofRanksAndProfit(lottoRanks, lottoProfit);
+        return LottoResult.ofRanksAndProfitRate(lottoRanks, lottoProfitRate);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {
