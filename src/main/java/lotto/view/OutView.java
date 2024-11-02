@@ -6,6 +6,7 @@ import lotto.common.WinMoneyMessage;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.Winstatus;
+import lotto.model.util.Mapping;
 
 public class OutView {
 
@@ -36,7 +37,7 @@ public class OutView {
         for (String key : numRightMessages) {
             System.out.println(
                     toStringWinstatus(key,
-                            Winstatus.mappingKeyToMoneyString(key),
+                            Mapping.mappingKeyToMoneyString(key),
                             status.getOrDefault(key,0) ) );
         }
 

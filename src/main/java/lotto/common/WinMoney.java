@@ -1,25 +1,19 @@
 package lotto.common;
 
 public enum WinMoney {
-    THREERIGHT("5,000원"),
-    FOURGRIGHT("50,000원"),
-    FIVERIGHT("1,500,000원"),
-    FIVEWRIGHTANDBONUS("30,000,000원"),
-    SIXRIGHT("2,000,000,000원"),
-    THREECOUNTKEY("3개"),
-    FOURCOUNTKEY("4개"),
-    FIVECOUNTKEY("5개"),
-    FIVEANDBONUSKEY("5개, 보너스 볼"),
-    SIXCOUNTKEY("6개");
+    THREEMONEY(5000),
+    FOURMONEY(50000),
+    FIVEMONEY(1500000),
+    FIVEANDBONUSMONEY(30000000),
+    SIXMONEY(2000000000);
 
-    private final String winMoneyStr;
+    private final Integer winMoney;
 
-    WinMoney(String winMoneyStr) {
-        this.winMoneyStr = winMoneyStr;
+    private WinMoney(Integer winMoney) {
+        this.winMoney = winMoney;
     }
 
-    public String getWinMoneyStr() {
-        return winMoneyStr;
+    public Integer getWinMoney() {
+        return winMoney;
     }
-
 }
