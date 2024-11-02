@@ -36,9 +36,9 @@ public class Application {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
-        int BonusNumber = Integer.parseInt(inputBonusNumber);
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        calculateStatisticsLottoResult(lottos, winningNumbersInteger, BonusNumber);
+        calculateStatisticsLottoResult(lottos, winningNumbersInteger, bonusNumber);
 
     }
 
@@ -59,7 +59,25 @@ public class Application {
                 lottoResultCount.put(lottoResult, lottoResultCount.get(lottoResult) + 1);
             }
         }
+
+        printStatistics(lottoResultCount);
     }
+
+    public static void printStatistics(Map<LottoResult, Integer> lottoResultCount) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (LottoResult lottoResult : LottoResult.values()) {
+            if (lottoResult == LottoResult.FIVE_BONUS) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
+                        lottoResult.getMatchCount(), lottoResult.getPrizeMoney(),
+                        lottoResultCount.get(lottoResult));
+                continue;
+            }
+            System.out.printf("%d개 일치 (%,d원) - %d개%n", lottoResult.getMatchCount(), lottoResult.getPrizeMoney(),
+                    lottoResultCount.get(lottoResult));
+        }
+    }
+
 
     public static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
         int matchCount = 0;
