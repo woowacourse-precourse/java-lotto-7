@@ -12,8 +12,9 @@ public class LottoMachine {
     private static final int LOTTO_NUMBER_END = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public static List<Lotto> generateLotto(int budget) {
-        int numberOfLottos = budget / LOTTO_PRICE;
+    public static List<Lotto> generateLotto(int purchaseAmount) {
+        validate(purchaseAmount);
+        int numberOfLottos = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>(numberOfLottos);
 
         for (int i = 0; i < numberOfLottos; i++) {
@@ -24,6 +25,12 @@ public class LottoMachine {
             lottos.add(new Lotto(generatedNumbers));
         }
         return lottos;
+    }
+
+    private static void validate(int purchaseAmount) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천 원 단위여야 합니다.");
+        }
     }
 
     public static LottoResult match(WinningNumbers winningNumbers, List<Lotto> lottos) {

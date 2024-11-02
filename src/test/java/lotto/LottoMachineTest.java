@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -94,5 +95,12 @@ public class LottoMachineTest {
         List<LottoPrize> prize = result.prizes();
 
         assertThat(prize).isEmpty();
+    }
+
+    @DisplayName("로또 구입 금액이 천 원 단위가 아닌 경우 예외 발생")
+    @Test
+    void throwException_when_purchaseUnitIsNot1000Won() {
+        assertThatThrownBy(() -> LottoMachine.generateLotto(1001))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
