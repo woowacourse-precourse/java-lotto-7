@@ -8,6 +8,8 @@ import lotto.domain.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("LottoCreateService 테스트")
 public class LottoCreateServiceTest {
@@ -52,14 +54,11 @@ public class LottoCreateServiceTest {
         assertThat(lottos.getLottos()).hasSize(14);
     }
 
-    @Test
-    void 구입금액은_1000원으로_나누어_떨어져야_한다() {
-        //given
-        int money = 14001;
-
+    @ParameterizedTest
+    @ValueSource(ints = {14001,-1000})
+    void 구입금액은_양수이고_1000원으로_나누어_떨어져야_한다(int money) {
         //when & then
         assertThatThrownBy(() -> lottoCreateService.createLottosWithMoney(money))
             .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
