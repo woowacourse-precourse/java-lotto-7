@@ -25,7 +25,7 @@ public class LottoView {
                 .collect(Collectors.joining("\n"));
 
         System.out.println(lottoCount + "개를 구매했습니다.");
-        System.out.println(lottosInfo);
+        System.out.println(lottosInfo + "\n");
     }
 
     public static String inputFirstRankNumbers() {
@@ -38,7 +38,9 @@ public class LottoView {
 
     private static String inputWithMessage(String message) {
         System.out.println(message);
+        String input = Console.readLine();
 
-        return Console.readLine();
+        System.out.print("\n");
+        return input;
     }
 }

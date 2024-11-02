@@ -20,7 +20,7 @@ public class LottoStatisticsView {
     }
 
     public static void announcePercentOfReturn(double percentRateOfReturn) {
-        System.out.println("총 수익률은 " + Math.round(percentRateOfReturn * 100.0) / 100.0 + "%입니다.");
+        System.out.println("총 수익률은 " + Math.round(percentRateOfReturn * 100.0) / 100.0 + "%입니다." + "\n");
     }
 
     private static double rateToPercent(double rateOfReturn) {

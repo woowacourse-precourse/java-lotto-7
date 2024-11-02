@@ -8,6 +8,6 @@ public class ErrorView {
     }
 
     public static void announceError(Exception exception) {
-        System.out.println(ERROR_MESSAGE_PREFIX + exception.getMessage());
+        System.out.println(ERROR_MESSAGE_PREFIX + exception.getMessage() + "\n");
     }
 }
