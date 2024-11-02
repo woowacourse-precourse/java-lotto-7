@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResult.getRankCount(LottoRank.FIRST) + "개");
 
         double returnRate = LottoCalculator.calculateReturn(totalPrizeAmount, purchaseAmount);
-        System.out.println("총 수익률은 " + returnRate + "%입니다");
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 }
 
