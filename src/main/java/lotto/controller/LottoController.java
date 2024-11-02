@@ -21,7 +21,7 @@ public class LottoController {
         List<Lotto> lottos = lottoManager.getLottoTickets();
 
         List<String> formattedLottos = lottos.stream()
-            .map(lotto -> lotto.getNumbers().toString())
+            .map(lotto -> lotto.getNumbers().stream().sorted().toList().toString())
             .collect(Collectors.toList());
 
         OutputView.showBuyLottos(lottos.size(), formattedLottos);
