@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputValidator {
+public class InputValidator implements InputValidatorInterface{
 
-  public static int validatePurchaseAmount(String amount) {
+  public int validatePurchaseAmount(String amount) {
     int purchaseAmount;
     try {
       purchaseAmount = Integer.parseInt(amount);
@@ -20,7 +20,7 @@ public class InputValidator {
     return purchaseAmount;
   }
 
-  public static List<Integer> validateWinningNumbers(String winningNumbers) {
+  public List<Integer> validateWinningNumbers(String winningNumbers) {
     List<Integer> numbers = Arrays.stream(winningNumbers.split(","))
         .map(Integer::parseInt)
         .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public class InputValidator {
     return numbers;
   }
 
-  public static int validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+  public int validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
     int parsedBonusNumber;
     try {
       parsedBonusNumber = Integer.parseInt(bonusNumber);
