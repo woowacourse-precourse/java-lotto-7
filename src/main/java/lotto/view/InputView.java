@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.InputValidator;
-import lotto.validation.LottoNumberValidator;
 
 public class InputView {
 
@@ -14,7 +13,7 @@ public class InputView {
 
     public String inputWinningNumbers() {
         String input = inputWithValidation();
-        LottoNumberValidator.validateDelimitedByComma(input);
+        InputValidator.validateDelimitedByComma(input);
         return input;
     }
 
