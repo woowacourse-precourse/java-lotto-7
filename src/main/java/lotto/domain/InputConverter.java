@@ -44,8 +44,7 @@ public class InputConverter {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for(String number : numbers){
-            int value = Integer.parseInt(number);
-            validLottoNumber(value);
+            int value = validLottoNumber(number);
             winningNumbers.add(value);
         }
 
@@ -53,21 +52,21 @@ public class InputConverter {
     }
 
     public int bonusNumber(String input){
-        int bonusNumber;
-
-        try{
-            bonusNumber = Integer.parseInt(input);
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 올바른 형태의 보너스 번호를 입력해주세요.");
-        }
-
-        validLottoNumber(bonusNumber);
-
-        return bonusNumber;
+        return validLottoNumber(input);
     }
 
-    private void validLottoNumber(int input){
-        if(input < MINIMUM_LOTTO_NUMBER || input > MAXIMUM_LOTTO_NUMBER)
+    private int validLottoNumber(String input){
+        int number = 0;
+
+        try{
+            number = Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 입력값은 숫자만 가능합니다.");
+        }
+
+        if(number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER)
             throw new IllegalArgumentException("[Error] 로또 번호는 1에서 45 사이 숫자만 가능합니다.");
+
+        return number;
     }
 }
