@@ -13,7 +13,7 @@ public class LottoWinningChecker {
     public void setWinningNumbs(String inputWinningNumbs) {
         String[] winningNumbsStrs = inputWinningNumbs.split(",");
         for (String winningNumStr : winningNumbsStrs) {
-            int winningNum = Integer.parseInt(winningNumStr);
+            int winningNum = changeStringToNum(winningNumStr);
             winningNumbs.add(winningNum);
         }
     }
@@ -21,5 +21,16 @@ public class LottoWinningChecker {
     public HashSet<Integer> getWinningNumbs() {
         return winningNumbs;
     }
+
+    public int changeStringToNum(String inputString) {
+        int returnNum;
+        try {
+            returnNum = Integer.parseInt(inputString);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[Error] 숫자를 입력해주세요");
+        }
+        return returnNum;
+    }
+
 
 }

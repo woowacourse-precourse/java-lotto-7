@@ -22,6 +22,19 @@ class LottoWinningCheckerTest {
         //when
         //then
         Assertions.assertThat(lottoWinningChecker.getWinningNumbs()).contains(input);
+    }
 
+    @Test
+    public void 당첨번호에_숫자를_입력하지_않는_예외_테스트() throws Exception {
+        Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5,6a"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[Error] 숫자를 입력해주세요");
+    }
+
+    @Test
+    public void 당첨번호에_숫자를_입력하지_않는_예외_테스트2() throws Exception {
+        Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5, "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[Error] 숫자를 입력해주세요");
     }
 }
