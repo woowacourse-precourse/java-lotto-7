@@ -34,18 +34,18 @@ public class Lotto {
         System.out.println(sb);
     }
 
-    public int judgeWinning(List<Integer> numbers, List<Integer> winningNumber, int luckyNumber) {
+    public LottoPrizeMoney judgeWinning(List<Integer> numbers, List<Integer> winningNumber, int luckyNumber) {
         int correct = countCorrect(numbers, winningNumber);
         if (correct == 6) {
-            return LottoPrizeMoney.FIRST.getPrizeMoney();
+            return LottoPrizeMoney.FIRST;
         } else if (correct == 5) {
-            return numbers.contains(luckyNumber) ? LottoPrizeMoney.SECOND.getPrizeMoney(): LottoPrizeMoney.THIRD.getPrizeMoney();
+            return numbers.contains(luckyNumber) ? LottoPrizeMoney.SECOND: LottoPrizeMoney.THIRD;
         } else if (correct == 4) {
-            return LottoPrizeMoney.FOURTH.getPrizeMoney();
+            return LottoPrizeMoney.FOURTH;
         } else if (correct == 3) {
-            return LottoPrizeMoney.FIFTH.getPrizeMoney();
+            return LottoPrizeMoney.FIFTH;
         }
-        return LottoPrizeMoney.MISS.getPrizeMoney();
+        return LottoPrizeMoney.MISS;
     }
 
     private int countCorrect(List<Integer> numbers, List<Integer> winningNumber) {
@@ -56,6 +56,10 @@ public class Lotto {
             }
         }
         return correct;
+    }
+
+    public double calculateEarningRate(int purchaseAmount, int countFirst, int countSecond, int countThird, int countFourth, int countFifth){
+        return (double) (2000000000*countFirst + 30000000*countSecond + 1500000*countThird + 50000*countFourth + 5000*countFifth) / (purchaseAmount*10);
     }
 
 
