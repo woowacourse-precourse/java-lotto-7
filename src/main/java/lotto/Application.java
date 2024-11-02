@@ -7,10 +7,15 @@ public class Application {
 
         System.out.println("구입금액을 입력해 주세요.");
 
-        String account = Console.readLine();
+        String inputAccount = Console.readLine();
 
-        if (!account.matches("\\d+")) {
+        if (!inputAccount.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력하세요.");
+        }
+
+        int account = Integer.parseInt(inputAccount);
+        if (account >= 1_000 && account <= 100_000) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 최소 1000원부터 최대 10만원입니다.");
         }
 
     }
