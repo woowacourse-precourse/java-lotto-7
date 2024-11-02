@@ -2,9 +2,7 @@ package lotto.util;
 
 public class InputUtil {
 
-    @FunctionalInterface
-    public interface SupplierWithException<T> {
-        T get() throws IllegalArgumentException;
+    private InputUtil() {
     }
 
     public static <T> T retryIfNeeded(SupplierWithException<T> method) {
