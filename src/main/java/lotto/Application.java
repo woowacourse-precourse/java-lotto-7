@@ -15,7 +15,7 @@ public class Application {
 
     public static void readAmountToPurchase(){
         String input = Console.readLine();
-        amountToPurchase = Integer.parseInt(input);
+        amountToPurchase = (Integer.parseInt(input) / 1000) * 1000;
     }
 
 }
