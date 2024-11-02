@@ -54,7 +54,7 @@ public class LottoController {
             }
         }
 
-        if (matchCount == 5 && winnerLotto.contains(user.getBonus())) {
+        if (matchCount == 5 && lotto.getNumbers().contains(user.getBonus())) {
             matchCount = 55;
         }
 
