@@ -43,7 +43,7 @@ public enum Result {
         if (bonus) {
             return ", 보너스 볼 일치 ";
         }
-        return "";
+        return " ";
     }
 
 }
