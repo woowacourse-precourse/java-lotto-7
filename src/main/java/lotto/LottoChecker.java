@@ -18,6 +18,9 @@ public class LottoChecker {
         String inputWinningNumbers = Console.readLine();
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
+
+        convertToWinningNums(inputWinningNumbers);
+        convertToBonusNum(inputBonusNumber);
     }
 
     public void convertToWinningNums(String input) {
