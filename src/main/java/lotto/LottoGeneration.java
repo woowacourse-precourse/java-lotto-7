@@ -18,4 +18,8 @@ public class LottoGeneration {  // 번호 열거형
             return value;
         }
     }
+
+    public List<Integer> pickUniqueNumbers () {     // 1부터 45 중복되지 않는 숫자 뽑기
+        return Randoms.pickUniqueNumbersInRange(1, LottoOption.NUMBER_MAX.getValue(), LottoOption.NUMBER_COUNT.getValue());
+    }
 }
