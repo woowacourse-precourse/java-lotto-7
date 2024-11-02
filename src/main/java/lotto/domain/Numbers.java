@@ -10,6 +10,7 @@ public class Numbers {
 
     public Numbers(List<Number> values) {
         validateSize(values);
+        validateNotOverlapped(values);
 
         this.values = Set.copyOf(values);
     }
@@ -24,6 +25,13 @@ public class Numbers {
     private void validateSize(List<Number> values) {
         if (values.size() != COUNT_OF_NUMBER) {
             throw new IllegalArgumentException("숫자는 총 %d개 이어야 합니다".formatted(COUNT_OF_NUMBER));
+        }
+    }
+
+    private void validateNotOverlapped(List<Number> values) {
+        long distinctSize = values.stream().distinct().count();
+        if (distinctSize != values.size()) {
+            throw new IllegalArgumentException("숫자는 중복되지 않아야 합니다");
         }
     }
 }

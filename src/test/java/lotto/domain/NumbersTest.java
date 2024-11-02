@@ -33,4 +33,21 @@ class NumbersTest {
         assertThatCode(() -> Numbers.from(numbers))
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    void validateTest_whenNumberIsOverlapped_throwException() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> Numbers.from(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자는 중복되지 않아야 합니다");
+    }
+
+    @Test
+    void validateTest_whenNumberIsNotOverlapped() {
+        List<Integer> numbers = List.of(2, 3, 4, 5, 6, 7);
+
+        assertThatCode(() -> Numbers.from(numbers))
+                .doesNotThrowAnyException();
+    }
 }
