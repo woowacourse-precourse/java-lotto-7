@@ -78,4 +78,8 @@ public class LottoTemp {
         return io.receiveInput();
     }
 
+    public void printStaticsFormat(){
+        io.printMessage("당첨 통계");
+        io.printMessage("---");
+    }
 }
