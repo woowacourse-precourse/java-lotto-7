@@ -47,8 +47,9 @@ public class LottoMachine {
     }
 
     private List<Integer> sort(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortNumbers = new ArrayList<>(numbers); // 가변 리스트로 복사
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 
     public int getLottoTicketSize() {
