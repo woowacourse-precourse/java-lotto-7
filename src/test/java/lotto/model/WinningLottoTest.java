@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -29,9 +30,17 @@ public class WinningLottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "1,2,3", "1,2,3,4,5,abc", "1,1,2,3,4,5"})
     @DisplayName("WinningLotto 생성 시 예외 테스트")
-    void createWinningLotto_invalidInput(String input) {
+    void createWinningLottoExceptionTest(String input) {
         assertThatThrownBy(() -> WinningLotto.create(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"7", "45", "12"})
+    @DisplayName("보너스 번호 추가 테스트")
+    void addBonusNumberTest(String bonusNum) {
+        winningLotto.addBonusNumber(bonusNum);
+        assertThat(winningLotto.getBonusNum()).isEqualTo(Integer.parseInt(bonusNum));
     }
 
 }
