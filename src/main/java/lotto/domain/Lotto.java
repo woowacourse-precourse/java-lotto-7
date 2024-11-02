@@ -24,4 +24,15 @@ public class Lotto {
         List<Integer> sortedNumbers = numbers.stream().sorted().toList();
         return sortedNumbers.toString();
     }
+
+    public int getMatchCount(WinningNumber winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::isContain)
+                .count();
+    }
+
+    public boolean isMatchBonus(BonusNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::isEqual);
+    }
 }
