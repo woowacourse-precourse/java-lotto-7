@@ -23,5 +23,6 @@ public class Application {
         LottoBuyer lottoBuyer = lottoRetailer.sellAsMuchAs(purchaseAmount);
 
         List<Integer> winningLottoNumbers = lottoController.deliverNumbers();
+        LottoTicket winningLotto = lottoRetailer.createWinningLotto(winningLottoNumbers);
     }
 }

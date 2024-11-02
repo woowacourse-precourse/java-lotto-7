@@ -12,6 +12,10 @@ public class LottoSeller {
         this.lottoMachine = lottoMachine;
     }
 
+    public LottoTicket createLottoTicketFor(List<Integer> numbers) {
+        return new LottoTicket(lottoMachine.createLotto(numbers));
+    }
+
     public LottoTicket createLottoTicketFor(BigInteger amount) {
         int quantity = calculateQuantityWith(amount);
         List<Lotto> lottos = lottoMachine.createLottos(quantity);
