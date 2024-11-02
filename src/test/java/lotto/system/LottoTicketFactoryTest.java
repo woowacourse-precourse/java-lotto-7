@@ -19,7 +19,7 @@ class LottoTicketFactoryTest {
         int quantity = 5;
 
         // when
-        List<List<Integer>> lottoTickets = LottoTicketFactory.generateTickets(quantity);
+        List<List<Integer>> lottoTickets = LottoTicketFactory.generate(quantity);
 
         // then
         assertEquals(quantity, lottoTickets.size(), "생성된 로또 티켓의 수가 일치하지 않습니다.");
@@ -30,7 +30,7 @@ class LottoTicketFactoryTest {
     void generateLotto_createsUniqueNumbersWithinRange() {
 
         //when
-        List<Integer> lottoNumbers = LottoTicketFactory.generateSingleTicket();
+        List<Integer> lottoNumbers = LottoTicketFactory.generate(1).get(0);
 
         // then1 : 로또 번호의 개수가 6개인지 확인
         assertEquals(6, lottoNumbers.size(), "로또 번호의 개수가 6개가 아닙니다.");
