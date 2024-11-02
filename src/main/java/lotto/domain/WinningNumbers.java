@@ -12,6 +12,20 @@ public class WinningNumbers {
 
     public WinningNumbers(String inputNumbers) {
         List<String> numbersInString = parse(inputNumbers);
+        this.numbers = validateInteger(numbersInString);
+
+    }
+
+    private List<Integer> validateInteger(List<String> numbersInString) {
+        List<Integer> parsedNumbers = new ArrayList<>();
+        for (String number : numbersInString) {
+            try {
+                parsedNumbers.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException();
+            }
+        }
+        return parsedNumbers;
     }
 
     private List<String> parse(String inputNumbers) {
