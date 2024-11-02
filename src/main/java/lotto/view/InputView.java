@@ -5,14 +5,14 @@ import lotto.model.Money;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-    public static void printPurchaseAmount() {
+    public static void printInputPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
 
     public static Money inputPurchaseAmount() {
         while (true) {
             try {
-                printPurchaseAmount();
+                printInputPurchaseAmount();
                 long amount = Long.parseLong(readLine());
                 return new Money(amount);
             } catch (NumberFormatException e) {
