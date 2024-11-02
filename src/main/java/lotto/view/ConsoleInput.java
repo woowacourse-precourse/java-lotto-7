@@ -18,21 +18,15 @@ public class ConsoleInput {
     // public methods
 
     public String getPurchasedAmount() {
-        String input = readUserInput(PURCHASE_AMOUNT_HINT);
-        printNewLine();
-        return input;
+        return readUserInput(PURCHASE_AMOUNT_HINT);
     }
 
     public String getWinningNumbers() {
-        String input = readUserInput(WINNER_NUMBERS_HINT);
-        printNewLine();
-        return input;
+        return readUserInput(WINNER_NUMBERS_HINT);
     }
 
     public String getBonusNumber() {
-        String input = readUserInput(BONUS_NUMBER_HINT);
-        printNewLine();
-        return input;
+        return readUserInput(BONUS_NUMBER_HINT);
     }
 
     public void close() {
@@ -41,13 +35,11 @@ public class ConsoleInput {
 
     // private methods
 
-    private void printNewLine() {
-        System.out.println();
-    }
-
     private String readUserInput(String hint) {
-        System.out.println(hint);
-        return inputProvider.readLine();
+        ConsoleUtils.printMessageWithNewLine(hint);
+        String input = inputProvider.readLine();
+        ConsoleUtils.printNewLine();
+        return input;
     }
 
 }
