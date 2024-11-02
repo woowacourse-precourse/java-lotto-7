@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.constant.LottoConstants.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,13 @@ public class Lotto {
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateDuplicateLottoNumber(List<Integer> numbers) {
-        if (countUniqueNumbers(numbers) != 6) {
+        if (countDistinctUniqueNumbers(numbers) != NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
@@ -45,10 +47,10 @@ public class Lotto {
     }
 
     private boolean isLottoNumberRange(Integer number) {
-        return number >= 0 && number <= 45;
+        return number >= MIN_NUMBER && number <= MAX_NUMBER;
     }
 
-    private long countUniqueNumbers(List<Integer> numbers) {
+    private long countDistinctUniqueNumbers(List<Integer> numbers) {
         return numbers.stream().distinct().count();
     }
 }
