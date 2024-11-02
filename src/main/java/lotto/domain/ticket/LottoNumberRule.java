@@ -3,7 +3,7 @@ package lotto.domain.ticket;
 public enum LottoNumberRule {
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),
-    COUNT(6);
+    SIZE(6);
 
     private int value;
 
