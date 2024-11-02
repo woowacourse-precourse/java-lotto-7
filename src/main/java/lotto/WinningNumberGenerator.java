@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.stream.IntStream;
 
+// 로또 번호 6개와  보너스 번호 생성
 public class WinningNumberGenerator {
 
     public static List<Integer> generateWinningNumbers() {
