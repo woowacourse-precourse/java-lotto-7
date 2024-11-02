@@ -6,8 +6,8 @@ import lotto.adapter.in.console.dto.PurchaseAmountReq;
 import lotto.adapter.in.console.dto.WinningNumberReq;
 import lotto.application.in.LottoUseCase;
 import lotto.config.context.annotation.Handler;
-import lotto.domain.LottoRound;
-import lotto.domain.LottoRoundResult;
+import lotto.domain.round.LottoRound;
+import lotto.domain.round.LottoRoundResult;
 
 @Handler
 public class LottoConsoleHandler {

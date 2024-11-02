@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

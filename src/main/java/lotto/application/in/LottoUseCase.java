@@ -2,11 +2,11 @@ package lotto.application.in;
 
 import lotto.config.validation.annotation.NotNull;
 import lotto.config.validation.annotation.Valid;
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoRound;
-import lotto.domain.LottoRoundResult;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumber;
+import lotto.domain.input.BonusNumber;
+import lotto.domain.input.PurchaseAmount;
+import lotto.domain.input.WinningNumber;
+import lotto.domain.round.LottoRound;
+import lotto.domain.round.LottoRoundResult;
 
 /**
  * 로또 유즈케이스를 정의한 인터페이스.

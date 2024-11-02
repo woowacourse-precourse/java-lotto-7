@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.core;
 
 public enum LottoRank {
     MATCH_THREE_NUMBER(5_000, 3, null),

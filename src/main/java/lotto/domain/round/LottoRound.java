@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.round;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,6 +6,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import lotto.config.validation.FieldValidation;
 import lotto.config.validation.annotation.Length;
+import lotto.domain.core.Lotto;
+import lotto.domain.core.LottoRank;
+import lotto.domain.input.BonusNumber;
+import lotto.domain.input.WinningNumber;
 
 public class LottoRound extends FieldValidation {
 

@@ -2,7 +2,7 @@ package lotto.adapter.in.console.dto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.validation.exception.ValidationException;
-import lotto.domain.BonusNumber;
+import lotto.domain.input.BonusNumber;
 
 /**
  * 보너스 번호를 입력받는 DTO 클래스

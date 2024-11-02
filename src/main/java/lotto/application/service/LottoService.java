@@ -5,12 +5,12 @@ import java.util.List;
 import lotto.application.in.LottoUseCase;
 import lotto.application.out.LottoGeneratorPort;
 import lotto.config.context.annotation.Service;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRound;
-import lotto.domain.LottoRoundResult;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumber;
+import lotto.domain.core.Lotto;
+import lotto.domain.input.BonusNumber;
+import lotto.domain.input.PurchaseAmount;
+import lotto.domain.input.WinningNumber;
+import lotto.domain.round.LottoRound;
+import lotto.domain.round.LottoRoundResult;
 
 @Service
 public class LottoService implements LottoUseCase {

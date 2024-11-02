@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.input;
 
 import lotto.config.validation.FieldValidation;
 import lotto.config.validation.annotation.Divisible;

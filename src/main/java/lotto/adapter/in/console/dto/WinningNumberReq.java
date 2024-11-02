@@ -3,7 +3,7 @@ package lotto.adapter.in.console.dto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import lotto.config.validation.exception.ValidationException;
-import lotto.domain.WinningNumber;
+import lotto.domain.input.WinningNumber;
 
 /**
  * 당첨 번호를 입력받는 DTO 클래스

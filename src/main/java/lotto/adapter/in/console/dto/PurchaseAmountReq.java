@@ -2,7 +2,7 @@ package lotto.adapter.in.console.dto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.validation.exception.ValidationException;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.input.PurchaseAmount;
 
 /**
  * 구입금액을 입력받는 DTO 클래스

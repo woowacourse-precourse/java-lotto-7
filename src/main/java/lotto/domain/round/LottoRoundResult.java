@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.round;
 
 import java.util.List;
 import java.util.Objects;
 import lotto.config.validation.FieldValidation;
 import lotto.config.validation.annotation.Length;
+import lotto.domain.core.LottoRank;
 
 public class LottoRoundResult extends FieldValidation {
 

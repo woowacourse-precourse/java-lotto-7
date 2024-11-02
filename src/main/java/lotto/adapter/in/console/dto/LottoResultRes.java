@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.Locale;
 import lotto.config.validation.FieldValidation;
 import lotto.config.validation.annotation.NotNull;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
-import lotto.domain.LottoRound;
-import lotto.domain.LottoRoundResult;
+import lotto.domain.core.Lotto;
+import lotto.domain.core.LottoRank;
+import lotto.domain.round.LottoRound;
+import lotto.domain.round.LottoRoundResult;
 
 /**
  * 로또의 결과를 출력하는 DTO 클래스

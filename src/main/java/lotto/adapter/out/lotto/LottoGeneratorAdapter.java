@@ -3,7 +3,7 @@ package lotto.adapter.out.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.application.out.LottoGeneratorPort;
 import lotto.config.context.annotation.Component;
-import lotto.domain.Lotto;
+import lotto.domain.core.Lotto;
 
 @Component
 public class LottoGeneratorAdapter implements LottoGeneratorPort {

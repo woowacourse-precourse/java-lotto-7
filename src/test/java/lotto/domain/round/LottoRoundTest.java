@@ -1,8 +1,12 @@
-package lotto.domain;
+package lotto.domain.round;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.core.Lotto;
+import lotto.domain.core.LottoRank;
+import lotto.domain.input.BonusNumber;
+import lotto.domain.input.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

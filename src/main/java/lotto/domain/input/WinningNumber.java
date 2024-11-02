@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.input;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lotto.config.validation.FieldValidation;
 import lotto.config.validation.annotation.Length;
 import lotto.config.validation.annotation.Unique;
+import lotto.domain.core.LottoNumber;
 
 public class WinningNumber extends FieldValidation {
 

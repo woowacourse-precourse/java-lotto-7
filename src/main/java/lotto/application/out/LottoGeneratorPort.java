@@ -1,6 +1,6 @@
 package lotto.application.out;
 
-import lotto.domain.Lotto;
+import lotto.domain.core.Lotto;
 
 /**
  * 로또 번호 생성을 위한 포트 인터페이스.

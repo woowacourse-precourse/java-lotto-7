@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Set;
 import lotto.Application;
 import lotto.config.context.ApplicationContext;
-import lotto.domain.Lotto;
+import lotto.domain.core.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
