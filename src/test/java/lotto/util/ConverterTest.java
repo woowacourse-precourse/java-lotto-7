@@ -4,11 +4,15 @@ import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.constant.ErrorMessage.NOT_A_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("== Converter 테스트 ==")
@@ -24,14 +28,19 @@ class ConverterTest {
                     .isEqualTo(Integer.parseInt(number));
         }
 
-        @Test
+        @ParameterizedTest
         @DisplayName("숫자 리스트 변환")
-        void 숫자_리스트_변환() {
-            assertThat(Converter.toLottoNumberList("23,24,1,2,3,15"))
-                    .containsExactly(23, 24, 1, 2, 3, 15);
+        @MethodSource("numberListsArguments")
+        void 숫자_리스트_변환(String numbers, List<Integer> lottoNumbers) {
+            assertIterableEquals(Converter.toLottoNumberList(numbers), lottoNumbers);
+        }
 
-            assertThat(Converter.toLottoNumberList("7,7,7"))
-                    .containsExactly(7, 7, 7);
+        static Stream<Arguments> numberListsArguments() {
+            return Stream.of(
+                    Arguments.of("23,24,1,2,3,15", List.of(23, 24, 1, 2, 3, 15)),
+                    Arguments.of("45,1,44,2", List.of(45, 1, 44, 2)),
+                    Arguments.of("7,7,7", List.of(7, 7, 7))
+            );
         }
     }
 
