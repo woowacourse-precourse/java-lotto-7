@@ -1,8 +1,11 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,5 +24,33 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 당첨개수를 반환한다.")
+    @Test
+    void matchCount() {
+        //given
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> winNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonus = 7;
+
+        //when
+        int matchCount = lotto.matchCount(winNumber, bonus);
+
+        //then
+        Assertions.assertThat(matchCount).isEqualTo(6);
+    }
+
+    @DisplayName("로또 당첨개수를 반환한다.")
+    @Test
+    void matchCountBonus() {
+        //given
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        List<Integer> winNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonus = 7;
+
+        //when
+        int matchCount = lotto.matchCount(winNumber, bonus);
+
+        //then
+        Assertions.assertThat(matchCount).isEqualTo(6);
+    }
 }
