@@ -10,18 +10,18 @@ public class View {
 
     public static int inputLottoPurchaseAmount() {
         String amountInput = Console.readLine();
-        validateInteger(amountInput);
+        validatePurchaseAmount(amountInput);
         return Integer.parseInt(amountInput);
     }
 
-    private static void validateNumeric(String inputValue) {
+    private static void validateEmpty(String inputValue) {
         if (inputValue == null || inputValue.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
     }
 
-    private static void validateInteger(String inputValue) {
-        validateNumeric(inputValue);
+    private static void validatePurchaseAmount(String inputValue) {
+        validateEmpty(inputValue);
     }
 
 
