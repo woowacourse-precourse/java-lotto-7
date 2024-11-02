@@ -12,4 +12,15 @@ public class LottoGenerator {
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
+
+    public static Lottos generate(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = generate();
+            lottos.add(lotto);
+        }
+
+        return new Lottos(lottos);
+    }
 }
