@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("상금에 관한 기능을 확인한다.")
 class PrizeNumberTest {
 
     WinNumbers winNumbers;

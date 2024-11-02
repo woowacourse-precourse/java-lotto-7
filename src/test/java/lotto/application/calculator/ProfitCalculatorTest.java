@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("수익률 계산기에 관한 기능을 확인한다.")
 class ProfitCalculatorTest {
 
     @Test

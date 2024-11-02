@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("로또 리스트에 관한 기능을 확인한다.")
 class LottosTest {
 
     @Test
