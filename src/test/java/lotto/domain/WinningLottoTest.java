@@ -26,4 +26,14 @@ public class WinningLottoTest {
         assertThat(matchCount).isEqualTo(3);
     }
 
+    @DisplayName("보너스 번호가 일치하면 true를 반환한다.")
+    @Test
+    void 보너스_번호가_일치하면_true를_반환한다() {
+        WinningLotto winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+
+        boolean result = winningLotto.matchBonusNumber(userLotto);
+
+        assertThat(result).isTrue();
+    }
 }
