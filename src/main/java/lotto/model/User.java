@@ -35,12 +35,12 @@ public class User {
         }
     }
 
-    public void specifyBonusNumber(String bonusNumber) {
-        bonusNumberValidate(bonusNumber);
+    public void specifyBonusNumber(String bonusNumber, List<Integer> numbers) {
+        bonusNumberValidate(bonusNumber, numbers);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    private void bonusNumberValidate(String bonusNumber) {
+    private void bonusNumberValidate(String bonusNumber, List<Integer> numbers) {
         if (!bonusNumber.matches("-?\\d+") || bonusNumber.isBlank()) {
             throw new IllegalArgumentException("[ERROR] "
                     + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
@@ -50,6 +50,11 @@ public class User {
         if (!(number >= 1 && number <= 45)) {
             throw new IllegalArgumentException("[ERROR] "
                     + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
+        }
+
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "당첨 번호와 중복 되지 않는 보너스 번호를 사용 해야 합니다.");
         }
     }
 

@@ -30,10 +30,11 @@ public class UserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-7", "50", " ", "칠", " 50 "})
+    @ValueSource(strings = {"-7", "50", " ", "칠", " 50 ", "4"})
     void 공백없이_1부터_45까지의_숫자가_아니라면_예외가_발생한다(String value) {
         User user = new User("1000");
-        assertThatThrownBy(() -> user.specifyBonusNumber(value))
+        assertThatThrownBy(() -> user
+                .specifyBonusNumber(value, List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

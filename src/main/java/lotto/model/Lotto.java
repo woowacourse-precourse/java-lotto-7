@@ -7,6 +7,10 @@ import lotto.Result;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -31,15 +35,8 @@ public class Lotto {
         }
     }
 
-    private void bonusNumberDistinctValidate(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복 되지 않는 보너스 번호를 사용 해야 합니다.");
-        }
-    }
-
     // 당첨 결과 계산 기능
     public void matcheNumber(List<List<Integer>> lotteryTickets, int bonusNumber) {
-        bonusNumberDistinctValidate(bonusNumber);
         for (List<Integer> lotteryTicket : lotteryTickets) {
             int matches = matchCount(lotteryTicket);
 
