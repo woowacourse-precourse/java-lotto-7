@@ -12,17 +12,7 @@ public class ConsoleHandler {
 
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        String money = Console.readLine();
-        System.out.println();
-        return invertNumber(money);
-    }
-
-    private int invertNumber(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
-        }
+        return readValidNumber();
     }
 
     public void printLottoCount(int lottoCount) {
@@ -47,23 +37,12 @@ public class ConsoleHandler {
 
     public List<Integer> inputWinningLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = Console.readLine();
-        System.out.println();
-        return convertToNumbers(winningNumbers);
-    }
-
-    private List<Integer> convertToNumbers(String winningNumbers) {
-        String[] numbers = winningNumbers.split(",");
-        return Arrays.stream(numbers)
-                .map(this::invertNumber)
-                .collect(Collectors.toList());
+        return readValidNumbers();
     }
 
     public int inputWinningLottoBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        System.out.println();
-        return invertNumber(bonusNumber);
+        return readValidNumber();
     }
 
     public void printWinningResult(Map<Rank, Integer> winningCountsByRank, Map<Rank, PrizeInfo> rankInfo) {
@@ -90,7 +69,45 @@ public class ConsoleHandler {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 "+ profitRate +"% 입니다.");
+        System.out.print("총 수익률은 " + profitRate + "% 입니다.");
+    }
+
+    private int readValidNumber() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                System.out.println();
+                return invertNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> readValidNumbers() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                System.out.println();
+                return invertNumbers(input.split(","));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int invertNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private List<Integer> invertNumbers(String[] numbers) {
+        return Arrays.stream(numbers)
+                .map(this::invertNumber)
+                .collect(Collectors.toList());
     }
 
 }
