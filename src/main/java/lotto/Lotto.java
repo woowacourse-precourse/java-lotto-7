@@ -17,7 +17,14 @@ public class Lotto {
         }
     }
     // TODO: 추가 기능 구현
+    public void printNumbers(){
+        System.out.println(numbers.toString());
+    }
     public void sortNumbers(){
         Collections.sort(numbers);
+    }
+    public int getRetainAllSize(List<Integer> winningNumbers){
+        numbers.retainAll(winningNumbers);
+        return numbers.size();
     }
 }
