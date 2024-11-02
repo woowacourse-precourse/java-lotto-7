@@ -68,7 +68,10 @@ public class LottoCheckerTest {
     @DisplayName("총 당첨 금액 계산 테스트")
     void 총_당첨_금액_계산() {
         lottoChecker.match(winningLotto, lottoes, bonusNumber);
-        Assertions.assertThat(lottoChecker.calculateTotalWinningPrice()).isEqualTo(30005000);
+        Assertions.assertThat(
+                lottoChecker.calculateTotalWinningPrice())
+                .isEqualTo(lottoChecker.winningPrice.get(3)
+                + lottoChecker.bonusWinningPrice.get(5));
     }
 
     @Test

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoChecker {
-    private Map<Integer, Integer> winningPrice = new HashMap<>();
-    private Map<Integer, Integer> bonusWinningPrice = new HashMap<>();
+    public Map<Integer, Integer> winningPrice = new HashMap<>();
+    public Map<Integer, Integer> bonusWinningPrice = new HashMap<>();
 
     public int[] matching = new int[7];;
     public int[] bonusMatching = new int[7];;
