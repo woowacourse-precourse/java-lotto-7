@@ -83,7 +83,8 @@ public class InputValidator {
     }
 
     private void validateFormatOf(String input) {
-        if (input.endsWith(",") || input.startsWith(",")) {
+        boolean isInvalidFormat = input.endsWith(SEPARATOR) || input.startsWith(SEPARATOR);
+        if (isInvalidFormat) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_FORMAT_EXCEPTION);
         }
     }
@@ -95,8 +96,8 @@ public class InputValidator {
     }
 
     private void validateNumberAreaOf(int number) {
-        boolean isInValidNumberArea = number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
-        if (isInValidNumberArea) {
+        boolean isInvalidNumberArea = number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
+        if (isInvalidNumberArea) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_AREA_EXCEPTION);
         }
     }
