@@ -141,7 +141,7 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("보너스 번호 유효성 검사: 음수 포함 - 예외 테스트")
+    @DisplayName("보너스 번호 유효성 검사: 음수 - 예외 테스트")
     void validateBonusNumber_nonNegative() {
         // given
         List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 6);
