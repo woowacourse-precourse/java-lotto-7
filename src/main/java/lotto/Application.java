@@ -34,8 +34,17 @@ public class Application {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
+        
+    }
 
-
+    public static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     public static List<Integer> stringListToIntegerList(List<String> stringList) {
