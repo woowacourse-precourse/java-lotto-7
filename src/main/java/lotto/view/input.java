@@ -15,10 +15,6 @@ public class input {
         System.out.println(Request_Messages.INPUT_TOTAL_AMOUNT);
     }
 
-    public static void printOutputTotalCount(int count){
-        System.out.println(count +Request_Messages.OUTPUT_TOTAL_COUNT);
-    }
-
     public static void printInputWinningNumbers(){
         System.out.println(Request_Messages.INPUT_WINNING_NUMBER);
     }
