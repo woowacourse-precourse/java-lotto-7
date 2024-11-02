@@ -50,6 +50,30 @@ public class LottoMachine {
         return null;
     }
 
+    public static Map<Prize, Integer> calculatePrizeCounts(Map<Lotto, Prize> lottoPrizeMap) {
+        Map<Prize, Integer> prizeCountMap = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            prizeCountMap.put(prize, 0);
+        }
+
+        for (Prize prize : lottoPrizeMap.values()) {
+            if (prize != null) {
+                prizeCountMap.put(prize, prizeCountMap.get(prize) + 1);
+            }
+        }
+        return prizeCountMap;
+    }
+
+    public static double calculateTotalReturnRate(Map<Prize, Integer> prizeCountMap) {
+        int totalPrize = 0;
+        for (Map.Entry<Prize, Integer> entry : prizeCountMap.entrySet()) {
+            Prize prize = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += prize.getMoney() * count;
+        }
+
+        return ((double) totalPrize / totalSpent) * 100;
+    }
 
 
 
