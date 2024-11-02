@@ -16,10 +16,21 @@ class ParseHelperTest {
         this.parseHelper = new ParseHelper();
     }
 
+    @Test
+    @DisplayName("parseInt는 int형 변환이 되지 않는 input일 때 NumberFormatException을 던진다.")
+    void parseInt_WithInvalidString_ThrowNumberFormatException() {
+        // given
+        String invalidInput = "abc";
+
+        // when & then
+        assertThatThrownBy(
+                () -> parseHelper.parseInt(invalidInput)
+        ).isInstanceOf(NumberFormatException.class);
+    }
 
     @Test
-    @DisplayName("parse는 delimiter로 구분된 숫자 리스트를 반환한다.")
-    void parse_ReturnCorrectly() {
+    @DisplayName("parseIntegerList는 delimiter로 구분된 숫자 리스트를 반환한다.")
+    void parseIntegerList_ReturnCorrectly() {
         // given
         String value = "1,2,3";
         String delimiter = ",";
@@ -31,18 +42,5 @@ class ParseHelperTest {
         assertThat(result)
                 .contains(1, 2, 3)
                 .hasSize(3);
-    }
-
-    @Test
-    @DisplayName("parse는 int형으로 변환할 수 없는 경우, NumberFormatException을 던진다.")
-    void parse_WithNonParsableInt_ThrowNumberFormatException() {
-        // given
-        String nonParsableValue = "1,a,3";
-        String delimiter = ",";
-
-        // when & then
-        assertThatThrownBy(
-                () -> parseHelper.parseIntegerList(nonParsableValue, delimiter)
-        ).isInstanceOf(NumberFormatException.class);
     }
 }
