@@ -11,14 +11,26 @@ public enum Rank {
     _1TH(2_000_000_000, 6, false),
     ;
 
-    private final int price;
+    private final long price;
     private final int matchCount;
     private final boolean containsBonus;
 
-    Rank(int price, int matchCount, boolean containsBonus) {
+    Rank(long price, int matchCount, boolean containsBonus) {
         this.price = price;
         this.matchCount = matchCount;
         this.containsBonus = containsBonus;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isContainsBonus() {
+        return containsBonus;
     }
 
     public static Rank of(int matchCount, boolean containsBonus) {
