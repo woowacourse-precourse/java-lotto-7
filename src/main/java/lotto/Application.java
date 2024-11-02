@@ -1,7 +1,14 @@
 package lotto;
 
+import lotto.config.LottoConfig;
+import lotto.controller.LottoController;
+
 public class Application {
+
+    private static LottoController controller = LottoConfig.getLottoController();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        controller.getLottoAmountInputMessage();
+        controller.saveLottoAmountInput();
     }
 }
