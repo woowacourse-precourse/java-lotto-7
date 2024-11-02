@@ -6,12 +6,12 @@ import java.util.List;
 
 public class InputView {
 
-    public static int readPurchasePrice() {
+    public static int readNumber() {
         String buffer = readInput();
         try {
             return Integer.parseInt(buffer);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
 
@@ -28,7 +28,7 @@ public class InputView {
 
     private static void validateInput(String buffer) {
         if(buffer == null || buffer.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다");
+            throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다.");
         }
     }
 
