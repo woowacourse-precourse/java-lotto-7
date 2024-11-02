@@ -4,30 +4,30 @@ import lotto.controller.LottoInputController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public final class AppConfig {
+public final class ApplicationConfig {
 
     public static InputView inputView = getInputView();
     public static OutputView outputView = getOutputView();
     public static LottoInputController lottoInputController = getInputController();
 
-    private AppConfig() {
+    private ApplicationConfig() {
     }
 
-    private static InputView getInputView() {
+    static InputView getInputView() {
         if (inputView == null) {
             inputView = new InputView();
         }
         return inputView;
     }
 
-    private static OutputView getOutputView() {
+    static OutputView getOutputView() {
         if (outputView == null) {
             outputView = new OutputView();
         }
         return outputView;
     }
 
-    private static LottoInputController getInputController() {
+    static LottoInputController getInputController() {
         if (lottoInputController == null) {
             lottoInputController = new LottoInputController(getInputView());
         }

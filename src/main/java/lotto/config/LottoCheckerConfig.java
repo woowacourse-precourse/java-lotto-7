@@ -4,12 +4,12 @@ import lotto.controller.LottoCheckerController;
 
 public final class LottoCheckerConfig {
 
-    public static LottoCheckerController lottoCheckerController = getLottoStatisticController();
+    public static LottoCheckerController lottoCheckerController = getLottoCheckerController();
 
     private LottoCheckerConfig() {
     }
 
-    private static LottoCheckerController getLottoStatisticController() {
+    static LottoCheckerController getLottoCheckerController() {
         if (lottoCheckerController == null) {
             lottoCheckerController = new LottoCheckerController();
         }

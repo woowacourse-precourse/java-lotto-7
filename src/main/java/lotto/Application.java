@@ -1,8 +1,8 @@
 package lotto;
 
-import static lotto.config.AppConfig.lottoInputController;
-import static lotto.config.AppConfig.inputView;
-import static lotto.config.AppConfig.outputView;
+import static lotto.config.ApplicationConfig.lottoInputController;
+import static lotto.config.ApplicationConfig.inputView;
+import static lotto.config.ApplicationConfig.outputView;
 import static lotto.config.LottoCheckerConfig.lottoCheckerController;
 import static lotto.config.LottoMachineConfig.lottoMachineController;
 

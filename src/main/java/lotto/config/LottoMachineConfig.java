@@ -11,14 +11,14 @@ public final class LottoMachineConfig {
     private LottoMachineConfig() {
     }
 
-    private static LottoMachine getLottoMachine() {
+    static LottoMachine getLottoMachine() {
         if (lottoMachine == null) {
             lottoMachine = new LottoMachine();
         }
         return lottoMachine;
     }
 
-    private static LottoMachineController getLottoMachineController() {
+    static LottoMachineController getLottoMachineController() {
         if (lottoMachineController == null) {
             lottoMachineController = new LottoMachineController(getLottoMachine());
         }
