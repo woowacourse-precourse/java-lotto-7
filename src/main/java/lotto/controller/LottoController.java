@@ -4,26 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.WinningResult;
 import lotto.error.InputValidator;
-import lotto.model.ticket.LottoMachine;
 import lotto.model.evaluate.LottoResultEvaluator;
+import lotto.model.ticket.LottoShop;
 import lotto.model.ticket.LottoTickets;
+import lotto.model.ticket.TicketSeller;
 import lotto.util.InputUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final LottoShop lottoShop;
     private final InputView inputView;
     private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
+        lottoShop = LottoShop.openShop();
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
         int purchaseAmount = InputUtil.retryIfNeeded(this::readPurchaseAmount);
-        LottoTickets lottoTickets = purchaseLotto(purchaseAmount);
+        LottoTickets lottoTickets = purchaseLottoTickets(purchaseAmount);
         displayLotto(lottoTickets);
         List<Integer> winningNumbers = InputUtil.retryIfNeeded(this::readWinningNumbers);
         int bonusNumber = InputUtil.retryIfNeeded(() -> readBonusNumber(winningNumbers));
@@ -42,9 +45,9 @@ public class LottoController {
         inputValidator.validatePurchaseAmount(rawInput);
     }
 
-    private LottoTickets purchaseLotto(int purchaseAmount) {
-        LottoMachine lottoMachine = new LottoMachine();
-        return lottoMachine.purchase(purchaseAmount);
+    private LottoTickets purchaseLottoTickets(int purchaseAmount) {
+        TicketSeller ticketSeller = lottoShop.findTicketSeller();
+        return ticketSeller.exchangeMoneyForTickets(purchaseAmount);
     }
 
     private void displayLotto(LottoTickets lottoTickets) {

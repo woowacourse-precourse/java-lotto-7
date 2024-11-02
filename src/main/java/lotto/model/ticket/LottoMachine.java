@@ -7,13 +7,8 @@ import lotto.rule.LottoRule;
 
 public class LottoMachine {
 
-    public LottoTickets purchase(int purchaseAmount) {
-        int quantity = calculateLottoQuantity(purchaseAmount);
+    public LottoTickets issueTicket(int quantity) {
         return generateLottoTickets(quantity);
-    }
-
-    private int calculateLottoQuantity(int purchaseAmount) {
-        return purchaseAmount / LottoRule.PURCHASE_AMOUNT_UNIT;
     }
 
     private LottoTickets generateLottoTickets(int quantity) {
@@ -28,10 +23,10 @@ public class LottoMachine {
         List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoRule.MIN_LOTTO_NUMBER, LottoRule.MAX_LOTTO_NUMBER, LottoRule.LOTTO_NUMBERS_COUNT
         );
-        return sortLottoNumbers(uniqueNumbers);
+        return sortByAsc(uniqueNumbers);
     }
 
-    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+    private List<Integer> sortByAsc(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
