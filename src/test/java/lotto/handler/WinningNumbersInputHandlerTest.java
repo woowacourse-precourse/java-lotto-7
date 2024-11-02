@@ -3,6 +3,8 @@ package lotto.handler;
 import lotto.domain.lottoForm.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -25,11 +27,9 @@ public class WinningNumbersInputHandlerTest {
 
 
     @DisplayName("보너스 번호로 정수가 아닌 입력값이 들어오면 예외가 발생한다")
-    @Test
-    void nonIntegerExceptionTest() {
-        // given
-        String nonInteger = "3-23";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"3-23", "", "\n", " "})
+    void nonIntegerExceptionTest(String nonInteger) {
         // when & then
         assertThatCode(() -> numbersInputHandler.convertToInteger(nonInteger))
                 .isInstanceOf(IllegalArgumentException.class)
