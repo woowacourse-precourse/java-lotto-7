@@ -3,11 +3,12 @@ package lotto.domain.lotto;
 import lotto.domain.lotto.vo.LottoNumber;
 import lotto.domain.rank.vo.Rank;
 import lotto.infrastructure.constant.ExceptionMessage;
-import lotto.infrastructure.constant.LottoLimit;
+import lotto.infrastructure.constant.LottoConfig;
 import lotto.infrastructure.exception.CustomException;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -51,7 +52,7 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != LottoLimit.COUNT) {
+        if (numbers.size() != LottoConfig.COUNT) {
             throw new CustomException(ExceptionMessage.INVALID_LOTTO_COUNT);
         }
     }
@@ -69,10 +70,10 @@ public class Lotto {
 
     @Override
     public String toString() {
-        List<String> numberStrings = numbers.stream()
+        final String numberString = numbers.stream()
                 .map(LottoNumber::value)
                 .map(String::valueOf)
-                .toList();
-        return "[" + String.join(", ", numberStrings) + "]";
+                .collect(Collectors.joining(LottoConfig.DELIMITER + " "));
+        return "[" + numberString + "]";
     }
 }

@@ -3,14 +3,13 @@ package lotto.application.validator;
 import lotto.domain.cost.Cost;
 import lotto.domain.lotto.WinningLottoImpl;
 import lotto.infrastructure.constant.ExceptionMessage;
+import lotto.infrastructure.constant.LottoConfig;
 import lotto.infrastructure.exception.CustomException;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoInputValidator {
-    private static final String DELIMITER = ",";
-
     public Cost validateCost(final String input) {
         validateEmpty(input);
         final int number = validateNumberFormat(input);
@@ -20,7 +19,7 @@ public class LottoInputValidator {
     public WinningLottoImpl validateWinningLotto(String numbers, String bonusInput) {
         validateEmpty(numbers);
         validateEmpty(bonusInput);
-        List<String> splits = Arrays.stream(numbers.split(DELIMITER))
+        List<String> splits = Arrays.stream(numbers.split(LottoConfig.DELIMITER))
                 .map(String::trim)
                 .toList();
         List<Integer> basicNumbers = splits.stream().map(this::validateNumberFormat).toList();

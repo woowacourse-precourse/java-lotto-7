@@ -12,7 +12,7 @@ public final class ExceptionMessage {
 
     public static final String EMPTY_INPUT = "빈 값은 입력할 수 없습니다.";
 
-    public static final String INVALID_LOTTO_COUNT = String.format("로또 번호는 %d개여야 합니다.", LottoLimit.COUNT);
+    public static final String INVALID_LOTTO_COUNT = String.format("로또 번호는 %d개여야 합니다.", LottoConfig.COUNT);
 
     public static final String INVALID_PURCHASE_UNIT = String.format("구입 금액은 %d 단위의 정수만 가능합니다.", Cost.UNIT);
 
