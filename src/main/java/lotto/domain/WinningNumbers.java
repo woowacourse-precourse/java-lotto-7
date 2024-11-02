@@ -24,6 +24,14 @@ public class WinningNumbers {
         return new WinningNumbers(winningLotto, bonusNumber);
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(Integer bonusNumber) {
         if (bonusNumber < MIN_NUMBER.getNumber() || bonusNumber > MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber()));

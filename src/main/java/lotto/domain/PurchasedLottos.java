@@ -21,4 +21,8 @@ public class PurchasedLottos {
                 .map(Lotto::toLottoResponse)
                 .toList();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

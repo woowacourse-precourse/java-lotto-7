@@ -23,6 +23,16 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    public int getMatchingCount(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::containsNumber)
+                .count();
+    }
+
+    private boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     public LottoResponse toLottoResponse() {
         return new LottoResponse(numbers);
     }
