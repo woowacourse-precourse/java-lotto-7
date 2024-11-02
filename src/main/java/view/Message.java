@@ -15,7 +15,9 @@ public enum Message {
     MATCH_6("6개 일치 (2,000,000,000원) - "),
     UNIT("개"),
     TOTAL_YIELD("총 수익률은 "),
-    ENDING("입니다.");
+    ENDING("입니다."),
+    COMMA(", "),
+    BONUS("보너스 번호를 입력해 주세요.");
 
     private final String message;
 
