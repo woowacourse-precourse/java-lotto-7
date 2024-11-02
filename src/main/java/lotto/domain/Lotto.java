@@ -8,7 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
+        this.numbers = orderByASC(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -27,4 +27,7 @@ public class Lotto {
         }
     }
 
+    private List<Integer> orderByASC(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
+    }
 }

@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @Test
@@ -14,12 +17,21 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @RepeatedTest(100)
+    @DisplayName("로또 번호가 오름차순으로 정렬되는지 검사")
+    void verifyLottoNumbersAreIncreasing() {
+        LottoStore lottoStore = new LottoStore();
+        List<Integer> lottoNumbers = lottoStore.sell(1_000).getLottos().getFirst().getNumbers();
+        // then
+        List<Integer> sortedNumbers = new ArrayList<>(lottoNumbers);
+        sortedNumbers.sort(Integer::compareTo);
+
+        assertThat(lottoNumbers).isEqualTo(sortedNumbers);
+    }
 }
