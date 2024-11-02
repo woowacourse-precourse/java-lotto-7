@@ -7,14 +7,22 @@ import java.util.List;
 
 public class ConsoleOutputView implements OutPutView{
 
+    private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
+    private static final String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
+    private static final String LOTTO_STATISTICS_HEADER = "당첨 통계\n---";
+    private static final String TOTAL_RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String EXCEPTION_RETRY_MESSAGE = "다시 입력 해주세요.";
+
     @Override
     public void displayPurchaseAmountPrompt() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_PROMPT);
     }
 
     @Override
     public void displayPurchaseCount(Integer purchaseCount) {
-        System.out.printf("\n%d개를 구매했습니다.\n", purchaseCount);
+        System.out.printf(PURCHASE_COUNT_MESSAGE, purchaseCount);
     }
     @Override
     public void displayPurchaseLotto(List<LottoResponse> lottoResponses) {
@@ -26,19 +34,18 @@ public class ConsoleOutputView implements OutPutView{
 
     @Override
     public void displayWinningNumberPrompt() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_PROMPT);
     }
 
     @Override
     public void displayBonusNumberPrompt() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_PROMPT);
     }
 
     @Override
     public void displayLottoResults(LottoResultResponse lottoResultResponse) {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(LOTTO_STATISTICS_HEADER);
         for (String lottoResult : lottoResultResponse.lottoResultResponse()) {
             System.out.println(lottoResult);
         }
@@ -46,11 +53,12 @@ public class ConsoleOutputView implements OutPutView{
 
     @Override
     public void displayTotalReturnOfRate(Double rate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
+        System.out.printf(TOTAL_RETURN_RATE_MESSAGE, rate);
     }
 
     @Override
     public void displayExceptionMessage(String exceptionMessage) {
         System.out.println(exceptionMessage);
+        System.out.println(EXCEPTION_RETRY_MESSAGE);
     }
 }
