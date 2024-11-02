@@ -3,10 +3,12 @@ package lotto.model;
 public class Buy {
 
     private final Integer money;
-    static final Integer moneyUnit = 1000;
+    public static final int MONEY_UNIT = 1000;
 
     public Buy(Integer money) {
         this.money = money;
+        validateUserMoneyUnit(money);
+        validateUserMoneyNegative(money);
     }
 
     public Integer getMoney(){
@@ -14,14 +16,19 @@ public class Buy {
     }
 
     private Integer getUserPurchaseCount(Integer userMoney){
-        return userMoney / moneyUnit;
+        return userMoney / MONEY_UNIT;
     }
 
     private void validateUserMoneyUnit(Integer userMoney){
-        if(userMoney % moneyUnit != 0){
+        if(userMoney % MONEY_UNIT != 0){
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액 단위는 1000원 단위 입니다.");
         }
     }
 
+    private void validateUserMoneyNegative(Integer userMoney){
+        if(userMoney < 0){
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 양수만 입력해 주세요.");
+        }
+    }
 
 }
