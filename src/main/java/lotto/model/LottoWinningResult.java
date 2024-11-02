@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class LottoWinningResult {
 
@@ -18,11 +19,16 @@ public class LottoWinningResult {
 
     private long calculateTotalWinningPrice() {
         return this.lottoWinningResult.entrySet().stream()
-                .mapToLong(rank -> rank.getKey().getWinningAmount() * rank.getValue()).sum();
+                .mapToLong(this::sumWinningAmount)
+                .sum();
     }
 
     private double calculatePercentage(long proceeds, int investmentAmount) {
         return (double) proceeds / investmentAmount * 100.0;
+    }
+
+    private long sumWinningAmount(Entry<LottoRank, Integer> rank) {
+        return rank.getKey().getWinningAmount() * rank.getValue();
     }
 
     public Map<LottoRank, Integer> getLottoWinningResult() {
