@@ -5,24 +5,24 @@ public class Bonus {
     private static final Integer MIN_NUMBER_RANGE = 1;
     private static final Integer MAX_NUMBER_RANGE = 45;
 
-    private final Integer bonus;
+    private final Integer number;
 
-    public Bonus(Integer bonus) {
-        validateRange(bonus);
-        this.bonus = bonus;
+    public Bonus(Integer number) {
+        validateRange(number);
+        this.number = number;
     }
 
-    private boolean IsNumberRangeIncorrect(Integer bonus) {
-        return bonus < MIN_NUMBER_RANGE && bonus > MAX_NUMBER_RANGE;
+    private boolean IsNumberRangeIncorrect(Integer number) {
+        return number < MIN_NUMBER_RANGE && number > MAX_NUMBER_RANGE;
     }
 
-    private void validateRange(Integer bonus) {
-        if (IsNumberRangeIncorrect(bonus)) {
+    private void validateRange(Integer number) {
+        if (IsNumberRangeIncorrect(number)) {
             throw new IllegalArgumentException();
         }
     }
 
-    public Integer getBonus() {
-        return bonus;
+    public Integer getNumber() {
+        return number;
     }
 }
