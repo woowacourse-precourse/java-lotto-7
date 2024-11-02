@@ -39,6 +39,7 @@ public class LottoGame {
     private void purchaseLotto() {
         int money = inputView.getLottoAmount();
         int lottoCount = money / MONEY_UNIT;
+        outputView.printLottoCount(lottoCount);
         makeLottos(lottoCount);
     }
 
@@ -48,6 +49,7 @@ public class LottoGame {
             Lotto newLotto = new Lotto(randomNumbers);
             lottos.add(newLotto);
         }
+        outputView.printLottoNumbers(lottos);
     }
 
     private List<Integer> extractRandomNumbers() {
