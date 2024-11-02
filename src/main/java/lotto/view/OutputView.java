@@ -8,9 +8,9 @@ public class OutputView {
 
     // todo: 발행된 로또의 수량과 번호를 오름차순으로 정리하여 출력
     public void printPurchasedLottos(List<Lotto> lottos){
-        System.out.println(lottos + "개를 구매했습니다.");
+        System.out.println(lottos.size() + "개를 구매했습니다.");
         for(Lotto lotto : lottos){
-            // todo : lotto 번호 출력
+            System.out.println(lotto.getNumbers());
         }
     }
 
