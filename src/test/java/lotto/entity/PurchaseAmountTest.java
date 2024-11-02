@@ -23,7 +23,7 @@ class PurchaseAmountTest {
     }
 
     @Test
-    void validateNonThousandDivisibility_1000_으로_나누어떨어지지_않는다() {
+    void validateLottoPriceDivisibility_1000_으로_나누어떨어지지_않는다() {
         // given
         Long number = 5500L;
 
@@ -32,7 +32,7 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> purchaseAmount = new PurchaseAmount(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .extracting(Throwable::getMessage)
-                .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_THOUSAND_DIVISIBILITY);
+                .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_LOTTO_PRICE_DIVISIBILITY);
 
     }
 

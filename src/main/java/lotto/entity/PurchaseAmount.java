@@ -1,6 +1,6 @@
 package lotto.entity;
 
-import static lotto.constant.Constant.THOUSAND;
+import static lotto.constant.Policy.LOTTO_PRICE;
 
 import lotto.constant.ExceptionMessage;
 
@@ -8,7 +8,7 @@ public record PurchaseAmount(Long purchaseAmount) {
 
     public PurchaseAmount {
         validateNegative(purchaseAmount);
-        validateNonThousandDivisibility(purchaseAmount);
+        validateLottoPriceDivisibility(purchaseAmount);
     }
 
     private void validateNegative(Long number) {
@@ -17,9 +17,9 @@ public record PurchaseAmount(Long purchaseAmount) {
         }
     }
 
-    private void validateNonThousandDivisibility(Long number) {
-        if (number % THOUSAND != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_THOUSAND_DIVISIBILITY);
+    private void validateLottoPriceDivisibility(Long number) {
+        if (number % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_LOTTO_PRICE_DIVISIBILITY);
         }
     }
 }

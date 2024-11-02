@@ -7,4 +7,5 @@ public class Policy {
     public final static Integer LOTTO_NUMBER_MIN = 1;
     public final static Integer LOTTO_NUMBER_MAX = 45;
     public final static Integer LOTTO_SIZE = 6;
+    public final static Integer LOTTO_PRICE = 1000;
 }
