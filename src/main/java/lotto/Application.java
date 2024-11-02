@@ -2,8 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import net.bytebuddy.implementation.bytecode.assign.primitive.VoidAwareAssigner;
 
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Application {
@@ -26,6 +26,8 @@ public class Application {
             lottoCountByWinning.put(winningCount, lottoCountByWinning.get(winningCount) + 1);
         }
 
+        double rateOfGain = calculateRateOfGain();
+        printResult(rateOfGain);
     }
 
     public static void readUserInput(){
@@ -127,5 +129,29 @@ public class Application {
         }
 
         return Math.round(sumOfGain / amountToPurchase * 100.0) / 100.0;
+    }
+
+    private static void printResult(double rateOfGain){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        String result;
+        NumberFormat formatter = NumberFormat.getInstance();
+
+        for (WinningCount winningCount:lottoCountByWinning.keySet()){
+            result = "";
+
+            result += winningCount.getCountOfWinningNumber() + "개 일치";
+
+            if(winningCount.isBonusMatched()){
+                result += ", 보너스 볼 일치 ";
+            }
+
+            result += "(" + formatter.format(winningCount.getAmountToWin()).replace(",", ", ") + "원)";
+            result += " - " + lottoCountByWinning.get(winningCount) + "개";
+            System.out.println(result);
+        }
+
+        System.out.println("총 수익률은" + rateOfGain + "%입니다.");
     }
 }
