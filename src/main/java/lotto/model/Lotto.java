@@ -21,12 +21,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (lottoNumbersDuplicate(numbers)) {
+        if (NumbersDuplicate(numbers)) {
             throw new DuplicateLottoNumberException();
         }
     }
 
-    private static boolean lottoNumbersDuplicate(List<Integer> numbers) {
+    private static boolean NumbersDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() < numbers.size();
     }
