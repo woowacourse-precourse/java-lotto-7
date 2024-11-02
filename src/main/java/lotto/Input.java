@@ -27,7 +27,7 @@ public class Input {
         while (check) {
             num = Integer.parseInt(Console.readLine());
             if (winningNumbers.contains(num)) {
-                System.out.println("중복이 발생되었습니다 : " + num);
+                System.out.println("Duplication Generate : " + num);
                 continue;
             }
             check = false;
