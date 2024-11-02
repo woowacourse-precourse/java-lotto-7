@@ -33,9 +33,9 @@ public class Player {
 
     public void evalutateLottos(List<Integer> winningNumbers, int bonusNumber) {
         if (lottos.size() == 0)
-            throw new IllegalStateException("[ERROR] 로또를 구매하지 않았습니다.");
+            throw ExceptionBuilder.stateException("로또를 구매하지 않았습니다.");
         if (evaluated)
-            throw new IllegalStateException("[ERROR] 이미 평가가 완료된 상태입니다.");
+            throw ExceptionBuilder.stateException("이미 평가가 완료된 상태입니다.");
 
         totalPrize = 0;
         winningCounts = new int[NUMBER_LENGTH];
@@ -51,7 +51,7 @@ public class Player {
 
     public float getRateOfReturn() {
         if (!evaluated)
-            throw new IllegalStateException("[ERROR] 로또 추첨을 하지 않았습니다.");
+            throw ExceptionBuilder.stateException("로또 추첨을 하지 않았습니다.");
 
         return ((float)totalPrize / purchaseAmount) * 100;
     }
