@@ -10,18 +10,23 @@ public class WinningController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final WinningGenerator winningGenerator;
 
     public WinningController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.winningGenerator = inputLottoWinning();
     }
 
-    public void inputLottoWinning() {
+    private WinningGenerator inputLottoWinning() {
         outputView.printlnMessage(PrintMessage.LINE_SPACE);
         outputView.printlnMessage(PrintMessage.INPUT_LOTTO_WINNING_NUMBER);
         String lottoWinning = inputView.inputUser();
 
-        WinningGenerator winningGenerator = WinningGeneratorFactory.create(lottoWinning);
-        System.out.println(winningGenerator.getWinning().getNumbers().toString());
+        return WinningGeneratorFactory.create(lottoWinning);
+    }
+
+    public WinningGenerator getWinningGenerator() {
+        return winningGenerator;
     }
 }
