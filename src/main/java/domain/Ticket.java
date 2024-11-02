@@ -7,9 +7,13 @@ public class Ticket {
 
     private static final int TICKET_PRICE = 1_000;
 
+    public static Ticket from(int purchaseAmount) {
+        return new Ticket(purchaseAmount);
+    }
+
     private int quantity;
 
-    public Ticket(int purchaseAmount) {
+    private Ticket(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         quantity = purchaseAmount / TICKET_PRICE;
     }

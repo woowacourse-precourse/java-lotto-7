@@ -9,7 +9,11 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
