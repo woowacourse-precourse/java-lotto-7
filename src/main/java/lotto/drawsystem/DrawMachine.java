@@ -2,12 +2,12 @@ package lotto.drawsystem;
 
 public class DrawMachine {
 
-    public DrawMachine runDraws(Integer amount) {
+    public DrawResults runDraws(Integer amount) {
         DrawMachine drawMachine = new DrawMachine();
-        for(int drawCount = 0; drawCount < amount; amount++) {
+        for (int drawCount = 0; drawCount < amount; amount++) {
             runSingleDraw();
         }
-        return drawMachine;
+        return DrawResults;
     }
 
 
