@@ -8,8 +8,18 @@ public class LottoController {
     private final LottoOutputView lottoOutputView = new LottoOutputView();
     private final LottoInputView lottoInputView = new LottoInputView();
     public void start(){
-        lottoOutputView.printLottoAmountNotification();
-        String cashAmount = lottoInputView.getUserInput();
-        Cash cash = new Cash(cashAmount);
+        lottoOutputView.printCashNotification();
+        Cash cash = initializeCash();
+    }
+
+    private Cash initializeCash(){
+        while (true) {
+            try {
+                String cashAmount = lottoInputView.getUserInput();
+                return new Cash(cashAmount);
+            } catch (IllegalArgumentException e) {
+                lottoOutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
