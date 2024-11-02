@@ -14,7 +14,7 @@ public class WinningGenerator {
 
     public WinningGenerator(String winning) {
         validate(winning);
-        this.winning = LottoFactory.create(changeType(winning));
+        this.winning = LottoFactory.create(change(winning));
     }
 
     private boolean IsContainSeparator(String winning) {
@@ -29,6 +29,14 @@ public class WinningGenerator {
 
     private List<String> split(String winning) {
         return Arrays.stream(winning.split(WINNING_SEPARATOR, SPLIT_LIMIT)).toList();
+    }
+
+    private List<Integer> change(String winning) {
+        try {
+            return changeType(winning);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Integer> changeType(String winning) {
