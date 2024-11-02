@@ -44,5 +44,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 1~45 이외의 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 보너스_번호에_허동되는_범위_이외의_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new WinningLotto(List.of(1, 3, 6, 8, 13, 45),48))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
