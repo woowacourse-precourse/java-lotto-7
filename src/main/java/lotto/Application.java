@@ -3,10 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -30,7 +28,8 @@ public class Application {
         int amount=price/1000;
         ArrayList<Lotto> lottos=new ArrayList<>();
         for(int i=0;i<amount;i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = null;
+            Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
@@ -39,6 +38,19 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+
+        Lotto goldenNumbers=null;
+
+        System.out.println("당첨 번호를 입력해주세요.");
+        String numbersInput = Console.readLine();
+
+        List<Integer> numbers = null;
+        numbers = getNumbers(numbersInput);
+
+        goldenNumbers = new Lotto(numbers);
+
+        //당첨번호 테스트용 코드
+        System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
 
 
     }
@@ -59,5 +71,19 @@ public class Application {
 
 
         return price;
+    }
+
+    public static List<Integer> getNumbers(String numbersInput) throws IllegalArgumentException {
+        String[] splitted = numbersInput.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String s : splitted) {
+            int number = 0;
+
+            number = Integer.parseInt(s);
+
+            numbers.add(number);
+        }
+        Collections.sort(numbers);
+        return numbers;
     }
 }

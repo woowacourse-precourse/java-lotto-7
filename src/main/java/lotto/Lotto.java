@@ -19,6 +19,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
         }
 
+        for (Integer number : numbers) {
+            if(number<1 || number>45){
+                throw  new IllegalArgumentException("[ERROR] 로또 번호는 1~45만 가능합니다.");
+            }
+        }
+
     }
 
     // TODO: 추가 기능 구현
