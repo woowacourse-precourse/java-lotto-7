@@ -31,16 +31,16 @@ public class OutputView {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
     }
-    public void printResultStatistics(int[] ranking){
+    public void printResultStatistics(List<Integer> ranking){
         System.out.println();
         System.out.println(RESULT_STATISTICS);
         System.out.println(DEVIDING_LINE);
         for (Ranking rank : Ranking.values()) {
             if (rank == Ranking.SECOND) {
-                System.out.println(String.format(LOTTO_SECOND_RANK, rank.getCommonNumber(), rank.getWonPrize(), ranking[rank.getIndex()]));
+                System.out.println(String.format(LOTTO_SECOND_RANK, rank.getCommonNumber(), rank.getWonPrize(), ranking.get(rank.getIndex())));
                 continue;
             }
-            System.out.println(String.format("%s - %d개", rank, ranking[rank.getIndex()]));
+            System.out.println(String.format("%s - %d개", rank, ranking.get(rank.getIndex())));
         }
     }
     public void printTotalReturn(double returnRate) {

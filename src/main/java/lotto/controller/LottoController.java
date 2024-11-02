@@ -63,7 +63,7 @@ public class LottoController {
         }
     }
     private void gameResult(LottoRanking lottoRanking,LottoStatistic lottoStatistic){
-        outputView.printResultStatistics(lottoRanking.getLottoRank());
+        outputView.printResultStatistics(lottoRanking.getLottoRanking());
         outputView.printTotalReturn(lottoStatistic.getLottoStatistics());
     }
 }
