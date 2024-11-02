@@ -12,6 +12,15 @@ public class OutputView {
 		System.out.println(errorMessage);
 	}
 
+	public void printPurchaseLottoResultMessage(int count, List<List<String>> purchaseLottoResult) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\n");
+		stringBuilder.append(count);
+		stringBuilder.append("개를 구매했습니다.");
+		stringBuilder.append("\n");
+		System.out.println(stringBuilder);
+	}
+
 	private String getPurchaseLottoResult(List<String> lottoResult) {
 		return "[" + String.join(", ", lottoResult) + "]";
 	}
