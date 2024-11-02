@@ -14,6 +14,14 @@ public class LottoResult {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void bonusNumberValidate(int bonusNumber) {
         if (!(bonusNumber >= LottoConfig.LOTTO_MIN_NUMBER.getValue()
                 && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue())) {

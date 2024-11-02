@@ -8,14 +8,23 @@ import lotto.common.RandomNumberGenerator;
 
 public class IssuedRandomLotto implements IssuedLotto {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final List<Lotto> issuedLottos = new ArrayList<>();
     private final int lottoPurchaseAmount;
+    private List<Lotto> issuedLottos = new ArrayList<>();
 
     public IssuedRandomLotto(RandomNumberGenerator randomNumberGenerator, int lottoPurchaseAmount) {
         validate(lottoPurchaseAmount);
         this.randomNumberGenerator = randomNumberGenerator;
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
+
+    public IssuedRandomLotto(RandomNumberGenerator randomNumberGenerator, List<Lotto> issuedLottos,
+                             int lottoPurchaseAmount) {
+        validate(lottoPurchaseAmount);
+        this.randomNumberGenerator = randomNumberGenerator;
+        this.issuedLottos = new ArrayList<>(issuedLottos);
+        this.lottoPurchaseAmount = lottoPurchaseAmount;
+    }
+
 
     @Override
     public void generateIssuedLottos() {
@@ -26,6 +35,7 @@ public class IssuedRandomLotto implements IssuedLotto {
         }
     }
 
+    @Override
     public List<Lotto> getIssuedLottos() {
         return Collections.unmodifiableList(issuedLottos);
     }

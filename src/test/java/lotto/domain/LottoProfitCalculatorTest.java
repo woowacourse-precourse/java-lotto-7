@@ -12,10 +12,10 @@ public class LottoProfitCalculatorTest {
     void 로또가_일치하는_갯수를_반환한다() {
         // given
         RandomNumberGenerator generator = new RandomNumberGenerator();
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));    // 1등
-        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));    // 2등
-        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 8, 9));    // 4등
-        Lotto lotto4 = new Lotto(List.of(8, 9, 10, 11, 12, 13));// 꽝
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));        // 1등
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));        // 2등
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 8, 9));        // 4등
+        Lotto lotto4 = new Lotto(List.of(8, 9, 10, 11, 12, 13));    // 꽝
         List<Lotto> lottos = List.of(lotto1, lotto2, lotto3, lotto4);
         IssuedRandomLotto issuedLotto = new IssuedRandomLotto(generator, lottos, 4000);
 
