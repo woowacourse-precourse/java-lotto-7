@@ -11,6 +11,9 @@ import lotto.utility.RandomGenerator;
 import lotto.validation.Validator;
 
 public class LottoService {
+    private static final String FIXED_DELIMITER = ",";
+
+
     public int isValidNumber(String inputCost) {
         isBlank(inputCost);
         isPositiveNumber(inputCost);
@@ -70,4 +73,11 @@ public class LottoService {
         }
         return lottos;
     }
+
+    // split 전에 초기 문자열이 비어있는지, 콤마(,)와 숫자로만 이루어져있는지 검증
+    public void validateInputWinNumber(String winningNumber) {
+        Validator.isBlank(winningNumber);
+        Validator.isValidNumberAndDelimiter(winningNumber);
+    }
+
 }

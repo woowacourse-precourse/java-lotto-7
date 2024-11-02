@@ -71,5 +71,9 @@ public class LottoController {
     public void inputWinningNumber() {
         inputView.printMessage(InputMessage.INPUT_WINNING_NUMBER);
         winningNumber = inputView.inputWinningNumber();
+
+        // 비어있으면 에러메시지 띄우고 처음으로 돌아가는 작업도 추가해야함
+        lottoService.validateInputWinNumber(winningNumber);
     }
+
 }
