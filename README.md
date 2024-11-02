@@ -38,21 +38,35 @@
     - [x] 현재 확인하고 있는 원소를 winningNums도 가지고 있다면 count 1 증가
   - [x] count 값 반환
 
+### PurchaseController
+- [x] **public void processLottoGame()** \: 구입 발생 시마다 로또 게임을 진행하는 기능
+  - [x] `makePurchase()` 호출해 로또 구매
+  - [x] `countResult()` 호출해 로또별 당첨 결과 산출
+  - [x] `showStatistic()` 호출해 당첨 통계 산출 및 출력
+
+- [x] **private Purchase makePurchase()** \: 로또를 구매하는 기능
+  - [x] `InputView.getBuyingAmount()` 호출해 구입 금액 입력받기
+  - [x] `LottoNumberGenerator.issueLottos()` 호출해 구입 금액만큼의 로또 발행 및 Lotto 객체 생성
+  - [x] `getBoughtLottoNumbers()` 호출해 각 Lotto 객체에서 로또 번호 추출
+  - [x] `OutputView.printBoughtLottoNumbers()` 호출해 추출된 로또 번호 출력
+  - [x] Purchase 객체 생성 및 반환
+
+- [x] **private List\<Prize> countResult(Purchase purchase)** \: 각 로또의 당첨 결과를 산출하는 기능
+  - [x] `InputView.getWinningNumbers()`와 `InputView.getBonusNumber()`를 호출해 당첨 번호와 보너스 번호 입력받기
+  - [x] `Purchase.checkEachLottosResult()` 호출해 Purchase 객체 내 각 로또에 대해 결과 확인
+  - [x] 확인된 결과를 리스트에 담아 반환
+
+- [x] **private void showStatistic(List\<Prize> prizes, int buyingAmount)** \: 당첨 결과를 바탕으로 통계 산정 및 출력하는 기능
+  - [x] `ResultController.makeWinningStatistic()` 호출해 각 등수별 당첨 횟수를 반환받기
+  - [x] `ResultController.calculateEarningRatio()` 호출해 수익률 연산
+  - [x] `OutputView.printWinningStatistic()` 호출해 당첨 통계 출력
+
 ### LottoNumberGenerator
 - [x] **public List\<Lotto> issueLottos(int amount)** \: 주어진 수량만큼 로또를 발행하는 기능
     - [x] for (int i = 0; i < amount; i++)
         - [x] `getRandomLottoNumbers()` 호출해 로또 번호 6개 추출
         - [x] Lotto 객체 생성 → 리스트에 추가
     - [x] Lotto 객체가 저장된 리스트 반환
-
-
-- [ ]  public Lotto getWinningNumbers()
-    - [ ]  InputView.getWinningNumbers() 호출해 당첨 번호 입력받기
-    - [ ]  입력받은 당첨 번호로 Lotto 객체 생성
-    - [ ]  Lotto 객체 반환
-- [ ]  public int getBonusNumber()
-    - [ ]  InputView.getBonusNumbers() 호출해 보너스 번호 입력받기
-    - [ ]  보너스 번호 반환
 
 - [x] **private List\<Integer> getRandomLottoNumbers()** \: 로또 번호 6개를 추첨하는 기능
     - [x] `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)` 호출한 결과 반환
