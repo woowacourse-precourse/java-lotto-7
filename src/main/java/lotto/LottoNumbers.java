@@ -1,14 +1,16 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoNumbers {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
+    private final int lottoCount;
 
     public LottoNumbers(int totalLottoPrice) {
         this.lottos = new ArrayList<>();
-        int lottoCount = totalLottoPrice / 10;
+        this.lottoCount = totalLottoPrice / 1000;
         for(int i = 0; i < lottoCount; i++){
             this.lottos.add(new Lotto(createLotto()));
         }
@@ -20,5 +22,12 @@ public class LottoNumbers {
 
     private List<Integer> createLotto() {
         return camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
+
+    public void printLottos() {
+        System.out.println("\n"+lottoCount + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(Arrays.toString(lotto.getNumbers().toArray()));
+        }
     }
 }
