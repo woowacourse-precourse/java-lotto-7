@@ -1,8 +1,9 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +17,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    // 중복된 값 예외처리 구현
     // TODO: 추가 기능 구현
 }
