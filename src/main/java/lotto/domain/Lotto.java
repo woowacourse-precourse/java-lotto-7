@@ -19,7 +19,6 @@ public class Lotto {
     public Rank calculateRank(List<Integer> winningLottoNumbers, int bonusNumber) {
         int basicCount = 0;
         int bonusCount = 0;
-
         for (int winningLottoNumber : winningLottoNumbers) {
             if (numbers.contains(winningLottoNumber)) {
                 basicCount++;
