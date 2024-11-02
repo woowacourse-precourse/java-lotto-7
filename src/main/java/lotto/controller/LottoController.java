@@ -17,7 +17,8 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateResult(purchasedLottos, winningNumbers);
-
+        double returnRate = lottoResult.calculateReturnRate(
+                purchasedLottos.getSize() * 1000);
 
     }
 

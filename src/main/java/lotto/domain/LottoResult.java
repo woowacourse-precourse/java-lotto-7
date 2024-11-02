@@ -38,6 +38,21 @@ public class LottoResult {
     private void addResult(WinningPrize winningPrize) {
         results.put(winningPrize, results.get(winningPrize) + 1);
     }
+    public double calculateReturnRate(long purchaseAmount) {
+        long totalPrize = calculateTotalPrize();
+        return Math.round((double) totalPrize / purchaseAmount * 1000) / 10.0;
+    }
+
+    private long calculateTotalPrize() {
+        long totalPrize = 0;
+        for (Map.Entry<WinningPrize, Integer> entry : results.entrySet()) {
+            WinningPrize prize = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += (long) prize.getPrize() * count;
+        }
+        return totalPrize;
+    }
+
 
 
 
