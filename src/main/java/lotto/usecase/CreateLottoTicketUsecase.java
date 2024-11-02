@@ -5,26 +5,26 @@ import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lottos;
 import lotto.service.payment.PaymentService;
 import lotto.service.service.LottoService;
-import lotto.service.service.TicketService;
+import lotto.service.service.WriteTicketService;
 
 public class CreateLottoTicketUsecase {
     private final PaymentService paymentService;
     private final LottoService lottoService;
-    private final TicketService ticketService;
+    private final WriteTicketService writeTicketService;
 
     public CreateLottoTicketUsecase(PaymentService paymentService,
                                     LottoService lottoService,
-                                    TicketService ticketService) {
+                                    WriteTicketService writeTicketService) {
 
         this.paymentService = paymentService;
         this.lottoService = lottoService;
-        this.ticketService = ticketService;
+        this.writeTicketService = writeTicketService;
     }
 
     public Long execute(ThousandWons krMoney) {
         LottoQuantity lottoQuantity = paymentService.pay(krMoney);
         Lottos lottos = lottoService.create(lottoQuantity);
-        Long ticketId = ticketService.create(lottos);
+        Long ticketId = writeTicketService.create(lottos);
 
         return ticketId;
     }
