@@ -23,6 +23,10 @@ public class WoowahanLottoCompany {
             }
         }
     }
+
+    public void printLottoWinningResult(Consumer consumer) {
+        lottoMachin.printLottoWinningResult(consumer);
+    }
     /**
      * 우아한 로또 회사는 로또 머신을 가지고 있으며 여러 대일 수 있다.
      * 우아한 로또 회사의 기계는 로또의 당첨 여부를 확인해 줄 수 있다

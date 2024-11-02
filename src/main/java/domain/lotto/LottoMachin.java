@@ -9,8 +9,12 @@ import io.Output;
 import io.OutputMessage;
 import java.util.ArrayList;
 import java.util.List;
+import strategy.LottoMatchCounter;
+import strategy.LottoMatchCounterImpl;
 
 public class LottoMachin {
+
+    private final LottoMatchCounter counter = new LottoMatchCounterImpl();
 
     public void sellTo(Consumer consumer) {
         int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyForPurchaseLotto());
@@ -45,20 +49,25 @@ public class LottoMachin {
         Output.println(OutputMessage.ENTER_WINNER_NUMBERS.getOutputMessage());
         Lotto selectWinnerLotto = Input.inputWinningNumbers(Console.readLine());
         selectWinnerLotto.sortLottoNumbers();
-        Output.println(selectWinnerLotto);
         consumer.selectWinnerNumbers(selectWinnerLotto);
     }
 
     public void inputBonusNumbersTo(Consumer consumer) {
-        // TODO : 보너스 번호를 입력해 주세요.
         Output.println(OutputMessage.ENTER_BONUS_NUMBER.getOutputMessage());
         int selectedBonusNumber = Input.inputBonusNumber(Console.readLine());
         consumer.selectBonusNumber(selectedBonusNumber);
     }
 
-    /**
-     * 머신은 사용자에게 번호를 입력받는다.
-     * 머신은 사용자에게 보너스 번호를 입력받는다.
-     */
+    public void printLottoWinningResult(Consumer consumer) {
+        Output.println(OutputMessage.WINNING_STATISTICS.getOutputMessage());
+        consumer.getCheckLottoResultBy(this);
+    }
+
+    public int getMatchedLottoCount(Lotto purchasedLotto,
+                                    Lotto winningNumbers,
+                                    int bonusNumber) {
+
+        return counter.count(purchasedLotto, winningNumbers, bonusNumber);
+    }
 
 }
