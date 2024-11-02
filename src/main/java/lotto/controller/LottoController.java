@@ -14,6 +14,7 @@ import static lotto.view.OutputView.printWinningStatistics;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.MatchingRecord;
 import lotto.model.Rank;
@@ -27,7 +28,7 @@ public class LottoController {
         List<Lotto> lottos = issueLottos(purchaseAmount);
         printPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
         List<MatchingRecord> matchingRecords = stream(Rank.values()).map(MatchingRecord::new).toList();
         getStatistics(matchingRecords, lottos, winningNumbers, bonusNumber);
         printWinningStatistics(matchingRecords);
@@ -58,10 +59,10 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber() {
+    private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
-                int bonusNumber = parseBonusNumber(askBonusNumber());
+                BonusNumber bonusNumber = new BonusNumber(winningNumbers, parseBonusNumber(askBonusNumber()));
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -85,13 +86,13 @@ public class LottoController {
     }
 
     private void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos, WinningNumbers winningNumbers,
-                               int bonusNumber) {
+                               BonusNumber bonusNumber) {
         for (Lotto lotto : lottos) {
             Integer count = (int) lotto.getNumbers().stream()
                     .filter(i -> winningNumbers.getWinningNumbers().contains(i)).count();
             if (count.equals(6)) {
                 matchingRecords.get(4).increaseLottoQuantity();
-            } else if (count.equals(5) && lotto.getNumbers().contains(bonusNumber)) {
+            } else if (count.equals(5) && lotto.getNumbers().contains(bonusNumber.getBonusNumber())) {
                 matchingRecords.get(3).increaseLottoQuantity();
             } else if (count.equals(5)) {
                 matchingRecords.get(2).increaseLottoQuantity();
