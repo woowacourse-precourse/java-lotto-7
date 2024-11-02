@@ -36,7 +36,9 @@ public class GameManager {
     }
 
     private LottoWinningSet readWinningLottoSet() {
-        return new LottoWinningSet(readWinningNumber(), readBonusNumber());
+        printWinningNumberInputMessage();
+        List<Integer> winningNumber = readWinningNumber();
+        return new LottoWinningSet(winningNumber, readBonusNumber());
     }
 
     private List<Integer> readWinningNumber() {
@@ -51,6 +53,10 @@ public class GameManager {
 
     private void printLottoPurchase(Integer lottoSize) {
         outputView.printLottoPurchase(lottoSize.toString());
+    }
+
+    private void printWinningNumberInputMessage() {
+        outputView.printWinningNumberInputMessage();
     }
 }
 

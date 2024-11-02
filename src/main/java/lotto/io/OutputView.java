@@ -1,6 +1,7 @@
 package lotto.io;
 
 import static lotto.global.constant.Message.PURCHASE_INPUT_MESSAGE;
+import static lotto.global.constant.Message.WINNING_NUMBER_INPUT_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,10 @@ public class OutputView {
 
     public void printLottoPurchase(String lottoSize) {
         println(lottoSize + "개를 구매했습니다.");
+    }
+
+    public void printWinningNumberInputMessage() {
+        println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
     private void println(String string) {
