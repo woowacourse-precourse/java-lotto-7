@@ -1,9 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Model.Lotto;
-import lotto.Model.LottoGenerator;
-import lotto.Model.Validator;
+import lotto.Model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -57,6 +55,20 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> Validator.validateBonusNumber(bonus, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
+
+    @Test
+    void 발행_번호와_당첨_번호_비교_검사() {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        assertThat(winningLotto.getMatchResult(new Lotto(List.of(1, 2, 3, 4, 5, 6))))
+                .isEqualTo(LottoResult.SIX);
+
+        assertThat(winningLotto.getMatchResult(new Lotto(List.of(1, 2, 3, 4, 5, 7))))
+                .isEqualTo(LottoResult.FIVE_WITH_BONUS);
+
+        assertThat(winningLotto.getMatchResult(new Lotto(List.of(1, 2, 3, 4, 5, 8))))
+                .isEqualTo(LottoResult.FIVE);
     }
 
     @Test
