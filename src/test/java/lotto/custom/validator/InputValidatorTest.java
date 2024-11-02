@@ -129,4 +129,64 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
     }
+
+    // 보너스 번호 유효성 검증 테스트
+
+    @DisplayName("유효성검증_보너스번호입력_NULL일때_테스트")
+    @Test
+    void 유효성검증_보너스번호입력_NULL일때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberInput(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(lotto.custom.common.ErrorMessages.NULL_INPUT);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_빈문자열일때_테스트")
+    @Test
+    void 유효성검증_보너스번호입력_빈문자열일때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberInput(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_공백으로구성되어있을때_테스트")
+    @Test
+    void 유효성검증_보너스번호입력_공백으로구성되어있을때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("   "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_숫자와공백을제외한문자가존재할때_테스트")
+    @Test
+    void 유효성검증_보너스번호입력_숫자와공백을제외한문자가존재할때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("*"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_숫자와숫자사이에공백이존재할때_테스트") // 고칠 것
+    @Test
+    void 유효성검증_보너스번호입력_숫자와숫자사이에공백이존재할때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("1 2"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_보너스번호와당첨번호가같을때_테스트") // 고칠 것
+    @Test
+    void 유효성검증_보너스번호입력_보너스번호와당첨번호가같을때_테스트() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> inputValidator.validateBonusNumbers(winningNumbers, 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CustomErrorMessages.BONUS_NUMBER_DUPLICATE);
+    }
+
+    @DisplayName("유효성검증_보너스번호입력_숫자의범위가1에서45가아닐때_테스트") // 고칠 것
+    @Test
+    void 유효성검증_보너스번호입력_숫자의범위가1에서45가아닐때_테스트() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> inputValidator.validateBonusNumbers(winningNumbers, 47))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
+    }
 }

@@ -2,6 +2,7 @@ package lotto.custom.controller;
 
 import java.util.List;
 import lotto.custom.model.Lottos;
+import lotto.custom.service.BonusNumberService;
 import lotto.custom.service.LottoPurchaseService;
 import lotto.custom.service.WinningNumberService;
 import lotto.custom.view.InputView;
@@ -10,6 +11,7 @@ import lotto.custom.view.OutputView;
 public class LottoController {
     private final LottoPurchaseService lottoPurchaseService;
     private final WinningNumberService winningNumberService;
+    private final BonusNumberService bonusNumberService;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -17,6 +19,7 @@ public class LottoController {
     public LottoController() {
         this.lottoPurchaseService = new LottoPurchaseService();
         this.winningNumberService = new WinningNumberService();
+        this.bonusNumberService = new BonusNumberService();
 
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -28,6 +31,7 @@ public class LottoController {
         outputView.displayLottos(myLottoTickets);
 
         List<Integer> winningNumbers = selectWinningNumbers();
+        int bonusNumber = selectBonusNumber(winningNumbers);
     }
 
     public Lottos tryPurchaseLotto() {
@@ -56,5 +60,19 @@ public class LottoController {
             }
         }
         return winningNumbers;
+    }
+
+    public int selectBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.inputBonusNumber();
+                bonusNumber = bonusNumberService.run(winningNumbers, bonusNumberInput);
+                break; // 예외가 발생하지 않으면 루프 종료
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 }

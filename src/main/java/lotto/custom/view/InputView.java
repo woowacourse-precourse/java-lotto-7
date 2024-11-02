@@ -12,4 +12,9 @@ public class InputView {
         System.out.println(PromptMessages.INPUT_WINNING_NUMBERS_PROMPT);
         return Console.readLine();
     }
+
+    public String inputBonusNumber() {
+        System.out.println(PromptMessages.INPUT_BONUS_NUMBERS_PROMPT);
+        return Console.readLine();
+    }
 }

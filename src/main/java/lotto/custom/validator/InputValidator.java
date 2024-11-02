@@ -39,6 +39,25 @@ public class InputValidator {
         validateNumberRange(numbers);
     }
 
+    public void validateBonusNumberInput(String input) {
+        exceptions.emptyInput(input);
+        exceptions.invalidCharacters(input, "^[0-9\\s]*$");
+        if (input.matches(".*\\d+\\s+\\d+.*")) {
+            throw new IllegalArgumentException(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
+        }
+    }
+
+    public void validateBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        // 보너스 번호가 당첨 번호와 같을 때
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(CustomErrorMessages.BONUS_NUMBER_DUPLICATE);
+        }
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
+        }
+    }
+
     public void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBER_COUNT);
