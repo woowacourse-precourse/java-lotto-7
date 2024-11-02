@@ -4,15 +4,14 @@ import lotto.Lotto;
 import lotto.util.CommonIo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoTemp {
+public class Statics {
     private final CommonIo io;
 
-    public LottoTemp(CommonIo io) {
+    public Statics(CommonIo io) {
         this.io = io;
     }
 
