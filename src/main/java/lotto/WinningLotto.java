@@ -48,7 +48,7 @@ public class WinningLotto {
     private void checkDuplicate() {
         List<Integer> allNumbers = numbers;
         allNumbers.add(bonusNumber);
-        if (allNumbers.stream().distinct().count() != 6) {
+        if (allNumbers.stream().distinct().count() != (LOTTO_SIZE + 1)) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
