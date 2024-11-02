@@ -1,5 +1,7 @@
 package lotto.Domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.Messages.ErrorMessage;
 
 public class LottoMachine {
@@ -42,7 +44,23 @@ public class LottoMachine {
         }
     }
 
-    public int calculateMaxLottos(){
+    private int calculateMaxLottos() {
         return amount.getValue() / LOTTO_PRICE;
     }
+
+    private List<Lotto> generateLottos() {
+        int maxLottos = calculateMaxLottos();
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < maxLottos; i++) {
+            lottos.add(Lotto.create());
+        }
+
+        return lottos;
+    }
+
+    public void buyLottos(){
+        List<Lotto> lottos = generateLottos();
+    }
+
 }
