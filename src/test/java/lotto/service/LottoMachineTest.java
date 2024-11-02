@@ -67,7 +67,7 @@ class LottoMachineTest {
 
     @ParameterizedTest
     @MethodSource("lottoArgsGenerate")
-    void 로또_당첨_테스트(List<Integer> numbers, int bonus, Rank win) {
+    void 로또_1개_당첨_테스트(List<Integer> numbers, int bonus, Rank win) {
         // given
         PurchasedLottos purchasedLottos = lottoMachine.issueLotto(money);
         WinningLotto winningLotto = winningLottoMake(numbers, bonus);
@@ -76,8 +76,8 @@ class LottoMachineTest {
         LottoResult lottoResult = lottoMachine.winLotto(purchasedLottos, winningLotto);
 
         // then
-        Assertions.assertThat(lottoResult.getWinner())
-                .isEqualTo(win);
+        Assertions.assertThat(lottoResult.calculateProfit(money))
+                .isEqualTo(((double) win.getPrize() / money) * 100.0);
     }
 
     private static Stream<Arguments> lottoArgsGenerate() {
