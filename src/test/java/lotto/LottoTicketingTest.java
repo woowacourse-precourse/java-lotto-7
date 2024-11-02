@@ -1,7 +1,8 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import lotto.model.Lottos;
+import lotto.model.Purchase;
+import lotto.service.LottoTicketing;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;

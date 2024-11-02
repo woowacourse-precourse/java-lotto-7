@@ -1,7 +1,7 @@
 package lotto.util;
 
-import lotto.Lotto;
-import lotto.Lottos;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.constant.LottoConfig.Rank;
 
 import java.util.Map;

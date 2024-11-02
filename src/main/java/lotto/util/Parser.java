@@ -1,8 +1,8 @@
 package lotto.util;
 
-import lotto.Bonus;
-import lotto.Lotto;
-import lotto.Purchase;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Purchase;
 import lotto.constant.ErrorMessage;
 
 import java.util.Arrays;

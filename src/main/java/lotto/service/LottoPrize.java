@@ -1,7 +1,11 @@
-package lotto;
+package lotto.service;
 
 import lotto.constant.LottoConfig.BonusCheck;
 import lotto.constant.LottoConfig.Rank;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Purchase;
 
 import java.util.Arrays;
 import java.util.HashMap;

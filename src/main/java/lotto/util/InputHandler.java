@@ -1,8 +1,10 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.*;
 import lotto.constant.ErrorMessage;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Purchase;
 
 import java.util.function.Function;
 

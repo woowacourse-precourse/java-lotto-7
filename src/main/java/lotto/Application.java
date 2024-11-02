@@ -1,6 +1,12 @@
 package lotto;
 
 import lotto.constant.LottoConfig;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Purchase;
+import lotto.service.LottoPrize;
+import lotto.service.LottoTicketing;
 import lotto.util.InputHandler;
 import lotto.util.OutputHandler;
 

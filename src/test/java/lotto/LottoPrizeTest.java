@@ -1,7 +1,11 @@
 package lotto;
 
-import lotto.constant.LottoConfig;
 import lotto.constant.LottoConfig.Rank;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Purchase;
+import lotto.service.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
