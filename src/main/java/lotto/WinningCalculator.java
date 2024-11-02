@@ -52,5 +52,18 @@ public class WinningCalculator {
     private boolean isMatchBonusNumber(int bonusNumber, List<Integer> userLottoNumbers) {
         return userLottoNumbers.contains(bonusNumber);
     }
-    
+
+        public int calculateTotalPrizeMoney(LottoStore lottoStore, Map<Rank, Integer> winningCountsByRank) {
+        int totalPrizeMoney = 0;
+
+        Set<Rank> ranks = winningCountsByRank.keySet();
+        Map<Rank, PrizeInfo> rankInfo = lottoStore.getRankInfo();
+        for (Rank rank : ranks) {
+            PrizeInfo prizeInfo = rankInfo.get(rank);
+            totalPrizeMoney += prizeInfo.getPrize() * winningCountsByRank.get(rank);
+        }
+
+        return totalPrizeMoney;
+    }
+
 }
