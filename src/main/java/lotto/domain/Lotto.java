@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberRangeException;
-import lotto.exception.LottoNumberSIzeException;
+import lotto.exception.LottoNumberSizeException;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new LottoNumberSIzeException();
+            throw new LottoNumberSizeException();
         }
     }
 

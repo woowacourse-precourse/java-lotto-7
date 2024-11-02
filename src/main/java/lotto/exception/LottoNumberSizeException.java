@@ -1,9 +1,9 @@
 package lotto.exception;
 
-public class LottoNumberSIzeException extends IllegalArgumentException {
+public class LottoNumberSizeException extends IllegalArgumentException {
     private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
 
-    public LottoNumberSIzeException() {
+    public LottoNumberSizeException() {
         super(ERROR_MESSAGE);
     }
 }
