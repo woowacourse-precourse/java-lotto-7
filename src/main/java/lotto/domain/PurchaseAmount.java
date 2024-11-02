@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.util.Convertor;
+import lotto.validation.PurchaseAmountValidator;
 
 public class PurchaseAmount {
 
@@ -9,6 +10,7 @@ public class PurchaseAmount {
     private final long purchaseAmount;
 
     private PurchaseAmount(long purchaseAmount) {
+        PurchaseAmountValidator.validateDivisibleByThousand(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
