@@ -26,6 +26,11 @@ public class Lotto {
                 .count();
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private boolean isInvalidSize(List<LottoNumber> numbers) {
         return numbers.size() != LOTTO_SIZE;
     }
