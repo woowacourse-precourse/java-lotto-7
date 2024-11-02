@@ -14,11 +14,9 @@ public class LottoMachine {
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoMachine of(List<Integer> numbers, int bonus) {
-        validateBonusNumberDuplicate(numbers, bonus);
-        Lotto lotto = new Lotto(numbers);
-        BonusNumber bonusNumber = BonusNumber.from(bonus);
-        return new LottoMachine(lotto, bonusNumber);
+    public static LottoMachine of(Lotto lotto, BonusNumber bonus) {
+        validateBonusNumberDuplicate(lotto.getNumbers(), bonus.getBonusNumber());
+        return new LottoMachine(lotto, bonus);
     }
 
     private static void validateBonusNumberDuplicate(List<Integer> numbers, int bonus) {
