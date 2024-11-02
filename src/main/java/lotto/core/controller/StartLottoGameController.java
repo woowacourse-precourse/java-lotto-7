@@ -14,7 +14,7 @@ import lotto.core.view.InputBonusLottoNumberView;
 import lotto.core.view.InputWinningLottoView;
 import lotto.core.view.MatchWinningLottoView;
 
-public class StartLottoGameController implements Controller<LottoTicketDto, Void> {
+public class StartLottoGameController implements Controller<LottoTicketDto, Class<Void>> {
 
     private InputWinningLottoView inputWinningLottoView;
 
@@ -43,12 +43,12 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     }
 
     @Override
-    public Void request(LottoTicketDto ticket) {
+    public Class<Void> request(LottoTicketDto ticket) {
         LottoDto winningLotto = processInputWinningLotto();
         LottoNumberDto bonusNumber = processInputBonusLottoNumber(winningLotto);
         LottoResultDto winningResult = this.matchWinningLottoService.match(ticket, winningLotto, bonusNumber);
         this.matchWinningLottoView.display(winningResult);
-        return null;
+        return Void.class;
     }
 
     private LottoDto processInputWinningLotto() {

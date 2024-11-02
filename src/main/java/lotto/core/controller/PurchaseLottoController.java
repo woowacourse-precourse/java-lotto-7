@@ -10,7 +10,7 @@ import lotto.core.service.PublishLottoTicketService;
 import lotto.core.view.InputLottoPurchaseAmountView;
 import lotto.core.view.PublishLottoTicketView;
 
-public class PurchaseLottoController implements Controller<Void, LottoTicketDto> {
+public class PurchaseLottoController implements Controller<Class<Void>, LottoTicketDto> {
 
     private final InputLottoPurchaseAmountView inputLottoPurchaseAmountView;
 
@@ -31,7 +31,7 @@ public class PurchaseLottoController implements Controller<Void, LottoTicketDto>
     }
 
     @Override
-    public LottoTicketDto request(Void unused) {
+    public LottoTicketDto request(Class<Void> unused) {
         LottoPurchaseAmountDto amount = this.processInputLottoPurchaseAmount();
         LottoTicketDto ticket = this.publishLottoTicketService.publish(amount);
         this.publishLottoTicketView.display(ticket);

@@ -12,10 +12,10 @@ import lotto.core.dto.LottoTicketDto;
 public class Application {
     public static void main(String[] args) {
         Application.run(() -> {
-            Controller<Void, LottoTicketDto> purchaseLottoController = BeanFactory.findBean(PurchaseLottoController.class);
-            LottoTicketDto lottoTicket = purchaseLottoController.request(null);
+            Controller<Class<Void>, LottoTicketDto> purchaseLottoController = BeanFactory.findBean(PurchaseLottoController.class);
+            LottoTicketDto lottoTicket = purchaseLottoController.request(Void.class);
 
-            Controller<LottoTicketDto, Void> startLottoGameController = BeanFactory.findBean(StartLottoGameController.class);
+            Controller<LottoTicketDto, Class<Void>> startLottoGameController = BeanFactory.findBean(StartLottoGameController.class);
             startLottoGameController.request(lottoTicket);
         });
     }
