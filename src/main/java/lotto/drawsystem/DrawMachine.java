@@ -18,8 +18,11 @@ public class DrawMachine {
 
     public void runSingleDraw() {
 
-        drawMainNumbers();
-        drawBonusNumber();
+        List<Integer> mainNumbers = drawMainNumbers();
+        Integer bonusNumber = drawBonusNumber(mainNumbers);
+        drawResults.addMainNumbers(mainNumbers);
+        drawResults.addBonusNumber(bonusNumber);
+
 
     }
 

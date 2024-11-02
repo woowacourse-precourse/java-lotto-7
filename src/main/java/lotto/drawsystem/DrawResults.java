@@ -4,11 +4,15 @@ import java.util.List;
 
 public class DrawResults {
 
-    List<List<Integer>> totalMainNumbers;
-    List<Integer> totalBonusNumbers;
+    private List<List<Integer>> totalMainNumbers;
+    private List<Integer> totalBonusNumbers;
 
-    public DrawResults(List<List<Integer>> mainNumbers, List<Integer> totalBonusNumbers) {
+    private DrawResults(List<List<Integer>> mainNumbers, List<Integer> totalBonusNumbers) {
         this.totalMainNumbers = mainNumbers;
         this.totalBonusNumbers = totalBonusNumbers;
+    }
+
+    public void addMainNumbers(List<Integer> mainNumbers) {
+        totalMainNumbers.add(mainNumbers);
     }
 }
