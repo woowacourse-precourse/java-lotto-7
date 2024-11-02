@@ -37,16 +37,6 @@ public class LottoService {
         }
     }
 
-    /*// 당첨 결과 계산
-    public LottoResult calculateResult(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
-        LottoResult result = new LottoResult();
-
-        for (Lotto userLotto : purchasedLottos) {
-            result.updateRankCounts(userLotto.getNumbers(), winningNumbers);
-        }
-
-        return result;
-    }*/
     // 당첨 결과 계산
     public LottoResult calculateResult(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
         LottoResult lottoResult = new LottoResult();
@@ -66,21 +56,6 @@ public class LottoService {
         return lottoResult;
     }
 
-
-    // 두 로또 간 일치하는 번호 개수 계산
-    private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        return (int) lotto.getNumbers().stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    /*// 수익률 계산
-    public double calculateProfitRate(int purchaseAmount, int totalPrize) {
-        double profitRate = (double) totalPrize / purchaseAmount * 100;
-        return Math.round(profitRate * 100) / 100.0;  // 소수점 둘째 자리까지 반올림
-    }*/
-
     // 수익률 계산
     public double calculateProfitRate(int purchaseAmount, int totalPrize) {
         if (purchaseAmount <= 0) {
@@ -90,8 +65,4 @@ public class LottoService {
         return Math.round(profitRate * 100) / 100.0;  // 소수점 둘째 자리까지 반올림
     }
 
-    // 결과 출력 메서드 추가
-    public void printResults(LottoResult result) {
-        result.printResult();
-    }
 }
