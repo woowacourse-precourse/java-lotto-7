@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -22,6 +24,10 @@ public class Lotto {
 
     }
 
+    public static Lotto create() {
+        return new Lotto(getLottoNumber());
+    }
+
     private void validateNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
@@ -39,4 +45,9 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
+
+    private static List<Integer> getLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
 }

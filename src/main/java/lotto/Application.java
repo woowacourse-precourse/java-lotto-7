@@ -42,5 +42,10 @@ public class Application {
     private static void buyLotto(int money) {
         int count = money / 1000;
         System.out.println(count + "개를 구매하였습니다.");
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = Lotto.create();
+            System.out.println(lotto);
+        }
     }
+
 }
