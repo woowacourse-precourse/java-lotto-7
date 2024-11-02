@@ -13,11 +13,15 @@ public class WinningLotto {
     private final Lotto ticket;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto ticket, int bonusNumber) {
+    private WinningLotto(Lotto ticket, int bonusNumber) {
         validateRange(bonusNumber);
         this.ticket = ticket;
         validateDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLotto of(Lotto ticket, int bonusNumber) {
+        return new WinningLotto(ticket, bonusNumber);
     }
 
     public LottoResult checkLotto(Lotto customerLotto) {

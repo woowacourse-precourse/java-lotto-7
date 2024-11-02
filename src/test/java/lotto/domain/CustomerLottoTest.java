@@ -34,7 +34,7 @@ class CustomerLottoTest {
         ));
         CustomerLotto customerLotto = CustomerLotto.of(tickets);
 
-        WinningLotto winningLotto = new WinningLotto(winningTicket, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.of(winningTicket, bonusNumber);
         // when
         LottoResults lottoResults = customerLotto.compareWinningLotto(winningLotto);
         List<LottoResult> result = lottoResults.getResults();

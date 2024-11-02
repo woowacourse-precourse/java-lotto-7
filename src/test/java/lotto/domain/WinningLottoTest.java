@@ -25,7 +25,7 @@ class WinningLottoTest {
         @CsvSource(value = {"0", "46"})
         @DisplayName("보너스 번호가 1보다 작거나 45보다 크면 예외가 발생한다")
         void winningLottoInitErrorTest(String outOfRangeNumber) {
-            assertThatThrownBy(() -> new WinningLotto(ticket, Integer.parseInt(outOfRangeNumber)))
+            assertThatThrownBy(() -> WinningLotto.of(ticket, Integer.parseInt(outOfRangeNumber)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 보너스 번호는 1와 45사이 숫자여야합니다.");
         }
@@ -33,7 +33,7 @@ class WinningLottoTest {
         @Test
         @DisplayName("보너스 번호가 당첨로또 번호와 중복이 있다면 예외가 발생한다")
         void winningLottoDuplicateErrorTest() {
-            assertThatThrownBy(() -> new WinningLotto(ticket, 1))
+            assertThatThrownBy(() -> WinningLotto.of(ticket, 1))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
         }
@@ -84,7 +84,7 @@ class WinningLottoTest {
         @DisplayName("로또 결과를 검증시")
         void rankingTest(String description, List<Integer> numbers, int bonusNumber, Rank expectedRank) {
             // given
-            WinningLotto winningLotto = new WinningLotto(ticket, bonusNumber);
+            WinningLotto winningLotto = WinningLotto.of(ticket, bonusNumber);
             Lotto newTicket = Lotto.of(numbers);
 
             // when
