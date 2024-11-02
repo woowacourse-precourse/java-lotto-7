@@ -52,6 +52,6 @@ public class LottoMachineController {
     double returnRate = totalPrice.calculateReturnRate(money);
 
     outputView.printStatistic(winningStatistic1);
-    outputView.printReturnRate(returnRate);
+    outputView.printReturnRate(returnRate, winningStatistic1);
   }
 }
