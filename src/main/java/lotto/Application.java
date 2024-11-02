@@ -21,5 +21,10 @@ public class Application {
         WinningController winningController = new WinningController(inputView, outputView);
         BonusController bonusController = new BonusController(inputView, outputView,
                 winningController.getWinningGenerator().getWinning());
+
+        lottoController.showLottoWinningResult(
+                winningController.getWinningGenerator().getWinning(),
+                bonusController.getBonusGenerator().getBonus()
+        );
     }
 }
