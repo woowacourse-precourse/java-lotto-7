@@ -19,7 +19,7 @@ public class Lotto {
         int bonusCount = 0;
 
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i).equals(winningLotto.get(i))) {
+            if (numbers.contains(winningLotto.get(i))) {
                 basicCount++;
             }
         }

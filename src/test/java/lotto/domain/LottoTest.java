@@ -40,9 +40,9 @@ class LottoTest {
 
     static Stream<Arguments> provideWiningLottoAndBonusAndRank() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 8, Rank.FIRST),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 6, Rank.SECOND),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 8, Rank.THIRD),
+                Arguments.of(List.of(4, 5, 6, 1, 2, 3), 8, Rank.FIRST),
+                Arguments.of(List.of(4, 5, 7, 1, 2, 3), 6, Rank.SECOND),
+                Arguments.of(List.of(4, 5, 7, 1, 2, 3), 8, Rank.THIRD),
                 Arguments.of(List.of(1, 2, 3, 4, 7, 8), 9, Rank.FOURTH),
                 Arguments.of(List.of(1, 2, 3, 7, 8, 9), 10, Rank.FIFTH),
                 Arguments.of(List.of(7, 8, 9, 10, 5, 6), 8, Rank.NONE)
