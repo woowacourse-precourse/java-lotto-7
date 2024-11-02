@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.io.InputView;
 
 public class GameManager {
@@ -18,6 +20,12 @@ public class GameManager {
 
     private int readPrice() {
         return Integer.parseInt(inputView.readPrice());
+    }
+
+    private List<Integer> readWinningNumber() {
+        return Arrays.stream(inputView.readWinningNumber())
+                .map(Integer::parseInt)
+                .toList();
     }
 }
 

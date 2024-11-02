@@ -6,4 +6,8 @@ public class InputView {
     public String readPrice() {
         return readLine();
     }
+
+    public String[] readWinningNumber() {
+        return readLine().split(",");
+    }
 }
