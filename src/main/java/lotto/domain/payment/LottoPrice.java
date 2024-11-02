@@ -1,10 +1,10 @@
 package lotto.domain.payment;
 
 
-import lotto.ThousandWons;
+import lotto.domain.common.ThousandWons.ThousandWons;
 
 public class LottoPrice {
-    private final static int BASIC_PRICE = 1000;
+    public final static int BASIC_PRICE = 1000;
     private final int amount;
 
     private LottoPrice(int amount) {
@@ -22,4 +22,5 @@ public class LottoPrice {
     public int calculateLottoCount(ThousandWons money) {
         return money.divide(amount);
     }
+
 }

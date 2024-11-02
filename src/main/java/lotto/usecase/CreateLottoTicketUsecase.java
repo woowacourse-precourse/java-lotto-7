@@ -1,6 +1,6 @@
 package lotto.usecase;
 
-import lotto.ThousandWons;
+import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lottos;
 import lotto.service.LottoService;

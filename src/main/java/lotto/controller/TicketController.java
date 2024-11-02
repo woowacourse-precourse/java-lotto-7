@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.ThousandWons;
+import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.dto.TicketResponse;
 import lotto.usecase.CreateLottoTicketUsecase;
 import lotto.usecase.GetLottoTicketUsecase;
@@ -33,8 +33,10 @@ public class TicketController {
 
     public TicketResponse create() {
         ThousandWons krMoney = inputView.initialize();
+
         Long ticketId = createLottoTicketUsecase.execute(krMoney);
         TicketResponse ticketResponse = getLottoTicketUsecase.execute(ticketId);
+
         outputView.show(ticketResponse);
 
         return ticketResponse;

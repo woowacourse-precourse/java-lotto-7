@@ -4,10 +4,10 @@ import static lotto.domain.payment.PaymentStatus.COMPLETED;
 import static lotto.domain.payment.PaymentStatus.PAYABLE;
 import static lotto.domain.payment.PaymentStatus.PENDING;
 
-import lotto.ThousandWons;
+import lotto.domain.common.ThousandWons.ThousandWons;
 
 public class Payment {
-    
+
     private final Long id;
     private final ThousandWons money;
     private final PaymentStatus status;
