@@ -1,4 +1,4 @@
-package lotto.view.util;
+package lotto.controller.util;
 
 import static lotto.exception.ExceptionMessage.INVALID_NUMBER_FORMAT;
 

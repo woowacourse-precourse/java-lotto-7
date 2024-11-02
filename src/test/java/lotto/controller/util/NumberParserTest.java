@@ -1,4 +1,4 @@
-package lotto.view.util;
+package lotto.controller.util;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
