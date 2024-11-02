@@ -16,6 +16,20 @@ public class Lottos {
         return lottoGroup.size();
     }
 
+    public void compare(WinningLotto winningLotto) {
+        lottoGroup.forEach(lotto -> WinningRank.match(
+                calculateWinnings(lotto, winningLotto), hasBonus(lotto, winningLotto)
+        ));
+    }
+
+    public int calculateWinnings(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.matchNumbers(winningLotto);
+    }
+
+    public boolean hasBonus(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.matchBonus(winningLotto);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -37,19 +51,5 @@ public class Lottos {
         return lottoGroup.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining("\n"));
-    }
-
-    public void compare(WinningLotto winningLotto) {
-        for (Lotto lotto : lottoGroup) {
-            WinningRank.match(calculateWinnings(lotto, winningLotto), hasBonus(lotto, winningLotto));
-        }
-    }
-
-    public int calculateWinnings(Lotto lotto, WinningLotto winningLotto) {
-        return lotto.matchNumbers(winningLotto);
-    }
-
-    public boolean hasBonus(Lotto lotto, WinningLotto winningLotto) {
-        return lotto.matchBonus(winningLotto);
     }
 }
