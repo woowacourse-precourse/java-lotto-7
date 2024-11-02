@@ -5,7 +5,8 @@ public enum LottoRank {
     MATCH_5_BONUS(5, true, 30_000_000),
     MATCH_5(5, false, 1_500_000),
     MATCH_4(4, false, 50_000),
-    MATCH_3(3, false, 5_000);
+    MATCH_3(3, false, 5_000),
+    ;
 
     private final int matchCount;
     private final boolean bonusMatch;
