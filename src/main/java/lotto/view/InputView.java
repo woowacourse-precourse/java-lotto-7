@@ -1,13 +1,32 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.BonusNumberValidator;
 import lotto.model.Lotto;
+import lotto.model.LottoValidator;
 import lotto.model.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, 보너스 번호 유효성 검사
+
+    /*// 로또 구입 금액을 입력받는 메서드
+    public int readPurchaseAmount() {
+        System.out.println("로또 구입 금액을 입력해 주세요.");
+        while (true) {
+            try {
+                String input = Console.readLine();
+                int amount = Integer.parseInt(input);
+                validatePurchaseAmount(amount);
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }*/
 
     // 로또 구입 금액을 입력받는 메서드
     public int readPurchaseAmount() {
@@ -16,7 +35,10 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
             try {
                 String input = Console.readLine();
                 int amount = Integer.parseInt(input);
-                validatePurchaseAmount(amount);
+
+                // LottoValidator를 사용하여 구입 금액 검증
+                LottoValidator.validatePurchaseAmount(amount);
+
                 return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력하세요.");
@@ -109,7 +131,7 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
                 return lotto.getNumbers(); // 유효성 검증된 로또 번호 리스트 반환
 
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력하세요.");
+                System.out.println("[ERROR] 로또 번호는 숫자여야 합니다.");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -133,7 +155,7 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
         }
     }*/
 
-    public int readBonusNumberFromInput() {
+    /*public int readBonusNumberFromInput() {
         System.out.println("보너스 번호를 입력해 주세요. : ");
         while (true) {
             try {
@@ -152,18 +174,49 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
                 System.out.println(e.getMessage());
             }
         }
+    }*/
+
+    public static int readBonusNumberFromInput() {
+        System.out.println("보너스 번호를 입력해 주세요. : ");
+        while (true) {
+            try {
+                String input = Console.readLine();
+
+                // 숫자 형식인지 먼저 검증
+                BonusNumberValidator.validateBonusNumberIsNumeric(input);
+
+                int bonusNumber = Integer.parseInt(input);
+
+                // 범위와 중복 여부 검증
+                BonusNumberValidator.validateBonusNumberRange(bonusNumber);
+
+                return bonusNumber; // 검증된 보너스 번호 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public WinningNumbers readWinningNumbers() {
+        List<Integer> winningNumbers = readWinningNumbersFromInput();
+        int bonusNumber = readBonusNumberFromInput();
+
+        // 중복 검증
+        BonusNumberValidator.validateBonusNumberNotDuplicate(bonusNumber, winningNumbers);
+
+        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
     // 당첨 번호와 보너스 번호를 입력받는 메서드
-    public WinningNumbers readWinningNumbers() {
+    /*public WinningNumbers readWinningNumbers() {
         List<Integer> winningNumbers = readWinningNumbersFromInput(); // 수정된 부분
         int bonusNumber = readBonusNumberFromInput(); // 수정된 부분
 
         // WinningNumbers 객체 반환
         return new WinningNumbers(winningNumbers, bonusNumber);
-    }
+    }*/
 
-    // 로또 구입 금액 유효성 검증
+    /*// 로또 구입 금액 유효성 검증
     private void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
@@ -175,5 +228,5 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-    }
+    }*/
 }
