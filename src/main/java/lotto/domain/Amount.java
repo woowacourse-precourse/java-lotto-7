@@ -11,6 +11,7 @@ public class Amount {
     }
 
     public static Amount of(String input) {
+        input = input.trim();
         validate(input);
         return new Amount(Integer.parseInt(input));
     }
