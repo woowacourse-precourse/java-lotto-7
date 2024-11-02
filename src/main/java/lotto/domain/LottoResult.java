@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoResult {
-    private Lotto winningNumbers;
-    private int bonusNumber;
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
 
     public LottoResult(List<Integer> resultNumbers, int bonusNumber) {
         this.winningNumbers = new Lotto(resultNumbers);

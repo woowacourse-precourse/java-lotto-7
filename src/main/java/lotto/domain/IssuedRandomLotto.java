@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import lotto.common.RandomNumberGenerator;
@@ -19,7 +18,7 @@ public class IssuedRandomLotto implements IssuedLotto {
 
     @Override
     public void generateIssuedLottos() {
-        int quantity = lottoPurchaseAmount / 1000;
+        int quantity = calculateQuantity();
         for (int i = 0; i < quantity; i++) {
             Lotto issuedLotto = new Lotto(generateRandomLottoNumbers());
             issuedLottos.add(issuedLotto);
@@ -28,6 +27,10 @@ public class IssuedRandomLotto implements IssuedLotto {
 
     public List<Lotto> getIssuedLottos() {
         return Collections.unmodifiableList(issuedLottos);
+    }
+
+    private int calculateQuantity() {
+        return lottoPurchaseAmount / 1000;
     }
 
     private List<Integer> generateRandomLottoNumbers() {
