@@ -31,14 +31,17 @@ public class LottoController {
         return correctDTO;
     }
 
-    //로또를 생성해서 당첨번호와 비교하고 출력하는 기능
     public void matchNumberAndBonusNum() {
+        //돈을 입력받고 처리하는 부분
         MoneyDTO moneyDTO = getMoneyAndReturn();
         lottoView.printTicketNumber(moneyDTO);
+        //로또를 생성하는 부분
         LottoDTO lottoDTO = lottoService.makeLottos(moneyDTO);
         lottoView.printLottos(lottoDTO);
+        //당첨번호를 입력받고 처리하는 부분
         CorrectDTO correctDTO = getCorrectNumAndBonusNum();
         lottoService.countMatchingNumbers(correctDTO,lottoDTO);
+        //결과에 대해 출력하는 부분
         RateOfReturnDTO rateOfReturnDTO = lottoService.calculateRateOfReturn(moneyDTO);
         lottoView.printResult(rateOfReturnDTO);
     }
