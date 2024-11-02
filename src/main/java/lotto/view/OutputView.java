@@ -27,4 +27,12 @@ public class OutputView {
             printLotto(lotto);
         }
     }
+
+    public static void printWinningResults(WinningResult winningResult) {
+        System.out.println("당첨 통계\n" + "---");
+        for (Rank rank : Rank.values()) {
+            int count = winningResult.getResult().getOrDefault(rank, 0);
+            System.out.printf("%s (%,d원) - %d개\n", rank.getMatchMessage(), rank.getPrize(), count);
+        }
+    }
 }

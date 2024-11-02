@@ -20,6 +20,7 @@ public class LottoController {
         int bonusNum = getBonusNumber(winningNumberData);
         WinningNumber winningNumber = new WinningNumber(winningNumberData, bonusNum);
         WinningResult winningResult = getWinningResult(tickets, winningNumber);
+        OutputView.printWinningResults(winningResult);
     }
 
     private List<Lotto> buyLotto() {

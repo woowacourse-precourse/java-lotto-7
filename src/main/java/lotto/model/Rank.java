@@ -1,11 +1,11 @@
 package lotto.model;
 
 public enum Rank {
-    FIRST(2000000000, "6개 일치 ", 1),
-    SECOND(30000000, "5개 일치, 보너스 볼 일치 ", 2),
-    THIRD(1500000, "5개 일치 ", 3),
-    FOURTH(50000, "4개 일치 ", 4),
-    FIFTH(5000, "3개 일치 ", 5);
+    FIFTH(5000, "3개 일치", 5),
+    FOURTH(50000, "4개 일치", 4),
+    THIRD(1500000, "5개 일치", 3),
+    SECOND(30000000, "5개 일치, 보너스 볼 일치", 2),
+    FIRST(2000000000, "6개 일치", 1);
 
     private int prize;
     private String matchMessage;
