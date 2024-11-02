@@ -1,10 +1,10 @@
 package lotto.factory;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumberGenerator;
 
 public class LottoMakeFactory {
 
@@ -15,10 +15,14 @@ public class LottoMakeFactory {
     }
 
     private static Lotto createSortedLotto() {
-        List<Integer> sortedNumbers = LottoNumberGenerator.generateLottoNumber()
+        List<Integer> sortedNumbers = generateLottoNumber()
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());
         return new Lotto(sortedNumbers);
+    }
+
+    private static List<Integer> generateLottoNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
