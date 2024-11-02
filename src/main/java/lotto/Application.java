@@ -22,6 +22,11 @@ public class Application {
             }
         }
 
+        numberOfLotto = userInput.getNumberOfLotto();
+        LottoList lottoList = new LottoList(numberOfLotto);
+
+        lottoList.printLottoList();
+
         while (true) {
             try {
                 userInput.winNumbersInput();
@@ -40,14 +45,17 @@ public class Application {
             }
         }
 
-        numberOfLotto = userInput.getNumberOfLotto();
         winNumbers = new Lotto(userInput.getWinNumbers());
         bonusNumber = userInput.getBonusNumber();
 
-        LottoList lottoList = new LottoList(numberOfLotto);
 
         Statistics statistics = new Statistics(lottoList.getLottoList(), winNumbers, bonusNumber);
 
         Map<Rank, Integer> statisticResult = statistics.statistic();
+        double profitRate = statistics.calculateProfitRate();
+
+        ResultOutput resultOutput = new ResultOutput(statisticResult, profitRate);
+
+        resultOutput.printResult();
     }
 }
