@@ -71,6 +71,64 @@ class LottoApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 구매금액_우승번호_정상_입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]"
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44)
+        );
+    }
+
+    @Test
+    void 우승번호_중복_입력시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,6,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 우승번호_범위_초과시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,6,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 우승번호_범위_미만시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "0,2,3,4,6,45");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 우승번호_개수_불일치시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 우승번호_형식_이상시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "hello,world");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
