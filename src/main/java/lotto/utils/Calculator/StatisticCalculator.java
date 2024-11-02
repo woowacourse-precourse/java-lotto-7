@@ -1,22 +1,22 @@
 package lotto.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
-
-import java.util.ArrayList;
-import java.util.List;
+import lotto.domain.WinningNumber;
 
 public class StatisticCalculator {
 
-    public static List<Integer> calculateStatistics(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+    public static List<Integer> calculateStatistics(User user, WinningNumber winningNumber) {
         List<Integer> accords = initializeAccords();
         Lottos userLottos = user.getLottos();
 
         for (Lotto lotto : userLottos.getLottos()) {
-            int matchCount = calculateMatchCount(lotto, winningLotto);
-            int index = determineIndex(matchCount, lotto, bonusNumber);
+            int matchCount = calculateMatchCount(lotto, winningNumber.getWinningLotto());
+            int index = determineIndex(matchCount, lotto, winningNumber.getBonusNumber());
             if (index != -1) {
                 updateAccords(accords, index);
             }
@@ -39,10 +39,18 @@ public class StatisticCalculator {
     }
 
     private static int determineIndex(int matchCount, Lotto userLotto, BonusNumber bonusNumber) {
-        if (matchCount == 3) return 0;
-        if (matchCount == 4) return 1;
-        if (matchCount == 6) return 4;
-        if (matchCount == 5) return handleFiveMatches(userLotto, bonusNumber);
+        if (matchCount == 3) {
+            return 0;
+        }
+        if (matchCount == 4) {
+            return 1;
+        }
+        if (matchCount == 6) {
+            return 4;
+        }
+        if (matchCount == 5) {
+            return handleFiveMatches(userLotto, bonusNumber);
+        }
         return -1;
     }
 
