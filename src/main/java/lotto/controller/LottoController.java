@@ -2,11 +2,13 @@ package lotto.controller;
 
 import lotto.Bag;
 import lotto.LotteryMachine;
+import lotto.User;
 import lotto.view.InputView;
 import lotto.view.outputView;
 
 public class LottoController {
     private LotteryMachine lotteryMachine;
+    private User user;
 
     public LottoController() {
         lotteryMachine = new LotteryMachine();
@@ -18,9 +20,9 @@ public class LottoController {
     public void startLottoPurchase() {
         while(true) {
             try {
-                Bag bag = InputView.inputPurchaseAmount();
-                lotteryMachine.purchaseLottoTickets(bag);
-                outputView.printPurchasedLottoTickets(bag);
+                user = new User(InputView.inputPurchaseAmount());
+                lotteryMachine.purchaseLottoTickets(user);
+                outputView.printPurchasedLottoTickets(user.getBag());
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -8,11 +8,11 @@ import static lotto.Validator.validatePositiveNumber;
 
 public class InputView {
 
-    public static Bag inputPurchaseAmount() {
+    public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputAmount = Console.readLine();
         validateEmptyString(inputAmount);
-        return new Bag(Integer.parseInt(inputAmount));
+        return Integer.parseInt(inputAmount);
     }
     public static String inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");

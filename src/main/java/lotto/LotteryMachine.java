@@ -9,22 +9,17 @@ import java.util.stream.IntStream;
 public class LotteryMachine {
     private static final int LOTTO_TICKET_PRICE = 1000;
 
-    public void purchaseLottoTickets(Bag bag) {
-        int purchaseAmount = bag.getPurchaseAmount();
+    public void purchaseLottoTickets(User user) {
+        int purchaseAmount = user.getPurchaseAmount();
         validatePurchaseAmount(purchaseAmount);
         int numberOfPurchase = purchaseAmount/LOTTO_TICKET_PRICE;
-        IntStream.range(0,numberOfPurchase).forEach(i -> purchaseLotto(bag));
+        IntStream.range(0,numberOfPurchase).forEach(i -> purchaseLotto(user));
     }
 
-    private void purchaseLotto(Bag bag) {
-        List<Integer> pickedNumbers = pickNumbersSorted();
+    private void purchaseLotto(User user) {
+        List<Integer> pickedNumbers = user.pickNumbersSorted();
         Lotto lotto = new Lotto(pickedNumbers);
-        bag.buyLotto(lotto);
-    }
-    private List<Integer> pickNumbersSorted() {
-        List<Integer> pickNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        pickNumbers.sort(Comparator.naturalOrder());
-        return pickNumbers;
+        user.buyLotto(lotto);
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {

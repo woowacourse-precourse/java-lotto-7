@@ -6,23 +6,16 @@ import java.util.List;
 import static lotto.Validator.*;
 
 public class Bag {
-    private final int purchaseAmount;
     private int numberOfLottoTickets;
     private final List<Lotto> purchasedLotto;
 
-    public Bag(int purchaseAmount) {
-        validatePositiveNumber(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
+    public Bag() {
         purchasedLotto = new ArrayList<>();
     }
 
-    public void buyLotto(Lotto lotto) {
+    public void addLotto(Lotto lotto) {
         purchasedLotto.add(lotto);
         numberOfLottoTickets++;
-    }
-
-    public int getPurchaseAmount() {
-        return purchaseAmount;
     }
 
     public List<Lotto> getPurchasedLotto() {
