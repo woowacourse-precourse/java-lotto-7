@@ -58,7 +58,7 @@
 
 --- 
 
-## MVC 패턴 구조
+# MVC 패턴 구조
 ### Main
 - [x] Application
 ### Model
@@ -87,3 +87,12 @@
 - [x] LottoDto
 - [x] LottoResultDto
 - [x] LottoNumberListDto
+
+---
+# TEST 
+## model
+- [x] LottoBuyerTest
+- [x] LottoMachineTest
+- [x] LottoManagerTest
+- [x] LottoResultTest
+- [x] LottoTest
