@@ -53,7 +53,7 @@
       - 보너스 번호와 같은 값이 있다면 bonus = true
     - Prize에 해당하는 개수 증가
       - for (Prize prize : Prize.values())
-          - if (prize.getCount() == count && THREE.hasBonus() == hasBonus)
+          - if (prize.getCount() == count && prize.hasBonus() == hasBonus)
             - prizeCount.put(prize, prizeCount.get(prize) + 1)
 
 - 당첨 내역 및 수익률 출력
