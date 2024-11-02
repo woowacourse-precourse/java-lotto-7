@@ -20,4 +20,8 @@ public class Lotto {
     public boolean hasNumber(int number) {
         return numbers.contains(number);
     }
+
+    public int countingMatchNumbers(Lotto winningLotto) {
+        return (int) numbers.stream().filter(winningLotto::hasNumber).count();
+    }
 }
