@@ -2,7 +2,6 @@ package lotto.util;
 
 import static lotto.constant.ErrorMessage.EMPTY_INPUT_ERROR;
 import static lotto.constant.ErrorMessage.NULL_INPUT_ERROR;
-import static lotto.constant.ErrorMessage.NUMBER_FORMAT_ERROR;
 import static lotto.constant.ErrorMessage.NUMBER_RANGE_ERROR;
 
 public class StringProcessor {
@@ -30,7 +29,7 @@ public class StringProcessor {
 
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR.getMessage());
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
         }
     }
 }
