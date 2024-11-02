@@ -64,3 +64,6 @@
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ### 기능 및 예외 처리 확인을 위한 테스트 케이스를 작성한다.
+- 구매 금액 테스트 케이스 작성
+- 당첨 번호 테스트 케이스 작성
+- 보너스 번호 테스트 케이스 작성
