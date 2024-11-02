@@ -4,6 +4,7 @@ package service;
 import domain.Lotto;
 import domain.LottoResult;
 import domain.Lottos;
+import domain.Profit;
 import domain.Ticket;
 import domain.Winning;
 import domain.WinningPrice;
@@ -43,6 +44,10 @@ public class WinningService {
 
     public Map<WinningPrice, Integer> getLottoResult() {
         return lottoResult.getResult();
+    }
+
+    public double getProfit(int purchaseAmount) {
+        return Profit.calculate(lottoResult.getResult(), purchaseAmount);
     }
 
 

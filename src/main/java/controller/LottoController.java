@@ -1,8 +1,6 @@
 package controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import domain.Lotto;
-import domain.LottoResult;
 import domain.Lottos;
 import java.util.List;
 import service.WinningService;
@@ -15,7 +13,8 @@ public class LottoController {
 
 
     public void start() {
-        Lottos lottos = winningService.generateLottoNumber(InputView.purchasePriceInput());
+        int purchaseAmount = InputView.purchasePriceInput();
+        Lottos lottos = winningService.generateLottoNumber(purchaseAmount);
         OutputView.printTicketQuantity(winningService.getTicketQuantity());
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
@@ -28,5 +27,7 @@ public class LottoController {
         }
 
         OutputView.printResult(winningService.getLottoResult());
+
+        System.out.println(winningService.getProfit(purchaseAmount));
     }
 }
