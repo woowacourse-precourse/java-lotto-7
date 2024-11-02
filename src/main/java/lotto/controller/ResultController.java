@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ResultController {
+    private final int INITIAL_MATCH_COUNT = 0;
+    private final int ONE = 1;
     private final int PERCENTAGE = 100;
     private final String ROUNDING_OFF_FORMAT = "%.1f";
 
@@ -16,7 +18,7 @@ public class ResultController {
             if (prize == Prize.LOSE) {
                 continue;
             }
-            result.put(prize, result.get(prize) + 1);
+            result.put(prize, result.get(prize) + ONE);
         }
         return result;
     }
@@ -27,7 +29,7 @@ public class ResultController {
             if (prize == Prize.LOSE) {
                 continue;
             }
-            result.put(prize, 0);
+            result.put(prize, INITIAL_MATCH_COUNT);
         }
         return result;
     }
