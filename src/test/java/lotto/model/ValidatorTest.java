@@ -154,6 +154,19 @@ class ValidatorTest {
     }
 
     @Test
+    @DisplayName("보너스 번호 유효성 검사: 당첨 번호와 중복 - 예외 테스트")
+    void validateBonusNumber_duplicateWinningNumber() {
+        // given
+        List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 6;
+
+        // when & then
+        assertThatThrownBy(() -> Validator.validateBonusNumber(winningTicket, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
     @DisplayName("보너스 번호 유효성 검사: 범위 초과 - 예외 테스트")
     void validateBonusNumber_exceededRange() {
         // given
