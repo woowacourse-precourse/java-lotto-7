@@ -6,6 +6,7 @@ import java.util.List;
 public class Input {
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private final InputValidator inputValidator;
 
     public Input(InputValidator inputValidator) {
@@ -44,5 +45,20 @@ public class Input {
         List<Integer> winNumbers = Parser.splitByDelimiter(Console.readLine());
         inputValidator.validateWinNumber(winNumbers);
         return winNumbers;
+    }
+
+    public Integer getBonusNumberWithMessage() {
+        while (true) {
+            try {
+                System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+                return getValidatedBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Integer getValidatedBonusNumber() {
+        return Parser.toInteger(Console.readLine());
     }
 }
