@@ -177,17 +177,31 @@ public class ValidatorTest {
     @ParameterizedTest
     @MethodSource("validListAndInputProvider")
     @DisplayName("기존 리스트에 입력받은 인자 존재하는 지 테스트")
-    public void isNotInListTest(List<Integer> list, Integer input) {
+    public <T> void isNotInListTest(List<T> list, T input) {
         assertThatNoException().isThrownBy(() -> Validator.isNotInList(list, input));
     }
 
     private static Object[][] validListAndInputProvider() {
         return new Object[][]{
                 {List.of(1, 2, 3, 4, 5), 6},
-                {List.of(12, 34, 56, 67) ,89}
+                {List.of("12", "34", "56", "67"), "89"}
         };
     }
 
+    @ParameterizedTest
+    @MethodSource("inValidListAndInputProvider")
+    @DisplayName("기존 리스트에 입력받은 인자가 중복 존재하는 예외 테스트")
+    public <T> void isNotInListExceptionTest(List<T> list, T input) {
+        assertThatThrownBy(() -> Validator.isNotInList(list, input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Object[][] inValidListAndInputProvider() {
+        return new Object[][]{
+                {List.of(1, 2, 3, 4, 5), 5},
+                {List.of("12", "34", "56", "67"), "67"}
+        };
+    }
 
 
 }
