@@ -161,17 +161,17 @@ View
         <td rowspan="1"><b><em>MatchResults</em></b></td>
             <td>✅ `MatchResult` 추가</td> </tr><tr> 
     <td rowspan="5">로또 당첨 통계 출력</td>
-        <td rowspan="1"><b><em>Prize</em></b></td>
-            <td>⬜  `Prize` 생성</td> 
+        <td rowspan="1"><b><em>ProfitRate</em></b></td>
+            <td>⬜  `ProfitRate` 수익률 생성</td> 
                 <td rowspan="5"></tr><tr> 
-        <td rowspan="1">LottoService</td>
-            <td>⬜  `Prize` 반환</td> </tr><tr> 
+        <td rowspan="1"><b><em>ProfitAmount</em></b></td>
+            <td>⬜  `ProfitAmount` 수익 금액 생성</td> </tr><tr> 
         <td rowspan="1">AmountService</td>
-            <td>⬜ `Prize`와 `MatchResult`를 `PurchaseLottoResponse`로 변환</td> </tr><tr> 
+            <td>⬜ `ProfitRate` 반환</td> </tr><tr> 
+        <td rowspan="1"><b><em>LottoProfitCommand</em></b></td>
+            <td>⬜ `MatchResult` & `ProfitRate`당첨 금액 및 수익률 출력 커맨드 생성</td> </tr><tr>
         <td rowspan="1">View</td>
-            <td>⬜ `PurchaseLottoResponse`로 로또 일치 숫자 갯수 출력</td> </tr><tr>
-        <td rowspan="1">View</td>
-            <td>⬜ `PurchaseLottoResponse`로 수익률 출력</td> </tr><tr>
+            <td>⬜ `LottoProfitCommand`로 수익률 출력</td> </tr><tr>
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
             <td>⬜ 컴포넌트 의존성 주입</td> 
