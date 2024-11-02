@@ -35,7 +35,7 @@ public class Lotto {
     private String joiningNumbers() {
         return this.numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(", "));
     }
 
 }

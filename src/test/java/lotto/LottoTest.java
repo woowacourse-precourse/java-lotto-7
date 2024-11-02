@@ -34,6 +34,6 @@ class LottoTest {
         String result = lotto.toString();
 
         // then
-        assertThat(result).isEqualTo("[1,2,3,4,5,6]");
+        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

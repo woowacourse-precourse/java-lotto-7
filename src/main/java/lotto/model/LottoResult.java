@@ -39,7 +39,7 @@ public class LottoResult {
 
     private int getTotalWinningAmount() {
         return result.keySet().stream()
-                .mapToInt(result::get)
+                .mapToInt(key -> result.get(key) * key.getWinnerAmount())
                 .sum();
     }
 
