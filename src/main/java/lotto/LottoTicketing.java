@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConfig.*;
 import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
@@ -24,7 +26,9 @@ public class LottoTicketing {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            List<Integer> ticket = createLottoNumbers();
+            List<Integer> ticket = createLottoNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
             lottoTickets.add(new Lotto(ticket));
         }
         return lottoTickets;
