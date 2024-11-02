@@ -19,19 +19,20 @@ public class OutputView {
             + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"
             + "6개 일치 (2,000,000,000원) - %d개\n";
 
-    private static final String PROFIT_RATIO_VIEW = "총 수익률은 %.f%입니다.";
+    private static final String PROFIT_RATIO_VIEW = "총 수익률은 %.1f%%입니다.";
 
     public static void showLottoNumbers(List<Lotto> myLottos) {
-        System.out.println(BUYING_LOTTO_VIEW);
+        System.out.printf(BUYING_LOTTO_VIEW, myLottos.size());
+        System.out.println();
 
         for (Lotto lotto : myLottos) {
             List<Integer> numbers = lotto.getNumbers();
-            numbers.stream()
+            String formatted = numbers.stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(EACH_LOTTO_NUMBERS_DELIMITER,
                     EACH_LOTTO_NUMBERS_PREFIX,
                     EACH_LOTTO_NUMBERS_SUFFIX));
-            System.out.println();
+            System.out.println(formatted);
         }
     }
 
