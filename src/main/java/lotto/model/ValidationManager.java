@@ -38,15 +38,6 @@ public class ValidationManager {
         throw new IllegalArgumentException(LOTTO_DELIMITER_COMMA_ERROR);
     }
 
-    public boolean isRangeValid(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 안에서 정할 수 있습니다.");
-            }
-        }
-        return true;
-    }
-
     public boolean isRangeValid(int number) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 안에서 정할 수 있습니다.");

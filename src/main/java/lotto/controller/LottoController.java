@@ -47,6 +47,7 @@ public class LottoController {
         }
         return 0;
     }
+
     public boolean isValidAmountInput(String input) {
         validationManager.isNotEmptyInput(input);
         validationManager.isNumber(input);
@@ -55,25 +56,19 @@ public class LottoController {
 
     public List<Integer> handleLottoNumberInputError() {
         boolean validInput = false;
-        List<Integer> validLottoNumbers = new ArrayList<>();
+        Lotto lotto;
 
         while (!validInput) {
             try {
-                outputView.printRequest(OutputView.REQUEST_NUMBER_MESSAGE);
-                String lottoInput = inputView.readInput("");
-
+                String lottoInput = inputView.readInput(Lotto.getRequestMessage());
                 validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
-                List<Integer> lottoNumbrs = TypeConverter.ToNumberList(lottoInput);
-                Lotto lotto = new Lotto(lottoNumbrs);//6자 이상인지 1-45안에 있는지 확인후 객체 생성
-                validLottoNumbers = lotto.getLottoNumbers();
-                validInput = validationManager.isRangeValid(validLottoNumbers); //범위 확인
-
+                lotto = new Lotto(TypeConverter.ToNumberList(lottoInput));//6자 이상인지 범위는 (1-45)인지 확인후 객체 생성
+                return lotto.getLottoNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return validLottoNumbers;
+        return new ArrayList<>();
     }
 
     public int handleBonusInputError() {
