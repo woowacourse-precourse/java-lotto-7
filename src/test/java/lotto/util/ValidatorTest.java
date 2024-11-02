@@ -146,4 +146,18 @@ public class ValidatorTest {
         };
     }
 
+    @ParameterizedTest
+    @MethodSource("validListProvider")
+    @DisplayName("리스트 내 중복 요소 확인 테스트")
+    public void isNotDuplicateTest(List<String> list) {
+        assertThatNoException().isThrownBy(() -> Validator.isNotDuplicate(list));
+    }
+
+    private static Object[][] validListProvider() {
+        return new Object[][] {
+                {List.of("1", "2", "3", "4", "5")},
+                {List.of("12", "34", "56", "78")}
+        };
+    }
+
 }
