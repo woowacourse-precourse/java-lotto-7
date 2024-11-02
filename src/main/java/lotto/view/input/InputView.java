@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getPurchaseAmount() {
+    public static int getAmount() {
         System.out.println(ViewConstants.INPUT_PURCHASE_AMOUNT);
         return Integer.parseInt(scanner.nextLine());
     }

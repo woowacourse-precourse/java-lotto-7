@@ -27,17 +27,15 @@ public class LottoServiceImpl implements LottoService {
         return true;
     }
 
+
     @Override
-    public WinningResult checkResult(Lotto lotto, WinningContext context) {
-        WinningNumbers winningNumbers = context.getWinningNumbers();
-        BonusNumber bonusNumber = context.getBonusNumber();
-
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        List<Integer> winningNums = winningNumbers.getNumbers();
-        int matchCount = (int) lottoNumbers.stream().filter(winningNums::contains).count();
-        boolean hasBonus = lottoNumbers.contains(bonusNumber.getNumber());
-
-        return determineRank(matchCount, hasBonus);
+    public WinningResult checkResult(List<Lotto> lottos, WinningContext context) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Rank rank = determineRank(lotto, context);
+            ranks.add(rank);
+        }
+        return new WinningResult(ranks);
     }
 
     @Override
@@ -63,13 +61,33 @@ public class LottoServiceImpl implements LottoService {
         return new Lotto(randomNumbers);
     }
 
-    private WinningResult determineRank(int matchCount, boolean hasBonus) {
-        for (Rank rank : Rank.values()) {
-            if (rank.getMatchCount() == matchCount && (!rank.hasBonus() || hasBonus)) {
-                return new WinningResult(rank);
-            }
+    private Rank determineRank(Lotto lotto, WinningContext context) {
+        WinningNumbers winningNumbers = context.getWinningNumbers();
+        BonusNumber bonusNumber = context.getBonusNumber();
+
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> winningNums = winningNumbers.getNumbers();
+
+        int matchCount = (int) lottoNumbers.stream().filter(winningNums::contains).count();
+
+        boolean hasBonus = lottoNumbers.contains(bonusNumber.getNumber());
+
+        if (matchCount == 6) {
+            return Rank.FIRST;
         }
-        return new WinningResult(Rank.NO_WIN);
+        if (matchCount == 5 && hasBonus) {
+            return Rank.SECOND;
+        }
+        if (matchCount == 5) {
+            return Rank.THIRD;
+        }
+        if (matchCount == 4) {
+            return Rank.FOURTH;
+        }
+        if (matchCount == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.NO_WIN;
     }
 }
 
