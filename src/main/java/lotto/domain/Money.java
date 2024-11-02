@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import lotto.constant.LottoConst;
 
@@ -16,10 +18,24 @@ public class Money {
     }
 
     public String getRateOfReturn(Map<Rank, Integer> result) {
-        double income = 0;
+        BigDecimal income = calculateIncome(result);
+        return calculateRateOfReturn(income);
+    }
+
+    private static BigDecimal calculateIncome(Map<Rank, Integer> result) {
+        BigDecimal income = BigDecimal.ZERO;
         for (Rank rank : result.keySet()) {
-            income += rank.getPrice() * result.get(rank);
+            BigDecimal price = BigDecimal.valueOf(rank.getPrice());
+            BigDecimal count = BigDecimal.valueOf(result.get(rank));
+            income = income.add(price.multiply(count));
         }
-        return String.format("%.1f" ,(income / money) * LottoConst.PERCENTAGE);
+        return income;
+    }
+
+    private String calculateRateOfReturn(BigDecimal income) {
+        BigDecimal rateOfReturn = income
+            .divide(BigDecimal.valueOf(money), 3, RoundingMode.HALF_UP)
+            .multiply(BigDecimal.valueOf(LottoConst.PERCENTAGE));
+        return String.format("%.1f", rateOfReturn);
     }
 }
