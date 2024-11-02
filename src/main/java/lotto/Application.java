@@ -1,18 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         String inputMoney = getInputMoney();
-        lotto Lotto = new Lotto();
+        buyLotto(Integer.parseInt(inputMoney));
     }
 
     private static String getInputMoney() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요. 단위는 1,000원입니다.");
+                System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 validateMoney(input);
                 return input;
@@ -38,5 +37,10 @@ public class Application {
 
     private static boolean checkUnitMoney(int money) {
         return money % 1000 == 0;
+    }
+
+    private static void buyLotto(int money) {
+        int count = money / 1000;
+        System.out.println(count + "개를 구매하였습니다.");
     }
 }
