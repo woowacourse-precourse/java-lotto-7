@@ -19,19 +19,7 @@ public class Application {
         Lotto winningNumbers = scanWinningNumbers();
         int bonusNumber = scanBonusNumber(winningNumbers);
 
-        Map<PrizeRank, Integer> prizeRankCounts = new HashMap<>();
-
-        for (PrizeRank prizeRank : PrizeRank.values()) {
-            prizeRankCounts.put(prizeRank, 0);
-        }
-
-        for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(winningNumbers);
-            boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
-            PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
-            prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
-        }
-
+        Map<PrizeRank, Integer> prizeRankCounts = getPrizeRankCounts(lottos, winningNumbers, bonusNumber);
         double rateOfReturn = getRateOfReturn(prizeRankCounts, purchaseAmount);
 
         System.out.println("\n당첨 통계");
@@ -107,6 +95,21 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static Map<PrizeRank, Integer> getPrizeRankCounts(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        Map<PrizeRank, Integer> prizeRankCounts = new HashMap<>();
+        for (PrizeRank prizeRank : PrizeRank.values()) {
+            prizeRankCounts.put(prizeRank, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.getMatchCount(winningNumbers);
+            boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
+            PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
+            prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
+        }
+        return prizeRankCounts;
     }
 
     public static double getRateOfReturn(Map<PrizeRank, Integer> prizeRankCounts, int purchaseAmount) {
