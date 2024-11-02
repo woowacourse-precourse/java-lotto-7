@@ -7,6 +7,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.Purchase;
+import lotto.model.TotalRateOfReturn;
 import lotto.model.WinningHistory;
 import lotto.model.WinningNumber;
 import lotto.view.InputView;
@@ -120,9 +121,9 @@ public class LottoController {
     private double getTotalRateOfReturn() {
         int totalPrize = winningHistory.getTotalPrize();
         int purchasePrice = purchase.getPurchasePrice();
-        double rateOfReturn = (double) totalPrize / purchasePrice * 100;
+        TotalRateOfReturn totalRateOfReturn = new TotalRateOfReturn(totalPrize, purchasePrice);
 
-        return Math.round(rateOfReturn * 10) / 10.0;
+        return totalRateOfReturn.get();
     }
 
     private void printWinningHistories() {
