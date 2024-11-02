@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -15,12 +14,15 @@ public class Application {
 
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
+        List<Lotto> lottos = new ArrayList<>();
         System.out.println();
         System.out.println(purchaseAmountInt / 1000 + "개를 구매했습니다.");
         for (int i = 0; i < purchaseAmountInt / 1000; i++) {
-            List<Integer> lotto = pickLottoNumber();
-            lotto = sortAscendingInteger(lotto);
-            System.out.println(lotto);
+            Lotto lotto = new Lotto(pickLottoNumber());
+            lotto.sortAscendingInteger();
+            lottos.add(lotto);
+
+            System.out.println(lotto.getNumbers());
         }
 
         String inputWinningNumbers;
@@ -44,14 +46,8 @@ public class Application {
         return intList;
     }
 
-    public static List<Integer> sortAscendingInteger(List<Integer> integerList) {
-        Collections.sort(integerList);
-        return integerList;
-    }
-
     public static List<Integer> pickLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
     }
 
     public static int validatePurchaseAmount(String purchaseAmount) {

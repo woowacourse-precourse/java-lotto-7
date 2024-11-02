@@ -5,7 +5,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.Arrays;
@@ -100,17 +99,6 @@ class ApplicationTest extends NsTest {
         assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
     }
 
-    @Test
-    @DisplayName("정수 리스트가 오름차순으로 정렬이 되었는지 테스트")
-    void testIntegerNumberAreSorted() {
-        List<Integer> intNumbers = Arrays.asList(6, 3, 5, 1, 4, 2);
-        intNumbers = Application.sortAscendingInteger(intNumbers);
-
-        for (int i = 0; i < intNumbers.size() - 1; i++) {
-            assertTrue(intNumbers.get(i) <= intNumbers.get(i + 1), "숫자들이 오름차순으로 정렬되어야 합니다.");
-        }
-
-    }
 
     @Test
     @DisplayName("문자열 리스트가 정수형 리스트로 변환이 되었는지 테스트")
