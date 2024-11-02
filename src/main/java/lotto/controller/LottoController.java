@@ -27,6 +27,8 @@ public class LottoController {
     public void play() {
         int validAmount = handleAmountInputError();
         List<Integer> validLottoNumbers = handleLottoNumberInputError();
+//        LottoPublisher lottoPublisher = new LottoPublisher();
+//        outputView.printPublishedLotto(lottoPublisher.getPublishedLotto());
         int validBonusNumber = handleBonusInputError();
 
     }
