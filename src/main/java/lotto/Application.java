@@ -17,5 +17,7 @@ public class Application {
         //보너스 번호
         lottoController.getBonusNumber();
 
+        //매칭 및 결과 출력
+        lottoController.printResult();
     }
 }

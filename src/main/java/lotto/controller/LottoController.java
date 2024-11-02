@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.Prize;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
@@ -8,6 +9,7 @@ import lotto.util.ParserNums;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
@@ -26,6 +28,13 @@ public class LottoController {
         this.outputView = new OutputView();
         this.parser = new ParserNums();
         this.lottoManager = new LottoManager();
+    }
+
+    public LottoController(InputView inputView, OutputView outputView, ParserNums parser, LottoManager lottoManager) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.parser = parser;
+        this.lottoManager = lottoManager;
     }
 
     public void getPurchasePrice(){ //구매 금액 입력
@@ -78,5 +87,16 @@ public class LottoController {
     public void purchaseLotto(){ //로또 구매(발행)
         this.lottos = lottoManager.publishLotto();
         outputView.printLotto(lottos);
+    }
+
+    public void printResult(){
+        HashMap<Prize, Integer> result = matchingLotto();
+        outputView.printResult(result);
+    }
+
+    public HashMap<Prize, Integer> matchingLotto(){ //로또 맞추기
+        HashMap<Prize, Integer> result;
+        result = lottoManager.matchingLotto();
+        return result;
     }
 }
