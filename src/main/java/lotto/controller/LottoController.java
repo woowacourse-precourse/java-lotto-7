@@ -23,6 +23,7 @@ public class LottoController {
     }
 
     public void run() {
+        outputView.printPurchaseAmountMessage();
         int amount = inputView.readPurchaseAmount();
 
         List<Lotto> lottos = createLottos(amount);
@@ -43,8 +44,12 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
+        outputView.printWinningNumbersMessage();
         List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+        outputView.printBonusNumberMessage();
         int bonusNumber = inputView.readBonusNumber();
+
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 }
