@@ -1,31 +1,16 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
-    @DisplayName("구입금액 입력 확인")
-    @Test
-    void 구입금액_입력_테스트() {
-        String purchaseAmountTest = "8000";
-        System.setIn(new ByteArrayInputStream(purchaseAmountTest.getBytes()));
-
-        int purchaseAmount = Integer.parseInt(readLine());
-
-        assertEquals(8000, purchaseAmount);
-    }
 
     @Test
     void 기능_테스트() {
