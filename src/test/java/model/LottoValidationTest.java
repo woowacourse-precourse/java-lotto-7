@@ -1,6 +1,5 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ class LottoValidationTest {
     void 수익률_계산_테스트() {
         int purchaseAmount = 8000;
         winningResult.set(4, 1);
-        lottoValidation.calculateProfitRate(purchaseAmount);
         assertThat(lottoValidation.calculateProfitRate(purchaseAmount)).isEqualTo(62.5);
     }
 

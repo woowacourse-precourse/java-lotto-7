@@ -5,8 +5,9 @@ import utils.WinningLotto;
 
 public class Output {
     private static final String PURCHASE_AMOUNT_FORMAT = "%d개를 구매했습니다.\n";
-    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.2f%%입니다.\n";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
     private static final String WINNING_RESULT_FORMAT = "당첨 통계\n---------\n";
+    private static final String ERROR_MESSAGE = "[ERROR] :";
 
     public void printPurchaseAmount(int purchaseAmount) {
         System.out.printf(PURCHASE_AMOUNT_FORMAT, purchaseAmount);
@@ -31,6 +32,10 @@ public class Output {
 
     public void printNewLine() {
         System.out.println();
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(ERROR_MESSAGE + message);
     }
 
 }

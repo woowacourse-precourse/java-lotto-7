@@ -10,6 +10,7 @@ public class LottoMaker {
     private static final List<List<Integer>> lottoNumbers = new ArrayList<>();
     private static final List<Integer> winningNumbers = new ArrayList<>();
     private static final List<Integer> winningResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
+    private static final int ONE_LOTTO_PRICE = 1000;
     private static int purchaseAmount = 0;
     private static int bonusNumber = 0;
 
@@ -42,6 +43,6 @@ public class LottoMaker {
     }
 
     public double getProfitRate() {
-        return lottoValidation.calculateProfitRate(purchaseAmount);
+        return lottoValidation.calculateProfitRate(purchaseAmount*ONE_LOTTO_PRICE);
     }
 }

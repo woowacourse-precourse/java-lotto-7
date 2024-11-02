@@ -9,6 +9,7 @@
     + [0] 당첨 통계를 출력하는 기능 - printWinningStatistics
     + [0] 수익률을 출력하는 기능 - printProfitRate
     + [0] 개행 문자 출력 기능 - printNewLine
+    + [0] error 메시지 출력 기능 - printErrorMessage
 
 - input class
     + [0] 구입 금액을 입력받는 기능 - getPurchaseAmount
@@ -44,7 +45,12 @@
 
 ### controller package
 - LottoManager class - 예외 발생시 재입력 위한 메서드 구현 필요
-    + [] 로또 진행 기능 - 
+    + [0] 로또 진행 기능 - run
+    + [0] 로또 구매 금액 정상 입출력 관리 - IoPurchaseAmount
+    + [0] 구매한 로또 번호 출력 및 개행 - printLottoNumbers
+    + [0] 당첨 번호 정상 입출력 관리 - IoWinningNumbers
+    + [0] 보너스 번호 정상 입출력 관리 - IoBonusNumber
+    + [0] 당첨 통계 및 수익률 출력 - printWinningResult
 
 ### utils package
 - WinningLotto class

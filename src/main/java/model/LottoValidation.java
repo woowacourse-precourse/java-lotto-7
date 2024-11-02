@@ -26,9 +26,11 @@ public class LottoValidation {
     }
 
     public double calculateProfitRate(int purchaseAmount) {
+        if (purchaseAmount == 0) {
+            return 0;
+        }
         int totalWinningAmount = calculateTotalWinningAmount();
-        double profitRate = (double) totalWinningAmount / purchaseAmount;
-        return profitRate * 100;
+        return 100 + ((double)(totalWinningAmount - purchaseAmount) / purchaseAmount * 100);
     }
 
     private int isMatchWinningNumbers(List<Integer> lottoNumber) {
