@@ -13,6 +13,7 @@ public class Application {
     private static int numOfLotto;
     private static List<Lotto> lottos;
     private static List<Integer> winningNumbers;
+    private static int bonusNumber;
     public static void main(String[] args) {
         readUserInput();
     }
@@ -44,7 +45,7 @@ public class Application {
         while(!isValidInput){
             try{
                 System.out.println("보너스 번호를 입력해 주세요.");
-                winningNumbers.add(readBonusNumber());
+                bonusNumber = readBonusNumber();
                 isValidInput = true;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
