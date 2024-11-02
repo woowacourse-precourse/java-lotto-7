@@ -1,5 +1,7 @@
 package lotto.view.response;
 
+import lotto.model.Score;
+
 import java.util.Objects;
 
 public class LottoScoreResponse {
@@ -8,14 +10,14 @@ public class LottoScoreResponse {
     private final boolean containsBonus;
     private final int prize;
 
-    private LottoScoreResponse(int matchCount, boolean containsBonus, int prize) {
-        this.matchCount = matchCount;
-        this.containsBonus = containsBonus;
-        this.prize = prize;
+    private LottoScoreResponse(Score score) {
+        this.matchCount = score.getMatchCount();
+        this.containsBonus = score.containsBonus();
+        this.prize = score.getPrize();
     }
 
-    public static LottoScoreResponse from(int matchCount, boolean isBonusMatch, int prize) {
-        return new LottoScoreResponse(matchCount, isBonusMatch, prize);
+    public static LottoScoreResponse from(Score score) {
+        return new LottoScoreResponse(score);
     }
 
     public int getMatchCount() {
