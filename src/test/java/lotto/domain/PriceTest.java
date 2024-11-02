@@ -23,6 +23,17 @@ class PriceTest {
 
             assertThat(price).isNotNull();
         }
+
+        @DisplayName("특정 돈을 이용해 지불 금액을 나눈다.")
+        @ParameterizedTest
+        @ValueSource(ints = {1000, 2000, 3000, 50000})
+        void testPriceDivide(int money) {
+            Price price = new Price(money);
+
+            int lottoCount = price.divide(1000);
+
+            assertThat(lottoCount).isEqualTo(money / 1000);
+        }
     }
 
     @DisplayName("실패 케이스를 테스트한다.")
