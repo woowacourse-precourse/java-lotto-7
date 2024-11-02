@@ -13,22 +13,27 @@ public class PurchasedLottos {
 
     private PurchasedLottos(final int count) {
         purchaseLottos = new ArrayList<>();
-        generateRandomNumber(count);
+        generateLottos(count);
     }
 
     public static PurchasedLottos from(final int count) {
         return new PurchasedLottos(count);
     }
 
-    private void generateRandomNumber(final int count) {
+    private void generateLottos(final int count) {
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                    LottoConstant.MIN_LOTTO_NUMBER,
-                    LottoConstant.MAX_LOTTO_NUMBER,
-                    LottoConstant.LOTTO_SIZE
-            );
+            List<Integer> numbers = generateRandomNumber();
             purchaseLottos.add(Lotto.from(numbers));
         }
+    }
+
+    private static List<Integer> generateRandomNumber() {
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                LottoConstant.MIN_LOTTO_NUMBER,
+                LottoConstant.MAX_LOTTO_NUMBER,
+                LottoConstant.LOTTO_SIZE
+        ));
+        return numbers;
     }
 
     public List<Lotto> getPurchasedLottos() {
