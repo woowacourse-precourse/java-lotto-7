@@ -7,6 +7,7 @@ import lotto.domain.calculators.FinalPrizeCalculator;
 
 public class WinningLotto {
     private final FinalPrizeCalculator finalPrizeCalculator;
+
     private final EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
 
     public WinningLotto(FinalPrizeCalculator finalPrizeCalculator) {
@@ -23,6 +24,7 @@ public class WinningLotto {
     private long calculateTotalPrizeAmount() {
         return finalPrizeCalculator.calculate(ranks);
     }
+
 
     public long getFinalPrizeAmount() {
         return calculateTotalPrizeAmount();

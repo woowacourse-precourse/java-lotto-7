@@ -45,6 +45,7 @@ public class RandomLottos {
         return lottos.isEmpty();
     }
 
+    
     @Override
     public String toString() {
         StringBuilder printout = new StringBuilder();

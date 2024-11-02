@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Wallet;
+import lotto.domain.calculators.FinalPrizeCalculator;
 import lotto.domain.calculators.TicketCalculator;
 import lotto.domain.calculators.TicketCalculatorImpl;
 import lotto.domain.calculators.YieldCalculator;
@@ -8,7 +9,6 @@ import lotto.domain.factory.UserMainLottoFactory;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
 import lotto.domain.lottos.user.WinningLotto;
-import lotto.domain.number.NumbersMaker;
 import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.service.LottoMatchService;
 import lotto.service.RandomLottoMarket;
@@ -23,11 +23,12 @@ public class MainController {
 
     public void run() {
         Wallet wallet = createWallet();
-        RandomLottos randomLottos = createRandomLottos(wallet);
-        Output.printPurchasedLottoList(wallet, randomLottos); //note 사용자 입력 받기 전 출력을 한번 해야하기 때문에 빈 List<lotto> 생성x
+        RandomLottos randomLottos = new RandomLottos(new RandomLottoNumberMaker());
+        createRandomLottos(wallet, randomLottos);
+        Output.printPurchasedLottoList(wallet, randomLottos);
 
         UserLotto userLotto = createUserLotto();
-        WinningLotto winningLotto = new WinningLotto();
+        WinningLotto winningLotto = new WinningLotto(new FinalPrizeCalculator());
 
         matchLotto(randomLottos, userLotto, winningLotto);
         calculateRateOfReturn(wallet, winningLotto);
@@ -35,6 +36,7 @@ public class MainController {
         Output.printLottoWinningStatistics(winningLotto);
         Output.printRateOfReturn(wallet);
     }
+
 
     private void matchLotto(RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLotto) {
         lottoMatchService = new LottoMatchService(randomLottos, userLotto, winningLotto);
@@ -47,23 +49,22 @@ public class MainController {
         yieldCalculateService.calculateRateOfReturn();
     }
 
-    private RandomLottos createRandomLottos(Wallet wallet) {
+    private void createRandomLottos(Wallet wallet, RandomLottos randomLottos) {
         TicketCalculator ticketCalculator = new TicketCalculatorImpl();
-        NumbersMaker numbersMaker = new RandomLottoNumberMaker();
-        randomLottoMarket = new RandomLottoMarket(ticketCalculator, numbersMaker, wallet);
-        return randomLottoMarket.createRandomLottos();
+        randomLottoMarket = new RandomLottoMarket(ticketCalculator, randomLottos, wallet);
+        randomLottoMarket.createRandomLottos();
     }
 
 
     private UserLotto createUserLotto() {
         UserLotto.Builder builder = new UserLotto.Builder();
-        createUserMainSixLottoBuilder(builder);
-        createUserBonusLottoBuilder(builder);
+        inputUserMainSixLottoBuild(builder);
+        inputUserBonusLottoBuild(builder);
 
         return builder.build();
     }
 
-    private void createUserMainSixLottoBuilder(UserLotto.Builder builder) {
+    private void inputUserMainSixLottoBuild(UserLotto.Builder builder) {
         UserMainLottoFactory factory = new UserMainLottoFactory();
 
         while (true) {
@@ -76,7 +77,7 @@ public class MainController {
         }
     }
 
-    private void createUserBonusLottoBuilder(UserLotto.Builder builder) {
+    private void inputUserBonusLottoBuild(UserLotto.Builder builder) {
         while (true) {
             try {
                 builder.bonusLotto(Input.inputBonusLotto());

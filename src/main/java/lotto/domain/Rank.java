@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 public enum Rank {
     FIFTH(5, 3, false, 5000L, "오천"),
     FOURTH(4, 4, false, 50000L, "오만"),

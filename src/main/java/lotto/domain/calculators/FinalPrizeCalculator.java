@@ -15,7 +15,7 @@ public class FinalPrizeCalculator {
             long prizeMoney = rank.getPrizeMoney();
 
             if (isMatchedRank(matchedCount)) {
-                result += (prizeMoney * matchedCount); //클래스 분라?
+                result += (prizeMoney * matchedCount);
             }
         }
         return result;
