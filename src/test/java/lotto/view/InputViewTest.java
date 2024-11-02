@@ -76,4 +76,17 @@ class InputViewTest {
         assertEquals(5000, purchaseAmount);
     }
 
+    @Test
+    @DisplayName("올바른 당첨 번호 입력 테스트")
+    void shouldReturnCorrectWinningNumbers() {
+        // Given
+        setInput("1,2,3,4,5,6");
+
+        // When
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+
+        // Then
+        assertEquals(LottoConstants.LOTTO_NUMBERS_COUNT.getValue(), winningNumbers.size());
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), winningNumbers);
+    }
 }
