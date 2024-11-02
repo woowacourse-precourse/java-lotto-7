@@ -19,11 +19,12 @@ public class Lotto {
     }
 
     private static void checkValidRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하 양수여야 합니다.");
-            }
-        }
+        numbers.stream()
+                .filter(number -> number > 45)
+                .findAny()
+                .ifPresent(invalidNumber -> {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하 양수여야 합니다.");
+                });
     }
 
     private static void checkSize(List<Integer> numbers) {
