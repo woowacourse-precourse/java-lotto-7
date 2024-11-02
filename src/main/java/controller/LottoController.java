@@ -5,7 +5,6 @@ import domain.LottoMachine;
 import domain.LottoPlay;
 import domain.User;
 import java.util.List;
-import service.LottoMachineService;
 import service.UserService;
 import util.LottoGenerator;
 import valid.Task;
@@ -16,10 +15,8 @@ public class LottoController {
 
     private final InputView inputView = new InputView(new InputConvertor());
     private final OutputView outputView = new OutputView();
-    private LottoPlay lottoPlay;
-
     private final UserService userService = new UserService(new LottoGenerator());
-    private final LottoMachineService lottoMachineService = new LottoMachineService();
+    private LottoPlay lottoPlay;
 
     public void run() {
         initLottoPlay();
