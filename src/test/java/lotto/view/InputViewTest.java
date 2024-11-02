@@ -45,7 +45,7 @@ class InputViewTest {
     }
 
     @Test
-    void 보너스_번호가_숫자가_아닌_경우() {
+    void 보너스_번호가_숫자가_아닌_경우_예외가_발생한다() {
         assertThatThrownBy(() -> InputView.validateBonusNumber("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

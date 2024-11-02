@@ -20,7 +20,7 @@ public class InputView {
     public int BonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
         String input = Console.readLine();
-        return 0;
+        return validateBonusNumber(input);
     }
 
     static int validatePurchase(String input) {
