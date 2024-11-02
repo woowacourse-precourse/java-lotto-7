@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoInputView
 {
@@ -29,10 +31,17 @@ public class LottoInputView
 
     public static List<Integer> tempWinningNumbers(String numbers) {
         String[] splitNumbers = splitWinningNumbers(numbers);
+        List<String> trimNumbers = trimWinningNumbers(splitNumbers);
     }
 
     public static String[] splitWinningNumbers(String numbers) {
         return numbers.split(",");
+    }
+
+    public static List<String> trimWinningNumbers(String[] input) {
+        return Arrays.stream(input)
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
 
