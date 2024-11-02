@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Consumer {
@@ -10,13 +11,19 @@ public class Consumer {
 
     public Consumer(int count) {
         for (int i = 0; i < count; i++) {
-            setLotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            setLotto();
         }
     }
 
-    private void setLotto(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
+    private void setLotto() {
+        Lotto lotto = new Lotto(getNumbers());
         this.lottoTicket.add(lotto);
+    }
+
+    private List<Integer> getNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
     }
 
     public List<Lotto> getLotto() {
