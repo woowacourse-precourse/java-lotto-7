@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LottoResultView {
 
-    void outputLottoResult(Map<LottoWinningRank, Integer> result) {
+    public void outputLottoResult(Map<LottoWinningRank, Integer> result) {
         System.out.println("당첨 통계\n---");
 
         System.out.println(LottoWinningRank.FIFTH.getPrizeMent()
@@ -21,7 +21,7 @@ public class LottoResultView {
                 + result.getOrDefault(LottoWinningRank.FIRST,0) + "개");
     }
 
-    void outputProfitMargin(String profitMargin) {
+    public void outputProfitMargin(String profitMargin) {
         System.out.println("총 수익률은 " + profitMargin + "입니다.");
     }
 
