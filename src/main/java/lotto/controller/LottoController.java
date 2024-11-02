@@ -22,6 +22,9 @@ public class LottoController {
 
         InputView.printWinningNumbersPrompt();
         List<Integer> winningNumbers = WinningNumbers.from(readInput()).getNumbers();
+
+        InputView.printBonusNumbersPrompt();
+        int bonusNumber = BonusNumber.of(winningNumbers, readInput()).getBonusNumber();
     }
 
 }
