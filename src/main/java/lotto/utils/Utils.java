@@ -19,6 +19,13 @@ public class Utils {
         return lottos;
     }
 
+    public List<Lotto> sortLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            lotto.sort();
+        }
+        return lottos;
+    }
+
     public List<Integer> convertToIntegerList(String numbers) {
         return Arrays.stream(numbers.split(",")).map(Integer::parseInt).toList();
     }
