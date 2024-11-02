@@ -12,8 +12,8 @@ public class BonusBall {
         return new BonusBall(lottoNumber);
     }
 
-    private static void validateDuplicate(int number, WinningBalls winningBalls) {
-        if (winningBalls.hasNumber(number)) {
+    private static void validateDuplicate(LottoNumber lottoNumber, WinningBalls winningBalls) {
+        if (winningBalls.hasNumber(lottoNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
@@ -22,8 +22,8 @@ public class BonusBall {
         this.lottoNumber = lottoNumber;
     }
 
-    public int getNumber() {
-        return this.lottoNumber.getNumber();
+    public LottoNumber getLottoNumber() {
+        return this.lottoNumber;
     }
 }
 

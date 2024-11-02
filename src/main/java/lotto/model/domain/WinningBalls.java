@@ -10,7 +10,7 @@ public class WinningBalls {
         this.lottoNumbers = new LottoNumbers(lottoNumbers);
     }
 
-    public boolean hasNumber(int number) {
+    public boolean hasNumber(LottoNumber number) {
        return lottoNumbers.hasNumber(number);
     }
 
