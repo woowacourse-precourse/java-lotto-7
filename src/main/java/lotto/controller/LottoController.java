@@ -5,6 +5,7 @@ import static lotto.view.Prompt.PURCHASE_AMOUNT;
 import static lotto.view.Prompt.WINNING_NUMBERS;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -29,5 +30,7 @@ public class LottoController {
 
         OutputView.displayPrompt(BONUS_NUMBER);
         String bonusNumber = InputView.getInput();
+
+        Map<Integer, Integer> winningResult = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
     }
 }

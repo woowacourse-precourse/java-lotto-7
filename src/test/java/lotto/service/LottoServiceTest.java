@@ -29,8 +29,8 @@ public class LottoServiceTest {
     @DisplayName("구입한 로또들의 당첨 여부를 판별한다.")
     void 당첨_판별_테스트() {
         // given
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 27;
+        String winningNumbers = "1, 2, 3, 4, 5, 6";
+        String bonusNumber = "27";
 
         List<Lotto> lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),

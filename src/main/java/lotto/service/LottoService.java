@@ -1,8 +1,10 @@
 package lotto.service;
 
+import static java.util.stream.Collectors.toList;
 import static lotto.CommonSymbols.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,18 +29,32 @@ public class LottoService {
                 .collect(Collectors.joining(NEW_LINE.getSymbol()));
     }
 
-    public Map<Integer, Integer> winningDetermination(List<Integer> winningNumbers, int bonusNumber,
+    public Map<Integer, Integer> winningDetermination(String winningNumbers, String bonusNumber,
                                                       List<Lotto> lottos) {
+        List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbers);
+        int parsedBonusNumber = parseBonusNumber(bonusNumber);
+
         Map<Integer, Integer> matchCounts = initializeMatchCounts();
 
         lottos.forEach(lotto -> {
-            int matchCount = lotto.countMatchingNumbers(winningNumbers);
-            boolean isBonusMatch = lotto.containsBonusNumber(bonusNumber);
+            int matchCount = lotto.countMatchingNumbers(parsedWinningNumbers);
+            boolean isBonusMatch = lotto.containsBonusNumber(parsedBonusNumber);
 
             updateMatchCounts(matchCounts, matchCount, isBonusMatch);
         });
 
         return matchCounts;
+    }
+
+    private List<Integer> parseWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    private int parseBonusNumber(String bonusNumber) {
+        return Integer.parseInt(bonusNumber.trim());
     }
 
     private Map<Integer, Integer> initializeMatchCounts() {
