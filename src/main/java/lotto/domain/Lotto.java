@@ -16,12 +16,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Rank calculateRank(List<Integer> winningLotto, int bonusNumber) {
+    public Rank calculateRank(List<Integer> winningLottoNumbers, int bonusNumber) {
         int basicCount = 0;
         int bonusCount = 0;
 
-        for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.contains(winningLotto.get(i))) {
+        for (int winningLottoNumber : winningLottoNumbers) {
+            if (numbers.contains(winningLottoNumber)) {
                 basicCount++;
             }
         }
