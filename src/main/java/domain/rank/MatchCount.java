@@ -1,5 +1,7 @@
 package domain.rank;
 
+import domain.error.ErrorMessage;
+
 public enum MatchCount {
     THREE_MATCH(3, "3개 일치 (5,000원)", 5000L),
     FOUR_MATCH(4, "4개 일치 (50,000원)", 50000L),
@@ -27,7 +29,7 @@ public enum MatchCount {
                 return matchCount;
             }
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ErrorMessage.UNKNOWN_ERROR.getErrorMessage());
     }
 
     public String getOutputMessage() {
