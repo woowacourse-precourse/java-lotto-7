@@ -9,7 +9,7 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<LottoNumber> numbers) {
-        validate(numbers);
+        validateNumberCount(numbers);
         this.numbers = numbers;
     }
 
@@ -17,7 +17,7 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<LottoNumber> numbers) {
+    private void validateNumberCount(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
