@@ -1,6 +1,5 @@
 package lotto;
 
-
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
@@ -23,12 +22,18 @@ public class LottoGame {
     }
 
     public int getPurchaseAmount(){
-        System.out.println("구매 금액을 입력해 주세요.");
-        String input = Console.readLine();
-        validateNumericNumber(input);
-        Integer purchaseAmount = Integer.valueOf(input);
-        validateThousandUnit(purchaseAmount);
-        return purchaseAmount;
+        while(true) {
+            try {
+                System.out.println("구매 금액을 입력해 주세요.");
+                String input = Console.readLine();
+                validateNumericNumber(input);
+                Integer purchaseAmount = Integer.valueOf(input);
+                validateThousandUnit(purchaseAmount);
+                return purchaseAmount;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Lotto> generateLottos(int purchaseAmount){
@@ -45,24 +50,33 @@ public class LottoGame {
     }
 
     public Lotto getWinningNumbers(){
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> winningNumbers = parseWinningNumbers(input);
-        return new Lotto(winningNumbers);
+        while(true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> winningNumbers = parseWinningNumbers(input);
+                return new Lotto(winningNumbers);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int getBonusNumber(List<Integer> winningNumbers){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-
-        Integer bonusNumber = Integer.valueOf(input);
-        if(winningNumbers.contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        while(true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                Integer bonusNumber = Integer.valueOf(input);
+                validateNotDuplicate(winningNumbers, bonusNumber);
+                return bonusNumber;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        return bonusNumber;
     }
 
-    private static List<Integer> parseWinningNumbers(String input) {
+    public static List<Integer> parseWinningNumbers(String input) {
         String[] tokens = input.split(",");
         ArrayList<Integer> winningNumbers = new ArrayList<>();
         for (String token : tokens) {
@@ -82,6 +96,12 @@ public class LottoGame {
     public static void validateThousandUnit(int purchaseNumber){
         if(purchaseNumber % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
+        }
+    }
+
+    public static void validateNotDuplicate(List<Integer> winningNumbers, Integer bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
