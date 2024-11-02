@@ -22,5 +22,9 @@ public class Application {
         Lotto winningNumber = new Lotto(lottoService.checkWinningNumber(winningNumberBeforeCheck));
         System.out.println();
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = lottoService.checkBonusNumber(Console.readLine(), winningNumber.getNumbers());
+        System.out.println();
+
     }
 }

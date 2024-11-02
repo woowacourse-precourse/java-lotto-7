@@ -37,6 +37,26 @@ class LottoTest {
     }
 
     @Test
+    void 보너스_번호가_올바르지_않으면_예외가_발생한다(){
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber(null, List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(NullPointerException.class); // null 값
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber("", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 빈 값
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber("J", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 문자인 경우
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber("-1", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 음수인 경우
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber("0", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class); // 1-45에서 벗어난 양수인 경우
+    }
+
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다(){
+        assertThatThrownBy(() -> new LottoService().checkBonusNumber("1", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 천원당_한장의_티켓_수가_반환된다() {
         assertThat(new LottoService().getNumberOfTickets("1000")).isEqualTo(1);
         assertThat(new LottoService().getNumberOfTickets("5000")).isEqualTo(5);
