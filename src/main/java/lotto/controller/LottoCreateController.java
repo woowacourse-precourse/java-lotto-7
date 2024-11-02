@@ -39,6 +39,7 @@ public class LottoCreateController {
 		LottoCreator lottoCreator = new LottoCreator();
 		LottoBundle lottoBundle = new LottoBundle(price, lottoCreator);
 		PurchaseLottoResultGenerator purchaseLottoResultGenerator = new PurchaseLottoResultGenerator();
+		List<List<Integer>> purchaseLottoResult = purchaseLottoResultGenerator.generatePurchaseLottoResult(lottoBundle);
 		return lottoBundle;
 	}
 }
