@@ -41,6 +41,10 @@ public class LottoResultAnalyzer {
         }
     }
 
+    public int get(LottoPrize prize){
+        return rankCount.get(prize);
+    }
+
     public int computeYield(){
         int result = 0;
         for (LottoPrize prize : rankCount.keySet()) {
