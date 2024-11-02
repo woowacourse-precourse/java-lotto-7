@@ -1,13 +1,18 @@
 package lotto;
 
 public class LottoController {
-    public int purchaseAmount;
-    public int lottoCount;
     private static final LottoInput LOTTO_INPUT = new LottoInput();
+    private static final LottoProcessor LOTTO_PROCESSOR = new LottoProcessor();
 
     public void play() {
-        this.purchaseAmount = getAmount();
-        this.lottoCount = purchaseAmount / 1000;
+        int purchaseAmount = getAmount();
+        int lottoCount = purchaseAmount / 1000;
+
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        LOTTO_PROCESSOR.create(lottoCount);
+        LOTTO_PROCESSOR.setWinningNumbers(LOTTO_INPUT.getWinningNumbers());
+        LOTTO_PROCESSOR.setBonusNumber(Integer.parseInt(LOTTO_INPUT.getBonusNumber()));
+        LOTTO_PROCESSOR.result(purchaseAmount);
     }
 
     // 구입 금액 검증 후 옳바른 구입 금액까지 루프
