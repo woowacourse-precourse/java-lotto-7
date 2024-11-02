@@ -2,12 +2,12 @@ package lotto.domain;
 
 import java.util.List;
 
-public class WinningNumber {
+public class LottoWinningNumbers {
 
     private final List<Integer> winningNumber;
     private final int bonusNumber;
 
-    public WinningNumber(final List<String> winningNumber, final String bonusNumber) {
+    public LottoWinningNumbers(final List<String> winningNumber, final String bonusNumber) {
         this.winningNumber = winningNumber.stream()
                 .map(Integer::parseInt)
                 .toList();

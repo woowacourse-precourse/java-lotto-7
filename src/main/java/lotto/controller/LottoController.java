@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.converter.WinningNumberConverter;
+import lotto.converter.LottoWinningNumbersConverter;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
 import lotto.dto.LottoOutputDto;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoCheckService;
@@ -36,8 +36,9 @@ public class LottoController {
         String winningNumbers = this.enterWinningNumber();
         String bonusNumber = this.enterBonusNumber(winningNumbers);
 
-        WinningNumber winningNumber = WinningNumberConverter.toWinningNumber(winningNumbers, bonusNumber);
-        LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(purchaseAmount, winningNumber, lottos);
+        LottoWinningNumbers lottoWinningNumbers = LottoWinningNumbersConverter.toLottoWinningNumbers(winningNumbers,
+                bonusNumber);
+        LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(purchaseAmount, lottoWinningNumbers, lottos);
         outputView.showResult(lottoOutputDto);
     }
 

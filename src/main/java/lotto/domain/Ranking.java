@@ -22,7 +22,7 @@ public enum Ranking {
         return this.matchCount;
     }
 
-    public boolean isBonusMatched() {
+    public boolean getIsBonusMatched() {
         return this.isBonusMatched;
     }
 
@@ -32,7 +32,7 @@ public enum Ranking {
 
     public static Ranking getRanking(final int matchCount, final boolean isBonusMatched) {
         for (Ranking ranking : values()) {
-            if (ranking.getMatchCount() == matchCount && ranking.isBonusMatched() == isBonusMatched) {
+            if (ranking.getMatchCount() == matchCount && ranking.getIsBonusMatched() == isBonusMatched) {
                 return ranking;
             }
         }

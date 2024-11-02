@@ -5,40 +5,41 @@ import java.util.Map;
 import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
-import lotto.domain.WinningNumber;
 import lotto.dto.LottoOutputDto;
 
 public class LottoCheckService {
 
-    public LottoOutputDto checkLottos(final String purchaseAmount, final WinningNumber winningNumber,
+    public LottoOutputDto checkLottos(final String purchaseAmount, final LottoWinningNumbers lottoWinningNumbers,
                                       final Lottos lottos) {
         LottoResult lottoResult = new LottoResult();
-        Set<Integer> lottoChecker = new HashSet<>(winningNumber.getWinningNumber());
 
         for (Lotto lotto : lottos.getLottos()) {
-            checkLotto(lottoChecker, lotto, winningNumber.getBonusNumber(), lottoResult);
+            checkLotto(lottoWinningNumbers, lotto, lottoResult);
         }
         double rateOfReturn = calculateRateOfReturn(Long.parseLong(purchaseAmount), lottoResult);
 
         return new LottoOutputDto(rateOfReturn, lottoResult);
     }
 
-    private void checkLotto(Set<Integer> lottoChecker, Lotto lotto, int bonusNumber,
-                            LottoResult lottoResult) {
-        Ranking ranking = Ranking.getRanking(checkLottoNumber(lottoChecker, lotto),
-                checkBonusNumber(bonusNumber, lotto));
+    private void checkLotto(final LottoWinningNumbers lottoWinningNumbers, final Lotto lotto,
+                            final LottoResult lottoResult) {
+        Set<Integer> winningNumberChecker = new HashSet<>(lottoWinningNumbers.getWinningNumber());
+        Ranking ranking = Ranking.getRanking(checkWinningNumber(winningNumberChecker, lotto),
+                checkBonusNumber(lottoWinningNumbers.getBonusNumber(), lotto));
+
         if (ranking != null) {
             lottoResult.addResult(ranking);
         }
     }
 
-    private int checkLottoNumber(final Set<Integer> lottoChecker, final Lotto lotto) {
+    private int checkWinningNumber(final Set<Integer> winningNumberChecker, final Lotto lotto) {
         int matchCount = 0;
 
         for (int number : lotto.getNumbers()) {
-            if (lottoChecker.contains(number)) {
+            if (winningNumberChecker.contains(number)) {
                 matchCount++;
             }
         }
