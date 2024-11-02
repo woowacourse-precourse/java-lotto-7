@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.constant.core.LottoServiceConstant.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;
@@ -38,6 +39,11 @@ public class LottoService {
                 MIN_LOTTO_NUMBER.getIntegerValue(),
                 MAX_LOTTO_NUMBER.getIntegerValue(),
                 LOTTO_NUMBER_COUNT.getIntegerValue());
+        sortNumbersAscending(numbers);
         return Lotto.of(numbers);
+    }
+
+    private void sortNumbersAscending(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }
