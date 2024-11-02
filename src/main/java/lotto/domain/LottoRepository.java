@@ -4,7 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static lotto.constant.UtilConstants.SEPARATOR;
-
+import static lotto.constant.UtilConstants.ZERO;
+import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 public class LottoRepository {
     private final List<Lotto> lottoTickets = new ArrayList<>();
     private List<Integer> lottoPlaceCount;
@@ -26,6 +27,10 @@ public class LottoRepository {
     }
 
     public void increaseCount(int place){
+        if(place < ZERO){
+            return;
+        }
+
         int currentCount = lottoPlaceCount.get(place);
         lottoPlaceCount.set(place, currentCount+1);
     }
@@ -54,6 +59,11 @@ public class LottoRepository {
 
     public void increaseProfit(int money){
         profit += money;
+    }
+
+    public float getProfitRate(){
+        float profitRate = (float) profit/(lottoTickets.size() * MINIMUM_PRICE) * 100.0f;
+        return profitRate;
     }
 
     private List<Integer> parseInput(String input){

@@ -16,8 +16,8 @@ import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
 public class LottoController {
 
-    private LottoRepository lottoRepository;
-    private LottoGame lottoGame;
+    private final LottoRepository lottoRepository;
+    private final LottoGame lottoGame;
     private int purchasePrice;
 
 
@@ -30,9 +30,7 @@ public class LottoController {
         runPricePart();
         generateLottoNumbers();
         runWinningNumbers();
-        runStatisticOutput();
         runBonusNumberInput();
-
         OutputView.printStatisticOutput();
         runStatisticOutput();
     }
@@ -40,6 +38,7 @@ public class LottoController {
     private void runPricePart(){
         String purchaseAmount = InputView.getPurchaseAmount();
         PriceValidator priceValidator = new PriceValidator();
+
         try{
             priceValidator.validate(purchaseAmount);
             purchasePrice = Integer.parseInt(purchaseAmount);
@@ -99,5 +98,8 @@ public class LottoController {
     }
     private void runStatisticOutput(){
         lottoGame.calculateMatchingNumbers();
+        List<Integer> placeCounts = lottoRepository.getLottoPlaceCount();
+        float profitRate = lottoRepository.getProfitRate();
+        OutputView.printStatisticResult(placeCounts, profitRate);
     }
 }

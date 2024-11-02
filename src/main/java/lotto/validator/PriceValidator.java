@@ -1,8 +1,10 @@
 package lotto.validator;
 
 import lotto.constant.ErrorConstants;
-import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
+import static lotto.constant.ErrorConstants.*;
+import static lotto.constant.UtilConstants.MINIMUM_PRICE;
+import static lotto.constant.UtilConstants.MAX;
 public class PriceValidator implements Validator {
     private final static int ZERO = 0;
     private int price;
@@ -12,6 +14,7 @@ public class PriceValidator implements Validator {
         checkInputIsNotNull(input);
         checkInputIsNumber(input);
         parseInputToNumber(input);
+        checkPriceNotExceedsMax();
         checkInputIsNotNegative();
         checkInputIsDivisableByThousand();
     }
@@ -20,18 +23,24 @@ public class PriceValidator implements Validator {
         try{
             Integer.parseInt(input);
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ErrorConstants.INVALID_PRICE_FORMAT.getMessage());
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT.getMessage());
         }
     }
 
     private void checkInputIsNotNull(String input){
         if(input == null){
-            throw new IllegalArgumentException(ErrorConstants.NULL_NOT_ALLOWED.getMessage());
+            throw new IllegalArgumentException(NULL_NOT_ALLOWED.getMessage());
         }
     }
 
     private void parseInputToNumber(String input){
         price = Integer.parseInt(input);
+    }
+
+    private void checkPriceNotExceedsMax(){
+        if(price > MAX){
+            throw new IllegalArgumentException(EXCEEDED_MAX_RANGE.getMessage());
+        }
     }
 
     private void checkInputIsNotNegative(){
@@ -42,7 +51,7 @@ public class PriceValidator implements Validator {
 
     private void checkInputIsDivisableByThousand(){
         if(price % MINIMUM_PRICE != ZERO){
-            throw new IllegalArgumentException(ErrorConstants.INVALID_PRICE_FORMAT.getMessage());
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT.getMessage());
         }
     }
 

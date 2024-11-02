@@ -1,10 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 import static lotto.constant.UtilConstants.RANDOM_NUMBER_START;
@@ -60,7 +58,8 @@ public class LottoGame {
 
     private static Lotto generateSingleLotto(){
         List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(RANDOM_NUMBER_START, RANDOM_NUMBER_END, LOTTO_NUMBER_COUNT);
-        Collections.sort(generatedNumbers);
-        return new Lotto(generatedNumbers);
+        List<Integer> sortedLottoNumbers = new ArrayList<>(generatedNumbers); // 가변 리스트로 변환
+        Collections.sort(sortedLottoNumbers); // 이제 정렬 가능
+        return new Lotto(sortedLottoNumbers);
     }
 }
