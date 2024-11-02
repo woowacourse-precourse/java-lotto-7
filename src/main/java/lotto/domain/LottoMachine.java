@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import static lotto.config.ErrorMessageConstant.DUPLICATED_BONUS_NUMBER_MESSAGE;
 import static lotto.config.ErrorMessageConstant.DUPLICATED_WINNING_NUMBER_MESSAGE;
+import static lotto.config.ErrorMessageConstant.EMPTY_WINNGING_NUMBER_MESSAGE;
 import static lotto.config.ErrorMessageConstant.INSUFFICIENT_WINNING_NUMBERS_MESSAGE;
 import static lotto.config.ErrorMessageConstant.INVALID_RANGE_NUMBER_MESSAGE;
 import static lotto.config.GameConstant.LOWER_BOUND_WINNING_NUMBER;
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class LottoMachine {
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public LottoMachine() {
         winningNumbers = new ArrayList<>();
@@ -21,6 +24,11 @@ public class LottoMachine {
     public void assignWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
+    }
+
+    public void assignBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
@@ -36,6 +44,20 @@ public class LottoMachine {
             if (winningNumber < LOWER_BOUND_WINNING_NUMBER || winningNumber > UPPER_BOUND_WINNING_NUMBER) {
                 throw new IllegalArgumentException(INVALID_RANGE_NUMBER_MESSAGE);
             }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (winningNumbers.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_WINNGING_NUMBER_MESSAGE);
+        }
+
+        if (bonusNumber < LOWER_BOUND_WINNING_NUMBER || bonusNumber > UPPER_BOUND_WINNING_NUMBER) {
+            throw new IllegalArgumentException(INVALID_RANGE_NUMBER_MESSAGE);
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER_MESSAGE);
         }
     }
 }
