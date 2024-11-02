@@ -1,4 +1,4 @@
-package lotto.config.util;
+package lotto.util;
 
 import static lotto.util.Spliter.splitWinningNumbers;
 import static org.assertj.core.api.Assertions.assertThat;

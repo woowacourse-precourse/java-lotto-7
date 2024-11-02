@@ -1,4 +1,4 @@
-package lotto.factory;
+package lotto.domain.factory;
 
 import static lotto.config.ErrorMessageConstant.PURCHASE_REMINDER_MESSAGE;
 import static lotto.config.ErrorMessageConstant.PURCHASE_TOO_LOW_MESSAGE;
