@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Rank;
+import lotto.view.OutputView;
 
 public class MatchingLotto {
-    static void matchingLotto(List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber) {
+    static void matchingLotto(List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber, int purchaseAmount) {
         Map<Rank, Integer> resultMap = new HashMap<>();
 
         for (Lotto lotto : lottoList) {
@@ -17,18 +18,11 @@ public class MatchingLotto {
             Rank rank = Rank.getRank(matchCount, bonusMatch);
             resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
         }
-        System.out.println("당첨 통계\n---");
-        for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                int count = resultMap.getOrDefault(rank, 0);
-                String bonusMessage = "";
-                if (rank.isRequiresBonus()) {
-                    bonusMessage = ", 보너스 볼 일치";
-                }
-                System.out.printf("%d개 일치%s (%,d원) - %d개\n", rank.getMatchCount(), bonusMessage, rank.getPrize(),
-                        count);
-            }
-        }
+        OutputView.printResultList(resultMap);
+
+        double profit = CalculateProfit.calculateProfit(resultMap, purchaseAmount);
+        OutputView.printResultProfit(profit);
+
     }
 
     private static int getCount(Lotto lotto, Lotto winningNumbers) {

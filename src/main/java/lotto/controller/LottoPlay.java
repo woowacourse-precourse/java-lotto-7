@@ -12,7 +12,7 @@ public class LottoPlay {
         Lotto winningNumbers = input.getWinningNumbers();
         System.out.println(winningNumbers.toString());
         int bonusNumber = input.getBonusNumber(winningNumbers);
-        MatchingLotto.matchingLotto(lottoList, winningNumbers, bonusNumber);
+        MatchingLotto.matchingLotto(lottoList, winningNumbers, bonusNumber, purchaseAmount);
     }
 
 }
