@@ -2,9 +2,9 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Lotto;
-import lotto.model.PurchasedLottos;
-import lotto.model.WinningLotto;
+import lotto.model.*;
+import lotto.model.enums.ErrorMessage;
+import lotto.model.enums.LottoConstants;
 import lotto.view.LottoMachineView;
 
 import java.util.Collections;
@@ -13,9 +13,11 @@ import java.util.List;
 public class LottoMachineService {
     PurchasedLottos purchasedLottos;
     WinningLotto winningLotto;
+    PurchasedLottosResult purchasedLottosResult;
 
     public LottoMachineService() {
         purchasedLottos = new PurchasedLottos();
+        purchasedLottosResult = new PurchasedLottosResult();
     }
 
     public void purchaseLotto() {
@@ -32,19 +34,23 @@ public class LottoMachineService {
     }
 
     private int purchaseTicketAmount(int purchaseAmount) {
-        if ( purchaseAmount < 1000 ) {
-            throw new IllegalArgumentException("[ERROR] 한 장 이상 구매해야 합니다");
+        if ( purchaseAmount < LottoConstants.LOTTO_TICKET_PRICE.getValue() ) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BUY_ONE_MORE.getMessage());
         }
-        if ( purchaseAmount % 1000 != 0 ) {
-            throw new IllegalArgumentException("[ERROR] 천원 단위로만 구매할 수 있습니다");
+        if ( purchaseAmount % LottoConstants.LOTTO_TICKET_PRICE.getValue() != 0 ) {
+            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT_ONLY.getMessage());
         }
 
-        return purchaseAmount / 1000;
+        return purchaseAmount / LottoConstants.LOTTO_TICKET_PRICE.getValue();
     }
 
     private void makeLotto(int purchaseAmount) {
         for ( int i = 0; i < purchaseAmount; i++ ) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Lotto lotto = new Lotto(
+                    Randoms.pickUniqueNumbersInRange(
+                            LottoConstants.LOTTO_BEGIN_NUMBER.getValue(),
+                            LottoConstants.LOTTO_END_NUMBER.getValue(),
+                            LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
             Collections.sort(lotto.getNumbers());
             purchasedLottos.add(lotto);
         }
@@ -65,15 +71,24 @@ public class LottoMachineService {
         return new WinningLotto(winningNumbers, handledBonusNumber);
     }
 
-//    private void calculateWinnings() {
-//        //당첨로직
-//    }
-//
-//    private void getStats() {
-//        //통계로직
-//    }
-//
-//    public void printStats() {
-//        LottoMachineView.printStatisticsView();
-//    }
+    public void calculateWinnings() {
+        compareWinningNumbers();
+        getStats();
+    }
+
+    private void compareWinningNumbers() {
+        for ( Lotto purchasedOne : purchasedLottos.getLottos() ) {
+            purchasedLottosResult.add(new LottoResult(purchasedOne, winningLotto));
+        }
+    }
+
+    private void getStats() {
+        Statistics statistics = new Statistics(purchasedLottosResult);
+
+        printStats(statistics);
+    }
+
+    private void printStats(Statistics statistics) {
+        LottoMachineView.printStatisticsView(statistics);
+    }
 }

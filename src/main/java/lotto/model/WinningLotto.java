@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.model.enums.ErrorMessage;
+import lotto.model.enums.LottoConstants;
+
 import java.util.List;
 
 public class WinningLotto extends Lotto {
@@ -12,7 +15,8 @@ public class WinningLotto extends Lotto {
     }
 
     private void validate(int bonusNumber) {
-        if ( bonusNumber > 45 || bonusNumber < 1 ) {
+        if ( bonusNumber > LottoConstants.LOTTO_END_NUMBER.getValue() ||
+                bonusNumber < LottoConstants.LOTTO_BEGIN_NUMBER.getValue() ) {
             throw new IllegalArgumentException(ErrorMessage.WITHIN_NUMBERS_RANGE.getMessage());
         }
         for ( int number : this.getNumbers() ) {

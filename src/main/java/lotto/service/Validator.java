@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.ErrorMessage;
+import lotto.model.enums.ErrorMessage;
 
 import java.math.BigInteger;
 

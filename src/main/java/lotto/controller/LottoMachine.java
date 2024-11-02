@@ -12,6 +12,6 @@ public class LottoMachine {
     public void start() {
         lottoMachineService.purchaseLotto();
         lottoMachineService.enterWinningNumbers();
-//        lottoMachineService.printStats();
+        lottoMachineService.calculateWinnings();
     }
 }

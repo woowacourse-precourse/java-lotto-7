@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.enums.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if ( numbers.size() != 6 ) {
-            throw new IllegalArgumentException("[ERROR] 6개의 번호를 입력해야 합니다");
+            throw new IllegalArgumentException(ErrorMessage.SIX_NUMBERS_ONLY.getMessage());
         }
         for (int inputNumber : numbers) {
             if ( inputNumber > 45 || inputNumber < 1 ) {

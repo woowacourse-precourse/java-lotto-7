@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.PurchasedLottos;
+import lotto.model.Statistics;
 
 public class LottoMachineView {
     public static void printPurchaseLottoView() {
@@ -12,7 +13,7 @@ public class LottoMachineView {
         System.out.println(purchasedLottos.getSize() + "개를 구매했습니다.");
 
         StringBuilder purchasedLottoNumbers = new StringBuilder();
-        for ( Lotto lotto : purchasedLottos ) {
+        for ( Lotto lotto : purchasedLottos.getLottos() ) {
             purchasedLottoNumbers.append(lotto.getNumbers().toString()).append('\n');
         }
 
@@ -28,7 +29,15 @@ public class LottoMachineView {
     }
 
 
-    public static void printStatisticsView() {
+    public static void printStatisticsView(Statistics statistics) {
+        int[] lottoRank = statistics.getLottoPrizeCount();
+        System.out.println("당첨 통계\n---");
 
+        System.out.println("3개 일치 (5,000원) - " + lottoRank[5]);
+        System.out.println("4개 일치 (50,000원) - " + lottoRank[4]);
+        System.out.println("5개 일치 (1,500,000원) - " + lottoRank[3]);
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoRank[2]);
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoRank[1]);
+        System.out.println("총 수익률은 " + statistics.getYield() + "%입니다.");
     }
 }
