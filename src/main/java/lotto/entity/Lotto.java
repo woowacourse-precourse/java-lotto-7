@@ -75,4 +75,18 @@ public class Lotto {
         }
         return matchCount;
     }
+
+    /**
+     * 보너스 번호와의 일치 여부를 반환합니다.
+     *
+     * @param bonusNumber 보너스 번호
+     * @return 보너스 번호와 일치하는지 여부
+     */
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
