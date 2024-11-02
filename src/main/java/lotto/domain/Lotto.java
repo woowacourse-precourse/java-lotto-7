@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private boolean IsNumberRangeIncorrect(Integer number) {
-        return number < MIN_NUMBER_RANGE && number > MAX_NUMBER_RANGE;
+        return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
     }
 
     private void validateNumberDuplication(List<Integer> numbers) {

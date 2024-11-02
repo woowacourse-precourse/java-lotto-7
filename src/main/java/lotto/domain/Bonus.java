@@ -13,7 +13,7 @@ public class Bonus {
     }
 
     private boolean IsNumberRangeIncorrect(Integer number) {
-        return number < MIN_NUMBER_RANGE && number > MAX_NUMBER_RANGE;
+        return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
     }
 
     private void validateRange(Integer number) {
