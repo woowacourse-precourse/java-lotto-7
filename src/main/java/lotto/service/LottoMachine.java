@@ -11,7 +11,7 @@ import lotto.model.RandomNumberPicker;
 public class LottoMachine {
     public Lottos issueLottos(LottoAmount lottoAmount) {
         List<Lotto> lottos = IntStream.range(0, lottoAmount.getLottoAmount())
-                .mapToObj(i -> new Lotto(RandomNumberPicker.pickNumbers()))
+                .mapToObj(i -> new Lotto(RandomNumberPicker.pickAscendingNumbers()))
                 .collect(Collectors.toList());
         return new Lottos(lottos);
     }
