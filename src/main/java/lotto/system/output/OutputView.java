@@ -1,6 +1,7 @@
-package lotto.system.view;
+package lotto.system.output;
 
 import java.util.List;
+import lotto.system.SystemIO;
 
 public class OutputView {
 

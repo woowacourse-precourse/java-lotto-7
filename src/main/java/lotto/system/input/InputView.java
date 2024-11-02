@@ -1,4 +1,6 @@
-package lotto.system.view;
+package lotto.system.input;
+
+import lotto.system.SystemIO;
 
 public class InputView {
 

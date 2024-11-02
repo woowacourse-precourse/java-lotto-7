@@ -1,4 +1,4 @@
-package lotto.system.controller;
+package lotto.core;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
@@ -8,18 +8,20 @@ import java.util.stream.Collectors;
 import lotto.core.domain.Lotto;
 import lotto.core.domain.Money;
 import lotto.core.domain.WinnerLotto;
-import lotto.system.view.InputView;
-import lotto.system.view.OutputView;
+import lotto.system.Config.SystemConfig;
+import lotto.system.input.InputView;
+import lotto.system.output.OutputView;
 
-public class ShopController {
-
+public class AppController {
     private final Set<Lotto> lottos;
     private final Money money;
     private final WinnerLotto winnerLotto;
     private final InputView inputView;
     private final OutputView outputView;
+    private final SystemConfig systemConfig;
 
-    private ShopController() {
+    private AppController(SystemConfig systemConfig) {
+        this.systemConfig = systemConfig;
         this.money = new Money();
         this.winnerLotto = new WinnerLotto();
         this.lottos = new HashSet<>();
@@ -27,8 +29,21 @@ public class ShopController {
         this.outputView = new OutputView();
     }
 
-    public static ShopController visitShop() {
-        return new ShopController();
+    public static AppController initialize() {
+        SystemConfig config = SystemConfig.getInstance();
+        return new AppController(config);
+    }
+
+    public void run() {
+        try {
+            systemConfig.startSystem();
+            buyLottos();
+            checkLottoResult();
+        } catch (RuntimeException  e) {
+            OutputView.showErrorMessage(String.valueOf(e));
+        } finally {
+            systemConfig.shutdown();
+        }
     }
 
     public void buyLottos() {
@@ -57,6 +72,8 @@ public class ShopController {
     }
 
     private void showGeneratedLottos(List<Integer> LottoNumbers) {
-        outputView.showLotto(LottoNumbers.stream().sorted().collect(Collectors.toList()));
+        outputView.showLotto(LottoNumbers.stream()
+                .sorted()
+                .collect(Collectors.toList()));
     }
 }

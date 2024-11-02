@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.core.validate.InputValidate;
-import lotto.system.view.InputView;
+import lotto.system.input.InputView;
 
 public class WinnerLotto {
 
