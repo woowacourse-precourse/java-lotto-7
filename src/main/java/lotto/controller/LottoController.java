@@ -17,8 +17,9 @@ public class LottoController {
     }
 
     public void run(){
-        getMoneyAndBuyLotto();
         List<Lotto> lottos = getMoneyAndBuyLotto();
+
+        printPublicedLottos(lottos);
     }
 
     public List<Lotto> getMoneyAndBuyLotto(){
@@ -32,5 +33,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void printPublicedLottos(List<Lotto> lottos){
+        outputView.showPublicedLottos(lottos);
     }
 }

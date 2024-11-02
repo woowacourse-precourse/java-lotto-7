@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constant.LottoConstant;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -36,6 +37,10 @@ public class Lotto {
 
     private boolean isWithinRange(List<Integer> numbers) {
         return numbers.stream().allMatch(num -> num >= LottoConstant.LOTTO_MIN_NUMBER && num <= LottoConstant.LOTTO_MAX_NUMBER);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
 }
