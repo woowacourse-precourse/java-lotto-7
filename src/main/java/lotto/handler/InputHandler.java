@@ -25,7 +25,6 @@ public class InputHandler {
             price = Integer.parseInt(inputPurchasePrice);
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.PRICE_IS_NOT_NUMBER.getMessage());
-
         }
 
         // 입력받은 구입금액이 1000원 이상인지 판별
