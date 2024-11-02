@@ -17,9 +17,9 @@ public class PurchasedLotto {
     private final List<Lotto> purchasedLotto;
 
     public PurchasedLotto(int money) {
-        validate(money);
+        validateMoney(money);
         this.money = money;
-        purchasedLotto = purchaseLotto();
+        this.purchasedLotto = purchaseLotto();
     }
 
     public List<Lotto> getPurchasedLotto() {
@@ -32,20 +32,35 @@ public class PurchasedLotto {
 
     private List<Lotto> purchaseLotto() {
         List<Lotto> purchaseLotto = new ArrayList<>();
-        for (int i = ZERO; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
-            purchaseLotto.add(new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
-                    LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
-                    LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber())));
+        for (int i = ZERO; i < calculatePurchaseLottoCount(); i++) {
+            purchaseLotto.add(createRandomLotto());
         }
 
         return purchaseLotto;
     }
 
-    private void validate(int money) {
+    private int calculatePurchaseLottoCount() {
+        return money / LottoConstant.MONEY_UNIT.getNumber();
+    }
+
+    private Lotto createRandomLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
+                LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
+                LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber()));
+    }
+
+    private void validateMoney(int money) {
+        validatePositive(money);
+        validateMoneyUnit(money);
+    }
+
+    private void validatePositive(int money) {
         if (money <= ZERO) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.toString());
         }
+    }
 
+    private void validateMoneyUnit(int money) {
         if ((money % LottoConstant.MONEY_UNIT.getNumber()) != ZERO) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_WRONG.toString());
         }
@@ -54,7 +69,9 @@ public class PurchasedLotto {
     @Override
     public String toString() {
         StringBuilder message = new StringBuilder(NEWLINE + purchasedLotto.size() + PURCHASED_MESSAGE);
-        purchasedLotto.stream().map(Lotto::toString).forEach(message::append);
+        purchasedLotto.stream()
+                .map(Lotto::toString)
+                .forEach(message::append);
         return message.toString();
     }
 }
