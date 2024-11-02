@@ -18,7 +18,7 @@ public class Input {
             try {
                 return new Purchase(Integer.parseInt(Console.readLine()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(INPUT_MUST_BE_NUMBER.getMessage());
+                System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -27,14 +27,14 @@ public class Input {
 
     public static Lotto getWinningNumbers() {
         while (true) {
-            System.out.println(ENTER_WINNING_NUMBERS.getPrompt());
+            System.out.println("\n" + ENTER_WINNING_NUMBERS.getPrompt());
 
             try {
                 List<String> winningNumbersInput = List.of(Console.readLine().split(","));
                 List<Integer> winningNumbers = covertStringToInteger(winningNumbersInput);
                 return new Lotto(winningNumbers);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(INPUT_MUST_BE_NUMBER.getMessage());
+                System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -51,12 +51,12 @@ public class Input {
 
     public static Bonus getBonusNumber(Lotto lotto) {
         while (true) {
-            System.out.println(ENTER_BONUS_NUMBER.getPrompt());
+            System.out.println("\n" + ENTER_BONUS_NUMBER.getPrompt());
 
             try {
                 return new Bonus(lotto, Integer.parseInt(Console.readLine()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(INPUT_MUST_BE_NUMBER.getMessage());
+                System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
