@@ -2,6 +2,7 @@ package lotto.core.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.core.enums.WinningRank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

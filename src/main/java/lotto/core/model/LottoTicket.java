@@ -3,6 +3,7 @@ package lotto.core.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.core.dto.LottoTicketDto;
+import lotto.core.enums.WinningRank;
 
 public class LottoTicket {
 

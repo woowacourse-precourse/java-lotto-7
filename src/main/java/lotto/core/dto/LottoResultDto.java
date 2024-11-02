@@ -3,7 +3,7 @@ package lotto.core.dto;
 import java.math.BigDecimal;
 import java.util.List;
 import lotto.core.model.LottoResult;
-import lotto.core.model.WinningRank;
+import lotto.core.enums.WinningRank;
 
 public record LottoResultDto(LottoTicketDto ticket,
                              List<WinningRank> winningRanks,

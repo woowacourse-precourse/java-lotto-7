@@ -1,4 +1,4 @@
-package lotto.core.model;
+package lotto.core.enums;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

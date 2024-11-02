@@ -9,7 +9,7 @@ import lotto.core.model.Lotto;
 import lotto.core.model.LottoNumber;
 import lotto.core.model.LottoResult;
 import lotto.core.model.LottoTicket;
-import lotto.core.model.WinningRank;
+import lotto.core.enums.WinningRank;
 
 public class MatchWinningLottoService {
 

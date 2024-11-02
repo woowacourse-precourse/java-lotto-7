@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.core.dto.LottoResultDto;
-import lotto.core.model.WinningRank;
+import lotto.core.enums.WinningRank;
 
 public class MatchWinningLottoView implements View<LottoResultDto> {
 
