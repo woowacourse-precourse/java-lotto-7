@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -79,4 +80,18 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.isInteger(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @MethodSource("validDivisibleNumber")
+    @DisplayName("입력이 특정 숫자로 나누어 떨어지는지 테스트")
+    public void isDivisibleByTest(int number, int divisor) {
+        assertThatNoException().isThrownBy(() -> Validator.isDivisibleBy(number, divisor));
+    }
+
+    private static Object[][] validDivisibleNumber() {
+        return new Object[][]{
+                {1000, 1000},
+                {10000, 2000},
+                {20000, 5000}
+        };
+    }
 }
