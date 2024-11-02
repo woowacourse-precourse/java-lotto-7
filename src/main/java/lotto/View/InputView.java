@@ -1,4 +1,5 @@
 package lotto.View;
+import Common.Validator;
 import camp.nextstep.edu.missionutils.Console;
 import com.sun.tools.jconsole.JConsoleContext;
 
@@ -18,23 +19,13 @@ public class InputView {
     public List<Integer> requestNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String s : input) {
-            int number = Integer.parseInt(s);
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            numbers.add(number);
-        }
-        return numbers;
+        return Validator.validateNumbers(input);
     }
 
     public int requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
+        Validator.validateNumberRange(bonus);
         return bonus;
     }
 }
