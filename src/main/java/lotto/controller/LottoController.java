@@ -37,8 +37,8 @@ public class LottoController {
         int bonusNumber = lottoService.convertBonusNumberInt(lottoBonusNumber);
         lottoService.winningLotto(winningNumbers, bonusNumber);
 
-        Map<LottoRank, Integer> lottoResult = lottoService.resultWinningLotto();
-        double rate = lottoService.calculateRate(lottoResult);
+        Map<LottoRank, Integer> lottoResult = lottoService.resultWinningLotto(lottoNum);
+        double rate = lottoService.calculateRate(lottoResult, lottoPriceInt);
 
         outputView.totalLotto(lottoResult, rate);
     }

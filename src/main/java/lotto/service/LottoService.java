@@ -9,20 +9,16 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    private List<Lotto> lottoList;
-    private Map<LottoRank, Integer> lottoResults;
+    private List<Lotto> lottoList = new ArrayList<>();
     private InputValidator inputValidator;
     private LottoWinningNumbers lottoWinning;
-    private int lottoNum;
-
-    private int lottoPriceInt;
 
     public LottoService() {
         inputValidator = new InputValidator();
     }
 
     public int purchaseLotto(int lottoPrice) {
-        lottoNum = lottoPrice / Constants.PURCHASE_FORM;
+        int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
 
         return lottoNum;
     }
@@ -38,7 +34,7 @@ public class LottoService {
 
     public int validateLottoPrice(String lottoPrice) {
         inputValidator.validateEmpty(lottoPrice);
-        lottoPriceInt = inputValidator.validateNumber(lottoPrice);
+        int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
         inputValidator.validatePriceForm(lottoPriceInt);
 
         return lottoPriceInt;
@@ -79,7 +75,8 @@ public class LottoService {
     
     
 
-    public Map<LottoRank, Integer> resultWinningLotto() {
+    public Map<LottoRank, Integer> resultWinningLotto(int lottoNum) {
+        Map<LottoRank, Integer> lottoResults = new HashMap<>();
         for(int i=0; i<lottoNum; i++){
             int count = compareWinningLotto(i);
             LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(count);
@@ -100,7 +97,7 @@ public class LottoService {
         return count;
     }
 
-    public double calculateRate(Map<LottoRank, Integer> lottoResult) {
+    public double calculateRate(Map<LottoRank, Integer> lottoResult, int lottoPriceInt) {
         // 일치한 것에 대한 돈을 다 더한다
         // 해당 돈 / 구입 금액 * 100
         // 소수점 둘째자리까지 표현한다
@@ -111,7 +108,7 @@ public class LottoService {
         return rate;
     }
 
-    private int sumAmount(Map<LottoRank, Integer> lottoResult) {
+    private int sumAmount(Map<LottoRank, Integer> lottoResults) {
         int amount = 0;
         for(LottoRank lottoRank: lottoResults.keySet()){
             int price = convertToInt(lottoRank.getPrice());
