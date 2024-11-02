@@ -39,9 +39,7 @@ public class LottoMachine {
         return new WinningLotto(lotto, winningBonusNumber);
     }
 
-    public LottoStatistic generateLottoStatistic(WinningLotto winningLotto, List<Lotto> lottoList) {
-        LottoHistory lottoHistory = new LottoHistory(winningLotto, lottoList);
-
-        return lottoHistory.getLottoStatistic();
+    public LottoHistory generateLottoHistory(WinningLotto winningLotto, List<Lotto> lottoList) {
+        return new LottoHistory(winningLotto, lottoList);
     }
 }
