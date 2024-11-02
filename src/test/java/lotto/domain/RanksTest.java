@@ -30,9 +30,9 @@ class RanksTest {
     @MethodSource("provideRanksAndPrizeAmount")
     void calculateTotalPrizeAmount(List<Rank> rankList, BigInteger prizeAmount) {
         Ranks ranks = new Ranks(rankList);
-        BigInteger prize = ranks.totalPrizeAmount();
+        Money prizeMoney = ranks.totalPrizeAmount();
 
-        assertThat(prize).isEqualTo(prizeAmount);
+        assertThat(prizeMoney).isEqualTo(new Money(prizeAmount));
     }
 
     private static Stream<Arguments> provideRanksAndPrizeAmount() {

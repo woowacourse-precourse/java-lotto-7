@@ -15,11 +15,12 @@ public class Ranks {
         return ranks.size();
     }
 
-    public BigInteger totalPrizeAmount() {
+    public Money totalPrizeAmount() {
         BigInteger total = BigInteger.ZERO;
         for (Rank rank : ranks) {
             total = total.add(rank.getPrizeAmount());
         }
-        return total;
+        return new Money(total);
     }
+
 }
