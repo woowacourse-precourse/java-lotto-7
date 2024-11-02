@@ -34,7 +34,7 @@ class LottoTest {
         int lottoCount = 6;
         int bonusNumber = 1;
         LottoGame lottoGame = new LottoGame(lottoRepository);
-        lottoGame.setDetails(new Lotto(List.of(1,2,3,4,5,6)), bonusNumber);
+        lottoGame.setDetails(bonusNumber);
         lottoGame.generateLotto();
 
         assertThat(lottoRepository.getLottos()).hasSize(5);
@@ -46,7 +46,7 @@ class LottoTest {
         LottoRepository lottoRepository = new LottoRepository();
         int bonusNumber = 1;
         LottoGame lottoGame = new LottoGame(lottoRepository);
-        lottoGame.setDetails(new Lotto(List.of(11,2,3,4,5,6)), bonusNumber);
+        lottoGame.setDetails(bonusNumber);
         lottoGame.generateLotto();
 
         List<Lotto> savedLottos = lottoRepository.getLottos();

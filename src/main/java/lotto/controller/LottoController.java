@@ -2,7 +2,9 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoRepository;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PriceValidator;
+import lotto.validator.Validator;
 import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,7 +30,13 @@ public class LottoController {
         runPricePart();
         generateLottoNumbers();
         runWinningNumbers();
+        runStatisticOutput();
+        runBonusNumberInput();
 
+        System.out.println(lottoRepository.getBonusNumber());
+
+        OutputView.printStatisticOutput();
+        runStatisticOutput();
     }
 
     private void runPricePart(){
@@ -68,7 +76,7 @@ public class LottoController {
         WinningNumberValidator validator = new WinningNumberValidator();
         try{
             validator.validate(winningNumbers);
-            lottoGame.createWinningLotto(winningNumbers);
+            lottoRepository.createWinningLotto(winningNumbers);
             return;
         }catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());
@@ -76,11 +84,22 @@ public class LottoController {
         }
     }
 
-    private void addToWinningNumbers(){
-
-    }
-
     private String generateString(List<Integer> numbers){
         return numbers.toString();
+    }
+
+    private void runBonusNumberInput(){
+        String bonusNumber = InputView.getBonusNumber();
+        Validator validator = new BonusNumberValidator();
+        try{
+            validator.validate(bonusNumber);
+            lottoRepository.setBonusNumber(bonusNumber);
+        }catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            runBonusNumberInput();
+        }
+    }
+    private void runStatisticOutput(){
+
     }
 }

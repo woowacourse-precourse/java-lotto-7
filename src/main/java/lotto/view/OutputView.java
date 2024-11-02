@@ -14,6 +14,12 @@ public class OutputView {
         }
     }
 
+    public static void printStatisticOutput(){
+        System.out.println(ViewConstants.WIN_RATE_MESSAGE.getMessage());
+        System.out.println(ViewConstants.SEPARATE_LINE.getMessage());
+    }
+
+
     public static void printError(String errorMessage) {
         System.out.println(errorMessage);
     }

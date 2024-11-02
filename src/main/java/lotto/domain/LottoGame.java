@@ -13,17 +13,11 @@ import static lotto.constant.UtilConstants.SEPARATOR;
 
 public class LottoGame {
     private final LottoRepository lottoRepository;
-    private Lotto winningLotto;
-    private int bonusNumber;
+
     private int lottoCount;
 
     public LottoGame(LottoRepository lottoRepository){
         this.lottoRepository = lottoRepository;
-    }
-
-    public void setDetails(Lotto winningLotto, int bonusNumber){
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
     }
 
     public void setLottoCount(int purchaseAmount){
@@ -36,17 +30,11 @@ public class LottoGame {
         }
     }
 
-    public void createWinningLotto(String input){
-        List<Integer> winningNumbers = parseInput(input);
-        winningLotto = new Lotto(winningNumbers);
+    public void calculateMatchingNumbers(){
+
     }
 
-    private List<Integer> parseInput(String input){
-        return Arrays.stream(input.split(SEPARATOR))
-            .map(String::trim)
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
-    }
+
 
     private static Lotto generateSingleLotto(){
         List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(1,45, LOTTO_NUMBER_COUNT);
