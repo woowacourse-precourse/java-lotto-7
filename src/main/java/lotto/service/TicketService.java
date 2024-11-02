@@ -2,21 +2,21 @@ package lotto.service;
 
 import lotto.domain.ticket.Lottos;
 import lotto.domain.ticket.Ticket;
-import lotto.repository.TicketRepository;
+import lotto.repository.WriteTicketRepository;
 
 public class TicketService {
 
-    private final TicketRepository repository;
+    private final WriteTicketRepository repository;
     private final IdGenerator idGenerator;
 
-    public TicketService(TicketRepository repository, IdGenerator idGenerator) {
+    public TicketService(WriteTicketRepository repository, IdGenerator idGenerator) {
         this.repository = repository;
         this.idGenerator = idGenerator;
     }
 
     public Long create(Lottos lottos) {
         Ticket ticket = issue(lottos);
-        
+
         return repository.save(ticket);
     }
 

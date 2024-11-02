@@ -11,6 +11,7 @@ public class PaymentRepository {
 
     public Long save(Payment payment) {
         repository.put(payment.getId(), payment);
+
         return payment.getId();
     }
 }

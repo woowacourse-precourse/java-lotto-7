@@ -8,6 +8,10 @@ public record TicketResponse(
         List<List<Integer>> ticket
 ) {
 
+    public static TicketResponse from(Ticket byId) {
+        return null;
+    }
+
     public TicketResponse getId() {
         return null;
     }
