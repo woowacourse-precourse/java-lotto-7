@@ -1,28 +1,25 @@
 package controller;
 
-import java.util.List;
-import lotto.Lotto;
 import service.LottoService;
 
 public class LottoController {
 
-    private List<Lotto> lottoList;
-    private Lotto WinnerLottoNumber;
-    private int lottoPurchaseAmount;
-    private int lottoDrawCount;
-    private LottoService lottoservice = new LottoService();
+    private final LottoService lottoService = new LottoService();
 
     public void run() {
-        lottoPurchaseAmount = lottoservice.getLottoPurchaseAmount();
-        lottoDrawCount = lottoservice.getLottoDrawCount(lottoPurchaseAmount);
-        lottoList = lottoservice.generateRandomLottoNumbers(lottoDrawCount);
+        lottoService.initializeLottoPurchaseAmount();
+        lottoService.initializeLottoDrawCount();
+        lottoService.generateRandomLottoNumbers();
 
-        lottoservice.printLottoNumbers(lottoList);
-        WinnerLottoNumber = lottoservice.getWinnerLottoNumbers();
-        int bonusNumber = lottoservice.getBonusNumber();
+        lottoService.printLottoNumbers();
+        lottoService.initializeWinnerLottoNumbers();
+        lottoService.initializeBonusNumber();
+        displayLottoDrawsResult();
+    }
 
-
-
+    public void displayLottoDrawsResult() {
+        lottoService.calculateLottoScore();
+        lottoService.displayWinningResults();
     }
 
 }
