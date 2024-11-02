@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoParserTest {
 
-    LottoParser parser = new LottoParser();
-
     @Test
     @DisplayName("쉼표로 구분된 숫자로 구성된 문자열이 올바르게 숫자 리스트로 파싱된다.")
     void parseValidInput() {
