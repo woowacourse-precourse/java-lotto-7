@@ -5,7 +5,6 @@ import lotto.domains.lotto.LottoTicketMachine;
 import lotto.domains.lotto.LottoTicket;
 import lotto.service.CustomerFactory;
 import lotto.service.LottoFactory;
-import lotto.service.LottoTicketMachineFactory;
 import lotto.util.TypeConverter;
 import lotto.view.InputInterface;
 import lotto.view.OutputInterface;
