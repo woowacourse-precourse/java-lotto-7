@@ -1,10 +1,10 @@
 package lotto.validator;
 
 import lotto.constant.ErrorConstants;
+import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
 public class PriceValidator implements Validator {
     private final static int ZERO = 0;
-    private final static int MINIMUM_PRICE_UNIT = 1000;
     private int price;
 
     @Override
@@ -41,7 +41,7 @@ public class PriceValidator implements Validator {
     }
 
     private void checkInputIsDivisableByThousand(){
-        if(price % MINIMUM_PRICE_UNIT != ZERO){
+        if(price % MINIMUM_PRICE != ZERO){
             throw new IllegalArgumentException(ErrorConstants.INVALID_PRICE_FORMAT.getMessage());
         }
     }
