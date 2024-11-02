@@ -11,19 +11,18 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.EnumMap;
-import java.util.List;
 
 public class LottoController {
 
     public void run(){
         LottoStore lottoStore = new LottoStore(new LottoNumbersGenerator());
         LottoTicket lottoTicket =  Retry.retryOnException(() -> buyLotto(lottoStore));
-        WinningLotto winningLotto = Retry.retryOnException(() -> createWinningLotto());
+        WinningLotto winningLotto = createWinningLotto();
         checkLottoResult(lottoTicket, winningLotto);
     }
 
     private LottoTicket buyLotto(LottoStore lottoStore){
-        int amount =  InputView.inputPurchaseAmount();
+        int amount =  Retry.retryOnException(() -> InputView.inputPurchaseAmount());
         LottoTicket lottoTicket = lottoStore.buyLottoTicket(amount);
         OutputView.printLottoTicketInformation(lottoTicket.getAllLottoNumbers(), lottoTicket.getLottoCount());
         return lottoTicket;
