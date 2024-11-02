@@ -37,6 +37,7 @@ public class Application {
         int[] matchNumberCount = lottoChecker.checkLottos(lottos);
 
         // 8. 당첨 통계
+        outputview.showStatistics(matchNumberCount);
 
         // 9. 당첨 금액 계산
 

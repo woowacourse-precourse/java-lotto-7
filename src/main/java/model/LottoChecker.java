@@ -15,16 +15,16 @@ public class LottoChecker {
 
     public int[] checkLottos(List<Lotto> lottos) {
         // index 0~7은 각각 n개 일치 한다는 정보를 가진다.
-        // x, x, x, 3개, 4개, 5개, 6개, 5개+보너스
+        // x, x, x, 3개, 4개, 5개, 5개+보너스, 6개
         // ex) matchNumberCount[4] == 2는 4개일치하는 로또가 2개라는 의미이다.
         int[] matchNumberCount = new int[8];
 
         for (Lotto lotto : lottos) {
             int matchCount = checkLotto(lotto);
             matchNumberCount[matchCount]++;
-            if (bonusFlag && matchCount == 5) {
+            if ((bonusFlag && matchCount == 5) || matchCount == 6) {
                 matchNumberCount[matchCount]--;
-                matchNumberCount[matchCount + 2]++;
+                matchNumberCount[matchCount + 1]++;
             }
         }
         return matchNumberCount;
