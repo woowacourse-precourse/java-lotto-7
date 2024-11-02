@@ -6,14 +6,14 @@ import lotto.Lotto;
 import lotto.PrizeRank;
 
 public class OutputView {
-    public static void printLottos(int purchaseAmount, List<Lotto> lottos) {
+    public void printLottos(int purchaseAmount, List<Lotto> lottos) {
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             lotto.printLotto();
         }
     }
 
-    public static void printPrizeStats(Map<PrizeRank, Integer> prizeRankCounts, double rateOfReturn) {
+    public void printPrizeStats(Map<PrizeRank, Integer> prizeRankCounts, double rateOfReturn) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + prizeRankCounts.get(PrizeRank.FIFTH) + "개");
