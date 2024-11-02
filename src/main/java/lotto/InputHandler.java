@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputHandler {
     public static String handleAmountInput() {
@@ -11,14 +13,14 @@ public class InputHandler {
         return amountInput;
     }
 
-    public static int[] handleWinningLottoInput() {
+    public static List<Integer> handleWinningLottoInput() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningLottoInput = Console.readLine()
                 .trim()
                 .split(",");
 
         validateWinningLottoInput(winningLottoInput);
-        int[] winningLotto = convertWinningLottoInputToIntArray(winningLottoInput);
+        List<Integer> winningLotto = convertWinningLottoInputToIntArray(winningLottoInput);
         validateWinningLotto(winningLotto);
 
         return winningLotto;
@@ -46,7 +48,7 @@ public class InputHandler {
         }
     }
 
-    private static void validateWinningLotto(int[] winningLotto) {
+    private static void validateWinningLotto(List<Integer> winningLotto) {
         for (int lottoNumber : winningLotto) {
             if (lottoNumber < 1 || lottoNumber > 45) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45사이여야 합니다.");
@@ -54,11 +56,11 @@ public class InputHandler {
         }
     }
 
-    private static int[] convertWinningLottoInputToIntArray(String[] winningLottoInput) {
-        int[] winningLotto = new int[6];
+    private static List<Integer> convertWinningLottoInputToIntArray(String[] winningLottoInput) {
+        List<Integer> winningLotto = new ArrayList<>();
         try {
-            for (int lottoIndex = 0; lottoIndex < winningLottoInput.length; lottoIndex++) {
-                winningLotto[lottoIndex] = Integer.parseInt(winningLottoInput[lottoIndex].trim());
+            for (String eachWinningLottoNumber : winningLottoInput) {
+                winningLotto.add(Integer.parseInt(eachWinningLottoNumber.trim()));
             }
             return winningLotto;
         } catch (NumberFormatException e) {

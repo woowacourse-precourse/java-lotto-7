@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -11,7 +10,7 @@ public class Application {
         int amount = Integer.parseInt(amountInput);
         int lottoCount = amount / 1000;
         Lotto[] lottoArray = issueLotto(lottoCount);
-        int[] winningLotto = InputHandler.handleWinningLottoInput();
+        List<Integer> winningLotto = InputHandler.handleWinningLottoInput();
         int bonusNumber = InputHandler.handleBonusNumberInput();
     }
 
