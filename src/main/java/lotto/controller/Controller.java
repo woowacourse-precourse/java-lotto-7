@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -12,6 +12,7 @@ import lotto.service.PurchasedLottoNumbersService;
 import lotto.validation.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.model.Rank;
 
 public class Controller {
     private final PurchasedLottoNumbersService purchasedLottoNumbersService = new PurchasedLottoNumbersService();
@@ -64,15 +65,15 @@ public class Controller {
         }
     }
 
-    public int[] makeLottoAndBonusNumberCalculateRank(ArrayList<List<Integer>> purchasedLottoNumbers) {
+    public EnumMap<Rank, Integer> makeLottoAndBonusNumberCalculateRank(ArrayList<List<Integer>> purchasedLottoNumbers) {
         Lotto lotto = generateLotto();
         BonusNumber bonusNumber = generateBonusNumber(lotto);
         return LottoRankingService.calculateLottoRank(lotto,purchasedLottoNumbers,bonusNumber);
     }
 
-    public void printResult(int [] rank){
-        double totalRate = LottoRankingService.getTotalRate(rank, userMoney);
-        OutputView.printLottoResults(rank,totalRate);
+    public void printResult(EnumMap<Rank, Integer> rankCounts){
+        double totalRate = LottoRankingService.getTotalRate(rankCounts, userMoney);
+        OutputView.printLottoResults(rankCounts,totalRate);
     }
 
     public void lottoStart(){
