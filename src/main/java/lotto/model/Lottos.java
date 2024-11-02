@@ -13,19 +13,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(List<Lotto> lottos) {
-        return new Lottos(lottos);
-    }
-
     public static Lottos purchase(int purchaseCount) {
         List<Lotto> purchasedLottos = IntStream.range(0, purchaseCount)
                 .mapToObj(lotto -> new RandomLottoGenerator().generateLotto())
                 .toList();
         return new Lottos(purchasedLottos);
-    }
-
-    public List<Lotto> getLottos() {
-        return new ArrayList<>(lottos);
     }
 
     public Map<LottoRank, Integer> lottoResultFrom(WinningLotto winningLotto) {
@@ -37,5 +29,9 @@ public class Lottos {
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
         }
         return lottoResult;
+    }
+
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
     }
 }
