@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
 import lotto.util.Validator;
 
 public class WinningLotto extends Lotto {
