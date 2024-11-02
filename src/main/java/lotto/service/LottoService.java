@@ -2,38 +2,30 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
-import lotto.dto.LottoRequestDto;
-import lotto.model.LottoInfo;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
-    public static LottoInfo createLottoInfo(LottoRequestDto lottoRequestDto) {
-        List<Integer> lottoNumbers = parseLottoNumbers(lottoRequestDto.getLottoNumbers());
-        int bonusNumber = Integer.parseInt(lottoRequestDto.getBonusNumber());
-        int amounts = parsePurchaseAmount(lottoRequestDto.getPurchaseAmount());
+    private final List<Integer> lottoNumbers;
+    private final int bonusNumber;
 
-        return new LottoInfo(lottoNumbers, bonusNumber, amounts);
+    public LottoService(List<Integer> lottoNumbers, int bonusNumber) {
+        this.lottoNumbers = lottoNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    public static Lotto createLotto() {
+    public Lotto createLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
 
-    private static List<Integer> parseLottoNumbers(String lottoNumbersInput) {
-        String[] numbers = lottoNumbersInput.split(",");
-        List<Integer> lottoNumbers = new ArrayList<>();
-        for (String number : numbers) {
-            lottoNumbers.add(Integer.parseInt(number));
-        }
+    public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
 
-    private static int parsePurchaseAmount(String purchaseAmount) {
-        return Integer.parseInt(purchaseAmount) / 1000;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

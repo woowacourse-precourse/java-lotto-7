@@ -6,6 +6,7 @@ import lotto.validator.LottoNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 
+
 public class LottoController {
     private final InputView inputView;
 
@@ -19,6 +20,6 @@ public class LottoController {
         LottoNumbersValidator.validate(lottoRequestDto.getLottoNumbers());
         BonusNumberValidator.validate(lottoRequestDto.getBonusNumber(),
                 lottoRequestDto.getLottoNumbers().split(","));
-        
+
     }
 }
