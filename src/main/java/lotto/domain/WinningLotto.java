@@ -13,9 +13,9 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(List<Integer> numbers, int bonusNumber){
-        WinningLottoValidator.validateWinningLotto(numbers, bonusNumber);
-        return new WinningLotto(Lotto.from(numbers), LottoNumber.valueOf(bonusNumber));
+    public static WinningLotto of(Lotto lotto, int bonusNumber){
+        WinningLottoValidator.validateWinningLotto(lotto.getNumberValues(), bonusNumber);
+        return new WinningLotto(lotto, LottoNumber.valueOf(bonusNumber));
     }
 
     public Lotto getLotto() {

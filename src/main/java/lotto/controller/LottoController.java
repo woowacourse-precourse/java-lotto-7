@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constants.Ranking;
+import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
@@ -29,9 +30,8 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto(){
-        List<Integer> winNumbers = Retry.retryOnException(() -> InputView.inputWinNumbers());
-        Integer bonusNumber = Retry.retryOnException(() -> InputView.inputBonusNumber());
-        return WinningLotto.of(winNumbers, bonusNumber);
+        Lotto winLotto = Retry.retryOnException(() ->Lotto.from(InputView.inputWinNumbers()));
+        return Retry.retryOnException(() -> WinningLotto.of(winLotto, InputView.inputBonusNumber()));
     }
 
     private void checkLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto){
