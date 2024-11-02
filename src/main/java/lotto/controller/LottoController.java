@@ -124,6 +124,9 @@ public class LottoController {
             return new Lotto(Arrays.stream(Console.readLine().trim().split(","))
                     .map(Integer::parseInt)
                     .toList());
+        }catch (NumberFormatException e){
+            outputView.showLottoNumberErrorMessage();
+            return requestLottoNumberInput();
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
             return requestLottoNumberInput();

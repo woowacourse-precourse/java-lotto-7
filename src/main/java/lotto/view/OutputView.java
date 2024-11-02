@@ -49,4 +49,8 @@ public class OutputView {
     public void showCostErrorMessage() {
         System.out.println("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
     }
+
+    public void showLottoNumberErrorMessage() {
+        System.out.println("[ERROR] 로또 번호는 숫자만 입력할 수 있습니다.");
+    }
 }
