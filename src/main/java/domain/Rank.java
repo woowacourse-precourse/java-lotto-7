@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Arrays;
 
-public enum WinningLotto {
+public enum Rank {
 
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -14,12 +14,12 @@ public enum WinningLotto {
     private final int correctCount;
     private final int prizeMoney;
 
-    WinningLotto(int correctCount, int prizeMoney) {
+    Rank(int correctCount, int prizeMoney) {
         this.correctCount = correctCount;
         this.prizeMoney = prizeMoney;
     }
 
-    public static WinningLotto of(long input) {
+    public static Rank of(long input) {
         return Arrays.stream(values())
                 .filter(correctCount -> correctCount.isEqual(input))
                 .findFirst()

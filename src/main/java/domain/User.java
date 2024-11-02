@@ -8,7 +8,7 @@ public class User {
     private int amount;
     private double rateOfReturn;
     private List<Lotto> lottos;
-    private List<WinningLotto> winnings;
+    private List<Rank> winnings;
 
     public User(int amount) {
         this.amount = amount;
@@ -21,19 +21,19 @@ public class User {
         return this.amount / 1_000;
     }
 
-    public void updateLottos(List<Lotto> lottos){
-        this.lottos =  lottos;
+    public void updateLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public List<Lotto> getLottos() {
         return this.lottos;
     }
 
-    public void addWinning(WinningLotto winningLotto) {
-        this.winnings.add(winningLotto);
+    public void addWinning(Rank rank) {
+        this.winnings.add(rank);
     }
 
-    public List<WinningLotto> getWinningLottos() {
+    public List<Rank> getWinningLottos() {
         return this.winnings;
     }
 

@@ -20,7 +20,7 @@ public class LottoPlay {
         for (Lotto lotto : this.user.getLottos()) {
             long matchCount = matchWinningNumberCount(lotto, winningNumbers);
 
-            WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
+            Rank rank = determineRank(matchCount, lotto, bonusNumber);
             this.user.addWinning(rank);
         }
 
@@ -33,18 +33,18 @@ public class LottoPlay {
                 .count();
     }
 
-    private WinningLotto determineRank(long matchCount, Lotto lotto, int bonusNumber) {
+    private Rank determineRank(long matchCount, Lotto lotto, int bonusNumber) {
         if (matchCount == 5) {
             return drawBonus(lotto, bonusNumber);
         }
-        return WinningLotto.of(matchCount);
+        return Rank.of(matchCount);
     }
 
-    private WinningLotto drawBonus(Lotto lotto, int bonusNumber) {
+    private Rank drawBonus(Lotto lotto, int bonusNumber) {
         if (isHasBonus(lotto, bonusNumber)) {
-            return WinningLotto.SECOND;
+            return Rank.SECOND;
         }
-        return WinningLotto.THIRD;
+        return Rank.THIRD;
     }
 
     private boolean isHasBonus(Lotto lotto, int bonusNumber) {

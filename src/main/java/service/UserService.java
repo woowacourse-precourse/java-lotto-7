@@ -1,8 +1,8 @@
 package service;
 
 import domain.Lotto;
+import domain.Rank;
 import domain.User;
-import domain.WinningLotto;
 import java.util.ArrayList;
 import java.util.List;
 import util.LottoGenerator;
@@ -36,7 +36,7 @@ public class UserService {
 
     private int calculateTotalPrizeMoney(User user) {
         return user.getWinningLottos().stream()
-                .mapToInt(WinningLotto::getPrizeMoney)
+                .mapToInt(Rank::getPrizeMoney)
                 .sum();
     }
 }

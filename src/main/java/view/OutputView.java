@@ -1,7 +1,7 @@
 package view;
 
 import domain.Lotto;
-import domain.WinningLotto;
+import domain.Rank;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +23,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public void outputWinningStatistics(Map<WinningLotto, Long> rankResult) {
+    public void outputWinningStatistics(Map<Rank, Long> rankResult) {
         System.out.printf(WINNING_STATISTIC_MSG);
-        System.out.printf(FIFTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.FIFTH, 0L));
-        System.out.printf(FOURTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.FOURTH, 0L));
-        System.out.printf(THIRD_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.THIRD, 0L));
-        System.out.printf(SECOND_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.SECOND, 0L));
-        System.out.printf(FIRST_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.FIRST, 0L));
+        System.out.printf(FIFTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(Rank.FIFTH, 0L));
+        System.out.printf(FOURTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(Rank.FOURTH, 0L));
+        System.out.printf(THIRD_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(Rank.THIRD, 0L));
+        System.out.printf(SECOND_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(Rank.SECOND, 0L));
+        System.out.printf(FIRST_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(Rank.FIRST, 0L));
     }
 
     public void outputRateOfReturn(double rateOfReturn) {

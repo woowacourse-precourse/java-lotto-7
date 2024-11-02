@@ -6,14 +6,14 @@ import java.util.stream.Collectors;
 
 public class RankResult {
 
-    private final Map<WinningLotto, Long> rankResult;
+    private final Map<Rank, Long> rankResult;
 
-    public RankResult(List<WinningLotto> winningLottos) {
-        this.rankResult = winningLottos.stream()
+    public RankResult(List<Rank> ranks) {
+        this.rankResult = ranks.stream()
                 .collect(Collectors.groupingBy(winningLotto -> winningLotto, Collectors.counting()));
     }
 
-    public Map<WinningLotto, Long> getRankResult() {
+    public Map<Rank, Long> getRankResult() {
         return this.rankResult;
     }
 }
