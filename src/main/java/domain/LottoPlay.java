@@ -15,16 +15,6 @@ public class LottoPlay {
         this.lottoMachine = lottoMachine;
     }
 
-    public void issueLotto() {
-        int purchaseCount = this.user.getPurchaseCount();
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < purchaseCount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lotto.ascNumber();
-            lottos.add(lotto);
-        }
-        this.user.updateLottos(lottos);
-    }
 
     public void drawLottos() {
         List<Integer> winningNumbers = this.lottoMachine.getWinningNumbers();
@@ -36,6 +26,8 @@ public class LottoPlay {
             WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
             user.addWinning(rank);
         }
+
+        determineRankResult(this.user);
     }
 
     private long matchWinningNumberCount(Lotto lotto, List<Integer> winningNumbers) {
@@ -63,7 +55,15 @@ public class LottoPlay {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public void determineRankResult(User user) {
+    private void determineRankResult(User user) {
         this.rankResult = new RankResult(user.getWinningLottos());
+    }
+
+    public RankResult getRankResult() {
+        return this.rankResult;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }
