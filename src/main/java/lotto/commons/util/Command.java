@@ -5,6 +5,8 @@ import lotto.commons.lang.ProgramExitException;
 
 public class Command {
 
+    private Command() {}
+
     private static final String EXIT = "exit";
 
     public static String read() {

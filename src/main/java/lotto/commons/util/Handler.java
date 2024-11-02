@@ -6,6 +6,8 @@ import lotto.commons.logger.Logger;
 
 public class Handler {
 
+    private Handler() {}
+
     public static <T> T runCatching(Supplier<T> supplier) {
         try {
             return supplier.get();

@@ -5,6 +5,8 @@ import lotto.commons.util.Collections;
 
 public class Logger {
 
+    private Logger() {}
+
     private static final String TXT_COLOR_RED = "\u001B[31m";
     private static final String TXT_COLOR_RESET = "\u001B[0m";
 

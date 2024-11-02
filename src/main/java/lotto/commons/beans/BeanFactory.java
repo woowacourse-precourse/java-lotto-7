@@ -5,6 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class BeanFactory {
 
+    private BeanFactory() {}
+
     private static final ConcurrentHashMap<Class<?>, Object> beanContextHolder = new ConcurrentHashMap<>();
 
     @SuppressWarnings("unchecked")

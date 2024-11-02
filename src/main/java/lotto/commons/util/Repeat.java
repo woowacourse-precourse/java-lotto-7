@@ -5,6 +5,8 @@ import lotto.commons.lang.InputOverFlowException;
 
 public class Repeat {
 
+    private Repeat() {}
+
     public static <T> T doWhile(int repeat, Supplier<T> supplier) {
         T result;
         int count = 0;

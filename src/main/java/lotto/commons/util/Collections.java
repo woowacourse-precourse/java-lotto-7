@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.function.Function;
 
 public class Collections {
+
+    private Collections() {}
+
     public static <T> String joinToString(Iterable<T> list) {
         return Collections.joinToString(list, "");
     }
