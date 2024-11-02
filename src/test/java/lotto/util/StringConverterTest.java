@@ -41,7 +41,7 @@ class StringConverterTest {
             // expect
             Assertions.assertThatThrownBy(() -> StringConverter.toInt(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("숫자로 변환할 수 없는 값입니다.");
+                    .hasMessage("[ERROR] 숫자로 변환할 수 없는 값입니다.");
         }
 
         @DisplayName("빈 문자열이나 null이면 예외 발생")
@@ -52,7 +52,7 @@ class StringConverterTest {
             // expect
             Assertions.assertThatThrownBy(() -> StringConverter.toInt(input))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("문자열은 공백일 수 없습니다.");
+                    .hasMessage("[ERROR] 문자열은 공백일 수 없습니다.");
         }
 
         @Test
@@ -62,7 +62,7 @@ class StringConverterTest {
             // expect
             Assertions.assertThatThrownBy(() -> StringConverter.toInt(null))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("문자열은 null일 수 없습니다.");
+                    .hasMessage("[ERROR] 문자열은 null일 수 없습니다.");
         }
     }
 

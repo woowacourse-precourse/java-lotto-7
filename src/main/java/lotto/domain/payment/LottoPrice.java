@@ -15,8 +15,15 @@ public class LottoPrice {
         return new LottoPrice(BASIC_PRICE);
     }
 
-    public boolean isAffordable(ThousandWons money) {
-        return money.isMuchThanOrEqual(amount);
+    public LottoPrice validateAffordable(ThousandWons money) {
+        validateNotLessThanPrice(money.getValue());
+        return this;
+    }
+
+    private void validateNotLessThanPrice(int moneyAmount) {
+        if (moneyAmount < amount) {
+            throw new IllegalArgumentException("[ERROR] 구매 가능한 금액이 부족합니다.");
+        }
     }
 
     public int calculateLottoCount(ThousandWons money) {

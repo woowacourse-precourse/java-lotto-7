@@ -20,16 +20,28 @@ public class CreateTest {
                 .doesNotThrowAnyException();
     }
 
-    @DisplayName("정수 그리고 천원단위 아니면 생성 실패")
+    @DisplayName("양수면서 천원단위 아니면 생성 실패")
     @ParameterizedTest()
-    @ValueSource(strings = {"300", "999", "1001", "0", "-1"})
-    void 천원단위_아니면_생성_실패(String money) {
+    @ValueSource(strings = {"300", "999", "1001"})
+    void 양수면서_천원단위_생성_실패(String money) {
 
         // expect
         Assertions.assertThatThrownBy(() -> ThousandWons.of(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("1000원 단위로 입력 가능 합니다.");
+                .hasMessage("[ERROR] 1000원 단위로 입력 가능 합니다.");
     }
+
+    @DisplayName("금액이 양수가 아닐때 생성 실패")
+    @ParameterizedTest()
+    @ValueSource(strings = {"0", "-1"})
+    void 금액이_양수가_아닐때_생성_실패(String money) {
+
+        // expect
+        Assertions.assertThatThrownBy(() -> ThousandWons.of(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 0보다 큰 금액이어야 합니다.");
+    }
+
 
     @DisplayName("정수도 아니고 천원단위 아니면 생성 실패")
     @ParameterizedTest()
@@ -39,7 +51,7 @@ public class CreateTest {
         // expect
         Assertions.assertThatThrownBy(() -> ThousandWons.of(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자로 변환할 수 없는 값입니다.");
+                .hasMessage("[ERROR] 숫자로 변환할 수 없는 값입니다.");
     }
 
 }

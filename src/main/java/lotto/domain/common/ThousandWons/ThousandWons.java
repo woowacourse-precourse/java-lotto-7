@@ -30,8 +30,19 @@ public class ThousandWons {
     }
 
     private static void validate(int value) {
-        if (value == 0 || value % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위로 입력 가능 합니다.");
+        validatePositive(value);
+        validateThousandUnit(value);
+    }
+
+    private static void validatePositive(int value) {
+        if (value <= 0) {
+            throw new IllegalArgumentException("[ERROR] 0보다 큰 금액이어야 합니다.");
+        }
+    }
+
+    private static void validateThousandUnit(int value) {
+        if (value % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력 가능 합니다.");
         }
     }
 

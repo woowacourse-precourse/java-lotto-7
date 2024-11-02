@@ -7,11 +7,11 @@ public class StringValidator {
 
     public static void validateNotBlank(String value) {
         if (value == null) {
-            throw new IllegalArgumentException("문자열은 null일 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 문자열은 null일 수 없습니다.");
         }
 
         if (value.trim().isEmpty()) {
-            throw new IllegalArgumentException("문자열은 공백일 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 문자열은 공백일 수 없습니다.");
         }
     }
 

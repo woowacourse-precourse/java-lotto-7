@@ -31,11 +31,7 @@ public class Payment {
 
     public PaymentResult execute() {
         validatePayable();
-
-        int count = lottoPrice.calculateLottoCount(money);
-        Payment completedPayment = new Payment(id, money, lottoPrice, COMPLETED);
-
-        return new PaymentResult(completedPayment, LottoQuantity.of(count));
+        return createPaymentResult();
     }
 
     public Long getId() {
@@ -43,9 +39,14 @@ public class Payment {
     }
 
     private void validatePayable() {
-        if (!lottoPrice.isAffordable(money)) {
-            throw new IllegalArgumentException("구매 금액이 부족합니다.");
-        }
+        LottoPrice validatedLottoPrice = lottoPrice.validateAffordable(money);
+
+    }
+
+    private PaymentResult createPaymentResult() {
+        int count = lottoPrice.calculateLottoCount(money);
+        Payment completedPayment = new Payment(id, money, lottoPrice, COMPLETED);
+        return new PaymentResult(completedPayment, LottoQuantity.of(count));
     }
 
 }
