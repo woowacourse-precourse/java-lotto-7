@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.util.RangeValidator;
 
 public class BonusLotto {
     private final int bonusNumber;
@@ -14,5 +15,9 @@ public class BonusLotto {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복될 수 없습니다.");
         }
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

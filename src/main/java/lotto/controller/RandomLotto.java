@@ -2,7 +2,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
-import lotto.model.ListSorter;
+import lotto.util.ListSorter;
 
 public class RandomLotto {
     public static List<Integer> generateRandomLotto() {

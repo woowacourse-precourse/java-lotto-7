@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.util;
 
 public class NumberParser {
     public static int stringToInt(String string) { //입력 값 변환 가능 여부 처리
