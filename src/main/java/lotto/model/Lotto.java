@@ -31,7 +31,7 @@ public class Lotto {
     private void isOutOfRange(List<Integer> winningLottery){
         winningLottery.forEach(number -> {
             if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END)
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+                throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_RANGE.getMessage());
         });
     }
 
