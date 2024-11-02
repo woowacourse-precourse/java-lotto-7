@@ -29,7 +29,7 @@ public class Application {
             }
 
             int lottoCount = buyAmount / 1000;
-            System.out.println("로또 구매 개수: " + lottoCount);
+            System.out.println(lottoCount + "개를 구매했습니다.");
 
             List<Lotto> lottoNumbers = new ArrayList<>();
             for (int i = 0; i < lottoCount; i++) {
