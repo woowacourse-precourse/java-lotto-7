@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -15,7 +17,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("8000", "1,2,3,4,5,6", "7");
+                    run("8000");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -49,6 +51,65 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-", "bug", "infinite", "2024y", "get()"})
+    void 구입금액이_숫자가_아니면_예외가_발생한다(String invalidPurchaseAmount) {
+        /// given
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(invalidPurchaseAmount);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액이_공백으로_이루어져_있으면_예외가_발생한다() {
+        /// given
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException("    ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액이_NULL_이면_예외가_발생한다() {
+        /// given
+        String invalidAmount = null;
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(invalidAmount);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "-1000", "-999"})
+    void 음수_혹은_0이하일때_입력_예외가_발생한다(String invalidPurchaseAmount) {
+        /// given
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(invalidPurchaseAmount);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "999", "1001", "2001", "9999"})
+    void 로또_구매_금액_단위로_나누어지지_않으면_입력_예외가_발생한다(String invalidPurchaseAmount) {
+        /// given
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(invalidPurchaseAmount);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
