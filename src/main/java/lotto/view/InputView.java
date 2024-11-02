@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Constants;
-import lotto.domain.PrintConstants;
 import lotto.validator.InputValidator;
 
 import java.util.List;

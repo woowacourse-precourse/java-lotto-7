@@ -9,6 +9,7 @@ import java.util.List;
 public class LottoService {
 
     private List<Lotto> lottoList;
+
     public int purchaseLotto(int lottoPrice) {
         int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
 
