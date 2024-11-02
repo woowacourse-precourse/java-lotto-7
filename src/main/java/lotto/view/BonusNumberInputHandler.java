@@ -2,6 +2,8 @@ package lotto.view;
 
 public class BonusNumberInputHandler {
 
+    private BonusNumberInputHandler() {}
+
     public static void validateBonusNumber(String input) {
         int bonusNumber = validateBonusNumberIsInteger(input);
         validateBonusNumberRange(bonusNumber);

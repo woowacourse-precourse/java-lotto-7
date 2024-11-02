@@ -22,6 +22,18 @@ public class LottoService {
         return new ArrayList<>((Randoms.pickUniqueNumbersInRange(1, 45, 6)));
     }
 
+    public List<Lotto> issueLottos(int purchaseAmount) {
+        int lottoQunatities = calculateLottoQuantities(purchaseAmount);
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoQunatities; i++) {
+            List<Integer> lottonumbers = sortLottoNumbersAscending(generateLottonumbers());
+            System.out.println(lottonumbers);
+            Lotto lotto = new Lotto(lottonumbers);
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
+
     public List<Integer> sortLottoNumbersAscending(List<Integer> lottoNumber) {
         for (int i = 0; i < lottoNumber.size() - 1; i++) {
             for (int j = 0; j < lottoNumber.size() - i - 1; j++) {
@@ -40,14 +52,15 @@ public class LottoService {
         return arr;
     }
 
-    public int matchingWinningNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        int count = 0;
-        for (Integer num : lottoNumbers) {
-            if (winningNumbers.contains(num)) {
-                count++;
-            }
+    public Map<Rank, Integer> matchingWinningNumbers(List<Rank> ranks) {
+        Map<Rank, Integer> result = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
         }
-        return count;
+        for (Rank rank : ranks) {
+            result.put(rank, result.get(rank) + 1);
+        }
+        return  result;
     }
 
     public int calculateReturn(List<Rank> ranks, int purchaseAmount) {

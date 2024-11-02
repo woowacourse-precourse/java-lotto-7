@@ -2,10 +2,10 @@ package lotto.view;
 
 import lotto.service.LottoService;
 
-public class issueLottoOutputHandler {
+public class NumberOfLottoOutputHandler {
     private LottoService lottoService;
 
-    public issueLottoOutputHandler(LottoService lottoService) {
+    public NumberOfLottoOutputHandler(LottoService lottoService) {
         this.lottoService = lottoService;
     }
 

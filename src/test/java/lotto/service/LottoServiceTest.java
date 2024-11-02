@@ -45,12 +45,17 @@ public class LottoServiceTest {
     @Test
     void 로또_번호의_당첨_번호_일치_개수_테스트() {
         // given
-        List<Integer> lottoNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 7, 8, 9));
-        int expected = 3;
+        List<Rank> ranks = new ArrayList<>(List.of(Rank.FIRST, Rank.SECOND));
+        Map<Rank, Integer> expected = new HashMap<>();
+        expected.put(Rank.FIRST, 1);
+        expected.put(Rank.SECOND, 1);
+        expected.put(Rank.THIRD, 0);
+        expected.put(Rank.FOURTH, 0);
+        expected.put(Rank.FIFTH, 0);
+        expected.put(Rank.NONE, 0);
 
         // when
-        int result = lottoService.matchingWinningNumbers(lottoNumbers, winningNumbers);
+        Map<Rank, Integer> result = lottoService.matchingWinningNumbers(ranks);
 
         // then
         assertThat(result).isEqualTo(expected);
