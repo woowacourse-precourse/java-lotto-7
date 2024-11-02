@@ -53,3 +53,5 @@ Exception
 - [ x ] MoneyException 생성
 - [ x ] WinningNumberException 생성
   - [ x ] 당첨 번호 6개 이외 입력시 예외를 발생시킨다.
+- [ x ] LottoException
+  - [ x ] 로또 번호 중복 시 예외를 발생시킨다.
