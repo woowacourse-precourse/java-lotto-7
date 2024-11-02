@@ -1,19 +1,23 @@
 package lotto.domain;
 
+import java.math.BigInteger;
+
 public enum Rank {
-    FIRST(6, false),
-    SECOND(5, true),
-    THIRD(5, false),
-    FOURTH(4, false),
-    FIFTH(3, false),
-    NONE(-1, false);
+    FIRST(6, false, BigInteger.valueOf(2_000_000_000)),
+    SECOND(5, true, BigInteger.valueOf(30_000_000)),
+    THIRD(5, false, BigInteger.valueOf(1_500_000)),
+    FOURTH(4, false, BigInteger.valueOf(50_000)),
+    FIFTH(3, false, BigInteger.valueOf(5_000)),
+    NONE(-1, false, BigInteger.ZERO);
 
     private final int matchingCount;
     private final boolean onlyHasBonus;
+    private final BigInteger prizeAmount;
 
-    Rank(int matchingCount, boolean onlySuccessBonus) {
+    Rank(int matchingCount, boolean onlySuccessBonus, BigInteger prizeAmount) {
         this.matchingCount = matchingCount;
         this.onlyHasBonus = onlySuccessBonus;
+        this.prizeAmount = prizeAmount;
     }
 
     public static Rank with(int matchingCount, boolean successBonus) {
@@ -31,6 +35,10 @@ public enum Rank {
 
     private boolean matchBonus(boolean hasBonus) {
         return !this.onlyHasBonus || hasBonus;
+    }
+
+    public BigInteger getPrizeAmount() {
+        return this.prizeAmount;
     }
 
 }

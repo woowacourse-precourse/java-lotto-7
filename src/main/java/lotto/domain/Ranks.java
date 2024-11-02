@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class Ranks {
@@ -12,5 +13,13 @@ public class Ranks {
 
     public int count() {
         return ranks.size();
+    }
+
+    public BigInteger totalPrizeAmount() {
+        BigInteger total = BigInteger.ZERO;
+        for (Rank rank : ranks) {
+            total = total.add(rank.getPrizeAmount());
+        }
+        return total;
     }
 }
