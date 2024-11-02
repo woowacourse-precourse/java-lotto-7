@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.IVALID_LOTTO_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
         if (!Utils.isDuplicateNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
@@ -38,5 +38,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    // TODO: 추가 기능 구현
 }
