@@ -28,5 +28,4 @@ public class LottoStore {
         return LottoTickets.from(lottoTickets);
     }
 
-
 }
