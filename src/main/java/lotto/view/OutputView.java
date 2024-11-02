@@ -1,8 +1,6 @@
 package lotto.view;
 
 import lotto.constant.ViewConstants;
-import lotto.domain.Lotto;
-
 import java.util.List;
 
 public class OutputView {

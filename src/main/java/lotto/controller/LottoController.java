@@ -3,6 +3,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoRepository;
 import lotto.validator.PriceValidator;
+import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +18,7 @@ public class LottoController {
     private LottoGame lottoGame;
     private int purchasePrice;
 
+
     public LottoController(LottoRepository lottoRepository, LottoGame lottoGame){
         this.lottoRepository = lottoRepository;
         this.lottoGame = lottoGame;
@@ -24,12 +26,8 @@ public class LottoController {
 
     public void run(){
         runPricePart();
-
         generateLottoNumbers();
-
-        List<String> lottoNumbers = generateOutputString();
-        OutputView.printPurchaseCount(purchasePrice/MINIMUM_PRICE);
-        OutputView.printLottoNumbers(lottoNumbers);
+        runWinningNumbers();
 
     }
 
@@ -48,6 +46,10 @@ public class LottoController {
     private void generateLottoNumbers(){
         lottoGame.setLottoCount(purchasePrice);
         lottoGame.generateLotto();
+
+        List<String> lottoNumbers = generateOutputString();
+        OutputView.printPurchaseCount(purchasePrice/MINIMUM_PRICE);
+        OutputView.printLottoNumbers(lottoNumbers);
     }
 
     private List<String> generateOutputString(){
@@ -59,6 +61,23 @@ public class LottoController {
             generatedString.add(singleGeneration);
         }
         return generatedString;
+    }
+
+    private void runWinningNumbers(){
+        String winningNumbers = InputView.getWinningNumbers();
+        WinningNumberValidator validator = new WinningNumberValidator();
+        try{
+            validator.validate(winningNumbers);
+            lottoGame.createWinningLotto(winningNumbers);
+            return;
+        }catch (IllegalArgumentException e){
+            OutputView.printError(e.getMessage());
+            runWinningNumbers();
+        }
+    }
+
+    private void addToWinningNumbers(){
+
     }
 
     private String generateString(List<Integer> numbers){
