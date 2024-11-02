@@ -5,6 +5,7 @@ import static lotto.view.output.OutputView.printPurchasedLottoery;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoShop;
+import lotto.validation.BonusNumberValidator;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -56,9 +57,11 @@ public class LottoGameController {
     }
 
     private void drawBonusNumber() {
+        OutputView.printLine();
         OutputView.printBonusNumber();
         try {
             bonusNumber = InputView.inputBonusNumber();
+            BonusNumberValidator.validateDuplicate(bonusNumber, winningLotto);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
             drawBonusNumber();
