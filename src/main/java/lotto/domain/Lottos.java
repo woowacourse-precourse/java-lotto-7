@@ -13,8 +13,10 @@ public class Lottos {
 
     public static Lottos from(int count) {
         List<Lotto> lottos = new ArrayList<>();
-        List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        lottos.add(new Lotto(integers));
+        for (int i = 0; i < count; i++) {
+            List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(integers));
+        }
         return new Lottos(lottos);
     }
 }
