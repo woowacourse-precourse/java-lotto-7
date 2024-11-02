@@ -6,6 +6,10 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public Lotto() {
+        this.numbers = List.of(1, 2, 3, 4, 5, 6);
+    }
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkRange(numbers);
@@ -35,8 +39,15 @@ public class Lotto {
             int idx = Integer.parseInt(numbers.get(i).toString());
             num[idx]++;
             if (num[idx] > 1) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호 중복되지 않는 수이여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 수여야 합니다.");
             }
         }
+    }
+
+    public void printLottoCount(int cost) {
+        if (cost % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.");
+        }
+        System.out.println(cost/1000 + "개를 구매했습니다.");
     }
 }
