@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.io.InputHandler;
+import lotto.util.InputHandler;
 
 public class Application {
     public static void main(String[] args) {
