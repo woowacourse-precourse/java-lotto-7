@@ -17,6 +17,11 @@ public class LottoMachine {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
+    public List<Lotto> buyLottos() {
+        int lottoAmount = calculateLottoAmount();
+        return issueLottos(lottoAmount);
+    }
+
     private int calculateLottoAmount() {
         validate(purchaseAmount, LOTTO_PRICE);
         return purchaseAmount / LOTTO_PRICE;
