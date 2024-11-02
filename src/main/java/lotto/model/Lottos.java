@@ -24,8 +24,12 @@ public class Lottos {
     private final Map<Lotto, Winning> lottos = new LinkedHashMap<>();
 
     public void allocateLottosByRandomNumber(int lottoCount) {
-        IntStream.range(0, lottoCount)
-                .forEach(i -> lottos.put(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)), NONE));
+        IntStream.range(0, lottoCount).forEach(i ->
+                lottos.put(createLotto(), NONE));
+    }
+
+    private static Lotto createLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     public String toStringAllLottoNumber() {
@@ -35,34 +39,25 @@ public class Lottos {
     }
 
     public void setByCorrectCount(List<Integer> winningNumber, int bonusNumber) {
-        lottos.keySet()
-                .forEach(lotto -> setByWinningNumber(winningNumber, bonusNumber, lotto)
-                        .increaseCount());
+        lottos.keySet().forEach(lotto ->
+                setByWinningNumber(winningNumber, bonusNumber, lotto).increaseCount());
     }
 
     private Winning setByWinningNumber(List<Integer> winningNumber, int bonusNumber, Lotto lotto) {
-        Winning winning = lottos.get(lotto);
         int correctCount = lotto.correctCount(winningNumber);
-
-        lottos.put(lotto, getFromValue(correctCount));
+        Winning winning = getFromValue(correctCount);
 
         if (lotto.isBonus(bonusNumber) && winning == FIVE) {
-            lottos.put(lotto, FIVE_BONUS);
+            winning = FIVE_BONUS;
         }
+        lottos.put(lotto, winning);
 
         return winning;
     }
 
-    public String toStringWinningMessageAndCount() {
-        StringBuilder sb = new StringBuilder();
-        Arrays.stream(values())
-                .filter(winning -> winning != NONE)
-                .forEach(winning -> sb.append(winning.toStringMessageAndCount()));
-        return sb.toString();
-    }
-
     public BigDecimal calculateWinningRate(BigDecimal lottoPrice) {
-        return getTotalWinningPrice().get()
+        return getTotalWinningPrice()
+                .get()
                 .divide(lottoPrice, WINNING_RATE_DECIMAL_LIMIT, HALF_UP)
                 .multiply(valueOf(WINNING_RATE_MULTIPLIER))
                 .setScale(WINING_RATE_DECIMAL_PLACE, HALF_UP)

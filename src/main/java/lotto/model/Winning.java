@@ -40,13 +40,20 @@ public enum Winning {
         return ++count;
     }
 
-    public String toStringMessageAndCount() {
+    public static String toStringWithoutNone() {
         StringBuilder sb = new StringBuilder();
-        sb.append(message)
+        Arrays.stream(values())
+                .filter(winning -> winning != NONE)
+                .forEach(winning -> sb.append(winning.toStringBuilder()));
+        return sb.toString();
+    }
+
+    private StringBuilder toStringBuilder() {
+        StringBuilder sb = new StringBuilder();
+        return sb.append(message)
                 .append(" - ")
                 .append(count)
                 .append("개");
-        return sb.toString();
     }
 
     public BigDecimal multiplyCount() {

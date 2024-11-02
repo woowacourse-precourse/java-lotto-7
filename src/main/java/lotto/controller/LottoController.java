@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import static lotto.model.Winning.*;
+
 import java.util.List;
 import lotto.model.LottoValue;
 import lotto.model.Lottos;
+import lotto.model.Winning;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -27,7 +30,7 @@ public class LottoController {
         List<Integer> winningNumber = view.inputWinningNumber();
         int bonusNumber = view.inputBonusNumber();
         lottos.setByCorrectCount(winningNumber, bonusNumber);
-        view.printWinningTrace(lottos.toStringWinningMessageAndCount());
+        view.printWinningTrace(toStringWithoutNone());
     }
 
     public void printAndCalculateWinningRate() {

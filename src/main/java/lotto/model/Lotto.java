@@ -28,10 +28,16 @@ public class Lotto {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(TO_STRING_PREFIX);
+        sb.append(TO_STRING_PREFIX)
+                .append(attachNumbersWithDelimiter())
+                .delete(sb.length() - 2, sb.length())
+                .append(TO_STRING_SUFFIX);
+        return sb.toString();
+    }
+
+    private String attachNumbersWithDelimiter() {
+        StringBuilder sb = new StringBuilder();
         numbers.forEach(number -> sb.append(number).append(TO_STRING_DELIMITER));
-        sb.delete(sb.length() - 2, sb.length());
-        sb.append(TO_STRING_SUFFIX);
         return sb.toString();
     }
 
