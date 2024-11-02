@@ -67,5 +67,8 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 6개의 당첨번호는 서로 중복되지 않아야 합니다.");
         }
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+
     }
 }
