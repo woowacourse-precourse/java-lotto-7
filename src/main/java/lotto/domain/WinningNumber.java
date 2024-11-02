@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
 
+import java.util.Collections;
 import java.util.SequencedSet;
 
 import static lotto.constant.NumberConstant.*;
@@ -33,5 +34,13 @@ public class WinningNumber {
         if (winningNumber.contains(number)) {
             throw new IllegalArgumentException("보너스 숫자는 당첨 번호와 다르게 입력해주세요.");
         }
+    }
+
+    public SequencedSet<Integer> getWinningNumber() {
+        return Collections.unmodifiableSequencedSet(winningNumber);
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
     }
 }
