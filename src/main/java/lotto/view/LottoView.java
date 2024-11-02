@@ -1,26 +1,48 @@
 package lotto.view;
 
+import lotto.domain.CorrectDTO;
+import lotto.domain.Lotto;
+import lotto.domain.LottoDTO;
 import lotto.domain.MoneyDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoView {
 
-    public void printMoneyInput(){
+    public void printMoneyInput() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printTicketNumber(MoneyDTO moneyDTO){
-        System.out.println(moneyDTO.getTicketNumber()+"개를 구매했습니다.");
+    public void printTicketNumber(MoneyDTO moneyDTO) {
+        System.out.println(moneyDTO.getTicketNumber() + "개를 구매했습니다.");
     }
 
-    public MoneyDTO getMoneyInput(){
+    public void printLottos(LottoDTO lottoDTO) {
+        for (Lotto list : lottoDTO.getLottos()) {
+            System.out.println(list.getLotto().toString());
+        }
+    }
+
+    public void printCorrect() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void printBonus() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+
+    public MoneyDTO getMoneyInput() {
 
         //제대로 된 값이 입력받을 때까지 반복
-        while(true) {
+        while (true) {
             String input = readLine();
             try {
-                int money = parseAndValidateInput(input);
+                validateInput(input);
+                int money = parseInput(input);
                 return new MoneyDTO(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -28,13 +50,7 @@ public class LottoView {
         }
     }
 
-
-    public int parseAndValidateInput(String input) {
-
-        // 입력값이 빈 문자열이거나 null인지 검증
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. 금액을 입력해 주세요.");
-        }
+    public int parseInput(String input) {
 
         try {
             return Integer.parseInt(input);
@@ -43,5 +59,36 @@ public class LottoView {
         }
     }
 
+    public void validateInput(String input) {
+        // 입력값이 빈 문자열이거나 null인지 검증
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. 빈 문자인지 확인해주세요.");
+        }
+    }
+
+
+    //여기서도 제대로 된 값이 들어오지 않은 경우에 대한 예외처리를 진행해야 한다.
+    public CorrectDTO getLottoNumberInput() {
+        while (true) {
+            String input = readLine();
+            try {
+                validateInput(input);
+                Lotto lotto = new Lotto(sliceToken(input));
+                return new CorrectDTO(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    private List<Integer> sliceToken(String input) {
+        String[] tokens = input.split(",");
+        List<Integer> lotto = new ArrayList<>();
+        for (String token : tokens) {
+            lotto.add(parseInput(token));
+        }
+        return lotto;
+    }
 }
 
