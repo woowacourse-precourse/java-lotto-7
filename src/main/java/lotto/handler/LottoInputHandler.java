@@ -6,8 +6,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.util.ParsingUtils;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.InputValidator;
-import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -82,12 +82,11 @@ public class LottoInputHandler {
     }
 
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        LottoValidator.validateBonusNumberRange(bonusNumber);
-        LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
+        BonusNumberValidator.validateBonusNumber(bonusNumber, winningNumbers);
     }
 
     public void close() {
         inputView.close();
     }
-    
+
 }

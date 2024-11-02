@@ -11,35 +11,29 @@ import lotto.view.ErrorMessage;
 
 public class LottoValidator {
 
-    public static void validateLottoNumberCount(List<Integer> numbers) {
+    // 모든 검증을 수행하는 validate 메서드
+    public static void validate(List<Integer> numbers) {
+        validateLottoNumberCount(numbers);
+        validateLottoNumberRange(numbers);
+        validateNoDuplicates(numbers);
+    }
+
+    private static void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_COUNT_INVALID.getMessage());
         }
     }
 
-    public static void validateLottoNumberRange(List<Integer> numbers) {
+    private static void validateLottoNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_INVALID.getMessage());
         }
     }
 
-    public static void validateNoDuplicates(List<Integer> numbers) {
+    private static void validateNoDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_INVALID.getMessage());
         }
     }
-
-    public static void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
-        }
-    }
-
-    public static void validateBonusNumberDuplication(int bonusNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_INVALID.getMessage());
-        }
-    }
-
 }
