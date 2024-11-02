@@ -7,6 +7,8 @@
 - [X] 로또 구입 금액을 입력받는 기능
   - [X] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
   - [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [X] 사용자의 입력에 숫자 이외의 문자가 있을경우 예외 발생
+    - [X] 사용자의 입력에 숫자가 1000 단위가 아닐경우 예외 발생
 - [ ] 구입한 금액만큼 로또를 구매하는 기능
   - [ ] 로또 1장의 가격은 1,000원이다.
   - [ ] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
