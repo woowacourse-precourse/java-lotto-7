@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,6 @@ public class Application {
             myLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         printLottos(myLottos);
-
 
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -95,48 +93,11 @@ public class Application {
         System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn) +"%입니다.");
     }
 
-    public enum PrizeRank {
-        FIRST(6, 2_000_000_000, false),
-        SECOND(5, 30_000_000, true),
-        THIRD(5, 1_500_000, false),
-        FOURTH(4, 50_000, false),
-        FIFTH(3, 5_000, false),
-        NONE(0, 0, false);
-
-        private final int matchCount;
-        private final int prizeAmount;
-        private final boolean isBonusNeed;
-
-        PrizeRank(int matchCount, int prizeAmount, boolean isBonusNeed) {
-            this.matchCount = matchCount;
-            this.prizeAmount = prizeAmount;
-            this.isBonusNeed = isBonusNeed;
-        }
-
-        public int getMatchCount() {
-            return matchCount;
-        }
-
-        public int getPrizeAmount() {
-            return prizeAmount;
-        }
-
-        public static PrizeRank getPrizeRank(int matchCount, boolean isBonusMatch) {
-            return Arrays.stream(values())
-                    .filter(prizeRank -> (prizeRank.matchCount == matchCount))
-                    .filter(prizeRank -> (!prizeRank.isBonusNeed || isBonusMatch))
-                    .findFirst()
-                    .orElse(NONE);
-        }
-    }
-
-
     static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             lotto.printLotto();
         }
     }
-
 
     public static double getRateOfReturn(Map<PrizeRank, Integer> prizeRankCounts, int purchaseAmount) {
         // 수익률 = 총상금 / 구입금액 * 100
