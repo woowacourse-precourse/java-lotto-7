@@ -92,7 +92,7 @@ class WinningLottoTest {
             LottoResult result = winningLotto.checkLotto(newTicket);
 
             // then
-            assertThat(result.getMatchCount()).isEqualTo(expectedMatchCount);
+            assertThat(result.getNumberOfMatched()).isEqualTo(expectedMatchCount);
             assertThat(result.getRank()).isEqualTo(expectedRank);
         }
     }

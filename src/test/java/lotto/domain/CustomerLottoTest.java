@@ -40,19 +40,19 @@ class CustomerLottoTest {
         // then
         assertSoftly(softly -> {
             assertThat(result.get(0).getRank()).isEqualTo(Rank.FIRST);
-            assertThat(result.get(0).getMatchCount()).isEqualTo(Rank.FIRST.getMatchingNumberCount());
+            assertThat(result.get(0).getNumberOfMatched()).isEqualTo(Rank.FIRST.getMatchingNumber());
 
             assertThat(result.get(1).getRank()).isEqualTo(Rank.SECOND);
-            assertThat(result.get(1).getMatchCount()).isEqualTo(Rank.SECOND.getMatchingNumberCount());
+            assertThat(result.get(1).getNumberOfMatched()).isEqualTo(Rank.SECOND.getMatchingNumber());
 
             assertThat(result.get(2).getRank()).isEqualTo(Rank.THIRD);
-            assertThat(result.get(2).getMatchCount()).isEqualTo(Rank.THIRD.getMatchingNumberCount());
+            assertThat(result.get(2).getNumberOfMatched()).isEqualTo(Rank.THIRD.getMatchingNumber());
 
             assertThat(result.get(3).getRank()).isEqualTo(Rank.FOURTH);
-            assertThat(result.get(3).getMatchCount()).isEqualTo(Rank.FOURTH.getMatchingNumberCount());
+            assertThat(result.get(3).getNumberOfMatched()).isEqualTo(Rank.FOURTH.getMatchingNumber());
 
             assertThat(result.get(4).getRank()).isEqualTo(Rank.FIFTH);
-            assertThat(result.get(4).getMatchCount()).isEqualTo(Rank.FIFTH.getMatchingNumberCount());
+            assertThat(result.get(4).getNumberOfMatched()).isEqualTo(Rank.FIFTH.getMatchingNumber());
         });
 
     }
