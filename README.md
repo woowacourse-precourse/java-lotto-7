@@ -27,7 +27,7 @@
 ### 예외 요구 사항
 - 로또 구입 금액을 입력 받는 경우
   - 숫자가 아닌 문자가 있는 경우 예외 처리
-  - 10억 이상의 금액을 입력할 경우 예외 처리
+  - 10만원 이상의 금액을 입력할 경우 예외 처리
   - 1,000원으로 나누어 떨어지지 않는 경우 예외 처리
   - 1,000원 보다 낮은 숫자인 경우 예외 처리
 - 당첨 번호를 입력 받는 경우
@@ -50,14 +50,10 @@
 - factory
   - LottoFactory.java
 - model
-  - KorLotto.java
-  - KorLottoMachine.java
   - Lotto.java
   - LottoMachine.java
 - validate
   - Validator.java
 - view
   - InputHelper.java
-  - KorInputHelper.java
-  - KorOutPutHelper.java
   - OutputHelper.java

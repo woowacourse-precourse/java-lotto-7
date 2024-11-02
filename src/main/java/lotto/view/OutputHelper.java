@@ -1,4 +1,4 @@
 package lotto.view;
 
-public interface OutputHelper {
+public class OutputHelper {
 }
