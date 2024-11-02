@@ -27,7 +27,7 @@ public class LottoController {
         outputView.outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
-        lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
+        WinningResults winningResults = lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
     }
 
 

@@ -9,6 +9,8 @@ import lotto.model.LottoAmount;
 import lotto.model.Lottos;
 import lotto.model.RandomNumberPicker;
 import lotto.model.WinningNumber;
+import lotto.model.WinningRank;
+import lotto.model.WinningResults;
 
 public class LottoMachine {
     public Lottos issueLottos(LottoAmount lottoAmount) {
@@ -18,10 +20,15 @@ public class LottoMachine {
         return new Lottos(lottos);
     }
 
-    public void checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public WinningResults checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+        WinningResults winningResults = new WinningResults();
         for (Lotto lotto : lottos.getLottos()) {
             int matchingWinnerNumberAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
             boolean matchesBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
+            WinningRank winningRank = WinningRank.fromMatchingAmount(matchingWinnerNumberAmount, matchesBonusNumber);
+
+            winningResults.add(winningRank);
         }
+        return winningResults;
     }
 }

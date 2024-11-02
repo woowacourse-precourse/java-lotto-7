@@ -23,53 +23,8 @@ public class AdditionalApplicationTest {
 
 
 
-//
-//    @ParameterizedTest
-//    @MethodSource("lottoWithWinningRankProvider")
-//    void 로또의_당첨_등수를_확인한다(WinningRank expectedWinningRank, int matchingAmount, List<Integer> numbers) {
-//        Lotto lotto = new Lotto(numbers);
-//        boolean matchesBonusNumber = numbers.contains(defaultBonusNumber);
-//
-//        assertThat(WinningRank.findWinningStatusByMatchingAmount(matchingAmount, matchesBonusNumber))
-//                .isEqualTo(expectedWinningRank);
-//    }
-//
-//    static Stream<Object[]> lottoWithWinningRankProvider() {
-//        return Stream.of(
-//                new Object[]{WinningRank.FIRST, 6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
-//                new Object[]{WinningRank.SECOND, 5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
-//                new Object[]{WinningRank.THIRD, 5, Arrays.asList(1, 2, 3, 4, 5, 8)}, //5개 일치
-//                new Object[]{WinningRank.FOURTH, 4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
-//                new Object[]{WinningRank.FIFTH, 3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
-//                new Object[]{WinningRank.FAIL, 2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
-//                new Object[]{WinningRank.FAIL, 1, Arrays.asList(1, 8, 9, 10, 11, 12)}, //1개 일치
-//                new Object[]{WinningRank.FAIL, 0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
-//        );
-//    }
-//
-//    @Test
-//    void 등수별_당첨된_로또_개수를_구한다() {
-//        List<Lotto> lottos = new ArrayList<>(Arrays.asList(
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 8))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 8, 9))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 8, 9, 10))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 8, 9, 10, 11))),
-//                new Lotto(new ArrayList<>(Arrays.asList(1, 8, 9, 10, 11, 12))),
-//                new Lotto(new ArrayList<>(Arrays.asList(8, 9, 10, 11, 12, 13)))
-//        ));
-//
-//        Map<WinningRank, Integer> winningResult = Application.drawLottos(lottos, defaultWinningNumbers,
-//                defaultBonusNumber);
-//
-//        assertThat(winningResult.get(WinningRank.FIRST)).isEqualTo(1);
-//        assertThat(winningResult.get(WinningRank.SECOND)).isEqualTo(1);
-//        assertThat(winningResult.get(WinningRank.THIRD)).isEqualTo(1);
-//        assertThat(winningResult.get(WinningRank.FOURTH)).isEqualTo(1);
-//        assertThat(winningResult.get(WinningRank.FIFTH)).isEqualTo(1);
-//        assertThat(winningResult.get(WinningRank.FAIL)).isEqualTo(3);
-//    }
+
+
 //
 //    @Test
 //    void 수익률을_구한다() {
