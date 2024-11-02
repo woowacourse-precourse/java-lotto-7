@@ -10,40 +10,62 @@ import lotto.dto.response.ResultResponse;
 
 public class OutputView {
 
-    public static void inputMoney() {
-        print(INPUT_MONEY.getMessage());
+    private StringBuilder buffer;
+
+    public OutputView() {
+        setupBuffer();
     }
 
-    public static void buyLottoTickets(LottosResponse response) {
-        print(BUY_LOTTO_TICKETS.getMessage(response.lottos().size()));
+    public void inputMoney() {
+        write(INPUT_MONEY.getMessage());
+        flush();
+    }
+
+    public void buyLottoTickets(LottosResponse response) {
+        write(BUY_LOTTO_TICKETS.getMessage(response.lottos().size()));
         response.lottos().forEach(lotto ->
-            print(LOTTO_NUMBERS.getMessage(lotto.numbers())));
+            write(LOTTO_NUMBERS.getMessage(lotto.numbers())));
+        flush();
     }
 
-    public static void inputWinningNumbers() {
-        print(INPUT_WINNING_NUMBERS.getMessage());
+    public void inputWinningNumbers() {
+        write(INPUT_WINNING_NUMBERS.getMessage());
+        flush();
     }
 
-    public static void bonusNumber() {
-        print(INPUT_BONUS_NUMBER.getMessage());
+    public void bonusNumber() {
+        write(INPUT_BONUS_NUMBER.getMessage());
+        flush();
     }
 
-    public static void result(ResultResponse response) {
-        print(INIT_RESULT.getMessage());
+    public void result(ResultResponse response) {
+        write(INIT_RESULT.getMessage());
 
         Rank.values(Collections.reverseOrder()).stream()
             .filter(rankPrice -> !rankPrice.equals(Rank.NONE))
-            .forEach(rank -> print(RANK_RESULT.getMessage(rank,
+            .forEach(rank -> write(RANK_RESULT.getMessage(rank,
                 response.getRankCount(rank.getRank()))));
 
-        print(RETURN_RESULT.getMessage(response.gain() * 100));
+        write(RETURN_RESULT.getMessage(response.gain() * 100));
+
+        flush();
     }
 
-    public static void exception(String message) {
-        print(EXCEPTION.getMessage(message));
+    public void exception(String message) {
+        write(EXCEPTION.getMessage(message));
+        flush();
     }
 
-    private static void print(String content) {
-        System.out.print(content);
+    private void write(String content) {
+        buffer.append(content);
+    }
+
+    private void flush() {
+        System.out.print(buffer);
+        setupBuffer();
+    }
+
+    private void setupBuffer() {
+        buffer = new StringBuilder();
     }
 }
