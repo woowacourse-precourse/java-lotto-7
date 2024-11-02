@@ -66,4 +66,19 @@ public class MatchResults {
     }
     return true;
   }
+
+  public long getTotalPrizeAmount () {
+    return dashboard.entrySet()
+        .stream()
+        .mapToLong(entry -> (long) entry.getValue() * prize.getOrDefault(entry.getKey(), 0))
+        .sum();
+  }
+
+  public Map<MatchResult, Integer> getDashboard() {
+    return this.dashboard;
+  }
+
+  public Map<MatchResult, Integer> getPrize() {
+    return this.prize;
+  }
 }
