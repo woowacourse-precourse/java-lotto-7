@@ -53,4 +53,8 @@ public class Price {
             throw new IllegalArgumentException(REQUIRE_MULTIPLE_OF_THOUSAND);
         }
     }
+
+    public int divide(int price) {
+        return this.price / price;
+    }
 }
