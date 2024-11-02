@@ -17,4 +17,13 @@ public class OutputView {
     public void printPurchaseInputMessage() {
         println(PURCHASE_INPUT_MESSAGE);
     }
+
+    public void printLottoPurchase(String lottoSize) {
+        println(lottoSize + "개를 구매했습니다.");
+    }
+
+    private void println(String string) {
+        System.out.println(string);
+    }
+
 }

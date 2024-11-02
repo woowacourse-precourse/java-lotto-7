@@ -24,6 +24,7 @@ public class GameManager {
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
         YieldCalculator yieldCalculator = new YieldCalculator();
         List<Lotto> lottos = lottoShop.buyLotto(price, randomLottoGenerator);
+        printLottoPurchase(lottos.size());
         outputView.printLottos(lottos);
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
         Map<Prize, Integer> lottoScore = lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
@@ -46,6 +47,10 @@ public class GameManager {
 
     private int readBonusNumber() {
         return Integer.parseInt(inputView.readBonusNumber());
+    }
+
+    private void printLottoPurchase(Integer lottoSize) {
+        outputView.printLottoPurchase(lottoSize.toString());
     }
 }
 
