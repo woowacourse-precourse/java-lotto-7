@@ -1,13 +1,11 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
 
 public class LottoController {
     public void run() {
-        InputView.readInputMoney();
-
+        String inpuMoney = InputView.readInputMoney();
+        Lotto winningLotto = new Lotto(InputView.readAndSplitWinningNumber());
     }
-
-
 }
