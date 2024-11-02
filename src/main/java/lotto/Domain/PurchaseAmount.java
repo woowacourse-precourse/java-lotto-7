@@ -14,6 +14,7 @@ public class PurchaseAmount {
         checkEmpty(input);
         checkBlank(input);
         checkNumeric(input);
+        checkInteger(input);
     }
 
     private static void checkEmpty(String input) {
@@ -31,6 +32,12 @@ public class PurchaseAmount {
     private static void checkNumeric(String input) {
         if (Validator.isNotNumeric(input)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private static void checkInteger(String input) {
+        if (!Validator.isInteger(input)) {
+            throw new IllegalArgumentException(ErrorMessage.RANGE_PURCHASE_AMOUNT.getMessage());
         }
     }
 
