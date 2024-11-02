@@ -12,6 +12,11 @@ public class WinningNumbers {
         winningNumbers.removeLast();
     }
 
+    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
