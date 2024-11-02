@@ -9,7 +9,6 @@ import java.util.*;
 public class WinningTotalController {
     public Map<String, Integer> winningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> resultMap = calculateWinningTotal(mylottos, winningLotto, bonusNumber);
-
         OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(resultMap);
         outputWinningTotalView.printWinningTotal();
 

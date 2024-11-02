@@ -20,7 +20,7 @@ public class OutputWinningTotalView {
         System.out.println(SEPARATE_LINE);
 
         for (WinningPrize prize : WinningPrize.values()) {
-            System.out.println(String.format(prize.getMessage(), resultMap.get(prize.toString())));
+            System.out.printf((prize.getMessage()) + "%n", resultMap.get(prize.toString()));
         }
 
         System.out.println(SEPARATE_LINE);
