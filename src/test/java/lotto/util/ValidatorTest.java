@@ -72,4 +72,11 @@ public class ValidatorTest {
         assertThatNoException().isThrownBy(() -> Validator.isInteger(input));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"2147483648", "1111111111111"})
+    @DisplayName("INT 범위 예외 테스트")
+    public void isIntegerExceptionTest(String input) {
+        assertThatThrownBy(() -> Validator.isInteger(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
