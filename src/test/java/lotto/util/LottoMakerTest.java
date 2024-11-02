@@ -28,4 +28,12 @@ public class LottoMakerTest {
 
         Assertions.assertEquals(numbers.size(), fixedSize);
     }
+
+    @Test
+    @DisplayName("뽑은 숫자들을 오름차순으로 정렬한다")
+    void sort_random_numbers() {
+        List<Integer> numbers = LottoMaker.make();
+
+        org.assertj.core.api.Assertions.assertThat(numbers).isSortedAccordingTo(Integer::compareTo);
+    }
 }

@@ -10,6 +10,8 @@ public class LottoMaker {
     private static final int COUNT = 6;
 
     public static List<Integer> make() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, COUNT);
+        return Randoms.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, COUNT)
+                .stream()
+                .sorted().toList();
     }
 }
