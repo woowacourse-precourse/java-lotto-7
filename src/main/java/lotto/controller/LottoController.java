@@ -24,6 +24,8 @@ public class LottoController {
         List<Integer>winningNumbers=getWinningNumbers();
         int bonusNumber=getBonusNumber(winningNumbers);
 
+        lottoGame.calculateLotto(winningNumbers,bonusNumber);
+        outputView.printPrizeStates(lottoGame.getPrizeStates());
 
 
     }
@@ -44,6 +46,8 @@ public class LottoController {
             throw new IllegalArgumentException("구입 금액이 1,000원 단위여야 합니다.");
         }
     }
+
+
     private List<Integer>getWinningNumbers(){
         while(true){
             try{

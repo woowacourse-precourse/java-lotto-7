@@ -42,4 +42,7 @@ public class LottoGame {
             }
         }
     }
+    public Map<PrizeType, Integer> getPrizeStates(){
+        return prizeStates;
+    }
 }
