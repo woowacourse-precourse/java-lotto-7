@@ -1,12 +1,12 @@
 package lotto.view.global;
 
-public enum MessageType {
+public enum PrintMessage {
 
     INPUT_AMOUNT("구입금액을 입력해 주세요.`를 출력한다.");
 
     private String message;
 
-    MessageType(String message) {
+    PrintMessage(String message) {
         this.message = message;
     }
 
