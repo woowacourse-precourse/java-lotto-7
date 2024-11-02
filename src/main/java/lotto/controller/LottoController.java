@@ -29,6 +29,7 @@ public class LottoController {
         int lottoCount = getLottoCount(purchasePrice);
         outputView.lottoPurchasedCount(lottoCount);
         List<List<Integer>> lottos = lottoService.buyLotto(lottoCount);
+        printLottoPurchasedDetail(lottos);
     }
 
     private int getValidPurchasePrice() {
@@ -48,5 +49,11 @@ public class LottoController {
 
     private int getLottoCount(int purchasePrice) {
         return purchasePrice / LOTTO_PRICE;
+    }
+
+    private void printLottoPurchasedDetail(List<List<Integer>> lottos){
+        for (List<Integer> lotto : lottos){
+            outputView.lottoPurchasedDetail(lotto);
+        }
     }
 }

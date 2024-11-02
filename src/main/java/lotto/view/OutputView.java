@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
     enum Description {
         ASK_PURCHASE_PRICE("구입금액을 입력해 주세요."),
@@ -23,5 +25,9 @@ public class OutputView {
 
     public void lottoPurchasedCount(int count) {
         System.out.println(count + "" + Description.LOTTO_COUNT);
+    }
+
+    public void lottoPurchasedDetail(List<Integer> lottos){
+        System.out.println(lottos);
     }
 }
