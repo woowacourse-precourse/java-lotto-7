@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
 
 	public void printPurchasePriceInputMessage() {
@@ -8,5 +10,9 @@ public class OutputView {
 
 	public void printErrorMessage(String errorMessage) {
 		System.out.println(errorMessage);
+	}
+
+	private String getPurchaseLottoResult(List<String> lottoResult) {
+		return "[" + String.join(", ", lottoResult) + "]";
 	}
 }
