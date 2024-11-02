@@ -17,16 +17,41 @@ public class LottoSystemController {
     }
 
     public void run() {
-        User user = new User(Integer.parseInt(inputView.inputAmount()));
-        user.moneyToTicket(user.money);
+        User user = null;
+        while (user == null) {
+            try {
+                user = new User(Integer.parseInt(inputView.inputAmount()));
+                user.moneyToTicket(user.money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         outputView.outputPurchaseLottoNumber(user.money / 1000, user.lotteryTickets);
-        String input = inputView.inputLottoWinningNumber();
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                .map(String::trim)         // 앞뒤 공백 제거
-                .map(Integer::parseInt)    // Integer로 변환
-                .toList();
-        Lotto lotto = new Lotto(winningNumbers);
-        user.specifyBonusNumber(Integer.parseInt(inputView.inputBonusNumber()));
+
+        Lotto lotto = null;
+        while (lotto == null) {
+            try {
+                String input = inputView.inputLottoWinningNumber();
+                List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                        .map(String::trim)         // 앞뒤 공백 제거
+                        .map(Integer::parseInt)    // Integer로 변환
+                        .toList();
+                lotto = new Lotto(winningNumbers);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        boolean isBonusNumberValid = false;
+        while (!isBonusNumberValid) {
+            try {
+                user.specifyBonusNumber(Integer.parseInt(inputView.inputBonusNumber()));
+                isBonusNumberValid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         lotto.matcheNumber(user.lotteryTickets, user.bonusNumber);
 
