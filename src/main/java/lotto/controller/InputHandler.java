@@ -22,7 +22,7 @@ public class InputHandler {
                 String input = inputView.readPurchaseAmount();
                 InputValidator.validateInput(input);
 
-                int purchaseAmount = Integer.parseInt(input.trim());
+                int purchaseAmount = NumberConverter.convertToInteger(input);
                 AmountValidator.validateAmount(purchaseAmount);
 
                 return purchaseAmount;
