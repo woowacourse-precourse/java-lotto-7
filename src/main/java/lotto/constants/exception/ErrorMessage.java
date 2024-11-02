@@ -7,7 +7,7 @@ public enum ErrorMessage {
     LOTTO_NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1~45 사이의 숫자만 입력 가능합니다."),
     EMPTY_PURCHASE_AMOUNT("[ERROR] 구입 금액은 비어있을 수 없습니다."),
     INVALID_PURCHASE_AMOUNT("[ERROR] 구입 금액은 양수만 입력 가능합니다."),
-    PURCHASE_AMOUNT_UNIT("[ERROR] 구입 금액은 1,000원 단위로 입력할 수 있습니다."),
+    INVALID_PURCHASE_AMOUNT_UNIT("[ERROR] 구입 금액은 1,000원 단위로 입력할 수 있습니다."),
     EMPTY_WINNING_NUMBERS("[ERROR] 당첨 번호는 비어있을 수 없습니다."),
     INVALID_DELIMITER("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다."),
     INVALID_WINNING_NUMBERS_COUNT("[ERROR] 당첨 번호는 6개여야 합니다."),
