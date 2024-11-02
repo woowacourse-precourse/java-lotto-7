@@ -1,4 +1,4 @@
-package lotto.service.calculator;
+package lotto.message;
 
 import java.util.ArrayList;
 import java.util.List;

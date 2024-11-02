@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.message;
 
 public enum PrintMessage {
 

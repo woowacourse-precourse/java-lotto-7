@@ -9,7 +9,7 @@ import lotto.service.Payment;
 import lotto.service.calculator.ResultCalculator;
 import lotto.service.generator.ResultGenerator;
 import lotto.view.OutputView;
-import lotto.view.PrintMessage;
+import lotto.message.PrintMessage;
 
 public class LottoController {
 

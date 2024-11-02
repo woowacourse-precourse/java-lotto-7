@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.service.generator.WinningGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.PrintMessage;
+import lotto.message.PrintMessage;
 
 public class WinningController {
 

@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.service.generator.BonusGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.PrintMessage;
+import lotto.message.PrintMessage;
 
 public class BonusController {
 

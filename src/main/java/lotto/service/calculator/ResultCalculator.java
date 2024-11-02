@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.message.Prize;
 import lotto.strategy.FifthPlace;
 import lotto.strategy.FirstPlace;
 import lotto.strategy.FourthPlace;
 import lotto.strategy.PlaceAuction;
 import lotto.strategy.SecondPlace;
-import lotto.view.PrintMessage;
+import lotto.message.PrintMessage;
 
 public class ResultCalculator {
 
