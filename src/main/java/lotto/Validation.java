@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validation {
     public static boolean isUnique(List<Integer> numbers) {
@@ -27,5 +29,13 @@ public class Validation {
             if(!(number<=45 && number >=1)) return false;
         }
         return true;
+    }
+
+    public static boolean isValidWinningNumber(String input) {
+        String regex = "^(?:\\d+,){5}\\d+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        return matcher.matches();
     }
 }
