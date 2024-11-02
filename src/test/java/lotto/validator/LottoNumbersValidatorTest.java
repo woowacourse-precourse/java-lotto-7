@@ -27,4 +27,14 @@ class LottoNumbersValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_SIZE_MUST_BE_SIX.getMessage());
     }
+
+    @DisplayName("로또 숫자가 1~45가 아닐 때 예외 테스트")
+    @Test
+    void validateLottoNumberRange_fail() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 49);
+
+        assertThatThrownBy(() -> validate(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+    }
 }
