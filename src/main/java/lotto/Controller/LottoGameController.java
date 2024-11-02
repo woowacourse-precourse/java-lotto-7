@@ -26,7 +26,6 @@ public class LottoGameController {
         Lottos issuedLottos;
         while (true) {
             try {
-
                 String amountInput = userInput.purchaseAmount();
                 PurchaseAmount amount = PurchaseAmount.from(amountInput);
                 LottoMachine machine = LottoMachine.create();
@@ -45,6 +44,10 @@ public class LottoGameController {
 
         List<String> lottoResult = Formatter.formatLottos(issuedLottos);
         OutputView.printMessages(lottoResult);
+    }
+
+    private void draw() {
+        String winningNumbersInput = userInput.winningNumbers();
     }
 
 }

@@ -13,12 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
     // 아래부터 추가 기능 구현
     public static Lotto create() {
         List<Integer> numbers = generateNumbers();
@@ -29,6 +23,12 @@ public class Lotto {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
     }
 
     public List<Integer> getNumbers() {

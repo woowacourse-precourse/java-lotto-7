@@ -7,10 +7,6 @@ import lotto.Utils.Validator;
 public class PurchaseAmount {
     private final int value;
 
-    public int getValue() {
-        return value;
-    }
-
     private PurchaseAmount(int value) {
         this.value = value;
     }
@@ -61,6 +57,10 @@ public class PurchaseAmount {
         if (value < 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    public int getValue() {
+        return value;
     }
 
 }

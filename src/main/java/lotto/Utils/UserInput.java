@@ -10,4 +10,9 @@ public class UserInput {
         return InputView.readLine();
     }
 
+    public String winningNumbers() {
+        OutputView.printMessage(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
+        return InputView.readLine();
+    }
+
 }
