@@ -12,7 +12,7 @@ import lotto.dto.UserInput;
  * @since : 24. 11. 1.
  */
 public class BonusCommand implements ValidateCommand {
-  private static final String ASK = "보너스 번호를 입력해 주세요.";
+  private static final String ASK = "\n보너스 번호를 입력해 주세요.";
 
   @Override
   public UserInput execute(String input) {

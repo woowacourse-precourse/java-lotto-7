@@ -12,7 +12,7 @@ import lotto.view.exception.InputException;
 public class PurchaseAmountCommand implements ValidateCommand {
   private static final int AMOUNT_UNIT = 1000;
   private static final int AMOUNT_MAXIMUM = (Integer.MAX_VALUE / AMOUNT_UNIT) * AMOUNT_UNIT;
-  private static final String ASK = "구입금액을 입력해 주세요.";
+  private static final String ASK = "\n구입금액을 입력해 주세요.";
 
   @Override
   public UserInput execute(String input) {
