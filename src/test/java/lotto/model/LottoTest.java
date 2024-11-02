@@ -56,15 +56,15 @@ class LottoTest {
 
   @Test
   void 보너스_번호가_로또_번호와_일치하면_true를_반환한다() {
-      List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-      Lotto lotto = new Lotto(lottoNumbers);
-      assertThat(lotto.compareBonusNumber(3)).isTrue();
+    List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+    Lotto lotto = new Lotto(lottoNumbers);
+    assertThat(lotto.compareBonusNumber(3)).isTrue();
   }
 
   @Test
   void 보너스_번호가_로또_번호와_일치하지_않으면_false를_반환한다() {
-      List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-      Lotto lotto = new Lotto(lottoNumbers);
-      assertThat(lotto.compareBonusNumber(7)).isFalse();
+    List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+    Lotto lotto = new Lotto(lottoNumbers);
+    assertThat(lotto.compareBonusNumber(7)).isFalse();
   }
 }

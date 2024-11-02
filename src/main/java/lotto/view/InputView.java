@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.enums.IOMessage;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.enums.IOMessage;
 
 public class InputView {
-    public String readMoney() {
+  public String readMoney() {
     System.out.println(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
     String money = Console.readLine();
     return money.replace(" ", "");

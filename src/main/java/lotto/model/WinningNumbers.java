@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-
 import lotto.utilities.Parser;
 import lotto.utilities.Splitter;
 import lotto.validation.WinningNumbersValidator;
@@ -37,11 +36,11 @@ public class WinningNumbers {
     WinningNumbersValidator.mainValidator(winningNumbers);
   }
 
-  public List<Integer> getWinningNumbers(){
+  public List<Integer> getWinningNumbers() {
     return this.winningNumbers;
   }
 
-  public Integer getBonusNumber(){
+  public Integer getBonusNumber() {
     return this.bonusNumber;
   }
 }

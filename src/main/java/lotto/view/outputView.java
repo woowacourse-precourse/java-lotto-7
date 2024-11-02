@@ -7,7 +7,10 @@ import lotto.enums.WinningType;
 
 public class OutputView {
   public void printQuantityOfLottos(int buyedLottosQuantity) {
-    System.out.println(System.lineSeparator() + buyedLottosQuantity + IOMessage.PRINT_QUANTITY_OF_LOTTOS.getMessage());
+    System.out.println(
+        System.lineSeparator()
+            + buyedLottosQuantity
+            + IOMessage.PRINT_QUANTITY_OF_LOTTOS.getMessage());
   }
 
   public void printAllLottos(String allLottos) {
@@ -16,7 +19,8 @@ public class OutputView {
 
   public void printStatistic(List<WinningType> winningStatistic) {
     System.out.println(
-        System.lineSeparator() + IOMessage.PRINT_WINNING_STATISTIC.getMessage()
+        System.lineSeparator()
+            + IOMessage.PRINT_WINNING_STATISTIC.getMessage()
             + System.lineSeparator()
             + IOMessage.PRINT_WINNING_STATISTIC_SEPARATER.getMessage());
     printFifthPlaceResult(winningStatistic);
@@ -57,9 +61,9 @@ public class OutputView {
   }
 
   public void printReturnRate(double returnRate, List<WinningType> winningStatistic) {
-    if(winningStatistic.isEmpty()){
-        System.out.println(String.format(IOMessage.PRINT_NO_MONEY_EARNED.getMessage()));
-        return;
+    if (winningStatistic.isEmpty()) {
+      System.out.println(String.format(IOMessage.PRINT_NO_MONEY_EARNED.getMessage()));
+      return;
     }
     System.out.println(String.format(IOMessage.PRINT_TOTAL_RETURN_RATE.getMessage(), returnRate));
   }

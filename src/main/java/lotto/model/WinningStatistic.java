@@ -17,7 +17,8 @@ public class WinningStatistic {
     this.winningStatistic = winningStatistic;
   }
 
-  public static WinningStatistic createWinningStatistic(WinningNumbers winningNumbers, Lottos lottos) {
+  public static WinningStatistic createWinningStatistic(
+      WinningNumbers winningNumbers, Lottos lottos) {
     List<WinningType> statistics =
         lottos.getLottos().stream()
             .map(lotto -> determineWinningType(lotto, winningNumbers))
@@ -26,7 +27,8 @@ public class WinningStatistic {
     return new WinningStatistic(statistics);
   }
 
-  private static WinningType determineWinningType(Lotto lotto, WinningNumbers winningNumbers) { //*이 메서드 길이 고민해보기 */
+  private static WinningType determineWinningType(
+      Lotto lotto, WinningNumbers winningNumbers) { // *이 메서드 길이 고민해보기 */
     int quantityOfSameNumbers = lotto.compareWinningNumbers(winningNumbers.getWinningNumbers());
 
     if (isFirstPlace(quantityOfSameNumbers)) {
@@ -53,7 +55,8 @@ public class WinningStatistic {
 
   private static boolean isSecondPlace(
       int quantityOfSameNumbers, Lotto lotto, WinningNumbers winningNumbers) {
-    return quantityOfSameNumbers == FIVE_SAME_NUMBERS && lotto.compareBonusNumber(winningNumbers.getBonusNumber());
+    return quantityOfSameNumbers == FIVE_SAME_NUMBERS
+        && lotto.compareBonusNumber(winningNumbers.getBonusNumber());
   }
 
   private static boolean isThirdPlace(int quantityOfSameNumbers) {
@@ -68,7 +71,7 @@ public class WinningStatistic {
     return quantityOfSameNumbers == THREE_SAME_NUMBERS;
   }
 
-  public List<WinningType> getWinningStatistic(){
+  public List<WinningType> getWinningStatistic() {
     return this.winningStatistic;
   }
 }

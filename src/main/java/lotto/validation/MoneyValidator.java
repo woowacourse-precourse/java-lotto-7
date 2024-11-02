@@ -4,8 +4,8 @@ import lotto.constants.MoneyConstants;
 import lotto.enums.ErrorMessage;
 
 public class MoneyValidator {
-    private static final int MINIMUM_AMOUNT = 0;
-    private static final int DIVISIBILITY_CHECK = 0;
+  private static final int MINIMUM_AMOUNT = 0;
+  private static final int DIVISIBILITY_CHECK = 0;
 
   public static void validateMoney(Integer money) {
     if (money <= MINIMUM_AMOUNT) {
