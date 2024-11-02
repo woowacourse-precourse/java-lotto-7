@@ -19,4 +19,10 @@ class PrizeTest {
     void shouldReturnSecondPrizeWhenFiveNumbersAndBonusMatch() {
         assertEquals(Prize.SECOND, Prize.valueOf(5, true));
     }
+
+    @Test
+    @DisplayName("5개 번호 일치 + 보너스 번호 불일치 시 THIRD 등수 반환")
+    void shouldReturnThirdPrizeWhenFiveNumbersMatchWithoutBonus() {
+        assertEquals(Prize.THIRD, Prize.valueOf(5, false));
+    }
 }
