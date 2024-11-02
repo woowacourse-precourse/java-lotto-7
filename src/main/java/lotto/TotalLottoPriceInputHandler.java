@@ -7,4 +7,9 @@ public class TotalLottoPriceInputHandler extends InputHandler{
     public void validateInput() {
 
     }
+
+    public boolean isValidPrice() {
+        return Integer.parseInt(totalLottoPrice) % 1000 == 0;
+    }
+
 }
