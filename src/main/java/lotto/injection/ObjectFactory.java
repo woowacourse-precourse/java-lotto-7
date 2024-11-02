@@ -29,7 +29,7 @@ public class ObjectFactory {
     }
 
     public final BonusNumberController bonusNumberController() {
-        return new BonusNumberController(inputView, bonusNumberService());
+        return new BonusNumberController(inputView, outputView, bonusNumberService());
     }
 
     public final PurchaseAmountService purchaseAmountService() {
@@ -41,6 +41,6 @@ public class ObjectFactory {
     }
 
     public final BonusNumberService bonusNumberService() {
-        return new BonusNumberService(inputValidator, inputParser);
+        return new BonusNumberService(inputValidator, inputParser, lotteryMachineModel);
     }
 }
