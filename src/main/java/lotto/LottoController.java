@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.Lottos;
 import lotto.domain.Price;
+import lotto.domain.WinningNumbers;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 
@@ -19,5 +20,6 @@ public class LottoController {
         outputHandler.showPurchasedLottos(lottos);
 
         outputHandler.showWinningNumbersNavigateMessage();
+        WinningNumbers winningNumbers = inputHandler.getWinningNumbersFromUser();
     }
 }
