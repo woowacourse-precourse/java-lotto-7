@@ -44,6 +44,21 @@ class LotteryMachineModelTest {
     }
 
     @Test
+    void insertPurchaseAmount_0원은_입력할_수_없다() {
+        // given
+        Long insertPurchaseAmount = 0L;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(insertPurchaseAmount);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> lotteryMachineModel.insertPurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_IS_POSITIVE);
+    }
+
+    @Test
     void settingWinnerNumber_당첨번호_저장에_성공한다() {
         // given
         List<Integer> winnerNumbers = List.of(1, 5, 2, 25, 39, 12);

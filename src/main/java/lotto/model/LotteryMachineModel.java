@@ -38,6 +38,7 @@ public class LotteryMachineModel {
     }
 
     public void insertPurchaseAmount(PurchaseAmount purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
@@ -65,6 +66,12 @@ public class LotteryMachineModel {
                 .contains(bonusNumber.number());
         if (isPresentNumber) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATED);
+        }
+    }
+
+    public void validatePurchaseAmount(PurchaseAmount purchaseAmount) {
+        if (purchaseAmount.purchaseAmount().equals(0L)) {
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_IS_POSITIVE);
         }
     }
 }
