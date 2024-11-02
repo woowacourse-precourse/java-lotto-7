@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class WinningNumbers {
 
     private final Lotto mainNumbers;
@@ -23,7 +25,21 @@ public class WinningNumbers {
         }
     }
 
+    public int countMatchNumbers(Lotto lotto) {
+        int matchCount = 0;
+        List<Integer> numbers = lotto.getNumbers();
 
+        for (Integer number : numbers) {
+            if (mainNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean matchBonus(Lotto lotto) {
+        return lotto.contains(bonusNumber.getNumber());
+    }
 
 
 }

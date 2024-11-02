@@ -16,6 +16,8 @@ public class LottoController {
         WinningNumbers winningNumbers=   inputWinningNumbers();
 
         LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateResult(purchasedLottos, winningNumbers);
+
 
     }
 
