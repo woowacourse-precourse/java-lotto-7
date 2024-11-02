@@ -17,11 +17,20 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void setUp() {
-        outputView.printLottoPurchaseAmountMessage();
-        LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(inputView.InputLottoPurchaseAmount());
+    public void run() {
+        LottoPurchaseAmount lottoPurchaseAmount = inputLottoPurchaseAmount();
+        Lottos lottos = buyLottos(lottoPurchaseAmount);
+    }
 
+    private LottoPurchaseAmount inputLottoPurchaseAmount() {
+        outputView.printLottoPurchaseAmountMessage();
+        return LottoPurchaseAmount.from(inputView.InputLottoPurchaseAmount());
+    }
+
+    private Lottos buyLottos(LottoPurchaseAmount lottoPurchaseAmount) {
         Lottos lottos = lottoService.buyLottos(lottoPurchaseAmount);
         outputView.printLottos(lottos);
+
+        return lottos;
     }
 }

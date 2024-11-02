@@ -10,6 +10,6 @@ public class Application {
         LottoController lottoController = new LottoController(
                 new InputView(), new OutputView(), new LottoService()
         );
-        lottoController.setUp();
+        lottoController.run();
     }
 }
