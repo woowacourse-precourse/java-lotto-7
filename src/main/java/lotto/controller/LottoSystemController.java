@@ -46,7 +46,7 @@ public class LottoSystemController {
         boolean isBonusNumberValid = false;
         while (!isBonusNumberValid) {
             try {
-                user.specifyBonusNumber(Integer.parseInt(inputView.inputBonusNumber()));
+                user.specifyBonusNumber(inputView.inputBonusNumber());
                 isBonusNumberValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

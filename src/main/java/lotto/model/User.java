@@ -35,14 +35,21 @@ public class User {
         }
     }
 
-    public void specifyBonusNumber(int bonusNumber) {
+    public void specifyBonusNumber(String bonusNumber) {
         bonusNumberValidate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    private void bonusNumberValidate(int bonusNumber) {
-        if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 점수는 1~45인 정수를 입력 해야 합니다.");
+    private void bonusNumberValidate(String bonusNumber) {
+        if (!bonusNumber.matches("-?\\d+") || bonusNumber.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
+        }
+
+        int number = Integer.parseInt(bonusNumber);
+        if (!(number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
         }
     }
 

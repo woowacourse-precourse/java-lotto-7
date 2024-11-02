@@ -29,10 +29,11 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 보너스_점수_1_부터_45_까지의_정수가_아닐_때_예외가_발생한다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"-7", "50", " ", "칠", " 50 "})
+    void 공백없이_1부터_45까지의_숫자가_아니라면_예외가_발생한다(String value) {
         User user = new User("1000");
-        assertThatThrownBy(() -> user.specifyBonusNumber(47))
+        assertThatThrownBy(() -> user.specifyBonusNumber(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
