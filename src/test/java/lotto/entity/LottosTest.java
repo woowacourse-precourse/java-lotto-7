@@ -52,4 +52,21 @@ class LottosTest {
         // When & Then
         assertEquals(5, lottos.size());
     }
+
+    @Test
+    @DisplayName("Lottos 객체의 toString 메서드가 로또 리스트를 올바르게 문자열로 반환하는지 테스트")
+    void shouldReturnCorrectStringRepresentation() {
+        // Given
+        String expectedString = "[1, 2, 3, 4, 5, 6]\n" +
+                "[1, 2, 3, 4, 5, 7]\n" +
+                "[1, 2, 3, 4, 5, 8]\n" +
+                "[1, 2, 3, 4, 9, 10]\n" +
+                "[1, 2, 3, 11, 12, 13]";
+
+        // When
+        String result = lottos.toString();
+
+        // Then
+        assertEquals(expectedString, result);
+    }
 }
