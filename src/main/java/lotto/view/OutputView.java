@@ -23,7 +23,7 @@ public class OutputView {
     public static void printLottoResult(LottoResult lottoResult) {
         for(Rank rank : Rank.values()){
             if(rank.getCorrectCount() >= MINIMUM_WINNING_CORRECT_COUNT){
-                String resultMessage = getLottoStatisticMessage(rank).getFormatWinningStatisticMessage(rank.getCorrectCount(), rank.getBonusCount(), lottoResult.getLottoResultMap().get(rank));
+                String resultMessage = getLottoStatisticMessage(rank).getFormatWinningStatisticMessage(rank.getCorrectCount(), rank.getPrize(), lottoResult.getLottoResultMap().get(rank));
                 print(resultMessage);
             }
         }

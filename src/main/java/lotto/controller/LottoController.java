@@ -19,7 +19,7 @@ public class LottoController {
     public void run(){
         beforeLotto();
         startLotto();
-        //afterLotto();
+        afterLotto();
     }
 
     private void beforeLotto(){
