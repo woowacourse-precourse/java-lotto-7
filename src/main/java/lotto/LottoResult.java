@@ -23,15 +23,16 @@ public class LottoResult {
         result.put(winningInfo, result.get(winningInfo) + 1);
     }
 
-    public void calculateTotalBenefit() {
+    public Double getProfitRate(Lottos lottos) {
+        calculateTotalBenefit();
+        double profit = (double) (totalBenefit / lottos.getLottoCount()) / 1000.0 * 100.0;
+        return Math.round(profit * 10.0) / 10.0;
+    }
+
+    private void calculateTotalBenefit() {
         for (Map.Entry<WinningInfo, Integer> entry : result.entrySet()) {
             totalBenefit += entry.getKey().getWinningAmount() * entry.getValue();
         }
-    }
-
-    public Double getProfitRate(Lottos lottos) {
-        double profit = (double) (totalBenefit / lottos.getLottoCount()) / 1000.0 * 100.0;
-        return Math.round(profit * 10.0) / 10.0;
     }
 
     @Override
