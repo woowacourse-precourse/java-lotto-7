@@ -17,4 +17,10 @@ public class LottoController {
     private List<Integer> prizeNumbers;
     private int bonusNumber;
 
+    /**
+     * 사용자로부터 구입 금액 입력 받기
+     */
+    public void getPurchaseMoney() {
+        purchaseMoney = InputValidator.getValidPurchaseMoney();
+    }
 }
