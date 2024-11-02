@@ -35,4 +35,12 @@ public class LottoController {
             lottos.add(new Lotto(sortedLottoNumbers));
         }
     }
+
+    /**
+     * 당첨 번호 및 보너스 번호를 입력 받기
+     */
+    public void getPrizeNumberAndBonusNumber() {
+        prizeNumbers = InputValidator.getValidPrizeNumber();
+        bonusNumber = InputValidator.getValidBonusNumber(prizeNumbers);
+    }
 }
