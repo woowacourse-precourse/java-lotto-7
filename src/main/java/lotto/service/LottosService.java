@@ -6,18 +6,12 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.validation.LottosValidation;
 
-public class Service {
+public class LottosService {
 
-    private static final int TICKET_COST = 1000;
     private static final int NUM_MIN = 1;
     private static final int NUM_MAX = 45;
     private static final int LOTTO_SIZE = 6;
     private static final int COUNT_ZERO = 0;
-
-    public static int purchaseTickets(int amount) {
-        int purchaseTickets = amount / TICKET_COST;
-        return purchaseTickets;
-    }
 
     public static List<Lotto> lottos(int purchaseTickets) {
         List<Lotto> lottos = new ArrayList<>();

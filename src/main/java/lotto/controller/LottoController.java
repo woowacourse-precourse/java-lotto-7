@@ -2,7 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.service.Service;
+import lotto.service.LottosService;
+import lotto.service.TicketsService;
 import lotto.view.OutputLottosView;
 
 public class LottoController {
@@ -14,8 +15,8 @@ public class LottoController {
     }
 
     public static List<Lotto> setLottos(int amount) {
-        int tickets = Service.purchaseTickets(amount);
-        List<Lotto> lottos = Service.lottos(tickets);
+        int tickets = TicketsService.purchaseTickets(amount);
+        List<Lotto> lottos = LottosService.lottos(tickets);
         outputTickets(tickets);
         outputLottos(lottos);
         return lottos;
