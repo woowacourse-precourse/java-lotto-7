@@ -84,4 +84,8 @@ public class Lottos {
         return winstatus;
     }
 
+    public double getProfitRate() {
+        return profitRate;
+    }
+
 }

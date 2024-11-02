@@ -44,6 +44,14 @@ public class OutView {
 
     }
 
+    public static void profitRatePrint(double profitRate) {
+        System.out.println(toStringProfitRate(profitRate));
+    }
+
+    private static String toStringProfitRate(double profitRate) {
+        return "총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.";
+    }
+
     private static String toStringWinstatus(String numRightKey, String winMoney, int correctCount) {
         return numRightKey + " 일치 (" + winMoney + ") - " + correctCount + "개";
     }

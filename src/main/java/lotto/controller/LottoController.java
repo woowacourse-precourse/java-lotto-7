@@ -36,6 +36,8 @@ public class LottoController {
 
         lottos.calculateProfitRate();
 
+        OutView.profitRatePrint(lottos.getProfitRate());
+
     }
 
 }
