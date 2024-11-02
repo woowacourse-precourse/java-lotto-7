@@ -98,6 +98,24 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 수익률_소수점_출력_테스트() {
+        int price = 5000;
+        LottoStatistics statistics = new LottoStatistics(price);
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        statistics.processTickets(List.of(
+                new Lotto(List.of(1, 2, 3, 8, 9, 10)),
+                new Lotto(List.of(11, 12, 13, 14, 15, 16)),
+                new Lotto(List.of(17, 18, 19, 20, 21, 22)),
+                new Lotto(List.of(23, 24, 25, 26, 27, 28)),
+                new Lotto(List.of(29, 30, 31, 32, 33, 34))
+        ), winningLotto);
+
+        double profitRate = statistics.calculateProfitRate();
+        assertThat(profitRate).isEqualTo(100.0);
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
