@@ -1,7 +1,11 @@
-package lotto.domain.lotto;
+package lotto.domain;
 
-import static lotto.constant.Error.*;
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.Error.DUPLICATED_LOTTO_NUMBERS;
+import static lotto.constant.Error.RANGE_LOTTO_NUMBER;
+import static lotto.constant.Error.SIZE_LOTTO_NUMBERS;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
+import static lotto.constant.LottoConstant.SIZE_NUMBERS;
 
 import java.util.List;
 
@@ -14,14 +18,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int countHits(List<Integer> winningNumbers) {
-        return (int) winningNumbers.stream()
+    public Rank rank(List<Integer> winningNumbers, int bonusNumber) {
+        int hitCount = (int) winningNumbers.stream()
             .filter(numbers::contains)
             .count();
-    }
+        boolean hitsBonusNumber = numbers.contains(bonusNumber);
 
-    public boolean hits(Integer bonusNumber) {
-        return numbers.contains(bonusNumber);
+        return Rank.of(hitCount, hitsBonusNumber);
     }
 
     private void validate(List<Integer> numbers) {

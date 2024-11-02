@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoValidationTest {
+public class LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘으면 예외가 발생한다.")
     @Test
