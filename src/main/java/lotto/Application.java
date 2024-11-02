@@ -25,6 +25,7 @@ public class Application {
             WinningCount winningCount = WinningCount.from(numberOfWinningNumber, isBonusMatched);
             lottoCountByWinning.put(winningCount, lottoCountByWinning.get(winningCount) + 1);
         }
+
     }
 
     public static void readUserInput(){
@@ -118,4 +119,13 @@ public class Application {
         }
     }
 
+    private static double calculateRateOfGain(){
+        double sumOfGain = 0;
+
+        for(WinningCount winningCount : lottoCountByWinning.keySet()){
+            sumOfGain = winningCount.getAmountToWin() * lottoCountByWinning.get(winningCount);
+        }
+
+        return Math.round(sumOfGain / amountToPurchase * 100.0) / 100.0;
+    }
 }
