@@ -3,7 +3,6 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
@@ -28,6 +27,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_테스트() {
+        runException("1000j");
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -36,79 +36,106 @@ class ApplicationTest extends NsTest {
 
     @Test
     void purchaseAmountBlankTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void purchaseAmountIntegerTest() {
-        assertSimpleTest(
-            () -> assertThatThrownBy(() -> runException("12j")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("12j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void purchaseAmountMoreThanLimitTest() {
-        assertSimpleTest(
-            () -> assertThatThrownBy(() -> runException("4611687000")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("4611687000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void purchaseAmount1000WonUnitsTest() {
-        assertSimpleTest(
-            () -> assertThatThrownBy(() -> runException("1300")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1300");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void winningNumbersBlankTest() {
-        assertSimpleTest(
-            () -> assertThatThrownBy(() -> runException("1000", "")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void winningNumbersIntegerTest() {
-        assertSimpleTest(
-            () -> assertThatThrownBy(() -> runException("1000", "12j")).isInstanceOf(IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "12j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void winningNumbersMoreThanSixTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6,7")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void winningNumbersInRangeTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "100,2,3,4,5,6,7")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "100,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void winningNumbersDuplicateTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,1,2,3,4,5,6")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void bonusNumberBlankTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void bonusNumberIntegerTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "12j")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "12j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void bonusNumberInRangeTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "100")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void bonusNumberDuplicateTest() {
-        assertSimpleTest(() -> assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "1")).isInstanceOf(
-            IllegalArgumentException.class));
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Override
