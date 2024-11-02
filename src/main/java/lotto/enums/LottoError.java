@@ -9,8 +9,11 @@ public enum LottoError {
 
     LOTTO_WINNING_NUMBERS_INVALID_FORMAT("로또 당첨 번호들의 형식이 유효하지 않습니다."),
 
+    LOTTO_BUNDLE_LOTTOS_COUNT_INVALID("로또의 구매 갯수와 발급된 로또의 수가 다릅니다."),
+
     LOTTO_NUMBERS_COUNT("로또 번호의 수가 일치하지 않습니다."),
     LOTTO_NUMBERS_DUPLICATION("로또 번호들에 중복이 포함되어 있습니다."),
+
     LOTTO_NUMBER_LESS_THAN_MIN("로또 번호가 최소값 미만입니다."),
     LOTTO_NUMBER_MORE_THAN_MAX("로또 번호가 최대값 초과입니다."),
 

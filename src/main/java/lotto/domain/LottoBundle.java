@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.enums.LottoConfig;
+import lotto.enums.LottoError;
 import lotto.enums.LottoRank;
 
 public class LottoBundle {
@@ -10,12 +10,19 @@ public class LottoBundle {
     private final LottoPurchasePrice lottoPurchasePrice;
 
     private LottoBundle(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice) {
+        validateLottoCount(lottos, lottoPurchasePrice);
         this.lottos = lottos;
         this.lottoPurchasePrice = lottoPurchasePrice;
     }
 
     public static LottoBundle ofLottosAndPurchasePrice(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice) {
         return new LottoBundle(lottos, lottoPurchasePrice);
+    }
+
+    private void validateLottoCount(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice){
+        if(lottos.size() != lottoPurchasePrice.getLottoCount()){
+            throw new IllegalArgumentException(LottoError.LOTTO_BUNDLE_LOTTOS_COUNT_INVALID.getMessage());
+        }
     }
 
     public List<Lotto> getLottos() {

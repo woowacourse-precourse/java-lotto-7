@@ -109,4 +109,4 @@
 - [x]  보너스 번호가 당첨 번호들에 포함되어 있다면, 예외를 발생시킨다.
 
 **LottoBundle**
-- [ ]  purchasePrice의 로또 개수와, lottos의 개수가 다르다면, 예외가 발생한다.  
+- [x]  purchasePrice의 로또 개수와, lottos의 개수가 다르다면, 예외가 발생한다.  
