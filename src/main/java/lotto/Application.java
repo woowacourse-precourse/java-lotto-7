@@ -1,15 +1,20 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
-    private static final int lottoPrice = 1000;
-    private static int purchaseAmount;
-
+    private final int lottoPrice = 1000;
+    private int purchaseAmount;
+    private List<Lotto> lottos = new ArrayList<>();
     public static void main(String[] args) {
         Application app = new Application();
         app.getPurchaseAmount();
-        app.print();
+        app.generateLottos();
+        app.printLotto();
     }
+
     private void validate(String input){
         try {
             int amount = Integer.parseInt(input);
@@ -23,25 +28,38 @@ public class Application {
             throw new IllegalArgumentException("구입 금액은 정수여야 합니다.");
        }
     }
-
-
     public void getPurchaseAmount(){
        String input = Console.readLine();
        validate(input);
        this.purchaseAmount = Integer.parseInt(input);
 
     }
-
-    public void print(){
-        System.out.println(this.purchaseAmount);
-        calculateLottoCount(this.purchaseAmount);
-
+    public void generateLottos(){
+        int lottoCount = this.calculateLottoCount(this.purchaseAmount);
+        for(int i=0;i<lottoCount;i++){
+            List<Integer> lottoNumbers = generateLottoNumbers();
+            Lotto lotto = new Lotto(lottoNumbers);
+            lottos.add(lotto);
+        }
     }
 
-    //금액 별 로또 매수 계산 함수
-    public static int calculateLottoCount(int purchasAmount){
-        return purchaseAmount / lottoPrice;
+    public int calculateLottoCount(int purchaseAmount){
+        return purchaseAmount / this.lottoPrice;
     }
+
+    private List<Integer> generateLottoNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return numbers;
+    }
+
+    public void printLotto(){
+        for (Lotto lotto:lottos){
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+
     // 로또 생성하는 함수
 
     //로또 번호 출력함수

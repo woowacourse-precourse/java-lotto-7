@@ -9,7 +9,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static lotto.Application.calculateLottoCount; //static 메서드 가져오기
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -59,9 +58,10 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 구입_금액에_따른_로또_구매_매수_기능_테스트(){
+        Application app = new Application();
         int purchaseAmount = 5000;
         int expectedLottoCount = purchaseAmount/1000;
-        int LottoCount = calculateLottoCount(purchaseAmount);
+        int LottoCount = app.calculateLottoCount(purchaseAmount);
 
         assertThat(LottoCount).isEqualTo(expectedLottoCount);
     }
