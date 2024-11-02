@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import static lotto.validator.PurchaseAmountValidator.MAX_PURCHASE_AMOUNT;
-import static lotto.validator.PurchaseAmountValidator.UNIT_PURCHASE_AMOUNT;
+import static lotto.constants.CommonConstants.MAX_PURCHASE_AMOUNT;
+import static lotto.constants.CommonConstants.UNIT_PURCHASE_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;

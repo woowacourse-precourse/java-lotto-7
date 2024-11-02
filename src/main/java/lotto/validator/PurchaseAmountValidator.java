@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.constants.CommonConstants.MAX_PURCHASE_AMOUNT;
+import static lotto.constants.CommonConstants.UNIT_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.BLANK_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.EXCEEDS_MAX_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.NON_POSITIVE_PURCHASE_AMOUNT;
@@ -10,8 +12,7 @@ import org.junit.platform.commons.util.StringUtils;
 
 public class PurchaseAmountValidator {
     private static final String POSITIVE_NUMBER_REGEX = "^[1-9][0-9]*$";
-    public static final long UNIT_PURCHASE_AMOUNT = 1000L;
-    public static final long MAX_PURCHASE_AMOUNT = 1_000_000L;  // 실제 1인당 로또 구매가능 금액
+
 
     public static void validate(String purchaseAmount) {
         validateBlank(purchaseAmount);
