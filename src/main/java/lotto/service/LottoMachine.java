@@ -12,6 +12,7 @@ import lotto.util.NumberGenerate;
 public class LottoMachine {
 
     public static final int LOTTO_PRICE = 1000;
+    public static final int MONEY_MAX = 1000000;
 
     private final NumberGenerate lottoGenerate;
     private int money;
@@ -21,6 +22,7 @@ public class LottoMachine {
     }
 
     public PurchasedLottos issueLotto(int money) {
+        validateMoneyLessThenMax(money);
         validateMoneyLessThenZero(money);
         validateMoneyModLottoPrice(money);
         int lottoCnt = money / LOTTO_PRICE;
@@ -50,6 +52,12 @@ public class LottoMachine {
     private void validateMoneyLessThenZero(int money) {
         if (money <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMsg());
+        }
+    }
+
+    private void validateMoneyLessThenMax(int money) {
+        if (money > MONEY_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_MORE_THEN_MAX.getMsg());
         }
     }
 
