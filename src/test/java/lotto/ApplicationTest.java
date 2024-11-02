@@ -27,26 +27,36 @@ class ApplicationTest extends NsTest {
     void 구입_금액_유효성_검사_테스트() {
         assertThatThrownBy(() -> Validator.validatePrice(-1000))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("금액은 양의 정수로 입력되어야 합니다.");
+                .hasMessageContaining("[ERROR] 금액은 양의 정수로 입력되어야 합니다.");
 
         assertThatThrownBy(() -> Validator.validatePrice(1500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("금액은 1000단위로 입력되어야 합니다.");
+                .hasMessageContaining("[ERROR] 금액은 1000단위로 입력되어야 합니다.");
     }
 
     @Test
     void 당첨_번호_입력_유효성_검사_테스트() {
         assertThatThrownBy(() -> Validator.validateWinNumbers(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 6개여야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
 
         assertThatThrownBy(() -> Validator.validateWinNumbers(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호의 숫자 범위는 1~45까지입니다.");
+                .hasMessageContaining("[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.");
 
         assertThatThrownBy(() -> Validator.validateWinNumbers(List.of(1, 2, 3, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 중복되지 않아야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
+
+    @Test
+    void 보너스_번호_입력_유효성_검사_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 3;
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
 
     @Test
