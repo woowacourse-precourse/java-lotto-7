@@ -37,20 +37,25 @@ public class LottoController {
         long totalPrize = 0;
 
         for (Lotto lotto : user.getLottoTickets()) {
-            int matchCount = getMatchingNumbers(user.getWinnerLotto(), lotto);
+            int matchCount = getMatchingNumbers(user, lotto);
             totalPrize += prize(matchCount);
         }
 
         return totalPrize;
     }
 
-    private static int getMatchingNumbers(Lotto winnerLotto, Lotto lotto) {
+    private static int getMatchingNumbers(User user, Lotto lotto) {
         int matchCount = 0;
+        List<Integer> winnerLotto = user.getWinnerLotto().getNumbers();
 
         for (int number : lotto.getNumbers()) {
-            if (winnerLotto.getNumbers().contains(number)) {
+            if (winnerLotto.contains(number)) {
                 matchCount++;
             }
+        }
+
+        if (matchCount == 5 && winnerLotto.contains(user.getBonus())) {
+            matchCount = 55;
         }
 
         return matchCount;
