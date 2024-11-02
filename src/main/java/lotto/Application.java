@@ -18,7 +18,7 @@ public class Application {
         }
 
         int account = Integer.parseInt(inputAccount);
-        if (account >= 1_000 && account <= 100_000) {
+        if (account < 1_000 || account > 100_000) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 최소 1000원부터 최대 10만원입니다.");
         }
 
@@ -27,7 +27,10 @@ public class Application {
         }
 
         int lottoCount = account / 1_000;
-
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
 
     }
 }
