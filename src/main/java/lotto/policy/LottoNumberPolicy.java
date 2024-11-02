@@ -11,7 +11,7 @@ import static lotto.constants.LottoConstants.*;
 public enum LottoNumberPolicy {
 
     SORTED_RANDOM_NUMBERS(() -> {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT_NUMBER);
         Collections.sort(numbers);
         return numbers;
     });

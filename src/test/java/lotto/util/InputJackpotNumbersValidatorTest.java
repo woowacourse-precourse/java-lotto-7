@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import static lotto.constants.LottoErrorMessage.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class JackpotNumbersValidatorTest {
+class InputJackpotNumbersValidatorTest {
 
-    final JackpotNumbersValidator validator = new JackpotNumbersValidator();
+    final InputJackpotNumbersValidator validator = new InputJackpotNumbersValidator();
 
     @Test
     void notNumberTest() {

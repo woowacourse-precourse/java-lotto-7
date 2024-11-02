@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class PurchaseAmountValidatorTest {
+class InputPurchaseAmountValidatorTest {
 
-    final Validator validator = new PurchaseAmountValidator();
+    final Validator validator = new InputPurchaseAmountValidator();
 
     @Test
     void notNumberTest() {

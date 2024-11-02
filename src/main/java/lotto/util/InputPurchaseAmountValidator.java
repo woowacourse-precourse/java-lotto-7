@@ -2,7 +2,7 @@ package lotto.util;
 
 import static lotto.constants.PurchaseAmountErrorMessage.*;
 
-public class PurchaseAmountValidator implements Validator {
+public class InputPurchaseAmountValidator implements Validator {
 
     private static final int MINIMUM_AMOUNT = 1000;
 

@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static lotto.constants.LottoErrorMessage.DUPLICATE_INPUT_NUMBER;
 
-public class JackpotNumbersValidator implements Validator {
+public class InputJackpotNumbersValidator implements Validator {
 
     @Override
     public void validate(String input) {

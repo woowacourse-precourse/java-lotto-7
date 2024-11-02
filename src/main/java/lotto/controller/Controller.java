@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Controller {
 
-    private final Validator validator = new PurchaseAmountValidator();
-    private final Validator jackpotNumbersValidator = new JackpotNumbersValidator();
+    private final Validator validator = new InputPurchaseAmountValidator();
+    private final Validator jackpotNumbersValidator = new InputJackpotNumbersValidator();
 
     public void run() {
         int totalAmount;
