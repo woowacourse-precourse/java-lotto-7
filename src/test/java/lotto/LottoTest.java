@@ -40,4 +40,9 @@ class LottoTest {
         assertThatThrownBy(() -> new LottoService().getNumberOfTickets("1001"))
                 .isInstanceOf(IllegalArgumentException.class); // 1000의 배수가 아닐 때
     }
+
+    @Test
+    void 티켓_구매_수만큼_티켓_리스트_반환() {
+        assertThat(new LottoService().getTickets(5)).hasSize(5);
+    }
 }
