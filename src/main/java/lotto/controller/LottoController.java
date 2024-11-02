@@ -27,16 +27,16 @@ public class LottoController {
         WinningNumbers winningNumbers = requestWinningNumbers();
         LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchase.getPrice());
-        outputView.printWinningResult(result, rateOfReturn);
+        outputView.displayWinningResult(result, rateOfReturn);
     }
 
     private Purchase requestPurchase() {
-        outputView.printPurchasePriceRequest();
+        outputView.displayPurchasePriceRequest();
         int purchasePrice = inputView.getInteger();
         Purchase purchase = new Purchase(purchasePrice);
 
         int purchaseQuantity = purchase.getQuantity();
-        outputView.printPurchaseQuantity(purchaseQuantity);
+        outputView.displayPurchaseQuantity(purchaseQuantity);
 
         return purchase;
     }
@@ -47,17 +47,17 @@ public class LottoController {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoTickets.add(new Lotto(numbers));
         }
-        outputView.printLottoNumbers(lottoTickets);
+        outputView.displayLottoNumbers(lottoTickets);
 
         return lottoTickets;
     }
 
     private WinningNumbers requestWinningNumbers() {
-        outputView.printWinningNumbersRequest();
+        outputView.displayWinningNumbersRequest();
         List<Integer> winningNumbers = parseNumbers(inputView.getString());
         Lotto numbers = new Lotto(winningNumbers);
 
-        outputView.printBonusNumberRequest();
+        outputView.displayBonusNumberRequest();
         int bonusNumber = inputView.getInteger();
 
         return new WinningNumbers(numbers, bonusNumber);

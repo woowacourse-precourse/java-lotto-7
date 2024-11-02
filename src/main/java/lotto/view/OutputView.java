@@ -7,16 +7,16 @@ import lotto.Lotto;
 import lotto.constant.Prize;
 
 public class OutputView {
-    public void printPurchasePriceRequest() {
+    public void displayPurchasePriceRequest() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void printPurchaseQuantity(int quantity) {
+    public void displayPurchaseQuantity(int quantity) {
         System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", quantity);
     }
 
-    public void printLottoNumbers(List<Lotto> lottoTickets) {
+    public void displayLottoNumbers(List<Lotto> lottoTickets) {
         String result = lottoTickets.stream()
                 .map(Lotto::getNumbers)
                 .map(List::toString)
@@ -24,15 +24,15 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printWinningNumbersRequest() {
+    public void displayWinningNumbersRequest() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
-    public void printBonusNumberRequest() {
+    public void displayBonusNumberRequest() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningResult(LinkedHashMap<Prize, Integer> result, double rateOfReturn) {
+    public void displayWinningResult(LinkedHashMap<Prize, Integer> result, double rateOfReturn) {
         System.out.println("\n당첨 통계\n---");
         String resultMessage = result.entrySet().stream()
                 .map(entry -> String.format(entry.getKey().getResultMessage(), entry.getValue()))
