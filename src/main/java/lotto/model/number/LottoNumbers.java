@@ -20,7 +20,7 @@ public class LottoNumbers {
         List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, size);
 
         return new LottoNumbers(numbers.stream()
-                .map(LottoNumber::new)
+                .map(LottoNumber::from)
                 .toList());
     }
 
