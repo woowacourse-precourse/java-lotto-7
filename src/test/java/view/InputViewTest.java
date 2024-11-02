@@ -1,6 +1,7 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.exception.Exception.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.Exception.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.Exception.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.Exception.LOTTO_NUMBER_SIZE_MUST_BE_SIX;
@@ -106,6 +107,17 @@ class InputViewTest {
             assertSimpleTest(() -> {
                 run("7");
                 assertThat(output()).isEqualTo("7");
+            });
+
+        }
+
+        @DisplayName("보너스번호 입력 1~45가 아닐 때 예외 테스트")
+        @Test
+        void inputBonusNumber_fail_outOfRange() {
+            assertSimpleTest(() -> {
+                assertThatThrownBy(() -> runException("46"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             });
 
         }
