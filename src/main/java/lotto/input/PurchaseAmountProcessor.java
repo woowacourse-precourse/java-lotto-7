@@ -2,6 +2,8 @@ package lotto.input;
 
 import static lotto.exception.ExceptionMessage.*;
 
+import lotto.util.InputUtil;
+
 public class PurchaseAmountProcessor {
 
     private PurchaseAmountProcessor() {
@@ -18,9 +20,7 @@ public class PurchaseAmountProcessor {
     }
 
     private static int validateAndParse(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
-        }
+        InputUtil.validateEmptyInput(input);
 
         String trimmedInput = input.trim();
 

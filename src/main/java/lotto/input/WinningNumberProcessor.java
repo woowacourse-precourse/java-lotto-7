@@ -4,6 +4,7 @@ import static lotto.exception.ExceptionMessage.*;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.util.InputUtil;
 
 public class WinningNumberProcessor {
 
@@ -18,9 +19,8 @@ public class WinningNumberProcessor {
     }
 
     private static void validateInput(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
-        }
+        InputUtil.validateEmptyInput(input);
+
         if (input.trim().startsWith(NUMBER_SEPARATOR) || input.trim().endsWith(NUMBER_SEPARATOR)) {
             throw new IllegalArgumentException(INVALID_COMMA_POSITION.getMessage());
         }
