@@ -7,7 +7,7 @@ import lotto.domain.winning.WinningResult;
 import java.util.List;
 
 public interface LottoService {
-    boolean validateAmount(int amount);
+    boolean validateAmount(String input);
     WinningResult checkResult(List<Lotto> lottos, WinningContext context);
     double calculateEarningsRate(int totalPrize, int amount);
     List<Lotto> generateLottos(int amount);

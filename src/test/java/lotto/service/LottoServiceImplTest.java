@@ -1,18 +1,9 @@
 package lotto.service;
 
-import lotto.domain.bonus.BonusNumber;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.winning.Rank;
-import lotto.domain.winning.WinningContext;
-import lotto.domain.winning.WinningNumbers;
-import lotto.domain.winning.WinningResult;
 import lotto.exception.lotto.LottoErrorMessages;
 import lotto.service.lotto.LottoServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -20,22 +11,46 @@ public class LottoServiceImplTest {
     private final LottoServiceImpl lottoService = new LottoServiceImpl();
 
     @Test
-    @DisplayName("로또 구입 금액이 양수가 아닐 경우 예외가 발생한다.")
-    void 로또_구입_금액이_양수가_아닐_경우_예외가_발생한다() {
+    @DisplayName("로또 구입 금액이 공백일 경우 예외가 발생한다.")
+    void 로또_구입_금액이_공백일_경우_예외가_발생한다() {
         // given
-        int invalidAmount = -1000;
+        String invalidAmount = "";
 
         // when, then
         assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
+                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 숫자가 아니거나 음수일 경우 예외가 발생한다.")
+    void 로또_구입_금액이_숫자가_아니거나_양수가_아닐_경우_예외가_발생한다() {
+        // given
+        String invalidAmount = "-1000";
+
+        // when, then
+        assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액이 문자일 경우 예외가 발생한다.")
+    void 로또_구입_금액이_문자일_경우_예외가_발생한다() {
+        // given
+        String invalidAmount = "1000j";
+
+        // when, then
+        assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }
 
     @Test
     @DisplayName("로또 구입 금액이 1,000원 단위가 아닐 경우 예외가 발생한다.")
     void 로또_구입_금액이_1000원_단위가_아닐_경우_예외가_발생한다() {
         // given
-        int invalidAmount = 800;
+        String invalidAmount = "800";
 
         // when, then
         assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
@@ -47,7 +62,7 @@ public class LottoServiceImplTest {
     @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
     void 로또_구입_금액이_1000원으로_나누어_떨어지지_않는_경우_예외가_발생한다() {
         // given
-        int invalidAmount = 2500;
+        String invalidAmount = "2500";
 
         // when, then
         assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
@@ -59,7 +74,7 @@ public class LottoServiceImplTest {
     @DisplayName("로또 구입 금액이 정상 입력된 경우 true를 반환한다.")
     void 로또_구입_금액이_정상_입력된_경우_true를_반환한다() {
         // given
-        int validAmount = 3000;
+        String validAmount = "3000";
 
         // when
         boolean result = lottoService.validateAmount(validAmount);

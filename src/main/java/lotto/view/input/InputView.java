@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getAmount() {
+    public static String getAmount() {
         System.out.println(ViewConstants.INPUT_PURCHASE_AMOUNT);
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     public static String getWinningNumbers() {

@@ -17,16 +17,21 @@ import java.util.Set;
 
 public class LottoServiceImpl implements LottoService {
     @Override
-    public boolean validateAmount(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
+    public boolean validateAmount(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
         }
+
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
+        }
+
+        int amount = Integer.parseInt(input);
         if (amount % LottoConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
         }
         return true;
     }
-
 
     @Override
     public WinningResult checkResult(List<Lotto> lottos, WinningContext context) {

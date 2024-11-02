@@ -15,8 +15,9 @@ public class Application {
     public static void main(String[] args) {
         LottoService lottoService = new LottoServiceImpl();
 
-        int amount = InputView.getAmount();
-        lottoService.validateAmount(amount);
+        String input = InputView.getAmount();
+        lottoService.validateAmount(input);
+        int amount = Integer.parseInt(input);
 
         List<Lotto> lottos = lottoService.generateLottos(amount);
         OutputView.printPurchasedLottos(lottos);
