@@ -1,8 +1,11 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.constant.LottoConstants;
+import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.LottoNumberNotInRangeException;
 import lotto.validation.InputValidation;
 
@@ -18,6 +21,14 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (lottoNumbersDuplicate(numbers)) {
+            throw new DuplicateLottoNumberException();
+        }
+    }
+
+    private static boolean lottoNumbersDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return uniqueNumbers.size() < numbers.size();
     }
 
     public static int getNumberIfInRange(final String lottoNumber) throws IllegalArgumentException {
