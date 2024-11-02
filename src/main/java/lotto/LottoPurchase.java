@@ -6,21 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPurchase {
-    public void start() {
-        int purchaseAmount = getPurchaseAmount();
-        int ticketCount = purchaseAmount / 1000;
-
-        System.out.println(ticketCount + "개를 구매했습니다.");
-        List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
-        printLottoTickets(lottoTickets);
-    }
 
     public int getPurchaseAmount() {
         while (true) {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
                 int amount = Integer.parseInt(Console.readLine().trim());
-
                 if (amount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
                 }
@@ -36,7 +27,7 @@ public class LottoPurchase {
     public List<Lotto> generateLottoTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             numbers.sort(Integer::compareTo);
             tickets.add(new Lotto(numbers));
         }
@@ -47,9 +38,5 @@ public class LottoPurchase {
         for (Lotto ticket : lottoTickets) {
             System.out.println(ticket.getNumbers());
         }
-    }
-
-    public static void main(String[] args) {
-        new LottoPurchase().start();
     }
 }

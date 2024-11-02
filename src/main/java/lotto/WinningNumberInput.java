@@ -29,7 +29,6 @@ public class WinningNumberInput {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 bonusNumber = Integer.parseInt(Console.readLine().trim());
-
                 if (bonusNumber < 1 || bonusNumber > 45) {
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
                 }
