@@ -10,15 +10,15 @@ import java.util.List;
 
 public class Controller {
 
-    private final Validator validator = new InputPurchaseAmountValidator();
-    private final Validator jackpotNumbersValidator = new InputJackpotNumbersValidator();
+    private final Validator inputPurchaseAmountValidator = new InputPurchaseAmountValidator();
+    private final Validator inputJackpotNumbersValidator = new InputJackpotNumbersValidator();
 
     public void run() {
         int totalAmount;
         while (true) {
             String inputTotalAmount = InputView.requestAmountToPurchase();
             try {
-                validator.validate(inputTotalAmount);
+                inputPurchaseAmountValidator.validate(inputTotalAmount);
                 totalAmount = Integer.parseInt(inputTotalAmount);
                 break;
             } catch (IllegalArgumentException e) {
@@ -34,7 +34,7 @@ public class Controller {
         while (true) {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
             try {
-                jackpotNumbersValidator.validate(inputJackpotNumbers);
+                inputJackpotNumbersValidator.validate(inputJackpotNumbers);
                 List<Integer> intList = StringParser.toIntList(inputJackpotNumbers);
                 Lotto jackpot = new Lotto(intList);
                 jackpotNumbers.setLotto(jackpot);
