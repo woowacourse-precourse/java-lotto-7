@@ -16,6 +16,7 @@ public class PurchaseAmountController {
             PurchaseAmountDto dto = PurchaseAmountValidator.validate(input);
             OutputView.printPurchaseCount(dto.value);
             purchaseAmountService.generateLotto(dto);
+            purchaseAmountService.savePurchaseAmount(dto);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             getPurchaseAmount();
