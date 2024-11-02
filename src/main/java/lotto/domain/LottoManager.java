@@ -30,4 +30,5 @@ public class LottoManager {
     public List<Lotto> getLottoTickets() {
         return List.copyOf(lottoTickets);
     }
+
 }

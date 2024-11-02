@@ -23,4 +23,8 @@ public class Money {
     public int getAmount() {
         return amount;
     }
+
+    public double getPercent(int money){
+        return (double) money / amount;
+    }
 }
