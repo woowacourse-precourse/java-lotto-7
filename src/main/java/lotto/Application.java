@@ -9,7 +9,7 @@ import java.util.List;
 public class Application {
     private static int amountToPurchase;
     private static int numOfLotto;
-    private static List<Lotto> lottos = new ArrayList<>();
+    private static List<Lotto> lottos;
     public static void main(String[] args) {
         readUserInput();
     }
@@ -19,6 +19,8 @@ public class Application {
         amountToPurchase = readAmountToPurchase();
 
         numOfLotto = calcNumOfLottos();
+
+        lottos = createLottos();
     }
 
     private static int readAmountToPurchase(){
@@ -30,4 +32,13 @@ public class Application {
         return numOfLotto = amountToPurchase / 1000;
     }
 
+    private static List<Lotto> createLottos(){
+        lottos = new ArrayList<>();
+
+        for (int i = 0; i < numOfLotto; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+
+        return lottos;
+    }
 }
