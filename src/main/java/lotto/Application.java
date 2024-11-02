@@ -16,16 +16,10 @@ public class Application {
 
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
-            String purchasePriceInput = Console.readLine();
             try {
+                String purchasePriceInput = Console.readLine();
                 int purchasePrice = Validator.validatePurchasePrice(purchasePriceInput);
-
-                if (purchasePrice % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위만 허용됩니다.");
-                }
-
                 purchaseAmount = purchasePrice / 1000;
-
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

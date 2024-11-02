@@ -3,9 +3,18 @@ package lotto;
 public class Validator {
     static int validatePurchasePrice(String purchasePriceInput) {
         try{
-            return Integer.parseInt(purchasePriceInput);
+            int purchasePrice = Integer.parseInt(purchasePriceInput);
+            validatePurchasePriceMultipleOfThousand(purchasePrice);
+
+            return purchasePrice;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위의 숫자만 허용됩니다.");
+        }
+    }
+
+    static void validatePurchasePriceMultipleOfThousand(int purchasePrice) {
+        if (purchasePrice % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위만 허용됩니다.");
         }
     }
 
