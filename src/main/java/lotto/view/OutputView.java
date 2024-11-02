@@ -14,11 +14,8 @@ public class OutputView {
     private static final String WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
     private static final String PURCHASE_NOTICE_HEADER = "개를 구매했습니다.";
-    private static final String MATCH_3_MESSAGE = "3개 일치 (5,000원) - ";
-    private static final String MATCH_4_MESSAGE = "4개 일치 (50,000원) - ";
-    private static final String MATCH_5_MESSAGE = "5개 일치 (1,500,000원) - ";
-    private static final String MATCH_5_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-    private static final String MATCH_6_MESSAGE = "6개 일치 (2,000,000,000원) - ";
+    private static final String MATCH_MESSAGE = "%d개 일치 (%s원) - ";
+    private static final String MATCH_BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String DIVIDER = "---";
     private static final String COUNT_SUFFIX = "개";
@@ -85,11 +82,11 @@ public class OutputView {
 
     private static Map<Integer, String> prepareMessages() {
         Map<Integer, String> messages = new LinkedHashMap<>();
-        messages.put(3, MATCH_3_MESSAGE);
-        messages.put(4, MATCH_4_MESSAGE);
-        messages.put(5, MATCH_5_MESSAGE);
-        messages.put(-5, MATCH_5_BONUS_MESSAGE);
-        messages.put(6, MATCH_6_MESSAGE);
+        messages.put(3, String.format(MATCH_MESSAGE, 3, "5,000"));
+        messages.put(4, String.format(MATCH_MESSAGE, 4, "50,000"));
+        messages.put(5, String.format(MATCH_MESSAGE, 5, "1,500,000"));
+        messages.put(-5, MATCH_BONUS_MESSAGE);
+        messages.put(6, String.format(MATCH_MESSAGE, 6, "2,000,000,000"));
 
         return messages;
     }
