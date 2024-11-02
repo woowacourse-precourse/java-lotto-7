@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.InvalidLottoSizeException;
 
 public class Lotto {
@@ -14,11 +17,21 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    private void validate(List<LottoNumber> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new InvalidLottoSizeException(numbers.size());
+    private void validate(List<LottoNumber> lottoNumbers) {
+        validateSize(lottoNumbers.size());
+        validateDuplicate(lottoNumbers);
+    }
+
+    private void validateSize(int lottoSize) {
+        if (lottoSize != LOTTO_SIZE) {
+            throw new InvalidLottoSizeException(lottoSize);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(List<LottoNumber> lottoNumbers) {
+        Set<LottoNumber> uniqueLottoNumbers = new HashSet<>(lottoNumbers);
+        if(uniqueLottoNumbers.size() != lottoNumbers.size()) {
+            throw new DuplicateLottoNumberException(lottoNumbers);
+        }
+    }
 }
