@@ -7,6 +7,14 @@ public class Parser {
 
     public static final String INPUT_DELIMITER = ",";
 
+    public int parseLottoPurchasePrice(String numbers) {
+        int number = parseStringToInteger(numbers);
+        if (isNotDivisibleByThousand(number)) {
+            throw new IllegalArgumentException("ERROR 잘못된 입력입니다. 로또는 1000원당 한장입니다.");
+        }
+        return number;
+    }
+
     public int parseStringToInteger(String value) {
         try {
             return Integer.parseInt(value);
@@ -34,4 +42,7 @@ public class Parser {
         return numbers.replace(" ", "");
     }
 
+    private boolean isNotDivisibleByThousand(int number) {
+        return number % 1000 != 0;
+    }
 }

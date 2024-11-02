@@ -13,6 +13,28 @@ class ParserTest {
     private final Parser parser = new Parser();
 
     @Test
+    @DisplayName("입력으로 1000의 배수인 문자열이 들어오면 정수형으로 변환한다")
+    void parseLottoPurchasePriceTest() {
+        // given
+        String value = "8000";
+        // when
+        int result = parser.parseLottoPurchasePrice(value);
+        // then
+        assertThat(result).isEqualTo(8000);
+    }
+
+    @Test
+    @DisplayName("입력으로 1000의 배수가 아닌 문자열이 들어오면 예외가 발생한다.")
+    void parseLottoPurchasePriceErrorTest() {
+        // given
+        String value = "8001";
+        // when// then
+        assertThatThrownBy(() -> parser.parseLottoPurchasePrice(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("ERROR 잘못된 입력입니다. 로또는 1000원당 한장입니다.");
+    }
+
+    @Test
     @DisplayName("숫자로만 구성된 문자열이 들어오면 정수형으로 변환한다")
     void parseStringToIntegerTest() {
         // given
@@ -28,6 +50,7 @@ class ParserTest {
     @Nested
     @DisplayName("콤마로 구분된 숫자로 구성된 문자열이 들어올 때")
     class ParseStringToIntegerListTest {
+
         @Test
         @DisplayName("정수형 리스트로 변환한다")
         void parseStringToIntegerListTest() {
@@ -49,11 +72,13 @@ class ParserTest {
             // then
             assertThat(result).containsExactly(1, 2, 3, 4, 5);
         }
+
     }
 
     @Nested
     @DisplayName("숫자로 구성되지 않은 문자열이 들어올때")
     class containNotNumberStringTest {
+
 
         @Test
         void 문자열을_숫자로_변환할때_예외가_발생한다() {
