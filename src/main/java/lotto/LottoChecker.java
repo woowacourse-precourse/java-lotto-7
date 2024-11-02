@@ -19,4 +19,22 @@ public class LottoChecker {
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
     }
+
+    public void convertToWinningNums(String input) {
+        input = input.trim();
+        String[] inputNums = input.split(",");
+        try {
+            winningNumbers.add(Integer.parseInt(inputNums[0]));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
+        }
+    }
+
+    public void convertToBonusNum(String input) {
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
+        }
+    }
 }
