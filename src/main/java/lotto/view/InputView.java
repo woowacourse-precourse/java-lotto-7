@@ -3,8 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-	public String readPurchaseAmount() {
-		return Console.readLine();
+	public int readPurchaseAmount() {
+		String input = Console.readLine();
+
+		return Integer.parseInt(input);
 	}
 
 	private void validateNotBlank(String input) {
@@ -21,5 +23,11 @@ public class InputView {
 
 	private boolean isDigit(String input) {
 		return input.chars().allMatch(Character::isDigit);
+	}
+
+	private void validatePositive(String input) {
+		if (Integer.parseInt(input) <= 0) {
+			System.out.println("[ERROR] 입력값은 0보다 커야 합니다.");
+		}
 	}
 }
