@@ -29,9 +29,9 @@ public enum LottoRank {
         return match;
     }
 
-    public static LottoRank getRankByMatchCount(int count) {
+    public static LottoRank getRankByMatchCount(int countMatchingNumbers) {
         for (LottoRank rank : values()) {
-            if (rank.getMatchCount() == count) {
+            if (rank.getMatchCount() == countMatchingNumbers) {
                 return rank;
             }
         }

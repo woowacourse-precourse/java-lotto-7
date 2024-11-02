@@ -1,26 +1,24 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private Map<LottoRank, Integer> lottoResult = new HashMap<>();
+    private Map<LottoRank, Integer> result = new HashMap<>();
     private double rate;
 
-    public LottoResult(Map<LottoRank, Integer> lottoResult, double rate) {
-        this.lottoResult = lottoResult; // lottoResult에 final을 붙이면 안되는 이유
-        this.rate = rate;
+    public LottoResult() {
+        init();
     }
 
     public void init(){
         for(LottoRank lottoRank : LottoRank.values()){
-            lottoResult.put(lottoRank, 0);
+            result.put(lottoRank, 0);
         }
     }
 
-    public Map<LottoRank, Integer> getLottoResult() {
-        return lottoResult;
+    public Map<LottoRank, Integer> getResult() {
+        return result;
     }
 
     public double getRate() {
@@ -29,5 +27,9 @@ public class LottoResult {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    public void setResult(Map<LottoRank, Integer> result) {
+        this.result = result;
     }
 }

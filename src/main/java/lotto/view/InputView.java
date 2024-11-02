@@ -13,15 +13,15 @@ public class InputView {
     }
 
 
-    public int inputLottoPrice() {
+    public int inputLottoCost() {
         while(true){
             try {
-                System.out.println(Constants.PURCHASE_LOTTO_INPUT);
-                String lottoPrice = Console.readLine();
-                int LottoPriceInt = validateLottoPrice(lottoPrice);
+                System.out.println(Constants.LOTTO_COST_INPUT);
+                String lottoCost = Console.readLine();
+                int lottoCostInt = validateLottoPrice(lottoCost);
                 System.out.println();
 
-                return LottoPriceInt;
+                return lottoCostInt;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -37,15 +37,15 @@ public class InputView {
         return lottoPriceInt;
     }
 
-    public String inputLottoWinningNumbers() {
+    public String inputWinningNumbers() {
         while(true){
             try {
                 System.out.println(Constants.WINNING_LOTTO_INPUT);
-                String WinningLotto = Console.readLine();
-                validateWinningNumbers(WinningLotto);
+                String winningNumbers = Console.readLine();
+                validateWinningNumbers(winningNumbers);
                 System.out.println();
 
-                return WinningLotto;
+                return winningNumbers;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

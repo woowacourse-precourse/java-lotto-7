@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void printLotto(List<Lotto> lottoList, int lottoNum) {
-        System.out.println(lottoNum + Constants.PURCHASE_LOTTO_OUTPUT);
+    public void printLottoTickets(List<Lotto> lottoTickets, int ticketCount) {
+        System.out.println(ticketCount + Constants.PURCHASE_LOTTO_OUTPUT);
 
-        for(int i=0; i<lottoNum; i++){
-            List<Integer> numbers = lottoList.get(i).getNumbers();
+        for(int i=0; i<ticketCount; i++){
+            List<Integer> numbers = lottoTickets.get(i).getNumbers();
 
             String joinLotto = String.join(", ", numbers.stream().map(String::valueOf).toArray(String[]::new));
             System.out.println("[" + joinLotto + "]");
@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void totalLotto(LottoResult result) {
-        Map<LottoRank, Integer> lottoResults = result.getLottoResult();
+        Map<LottoRank, Integer> lottoResults = result.getResult();
         double rate = result.getRate();
 
         System.out.println(Constants.RESULT_LOTTO_OUTPUT);

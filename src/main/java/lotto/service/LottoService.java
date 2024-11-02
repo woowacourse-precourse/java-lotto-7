@@ -10,15 +10,20 @@ import java.util.stream.Collectors;
 public class LottoService {
 
     private List<Lotto> lottoList = new ArrayList<>();
+    private LottoResult lottoResult;
 
-    public int purchaseLotto(int lottoPrice) {
-        int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
-
-        return lottoNum;
+    public LottoService() {
+        lottoResult = new LottoResult();
     }
 
-    public List<Lotto> randomLottoNum(int lottoNum) {
-        for(int i=0; i<lottoNum; i++){
+    public int purchaseLottoCount(int lottoCost) {
+        int ticketCount = lottoCost / Constants.PURCHASE_FORM;
+
+        return ticketCount;
+    }
+
+    public List<Lotto> generateRandomLottoNumbers(int ticketCount) {
+        for(int i=0; i<ticketCount; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
@@ -26,27 +31,20 @@ public class LottoService {
         return lottoList;
     }
 
-    public List<Integer> splitLottoWinningNumbers(String lottoWinningNumbers) {
-        String[] lottoArray = lottoWinningNumbers.split(Constants.SEPARATOR);
-        trimLottoWinningNumbers(lottoArray);
-        List<Integer> lottoWinningNumbersIntList = convertLottoWinningNumbers(lottoArray);
-
-        return lottoWinningNumbersIntList;
+    public List<String> splitWinningNumbers(String winningNumbers) {
+        return Arrays.asList(winningNumbers.split(Constants.SEPARATOR));
     }
 
-    private List<Integer> convertLottoWinningNumbers(String[] lottoArray) {
-        List<String> lottoWinningNumbersList = Arrays.asList(lottoArray);
-        List<Integer> lottoWinningNumbersIntList = lottoWinningNumbersList.stream()
+    public List<Integer> convertToInt(List<String> trimWinningNumbers) {
+        return trimWinningNumbers.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        return lottoWinningNumbersIntList;
     }
 
-    private void trimLottoWinningNumbers(String[] lottoArray) {
-        for (int i = 0; i < lottoArray.length; i++) {
-            lottoArray[i] = lottoArray[i].trim();
-        }
+    public List<String> trimWinningNumbers(List<String> splitWinningNumbers) {
+        return splitWinningNumbers.stream()
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     public LottoWinningNumbers winningLotto(List<Integer> winningNumbers, int bonusNumber) {
@@ -55,26 +53,23 @@ public class LottoService {
         return lottoWinning;
     }
 
-    public LottoResult resultWinningLotto(LottoWinningNumbers lottoWinning, int lottoNum) {
-        Map<LottoRank, Integer> lottoResults = new HashMap<>();
-        LottoResult lottoResult = new LottoResult(lottoResults, 0);
-        lottoResult.init();
-        int bonusNumber = lottoWinning.getBonusNumber();
-
-        for(int i=0; i<lottoNum; i++){
-            int count = compareWinningLotto(i, lottoWinning);
-            LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(count);
-            
-            if(rankByMatchCount != null){
-                rankByMatchCount = compareBonusNumber(rankByMatchCount, bonusNumber);
-                lottoResults.put(rankByMatchCount, lottoResults.getOrDefault(rankByMatchCount, 0) + 1);
-            }
-        }
-
+    public LottoResult getLottoResult() {
         return lottoResult;
     }
 
-    private LottoRank compareBonusNumber(LottoRank rankByMatchCount, int bonusNumber) {
+    public Map<LottoRank, Integer> getResult(){
+        return lottoResult.getResult();
+    }
+
+    public void putLottoResult(Map<LottoRank, Integer> lottoResultMap){
+        lottoResult.setResult(lottoResultMap);
+    }
+
+    public void putLottoResultMap(LottoRank rankByMatchCount, Map<LottoRank, Integer> lottoResultMap){
+        lottoResultMap.put(rankByMatchCount, lottoResultMap.getOrDefault(rankByMatchCount, 0) + 1);
+    }
+
+    public LottoRank compareBonusNumber(LottoRank rankByMatchCount, int bonusNumber) {
         if(rankByMatchCount.getMatchCount() == Constants.BONUS_MATCH_COUNT){
             if(lottoList.contains(bonusNumber)){
                 return LottoRank.SECOND;
@@ -83,30 +78,32 @@ public class LottoService {
         return rankByMatchCount;
     }
 
-    private int compareWinningLotto(int i, LottoWinningNumbers lottoWinning) {
+    public int checkWinningNumbers(LottoWinningNumbers lottoWinning, int i) {
         Set<Integer> lottoSet = new HashSet<>(lottoList.get(i).getNumbers());
         Set<Integer> winSet = new HashSet<>(lottoWinning.getLottoWinningNumbers());
 
         lottoSet.retainAll(winSet);
-        int count = lottoSet.size(); // 중복
+        int count = lottoSet.size();
 
         return count;
     }
 
-    public LottoResult calculateRate(LottoResult result, int lottoPriceInt) {
-        int amount = sumAmount(result.getLottoResult());
-        double rate = ((double) amount / lottoPriceInt) * 100.0;
-        rate = Math.round(rate * 100) / 100.0;
-        result.setRate(rate);
-
-        return result;
+    public void setLottoRate(double rate){
+        lottoResult.setRate(rate);
     }
 
-    private int sumAmount(Map<LottoRank, Integer> lottoResults) {
+    public double calculateRate(int amount, int lottoCost) {
+        double rate = ((double) amount / lottoCost) * 100.0;
+        rate = Math.round(rate * 100) / 100.0;
+
+        return rate;
+    }
+
+    public int sumAmount(Map<LottoRank, Integer> lottoResultMap) {
         int amount = 0;
         for(LottoRank lottoRank : LottoRank.values()){
             int price = lottoRank.getPrice();
-            amount += price * lottoResults.get(lottoRank);
+            amount += price * lottoResultMap.get(lottoRank);
         }
 
         return amount;
