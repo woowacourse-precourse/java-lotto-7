@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import java.util.List;
+import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
 import lotto.util.Converter;
@@ -9,8 +11,12 @@ public class BonusNumberValidator {
     public static void validateBonusNumber(String input) {
         validateNull(input);
         validateStartZero(input);
-        validateRange(input);
         validateNumericInput(input);
+    }
+
+    public static void validateConvertBonusNumber(int input, WinningNumber winningNumber) {
+        validateRange(input);
+        validateDuplicateWinningNumber(input, winningNumber);
     }
 
     private static void validateNull(String input) {
@@ -25,9 +31,8 @@ public class BonusNumberValidator {
         }
     }
 
-    private static void validateRange(String input) {
-        long number = Converter.convertStringToLong(input);
-        if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
+    private static void validateRange(int input) {
+        if (input < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || input > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
         }
     }
@@ -35,6 +40,12 @@ public class BonusNumberValidator {
     private static void validateNumericInput(String input) {
         if (!input.matches("^\\d+$")) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER.getErrorMessage());
+        }
+    }
+
+    private static void validateDuplicateWinningNumber(int input, WinningNumber winningNumber) {
+        if (winningNumber.isContain(input)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_DUPLICATE_NUMBER.getErrorMessage());
         }
     }
 }

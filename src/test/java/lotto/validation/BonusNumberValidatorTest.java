@@ -2,6 +2,8 @@ package lotto.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.domain.WinningNumber;
+import lotto.util.Converter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -29,9 +31,10 @@ class BonusNumberValidatorTest {
     @DisplayName("입력된 수가 1~45의 범위가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"48", "848"})
-    void validateRange(String input) {
+    void validateRange(int input) {
+        WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
         assertThrows(IllegalArgumentException.class, () -> {
-            BonusNumberValidator.validateBonusNumber(input);
+            BonusNumberValidator.validateConvertBonusNumber(input, winningNumber);
         });
     }
 
@@ -41,6 +44,16 @@ class BonusNumberValidatorTest {
     void validateWithoutNumber(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
             BonusNumberValidator.validateBonusNumber(input);
+        });
+    }
+
+    @DisplayName("당첨 번호와 중복되는 숫자를 입력한 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"4"})
+    void validateDuplicateWinningNumber(int input) {
+        WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
+        assertThrows(IllegalArgumentException.class, () -> {
+            BonusNumberValidator.validateConvertBonusNumber(input, winningNumber);
         });
     }
 }

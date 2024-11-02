@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumber;
 import lotto.util.Converter;
@@ -18,6 +19,7 @@ public class InputView {
     public static WinningNumber inputWinningNumber() {
         String input = Console.readLine();
         WinningNumberValidator.validateWinningNumber(input);
-        return new WinningNumber(input);
+        List<Integer> convertInput = Converter.convertStringToIntegerList(input);
+        return new WinningNumber(convertInput);
     }
 }
