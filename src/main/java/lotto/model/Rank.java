@@ -13,6 +13,7 @@ public enum Rank {
 
     private static final String DELIMITER = " - ";
     private static final String UNIT = "개";
+
     private final long prize;
     private final String message;
     private final int correctCont;
