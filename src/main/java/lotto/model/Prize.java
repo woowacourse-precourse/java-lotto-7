@@ -33,4 +33,12 @@ public enum Prize {
     Long getMoney() {
         return money;
     }
+
+    int getConditionOfMatchCount() {
+        return lottoWinningStrategy.getConditionOfMatchCount();
+    }
+
+    boolean isBonusNumberRequired() {
+        return lottoWinningStrategy.isBonusNumberRequired();
+    }
 }

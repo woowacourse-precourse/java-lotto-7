@@ -52,5 +52,15 @@ class PrizeTest {
                 .contains(Prize.NO_PRIZE.getRank(), Prize.NO_PRIZE.getMoney());
     }
 
-
+    @DisplayName("내 로또 번호와 당첨 번호가 전부 일치할 경우 당첨 전략을 조회한다.")
+    @Test
+    void 당첨_전략을_조회한다() {
+        Lotto myLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(12);
+        Prize prize = Prize.getPrize(winningLotto, myLotto, bonusNumber);
+        assertThat(prize)
+                .extracting(Prize::isBonusNumberRequired, Prize::getConditionOfMatchCount)
+                .containsExactly(false, 6);
+    }
 }
