@@ -67,6 +67,10 @@ public class StatService {
         int matchingCount = getMatchingCount(pickedLotto.getNumbers(), winningLotto.getNumbers());
         boolean bonusMatch = isBonusMatch(pickedLotto.getNumbers(), bonusNumber.getNumber());
 
+        return findRank(matchingCount, bonusMatch);
+    }
+
+    private static WinningPrize findRank(int matchingCount, boolean bonusMatch) {
         if (matchingCount == FIRST_PRIZE.getMatchingCount()) {
             return FIRST_PRIZE;
         }
