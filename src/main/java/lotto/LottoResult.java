@@ -62,7 +62,7 @@ public class LottoResult {
         }
         double profitRate = (totalPrize / purchaseAmount) * 100;
         profitRate = Math.round(profitRate * 10) / 10.0;
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
     }
 
 }
