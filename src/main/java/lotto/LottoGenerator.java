@@ -12,7 +12,7 @@ public class LottoGenerator {
         if (budget % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException("[ERROR] " + PRICE_PER_LOTTO + "원 단위로만 구매 가능합니다.");
         }
-        return budget % PRICE_PER_LOTTO;
+        return budget / PRICE_PER_LOTTO;
     }
 
     public Lotto generateLotto() {
