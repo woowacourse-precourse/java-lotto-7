@@ -56,7 +56,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public LottoWinningResultRequest inputLottoWinningResult() {
-        return null;
+        return inputView.inputLottoWinningResult();
     }
 
 
