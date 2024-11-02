@@ -18,10 +18,10 @@ public class WinningController {
     }
 
     private WinningGenerator inputLottoWinning() {
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         outputView.printlnMessage(PrintMessage.INPUT_LOTTO_WINNING_NUMBER);
         String lottoWinning = inputView.inputUser();
 
+        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         return WinningGenerator.create(lottoWinning);
     }
 

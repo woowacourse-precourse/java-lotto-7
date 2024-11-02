@@ -20,6 +20,7 @@ public class PaymentController {
     private Payment payMoney() {
         outputView.printlnMessage(PrintMessage.INPUT_LOTTO_PURCHASE_AMOUNT);
         String money = inputView.inputUser();
+        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         return Payment.create(money);
     }
 

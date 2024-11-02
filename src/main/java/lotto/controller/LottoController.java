@@ -21,24 +21,23 @@ public class LottoController {
     }
 
     public void showLottoDetail(Payment payment) {
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
-
         Integer lottoCount = payment.getLottoCount();
         outputView.printBuyResult(lottoCount);
 
         LottoGenerator lottoGenerator = LottoGenerator.create(lottoCount);
         lottoTicket = lottoGenerator.getLottoTicket();
         outputView.printLotto(lottoTicket);
+        outputView.printlnMessage(PrintMessage.LINE_SPACE);
     }
 
     public void showLottoWinningResult(Lotto winning, Bonus bonus) {
         ResultGenerator resultGenerator = ResultGenerator.create(lottoTicket, winning, bonus); //수정 필요
 
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         outputView.printlnMessage(PrintMessage.LOTTO_WINNING_RESULT_MESSAGE);
         ResultCalculator resultCalculator = ResultCalculator.create(
                 resultGenerator.getWinningResult(),
                 resultGenerator.getBonusResult());
         outputView.printWinningDetail(resultCalculator.getDetail());
+        outputView.printlnMessage(PrintMessage.LINE_SPACE);
     }
 }

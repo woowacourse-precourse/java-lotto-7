@@ -19,10 +19,10 @@ public class BonusController {
     }
 
     private BonusGenerator inputLottoBonus(Lotto winning) {
-        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
 
         String lottoBonus = inputView.inputUser();
+        outputView.printlnMessage(PrintMessage.LINE_SPACE);
         return BonusGenerator.create(winning, lottoBonus);
     }
 
