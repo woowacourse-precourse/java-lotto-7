@@ -122,10 +122,27 @@ public class ValidatorTest {
     }
 
     private static Object[][] validListAndNumberProvider() {
-        return new Object[][] {
-                {List.of(1,2,3), 3},
-                {List.of(1,2,3,4,5), 5},
+        return new Object[][]{
+                {List.of(1, 2, 3), 3},
+                {List.of(1, 2, 3, 4, 5), 5},
                 {List.of(1), 1}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource("inValidListAndNumberProvider")
+    @DisplayName("리스트 사이즈 비교 예외상황 테스트")
+    public void isEqualListSizeExceptionTest(List<Integer> list, int number) {
+        assertThatThrownBy(() -> Validator.isEqualListSize(list, number))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    private static Object[][] inValidListAndNumberProvider() {
+        return new Object[][]{
+                {List.of(1, 2, 3), 4},
+                {List.of(1, 2, 3, 4, 5), 6},
+                {List.of(1), 0}
         };
     }
 
