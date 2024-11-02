@@ -18,7 +18,7 @@ public class LottoMachine {
         return lottos;
     }
 
-    private static List<Integer> generateNumbers() {
+    public List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_SIZE);
     }
 }
