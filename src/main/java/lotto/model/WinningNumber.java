@@ -23,19 +23,34 @@ public class WinningNumber extends Lotto {
     }
 
     public int getWinningRank(Lotto oneLotto) {
-        List<Integer> winningNumber = this.getNumbers();
-        int matchedCount = 0;
-        boolean matchedBonusNumber = false;
+        int matchedCount;
+        boolean isMatchedBonusNumber;
 
-        for (Integer singleNumber : winningNumber) {
+        matchedCount = countMatchingNumbers(oneLotto);
+        isMatchedBonusNumber = isMatchBonusNum(oneLotto);
+
+        return calculateWinningRank(matchedCount, isMatchedBonusNumber);
+    }
+
+    private int countMatchingNumbers(Lotto oneLotto) {
+        int matchedCount = 0;
+
+        for (Integer singleNumber : this.getNumbers()) {
             if (oneLotto.getNumbers().contains(singleNumber)) {
                 matchedCount++;
             }
         }
-        if (oneLotto.getNumbers().contains(bonusNumber)) {
-            matchedBonusNumber = true;
-        }
+        return matchedCount;
+    }
 
+    private boolean isMatchBonusNum(Lotto oneLotto) {
+        if (oneLotto.getNumbers().contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+    private int calculateWinningRank(int matchedCount, boolean isMatchedBonusNumber) {
         if (matchedCount >= 0 && matchedCount <= 2) {
             return 0;
         }
@@ -45,10 +60,10 @@ public class WinningNumber extends Lotto {
         if (matchedCount == 4) {
             return 4;
         }
-        if (matchedCount == 5 && !matchedBonusNumber) {
+        if (matchedCount == 5 && !isMatchedBonusNumber) {
             return 3;
         }
-        if (matchedCount == 5 && matchedBonusNumber) {
+        if (matchedCount == 5 && isMatchedBonusNumber) {
             return 2;
         }
         return 1;
