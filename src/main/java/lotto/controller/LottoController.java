@@ -21,27 +21,45 @@ public class LottoController {
     }
 
     public void run(){
-        int purchaseAmount = inputView.RequestPurchaseAmount();
-        Lottos lottos = purchaseLotto(purchaseAmount);
+        Lottos lottos = purchaseLotto();
         WinningResult winningResult = createWinningResult();
         printResults(lottos, winningResult);
     }
 
-    private Lottos purchaseLotto(int purchaseAmount) {
-        Lottos lottos = store.sell(purchaseAmount);
-        outputView.printPurchaseResult(lottos);
-        return lottos;
+    private Lottos purchaseLotto() {
+        try {
+            int purchaseAmount = inputView.RequestPurchaseAmount();
+            Lottos lottos = store.sell(purchaseAmount);
+            outputView.printPurchaseResult(lottos);
+            return lottos;
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return purchaseLotto();
+        }
     }
 
     private WinningResult createWinningResult() {
-            try {
-                Lotto winningLotto = new Lotto(inputView.RequestWinningNumbers());
-                int bonusNumber = inputView.RequestBonusNumber();
-                return new WinningResult(winningLotto, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                return createWinningResult();
-            }
+        Lotto winningLotto = createWinningLotto();
+        return createWinningResultWithBonusNumber(winningLotto);
+    }
+
+    private WinningResult createWinningResultWithBonusNumber(Lotto winningLotto) {
+        try {
+            int bonusNumber = inputView.RequestBonusNumber();
+            return new WinningResult(winningLotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningResultWithBonusNumber(winningLotto);
+        }
+    }
+
+    private Lotto createWinningLotto(){
+        try {
+            return new Lotto(inputView.RequestWinningNumbers());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningLotto();
+        }
     }
 
     private void printResults(Lottos lottos, WinningResult winningResult) {
