@@ -12,17 +12,17 @@ public class Money {
     }
 
     private void validate() {
-        numberValidate();
-        makeToTicketValidate();
+        validateMoneyMinimum();
+        validateMoneyUnit();
     }
 
-    private void numberValidate() {
+    private void validateMoneyMinimum() {
         if (money < TICKET_PRICE) {
             throw new IllegalArgumentException(MONEY_INPUT_MINIMUM_ERROR_MESSAGE);
         }
     }
 
-    private void makeToTicketValidate() {
+    private void validateMoneyUnit() {
         if (money % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(CANNOT_BUY_TICKET_ERROR_MESSAGE);
         }
