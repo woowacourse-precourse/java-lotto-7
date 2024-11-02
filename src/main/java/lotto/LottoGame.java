@@ -65,7 +65,7 @@ public class LottoGame {
         while (true) {
             try {
                 outputView.printBonusNumber();
-                bonusNumber = inputView.setBonusNumber();
+                bonusNumber = inputView.setBonusNumber(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

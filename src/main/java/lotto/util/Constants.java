@@ -14,6 +14,7 @@ public enum Constants {
     ERROR_LOTTO_NUMBER("로또 번호는 1부터 45까지의 숫자여야 합니다."),
     ERROR_BONUS_NUMBER("보너스 번호는 1부터 45까지의 숫자여야 합니다."),
     ERROR_DUPLICATE_NUMBER("로또 번호는 중복되지 않아야 합니다."),
+    ERROR_DUPLICATE_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복되지 않아야 합니다."),
     WINNING_THREE_COUNT("3개 일치 (5,000원) - "),
     WINNING_FOUR_COUNT("4개 일치 (50,000원) - "),
     WINNING_FIVE_COUNT("5개 일치 (1,500,000원) - "),

@@ -7,7 +7,7 @@ import static lotto.util.Constants.*;
 
 public class WinningNumberParser {
 
-    private static List<Integer> winningNumbers = new ArrayList<>();
+    private static final List<Integer> winningNumbers = new ArrayList<>();
 
     public List<Integer> parseWinningNumbers(String winningNumber) {
         String[] result = winningNumber.split(",");
@@ -18,7 +18,7 @@ public class WinningNumberParser {
 
         for (String string : result) {
             int number = conventToInt(string.strip());
-            validateNumberRange(number);  // 1-45 범위 체크 (필요한 경우)
+            validateNumberRange(number);
             winningNumbers.add(number);
         }
 

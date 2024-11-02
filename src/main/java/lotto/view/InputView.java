@@ -47,9 +47,9 @@ public class InputView {
         return winningNumberParser.parseWinningNumbers(numbers);
     }
 
-    public int setBonusNumber() {
+    public int setBonusNumber(List<Integer> winningNumbers) {
         String bonusNumber = Console.readLine();
-        return bonusNumberValidator.validate(bonusNumber);
+        return bonusNumberValidator.validate(bonusNumber, winningNumbers);
     }
 
     public Map<Ranking, Integer> getLottoResult(List<Integer> winningNumbers, int bonusNumber) {
