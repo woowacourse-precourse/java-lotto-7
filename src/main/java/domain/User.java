@@ -32,4 +32,16 @@ public class User {
     public void addWinning(WinningLotto winningLotto) {
         this.winnings.add(winningLotto);
     }
+
+    public List<WinningLotto> getWinningLottos() {
+        return this.winnings;
+    }
+
+    public void updateRateOfReturn(double rateOfReturn) {
+        this.rateOfReturn = rateOfReturn;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
 }
