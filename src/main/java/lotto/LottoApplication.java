@@ -18,14 +18,22 @@ public class LottoApplication {
     }
 
     public void run() {
-        purchaseLotto();
+        List<Lotto> lottos = purchaseLotto();
+        List<Integer> winningNumbers = getWinningNumbers();
     }
 
-    private void purchaseLotto() {
+    private List<Lotto> purchaseLotto() {
         InputMessage.purchaseAmount();
         long purchaseAmount = inputReader.readPurchaseAmount();
         List<Lotto> lottos = lottoGenerator.purchase(purchaseAmount);
         outputPrinter.printLottoCreated(lottos);
+
+        return lottos;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        InputMessage.winningNumbers();
+        return inputReader.readWinningNumbers();
     }
 
 }
