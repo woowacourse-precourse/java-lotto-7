@@ -1,24 +1,24 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.dto.LottoDTO;
 import lotto.dto.LottoResultDTO;
 import lotto.dto.LottoStatisticsDTO;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 
-/*
-이거 하드코딩 값 포장해주고, 비즈니스 로직은 DTO 생성 후에 다시 손봐야함.
- */
 public class LottoService {
     private final int INITIAL_VALUE = 0;
 
     public LottoResultDTO checkWinnings(Lottos userLottos, WinningLotto winningLotto) {
-        List<Integer> winningCounts = List.of(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE,
-                INITIAL_VALUE);
+        List<LottoDTO> lottoDTOs = userLottos.toDtoList();
+        List<Integer> winningCounts = List.of(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE);
         int totalPrize = INITIAL_VALUE;
 
-        for (Lotto lotto : userLottos.getLottos()) {
+        for (LottoDTO lottoDTO : lottoDTOs) {
+            Lotto lotto = new Lotto(lottoDTO.getNumbers());
+
             int matchCount = winningLotto.countMatches(lotto);
             boolean bonusMatch = winningLotto.isBonusMatched(lotto);
 
