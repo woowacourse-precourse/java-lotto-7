@@ -5,14 +5,14 @@ import java.util.Set;
 import lotto.util.enums.ValidateMessage;
 
 public class Lotto {
-    private static final int FIFTY_FIVE = 45;
+    private static final int FORTY_FIVE = 45;
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDistinct(numbers);
-        validateOverThanFiftyFive(numbers);
+        validateOverThanFortyFive(numbers);
         this.numbers = numbers;
     }
 
@@ -29,9 +29,9 @@ public class Lotto {
         }
     }
 
-    public static void validateOverThanFiftyFive(List<Integer> numbers) {
+    private void validateOverThanFortyFive(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number >= FIFTY_FIVE) {
+            if (number > FORTY_FIVE) {
                 throw new IllegalArgumentException(ValidateMessage.NUMBER_RANGE_ERROR.getMessage());
             }
         });
