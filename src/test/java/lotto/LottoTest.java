@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static exception.ErrorMessage.NUMBER_RANGE_ERROR;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
     @Test
@@ -21,5 +24,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1<=x<=45 범위가 아닐 경우, 예외가 발생한다")
+    @Test
+    void invalid_number_range_then_throw_exception() {
+        //given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 56);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Lotto lotto = new Lotto(numbers);
+        });
+        assertThat(exception.getMessage()).isEqualTo(NUMBER_RANGE_ERROR.getMessage());
+    }
+
 }
