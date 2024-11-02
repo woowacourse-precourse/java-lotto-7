@@ -16,6 +16,7 @@ public class LottoTransform {
 
     public void inputToWinningNumbers(String input) {
         List<Integer> sortedWinningNumbers = Arrays.stream(input.split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .sorted()
                 .toList();
