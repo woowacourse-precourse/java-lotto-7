@@ -3,20 +3,19 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.ErrorCode;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
-    private static final String ERROR_AMOUNT = "[ERROR] 로또 구매금액은 1000원 이상이어야 합니다.";
 
     public List<Lotto> purchase(int money) {
         validateMoney(money);
-        int count = money / LOTTO_PRICE;
-        return createLottos(count);
+        return createLottos(money / LOTTO_PRICE);
     }
 
     private void validateMoney(int money) {
-        if (money % LOTTO_PRICE != 0 || money < LOTTO_PRICE) {
-            throw new IllegalArgumentException(ERROR_AMOUNT);
+        if (money < LOTTO_PRICE || money % LOTTO_PRICE != 0) {
+            throw ErrorCode.INVALID_PURCHASE_AMOUNT.throwError();
         }
     }
 
@@ -29,6 +28,6 @@ public class LottoMachine {
     }
 
     private Lotto createLottoNumber() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }
