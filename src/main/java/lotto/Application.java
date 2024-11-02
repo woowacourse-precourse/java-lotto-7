@@ -21,6 +21,7 @@ public class Application {
         printPurchasedLottos(purchasedLottos);
 
         Set<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber(winningNumbers);
 
 
     }
@@ -65,7 +66,20 @@ public class Application {
 
     private static void validateWinningNumbers(Set<Integer> winningNumbers) {
         if (winningNumbers.size() != 6 || winningNumbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 범위 내의 중복되지 않은 숫자 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 범위 내의 중복되지 않는 숫자 6개여야 합니다.");
+        }
+    }
+
+    private static int readBonusNumber(Set<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumber(int bonusNumber, Set<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 범위 내의 당첨 번호와 중복되지 않는 숫자여야 합니다.");
         }
     }
 }
