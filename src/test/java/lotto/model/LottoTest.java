@@ -79,11 +79,11 @@ class LottoTest {
     void 로또_1등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.FIRST, rank);
@@ -94,11 +94,11 @@ class LottoTest {
     void 로또_2등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.SECOND, rank);
@@ -109,11 +109,11 @@ class LottoTest {
     void 로또_3등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.THIRD, rank);
@@ -124,11 +124,11 @@ class LottoTest {
     void 로또_4등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 10, 7));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.FOURTH, rank);
@@ -139,11 +139,11 @@ class LottoTest {
     void 로또_5등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.FIFTH, rank);
@@ -154,11 +154,11 @@ class LottoTest {
     void 로또_꽝등인_경우() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 10, 11, 12, 13));
-        List<Integer> winnerNums = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 7;
 
         // when
-        Rank rank = lotto.getRank(winnerNums, bonus);
+        Rank rank = lotto.getRank(winner, bonus);
 
         // then
         assertEquals(Rank.NO_LUCK, rank);

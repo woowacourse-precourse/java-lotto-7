@@ -4,16 +4,17 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 import lotto.validate.Validator;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
     /**
@@ -26,7 +27,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new LottoException(ErrorMessage.NOT_SIX_NUM);
-        } else if (!Validator.inRangeList(MIN, MAX, numbers)) {
+        } else if (!Validator.inRangeList(numbers)) {
             throw new LottoException(ErrorMessage.NOT_IN_RANGE);
         } else if (!Validator.isNotDistinct(numbers)) {
             throw new LottoException(ErrorMessage.EXIST_NUM);
@@ -39,8 +40,8 @@ public class Lotto {
      * @param bonus 보너스 번호
      * @return 순위
      */
-    public Rank getRank(List<Integer> winner, int bonus) {
-        int winningNumCount = countCommon(winner);
+    public Rank getRank(Lotto winner, int bonus) {
+        int winningNumCount = countCommon(winner.getNumbers());
 
         if (winningNumCount==6) {
             return Rank.FIRST;
@@ -64,5 +65,13 @@ public class Lotto {
      */
     private int countCommon(List<Integer> winner) {
         return (int) numbers.stream().filter(winner::contains).count();
+    }
+
+    /**
+     * 로또 번호 리스트 가져오기
+     * @return
+     */
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
