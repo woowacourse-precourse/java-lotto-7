@@ -2,6 +2,8 @@ package lotto.view;
 
 import static lotto.model.Rank.*;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import lotto.dto.LottoStatus;
@@ -11,12 +13,12 @@ import lotto.model.Rank;
 
 public class OutputView {
 
-    public static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    public static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    public static final String EARNING_RATE_MESSAGE_PREFIX = "총 수익률은 ";
-    public static final String EARNING_RATE_MESSAGE_SUFFIX = "%입니다.";
-    public static final String STATISTICS_START_MESSAGE = "\n당첨 통계\n---";
-
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+    private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String EARNING_RATE_MESSAGE_PREFIX = "총 수익률은 ";
+    private static final String EARNING_RATE_MESSAGE_SUFFIX = "%입니다.";
+    private static final String STATISTICS_START_MESSAGE = "\n당첨 통계\n---";
+    private static final String PATTERN = "#0.0";
 
     public void printError(String errorMessageContent) {
         System.out.println(ERROR_MESSAGE_PREFIX + errorMessageContent);
@@ -48,8 +50,11 @@ public class OutputView {
     }
 
     private static void printEarningRate(double earningRate) {
+        BigDecimal bigEarningRate = new BigDecimal(earningRate);
+        DecimalFormat df = new DecimalFormat(PATTERN);
+        String result = df.format(bigEarningRate);
         System.out.println(
-                EARNING_RATE_MESSAGE_PREFIX + earningRate + EARNING_RATE_MESSAGE_SUFFIX);
+                EARNING_RATE_MESSAGE_PREFIX + result + EARNING_RATE_MESSAGE_SUFFIX);
     }
 
     private static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
