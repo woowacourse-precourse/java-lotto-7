@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.validator.LottoPurchaseAmountValidator.validateLottoPurchaseAmount;
-
 import lotto.dto.LottoPurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,6 +16,5 @@ public class LottoController {
     public void setUp() {
         outputView.printLottoPurchaseAmountMessage();
         LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(inputView.InputLottoPurchaseAmount());
-        validateLottoPurchaseAmount(lottoPurchaseAmount.lottoPurchaseAmount());
     }
 }
