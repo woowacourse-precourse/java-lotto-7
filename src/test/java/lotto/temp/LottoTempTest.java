@@ -1,12 +1,12 @@
 package lotto.temp;
 
+import lotto.Lotto;
 import lotto.util.CommonIo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTempTest {
     private LottoTemp lottoTemp;
@@ -22,6 +22,12 @@ class LottoTempTest {
         assertThat(lottoTemp.convertMoneyToTicket(8000)).isEqualTo(8);
         assertThat(lottoTemp.convertMoneyToTicket(100000)).isEqualTo(100);
         assertThat(lottoTemp.convertMoneyToTicket(5000)).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("발행한 로또가 로또의 객체인지 확인하는 테스트")
+    void createLottoInstance(){
+        assertThat(lottoTemp.createSingleLotto()).isInstanceOf(Lotto.class);
     }
 
 }
