@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.Lotto.LOTTO_NUMBER_MAXIMUM;
+import static lotto.Lotto.LOTTO_NUMBER_MINIMUM;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,10 +15,6 @@ public class LottoStore {
     public static final int MAX_BUY_PRICE = 100_000;
 
     public static final int LOTTO_PRICE = 1000;
-
-    public static final int LOTTO_NUMBER_MINIMUM = 1;
-
-    public static final int LOTTO_NUMBER_MAXIMUM = 45;
 
     public static LottoTicket makeLottoTicket(String purchaseMoney) {
         validateInput(purchaseMoney);

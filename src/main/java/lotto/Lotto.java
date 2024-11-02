@@ -1,12 +1,13 @@
 package lotto;
 
-import static lotto.model.LottoStore.LOTTO_NUMBER_MAXIMUM;
-import static lotto.model.LottoStore.LOTTO_NUMBER_MINIMUM;
-
 import java.util.List;
 import lotto.util.Validator;
 
 public class Lotto {
+
+    public static final int LOTTO_NUMBER_MINIMUM = 1;
+
+    public static final int LOTTO_NUMBER_MAXIMUM = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

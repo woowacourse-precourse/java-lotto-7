@@ -1,8 +1,5 @@
 package lotto.model;
 
-import static lotto.model.LottoStore.LOTTO_NUMBER_MAXIMUM;
-import static lotto.model.LottoStore.LOTTO_NUMBER_MINIMUM;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
