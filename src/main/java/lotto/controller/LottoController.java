@@ -14,5 +14,5 @@ public class LottoController {
     public void startLotto() {
         LottoGame lottoGame = new LottoGame(inputReader);
         lottoGame.issueLottoNumbers();
-    };
+    }
 }
