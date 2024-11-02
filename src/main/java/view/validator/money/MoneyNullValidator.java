@@ -1,19 +1,14 @@
 package view.validator.money;
 
-import view.validator.InputValidator;
+import view.validator.NullValidator;
 
-public class MoneyNullValidator extends InputValidator {
+public class MoneyNullValidator extends NullValidator {
 
-    private MoneyNullValidator() {}
+    private MoneyNullValidator() {
+        super("구입금액은 빈 문자열일 수 없습니다.");
+    }
 
     public static MoneyNullValidator initiate() {
         return new MoneyNullValidator();
-    }
-
-    @Override
-    public void validate(final String input) {
-        if (input.isEmpty() || input.isBlank()) {
-            throw new IllegalArgumentException("구입금액은 빈 문자열일 수 없습니다.");
-        }
     }
 }
