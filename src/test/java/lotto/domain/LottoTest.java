@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static lotto.domain.LottoInfo.END_NUMBER;
+import static lotto.domain.WinningInfo.THIRD;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -31,5 +33,16 @@ class LottoTest {
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, outOfRangeNumber)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_등수_확인_기능_테스트() {
+
+        Lotto testLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
+        BonusNumber bonusNumber = new BonusNumber("8", winningNumbers);
+
+        assertThat(testLotto.findPlace(winningNumbers,bonusNumber))
+                .isEqualTo(THIRD.getPlace());
     }
 }
