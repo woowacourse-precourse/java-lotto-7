@@ -10,4 +10,8 @@ public class Lotto {
         LottoValidator.validateLotto(numbers);
         this.numbers = numbers;
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
