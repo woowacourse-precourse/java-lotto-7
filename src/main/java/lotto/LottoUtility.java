@@ -18,4 +18,14 @@ public class LottoUtility {
         }
         return numbers;
     }
+
+    public static String getWinningInfo(LottoWinningStandard standard, int matchedCount) {
+        if(standard.equals(LottoWinningStandard.SECOND_PRIZE)) {
+            return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedCount + "개";
+        }
+
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String prize = formatter.format(standard.getPrizeMoney());
+        return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + matchedCount + "개";
+    }
 }
