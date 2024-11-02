@@ -34,4 +34,17 @@ class LottoResultTest {
         assertThat(ranks.getFirst()).isEqualTo(LottoRankType.FIRST);
     }
 
+    @Test
+    @DisplayName("2등 당첨 여부를 확인한다.")
+    void calculateLottoRanksWithoutBonus() {
+        List<Lotto> lottos = List.of(Lotto.from(List.of(1, 2, 3, 4, 5, 7)));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        LottoResult lottoResult = LottoResult.of(lottos, winningNumbers, bonusNumber);
+        List<LottoRankType> ranks = lottoResult.getLottoRankTypes();
+
+        assertThat(ranks.getFirst()).isEqualTo(LottoRankType.SECOND);
+    }
+
 }
