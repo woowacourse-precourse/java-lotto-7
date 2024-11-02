@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -47,5 +49,23 @@ class BonusTest {
         assertThatThrownBy(() -> Bonus.of("1", new Lotto(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 금액 - 성공 테스트")
+    void validBonusNumber() {
+        //given
+        String input = "7";
+        List<Integer> lottos = new ArrayList<>();
+        for (int i = 1; i < 7; i++) {
+            lottos.add(i);
+        }
+        Lotto winningLotto = new Lotto(lottos);
+
+        //when
+        Bonus bonus = Bonus.of(input, winningLotto);
+
+        //then
+        assertThat(bonus.getNumber()).isEqualTo(7);
     }
 }

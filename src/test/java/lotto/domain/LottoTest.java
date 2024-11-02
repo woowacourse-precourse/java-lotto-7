@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -55,5 +56,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호 - 성공 테스트")
+    void validLottoNumber() {
+        //given
+        String input = "1, 2, 3, 4, 5, 6";
+
+        //when
+        Lotto lotto = Lotto.of(input);
+
+        //then
+        assertThat(lotto.getNumbers()).hasSize(6);
     }
 }

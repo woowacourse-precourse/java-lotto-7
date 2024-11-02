@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.ErrorMessage;
@@ -54,5 +55,18 @@ class AmountTest {
         assertThatThrownBy(() -> Amount.of("11111"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NOT_THOUSAND_UNIT_PURCHASE_AMOUNT.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 - 성공 테스트")
+    void validPurchaseAmount() {
+        //given
+        String input = "10000";
+
+        //when
+        Amount amount = Amount.of(input);
+
+        //then
+        assertThat(amount.getAmount()).isEqualTo(10000);
     }
 }
