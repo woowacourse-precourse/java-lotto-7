@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @Test
@@ -44,6 +43,14 @@ class LottoTest {
     @DisplayName("validateTest 로또 number 정상 작동")
     void validateCorrectTest(){
         assertThatNoException().isThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)));
+    }
+
+    @Test
+    @DisplayName("sortLotto 정상 작동")
+    void sortLottoTest(){
+        Lotto actualLotto = Lotto.sortLotto(new Lotto(List.of(6,4,3,2,1,7)));
+        Lotto expectedLotto = new Lotto(List.of(1,2,3,4,6,7));
+        assertThat(actualLotto.getNumbers()).isEqualTo(expectedLotto.getNumbers());
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
