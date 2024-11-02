@@ -3,10 +3,17 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LoopTest {
+    @BeforeEach
+    void setup() {
+        System.setOut(new PrintStream(OutputStream.nullOutputStream()));
+    }
 
     @Test
     void 바로_성공_시에는_한번만_실행된다() {

@@ -13,7 +13,7 @@ public class Loop {
                 func.exec();
                 break;
             } catch (RuntimeException e) {
-                if (e instanceof LottoException || e instanceof IllegalArgumentException) {
+                if (e instanceof IllegalArgumentException) {
                     System.out.println("[ERROR] " + e.getMessage());
                     continue;
                 }

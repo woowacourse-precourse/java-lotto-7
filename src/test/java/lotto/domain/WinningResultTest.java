@@ -16,19 +16,18 @@ class WinningResultTest {
         WinningResult lottoResult = new WinningResult(prizes);
 
         double totalRate = lottoResult.getTotalRate();
-        assertThat(totalRate).isEqualTo(expected);
-//        assertThat(new BigDecimal("0.00")).isEqualTo(new BigDecimal("0.00"));
+
+        assertThat(String.valueOf(totalRate)).isEqualTo(String.valueOf(expected));
     }
 
     private static Stream<Arguments> testTotalRate() {
         return Stream.of(
                 Arguments.of(List.of(WinningPrize.NONE), 0.0),
-                Arguments.of(
-                        List.of(WinningPrize.FIFTH, WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE,
-                                WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE), 62.5),
+                Arguments.of(List.of(
+                        WinningPrize.FIFTH, WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE,
+                        WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE, WinningPrize.NONE), 62.5),
                 Arguments.of(List.of(WinningPrize.FIFTH, WinningPrize.NONE, WinningPrize.NONE), 166.7),
                 Arguments.of(List.of(WinningPrize.FIFTH), 500.0)
-
         );
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public enum WinningPrize {
     NONE(0, 0, 0),
@@ -23,7 +24,7 @@ public enum WinningPrize {
     static WinningPrize getPrize(int matches, int bonus) {
         return Arrays.stream(values())
                 .filter(prize -> isMatch(prize, matches, bonus))
-                .findFirst()
+                .max(Comparator.comparingLong(WinningPrize::getPrizeMoney))
                 .orElse(NONE);
     }
 
@@ -38,8 +39,8 @@ public enum WinningPrize {
     @Override
     public String toString() {
         if (bonus > 0) {
-            return String.format("%d개 일치 보너스 일치 (%,d)원", matches, prizeMoney);
+            return String.format("%d개 일치, 보너스 볼 일치 (%,d원)", matches, prizeMoney);
         }
-        return String.format("%d개 일치 (%,d)원", matches, prizeMoney);
+        return String.format("%d개 일치 (%,d원)", matches, prizeMoney);
     }
 }
