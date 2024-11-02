@@ -24,4 +24,16 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(joining(delimiter));
     }
+
+    public Rank checkRank(final List<Integer> winningNumber, final int bonusNumber) {
+        int winningNumberMatchCount = countMatchedWinningNumber(winningNumber);
+        boolean isBonusNumberMatched = numbers.contains(bonusNumber);
+        return RankRule.checkRank(winningNumberMatchCount, isBonusNumberMatched);
+    }
+
+    private int countMatchedWinningNumber(List<Integer> winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
 }
