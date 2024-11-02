@@ -61,12 +61,12 @@ public class UserInput {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자여야 합니다.");
         }
 
-        if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 0 이상이어야 합니다.");
+        if (amount < lottoPrice) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 " + lottoPrice + "원 이상이어야 합니다.");
         }
 
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
+        if (amount % lottoPrice != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 " + lottoPrice + "원 단위여야 합니다.");
         }
     }
 
