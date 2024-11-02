@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constants.exception.ErrorMessage.*;
+
 public class BonusNumber {
 
     private final int bonusNumber;
@@ -34,27 +36,27 @@ public class BonusNumber {
 
         private static void validateWinningNumbersIsNotEmpty(String bonusNumber) {
             if (bonusNumber == null || bonusNumber.isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 비어있을 수 없습니다.");
+                throw new IllegalArgumentException(EMPTY_BONUS_NUMBER.getMessage());
             }
         }
 
         private static int validateBonusNumberIsNumeric(String bonusNumber) {
             if (!bonusNumber.matches(BONUS_NUMBER_NUMERIC_REGEX)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException(NON_NUMERIC_BONUS_NUMBER.getMessage());
             }
             return Integer.parseInt(bonusNumber);
         }
 
         private static void validateBonusNumberInRange(int bonusNumber) {
             if (bonusNumber < MINIMUM_WINNING_NUMBER || bonusNumber > MAXIMUM_WINNING_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
 
         private static void validateUniqueBonusAndWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
             for (int winningNumber : winningNumbers) {
                 if (winningNumber == bonusNumber) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+                    throw new IllegalArgumentException(DUPLICATE_BONUS_AND_WINNING_NUMBER.getMessage());
                 }
             }
         }

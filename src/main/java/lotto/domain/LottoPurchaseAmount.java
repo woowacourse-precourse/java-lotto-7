@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.exception.ErrorMessage.*;
+
 public class LottoPurchaseAmount {
 
     private static final String LOTTO_PURCHASE_AMOUNT_REGEX = "^[1-9]\\d*$";
@@ -32,19 +34,19 @@ public class LottoPurchaseAmount {
 
         private static void validatePurchaseAmountIsNotEmpty(String purchaseAmount) {
             if (purchaseAmount == null || purchaseAmount.isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 비어있을 수 없습니다.");
+                throw new IllegalArgumentException(EMPTY_PURCHASE_AMOUNT.getMessage());
             }
         }
 
         private static void validatePurchaseAmountRegex(String purchaseAmount) {
             if (!purchaseAmount.matches(LOTTO_PURCHASE_AMOUNT_REGEX)) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 양수만 입력 가능합니다.");
+                throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
             }
         }
 
         private static void validatePurchaseAmountUnit(String purchaseAmount) {
             if (Integer.parseInt(purchaseAmount) % PURCHASE_AMOUNT_UNIT != REMAINDER) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력할 수 있습니다.");
+                throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
             }
         }
 

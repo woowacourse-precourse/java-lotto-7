@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.*;
 
+import static lotto.constants.exception.ErrorMessage.*;
+
 public class WinningNumbers {
 
     private final List<Integer> numbers;
@@ -45,7 +47,7 @@ public class WinningNumbers {
 
         private static void validateWinningNumbersIsNotEmpty(String numbers) {
             if (numbers == null || numbers.isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 비어있을 수 없습니다.");
+                throw new IllegalArgumentException(EMPTY_WINNING_NUMBERS.getMessage());
             }
         }
 
@@ -54,19 +56,19 @@ public class WinningNumbers {
                 return Arrays.stream(numbers.split(COMMA))
                         .toList();
             }
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
+            throw new IllegalArgumentException(INVALID_DELIMITER.getMessage());
         }
 
         private static void validateWinningNumbersCount(List<String> delimitedWinningNumbers) {
             if (delimitedWinningNumbers.size() != WINNING_NUMBERS_SIZE) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
             }
         }
 
         private static List<Integer> validateWinningNumbersIsNumeric(List<String> delimitedWinningNumbers) {
             for (String delimitedWinningNumber : delimitedWinningNumbers) {
                 if (!delimitedWinningNumber.matches(BONUS_NUMBER_NUMERIC_REGEX)) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+                    throw new IllegalArgumentException(NON_NUMERIC_WINNING_NUMBER.getMessage());
                 }
             }
             return delimitedWinningNumbers.stream()
@@ -79,14 +81,14 @@ public class WinningNumbers {
                     .anyMatch(lottoNumber -> lottoNumber < MINIMUM_WINNING_NUMBER || lottoNumber > MAXIMUM_WINNING_NUMBER);
 
             if (hasOutOfRangeNumber) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다.");
+                throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
 
         private static void validateUniqueWinningNumbers(List<Integer> positiveWinningNumbers) {
             int positiveWinningNumbersSize = new HashSet<>(positiveWinningNumbers).size();
             if (positiveWinningNumbersSize != positiveWinningNumbers.size()) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS.getMessage());
             }
         }
 
