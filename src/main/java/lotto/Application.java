@@ -17,19 +17,7 @@ public class Application {
         printLottos(purchaseAmount, lottos);
 
         Lotto winningNumbers = scanWinningNumbers();
-
-        int bonusNumber;
-        while (true) {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            String bonusNumberInput = Console.readLine();
-            try{
-                bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbers);
-
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        int bonusNumber = scanBonusNumber(winningNumbers);
 
         Map<PrizeRank, Integer> prizeRankCounts = new HashMap<>();
 
@@ -103,6 +91,18 @@ public class Application {
                 }
 
                 return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static int scanBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            try{
+                String bonusNumberInput = Console.readLine();
+                return Validator.validateBonusNumber(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
