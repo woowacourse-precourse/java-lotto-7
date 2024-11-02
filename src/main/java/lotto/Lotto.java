@@ -3,7 +3,6 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -13,31 +12,36 @@ public class Lotto {
     }
 
     public static Lotto getWinningNumbers() {
-        printRequestingLottoWinningNumbers();
-
         String numbersInput = InputHandler.getUserInput();
-        System.out.println();
 
-        return Lotto.getNumbersFromInput(numbersInput);
+        try {
+            return Lotto.getNumbersFromInput(numbersInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "다시 입력해 주세요.");
+            return getWinningNumbers();
+        }
     }
 
     public static int getBonusNumber(Lotto winningNumbers) {
-        printRequestingBonusNumber();
-
         String numberInput = InputHandler.getUserInput();
-        return getBonusNumberFromInput(winningNumbers, numberInput);
+        try {
+            return getBonusNumberFromInput(winningNumbers, numberInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+            return getBonusNumber(winningNumbers);
+        }
     }
 
-    private static void printRequestingLottoWinningNumbers() {
+    public static void printRequestingLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    private static void printRequestingBonusNumber() {
+    public static void printRequestingBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     private static Lotto getNumbersFromInput(String userInput) {
-        List<Integer> winningNumbers = new ArrayList<Integer>();
+        List<Integer> winningNumbers = new ArrayList<>();
 
         String[] numbers = userInput.split(",", -1);
 
