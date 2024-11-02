@@ -10,9 +10,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoStore store;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final LottoStore store;
 
     public LottoController() {
         this.inputView = new InputView();
