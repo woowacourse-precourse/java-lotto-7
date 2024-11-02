@@ -2,8 +2,6 @@ package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
 import lotto.model.domain.BonusBall;
 import lotto.model.domain.Lotto;
@@ -29,20 +27,13 @@ public class Lottos {
     }
 
     public RankResult calculateWinningResults(WinningBalls winningBalls, BonusBall bonusBall) {
-        EnumMap<Rank, Integer> ranks = initializeRanks();
+        RankResult rankResult = new RankResult();
 
         for (Lotto lotto : lottos) {
             Rank rank = calculateRankForLotto(lotto, winningBalls, bonusBall);
-            ranks.put(rank, ranks.getOrDefault(rank, 0) + 1);
+            rankResult.increaseRankCount(rank);
         }
-        return new RankResult(ranks);
-    }
-
-    private EnumMap<Rank, Integer> initializeRanks() {
-        EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
-        Arrays.stream(Rank.values())
-                .forEach(rank -> ranks.put(rank, 0));
-        return ranks;
+        return rankResult;
     }
 
     private Rank calculateRankForLotto(Lotto lotto, WinningBalls winningBalls, BonusBall bonusBall) {

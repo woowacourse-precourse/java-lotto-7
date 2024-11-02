@@ -1,6 +1,7 @@
 package lotto.model.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -13,8 +14,12 @@ public class RankResult {
 
     private EnumMap<Rank, Integer> rankResults;
 
-    public RankResult(EnumMap<Rank, Integer> rankResults) {
-        this.rankResults = rankResults;
+    public RankResult() {
+        EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
+        Arrays.stream(Rank.values())
+                .forEach(rank -> ranks.put(rank, 0));
+
+        this.rankResults = ranks;
     }
 
     public Float calculateReturnRate(Long totalLottoPrice) {
@@ -75,5 +80,13 @@ public class RankResult {
 
     public int getMatchCount(Rank rank) {
         return this.rankResults.get(rank);
+    }
+
+    protected EnumMap<Rank, Integer> getRankReuslts() {
+        return this.rankResults;
+    }
+
+    public void increaseRankCount(Rank rank) {
+        this.rankResults.put(rank, rankResults.getOrDefault(rank, 0) + 1);
     }
 }
