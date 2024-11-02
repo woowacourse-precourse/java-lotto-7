@@ -3,6 +3,8 @@ package lotto.lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoAmountTest {
 
@@ -11,5 +13,13 @@ class LottoAmountTest {
         assertThatThrownBy(() -> new LottoAmount(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 금액은 음수가 될 수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {900, 1010})
+    void 금액이_10000원_단위가_아니면_예외가_발생한다(int amount) {
+        assertThatThrownBy(() -> new LottoAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 금액은 1000원 단위로만 가능합니다.");
     }
 }
