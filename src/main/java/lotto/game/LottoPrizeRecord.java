@@ -31,4 +31,16 @@ public class LottoPrizeRecord {
     public Map<LottoPrize, Integer> getResult() {
         return result;
     }
+
+    public int computeWinningPrice() {
+        int totalWinningPrice = 0;
+        for (LottoPrize lottoPrize : result.keySet()) {
+            Integer count = result.get(lottoPrize);
+            if (count > 0) {
+                int winningPrice = lottoPrize.getPrice() * count;
+                totalWinningPrice += winningPrice;
+            }
+        }
+        return totalWinningPrice;
+    }
 }

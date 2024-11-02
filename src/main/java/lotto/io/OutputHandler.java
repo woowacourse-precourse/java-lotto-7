@@ -35,5 +35,9 @@ public class OutputHandler {
         }
     }
 
+    public static void printYield(double yield) {
+        System.out.printf("총 수익률은 %.2f%%입니다.", yield);
+    }
+
     private OutputHandler() {}
 }
