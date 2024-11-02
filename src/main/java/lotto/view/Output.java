@@ -1,7 +1,7 @@
-package lotto.io;
+package lotto.view;
 
-import static lotto.io.InstructionMessages.NUMBER_OF_PURCHASE;
-import static lotto.io.InstructionMessages.WINNING_STATISTICS;
+import static lotto.view.InstructionMessages.NUMBER_OF_PURCHASE;
+import static lotto.view.InstructionMessages.WINNING_STATISTICS;
 
 import java.util.List;
 import java.util.Set;
