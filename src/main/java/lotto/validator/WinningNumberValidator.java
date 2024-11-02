@@ -3,14 +3,14 @@ package lotto.validator;
 import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.IllegalLottoNumberException;
 import lotto.exception.LottoNumberFormatException;
-import lotto.exception.WinningNumbersQuantityException;
+import lotto.exception.LottoNumberQuantityException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumberValidator {
+public class LottoNumberValidator {
 
     public List<Integer> validateWinningNumbers(String input) throws IllegalLottoNumberException{
         String[] splitedWinningNums = validateQuantity(input);
@@ -44,7 +44,7 @@ public class WinningNumberValidator {
     private String[] validateQuantity(String winningNums) {
         String[] splitedWinningNums = winningNums.split(",");
         if (splitedWinningNums.length != 6) {
-            throw new WinningNumbersQuantityException();
+            throw new LottoNumberQuantityException();
         }
         return splitedWinningNums;
     }
