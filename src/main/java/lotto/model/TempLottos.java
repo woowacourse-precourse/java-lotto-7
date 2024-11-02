@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TempLottos {
-    private final List<int[]> lottoNumbers = new ArrayList<int[]>();
+    private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-    public TempLottos(int[] lottoNumber) {
+    public TempLottos(List<Integer> lottoNumber) {
         this.lottoNumbers.add(lottoNumber);
     }
 
-    public List<int[]> getLottoNumbers() {
+    public List<List<Integer>> getLottoNumbers() {
         return lottoNumbers;
     }
 }
