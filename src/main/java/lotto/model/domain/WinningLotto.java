@@ -14,4 +14,8 @@ public class WinningLotto {
     public static WinningLotto of(List<Integer> numbers, Integer bonusNumber) {
         return new WinningLotto(numbers, bonusNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
