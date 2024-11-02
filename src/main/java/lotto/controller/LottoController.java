@@ -11,6 +11,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    public static final int LOTTO_PRICE = 1000;
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -35,21 +37,6 @@ public class LottoController {
         outputView.showLottoRevenue(revenue);
     }
 
-    private double calculateLottoRevenue(Map<LottoRank, Integer> lottoResult, int purchaseMoney) {
-        LottoRevenueCalculator lottoRevenueCalculator = LottoRevenueCalculator.of(lottoResult, purchaseMoney);
-        return lottoRevenueCalculator.calculateRevenue();
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto lottoWinningNumbers = getLottoWinningNumbers();
-        int lottoBonusNumber = getLottoBonusNumber();
-        return createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
-    }
-
-    private static int calculatePurchaseCountBy(int money) {
-        return money / 1000;
-    }
-
     private int getMoney() {
         while (true) {
             try {
@@ -60,6 +47,10 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static int calculatePurchaseCountBy(int money) {
+        return money / LOTTO_PRICE;
     }
 
     private Lotto getLottoWinningNumbers() {
@@ -94,5 +85,16 @@ public class LottoController {
                 lottoBonusNumber = getLottoBonusNumber();
             }
         }
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto lottoWinningNumbers = getLottoWinningNumbers();
+        int lottoBonusNumber = getLottoBonusNumber();
+        return createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+    }
+
+    private double calculateLottoRevenue(Map<LottoRank, Integer> lottoResult, int purchaseMoney) {
+        LottoRevenueCalculator lottoRevenueCalculator = LottoRevenueCalculator.of(lottoResult, purchaseMoney);
+        return lottoRevenueCalculator.calculateRevenue();
     }
 }
