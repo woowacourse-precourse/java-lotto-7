@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Wallet;
+import lotto.util.ValidateNumber;
 
 public class Payment {
 
@@ -9,19 +10,12 @@ public class Payment {
     private final Wallet wallet;
 
     private Payment(String money) {
-        this.wallet = Wallet.create(validateMoney(money));
+        Integer newMoney = ValidateNumber.change(money);
+        this.wallet = Wallet.create(newMoney);
     }
 
     public static Payment create(String money) {
         return new Payment(money);
-    }
-
-    private Integer validateMoney(String money) {
-        try {
-            return Integer.parseInt(money);
-        } catch (NumberFormatException e) {
-            throw  new IllegalArgumentException();
-        }
     }
 
     public Integer getLottoCount() {

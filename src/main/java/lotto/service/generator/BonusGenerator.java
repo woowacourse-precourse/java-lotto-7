@@ -2,27 +2,20 @@ package lotto.service.generator;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.util.ValidateNumber;
 
 public class BonusGenerator {
 
     private final Bonus bonus;
 
     private BonusGenerator(Lotto winning, String bonus) {
-        Integer newBonus = change(bonus);
+        Integer newBonus = ValidateNumber.change(bonus);
         validate(winning, newBonus);
         this.bonus = Bonus.create(newBonus);
     }
 
     public static BonusGenerator create(Lotto winning, String bonus) {
         return new BonusGenerator(winning, bonus);
-    }
-
-    private Integer change(String bonus) {
-        try {
-            return Integer.parseInt(bonus);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private boolean duplicateWinning(Lotto winning, Integer bonus) {
