@@ -7,6 +7,9 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 
+/*
+이거 하드코딩 값 포장해주고, 비즈니스 로직은 DTO 생성 후에 다시 손봐야함.
+ */
 public class LottoService {
     private final int INITIAL_VALUE = 0;
 
