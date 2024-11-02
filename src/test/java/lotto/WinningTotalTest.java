@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Service.IssueTicketService;
+import lotto.Service.IssueMyLottoService;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
 import lotto.Service.WinningTotalService;
@@ -15,7 +15,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 
 public class WinningTotalTest extends NsTest {
     WinningTotalService winningTotalService = new WinningTotalService();
-    IssueTicketService issueTicketService = new IssueTicketService();
+    IssueMyLottoService issueMyLottoService = new IssueMyLottoService();
 
     @DisplayName("당첨_통계를 올바르게 내면 통과")
     @Test
@@ -25,7 +25,7 @@ public class WinningTotalTest extends NsTest {
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    MyLottos mylottos = issueTicketService.makeIssuedTickets(8);
+                    MyLottos mylottos = issueMyLottoService.issueMyLottos(8);
                     Map<String, Integer> winningTotal = winningTotalService.calculateWinningTotal(mylottos, winningLotto, bonusNumber);
                     Map<String, Integer> testMap = Map.of("FIRST", 0, "SECOND", 0, "THIRD", 0, "FOURTH", 0, "FIFTH", 1);
                     assert (winningTotal.equals(testMap));

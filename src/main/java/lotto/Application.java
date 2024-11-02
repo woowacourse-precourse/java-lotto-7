@@ -2,11 +2,11 @@ package lotto;
 
 import lotto.Controller.LottoController;
 import lotto.Service.EarningRateService;
-import lotto.Service.IssueTicketService;
+import lotto.Service.IssueMyLottoService;
 import lotto.Service.WinningTotalService;
 import lotto.View.InputLottoView;
 import lotto.View.OutputEarningRateView;
-import lotto.View.OutputIssuedTicketView;
+import lotto.View.OutputMyLottosView;
 import lotto.View.OutputWinningTotalView;
 
 public class Application {
@@ -16,12 +16,12 @@ public class Application {
 
     public static void init() {
         LottoController lottoController = new LottoController(
-                new IssueTicketService(),
+                new IssueMyLottoService(),
                 new WinningTotalService(),
                 new EarningRateService(),
                 new OutputWinningTotalView(),
                 new InputLottoView(),
-                new OutputIssuedTicketView(),
+                new OutputMyLottosView(),
                 new OutputEarningRateView());
 
         lottoController.startLottery();

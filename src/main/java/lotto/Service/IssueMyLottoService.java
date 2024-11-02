@@ -6,8 +6,8 @@ import lotto.Model.MyLottos;
 
 import java.util.List;
 
-public class IssueTicketService {
-    public MyLottos makeIssuedTickets(int numberOfTicket) {
+public class IssueMyLottoService {
+    public MyLottos issueMyLottos(int numberOfTicket) {
         MyLottos myLottos = new MyLottos();
         for (int i = 0; i < numberOfTicket; i++) {
             myLottos.addLotto(new Lotto(makeRandomNumbers()));

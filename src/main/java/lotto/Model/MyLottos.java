@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyLottos {
-    private final List<Lotto> myTickets;
+    private final List<Lotto> myLottos;
 
     public MyLottos() {
-        this.myTickets = new ArrayList<>();
+        this.myLottos = new ArrayList<>();
     }
 
     public void addLotto(Lotto lotto) {
-        myTickets.add(lotto);
+        myLottos.add(lotto);
     }
 
     public List<Lotto> getLottos() {
-        return myTickets;
+        return myLottos;
     }
 
     public int size() {
-        return myTickets.size();
+        return myLottos.size();
     }
 }

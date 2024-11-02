@@ -3,11 +3,11 @@ package lotto.Controller;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
 import lotto.Service.EarningRateService;
-import lotto.Service.IssueTicketService;
+import lotto.Service.IssueMyLottoService;
 import lotto.Service.WinningTotalService;
 import lotto.View.InputLottoView;
 import lotto.View.OutputEarningRateView;
-import lotto.View.OutputIssuedTicketView;
+import lotto.View.OutputMyLottosView;
 import lotto.View.OutputWinningTotalView;
 
 import java.util.Map;
@@ -15,42 +15,42 @@ import java.util.Map;
 
 public class LottoController {
     private final InputLottoView inputLottoView;
-    private final OutputIssuedTicketView outputIssuedTicketView;
+    private final OutputMyLottosView outputMyLottosView;
     private final OutputWinningTotalView outputWinningTotalView;
     private final OutputEarningRateView outputEarningRateView;
-    private final IssueTicketService issueTicketService;
+    private final IssueMyLottoService issueMyLottoService;
     private final WinningTotalService winningTotalService;
     private final EarningRateService earningRateService;
 
 
-    public LottoController(IssueTicketService issueTicketService, WinningTotalService winningTotalService, EarningRateService earningRateService, OutputWinningTotalView outputWinningTotalView, InputLottoView inputLottoView, OutputIssuedTicketView outputIssuedTicketView, OutputEarningRateView outputEarningRateView) {
-        this.issueTicketService = issueTicketService;
+    public LottoController(IssueMyLottoService issueMyLottoService, WinningTotalService winningTotalService, EarningRateService earningRateService, OutputWinningTotalView outputWinningTotalView, InputLottoView inputLottoView, OutputMyLottosView outputMyLottosView, OutputEarningRateView outputEarningRateView) {
+        this.issueMyLottoService = issueMyLottoService;
         this.winningTotalService = winningTotalService;
         this.earningRateService = earningRateService;
         this.inputLottoView = inputLottoView;
-        this.outputIssuedTicketView = outputIssuedTicketView;
+        this.outputMyLottosView = outputMyLottosView;
         this.outputWinningTotalView = outputWinningTotalView;
         this.outputEarningRateView = outputEarningRateView;
     }
 
     public void startLottery() {
         int price = inputLottoView.inputPrice();
-        final MyLottos issuedTickets = getMyIssuedLottos(price);
+        final MyLottos myLottos = getMyLottos(price);
         final Lotto winningLotto = inputLottoView.inputWinningNumbers();
         final int bonusNumber = inputLottoView.inputBonusNumber();
-        Map<String, Integer> resultMap = getWinningTotal(issuedTickets, winningLotto, bonusNumber);
+        Map<String, Integer> resultMap = getWinningTotal(myLottos, winningLotto, bonusNumber);
         getEarningRate(price, resultMap);
     }
 
-    private MyLottos getMyIssuedLottos(int price) {
-        int numberOfTicket = issueTicketService.getNumberOfTickets(price);
-        final MyLottos issuedTickets = issueTicketService.makeIssuedTickets(numberOfTicket);
-        outputIssuedTicketView.printMylottos(issuedTickets);
-        return issuedTickets;
+    private MyLottos getMyLottos(int price) {
+        int numberOfTicket = issueMyLottoService.getNumberOfTickets(price);
+        final MyLottos myLottos = issueMyLottoService.issueMyLottos(numberOfTicket);
+        outputMyLottosView.printMylottos(myLottos);
+        return myLottos;
     }
 
-    private Map<String, Integer> getWinningTotal(MyLottos issuedTickets, Lotto winningLotto, int bonusNumber) {
-        final Map<String, Integer> resultMap = winningTotalService.calculateWinningTotal(issuedTickets, winningLotto, bonusNumber);
+    private Map<String, Integer> getWinningTotal(MyLottos myLottos, Lotto winningLotto, int bonusNumber) {
+        final Map<String, Integer> resultMap = winningTotalService.calculateWinningTotal(myLottos, winningLotto, bonusNumber);
         outputWinningTotalView.printWinningTotal(resultMap);
         return resultMap;
     }
