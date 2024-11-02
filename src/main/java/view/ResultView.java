@@ -1,5 +1,6 @@
 package view;
 
+import constants.Constants;
 import lotto.Lottos;
 import lotto.WinningRank;
 
@@ -18,6 +19,6 @@ public class ResultView {
     public static void showWinningStatistics(double revenueRate) {
         System.out.println("당첨 통계\n" + "-".repeat(3));
         System.out.println(WinningRank.winningStatus());
-        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
+        System.out.println("총 수익률은 " + Constants.AMOUNT_NOTATION.format(revenueRate) + "%입니다.");
     }
 }

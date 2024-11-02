@@ -1,6 +1,6 @@
 package lotto;
 
-import java.text.DecimalFormat;
+import constants.Constants;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,7 +44,6 @@ public enum WinningRank {
         }
     };
 
-    private static final DecimalFormat WINNING_AMOUNT_FORMAT = new DecimalFormat("#,###");
     private static final String BONUS_STATISTICS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String BASIC_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
 
@@ -117,7 +116,7 @@ public enum WinningRank {
     }
 
     private static String formattingReward(WinningRank rank) {
-        return WINNING_AMOUNT_FORMAT.format(rank.reward);
+        return Constants.AMOUNT_NOTATION.format(rank.reward);
     }
 
     private static boolean isSecond(WinningRank rank) {
