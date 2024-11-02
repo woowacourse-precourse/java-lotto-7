@@ -12,4 +12,7 @@ public class CommonConstants {
     public static final String INPUT_PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public static final String INPUT_PROMPT_RETYPE = "다시 입력해 주세요.";
+
+    public static final String OUTPUT_PROMPT_STATISTICS = "\n당첨 통계\n---\n";
+
 }
