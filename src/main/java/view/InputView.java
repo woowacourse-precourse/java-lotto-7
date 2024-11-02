@@ -13,16 +13,16 @@ public class InputView {
 
     }
 
-    public String purchaseAmount() {
+    public int purchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine().strip();
         try{
             validateInput(input);
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            input = purchaseAmount();
+            input = String.valueOf(purchaseAmount());
         }
-        return input;
+        return Integer.parseInt(input);
     }
 
     public String winingNumber() {
@@ -41,5 +41,6 @@ public class InputView {
         Validation.blankInput(str);
         Validation.numberInput(str);
         Validation.overInput(Integer.parseInt(str));
+        Validation.divideByLottoValue(Integer.parseInt(str));
     }
 }

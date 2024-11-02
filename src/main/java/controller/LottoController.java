@@ -30,8 +30,8 @@ public class LottoController {
     }
 
     public void run() {
-        String str = inputView.purchaseAmount();
-        purchaseAmount = new Amount(Integer.parseInt(str));
+        int amount = inputView.purchaseAmount();
+        purchaseAmount = new Amount(amount);
         lottoAmount = new LottoAmount(purchaseAmount.getPurchaseAmount());
         outputView.printLottoAmount(lottoAmount);
 

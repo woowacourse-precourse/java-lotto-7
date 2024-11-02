@@ -10,14 +10,14 @@ public class StubInputView extends InputView {
     }
 
     @Override
-    public String purchaseAmount() {
+    public int purchaseAmount() {
         String input = Console.readLine().strip();
         try {
             validateInput(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return input;
+        return Integer.parseInt(input);
     }
 
     @Override
@@ -34,5 +34,6 @@ public class StubInputView extends InputView {
         Validation.blankInput(str);
         Validation.numberInput(str);
         Validation.overInput(Integer.parseInt(str));
+        Validation.divideByLottoValue(Integer.parseInt(str));
     }
 }
