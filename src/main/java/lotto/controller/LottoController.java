@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Cost;
 import lotto.model.Lotto;
 
@@ -44,7 +45,7 @@ public class LottoController {
 
         System.out.println("보너스 번호를 입력해주세요.");
 
-        bonusNumber = requestBonusNumberInput();
+        bonusNumber = requestBonusNumberInput(lotto);
 
         System.out.println();
 
@@ -104,33 +105,16 @@ public class LottoController {
 
     }
 
-    private int requestBonusNumberInput() {
+    private int requestBonusNumberInput(Lotto lotto) {
         try {
-            int bonusNumber = Integer.parseInt(Console.readLine().trim());
-
-            if (String.valueOf(bonusNumber).isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
-            }
-
-            if (bonusNumber < 0) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");
-            }
-
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
-            }
-
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
-            }
-            return bonusNumber;
+            return BonusNumber.of(Integer.parseInt(Console.readLine().trim()), lotto).getBonusNumber();
 
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");
-            return requestBonusNumberInput();
+            return requestBonusNumberInput(lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return requestBonusNumberInput();
+            return requestBonusNumberInput(lotto);
         }
     }
 
