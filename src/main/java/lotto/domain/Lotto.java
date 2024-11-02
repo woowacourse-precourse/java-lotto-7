@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Lotto {
 
-    private static final int NUMBER_COUNT = 6;
-    private static final int MAX_NUMBER = 45;
-    private static final int MIN_NUMBER = 1;
+    private static final int MIN_NUMBER = LottoRule.MIN_NUMBER.getValue();
+    private static final int MAX_NUMBER = LottoRule.MAX_NUMBER.getValue();
+    private static final int NUMBER_COUNT = LottoRule.NUMBER_COUNT.getValue();
 
     private final List<Integer> numbers;
 
@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(String.format("로또 번호는 %d개여야 합니다.", NUMBER_COUNT));
         }
     }
 
