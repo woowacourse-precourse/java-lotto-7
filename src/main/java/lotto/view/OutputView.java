@@ -25,13 +25,13 @@ public class OutputView {
 
     public void showWinStatus(LottoResult lottoResult) {
         StringBuilder output = new StringBuilder();
-        showWinInstructions();
         Map<Rank, Integer> result = lottoResult.getResult();
+        showWinInstructions();
         for (Rank rank : result.keySet()) {
             if (rank != Rank.MISS) {
                 output.append(rank.toString())
                         .append(" - ")
-                        .append(lottoResult.getResult().get(rank))
+                        .append(result.get(rank))
                         .append("개")
                         .append(System.lineSeparator());
             }
@@ -46,12 +46,7 @@ public class OutputView {
     }
 
     public void showProfit(LottoResult lottoResult, int money) {
-        Map<Rank, Integer> result = lottoResult.getResult();
-        long sum = 0;
-        for (Rank rank : result.keySet()) {
-            sum += (rank.getPrize() * result.get(rank));
-        }
-        System.out.printf("총 수익률은 %.1f%%입니다.", (((double)sum/money) * 100.0));
+        System.out.printf("총 수익률은 %.1f%%입니다.", lottoResult.calculateProfit(money));
     }
 
     private void showLottoNums(Lotto lotto) {

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,7 +9,7 @@ import lotto.domain.Rank;
 
 public class LottoResult {
 
-    private Map<Rank, Integer> result = new LinkedHashMap<>();
+    private final Map<Rank, Integer> result = new LinkedHashMap<>();
 
     private LottoResult() {
         for (Rank values : Rank.values()) {
@@ -25,8 +26,18 @@ public class LottoResult {
 
         return lottoResult;
     }
+
+    public double calculateProfit(int money) {
+        double sum = 0;
+        for (Rank rank : result.keySet()) {
+            sum += (rank.getPrize() * result.get(rank));
+        }
+
+        sum = (sum / money) * 100.0;
+        return sum;
+    }
     
     public Map<Rank, Integer> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 }
