@@ -11,11 +11,13 @@ public class InputView {
         return handleInput(ENTER_MONEY);
     }
 
-    public static String inputWinningNumber() {
-        return handleInput(ENTER_WINNING_NUMBER);
+    public static String inputMainNumber() {
+        System.lineSeparator();
+        return handleInput(ENTER_MAIN_NUMBER);
     }
 
     public static String inputBonusNumber() {
+        System.lineSeparator();
         return handleInput(ENTER_BONUS_NUMBER);
     }
 
