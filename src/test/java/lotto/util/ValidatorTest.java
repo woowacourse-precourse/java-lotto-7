@@ -154,9 +154,23 @@ public class ValidatorTest {
     }
 
     private static Object[][] validListProvider() {
-        return new Object[][] {
+        return new Object[][]{
                 {List.of("1", "2", "3", "4", "5")},
                 {List.of("12", "34", "56", "78")}
+        };
+    }
+
+    @ParameterizedTest
+    @MethodSource("inValidListProvider")
+    @DisplayName("리스트 내 중복 요소 존재 예외 테스트")
+    public void isNotDuplicateExceptionTest(List<String> list) {
+        assertThatThrownBy(() -> Validator.isNotDuplicate(list)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Object[][] inValidListProvider() {
+        return new Object[][]{
+                {List.of("1", "1", "3", "4", "5")},
+                {List.of("12", "12", "56", "78")}
         };
     }
 
