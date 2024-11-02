@@ -22,4 +22,8 @@ public class Lotto {
                 .count();
     }
 
+    private boolean matchBonusNumber(Integer number) {
+        return numbers.contains(number);
+    }
+
 }
