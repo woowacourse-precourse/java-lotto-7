@@ -1,12 +1,10 @@
 package lotto.store;
 
-import lotto.basic.NumbersGeneratorStub;
 import lotto.money.Money;
+import lotto.store.number.NumbersGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -17,10 +15,9 @@ class LottoStoreTest {
 
     @BeforeEach
     void beforeEach() {
-        NumbersGeneratorStub validNumbersGeneratorStub = new NumbersGeneratorStub();
-        validNumbersGeneratorStub.setTestRandomNumbers(List.of(1, 2, 3, 4, 5, 6));
-
-        lottoStore = new LottoStore(validNumbersGeneratorStub);
+        lottoStore = new LottoStore(
+                new LottoGenerator(new NumbersGenerator())
+        );
     }
 
 

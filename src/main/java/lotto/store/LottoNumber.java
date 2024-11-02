@@ -5,8 +5,8 @@ import java.util.Objects;
 public class LottoNumber {
     private int number;
 
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+    protected static final int MIN_LOTTO_NUMBER = 1;
+    protected static final int MAX_LOTTO_NUMBER = 45;
 
     public LottoNumber(int number) {
         if(isOutOfRange(number))

@@ -3,7 +3,7 @@ package lotto.store;
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
+    protected static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -24,6 +24,10 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(lotto::contains)
                 .count();
+    }
+
+    public boolean hasSameNumber(Lotto lotto) {
+        return countMatchingNumber(lotto) == LOTTO_SIZE;
     }
 
     @Override

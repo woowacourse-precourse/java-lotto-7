@@ -1,4 +1,4 @@
-package lotto.basic;
+package lotto.store.number;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
