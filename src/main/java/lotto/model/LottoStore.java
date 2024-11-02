@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.model.Lotto.LOTTO_NUMBER_COUNT;
 import static lotto.model.Lotto.LOTTO_NUMBER_MAXIMUM;
 import static lotto.model.Lotto.LOTTO_NUMBER_MINIMUM;
 
@@ -42,7 +43,7 @@ public class LottoStore {
 
     private static List<Integer> makeRandomNumber() {
         List<Integer> randomNumber = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, 6));
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, LOTTO_NUMBER_COUNT));
         Collections.sort(randomNumber);
         return randomNumber;
     }

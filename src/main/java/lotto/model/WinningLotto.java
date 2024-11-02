@@ -7,8 +7,6 @@ import lotto.util.Validator;
 public class WinningLotto extends Lotto {
     private int bonusNum;
 
-    private static final int WINNING_NUMBER_COUNT = 6;
-
     private WinningLotto(List<Integer> nums) {
         super(nums);
     }
@@ -53,7 +51,7 @@ public class WinningLotto extends Lotto {
     }
 
     private static void validateWinningNumber(List<String> parsedNumbers) {
-        Validator.isEqualListSize(parsedNumbers, WINNING_NUMBER_COUNT);
+        Validator.isEqualListSize(parsedNumbers, LOTTO_NUMBER_COUNT);
         parsedNumbers.stream()
                 .peek(Validator::isDigitString)
                 .peek(Validator::isInteger)

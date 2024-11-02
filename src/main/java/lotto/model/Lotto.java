@@ -8,6 +8,9 @@ public class Lotto {
     public static final int LOTTO_NUMBER_MINIMUM = 1;
 
     public static final int LOTTO_NUMBER_MAXIMUM = 45;
+
+    public static final int LOTTO_NUMBER_COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validator.isEqualListSize(numbers, 6);
+        Validator.isEqualListSize(numbers, LOTTO_NUMBER_COUNT);
         numbers.forEach(number -> {
             Validator.isNumberWithinRange(number, LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM);
         });
