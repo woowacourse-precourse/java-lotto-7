@@ -11,8 +11,10 @@ public class InputValidator {
     private static final String ERROR_MESSAGE_INVALID_WIN_NUMBERS = "당첨 번호는 구분자(,)로 구분할 수 있어야 합니다.";
     private static final String ERROR_MESSAGE_TRAILING_COMMA = "입력값의 마지막에 콤마(,)가 올 수 없습니다.";
     private static final String DELIMITER = ",";
+    private static final Integer ZERO = 0;
     private static final Pattern TRAILING_DELIMITER_PATTERN = Pattern.compile(".*,$");
     private static final Pattern DELIMITER_PATTERN = Pattern.compile("^([a-zA-Z가-힣\\d]+,)*[a-zA-Z가-힣\\d]+$");
+    private static final Pattern POSITIVE_NUMBER_PATTERN = Pattern.compile("\\d+");
 
     private InputValidator() {
     }
@@ -41,7 +43,7 @@ public class InputValidator {
     }
 
     private static void checkPositiveNumber(String input) {
-        if (!input.matches("\\d+") || Integer.parseInt(input) <= 0) {
+        if (!POSITIVE_NUMBER_PATTERN.matcher(input).matches() || Integer.parseInt(input) <= ZERO) {
             ExceptionUtils.throwIllegalArgument(ERROR_MESSAGE_NOT_POSITIVE_NUMBER);
         }
     }
