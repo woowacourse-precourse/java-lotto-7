@@ -28,4 +28,15 @@ public class LottoTicketTest {
         assertThat(lottoTicket.getLottosCount()).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("LottoTicket의 모든 로또 번호 리스트 반환 테스트")
+    void getLottoTicketNumbers() {
+        List<List<Integer>> expectedNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+
+        assertThat(lottoTicket.getLottoTicketNumbers()).isEqualTo(expectedNumbers);
+    }
+
 }
