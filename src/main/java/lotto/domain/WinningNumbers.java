@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.*;
 
+import static lotto.constants.LottoConstants.*;
 import static lotto.constants.exception.ErrorMessage.*;
 
 public class WinningNumbers {
@@ -31,9 +32,6 @@ public class WinningNumbers {
 
         private static final String COMMA = ",";
         private static final String BONUS_NUMBER_NUMERIC_REGEX = "-?\\d+";
-        private static final int WINNING_NUMBERS_SIZE = 6;
-        private static final int MINIMUM_WINNING_NUMBER = 1;
-        private static final int MAXIMUM_WINNING_NUMBER = 45;
 
         private static List<Integer> validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
@@ -60,7 +58,7 @@ public class WinningNumbers {
         }
 
         private static void validateWinningNumbersCount(List<String> delimitedWinningNumbers) {
-            if (delimitedWinningNumbers.size() != WINNING_NUMBERS_SIZE) {
+            if (delimitedWinningNumbers.size() != LOTTO_SIZE) {
                 throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
             }
         }
@@ -78,7 +76,7 @@ public class WinningNumbers {
 
         private static void validateWinningNumbersInRange(List<Integer> positiveWinningNumbers) {
             boolean hasOutOfRangeNumber = positiveWinningNumbers.stream()
-                    .anyMatch(lottoNumber -> lottoNumber < MINIMUM_WINNING_NUMBER || lottoNumber > MAXIMUM_WINNING_NUMBER);
+                    .anyMatch(lottoNumber -> lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER);
 
             if (hasOutOfRangeNumber) {
                 throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE.getMessage());

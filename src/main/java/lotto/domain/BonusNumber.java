@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constants.LottoConstants.*;
 import static lotto.constants.exception.ErrorMessage.*;
 
 public class BonusNumber {
@@ -23,9 +24,6 @@ public class BonusNumber {
     private static class Validator {
 
         private static final String BONUS_NUMBER_NUMERIC_REGEX = "-?\\d+";
-        private static final int MINIMUM_WINNING_NUMBER = 1;
-        private static final int MAXIMUM_WINNING_NUMBER = 45;
-
         private static int validateBonusNumber(List<Integer> winningNumber, String bonusNumber) {
             validateWinningNumbersIsNotEmpty(bonusNumber);
             int numericBonusNumber = validateBonusNumberIsNumeric(bonusNumber);
@@ -48,7 +46,7 @@ public class BonusNumber {
         }
 
         private static void validateBonusNumberInRange(int bonusNumber) {
-            if (bonusNumber < MINIMUM_WINNING_NUMBER || bonusNumber > MAXIMUM_WINNING_NUMBER) {
+            if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
