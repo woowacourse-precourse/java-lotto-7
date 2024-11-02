@@ -22,16 +22,25 @@ public class LottoMachine {
 
     public EnumMap<Ranking, Integer> draw(PurchasedLottos lottos, WinningNumbers winningNumbers) {
         EnumMap<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
+        initStatistics(statistics);
+        updateStatistics(lottos, winningNumbers, statistics);
+        return statistics;
+    }
+
+    private void initStatistics(EnumMap<Ranking, Integer> statistics) {
         for (Ranking ranking : Ranking.values()) {
-            statistics.put(ranking, 0);
+            statistics.put(ranking, ZERO_QUANTITY);
         }
-        for (Lotto lotto : lottos.getLottos()) {
+    }
+
+    private void updateStatistics(PurchasedLottos lottos, WinningNumbers winningNumbers, EnumMap<Ranking, Integer> statistics) {
+        lottos.getLottos().forEach(lotto -> {
             int matchingCount = lotto.getMatchingCount(winningNumbers.getWinningLotto());
             boolean hasBonusNumber = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
             Ranking ranking = Ranking.getRanking(matchingCount, hasBonusNumber);
-            Integer count = statistics.get(ranking);
-            statistics.replace(ranking, count + 1);
-        }
-        return statistics;
+
+            int sumUnit = 1;
+            statistics.merge(ranking, sumUnit, Integer::sum);
+        });
     }
 }

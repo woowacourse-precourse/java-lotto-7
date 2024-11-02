@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Money {
     public static final Money ZERO = Money.from(0);
-    public static final int ZERO_THRESHOLD = 0;
+    private static final int ZERO_THRESHOLD = 0;
 
     private final BigDecimal amount;
 
@@ -23,8 +23,8 @@ public class Money {
                 .compareTo(BigDecimal.ZERO) != ZERO_THRESHOLD;
     }
 
-    public Money plus(Money amount) {
-        return new Money(this.amount.add(amount.amount));
+    public Money plus(Money money) {
+        return new Money(this.amount.add(money.amount));
     }
 
     public Money divide(Money money) {
