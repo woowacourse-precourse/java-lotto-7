@@ -2,11 +2,21 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class UserInput {
 
+    private static final int lottoPrice = 1000;
+    private static final int lottoNumberCount = 6;
+    private static final int lottoNumberMin = 1;
+    private static final int lottoNumberMax = 45;
     private int numberOfLotto;
+    private final List<Integer> winNumbers = new ArrayList<>();
+    private int bonusNumber;
 
-    public int purchaseAmountInput() {
+    public void purchaseAmountInput() {
 
         System.out.println("구입 금액을 입력해주세요.");
 
@@ -14,8 +24,18 @@ public class UserInput {
 
         validPurchaseAmountInput(amount);
 
-        return Integer.parseInt(amount);
+        this.numberOfLotto = Integer.parseInt(amount) / lottoPrice;
     }
+
+    public void winNumbersInput() {
+
+        System.out.println("당첨 번호를 입력해주세요.");
+
+        String[] winNumbersInput = readLine().split(",");
+
+        validWinNumbersInput(winNumbersInput);
+    }
+
 
     private void validPurchaseAmountInput(String input) {
 
@@ -34,5 +54,47 @@ public class UserInput {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
+    }
+
+    private void validWinNumbersInput(String[] winNumbersInput) {
+
+        if (winNumbersInput.length != lottoNumberCount) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + lottoNumberCount +
+                    "개여야 합니다.");
+        }
+
+        HashSet<String> duplicates = new HashSet<>();
+        for (String winNumber : winNumbersInput) {
+            if (!duplicates.add(winNumber)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            }
+        }
+
+        for (String winNumber : winNumbersInput) {
+            try {
+                Integer.parseInt(winNumber);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            }
+        }
+
+        for (String winNumber : winNumbersInput) {
+            if (Integer.parseInt(winNumber) < lottoNumberMin|| Integer.parseInt(winNumber) > lottoNumberMax) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 " + lottoNumberMin + "부터 " +
+                        lottoNumberMax + " 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public int getNumberOfLotto() {
+        return numberOfLotto;
+    }
+
+    public List<Integer> getWinNumbers() {
+        return winNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
