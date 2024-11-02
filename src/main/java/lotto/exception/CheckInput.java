@@ -42,9 +42,15 @@ public class CheckInput {
         return tmpLotto;
     }
 
-    public static void checkBonusNumber(int bonusNum){
+
+
+    public static void checkBonusNumber(int bonusNum, Lotto winningLottoNumbers){
         if(bonusNum < 1 || bonusNum > 45){
             throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+        }
+
+        if(winningLottoNumbers.checkDuplicateWithBonusNumber(bonusNum)){
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 

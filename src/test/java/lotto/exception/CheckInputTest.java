@@ -2,6 +2,10 @@ package lotto.exception;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import lotto.Lotto;
 import lotto.enums.ErrorType;
 import org.junit.jupiter.api.Test;
 
@@ -53,11 +57,27 @@ class CheckInputTest {
     }
 
     @Test
-    void 로또_보너스번호_범위가_잘못되었을때_예외가_발생한다(){
+    void 로또_보너스번호의_범위가_잘못되었을때_예외가_발생한다(){
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto inputLotto = new Lotto(list);
+
         IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(48)
+                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(48, inputLotto)
         );
         assertEquals(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage(), exception.getMessage());
+    }
+
+    @Test
+    void 로또_보너스번호가_당첨_번호와_중복될_경우_예외가_발생한다(){
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto inputLotto = new Lotto(list);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(6, inputLotto)
+        );
+        assertEquals(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage(), exception.getMessage());
     }
 
 }

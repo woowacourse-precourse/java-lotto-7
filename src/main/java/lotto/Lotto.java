@@ -20,5 +20,13 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public boolean checkDuplicateWithBonusNumber(int bonusNum){
+        if(numbers.contains(bonusNum)){
+            return true;
+        }
+        return false;
+    }
+
+
+
 }

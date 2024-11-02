@@ -31,7 +31,11 @@ public class InputConsole {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(readLine());
 
-        CheckInput.checkBonusNumber(bonusNum);
+        CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers);
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+
 
     }
 
