@@ -5,7 +5,7 @@ import lotto.model.Lottos;
 import lotto.model.Rank;
 import lotto.model.Result;
 
-public class OutputHandler {
+public class OutputConvertor {
 
     private static final String RANK_FORMAT_START = "%d개 일치";
     private static final String BONUS_NUMBER_FORMAT = ", 보너스 볼 일치";

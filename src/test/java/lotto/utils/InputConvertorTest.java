@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class InputHandlerTest {
+class InputConvertorTest {
 
     @DisplayName("승리 번호 입력을 올바른 숫자 리스트로 전환")
     @Test
     void shouldReturnCorrectWinningNumbers() {
         String input = "1, 2, 3, 4, 5, 6";
-        Assertions.assertThat(InputHandler.handleWinningNumbersInput(input))
+        Assertions.assertThat(InputConvertor.convertWinningNumbersInput(input))
                 .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
@@ -21,7 +21,7 @@ class InputHandlerTest {
     @ParameterizedTest
     @ValueSource(strings = {"1, 2, 3, 4, 5, a", "1, 2, 4, ?, 6"})
     void throwExceptionIfHasInvalidWinningNumberInput(String input) {
-        Assertions.assertThatThrownBy(() -> InputHandler.handleWinningNumbersInput(input))
+        Assertions.assertThatThrownBy(() -> InputConvertor.convertWinningNumbersInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,7 +30,7 @@ class InputHandlerTest {
     void shouldReturnCorrectBonusNumber() {
         String input = "7";
 
-        Assertions.assertThat(InputHandler.handleBonusNumberInput(input))
+        Assertions.assertThat(InputConvertor.convertBonusNumberInput(input))
                 .isEqualTo(7);
     }
 
@@ -38,7 +38,7 @@ class InputHandlerTest {
     @ParameterizedTest
     @ValueSource(strings = {"?", "a"})
     void throwExceptionIfHasInvalidBonusNumberInput(String input) {
-        Assertions.assertThatThrownBy(() -> InputHandler.handleBonusNumberInput(input))
+        Assertions.assertThatThrownBy(() -> InputConvertor.convertBonusNumberInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -46,7 +46,7 @@ class InputHandlerTest {
     @Test
     void shouldReturnCorrectPrice() {
         String input = "1000";
-        Assertions.assertThat(InputHandler.handleMoneyInput(input))
+        Assertions.assertThat(InputConvertor.convertMoneyInput(input))
                 .isEqualTo(1000);
     }
 
@@ -54,7 +54,7 @@ class InputHandlerTest {
     @ParameterizedTest
     @ValueSource(strings = {"g", ","})
     void throwExceptionIfHasInvalidMoneyInput(String input) {
-        Assertions.assertThatThrownBy(() -> InputHandler.handleMoneyInput(input))
+        Assertions.assertThatThrownBy(() -> InputConvertor.convertMoneyInput(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

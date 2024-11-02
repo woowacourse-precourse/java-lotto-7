@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.constants.ErrorMessage;
 
-public class InputHandler {
+public class InputConvertor {
 
     private static final String WINNING_NUMBERS_DELIMITER = ",";
 
-    public static int handleMoneyInput(String input) {
+    public static int convertMoneyInput(String moneyInput) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(moneyInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_INPUT.getMessage());
         }
     }
 
-    public static List<Integer> handleWinningNumbersInput(String input) {
+    public static List<Integer> convertWinningNumbersInput(String winningNumbersInput) {
         try {
-            return Stream.of(input.split(WINNING_NUMBERS_DELIMITER))
+            return Stream.of(winningNumbersInput.split(WINNING_NUMBERS_DELIMITER))
                     .map(number -> Integer.parseInt(number.trim()))
                     .toList();
         } catch (NumberFormatException e) {
@@ -26,9 +26,9 @@ public class InputHandler {
         }
     }
 
-    public static int handleBonusNumberInput(String input) {
+    public static int convertBonusNumberInput(String bonusNumberInput) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_INPUT.getMessage());
         }

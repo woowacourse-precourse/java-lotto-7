@@ -7,7 +7,7 @@ import static lotto.constants.LottoConfig.PRICE_MINIMUM;
 
 public enum ErrorMessage {
 
-    INVALID_FORMAT_INPUT("숫자를 입력해주세요"),
+    INVALID_FORMAT_INPUT("숫자를 입력해주세요."),
     HAS_TOO_MANY_NUMBERS(String.format("로또 번호는 %d개만 가능 합니다.", NUMBERS_SIZE)),
     HAS_DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
     HAS_OUT_OF_RANGE_NUMBER(String.format("로또 번호는 %d ~ %d 사이 숫자만 가능합니다.", NUMBER_RANGE_MINIMUM, NUMBER_RANGE_MAXIMUM)),

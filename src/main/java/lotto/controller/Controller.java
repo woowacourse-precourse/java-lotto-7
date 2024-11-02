@@ -1,11 +1,13 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Result;
 import lotto.model.WinningLotto;
+import lotto.utils.InputConvertor;
 import lotto.utils.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,49 +15,40 @@ import lotto.view.OutputView;
 public class Controller {
 
     public void run() {
-        Money money = inputMoney();
-        Lottos lottos = purchaseLottos(money);
+        Money money = generateUntilSuccess(this::convertToMoney);
+        Lottos lottos = generateUntilSuccess(() -> convertToLottos(money));
         OutputView.printPurchaseLottos(lottos);
-        WinningLotto winningLotto = new WinningLotto(inputWinningNumbers(), inputBonusNumber());
+        WinningLotto winningLotto = generateUntilSuccess(this::convertToWinningLotto);
         Result result = new Result(money, lottos, winningLotto);
         OutputView.printResult(result);
-        OutputView.printRateOfReturn(result);
     }
 
-    private Money inputMoney() {
-        while (true) {
-            try {
-                return new Money(InputView.inputMoney());
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
+    private Money convertToMoney() {
+        return new Money(InputConvertor.convertMoneyInput(InputView.readMoney()));
     }
 
-    private Lottos purchaseLottos(Money money) {
-        while (true) {
-            try {
-                return new Lottos(LottoMachine.purchaseLottos(money));
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
+    private Lottos convertToLottos(Money money) {
+        return new Lottos(LottoMachine.purchaseLottos(money));
     }
 
-    private Lotto inputWinningNumbers() {
-        while (true) {
-            try {
-                return new Lotto(InputView.inputWinningNumbers());
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
-        }
+    private WinningLotto convertToWinningLotto() {
+        Lotto winningNumbers = generateUntilSuccess(this::convertToWinningNumbers);
+        BonusNumber bonusNumber = generateUntilSuccess(this::convertToBonusNumber);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private BonusNumber inputBonusNumber() {
+    private Lotto convertToWinningNumbers() {
+        return new Lotto(InputConvertor.convertWinningNumbersInput(InputView.readWinningNumbers()));
+    }
+
+    private BonusNumber convertToBonusNumber() {
+        return new BonusNumber(InputConvertor.convertBonusNumberInput(InputView.readBonusNumber()));
+    }
+
+    private <T> T generateUntilSuccess(Supplier<T> supplier) {
         while (true) {
             try {
-                return new BonusNumber(InputView.inputBonusNumber());
+                return supplier.get();
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
             }

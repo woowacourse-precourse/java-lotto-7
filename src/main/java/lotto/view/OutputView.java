@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.model.Lottos;
 import lotto.model.Result;
-import lotto.utils.OutputHandler;
+import lotto.utils.OutputConvertor;
 
 public class OutputView {
 
@@ -11,16 +11,13 @@ public class OutputView {
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void printPurchaseLottos(Lottos lottos) {
-        System.out.printf(PURCHASE_LOTTOS_MESSAGE, OutputHandler.formatPurchaseLottosCount(lottos));
-        System.out.println(OutputHandler.formatLottos(lottos));
+        System.out.printf(PURCHASE_LOTTOS_MESSAGE, OutputConvertor.formatPurchaseLottosCount(lottos));
+        System.out.println(OutputConvertor.formatLottos(lottos));
     }
 
     public static void printResult(Result result) {
         System.out.println(RESULT_MESSAGE);
-        System.out.println(OutputHandler.formatResult(result));
-    }
-
-    public static void printRateOfReturn(Result result) {
+        System.out.println(OutputConvertor.formatResult(result));
         System.out.printf(RATE_OF_RETURN_MESSAGE, result.getRateOfReturn());
     }
 

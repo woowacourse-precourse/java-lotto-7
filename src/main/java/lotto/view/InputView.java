@@ -1,8 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
-import lotto.utils.InputHandler;
 
 public class InputView {
 
@@ -10,22 +8,22 @@ public class InputView {
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static int inputMoney() {
+    public static String readMoney() {
         System.out.println(MONEY_INPUT_MESSAGE);
-        return InputHandler.handleMoneyInput(input());
+        return readLine();
     }
 
-    public static List<Integer> inputWinningNumbers() {
+    public static String readWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
-        return InputHandler.handleWinningNumbersInput(input());
+        return readLine();
     }
 
-    public static int inputBonusNumber() {
+    public static String readBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
-        return InputHandler.handleBonusNumberInput(input());
+        return readLine();
     }
 
-    private static String input() {
+    private static String readLine() {
         return Console.readLine().trim();
     }
 }
