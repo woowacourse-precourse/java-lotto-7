@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import lotto.configuration.LottoConfiguration;
 import lotto.configuration.Prize;
+import lotto.exception.ExceptionUtils;
+import lotto.exception.ProfitReportExceptionMessage;
 
 public class ProfitReport {
     private final List<Lotto> purchasedLottos;
@@ -12,10 +14,10 @@ public class ProfitReport {
 
     public ProfitReport(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
         if (purchasedLottos == null || purchasedLottos.isEmpty()) {
-            throw new IllegalArgumentException("구매한 로또는 null 또는 비어있을 수 없습니다.");
+            throw ExceptionUtils.IllegalArgument(ProfitReportExceptionMessage.NULL_OR_EMPTY_LOTTOS);
         }
         if (winningNumbers == null) {
-            throw new IllegalArgumentException("당첨 번호는 null일 수 없습니다.");
+            throw ExceptionUtils.IllegalArgument(ProfitReportExceptionMessage.NULL_WINNING_NUMBERS);
         }
 
         this.purchasedLottos = purchasedLottos;
