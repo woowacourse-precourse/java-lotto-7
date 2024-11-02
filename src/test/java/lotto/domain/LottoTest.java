@@ -20,7 +20,7 @@ class LottoTest {
         @Test
         @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
         void lottoSizeOver6ErrorTest() {
-            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+            assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 6, 7)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -29,7 +29,7 @@ class LottoTest {
         @MethodSource("provideInvalidNumbers")
         @DisplayName("로또 번호가 1보다 작거나 45보다 크면 예외가 발생한다")
         void LottoTest(List<Integer> invalidNumbers) {
-            assertThatThrownBy(() -> new Lotto(invalidNumbers))
+            assertThatThrownBy(() -> Lotto.of(invalidNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 로또 번호는 1와 45사이 숫자여야합니다.");
         }
@@ -37,7 +37,7 @@ class LottoTest {
         @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
         @Test
         void lottoDuplicateNumberErrorTest() {
-            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+            assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 5)))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
@@ -55,7 +55,7 @@ class LottoTest {
     @DisplayName("정수 리스트가 주어지면 해당 숫자들과 일치하는 숫자의 개수를 반환한다.")
     void lottoMatchNumberTest(List<Integer> numbers, int matchedCount) {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
         // when
         int result = lotto.getMatchedCount(numbers);
         // then

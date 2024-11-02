@@ -12,9 +12,13 @@ public class Lotto {
     public static final String NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto of(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public int getMatchedCount(List<Integer> inputNumbers) {
