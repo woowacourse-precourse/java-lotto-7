@@ -3,25 +3,26 @@ package lotto.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.util.Constants.ERROR_DUPLICATE_NUMBER;
-import static lotto.util.Constants.ERROR_LOTTO_NUMBER;
+import static lotto.util.Constants.*;
 
 public class WinningNumberParser {
 
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private static List<Integer> winningNumbers = new ArrayList<>();
 
     public List<Integer> parseWinningNumbers(String winningNumber) {
         String[] result = winningNumber.split(",");
 
+        if (result.length != 6) {
+            throw new IllegalArgumentException(ERROR_LOTTO_COUNT.getMessage());
+        }
+
         for (String string : result) {
-            winningNumbers.add(conventToInt(string.strip()));
+            int number = conventToInt(string.strip());
+            validateNumberRange(number);  // 1-45 범위 체크 (필요한 경우)
+            winningNumbers.add(number);
         }
 
-        winningNumbers = winningNumbers.stream().distinct().toList();
-
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER.getMessage());
-        }
+        validateDistinct();
 
         return winningNumbers;
     }
@@ -31,6 +32,18 @@ public class WinningNumberParser {
             return Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateDistinct() {
+        if (winningNumbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }
 }

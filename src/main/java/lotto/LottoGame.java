@@ -20,30 +20,57 @@ public class LottoGame {
     private static int amount = 0;
     private static int bonusNumber = 0;
 
-    public static void start() {
+    public static void startLotto() {
         getAmount();
         setLottoes();
-        setNumbers();
+
+        setWinningNumbers();
+        setBonusNumber();
+
         getLottoResult();
         getEarningRate();
     }
 
     private static void getAmount() {
-        outputView.printStartMessage();
-        amount = inputView.setLottoPrice();
-        outputView.printCountMessage(amount);
+        while (true) {
+            try {
+                outputView.printStartMessage();
+                amount = inputView.setLottoPrice();
+                outputView.printCountMessage(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private static void setLottoes() {
         outputView.printLottoNumbers(inputView.setLottoes(amount));
     }
 
-    private static void setNumbers() {
-        outputView.printWinningNumbers();
-        winningNumbers = inputView.setWinningNumbers();
+    private static void setWinningNumbers() {
+        while (true) {
+            try {
+                outputView.printWinningNumbers();
+                winningNumbers = inputView.setWinningNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                winningNumbers.clear();
+            }
+        }
+    }
 
-        outputView.printBonusNumber();
-        bonusNumber = inputView.setBonusNumber();
+    private static void setBonusNumber() {
+        while (true) {
+            try {
+                outputView.printBonusNumber();
+                bonusNumber = inputView.setBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private static void getLottoResult() {

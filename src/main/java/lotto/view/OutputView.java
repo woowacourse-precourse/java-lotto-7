@@ -59,4 +59,8 @@ public class OutputView {
     public void printEarningRate(double earningRate) {
         System.out.print(FINAL_EARNING.getMessage() + String.format("%.1f", earningRate) + FINAL_RESULT.getMessage());
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
