@@ -59,11 +59,17 @@ public class LottoController {
     public void PrintOutput(){
         OutputView.printTotal();
         CompareLotto();
+        ratePrint();
     }
     public void CompareLotto(){
         count=LottoTotal.winningLotto(lottoList,lottoNumber);
         int bonus_num=bonusNumber.getBonusNum();
         count=LottoTotal.bonusMatches(bonus_num,lottoList,count);
         OutputView.printCorrect(count);
+    }
+    public void ratePrint(){
+        RateOfReturn rateOfReturn=new RateOfReturn();
+        double rate=rateOfReturn.rate(count,purchaseAmount.getAmountNum());
+        OutputView.printRate(rate);
     }
 }
