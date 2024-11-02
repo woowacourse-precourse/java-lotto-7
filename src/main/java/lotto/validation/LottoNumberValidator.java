@@ -63,8 +63,10 @@ public class LottoNumberValidator {
     }
 
     private static void validateIsNumber(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(InputErrorMessage.INTEGER_REQUIRED);
         }
     }
 
