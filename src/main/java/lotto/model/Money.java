@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.message.ErrorMessage;
+import lotto.message.InputErrorMessage;
 
 public class Money {
     private static final int LOTTO_PRICE = 1000;
@@ -13,7 +13,7 @@ public class Money {
 
     private void validateAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
