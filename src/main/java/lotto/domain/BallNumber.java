@@ -19,6 +19,14 @@ public class BallNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw ErrorCode.INVALID_LOTTO_NUMBER_COUNT.exception();
