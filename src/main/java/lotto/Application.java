@@ -17,8 +17,8 @@ public class Application {
                 .collect(Collectors.toList()));
         Integer bonusNumber = Integer.parseInt(Input.inputBonusNumber());
 
-        LottoGenerator lottoGenerator = new LottoGenerator(price);
-        Lottos lottos = new Lottos(lottoGenerator.generateLottos());
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        Lottos lottos = new Lottos(lottoGenerator.generateLottos(price));
 
         LottoResult lottoResult = new LottoResult(winningNumber, bonusNumber);
         lottoResult.calculate(lottos);
