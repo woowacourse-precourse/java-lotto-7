@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.domains.customer.Customer;
-import lotto.domains.lotto.LottoTicketMachine;
 import lotto.domains.lotto.LottoTicket;
+import lotto.domains.lotto.LottoTicketMachine;
 import lotto.util.TypeConverter;
 import lotto.view.InputInterface;
 import lotto.view.OutputInterface;
@@ -21,8 +21,24 @@ public class Application {
 		OutputInterface.printMessage(tickets.toString());
 		OutputInterface.printNewLine();
 
+		drawWinningNumbers(inputInterface, lottoTicketMachine);
 
 
+	}
+
+	private static void drawWinningNumbers(InputInterface inputInterface,
+		LottoTicketMachine lottoTicketMachine) {
+		while (true) {
+			try {
+				OutputInterface.printMessage(OutputInterface.ENTER_WINNING_NUMBERS);
+				String winningNumbers = inputInterface.readLine();
+
+				lottoTicketMachine.drawWinningNumbers(winningNumbers);
+				break;
+			} catch (IllegalArgumentException exception) {
+				processException(exception);
+			}
+		}
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
@@ -33,10 +49,14 @@ public class Application {
 				OutputInterface.printNewLine();
 
 				return Customer.from(TypeConverter.convertStringToInteger(price));
-			} catch (IllegalArgumentException exception){
-				OutputInterface.printMessage(exception.getMessage());
-				OutputInterface.printNewLine();
+			} catch (IllegalArgumentException exception) {
+				processException(exception);
 			}
 		}
+	}
+
+	private static void processException(IllegalArgumentException exception) {
+		OutputInterface.printMessage(exception.getMessage());
+		OutputInterface.printNewLine();
 	}
 }
