@@ -25,6 +25,8 @@ public class WinningNumbers {
                 System.out.println(NotificationMessage.WINNING_NUMBERS.getMessage());
 
                 String[] inputs = Console.readLine().trim().split(DELIMITER);
+                Arrays.stream(inputs).forEach(this::validatePositiveInteger);
+
                 validateMainNumber(inputs);
 
                 List<Integer> mainNumbers = Arrays.stream(inputs)
@@ -44,7 +46,10 @@ public class WinningNumbers {
             try {
                 System.out.println(NotificationMessage.BONUS_NUMBER.getMessage());
 
-                int bonusNumber = Integer.parseInt(Console.readLine().trim());
+                String bonusInput = Console.readLine().trim();
+                validatePositiveInteger(bonusInput); // 보너스 번호에 대해 유효성 검사
+                int bonusNumber = Integer.parseInt(bonusInput);
+
                 validateBonusNumber(bonusNumber);
 
                 System.out.println(NotificationMessage.DIVIDER.getMessage());
@@ -84,6 +89,17 @@ public class WinningNumbers {
     private void validateBonusNumberDuplication(int bonusNumber) {
         if (mainNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private void validatePositiveInteger(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            if (number < 0) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
         }
     }
 
