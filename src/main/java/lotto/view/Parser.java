@@ -15,6 +15,8 @@ public class Parser {
             "[ERROR] 당첨 번호는 중복되지 않은 서로 다른 6개의 숫자가 입력 되어야 합니다.";
 
     private final static String DELIMITER_COMMA = ",";
+    private final static int PURCHASE_AMOUNT_UNITS = 1000;
+    private final static int ZERO = 0;
     private final static int WINNING_NUMBER_SIZE = 6;
     private final static int MINIMUM_WINNING_NUMBER = 1;
     private final static int MAXIMUM_WINNING_NUMBER = 45;
@@ -27,7 +29,7 @@ public class Parser {
     }
 
     private static void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % PURCHASE_AMOUNT_UNITS != ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_DIVISIBLE_BY_1000_MESSAGE);
         }
     }
