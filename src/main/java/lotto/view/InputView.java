@@ -66,10 +66,10 @@ public class InputView {
         if (splitWinningNumbers.length != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
         }
-
         for (String number : splitWinningNumbers) {
             winningNumbers.add(parseNumber(number.trim()));
         }
+        return winningNumbers;
     }
 
     private int parseNumber(String number) {
