@@ -23,12 +23,29 @@ public class View {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    public static void promptForWinningBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+
+
+
+
     public static List<Integer> inputWinningLotto() {
         String winningLottoInput = Console.readLine();
         validateEmpty(winningLottoInput);
         validateCommaFormat(winningLottoInput);
         return convertToNumbers(winningLottoInput);
     }
+
+    public static int inputWinningBonusNumber() {
+        String winningBonusNumberInput = Console.readLine();
+        validateEmpty(winningBonusNumberInput);
+        validateNumeric(winningBonusNumberInput);
+
+        return Integer.parseInt(winningBonusNumberInput);
+    }
+
 
 
     private static void validateCommaFormat(String input) {
