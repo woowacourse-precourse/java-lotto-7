@@ -1,10 +1,13 @@
 package lotto.Controller;
 
+import java.util.List;
 import lotto.Domain.LottoGame;
 import lotto.Domain.LottoMachine;
 import lotto.Domain.Lottos;
 import lotto.Domain.PurchaseAmount;
+import lotto.Utils.Formatter;
 import lotto.Utils.UserInput;
+import lotto.View.OutputView;
 
 public class LottoGameController {
     private final UserInput userInput;
@@ -29,11 +32,19 @@ public class LottoGameController {
                 LottoMachine machine = LottoMachine.create();
                 issuedLottos = machine.buyLottos(amount);
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         game.setIssuedLottos(issuedLottos);
+
+        OutputView.printMessage();
+
+        String result = Formatter.formatLottoCount(issuedLottos);
+        OutputView.printMessage(result);
+
+        List<String> lottoResult = Formatter.formatLottos(issuedLottos);
+        OutputView.printMessages(lottoResult);
     }
 
 }
