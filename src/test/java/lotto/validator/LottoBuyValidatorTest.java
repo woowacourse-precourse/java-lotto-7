@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.model.Lotto;
-import lotto.validator.LottoBuyValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,18 @@ class LottoBuyValidatorTest {
 
     LottoBuyValidatorTest() {
         this.lottoBuyValidator = new LottoBuyValidator();
+    }
+
+    @Test
+    @DisplayName("validateMoneyAmount는 로또 가격으로 나눠지지 않는 금액이 들어올 경우, IllegalArgumentException을 던진다.")
+    void validateMoneyAmount_WithNonPositive_ThrowIllegalArgumentException() {
+        // given
+        int nonPositive = 0;
+
+        // when & then
+        assertThatThrownBy(
+                () -> lottoBuyValidator.validateMoneyAmount(nonPositive)
+        ).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
