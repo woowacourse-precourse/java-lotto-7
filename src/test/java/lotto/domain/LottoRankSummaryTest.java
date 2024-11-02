@@ -9,9 +9,9 @@ public class LottoRankSummaryTest {
     void 수익률을_계산한다() {
         LottoRankSummary lottoRankSummary = new LottoRankSummary();
         lottoRankSummary.incrementCount(LottoRank.FIFTH_RANK);
-        PurchaseAmount purchaseAmount = new PurchaseAmount("8000");
+        Budget budget = new Budget(8000);
 
-        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(purchaseAmount);
+        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(budget);
 
         assertEquals(62.5, rateOfReturn);
     }

@@ -1,42 +1,47 @@
 package lotto.view;
 
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumber;
+import lotto.util.ValidatorUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public static PurchaseAmount inputPurchaseAmount() {
+    public static int inputBudget() {
         System.out.println("구입금액을 입력해 주세요.");
-        try {
-            String inputPurchaseAmount = readLine();
-            return new PurchaseAmount(inputPurchaseAmount);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-            return inputPurchaseAmount();
-        }
+        return scanInt(readLine());
     }
 
-    public static WinningNumber inputWinningNumber() {
+    public static List<Integer> inputWinningNumber() {
         System.out.println("당첨번호를 입력해 주세요.");
-        try {
-            String inputWinningNumber = readLine();
-            return new WinningNumber(inputWinningNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-            return inputWinningNumber();
-        }
+        return scanLottoNumbers(readLine());
     }
 
-    public static int inputBonusNumber(WinningNumber winningNumber) {
+    public static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        try {
-            String bonusNumber = readLine();
-            return winningNumber.makeBonusNumber(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
-            return inputBonusNumber(winningNumber);
-        }
+        return scanLottoNumber(readLine());
+    }
+
+    private static List<Integer> scanLottoNumbers(String inputString) {
+        isEmpty(inputString);
+        return Arrays.asList(inputString.split(",")).stream()
+                .map(InputView::scanLottoNumber)
+                .toList();
+    }
+
+    private static int scanLottoNumber(String inputString) {
+        int lottoNumber = scanInt(inputString);
+        return ValidatorUtils.isInRange(lottoNumber);
+    }
+
+    private static int scanInt(String inputString) {
+        isEmpty(inputString);
+        return ValidatorUtils.canParseToInt(inputString);
+    }
+
+    private static void isEmpty(String inputString){
+        ValidatorUtils.isNotEmpty(inputString);
     }
 }

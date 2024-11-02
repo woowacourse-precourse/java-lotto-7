@@ -16,9 +16,9 @@ public class LottoRankSummary {
         rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 
-    public double calculateRateOfReturn(PurchaseAmount purchaseAmount) {
+    public double calculateRateOfReturn(Budget budget) {
         int totalPrize = calculateTotalPrize();
-        return purchaseAmount.findRateOfReturn(totalPrize);
+        return budget.findRateOfReturn(totalPrize);
     }
 
     private int calculateTotalPrize() {

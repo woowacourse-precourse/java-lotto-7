@@ -1,40 +1,45 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.strategy.LottoCreateStrategy;
+import lotto.strategy.RandomLottoCreateStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private static LottoCreateStrategy lottoCreateStrategy;
-
-    public LottoController(LottoCreateStrategy lottoCreateStrategy) {
-        this.lottoCreateStrategy = lottoCreateStrategy;
-    }
 
     public void start() {
-        PurchaseAmount purchaseAmount = InputView.inputPurchaseAmount();
-        WinningNumber winningNumber = InputView.inputWinningNumber();
-        InputView.inputBonusNumber(winningNumber);
-        List<Lotto> lottos = generateLotto(purchaseAmount);
+        Budget budget = setUpBudget();
+        WinningNumber winningNumber = setUpWinningNumber();
+        List<Lotto> lottos = generateLotto(budget);
         LottoRankSummary lottoRankSummary = calculateLottoRank(lottos, winningNumber);
-        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(purchaseAmount);
+        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(budget);
         OutputView.printResult(lottos, rateOfReturn, lottoRankSummary);
     }
 
-    private List<Lotto> generateLotto(PurchaseAmount purchaseAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-        int lottoCounts = purchaseAmount.findLottoCounts();
-
-        while (lottoCounts > 0) {
-            lottos.add(new Lotto(lottoCreateStrategy.createRandomLottoNumbers()));
-            lottoCounts--;
+    private Budget setUpBudget() {
+        try {
+            return new Budget(InputView.inputBudget());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+            return setUpBudget();
         }
+    }
 
-        return lottos;
+    private WinningNumber setUpWinningNumber() {
+        try {
+            List<Integer> winningNumber = InputView.inputWinningNumber();
+            int bonusNumber = InputView.inputBonusNumber();
+            return new WinningNumber(winningNumber, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+            return setUpWinningNumber();
+        }
+    }
+
+    private List<Lotto> generateLotto(Budget budget) {
+        return LottoGenerator.generateLotto(budget, new RandomLottoCreateStrategy());
     }
 
     private LottoRankSummary calculateLottoRank(List<Lotto> lottos, WinningNumber winningNumber) {
