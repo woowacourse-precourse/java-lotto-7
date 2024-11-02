@@ -2,8 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Game {
     private static final int LOTTO_MAX_COUNT = 100;
