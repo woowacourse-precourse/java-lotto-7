@@ -26,6 +26,7 @@ public class LottoController {
 
         double profitRatio = calculateResult(money, lottos, winningLotto);
         outputView.showProfitRate(profitRatio);
+        displayResults(lottos, winningLotto, money, outputView);
     }
 
     private Money getMoney() {
@@ -65,22 +66,15 @@ public class LottoController {
     }
     private double calculateResult(Money money, List<Lotto> lottos, WinningLotto winningLotto) {
         PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
-
-        System.out.println("당첨 통계\n---");
-        for (Prize prize : Prize.values()) {
-            if (prize == Prize.SECOND) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",
-                        prize.getCount(),
-                        prize.getPrize(),
-                        prizeResult.getPrizeCount().get(prize));
-            }else{
-                System.out.printf("%d개 일치 (%,d원) - %d개\n",
-                        prize.getCount(),
-                        prize.getPrize(),
-                        prizeResult.getPrizeCount().get(prize));
-            }
-        }
         ProfitCalculator profitCalculator = new ProfitCalculator(money, prizeResult);
+
         return profitCalculator.calculateProfitRatio();
+    }
+
+    public void displayResults(List<Lotto> lottos, WinningLotto winningLotto, Money money, OutputView outputView) {
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+        outputView.showPrizeResults(prizeResult);
+        double profitRatio = calculateResult(money, lottos, winningLotto);
+        outputView.showProfitRate(profitRatio);
     }
 }
