@@ -39,9 +39,9 @@ public class StatusServiceImpl implements StatusService {
 
         WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
         WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);
-        winnerStatusRepository.save(winnerStatus);
 
-        return winnerStatus.toDto();
+        return winnerStatusRepository.save(winnerStatus)
+                .toDto();
     }
 
     private void validHasBonusNum(WinnerLotto winnerLotto) {

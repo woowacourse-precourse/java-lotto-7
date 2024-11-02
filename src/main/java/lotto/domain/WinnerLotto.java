@@ -23,12 +23,12 @@ public class WinnerLotto {
     }
 
     public boolean hasBonusNum() {
-        return bonusNum != null;
+        return this.bonusNum != null;
     }
 
     public WinnerCount countWinnerMatch(Lotto compareLotto) {
-        int matchedCount = compareLotto.matchCount(winLotto);
-        boolean hasBonusNum = compareLotto.hasNumber(bonusNum);
+        int matchedCount = compareLotto.matchCount(this.winLotto);
+        boolean hasBonusNum = compareLotto.hasNumber(this.bonusNum);
 
         return WinnerCount.of(matchedCount, hasBonusNum);
     }

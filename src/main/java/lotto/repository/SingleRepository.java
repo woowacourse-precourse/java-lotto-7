@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface SingleRepository<T> {
 
-    void save(T object);
+    T save(T object);
 
     Optional<T> get();
 }

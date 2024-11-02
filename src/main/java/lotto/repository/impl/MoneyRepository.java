@@ -9,8 +9,9 @@ public class MoneyRepository implements SingleRepository<Money> {
     private Money money;
 
     @Override
-    public void save(Money money) {
+    public Money save(Money money) {
         this.money = money;
+        return this.money;
     }
 
     @Override

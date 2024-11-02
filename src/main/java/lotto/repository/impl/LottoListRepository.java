@@ -9,8 +9,9 @@ public class LottoListRepository implements SingleRepository<LottoList> {
     private LottoList lottoList;
 
     @Override
-    public void save(LottoList object) {
-        this.lottoList = object;
+    public LottoList save(LottoList lottoList) {
+        this.lottoList = lottoList;
+        return this.lottoList;
     }
 
     @Override

@@ -9,8 +9,9 @@ public class WinnerStatusRepository implements SingleRepository<WinnerStatus> {
     private WinnerStatus winnerStatus;
 
     @Override
-    public void save(WinnerStatus object) {
-        this.winnerStatus = object;
+    public WinnerStatus save(WinnerStatus winnerStatus) {
+        this.winnerStatus = winnerStatus;
+        return this.winnerStatus;
     }
 
     @Override

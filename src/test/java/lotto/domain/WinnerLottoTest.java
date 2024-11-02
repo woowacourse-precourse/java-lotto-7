@@ -92,9 +92,10 @@ class WinnerLottoTest {
             "1,2,3,4,5,6:0"
     }, delimiter = ':')
     void test9(String winnerNums, String bonusNum) {
+        WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
+        LottoNum lottoNum = new LottoNum(bonusNum);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
-            winnerLotto.addBonusNum(new LottoNum(bonusNum));
+            winnerLotto.addBonusNum(lottoNum);
         });
 
         assertThat(exception.getMessage()).isEqualTo(INVALID_LOTTO_NUM.toString());
@@ -107,9 +108,11 @@ class WinnerLottoTest {
             "1,2,3,4,5,6:5"
     }, delimiter = ':')
     void test10(String winnerNums, String bonusNum) {
+        WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
+        LottoNum lottoNum = new LottoNum(bonusNum);
+
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
-            winnerLotto.addBonusNum(new LottoNum(bonusNum));
+            winnerLotto.addBonusNum(lottoNum);
         });
 
         assertThat(exception.getMessage()).isEqualTo(INVALID_BONUS_NUM.toString());

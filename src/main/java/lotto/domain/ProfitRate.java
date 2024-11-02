@@ -24,7 +24,7 @@ public class ProfitRate {
         return DtoMapper.toProfitRateResultDto(calculate());
     }
 
-    public String calculate() {
+    private String calculate() {
         BigDecimal sumPercentage = winnerStatus.sum().multiply(PERCENTAGE);
         return money.calculateProfitRate(sumPercentage);
     }

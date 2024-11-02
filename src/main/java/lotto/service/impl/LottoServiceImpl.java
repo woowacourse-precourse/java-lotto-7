@@ -24,9 +24,9 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public MoneyDto createMoney(String input) {
         Money money = Money.create(input);
-        moneyRepository.save(money);
 
-        return money.toDto();
+        return moneyRepository.save(money)
+                .toDto();
     }
 
     @Override
@@ -35,8 +35,8 @@ public class LottoServiceImpl implements LottoService {
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 
         LottoList lottoList = LottoList.generate(money);
-        lottoListRepository.save(lottoList);
 
-        return lottoList.toDto();
+        return lottoListRepository.save(lottoList)
+                .toDto();
     }
 }
