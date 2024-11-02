@@ -8,7 +8,7 @@ import lotto.validator.LottoTicketValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
+public class LottoPurchaseController {
 
 	public void run() {
 		int purchasePrice = getValidatedPurchasePriceWithRetry();
