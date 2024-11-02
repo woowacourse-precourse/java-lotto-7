@@ -4,108 +4,29 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.LottoRanking;
 import lotto.domain.ReturnMoneyRate;
-import lotto.validator.BonusValidator;
-import lotto.validator.MoneyValidator;
-import lotto.validator.NumberValidator;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
-    private int money;
-    private List<Integer> winningNumbers;
-    private int bonus;
+    private final MoneyController moneyController;
+    private final LottoController lottoController;
 
-    public void initMoney() {
-        while (true) {
-            try {
-                String inputMoney = InputView.getMoney();
-                validateMoneyInput(inputMoney);
-                break;
-            }
-            catch (IllegalArgumentException e) {
-                OutputView.displayErrorMessage(e);
-            }
-        }
-        InputView.getCount(money);
-        issueLotto(money);
+    public LottoGame() {
+        moneyController = new MoneyController();
+        lottoController = new LottoController();
     }
 
-    private void validateMoneyInput(String inputMoney) {
-        MoneyValidator.validateMoneyInputNotNull(inputMoney);
-        MoneyValidator.validateMoneyIsNumeric(inputMoney);
-
-        money = Integer.parseInt(inputMoney);
-        MoneyValidator.validateMoneyPositive(money);
-        MoneyValidator.validateMoneyDivisibleByThousand(money);
-    }
-
-    private void issueLotto(int money) {
+    public void startGame() {
+        int money = moneyController.initMoney();
         LottoIssuer lottoIssuer = new LottoIssuer();
         List<Lotto> issuedLottos = lottoIssuer.generateLottos(money);
         OutputView.displayIssuedLotto(issuedLottos);
 
-        initWinningLotto(issuedLottos);
-    }
-
-    private void initWinningLotto(List<Lotto> issuedLottos) {
-        winningNumbers = getValidatedWinningNumbers();
-        bonus = getValidatedBonusNumber(winningNumbers);
+        List<Integer> winningNumbers = lottoController.getValidatedWinningNumbers();
+        int bonus = lottoController.getValidatedBonusNumber(winningNumbers);
         calculateLottoResult(issuedLottos, winningNumbers, bonus);
-    }
-
-    private List<Integer> getValidatedWinningNumbers() {
-        while (true) {
-            try {
-                String winningInput = InputView.getWinningNumbers();
-                return validateWinningNumbers(winningInput);
-            } catch (IllegalArgumentException e) {
-                OutputView.displayErrorMessage(e);
-            }
-        }
-    }
-
-    private List<Integer> validateWinningNumbers(String winningInput) {
-        String[] parsedWinningNumbers= winningInput.split(",");
-        NumberValidator.validateWinningNumbersAreNumeric(parsedWinningNumbers);
-
-        List<Integer> numbers = convertToIntegerList(parsedWinningNumbers);
-        new Lotto(numbers);
-        return numbers;
-    }
-
-    private List<Integer> convertToIntegerList(String[] winningNumberSplit) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String s : winningNumberSplit) {
-            numbers.add(Integer.parseInt(s.trim()));
-        }
-        return numbers;
-    }
-
-    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                String bonusInput = InputView.getBonusNumber();
-                bonus = validateBonusNumber(bonusInput);
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.displayErrorMessage(e);
-            }
-        }
-        return bonus;
-    }
-
-    private int validateBonusNumber(String bonusInput) {
-        BonusValidator.validateBonusIsNumeric(bonusInput);
-
-        bonus = Integer.parseInt(bonusInput.trim());
-        BonusValidator.validateBonusNumberRange(bonus);
-        BonusValidator.validateBonusNotDuplicated(winningNumbers, bonus);
-
-        return bonus;
     }
 
     private void calculateLottoResult(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
@@ -120,7 +41,7 @@ public class LottoGame {
     private void calculateReturnMoneyRate(Map<Integer, Integer> result) {
         ReturnMoneyRate returnMoneyRate = new ReturnMoneyRate();
         int totalWinnings = returnMoneyRate.calculateSum(result);
-        double rateOfReturn = returnMoneyRate.calculateRate(totalWinnings, money);
+        double rateOfReturn = returnMoneyRate.calculateRate(totalWinnings, moneyController.getMoney());
 
         OutputView.displayMoneyRate(rateOfReturn);
     }

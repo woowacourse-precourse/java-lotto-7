@@ -12,8 +12,9 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static void displayCount(int count) {
+    public static void displayCount(int money) {
         System.out.println();
+        int count = money / 1000;
         System.out.println(count+"개를 구매했습니다.");
 
     }

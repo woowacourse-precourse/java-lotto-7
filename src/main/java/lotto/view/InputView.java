@@ -9,11 +9,6 @@ public class InputView {
         return Console.readLine().trim();
     }
 
-    public static void getCount(int money) {
-        int count = money / 1000;
-        OutputView.displayCount(count);
-    }
-
     public static String getWinningNumbers() {
         OutputView.displayWinningNumbers();
         return Console.readLine();
