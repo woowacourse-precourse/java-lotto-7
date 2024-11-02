@@ -44,13 +44,15 @@ public class LottoProcessor {
         for(int i = 0; i < numberOfLotto; i++){
             lottos.add(createLottoFromRandom());
         }
+
+        providePurchaseResult();
     }
 
     private Lotto createLottoFromRandom(){
         return lottoGenerator.generateLotto(lottoDrawer.drawRandomNumbers());
     }
 
-    public void providePurchaseResult() {
+    private void providePurchaseResult() {
         lottoBuyer.receiveReceipt(new Receipt(numberOfLotto * NumberConstants.LOTTO_PRICE.getNumber()));
         lottoBuyer.receiveLottos(lottos);
     }
