@@ -13,7 +13,7 @@ public class ValidatorUtils {
         try{
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력하셔야 합니다.");
+            throw new NumberFormatException("숫자를 입력하셔야 합니다.");
         }
     }
 

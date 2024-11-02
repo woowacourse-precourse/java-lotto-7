@@ -6,12 +6,14 @@ import java.util.List;
 public class LottoSummary {
 
     private final EnumMap<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
+    private double rateOfReturn;
 
-    public LottoSummary(List<Lotto> lottoTickets, WinningNumber winningNumber) {
+    public LottoSummary(List<Lotto> lottoTickets, WinningNumber winningNumber, Budget budget) {
         for (LottoRank rank : LottoRank.values()) {
             rankCounts.put(rank, 0);
         }
         calculateLottoRank(lottoTickets, winningNumber);
+        rateOfReturn = calculateRateOfReturn(budget);
     }
 
     private void calculateLottoRank(List<Lotto> lottoTickets, WinningNumber winningNumber) {
@@ -25,7 +27,7 @@ public class LottoSummary {
         rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 
-    public double calculateRateOfReturn(Budget budget) {
+    private double calculateRateOfReturn(Budget budget) {
         int totalPrize = calculateTotalPrize();
         return budget.findRateOfReturn(totalPrize);
     }
@@ -38,5 +40,9 @@ public class LottoSummary {
 
     public EnumMap<LottoRank, Integer> getRankCounts() {
         return this.rankCounts;
+    }
+
+    public double getRateOfReturn(){
+        return this.rateOfReturn;
     }
 }

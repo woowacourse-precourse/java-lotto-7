@@ -14,7 +14,7 @@ public class WinnerNumberTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    new WinningNumber(winningLotto, 8);
+                    new WinningNumber(new Lotto(winningLotto), 8);
                 })
                 .withMessageContaining("6개의 수를 입력하셔야 합니다.");
     }
@@ -25,7 +25,7 @@ public class WinnerNumberTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    new WinningNumber(winningLotto, 8);
+                    new WinningNumber(new Lotto(winningLotto), 8);
                 })
                 .withMessageContaining("중복된 숫자는 입력할 수 없습니다.");
     }
@@ -36,14 +36,14 @@ public class WinnerNumberTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
-                    new WinningNumber(winningLotto, 6);
+                    new WinningNumber(new Lotto(winningLotto), 6);
                 }).withMessageContaining("당첨 번호에 없는 보너스 번호를 입력하셔야 합니다.");
     }
 
     @Test
     void 로또번호와_당첨번호가_일치하는_개수를_반환한다() {
         List<Integer> winningLotto = List.of(1,2,3,4,5,6);
-        WinningNumber winningNumber = new WinningNumber(winningLotto, 7);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         LottoRank rank = winningNumber.calculateRank(lotto);
@@ -54,7 +54,7 @@ public class WinnerNumberTest {
     @Test
     void 로또번호와_보너스번호가_일치하다면_TRUE를_반환한다() {
         List<Integer> winningLotto = List.of(1,2,3,4,5,6);
-        WinningNumber winningNumber = new WinningNumber(winningLotto, 7);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 
         boolean correct = winningNumber.correctBonus(lotto);
@@ -65,7 +65,7 @@ public class WinnerNumberTest {
     @Test
     void 로또번호와_보너스번호가_일치하지않다면_FALSE를_반환한다() {
         List<Integer> winningLotto = List.of(1,2,3,4,5,6);
-        WinningNumber winningNumber = new WinningNumber(winningLotto, 7);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
 
         boolean correct = winningNumber.correctBonus(lotto);

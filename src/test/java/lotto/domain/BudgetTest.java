@@ -29,11 +29,11 @@ public class BudgetTest {
 
     @Test
     void 수익률을_계산한다() {
-        Budget budget = new Budget(8000);
-        int totalAmount = 5000;
+        Budget budget = new Budget(9000);
+        int totalAmount = 8000;
 
         double rateOfReturn = budget.findRateOfReturn(totalAmount);
 
-        assertEquals(62.5, rateOfReturn);
+        assertEquals(88.89, rateOfReturn);
     }
 }

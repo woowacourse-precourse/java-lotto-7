@@ -11,7 +11,7 @@ public class InputView {
 
     public static int inputBudget() {
         System.out.println("구입금액을 입력해 주세요.");
-        return scanInt(readLine());
+        return scanInt(readLine().trim());
     }
 
     public static List<Integer> inputWinningNumber() {
@@ -21,12 +21,13 @@ public class InputView {
 
     public static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return scanLottoNumber(readLine());
+        return scanLottoNumber(readLine().trim());
     }
 
     private static List<Integer> scanLottoNumbers(String inputString) {
         isEmpty(inputString);
         return Arrays.asList(inputString.split(",")).stream()
+                .map(String::trim)
                 .map(InputView::scanLottoNumber)
                 .toList();
     }

@@ -15,11 +15,11 @@ public class LottoSummaryTest {
         List<Lotto> lottoTickets = LottoGenerator.generateLotto(budget, new RandomLottoCreateStrategy());
 
         List<Integer> winningLotto = List.of(1,2,3,4,5,6);
-        WinningNumber winningNumber = new WinningNumber(winningLotto, 7);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
 
         //Act
-        LottoSummary lottoSummary = new LottoSummary(lottoTickets, winningNumber);
-        double rateOfReturn = lottoSummary.calculateRateOfReturn(budget);
+        LottoSummary lottoSummary = new LottoSummary(lottoTickets, winningNumber, budget);
+        double rateOfReturn = lottoSummary.getRateOfReturn();
 
         //Assert
         assertEquals(62.5, rateOfReturn);

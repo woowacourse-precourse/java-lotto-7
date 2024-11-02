@@ -4,62 +4,56 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoSummary;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String STATISTICS_MESSAGE = "당첨 통계";
-    private static final String DIVIDER = "---";
-    private static final String SIZE_MESSAGE = "개를 구매했습니다.";
-    private static final String NEW_LINE = "\n";
-    private static final String OPEN_BRACKET = "[";
-    private static final String CLOSE_BRACKET = "]";
+    private static final String STATISTICS_START_MESSAGE = "당첨 통계\n---";
+    private static final String SIZE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String BRACKET_FORMAT = "[%s]";
     private static final String COMMA = ", ";
-    private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
-    private static final String PERCENT_SIGN = "%";
-    private static final String ITEMS = "개";
-    private static final String FINAL_MESSAGE = "입니다.";
+    private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
 
-    public static void printResult(List<Lotto> lottos, double rateOfReturn, LottoSummary lottoSummary) {
-        System.out.println(makeStatisticsStartMessageString());
-        System.out.println(makePurchaseSizeMessageString(lottos.size()));
-        System.out.print(makeShowLottoNumberString(lottos));
-        System.out.print(makeStatisticsResultString(lottoSummary));
-        System.out.println(makeRateOfReturnString(rateOfReturn));
+    public static void printResult(List<Lotto> lottoTickets, LottoSummary lottoSummary) {
+        printStartMessage();
+        printLottoTicketSize(lottoTickets.size());
+        printLottoTickets(lottoTickets);
+        printResultSummary(lottoSummary);
+        printRateOfReturnString(lottoSummary);
     }
 
-    private static String makeStatisticsStartMessageString() {
-        return STATISTICS_MESSAGE + NEW_LINE + DIVIDER;
+    private static void printStartMessage() {
+        System.out.println(STATISTICS_START_MESSAGE);
     }
 
-    private static String makePurchaseSizeMessageString(int size) {
-        return size + SIZE_MESSAGE;
+    private static void printLottoTicketSize(int lottoTicketSize) {
+        System.out.println(String.format(SIZE_MESSAGE, lottoTicketSize));
     }
 
-    private static String makeShowLottoNumberString(List<Lotto> lottos) {
-        StringBuilder str = new StringBuilder();
-        for (Lotto lotto : lottos) {
+    private static void printLottoTickets(List<Lotto> lottoTickets) {
+        for (Lotto lotto : lottoTickets) {
             String numbers = String.join(COMMA, lotto.getNumbers().stream()
                     .map(String::valueOf)
                     .collect(Collectors.toList()));
 
-            str.append(OPEN_BRACKET).append(numbers).append(CLOSE_BRACKET).append(NEW_LINE);
+            System.out.println(String.format(BRACKET_FORMAT, numbers));
         }
-        return str.toString();
     }
 
-    private static String makeStatisticsResultString(LottoSummary lottoSummary) {
-        StringBuilder str = new StringBuilder();
+    private static void printResultSummary(LottoSummary lottoSummary) {
         for (Map.Entry<LottoRank, Integer> entry : lottoSummary.getRankCounts().entrySet()) {
             LottoRank rank = entry.getKey();
             int count = entry.getValue();
-            str.append(rank.getMessage()).append(count).append(ITEMS).append(NEW_LINE);
+            System.out.println(String.format(rank.getMessage(), count));
         }
-        return str.toString();
     }
 
-    private static String makeRateOfReturnString(double rateOfReturn) {
-        return TOTAL_RATE_OF_RETURN_MESSAGE + rateOfReturn + PERCENT_SIGN + FINAL_MESSAGE;
+    private static void printRateOfReturnString(LottoSummary lottoSummary) {
+        double rateOfReturn = lottoSummary.getRateOfReturn();
+        DecimalFormat df = new DecimalFormat("0.##");
+        String formattedRate = df.format(rateOfReturn);
+        System.out.println(String.format(TOTAL_RATE_OF_RETURN_MESSAGE, formattedRate));
     }
 }

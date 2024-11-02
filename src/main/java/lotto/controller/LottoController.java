@@ -12,19 +12,18 @@ public class LottoController {
     public void start() {
         Budget budget = setUpBudget();
         List<Lotto> lottoTickets = buyLotto(budget);
-
         WinningNumber winningNumber = setUpWinningNumber();
 
-        LottoSummary lottoSummary = new LottoSummary(lottoTickets, winningNumber);
-        double rateOfReturn = lottoSummary.calculateRateOfReturn(budget);
-        OutputView.printResult(lottoTickets, rateOfReturn, lottoSummary);
+        LottoSummary lottoSummary = new LottoSummary(lottoTickets, winningNumber, budget);
+
+        OutputView.printResult(lottoTickets, lottoSummary);
     }
 
     private Budget setUpBudget() {
         try {
             return new Budget(InputView.inputBudget());
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("[ERROR] " + e.getMessage());
             return setUpBudget();
         }
     }
@@ -35,11 +34,11 @@ public class LottoController {
 
     private WinningNumber setUpWinningNumber() {
         try {
-            List<Integer> winningNumber = InputView.inputWinningNumber();
+            Lotto winningNumber = new Lotto(InputView.inputWinningNumber());
             int bonusNumber = InputView.inputBonusNumber();
             return new WinningNumber(winningNumber, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("[ERROR] " + e.getMessage());
             return setUpWinningNumber();
         }
     }
