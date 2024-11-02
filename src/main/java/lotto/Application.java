@@ -17,8 +17,7 @@ public class Application {
         int bonusNumber = inputBonusNumber(winningNumbers);
         System.out.println("Bonus number: " + bonusNumber);
 
-        List<List<Integer>> lottoTickets = generateLottoTickets(purchaseAmount);
-        System.out.println("Generated Lotto Tickets:");
+        List<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
         printLottoTickets(lottoTickets);
     }
 
@@ -100,12 +99,12 @@ public class Application {
         }
     }
 
-    private static List<List<Integer>> generateLottoTickets(int purchaseAmount) {
-        int ticketCount = purchaseAmount / 1000;  // 로또 한 장 가격은 1,000원
-        List<List<Integer>> lottoTickets = new ArrayList<>();
+    private static List<Lotto> generateLottoTickets(int purchaseAmount) {
+        int ticketCount = purchaseAmount / 1000;
+        List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < ticketCount; i++) {
-            lottoTickets.add(generateSingleLotto());
+            lottoTickets.add(Lotto.generate());
         }
 
         return lottoTickets;
@@ -117,11 +116,10 @@ public class Application {
         return lottoNumbers;
     }
 
-    private static void printLottoTickets(List<List<Integer>> lottoTickets) {
+    private static void printLottoTickets(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + " tickets purchased.");
-
-        for (List<Integer> ticket : lottoTickets) {
-            System.out.println(ticket);
+        for (Lotto ticket : lottoTickets) {
+            System.out.println(ticket.getNumbers());
         }
     }
 
