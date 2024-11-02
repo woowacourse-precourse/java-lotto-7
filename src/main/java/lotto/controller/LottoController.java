@@ -17,10 +17,20 @@ public class LottoController {
     }
 
     public void run() {
+        int purchaseAmount = getPurchaseAmount();
+        List<Integer> winningNumbers = getWinningNumbers();
+    }
+
+    private int getPurchaseAmount() {
         int purchaseAmount = InputView.getPurchaseAmount();
         inputValidator.validatePurchaseAmount(purchaseAmount, LOTTO_PRICE);
+        return purchaseAmount;
+    }
+
+    private List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
         inputValidator.validateWinningNumbers(winningNumbers);
+        return winningNumbers;
     }
 
 }
