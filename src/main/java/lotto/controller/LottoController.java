@@ -15,6 +15,6 @@ public class LottoController {
 
     public void setUp() {
         outputView.printLottoPurchaseAmountMessage();
-        LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount(inputView.InputLottoPurchaseAmount());
+        LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(inputView.InputLottoPurchaseAmount());
     }
 }
