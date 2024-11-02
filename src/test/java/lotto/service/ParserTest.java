@@ -26,6 +26,13 @@ public class ParserTest {
     }
 
     @Test
+    public void 당첨번호에_중복된_숫자입력_예외_테스트() throws Exception {
+        Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,3,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
+
+    @Test
     public void 당첨번호에_숫자를_입력하지_않는_예외_테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,5,6a"))
                 .isInstanceOf(IllegalArgumentException.class)
