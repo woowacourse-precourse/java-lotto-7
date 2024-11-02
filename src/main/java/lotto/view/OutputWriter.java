@@ -25,9 +25,13 @@ public class OutputWriter {
             if (type.equals(WinningType.NONE)) {
                 continue;
             }
-            System.out.print(type.getCorrectCount() + "개 일치 ");
-            System.out.print("(" + String.format("%,d", type.getPrice()) + "원)" + " - ");
+            System.out.print(type.getDetail());
+            System.out.print(" (" + String.format("%,d", type.getPrice()) + "원)" + " - ");
             System.out.println(entry.getValue() + "개");
         }
+    }
+
+    public void incomeRatio(final double incomeRatio) {
+        System.out.println("총 수익률은 " + String.format("%.1f", incomeRatio * 100) + "%입니다.");
     }
 }

@@ -28,6 +28,8 @@ public class LottoController {
 
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
         writer.lottoResult(result);
+        final double incomeRatio = result.getIncomeRatio(lottoPurchase);
+        writer.incomeRatio(incomeRatio);
     }
 
     private LottoPurchase purchaseLotto() {
