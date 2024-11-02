@@ -5,6 +5,9 @@ import lotto.validator.MoneyValidator;
 import lotto.validator.WinningNumValidator;
 import lotto.view.InputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoService {
     private final InputView inputView;
 
@@ -12,14 +15,5 @@ public class LottoService {
         this.inputView = inputView;
     }
 
-    public void init(){
-        String money = inputView.readMoney();
-        new MoneyValidator().validate(money);
 
-        String winningNum=inputView.readLottoNum();
-        new WinningNumValidator().validate(winningNum);
-
-        String bonusNum = inputView.readBonusNum();
-        new BonusNumValidator().validate(bonusNum);
-    }
 }
