@@ -96,7 +96,7 @@
         </ol>
       </td>
     </tr>
-    <!-----------------------새로운 대분류----------------------------><tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
       <td rowspan="4" style="padding: 10px;">입력값 유효성 검증<br>(validation)</td>
       <td style="padding: 10px;">반복적으로 사용되는 검증 메서드 모음<br>(CommonValidation)</td>
       <td style="padding: 10px;">
@@ -134,7 +134,7 @@
       </td><td style="padding: 10px;">
       </td>
     </tr>
-    <!-----------------------새로운 대분류----------------------------><tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
       <td rowspan="1" style="padding: 10px;">데이터 자료형 변경<br>(ChangeDataType)</td>
       <td style="padding: 10px;">문자열 배열을 정수형 리스트로 변환<br>(stringArrayToIntegerList)</td>
       <td style="padding: 10px;">
@@ -144,25 +144,136 @@
       </td><td style="padding: 10px;">
       </td>
     </tr>
-    <!-----------------------새로운 대분류----------------------------><tr>
-      <td rowspan="4" style="padding: 10px;">입력값 테스트<br>(InputTest)</td>
-      <td style="padding: 10px;">반복적으로 사용되는 검증 메서드 모음 테스트<br>(CommonValidationTest)</td>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="3" style="padding: 10px;">출력<br>(Output)</td>
+      <td style="padding: 10px;">티켓 수에 맞추어 랜덤으로 뽑은 로또 번호 출력<br>(printLottos)</td>
       <td style="padding: 10px;">
       </td><td style="padding: 10px;">
       </td>
     </tr><!-------------------------------------------------><tr>
-      <td style="padding: 10px;">구매 금액 관련 검증 메서드 모음 테스트<br>(MoneyValidationTest)</td>
+      <td style="padding: 10px;">티켓 수 안내 문구 출력<br>(printTicketNumber)</td>
       <td style="padding: 10px;">
       </td><td style="padding: 10px;">
       </td>
     </tr><!-------------------------------------------------><tr>
-      <td style="padding: 10px;">당첨 번호 6개 관련 검증 메서드 모음 테스트<br>(WinningNumberValidationTest)</td>
+      <td style="padding: 10px;">결과 문구 출력<br>(printResult)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="1" style="padding: 10px;">결과 출력 뷰<br>(View)</td>
+      <td style="padding: 10px;">결과가 출력되는 클래스<br>(Result)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="3" style="padding: 10px;">데이터<br>(model)</td>
+      <td style="padding: 10px;">구입 금액에 맞추어 구매한 로또 번호 저장<br>(Lotto)</td>
       <td style="padding: 10px;">
       </td><td style="padding: 10px;">
       </td>
     </tr><!-------------------------------------------------><tr>
-      <td style="padding: 10px;">보너스 번호 관련 검증 메서드 모음 테스트<br>(BonusNumberValidationTest)</td>
+      <td style="padding: 10px;">당첨 번호 및 보너스 번호 저장<br>(LottoWiningNumber)</td>
       <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">당첨 결과 저장<br>(LottoResult)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>Map을 이용해 당첨 금액과 개수 저장</li>
+            <li>결과 안내 문구를 문자열로 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="4" style="padding: 10px;">enum 으로 관리<br>(enumValue)</td>
+      <td style="padding: 10px;">반복적으로 사용되는 일반적인 문구를 enum 으로 저장<br>(CommonMessage)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">예외처리 관련 문구를 enum으로 저장<br>(ExceptionMessage)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">결과 안내와 관련된 문구를 enum으로 저장<br>(ResultMessage)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>Map을 이용해 당첨 금액과 개수 저장</li>
+            <li>결과 안내 문구를 문자열로 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">숫자를 enum으로 저장<br>(Number)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="3" style="padding: 10px;">컨트롤러<br>(controller)</td>
+      <td style="padding: 10px;">Application 컨트롤러<br>(ApplicationController)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>사용자 입력을 전달받아, 데이터 가공 후 서비스 객체로 전달</li>
+            <li>서비스 객체를 이용해 당첨자 결과를 받은 후, Result View로 데이터 전달</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">데이터 컨트롤러<br>(DataController)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>서비스 객체로 사용자 입력 값을 전달</li>
+            <li>서비스 객체를 이용해 입력 값 가공 후, 컨트롤러로 만들어진 객체 전달</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">당첨자 선정 컨트롤러<br>(ProcessController)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>서비스 객체에 데이터 객체 전달</li>
+            <li>전달받은 결과 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
+<!---------------------------------------- 대분류 ------------------------------------------------><tr>
+      <td rowspan="3" style="padding: 10px;">서비스<br>(service + serviceImpl)</td>
+      <td style="padding: 10px;">Application 서비스<br>(ApplicationService)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>데이터 컨트롤러를 통해, 랜덤으로 뽑은 값들을 객체로 저장해 반환</li>
+            <li>데이터 컨트롤러를 통해, 당첨 번호 6개와 보너스 번호를 객체로 저장해 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">데이터 서비스<br>(DataService)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>당첨 번호 6개와 보너스 번호를 객체로 저장해 반환</li>
+            <li>자료형이 Lotto인 리스트에 티켓수에 맞추어 뽑은 티켓을 저장해 반환</li>
+            <li>당첨자 결과 객체에서 6개의 번호를 담은 리스트 반환</li>
+            <li>당첨자 결과 객체에서 보너스 번호를 담은 값 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">당첨자 선정 서비스<br>(ProcessService)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>뽑은 로또 번호 리스트 요소 중 당첨 보너스 번호, 6개의 번호와 일치하는 값의 개수를 세어 반환 </li>
+            <li>카운팅 결과를 일치하는 당첨 금액으로 변경해 반환</li>
+            <li>당첨 결과를 담는 객체에 결과 저장 후, 결과(Map) 반환</li>
+            <li>수익률 계산 후 반환</li>
+        </ul>
       </td><td style="padding: 10px;">
       </td>
     </tr>
