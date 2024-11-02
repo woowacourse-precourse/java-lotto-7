@@ -11,6 +11,9 @@ public class Application {
         LottoStore lottoStore = new LottoStore();
         customer.buyLottoFrom(lottoStore);
         List<Lotto> purchasedLotto = customer.getLottos();
+        consoleHandler.printLottoCount(purchasedLotto.size());
+        consoleHandler.printPurchasedLotto(purchasedLotto);
+
     }
 
 }
