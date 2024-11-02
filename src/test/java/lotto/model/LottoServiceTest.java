@@ -142,7 +142,7 @@ class LottoServiceTest {
         double earningRate = lottoService.calculateEarningRate(rankCounter, lottoPurchaseAmount);
 
         // then
-        assertThat(earningRate).isEqualTo(518.3);
+        assertThat(earningRate).isEqualTo(51833.3);
     }
 
     @Test
