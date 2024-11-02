@@ -1,8 +1,10 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
@@ -16,34 +18,28 @@ public class Application {
             int purchaseAmount = InputView.inputPurchaseAmount();
             List<Lotto> purchasedLottos = lottoService.purchaseLottos(purchaseAmount);
 
-            System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
-            for (Lotto lotto : purchasedLottos) {
-                System.out.println(lotto.getNumbers());
-            }
+            // 구입한 로또 출력
+            OutputView.printPurchasedLottos(purchasedLottos);
 
             // 2. 당첨 번호 입력
             List<Integer> winningNumbers = InputView.inputWinningNumbers();
             Lotto winningLotto = new Lotto(winningNumbers);
 
             // 3. 보너스 번호 입력
-            int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+            int bonusNumber = InputView.inputBonusNumber();  // 인자 제거
 
             // 4. 당첨 결과 계산
-            Map<String, Integer> results = lottoService.calculateResults(purchasedLottos, winningLotto, bonusNumber);
+            Map<Rank, Long> results = lottoService.calculateResults(purchasedLottos, winningLotto, bonusNumber);
 
-            // 5. 당첨 내역 출력
-            System.out.println("당첨 통계");
-            System.out.println("---");
-            results.forEach((key, count) -> {
-                System.out.println(key + " - " + count + "개");
-            });
+            // 당첨 통계 출력
+            OutputView.printResults(results);
 
-            // 6. 수익률 계산 및 출력
+            // 5. 수익률 계산 및 출력
             double profitRate = lottoService.calculateProfitRate(results, purchaseAmount);
-            System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+            OutputView.printProfitRate(profitRate);
 
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
     }
 }

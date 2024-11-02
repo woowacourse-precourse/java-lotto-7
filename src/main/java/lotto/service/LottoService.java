@@ -1,78 +1,55 @@
 package lotto.service;
 
 import lotto.model.Lotto;
-import lotto.utility.LottoNumberGenerator;
+import lotto.model.Rank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoService {
     private static final int LOTTO_PRICE = 1000;
-
-    // 각 등수별 상금
-    private static final Map<Integer, Integer> PRIZES = Map.of(
-            6, 2_000_000_000,
-            5, 1_500_000,
-            4, 50_000,
-            3, 5_000
-    );
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     public List<Lotto> purchaseLottos(int amount) {
-        int numberOfLottos = amount / LOTTO_PRICE;
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> numbers = LottoNumberGenerator.generate();
-            lottos.add(new Lotto(numbers));
-        }
-
-        return lottos;
+        int numberOfLottos = calculateNumberOfLottos(amount);
+        return createLottos(numberOfLottos);
     }
 
-    public Map<String, Integer> calculateResults(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
-        Map<String, Integer> results = new HashMap<>();
-        for (Lotto lotto : userLottos) {
-            int matchCount = countMatchingNumbers(lotto, winningLotto);
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-
-            String resultKey = getResultKey(matchCount, bonusMatch);
-            results.put(resultKey, results.getOrDefault(resultKey, 0) + 1);
+    private int calculateNumberOfLottos(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
-        return results;
+        return amount / LOTTO_PRICE;
     }
 
-    private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
-        return (int) lotto.getNumbers().stream()
+    private List<Lotto> createLottos(int numberOfLottos) {
+        return IntStream.range(0, numberOfLottos)
+                .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_COUNT)))
+                .collect(Collectors.toList());
+    }
+
+    public Map<Rank, Long> calculateResults(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+        return userLottos.stream()
+                .map(lotto -> getRank(lotto, winningLotto, bonusNumber))
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
+
+    private Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
+        boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+        return Rank.valueOf(matchCount, bonusMatch);
     }
 
-    private String getResultKey(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) return "1등";
-        if (matchCount == 5 && bonusMatch) return "2등";
-        if (matchCount == 5) return "3등";
-        if (matchCount == 4) return "4등";
-        if (matchCount == 3) return "5등";
-        return "꽝";
-    }
-
-    public double calculateProfitRate(Map<String, Integer> results, int totalSpent) {
-        int totalWinnings = results.entrySet().stream()
-                .mapToInt(entry -> PRIZES.getOrDefault(getMatchCount(entry.getKey()), 0) * entry.getValue())
+    public double calculateProfitRate(Map<Rank, Long> results, int totalSpent) {
+        long totalWinnings = results.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        return (double) totalWinnings / totalSpent * 100;
-    }
-
-    private int getMatchCount(String key) {
-        switch (key) {
-            case "1등": return 6;
-            case "2등": return 5;
-            case "3등": return 5;
-            case "4등": return 4;
-            case "5등": return 3;
-            default: return 0;
-        }
+        return ((double) totalWinnings / totalSpent) * 100;
     }
 }
