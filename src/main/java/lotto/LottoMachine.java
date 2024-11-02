@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.LottoRule.RANGE_HIGH;
+import static lotto.LottoRule.RANGE_LOW;
+
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -10,7 +13,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class LottoMachine {
 
     public Lotto issue() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANGE_LOW, RANGE_HIGH, 6);
         return new Lotto(numbers);
     }
 

@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.LottoRule.LOTTO_PRICE;
+import static lotto.LottoRule.RANGE_HIGH;
+import static lotto.LottoRule.RANGE_LOW;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +11,6 @@ import java.util.List;
  * InputHandler
  */
 public class InputHandler {
-
-    final int LOTTO_PRICE = 1000;
-    final int RANGE_LOW = 1;
-    final int RANGE_HIGH = 45;
 
     public int parsePurchaseAmount(String input) {
         try {
