@@ -11,48 +11,48 @@ import org.junit.platform.commons.util.StringUtils;
 public class PurchaseAmountValidator {
     private static final String POSITIVE_NUMBER_REGEX = "^[1-9][0-9]*$";
     public static final long UNIT_PURCHASE_AMOUNT = 1000L;
-    public static final long MAX_PURCHASE_AMOUNT = 1_000_000L;
+    public static final long MAX_PURCHASE_AMOUNT = 1_000_000L;  // 실제 1인당 로또 구매가능 금액
 
-    public void validate(String purchaseAmount) {
+    public static void validate(String purchaseAmount) {
         validateBlank(purchaseAmount);
         validatePositiveNumber(purchaseAmount);
         validateDivisibleByUnitAmount(purchaseAmount);
         validateExceedsMaxPurchaseAmount(purchaseAmount);
     }
 
-    private void validateBlank(String purchaseAmount) {
+    private static void validateBlank(String purchaseAmount) {
         if (StringUtils.isBlank(purchaseAmount)) {
             throw new IllegalArgumentException(BLANK_PURCHASE_AMOUNT.getMessage());
         }
     }
 
-    private void validatePositiveNumber(String purchaseAmount) {
+    private static void validatePositiveNumber(String purchaseAmount) {
         if (isNonPositiveNumber(purchaseAmount)) {
             throw new IllegalArgumentException(NON_POSITIVE_PURCHASE_AMOUNT.getMessage());
         }
     }
 
-    private boolean isNonPositiveNumber(String purchaseAmount) {
+    private static boolean isNonPositiveNumber(String purchaseAmount) {
         return !Pattern.matches(POSITIVE_NUMBER_REGEX, purchaseAmount);
     }
 
-    private void validateDivisibleByUnitAmount(String purchaseAmount) {
+    private static void validateDivisibleByUnitAmount(String purchaseAmount) {
         if (isNotDividedByUnitAmount(purchaseAmount)) {
             throw new IllegalArgumentException(NOT_DIVIDED_BY_UNIT_AMOUNT.getMessage());
         }
     }
 
-    private boolean isNotDividedByUnitAmount(String purchaseAmount) {
+    private static boolean isNotDividedByUnitAmount(String purchaseAmount) {
         return !(Long.parseLong(purchaseAmount) % UNIT_PURCHASE_AMOUNT == 0);
     }
 
-    private void validateExceedsMaxPurchaseAmount(String purchaseAmount) {
+    private static void validateExceedsMaxPurchaseAmount(String purchaseAmount) {
         if (exceedsMaxPurchaseAmount(purchaseAmount)) {
             throw new IllegalArgumentException(EXCEEDS_MAX_PURCHASE_AMOUNT.getMessage());
         }
     }
 
-    private boolean exceedsMaxPurchaseAmount(String purchaseAmount) {
+    private static boolean exceedsMaxPurchaseAmount(String purchaseAmount) {
         return Long.parseLong(purchaseAmount) > MAX_PURCHASE_AMOUNT;
     }
 }
