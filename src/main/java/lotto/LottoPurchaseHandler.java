@@ -8,18 +8,20 @@ import java.util.List;
 public class LottoPurchaseHandler {
     private static final int SINGLE_LOTTO_PRICE = 1000;
 
-    public static int purchaseLotto() {
+    public static int getValidatedPaymentAmount() {
         printRequestingMoneyInput();
 
         String moneyInput = InputHandler.getUserInput();
-        int lottoPurchaseCount = getLottoPurchaseCount(moneyInput);
 
-        printConfirmPurchase(lottoPurchaseCount);
-
-        return lottoPurchaseCount;
+        return Validator.validateMoneyInput(moneyInput);
     }
 
-    public static void getRandomLottoBundle(int lottoPurchaseCount, List<List<Integer>> randomLottoBundle) {
+    public static int getLottoPurchaseCount(int money) {
+        return money / SINGLE_LOTTO_PRICE;
+    }
+
+    public static void getRandomLottoBundle(int lottoPurchaseCount,
+                                            List<List<Integer>> randomLottoBundle) {
         for (int n = 0; n< lottoPurchaseCount; n++) {
             List<Integer> randomLotto = getOneRandomLotto();
             randomLotto.sort(Comparator.naturalOrder());
@@ -27,18 +29,15 @@ public class LottoPurchaseHandler {
 
             System.out.println(randomLotto);
         }
+
+        System.out.println();
     }
 
     private static void printRequestingMoneyInput() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
 
-    private static int getLottoPurchaseCount(String userInput) {
-        int money = Validator.validateMoneyInput(userInput);
-        return money / SINGLE_LOTTO_PRICE;
-    }
-
-    private static void printConfirmPurchase(int lottoPurchaseCount) {
+    public static void printConfirmPurchase(int lottoPurchaseCount) {
         System.out.println("\n" + lottoPurchaseCount + "개를 구매했습니다.");
     }
 

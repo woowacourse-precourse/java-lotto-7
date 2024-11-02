@@ -1,15 +1,15 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
 
-        int lottoPurchaseCount = LottoPurchaseHandler.purchaseLotto();
+        int paymentAmount = LottoPurchaseHandler.getValidatedPaymentAmount();
+        int lottoPurchaseCount = LottoPurchaseHandler.getLottoPurchaseCount(paymentAmount);
 
-        List<List<Integer>> randomLottoBundle = new ArrayList<List<Integer>>();
+        List<List<Integer>> randomLottoBundle = new ArrayList<>();
         LottoPurchaseHandler.getRandomLottoBundle(lottoPurchaseCount, randomLottoBundle);
 
         Lotto winningNumbers = Lotto.getWinningNumbers();
@@ -26,5 +26,7 @@ public class Application {
         }
 
         LottoPrize.printResult(prizeCount);
+
+        LottoPrize.calculateProfitRate(prizeCount, paymentAmount);
     }
 }
