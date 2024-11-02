@@ -44,9 +44,13 @@ public class Lotto {
             if (winningLotto.numbers.contains(number)) {
                 point += 1;
             }
-            if (number.equals(bonusNumber)) {  // 객체 비교 시 equals() 사용
+            if (number.equals(bonusNumber)) {
                 bonusPoint = 1;
             }
+        }
+
+        if (point != 5) {
+            bonusPoint = 0;
         }
 
         PointResult pointResult = new PointResult(point, bonusPoint);

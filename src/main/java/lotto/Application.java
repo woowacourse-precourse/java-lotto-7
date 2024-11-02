@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -58,17 +60,21 @@ public class Application {
                 System.out.println();
                 break;
             } catch (IllegalArgumentException e) {
-
+                System.out.println(e.getMessage());
             }
         }
 
-        List<PointResult> pointResults = new ArrayList<>();
+        List<Integer> lottoRanks = new ArrayList<>();
+        var rankCounts = calculateRankCounts(lottoRanks);
+        var totalPrize = calculateTotalPrize(rankCounts);
 
-        // TODO: 추가 기능 구현
         for (Lotto purchasedLotto : purchasedLottos) {
             var pointResult = Lotto.compareLotto(winningLotto, bonusNumber, purchasedLotto);
-            pointResults.add(pointResult);
+            LottoRank lottoRank = new LottoRank(pointResult);
+            lottoRanks.add(lottoRank.getCalculatedLottoRank());
         }
+
+        // TODO: 추가 기능 구현
     }
 
     public static Integer validateNumberRange(Integer number) {
@@ -120,5 +126,33 @@ public class Application {
         if (purchaseMoney % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_MONEY_FORMAT_MESSAGE);
         }
+    }
+
+    public static Map<Integer, Integer> calculateRankCounts(List<Integer> lottoRanks) {
+        Map<Integer, Integer> rankCounts = new HashMap<>();
+
+        for (Integer rank : lottoRanks) {
+            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
+        }
+
+        return rankCounts;
+    }
+
+    public static int calculateTotalPrize(Map<Integer, Integer> rankCounts) {
+        Map<Integer, Integer> prizeTable = new HashMap<>();
+        prizeTable.put(5, 5000);
+        prizeTable.put(4, 50000);
+        prizeTable.put(3, 1500000);
+        prizeTable.put(2, 30000000);
+        prizeTable.put(1, 2000000000);
+
+        int totalPrize = 0;
+        for (Map.Entry<Integer, Integer> entry : rankCounts.entrySet()) {
+            int rank = entry.getKey();
+            int count = entry.getValue();
+            int prize = prizeTable.getOrDefault(rank, 0);
+            totalPrize += count * prize;
+        }
+        return totalPrize;
     }
 }
