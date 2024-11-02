@@ -8,7 +8,6 @@ import lotto.model.Lotto;
 
 public class LottoTicketGenerator {
 
-    // 로또 티켓 생성기
     // 사용자가 선택한 번호 조합을 포함하는 로또 티켓을 생성
     public List<Lotto> createTickets(int purchaseAmount) {
         int ticketCount = calculateTicketCount(purchaseAmount);
