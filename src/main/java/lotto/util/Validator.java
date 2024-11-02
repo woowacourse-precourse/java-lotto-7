@@ -21,18 +21,20 @@ public class Validator {
     }
 
     public static void validateWinningNumbers(String winningLottoInput, String bonusNumberInput) {
-        validateLotto(winningLottoInput);
+        List<Integer> winningLotto = Parser.parseToIntegerList(winningLottoInput);
+
+        validateLotto(winningLotto);
         validateBonusNumber(winningLottoInput, bonusNumberInput);
     }
 
-    public static void validateLotto(String lottoInput) {
-        if (!isLottoNumberCountValid(lottoInput)) {
+    public static void validateLotto(List<Integer> lotto) {
+        if (!isLottoNumberCountValid(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT_ERROR.getMessage());
         }
-        if (!isLottoNumberRangeValid(lottoInput)) {
+        if (!isLottoNumberRangeValid(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR.getMessage());
         }
-        if (!isLottoNumberUnique(lottoInput)) {
+        if (!isLottoNumberUnique(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR.getMessage());
         }
     }
@@ -68,8 +70,7 @@ public class Validator {
         return amount % 1000 == 0;
     }
 
-    private static boolean isLottoNumberCountValid(String lottoNumbersInput) {
-        List<Integer> lottoNumbers = Parser.parseToIntegerList(lottoNumbersInput);
+    private static boolean isLottoNumberCountValid(List<Integer> lottoNumbers) {
         return lottoNumbers.size() == 6;
     }
 
@@ -78,16 +79,14 @@ public class Validator {
         return number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX;
     }
 
-    private static boolean isLottoNumberRangeValid(String lottoNumbersInput) {
-        List<Integer> lottoNumbers = Parser.parseToIntegerList(lottoNumbersInput);
+    private static boolean isLottoNumberRangeValid(List<Integer> lottoNumbers) {
         for (int number : lottoNumbers) {
             return number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX;
         }
         return true;
     }
 
-    private static boolean isLottoNumberUnique(String lottoNumbersInput) {
-        List<Integer> lottoNumbers = Parser.parseToIntegerList(lottoNumbersInput);
+    private static boolean isLottoNumberUnique(List<Integer> lottoNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
         return uniqueNumbers.size() == lottoNumbers.size();
     }
