@@ -9,4 +9,9 @@ public class LottoBank {
                 .toList();
         return new LottoResult(prizes);
     }
+
+    public double calculateProfitRate(LottoResult lottoResult, long totalInvestment) {
+        long totalProfit = lottoResult.getResult().stream().mapToLong(prize -> prize.getMoney()).sum();
+        return ((double) totalProfit / totalInvestment) * 100;
+    }
 }
