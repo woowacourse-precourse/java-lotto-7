@@ -1,15 +1,15 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
 
-    public int getLottoMoney(){
-        return Integer.parseInt(Console.readLine());
+    private static final String NUMERIC_REGEX = "^[0-9]+$";
+
+    public String getLottoMoney(){
+        return Console.readLine();
     }
 
     public List<Integer> getLottoNumber(String number){
@@ -24,6 +24,23 @@ public class InputView {
     public int getBonusNumber(){
         return Integer.parseInt(Console.readLine());
     }
+
+    public int validateLottoMoney(String lottoMoney){
+        if(!lottoMoney.matches(NUMERIC_REGEX)){
+            throw new IllegalArgumentException("[ERROR] 로또 금액은 숫자만 입력할 수 있습니다.");
+        }
+
+        if(Integer.parseInt(lottoMoney) < 0){
+            throw new IllegalArgumentException("[ERROR] 로또 금액은 양수만 입력할 수 있습니다.");
+        }
+
+        if(Integer.parseInt(lottoMoney) % 1000!=0){
+            throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로만 입력할 수 있습니다.");
+        }
+
+        return Integer.parseInt(lottoMoney);
+    }
+
 
 
 
