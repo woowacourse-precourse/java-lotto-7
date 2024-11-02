@@ -7,10 +7,8 @@ public class LottoConverter {
     public static final String UNDER_PRICE_ERROR = "[ERROR] 최소 구입 금액은" + BASE_PRICE + "원 이상이어야 합니다.";
     public static final String UNIT_ERROR = "[ERROR] 금액은 " + BASE_PRICE + "원 단위여야 합니다.";
 
-    public int convertPriceToLotto(String input) {
-        int price = Integer.parseInt(input);
+    public int convertPriceToLotto(int price) {
         validatePrice(price);
-
         return price / BASE_PRICE;
     }
 
