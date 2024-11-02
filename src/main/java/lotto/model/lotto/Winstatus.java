@@ -3,7 +3,7 @@ package lotto.model.lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.common.WinMoney;
+import lotto.common.WinMoneyMessage;
 
 public class Winstatus {
 
@@ -58,15 +58,15 @@ public class Winstatus {
 
     private static String mappingCountToKey(int count, int bonusCount) {
         if (count == 3) {
-            return WinMoney.THREECOUNTKEY.getWinMoneyStr();
+            return WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr();
         } else if (count == 4) {
-            return WinMoney.FOURCOUNTKEY.getWinMoneyStr();
+            return WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr();
         } else if (count == 5) {
-            return WinMoney.FIVECOUNTKEY.getWinMoneyStr();
+            return WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr();
         } else if (count == 5 && bonusCount == 1) {
-            return WinMoney.FIVEANDBONUSKEY.getWinMoneyStr();
+            return WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr();
         } else if (count == 6) {
-            return WinMoney.SIXCOUNTKEY.getWinMoneyStr();
+            return WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr();
         }
 
         return "";
@@ -74,16 +74,16 @@ public class Winstatus {
     }
 
     public static String mappingKeyToMoneyString(String key) {
-        if (key.equals(WinMoney.THREECOUNTKEY.getWinMoneyStr())) {
-            return WinMoney.THREERIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoney.FOURCOUNTKEY.getWinMoneyStr())) {
-            return WinMoney.FOURGRIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoney.FIVECOUNTKEY.getWinMoneyStr())) {
-            return WinMoney.FIVERIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoney.FIVEANDBONUSKEY.getWinMoneyStr())) {
-            return WinMoney.FIVEWRIGHTANDBONUS.getWinMoneyStr();
-        } else if (key.equals(WinMoney.SIXCOUNTKEY.getWinMoneyStr())) {
-            return WinMoney.SIXRIGHT.getWinMoneyStr();
+        if (key.equals(WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr())) {
+            return WinMoneyMessage.THREERIGHT.getWinMoneyStr();
+        } else if (key.equals(WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr())) {
+            return WinMoneyMessage.FOURGRIGHT.getWinMoneyStr();
+        } else if (key.equals(WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr())) {
+            return WinMoneyMessage.FIVERIGHT.getWinMoneyStr();
+        } else if (key.equals(WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr())) {
+            return WinMoneyMessage.FIVEWRIGHTANDBONUS.getWinMoneyStr();
+        } else if (key.equals(WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr())) {
+            return WinMoneyMessage.SIXRIGHT.getWinMoneyStr();
         }
 
         return "";

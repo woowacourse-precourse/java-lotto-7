@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.common.WinMoney;
+import lotto.common.WinMoneyMessage;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.Winstatus;
@@ -12,11 +12,11 @@ public class OutView {
     private final static String GENERATEDLOTTOMESSAGE = "개를 구매했습니다.";
 
     private final static List<String> numRightMessages =
-            List.of(WinMoney.THREECOUNTKEY.getWinMoneyStr(),
-                    WinMoney.FOURCOUNTKEY.getWinMoneyStr(),
-                    WinMoney.FIVECOUNTKEY.getWinMoneyStr(),
-                    WinMoney.FIVEANDBONUSKEY.getWinMoneyStr(),
-                    WinMoney.SIXCOUNTKEY.getWinMoneyStr());
+            List.of(WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr(),
+                    WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr(),
+                    WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr(),
+                    WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr(),
+                    WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr());
 
     public static void generatedLottoPrint(int lottoCount, Lottos lottos) {
         System.out.println(lottoCount + GENERATEDLOTTOMESSAGE);
