@@ -21,8 +21,8 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate(List<Integer> lottoNumbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(lottoNumbers);
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
