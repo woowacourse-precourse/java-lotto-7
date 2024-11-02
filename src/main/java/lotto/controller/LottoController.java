@@ -16,6 +16,7 @@ public class LottoController {
 		List<LottoTicket> tickets = LottoTicketGenerator.generateTickets(purchasePrice);
 		int ticketsCount = tickets.size();
 		OutputView.displayPurchaseCount(ticketsCount);
+		OutputView.displayLottoTickets(tickets);
 	}
 
 	private int getValidatedPurchasePriceWithRetry() {
