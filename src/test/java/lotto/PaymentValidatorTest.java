@@ -16,7 +16,7 @@ public class PaymentValidatorTest {
             "1000.0",
             "10000",
             "12000.00000000000",
-            "1000."
+            "1000.",
     })
     void validPaymentInputTest(String paymentInput) {
         Assertions.assertTrue(paymentValidator.validate(paymentInput));
@@ -27,7 +27,7 @@ public class PaymentValidatorTest {
     @ValueSource(strings = {
             "100",
             "999",
-            "8145061000",
+            "9999999999999999999",
             "1000i",
             "-1000",
             "1000.2",
