@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.domain.Ranking;
 import lotto.util.Container;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
@@ -13,6 +15,7 @@ public class LottoGame {
     private static final OutputView outputView = Container.getInstance(OutputView.class);
 
     private static List<Integer> winningNumbers = new ArrayList<>();
+    private static Map<Ranking, Integer> lottoResult;
 
     private static int amount = 0;
     private static int bonusNumber = 0;
@@ -22,6 +25,7 @@ public class LottoGame {
         setLottoes();
         setNumbers();
         getLottoResult();
+        getEarningRate();
     }
 
     private static void getAmount() {
@@ -44,6 +48,14 @@ public class LottoGame {
 
     private static void getLottoResult() {
         outputView.printWinningStatistics();
-        outputView.printResult(inputView.getLottoResult(winningNumbers, bonusNumber));
+        lottoResult = inputView.getLottoResult(winningNumbers, bonusNumber);
+        outputView.printWinningResult(lottoResult);
+    }
+
+    private static void getEarningRate() {
+        double earningRate = lottoResult.keySet().stream()
+                .mapToDouble(rank -> ((double) (rank.getPrize()) / (amount * 1000) * (lottoResult.get(rank)) * (100))).sum();
+
+        outputView.printEarningRate(earningRate);
     }
 }

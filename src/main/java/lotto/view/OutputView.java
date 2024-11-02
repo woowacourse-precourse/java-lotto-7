@@ -48,11 +48,15 @@ public class OutputView {
         System.out.println(LINES.getMessage());
     }
 
-    public void printResult(Map<Ranking, Integer> result) {
+    public void printWinningResult(Map<Ranking, Integer> result) {
         System.out.println(WINNING_THREE_COUNT.getMessage() + result.getOrDefault(Ranking.FIFTH, 0) + "개");
         System.out.println(WINNING_FOUR_COUNT.getMessage() + result.getOrDefault(Ranking.FOURTH, 0) + "개");
         System.out.println(WINNING_FIVE_COUNT.getMessage() + result.getOrDefault(Ranking.THIRD, 0) + "개");
         System.out.println(WINNING_FIVE_COUNT_BONUS.getMessage() + result.getOrDefault(Ranking.SECOND, 0) + "개");
         System.out.println(WINNING_SIX_COUNT.getMessage() + result.getOrDefault(Ranking.FIRST, 0) + "개");
+    }
+
+    public void printEarningRate(double earningRate) {
+        System.out.print(FINAL_EARNING.getMessage() + String.format("%.1f", earningRate) + FINAL_RESULT.getMessage());
     }
 }
