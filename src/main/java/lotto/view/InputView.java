@@ -12,6 +12,7 @@ public class InputView {
 
 	public String readLottoNumbers() {
 		String input = Console.readLine();
+		validateLottoNumbers(input);
 
 		return input;
 	}
@@ -20,6 +21,10 @@ public class InputView {
 		validateNotBlank(input);
 		validateDigit(input);
 		validatePositive(input);
+	}
+
+	private void validateLottoNumbers(String input) {
+		validateNotBlank(input);
 	}
 
 	private void validateNotBlank(String input) {
