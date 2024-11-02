@@ -12,7 +12,13 @@ public class Application {
             System.out.println("구입금액을 입력해 주세요.");
             String buyAmountInput = Console.readLine();
 
-            int buyAmount = Integer.parseInt(buyAmountInput);
+            int buyAmount;
+            try {
+                buyAmount = Integer.parseInt(buyAmountInput);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
+            }
+
 
             if (buyAmount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 천원 단위만 입력 가능합니다.");
