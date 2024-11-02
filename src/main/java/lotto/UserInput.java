@@ -17,7 +17,7 @@ public class UserInput {
         return Integer.parseInt(amount);
     }
 
-    public void validPurchaseAmountInput(String input) {
+    private void validPurchaseAmountInput(String input) {
 
         int amount;
 
@@ -34,9 +34,5 @@ public class UserInput {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
-    }
-
-    public UserInput() {
-        this.numberOfLotto = purchaseAmountInput();
     }
 }
