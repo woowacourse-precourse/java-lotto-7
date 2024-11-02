@@ -44,10 +44,10 @@ class LottoApplicationTest extends NsTest {
     }
 
     @Test
-    void 구매금액_입력시_생성된_로또_출력() {
+    void 정상_입력시_생성된_로또_출력() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("8000");
+                    run("8000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -68,24 +68,6 @@ class LottoApplicationTest extends NsTest {
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
-        );
-    }
-
-    @Test
-    void 구매금액_우승번호_정상_입력() {
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    run("3000", "1,2,3,4,5,6");
-                    assertThat(output()).contains(
-                            "3개를 구매했습니다.",
-                            "[8, 21, 23, 41, 42, 43]",
-                            "[3, 5, 11, 16, 32, 38]",
-                            "[7, 11, 16, 35, 36, 44]"
-                    );
-                },
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44)
         );
     }
 
@@ -125,6 +107,38 @@ class LottoApplicationTest extends NsTest {
     void 우승번호_형식_이상시_예외_출력() {
         assertSimpleTest(() -> {
             runException("2000", "hello,world");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_중복_입력시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_초과시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_미만시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_정수_형식_아닐시_예외_출력() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "he");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
