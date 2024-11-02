@@ -10,6 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 public class ValidatorTest {
 
     @ParameterizedTest
@@ -105,10 +107,26 @@ public class ValidatorTest {
     }
 
     private static Object[][] invalidDivisibleNumber() {
-        return new Object[][] {
+        return new Object[][]{
                 {1000, 10000},
                 {1234, 1000},
                 {10000, 42}
         };
     }
+
+    @ParameterizedTest
+    @MethodSource("validListAndNumberProvider")
+    @DisplayName("리스트 사이즈 비교 테스트")
+    public void isEqualListSizeTest(List<Integer> list, int number) {
+        assertThatNoException().isThrownBy(() -> Validator.isEqualListSize(list, number));
+    }
+
+    private static Object[][] validListAndNumberProvider() {
+        return new Object[][] {
+                {List.of(1,2,3), 3},
+                {List.of(1,2,3,4,5), 5},
+                {List.of(1), 1}
+        };
+    }
+
 }
