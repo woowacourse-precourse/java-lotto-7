@@ -14,12 +14,7 @@ public class LottoTickets {
         return new LottoTickets(lottoTickets);
     }
 
-    public List<List<Integer>> getLottoTickets() {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-        for (Lotto lotto : lottoTickets) {
-            lottoNumbers.add(lotto.getNumbers());
-        }
-        return List.copyOf(lottoNumbers);
+    public List<Lotto> getLottoTickets() {
+        return List.copyOf(lottoTickets);
     }
-
 }
