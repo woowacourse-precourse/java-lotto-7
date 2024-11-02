@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class WinNumbersTest {
@@ -27,10 +28,13 @@ class WinNumbersTest {
 
     @ParameterizedTest
     @DisplayName("당첨 번호의 예외를 확인한다.")
-    @ValueSource(strings = {"1,j,3,4,5,6", "1,1,2,3,4,5", "1,2,3,4,5", "1,2,3,4,5,77"})
-    void validateWinNumbersException(String winNumbers) {
+    @CsvSource(value = {"1,j,3,4,5,6:로또 번호는 숫자여야 합니다.", "1,1,2,3,4,5:이미 존재하는 로또 번호 입니다."
+            , "1,2,3,4,5:로또 번호는 6개여야 합니다.", "1,2,3,4,5,77:로또 번호는 1 이상 45 이하 이어야 합니다."}, delimiter = ':')
+//    @ValueSource(strings = {"1,j,3,4,5,6", "1,1,2,3,4,5", "1,2,3,4,5", "1,2,3,4,5,77"})
+    void validateWinNumbersException(String winNumbers, String exceptionMessage) {
         assertThatThrownBy(() -> WinNumbers.winNumbersFrom(winNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] " + exceptionMessage)
+                .hasMessageContaining("[ERROR]").hasMessageContaining(exceptionMessage);
     }
 
     @Test

@@ -3,8 +3,11 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.ExceptionMessage;
 import lotto.Validator;
+import lotto.exception.ExceptionMessage;
+import lotto.exception.IllegalDuplicateException;
+import lotto.exception.IllegalLottoNumberException;
+import lotto.exception.IllegalRangeException;
 
 public record WinNumbers(
         List<Integer> primaryWinNumbers,
@@ -26,7 +29,7 @@ public record WinNumbers(
             try {
                 Integer.parseInt(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
+                throw new IllegalLottoNumberException();
             }
         }
     }
@@ -50,7 +53,7 @@ public record WinNumbers(
         try {
             convertBonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
+            throw new IllegalLottoNumberException();
         }
         validateBonusNumber(convertBonusNumber);
         return new WinNumbers(primaryWinNumbers, convertBonusNumber);
@@ -58,10 +61,10 @@ public record WinNumbers(
 
     private void validateBonusNumber(int convertBonusNumber) {
         if (primaryWinNumbers.contains(convertBonusNumber)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXIST_EXCEPTION.getMessage());
+            throw new IllegalDuplicateException();
         }
         if (convertBonusNumber < Lotto.NUMBER_BEGIN_RANGE || convertBonusNumber > Lotto.NUMBER_END_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalRangeException();
         }
     }
 }

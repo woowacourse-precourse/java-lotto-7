@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.ExceptionMessage;
+import lotto.exception.IllegalPriceDivideException;
+import lotto.exception.IllegalPriceNumberException;
 
 public record PurchasePrice(
         int value
@@ -11,7 +12,7 @@ public record PurchasePrice(
     public static PurchasePrice validatePrice(String originPrice) {
         int price = validatePriceInteger(originPrice);
         if (price % DIVIDE_UNIT != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_DIVIDE_EXCEPTION.getMessage());
+            throw new IllegalPriceDivideException();
         }
         return new PurchasePrice(price);
     }
@@ -20,7 +21,7 @@ public record PurchasePrice(
         try {
             return Integer.parseInt(originPrice);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.PRICE_NUMBER_EXCEPTION.getMessage());
+            throw new IllegalPriceNumberException();
         }
     }
 }

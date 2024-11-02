@@ -1,8 +1,9 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.ExceptionMessage;
+import lotto.exception.ExceptionMessage;
 import lotto.Validator;
+import lotto.exception.IllegalNumberCountException;
 
 public class Lotto {
 
@@ -19,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
+            throw new IllegalNumberCountException();
         }
     }
 
