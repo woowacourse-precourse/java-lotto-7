@@ -1,7 +1,5 @@
 package lotto.dto;
 
-import java.util.List;
-
 public class WinningResultDto {
 
     private final Integer winningScore;
