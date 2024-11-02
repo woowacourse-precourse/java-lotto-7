@@ -8,14 +8,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoGenerator {
-
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 45;
     public static final int COUNT = 6;
 
-    public List<Lotto> generateLotto(int ticket) {
+    public List<Lotto> generateLotto(int ticketCount) {
         return Stream.generate(() -> new Lotto(generateLottoNumbers()))
-                .limit(ticket)
+                .limit(ticketCount)
                 .collect(Collectors.toList());
     }
 
