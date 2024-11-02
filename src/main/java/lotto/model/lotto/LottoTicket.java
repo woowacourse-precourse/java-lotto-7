@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +9,10 @@ public class LottoTicket {
 
     public LottoTicket(List<Lotto> lottos) {
             this.lottos = lottos;
+    }
+
+    public int getSize() {
+        return lottos.size();
     }
 
     public List<Lotto> getLottos() {

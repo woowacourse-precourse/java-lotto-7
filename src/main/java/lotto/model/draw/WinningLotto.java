@@ -1,16 +1,17 @@
-package lotto.model;
+package lotto.model.draw;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
 
-public class WinningNumbers {
+public class WinningLotto {
 
     private final Lotto winningLotto;
 
-    private WinningNumbers(Lotto winningLotto) {
+    private WinningLotto(Lotto winningLotto) {
         this.winningLotto = winningLotto;
     }
 
-    public static WinningNumbers from(String input) {
+    public static WinningLotto from(String input) {
         validateInputEmpty(input);
         List<String> splitInput = List.of(input.split(",", -1));
         validateNumeric(splitInput);
@@ -18,7 +19,7 @@ public class WinningNumbers {
                 .map(number ->
                         Integer.parseInt(number.strip())
                 ).toList();
-        return new WinningNumbers(new Lotto(numbers));
+        return new WinningLotto(new Lotto(numbers));
     }
 
     private static void validateInputEmpty(String input) {
@@ -37,6 +38,10 @@ public class WinningNumbers {
 
     public boolean isContain(int number) {
         return winningLotto.isContain(number);
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     @Override

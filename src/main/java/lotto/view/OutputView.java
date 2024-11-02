@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.LottoTicket;
+import lotto.model.lotto.LottoTicket;
 
 public class OutputView {
     public void printMessage(String message) {

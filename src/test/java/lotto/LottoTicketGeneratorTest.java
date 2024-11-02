@@ -2,10 +2,10 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.LottoGenerator;
-import lotto.model.LottoTicket;
-import lotto.model.LottoTicketGenerator;
-import lotto.model.PurchaseAmount;
+import lotto.model.lotto.LottoGenerator;
+import lotto.model.lotto.LottoTicket;
+import lotto.model.lotto.LottoTicketGenerator;
+import lotto.model.lotto.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketGeneratorTest {
@@ -17,6 +17,6 @@ class LottoTicketGeneratorTest {
         );
 
         LottoTicket lottoTicket = lottoTicketGenerator.generateLottoTicket();
-        assertThat(lottoTicket.getLottos().size()).isEqualTo(10);
+        assertThat(lottoTicket.getSize()).isEqualTo(10);
     }
 }

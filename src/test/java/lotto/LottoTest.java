@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.stream.Stream;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

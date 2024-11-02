@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.model.draw.BonusNumber;
 
 public class Lotto {
 
@@ -45,10 +46,20 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countSameNumber(Lotto lotto) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if(lotto.isContain(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     @Override
     public String toString() {
         return "[" +
-                numbers.stream().map(Object::toString).collect(Collectors.joining(", "))
+                numbers.stream().sorted().map(Object::toString).collect(Collectors.joining(", "))
                 + "]";
     }
 }

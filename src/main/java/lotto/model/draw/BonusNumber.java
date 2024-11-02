@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.draw;
 
 public class BonusNumber {
 
@@ -41,10 +41,14 @@ public class BonusNumber {
         }
     }
 
-    public void checkDuplicationNumber(WinningNumbers winningNumbers) {
-        if (winningNumbers.isContain(number)) {
+    public void checkDuplicationNumber(WinningLotto winningLotto) {
+        if (winningLotto.isContain(number)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 되지 않는 숫자여야 합니다.");
         };
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     @Override
