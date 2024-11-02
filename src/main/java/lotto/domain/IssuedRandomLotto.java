@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import lotto.common.RandomNumberGenerator;
 
@@ -25,7 +27,7 @@ public class IssuedRandomLotto implements IssuedLotto {
     }
 
     public List<Lotto> getIssuedLottos() {
-        return issuedLottos;
+        return Collections.unmodifiableList(issuedLottos);
     }
 
     private List<Integer> generateRandomLottoNumbers() {

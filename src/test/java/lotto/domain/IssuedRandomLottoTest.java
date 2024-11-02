@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.test.Assertions;
-import java.util.List;
 import lotto.common.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,29 +26,19 @@ public class IssuedRandomLottoTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("발행 로또는 중복되지 않은 랜덤한 6개 번호를 생성한다.")
+    @DisplayName("구입 금액만큼 로또를 발행한다.")
     @Test
-    void 발행로또_랜덤생성_확인() {
-        Assertions.assertRandomUniqueNumbersInRangeTest(() -> {
-            // given
-            RandomNumberGenerator generator = new RandomNumberGenerator();
-            IssuedRandomLotto issuedLotto = new IssuedRandomLotto(generator, 2000);
+    void 구입금액만큼_로또_생성_확인() {
+        // given
+        RandomNumberGenerator generator = new RandomNumberGenerator();
+        IssuedRandomLotto issuedLotto = new IssuedRandomLotto(generator, 2000);
 
-            // when
-            issuedLotto.generateIssuedLottos();
+        // when
+        issuedLotto.generateIssuedLottos();
 
-            // then
-            assertThat(issuedLotto.getIssuedLottos().size()).isEqualTo(2);
-            assertThat(issuedLotto.getIssuedLottos().get(0).getNumbers().size())
-                    .isEqualTo(6);
-        }, List.of(1, 2, 3, 4, 5, 6), List.of(2, 4, 7, 11, 30, 45));
+        // then
+        assertThat(issuedLotto.getIssuedLottos().size()).isEqualTo(2);
+        assertThat(issuedLotto.getIssuedLottos().get(0).getNumbers().size())
+                .isEqualTo(6);
     }
-
-    // todo: 발행된 모든 로또 반환 확인 테스트
-//    @DisplayName("발행된 모든 로또를 반환한다.")
-//    @Test
-//    void 발행로또_목록_반환() {
-//        IssuedRandomLotto issuedLotto = new IssuedRandomLotto(1000);
-//        issuedLotto.
-//    }
 }
