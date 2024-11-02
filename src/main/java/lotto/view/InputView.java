@@ -12,45 +12,15 @@ import lotto.validation.WinningNumberValidator;
 
 public class InputView {
 
-    public static PurchasePrice inputPurchasePrice() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                PriceValidator.validatePrice(input);
-                return new PurchasePrice(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static String inputPurchasePrice() {
+        return Console.readLine();
     }
 
-    public static WinningNumber inputWinningNumber() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                WinningNumberValidator.validateWinningNumber(input);
-                List<Integer> convertInput = Converter.convertStringToIntegerList(input);
-                return new WinningNumber(convertInput);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
+    public static String inputWinningNumber() {
+        return Console.readLine();
     }
 
-    public static BonusNumber inputBonusNumber(WinningNumber winningNumber) {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                BonusNumberValidator.validateBonusNumber(input);
-                int convertInput = Converter.convertStringToInt(input);
-                BonusNumberValidator.validateConvertBonusNumber(convertInput, winningNumber);
-                return new BonusNumber(convertInput, winningNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
+    public static String inputBonusNumber() {
+        return Console.readLine();
     }
-
 }

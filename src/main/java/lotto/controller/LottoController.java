@@ -8,6 +8,7 @@ import lotto.domain.PurchaseLotto;
 import lotto.domain.PurchasePrice;
 import lotto.domain.RateOfReturn;
 import lotto.domain.WinningNumber;
+import lotto.handler.InputHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,12 +33,12 @@ public class LottoController {
 
     private Lottery prepareLottery() {
         OutputView.printPurchaseInputText();
-        PurchasePrice purchasePrice = InputView.inputPurchasePrice();
+        PurchasePrice purchasePrice = InputHandler.receiveValidatedPurchasePrice();
         PurchaseLotto purchaseLotto = createLottoTickets(purchasePrice);
         OutputView.printWinningNumberInputText();
-        WinningNumber winningNumber = InputView.inputWinningNumber();
+        WinningNumber winningNumber = InputHandler.receiveValidatedWinningNumber();
         OutputView.printBonusNumberInputText();
-        BonusNumber bonusNumber = InputView.inputBonusNumber(winningNumber);
+        BonusNumber bonusNumber = InputHandler.receiveValidatedBonusNumber(winningNumber);
         return new Lottery(purchaseLotto, winningNumber, bonusNumber);
     }
 
