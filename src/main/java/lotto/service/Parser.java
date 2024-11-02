@@ -16,6 +16,14 @@ public class Parser {
         return  createWinningnumbs(winningNumbsStrs);
     }
 
+    public static int parseBonusNum(String inputBonusNumber) {
+        int bonusNumber = Utils.changeStringToNum(inputBonusNumber);
+
+        LottoValidator.isLottoNumInRange(bonusNumber);
+
+        return bonusNumber;
+    }
+
     private static List<Integer> createWinningnumbs(String[] winningNumbsStrs) {
         List<Integer> winningNumbs = new ArrayList<>();
         for (String winningNumStr : winningNumbsStrs) {

@@ -11,7 +11,7 @@ public class Utils {
         try {
             returnNum = Integer.parseInt(inputString.trim());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(Utils.makeErrorMessage("숫자를 입력해주세요"));
+            throw new NumberFormatException(Utils.makeErrorMessage("숫자를 입력해주세요."));
         }
         return returnNum;
     }

@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class ParserTest {
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,6})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     public void 당첨번호_입력_테스트(int input) throws Exception {
         //given
         List<Integer> winningNumbs = Parser.parseWinningNumbs("1,2,3,4,5,6");
@@ -17,18 +17,19 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,6})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     public void 당첨번호_공백포함입력_테스트(int input) throws Exception {
         //given
         List<Integer> winningNumbs = Parser.parseWinningNumbs("1,2, 3,4,5,6");
         //then
         Assertions.assertThat(winningNumbs).contains(input);
     }
+
     @Test
     public void 당첨번호에_숫자를_입력하지_않는_예외_테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,5,6a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자를 입력해주세요");
+                .hasMessage("[ERROR] 숫자를 입력해주세요.");
     }
 
     @Test
@@ -46,7 +47,7 @@ public class ParserTest {
     }
 
     @Test
-    public void 당첨번호가_5개인_경우_예외테스트() throws Exception{
+    public void 당첨번호가_5개인_경우_예외테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 6개 이어야 합니다.");
@@ -54,7 +55,7 @@ public class ParserTest {
     }
 
     @Test
-    public void 당첨번호가_7개인_경우_예외테스트() throws Exception{
+    public void 당첨번호가_7개인_경우_예외테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 6개 이어야 합니다.");
@@ -62,7 +63,7 @@ public class ParserTest {
     }
 
     @Test
-    public void 당첨번호에_45보다_큰수가_입력된_경우_예외테스트() throws Exception{
+    public void 당첨번호에_45보다_큰수가_입력된_경우_예외테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,2,3,4,5,46"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -70,7 +71,7 @@ public class ParserTest {
     }
 
     @Test
-    public void 당첨번호에_1보다_작은수가_입력된_경우_예외테스트() throws Exception{
+    public void 당첨번호에_1보다_작은수가_입력된_경우_예외테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("0,2,3,4,5,45"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -78,10 +79,42 @@ public class ParserTest {
     }
 
     @Test
-    public void 당첨번호에_음수가_입력된_경우_예외테스트() throws Exception{
+    public void 당첨번호에_음수가_입력된_경우_예외테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseWinningNumbs("1,-2,3,4,5,45"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
+    }
+
+    @Test
+    public void 보너스번호_정상입력_테스트() throws Exception {
+        //given
+        int bonusNum = Parser.parseBonusNum("4");
+        //then
+        Assertions.assertThat(bonusNum).isEqualTo(4);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ㅁ","a","/","-","\\","a3","\3"," ",""})
+    public void 보너스번호_숫자가_아닌_경우_예외테스트(String input) throws Exception {
+        Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 0","-1","-10"})
+    public void 보너스번호_1보다_작은수가_입력된_경우_예외테스트(String input) throws Exception {
+        Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"46","1000","134534534"})
+    public void 보너스번호_1보다_큰수가_입력된_경우_예외테스트(String input) throws Exception {
+        Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 }
