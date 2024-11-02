@@ -22,7 +22,7 @@ public class InputView {
     }
 
     private static String handleInput(InteractionMessage message) {
-        while (true) {
+        while (true) { // TODO: 반복 재귀 이외 방법으로 구현할 수 있는지?
             try {
                 return readAndPrint(message);
             } catch (IllegalArgumentException error) { // TODO: 적절한 Exception로 수정
