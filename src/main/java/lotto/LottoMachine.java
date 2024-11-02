@@ -76,7 +76,7 @@ public class LottoMachine {
         long total = 0;
 
         for(Lotto l : lottos) {
-            count[l.compare(win.getNumbers(), bonus)]++;
+            count[l.getRank(win.getNumbers(), bonus)]++;
         }
         total = sum(count);
         Output.statistic(count, "15");

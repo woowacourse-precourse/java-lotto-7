@@ -21,7 +21,7 @@ public class Lotto {
         return numbers;
     }
 
-    public int compare(List<Integer> comp, int bonus) {
+    public int getRank(List<Integer> comp, int bonus) {
         numbers.removeAll(comp);
         if(numbers.size() == 3)
             return 5;
