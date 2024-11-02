@@ -1,5 +1,7 @@
 package lotto.core.service;
 
+import java.util.List;
+import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +21,8 @@ class CreateBonusLottoNumberServiceTest {
         // given
         // when
         String value = "40";
-        LottoNumberDto number = service.create(value);
+        LottoDto winning = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumberDto number = service.create(value, winning);
         // then
         Assertions.assertEquals(40, number.value());
     }
@@ -29,8 +32,9 @@ class CreateBonusLottoNumberServiceTest {
         // given
         // when
         String value = null;
+        LottoDto winning = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
         // then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value, winning));
     }
 
     @Test
@@ -38,8 +42,9 @@ class CreateBonusLottoNumberServiceTest {
         // given
         // when
         String value = "   ";
+        LottoDto winning = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
         // then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value, winning));
     }
 
     @Test
@@ -47,7 +52,18 @@ class CreateBonusLottoNumberServiceTest {
         // given
         // when
         String value = "abc";
+        LottoDto winning = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
         // then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value, winning));
+    }
+
+    @Test
+    void create_when_winningLotto_contains_bonusNumber_should_be_fail() {
+        // given
+        // when
+        String value = "5";
+        LottoDto winning = new LottoDto(List.of(1, 2, 3, 4, 5, 6));
+        // then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> service.create(value, winning));
     }
 }

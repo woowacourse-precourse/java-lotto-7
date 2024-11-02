@@ -33,7 +33,7 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     @Override
     public Void request(LottoTicketDto dto) {
         LottoDto winningLotto = processInputWinningLotto();
-        LottoNumberDto bonusNumber = processInputBonusLottoNumber();
+        LottoNumberDto bonusNumber = processInputBonusLottoNumber(winningLotto);
 
         return null;
     }
@@ -50,13 +50,13 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
         return null;
     }
 
-    private LottoNumberDto processInputBonusLottoNumber() {
+    private LottoNumberDto processInputBonusLottoNumber(LottoDto winningLotto) {
         LottoNumberDto bonusNumber;
         do {
             bonusNumber = Handler.runCatching(() -> {
                 this.inputBonusLottoNumberView.display("보너스 번호를 입력해 주세요.");
                 String read = Command.read();
-                return this.createBonusLottoNumberService.create(read);
+                return this.createBonusLottoNumberService.create(read, winningLotto);
             });
         } while (bonusNumber == null);
         return bonusNumber;
