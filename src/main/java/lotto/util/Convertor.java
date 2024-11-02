@@ -1,5 +1,8 @@
 package lotto.util;
 
+import lotto.enums.Delimiter;
+import lotto.enums.Message;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class Convertor {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_EXCEPTION);
+            throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + NON_NUMERIC_EXCEPTION);
         }
     }
 
@@ -19,12 +22,12 @@ public class Convertor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_EXCEPTION);
+            throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + NON_NUMERIC_EXCEPTION);
         }
     }
 
     public static List<Integer> convertToIntegerList(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(Delimiter.COMMA.getDelimiter()))
                 .map(Convertor::convertToInt)
                 .toList();
     }
