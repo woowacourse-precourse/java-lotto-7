@@ -151,7 +151,7 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(integers, bonusNumber);
 
         // when
-        List<Integer> result = winningNumbers.getWinningNumbers();
+        List<Integer> result = winningNumbers.getMainNumbers();
 
         // then
         assertEquals(integers, result);
@@ -181,7 +181,7 @@ public class WinningNumbersTest {
         WinningNumbers winningNumbers = new WinningNumbers(integers, bonusNumber);
 
         // when
-        List<Integer> result = winningNumbers.getWinningNumbers();
+        List<Integer> result = winningNumbers.getMainNumbers();
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class,
                 () -> result.add(7));
 

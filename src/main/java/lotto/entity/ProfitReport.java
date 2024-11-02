@@ -68,7 +68,7 @@ public class ProfitReport {
     }
 
     private Prize calculatePrize(Lotto lotto) {
-        int matchCount = (int) winningNumbers.getWinningNumbers().stream()
+        int matchCount = (int) winningNumbers.getMainNumbers().stream()
                 .filter(lotto::contains).count();
         boolean matchBonus = lotto.contains(winningNumbers.getBonusNumber());
 

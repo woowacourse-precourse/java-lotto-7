@@ -214,7 +214,7 @@ class ProfitReportTest {
         WinningNumbers actual = profitReport.getWinningNumbers();
 
         // then
-        assertEquals(winningNumbers.getWinningNumbers(), actual.getWinningNumbers());
+        assertEquals(winningNumbers.getMainNumbers(), actual.getMainNumbers());
         assertEquals(winningNumbers.getBonusNumber(), actual.getBonusNumber());
     }
 
@@ -228,10 +228,10 @@ class ProfitReportTest {
         // when
         WinningNumbers actual = profitReport.getWinningNumbers();
         UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class,
-                () -> actual.getWinningNumbers().add(1));
+                () -> actual.getMainNumbers().add(1));
 
         // then
-        assertEquals(winningNumbers.getWinningNumbers(), actual.getWinningNumbers());
+        assertEquals(winningNumbers.getMainNumbers(), actual.getMainNumbers());
     }
 
     @Test

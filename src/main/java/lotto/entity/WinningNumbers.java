@@ -13,7 +13,7 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> getMainNumbers() {
         return mainNumbers.getNumbers();
     }
 
