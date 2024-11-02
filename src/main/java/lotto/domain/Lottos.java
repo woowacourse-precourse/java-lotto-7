@@ -13,10 +13,10 @@ public class Lottos {
 
     private static final int START_INDEX = 0;
 
-    private final List<Lotto> lottoList;
+    private final List<Lotto> lottos;
 
     private Lottos(int count) {
-        this.lottoList = new ArrayList<>();
+        this.lottos = new ArrayList<>();
         generateLottos(count);
     }
 
@@ -24,8 +24,8 @@ public class Lottos {
         return new Lottos(count);
     }
 
-    public List<Lotto> getLottoList() {
-        return Collections.unmodifiableList(lottoList);
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     private void generateLottos(final int count) {
@@ -36,7 +36,7 @@ public class Lottos {
                                 MAXIMUM_LOTTO_NUMBER,
                                 LOTTO_SIZE
                         )
-                )).forEach(lottoList::add);
+                )).forEach(lottos::add);
     }
 
 }
