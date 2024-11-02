@@ -22,7 +22,7 @@ public class Application {
         int bonusNumber = readBonusNumber(winningNumbers);
 
         Map<LottoRank, Integer> result = calculateResult(purchasedLottos, winningNumbers, bonusNumber);
-
+        printResult(result, purchaseAmount);
 
     }
 
@@ -92,6 +92,24 @@ public class Application {
             result.put(rank, result.getOrDefault(rank, 0) + 1)
         }
         return result;
+    }
+
+    private static void printResult(Map<LottoRank, Integer> result, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("-----");
+
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.NONE) {
+                continue;
+            }
+            int count = result.getOrDefault(rank, 0);
+            totalPrize += rank.getPrize() * count;
+            System.out.printf("%d개 일치 (%d원) - %d개\n", rank.getMatchCount(), rank.getPrize(), count);
+        }
+
+        double profixRate = (double) totalPrize / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profixRate);
     }
 }
 
