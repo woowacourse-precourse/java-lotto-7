@@ -1,10 +1,12 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -22,5 +24,15 @@ class LottoNumberTest {
 
 		// then
 		assertThat(lottoNumber1 == lottoNumber2).isTrue();
+	}
+
+	@ParameterizedTest
+	@DisplayName("1 미만이거나 45 초과인 수로 로또 번호 객체를 생성한다면 에러를 발생시킨다.")
+	@ValueSource(ints = {0, 46})
+	void 로또_번호의_값이_1_미만이거나_45_초과라면_예외가_발생한다(int number) {
+		// when, then
+		assertThatThrownBy(() -> LottoNumber.from(number))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 로또 번호는 1 이상 45 이하이어야 합니다.");
 	}
 }
