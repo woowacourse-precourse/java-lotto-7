@@ -13,5 +13,14 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        while (true) {
+            try {
+                number.winNumbersInput();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
