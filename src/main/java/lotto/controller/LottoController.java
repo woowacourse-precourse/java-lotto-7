@@ -34,10 +34,11 @@ public class LottoController {
 
         String lottoBonusNumber = inputView.inputLottoBonusNumber();
         lottoService.validateBonusNumbers(lottoBonusNumber);
-        lottoService.winningLotto(lottoWinningNumbers, lottoBonusNumber);
+        int bonusNumber = lottoService.convertBonusNumberInt(lottoBonusNumber);
+        lottoService.winningLotto(winningNumbers, bonusNumber);
 
         Map<LottoRank, Integer> lottoResult = lottoService.resultWinningLotto();
-        double rate = lottoService.resultRate();
+        double rate = lottoService.calculateRate(lottoResult);
 
         outputView.totalLotto(lottoResult, rate);
     }

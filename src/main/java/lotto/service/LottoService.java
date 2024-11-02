@@ -76,12 +76,8 @@ public class LottoService {
             lottoArray[i] = lottoArray[i].trim();
         }
     }
-
-    public void winningLotto(String lottoWinningNumbers, String lottoBonusNumber) {
-        List<Integer> winNumbers = splitLottoWinningNumbers(lottoWinningNumbers);
-        int bonusNumber = Integer.parseInt(lottoBonusNumber); // 따로 빼기
-        LottoWinningNumbers lottoWinning = new LottoWinningNumbers(winNumbers, bonusNumber);
-    }
+    
+    
 
     public Map<LottoRank, Integer> resultWinningLotto() {
         for(int i=0; i<lottoNum; i++){
@@ -99,29 +95,43 @@ public class LottoService {
         Set<Integer> set2 = new HashSet<>(lottoWinning.getLottoWinningNumbers());
 
         set1.retainAll(set2);
-        int count = set1.size();
+        int count = set1.size(); // 중복
 
         return count;
     }
 
-    public double resultRate() {
+    public double calculateRate(Map<LottoRank, Integer> lottoResult) {
         // 일치한 것에 대한 돈을 다 더한다
         // 해당 돈 / 구입 금액 * 100
         // 소수점 둘째자리까지 표현한다
-        int amount = 0;
-        for(LottoRank lottoRank: lottoResults.keySet()){
-            amount += convertToInt(lottoRank.getPrice()) * lottoResults.get(lottoRank);
-        }
-
+        int amount = sumAmount(lottoResult);
         double rate = (amount / lottoPriceInt) * 100.0;
         rate = Math.round(rate * 100) / 100.0;
 
         return rate;
     }
 
+    private int sumAmount(Map<LottoRank, Integer> lottoResult) {
+        int amount = 0;
+        for(LottoRank lottoRank: lottoResults.keySet()){
+            int price = convertToInt(lottoRank.getPrice());
+            amount += price * lottoResults.get(lottoRank);
+        }
+
+        return amount;
+    }
+
     public static int convertToInt(String str) {
         // 쉼표를 모두 제거하고 int로 변환
         String noCommaStr = str.replace(",", "");
         return Integer.parseInt(noCommaStr);
+    }
+
+    public int convertBonusNumberInt(String lottoBonusNumber) {
+        return Integer.parseInt(lottoBonusNumber);
+    }
+
+    public void winningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        lottoWinning = new LottoWinningNumbers(winningNumbers, bonusNumber);
     }
 }

@@ -20,7 +20,7 @@ public class InputValidator {
     }
 
     public void validateNumberRange(int lottoPrice) {
-        if(lottoPrice <= 0){
+        if(lottoPrice <= 0 || lottoPrice > Constants.MAX_NUM){
             throw new IllegalArgumentException("[ERROR] 구입 금액이 0원 이하일 수 없습니다.");
         }
     }
