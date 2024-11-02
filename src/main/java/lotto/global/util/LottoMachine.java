@@ -3,6 +3,7 @@ package lotto.global.util;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.lotto.Lotto;
+import lotto.global.contents.LottoDetail;
 
 public class LottoMachine {
 
@@ -13,6 +14,11 @@ public class LottoMachine {
     }
 
     private static Lotto generateLotto() {
-        return Lotto.of(RandomValue.generate(1, 45, 6));
+        return Lotto.of(
+                RandomValue.generate(
+                        LottoDetail.MIN_VALUE,
+                        LottoDetail.MAX_VALUE,
+                        LottoDetail.NUMBER_COUNT)
+        );
     }
 }
