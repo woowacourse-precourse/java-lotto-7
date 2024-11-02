@@ -50,4 +50,13 @@ public class PurchaseAmount {
         return amount/1000;
     }
 
+    public double calculateProfitPercentage(int totalPrizeMoney) {
+        double profitPercentage = ((double) totalPrizeMoney / amount) * 100;
+//        System.out.println(profitPercentage);
+//        System.out.println(Math.round(profitPercentage*100));
+//        System.out.println(Math.round(profitPercentage*100)/100.0);
+//        return (double) Math.round(profitPercentage*100)/100.0;
+        return profitPercentage;
+    }
+
 }

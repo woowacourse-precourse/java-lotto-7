@@ -1,29 +1,39 @@
 package lotto.model.draw;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum Prize {
 
-    FIRST(6),
-    SECOND(5),
-    THIRD(5),
-    FOURTH(4),
-    FIFTH(3),
+    FIRST(1,6, 2000000000, "%S개 일치 (%S원)"),
+    SECOND(2,5, 30000000, "%S개 일치, 보너스 볼 일치 (%S원)"),
+    THIRD(3,5, 1500000, "%S개 일치 (%S원)"),
+    FOURTH(4,4, 50000, "%S개 일치 (%S원)"),
+    FIFTH(5,3, 5000, "%S개 일치 (%S원)"),
     BLANK();
 
-    private final int count;
+    private final int rank;
+    private final int conditionCount;
+    private final int prizeMoney;
+    private final String message;
 
-    Prize(int count) {
-        this.count = count;
+    Prize(int rank, int conditionCount, int prizeMoney, String message) {
+        this.rank = rank;
+        this.conditionCount = conditionCount;
+        this.prizeMoney = prizeMoney;
+        this.message = message;
     }
 
     Prize() {
-        this.count = 0;
+        this.message = "0개 일치";
+        this.conditionCount = 0;
+        this.prizeMoney = 0;
+        this.rank = 6;
     }
 
     public static Prize findPrize(int sameNumberCount, boolean isContainBonusNumber) {
         Prize prize = Arrays.stream(values())
-                .filter(value -> sameNumberCount == value.getCount())
+                .filter(value -> sameNumberCount == value.getConditionCount())
                 .findFirst()
                 .orElse(BLANK);
 
@@ -33,8 +43,22 @@ public enum Prize {
         return prize;
     }
 
-    public int getCount() {
-        return count;
+    public int getRank() {
+        return rank;
+    }
+
+    public int getConditionCount() {
+        return conditionCount;
+    }
+
+    public int sumPrizeMoney(int count) {
+        return prizeMoney*count;
+    }
+
+    public String getMessage() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String money = decimalFormat.format(prizeMoney);
+        return String.format(message,conditionCount,money);
     }
 
 }

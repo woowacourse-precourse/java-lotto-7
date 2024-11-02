@@ -1,6 +1,10 @@
 package lotto.model;
 
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.model.draw.BonusNumber;
+import lotto.model.draw.Prize;
 import lotto.model.draw.WinningLotto;
 import lotto.model.draw.DrawResult;
 import lotto.model.lotto.LottoGenerator;
@@ -37,7 +41,10 @@ public class LottoManager {
 
         drawResult.generateDrawResult();
 
-        System.out.println(drawResult.getDrawResult());
+        outputView.printDrawResult(drawResult);
+        int totalPrizeMoney = drawResult.getTotalPrizeMoney();
+        double profitPercentage = purchaseAmount.calculateProfitPercentage(totalPrizeMoney);
+        outputView.printProfitPercentage(profitPercentage);
 
     }
 

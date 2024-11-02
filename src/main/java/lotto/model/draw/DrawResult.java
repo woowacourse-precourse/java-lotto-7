@@ -3,21 +3,23 @@ package lotto.model.draw;
 import static lotto.model.draw.Prize.*;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoTicket;
 
 public class DrawResult {
 
-    public final Map<Prize, Integer> drawResult = new HashMap<>();
-
     private final WinningLotto winningLotto;
     private final BonusNumber bonusNumber;
     private final LottoTicket lottoTicket;
 
+    private final Map<Prize, Integer> drawResult;
+
     private DrawResult(WinningLotto winningLotto, BonusNumber bonusNumber, LottoTicket lottoTicket) {
+        drawResult = new TreeMap<>((o1, o2) -> o2.getRank() - o1.getRank());
         initDrawResult();
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
@@ -59,5 +61,14 @@ public class DrawResult {
 
     public Map<Prize, Integer> getDrawResult() {
         return drawResult;
+    }
+
+    public int getTotalPrizeMoney() {
+        int sum = 0;
+        Set<Prize> prizes = drawResult.keySet();
+        for (Prize prize : prizes) {
+            sum += prize.sumPrizeMoney(drawResult.get(prize));
+        }
+        return sum;
     }
 }
