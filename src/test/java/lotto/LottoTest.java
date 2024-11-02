@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,5 +26,11 @@ class LottoTest {
     void 로또_번호가_1부터_45사이의_숫자가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,0,46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또번호를_오름차순_정렬한다() {
+        assertThat(new Lotto(List.of(6,5,4,3,2,1)).getSortedNumbers().toString())
+                .isEqualTo("[1, 2, 3, 4, 5, 6]"); 
     }
 }
