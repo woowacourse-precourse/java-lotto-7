@@ -3,10 +3,12 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import lotto.domain.PublishLotto;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,16 @@ public class PublishLottoTest {
         PublishLotto publishLotto = PublishLotto.from(lottoValidator);
 
         assertNotNull(publishLotto);
+    }
+
+    @Test
+    void 발행_로또가_오름차순_정렬되는지_테스트() {
+        PublishLotto publishLotto = PublishLotto.from(lottoValidator);
+
+        List<Integer> publishLottoNumbers = publishLotto.getPublishLottoNumbers();
+
+
+        Assertions.assertThat(publishLottoNumbers).isSorted();
     }
 
 }
