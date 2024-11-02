@@ -1,9 +1,6 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +8,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(){
+        numbers = new ArrayList<>();
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,5 +33,30 @@ public class Lotto {
         sb.append("]");
         System.out.println(sb);
     }
+
+    public int judgeWinning(List<Integer> numbers, List<Integer> winningNumber, int luckyNumber) {
+        int correct = countCorrect(numbers, winningNumber);
+        if (correct == 6) {
+            return LottoPrizeMoney.FIRST.getPrizeMoney();
+        } else if (correct == 5) {
+            return numbers.contains(luckyNumber) ? LottoPrizeMoney.SECOND.getPrizeMoney(): LottoPrizeMoney.THIRD.getPrizeMoney();
+        } else if (correct == 4) {
+            return LottoPrizeMoney.FOURTH.getPrizeMoney();
+        } else if (correct == 3) {
+            return LottoPrizeMoney.FIFTH.getPrizeMoney();
+        }
+        return LottoPrizeMoney.MISS.getPrizeMoney();
+    }
+
+    private int countCorrect(List<Integer> numbers, List<Integer> winningNumber) {
+        int correct = 0;
+        for (Integer number : numbers) {
+            if (winningNumber.contains(number)) {
+                correct++;
+            }
+        }
+        return correct;
+    }
+
 
 }
