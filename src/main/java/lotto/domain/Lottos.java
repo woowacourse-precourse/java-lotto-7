@@ -33,8 +33,12 @@ public class Lottos {
     }
 
     public void calculateWinningStatistics(List<Lotto> lottos) {
+        for (LottoRank rank : LottoRank.values()) {
+            statistics.put(rank, 0);
+        }
         for (Lotto lotto : lottos) {
-
+            LottoRank rank = calculateRank(lotto);
+            statistics.put(rank, statistics.get(rank) + 1);
         }
     }
 
