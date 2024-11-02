@@ -14,6 +14,10 @@ public class Bonus {
         validateDuplicationBonus(bonusNumber);
     }
 
+    public Integer getBonusNumber(){
+        return bonusNumber;
+    }
+
     private void validateDuplicationBonus(Integer bonusNumber){
         List<Integer> numbers = lotto.getNumbers();
         HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
