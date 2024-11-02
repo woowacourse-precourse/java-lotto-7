@@ -6,7 +6,8 @@ public enum NotificationMessage {
     BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PURCHASED_LOTTOS("%d개를 구매했습니다."),
     MATCH_COUNT("%d개 일치 (%d원) - %d개"),
-    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
+    PROFIT_RATE("총 수익률은 %.1f%%입니다."),
+    DIVIDER("");
 
     private final String message;
 
