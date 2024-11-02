@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +25,7 @@ class LottoTest {
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     public void FIRST_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -36,7 +35,7 @@ class LottoTest {
 
     @Test
     public void SECOND_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 5, 8);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
         int bonusNumber = 6;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -46,7 +45,7 @@ class LottoTest {
 
     @Test
     public void THIRD_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 5, 8);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -56,7 +55,7 @@ class LottoTest {
 
     @Test
     public void FORTH_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 8, 9);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -66,7 +65,7 @@ class LottoTest {
 
     @Test
     public void FIFTH_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 8, 9, 10);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -76,7 +75,7 @@ class LottoTest {
 
     @Test
     public void NOTHING_로또를_비교한다() {
-        List<Integer> winningLotto = Arrays.asList(1, 2, 8, 9, 10, 11);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 8, 9, 10, 11));
         int bonusNumber = 7;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -86,7 +85,7 @@ class LottoTest {
 
     @Test
     public void NOTHING_로또를_비교한다2() {
-        List<Integer> winningLotto = Arrays.asList(8, 9, 10, 11, 12, 13);
+        Lotto winningLotto = new Lotto(List.of(8, 9, 10, 11, 12, 13));
         int bonusNumber = 1;
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

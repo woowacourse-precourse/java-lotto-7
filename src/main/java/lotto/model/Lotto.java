@@ -20,10 +20,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public Result compareWithWinningLotto(List<Integer> winningLotto, int bonusNumber){
+    public Result compareWithWinningLotto(Lotto winningLotto, int bonusNumber){
         boolean isBonusMatch = false;
         int duplicateNumber = 0;
-        for(Integer number : winningLotto){
+        for(Integer number : winningLotto.numbers){
             if(numbers.contains(number)){
                 duplicateNumber ++;
             }

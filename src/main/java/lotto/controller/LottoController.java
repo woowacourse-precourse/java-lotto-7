@@ -26,7 +26,7 @@ public class LottoController {
         List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketNumber);
         output.printLottoTicket(userLottos,lottoTicketNumber);
 
-        List<Integer> winningLotto = inputWinningNumber();
+        Lotto winningLotto = new Lotto(inputWinningNumber());
         int bonusNumber = inputBonusNumber(winningLotto);
 
         Map<Result,Integer> results = compareLottoWithWinningNumber(userLottos, winningLotto, bonusNumber);
@@ -51,7 +51,7 @@ public class LottoController {
         }
     }
 
-    public int inputBonusNumber(List<Integer> winningLotto){
+    public int inputBonusNumber(Lotto winningLotto){
         try{
             int bonusNumber = input.inputBonusNumber();
             Validator.validateBonusDuplicate(winningLotto, bonusNumber);
@@ -62,7 +62,7 @@ public class LottoController {
         }
     }
 
-    public Map<Result,Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
+    public Map<Result,Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber){
         Map<Result,Integer> results = new LinkedHashMap<>();
         for(int i = 1; i < Result.values().length ; i++){
             results.put(Result.values()[i], 0);

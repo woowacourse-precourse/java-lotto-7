@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import lotto.model.Lotto;
 
 public class Validator {
     private static final String ERROR_INVALID_NUMERIC = "[ERROR] 로또 번호는 숫자 형식이어야 합니다.";
@@ -81,8 +82,8 @@ public class Validator {
         }
     }
 
-    public static void validateBonusDuplicate(List<Integer> winningLotto, int bonusNumber){
-        if(winningLotto.contains(bonusNumber)){
+    public static void validateBonusDuplicate(Lotto winningLotto, int bonusNumber){
+        if(winningLotto.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException(ERROR_INVALID_BONUS_DUPLICATE);
         }
     }
