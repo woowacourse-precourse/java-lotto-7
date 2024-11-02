@@ -35,5 +35,13 @@ public class LottoController {
             LottoRank rank = LottoRank.getRank(matchCount, matchBonus);
             rankCount[LottoRank.ranks.indexOf(rank)]++;
         }
+
+        int totalPrize = 0;
+        for (int i = 0; i < rankCount.length; i++) {
+            totalPrize += rankCount[i] * LottoRank.ranks.get(i).getPrize();
+        }
+        double earningRate = ((double) totalPrize / (lottosAmount * 1000)) * 100;
+
+        OutputView.printWinningStatistics(rankCount, earningRate);
     }
 }
