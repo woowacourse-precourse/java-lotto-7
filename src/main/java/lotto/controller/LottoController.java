@@ -16,6 +16,7 @@ public class LottoController {
     public void run() {
         OutputView.printPriceGuide();
         Consumer consumer = new Consumer(getLottoPrice());
+        OutputView.printPurchaseCount(consumer.getLottoTicket().size());
     }
 
     private int getLottoPrice() {

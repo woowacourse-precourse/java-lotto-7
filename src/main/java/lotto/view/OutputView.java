@@ -7,8 +7,8 @@ public class OutputView {
         System.out.println(LottoGuide.PRICE_GUIDE.getMessage());
     }
 
-    public static void printPurchaseCount(){
-        System.out.println(LottoGuide.PURCHASE_COUNT.getMessage());
+    public static void printPurchaseCount(int count){
+        System.out.printf(LottoGuide.PURCHASE_COUNT.getMessage(), count);
     }
 
     public static void printWinningNumberGuide(){
