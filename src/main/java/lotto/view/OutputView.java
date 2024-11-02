@@ -1,20 +1,21 @@
 package lotto.view;
 
+import static lotto.constant.MessageConstant.*;
+
 import java.util.List;
 
 public class OutputView {
 
-    private static final String PURCHASE_TICKET_MESSAGE = "%d개를 구매했습니다.";
-    private static final String PURCHASE_TICKET_INFO_MESSAGE = "[%s]";
-    private static final String LINE_BREAK = "\n";
-
     public void printTicketCount(int count) {
-        System.out.printf(LINE_BREAK + PURCHASE_TICKET_MESSAGE + LINE_BREAK, count);
+        System.out.println();
+        System.out.printf(OUTPUT_PURCHASE_TICKET.getMessage(), count);
+        System.out.println();
     }
 
     public void printTicketNumbers(List<String> tickets) {
-        tickets.forEach(ticket ->
-                System.out.printf(PURCHASE_TICKET_INFO_MESSAGE + LINE_BREAK, ticket)
-        );
+        tickets.forEach(ticket -> {
+            System.out.printf(OUTPUT_PURCHASE_TICKET_INFO.getMessage(), ticket);
+            System.out.println();
+        });
     }
 }
