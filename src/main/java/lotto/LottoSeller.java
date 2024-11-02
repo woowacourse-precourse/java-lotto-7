@@ -10,8 +10,9 @@ public class LottoSeller {
     private int lottoNumber = 0;
     private List<Lotto> customerLottos = new ArrayList<Lotto>();
 
+    LottoSeller
     public void initLottoNumber(){
-        System.out.println(Message.GET_INPUT_MESSAGE.getMessage());
+        System.out.println(GameMessage.GET_INPUT_MESSAGE.getMessage());
         cashValidate(getInput());
         buyLotto();
         System.out.println(printLotto());
@@ -54,7 +55,7 @@ public class LottoSeller {
 
     protected String printLotto(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(lottoNumber + Message.GET_LOTTO_MESSAGE.getMessage());
+        stringBuilder.append(lottoNumber + GameMessage.GET_LOTTO_MESSAGE.getMessage());
         for(Lotto curlotto: customerLottos){
             stringBuilder.append(curlotto.getLottoNumber());
         }
