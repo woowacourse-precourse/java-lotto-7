@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.model.lotto.LottoFormat;
+import lotto.model.lotto.LottoGenerator;
+import lotto.number_generator.LottoNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
