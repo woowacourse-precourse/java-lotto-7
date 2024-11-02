@@ -20,8 +20,8 @@ public class Lotto {
         return new Lotto(lottoNumbers);
     }
 
-    public static Lotto generateBy(RandomNumberGenerator randomLottoNumberGenerator) {
-        return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomLottoNumberGenerator));
+    public static Lotto generateBy(RandomNumberGenerator randomNumberGenerator) {
+        return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomNumberGenerator));
     }
 
     private void validate(LottoNumbers numbers) {
