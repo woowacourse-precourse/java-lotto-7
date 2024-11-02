@@ -10,12 +10,12 @@ public enum LottoEnum {
 
 
     private final int matchCount;
-    private final int prizeAmount;
+    private final int prize;
     private int winnerCount;
 
-    LottoEnum(int matchCount, int prizeAmount, int winnerCount) {
+    LottoEnum(int matchCount, int prize, int winnerCount) {
         this.matchCount = matchCount;
-        this.prizeAmount = prizeAmount;
+        this.prize = prize;
         this.winnerCount = winnerCount;
     }
 
@@ -23,8 +23,8 @@ public enum LottoEnum {
         return matchCount;
     }
 
-    public int getPrizeAmount() {
-        return prizeAmount;
+    public int getPrize() {
+        return prize;
     }
 
     public int getWinnerCount() {
@@ -42,7 +42,7 @@ public enum LottoEnum {
     public static double sum() {
         double totalPrize = 0;
         for(LottoEnum lotto : LottoEnum.values()) {
-            totalPrize += lotto.getPrizeAmount() * lotto.winnerCount;
+            totalPrize += lotto.getPrize() * lotto.winnerCount;
         }
         return totalPrize;
     }
