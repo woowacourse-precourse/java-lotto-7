@@ -18,8 +18,7 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers,
-                                                        String inputBonusNumber) {
+    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
         List<Integer> winningNumbers = InputValidator.validateWiningNumbers(inputWinningNumbers);
         int bonusNumber = InputValidator.validateBonusNumber(winningNumbers, inputBonusNumber);
 
@@ -27,9 +26,9 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, String purchaseMoney) {
-        int totalSpent = Integer.parseInt(purchaseMoney);
-        
+    public Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber) {
+        int totalSpent = purchaseNumber * 1000;
+
         int totalPrizeMoney = 0;
         for (LottoRank rank : values()) {
             totalPrizeMoney += rank.getPrizeMoney() * winningResult.get(rank);
@@ -49,8 +48,7 @@ public class LottoMachineImpl implements LottoMachine {
         return lottoTickets;
     }
 
-    private HashMap<LottoRank, Integer> countWinningTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers,
-                                                            int bonusNumber) {
+    private HashMap<LottoRank, Integer> countWinningTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
         HashMap<LottoRank, Integer> winningResult = initWinningResult();
 
         for (Lotto lottoTicket : lottoTickets) {

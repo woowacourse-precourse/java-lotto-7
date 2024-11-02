@@ -8,5 +8,5 @@ public interface LottoMachine {
 
     HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String winningNumbers, String bonusNumber);
 
-    Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, String purchaseMoney);
+    Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber);
 }

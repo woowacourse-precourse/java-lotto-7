@@ -5,39 +5,48 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) {
-        LottoMachine lottoMachine = new LottoMachineImpl();
-        String purchaseMoney;
-        List<Lotto> lottoTickets;
-        HashMap<LottoRank, Integer> winningResult;
+    private static final LottoMachine lottoMachine = new LottoMachineImpl();
 
+    public static void main(String[] args) {
+        List<Lotto> lottoTickets = purchaseLottoTickets();
+
+        HashMap<LottoRank, Integer> winningResult = getWinningResult(lottoTickets);
+
+        calculateProfitRate(winningResult, lottoTickets.size());
+    }
+
+    static private List<Lotto> purchaseLottoTickets() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                purchaseMoney = Console.readLine();
-                lottoTickets = lottoMachine.purchaseLottoTickets(purchaseMoney);
+                String purchaseMoney = Console.readLine();
+
+                List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(purchaseMoney);
                 showCreateLottoTickets(lottoTickets);
-                break;
+                return lottoTickets;
             } catch (IllegalArgumentException e) {
                 System.out.println(e. getMessage());
             }
         }
+    }
 
+    static private HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets) {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String winningNumbers = Console.readLine();
-                System.out.println();
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 String bonusNumber = Console.readLine();
-                winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
-                break;
+
+                return lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-        Double profitRate = lottoMachine.calculateProfitRate(winningResult, purchaseMoney);
+    static private void calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber) {
+        Double profitRate = lottoMachine.calculateProfitRate(winningResult, purchaseNumber);
         System.out.println("총 수익률은 "+ profitRate + "%입니다.");
     }
 
