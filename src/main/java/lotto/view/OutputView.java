@@ -11,14 +11,14 @@ public class OutputView {
     private static final String RESULT_STATISTICS_TITLE = "당첨 통계";
     private static final String DIVIDER = "---";
     private static final String MATCH_RESULT_FORMAT = "%d개 일치 (%s원) - %d개%n";
-    private static final String MATCH_RESULT_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%d원) - %d개%n";
+    private static final String MATCH_RESULT_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
     private static final String PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void printIssuedLottos(List<Lotto> issuedLottos) {
         System.out.print(NEW_LINE);
         System.out.printf(ISSUED_LOTTO_COUNT_FORMAT, issuedLottos.size());
         issuedLottos.forEach(lotto -> {
-            System.out.println("[" + lotto.getNumbers() + "]");
+            System.out.println(lotto.getNumbers());
         });
     }
 
@@ -27,22 +27,27 @@ public class OutputView {
         System.out.println(RESULT_STATISTICS_TITLE);
         System.out.println(DIVIDER);
 
-        printRank(3, PrizeCalculator.getPrizeAmount(5), prizeCounts.getOrDefault(5, 0));
-        printRank(4, PrizeCalculator.getPrizeAmount(4), prizeCounts.getOrDefault(4, 0));
-        printRank(5, PrizeCalculator.getPrizeAmount(3), prizeCounts.getOrDefault(3, 0));
-        printBonusRank(5, PrizeCalculator.getPrizeAmount(2), prizeCounts.getOrDefault(2, 0));
-        printRank(6, PrizeCalculator.getPrizeAmount(1), prizeCounts.getOrDefault(1, 0));
+        printRank(3, formatPrize(PrizeCalculator.getPrizeAmount(5)), prizeCounts.getOrDefault(5, 0));
+        printRank(4, formatPrize(PrizeCalculator.getPrizeAmount(4)), prizeCounts.getOrDefault(4, 0));
+        printRank(5, formatPrize(PrizeCalculator.getPrizeAmount(3)), prizeCounts.getOrDefault(3, 0));
+        printBonusRank(5, formatPrize(PrizeCalculator.getPrizeAmount(2)), prizeCounts.getOrDefault(2, 0));
+        printRank(6, formatPrize(PrizeCalculator.getPrizeAmount(1)), prizeCounts.getOrDefault(1, 0));
     }
 
     public static void printProfitRate(double profitRate) {
         System.out.printf(PROFIT_FORMAT, profitRate);
     }
 
-    private static void printRank(int matchCount, int prizeAmount, int count) {
+    private static void printRank(int matchCount, String prizeAmount, int count) {
         System.out.printf(MATCH_RESULT_FORMAT, matchCount, prizeAmount, count);
     }
 
-    private static void printBonusRank(int matchCount, int prizeAmount, int count) {
+    private static void printBonusRank(int matchCount, String prizeAmount, int count) {
         System.out.printf(MATCH_RESULT_BONUS_FORMAT, matchCount, prizeAmount, count);
+    }
+
+    // 쉼표 없이 들어온 상금을 쉼표 형식으로 변환
+    private static String formatPrize(String prize) {
+        return String.format("%,d", Integer.parseInt(prize.replace(",", "")));
     }
 }
