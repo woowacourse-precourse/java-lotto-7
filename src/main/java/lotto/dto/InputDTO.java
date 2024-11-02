@@ -32,14 +32,15 @@ public class InputDTO {
     }
 
     public void setAllNumbers(List<Integer> allNumbers) {
-    this.allNumbers = allNumbers;
+        this.allNumbers = allNumbers;
     }
 
     public int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public int setMoney(int money) {
         this.money = money;
+        return money;
     }
 }
