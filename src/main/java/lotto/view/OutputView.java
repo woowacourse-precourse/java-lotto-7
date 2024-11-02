@@ -25,4 +25,8 @@ public class OutputView {
         }
     }
 
+    public void outputLateOfReturn(double lateOfReturn) {
+        System.out.println("총 수익률은 " + lateOfReturn + "%입니다.");
+    }
+
 }
