@@ -25,20 +25,14 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    public Ranking checkRanking(final WinningLotto winLotto) {
-        int matchCount = calculateMatchCount(winLotto.getLotto().getNumbers());
-        boolean isBonusMatch = isMatchBonusNumber(winLotto.getBonusNumber());
-        return Ranking.of(matchCount, isBonusMatch);
-    }
-
-    private int calculateMatchCount(final List<LottoNumber> winNumbers) {
+    public int calculateMatchCount(final List<LottoNumber> winNumbers) {
         return (int) winNumbers.stream()
                 .filter(numbers::contains)
                 .count();
     }
 
-    private boolean isMatchBonusNumber(final LottoNumber bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean isContainNumber(final LottoNumber lottoNumber){
+        return numbers.contains(lottoNumber);
     }
 
     public List<LottoNumber> getNumbers() {

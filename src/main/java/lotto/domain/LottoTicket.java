@@ -20,9 +20,15 @@ public class LottoTicket {
     public EnumMap<Ranking, Integer> checkRanking(final WinningLotto winningLotto) {
         EnumMap<Ranking, Integer> rankingMap = new EnumMap<>(Ranking.class);
         lottos.stream()
-                .map(lotto -> lotto.checkRanking(winningLotto))
+                .map(lotto -> checkRanking(lotto, winningLotto))
                 .forEach(ranking -> rankingMap.merge(ranking, 1, Integer::sum));
         return rankingMap;
+    }
+
+    private Ranking checkRanking(final Lotto lotto, final WinningLotto winningLotto){
+        int matchCount = lotto.calculateMatchCount(winningLotto.getLotto().getNumbers());
+        boolean isBonus = lotto.isContainNumber(winningLotto.getBonusNumber());
+        return Ranking.of(matchCount, isBonus);
     }
 
     public double calculateProfitRate(final WinningLotto winningLotto) {
