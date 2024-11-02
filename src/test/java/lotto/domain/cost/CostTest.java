@@ -28,6 +28,15 @@ class CostTest {
         assertThatThrownBy(() -> Cost.of(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @DisplayName("50,000 원을 넘는 숫자는 구입 금액으로 설정할 수 없다.")
+    @ValueSource(ints = {50001, 60000})
+    void 숫자_범위_초과_예외(int input) {
+        // given
+        // when & then
+        assertThatThrownBy(() -> Cost.of(input)).isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Test
     @DisplayName("구입 금액을 통해 올바른 상품 개수를 반환할 수 있다.")
     void 구입_금액_계산() {
