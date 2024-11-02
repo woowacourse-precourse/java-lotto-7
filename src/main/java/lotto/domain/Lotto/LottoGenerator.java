@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.Lotto;
 
 import lotto.utils.SortUtils;
 import lotto.validator.LottoValidator;

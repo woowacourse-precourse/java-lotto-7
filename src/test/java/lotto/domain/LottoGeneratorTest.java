@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.Lotto.LottoGenerator;
 import lotto.validator.LottoValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

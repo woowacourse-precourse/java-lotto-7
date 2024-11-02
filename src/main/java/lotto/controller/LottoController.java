@@ -24,7 +24,7 @@ public class LottoController {
         lottoService.createLottos(buyLottoCount);
         outputView.printBuyLottoCount(buyLottoCount);
 
-        List<String> formattedLottoNumbers = lottoService.formatLottoNumbers();
+        List<String> formattedLottoNumbers = lottoService.formatBuyLottoNumbersResult();
 
         for (String formattedLottoNumber : formattedLottoNumbers) {
             outputView.printLottoNumbers(formattedLottoNumber);

@@ -1,8 +1,9 @@
 package lotto.service;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoManager;
-import lotto.domain.LottoResultFormatter;
+import lotto.domain.Lotto.LottoGenerator;
+import lotto.domain.Lotto.LottoManager;
+import lotto.domain.Lotto.LottoFormatter;
+import lotto.domain.WinningLotto.WinningLottoManager;
 import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,16 +14,18 @@ public class LottoServiceTest {
     private LottoValidator lottoValidator;
     private LottoGenerator lottoGenerator;
     private LottoManager lottoManager;
-    private LottoResultFormatter lottoResultFormatter;
+    private LottoFormatter lottoFormatter;
+    private WinningLottoManager winningLottoManager;
     private LottoService lottoService;
 
     @BeforeEach
     void setUp() {
         lottoValidator = new LottoValidator();
         lottoManager = new LottoManager();
-        lottoResultFormatter = new LottoResultFormatter();
+        lottoFormatter = new LottoFormatter();
         lottoGenerator = new LottoGenerator(lottoValidator);
-        lottoService = new LottoService(lottoGenerator, lottoManager, lottoResultFormatter);
+        winningLottoManager = new WinningLottoManager();
+        lottoService = new LottoService(lottoGenerator, lottoManager, lottoFormatter, winningLottoManager);
     }
 
     @Test
