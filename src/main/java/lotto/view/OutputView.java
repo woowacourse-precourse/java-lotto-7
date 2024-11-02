@@ -14,7 +14,8 @@ public class OutputView {
     public void outputIssuedLottos(Lottos lottos) {
         outputLottoAmount(lottos);
         for (Lotto lotto : lottos.getLottos()) {
-            System.out.println(Messages.ISSUED_LOTTO(lotto));
+            List<Integer> ascendingLotto = Utils.sortAscending(lotto.getNumbers());
+            System.out.println(Messages.ISSUED_LOTTO(ascendingLotto));
         }
     }
 

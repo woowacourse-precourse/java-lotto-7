@@ -37,16 +37,16 @@ class LottoTest {
         assertThat(lotto.getNumbers()).contains(testNumbers.get(lottoNumbersIndex));
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4})
-    void 숫자를_뽑을_때_오름차순으로_정렬한다(int lottoNumbersIndex) {
-        List<Integer> randomNumbers = RandomNumberPicker.pickAscendingNumbers();
-
-        Lotto lotto = new Lotto(randomNumbers);
-
-        assertThat(lotto.getNumbers().get(lottoNumbersIndex))
-                .isLessThan(lotto.getNumbers().get(lottoNumbersIndex + 1));
-    }
+//    @ParameterizedTest
+//    @ValueSource(ints = {0, 1, 2, 3, 4})
+//    void 숫자를_뽑을_때_오름차순으로_정렬한다(int lottoNumbersIndex) {
+//        List<Integer> randomNumbers = RandomNumberPicker.pickAscendingNumbers();
+//
+//        Lotto lotto = new Lotto(randomNumbers);
+//
+//        assertThat(lotto.getNumbers().get(lottoNumbersIndex))
+//                .isLessThan(lotto.getNumbers().get(lottoNumbersIndex + 1));
+//    }
 
     @ParameterizedTest
     @MethodSource("lottoWithMatchingNumberProvider")

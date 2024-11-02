@@ -5,9 +5,7 @@ import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.WinningRank;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,11 +13,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class MessagesTest {
     @Test
     void 발행된_로또_내역_메세지() {
-        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+        List<Integer> numbers = new ArrayList<>(List.of(1, 3, 2, 5, 6, 4));
 
-        String issuedLottoMsg = Messages.ISSUED_LOTTO(lotto);
+        String issuedLottoMsg = Messages.ISSUED_LOTTO(numbers);
 
-        assertThat(issuedLottoMsg).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(issuedLottoMsg).isEqualTo("[1, 3, 2, 5, 6, 4]");
     }
 
     @ParameterizedTest

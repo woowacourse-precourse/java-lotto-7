@@ -11,4 +11,10 @@ public class Utils {
                 .sorted(Comparator.comparing(WinningRank::getRank).reversed())
                 .collect(Collectors.toList());
     }
+
+    public static List<Integer> sortAscending(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+    }
 }

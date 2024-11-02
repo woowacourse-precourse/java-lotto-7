@@ -1,16 +1,14 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.WinningRank;
 
 public class Messages {
     //Message처럼 상수화하고 싶다.
-    public static final String ISSUED_LOTTO(Lotto lotto) {
+    public static final String ISSUED_LOTTO(List<Integer> lottoNumbers) {
         StringBuilder issuedLotto = new StringBuilder("[");
-        List<Integer> numbers = lotto.getNumbers();
         for (int i = 0; i < 6; i++) {
-            issuedLotto.append(numbers.get(i));
+            issuedLotto.append(lottoNumbers.get(i));
             if (i == 5) {
                 issuedLotto.append("]");
                 break;
