@@ -2,7 +2,7 @@ package lotto.common.exception;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.LottoNumber;
+import lotto.domain.lotto.LottoNumber;
 
 public class DuplicateLottoNumberException extends LottoException {
     public DuplicateLottoNumberException(List<LottoNumber> lottoNumbers) {
