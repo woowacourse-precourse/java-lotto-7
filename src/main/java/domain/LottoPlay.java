@@ -37,7 +37,7 @@ public class LottoPlay {
         if (matchCount == 5) {
             return drawBonus(lotto, bonusNumber);
         }
-        return WinningLotto.from(matchCount);
+        return WinningLotto.of(matchCount);
     }
 
     private WinningLotto drawBonus(Lotto lotto, int bonusNumber) {

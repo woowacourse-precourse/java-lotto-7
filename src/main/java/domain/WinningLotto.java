@@ -19,7 +19,7 @@ public enum WinningLotto {
         this.prizeMoney = prizeMoney;
     }
 
-    public static WinningLotto from(long input) {
+    public static WinningLotto of(long input) {
         return Arrays.stream(values())
                 .filter(correctCount -> correctCount.isEqual(input))
                 .findFirst()
