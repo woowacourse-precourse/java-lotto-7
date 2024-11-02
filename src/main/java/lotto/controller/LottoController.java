@@ -41,7 +41,7 @@ public class LottoController {
     int getLottoCount() {
         while (true) {
             try {
-                return Validator.validateLottoCount();
+                return Validator.validateLottoCount(lottoView.input.price());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -62,7 +62,7 @@ public class LottoController {
     private int getBonusNumber(List<Integer> winningNumber) {
         while (true) {
             try {
-                return Validator.validateBonusNumber(winningNumber);
+                return Validator.validateBonusNumber(winningNumber, lottoView.input.bonusNumber());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

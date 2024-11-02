@@ -7,23 +7,20 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Validator {
-    private static final LottoView lottoView = new LottoView();
-
-
-    public static int validateLottoCount() {
-        int inputPrice;
+    public static int validateLottoCount(String inputPrice) {
+        int price;
         try {
-            inputPrice = Integer.parseInt(lottoView.input.price());
+            price = Integer.parseInt(inputPrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
-        if (inputPrice <= 0) {
+        if (price <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_OR_ZERO.getMessage());
         }
-        if (inputPrice % Constant.LOTTO_PRICE != 0) {
+        if (price % Constant.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
         }
-        return inputPrice / Constant.LOTTO_PRICE;
+        return price / Constant.LOTTO_PRICE;
     }
 
     public static List<Integer> validateWinningNumber(String[] inputWinningNumber) {
@@ -50,10 +47,10 @@ public class Validator {
         return winningNumber;
     }
 
-    public static int validateBonusNumber(List<Integer> winningNumber) {
+    public static int validateBonusNumber(List<Integer> winningNumber,String inputBonusNumber) {
         int bonusNumber;
         try {
-            bonusNumber = Integer.parseInt(lottoView.input.bonusNumber());
+            bonusNumber = Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
