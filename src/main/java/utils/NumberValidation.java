@@ -19,7 +19,7 @@ public class NumberValidation {
 
     public static void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> verifyNumbers = new HashSet<>(numbers);
-        if (numbers.size() == verifyNumbers.size()) {
+        if (numbers.size() != verifyNumbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
