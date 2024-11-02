@@ -37,7 +37,16 @@ public class PurchaseAmountProcessorTest {
     void testInvalidIntInput(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> calculatePurchaseCount(input))
-                .withMessage(NEGATIVE_OR_ZERO__INPUT.getMessage());
+                .withMessage(ONLY_POSITIVE_INPUT.getMessage());
+    }
+
+    @DisplayName("양의 부호를 포함한 경우 - IllegalArgumentException 반환")
+    @ParameterizedTest
+    @ValueSource(strings = {" + 2000",  "+900"})
+    void testInvalidSignInput(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculatePurchaseCount(input))
+                .withMessage(POSITIVE_SIGN_INPUT.getMessage());
     }
 
     @DisplayName("1,000원 단위로 나누어 떨어지지 않는 경우 - IllegalArgumentException 반환")
