@@ -22,7 +22,7 @@ public class IssueStrategyTest {
     @Test
     void 자동_로또_발행_방법_인터페이스_구현체() {
         //given
-        IssueStrategy issueStrategy = AutoIssueStrategy.getInstance();
+        IssueStrategy issueStrategy = new AutoIssueStrategy();
 
         //then
         assertNumbersByIssueStrategy(issueStrategy);

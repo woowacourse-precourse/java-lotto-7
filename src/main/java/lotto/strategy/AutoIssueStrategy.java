@@ -9,18 +9,6 @@ import static lotto.domain.LottoNumberRange.MIN;
 
 public class AutoIssueStrategy implements IssueStrategy {
 
-    private static AutoIssueStrategy instance;
-
-    private AutoIssueStrategy() {}
-
-    public static AutoIssueStrategy getInstance() {
-        if (instance == null) {
-            instance = new AutoIssueStrategy();
-        }
-
-        return instance;
-    }
-
     @Override
     public List<Integer> issue() {
         return pickUniqueNumbersInRange(MIN.getValue(), MAX.getValue(), LOTTO_SIZE);
