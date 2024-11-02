@@ -43,4 +43,13 @@ public class LottoService {
         inputValidator.validateEmpty(lottoWinningNumbers);
         inputValidator.validateNumbersForm(lottoWinningNumbers);
     }
+
+    public void validateBonusNumbers(String lottoBonusNumber) {
+        inputValidator.validateEmpty(lottoBonusNumber);
+        inputValidator.validateNumber(lottoBonusNumber);
+    }
+
+    public void winningLotto(String lottoWinningNumbers, String lottoBonusNumber) {
+
+    }
 }

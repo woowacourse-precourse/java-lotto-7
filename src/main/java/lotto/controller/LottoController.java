@@ -32,6 +32,7 @@ public class LottoController {
         lottoService.validateWinningNumbers(lottoWinningNumbers);
 
         String lottoBonusNumber = inputView.inputLottoBonusNumber();
+        lottoService.validateBonusNumbers(lottoBonusNumber);
         lottoService.winningLotto(lottoWinningNumbers, lottoBonusNumber);
 
         Map<LottoRank, Integer> lottoResult = lottoService.resultWinningLotto();
