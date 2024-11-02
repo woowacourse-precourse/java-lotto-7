@@ -39,9 +39,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                validateWinningNumbers(input);
-                List<Integer> numbers = convertStringToList(input);
-                winningNumbers = new Lotto(numbers);
+                winningNumbers = validator.validateWinningNumbers(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -50,40 +48,18 @@ public class InputView {
         return winningNumbers;
     }
 
-    private void validateWinningNumbers(String input) {
-        validator.validateWhiteSpace(input);
-        validator.validateEmptyElemFromInput(input);
-        validator.validateEndsWithComma(input);
-        validator.validateExistNotDigitElems(input);
-    }
-
     public BonusNumber getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_GUIDE_MESSAGE);
         BonusNumber bonusNumber;
         while (true) {
             try {
                 String input = Console.readLine();
-                validateBonusNumber(input);
-                int number = Integer.parseInt(input);
-                bonusNumber = new BonusNumber(number);
+                bonusNumber = validator.validateBonusNumber(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return bonusNumber;
-    }
-
-    private void validateBonusNumber(String input) {
-        validator.validateWhiteSpace(input);
-        validator.validateNonDigitInput(input);
-    }
-
-    private List<Integer> convertStringToList(String input) {
-        String[] numbers = input.split(INPUT_DELIM);
-        return Arrays.stream(numbers)
-                .map(number -> Integer.parseInt(number.strip()))
-                .sorted(Comparator.naturalOrder())
-                .toList();
     }
 }
