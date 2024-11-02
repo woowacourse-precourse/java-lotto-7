@@ -30,6 +30,10 @@ public class LottoTickets {
         return amount;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private List<Lotto> issueLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
 
