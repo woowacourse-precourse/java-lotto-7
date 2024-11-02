@@ -33,6 +33,10 @@ public class LottoPaper {
         return lottos;
     }
 
+    public Won purchasePrice() {
+        return purchasePrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

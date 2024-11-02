@@ -2,7 +2,9 @@ package lotto.dto;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map.Entry;
 import lotto.domain.Rank;
+import lotto.domain.Won;
 
 public class RankResult {
     private final EnumMap<Rank, Long> ranks;
@@ -25,5 +27,19 @@ public class RankResult {
 
     public long count(Rank rank) {
         return ranks.get(rank);
+    }
+
+    public Won totalProfit() {
+        return new Won(sumAllPrice());
+    }
+
+    private long sumAllPrice() {
+        return this.ranks.entrySet().stream().mapToLong(RankResult::calcProfit).sum();
+    }
+
+    private static long calcProfit(Entry<Rank, Long> entry) {
+        Rank rank = entry.getKey();
+        Long count = entry.getValue();
+        return rank.price() * count;
     }
 }

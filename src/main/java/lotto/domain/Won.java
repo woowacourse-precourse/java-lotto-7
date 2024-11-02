@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.Objects;
 
 public class Won {
-    private final int amount;
+    private final long amount;
 
-    public Won(int amount) {
+    public Won(long amount) {
         this.amount = amount;
     }
 
