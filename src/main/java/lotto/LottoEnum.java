@@ -1,11 +1,11 @@
 package lotto;
 
 public enum LottoEnum {
-    FIRST(6, 2000000000, 0),
-    SECOND(Constant.LOTTO_BONUS_CORRECT, 30000000, 0),
-    THIRD(5, 1500000, 0),
-    FOURTH(4, 50000, 0),
     FIFTH(3, 5000, 0),
+    FOURTH(4, 50000, 0),
+    THIRD(5, 1500000, 0),
+    SECOND(Constant.LOTTO_BONUS_CORRECT, 30000000, 0),
+    FIRST(6, 2000000000, 0),
     NONE(0, 0,0);
 
 
