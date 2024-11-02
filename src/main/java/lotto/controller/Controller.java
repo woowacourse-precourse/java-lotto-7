@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoOutlet;
 import lotto.model.LottoPrizeRanker;
 import lotto.model.LottoTicket;
+import lotto.utils.parser.AmountsParser;
 import lotto.utils.parser.BonusNumberParser;
 import lotto.utils.parser.WinningNumbersParser;
 import lotto.utils.validator.AmountsValidator;
@@ -33,7 +34,7 @@ public class Controller {
         Lotto winningNumbers = readWinningNumbers();
         // 5. 보너스 번호 입력 받기
         int bonusNumbers = readBonusNumber(winningNumbers);
-        // 6. 로또 확인 하기
+        // 6. 로또 확인 하기 -> 수정해야할 부분 
         LottoPrizeRanker lottoPrizeRanker = new LottoPrizeRanker(lottoTickets, winningNumbers, bonusNumbers);
         // 7. 당첨 통계 출력 하기
         LottoPrizeStatus lottoPrizeStatus = lottoPrizeRanker.getPrizeStatus(lottoAmount);
@@ -45,7 +46,7 @@ public class Controller {
             try {
                 String amounts = inputView.receiveLottoAmounts();
                 AmountsValidator.validateLottoAmount(amounts);
-                return Integer.parseInt(amounts);
+                return AmountsParser.getAmounts(amounts);
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
@@ -53,6 +54,7 @@ public class Controller {
     }
 
     private LottoTicket purchaseLottoTickets(int lottoAmount) {
+        // 수정해야할 부분
         int ticketCount = LottoOutlet.buyTicketsByAmount(lottoAmount);
         return LottoOutlet.generateLottoNumbersTicket(ticketCount);
     }
