@@ -2,7 +2,10 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoMachine {
     private final List<Lotto> lottos;
@@ -25,9 +28,26 @@ public class LottoMachine {
 
     public void createLottos(int lottoCount) {
         for(int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = sortNumbers(makeNumbers());
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+    }
+
+    public List<Integer> makeNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Set<Integer> safeNumbers = new HashSet<>(numbers);
+
+        if (safeNumbers.size() < 6) {
+           numbers = makeNumbers();
+        }
+
+        return numbers;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
     }
 
     public void printAllLottoNumbers() {
