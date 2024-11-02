@@ -21,6 +21,8 @@ public class Lotto {
         return numbers;
     }
 
-    // 중복된 값 예외처리 구현
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
