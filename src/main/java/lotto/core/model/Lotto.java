@@ -1,5 +1,6 @@
 package lotto.core.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import lotto.core.dto.LottoDto;
@@ -36,5 +37,15 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public int getMatchCount(Lotto other) {
+        List<Integer> matchNumbers = new ArrayList<>(this.numbers);
+        matchNumbers.retainAll(other.numbers);
+        return matchNumbers.size();
+    }
+
+    public boolean containsBonusNumber(LottoNumber bonusNumber) {
+        return this.numbers.contains(bonusNumber.value());
     }
 }

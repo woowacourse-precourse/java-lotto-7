@@ -62,4 +62,62 @@ class LottoTest {
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () -> new Lotto(numbers));
         Assertions.assertEquals("로또 번호는 1부터 45 사이의 숫자만 가능합니다.", ex.getMessage());
     }
+
+    @Test
+    void getMatchCount_given_all_match_lotto_should_be_pass() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // when
+        int count = lotto.getMatchCount(winningLotto);
+        // then
+        Assertions.assertEquals(6, count);
+        Assertions.assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers());
+    }
+
+    @Test
+    void getMatchCount_given_3_match_lotto_should_be_pass() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 4, 6, 10, 12, 45));
+        // when
+        int count = lotto.getMatchCount(winningLotto);
+        // then
+        Assertions.assertEquals(3, count);
+        Assertions.assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers());
+    }
+
+    @Test
+    void getMatchCount_given_none_match_lotto_should_be_pass() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        // when
+        int count = lotto.getMatchCount(winningLotto);
+        // then
+        Assertions.assertEquals(0, count);
+        Assertions.assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers());
+    }
+
+    @Test
+    void containsBonusNumber_given_contains_should_be_pass() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(5);
+        // when
+        boolean contains = lotto.containsBonusNumber(bonusNumber);
+        // then
+        Assertions.assertTrue(contains);
+    }
+
+    @Test
+    void containsBonusNumber_given_not_contains_should_be_pass() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(40);
+        // when
+        boolean contains = lotto.containsBonusNumber(bonusNumber);
+        // then
+        Assertions.assertFalse(contains);
+    }
 }
