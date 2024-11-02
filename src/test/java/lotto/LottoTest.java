@@ -19,7 +19,7 @@ class LottoTest {
                         .toList()
         );
 
-        assertThatThrownBy(() -> new Lotto(lottoNumbers))
+        assertThatThrownBy(() -> Lotto.from(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -32,7 +32,7 @@ class LottoTest {
                         .toList()
         );
 
-        assertThatThrownBy(() -> new Lotto(lottoNumbers))
+        assertThatThrownBy(() -> Lotto.from(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
