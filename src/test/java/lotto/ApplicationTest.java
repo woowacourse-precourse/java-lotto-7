@@ -55,6 +55,11 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void handle_repeatetive_input() {
+        run("error", "1000", "1,2,4", "1,2,3,4,5,6", "1000", "7");
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
