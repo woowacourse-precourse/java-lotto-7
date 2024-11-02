@@ -1,6 +1,7 @@
 package lotto.validate;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.ExceptionMessages;
 import org.junit.jupiter.api.Test;
