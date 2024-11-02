@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 public class WinningLottoTest {
     private static final LottoConfig CONFIG = LottoConfig.WOOWA_CONFIG;
-    private static final String ERROR_PREFIX = "[ERROR]";
 
     @Test
     void 로또_당첨_번호의_수가_로또_번호의_수와_다르다면_예외가_발생한다(){
@@ -18,7 +17,7 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBERS_COUNT.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -28,7 +27,7 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_MORE_THAN_MAX.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -38,7 +37,7 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_LESS_THAN_MIN.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -48,6 +47,6 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBERS_DUPLICATION.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 }

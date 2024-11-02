@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     private static final LottoConfig LOTTO_CONFIG = LottoConfig.WOOWA_CONFIG;
-    private static final String ERROR_PREFIX = "[ERROR]";
 
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -21,7 +20,7 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.ofNumbersAndConfig(numbers, LOTTO_CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBERS_COUNT.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -31,7 +30,7 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.ofNumbersAndConfig(numbers, LOTTO_CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBERS_COUNT.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -42,7 +41,7 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.ofNumbersAndConfig(numbers, LOTTO_CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBERS_DUPLICATION.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -52,7 +51,7 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.ofNumbersAndConfig(numbers, LOTTO_CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_LESS_THAN_MIN.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -62,7 +61,7 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.ofNumbersAndConfig(numbers, LOTTO_CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_MORE_THAN_MAX.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
 }

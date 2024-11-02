@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoBonusNumberTest {
     private static final LottoConfig CONFIG = LottoConfig.WOOWA_CONFIG;
-    private static final String ERROR_PREFIX = "[ERROR]";
     private WinningLotto winningLotto;
 
     @BeforeEach
@@ -27,7 +26,7 @@ public class LottoBonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.ofNumberAndWinningLottoAndConfig(number, winningLotto, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_BONUS_NUMBER_DUPLICATION.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -37,7 +36,7 @@ public class LottoBonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.ofNumberAndWinningLottoAndConfig(number, winningLotto, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_LESS_THAN_MIN.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
     @Test
@@ -47,7 +46,7 @@ public class LottoBonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.ofNumberAndWinningLottoAndConfig(number, winningLotto, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoError.LOTTO_NUMBER_MORE_THAN_MAX.getMessage())
-                .hasMessageStartingWith(ERROR_PREFIX);
+                .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
 }
