@@ -11,5 +11,6 @@ public class Application {
         }
 
         inputView.getWinningNumber();
+        inputView.getBonusNumber();
     }
 }
