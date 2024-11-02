@@ -27,10 +27,6 @@ public class InputView {
         return rawBonusNumber.trim();
     }
 
-    public void close() {
-        Console.close();
-    }
-
     private void printRequestMessage(RequestMessage requestMessage) {
         System.out.println(requestMessage.getContent());
     }
