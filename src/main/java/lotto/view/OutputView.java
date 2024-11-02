@@ -3,12 +3,13 @@ package lotto.view;
 import java.util.List;
 import lotto.enums.OutputViewEnum;
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.WinningResult;
 
 public class OutputView {
-    private static final String ERROR = "[ERROR] ";
 
     public static void errorPrint(String errorMessage) {
-        System.out.println(ERROR + errorMessage);
+        System.out.println(OutputViewEnum.ERROR_MESSAGE_FORMAT.getMessage() + errorMessage);
     }
 
     public static void printPrompt(String string) {
