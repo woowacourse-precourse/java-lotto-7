@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     public void run() {
-        Lottos myLottoTickets = tryPurchaseLotto();
+        Lottos myLottoTickets = purchaseLotto();
         outputView.displayLottoCount(myLottoTickets.size());
         outputView.displayLottos(myLottoTickets);
 
@@ -44,7 +44,7 @@ public class LottoController {
         outputView.displayLottoYield(yield);
     }
 
-    public Lottos tryPurchaseLotto() {
+    public Lottos purchaseLotto() {
         Lottos lottos;
         while (true) {
             try {

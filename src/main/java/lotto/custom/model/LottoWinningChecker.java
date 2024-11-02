@@ -2,7 +2,7 @@ package lotto.custom.model;
 
 import java.util.List;
 
-public class LottoResultAnalyzer {
+public class LottoWinningChecker {
     public void run(Lottos myLottoTickets, List<Integer> winningNumbers, int bonusNumber, List<Integer> result) {
         for (Lotto ticket : myLottoTickets.getLottos()) {
             List<Integer> lottoTicket = ticket.getNumbers();

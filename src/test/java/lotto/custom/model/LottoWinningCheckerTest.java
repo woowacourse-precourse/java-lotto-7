@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoResultAnalyzerTest {
-    private LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+public class LottoWinningCheckerTest {
+    private LottoWinningChecker lottoWinningChecker = new LottoWinningChecker();
 
     @DisplayName("모델_로또결과분석기_5개일치_보너스번호불일치_테스트")
     @Test
@@ -24,7 +24,7 @@ public class LottoResultAnalyzerTest {
 
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
-        lottoResultAnalyzer.run(myLottoTickets, winningNumbers, bonusNumber, result);
+        lottoWinningChecker.run(myLottoTickets, winningNumbers, bonusNumber, result);
 
         assertEquals(0, result.get(0));
         assertEquals(0, result.get(1));
@@ -45,7 +45,7 @@ public class LottoResultAnalyzerTest {
 
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
-        lottoResultAnalyzer.run(myLottoTickets, winningNumbers, bonusNumber, result);
+        lottoWinningChecker.run(myLottoTickets, winningNumbers, bonusNumber, result);
 
         assertEquals(0, result.get(0));
         assertEquals(0, result.get(1));
@@ -66,7 +66,7 @@ public class LottoResultAnalyzerTest {
 
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
-        lottoResultAnalyzer.run(myLottoTickets, winningNumbers, bonusNumber, result);
+        lottoWinningChecker.run(myLottoTickets, winningNumbers, bonusNumber, result);
 
         assertEquals(0, result.get(0)); // 3등
         assertEquals(0, result.get(1)); // 4등
