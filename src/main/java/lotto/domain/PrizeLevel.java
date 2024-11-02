@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum PrizeLevel {
     MATCH_3("3개 일치 (5,000원)", 3, false, 5000),

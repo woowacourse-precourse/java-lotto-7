@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.PrizeLevel;
 
 public class Result {
     private final Map<PrizeLevel, Integer> resultMap = new EnumMap<>(PrizeLevel.class);

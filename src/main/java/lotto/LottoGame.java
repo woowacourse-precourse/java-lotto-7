@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.LottoMachine;
 import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
