@@ -7,6 +7,11 @@ import lotto.Lotto;
 public class LottoSeller {
     private final LottoFactory lottoFactory = new LottoFactory();
 
+    public List<Lotto> buyLotto(int amount) {
+        int count = calculatePurchaseCount(amount);
+        return provideLotto(count);
+    }
+
     public int calculatePurchaseCount(int amount) {
         return amount / 1000;
     }
