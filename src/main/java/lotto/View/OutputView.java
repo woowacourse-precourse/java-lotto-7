@@ -26,13 +26,13 @@ public class OutputView {
         System.out.println("---");
         for (LottoResult result : LottoResult.values()) {
             if (result == LottoResult.FIVE_WITH_BONUS) {
-                System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개%n",
-                        result.getWinningAmount(),
+                System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개%n",
+                        result.getFormattedWinningAmount(),
                         statistics.getResultCounts().get(result));
             } else {
-                System.out.printf("%d개 일치 (%d원) - %d개%n",
+                System.out.printf("%d개 일치 (%s원) - %d개%n",
                         result.getMatchCount(),
-                        result.getWinningAmount(),
+                        result.getFormattedWinningAmount(),
                         statistics.getResultCounts().get(result));
             }
         }
