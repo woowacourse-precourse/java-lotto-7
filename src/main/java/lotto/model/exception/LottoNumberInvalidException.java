@@ -18,11 +18,11 @@ public final class LottoNumberInvalidException extends IllegalArgumentException 
         return new LottoNumberInvalidException(message);
     }
 
-    public static IllegalArgumentException lottoNumberDuplicate(String... details) {
+    public static IllegalArgumentException lottoNumberDuplicate() {
         return new LottoNumberInvalidException("로또 번호는 중복되지 않아야 합니다.");
     }
 
-    public static IllegalArgumentException bonusNumberDuplicate(String... details) {
+    public static IllegalArgumentException bonusNumberDuplicate() {
         return new LottoNumberInvalidException("보너스 번호가 당첨 번호에 포함되서는 안됩니다.");
     }
 }
