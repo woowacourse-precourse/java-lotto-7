@@ -27,7 +27,7 @@ public enum WinningRank {
         }
 
         if (numOfMatched == 5 && isBonusNumber) {
-            return SECOND;
+            return FOURTH;
         }
 
         return Arrays.stream(values())
