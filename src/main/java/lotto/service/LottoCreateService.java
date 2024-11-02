@@ -11,6 +11,12 @@ public class LottoCreateService {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_PRICE = 1000;
+
+    public Lottos createLottosWithMoney(int money) {
+        int lottoCount = money / LOTTO_PRICE;
+        return createLottos(lottoCount);
+    }
 
     public Lottos createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();

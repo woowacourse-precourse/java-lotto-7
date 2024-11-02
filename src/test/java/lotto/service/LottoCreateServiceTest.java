@@ -38,4 +38,17 @@ public class LottoCreateServiceTest {
         //then
         assertThat(myLottos.getLottos()).hasSize(lottoCount);
     }
+
+    @Test
+    void 가격만큼_로또를_생성한다(){
+        //given
+        int money = 14000;
+
+        //when
+        Lottos lottos = lottoCreateService.createLottosWithMoney(money);
+
+        //then
+        assertThat(lottos.getLottos()).hasSize(14);
+    }
+
 }
