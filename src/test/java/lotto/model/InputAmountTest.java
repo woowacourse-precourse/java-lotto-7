@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
@@ -42,5 +43,19 @@ public class InputAmountTest {
                 .hasMessageContaining(ErrorMessage.AMOUNT_CAN_NOT_HAVE_CHARACTER.get());
     }
 
+    @DisplayName("구매 금액이 0이면 예외를 발생시킨다.")
+    @Test
+    public void ThrowExceptionIfInputAmountZero() {
+        // given
+        String zeroAmount = "0";
 
+        // when
+        Throwable thrown = catchThrowable(() -> {
+            this.inputAmount = new InputAmount(zeroAmount);
+        });
+
+        // then
+        assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.AMOUNT_CAN_NOT_BE_ZERO.get());
+    }
 }
