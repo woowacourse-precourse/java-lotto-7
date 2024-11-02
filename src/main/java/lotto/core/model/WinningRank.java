@@ -3,6 +3,7 @@ package lotto.core.model;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.List;
 
 public enum WinningRank {
 
@@ -65,6 +66,12 @@ public enum WinningRank {
             }
         }
         return null;
+    }
+
+    public static List<WinningRank> sortedListByRankDescending() {
+        return Arrays.stream(WinningRank.values())
+                .sorted((a, b) -> b.getRank() - a.getRank())
+                .toList();
     }
 
     public String formatDisplay() {

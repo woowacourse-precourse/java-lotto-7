@@ -1,6 +1,5 @@
 package lotto.core.view;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,20 +21,23 @@ public class MatchWinningLottoView implements View<LottoResultDto> {
     }
 
     private void displayWinningResult(LottoResultDto content) {
-        List<WinningRank> winningRanks = content.winningRanks();
+        Map<WinningRank, Integer> winningRankCountMap = groupByRank(content.winningRanks());
+        List<WinningRank> sortedRanks = WinningRank.sortedListByRankDescending();
+        String rankContent = buildContent(winningRankCountMap, sortedRanks);
+        System.out.print(rankContent);
+    }
+
+    private Map<WinningRank, Integer> groupByRank(List<WinningRank> winningRanks) {
         Map<WinningRank, Integer> winningRankCountMap = new LinkedHashMap<>();
         for (WinningRank winningRank: winningRanks) {
-            winningRankCountMap.put(winningRank, 0);
+            winningRankCountMap.merge(winningRank, 1, Integer::sum);
         }
-        for (WinningRank winningRank : winningRanks) {
-            winningRankCountMap.computeIfPresent(winningRank, (key, value) -> value + 1);
-        }
+        return winningRankCountMap;
+    }
 
-        List<WinningRank> sortedRanks = Arrays.stream(WinningRank.values())
-                .sorted((a, b) -> b.getRank() - a.getRank())
-                .toList();
+    private String buildContent(Map<WinningRank, Integer> winningRankCountMap, List<WinningRank> winningRanks) {
         StringBuilder builder = new StringBuilder();
-        for (WinningRank rank : sortedRanks) {
+        for (WinningRank rank : winningRanks) {
             String format = rank.formatDisplay();
             builder.append(format);
             builder.append(" - ");
@@ -43,7 +45,7 @@ public class MatchWinningLottoView implements View<LottoResultDto> {
             builder.append("개");
             builder.append("\n");
         }
-        System.out.print(builder);
+        return builder.toString();
     }
 
     private void displayRateOfReturn(LottoResultDto content) {
