@@ -64,4 +64,5 @@ public class BonusWinLottoNumberTest {
                 "보너스 번호는 기본 당첨 번호와 중복되면 안 됩니다.",
                 exception.getMessage());
     }
+
 }

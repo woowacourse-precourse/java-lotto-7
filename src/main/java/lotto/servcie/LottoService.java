@@ -6,6 +6,7 @@ import lotto.model.LottoResult;
 import lotto.model.WinLotto;
 
 public interface LottoService {
+
     void buyLotto(SpendingMoney money);
     
     BoughtLottos getLottos();
@@ -13,4 +14,5 @@ public interface LottoService {
     void createWinStatistics(BoughtLottos boughtLottos, WinLotto winLotto);
     
     LottoResult getResult();
+
 }

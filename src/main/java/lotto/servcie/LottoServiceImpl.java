@@ -38,4 +38,5 @@ public class LottoServiceImpl implements LottoService {
     public LottoResult getResult() {
         return repository.getResult();
     }
+
 }
