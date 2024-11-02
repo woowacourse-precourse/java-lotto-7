@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,7 +9,9 @@ import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CustomStringUtilsTest {
+class OutputViewTest {
+
+    private final OutputView outputView = new OutputView();
 
     @DisplayName("문자열 출력 테스트")
     @Test
@@ -21,7 +23,7 @@ class CustomStringUtilsTest {
         System.setOut(new PrintStream(outputStream));
 
         //when
-        CustomStringUtils.printStringLineFeed(str);
+        outputView.printStringLineFeed(str);
 
         //then
         assertThat(outputStream.toString()).isEqualTo(str.concat("\n"));
@@ -40,12 +42,14 @@ class CustomStringUtilsTest {
         System.setOut(new PrintStream(outputStream));
 
         //when
-        CustomStringUtils.printLottoesStatus(lottoes);
+        outputView.printLottoesStatus(lottoes);
 
         //then
         String output = outputStream.toString();
-        assertThat(output).matches("2개를 구매했습니다.\n"
-                + "\\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+]\\n\\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+]\\n");
+        assertThat(output.trim()).matches("""
+                2개를 구매했습니다.
+                \\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+]
+                \\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+]""");
 
         //원래의 System.out으로 변경
         System.setOut(originalOut);

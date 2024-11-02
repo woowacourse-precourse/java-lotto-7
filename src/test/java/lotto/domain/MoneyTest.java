@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.util.ErrorResponse.INVALID_MONEY_BOUND;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -32,6 +33,6 @@ class MoneyTest {
         //then
         assertThatThrownBy(() -> Money.from(money))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 구입 금액은 1000보다 작을 수 없습니다.");
+            .hasMessage(INVALID_MONEY_BOUND.getMessage());
     }
 }

@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.util.ErrorResponse.INVALID_MONEY;
+import static lotto.util.ErrorResponse.INVALID_MONEY_BOUND;
+import static lotto.util.ErrorResponse.INVALID_MONEY_UNIT;
+
 public class Money {
     private final int value;
 
@@ -16,7 +20,7 @@ public class Money {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_MONEY.getMessage());
         }
     }
 
@@ -27,13 +31,13 @@ public class Money {
 
     private void validateMoneyRange(int money) {
         if (money < 1000) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000보다 작을 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_MONEY_BOUND.getMessage());
         }
     }
 
     private void validateDivisible(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로만 가능합니다.");
+            throw new IllegalArgumentException(INVALID_MONEY_UNIT.getMessage());
         }
     }
 

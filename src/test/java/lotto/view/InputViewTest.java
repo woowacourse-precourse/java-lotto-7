@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,13 +14,8 @@ import java.io.InputStream;
 
 public class InputViewTest {
 
-    private InputView inputView;
+    private final InputView inputView = new InputView();
     private final InputStream originalStdin = System.in; // 원래의 System.in 저장
-
-    @BeforeEach
-    public void setUp() {
-        inputView = new InputView();
-    }
 
     @AfterEach
     public void tearDown() {
