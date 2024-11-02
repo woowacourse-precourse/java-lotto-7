@@ -1,9 +1,9 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +23,11 @@ class LottoTest {
     void 로또_번호의_범위가_1에서_45가_아닌_양수면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 일치한_로또_번호_개수_반환_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.countMatchingNumbers(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
     }
 }
