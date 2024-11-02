@@ -20,4 +20,8 @@ public class Lotto {
     public String toString() {
         return numbers.toString(); // numbers 리스트를 문자열로 변환하여 반환
     }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }
