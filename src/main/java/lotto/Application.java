@@ -1,7 +1,10 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,26 +15,39 @@ public class Application {
         // 당첨 번호와 보너스 번호 입력받기
         System.out.println("당첨 번호를 입력하세요.(숫자는 쉼표(,) 기준으로 구분)");
         String input = readLine();
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
         System.out.println("보너스 번호를 입력하세요.");
         input = readLine();
         int bonusNum = Integer.parseInt(input);
-        WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNum);
+        WinningNumbers winningNumber = new WinningNumbers(winningNumbers, bonusNum);
 
         // 로또 구입 금액 입력받기
         input = readLine();
-        buyLotto(Integer.parseInt(input));
+        int numberOfLottos = buyLotto(Integer.parseInt(input));
+
+        // 전체 로또 발행하기
+        // 각각의 로또 숫자 뽑기
+        List<Lotto> tickets = null;
+
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
+            tickets.add(lotto);
+        }
 
     }
 
-    static public void buyLotto(int amount) {
+    static public int buyLotto(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000으로 나눠떨어져야 합니다.");
         }
 
         int numberOfLottos = amount / 1000; // 로또 개수 계산
+
+        return numberOfLottos;
     }
 }
