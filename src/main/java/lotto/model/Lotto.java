@@ -20,8 +20,8 @@ public class Lotto {
   }
 
   public String sortedNumbersToString() {
-    Sorter.inAscendingOrder(numbers);
-    return numbers.toString();
+    List<Integer> sortedNumbers = Sorter.inAscendingOrder(numbers);
+    return sortedNumbers.toString();
   }
 
   public int compareWinningNumbers(List<Integer> winningNumbers) {
