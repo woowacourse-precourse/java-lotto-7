@@ -19,4 +19,12 @@ public class DrawResults {
     public void addBonusNumber(Integer bonusNumber) {
         totalBonusNumbers.add(bonusNumber);
     }
+
+    public Integer getMainSize() {
+        return totalMainNumbers.size();
+    }
+
+    public Integer getBonusSize() {
+        return totalBonusNumbers.size();
+    }
 }

@@ -2,13 +2,13 @@ package lotto.drawsystem;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.Objects;
 
 public class DrawMachine {
 
     DrawResults drawResults;
 
     public DrawResults runDraws(Integer amount) {
-        DrawMachine drawMachine = new DrawMachine();
         for (int drawCount = 0; drawCount < amount; amount++) {
             runSingleDraw();
         }
@@ -17,11 +17,24 @@ public class DrawMachine {
 
 
     public void runSingleDraw() {
-
         List<Integer> mainNumbers = drawMainNumbers();
         Integer bonusNumber = drawBonusNumber(mainNumbers);
-        drawResults.addMainNumbers(mainNumbers);
-        drawResults.addBonusNumber(bonusNumber);
+        addSingleResult(mainNumbers, bonusNumber);
+    }
+
+    private void addSingleResult(List<Integer> mainNumbers, Integer bonusNumber) {
+            drawResults.addMainNumbers(mainNumbers);
+            drawResults.addBonusNumber(bonusNumber);
+            validateDrawResults(drawResults);
+    }
+
+    private void validateDrawResults(DrawResults drawResults) {
+        Integer mainSize = drawResults.getMainSize();
+        Integer bonusSize = drawResults.getBonusSize();
+
+        if (!Objects.equals(mainSize, bonusSize)) {
+
+        }
     }
 
     private List<Integer> drawMainNumbers() {
@@ -31,7 +44,7 @@ public class DrawMachine {
     private Integer drawBonusNumber(List<Integer> mainNumbers) {
         Integer bonusNumber = initBonusNumber();
         bonusNumber = makeUnique(mainNumbers, bonusNumber);
-        
+
         return bonusNumber;
     }
 
