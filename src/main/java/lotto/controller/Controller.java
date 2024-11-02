@@ -27,7 +27,7 @@ public class Controller {
         // 1. 로또 구입 금액 입력 받기
         int lottoAmount = readLottoAmount();
         // 2. 로또 구매 하기
-        LottoTicket lottoTickets = purchaseLottoTickets(lottoAmount);
+        LottoTicket lottoTickets = LottoOutlet.purchaseLottoTickets(lottoAmount);
         // 3. 로또 번호 출력 하기
         printLottoStatus(lottoTickets);
         // 4. 당첨 번호 입력 받기
@@ -51,12 +51,6 @@ public class Controller {
                 outputView.printError(e.getMessage());
             }
         }
-    }
-
-    private LottoTicket purchaseLottoTickets(int lottoAmount) {
-        // 수정해야할 부분
-        int ticketCount = LottoOutlet.buyTicketsByAmount(lottoAmount);
-        return LottoOutlet.generateLottoNumbersTicket(ticketCount);
     }
 
     private void printLottoStatus(LottoTicket lottoTickets) {
