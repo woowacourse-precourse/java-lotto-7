@@ -1,26 +1,36 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.validation.Validation;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private int matchNumber;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public void increaseMatchNumber() {
-        matchNumber++;
+    public int getMatchCount(Lotto winningLotto) {
+        Set<Integer> winningNumbersSet = new HashSet<>(winningLotto.getNumbers());
+        return (int) this.numbers.stream()
+                .filter(winningNumbersSet::contains)
+                .count();
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
+    private void validate(List<Integer> numbers) {
+        Validation.checkLottoSize(numbers);
+        Validation.isUniqueNumbers(numbers);
+        numbers.forEach(Validation::checkLottoNumberRange);
+    }
 }
