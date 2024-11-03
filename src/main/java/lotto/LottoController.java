@@ -2,7 +2,7 @@ package lotto;
 
 public class LottoController {
 
-    public void strat(){
+    public void start(){
         InputView inputView = new InputView();
         OutputView outputView =new OutputView();
         PrizeResult prizeResult = new PrizeResult();
