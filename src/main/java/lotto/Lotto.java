@@ -31,12 +31,16 @@ public class Lotto {
     private void sortNumbers(){
         for(int i = 0; i < numbers.size() - 1; i++){
             for(int j = 1; j < numbers.size() - i; j++){
-                if(numbers.get(j) < numbers.get(j - 1)){
-                    int temp = numbers.get(j);
-                    numbers.set(j, numbers.get(j - 1));
-                    numbers.set(j - 1, temp);
-                }
+                swap(j);
             }
+        }
+    }
+
+    private void swap(int j){
+        if(numbers.get(j) < numbers.get(j - 1)){
+            int temp = numbers.get(j);
+            numbers.set(j, numbers.get(j - 1));
+            numbers.set(j - 1, temp);
         }
     }
 
