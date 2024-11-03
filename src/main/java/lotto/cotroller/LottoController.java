@@ -40,8 +40,16 @@ public class LottoController {
     }
 
     private int requestMoney() {
-        String inputMoney = lottoInputView.inputMoney();
-        int money = parseMoney(inputMoney);
+        int money = 0;
+        while (true) {
+            String inputMoney = lottoInputView.inputMoney();
+            try {
+                money = parseMoney(inputMoney);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return money;
     }
 
@@ -52,15 +60,31 @@ public class LottoController {
     }
 
     private void requestWinningNumbs() {
-        String inputWinningNums = lottoInputView.inputWinningNums();
-        List<Integer> winningNumbs = parseWinningNumbs(inputWinningNums);
-        lottoWinningChecker.saveWinningNumbs(winningNumbs);
+        List<Integer> winningNumbs;
+        while (true) {
+            String inputWinningNums = lottoInputView.inputWinningNums();
+            try {
+                winningNumbs = parseWinningNumbs(inputWinningNums);
+                lottoWinningChecker.saveWinningNumbs(winningNumbs);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void requestBonusNumb() {
-        String inputBonusNum = lottoInputView.inputBonusNum();
-        int bonusNum = parseBonusNum(inputBonusNum);
-        lottoWinningChecker.saveBonusNumber(bonusNum);
+        int bonusNum;
+        while (true) {
+            String inputBonusNum = lottoInputView.inputBonusNum();
+            try {
+                bonusNum = parseBonusNum(inputBonusNum);
+                lottoWinningChecker.saveBonusNumber(bonusNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void response(List<Lotto> lottos, int money) {
