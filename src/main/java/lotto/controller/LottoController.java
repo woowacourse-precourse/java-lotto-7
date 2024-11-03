@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.BonusLottoNumBerInput;
 import lotto.dto.LottoPurchasedAmountInput;
 import lotto.dto.WinnerLottoNumbersInput;
 import lotto.exception.LottoException;
@@ -21,6 +22,7 @@ public class LottoController {
     public void start() {
         Buyer buyer = processLottoPurchase();
         WinnerLotto winnerLotto = processWinnerLotto();
+        processBonusNumber(winnerLotto);
     }
 
     private Buyer processLottoPurchase() {
@@ -40,6 +42,18 @@ public class LottoController {
             try {
                 WinnerLottoNumbersInput winnerLottoNumbersInput = inputView.readWinnerLottoNumbers();
                 return WinnerLotto.from(winnerLottoNumbersInput.rawNumbers());
+            } catch (LottoException e) {
+                outPutView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void processBonusNumber(WinnerLotto winnerLotto) {
+        while (true) {
+            try {
+                BonusLottoNumBerInput bonusLottoNumBerInput = inputView.readBonusLottoNumber();
+                winnerLotto.setBonusNumber(bonusLottoNumBerInput.rawNumber());
+                return;
             } catch (LottoException e) {
                 outPutView.printErrorMessage(e.getMessage());
             }
