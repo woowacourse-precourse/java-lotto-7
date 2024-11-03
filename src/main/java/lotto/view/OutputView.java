@@ -7,6 +7,8 @@ public class OutputView {
     public static final String REQUEST_PURCHASE_MONEY_AMOUNT = "구입금액을 입력해 주세요.";
     public static final String PURCHASED_LOTTOS = "개를 구매했습니다.";
     public static final String REQUEST_WINNING_LOTTO_NUMBERS = "당첨 번호를 입력해 주세요.";
+    public static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     public static void printRequestPurchaseMoneyAmount() {
         printMessage(REQUEST_PURCHASE_MONEY_AMOUNT);
     }
@@ -16,8 +18,12 @@ public class OutputView {
         printMessage(purchasedLottos);
     }
 
-    public static void printRequestWinningLottoNumbers(){
+    public static void printRequestWinningLottoNumbers() {
         printMessage(REQUEST_WINNING_LOTTO_NUMBERS);
+    }
+
+    public static void printRequestBonusNumber() {
+        printMessage(REQUEST_BONUS_NUMBER);
     }
 
     public static void printException(IllegalArgumentException e) {
@@ -27,4 +33,6 @@ public class OutputView {
     private static void printMessage(String message) {
         System.out.println(message);
     }
+
+
 }

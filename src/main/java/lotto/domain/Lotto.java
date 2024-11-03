@@ -9,9 +9,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumberCount(numbers);
-        validateNumberRange(numbers);
-        validateDuplicateNumber(numbers);
+        validateNumbersCount(numbers);
+        validateNumbersRange(numbers);
+        validateDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -19,13 +19,13 @@ public class Lotto {
         return numbers;
     }
 
-    private void validateNumberCount(List<Integer> numbers) {
+    private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != LottoOption.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_LENGTH);
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
+    private void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LottoOption.MIN_LOTTO_NUMBER || LottoOption.MAX_LOTTO_NUMBER < number) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE);
@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicateNumber(List<Integer> numbers) {
+    private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>();
 
         for (Integer number : numbers) {

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
@@ -22,19 +23,8 @@ public class LottoController {
         OutputView.printPurchasedLottos(money.getPurchasableLottoCount(),
                 OutputviewFormatter.formatLottoNumbers(lottos));
 
-        final WinningLotto winningLotto = requestWinningLottoNumbers();
-    }
-
-    private static WinningLotto requestWinningLottoNumbers() {
-        try {
-            OutputView.printRequestWinningLottoNumbers();
-            String winningNumbers = InputView.readNumbers();
-            StringValidator.valiateNumbersFormat(winningNumbers);
-            return new WinningLotto(new Lotto(StringToIntegerListConverter.convert(winningNumbers)));
-        } catch (IllegalArgumentException e) {
-            OutputView.printException(e);
-            return requestWinningLottoNumbers();
-        }
+        final Lotto lotto = requestWinningLottoNumbers();
+        final BonusNumber bonusNumber = requstBonusNumber();
     }
 
     private static Money requestPurchaseMoneyAmount() {
@@ -45,6 +35,29 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return requestPurchaseMoneyAmount();
+        }
+    }
+
+    private static Lotto requestWinningLottoNumbers() {
+        try {
+            OutputView.printRequestWinningLottoNumbers();
+            String winningNumbers = InputView.readNumbers();
+            StringValidator.valiateNumbersFormat(winningNumbers);
+            return new Lotto(StringToIntegerListConverter.convert(winningNumbers));
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return requestWinningLottoNumbers();
+        }
+    }
+
+    private static BonusNumber requstBonusNumber() {
+        try {
+            OutputView.printRequestBonusNumber();
+            int number = InputView.readNumber();
+            return new BonusNumber(number);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return requstBonusNumber();
         }
     }
 }
