@@ -10,7 +10,7 @@ import java.util.Map;
 public class Writer {
 
     public static void writeIssuedLottos(List<Lotto> lottos) {
-        System.out.printf("%n%d개를 구매했습니다%n", lottos.size());
+        System.out.printf("%n%d개를 구매했습니다.%n", lottos.size());
 
         lottos.forEach((lotto) -> {
             String joinedLotto = String.join(
@@ -23,7 +23,6 @@ public class Writer {
     }
 
     public static void writeResult(Result result) {
-        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -45,7 +44,7 @@ public class Writer {
 
     private static String constructMessageFrom(Prize prize) {
         if (prize.isBonusMatch()) {
-            return String.format("%d개 일치, 보너스볼 일치 (%,d원)", prize.getMatchCount(), prize.getMoney());
+            return String.format("%d개 일치, 보너스 볼 일치 (%,d원)", prize.getMatchCount(), prize.getMoney());
         }
 
         return String.format("%d개 일치 (%,d원)", prize.getMatchCount(), prize.getMoney());
