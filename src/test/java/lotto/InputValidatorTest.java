@@ -21,4 +21,16 @@ class InputValidatorTest {
             .hasMessageContaining("[ERROR] 숫자를 입력해주세요.");
     }
 
+    @Test
+    void 쉼표로_구분된_숫자_리스트는_예외가_발생하지_않는다() {
+        assertDoesNotThrow(() -> inputValidator.validateNumbersByComma("1,2,3"));
+    }
+
+    @Test
+    void 쉼표로_구분된_숫자_리스트가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> inputValidator.validateNumbersByComma("1,2,3;q;w;e"))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 쉼표로 구분해서 숫자를 입력해주세요");
+    }
+
 }
