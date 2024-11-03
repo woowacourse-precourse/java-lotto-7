@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,10 +48,59 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("로또 구입 금액으로 숫자가 아닌 다른 문자를 입력받는다면 예외가 발생한다.")
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("1,000원으로 나누어 떨어지지 않는 로또 구입 금액을 입력받는다면 예외가 발생한다.")
+    void existChangeTest() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("음수의 로또 구입 금액을 입력받는다면 예외가 발생한다.")
+    void negativePurchaseAmountTest() {
+        assertSimpleTest(() -> {
+            runException("-2000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호로 입력받은 수와 중복되는 수를 보너스 번호로 입력받았을 때 예외가 발생한다.")
+    void duplicateBonusNumberTest() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액, 당첨 번호, 보너스 번호 입력시 오류가 발생하면 다시 구입 금액을 입력받아야 한다.")
+    void reInputTest() {
+        assertSimpleTest(() -> {
+            runException("1500", "1000K", "-10000", "1000",
+                    "1,2,3,4,5,6,7", "1,2K,3,4,5,6", "0,1,2,3,4,5", "1,2,3,4,5,5", "1,2,3,4,5,6",
+                    "6", "41K", "0", "7");
+            assertThat(output()).contains(
+                    "[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.",
+                    "[ERROR] 올바른 형태의 숫자가 아닙니다.",
+                    "[ERROR] 로또 구입 금액은 음수가 될 수 없습니다.",
+                    "[ERROR] 로또 번호는 6개여야 합니다.",
+                    "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
+                    "[ERROR] 각각의 로또 번호는 중복되지 않아야 합니다.",
+                    "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.",
+                    "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",
+                    "당첨 통계"
+            );
         });
     }
 
