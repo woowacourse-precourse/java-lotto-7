@@ -17,13 +17,14 @@ public class WinningNumbersController {
         return parsedWinningNumbers;
     }
     public static WinningNumbersRequestDto run() {
-        String winningNumbers = InputView.requestWinningNumbers();
-        WinningNumbersHandler.handle(winningNumbers);
+        String winningNumbers = "";
+        boolean isValid = false;
 
+        while (!isValid) {
+            winningNumbers = InputView.requestWinningNumbers();
+            isValid = WinningNumbersHandler.handle(winningNumbers);
+        }
         return new WinningNumbersRequestDto(convertWinningNumbers(winningNumbers));
-    }
-    public static void restart() {
-        run();
     }
 }
 
