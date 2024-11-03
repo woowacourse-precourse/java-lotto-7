@@ -22,4 +22,8 @@ public enum LottoResult {
         DecimalFormat df = new DecimalFormat("###,###");
         return rankInformation + " (" + df.format(reward) + "원)";
     }
+
+    public Integer getReward() {
+        return reward;
+    }
 }
