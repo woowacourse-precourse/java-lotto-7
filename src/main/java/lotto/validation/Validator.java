@@ -55,4 +55,10 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
+
+    public static void checkLottoLength(int size) {
+        if (size != LottoEnum.LOTTO_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        }
+    }
 }

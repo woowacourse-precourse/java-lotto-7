@@ -1,11 +1,13 @@
 package lotto.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoEnum;
 import lotto.utils.Utils;
+import lotto.validation.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,19 +19,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
-        }
-        if (!Utils.isDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
-        }
-        if (!Utils.areAllNumbersValidRange(
-                LottoEnum.MIN_LOTTO_RANGE.getNumber(), LottoEnum.MAX_LOTTO_RANGE.getNumber(), numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
-        }
-        if (!Utils.isDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
-        }
+        List<BigDecimal> numbersBigType = numbers.stream().map(number -> new BigDecimal(number)).toList();
+        BigDecimal minBigType = new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber());
+        BigDecimal maxBigType = new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber());
+
+        Validator.checkLottoLength(numbers.size());
+        Validator.DuplicateNumber(numbersBigType);
+        Validator.allNumberRange(
+                minBigType,
+                maxBigType,
+                numbersBigType);
     }
 
     public List<Integer> getNumbers() {
