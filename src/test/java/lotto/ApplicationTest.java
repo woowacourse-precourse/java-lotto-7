@@ -139,6 +139,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 번호가 메인 번호에 포함될 때 예외 메시지 출력")
+    void displayErrorMessageWhenBonusNumberIsInMainNumbers() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    
+
 
     @Override
     public void runMain() {
