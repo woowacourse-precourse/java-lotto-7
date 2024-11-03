@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoShop;
+import lotto.domain.Profit;
 import lotto.domain.Rank;
 
 public class OutputView {
@@ -51,5 +52,11 @@ public class OutputView {
             int matchCount = rankCount.getOrDefault(rank, 0);
             System.out.printf(rank.getMessage() + "%n", matchCount);
         }
+    }
+
+    public static void printTotalProfit(LottoResult lottoResult, LottoCount lottoCount) {
+        System.out.println();
+        Profit profit = new Profit(lottoResult, lottoCount);
+        System.out.printf(OutputMessage.PROFIT.message, profit.calculateTotalProfit());
     }
 }
