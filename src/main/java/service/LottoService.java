@@ -16,4 +16,9 @@ public class LottoService {
         }
         return tickets;
     }
+    public LottoResult checkWin(Lotto ticket, List<Integer> winningNumbers, int bonusNumber) {
+        long matchCount = ticket.getNumbers().stream().filter(winningNumbers::contains).count();
+        boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
+        return LottoResult.getResultForMatchAndBonus((int) matchCount, bonusMatch);
+    }
 }
