@@ -13,13 +13,19 @@ public class Selling {
         }
     }
 
-    public Lotto[] purchaseLottos(int purchase){
-        validatePrice(purchase);
-        int lottoCount = purchase/PRICE;
+    public Lotto[] purchaseLottos(int amount) {
+        validatePrice(amount);
+        int lottoCount = amount / PRICE;
         Lotto[] lottos = new Lotto[lottoCount];
-        for(int i = 0; i < lottoCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos[i] = new Lotto(numbers);
+        }
+
+        System.out.printf("%d개를 구매했습니다.%n", lottoCount);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
         return lottos;
     }

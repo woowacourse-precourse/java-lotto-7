@@ -35,9 +35,8 @@ public class Winning {
     }
 
     public int checkLotto(Lotto lotto){
-        List<Integer> userNumbers = lotto.getNumbers();
-        int matchCount = countMatches(userNumbers, winningNumbers);
-        boolean hasBonus = userNumbers.contains(bonusNumber);
+        int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
+        boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
         if(matchCount == 6) return 1;
         if(matchCount == 5 && hasBonus) return 2;
