@@ -1,9 +1,6 @@
 package lotto.domain;
 
 import static lotto.common.ErrorConstants.ERROR_HEADER;
-import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX;
-import static lotto.common.LottoConstants.LOTTO_NUMBER_MIN;
-import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +11,9 @@ public class Lotto {
     private static final String ERROR_MESSAGE_LOTTO_NUMBER_COUNT = ERROR_HEADER + "로또 번호는 6개여야 합니다.";
     private static final String ERROR_MESSAGE_LOTTO_NUMBER_RANGE = ERROR_HEADER + "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATE = ERROR_HEADER + "로또 번호는 중복될 수 없습니다.";
+    public static final int LOTTO_NUMBER_MAX_COUNT = 6;
+    public static final int LOTTO_NUMBER_MIN = 1;
+    public static final int LOTTO_NUMBER_MAX = 45;
 
     private final List<Integer> numbers;
 

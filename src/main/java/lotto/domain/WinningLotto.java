@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static lotto.common.ErrorConstants.ERROR_HEADER;
-import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX;
-import static lotto.common.LottoConstants.LOTTO_NUMBER_MIN;
+import static lotto.domain.Lotto.LOTTO_NUMBER_MAX;
+import static lotto.domain.Lotto.LOTTO_NUMBER_MIN;
 
 import lotto.common.LottoRank;
 
