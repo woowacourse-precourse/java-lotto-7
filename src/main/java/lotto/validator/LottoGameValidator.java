@@ -1,6 +1,8 @@
-package lotto;
+package lotto.validator;
 
 import java.util.List;
+import lotto.ErrorMessage;
+import lotto.Lotto;
 
 public class LottoGameValidator {
 

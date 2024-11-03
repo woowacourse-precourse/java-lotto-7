@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.validator.LottoGameValidator;
 
 public class LottoGameDisplay {
 
