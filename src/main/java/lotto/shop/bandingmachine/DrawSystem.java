@@ -68,18 +68,17 @@ public class DrawSystem {
     }
 
     private void validateTotalCount(Integer totalCount) {
-        validatePositive(totalCount);
         validateNull(totalCount);
+        validatePositive(totalCount);
     }
-
-    private void validatePositive(Integer totalCount) {
-        if (totalCount <= 0) {
+    private void validateNull(Integer totalCount) {
+        if (totalCount == null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_COUNT.get());
         }
     }
 
-    private void validateNull(Integer totalCount) {
-        if (totalCount == null) {
+    private void validatePositive(Integer totalCount) {
+        if (totalCount <= 0) {
             throw new IllegalArgumentException(MessageCenter.ERROR_COUNT.get());
         }
     }
