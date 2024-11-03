@@ -61,12 +61,12 @@ public class WinningLottoNumbersTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     void 실패_보너스번호_당첨번호생성_중복값() {
         // given
-        WinningLottoNumbers winningNumbers = new WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        String winningNumbers = "1, 2, 3, 4, 5, 6";
         String duplicateNumber = "1";
 
         // when & then
         assertThatThrownBy(() ->
-                new WinningNumbers(winningNumbers,
+                new WinningNumbers(WinningLottoNumbers.from(winningNumbers),
                         BonusNumber.from(duplicateNumber)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");

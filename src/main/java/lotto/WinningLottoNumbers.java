@@ -61,4 +61,8 @@ public class WinningLottoNumbers {
     private boolean isInvalidRange(int number) {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
