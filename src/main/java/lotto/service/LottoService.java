@@ -2,12 +2,24 @@ package lotto.service;
 
 import static java.lang.Integer.parseInt;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import lotto.Lotto;
+import lotto.LottoPurchaseInfo;
 import lotto.LottoRank;
 import lotto.LottoResult;
 import lotto.Lottos;
 
 public class LottoService {
+
+    public BigDecimal calculateReturnOnInvestment(LottoPurchaseInfo purchaseInfo, LottoResult lottoResult) {
+        BigDecimal purchaseAmount = purchaseInfo.getPurchaseAmount();
+        BigDecimal totalPrize = lottoResult.calculateTotalPrize();
+        BigDecimal percentage = new BigDecimal("100");
+
+        return totalPrize.multiply(percentage)
+                         .divide(purchaseAmount, 1, RoundingMode.HALF_UP);
+    }
 
     public LottoResult calculateLottoResult(Lottos lottos, Lotto userLotto, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
