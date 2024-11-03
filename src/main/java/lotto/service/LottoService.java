@@ -22,6 +22,16 @@ public class LottoService {
                 .collect(Collectors.toMap(i -> matchNumbers[i], i -> prizes[i]));
     }
 
+    public int getPurchaseMoney(String money) {
+
+        return Integer.parseInt(money);
+    }
+
+    public int getLottoCount(int purchaseMoney) {
+        
+        return purchaseMoney / 100;
+    }
+
     public List<Lotto> generateLottos(int size) {
         List<Lotto> lottos = IntStream.range(0, size)
                 .mapToObj(i -> {
