@@ -13,6 +13,11 @@ public class LottoGenerator {
     }
 
     private List<Integer> generateSixNumber(){
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, TICKET_SIZE);
+        List<Integer> sixNumbers =  Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, TICKET_SIZE)
+                        .stream()
+                        .sorted()
+                        .toList();
+//        sixNumbers.sort(Integer::compareTo);
+        return sixNumbers;
     }
 }
