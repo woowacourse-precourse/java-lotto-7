@@ -5,14 +5,14 @@ import lotto.domain.Lotto;
 import lotto.exception.BonusException;
 import lotto.factory.BonusFactory;
 import lotto.message.ExceptionMessage;
-import lotto.util.ValidateNumber;
+import lotto.util.NumberValidator;
 
 public class BonusGenerator {
 
     private final Integer bonus;
 
     public BonusGenerator(Lotto winning, String bonus) {
-        Integer newBonus = ValidateNumber.change(bonus);
+        Integer newBonus = NumberValidator.change(bonus);
         validate(winning, newBonus);
         this.bonus = newBonus;
     }

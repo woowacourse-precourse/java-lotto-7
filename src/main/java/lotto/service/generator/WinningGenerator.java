@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 import lotto.factory.LottoFactory;
 import lotto.message.ExceptionMessage;
-import lotto.util.ValidateNumber;
+import lotto.util.NumberValidator;
 
 public class WinningGenerator {
 
@@ -36,7 +36,7 @@ public class WinningGenerator {
 
     private List<Integer> changeType(String winning) {
         return split(winning).stream()
-                .map(ValidateNumber::change)
+                .map(NumberValidator::change)
                 .toList();
     }
 
