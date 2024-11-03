@@ -8,7 +8,7 @@ public class LottoPrice {
         while (true) {
             printManager.printPriceNotice();
             String inputPrice = inputHandler.getInput();
-            if (inputHandler.isValidInt(inputPrice)) {
+            if (NumberValidator.isValidPrice(inputPrice)) {
                 return Integer.parseInt(inputPrice);
             }
         }

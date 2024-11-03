@@ -8,6 +8,7 @@ public class Application {
     public static void main(String[] args) {
         LottoPrice lottoPrice = new LottoPrice();
         LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoWinningManager lottoWinningManager = new LottoWinningManager();
        
         final int totalLottoPrice = lottoPrice.getLottoPrice();
         final int numberOfLotto = totalLottoPrice / LOTTO_PRICE;
@@ -15,6 +16,12 @@ public class Application {
         lottoGenerator.pickSortedLotto(numberOfLotto);
         final List<Lotto> purchasedLotto = lottoGenerator.getpurchasedLotto();
         lottoGenerator.printPurchasedLotto(numberOfLotto);
+        
+        final Lotto winningLotto = lottoWinningManager.getWinningLotto();
+        System.out.println("");
+        final int bonusNumber = lottoWinningManager.getBonusNumber(winningLotto);
+
+        
         
     }
 }
