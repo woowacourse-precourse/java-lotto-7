@@ -33,8 +33,14 @@ public class Application {
     }
 
     public static int getAmount() {
-        String inputAmount = Console.readLine();
-        return validateAmountValue(inputAmount);
+        while (true) {
+            try {
+                String inputAmount = Console.readLine();
+                return validateAmountValue(inputAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int validateAmountValue(String inputAmount) {
@@ -48,7 +54,7 @@ public class Application {
             }
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
         }
 
     }
