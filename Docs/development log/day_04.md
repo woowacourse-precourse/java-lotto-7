@@ -6,6 +6,7 @@
     * [로또 보너스 번호 입력받기](./day_04.md#로또-보너스-번호-입력받기)
 * [Enum 정의하기](./day_04.md#enum-정의하기)
     * [로또 당첨 기준 Enum 정의하기](./day_04.md#로또-당첨-기준-enum-정의하기)
+* [로또 당첨 여부 체크하기](./day_04.md#로또-당첨-여부-체크하기)
 * [To do List](./day_04.md#to-do-list)
 
 ## [로또 입력받기](./day_04.md#목차)
@@ -127,6 +128,75 @@ public enum LottoRank {
 
 <br>
 
+## [로또 당첨 여부 체크하기](./day_04.md#목차)
+
+### Production Code
+
+```java
+// Lotto.java
+public int getCount(Lotto lotto) {
+    int count = 0;
+    for (Integer num : lotto.numbers) {
+        if(existsNumber(num))   count++;
+    }
+
+    return count;
+}
+```
+
+```java
+// LottoService.java
+public int[] getWinningCount(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    int[] counts = new int[LottoRank.values().length];
+
+    for (Lotto issueLotto: lottos) {
+        LottoRank rank = getLottoRank(issueLotto, winningLotto, bonusNumber);
+        counts[rank.ordinal()]++;
+    }
+
+    return counts;
+}
+
+public LottoRank getLottoRank(Lotto issueLotto, Lotto winningLotto, int bonusNumber) {
+    int matchCount = issueLotto.getCount(winningLotto);
+    boolean existBonusNumber = issueLotto.existsNumber(bonusNumber);
+    return getLottoRank(matchCount, existBonusNumber);
+}
+
+private LottoRank getLottoRank(int matchCount, boolean existBonusNumber) {
+    if(matchCount == 5) {
+        if (existBonusNumber) {
+            return LottoRank.SECOND;
+        }
+        return LottoRank.THIRD;
+    }
+
+    for (LottoRank rank : LottoRank.values()) {
+        if(matchCount == rank.getMatchCount()) {
+            return rank;
+        }
+    }
+
+    return LottoRank.NONE;
+}
+```
+
+<br>
+
+### Test Code
+```java
+@Test
+void 로또_당첨_테스트() {
+    Lotto issueLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+    Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    int bonusNumber = 7;
+
+    assertEquals(LottoRank.SECOND, lottoService.getLottoRank(issueLotto, winningLotto, bonusNumber));
+}
+```
+
+<br>
+
 ## [To do List](./day_04.md#목차)
 
 - [x] 로또 발행하기
@@ -136,8 +206,8 @@ public enum LottoRank {
     - [x] 로또 구입 금액 입력받기
     - [x] 로또 당첨 번호 입력받기
     - [x] 로또 보너스 번호 입력받기
-- [ ] 로또 당첨 기준 적용하기
-- [ ] 로또 당첨 여부 체크하기
+- [x] ~~로또 당첨 기준 적용하기~~ Enum 정의로 해결
+- [x] 로또 당첨 여부 체크하기
 - [ ] ~~커스텀 Exception 생성하기~~
 - [ ] Enum 정의하기
     - [x] 로또 당첨 기준 Enum 정의하기
