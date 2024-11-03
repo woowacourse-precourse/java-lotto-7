@@ -34,5 +34,9 @@ public enum WinningStatus {
     public int getMatchCount() {
         return matchCount;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }
 

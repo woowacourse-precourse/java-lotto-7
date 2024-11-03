@@ -18,6 +18,7 @@ public class LottoResult {
     }
 
     public Map<WinningStatus, Integer> getResult() {
+        result.remove(WinningStatus.NO_WIN);
         return result;
     }
 }

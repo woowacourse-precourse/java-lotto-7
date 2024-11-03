@@ -1,11 +1,14 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoResultCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
+import lotto.model.WinningStatus;
 import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,6 +30,8 @@ public class LottoController {
         printPurchaseLottos(lottos);
 
         WinningLotto winningLotto = getWinningLotto();
+
+        outputView.printResult(getLottoResult(winningLotto, lottos));
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -51,5 +56,10 @@ public class LottoController {
         Lotto lotto = new Lotto(Parser.parseStringToList(inputView.requestWinningNumbers()));
         BonusNumber bonusNumber = new BonusNumber(Parser.parseStringToInt(inputView.requestBonusNumber()));
         return new WinningLotto(lotto, bonusNumber);
+    }
+
+    private Map<WinningStatus, Integer> getLottoResult(WinningLotto winningLotto, List<Lotto> lottos) {
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
+        return lottoResultCalculator.calculateLottoResult(winningLotto, lottos).getResult();
     }
 }
