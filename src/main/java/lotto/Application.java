@@ -1,26 +1,45 @@
 package lotto;
 
-import lotto.domain.LottoTicketCalculator;
-import lotto.domain.PurchaseAmount;
-import lotto.dto.PurchaseAmountDto;
+import lotto.domain.TicketCountCalculator;
+import lotto.domain.PurchaseTotalPrice;
+import lotto.domain.TicketIssuer;
+import lotto.domain.WinningNumbersGenerator;
+import lotto.dto.FormattedTickets;
+import lotto.dto.IssuedTickets;
+import lotto.dto.PurchaseTotalPriceInput;
+import lotto.dto.SortedIssuedTickets;
+import lotto.dto.TicketCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.utils.TicketFormatter;
+import lotto.utils.TicketSorter;
 
 public class Application {
     public static void main(String[] args) {
         OutputView outputView = new OutputView();
-        outputView.printPurchaseAmountMessage();
-
         InputView inputView = new InputView();
 
-        PurchaseAmountDto purchaseAmountDto = inputView.readPurchaseAmount();
+        // 구입 금액 입력
+        outputView.printPurchaseTotalPricePrompt();
+        PurchaseTotalPriceInput purchaseTotalPriceInput = inputView.readPurchaseTotalPrice();
+        PurchaseTotalPrice purchaseTotalPrice = PurchaseTotalPrice.from(purchaseTotalPriceInput.totalPrice());
 
-        PurchaseAmount purchaseAmount = PurchaseAmount.from(purchaseAmountDto.amount());
+        // 티켓 수 계산
+        TicketCountCalculator ticketCountCalculator = new TicketCountCalculator();
+        TicketCount ticketCount = ticketCountCalculator.calculateTotalTicketCount(purchaseTotalPrice);
+        outputView.printPurchasedTicketCount(ticketCount.count());
 
-        LottoTicketCalculator lottoTicketCalculator = new LottoTicketCalculator();
-        int ticketCount = lottoTicketCalculator.getTicketCount(purchaseAmount);
+        // 티켓 발행
+        TicketIssuer ticketIssuer = new TicketIssuer(ticketCount);
+        IssuedTickets issuedTickets = ticketIssuer.issueTickets();
 
-        outputView.printPurchasedTicketCount(ticketCount);
+        // 티켓 정렬
+        SortedIssuedTickets sortedIssuedTickets = TicketSorter.getSortedTickets(issuedTickets);
 
+        // 티켓 형식화
+        FormattedTickets formattedTickets = TicketFormatter.formatTickets(sortedIssuedTickets);
+
+        // 형식화된 티켓 출력
+        outputView.printFormattedTickets(formattedTickets);
     }
 }
