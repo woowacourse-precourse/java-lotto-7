@@ -2,9 +2,11 @@ package lotto;
 
 import lotto.validator.LottoNumberValidator;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +14,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         this.validator = new LottoNumberValidator(numbers);
-        this.numbers = numbers;
-        sort();
         validate();
+        this.numbers = sort(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -25,7 +26,7 @@ public class Lotto {
         validator.validate();
     }
 
-    private void sort(){
-        Collections.sort(numbers);
+    private List<Integer> sort(List<Integer> numbers){
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 }
