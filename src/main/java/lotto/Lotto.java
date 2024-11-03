@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Collections;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,6 +18,8 @@ public class Lotto {
     }
 
     public String printNumbers() {
+        Collections.sort(numbers);
+
         String outputStirng = "";
         for (Integer e : numbers) {
             outputStirng = outputStirng + e + ", ";
