@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,6 +12,7 @@ public class LottoController {
 
     public void lotto() {
         processInputMoney();
+        List<List<Integer>> lottos = lottoService.generateLottos();
     }
 
     private void processInputMoney() {
