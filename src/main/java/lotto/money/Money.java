@@ -6,7 +6,7 @@ public class Money {
     private static final int EMPTY_MONEY = 0;
     public static final Money EMPTY = new Money(EMPTY_MONEY);
 
-    public final int amount;
+    private final int amount;
 
     public Money(int amount) {
         if(isMinusMoney(amount))
