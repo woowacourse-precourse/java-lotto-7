@@ -34,6 +34,7 @@ public class ResultController {
                 bonusCalculator.getBonusResult());
         ResultPrinter resultPrinter = ResultPrinter.create(resultCalculator.getPlaces());
         outputView.printWinningDetail(resultPrinter.getDetail());
-        outputView.printProfitRate(ProfitCalculator.calculate(payment, PrizeMoneyCalculator.getPrizeMoney(resultCalculator.getPlaces())));
+        outputView.printProfitRate(
+                ProfitCalculator.calculate(payment, PrizeMoneyCalculator.getPrizeMoney(resultCalculator.getPlaces())));
     }
 }

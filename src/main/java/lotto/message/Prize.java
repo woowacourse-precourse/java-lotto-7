@@ -15,10 +15,6 @@ public enum Prize {
         this.prizeMoney = prizeMoney;
     }
 
-    public Long getPrizeMoney() {
-        return prizeMoney;
-    }
-
     public static EnumMap<Place, Long> getPrize() {
         EnumMap<Place, Long> prizes = new EnumMap<>(Place.class);
         prizes.put(Place.FIRST_PLACE, FIRST_PRIZE.prizeMoney);
@@ -27,5 +23,9 @@ public enum Prize {
         prizes.put(Place.FOURTH_PLACE, FOURTH_PRIZE.prizeMoney);
         prizes.put(Place.FIFTH_PLACE, FIFTH_PRIZE.prizeMoney);
         return prizes;
+    }
+
+    public Long getPrizeMoney() {
+        return prizeMoney;
     }
 }

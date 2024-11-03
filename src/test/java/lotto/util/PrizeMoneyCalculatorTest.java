@@ -2,10 +2,7 @@ package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
-import lotto.message.Place;
 import lotto.message.Prize;
 import lotto.service.calculator.ResultCalculator;
 import org.junit.jupiter.api.DisplayName;
