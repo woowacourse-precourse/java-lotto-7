@@ -71,12 +71,9 @@ public class LottoService {
     public Lotto getWinningLotto(String winningNumbersInput) {
         winningNumbersInput = ParseUtil.removeSpace(winningNumbersInput);
         List<String> tokens = ParseUtil.splitByDelimiters(winningNumbersInput, DELIMITER);
-//        LottoNumberValidator.validateNumberCount(tokens);
 
         LottoNumberValidator.validateIntegers(tokens);
         List<Integer> winningNumbers = ParseUtil.parseToIntegerList(tokens);
-//        LottoNumberValidator.validateRanges(winningNumbers);
-//        LottoNumberValidator.validateDuplicatedNumber(winningNumbers);
 
         Lotto winningLotto = new Lotto(winningNumbers);
         return winningLotto;
@@ -100,6 +97,9 @@ public class LottoService {
     }
 
     public String getRateOfReturn(long totalPrizeMoney, int purchaseAmount) {
+        if (purchaseAmount == 0) {
+            return "0.0";
+        }
         double rateOfReturn = (double) totalPrizeMoney / purchaseAmount * 100;
         rateOfReturn = Math.round(rateOfReturn * 10.0) / 10.0;
         return String.format("%.1f", rateOfReturn);
