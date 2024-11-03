@@ -14,18 +14,14 @@ class ValidatorTest {
 
     @Test
     void 유효하지_않은_금액_예외_테스트() {
-        String invalidInput = "1000j";
-
-        assertThatThrownBy(() -> validator.validateAmountNumber(invalidInput))
+        assertThatThrownBy(() -> validator.validateNumber("1000j"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorCode.INVALID_PURCHASE_AMOUNT_NUMBER.getErrorMessage());
+                .hasMessageContaining(ErrorCode.INVALID_NUMBER.getErrorMessage());
     }
 
     @Test
     void 유효하지_않은_금액_1000의_배수_예외_테스트() {
-        int invalidAmount = 1500; // 1000 단위가 아닌 금액
-
-        assertThatThrownBy(() -> validator.validateAmountCount(invalidAmount))
+        assertThatThrownBy(() -> validator.validateAmountCount(1500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.INVALID_PURCHASE_AMOUNT_UNIT.getErrorMessage());
     }
@@ -42,7 +38,7 @@ class ValidatorTest {
     @Test
     void 보너스_숫자_중복_예외_테스트() {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int duplicateBonusNumber = 5; // 로또 번호에 포함된 숫자
+        int duplicateBonusNumber = 5;
 
         assertThatThrownBy(() -> validator.validateDuplicatedBonusNumber(duplicateBonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -51,7 +47,7 @@ class ValidatorTest {
 
     @Test
     void 범위_초과_예외_테스트() {
-        int outOfRangeNumber = 50; // LOTTO_MAX(45) 초과 숫자
+        int outOfRangeNumber = 50;
 
         assertThatThrownBy(() -> validator.validateNumberRange(outOfRangeNumber))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -60,7 +56,7 @@ class ValidatorTest {
 
     @Test
     void 유효하지_않은_구분자_예외_테스트() {
-        String invalidWinningNumber = "1,,2,3,4,5"; // 잘못된 구분자 사용
+        String invalidWinningNumber = "1-2-3-4-5-6";
 
         assertThatThrownBy(() -> validator.validateDelimiter(invalidWinningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -69,9 +65,7 @@ class ValidatorTest {
 
     @Test
     void 빈값_예외_테스트() {
-        String emptyInput = "   ";
-
-        assertThatThrownBy(() -> validator.validateEmpty(emptyInput))
+        assertThatThrownBy(() -> validator.validateEmpty(" "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.INPUT_EMPTY.getErrorMessage());
     }
