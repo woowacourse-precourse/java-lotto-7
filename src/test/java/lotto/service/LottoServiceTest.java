@@ -3,10 +3,13 @@ package lotto.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.domains.Lotto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class LottoServiceTest {
@@ -33,6 +36,21 @@ public class LottoServiceTest {
     void 로또_발행_테스트() {
         int cost = 8000;
         assertEquals(cost / lottoService.getLottoCost(), lottoService.issueLotto(cost).size());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/winningLottoTestFile.csv")
+    void 당첨_번호_입력_테스트(String inputValue, String expected) {
+        Lotto winningLotto = lottoService.setWinningLotto(inputValue);
+        assertEquals(expected, winningLotto.getNumbersString());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/winningLottoExceptionTestFile.csv")
+    void 당첨_번호_입력_예외_테스트(String inputValue) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoService.setWinningLotto(inputValue);
+        });
     }
 
     @BeforeAll
