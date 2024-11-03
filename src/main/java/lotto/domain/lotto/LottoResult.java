@@ -2,8 +2,6 @@ package lotto.domain.lotto;
 
 import java.math.BigInteger;
 import java.util.Map;
-import lotto.domain.Investment;
-import lotto.domain.Rank;
 
 public class LottoResult {
     private final Map<Rank, Integer> rankCount;

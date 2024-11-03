@@ -1,7 +1,6 @@
 package lotto.domain.lotto;
 
 import java.util.List;
-import lotto.domain.Rank;
 
 public class WinningNumbers {
     private final List<LottoNumber> winningNumbers;

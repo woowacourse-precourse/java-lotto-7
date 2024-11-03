@@ -8,8 +8,6 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Investment;
-import lotto.domain.Rank;
 import lotto.domain.generator.RandomIntegerListGenerator;
 import lotto.domain.sorting.AscendingSorter;
 import org.junit.jupiter.api.Test;

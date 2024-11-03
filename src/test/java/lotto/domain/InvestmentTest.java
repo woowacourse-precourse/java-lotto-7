@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigInteger;
+import lotto.domain.lotto.Investment;
 import org.junit.jupiter.api.Test;
 
 class InvestmentTest {

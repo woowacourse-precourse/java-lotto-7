@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.domain.Rank;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
