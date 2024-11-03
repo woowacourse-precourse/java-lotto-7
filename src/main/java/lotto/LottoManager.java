@@ -1,7 +1,8 @@
 package lotto;
 
+import static lotto.ErrorMessage.BONUS_NUMBER_IN_WINNING_NUMBERS;
 import static lotto.ErrorMessage.INVALID_WINNING_NUMBERS_COUNT;
-import static lotto.ErrorMessage.INVALID_WINNING_NUMBER_RANGE;
+import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.ErrorMessage.NOT_UNIQUE_WINNING_NUMBER;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_EXCEED_LIMIT;
 import static lotto.ErrorMessage.NOT_ENOUGH_PURCHASE_AMOUNT;
@@ -20,8 +21,8 @@ public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final int PERCENTAGE_FACTOR = 100;
-    private static final int MIN_WINNING_NUMBERS_RANGE = 1;
-    private static final int MAX_WINNING_NUMBERS_RANGE = 45;
+    private static final int MIN_LOTTO_NUMBERS_RANGE = 1;
+    private static final int MAX_LOTTO_NUMBERS_RANGE = 45;
     private static final int WINNING_NUMBERS_COUNT = 6;
     private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
@@ -31,7 +32,7 @@ public class LottoManager {
         Output.printPurchaseMessage(lottoes.size());
         lottoes.forEach(Output::printLotto);
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumbers);
         lottoes.stream()
                 .map(lotto -> lotto.getRank(winningNumbers, bonusNumber))
                 .forEach(this::saveRankOnRecord);
@@ -66,11 +67,15 @@ public class LottoManager {
         }
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(final List<Integer> winningNumbers) {
         try {
-            return parseInt(inputBonusNumber());
+            int bonusNumber = parseInt(inputBonusNumber());
+            validateLottoNumberRange(bonusNumber);
+            validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
-            return getBonusNumber();
+            System.out.println(e.getMessage());
+            return getBonusNumber(winningNumbers);
         }
     }
 
@@ -111,7 +116,7 @@ public class LottoManager {
         }
     }
 
-    private static void validateUniqueWinningNumber(List<Integer> winningNumbers) {
+    private static void validateUniqueWinningNumber(final List<Integer> winningNumbers) {
         long distinctCount = winningNumbers.stream()
                 .distinct()
                 .count();
@@ -121,21 +126,28 @@ public class LottoManager {
         }
     }
 
-    private static void validateWinningNumbersRange(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersRange(final List<Integer> winningNumbers) {
         for (int number : winningNumbers) {
-            validateWinningNumberRange(number);
+            validateLottoNumberRange(number);
         }
     }
 
-    private static void validateWinningNumberRange(int number) {
-        if (number < MIN_WINNING_NUMBERS_RANGE || number > MAX_WINNING_NUMBERS_RANGE) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private static void validateWinningNumbersCount(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersCount(final List<Integer> winningNumbers) {
         if (winningNumbers.size() != WINNING_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    private static void validateBonusNumberNotInWinningNumbers(final List<Integer> winningNumbers,
+                                                               final int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
+        }
+    }
+
+    private static void validateLottoNumberRange(final int number) {
+        if (number < MIN_LOTTO_NUMBERS_RANGE || number > MAX_LOTTO_NUMBERS_RANGE) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 }
