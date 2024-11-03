@@ -21,9 +21,9 @@ public class Result {
         return new GetResultDto(rankCount);
     }
 
-    public int getReward() {
+    public long getReward() {
         return rankCount.entrySet().stream()
-            .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+            .mapToLong(entry -> (long) entry.getKey().getReward() * entry.getValue())
             .sum();
     }
 

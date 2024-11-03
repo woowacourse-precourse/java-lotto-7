@@ -23,7 +23,7 @@ public class Money {
         return Lottos.of(money / LOTTO_PRICE, LottoNumberGenerator.create());
     }
 
-    public GetProfitRateDto caluteProfitRate(final int reward) {
+    public GetProfitRateDto caluteProfitRate(final long reward) {
         return new GetProfitRateDto(reward / (double) money * 100);
     }
 
