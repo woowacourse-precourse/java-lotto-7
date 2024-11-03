@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
@@ -45,6 +46,18 @@ public class WinningNumberService {
         return rankingResult;
     }
 
+    public double getEarningsRate(Map<Ranking, Integer> rankingResult, int amount) {
+        int earnings = 0;
+        double earningsRate;
+
+        for (Entry<Ranking, Integer> ranking : rankingResult.entrySet()) {
+            earnings += ranking.getKey().getPrice() * ranking.getValue();
+        }
+        earningsRate = (double) earnings / amount * 100;
+
+        return Math.round(earningsRate);
+    }
+
     private Map<Ranking, Integer> initRankingResult() {
         Map<Ranking, Integer> rankingResult = new HashMap<>();
 
@@ -69,7 +82,4 @@ public class WinningNumberService {
     private Ranking getRanking(int matchCount, boolean matchBonus) {
         return Ranking.valueOf(matchCount, matchBonus);
     }
-
-
-
 }
