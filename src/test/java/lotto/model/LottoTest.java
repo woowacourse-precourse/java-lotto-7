@@ -2,8 +2,12 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.constants.PrizeRank;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,5 +47,32 @@ class LottoTest {
         List<Integer> numbersFromLotto = lotto.getNumbers();
 
         assertThatThrownBy(() -> numbersFromLotto.set(0, 7)).isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 티켓의 번호들과, 당첨 로또의 번호들 비교해 겹치는 숫자의 갯수와 보너스 번호 포함여부를 반환")
+    @CsvSource({
+            "'1,2,3,4,5,6', '1,2,3,7,8,9', '10', 'MATCH_THREE'",
+            "'1,2,3,4,5,6', '1,2,3,4,5,7', '12', 'MATCH_FIVE'",
+            "'1,2,3,4,5,6', '1,2,3,4,5,7', '6', 'MATCH_FIVE_WITH_BONUS'",
+            "'1,2,3,4,5,6', '40,41,42,43,44,45', '12', 'MATCH_FAIL'"
+    })
+    void getPrizeRankTest(String ticketNumbers, String winningNumbers, String bonusNumberString,
+                          String prizeRankString) {
+        Lotto ticketLotto = new Lotto(Arrays.stream(ticketNumbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()));
+
+        Lotto lotto = new Lotto(Arrays.stream(winningNumbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()));
+
+        int bonusNumber = Integer.parseInt(bonusNumberString);
+
+        PrizeRank prizeRank = PrizeRank.valueOf(prizeRankString);
+
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+
+        Assertions.assertThat(ticketLotto.getPrizeRank(winningLotto)).isEqualTo(prizeRank);
     }
 }
