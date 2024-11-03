@@ -3,12 +3,12 @@ package lotto.domain.calculator;
 import lotto.domain.calculator.Calculator;
 import lotto.utils.ErrorMessages;
 
-public class PurchaseCalculator implements Calculator {
+public class PurchaseCalculator implements Calculator<Integer, Integer> {
     private static final int LOTTO_PRICE = 1000;
     @Override
-    public int calculate(int receivedAmount) {
-        validateAmount(receivedAmount);
-        return receivedAmount / LOTTO_PRICE;
+    public Integer calculate(Integer purchaseAmount) {
+        validateAmount(purchaseAmount);
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private void validateAmount(int amount){

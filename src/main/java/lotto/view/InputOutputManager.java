@@ -1,9 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import lotto.dto.Lotto;
 import lotto.utils.ErrorMessages;
 import lotto.utils.LottoMessages;
 
@@ -62,4 +66,20 @@ public class InputOutputManager {
         return Integer.parseInt(Console.readLine());
     }
 
+    public void printLottoCount(int numberOfLotto) {
+        String message = Stream.of(
+                        LottoMessages.ENTER.getMessage(),
+                        numberOfLotto,
+                        LottoMessages.PURCHASED_LOTTO_COUNT.getMessage())
+                .map(String::valueOf)
+                .collect(Collectors.joining(""));
+        System.out.println(message);
+    }
+    public void printLottoNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            numbers.sort(Comparator.naturalOrder());
+            System.out.println(numbers);
+        }
+    }
 }
