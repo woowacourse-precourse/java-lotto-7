@@ -13,16 +13,14 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> inputLottoWinningNumber(){
+    public static List<Integer> inputLottoWinningNumbers(){
 
         return Utils.splitWinningNumber(Console.readLine());
     }
 
-    public static List<Integer> inputLottoBonusNumber(List<Integer> lottoWinningNumber){
+    public static Integer inputLottoBonusNumber(){
 
-        lottoWinningNumber.add(Integer.parseInt(Console.readLine()));
-
-        return lottoWinningNumber;
+        return Integer.parseInt(Console.readLine());
     }
 
 }
