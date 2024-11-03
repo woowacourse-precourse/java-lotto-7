@@ -11,7 +11,7 @@ import lotto.model.LottoList;
 public class MyLottoNum {
     private final List<Lotto> lottoList = new ArrayList<Lotto>();
 
-    private MyLottoNum() {
+    public MyLottoNum() {
     }
 
     public List<Lotto> getLottoList(Integer times) {

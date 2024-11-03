@@ -13,6 +13,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numbers.size() != LOTTO_SIZE) {
