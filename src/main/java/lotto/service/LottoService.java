@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
@@ -13,7 +14,7 @@ public class LottoService {
 
     public LottoTicket generateLottos(int purchaseAmount) {
         LottoTicket lottoTicket = new LottoTicket();
-        for (int i = 0; i < purchaseAmount / 1000; i++) {
+        for (int i = 0; i < purchaseAmount / LottoConstants.LOTTO_PRICE_UNIT; i++) {
             Lotto lotto = new Lotto(pickLottoNumber());
             lotto.sortAscendingInteger();
             lottoTicket.addLotto(lotto);
@@ -54,6 +55,8 @@ public class LottoService {
     }
 
     private List<Integer> pickLottoNumber() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_NUMBER_MIN, LottoConstants.LOTTO_NUMBER_MAX,
+                        LottoConstants.LOTTO_NUMBER_COUNT));
     }
 }
