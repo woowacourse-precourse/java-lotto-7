@@ -53,4 +53,11 @@ public class WinningLotto extends Lotto {
     }
     return MatchBonusEnum.NOT_MATCHED;
   }
+
+  /**
+   * 테스트를 위한 메서드.
+   */
+  public int getBonusNumber () {
+    return this.bonus.getNumber();
+  }
 }
