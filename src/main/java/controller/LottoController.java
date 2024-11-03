@@ -59,12 +59,12 @@ public class LottoController {
         List<Integer> lottoNumbers = InputView.readLottoNumbers();
         OutputView.printBonusNumberMessage();
         int bonusNumber = InputView.readBonusNumber();
-        return LottoPurchaseInfo.of(purchaseAmount, lottoNumbers, bonusNumber);
+        return new LottoPurchaseInfo(purchaseAmount, lottoNumbers, bonusNumber);
     }
 
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {
         LottoResult lottoResult = lottoService.calculateLottoResult(
-                lottos, lottoPurchaseInfo.getNumbers(), lottoPurchaseInfo.getBonusNumber());
+                lottos, lottoPurchaseInfo.lottoNumbers(), lottoPurchaseInfo.bonusNumber());
         showLottoResults(lottoResult);
         return lottoResult;
     }

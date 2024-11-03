@@ -11,7 +11,7 @@ import lotto.Lottos;
 public class LottoService {
 
     public BigDecimal calculateReturnOnInvestment(LottoPurchaseInfo purchaseInfo, LottoResult lottoResult) {
-        BigDecimal purchaseAmount = purchaseInfo.getPurchaseAmount();
+        BigDecimal purchaseAmount = purchaseInfo.purchaseAmount();
         BigDecimal totalPrize = lottoResult.calculateTotalPrize();
         BigDecimal percentage = new BigDecimal("100");
 
