@@ -4,21 +4,21 @@ import java.util.Collections;
 import java.util.List;
 
 import static lotto.common.Constants.*;
-import static lotto.view.OutputView.getErrorMessage;
+import static lotto.common.ValidationUtils.validateDuplicate;
+import static lotto.common.ValidationUtils.validateSize;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbers(numbers);
         this.numbers = numbers;
         sortDesc();
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(getErrorMessage(INVALID_LOTTO_SIZE));
-        }
+    private void validateLottoNumbers(List<Integer> numbers) {
+        validateSize(numbers, LOTTO_SIZE, INVALID_LOTTO_SIZE);
+        validateDuplicate(numbers, INVALID_DUPLICATE_LOTTO);
     }
 
     public Integer size () {

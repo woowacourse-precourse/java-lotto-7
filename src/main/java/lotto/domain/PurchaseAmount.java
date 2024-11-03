@@ -23,7 +23,7 @@ public class PurchaseAmount {
 
     private static void validatePurchaseAmount (String rawPurchaseAmount) {
         validateNumber(rawPurchaseAmount, INVALID_PRICE_UNIT);
-        validateUnderMax(rawPurchaseAmount, MAX_PURCHASE_AMOUNT, UP_MAX_PURCHASE_AMOUNT);
+        validateInRange(rawPurchaseAmount, MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT, UP_MAX_PURCHASE_AMOUNT);
 
         Integer purchaseAmount = Integer.parseInt(rawPurchaseAmount);
         validateAmountUnit(purchaseAmount, LOTTO_PRICE_UNIT, INVALID_PRICE_UNIT);

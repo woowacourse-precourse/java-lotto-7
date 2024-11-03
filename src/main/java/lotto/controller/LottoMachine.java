@@ -3,8 +3,10 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
+import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,19 +20,24 @@ public class LottoMachine {
     private final OutputView outputView;
     private final PurchaseService purchaseService;
     private final LottoService lottoService;
+    private final WinningNumbersService winningNumbersService;
 
     public LottoMachine(InputView inputView, OutputView outputView,
-                        PurchaseService purchaseService, LottoService lottoService) {
+                        PurchaseService purchaseService, LottoService lottoService,
+                        WinningNumbersService winningNumbersService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.purchaseService = purchaseService;
         this.lottoService = lottoService;
+        this.winningNumbersService = winningNumbersService;
     }
 
     public void run () {
         Integer lottoTicketCount = lottoPurchase();
 
         Lottos lottos = generateLottos(lottoTicketCount);
+
+        WinningNumbers winningNumbers = getWinningNumbers();
     }
 
     public Lottos generateLottos (Integer lottoTicketCount) {
@@ -64,4 +71,11 @@ public class LottoMachine {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
     }
 
+    private WinningNumbers getWinningNumbers () {
+        String inputWinningNumbers = inputView.getWinningNumbers();
+
+        WinningNumbers winningNumbers = winningNumbersService.getWinningNumbers(inputWinningNumbers);
+
+        return winningNumbers;
+    }
 }

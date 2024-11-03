@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
+import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,8 @@ class LottoMachineTest {
             new InputView(),
             new OutputView(),
             new PurchaseService(),
-            new LottoService()
+            new LottoService(),
+            new WinningNumbersService()
     );
 
     @Test
