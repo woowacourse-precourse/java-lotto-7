@@ -11,7 +11,9 @@ public class Lotto {
     }
 
     public int countMatchNumbers(WinningLottoNumbers winningLottoNumbers) {
-        return 0;
+        return (int) numbers.stream()
+                .filter(winningLottoNumbers::contains)
+                .count();
     }
 
     private void validate(List<Integer> numbers) {
