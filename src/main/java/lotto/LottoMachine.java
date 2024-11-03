@@ -17,4 +17,34 @@ public class LottoMachine {
         return amount / PRICE_OF_ONE_LOTTERY_TICKET;
     }
 
+    public void run() {
+
+        try {
+            int purchaseAmount = validateDivisibleByThousand(
+                    toInt(validateIsNumber(validateNotEmpty(getPurchaseAmount()))));
+
+            LottoTicket lottoTicket = generateLottoTicket(purchaseAmount);
+            lottoTicket.showLottoTicket();
+
+            List<Integer> winningNumbers = toInt(validateIsNumber(split(getWinningNumber())));
+
+            int bonusNumber = toInt(validateIsNumber(validateNotEmpty(getBonusNumber())));
+
+            WinningNumbers winningNumberObject = new WinningNumbers(winningNumbers, bonusNumber);
+
+            LottoResult lottoResult = new LottoResult();
+            lottoResult.evaluateLottoResults(lottoTicket, winningNumberObject);
+            lottoResult.displayWinningStatistics();
+
+            double rateOfReturn = lottoResult.calculateRateOfReturn(purchaseAmount);
+            lottoResult.displayRateOfReturn(rateOfReturn);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+
+    }
+
 }
