@@ -26,8 +26,8 @@ public class LottoIOHandler {
         return inputHandler.getWinningNumbers();
     }
 
-    public int askBonusNumber() {
+    public int askBonusNumber(Lotto winningLotto) {
         outputHandler.askBonusNumber();
-        return inputHandler.getBonusNumber();
+        return inputHandler.getBonusNumber(winningLotto);
     }
 }

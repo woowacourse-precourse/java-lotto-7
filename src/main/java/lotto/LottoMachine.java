@@ -8,16 +8,16 @@ public class LottoMachine {
 
     public void run() {
         int purchaseAmount = lottoIOHandler.askLottoPurchaseAmount();
-        int quantity = calculateQuantity(purchaseAmount);
 
+        int quantity = calculateQuantity(purchaseAmount);
         lottoIOHandler.showLottoQuantity(quantity);
 
         LottoPool lottoPool = generateLottoPool(quantity);
-
         lottoIOHandler.showLottos(lottoPool);
 
-        Lotto winningNumbers = lottoIOHandler.askWinningNumbers();
-        int bonusNumber = lottoIOHandler.askBonusNumber();
+        Lotto winningLotto = lottoIOHandler.askWinningNumbers();
+        int bonusNumber = lottoIOHandler.askBonusNumber(winningLotto);
+
     }
 
     private int calculateQuantity(int purchaseAmount) {

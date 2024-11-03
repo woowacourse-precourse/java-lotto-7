@@ -2,7 +2,6 @@ package lotto.io;
 
 import lotto.Lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,15 +20,15 @@ public class InputHandler {
     public Lotto getWinningNumbers() {
         String userInput = readLine();
         String[] splitedInput = splitInput(userInput);
-        List<Integer> winningNumbers = convertToIntegerList(splitedInput);
+        List<Integer> lottoNumbers = convertToIntegerList(splitedInput);
 
-        return new Lotto(winningNumbers);
+        return new Lotto(lottoNumbers);
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(Lotto winningLotto) {
         String userInput = readLine();
         int bonusNumber = parseStringToInt(userInput);
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(winningLotto, bonusNumber);
 
         return bonusNumber;
     }
@@ -50,9 +49,24 @@ public class InputHandler {
                 .toList();
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(Lotto winningLotto, int bonusNumber) {
+        chcekBonusNumberInRange(bonusNumber);
+        checkBounsNumberForDuplicates(winningLotto, bonusNumber);
+    }
+
+    private void chcekBonusNumberInRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다.");
+        }
+    }
+
+    private void checkBounsNumberForDuplicates(Lotto winningLotto, int bonusNumber) {
+        for (int index = 0; index < winningLotto.size(); index++) {
+            int number = winningLotto.get(index);
+
+            if (number == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+            }
         }
     }
 
