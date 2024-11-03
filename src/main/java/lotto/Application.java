@@ -13,21 +13,25 @@ public class Application {
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
     public static void main(String[] args) {
-        int purchaseAmount = getPurchaseAmount();
-        int lottoCount = purchaseAmount / LOTTO_PRICE;
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        try {
+            int purchaseAmount = getPurchaseAmount();
+            int lottoCount = purchaseAmount / LOTTO_PRICE;
+            System.out.println(lottoCount + "개를 구매했습니다.");
 
-        List<Lotto> purchasedLottos = generateLottos(lottoCount);
-        purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+            List<Lotto> purchasedLottos = generateLottos(lottoCount);
+            purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
-        List<Integer> winningNumbers = getWinningNumbers();
-        System.out.println("당첨 번호: " + winningNumbers);
+            List<Integer> winningNumbers = getWinningNumbers();
+            System.out.println("당첨 번호: " + winningNumbers);
 
-        int bonusNumber = getBonusNumber();
-        System.out.println("보너스 번호: " + bonusNumber);
+            int bonusNumber = getBonusNumber();
+            System.out.println("보너스 번호: " + bonusNumber);
 
-        Map<String, Integer> results = checkResults(purchasedLottos, winningNumbers, bonusNumber);
-        printResults(results);
+            Map<String, Integer> results = checkResults(purchasedLottos, winningNumbers, bonusNumber);
+            printResults(results);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static int getPurchaseAmount() {
@@ -58,15 +62,33 @@ public class Application {
 
     private static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Arrays.stream(Console.readLine().split(","))
+        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+
+        validateLottoNumbers(winningNumbers);
+        return winningNumbers;
     }
 
     private static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine().trim());
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        if (bonusNumber < LOTTO_NUMBER_RANGE_START || bonusNumber > LOTTO_NUMBER_RANGE_END) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
+        }
+        return bonusNumber;
+    }
+
+    private static void validateLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        for (int number : numbers) {
+            if (number < LOTTO_NUMBER_RANGE_START || number > LOTTO_NUMBER_RANGE_END) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
+            }
+        }
     }
 
     private static Map<String, Integer> checkResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
