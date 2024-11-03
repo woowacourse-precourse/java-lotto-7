@@ -81,7 +81,7 @@
 4. Enum 객체
     - 관리할 값 : 등수와 그에 따른 상금 금액, 출력할 메시지
         - 고려할 사항
-            - 상태에는 '당첨되지 않음'이 있다. 이는 value를 0으로 가져야한다
+            - 상태에는 '당첨되지 않음'이 있다. 이는 당청금을 0으로 가져야한다
             - 출력할 메시지를 상수처럼 enum객체에 넣어서 관리할 수 있다.
             - 현재 고려한 값 외의 다른 상수를 enum으로 관리할 것인가? magic number는 상수로 관리해도 괜찮은가?(ex. 1000, 1, 45, 6)
 
@@ -100,3 +100,60 @@
         - 당첨번호와 보너스번호를 전달하기
         - 등수 조회하기
         - 분석이 끝났으면 결과 조회하기
+
+* * *   
+##### 어떻게 구현하였는가?   
+이번 프로그램은 5개의 패키지, 14개의 클래스로 구성이 되어있다.   
+   
+	+---lotto
+	|       Application.java
+	|       LottoController.java
+	|
+	+---view
+	|       OutputView.java
+	|       OutputMessages.java
+	|       InputView.java
+	|
+	+---validator
+	|       Validator.java
+	|
+	+---utils
+	|       Pair.java
+	|       LottoNumbersGenerator.java
+	|       Parser.java
+	|       Converter.java
+	|       LottoFactory.java
+	|
+	\---model
+        	Lotto.java
+        	Status.java
+        	LottoResult.java
+
+###### lotto 패키지   
+	- Application : 프로그램을 실행하는 메인함수 클래스   
+	- LottoController : 프로그램의 주 동작을 실행하는 클래스
+    
+    
+###### view 패키지
+	- InputView : 사용자가 입력할 값을 관리하는 클래스
+	- OutputView : 사용자의 화면에서 메시지와 결과 출력을 관리하는 클래스
+	- OutputMessages : view에서 사용하는 메시지와 출력 형태를 관리하는 enum 클래스
+   
+   
+###### validator 패키지
+	- Validator : 사용자가 입력한 값이나 프로그램의 동작과정에서 해당 과정이 올바르게 수행되었는지 확인하는 클래스
+   
+   
+###### utils 패키지
+	- Pair : C/C++에서 제공하는 pair 객체를 구현한 클래스. 이 프로그램에서는 범위를 표현하기 위해 pair 객체로 사용하였다.
+	- LottoNumbersGenerator : 로또 번호를 생성하는 클래스
+	- Parser : 입력받은 당첨 번호를 분리하여 정수 배열로 반환하는 클래스
+	- Converter : 변수의 타입을 변경하는 클래스
+	- LottoFactory : 사용자의 입력한 값에 따른 로또를 생성하는 클래스
+
+###### model 패키지
+	- Lotto : 로또 객체 및 로또에서 수행할 메서드를 담당하는 클래스
+	- Status : 로또 프로그램을 실행하면서 저장해야할 값을 담당하는 클래스
+	- LottoResult : 로또의 등수와 그에 따른 상금을 가지고 있고 출력 형태를 관리하는 enum 클래스
+   
+* * *
