@@ -46,4 +46,12 @@ public class LottoRankTest {
 
         assertThat(rank).isEqualTo(LottoRank.FIFTH);
     }
+
+    @DisplayName("낙첨 매칭")
+    @Test
+    void matchingNone() {
+        LottoRank rank = LottoRank.valueOf(2, false);
+
+        assertThat(rank).isEqualTo(LottoRank.NONE);
+    }
 }
