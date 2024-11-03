@@ -8,16 +8,20 @@ import lotto.model.Lotto;
 import lotto.view.InputView;
 
 public class LottoNumberController {
-	public Lotto inputWinningNumbers() {
+	public Lotto generateWinningLotto() {
 		while (true) {
 			String input = InputView.inputWinningNumbers();
 			try {
-				List<Integer> winningNumbers = parseWinningNumbers(input);
-				return new Lotto(winningNumbers);
+				return generateWinningLotto(input);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+	
+	public Lotto generateWinningLotto(String input) {
+		List<Integer> winningNumbers = parseWinningNumbers(input);
+		return new Lotto(winningNumbers);
 	}
 
 	private List<Integer> parseWinningNumbers(String input) {
