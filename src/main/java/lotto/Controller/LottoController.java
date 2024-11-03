@@ -14,15 +14,22 @@ public class LottoController {
             int purchaseAmount = InputView.inputPurchaseAmount();
             int numberOfLottos = purchaseAmount / 1000;
 
-            List<Lotto> purchasedLottos = new ArrayList<>();
-            for (int i = 0; i < numberOfLottos; i++) {
-                List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                purchasedLottos.add(new Lotto(lottoNumbers));
-            }
+            List<Integer> winningNumbers = InputView.inputWinningNumbers();
+            int bonusNumber = InputView.inputBonusNumber();
+
+            List<Lotto> purchasedLottos = purchaseLottos(numberOfLottos);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    private List<Lotto> purchaseLottos(int numberOfLottos) {
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            purchasedLottos.add(new Lotto(lottoNumbers));
+        }
+        return purchasedLottos;
+    }
 }

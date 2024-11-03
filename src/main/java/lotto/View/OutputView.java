@@ -4,7 +4,6 @@ import java.util.List;
 
 public class OutputView {
 
-    // 구매한 로또의 개수와 번호를 출력한다.
     public static void printPurchasedLottos(int numberOfLottos, List<List<Integer>> lottoNumbers) {
         System.out.println(numberOfLottos + "개를 구매했습니다.");
         for (List<Integer> numbers : lottoNumbers) {
@@ -12,7 +11,6 @@ public class OutputView {
         }
     }
 
-    // 당첨 내역을 출력한다.
     public static void printWinningStatistics(int[] matchCounts, double yield) {
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + matchCounts[0] + "개");
