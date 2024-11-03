@@ -14,11 +14,11 @@ public class Lottos {
         return lottos;
     }
 
-    public List<Rank> compareWithWinLotto(WinLotto winLotto) {
-        List<Integer> winNumbers = winLotto.getWinLottoNumbers();
+    public List<Rank> compareWithWinLotto(WinningNumbers winningNumbers) {
+        List<Integer> winNumbers = winningNumbers.getWinLottoNumbers();
 
         return lottos.stream()
-                .map(lotto -> determineRank(lotto, winNumbers, winLotto.getBonus()))
+                .map(lotto -> determineRank(lotto, winNumbers, winningNumbers.getBonus()))
                 .collect(Collectors.toList());
     }
 

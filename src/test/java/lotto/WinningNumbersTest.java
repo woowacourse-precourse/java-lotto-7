@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinLottoTest {
+class WinningNumbersTest {
 
     @Test
     void 당첨번호와_보너스번호를_생성한다() {
@@ -18,10 +18,10 @@ class WinLottoTest {
         Integer bonus = 7;
 
         // when
-        WinLotto winLotto = new WinLotto(lotto, bonus);
+        WinningNumbers winningNumbers = new WinningNumbers(lotto, bonus);
 
         // then
-        Assertions.assertThat(winLotto).isInstanceOf(WinLotto.class);
+        Assertions.assertThat(winningNumbers).isInstanceOf(WinningNumbers.class);
     }
 
     @ParameterizedTest
@@ -33,7 +33,7 @@ class WinLottoTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinLotto(lotto, bonus);
+            new WinningNumbers(lotto, bonus);
         });
     }
 
@@ -46,7 +46,7 @@ class WinLottoTest {
 
         // when, then
         assertThrows(IllegalArgumentException.class, () -> {
-            new WinLotto(lotto, bonus);
+            new WinningNumbers(lotto, bonus);
         });
     }
 }

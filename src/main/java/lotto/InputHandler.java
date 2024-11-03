@@ -17,7 +17,7 @@ public class InputHandler {
         return handle(input::getWinNumbersWithGuide);
     }
 
-    public WinLotto handleBonusNumber(Lotto lotto) {
+    public WinningNumbers handleBonusNumber(Lotto lotto) {
         return handle(() -> input.getBonusNumberWithGuide(lotto));
     }
 

@@ -17,14 +17,14 @@ public class LottoController {
 
     public void run() {
         Integer count = getAmountFromUser();
-        WinLotto winLotto = getWinningNumber();
+        WinningNumbers winningNumbers = getWinningNumber();
         Lottos lottos = createLottos(count);
         displayLottos(count, lottos);
-        calculateTotalPrize(lottos, winLotto, count);
+        calculateTotalPrize(lottos, winningNumbers, count);
     }
 
-    public void calculateTotalPrize(Lottos lottos, WinLotto winLotto, Integer count) {
-        List<Rank> ranks = lottoService.calculateWinnings(lottos, winLotto);
+    public void calculateTotalPrize(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
+        List<Rank> ranks = lottoService.calculateWinnings(lottos, winningNumbers);
         Map<Rank, Integer> rankFrequency = rankCounter(ranks);
         double revenue = lottoService.calculateRevenue(ranks, count * 1000);
         view.total(rankFrequency);
@@ -52,7 +52,7 @@ public class LottoController {
         return amount/1000;
     }
 
-    public WinLotto getWinningNumber() {
+    public WinningNumbers getWinningNumber() {
         Lotto winNumberLotto = inputHandler.handleWinNumbers();
         return inputHandler.handleBonusNumber(winNumberLotto);
     }

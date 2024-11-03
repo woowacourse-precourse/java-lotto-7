@@ -20,8 +20,8 @@ public class LottoService {
                         .collect(Collectors.toList()));
     }
 
-    public List<Rank> calculateWinnings(Lottos lottos, WinLotto winLotto) {
-        return lottos.compareWithWinLotto(winLotto);
+    public List<Rank> calculateWinnings(Lottos lottos, WinningNumbers winningNumbers) {
+        return lottos.compareWithWinLotto(winningNumbers);
     }
 
     public double calculateRevenue(List<Rank> ranks, Integer count) {

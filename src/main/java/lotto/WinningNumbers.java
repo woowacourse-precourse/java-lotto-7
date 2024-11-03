@@ -6,11 +6,11 @@ import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
 import java.util.List;
 import java.util.Objects;
 
-public class WinLotto {
+public class WinningNumbers {
     private final Lotto lotto;
     private final Integer bonus;
 
-    public WinLotto(Lotto lotto, Integer bonus) {
+    public WinningNumbers(Lotto lotto, Integer bonus) {
         validate(lotto, bonus);
         validate(bonus);
         this.lotto = lotto;

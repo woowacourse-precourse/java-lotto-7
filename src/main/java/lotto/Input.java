@@ -33,9 +33,9 @@ public class Input {
         return Parser.splitByDelimiter(Console.readLine());
     }
 
-    public WinLotto getBonusNumberWithGuide(Lotto lotto) {
+    public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return new WinLotto(lotto, getValidatedBonusNumber());
+        return new WinningNumbers(lotto, getValidatedBonusNumber());
     }
 
     private Integer getValidatedBonusNumber() {
