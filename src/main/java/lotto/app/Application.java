@@ -1,6 +1,8 @@
 package lotto.app;
 
+import java.util.List;
 import lotto.config.AppConfig;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
@@ -23,5 +25,6 @@ public class Application {
 
     public void run() {
         int purchaseAmount = inputHandler.getPurchaseAmount();
+        List<Lotto> lottos = lottoService.purchaseLottos(purchaseAmount);
     }
 }
