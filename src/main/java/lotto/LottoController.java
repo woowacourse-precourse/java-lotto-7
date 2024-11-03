@@ -16,6 +16,9 @@ public class LottoController {
         Map<LottoRanking, Integer> compareResult = lottos.compareWinningNumbers(winningNumbers, bonusNumber);
         LottoResult lottoResult = new LottoResult(compareResult);
         OutputView.printWinningStatistics(lottoResult);
+
+        double profitRate = lottoResult.calculateProfit(amount);
+        OutputView.printProfitRate(profitRate);
     }
 
     private int requestPurchaseAmount() {

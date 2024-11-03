@@ -22,4 +22,8 @@ public class LottoResult {
         return totalPrize;
     }
 
+    public double calculateProfit(int spentCost) {
+        int totalPrize = calculateTotalPrize();
+        return (double) totalPrize / spentCost * 100;
+    }
 }
