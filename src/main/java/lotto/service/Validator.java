@@ -47,10 +47,12 @@ public class Validator {
         );
     }
 
-    public void handleInvalidNumberCount(int size) {
-        throw new IllegalArgumentException(
-            "[ERROR] 6개의 숫자를 입력해야 합니다. size: " + size
-        );
+    public void validateNumberCount(int size) {
+        if (size != 6) {
+            throw new IllegalArgumentException(
+                "[ERROR] 로또 번호는 6개여야 합니다." + size
+            );
+        }
     }
 
     public void validateNumberInRange(int number) {
