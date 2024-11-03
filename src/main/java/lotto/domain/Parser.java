@@ -17,7 +17,7 @@ public class Parser {
         List<String> parsedString = parseComma(input);
 
         return parsedString.stream()
-                .map(Integer::parseInt)
+                .map(this::parseToInt)
                 .toList();
     }
 

@@ -1,9 +1,7 @@
 package lotto.controller;
 
 import static lotto.view.constant.Message.BONUS_START;
-import static lotto.view.constant.Message.START;
 import static lotto.view.constant.Message.STATISTICS;
-import static lotto.view.constant.Message.WINNING_START;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -22,7 +20,6 @@ public class Controller {
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public void start() {
-        outputView.printMessage(START);
         List<Lotto> lottos = pickLottos();
         outputView.printLottos(lottos);
 
@@ -41,7 +38,7 @@ public class Controller {
     }
 
     private Winning createWinning() {
-        List<Integer> winningNumber = getWinningNumber();
+        List<Integer> winningNumber = inputView.inputWinningNumber();
         int bonus = getBonusNumber();
 
         return new Winning(winningNumber, bonus);
@@ -54,11 +51,6 @@ public class Controller {
             outputView.printResult(e.getMessage());
             return getIntValue();
         }
-    }
-
-    private List<Integer> getWinningNumber() {
-        outputView.printMessage(WINNING_START);
-        return parser.parseToIntList(inputView.inputString());
     }
 
     private int getBonusNumber() {
