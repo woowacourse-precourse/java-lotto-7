@@ -17,7 +17,7 @@ class LottoMessageConverterTest {
 
     @DisplayName("로또 객체들을 출력형식과 맞게 변환시켜준다")
     @Test
-    void test() {
+    void convertToMessage() {
       // given
         List<Lotto> lottos = List.of(
                 new Lotto(Arrays.asList(1,2,3,4,5,6)),
