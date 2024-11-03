@@ -5,13 +5,13 @@ public enum InputType {
     WIN_LOTTO("당첨 번호를 입력해 주세요."),
     BONUS("보너스 번호를 입력해 주세요.");
 
-    private final String Message;
+    private final String message;
 
-    InputType(String Message) {
-        this.Message = Message;
+    InputType(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 }
