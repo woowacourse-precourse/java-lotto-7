@@ -23,7 +23,13 @@ public class LottoController {
     }
 
     private Money promptForMoney() {
-        return new Money(inputView.enterMoney());
+        while (true) {
+            try {
+                return new Money(inputView.enterMoney());
+            } catch (IllegalArgumentException e) {
+                outputView.renderError(e.getMessage());
+            }
+        }
     }
 
     private LottoTicket generateLottoTickets(Money money) {
@@ -34,9 +40,15 @@ public class LottoController {
     }
 
     private WinningLotto promptForWinningLotto() {
-        String originWinningNumber = inputView.enterWinningNumber();
-        Integer bonusNumber = inputView.enterBonusNumber();
-        return new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
+        while (true) {
+            try {
+                String originWinningNumber = inputView.enterWinningNumber();
+                Integer bonusNumber = inputView.enterBonusNumber();
+                return new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.renderError(e.getMessage());
+            }
+        }
     }
 
     private PrizeResult calculatePrizes(LottoTicket lottoTicket, WinningLotto winningLotto) {

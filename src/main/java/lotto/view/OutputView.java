@@ -1,6 +1,7 @@
 package lotto.view;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,13 +15,18 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
+
+    public void renderError(String message) {
+        System.out.printf("[ERROR] %s\n", message);
+    }
+
     public void printTicketAmount(Money money) {
         System.out.println(String.format("\n%d개를 구매했습니다.", money.calculateLottoTickets()));
     }
 
     public void printLotto(LottoTicket lottoTicket) {
         for (Lotto lotto : lottoTicket.getLottos()) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> lottoNumbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(lottoNumbers);
             System.out.println(lottoNumbers);
         }
