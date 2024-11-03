@@ -11,7 +11,6 @@ public class UserBonusNumberInput {
     public int validation(List<Integer> lottoNumbers) {
         while (true) {
             try {
-
                 bonusNumber = rangeValidation(parseInput(getInput()));
                 bonusDuplicationCheck(lottoNumbers);
 

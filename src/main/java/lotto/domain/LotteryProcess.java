@@ -21,7 +21,6 @@ public class LotteryProcess {
 
     public List<Integer> countMatchNumbers() {
         for (List<Integer> ticket : tickets) {
-
             int matchNumberCount = searchMatchNumbers(ticket);
             boolean bonusBallMatch = ticket.contains(bonusBallNumber);
 
@@ -37,7 +36,6 @@ public class LotteryProcess {
     }
 
     private int searchMatchNumbers(List<Integer> ticket) {
-
         int matchCount = 0;
 
         for (int lottoNumber : numbers) {

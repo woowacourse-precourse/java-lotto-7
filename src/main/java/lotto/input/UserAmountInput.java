@@ -9,19 +9,15 @@ public class UserAmountInput {
     public int validation() {
         while (true) {
             try {
-
                 long input = parseInput(getInput());
                 validate(input);
-
                 System.out.println();
-                return amount;
 
+                return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
-
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-
             }
         }
     }
