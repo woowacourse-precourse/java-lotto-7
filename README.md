@@ -52,37 +52,96 @@
 ### 출력
 - [ ] 발행한 로또 수량을 출력한다.
 - [ ] 발행한 로또 번호들을 출력한다.
-  - [ ] 로또 번호는 오름 차순으로 출력한다. 
+  - [ ] 로또 번호는 오름차순으로 출력한다. 
 - [ ] 당첨 내역을 출력한다.
 - [ ] 소수점 둘째자리에서 반올림한 수익률을 출력한다. 
 ### 예외 처리
   - [ ] 유효하지 않은 입력: ```IllegalArgumentException```을 발생시킨다.
-  - [ ] 현재 입력 단계에 부적절한 입력: ```IllegalStateException```을 발생시킨다.
-  - [ ] "[ERROR]"로 시작하는 에러 메세지를 출력한다.
-  - [ ] 잘못된 입력 부분부터 재입력 받는다.
-
-## 플로우
-
-### 정상 사례
-1. **로또 구입 금액을 입력받는다**  
-   - `구입 금액 입력`  
-2. **구입 금액만큼 발행한 로또의 개수를 계산한다**  
-   - `로또 개수 계산`
-3. **발행한 로또 수량을 출력한다**  
-   - `로또 수량 출력`
-4. **로또 수량만큼 로또를 발행한다**  
-   - `로또 발행`
-5. **발행한 로또를 오름차순으로 출력한다**  
-   - `발행된 로또 출력`
-6. **당첨 번호를 입력받는다**  
-   - `당첨 번호 입력`
-7. **보너스 번호를 입력받는다**  
-   - `보너스 번호 입력`
-8. **당첨 번호와 발행한 로또를 비교한다**  
-   - `당첨 번호 비교`
-9. **당첨 통계와 수익률을 계산한다**  
-   - `당첨 통계, 수익률 계산`
-10. **당첨 통계와 수익률을 출력한다**
-    - `당첨 통계, 수익률 출력`
+    - [ ] 정수가 아닌 입력
+    - [ ] 양수가 아닌 입력
+    - [ ] 로또 번호의 크기 
+    - [ ] 로또 번호의 범위
+    - [ ] 로또 가격보다 적은 구매 금액
+    - [ ] 로또 번호의 중복 여부
+    - [ ] "[ERROR]"로 시작하는 에러 메세지를 출력한다.
+    - [ ] 잘못된 입력 부분부터 재입력 받는다.
+  - [ ] 유효하지 않은 객체: ```IllegalStateException```을 발생시킨다.
+  
 
 
+## 프로젝트 구조
+```
+|   Application.java
+|
++---controllers
+|       LottoController.java
+|
++---models
+|       Bonus.java
+|       Lotto.java
+|       LottoIssuer.java
+|       Statistics.java
+|       StatisticsCalculator.java
+|       YieldCalculator.java
+|
++---services
+|       LottoService.java
+|
++---utils
+|       Constants.java
+|       ErrorMessages.java
+|       MessageFormatter.java
+|       Messages.java
+|       Prize.java
+|
++---validation
+|       InputValidator.java
+|
+\---views
+        InputView.java
+        LottoView.java
+        OutputView.java
+```
+## 역할 분담 
+### controllers
+#### LottoController
+- service, views와 상호작용
+- 사용자 입출력 처리 및 서비스를 프로젝트 플로우에 맞게 호출한다.
+### services
+#### LottoService
+- models, controllers와 상호작용
+- 적절한 기능을 model에서 호출한다.
+### models
+#### LottoIssuer
+- 구매 금액만큼 로또를 발행하고, 구매 금액, 발행 권수, 발행한 로또를 관리한다.
+#### Lotto
+- 당첨 번호를 관리한다.
+#### Bonus
+- 보너스 번호를 관리한다.
+#### Statistics
+- 로또 통계를 관리한다.
+#### StatisticsCalculator
+- 로또 통계를 계산한다.
+#### YieldCalculator
+- 수익률을 계산한다.
+### validation
+#### InputValidater
+- 사용자 입력을 1차적으로 검증한다.
+### views
+#### LottoView
+- 콘솔 입출력 메소드
+#### InputView
+- 사용자 입력을 담당한다.
+#### OutputView
+- 출력을 담당한다.
+### utils
+#### Messages
+- 프롬프트를 저장한다.
+#### ErrorMessages
+- 에러 메세지를 저장한다.
+#### MessageFormatter
+- 메세지를 포맷팅한다.
+#### Constatns
+- 상수를 저장한다.
+#### Prize
+- 로또 상금에 대한 Enum
