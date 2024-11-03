@@ -1,12 +1,12 @@
 package lotto.view;
 
-import static lotto.constants.LottoConstants.*;
-
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import lotto.Lotto;
+
+import static lotto.constants.LottoConstants.*;
 
 public class OutputView {
 
@@ -56,13 +56,17 @@ public class OutputView {
             int matchCount = MATCH_COUNT_BY_RANK.get(rank);
             String formattedPrizeAmount = formatPrizeAmount(rank);
 
-            if (rank == SECOND_RANK) {
-                print(String.format(SECOND_RANK_DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
-            }
-            if (rank != SECOND_RANK) {
-                print(String.format(DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
-            }
+            printDescription(rank, matchCount, formattedPrizeAmount, winningCount);
         });
+    }
+
+    private static void printDescription(int rank, int matchCount, String prizeAmount, Integer winningCount) {
+        if (rank == SECOND_RANK) {
+            print(String.format(SECOND_RANK_DESCRIPTION, matchCount, prizeAmount, winningCount));
+        }
+        if (rank != SECOND_RANK) {
+            print(String.format(DESCRIPTION, matchCount, prizeAmount, winningCount));
+        }
     }
 
     private static String formatPrizeAmount(int rank) {

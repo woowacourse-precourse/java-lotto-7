@@ -71,16 +71,16 @@ public class LottoService {
         return RANK_BY_MATCH_COUNT.get(matchCount);
     }
 
-    // 테스트용 함수
-    public String getWinningAmount() {
-        return this.winningAmount.toPlainString();
-    }
-
     public void calculateEarningsRate() {
         BigDecimal purchaseAmount = BigDecimal.valueOf(lottoTickets.size() * LOTTO_PRICE);
         BigDecimal winningAmountMultiplyPercent = winningAmount.multiply(BigDecimal.valueOf(PERCENT));
 
         this.earningsRate = winningAmountMultiplyPercent.divide(purchaseAmount, PLACE_TO_ROUND_TO, RoundingMode.HALF_UP);
+    }
+
+    // 테스트용 함수
+    public String getWinningAmount() {
+        return this.winningAmount.toPlainString();
     }
 
     public String getEarningsRate() {

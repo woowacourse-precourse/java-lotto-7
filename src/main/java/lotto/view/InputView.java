@@ -10,7 +10,7 @@ import static lotto.view.OutputView.*;
 public class InputView {
     private final NumbersValidator numbersValidator = new NumbersValidator();
 
-    public String getInput() {
+    private String getInput() {
         return Console.readLine();
     }
 
