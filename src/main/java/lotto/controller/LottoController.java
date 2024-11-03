@@ -34,6 +34,7 @@ public class LottoController {
         int bonusNumber = lottoService.getBonusNumber(bonusNumberInput);
 
         Map<String, Integer> matchCounts = lottoService.getMatchCounts(lottos, winningLotto, bonusNumber);
+        OutputView.printPrizeStatistics(matchCounts);
 
         long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts);
         String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseAmount);
