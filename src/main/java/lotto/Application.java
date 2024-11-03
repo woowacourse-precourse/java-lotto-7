@@ -10,11 +10,10 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money = initMoney();
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottoList = lottoPurchase(money);
+
         List<Integer> winningNumbers = initWinningNumbers();
         int bonusNumber = initBonusNumber(winningNumbers);
-
-        lottoPurchase();
 
         LottoResult result = calculateResult(lottoList, winningNumbers, bonusNumber);
         displayResults(money, result);
@@ -67,12 +66,26 @@ public class Application {
         profitRateResult(money, result.totalWinningPrize());
     }
 
-    private static void lottoPurchase() {
-        int money = getMoney();
+    private static List<Lotto> lottoPurchase(int money) {
         exception(money);
+        int count = getLottoCount(money);
+        List<Lotto> lottoList = createLottoList(count);
+        displayLottoNumbers(lottoList);
+        return lottoList;
+    }
+
+    private static int getLottoCount(int money) {
         int count = countLotto(money);
         outputCount(count);
+        return count;
+    }
+
+    private static List<Lotto> createLottoList(int count) {
         List<Lotto> lottoList = generateLotto(count);
+        return lottoList;
+    }
+
+    private static void displayLottoNumbers(List<Lotto> lottoList) {
         outputnumbers(lottoList);
     }
 
