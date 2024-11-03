@@ -11,6 +11,10 @@ import lotto.validator.WinningNumbersValidator;
 public class InputView {
     public static final int MAX_ATTEMPTS = 3;
 
+    public int readBonusNumber() {
+        return Integer.parseInt(readInput());
+    }
+
     public List<Integer> readWinningNumbers() {
         int attempts = 0;
 
