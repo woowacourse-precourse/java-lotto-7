@@ -109,6 +109,16 @@ public class InputViewException {
     public void validateInputBonusNumber(String inputBonusNumber) {
         validateIfInputContainsWhitespace(inputBonusNumber);
         validateIfInputContainsNullOrEmpty(inputBonusNumber);
+        validateInputBonusFormat(inputBonusNumber);
+    }
+
+    private void validateInputBonusFormat(String inputBonusNumber) {
+        try {
+            Integer.parseInt(inputBonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_MUST_BE_NUMERIC);
+        }
     }
 
 
