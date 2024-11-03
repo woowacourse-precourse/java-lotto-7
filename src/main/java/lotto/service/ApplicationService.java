@@ -1,27 +1,32 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
-import lotto.domain.Prompter;
 import lotto.domain.PurchaseAmount;
 
 public class ApplicationService {
+    private final Prompter prompter;
+    private final InputConverter inputConverter;
     private final UserInputService userInputService;
     private final UserOutputService userOutputService;
     private final LottoService lottoService;
 
     public ApplicationService() {
-        Prompter prompter = new Prompter();
-        InputParser inputParser = new InputParser();
-        this.userInputService = new UserInputService(prompter, inputParser);
-        this.userOutputService = new UserOutputService(prompter);
+        this.prompter = new Prompter();
+        this.inputConverter = new InputConverter();
+        this.userInputService = new UserInputService(this.prompter, this.inputConverter);
+        this.userOutputService = new UserOutputService(this.prompter);
         this.lottoService = new LottoService();
     }
 
     public void run() {
         PurchaseAmount purchaseAmount = this.userInputService.createPurchaseAmount();
         LottoTicket lottoTicket = this.lottoService.createLottoTicket(purchaseAmount);
+        this.prompter.showBlankLine();
         this.userOutputService.printPurchasedLottoTicket(lottoTicket);
         Lotto winningNumber = this.userInputService.createWinningNumber();
+        this.prompter.showBlankLine();
+        BonusNumber bonusNumber = this.userInputService.createBonusNumber(winningNumber);
     }
 }
