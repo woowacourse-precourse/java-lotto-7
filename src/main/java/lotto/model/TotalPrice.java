@@ -13,7 +13,7 @@ public class TotalPrice implements ReturnRate {
     public static final int FIFTH_PLACE_PRICE = 5000;
 
     private static final int DECIMAL_ROUNDING_PLACE = 100;
-    private static final double PERCENTAGE_FOR_CALCULATION = 100.0;
+    private static final int PERCENTAGE_FOR_CALCULATION = 100;
 
     private static final Map<WinningType, Integer> prizeMap =
         Map.of(
@@ -40,11 +40,7 @@ public class TotalPrice implements ReturnRate {
     @Override
     public double calculateReturnRate(Money money) {
         try {
-            return Math.round(
-                (this.totalPrice / (double) money.getMoney())
-                    * PERCENTAGE_FOR_CALCULATION
-                    * DECIMAL_ROUNDING_PLACE)
-            / (double) DECIMAL_ROUNDING_PLACE;
+            return ((double) this.totalPrice / money.getMoney()) * PERCENTAGE_FOR_CALCULATION;
         } catch (ArithmeticException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CALCULATE.getMessage());
         }
