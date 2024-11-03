@@ -1,9 +1,12 @@
 package lotto.command.view.validate;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.service.lotto.constant.LottoConstant.MATCH_SIX_PRIZE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import java.util.stream.Stream;
 import lotto.common.exception.ExceptionEnum;
 import lotto.dto.PurchaseAmountUserInput;
@@ -23,12 +26,29 @@ import org.junit.jupiter.params.provider.ValueSource;
  * @author : jiffyin7@gmail.com
  * @since : 24. 11. 3.
  */
-class PurchaseAmountCommandTest {
+class PurchaseAmountCommandTest extends NsTest {
   private PurchaseAmountCommand command;
 
   @BeforeEach
   void setUp () {
     command = new PurchaseAmountCommand();
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideInputsForRetry")
+  @DisplayName("[success]execute : 재시도 로직")
+  void execute_shouldRetryOnInvalidInput(String invalidInput, String validInput, ExceptionEnum exceptionEnum) {
+    String ask = "구입금액을 입력해 주세요.";
+    assertSimpleTest(()-> {
+      run(invalidInput, validInput);
+      assertThat(output()).satisfies(
+          text -> assertThat(text).containsSubsequence(
+              ask,
+              ask
+          ),
+          text -> assertThat(text).contains(exceptionEnum.getMessage())
+      );
+    });
   }
 
   @ParameterizedTest
@@ -114,6 +134,15 @@ class PurchaseAmountCommandTest {
     assertThat(command.ask()).isEqualTo("\n구입금액을 입력해 주세요.");
   }
 
+
+  private static Stream<org.junit.jupiter.params.provider.Arguments> provideInputsForRetry() {
+    return Stream.of(
+        org.junit.jupiter.params.provider.Arguments.of("invalid", "7000", ExceptionEnum.INVALID_LONG_RANGE),
+        org.junit.jupiter.params.provider.Arguments.of("abc", "1000", ExceptionEnum.INVALID_LONG_RANGE),
+        org.junit.jupiter.params.provider.Arguments.of("notANumber", "5000", ExceptionEnum.INVALID_LONG_RANGE)
+    );
+  }
+
   private static Stream<Arguments> invalidWhiteSpace() {
     return Stream.of(
         Arguments.of("", ExceptionEnum.CONTAIN_BLANK),
@@ -124,4 +153,8 @@ class PurchaseAmountCommandTest {
         Arguments.of("\f", ExceptionEnum.CONTAIN_BLANK));
   }
 
+  @Override
+  protected void runMain() {
+    command.execute(Arrays.toString(new String[]{}));
+  }
 }

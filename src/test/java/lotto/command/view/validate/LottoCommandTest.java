@@ -1,9 +1,11 @@
 package lotto.command.view.validate;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.exception.ExceptionEnum;
@@ -15,18 +17,34 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * @author : jiffyin7@gmail.com
  * @since : 24. 11. 3.
  */
-class LottoCommandTest {
+class LottoCommandTest extends NsTest {
   private LottoCommand command;
 
   @BeforeEach
   void setUp(){
     command = new LottoCommand();
+  }
+
+  @ParameterizedTest
+  @MethodSource("provideInputsForRetry")
+  @DisplayName("[success]execute : 재시도 로직")
+  void execute_shouldRetryOnInvalidInput(String invalidInput, String validInput, ExceptionEnum exceptionEnum) {
+    String ask = "당첨 번호를 입력해 주세요.";
+    assertSimpleTest(()-> {
+      run(invalidInput, validInput);
+      assertThat(output()).satisfies(
+          text -> assertThat(text).containsSubsequence(
+              ask,
+              ask
+          ),
+          text -> assertThat(text).contains(exceptionEnum.getMessage())
+      );
+    });
   }
 
   @ParameterizedTest
@@ -102,6 +120,15 @@ class LottoCommandTest {
         .hasMessageContaining(ExceptionEnum.INVALID_INTEGER_RANGE.getMessage());
   }
 
+  private static Stream<org.junit.jupiter.params.provider.Arguments> provideInputsForRetry() {
+    return Stream.of(
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5,6,7", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE),
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE),
+        org.junit.jupiter.params.provider.Arguments.of("a,b,c,d,e,f", "1,2,3,4,5,6", ExceptionEnum.INVALID_LONG_RANGE),
+        org.junit.jupiter.params.provider.Arguments.of("1,2,3,4,5,5", "1,2,3,4,5,6", ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT)
+    );
+  }
+
   private static Stream<Arguments> provideValidLottoInputs() {
     return Stream.of(
         Arguments.of("1,2,3,4,5,6", List.of(1, 2, 3, 4, 5, 6)),
@@ -129,5 +156,10 @@ class LottoCommandTest {
         Arguments.of("\n", ExceptionEnum.CONTAIN_BLANK),
         Arguments.of("\r", ExceptionEnum.CONTAIN_BLANK),
         Arguments.of("\f", ExceptionEnum.CONTAIN_BLANK));
+  }
+
+  @Override
+  protected void runMain() {
+    command.execute(Arrays.toString(new String[]{}));
   }
 }
