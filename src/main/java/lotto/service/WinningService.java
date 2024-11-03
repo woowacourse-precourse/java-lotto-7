@@ -11,7 +11,7 @@ public class WinningService {
 
     public void getWinningInput() {
         while (true) {
-            System.out.println(WinningInputMessage.REQUEST_LOTTO_WINNING_NUMBER);
+            System.out.println("\n" + WinningInputMessage.REQUEST_LOTTO_WINNING_NUMBER.getMessage());
 
             String winningString = Console.readLine();
             if (!WinningValidate.runValidString(winningString)) continue;
