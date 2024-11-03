@@ -8,6 +8,8 @@ import java.util.*;
 public class Application {
     public static void main(String[] args) {
 
+        Host host = Host.getHost();
+
         System.out.println("구입금액을 입력해 주세요.");
 
         String inputAccount = Console.readLine();
@@ -32,10 +34,6 @@ public class Application {
                 .filter(x -> !x.isEmpty())
                 .toList();
 
-        if (inputs.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
-        }
-
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputs) {
             if (!number.matches("\\d+")) {
@@ -44,29 +42,14 @@ public class Application {
             winningNumbers.add(Integer.parseInt(number));
         }
 
-        for (Integer winningNumber : winningNumbers) {
-            if (winningNumber < 0 || winningNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 6개의 당첨번호는 모두 1이상 45이하의 숫자입니다.");
-            }
-        }
-
-        Set<Integer> numbers = new HashSet<>(winningNumbers);
-        if (winningNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 6개의 당첨번호는 서로 중복되지 않아야 합니다.");
-        }
+        host.setSelectedNumbers(winningNumbers);
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
         if (!bonusInput.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
-        int bonusNumber = Integer.parseInt(bonusInput);
-        if (bonusNumber < 0 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1이상 45이하의 숫자입니다.");
-        }
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호 6개와 중복될 수 없습니다.");
-        }
+        host.setBonusNumber(Integer.parseInt(bonusInput));
 
         Map<WinningKind, Integer> lottoResult = new HashMap<>();
         for (WinningKind winningKind : WinningKind.values()) {
@@ -74,12 +57,16 @@ public class Application {
         }
 
         for (Lotto lotto : lottos) {  // `lottos`는 구입한 로또 목록
-            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            int matchCount = host.countResult(lotto);
+            boolean bonusMatch = false;
+            if (host.isBonus(lotto)) {
+                matchCount++;
+                bonusMatch = true;
+            }
 
             if (matchCount == 6) {
                 lottoResult.put(WinningKind.MATCH_6, lottoResult.get(WinningKind.MATCH_6) + 1);
-            } else if (matchCount == 4 && bonusMatch) {
+            } else if (matchCount == 5 && bonusMatch) {
                 lottoResult.put(WinningKind.MATCH_5_BONUS, lottoResult.get(WinningKind.MATCH_5_BONUS) + 1);
             } else if (matchCount == 5) {
                 lottoResult.put(WinningKind.MATCH_5, lottoResult.get(WinningKind.MATCH_5) + 1);
@@ -111,12 +98,6 @@ public class Application {
 
     }
 
-    public static int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
-        Set<Integer> myLotto = new HashSet<>(numbers);
-        Set<Integer> answer = new HashSet<>(winningNumbers);
 
-        myLotto.retainAll(answer);
-        return myLotto.size();
-    }
 
 }
