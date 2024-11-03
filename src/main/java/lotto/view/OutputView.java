@@ -7,6 +7,14 @@ import java.util.Map;
 import lotto.model.CalculatePrize;
 
 public class OutputView{
+    public static void buyMessage(int quantity){
+        System.out.println(String.format("%d개를 구매했습니다.", quantity));
+    }
+    public static void printLottoList(List<Lotto> lottoList){
+        for (Lotto lotto : lottoList){
+            System.out.println(lotto.getNumbers());
+        }
+    }
     public static void output(List<Lotto> lottoList, Lotto prizeNum, int bonusNum, int inputAmount){
         System.out.println("당첨 통계\n---");
         CalculatePrize calculatePrize = new CalculatePrize(prizeNum, bonusNum);

@@ -8,8 +8,6 @@ import lotto.Lotto;
 
 
 public class InputView {
-    public Lotto prizeNum;
-    public int bonusNum;
     public static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return parseInt(Console.readLine());
@@ -21,9 +19,9 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
-    public void inputPrize() {
+    public static Lotto inputPrize() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        prizeNum = new Lotto(splitNum(Console.readLine()));
+        return new Lotto(splitNum(Console.readLine()));
     }
     private static ArrayList<Integer> splitNum(String input){
         String[] splitInput = input.split(",");
@@ -34,8 +32,8 @@ public class InputView {
         }
         return intList;
     }
-    public void inputBonus() {
+    public static int inputBonus() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNum = parseInt(Console.readLine());
+        return parseInt(Console.readLine());
     }
 }

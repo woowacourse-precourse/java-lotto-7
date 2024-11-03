@@ -17,7 +17,7 @@ public class MakeLotto {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위입니다.");
         }
     }
-    private List<Lotto> makeLottoList(int quantity){
+    public List<Lotto> makeLottoList(int quantity){
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < quantity; i++){
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
