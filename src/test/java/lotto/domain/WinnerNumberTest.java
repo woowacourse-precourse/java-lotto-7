@@ -72,4 +72,26 @@ public class WinnerNumberTest {
 
         assertEquals(false, correct);
     }
+
+    @Test
+    void 로또번호_5개와_보너스번호가_일치하다면_SECOND_RANK이다() {
+        List<Integer> winningLotto = List.of(1,2,3,4,5,8);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        LottoRank rank = winningNumber.calculateRank(lotto);
+
+        assertEquals(LottoRank.SECOND_RANK, rank);
+    }
+
+    @Test
+    void 로또번호_5개가_일치하고_보너스번호가_일치하지_않는다면_THIRD_RANK이다() {
+        List<Integer> winningLotto = List.of(1,2,3,4,5,8);
+        WinningNumber winningNumber = new WinningNumber(new Lotto(winningLotto), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
+
+        LottoRank rank = winningNumber.calculateRank(lotto);
+
+        assertEquals(LottoRank.THIRD_RANK, rank);
+    }
 }
