@@ -23,6 +23,16 @@ public class Application {
             allLottos.add(lotto);
         }
 
+        StringBuilder purchasedLottoOutput = new StringBuilder();
+        purchasedLottoOutput.append(totalLottoCount).append("개를 구매했습니다.\n");
+        allLottos.stream()
+                        .forEach(lotto -> {
+                            purchasedLottoOutput.append("[");
+                            purchasedLottoOutput.append(String.join(",", lotto.stream().toString()));
+                            purchasedLottoOutput.append("]\n");
+                        });
+
+
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine();
         String[] inputNumbers = input.split(",");
@@ -126,4 +136,6 @@ public class Application {
         Double roundedEarnRate = Math.round(earnRate * 100) / 100.0;
 
     }
+
+
 }
