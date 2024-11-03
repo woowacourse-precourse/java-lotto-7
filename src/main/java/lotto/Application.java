@@ -10,8 +10,7 @@ import java.util.stream.Stream;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = InputHandler.getPurchaseAmount(Console.readLine());
+        int purchaseAmount = parsePurchaseAmount();
         System.out.println();
 
         List<Lotto> tickets = Lotto.generateLottoTickets(purchaseAmount);
@@ -32,25 +31,61 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
-    private static Set<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        Set<Integer> winningNumbers = parseWinningNumbers(input);
-        InputHandler.validateWinningNumbers(winningNumbers);
-        return winningNumbers;
+    private static int parsePurchaseAmount() {
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                return InputHandler.getPurchaseAmount(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static int getBonusNumber(Set<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        InputHandler.validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
+    private static Set<Integer> getWinningNumbers() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요");
+            try {
+                String input = Console.readLine();
+                Set<Integer> winningNumbers = parseWinningNumbers(input);
+                InputHandler.validateWinningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static Set<Integer> parseWinningNumbers(String input) {
-        return Stream.of(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toSet());
+        try {
+            return Stream.of(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toSet());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로만 이루어져야 합니다.");
+        }
+    }
+
+    private static int getBonusNumber(Set<Integer> winningNumbers) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                String input = Console.readLine();
+                int bonusNumber = parseBonusNumber(input);
+                InputHandler.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 이루어져야 합니다.");
+        }
     }
 }
