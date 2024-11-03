@@ -1,10 +1,12 @@
 package controller;
 
+import lotto.BonusNumber;
 import lotto.LottoGenerator;
 import lotto.Lottos;
 import lotto.PurchaseAmount;
 import lotto.RevenueCalculator;
 import lotto.WinningLotto;
+import lotto.WinningNumbers;
 import view.InputView;
 import view.ResultView;
 
@@ -48,8 +50,8 @@ public class LottoController {
     }
 
     private WinningLotto issueWinningLotto() {
-        String winningNumbers = input.inputWinningNumbers();
-        String bonusNumber = input.inputBonusNumber();
+        WinningNumbers winningNumbers = input.inputWinningNumbers();
+        BonusNumber bonusNumber = input.inputBonusNumber(winningNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 

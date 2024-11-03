@@ -15,11 +15,6 @@ public class LottoValidatorTest {
                         LottoNumber.from(5), LottoNumber.from(6), LottoNumber.from(7))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-
-        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6,7", "8"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-
     }
 
     @Test
@@ -27,10 +22,6 @@ public class LottoValidatorTest {
         assertThatThrownBy(() -> new Lotto(
                 List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3), LottoNumber.from(4),
                         LottoNumber.from(5), LottoNumber.from(5))))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
-
-        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,5", "8"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
     }

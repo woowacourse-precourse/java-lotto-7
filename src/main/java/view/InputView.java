@@ -1,7 +1,9 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.BonusNumber;
 import lotto.PurchaseAmount;
+import lotto.WinningNumbers;
 
 public class InputView {
 
@@ -16,15 +18,25 @@ public class InputView {
         }
     }
 
-    public String inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+    public WinningNumbers inputWinningNumbers() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            try {
+                return new WinningNumbers(Console.readLine());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
-    public String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        Console.close();
-        return bonusNumber;
+    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                return new BonusNumber(Console.readLine(), winningNumbers);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

@@ -1,7 +1,5 @@
 package lotto;
 
-import static java.util.Collections.sort;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,7 @@ public class LottoGenerator {
     public List<LottoNumber> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_LOWER_BOUND, NUMBER_UPPER_BOUND,
                 LOTTO_PICK_COUNT);
-        sort(numbers);
+        Randoms.shuffle(numbers);
         return numbers.stream().map(LottoNumber::from).toList();
     }
 }
