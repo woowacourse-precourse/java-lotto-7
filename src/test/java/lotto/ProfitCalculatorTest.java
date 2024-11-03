@@ -32,25 +32,25 @@ public class ProfitCalculatorTest {
     @Test
     void 하나의_1등이_당첨됐을_경우() {
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40000000.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40,000,000.0");
     }
 
     @Test
     void 하나의_2등이_당첨됐을_경우() {
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("600000.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("600,000.0");
     }
 
     @Test
     void 하나의_3등이_당첨됐을_경우() {
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("30000.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("30,000.0");
     }
 
     @Test
     void 하나의_4등이_당첨됐을_경우() {
         matchedCount.put(MatchedCountNameEnum.FOUR_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("1000.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("1,000.0");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40030100.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40,030,100.0");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40631000.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40,631,000.0");
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40631100.0");
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40,631,100.0");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(1000, matchedCount)).isEqualTo("203155500.0");
+        assertThat(ProfitCalculator.calculate(1000, matchedCount)).isEqualTo("203,155,500.0");
     }
 
     @Test

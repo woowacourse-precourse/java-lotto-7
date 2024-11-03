@@ -2,6 +2,7 @@ package lotto.utility;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class ProfitCalculator {
@@ -13,6 +14,9 @@ public class ProfitCalculator {
                 + (long)matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage()) * LottoPrizeEnum.SIX_MATCHED_PRIZE.getAmount();
 
         double profit = (revenue / (double)purchaseCost) * 100;
-        return new BigDecimal(profit).setScale(1, RoundingMode.HALF_UP).toPlainString();
+        BigDecimal profitRate = new BigDecimal(profit).setScale(1, RoundingMode.HALF_UP);
+
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        return decimalFormat.format(profitRate);
     }
 }
