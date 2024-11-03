@@ -13,8 +13,8 @@ class TicketCommonStorageTest {
     @DisplayName("저장소 싱글톤 인스턴스 조회")
     void 저장소_싱글톤_인스턴스_조회() {
         // when
-        ConcurrentHashMap<Long, Ticket> repository1 = TicketCommonStorage.getRepository();
-        ConcurrentHashMap<Long, Ticket> repository2 = TicketCommonStorage.getRepository();
+        ConcurrentHashMap<Long, Ticket> repository1 = TicketCommonStorage.getTicketCommonStorage();
+        ConcurrentHashMap<Long, Ticket> repository2 = TicketCommonStorage.getTicketCommonStorage();
 
         // expect
         Assertions.assertThat(repository1).isSameAs(repository2);

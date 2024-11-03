@@ -17,4 +17,7 @@ public class Prize {
         return prizeNumber.getValue();
     }
 
+    public Long getId() {
+        return id;
+    }
 }

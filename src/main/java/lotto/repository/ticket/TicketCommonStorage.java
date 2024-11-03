@@ -9,7 +9,7 @@ public class TicketCommonStorage {
     private TicketCommonStorage() {
     }
 
-    public static ConcurrentHashMap<Long, Ticket> getRepository() {
+    public static ConcurrentHashMap<Long, Ticket> getTicketCommonStorage() {
         return repository;
     }
 

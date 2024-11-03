@@ -98,8 +98,8 @@
 |             | 당첨 결과(PrizeNumberResult) 관리 | 보너스 번호와 당첨 번호 조합                  | ✅       |
 |             |                             | 결과 객체 생성 및 반환                     | ✅       |
 | --------    | ------                      | -----------                       | ------- |
-| Prize 도메인 외 | Repository 관리               | ConcurrentHashMap으로 저장소 생성        | ⬜️      |
-|             |                             | Prize 객체 저장                       | ⬜️      |
+| Prize 도메인 외 | Repository 관리               | ConcurrentHashMap으로 저장소 생성        | ✅       |
+|             |                             | Prize 객체 저장                       | ✅       |
 |             |                             | ID로 저장 결과 반환                      | ⬜️      |
 |             | Service 관리                  | Prize 생성 서비스                      | ✅       |
 |             |                             | ID 생성                             | ✅       |
