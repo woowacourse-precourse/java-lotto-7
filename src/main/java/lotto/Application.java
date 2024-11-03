@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.controller.LottoContoller;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoContoller lottoContoller = LottoContoller.getInstance();
+        lottoContoller.run();
     }
 }
