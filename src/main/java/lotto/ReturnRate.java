@@ -7,14 +7,20 @@ public class ReturnRate {
     private static final String RETURN_RATE_FORMAT = "#,##0.0";
     private static final String RETURN_RATE_UNIT = "%";
 
-    public String calculate(Result result, Payment payment) {
-        long totalPrize = result.calculateTotalPrize();
-        double returnRate = ((double) totalPrize / payment.get()) * PERCENTAGE_MULTIPLIER;
-        return printFormatted(returnRate);
+    private final double value;
+
+    private ReturnRate(double value) {
+        this.value = value;
     }
 
-    private String printFormatted(double returnRate) {
+    public static ReturnRate from(Result result, Payment payment) {
+        long totalPrize = result.calculateTotalPrize();
+        double returnRate = ((double) totalPrize / payment.get()) * PERCENTAGE_MULTIPLIER;
+        return new ReturnRate(returnRate);
+    }
+
+    public String getFormatted() {
         DecimalFormat decimalFormat = new DecimalFormat(RETURN_RATE_FORMAT);
-        return decimalFormat.format(returnRate) + RETURN_RATE_UNIT;
+        return decimalFormat.format(this.value) + RETURN_RATE_UNIT;
     }
 }
