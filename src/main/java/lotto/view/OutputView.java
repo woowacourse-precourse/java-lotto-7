@@ -1,12 +1,18 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+import lotto.model.LottoTicket;
+
 public class OutputView {
     public void inputMoney() {
         System.out.println(OutputMessage.INPUT_MONEY.getMessage());
     }
 
-    public void purchasedAmount() {
-        System.out.println(OutputMessage.PURCHASED_AMOUNT.getMessage());
+    public void purchaseHistory(int quantity, LottoTicket lottoTicket) {
+        System.out.println(OutputMessage.PURCHASED_AMOUNT.getFormattedMessage(quantity));
+        for (Lotto lotto : lottoTicket.getLottoTicket()) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void inputWinningNumbers() {
