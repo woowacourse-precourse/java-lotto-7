@@ -6,7 +6,7 @@ import lotto.Lotto;
 import lotto.generator.NumberGenerator;
 
 public class LottoStore {
-    private final NumberGenerator generator;
+    private NumberGenerator generator;
 
     public LottoStore(NumberGenerator generator) {
         this.generator = generator;

@@ -8,7 +8,7 @@ import lotto.dto.BonusNumberRequestDTO;
 public class BonusNumber {
     private static final String OVER_RANGE_MESSAGE = "[ERROR] 보너스 번호의 범위를 초과했습니다.";
 
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(BonusNumberRequestDTO request) {
         validate(request.getBonusNumber());
