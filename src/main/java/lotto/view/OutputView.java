@@ -45,7 +45,7 @@ public class OutputView {
             );
         }
 
-        Money earned = lottoMatcher.getEarned();
-        System.out.printf(EARNING_RATE_FORMAT, invested.getEarningRate(earned));
+        Money totalEarning = lottoMatcher.getTotalEarning();
+        System.out.printf(EARNING_RATE_FORMAT, invested.getEarningRate(totalEarning));
     }
 }

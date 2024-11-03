@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 public class LottoMatcherTest {
     @ParameterizedTest
     @DisplayName("총 얻은 금액")
-    @MethodSource("getEarnedArguments")
+    @MethodSource("getTotalEarningArguments")
     void 얻은_금액(WinningLotto winningLotto, List<List<Integer>> randomNumbers, int earned) {
         List<Integer> first = randomNumbers.getFirst();
         List<List<Integer>> rest = randomNumbers.stream()
@@ -29,14 +29,14 @@ public class LottoMatcherTest {
                             winningLotto
                     );
 
-                    assertThat(lottoMatcher.getEarned().toInteger()).isEqualTo(earned);
+                    assertThat(lottoMatcher.getTotalEarning().toInteger()).isEqualTo(earned);
                 },
                 first,
                 rest.toArray(new List[]{}) // List를 varargs로 바꾸기 위해서
         );
     }
 
-    static Stream<Arguments> getEarnedArguments() {
+    static Stream<Arguments> getTotalEarningArguments() {
         return Stream.of(
                 Arguments.of(
                         new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7),

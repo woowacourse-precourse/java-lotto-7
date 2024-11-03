@@ -27,11 +27,14 @@ public class LottoMatcher {
         return countByPrize.getOrDefault(prize, 0);
     }
 
-    public Money getEarned() {
+    public Money getTotalEarning() {
         int earned = 0;
 
         for (Map.Entry<Prize, Integer> entry : countByPrize.entrySet()) {
-            earned += entry.getKey().getEarning() * entry.getValue();
+            Prize prize = entry.getKey();
+            int count = entry.getValue();
+
+            earned += prize.getEarning() * count;
         }
         return new Money(earned);
     }
