@@ -6,7 +6,9 @@ import lotto.model.LottoRank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -39,15 +41,15 @@ public class LottoManagerTest {
                 new Lotto(Arrays.asList(11, 12, 13, 15, 16,17))
         );
 
-        List<LottoRank> expectedResults = Arrays.asList(
-                LottoRank.FIRST,
-                LottoRank.SECOND,
-                LottoRank.THIRD,
-                LottoRank.FOURTH,
-                LottoRank.FIFTH,
-                LottoRank.MISS
-        );
-        List<LottoRank> result = lottoManager.analyzeLottoResults(lottoSets, winningNumbers, bonusNumber);
+        Map<LottoRank, Long> expectedResults = new HashMap<>();
+        expectedResults.put(LottoRank.FIRST, 1L);
+        expectedResults.put(LottoRank.SECOND, 1L);
+        expectedResults.put(LottoRank.THIRD, 1L);
+        expectedResults.put(LottoRank.FOURTH, 1L);
+        expectedResults.put(LottoRank.FIFTH, 1L);
+        expectedResults.put(LottoRank.MISS, 1L);
+
+        Map<LottoRank,Long> result = lottoManager.analyzeLottoResults(lottoSets, winningNumbers, bonusNumber);
         assertThat(result).isEqualTo(expectedResults);
     }
 
