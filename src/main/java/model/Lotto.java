@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import validator.LottoValidator;
 
@@ -18,11 +19,11 @@ public class Lotto {
 
         LottoValidator.isUniqueNumbers(numbers);
         LottoValidator.hasSixElements(numbers);
+        numbers.forEach(LottoValidator::isInLottoRange);
 
         this.numbers = numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        ;
     }
 
     public List<Integer> getNumbers() {

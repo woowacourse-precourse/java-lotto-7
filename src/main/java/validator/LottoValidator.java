@@ -24,11 +24,10 @@ public class LottoValidator {
         }
     }
 
-    public static boolean isInLottoRange(Integer targetInteger) {
-        if (targetInteger >= 1 && targetInteger <= 45) {
-            return true;
+    public static void isInLottoRange(Integer targetInteger) {
+        if (targetInteger < 1 || targetInteger > 45) {
+            throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
         }
-        throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
     }
 
     public static List<Integer> isParseableString(String targetString) {
@@ -37,7 +36,6 @@ public class LottoValidator {
                 .filter(s -> !s.isEmpty())
                 .filter(LottoValidator::isNumber)
                 .map(Integer::parseInt)
-                .filter(LottoValidator::isInLottoRange)
                 .collect(Collectors.toList());
     }
 
