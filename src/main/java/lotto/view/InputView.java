@@ -41,7 +41,7 @@ public class InputView {
 
         Validator.isEmpty(userInput);
         Validator.allDigits(numbers);
-        Validator.sizeEqual(numbers, LottoEnum.WINNING_NUMBER_COUNT.getNumber());
+        Validator.sizeEqual(numbers, LottoEnum.LOTTO_NUMBER_COUNT.getNumber());
         Validator.allNumberRange(
                 new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
                 new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()),

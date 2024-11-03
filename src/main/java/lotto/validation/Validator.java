@@ -26,7 +26,7 @@ public class Validator {
     }
 
     public static void sizeEqual(String[] numbers, int number) {
-        if (!Utils.checkSizeEqual(numbers, LottoEnum.WINNING_NUMBER_COUNT.getNumber())) {
+        if (!Utils.checkSizeEqual(numbers, LottoEnum.LOTTO_NUMBER_COUNT.getNumber())) {
             throw new IllegalArgumentException(
                     ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
         }
