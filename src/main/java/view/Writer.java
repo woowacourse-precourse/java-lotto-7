@@ -15,4 +15,9 @@ public class Writer {
     public void printErrorMessage(final String message) {
         System.out.println(message);
     }
+
+    public void printLineBefore(final String message) {
+        System.out.println();
+        printSout(message);
+    }
 }

@@ -31,7 +31,7 @@ public class InputView {
 
     public Money readPurchaseAmount() {
         try {
-            writer.printSout(ASK_PURCHASE_AMOUNT);
+            writer.printLineBefore(ASK_PURCHASE_AMOUNT);
             String input = reader.readInput();
             InputValidatorFacade.moneyValidators(input);
             return PreProcessor.stringToMoney(input);
@@ -43,7 +43,7 @@ public class InputView {
 
     public Lotto readWinningNumber() {
         try {
-            writer.printSout(ASK_WINNING_NUMBER);
+            writer.printLineBefore(ASK_WINNING_NUMBER);
             String input = reader.readInput();
             InputValidatorFacade.winningNumValidators(input);
             return PreProcessor.stringToLotto(input);
@@ -55,7 +55,7 @@ public class InputView {
 
     public Integer readBonus(Lotto lotto) {
         try {
-            writer.printSout(ASK_BONUS_NUMBER);
+            writer.printLineBefore(ASK_BONUS_NUMBER);
             String input = reader.readInput();
             InputValidatorFacade.bonusValidators(input, lotto);
             return PreProcessor.stringToInteger(input);
