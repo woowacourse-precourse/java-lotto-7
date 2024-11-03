@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.numberPicker.NumberPicker;
 import lotto.domain.validator.ParamsValidator;
 import lotto.exception.number.CreatedNumberDuplicatedException;
@@ -55,5 +56,23 @@ final public class Number {
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new CreatedNumberDuplicatedException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Number number)) {
+            return false;
+        }
+        return this.value == number.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }
