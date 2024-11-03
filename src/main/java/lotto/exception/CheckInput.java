@@ -27,12 +27,16 @@ public class CheckInput {
                 int tmpNumber = Integer.parseInt(splitInputLottoNumber.trim());
 
                 if(tmpNumber < 1 || tmpNumber > 45){
-                    throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+                    throw new IllegalArgumentException();
                 }
 
                 tmpLottoNumber.add(tmpNumber);
             } catch (NumberFormatException e){
                 throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage());
+            } catch (IllegalArgumentException e){
+                throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+            } catch (Exception e){
+                throw new IllegalArgumentException(ErrorType.UNEXPECTED_ERROR.getErrorMessage());
             }
         }
 
@@ -41,8 +45,6 @@ public class CheckInput {
 
         return tmpLotto;
     }
-
-
 
     public static void checkBonusNumber(int bonusNum, Lotto winningLottoNumbers){
         if(bonusNum < 1 || bonusNum > 45){

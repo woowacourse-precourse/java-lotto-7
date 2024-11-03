@@ -1,14 +1,18 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lotto.enums.ErrorType;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicateMyself(numbers);
         this.numbers = numbers;
     }
 
@@ -37,7 +41,10 @@ public class Lotto {
         return matchNum.size();
     }
 
-
-
-
+    public void checkDuplicateMyself(List<Integer> numbers){
+        Set<Integer> set = new HashSet<>(numbers);
+        if(set.size() < numbers.size()){
+            throw new IllegalArgumentException(ErrorType.INVALID_DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+        }
+    }
 }
