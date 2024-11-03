@@ -15,6 +15,8 @@ public class InputParser {
     private final static String DELIMITER = ",";
 
     public static int parsePrice(final String input) {
+        validateEmpty(input);
+
         int purchaseAmount;
 
         try {
@@ -27,7 +29,8 @@ public class InputParser {
     }
 
     public static List<Integer> parseNumbers(final String input) {
-        inputValidate(input);
+        validateEmpty(input);
+        validateEndWithDelimiter(input);
 
         return splitByDelimiter(input).stream()
                 .map(InputParser::convertToInt)
@@ -35,6 +38,8 @@ public class InputParser {
     }
 
     public static int parseBonusNumber(final String input) {
+        validateEmpty(input);
+
         int number;
 
         try {
@@ -44,11 +49,6 @@ public class InputParser {
         }
 
         return number;
-    }
-
-    private static void inputValidate(final String input) {
-        validateEndWithDelimiter(input);
-        validateEmpty(input);
     }
 
     private static void validateEmpty(final String input) {
