@@ -66,7 +66,7 @@
     - [x] 로또 구매 입력 Prompt
     - [x] 로또 구매 출력 Prompt
     - [x] 로또 추첨 입력 Prompt
-    - [ ] 로또 추첨 출력 Prompt
+    - [x] 로또 추첨 출력 Prompt
 - 도메인 클래스 목록
     - [x] 금액
     - [x] 로또 숫자

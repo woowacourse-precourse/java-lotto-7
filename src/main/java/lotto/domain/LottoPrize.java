@@ -10,7 +10,7 @@ public enum LottoPrize {
 
     public final long value;
 
-    LottoPrize(int value) {
+    LottoPrize(long value) {
         this.value = value;
     }
 }

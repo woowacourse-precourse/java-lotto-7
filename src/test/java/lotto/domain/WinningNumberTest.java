@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.Lotto.LOTTO_NUMBER_DUPLICATE_ERROR_MSG;
-import static lotto.Lotto.LOTTO_NUMBER_SIZE_ERROR_MSG;
-import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
+import static lotto.domain.Lotto.LOTTO_DUPLICATE_ERROR_MSG;
+import static lotto.domain.Lotto.LOTTO_SIZE_ERROR_MSG;
+import static lotto.domain.LottoNumber.LOTTO_NUMBER_ERROR_MSG;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class WinningNumberTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
+                .hasMessage(LOTTO_NUMBER_ERROR_MSG);
     }
 
     @Test
@@ -43,7 +43,7 @@ class WinningNumberTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MSG);
+                .hasMessage(LOTTO_DUPLICATE_ERROR_MSG);
     }
 
     @ParameterizedTest
@@ -54,6 +54,6 @@ class WinningNumberTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_SIZE_ERROR_MSG);
+                .hasMessage(LOTTO_SIZE_ERROR_MSG);
     }
 }

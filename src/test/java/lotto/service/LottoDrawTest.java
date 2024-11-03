@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoWinningStatistics;
 import lotto.domain.WinningNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ class LottoDrawTest {
 
     @BeforeEach
     void setUp() {
-        lottoDraw = new LottoDraw();
+        lottoDraw = new LottoDraw(new LottoWinningStatistics());
     }
 
     static Stream<Arguments> winningNumberFactory() {

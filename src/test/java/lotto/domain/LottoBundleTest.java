@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.LottoMachine.LOTTO_PRICE;
+import static lotto.domain.Amount.LOTTO_PRICE;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class LottoBundleTest {
 
         //When
         int actual = new LottoBundle(amount / LOTTO_PRICE).getBundle().size();
-        
+
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
     }

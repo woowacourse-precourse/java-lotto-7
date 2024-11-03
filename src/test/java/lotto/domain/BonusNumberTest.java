@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.domain.BonusNumber.BONUS_NUMBER_DUPLICATE_ERROR_MSG;
 
 import java.util.List;
-import lotto.LottoMachine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -58,6 +57,6 @@ class BonusNumberTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> BonusNumber.parse(input, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG);
+                .hasMessage(BONUS_NUMBER_DUPLICATE_ERROR_MSG);
     }
 }

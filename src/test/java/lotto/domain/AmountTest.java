@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.domain.Amount.AMOUNT_ERROR_MSG;
 
-import lotto.LottoMachine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -63,7 +62,7 @@ class AmountTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> Amount.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachine.AMOUNT_ERROR_MSG);
+                .hasMessage(AMOUNT_ERROR_MSG);
     }
 
     @ParameterizedTest
@@ -74,6 +73,6 @@ class AmountTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> Amount.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoMachine.AMOUNT_ERROR_MSG);
+                .hasMessage(AMOUNT_ERROR_MSG);
     }
 }

@@ -4,18 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoWinningRule {
-    
+
     private static final HashMap<Integer, LottoRank> ranks = initRanks();
     private static final HashMap<LottoRank, LottoPrize> prizes = initPrizes();
 
     private static HashMap<Integer, LottoRank> initRanks() {
-        return new HashMap<Integer, LottoRank>(Map.of(6, LottoRank.FIRST,
-                5, LottoRank.THIRD,
-                4, LottoRank.FOURTH,
-                3, LottoRank.FIFTH,
-                2, LottoRank.NONE,
-                1, LottoRank.NONE,
-                0, LottoRank.NONE));
+        return new HashMap<>(Map.of(LottoRank.FIRST.matches, LottoRank.FIRST,
+                LottoRank.THIRD.matches, LottoRank.THIRD,
+                LottoRank.FOURTH.matches, LottoRank.FOURTH,
+                LottoRank.FIFTH.matches, LottoRank.FIFTH));
     }
 
     private static HashMap<LottoRank, LottoPrize> initPrizes() {
@@ -28,7 +25,7 @@ public class LottoWinningRule {
     }
 
     public static LottoRank getRank(Integer matches, boolean isMatchBonus) {
-        LottoRank rank = ranks.get(matches);
+        LottoRank rank = ranks.getOrDefault(matches, LottoRank.NONE);
         if (rank == LottoRank.THIRD && isMatchBonus) {
             return LottoRank.SECOND;
         }
