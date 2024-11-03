@@ -25,12 +25,12 @@ public class LottoShop {
         );
     }
 
-    private int calculateLottoTicketCount(Integer price) {
-        return price / LOTTO_PRICE;
+    private Lotto generateLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT));
     }
 
-    public Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT));
+    private int calculateLottoTicketCount(Integer price) {
+        return price / LOTTO_PRICE;
     }
 
     private void validatePrice(Integer price) {

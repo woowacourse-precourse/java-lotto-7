@@ -2,23 +2,30 @@ package lotto.dto;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoNumber;
 import lotto.model.Lottos;
 
 public record LottosDTO(
-        List<LottoNumbers> lottos
+        List<InnerLottoNumbers> lottos
 ) {
     public static LottosDTO from(Lottos lottos) {
-        return new LottosDTO(lottos.lottos()
-                .stream()
-                .map(LottoNumbers::from)
-                .toList()
+        return new LottosDTO(
+                lottos.getLottos()
+                        .stream()
+                        .map(InnerLottoNumbers::from)
+                        .toList()
         );
     }
 
-    public record LottoNumbers(List<Integer> numbers) {
+    public record InnerLottoNumbers(List<Integer> numbers) {
 
-        public static LottoNumbers from(Lotto lotto) {
-            return new LottoNumbers(lotto.numbers());
+        public static InnerLottoNumbers from(Lotto lotto) {
+            return new InnerLottoNumbers(
+                    lotto.getNumbers()
+                            .stream()
+                            .map(LottoNumber::getNumber)
+                            .toList()
+            );
         }
     }
 }

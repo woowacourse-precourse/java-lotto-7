@@ -4,14 +4,19 @@ import static lotto.constant.LottoConstants.LOTTO_PRICE;
 
 import java.util.List;
 
-public record Lottos(List<Lotto> lottos) {
+public final class Lottos {
+    private final List<Lotto> lottos;
 
-    public int getLottoCount() {
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
+    public int getLottosCount() {
         return lottos.size();
     }
 
     private int getPrice() {
-        return getLottoCount() * LOTTO_PRICE;
+        return getLottosCount() * LOTTO_PRICE;
     }
 
     public double calculateProfit(WinningLotto winningLotto) {
@@ -20,5 +25,9 @@ public record Lottos(List<Lotto> lottos) {
                 .mapToLong(Rank::getPrice)
                 .sum();
         return sum / getPrice();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

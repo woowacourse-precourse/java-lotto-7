@@ -14,8 +14,8 @@ class WinningLottoTest {
             Lotto drawedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             BonusNumber bonusNumber = new BonusNumber(7);
             WinningLotto winningLotto = new WinningLotto(drawedLotto, bonusNumber);
-            assertThat(winningLotto.lotto().numbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
-            assertThat(bonusNumber.number()).isEqualTo(7);
+            assertThat(winningLotto.getLotto()).isEqualTo(drawedLotto);
+            assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
         });
     }
 

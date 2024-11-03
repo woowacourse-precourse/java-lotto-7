@@ -13,10 +13,10 @@ public enum Rank {
 
     private final int rank;
     private final long price;
-    private final int matchCount;
+    private final long matchCount;
     private final boolean containsBonus;
 
-    Rank(int rank, long price, int matchCount, boolean containsBonus) {
+    Rank(int rank, long price, long matchCount, boolean containsBonus) {
         this.rank = rank;
         this.price = price;
         this.matchCount = matchCount;
@@ -31,7 +31,7 @@ public enum Rank {
         return price;
     }
 
-    public int getMatchCount() {
+    public long getMatchCount() {
         return matchCount;
     }
 
@@ -39,7 +39,7 @@ public enum Rank {
         return containsBonus;
     }
 
-    public static Rank of(int matchCount, boolean containsBonus) {
+    public static Rank of(long matchCount, boolean containsBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount)
                 .filter(rank -> rank.containsBonus == containsBonus)

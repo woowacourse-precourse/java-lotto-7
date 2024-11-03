@@ -11,7 +11,7 @@ class BonusNumberTest {
     void 보너스_번호를_추첨한다() {
         assertSimpleTest(() -> {
             BonusNumber bonusNumber = new BonusNumber(45);
-            assertThat(bonusNumber.number()).isEqualTo(45);
+            assertThat(bonusNumber.getLottoNumber().getNumber()).isEqualTo(45);
         });
     }
 

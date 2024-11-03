@@ -15,7 +15,7 @@ public record LottoStatistics(
     public static LottoStatistics from(WinningLotto winningLotto, Lottos lottos) {
         Map<RankDTO, Integer> statistics = new TreeMap<>();
         Arrays.stream(Rank.values()).forEach(rank -> statistics.put(RankDTO.from(rank), 0));
-        for (Lotto lotto : lottos.lottos()) {
+        for (Lotto lotto : lottos.getLottos()) {
             Rank rank = winningLotto.calculateRank(lotto);
             RankDTO dto = RankDTO.from(rank);
             statistics.put(dto, statistics.get(dto) + 1);
@@ -28,7 +28,7 @@ public record LottoStatistics(
 
     public record RankDTO(
             int rank,
-            int matchCount,
+            long matchCount,
             long price,
             boolean containsBonus
     ) implements Comparable<RankDTO> {
