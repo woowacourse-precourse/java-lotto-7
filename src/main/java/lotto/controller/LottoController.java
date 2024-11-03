@@ -18,5 +18,6 @@ public class LottoController {
 
     private void handlePurchasePrice() {
         output.printPurchasePriceInputPrompt();
+        String purchasePrice = input.inputString();
     }
 }
