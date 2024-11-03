@@ -28,6 +28,7 @@ public abstract class InputView {
     }
 
     public static Bonus readBonus() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         checkIfNumberIsValid(input);
