@@ -11,6 +11,11 @@ public class Application {
 
     }
 
+    private static String getInputString(String message) {
+        System.out.println(message);
+        return Console.readLine();
+    }
+
     private static void validateNumericString(String input) {
         try {
             Integer.parseInt(input);
@@ -33,18 +38,21 @@ public class Application {
 
     private static int getPurchaseAmount() {
         while (true) {
-            System.out.println("구입 금액을 입력해 주세요.");
-            String purchaseAmountInput = Console.readLine();
+            String purchaseAmountInput = getInputString("구입 금액을 입력해 주세요.");
             try {
-                validateNumericString(purchaseAmountInput);
-                int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-                validatePositiveNumber(purchaseAmount);
-                validateThousandUnit(purchaseAmount);
-                return purchaseAmount;
+                return convertPurchaseAmount(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static int convertPurchaseAmount(String purchaseAmountInput) {
+        validateNumericString(purchaseAmountInput);
+        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        validatePositiveNumber(purchaseAmount);
+        validateThousandUnit(purchaseAmount);
+        return purchaseAmount;
     }
 
 
