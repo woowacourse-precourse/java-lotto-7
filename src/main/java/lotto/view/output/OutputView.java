@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println(OutputMessage.INPUT_PURCHASE_PRICE.message);
     }
 
-    public static void printPurchasedLottoery(LottoShop lottoShop) {
+    public static void printPurchasedLottery(LottoShop lottoShop) {
         List<Lotto> lotteries = lottoShop.getLottoTickets().getLotteries();
 
         lotteries.stream().map(Lotto::getNumbers)
@@ -30,5 +30,9 @@ public class OutputView {
 
     public static void printBonusNumber() {
         System.out.println(OutputMessage.INPUT_BONUS_NUMBER.message);
+    }
+
+    public static void printWinningStatics() {
+        System.out.println(OutputMessage.WINNING_STATISTICS.message);
     }
 }
