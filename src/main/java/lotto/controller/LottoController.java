@@ -2,11 +2,13 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Bonus;
+import lotto.domain.DrawNumbers;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.service.DrawService;
 import lotto.service.PurchaseService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     DrawService drawService ;
@@ -27,5 +29,10 @@ public class LottoController {
 
         int bonusNumber = InputView.getBonusNumber();
         Bonus bonus = drawService.getBonus(bonusNumber, lotto.getNumbers());
+
+        DrawNumbers winningNumbers = new DrawNumbers(lotto.getNumbers(), bonus.getNumber());
+
+        List<DrawNumbers> drawSets = purchaseService.getRandomDrawNumbersByTicketCount(purchase.getTicketCount());
+        OutputView.printPurchaseLotto(drawSets);
     }
 }
