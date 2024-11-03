@@ -9,6 +9,7 @@ public class Application {
         List<List<Integer>> lottos;
         List<Integer> winLotto;
         int lottoCount = 0;
+        int bonusNumber = 0;
         String winNumbers = "";
         Integer cost;
         System.out.println("구입 금액을 입력해 주세요.");
@@ -23,6 +24,7 @@ public class Application {
         winLotto = lotto.splitWinNumbers(winNumbers);
         lotto = new Lotto(winLotto);
 
-
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
     }
 }
