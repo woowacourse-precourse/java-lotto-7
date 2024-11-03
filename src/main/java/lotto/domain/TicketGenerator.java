@@ -15,11 +15,11 @@ public class TicketGenerator {
     }
 
     public List<Lotto> generateTickets() {
-        List<Lotto> tikets = new ArrayList<>();
+        List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            tikets.add(new Lotto(generateLottoNumbers()));
+            tickets.add(new Lotto(generateLottoNumbers()));
         }
-        return tikets;
+        return tickets;
     }
 
     private List<Integer> generateLottoNumbers() {
