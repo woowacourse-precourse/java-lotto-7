@@ -25,7 +25,7 @@ class LottoSellerTest {
     void 로또_구입_금액은_1000원_단위이다() {
         long money = 10000;
         List<Lotto> lottos = lottoSeller.sell(MoneyDTO.from(money));
-        assertThat(lottos.size()).isEqualTo(money / getLottoPrice());
+        assertThat(lottos).hasSize((int) money / getLottoPrice());
     }
 
     @ParameterizedTest
