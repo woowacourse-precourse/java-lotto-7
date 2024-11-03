@@ -20,7 +20,7 @@ public class LottoManagementSystem {
         return bonusNumber;
     }
 
-    public int returnRank(List<Integer> numbers) {
+    private int returnRank(List<Integer> numbers) {
         int matchCount = 0;
 
         for (Integer number : numbers) {
@@ -33,21 +33,18 @@ public class LottoManagementSystem {
     }
 
     private int checkRank(List<Integer> numbers, int matchCount) {
-        switch (matchCount) {
-            case 6:
-                return 1;
-            case 5:
+        return switch (matchCount) {
+            case 6 -> 1;
+            case 5 -> {
                 if (numbers.contains(bonusNumber)) {
-                    return 2;
+                    yield 2;
                 }
-                return 3;
-            case 4:
-                return 4;
-            case 3:
-                return 5;
-            default:
-                return 6;
-        }
+                yield 3;
+            }
+            case 4 -> 4;
+            case 3 -> 5;
+            default -> 6;
+        };
     }
 
 }

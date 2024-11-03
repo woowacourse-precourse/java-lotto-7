@@ -6,10 +6,9 @@ import java.util.List;
 public class MyWallet {
 
     private final int money;
-
     private List<Lotto> lottos;
-
     private int winnings;
+    
 
     public MyWallet(int money) {
         this.money = money;
