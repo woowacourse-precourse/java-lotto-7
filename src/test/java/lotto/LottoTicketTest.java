@@ -14,7 +14,7 @@ public class LottoTicketTest {
     void test1() {
         LottoTicket lottoTicket = new LottoTicket();
 
-        List<Lotto> lottos = lottoTicket.create(3);
+        List<Lotto> lottos = lottoTicket.createLotto(3);
 
         assertThat(lottos).hasSize(3);
     }
@@ -25,7 +25,7 @@ public class LottoTicketTest {
         Money money = new Money(10000);
         LottoTicket lottoTicket = new LottoTicket();
 
-        List<Lotto> lottos = lottoTicket.create(money.calculateLottoQuantity());
+        List<Lotto> lottos = lottoTicket.createLotto(money.calculateLottoQuantity());
 
         assertThat(lottos).hasSize(10);
     }

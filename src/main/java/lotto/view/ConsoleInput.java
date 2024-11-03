@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsoleInput {
     public BigDecimal readPurchaseAmount() {
@@ -14,14 +16,20 @@ public class ConsoleInput {
         return new BigDecimal(amount);
     }
 
-    public String readWinningNumbers() {
-
+    public List<Integer> readWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String s = Console.readLine();
+        String[] stringNumbers = s.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String stringNumber : stringNumbers) {
+            numbers.add(Integer.parseInt(stringNumber));
+        }
+        return numbers;
     }
 
-    public String readBonusNumber() {
+    public int readBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요");
-        return Console.readLine();
+        String s = Console.readLine();
+        return Integer.parseInt(s);
     }
 }

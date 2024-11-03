@@ -7,6 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int COUNT = 6;
+
     private final List<Lotto> lottos;
 
     public LottoTicket() {
@@ -17,11 +21,10 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
-    public List<Lotto> create(int lottoQuantity) {
+    public List<Lotto> createLotto(int lottoQuantity) {
         for (int i = 0; i < lottoQuantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> result = new ArrayList<>(numbers);
-            // numbers.sort(null);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
+            List<Integer> result = new ArrayList<>(randomNumbers);
             Collections.sort(result);
             lottos.add(new Lotto(result));
         }

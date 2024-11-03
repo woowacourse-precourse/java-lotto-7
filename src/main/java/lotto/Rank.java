@@ -11,6 +11,8 @@ public enum Rank {
     FIFTH(3, false, BigDecimal.valueOf(5_000)),
     NONE(0, false, BigDecimal.ZERO);
 
+    private static final String PRIZE_FORMAT_PATTERN = "#,###";
+
     private final int matchCount;
     private final boolean matchBonus;
     private final BigDecimal prize;
@@ -53,6 +55,6 @@ public enum Rank {
     }
 
     public String getFormattedPrize() {
-        return new DecimalFormat("#,###").format(prize);
+        return new DecimalFormat(PRIZE_FORMAT_PATTERN).format(prize);
     }
 }
