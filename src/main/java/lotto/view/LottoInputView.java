@@ -22,14 +22,16 @@ public class LottoInputView {
     }
 
     public Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> winningNumbers = Separator.parseInputToList(input);
-        System.out.println(winningNumbers);
         return new Lotto(winningNumbers);
     }
 
+
     public int inputBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }

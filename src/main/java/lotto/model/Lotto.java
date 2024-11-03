@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -22,11 +23,21 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
     public static List<Lotto> makeRandomLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            // 오름 차순 정렬기능 추가 예정
+            Collections.sort(randomNumbers);
             lottos.add(new Lotto(randomNumbers));
         }
         return lottos;
