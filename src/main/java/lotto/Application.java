@@ -1,7 +1,13 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        OutputSystem.printMessageForPurchaseAmount();
+        int lottoPurchaseAmount =  InputSystem.inputLottoPurchaseAmount();
+        OutputSystem.printMessageForLottoCountAndNumbers(lottoPurchaseAmount);
+        OutputSystem.printMessageForLottoNumber();
+        String[] lottoNumber =  InputSystem.inputLottoNumber();
     }
 }

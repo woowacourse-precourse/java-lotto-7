@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +19,22 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 구매한 로또의 개수 반환
+    public static int lottoCount(int lottoPurchaseAmount){
+        return lottoPurchaseAmount / 1000;
+    }
+
+    public static int[][] purchaseLottoNumbers(int lottoCount){
+        int[][] lottoNumbers = new int[lottoCount][6];
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> purchaseLottoNumber =  Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            for (int j = 0; j < 6; j++) {
+                lottoNumbers[i][j] = purchaseLottoNumber.get(j);
+            }
+        }
+        return lottoNumbers;
+    }
+
+
+
 }
