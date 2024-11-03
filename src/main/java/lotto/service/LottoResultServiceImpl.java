@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.domain.MatchResults;
 import lotto.domain.WinningLotto;
-import lotto.dto.FinalResultDto;
+import lotto.dto.RankResultsDto;
 import lotto.dto.LottosDto;
 import lotto.utils.parser.Parser;
 import lotto.utils.validator.ComparisonValidator;
@@ -47,9 +47,9 @@ public class LottoResultServiceImpl implements LottoResultService {
     }
 
     @Override
-    public FinalResultDto getFinalResultDto(LottosDto lottosDto) {
+    public RankResultsDto getRankResultsDto(LottosDto lottosDto) {
         MatchResults matchResults = MatchResults.createMatchResults(lottosDto, winningLotto);
-        return new FinalResultDto(matchResults.getRankResults());
+        return new RankResultsDto(matchResults.getRankResults());
     }
 
     private void buildWinningLotto(){
