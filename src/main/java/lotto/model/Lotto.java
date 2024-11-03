@@ -9,11 +9,11 @@ public class Lotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
 
-    private final LottoNumbers numbers;
+    private final LottoNumbers lottoNumbers;
 
-    private Lotto(LottoNumbers numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    private Lotto(LottoNumbers lottoNumbers) {
+        validate(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     public static Lotto from(LottoNumbers lottoNumbers) {
@@ -24,21 +24,21 @@ public class Lotto {
         return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomNumberGenerator));
     }
 
-    private void validate(LottoNumbers numbers) {
-        if (!numbers.hasSize(LOTTO_NUMBER_SIZE)) {
+    private void validate(LottoNumbers lottoNumbers) {
+        if (!lottoNumbers.hasSize(LOTTO_NUMBER_SIZE)) {
             String detail = String.format("로또 번호의 개수는 %d 개여야 합니다.", LOTTO_NUMBER_SIZE);
             throw LottoNumberInvalidException.lottoNumberSize(detail);
         }
-        if (!numbers.hasUniqueElements()) {
+        if (!lottoNumbers.hasUniqueElements()) {
             throw LottoNumberInvalidException.lottoNumberDuplicate();
         }
     }
 
     public LottoNumbers getNumbers() {
-        return numbers;
+        return lottoNumbers;
     }
 
     public boolean containsLottoNumber(LottoNumber lottoNumber) {
-        return numbers.contains(lottoNumber);
+        return lottoNumbers.contains(lottoNumber);
     }
 }
