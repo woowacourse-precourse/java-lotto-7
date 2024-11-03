@@ -23,7 +23,8 @@ class LottosTest {
         RangeValidator rangeValidator = new DefaultRangeValidator();
         this.lotto = new Lotto(numberProvider, rangeValidator);
 
-        this.draw = new Draw(lotto, 7, rangeValidator);
+        BonusNumber bonusNumber = new BonusNumber(7, rangeValidator);
+        this.draw = new Draw(lotto, bonusNumber);
     }
 
     @DisplayName("로또 리스트를 통해 생성할 수 있다.")

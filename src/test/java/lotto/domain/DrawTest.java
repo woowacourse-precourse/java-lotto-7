@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -31,35 +30,20 @@ class DrawTest {
     @DisplayName("추첨 시 6개의 당첨 번호와 1개의 보너스 번호를 갖는다.")
     @Test
     void drawHas6WinningNumbersAndOneBonusNumber() {
-        Draw draw = new Draw(defaultWinningNumbers, 7, rangeValidator);
+        BonusNumber bonusNumber = new BonusNumber(7, rangeValidator);
+        Draw draw = new Draw(defaultWinningNumbers, bonusNumber);
 
         assertThat(draw).extracting("winningNumbers").isEqualTo(defaultWinningNumbers);
-        assertThat(draw).extracting("bonusNumber").isEqualTo(7);
+        assertThat(draw).extracting("bonusNumber").isEqualTo(bonusNumber);
     }
 
     @DisplayName("당첨 번호가 null이면 예외를 던진다.")
     @Test
     void drawWinningNumbersCannotBeNull() {
-        assertThatThrownBy(() -> new Draw(null, 7, rangeValidator))
+        BonusNumber bonusNumber = new BonusNumber(7, rangeValidator);
+        assertThatThrownBy(() -> new Draw(null, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 null 일 수 없습니다.");
-    }
-
-    @DisplayName("보너스 번호가 null이면 예외를 던진다.")
-    @Test
-    void bonusNumberCannotBeNull() {
-        assertThatThrownBy(() -> new Draw(defaultWinningNumbers, null, rangeValidator))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호는 null 일 수 없습니다.");
-    }
-
-    @DisplayName("보너스 번호가 1과 45 사이 범위를 넘어가면 예외가 발생한다.")
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0, 46})
-    void bonusNumberShouldBeBetween1And45(Integer bonusNumber) {
-        assertThatThrownBy(() -> new Draw(defaultWinningNumbers, bonusNumber, rangeValidator))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
@@ -68,7 +52,9 @@ class DrawTest {
         DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
         Lotto winningNumbers = new Lotto(numberProvider, rangeValidator);
 
-        assertThatThrownBy(() -> new Draw(winningNumbers, 6, rangeValidator))
+        BonusNumber bonusNumber = new BonusNumber(6, rangeValidator);
+
+        assertThatThrownBy(() -> new Draw(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
@@ -79,7 +65,8 @@ class DrawTest {
     void returnRankByLottoMatchingCount(Lotto lotto, Rank expectedRank) {
         DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
         Lotto winningNumbers = new Lotto(numberProvider, rangeValidator);
-        Draw draw = new Draw(winningNumbers, 23, rangeValidator);
+        BonusNumber bonusNumber = new BonusNumber(23, rangeValidator);
+        Draw draw = new Draw(winningNumbers, bonusNumber);
 
         Rank rank = draw.compare(lotto);
 

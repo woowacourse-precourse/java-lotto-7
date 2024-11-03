@@ -1,17 +1,15 @@
 package lotto.domain;
 
-import lotto.domain.validator.RangeValidator;
-
 import java.util.List;
 
 public class Draw {
 
     private final Lotto winningNumbers;
-    private final Integer bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public Draw(Lotto winningNumbers, Integer bonusNumber, RangeValidator rangeValidator) {
+    public Draw(Lotto winningNumbers, BonusNumber bonusNumber) {
         validateWinningNumbers(winningNumbers);
-        validateBonusNumber(bonusNumber, winningNumbers, rangeValidator);
+        validateBonusNumber(bonusNumber, winningNumbers);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -22,23 +20,15 @@ public class Draw {
         }
     }
 
-    private void validateBonusNumber(Integer bonusNumber, Lotto winningNumbers, RangeValidator rangeValidator) {
-        if (bonusNumber == null) {
-            throw new IllegalArgumentException("보너스 번호는 null 일 수 없습니다.");
-        }
-
-        if (rangeValidator.outOfRange(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
-        }
-
-        if (winningNumbers.hasNumber(bonusNumber)) {
+    private void validateBonusNumber(BonusNumber bonusNumber, Lotto winningNumbers) {
+        if (winningNumbers.hasNumber(bonusNumber.getNumber())) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
     public Rank compare(Lotto lotto) {
         List<Integer> matchedWinningNumbers = winningNumbers.match(lotto);
-        boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
+        boolean hasBonusNumber = lotto.hasNumber(bonusNumber.getNumber());
         return Rank.with(matchedWinningNumbers.size(), hasBonusNumber);
     }
 }
