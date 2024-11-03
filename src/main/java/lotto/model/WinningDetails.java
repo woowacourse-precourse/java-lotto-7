@@ -4,22 +4,22 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class WinningHistory {
-    private final Map<Rank, Integer> winningHistory;
+public class WinningDetails {
+    private final Map<Rank, Integer> winningCountOfEachRanks;
     private int totalPrize;
 
-    public WinningHistory(List<Integer> winningNumbers, List<Lotto> publishedLotteries, int bonusNumber) {
-        winningHistory = new EnumMap<>(Rank.class);
+    public WinningDetails(List<Integer> winningNumbers, List<Lotto> publishedLotteries, int bonusNumber) {
+        winningCountOfEachRanks = new EnumMap<>(Rank.class);
 
         for (Rank rank : Rank.values()) {
-            winningHistory.put(rank, 0);
+            winningCountOfEachRanks.put(rank, 0);
         }
 
         countWinningsOfEachRank(winningNumbers, publishedLotteries, bonusNumber);
     }
 
     public Map<Rank, Integer> getWinningCountOfEachRank() {
-        return winningHistory;
+        return winningCountOfEachRanks;
     }
 
     public int getTotalPrize() {
@@ -35,7 +35,7 @@ public class WinningHistory {
             Rank rank = Rank.assignRank(matchCount, matchBonus);
 
             if (rank != null) {
-                winningHistory.put(rank, winningHistory.get(rank) + 1);
+                winningCountOfEachRanks.put(rank, winningCountOfEachRanks.get(rank) + 1);
                 sumTotalPrize(rank.getPrize());
             }
         }

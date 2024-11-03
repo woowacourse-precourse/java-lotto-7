@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WinningHistoryTest {
+class WinningDetailsTest {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private List<Lotto> publishedLotteries;
@@ -32,8 +32,8 @@ class WinningHistoryTest {
     @Test
     @DisplayName("구매한 로또와 당첨 번호를 비교하여 랭킹 별 당첨 개수를 계산하고, 정확하게 할당한다.")
     void countWinningsOfEachRank() {
-        WinningHistory winningHistory = new WinningHistory(winningNumbers, publishedLotteries, bonusNumber);
-        Map<Rank, Integer> result = winningHistory.getWinningCountOfEachRank();
+        WinningDetails winningDetails = new WinningDetails(winningNumbers, publishedLotteries, bonusNumber);
+        Map<Rank, Integer> result = winningDetails.getWinningCountOfEachRank();
 
         assertThat(result.get(Rank.FIRST)).isEqualTo(1);
         assertThat(result.get(Rank.SECOND)).isEqualTo(1);
@@ -45,8 +45,8 @@ class WinningHistoryTest {
     @Test
     @DisplayName("구매한 로또와 당첨 번호를 비교하여 총 상금을 계산한다.")
     void countWinningsOfTotalPrize() {
-        WinningHistory winningHistory = new WinningHistory(winningNumbers, publishedLotteries, bonusNumber);
-        int totalPrize = winningHistory.getTotalPrize();
+        WinningDetails winningDetails = new WinningDetails(winningNumbers, publishedLotteries, bonusNumber);
+        int totalPrize = winningDetails.getTotalPrize();
 
         int expectedTotalPrize = Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize() +
                 Rank.FOURTH.getPrize() + Rank.FIFTH.getPrize();

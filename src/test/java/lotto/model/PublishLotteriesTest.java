@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PublishLotteriesTest {
     @Test
     @DisplayName("구매 개수만큼 로또가 발행된다.")
-    void shouldPublishLotteriesBasedOnPurchaseCount() {
+    void publishing() {
         int purchaseCount = 5;
         PublishLotteries publishLotteries = new PublishLotteries(purchaseCount);
 

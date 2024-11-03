@@ -8,7 +8,7 @@ import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.Purchase;
 import lotto.model.TotalRateOfReturn;
-import lotto.model.WinningHistory;
+import lotto.model.WinningDetails;
 import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,7 +22,7 @@ public class LottoController {
     private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
     private PublishLotteries publishLotteries;
-    private WinningHistory winningHistory;
+    private WinningDetails winningDetails;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -34,19 +34,20 @@ public class LottoController {
 
     public void play() {
         buy();
-        assign();
-        printFinalStatistics();
+        create();
+        calculateWinningDetails();
+        showFinalStatistics();
     }
 
     private void buy() {
         inputPurchaseAmount();
-        publishLotto();
+        publishingLotto();
         printPublishedLotto();
     }
 
-    private void assign() {
-        assignWinningNumbers();
-        assignBonusNumber();
+    private void create() {
+        createWinningNumber();
+        createBonusNumber();
     }
 
     private void inputPurchaseAmount() {
@@ -61,7 +62,7 @@ public class LottoController {
         }
     }
 
-    private void publishLotto() {
+    private void publishingLotto() {
         publishLotteries = new PublishLotteries(purchase.getPurchaseCount());
     }
 
@@ -69,7 +70,7 @@ public class LottoController {
         outputView.printPublishedLotteries(publishLotteries.get());
     }
 
-    private void assignWinningNumbers() {
+    private void createWinningNumber() {
         while (true) {
             try {
                 String input = inputView.getWinningNumber();
@@ -81,7 +82,7 @@ public class LottoController {
         }
     }
 
-    private void assignBonusNumber() {
+    private void createBonusNumber() {
         while (true) {
             try {
                 int number = inputView.getBonusNumber();
@@ -93,20 +94,16 @@ public class LottoController {
         }
     }
 
-    private Map<Rank, Integer> getWinningHistories() {
-        Map<Rank, Integer> winningCountOfEachRanks;
-        List<Integer> winningNumbersToCompare = winningNumber.get();
+    private void calculateWinningDetails() {
+        List<Integer> winningNumberToCompare = winningNumber.get();
         List<Lotto> publishedLotteries = publishLotteries.get();
         int bonus = bonusNumber.get();
 
-        winningHistory = new WinningHistory(winningNumbersToCompare, publishedLotteries, bonus);
-        winningCountOfEachRanks = winningHistory.getWinningCountOfEachRank();
-
-        return winningCountOfEachRanks;
+        winningDetails = new WinningDetails(winningNumberToCompare, publishedLotteries, bonus);
     }
 
     private double getTotalRateOfReturn() {
-        int totalPrize = winningHistory.getTotalPrize();
+        int totalPrize = winningDetails.getTotalPrize();
         int purchasePrice = purchase.getPurchasePrice();
         TotalRateOfReturn totalRateOfReturn = new TotalRateOfReturn(totalPrize, purchasePrice);
 
@@ -114,7 +111,7 @@ public class LottoController {
     }
 
     private void printWinningHistories() {
-        Map<Rank, Integer> winningCountOfEachRanks = getWinningHistories();
+        Map<Rank, Integer> winningCountOfEachRanks = winningDetails.getWinningCountOfEachRank();
         outputView.printWinnings(winningCountOfEachRanks);
     }
 
@@ -123,7 +120,7 @@ public class LottoController {
         outputView.printTotalRateOfReturn(rateOfReturn);
     }
 
-    private void printFinalStatistics() {
+    private void showFinalStatistics() {
         printWinningHistories();
         printTotalRateOfReturn();
     }
