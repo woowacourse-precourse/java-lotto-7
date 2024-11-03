@@ -1,5 +1,5 @@
 package lotto.enums;
 
 public interface SystemMessage {
-  String getMessage();
+    String getMessage();
 }
