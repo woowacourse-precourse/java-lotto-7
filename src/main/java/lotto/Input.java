@@ -72,4 +72,10 @@ public class Input {
 			throw new IllegalArgumentException("[ERROR] 입력에 공백이 포함되어 있을 수 없습니다.");
 		}
 	}
+
+	public void validateSeparatorSplit(String input) {
+		if (input.endsWith(",")) {
+			throw new IllegalArgumentException("[ERROR] 입력은 숫자로 끝나야 합니다.");
+		}
+	}
 }
