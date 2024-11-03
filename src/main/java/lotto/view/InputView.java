@@ -2,6 +2,9 @@ package lotto.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.service.LottoService;
+
+import java.util.List;
 
 
 public class InputView {
@@ -17,4 +20,15 @@ public class InputView {
         return budget;
     }
 
+    public static List<Integer> inputWinningNumber(){
+        List<Integer> winningNumbers ;
+        try{
+            String numbers = Console.readLine();
+            winningNumbers = LottoService.parseWinningNumber(numbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumber();
+        }
+        return winningNumbers;
+    }
 }
