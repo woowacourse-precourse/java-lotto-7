@@ -81,4 +81,15 @@ class InputViewTest {
         String lastMessage = messages[messages.length - 4];
         assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage(), lastMessage);
     }
+
+    @Test
+    @DisplayName("메인 숫자에 중복된 값이 있을 때 예외 메시지 출력")
+    void displayErrorMessageWhenMainNumbersHaveDuplicates() {
+        List<Integer> mainNumbers = List.of(1, 2, 3, 3, 4, 5);
+        int bonusNumber = 7;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(mainNumbers, bonusNumber));
+        assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
+    }
 }
