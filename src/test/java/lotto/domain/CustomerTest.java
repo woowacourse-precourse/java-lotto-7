@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import lotto.domains.customer.Customer;
 import lotto.domains.lotto.domain.Lotto;
 import lotto.domains.lotto.domain.LottoPrizeNumbers;
 import lotto.domains.lotto.domain.LottoTicket;
+import lotto.domains.lotto.type.LottoPrize;
 
 public class CustomerTest {
 	@DisplayName("Customer 클래스가 올바르게 생성된다.")
@@ -51,5 +53,21 @@ public class CustomerTest {
 
 		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(3))).isTrue();
 		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(4))).isTrue();
+	}
+
+	@DisplayName("수익률을 올바르게 계산할 수 있다.")
+	@Test
+	void 수익률을_올바르게_계산할_수_있다() {
+		Customer customer = Customer.from(8000);
+
+		Map<LottoPrize, Integer> lottoResults = new LinkedHashMap<>();
+		lottoResults.put(LottoPrize.THREE, 1);
+
+		customer.calculateProfit(lottoResults);
+
+		String expectedOutput = "총 수익률은 62.5%입니다.";
+		String profitFormat = customer.formattingForPrintProfit();
+
+		assertThat(profitFormat).isEqualTo(expectedOutput);
 	}
 }
