@@ -1,6 +1,6 @@
-package lotto.util.error;
+package lotto.util.message;
 
-public enum InputErrorMessage implements ErrorMessage {
+public enum InputErrorMessage implements Message {
 
     PURCHASE_AMOUNT_EMPTY("구입금액을 입력되지 않았어요."),
     PURCHASE_AMOUNT_INVALID("구입금액에 숫자가 아닌 문자가 포함되어 있어요."),

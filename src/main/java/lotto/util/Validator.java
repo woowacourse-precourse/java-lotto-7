@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.rule.LottoRule;
-import lotto.util.error.ErrorMessage;
-import lotto.util.error.LottoErrorMessage;
+import lotto.util.message.Message;
+import lotto.util.message.LottoErrorMessage;
 
 public class Validator {
 
@@ -68,20 +68,20 @@ public class Validator {
         }
     }
 
-    private static void validateCount(List<Integer> numbers, ErrorMessage message) {
+    private static void validateCount(List<Integer> numbers, Message message) {
         if (numbers.size() != LottoRule.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(message.get());
         }
     }
 
-    private static void validateDuplicate(List<Integer> numbers, ErrorMessage message) {
+    private static void validateDuplicate(List<Integer> numbers, Message message) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(message.get());
         }
     }
 
-    private static void validateRange(List<Integer> numbers, ErrorMessage message) {
+    private static void validateRange(List<Integer> numbers, Message message) {
         long validNumbersCount = numbers.stream()
                 .filter(Validator::isValidRangeInLotto)
                 .count();

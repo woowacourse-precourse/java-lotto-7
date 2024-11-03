@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.dto.WinningResult;
-import lotto.util.input.InputParser;
+import lotto.util.InputParser;
 import lotto.model.evaluate.LottoResultEvaluator;
 import lotto.model.win.BonusNumber;
 import lotto.model.shop.LottoShop;
@@ -10,7 +10,7 @@ import lotto.model.ticket.LottoTickets;
 import lotto.model.win.LottoWinningSet;
 import lotto.model.shop.TicketSeller;
 import lotto.model.win.WinningNumbers;
-import lotto.util.input.InputUtil;
+import lotto.util.InputUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

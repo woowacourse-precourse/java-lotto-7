@@ -1,9 +1,9 @@
-package lotto.util.input;
+package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import lotto.util.error.InputErrorMessage;
+import lotto.util.message.InputErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

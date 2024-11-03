@@ -1,9 +1,9 @@
-package lotto.util.input;
+package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.util.error.ErrorMessage;
-import lotto.util.error.InputErrorMessage;
+import lotto.util.message.Message;
+import lotto.util.message.InputErrorMessage;
 import org.junit.platform.commons.util.StringUtils;
 
 public class InputParser {
@@ -30,7 +30,7 @@ public class InputParser {
         return parseInteger(rawInput.trim(), InputErrorMessage.BONUS_NUMBER_INVALID);
     }
 
-    private static void validateNotEmpty(String input, ErrorMessage error) {
+    private static void validateNotEmpty(String input, Message error) {
         if (StringUtils.isBlank(input)) {
             throw new IllegalArgumentException(error.get());
         }
@@ -42,11 +42,11 @@ public class InputParser {
         }
     }
 
-    private static int parseInteger(String input, ErrorMessage errorMessage) {
+    private static int parseInteger(String input, Message message) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorMessage.get());
+            throw new IllegalArgumentException(message.get());
         }
     }
 

@@ -1,4 +1,4 @@
-package lotto.util.input;
+package lotto.util;
 
 public class InputUtil {
 

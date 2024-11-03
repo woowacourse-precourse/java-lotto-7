@@ -3,7 +3,7 @@ package lotto.model.shop;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.util.error.LottoErrorMessage;
+import lotto.util.message.LottoErrorMessage;
 import lotto.model.ticket.LottoTickets;
 import lotto.rule.LottoRule;
 import org.junit.jupiter.api.DisplayName;
