@@ -111,5 +111,6 @@ public class LottoController {
 
     private void handleBonusNumber() {
         output.printBonusNumberInputPrompt();
+        String bonusNumber = input.inputString();
     }
 }
