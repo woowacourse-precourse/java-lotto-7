@@ -17,6 +17,13 @@ public class InputView {
         return answer;
     }
 
+    public String getBonusNumber() {
+        System.out.println(ViewMessage.BONUS_NUMBER.getMessage());
+        String bonusNumber = Console.readLine();
+        validate(bonusNumber);
+        return bonusNumber;
+    }
+
     private void validate(final String input) {
         validateNull(input);
         validateBlank(input);
