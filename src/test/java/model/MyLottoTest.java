@@ -1,11 +1,9 @@
-package lotto;
+package model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import model.MyLotto;
 
 class MyLottoTest {
 
