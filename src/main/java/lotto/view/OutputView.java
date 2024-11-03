@@ -18,6 +18,7 @@ public class OutputView {
     public static final String WINNING_RESULT_CONTENT_MESSAGE = "%d개 일치 %s(%,d원) - %d개";
     public static final String BONUS_NUMBER_MATCHED_MESSAGE = "보너스 볼 일치 ";
     public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    public static final String INPUT_EXCEPTION_MESSAGE = "[ERROR] %s";
 
     public void printPurchasePriceInputMessage() {
         System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
@@ -68,5 +69,10 @@ public class OutputView {
 
     public void printRateOfReturn(double rateOfReturn) {
         System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn));
+    }
+
+    public void printInputExceptionMessage(String exceptionMessage) {
+        String content = String.format(INPUT_EXCEPTION_MESSAGE, exceptionMessage);
+        System.out.println(content);
     }
 }

@@ -51,9 +51,15 @@ public class LottoController {
 
     private PurchasePrice inputPurchasePrice() {
         outputView.printPurchasePriceInputMessage();
-        String rawPurchasePrice = inputView.inputContent();
-        inputValidationService.validatePurchasePrice(rawPurchasePrice);
-        return inputParsingService.parsePurchasePrice(rawPurchasePrice);
+        while (true) {
+            try {
+                String rawPurchasePrice = inputView.inputContent();
+                inputValidationService.validatePurchasePrice(rawPurchasePrice);
+                return inputParsingService.parsePurchasePrice(rawPurchasePrice);
+            } catch (IllegalArgumentException exception) {
+                outputView.printInputExceptionMessage(exception.getMessage());
+            }
+        }
     }
 
     private void printIssuedLotto(List<Lotto> issuedLotto) {
@@ -69,16 +75,28 @@ public class LottoController {
 
     private Lotto inputWinningLotto() {
         outputView.printWinningNumberInputMessage();
-        String rawWinningNumber = inputView.inputContent();
-        inputValidationService.validateWinningNumber(rawWinningNumber);
-        return inputParsingService.parseWinningLotto(rawWinningNumber);
+        while (true) {
+            try {
+                String rawWinningNumber = inputView.inputContent();
+                inputValidationService.validateWinningNumber(rawWinningNumber);
+                return inputParsingService.parseWinningLotto(rawWinningNumber);
+            } catch (IllegalArgumentException exception) {
+                outputView.printInputExceptionMessage(exception.getMessage());
+            }
+        }
     }
 
     private BonusNumber inputBonusNumber(List<Integer> banNumbers) {
         outputView.printBonusNumberInputMessage();
-        String rawBonusNumber = inputView.inputContent();
-        inputValidationService.validateBonusNumber(rawBonusNumber);
-        return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
+        while (true) {
+            try {
+                String rawBonusNumber = inputView.inputContent();
+                inputValidationService.validateBonusNumber(rawBonusNumber);
+                return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
+            } catch (IllegalArgumentException exception) {
+                outputView.printInputExceptionMessage(exception.getMessage());
+            }
+        }
     }
 
     private WinningResult calculateWinningResult(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
