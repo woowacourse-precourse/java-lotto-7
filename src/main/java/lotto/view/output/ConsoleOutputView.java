@@ -15,7 +15,7 @@ import lotto.dto.RankResultsDto;
 public class ConsoleOutputView implements OutputView {
     String RESPONSE_RANK = "\n%d개 일치 (%s원) - %d개";
     String RESPONSE_RANK_FOR_BONUS = "\n%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    String PURCHASE_NOTICE = "\n%d개를 구매했습니다%n";
+    String PURCHASE_NOTICE = "\n%d개를 구매했습니다.%n";
     DecimalFormat moneyFormat = new DecimalFormat("###,###");
 
     @Override
@@ -70,7 +70,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private void outputProfitRate(ProfitDto profitDto) {
-        System.out.printf("\n총 수익율은 %.1f%%입니다",profitDto.profitRate());
+        System.out.printf("\n총 수익률은 %.1f%%입니다.",profitDto.profitRate());
     }
 
 

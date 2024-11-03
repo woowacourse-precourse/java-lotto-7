@@ -17,7 +17,7 @@ import lotto.utils.parser.Parser;
 import lotto.utils.parser.StringToIntListParser;
 import lotto.utils.parser.StringToIntParser;
 import lotto.utils.validator.ComparisonValidator;
-import lotto.utils.validator.Validator;
+import lotto.utils.validator.InputValidator;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
 import lotto.view.output.ConsoleOutputView;
@@ -55,7 +55,7 @@ public class AppConfig {
 
     public LottoPurchaseService lottoPurchaseService() {
         DtoMapper<Lottos, LottosDto> lottosDtoMapper = dtoMapperConfig.lottosDtoMapper();
-        Validator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
+        InputValidator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
         return new LottoPurchaseServiceImpl(defaultlottoFactory()
                 ,lottosDtoMapper,
                 purchaseAmountValidator
@@ -63,7 +63,7 @@ public class AppConfig {
     }
 
     public LottoResultService lottoResultService() {
-        Validator<String> winningNumbersValidator = validatorConfig.WinningNumbersValidator();
+        InputValidator<String> winningNumbersValidator = validatorConfig.WinningNumbersValidator();
         ComparisonValidator bonusNumberValidator = validatorConfig.BonusNumberValidator();
 
         return new LottoResultServiceImpl(winningNumbersValidator

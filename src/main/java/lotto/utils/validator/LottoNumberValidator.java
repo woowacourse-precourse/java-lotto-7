@@ -4,7 +4,7 @@ import static lotto.exception.ErrorMessages.OUT_OF_RANGE;
 import static lotto.constants.LottoConstants.LOWER_BOUND;
 import static lotto.constants.LottoConstants.UPPER_BOUND;
 
-public class LottoNumberValidator implements Validator<Integer>{
+public class LottoNumberValidator implements InputValidator<Integer> {
 
     @Override
     public void validate(Integer number) {

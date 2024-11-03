@@ -6,19 +6,19 @@ import lotto.domain.LottoFactory;
 import lotto.domain.Lottos;
 import lotto.dto.LottosDto;
 import lotto.utils.parser.Parser;
-import lotto.utils.validator.Validator;
+import lotto.utils.validator.InputValidator;
 
 public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     private final DtoMapper<Lottos, LottosDto> lottosDtoMapper;
     private final LottoFactory defaultLottoFactory;
-    private final Validator<String> purchaseAmountValidator;
+    private final InputValidator<String> purchaseAmountValidator;
     private final Parser<Integer> stringToIntParser;
     private Lottos lottos;
 
     public LottoPurchaseServiceImpl(
             LottoFactory defaultLottoFactory
             , DtoMapper<Lottos, LottosDto> lottosDtoMapper
-            , Validator<String> purchaseAmountValidator
+            , InputValidator<String> purchaseAmountValidator
             , Parser<Integer> stringToIntParser) {
 
         this.defaultLottoFactory = defaultLottoFactory;

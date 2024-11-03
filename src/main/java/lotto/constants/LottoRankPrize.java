@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum LottoRankPrize {
-    FIRST(1,200000000,6),
+    FIRST(1,2000000000,6),
     SECOND(2, 30000000,5)
     , THIRD(3, 1500000,5)
     , FOURTH(4, 50000,4)

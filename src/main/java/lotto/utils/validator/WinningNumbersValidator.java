@@ -4,14 +4,14 @@ import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
 import static lotto.constants.LottoConstants.NUMBERS_PER_LOTTO;
 
-public class WinningNumbersValidator implements Validator<String> {
+public class WinningNumbersValidator implements InputValidator<String> {
     private final String DELIMITER = ",";
-    private final Validator<String> positiveIntValidator;
-    private final Validator<Integer> lottoNumberValidator;
+    private final InputValidator<String> positiveIntValidator;
+    private final InputValidator<Integer> lottoNumberValidator;
 
     public WinningNumbersValidator(
-            Validator<String> positiveIntValidator,
-            Validator<Integer> lottoNumberValidator) {
+            InputValidator<String> positiveIntValidator,
+            InputValidator<Integer> lottoNumberValidator) {
 
         this.positiveIntValidator = positiveIntValidator;
         this.lottoNumberValidator = lottoNumberValidator;

@@ -5,11 +5,11 @@ import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import static lotto.constants.LottoConstants.PURCHASE_LIMIT;
 
-public class PurchaseAmountValidator implements Validator<String> {
+public class PurchaseAmountValidator implements InputValidator<String> {
 
-    private final Validator<String> positiveIntValidator;
+    private final InputValidator<String> positiveIntValidator;
 
-    public PurchaseAmountValidator(Validator<String> positiveIntValidator) {
+    public PurchaseAmountValidator(InputValidator<String> positiveIntValidator) {
         this.positiveIntValidator = positiveIntValidator;
     }
 

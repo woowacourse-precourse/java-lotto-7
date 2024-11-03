@@ -7,10 +7,10 @@ import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;
 import lotto.utils.parser.Parser;
 import lotto.utils.validator.ComparisonValidator;
-import lotto.utils.validator.Validator;
+import lotto.utils.validator.InputValidator;
 
 public class LottoResultServiceImpl implements LottoResultService {
-    private final Validator<String> winningNumbersValidator;
+    private final InputValidator<String> winningNumbersValidator;
     private final ComparisonValidator bonusNumberValidator;
     private final Parser<List<Integer>> stringToIntListParser;
     private final Parser<Integer> stringToIntParser;
@@ -18,7 +18,7 @@ public class LottoResultServiceImpl implements LottoResultService {
     private int bonusNumber;
     private WinningLotto winningLotto;
 
-    public LottoResultServiceImpl(Validator<String> winningNumbersValidator
+    public LottoResultServiceImpl(InputValidator<String> winningNumbersValidator
             , ComparisonValidator bonusNumberValidator
             , Parser<List<Integer>>  stringToIntListParser
             , Parser<Integer> stringToIntParser) {

@@ -5,24 +5,24 @@ import lotto.utils.validator.ComparisonValidator;
 import lotto.utils.validator.LottoNumberValidator;
 import lotto.utils.validator.PositiveIntValidator;
 import lotto.utils.validator.PurchaseAmountValidator;
-import lotto.utils.validator.Validator;
+import lotto.utils.validator.InputValidator;
 import lotto.utils.validator.WinningNumbersValidator;
 
 public class ValidatorConfig {
 
-    public Validator<String> positiveIntValidator(){
+    public InputValidator<String> positiveIntValidator(){
         return new PositiveIntValidator();
     }
 
-    public Validator<Integer> lottoNumberValidator(){
+    public InputValidator<Integer> lottoNumberValidator(){
         return new LottoNumberValidator();
     }
 
-    public Validator<String> purchaseAmountValidator(){
+    public InputValidator<String> purchaseAmountValidator(){
         return new PurchaseAmountValidator(positiveIntValidator());
     }
 
-    public Validator<String> WinningNumbersValidator(){
+    public InputValidator<String> WinningNumbersValidator(){
         return new WinningNumbersValidator(positiveIntValidator(), lottoNumberValidator());
     }
 

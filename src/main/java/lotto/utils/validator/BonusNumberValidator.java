@@ -2,15 +2,15 @@ package lotto.utils.validator;
 
 import java.util.List;
 
-import static lotto.exception.ErrorMessages.NUMBER_DUPLICATION;
+import static lotto.exception.ErrorMessages.BONUS_NUMBER_DUPLICATION;
 
 public class BonusNumberValidator implements ComparisonValidator {
-    private final Validator<String> positiveIntValidator;
-    private final Validator<Integer> lottoNumberValidator;
+    private final InputValidator<String> positiveIntValidator;
+    private final InputValidator<Integer> lottoNumberValidator;
 
     public BonusNumberValidator(
-            Validator<String> positiveIntValidator
-            , Validator<Integer> lottoNumberValidator ){
+            InputValidator<String> positiveIntValidator
+            , InputValidator<Integer> lottoNumberValidator ){
 
         this.positiveIntValidator = positiveIntValidator;
         this.lottoNumberValidator = lottoNumberValidator;
@@ -38,7 +38,7 @@ public class BonusNumberValidator implements ComparisonValidator {
             ,List<Integer> winningNumbers) {
 
         if (winningNumbers.contains(bonusNumber)){
-            throw new IllegalArgumentException(String.format(NUMBER_DUPLICATION.getMessage(), bonusNumber));
+            throw new IllegalArgumentException(String.format(BONUS_NUMBER_DUPLICATION.getMessage(), bonusNumber));
         }
 
     }

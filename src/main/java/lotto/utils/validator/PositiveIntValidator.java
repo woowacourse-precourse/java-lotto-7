@@ -6,7 +6,7 @@ import static lotto.exception.ErrorMessages.NOT_NUMBER;
 import static lotto.exception.ErrorMessages.NOT_INT;
 import static lotto.exception.ErrorMessages.NOT_POSITIVE_INT;
 
-public class PositiveIntValidator implements Validator<String> {
+public class PositiveIntValidator implements InputValidator<String> {
 
     @Override
     public void validate(String rawNumber) {
