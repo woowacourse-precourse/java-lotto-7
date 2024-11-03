@@ -10,6 +10,9 @@ import lotto.domain.Profit;
 import lotto.domain.Rank;
 
 public class OutputView {
+    private static final int DEFAULT = 0;
+    private static final String NEW_LINE = "%n";
+
     public static void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
@@ -42,20 +45,18 @@ public class OutputView {
 
     public static void printWinningStatics() {
         System.out.println();
-        System.out.println(OutputMessage.WINNING_STATISTICS.message);
-        System.out.print("---");
+        System.out.print(OutputMessage.WINNING_STATISTICS.message);
     }
 
     public static void printMatchNumber(LottoResult lottoResult, int bonusNumber) {
         Map<Rank, Integer> rankCount = lottoResult.getMatchNumber();
         for (Rank rank : Rank.values()) {
-            int matchCount = rankCount.getOrDefault(rank, 0);
-            System.out.printf(rank.getMessage() + "%n", matchCount);
+            int matchCount = rankCount.getOrDefault(rank, DEFAULT);
+            System.out.printf(rank.getMessage() + NEW_LINE, matchCount);
         }
     }
 
     public static void printTotalProfit(LottoResult lottoResult, LottoCount lottoCount) {
-        System.out.println();
         Profit profit = new Profit(lottoResult, lottoCount);
         System.out.printf(OutputMessage.PROFIT.message, profit.calculateTotalProfit());
     }
