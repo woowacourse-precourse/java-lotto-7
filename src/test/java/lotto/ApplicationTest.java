@@ -9,6 +9,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -50,6 +51,22 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구매금액이_1000원_이하면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구매금액의_단위가_1000원이_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("1234");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
