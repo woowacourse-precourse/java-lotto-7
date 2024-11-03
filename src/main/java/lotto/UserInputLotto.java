@@ -55,4 +55,8 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
 
         return numbers;
     }
+
+    private void validatePurchaseAmount(int amount) {
+        ErrorMessage.INVALID_PURCHASE_AMOUNT.validateAmount(amount);
+    }
 }
