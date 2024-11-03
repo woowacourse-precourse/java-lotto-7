@@ -38,6 +38,6 @@ public class LottoTicketMatcher {
     private boolean containsBonusNumber(Lotto lotto, WinningLotto winningLotto) {
         return lotto.getLottoNumbers()
                 .stream()
-                .anyMatch(lottoNumber -> winningLotto.getBonusNumber() == lottoNumber);
+                .anyMatch(lottoNumber -> winningLotto.getBonusNumber().equals(lottoNumber));
     }
 }
