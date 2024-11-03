@@ -2,6 +2,7 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.domain.constant.ErrorMessage.NOT_INTEGER;
 import static lotto.domain.constant.ErrorMessage.PRICE_UNMATCHED;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,6 +62,15 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("101");
             assertThat(output()).contains(PRICE_UNMATCHED.getMessage());
+        });
+    }
+
+    @DisplayName("당첨번호 입력시 숫자가 아닐경우 예외처리")
+    @Test
+    void 당첨번호_입력시_숫자가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,1,2,3,4,5");
+            assertThat(output()).contains(NOT_INTEGER.getMessage());
         });
     }
 
