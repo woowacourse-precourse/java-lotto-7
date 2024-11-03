@@ -10,7 +10,7 @@ import java.util.Map;
 public class Writer {
 
     public static void writeIssuedLottos(List<Lotto> lottos) {
-        System.out.printf("%d개를 구매했습니다%n", lottos.size());
+        System.out.printf("%n%d개를 구매했습니다%n", lottos.size());
 
         lottos.forEach((lotto) -> {
             String joinedLotto = String.join(
