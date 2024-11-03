@@ -51,4 +51,19 @@ public class LottoHandler {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+
+    public void checkedResult(Lotto winningLotto, Lottos buyLottos) {
+        int rankedNumber = checkSameNumber(winningLotto.getNumbers(), buyLottos.getLottoNumbers());
+    }
+
+    private int checkSameNumber(List<Integer> winningLottoNumbers, List<Integer> buyLottoNumbers) {
+        int count = 0;
+        for(int num : buyLottoNumbers) {
+            if (winningLottoNumbers.contains(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
