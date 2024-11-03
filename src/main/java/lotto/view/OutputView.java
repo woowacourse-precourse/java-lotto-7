@@ -1,6 +1,9 @@
 package lotto.view;
 
+import lotto.domain.user.User;
 import lotto.util.LottoWinningPriceList;
+
+import java.text.DecimalFormat;
 
 public enum OutputView {
 
@@ -19,6 +22,10 @@ public enum OutputView {
     OutputView(String message) {
         this.message = message;
     }
+
+    static final DecimalFormat dfResult = new DecimalFormat("0.0");
+    static final DecimalFormat dfNumber = new DecimalFormat("#,###");
+
 
     public static void printMessage(OutputView view) {
         System.out.println(view.message);
@@ -49,11 +56,16 @@ public enum OutputView {
     }
 
     private static void printIsBonus(int bonusCount) {
-        System.out.println("5개 일치, 보너스 볼 일치 (" + LottoWinningPriceList.getIncludeBonus + "원) - " + bonusCount + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + dfNumber.format(LottoWinningPriceList.getIncludeBonus) + "원) - " + bonusCount + "개");
     }
 
     private static void printBasicResult(int match, int basicCount) {
-        System.out.println("5개 일치 (" + LottoWinningPriceList.get[match] + "원) - " + basicCount + "개");
+        System.out.println(match + "개 일치 (" + dfNumber.format(LottoWinningPriceList.get[match]) + "원) - " + basicCount + "개");
+    }
+
+    public static void printTotalReturn(User user) {
+
+        System.out.println("총 수익률은 " + dfResult.format(user.getRevenue()) + "%입니다.");
     }
 
     public static void newLine() {

@@ -1,14 +1,14 @@
 package lotto.util;
 
 public class LottoWinningPriceList {
-    public static final String[] get = {
-            "", "", "",
-            "5,000",           // 3개
-            "50,000",          // 4개
-            "1,500,000",        // 5개
-            "2,000,000,000"      // 6개
+    public static final int[] get = {
+            0, 0, 0,
+            5000,           // 3개
+            50000,          // 4개
+            1500000,       // 5개
+            2000000000    // 6개
     };
 
-    public static final String getIncludeBonus = "30,000,000";
+    public static final long getIncludeBonus = 30000000;
 
 }
