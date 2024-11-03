@@ -9,7 +9,7 @@ public class WinningStatisticsFormatter {
 
     private static final String STATISTICS_HEADER = "당첨 통계\n---";
 
-    public static String formatStatistics(Map<PrizeType, Integer> statistics) {
+    public static String formatStatistics(Map<PrizeType, Integer> statistics, int totalPurchaseAmount) {
         StringBuilder sb = new StringBuilder();
         sb.append(STATISTICS_HEADER).append("\n");
 
@@ -18,8 +18,8 @@ public class WinningStatisticsFormatter {
             String formattedWinning = WinningEntryFormatter.formatWinnings(prizeType.getCode(), count);
             sb.append(formattedWinning).append("\n");
         }
-
-        sb.append(ProfitRateFormatter.formatAsMessage(ProfitRateCalculator.calculate(statistics)));
+        double profitRate = ProfitRateCalculator.calculate(statistics, totalPurchaseAmount);
+        sb.append(ProfitRateFormatter.formatAsMessage(profitRate));
         return sb.toString();
     }
 }

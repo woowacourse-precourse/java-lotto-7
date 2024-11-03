@@ -4,10 +4,10 @@ import java.util.Map;
 import lotto.system.utils.PrizeType;
 
 public class ProfitRateCalculator {
-    public static int calculate(Map<PrizeType, Integer> statistics) {
+    public static double calculate(Map<PrizeType, Integer> statistics, int totalPurchaseAmount) {
         int totalPrizeMoney = statistics.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
-        return (totalPrizeMoney / statistics.getOrDefault(PrizeType.FIRST_PRIZE, 0)) * 100;
+        return ((double) totalPrizeMoney / (double) totalPurchaseAmount) * 100;
     }
 }
