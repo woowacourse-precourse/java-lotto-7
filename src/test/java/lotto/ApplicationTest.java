@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -43,6 +44,77 @@ class ApplicationTest extends NsTest {
                 List.of(7, 11, 30, 40, 42, 43),
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
+        );
+    }
+
+    @DisplayName("하나도 당첨되지 않은 경우 테스트")
+    @Test
+    void WhenNoMatch() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[8, 9, 10, 11, 12, 13]",
+                            "[8, 9, 10, 11, 12, 13]",
+                            "[8, 9, 10, 11, 12, 13]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 0.0%입니다."
+                    );
+                },
+                List.of(8, 9, 10, 11, 12, 13),
+                List.of(8, 9, 10, 11, 12, 13),
+                List.of(8, 9, 10, 11, 12, 13)
+        );
+    }
+
+    @DisplayName("잘못된 구입금액 입력으로 재입력 시도 및 6개 일치 테스트")
+    @Test
+    void WhenReTryAndAllMatch() {
+        assertRandomUniqueNumbersInRangeTest(() -> {
+                    runException("999");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                    run("1000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 200000000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @DisplayName("여러 번 재입력 테스트")
+    @Test
+    void WhenAllReTry() {
+        assertSimpleTest(() -> run(
+                "999",
+                "1001",
+                "abc",
+                "1000",
+
+                "1,2,3,4,5,a",
+                "1,2,3,4,5",
+                "1,2,3,4,5,6,7",
+                "1,2,3,4,5,46",
+                "1,2,3,4,5,5",
+                "1,2,3,4,5,6",
+
+                "a",
+                "0",
+                "6",
+                "7"
+        )
         );
     }
 
