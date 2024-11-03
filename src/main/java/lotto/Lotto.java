@@ -23,6 +23,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -36,6 +37,15 @@ public class Lotto {
         if (notDuplicates.size() != LottoConstant.LOTTO_COUNT.getValue()) {
             ExceptionMessage message = ExceptionMessage.DUPLICATE_NUMBER;
             throw new IllegalArgumentException(message.getMessage());
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (!(LottoConstant.MIN_NUMBER.getValue() <= number && number <= LottoConstant.MAX_NUMBER.getValue())) {
+                ExceptionMessage message = ExceptionMessage.INVALID_RANGE;
+                throw new IllegalArgumentException(message.getMessage());
+            }
         }
     }
 
