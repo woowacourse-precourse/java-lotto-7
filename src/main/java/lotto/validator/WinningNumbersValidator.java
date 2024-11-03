@@ -10,9 +10,6 @@ import java.util.stream.Collectors;
 
 public class WinningNumbersValidator {
     private static final String INPUT_SEPERATOR=",";
-    private static final Integer LOTTO_COUNTS=6;
-    private static final Integer MININUM_NUMBER = 1;
-    private static final Integer MAXIM1UM_NUMBER = 45;
 
     public static List<Integer> validateWinningNumbers(String input){
         CommonValidator.validateNullAndBlank(input);
@@ -22,9 +19,6 @@ public class WinningNumbersValidator {
                         .mapToInt(Integer::parseInt)
                         .boxed()
                         .collect(Collectors.toList());
-
-        validateEachLotto(winningNumbers);
-
         return winningNumbers;
 
     }
@@ -35,36 +29,7 @@ public class WinningNumbersValidator {
         }
     }
 
-    private static void validateEachLotto(List<Integer> winningNumbers) {
-        validateDistinctLotto(winningNumbers);
-        validateLottoInRange(winningNumbers);
-        validateLottoCount(winningNumbers);
-    }
 
-    private static void validateLottoCount(List<Integer> winningNumbers) {
-        int lottoCount=winningNumbers.size();
-
-        if (lottoCount!=LOTTO_COUNTS){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT);
-        }
-    }
-
-    private static void validateLottoInRange(List<Integer> winningNumbers) {
-        boolean haveOutOfRangeNumber=winningNumbers.stream().
-                anyMatch(number->(number<MININUM_NUMBER || number>MAXIM1UM_NUMBER));
-
-        if (haveOutOfRangeNumber){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
-        }
-    }
-
-    private static void validateDistinctLotto(List<Integer> winningNumbers) {
-        long distinctLotto=winningNumbers.stream().distinct().count();
-
-        if (winningNumbers.size()!=distinctLotto){
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER);
-        }
-    }
 
 
 }
