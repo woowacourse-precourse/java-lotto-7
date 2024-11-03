@@ -10,43 +10,54 @@ public class LottoController {
 
     private final WinningService winningService = new WinningService();
 
-
     public void start() {
-        int ticketQuantity = buyTicket();
-        List<List<Integer>> lottos = purchaseLottoResult(ticketQuantity);
+        List<List<Integer>> lottos = processTicketPurchase();
+        generateWinningNumbersAndDisplayResult(lottos);
+        calculateAndPrintProfit();
+    }
 
-        List<Integer> winningNumbers = createWinningNumber();
-        int bonusNumber = createBonusNumber(winningNumbers);
+    private void generateWinningNumbersAndDisplayResult(List<List<Integer>> lottos) {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
 
         winningService.winningStatistics(winningNumbers, lottos, bonusNumber);
         OutputView.printResult(winningService.getLottoResult());
+    }
+
+    private List<List<Integer>> processTicketPurchase() {
+        int ticketQuantity = purchaseTicketQuantity();
+        List<List<Integer>> lottos = lottoPurchaseResult(ticketQuantity);
+        return lottos;
+    }
+
+    private void calculateAndPrintProfit() {
         String profit = winningService.getProfit();
         OutputView.printProfit(profit);
     }
 
-    private List<List<Integer>> purchaseLottoResult(int ticketQuantity) {
+    private List<List<Integer>> lottoPurchaseResult(int ticketQuantity) {
         OutputView.printTicketQuantity(ticketQuantity);
         List<List<Integer>> lottos = winningService.generateLottoNumber(ticketQuantity);
         OutputView.printLottos(lottos);
         return lottos;
     }
 
-    private int buyTicket() {
+    private int purchaseTicketQuantity() {
         InputView.printPurchaseMessage();
-        return getValidateTicketQuantity();
+        return promptForValidTicketQuantity();
     }
 
-    private List<Integer> createWinningNumber() {
+    private List<Integer> inputWinningNumbers() {
         InputView.printWinningNumberMessage();
-        return getValidatedWinningNumbers();
+        return promptForValidWinningNumbers();
     }
 
-    private int createBonusNumber(List<Integer> winningNumbers) {
+    private int inputBonusNumber(List<Integer> winningNumbers) {
         InputView.printBonusNumberMessage();
-        return getValidateBonusNumber(winningNumbers);
+        return promptForValidBonusNumber(winningNumbers);
     }
 
-    private int getValidateBonusNumber(List<Integer> winningNumbers) {
+    private int promptForValidBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
         while (true) {
             try {
@@ -60,7 +71,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private List<Integer> getValidatedWinningNumbers() {
+    private List<Integer> promptForValidWinningNumbers() {
         List<Integer> winningNumbers;
         while (true) {
             try {
@@ -73,7 +84,7 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private int getValidateTicketQuantity() {
+    private int promptForValidTicketQuantity() {
         int ticketQuantity = 0;
         while (true) {
             try {
