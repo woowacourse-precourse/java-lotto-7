@@ -1,8 +1,14 @@
 package lotto;
 
+import static lotto.AppConstants.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.AppConstants.INVALID_LOTTO_NUMBER_DUPLICATED;
+import static lotto.AppConstants.LOTTO_NUMBER_COUNT;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -10,11 +16,23 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT);
+        }
+        HashSet<Integer> singleNumbers = new HashSet<>(numbers);
+        if (singleNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATED);
         }
     }
 
-    // TODO: 추가 기능 구현
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
