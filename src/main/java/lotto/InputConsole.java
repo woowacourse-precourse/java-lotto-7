@@ -9,14 +9,16 @@ import lotto.exception.CheckInput;
 
 public class InputConsole {
 
-    public static void inputConsole() {
+    public static int intputMoney(){
         System.out.println("구매금액을 입력해 주세요.");
         int inputMoney = Integer.parseInt(readLine());
 
         CheckInput.checkInputMoney(inputMoney);
 
-        int lottoNum = LottoList.lottoNumber(inputMoney);
-        System.out.println("\n" + lottoNum + "개를 구매했습니다.");
+        return inputMoney;
+    }
+
+    public static void inputConsole() {
 
         List<Lotto> lottoList;
         lottoList = LottoList.drawingLotto(lottoNum);
