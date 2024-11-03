@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
-import lotto.constant.Prize;
+import lotto.constant.prize.Prize;
 
 public record WinningNumbers(Lotto numbers, int bonusNumber) {
     public WinningNumbers {

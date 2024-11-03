@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.Prize;
+import lotto.constant.prize.Prize;
 import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
