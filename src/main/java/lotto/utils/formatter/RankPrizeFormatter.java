@@ -20,7 +20,7 @@ public class RankPrizeFormatter {
 
     public static String formatRankStatistics(Rank rank, int count) {
         return formatMatchCount(rank) +
-                OPEN_PARENTHESIS + formatPrize(rank.getPrize().getPrize()) + PRIZE_FORMAT + CLOSE_PARENTHESIS + DASH + count + COUNT_SUFFIX;
+                OPEN_PARENTHESIS + formatPrize(rank.getPrize()) + PRIZE_FORMAT + CLOSE_PARENTHESIS + DASH + count + COUNT_SUFFIX;
     }
 
     private static String formatMatchCount(Rank rank) {

@@ -26,8 +26,8 @@ public enum Rank {
         return hasBonus;
     }
 
-    public Prize getPrize() {
-        return prize;
+    public int getPrize() {
+        return prize.getAmount();
     }
 
     public static Rank from(int matchCount, boolean hasBonus) {

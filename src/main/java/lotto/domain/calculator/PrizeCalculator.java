@@ -8,7 +8,7 @@ public class PrizeCalculator {
 
     public static int calculateTotalPrize(Map<Rank, Integer> rankCounts) {
         return rankCounts.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize().getPrize() * entry.getValue())
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 }
