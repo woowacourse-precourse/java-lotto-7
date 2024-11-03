@@ -22,5 +22,4 @@ public class LottoIssueService {
         );
         return new Lotto(lottoNumbers);
     }
-
 }

@@ -11,7 +11,6 @@ public class BonusNumber {
                     LottoConfiguration.LOTTO_NUMBER_RANGE_START, LottoConfiguration.LOTTO_NUMBER_RANGE_END);
     public static final String NULL_BANNED_NUMBER_EXCEPTION_MESSAGE = "금지 숫자 목록에 null은 허용하지 않습니다.";
     public static final String BANNED_NUMBER_MESSAGE = "당첨 번호와 중복되는 보너스 번호는 허용하지 않습니다.";
-
     private final int number;
 
     public BonusNumber(int number, List<Integer> bannedNumbers) {

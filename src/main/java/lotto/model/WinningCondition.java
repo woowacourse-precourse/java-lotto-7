@@ -4,7 +4,6 @@ public class WinningCondition {
 
     public static final String NOT_ZERO_OR_POSITIVE_PRICE_EXCEPTION_MESSAGE =
             "우승조건에서 일치하는 번호가 음수인 경우는 허용하지 않습니다.";
-
     private final int matchedNumberCount;
     private final boolean isBonusNumberRequired;
 

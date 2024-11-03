@@ -8,7 +8,6 @@ import lotto.constant.WinningType;
 public class WinningResult {
 
     public static final String NULL_WINNING_TYPES_EXCEPTION_MESSAGE = "null인 winningTypes는 허용하지 않습니다.";
-
     private final EnumMap<WinningType, Integer> countPerWinningType;
 
     public WinningResult(List<WinningType> winningTypes) {

@@ -14,7 +14,6 @@ public class Lotto {
     public static final String OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE =
             String.format("로또번호는 %d~%d 사이여야 합니다.",
                     LottoConfiguration.LOTTO_NUMBER_RANGE_START, LottoConfiguration.LOTTO_NUMBER_RANGE_END);
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
