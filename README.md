@@ -20,22 +20,18 @@
 </tr>
 <tr> 
 	<td rowspan="2">Service</td>
-    <td>AmountService</td><td>`PurchaseAmount` & `WinningAmount` 비즈니스 로직 처리</td> </tr><tr> 
+    <td>AmountService</td><td>`PurchaseAmount` & `ProfitAmount` 비즈니스 로직 처리</td> </tr><tr> 
     <td>LottoService</td><td>`Lotto` & `Lottos` 비즈니스 로직 처리</td> 
 </tr>
 <tr> 
 	<td rowspan="6">Model</td>
     <td>PurchaseAmount</td><td>로또 구입 금액</td></tr><tr>
-    <td>WinningAmount</td><td>로또 당첨 금액</td></tr><tr>
+    <td>ProfitAmount</td><td>로또 당첨 금액</td></tr><tr>
     <td>Bonus</td><td>로또의 보너스 번호</td></tr><tr> 
     <td>WinningLotto</td><td>로또의 당첨 번호 & `Bonus`를 관리하는 일급 컬렉션</td></tr><tr>
 	<td>Lotto</td><td>로또의 숫자를 관리하는 일급 컬렉션</td></tr><tr> 
     <td>PurchasedLottos</td><td>구매한 `Lotto`(들)을 관리하는 일급 컬렉션</td>
-</tr> 
-<tr> 
-	<td rowspan="1">Observer</td>
-    <td>LottoObserver</td><td>당첨 등수를 반환하는 옵저버</td></tr><tr>
-</tr> 
+</tr>
 <tr> 
 	<td rowspan="3">Command</td>
     <td>PurchaseAmountCommand</td><td>로또 구입 금액 입력 검증 커맨드</td></tr><tr>
@@ -48,16 +44,12 @@
     <td>View</td><td>사용자 입/출력 처리</td></tr><tr>
 </tr> 
 <tr> 
-    <td rowspan="10">DTO</td>
+    <td rowspan="6">DTO</td>
     <td>PurchaseAmountUserInput</td> <td>로또 구입 금액 사용자 입력</td></tr><tr>
     <td>WinningLottoUserInput</td> <td>로또의 당첨 번호 사용자 입력</td></tr><tr>
     <td>BonusUserInput</td> <td>로또의 보너스 번호 사용자 입력</td></tr><tr>
-    <td>PurchaseResponse</td> <td>발행한 로또 수량</td></tr><tr> 
-    <td>LottoResponse</td> <td>발행한 로또 번호</td></tr><tr>
-    <td>MatchResult</td> <td>`PurchaseLottos`의 등수</td></tr><tr>
+    <td>MatchResult</td> <td>`PurchaseLottos`의 당첨 결과</td></tr><tr>
     <td>MatchResults</td> <td>`MatchResult`의 일급 컬렉션</td></tr><tr>
-    <td>Prize</td> <td>등수에 따른 당첨 금액</td></tr><tr>
-    <td>PurchaseLottoResponse</td> <td>당첨 통계</td></tr><tr></tr><tr>
     </tr> 
 <tr> <td>Exception</td> 
     <td>GlobalException</td><td>전역 에러 처리</td> 
