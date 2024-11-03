@@ -14,6 +14,13 @@ public class WinningValidate {
             if (!isNumeric(bonusString)) {
                 throw new IllegalArgumentException(WinningInputMessage.INVALID_BONUS_NUMBER.getMessage());
             }
+
+            int bonusNumber = Integer.parseInt(bonusString);
+
+            if (!isLottoNumber(bonusNumber)) {
+                throw new IllegalArgumentException(WinningInputMessage.INVALID_BONUS_NUMBER.getMessage());
+            }
+
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return false;
@@ -37,6 +44,10 @@ public class WinningValidate {
             return false;
         }
         return true;
+    }
+
+    public static boolean isLottoNumber(int bonusNumber) {
+        return bonusNumber >= 1 && bonusNumber <= 45;
     }
 
     public static boolean isNumeric(String bonusString) {
