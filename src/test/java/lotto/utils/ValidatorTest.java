@@ -22,4 +22,22 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Validator.INVALID_AMOUNT_MESSAGE);
     }
+
+    @Test
+    void 범위에_맞지_않는_숫자를_입력하면_예외가_발생한다() {
+        int number = 46;
+
+        assertThatThrownBy(() -> Validator.numberInRange(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Validator.INVALID_NUMBER_RANGE_MESSAGE);
+    }
+
+    @Test
+    void 범위에_맞지_않는_음수를_입력면_예외가_발생한다() {
+        int number = -1;
+
+        assertThatThrownBy(() -> Validator.numberInRange(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Validator.INVALID_NUMBER_RANGE_MESSAGE);
+    }
 }
