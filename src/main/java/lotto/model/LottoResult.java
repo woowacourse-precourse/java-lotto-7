@@ -14,8 +14,8 @@ public class LottoResult {
         }
     }
 
-    public LottoResult(final LottoDraw lottoDraw, final List<Lotto> lottoTickets, final Integer payment) {
-        countWinningLottoTickets(lottoDraw.getDrawNumbers(), lottoDraw.getBonusNumber(), lottoTickets);
+    public LottoResult(final DrawNumber drawNumber, final List<Lotto> lottoTickets, final Integer payment) {
+        countWinningLottoTickets(drawNumber.getDrawNumbers(), drawNumber.getBonusNumber(), lottoTickets);
         lottoProfit = new Profit(lottoWinCount, payment);
     }
 

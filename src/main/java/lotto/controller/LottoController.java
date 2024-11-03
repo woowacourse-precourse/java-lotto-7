@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LottoDraw;
+import lotto.model.DrawNumber;
 import lotto.model.LottoNumbers;
 import lotto.model.LottoResult;
 import lotto.model.Purchase;
@@ -10,7 +10,7 @@ import lotto.view.PurchaseView;
 
 public class LottoController {
     private Purchase purchase;
-    private LottoDraw lottoDraw;
+    private DrawNumber drawNumber;
 
     public void purchaseLotto() {
         PurchaseView purchaseView = new PurchaseView();
@@ -24,12 +24,12 @@ public class LottoController {
         String drawNumbersInput = lottoDrawView.readDrawNumber();
         LottoNumbers drawNumbers = new LottoNumbers(drawNumbersInput);
         String bonusNumberInput = lottoDrawView.readBonusNumber();
-        lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
+        drawNumber = new DrawNumber(drawNumbers, bonusNumberInput);
     }
 
     public void lottoResult() {
         LottoResultView lottoResultView = new LottoResultView();
-        LottoResult lottoResult = new LottoResult(lottoDraw, purchase.getPurchasedLottoTickets(),
+        LottoResult lottoResult = new LottoResult(drawNumber, purchase.getPurchasedLottoTickets(),
                 purchase.getPayment());
         lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
         lottoResultView.displayProfit(lottoResult.getLottoProfit());

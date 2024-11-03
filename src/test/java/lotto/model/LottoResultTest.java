@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
-    LottoDraw lottoDraw;
+    DrawNumber drawNumber;
     Lotto FIRST_WIN_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     Lotto SECOND_WIN_LOTTO_1 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
     Lotto SECOND_WIN_LOTTO_2 = new Lotto(List.of(1, 2, 3, 4, 6, 7));
@@ -25,7 +25,7 @@ class LottoResultTest {
     void setUp() {
         LottoNumbers drawNumbers = new LottoNumbers("1,2,3,4,5,6");
         String bonusNumber = "7";
-        lottoDraw = new LottoDraw(drawNumbers, bonusNumber);
+        drawNumber = new DrawNumber(drawNumbers, bonusNumber);
     }
 
     @Test
@@ -35,7 +35,7 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(lottoDraw, lottoTickets, 0);
+        LottoResult lottoResult = new LottoResult(drawNumber, lottoTickets, 0);
         EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
 
         // then
@@ -55,7 +55,7 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(lottoDraw, lottoTickets, 0);
+        LottoResult lottoResult = new LottoResult(drawNumber, lottoTickets, 0);
         EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
 
         // then

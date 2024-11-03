@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class LottoDrawTest {
+class DrawNumberTest {
     @Test
     void 당첨번호_보너스번호_입력테스트() {
         // given
@@ -14,9 +14,9 @@ class LottoDrawTest {
 
         // when
         LottoNumbers drawNumbers = new LottoNumbers(drawNumberInput);
-        LottoDraw lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
-        LottoNumbers drawNumbersResult = lottoDraw.getDrawNumbers();
-        Integer bonusNumberResult = lottoDraw.getBonusNumber();
+        DrawNumber drawNumber = new DrawNumber(drawNumbers, bonusNumberInput);
+        LottoNumbers drawNumbersResult = drawNumber.getDrawNumbers();
+        Integer bonusNumberResult = drawNumber.getBonusNumber();
 
         // then
         assertThat(drawNumbersResult.getLottoNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
