@@ -9,7 +9,7 @@ public class Payment {
     private final int payment;
 
     private Payment(int payment, LottoDetail price) {
-        Validator.validateDivisibleByPrice(payment, price);
+        Validator.validate(payment, price);
         this.payment = payment;
     }
 
@@ -30,14 +30,29 @@ public class Payment {
     }
 
     private static class Validator {
-        private static void validateDivisibleByPrice(int money, LottoDetail price) {
-            if (isNotDivisibleByPrice(money, price)) {
+        private static void validate(int payment, LottoDetail price) {
+            validateZero(payment);
+            validateDivisibleByPrice(payment, price);
+        }
+
+        private static void validateZero(int payment) {
+            if (isZero(payment)) {
+                throw new LottoException(ErrorMessage.INVALID_ZERO_PAYMENT);
+            }
+        }
+
+        private static boolean isZero(int payment) {
+            return payment == 0;
+        }
+
+        private static void validateDivisibleByPrice(int payment, LottoDetail price) {
+            if (isNotDivisibleByPrice(payment, price)) {
                 throw new LottoException(ErrorMessage.INVALID_PAYMENT_FORMAT);
             }
         }
 
-        private static boolean isNotDivisibleByPrice(int money, LottoDetail price) {
-            return money % price.getValue() != 0;
+        private static boolean isNotDivisibleByPrice(int payment, LottoDetail price) {
+            return payment % price.getValue() != 0;
         }
     }
 }

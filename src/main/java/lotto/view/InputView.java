@@ -22,7 +22,7 @@ public class InputView {
     public Payment readPrice() {
         Writer.println(QUESTION_PURCHASE_AMOUNT);
         return Payment.of(
-                Validator.validatePrice(Reader.read()),
+                Validator.validateNumber(Reader.read()),
                 LottoDetail.PRICE
         );
     }
@@ -46,26 +46,11 @@ public class InputView {
     }
 
     private static class Validator {
-        private static int validatePrice(String input) {
-            validateZero(input);
-            return validateNumber(input);
-        }
-
         private static String validateSeparator(String input) {
             if (hasContinuousSeparator(input) || hasEdgeSeparator(input)) {
                 throw new LottoException(ErrorMessage.INVALID_INPUT_FORMAT);
             }
             return input;
-        }
-
-        private static void validateZero(String input) {
-            if (isZero(input)) {
-                throw new LottoException(ErrorMessage.INVALID_NUMBER_FORMAT);
-            }
-        }
-
-        private static boolean isZero(String input) {
-            return input.matches("0");
         }
 
         private static int validateNumber(String input) {
