@@ -23,7 +23,7 @@ class LottoTicketTest {
     @Test
     void matchResultCountTest() {
         WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,7");
-        BonusNumber bonusNumber = BonusNumber.from("7", winningNumber);
+        BonusNumber bonusNumber = BonusNumber.from("8", winningNumber);
 
         List<MatchResult> matchResults = lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
 

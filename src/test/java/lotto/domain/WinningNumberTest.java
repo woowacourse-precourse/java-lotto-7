@@ -25,6 +25,6 @@ class WinningNumberTest {
     void contains() {
         Assertions.assertThatThrownBy(() -> WinningNumber.from("invalid"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 입력값은 숫자여야 합니다.");
+                .hasMessageContaining("입력값은 숫자여야 합니다.");
     }
 }
