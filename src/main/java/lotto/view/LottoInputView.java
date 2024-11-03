@@ -24,6 +24,7 @@ public class LottoInputView {
         String input = Console.readLine();
         return validateMoney(input);
     }
+
     public List<Integer> validateWinningNumbers(String input) {
         if (!input.contains(",")) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)로 구분해야 합니다.");
@@ -34,7 +35,11 @@ public class LottoInputView {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
 
-        return convertToNumbers(numbers);
+        List<Integer> winningNumbers = convertToNumbers(numbers);
+        validateNumbersRange(winningNumbers);
+        validateNumbersDuplicate(winningNumbers);
+
+        return winningNumbers;
     }
 
     private List<Integer> convertToNumbers(String[] numbers) {
@@ -45,8 +50,22 @@ public class LottoInputView {
         return winningNumbers;
     }
 
-    public String readWinningNumbers() {
+    private void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private void validateNumbersDuplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+        }
+    }
+
+    public List<Integer> readWinningNumbers() {
         String input = Console.readLine();
-        return input;
+        return validateWinningNumbers(input);
     }
 }

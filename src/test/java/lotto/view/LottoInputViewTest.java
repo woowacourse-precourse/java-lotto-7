@@ -50,4 +50,27 @@ class LottoInputViewTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
+
+    @DisplayName("당첨 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다")
+    @Test
+    void validateWinningNumbersRange() {
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateWinningNumbers("0,1,2,3,4,5");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateWinningNumbers("1,2,3,4,5,46");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다")
+    @Test
+    void validateWinningNumbersDuplicate() {
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateWinningNumbers("1,2,3,4,5,5");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+    }
 }
