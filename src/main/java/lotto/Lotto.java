@@ -10,11 +10,24 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getLottoNumbers(){
+        return numbers;
+    }
+
+    public boolean containNumber(int number){
+        return numbers.contains(number);
+    }
+
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::containNumber).
+                count();
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
 }
