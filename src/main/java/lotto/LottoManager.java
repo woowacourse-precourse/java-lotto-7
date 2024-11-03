@@ -24,6 +24,7 @@ public class LottoManager {
         lottoes.stream()
                 .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
+        Output.printWinningStatistics(winningRecord);
     }
 
     private void saveRankOnRecord(final Rank rank) {
