@@ -1,4 +1,4 @@
-package lotto.shop.bandingmachine;
+package lotto.shop;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.MessageCenter;

@@ -1,17 +1,16 @@
-package lotto.shop.bandingmachine;
+package lotto.shop;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PosTest {
 
-    Pos pos = new Pos();
+    lotto.shop.Pos pos = new lotto.shop.Pos();
 
     @ParameterizedTest
     @ValueSource(ints = {1000,2000,3000,4000,5000,10000,100000,1000000})

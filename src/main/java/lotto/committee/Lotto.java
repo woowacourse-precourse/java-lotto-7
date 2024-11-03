@@ -1,4 +1,4 @@
-package lotto.user;
+package lotto.committee;
 
 import java.util.List;
 

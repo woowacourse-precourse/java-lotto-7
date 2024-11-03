@@ -7,8 +7,7 @@ public class TrialHistory {
     private Integer payment;
     private Integer totalCount;
     private Integer printCount;
-    private List<List<Integer>> tempMainPacks;
-    private List<Integer> tempBonusPacks;
+    private List<DrawnNumbers> drawnNumberPacks;
 
     void savePayment(Integer money) {
         this.payment = money;
@@ -22,12 +21,8 @@ public class TrialHistory {
         this.printCount = printCount;
     }
 
-    void saveTempMain(List<Integer> mainNumbers) {
-        tempMainPacks.add(mainNumbers);
-    }
-
-    void saveTempBonus(Integer bonusNumber) {
-        tempBonusPacks.add(bonusNumber);
+    void saveDrawnNumberPacks(List<DrawnNumbers> drawnNumberPacks) {
+        this.drawnNumberPacks = drawnNumberPacks;
     }
 
     Integer getPayment() {
@@ -42,12 +37,8 @@ public class TrialHistory {
         return printCount;
     }
 
-    List<List<Integer>> getTempMainPacks() {
-        return tempMainPacks;
-    }
-
-    List<Integer> getTempBonusPacks() {
-        return tempBonusPacks;
+    List<DrawnNumbers> getDrawnNumberPacks() {
+        return drawnNumberPacks;
     }
 
 }

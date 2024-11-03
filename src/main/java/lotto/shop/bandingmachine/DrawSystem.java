@@ -1,21 +1,20 @@
-package lotto.shop.bandingmachine.drawsystem;
+package lotto.shop.bandingmachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.shop.bandingmachine.TrialHistory;
 
-public class AutoDrawer {
+public class DrawSystem {
 
     DrawnNumbers drawnNumbers;
     List<DrawnNumbers> drawnNumberPacks = new ArrayList<>();
 
-    AutoDrawer(DrawnNumbers drawnNumbers) {
+    DrawSystem(DrawnNumbers drawnNumbers) {
         this.drawnNumbers = drawnNumbers;
     }
 
-    static AutoDrawer forTest(DrawnNumbers drawnNumbers) {
-        return new AutoDrawer(drawnNumbers);
+    static DrawSystem forTest(DrawnNumbers drawnNumbers) {
+        return new DrawSystem(drawnNumbers);
     }
 
     List<DrawnNumbers> runDraws(Integer totalCount) {

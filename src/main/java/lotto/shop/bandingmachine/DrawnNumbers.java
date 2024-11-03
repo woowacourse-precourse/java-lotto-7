@@ -1,4 +1,4 @@
-package lotto.shop.bandingmachine.drawsystem;
+package lotto.shop.bandingmachine;
 
 import java.util.Collections;
 import java.util.List;

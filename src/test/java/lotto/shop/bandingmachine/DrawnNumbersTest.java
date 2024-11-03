@@ -1,4 +1,4 @@
-package lotto.shop.bandingmachine.drawsystem;
+package lotto.shop.bandingmachine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -17,15 +17,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class DrawnNumbersTest {
 
     DrawnNumbers drawnNumbers;
-    AutoDrawer autoDrawer;
+    DrawSystem drawSystem;
     List<Integer> mainNumbers;
     Integer bonusNumber;
 
     @BeforeEach
     public void setUp() {
         drawnNumbers = DrawnNumbers.forTest();
-        autoDrawer = AutoDrawer.forTest(drawnNumbers);
-        autoDrawer.runDraw();
+        drawSystem = DrawSystem.forTest(drawnNumbers);
+        drawSystem.runDraw();
         mainNumbers = drawnNumbers.getMainNumbers();
         bonusNumber = drawnNumbers.getBonusNumber();
     }
