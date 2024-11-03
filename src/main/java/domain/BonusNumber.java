@@ -8,6 +8,7 @@ public class BonusNumber {
 
         Validate validate = new Validate();
 
+        number = number.trim();
         validate.validateContainsLetters(number);
 
         int bonusNumber = Integer.parseInt(number);
