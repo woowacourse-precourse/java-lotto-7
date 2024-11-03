@@ -38,6 +38,10 @@ public final class Statistics {
     private Map<Rank, Integer> countRanks(List<Rank> ranks) {
         Map<Rank, Integer> statistics = new HashMap<>();
 
+        for (Rank rank : Rank.values()) {
+            statistics.put(rank, 0);
+        }
+
         for (Rank rank : ranks) {
             statistics.put(rank, statistics.getOrDefault(rank, 0) + 1);
         }
