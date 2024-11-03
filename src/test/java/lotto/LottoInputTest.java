@@ -12,7 +12,7 @@ class LottoInputTest {
     @DisplayName("숫자가 아닌 입력을 받을 경우 예외가 발생한다")
     @Test
     void 숫자가_아닌_입력_예외_테스트() {
-        assertThatThrownBy(() -> LottoInput.getParseInt("abc"))
+        assertThatThrownBy(() -> LottoInput.parsePrice("abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

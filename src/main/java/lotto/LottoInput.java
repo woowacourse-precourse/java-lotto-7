@@ -7,10 +7,14 @@ import java.util.List;
 
 public class LottoInput {
 
+    public static final int LOTTO_UNIT = 1000;
+    public static final int LOTTO_START = 1;
+    public static final int LOTTO_END = 45;
+
     public static int getValidPurchasePrice() {
         while (true) {
             try {
-                int purchasePrice = getParseInt(Console.readLine());
+                int purchasePrice = parsePrice(Console.readLine());
                 validatePrice(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
@@ -21,7 +25,7 @@ public class LottoInput {
     }
 
     public static void validatePrice(int purchasePrice) {
-        if (purchasePrice < 1000 || purchasePrice % 1000 != 0) {
+        if (purchasePrice < LOTTO_UNIT || purchasePrice % LOTTO_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000이상, 1000원 단위여야 합니다.");
         }
     }
@@ -51,7 +55,7 @@ public class LottoInput {
     public static int getValidBonus(List<Integer> winningNumber) {
         while (true) {
             try {
-                int bonus = getParseInt(Console.readLine());
+                int bonus = parsePrice(Console.readLine());
                 if (winningNumber.contains(bonus)) {
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될수 없습니다.");
                 }
@@ -63,7 +67,7 @@ public class LottoInput {
         }
     }
 
-    public static int getParseInt(String input) {
+    public static int parsePrice(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -74,7 +78,7 @@ public class LottoInput {
 
     public static void validLotto(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_START || number > LOTTO_END) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요!");
             }
         }
@@ -83,7 +87,7 @@ public class LottoInput {
     public static int[] getIntArray(String[] input) {
         int[] number = new int[input.length];
         for (int i = 0; i < number.length; i++) {
-            number[i] = getParseInt(input[i]);
+            number[i] = parsePrice(input[i]);
         }
         return number;
     }

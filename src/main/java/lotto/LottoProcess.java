@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class LottoProcess {
 
-    public static void extracted(LottoManager manager, List<Integer> winningNumber, int bonusNumber, Map<LottoRank, Integer> winningStatistics) {
-        for (Lotto lotto : manager.getLottoRepository()) {
+    public static void statisticalWork(LottoManager manager, List<Integer> winningNumber, int bonusNumber, Map<LottoRank, Integer> winningStatistics) {
+        for (Lotto lotto : manager.getLottos()) {
             int count = intersectionCalculation(lotto, winningNumber);
             boolean bonus = isBonus(lotto, bonusNumber);
             LottoRank rank = getLottoRank(count, bonus);
@@ -31,7 +31,7 @@ public class LottoProcess {
 
     private static int intersectionCalculation(Lotto lotto, List<Integer> winningNumber) {
         List<Integer> intersection = new ArrayList<>(winningNumber);
-        intersection.retainAll(lotto.getNumbers()); //교집합 갯수 구하는 기능
+        intersection.retainAll(lotto.getNumbers());
         return intersection.size();
     }
 
