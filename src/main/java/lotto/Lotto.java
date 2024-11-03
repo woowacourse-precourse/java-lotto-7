@@ -31,9 +31,9 @@ public class Lotto {
                 .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_START, LOTTO_NUMBER_END));
     }
 
-    public int getMatchingCountWith(WinningNumber winningNumber) {
+    public int getMatchingCountWith(Winning winning) {
         List<Number> matchingNumber = new ArrayList<>(List.copyOf(this.numbers));
-        matchingNumber.retainAll(winningNumber.get());
+        matchingNumber.retainAll(winning.get());
         return matchingNumber.size();
     }
 

@@ -29,9 +29,9 @@ public class Result {
                 .collect(Collectors.joining());
     }
 
-    public void calculate(WinningNumber winningNumber, Bonus bonus, PurchasedLotto purchasedLottos) {
+    public void calculate(Winning winning, Bonus bonus, PurchasedLotto purchasedLottos) {
         for(Lotto purchasedLotto : purchasedLottos.get()) {
-            int matchingCount = purchasedLotto.getMatchingCountWith(winningNumber);
+            int matchingCount = purchasedLotto.getMatchingCountWith(winning);
             boolean isBonusContained = purchasedLotto.isContained(bonus);
             addWinningDetails(matchingCount, isBonusContained);
         }

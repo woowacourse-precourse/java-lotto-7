@@ -28,8 +28,8 @@ public class Bonus {
         return this.number;
     }
 
-    public void isDuplicated(WinningNumber winningNumber) {
-        List<Integer> winningNumbers = winningNumber.get();
+    public void isDuplicated(Winning winning) {
+        List<Integer> winningNumbers = winning.get();
         if (winningNumbers.contains(this.number)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR);
         }

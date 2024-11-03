@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 
 class ResultTest {
     private Result result;
-    private WinningNumber winningNumber;
+    private Winning winning;
     private Bonus bonus;
     private SpyPurchasedLotto purchasedLotto;
 
     @BeforeEach
     void setUp() {
         result = new Result();
-        winningNumber = WinningNumber.from("1,2,3,4,5,6");
+        winning = Winning.from("1,2,3,4,5,6");
         bonus = Bonus.from("7");
         purchasedLotto = new SpyPurchasedLotto(Payment.from("1000"));
     }
@@ -27,7 +27,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_여섯개_일치할_경우_1등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 1);
@@ -42,7 +42,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_다섯개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_2등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -57,7 +57,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_다섯개_일치할_경우_3등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -72,7 +72,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_네개_일치할_경우_4등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -87,7 +87,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_네개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_4등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 7, 8)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -102,7 +102,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_세개_일치할_경우_5등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -117,7 +117,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_세개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_5등에_당첨된다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -132,7 +132,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_두개_일치할_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 8, 9, 10, 11)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -147,7 +147,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_두개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(1, 2, 7, 8, 9, 10)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -162,7 +162,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_한개_일치할_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(1, 8, 9, 10, 11, 12)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -177,7 +177,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_한개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(1, 7, 8, 9, 10, 11)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -192,7 +192,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_영개_일치할_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(8, 9, 10, 11, 12, 13)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -207,7 +207,7 @@ class ResultTest {
     void 당첨_번호와_로또_번호가_영개_일치하고_보너스_번호가_로또_번호에_포함되어_있을_경우_당첨되지_않는다() {
         purchasedLotto.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 0);
@@ -238,7 +238,7 @@ class ResultTest {
         purchasedLotto.add(new Lotto(List.of(7, 8, 9, 10, 11, 12)));
         purchasedLotto.add(new Lotto(List.of(8, 9, 10, 11, 12, 13)));
 
-        result.calculate(winningNumber, bonus, purchasedLotto);
+        result.calculate(winning, bonus, purchasedLotto);
 
         Map<Rank, Integer> winningDetails = result.getWinningDetails();
         assertEquals(winningDetails.get(Rank.FIRST), 2);

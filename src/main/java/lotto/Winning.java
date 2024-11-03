@@ -9,21 +9,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class WinningNumber {
+public class Winning {
     private static final String EMPTY_ELEMENT_ERROR = ERROR_HEADER + "쉼표 사이의 빈 문자가 입력되서는 안 됩니다.";
     private static final String WINNING_NUMBER_PATTERN = "^(\\d+)(,\\d+)*$";
+
     private final List<Integer> numbers;
 
-    private WinningNumber(List<Integer> numbers) {
+    private Winning(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public static WinningNumber from(String input) {
+    public static Winning from(String input) {
         validate(input);
         try {
             List<Integer> numbers = parse(input);
-            return new WinningNumber(numbers);
+            return new Winning(numbers);
         }
         catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT_ERROR);

@@ -61,10 +61,10 @@ class BonusTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
     @Test
     void 보너스_번호가_당첨_번호와_중복될_경우_예외가_발생한다() {
-        WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
+        Winning winning = Winning.from("1,2,3,4,5,6");
         Bonus bonus = Bonus.from("3");
 
-        assertThatThrownBy(() -> bonus.isDuplicated(winningNumber))
+        assertThatThrownBy(() -> bonus.isDuplicated(winning))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
