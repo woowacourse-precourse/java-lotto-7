@@ -22,7 +22,7 @@ public class WinningNumberInput {
     private int validateAmount(String input) {
         int amount = Integer.parseInt(input);
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위여야 합니다.");
         }
         return amount;
     }
@@ -48,7 +48,7 @@ public class WinningNumberInput {
 
     private void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
         }
     }
 
@@ -60,7 +60,7 @@ public class WinningNumberInput {
 
     private void validateNumberCount(String[] inputArray) {
         if (inputArray.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
         }
     }
 
@@ -82,13 +82,13 @@ public class WinningNumberInput {
 
     private void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
     private void checkDuplicate(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+            throw new IllegalArgumentException("중복된 숫자가 입력되었습니다.");
         }
     }
 
@@ -109,7 +109,7 @@ public class WinningNumberInput {
         int bonusNumber = Integer.parseInt(input.trim());
         validateNumberRange(bonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
         return bonusNumber;
     }
