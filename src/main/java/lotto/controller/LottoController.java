@@ -25,7 +25,7 @@ public class LottoController {
         TicketCount ticketCount = getTicketCount();
         Tickets tickets = generateTickets(ticketCount);
         Winning winning = getWinningNumbers();
-        Bonus bonus = getBonusNumber();
+        Bonus bonus = getBonusNumber(winning);
 
         WinningResultCounter winningResultCounter = calculateWinningResults(tickets, winning, bonus);
         displayResults(winningResultCounter, ticketCount);
@@ -33,10 +33,12 @@ public class LottoController {
 
     private TicketCount getTicketCount() {
         try {
-            String readPurchaseAmount = inputView.readPurchaseAmount();
-            int purchaseAmount = Integer.parseInt(readPurchaseAmount);
-            TicketCount ticketCount = new TicketCount(purchaseAmount);
+            String amount = inputView.readPurchaseAmount();
+
+            TicketCount ticketCount = new TicketCount(amount);
+
             outputView.printPurchaseTicketCount(ticketCount.getCount());
+
             return ticketCount;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -45,20 +47,16 @@ public class LottoController {
     }
 
     private Tickets generateTickets(TicketCount ticketCount) {
-        try {
-            Tickets tickets = new Tickets(ticketCount);
+            Tickets tickets = new Tickets(ticketCount.getCount());
             List<String> ticketsInfo = tickets.getTicketsInfo();
             outputView.printTicketNumbers(ticketsInfo);
             return tickets;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e.getMessage());
-            return generateTickets(ticketCount);
-        }
     }
 
     private Winning getWinningNumbers() {
         try {
             String winningNumber = inputView.readWinningNumber();
+
             return new Winning(winningNumber);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -66,13 +64,14 @@ public class LottoController {
         }
     }
 
-    private Bonus getBonusNumber() {
+    private Bonus getBonusNumber(Winning winning) {
         try {
             String bonusNumber = inputView.readBonusNumber();
-            return new Bonus(Integer.parseInt(bonusNumber));
+
+            return new Bonus(bonusNumber, winning.getLotto());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winning);
         }
     }
 
@@ -82,7 +81,7 @@ public class LottoController {
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winning.getLotto());
-            boolean containsBonusBall = bonus.isContainsBonusBall(lotto);
+            boolean containsBonusBall = bonus.containsBonusBall(lotto);
             WinningResult result = WinningResult.findByMatchCountAndBonus(matchCount, containsBonusBall);
             winningResultCounter.increment(result);
         }
@@ -107,7 +106,7 @@ public class LottoController {
     }
 
     private double calculateProfitRate(int totalProfit, TicketCount ticketCount) {
-        int purchaseAmount = ticketCount.getPurchaseAmount();
+        int purchaseAmount = ticketCount.getAmount();
         return (double) totalProfit / purchaseAmount * 100;
     }
 }
