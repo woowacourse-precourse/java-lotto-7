@@ -43,5 +43,20 @@ public class ValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("문자열배열 크기가 매개변수 size와 같지 않으면 예외 발생 테스트")
+    void sizeEqual() {
+        int size = 3;
+        String[] numbers = new String[size];
+
+        numbers[0] = "1";
+        numbers[1] = "2";
+        numbers[2] = "3";
+
+        assertThatThrownBy(() -> {
+            Validator.sizeEqual(numbers, 4);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     }
 }
