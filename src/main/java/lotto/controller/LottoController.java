@@ -40,7 +40,15 @@ public class LottoController {
     }
 
     public void setLottoNumbers() {
-        OutputView.printLottoNumbersGuide();
-        lotto = new Lotto(LottoService.splitLottoNumbers(InputView.inputLottoNumbers()));
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printLottoNumbersGuide();
+                lotto = new Lotto(LottoService.splitLottoNumbers(InputView.inputLottoNumbers()));
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
     }
 }
