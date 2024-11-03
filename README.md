@@ -18,6 +18,8 @@
   - [x] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
 - [x] `Converter`
   - [x] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
+- [ ] `Generator`
+  - [ ] `LottoNumberGenerator` : 로또 번호를 생성한다.
 ### Global
 - [x] `ErrorMessages`
   - [x] 에러메세지들을 포함한 `Enum` 
