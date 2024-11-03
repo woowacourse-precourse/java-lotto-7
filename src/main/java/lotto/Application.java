@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,6 +19,15 @@ public class Application {
 
         if (money % 1000 > 0) {
             throw new IllegalArgumentException("[ERROR] 로또 하나를 구입하는 데에 필요한 금액은 1,000원입니다. 1,000원 단위로 다시 작성해 주세요.");
+        }
+
+        // 2. 로또 번호 추첨
+        int count = money / 1000;
+
+        List<List> purchaseLottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Integer> purchaseNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            purchaseLottos.add(purchaseNumbers);
         }
     }
 }
