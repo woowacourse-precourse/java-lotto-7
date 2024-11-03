@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.business.LottoService;
+import lotto.common.controller.InteractionRepeatable;
 import lotto.model.WinningLotto;
 import lotto.value.LottoNumbers;
 import lotto.value.WinningStatistics;
@@ -9,7 +10,7 @@ import lotto.value.Won;
 import lotto.view.LottoInput;
 import lotto.view.LottoOutput;
 
-public class LottoController {
+public class LottoController implements InteractionRepeatable {
 
     private final LottoInput lottoInput;
     private final LottoOutput lottoOutput;
@@ -24,12 +25,23 @@ public class LottoController {
     }
 
     public void doHandleLotto() {
-        Won wonOfPurchased = lottoInput.askForPurchasePrice();
-        List<LottoNumbers> issuedLottoNumbers = lottoService.buyLotto(wonOfPurchased);
-        lottoOutput.showIssuedLottoNumbers(issuedLottoNumbers);
+        handleLottoTrade();
+        handleLottoWinningProcess();
+    }
 
-        WinningLotto winningLotto = lottoInput.askForWinningLotto();
-        WinningStatistics winningStatistics = lottoService.checkWinningResults(winningLotto);
+    private void handleLottoTrade() {
+        List<LottoNumbers> issuedLottoNumbers = supplyWithTry(() -> {
+            Won wonOfPurchased = lottoInput.askForPurchasePrice();
+            return lottoService.buyLotto(wonOfPurchased);
+        });
+        lottoOutput.showIssuedLottoNumbers(issuedLottoNumbers);
+    }
+
+    private void handleLottoWinningProcess() {
+        WinningStatistics winningStatistics = supplyWithTry(() -> {
+            WinningLotto winningLotto = lottoInput.askForWinningLotto();
+            return lottoService.checkWinningResults(winningLotto);
+        });
         lottoOutput.announceWinningStatistics(winningStatistics);
     }
 

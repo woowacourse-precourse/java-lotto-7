@@ -1,4 +1,4 @@
-package lotto.common.view;
+package lotto.common.controller;
 
 import java.util.function.Supplier;
 
