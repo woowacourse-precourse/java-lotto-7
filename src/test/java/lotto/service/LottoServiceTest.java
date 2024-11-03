@@ -36,7 +36,7 @@ class LottoServiceTest {
     @DisplayName("구매 개수를 받아 로또들을 리스트로 반환")
     @Test
     void getLottos() {
-        List<Lotto> lottos = lottoService.getLottos(8);
+        List<Lotto> lottos = lottoService.getLottos(8000);
 
         Assertions.assertEquals(8, lottos.size());
 
