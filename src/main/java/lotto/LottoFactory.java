@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoFactory {
-
+    private final int oneLottoPrice = 1000;
+    private final int zeroNumber = 0;
     private final RandomNumber randomNumber;
 
     public LottoFactory(RandomNumber randomNumber){
@@ -28,5 +29,18 @@ public class LottoFactory {
         return lottos;
     }
 
+    public int numberOfLotto(int lottoPrice){
+        canPurchaseLotto(lottoPrice);
+        return lottoPrice / oneLottoPrice;
+    }
+
+    public void getPrice(Lotto lotto, List<Integer> lottoNumber){
+
+    }
+
+    private void canPurchaseLotto(int lottoPrice){
+        if(lottoPrice % oneLottoPrice != zeroNumber)
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위입니다.");
+    }
 
 }
