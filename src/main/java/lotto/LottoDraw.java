@@ -45,4 +45,14 @@ public class LottoDraw {
         }
         return null;
     }
+
+    public static List<Integer> inputBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            String input = Console.readLine();
+            List<Integer> bonusNumber = makeBonusNumberToList(input, winningNumbers);
+            if (bonusNumber != null) {
+                return bonusNumber;
+            }
+        }
+    }
 }
