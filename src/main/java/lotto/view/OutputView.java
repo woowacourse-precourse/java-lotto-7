@@ -2,6 +2,8 @@ package lotto.view;
 
 import lotto.util.CommonIo;
 
+import java.text.NumberFormat;
+
 public class OutputView {
     private final CommonIo io;
 
@@ -19,7 +21,8 @@ public class OutputView {
     }
 
     public void printWinningResult(int matchCount, int prize, int rankCount){
-        io.printMessage(matchCount +"개 일치 (" + prize + "원) - " + rankCount + "개");
+        String formattedPrize = NumberFormat.getInstance().format(prize);
+        io.printMessage(matchCount +"개 일치 (" + formattedPrize + "원) - " + rankCount + "개");
     }
 
     public void printProfit(float profit) {
