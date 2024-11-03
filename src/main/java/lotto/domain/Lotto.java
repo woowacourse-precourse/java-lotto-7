@@ -25,14 +25,12 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void numbersDuplicateCheck(List<Integer> numbers) {
         if(validateNonDuplicate(numbers)){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage()
-                    .concat(DUPLICATE_LOTTO_NUMBER.getErrorMessage()));
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
         }
     }
     private static void numbersSizeCheck(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage()
-                    .concat(INVALID_LOTTO_NUMBER_COUNT.getErrorMessage()));
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getErrorMessage());
         }
     }
     private boolean validateNonDuplicate(List<Integer> numbers){

@@ -23,7 +23,7 @@ public class CustomLotto extends Lotto{
         List<Integer> numbersPlusBonus = numbers.stream().distinct().toList();
 
         if(numbersPlusBonus.size()!=7){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage()+DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
         }
     }
 }

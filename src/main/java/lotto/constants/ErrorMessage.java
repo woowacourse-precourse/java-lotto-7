@@ -18,7 +18,9 @@ public enum ErrorMessage {
     }
 
     public String getErrorMessage(){
-        return errorMessage;
+
+        return ERROR_PREFIX.errorMessage + errorMessage;
     }
+
 
 }

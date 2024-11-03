@@ -16,7 +16,7 @@ public class Validator {
     }
     private static void checkValidationBudget(int number){
         if(!(number % 1000 == 0)){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage() + INVALID_BUDGET.getErrorMessage());
+            throw new IllegalArgumentException(INVALID_BUDGET.getErrorMessage());
         }
     }
     public static void validateLottoNumbers(String lottoNumbers){
@@ -35,25 +35,25 @@ public class Validator {
 
     private static void isNullInputValue(String number) {
         if(number.isEmpty() || number == null){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage() + EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
+            throw new IllegalArgumentException(EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
         }
     }
 
     private static void isZeroBudget(String number){
         if(number.equals("0")){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage()+ZERO_BUDGET_ERROR.getErrorMessage());
+            throw new IllegalArgumentException(ZERO_BUDGET_ERROR.getErrorMessage());
         }
     }
 
     private static void invalidLottoNumberPattern(String number) {
         if (!number.matches("\\d+(,\\d+)*")) {
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage() + INVALID_INPUT_LOTTO_STRING.getErrorMessage());
+            throw new IllegalArgumentException(INVALID_INPUT_LOTTO_STRING.getErrorMessage());
         }
     }
 
     public static void validateIntegerRange(int number){
         if(!(number>0 && number<46)){
-            throw new IllegalArgumentException(ERROR_PREFIX.getErrorMessage()+INVALID_LOTTO_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getErrorMessage());
         }
     }
 }

@@ -43,7 +43,7 @@ class ValidatorTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateBudget(testBudget);
         });
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ERROR_PREFIX.getErrorMessage()+INVALID_NUMBER.getErrorMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(INVALID_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -56,7 +56,7 @@ class ValidatorTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateBudget(testBudget);
         });
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ERROR_PREFIX.getErrorMessage()+ZERO_BUDGET_ERROR.getErrorMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(ZERO_BUDGET_ERROR.getErrorMessage());
     }
 
     @Test
@@ -68,7 +68,7 @@ class ValidatorTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateBudget(testBudget);
         });
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ERROR_PREFIX.getErrorMessage()+EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(EMPTY_INPUT_VALUE_ERROR.getErrorMessage());
     }
 
     @Test
@@ -76,8 +76,7 @@ class ValidatorTest {
     void duplicateLottoNumbersTest(){
         String lottoNumbers = "1,2,3,3,4,5";
         Integer bonus = 10;
-        Validator validator= new Validator();
-        validator.validateLottoNumbers(lottoNumbers);
+        Validator.validateLottoNumbers(lottoNumbers);
 
         //when
         LottoService lottoService = new LottoService();
@@ -86,7 +85,7 @@ class ValidatorTest {
             lottoService.makeCustomLotto(lottoNumbers, bonus);
         });
 
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ERROR_PREFIX.getErrorMessage()+DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
     }
 
     @Test
@@ -104,7 +103,7 @@ class ValidatorTest {
             lottoService.makeCustomLotto(lottoNumbers, bonus);
         });
 
-        assertThat(illegalArgumentException.getMessage()).isEqualTo(ERROR_PREFIX.getErrorMessage()+DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+        assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
     }
 
 
