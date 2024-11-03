@@ -32,6 +32,19 @@ public class LottoController {
         LottoManager lottoManager = new LottoManager(createWinningLotto(), getBonusNumber());
         Map<LottoWinnerPrize, Integer> prizeCount = lottoManager.getWinningPrizes(purchasedLotto.getLottos());
         printPrize(prizeCount);
+
+        double rateOfReturn = getRateOfReturn(prizeCount, purchaseAmount);
+    }
+
+    private double getRateOfReturn(Map<LottoWinnerPrize, Integer> prizeCount, int purchaseAmount) {
+        int earnMoney = calculateTotalEarnMoney(prizeCount);
+        return ((double) earnMoney / (purchaseAmount)) * 100;
+    }
+
+    private int calculateTotalEarnMoney(Map<LottoWinnerPrize, Integer> prizeCount) {
+        return prizeCount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 
     private int getPurchaseAmount() {
