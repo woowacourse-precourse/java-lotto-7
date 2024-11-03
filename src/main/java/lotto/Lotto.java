@@ -9,6 +9,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -25,6 +26,18 @@ public class Lotto {
             lottos[i] = new Lotto(numbers);
         }
         return lottos;
+    }
+
+    private void sortNumbers(){
+        for(int i = 0; i < numbers.size() - 1; i++){
+            for(int j = 1; j < numbers.size() - i; j++){
+                if(numbers.get(j) < numbers.get(j - 1)){
+                    int temp = numbers.get(j);
+                    numbers.set(j, numbers.get(j - 1));
+                    numbers.set(j - 1, temp);
+                }
+            }
+        }
     }
 
     public static void printLottos(Lotto[] lottos) {
