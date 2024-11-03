@@ -77,6 +77,6 @@ public class LottoController {
     }
 
     private void printResult(Map<LottoResult, Integer> result, int money) {
-        OutputView.printResult(result, money);
+        OutputView.printLottoResult(result, money);
     }
 }

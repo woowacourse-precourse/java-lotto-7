@@ -1,30 +1,57 @@
 package lotto.view;
 
+import static java.util.stream.Collectors.joining;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public final class OutputView {
+    private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다." + "\n";
+    private static final String SEPARATOR = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
+
+    private static final String LOTTO_RESULT_NOTICE = "당첨 통계" + "\n" + "---";
+    private static final String LOTTO_RESULT_INFORMATION = "%d개 일치 (%,d원) - %d 개" + "\n";
+    private static final String LOTTO_RESULT_INFORMATION_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d 개" + "\n";
+    private static final String LOTTO_EARNING_RATE_INFORMATION = "총 수익률은 %.1f%%입니다.";
 
     public static void printLotto(List<Lotto> lottos) {
+        printPurchasedResultHeader(lottos);
+        printPurchasedResultInformation(lottos);
+    }
+
+    public static void printLottoResult(Map<LottoResult, Integer> result, int money) {
+        printLottoResultHeader();
+        printLottoResultInformation(result, money);
+    }
+
+    // 로또 구매 결과 관련 private 메서드
+    private static void printPurchasedResultHeader(List<Lotto> lottos) {
         System.out.println();
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.printf(LOTTO_COUNT_MESSAGE, lottos.size());
+    }
+
+    private static void printPurchasedResultInformation(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.print("[");
-            String result = lotto.getSortedNumbers().stream().map(String::valueOf).collect(Collectors.joining(", "));
+            System.out.print(PREFIX);
+            String result = lotto.getSortedNumbers().stream().map(String::valueOf).collect(joining(SEPARATOR));
             System.out.print(result);
-            System.out.println("]");
+            System.out.println(SUFFIX);
         }
         System.out.println();
     }
 
-    public static void printResult(Map<LottoResult, Integer> result, int money) {
+    // 전체 로또 결과 관련 private 메서드
+    private static void printLottoResultHeader() {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(LOTTO_RESULT_NOTICE);
+    }
+
+    private static void printLottoResultInformation(Map<LottoResult, Integer> result, int money) {
         List<LottoResult> list = Arrays.stream(LottoResult.values())
                 .filter(lottoResult -> !lottoResult.equals(LottoResult.NONE))
                 .toList();
@@ -34,13 +61,16 @@ public final class OutputView {
             int rewardAmount = lottoResult.getRewardAmount();
             int winningCount = result.getOrDefault(lottoResult, 0);
             sum += winningCount * rewardAmount;
-            System.out.print(matchedCount + "개 일치");
-            if (lottoResult.isBonusMatched()) {
-                System.out.print(", 보너스 볼 일치");
-            }
-            System.out.printf(" (%,d원) - %d개", rewardAmount, winningCount);
-            System.out.println();
+            String resultInformation = getResultInformation(lottoResult);
+            System.out.printf(resultInformation, matchedCount, rewardAmount, winningCount);
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.", (double) sum * 100 / money);
+        System.out.printf(LOTTO_EARNING_RATE_INFORMATION, sum * 100 / money);
+    }
+
+    private static String getResultInformation(LottoResult lottoResult) {
+        if (lottoResult.isBonusMatched()) {
+            return LOTTO_RESULT_INFORMATION_WITH_BONUS;
+        }
+        return LOTTO_RESULT_INFORMATION;
     }
 }
