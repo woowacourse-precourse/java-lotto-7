@@ -1,4 +1,4 @@
-package lotto.service.prize;
+package lotto.service.statistic.prize;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import lotto.model.Lottos;
@@ -13,10 +13,10 @@ public class PrizeCalculatorServiceImpl implements PrizeCalculatorService {
     }
 
     @Override
-    public int calculateTotalPrize(Lottos lottos) {
+    public int calculateTotalPrize(Lottos lottos, WinningNumbers winningNumbers) {
         AtomicInteger totalPrize = new AtomicInteger(0);
         lottos.forEachLotto(lotto -> {
-            var winningStrategy = prizeFacade.getWinningStrategy(lotto, WinningNumbers.getInstance());
+            var winningStrategy = prizeFacade.getWinningStrategy(lotto, winningNumbers);
             if (winningStrategy != null) {
                 totalPrize.addAndGet(winningStrategy.getPrizeAmount());
             }
