@@ -1,12 +1,27 @@
 package lotto.winner;
 
+import java.util.Arrays;
 import java.util.List;
+import lotto.io.input.Input;
 import lotto.lotto.Lotto;
 import lotto.lotto.LottoWinning;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class WinnerServiceTest {
+
+    @AfterEach
+    void close() {
+        Input.close();
+    }
+
+    @BeforeEach
+    void setUp() {
+        Arrays.stream(LottoWinning.values())
+                .forEach(LottoWinning::reset);
+    }
 
     @Test
     void announceWinner() {

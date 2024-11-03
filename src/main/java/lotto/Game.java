@@ -13,9 +13,13 @@ import lotto.winner.WinnerService;
 
 public class Game {
 
-    private final static LottoService lottoService = new LottoService(new RandomImpl());
+    private final LottoService lottoService;
 
-    public static void run() {
+    public Game() {
+        this.lottoService = new LottoService(new RandomImpl());
+    }
+
+    public void run() {
         int priceInput = getPurchaseAmount();
         List<Lotto> lottos = lottoService.purchaseLottoWithAmount(priceInput);
 
@@ -33,7 +37,7 @@ public class Game {
         Input.close();
     }
 
-    private static void displayWinningStatistics() {
+    private void displayWinningStatistics() {
         Output.displayWinningStatisticsHeader();
         for (LottoWinning winning : LottoWinning.values()) {
             if (winning == LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER) {
@@ -44,24 +48,36 @@ public class Game {
         }
     }
 
-    private static Winner getWinner() {
-        Output.promptEnterWinningNumber();
-        List<Integer> winningNumbers = Input.getWinningNumbersInput();
-        Lotto lotto = new Lotto(winningNumbers);
+    private Winner getWinner() {
+        while (true) {
+            try {
+                Output.promptEnterWinningNumber();
+                List<Integer> winningNumbers = Input.getWinningNumbersInput();
+                Lotto lotto = new Lotto(winningNumbers);
 
-        Output.promptEnterBonusNumber();
-        int bonusNumber = Input.getBonusNumberInput();
+                Output.promptEnterBonusNumber();
+                int bonusNumber = Input.getBonusNumberInput();
 
-        return new Winner(lotto, bonusNumber);
+                return new Winner(lotto, bonusNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static void displayPurchasedLottos(List<Lotto> lottos) {
+    private void displayPurchasedLottos(List<Lotto> lottos) {
         Output.displayPurchasedCount(lottos.size());
         Output.displayLottos(lottos);
     }
 
-    private static int getPurchaseAmount() {
-        Output.promptEnterPurchaseAmount();
-        return Input.getPriceInput();
+    private int getPurchaseAmount() {
+        while (true) {
+            try {
+                Output.promptEnterPurchaseAmount();
+                return Input.getPriceInput();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

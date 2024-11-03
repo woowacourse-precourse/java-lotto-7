@@ -4,11 +4,17 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import lotto.io.input.Input;
 import lotto.lotto.Lotto;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinnerTest {
+
+    @AfterEach
+    void close() {
+        Input.close();
+    }
 
     @Test
     @DisplayName("당첨번호 발행")

@@ -33,4 +33,8 @@ public enum LottoWinning {
     public void incrementCount() {
         count++;
     }
+
+    public void reset() {
+        count = 0;
+    }
 }

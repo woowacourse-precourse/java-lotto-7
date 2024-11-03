@@ -1,14 +1,30 @@
 package lotto.returnrate;
 
+import java.util.Arrays;
 import java.util.List;
+import lotto.io.input.Input;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoWinning;
 import lotto.winner.Winner;
 import lotto.winner.WinnerService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ReturnRateTest {
+
+    @AfterEach
+    void close() {
+        Input.close();
+    }
+
+    @BeforeEach
+    void setUp() {
+        Arrays.stream(LottoWinning.values())
+                .forEach(LottoWinning::reset);
+    }
 
     @Test
     @DisplayName("총 수익률 계산")

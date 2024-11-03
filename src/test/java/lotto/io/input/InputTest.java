@@ -2,11 +2,17 @@ package lotto.io.input;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputTest {
+
+    @AfterEach
+    void close() {
+        Input.close();
+    }
 
     @Test
     @DisplayName("당첨 번호를 입력 할 시 ,를 기준으로 구분")

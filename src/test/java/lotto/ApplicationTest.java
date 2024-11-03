@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
+import lotto.io.input.Input;
+import lotto.lotto.LottoWinning;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +16,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @AfterEach
+    void close() {
+        Input.close();
+    }
+
+    @BeforeEach
+    void setUp() {
+        Arrays.stream(LottoWinning.values())
+                .forEach(LottoWinning::reset);
+    }
 
     @Test
     void 기능_테스트() {
