@@ -22,7 +22,6 @@ public class InputValidatorTest {
     @ParameterizedTest
     @CsvSource({"''", "'   '"}) // 빈 문자열과 공백 문자열
     @NullSource
-        // null 값 추가
     void validateNotEmpty_WhenInputEmptyOrBlankOrNull_ShouldThrowException(String input) {
         assertThatThrownBy(() -> InputValidator.validateNotEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -46,6 +45,18 @@ public class InputValidatorTest {
     @CsvSource({"1000", "5000", "10000"})
     void validatePurchaseAmount_WhenThousandUnit_ShouldNotThrowException(int amount) {
         assertThatNoException().isThrownBy(() -> InputValidator.validatePurchaseAmount(amount));
+    }
+
+    @DisplayName("[ERROR] 구입 금액이 너무 큽니다. 최대 금액은 1,000,000원입니다.")
+    @ParameterizedTest
+    @CsvSource({
+            "1001000, '[ERROR] 구입 금액이 너무 큽니다. 최대 금액은 1,000,000원입니다.'",
+            "2000000, '[ERROR] 구입 금액이 너무 큽니다. 최대 금액은 1,000,000원입니다.'"
+    })
+    void validatePurchaseAmount_WhenExceedsMaxAmount_ShouldThrowException(int amount, String expectedMessage) {
+        assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(expectedMessage);
     }
 
 }

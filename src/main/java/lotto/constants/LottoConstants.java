@@ -13,6 +13,9 @@ public final class LottoConstants {
     // 로또 가격
     public static final int LOTTO_PRICE = 1_000;
 
+    // 최대 로또 구입 금액
+    public static final int MAX_PURCHASE_AMOUNT = 1_000_000;
+
     private LottoConstants() {
         // 인스턴스화 방지
     }
