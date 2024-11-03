@@ -42,4 +42,15 @@ class MoneyTest {
         //then
         Assertions.assertThat(money1).isNotEqualTo(money2);
     }
+
+    @Test
+    @DisplayName("숫자가 아닌 값으로 Money를 생성하면 예외가 발생한다.")
+    void should_ThrowException_When_GivenNonNumericValue() {
+        // given
+        String value = "1000wooteco";
+        // when, then
+       Assertions.assertThatThrownBy(() -> new Money(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_FORMAT.getMessage());
+    }
 }
