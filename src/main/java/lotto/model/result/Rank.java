@@ -28,26 +28,14 @@ public enum Rank {
     }
 
     public static Rank findRank(int matchingCount, boolean isBonusMatched) {
-        Rank rank = findMatchCount(matchingCount);
-
-        if (rank == THIRD) {
-            rank = checkSecond(isBonusMatched);
-        }
-        return rank;
-    }
-
-    private static Rank findMatchCount(int matchingCount) {
         return Arrays.stream(values())
-                .filter(rank -> rank.matchingCount == matchingCount)
+                .filter(rank -> rank.matches(matchingCount, isBonusMatched))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    private static Rank checkSecond(boolean isBonusMatched) {
-        if (isBonusMatched) {
-            return SECOND;
-        }
-        return THIRD;
+    private boolean matches(int matchingCount, boolean bonusMatched) {
+        return this.matchingCount == matchingCount && (!isBonusMatched || bonusMatched);
     }
 
     public static List<Rank> ranksExceptNone() {
@@ -58,7 +46,7 @@ public enum Rank {
 
     public static List<Rank> sortedRanksExceptNone() {
         return ranksExceptNone().stream()
-                .sorted(Comparator.comparingInt(Rank::getMatchingCount))
+                .sorted(Comparator.comparingInt(Rank::getPrize))
                 .toList();
     }
 

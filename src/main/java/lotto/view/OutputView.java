@@ -37,24 +37,21 @@ public class OutputView {
 
     public void displayResult(RankResult result, EarningsRate earningsRate) {
         writer.printLineBefore(RESULT_HEADER);
-
-        List<String> rankMessages = generateRankMessages(result);
-        rankMessages.forEach(writer::printSout);
-
+        generateRankMessages(result).forEach(writer::printSout);
         writer.printSout(String.format(EARNINGS_RATE_NOTICE, earningsRate.toString()));
     }
 
     private List<String> generateRankMessages(RankResult result) {
         return Rank.sortedRanksExceptNone().stream()
-                .map(rank -> {
-                    int matchCount = result.getCountByRank(rank);
-                    String formattedPrize = String.format("%,d", rank.getPrize());
-
-                    if (rank == Rank.SECOND) {
-                        return String.format(RANK_FORMAT_WITH_BONUS, rank.getMatchingCount(), formattedPrize, matchCount);
-                    }
-                    return String.format(RANK_FORMAT, rank.getMatchingCount(), formattedPrize, matchCount);
-                })
+                .map(rank -> formatRankMessage(rank, result.getCountByRank(rank)))
                 .toList();
+    }
+
+    private String formatRankMessage(Rank rank, int matchCount) {
+        String formattedPrize = String.format("%,d", rank.getPrize());
+        if (rank == Rank.SECOND) {
+            return String.format(RANK_FORMAT_WITH_BONUS, rank.getMatchingCount(), formattedPrize, matchCount);
+        }
+        return String.format(RANK_FORMAT, rank.getMatchingCount(), formattedPrize, matchCount);
     }
 }

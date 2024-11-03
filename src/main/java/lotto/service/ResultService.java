@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static lotto.model.result.Rank.hasCountToBeSecond;
-
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.money.Money;
@@ -11,7 +9,8 @@ import lotto.model.result.RankResult;
 
 public class ResultService {
 
-    public ResultService() { }
+    public ResultService() {
+    }
 
     public RankResult getRankResult(Lottos lottos, Lotto winningLotto, int bonusNumber) {
         RankResult rankResult = RankResult.initiate();
@@ -26,13 +25,12 @@ public class ResultService {
 
     private Rank getEachRank(final Lotto lotto, final Lotto winningLotto, final int bonusNumber) {
         int matchingCount = lotto.countMatch(winningLotto);
-        boolean bonusMatched = false;
-
-        if (hasCountToBeSecond(matchingCount)) {
-            bonusMatched = lotto.hasBonus(bonusNumber);
-        }
-
+        boolean bonusMatched = hasBonusMatched(lotto, matchingCount, bonusNumber);
         return Rank.findRank(matchingCount, bonusMatched);
+    }
+
+    private boolean hasBonusMatched(Lotto lotto, int matchingCount, int bonusNumber) {
+        return Rank.hasCountToBeSecond(matchingCount) && lotto.hasBonus(bonusNumber);
     }
 
     public EarningsRate getEarningsRate(RankResult rankResult, Money purchaseAmount) {
