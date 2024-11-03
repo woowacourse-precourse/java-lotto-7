@@ -19,7 +19,7 @@ public class LottoResult {
         this.bonusNumber = bonusNumber;
         this.results = new EnumMap<>(LottoPrize.class);
         for (LottoPrize prize : LottoPrize.values()) {
-            results.put(prize, 0); // 초기값 0으로 설정
+            results.put(prize, 0);
         }
     }
 
@@ -35,7 +35,7 @@ public class LottoResult {
 
     public LottoPrize calculateResults(Lotto myLotto){
         int matchCount = countMatches(myLotto.getNumbers());
-        Boolean containBonus = winningNumber.getNumbers().contains(bonusNumber);
+        boolean containBonus = myLotto.getNumbers().contains(bonusNumber);
         return LottoPrize.valueOf(matchCount, containBonus);
     }
 
@@ -57,5 +57,9 @@ public class LottoResult {
             OutputView.printLottoResult(prize.getDescription(), count);
         }
         OutputView.printTotalProfit(totalProfit);
+    }
+
+    public double getTotalProfit() {
+        return totalProfit;
     }
 }

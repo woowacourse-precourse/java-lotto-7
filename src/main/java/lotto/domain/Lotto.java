@@ -13,8 +13,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         checkInputValidity(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {

@@ -7,7 +7,6 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class LottoController {
@@ -71,8 +70,8 @@ public class LottoController {
         String[] splitResult = inputWinningNumbers.split(",");
         List<Integer> numbers = new ArrayList<>();
 
-        for (int i = 0; i < splitResult.length; i++) {
-            numbers.add(convertToInt(splitResult[i]));
+        for (String string : splitResult) {
+            numbers.add(convertToInt(string));
         }
         return numbers;
     }
@@ -111,8 +110,4 @@ public class LottoController {
         lottoResult.calculateTotalProfit(purchaseCost);
         lottoResult.printResults();
     }
-
-
-
-
 }
