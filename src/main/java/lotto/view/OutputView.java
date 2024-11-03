@@ -13,35 +13,35 @@ public class OutputView {
     private static final String LABEL_WINNING_STATISTICS = "당첨 통계";
     private static final String SYMBOL_SEPARATOR_LINE = "---";
 
-    public void printPurchaseAmountInputMessage() {
+    public static void printPurchaseAmountInputMessage() {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
     }
 
-    public void printWinningNumbersInputMessage() {
+    public static void printWinningNumbersInputMessage() {
         System.out.println(Message.INPUT_WINNING_NUMBERS.getMessage());
     }
 
-    public void printBonusNumberInputMessage() {
+    public static void printBonusNumberInputMessage() {
         System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
     }
 
-    public void printPurchaseCount(int count) {
+    public static void printPurchaseCount(int count) {
         String message = String.format(Message.PURCHASE_SUFFIX.getMessage(), count);
         System.out.println(message);
     }
 
-    public void printPurchasedLottoNumbers(List<Integer> lottoNumbers) {
+    public static void printPurchasedLottoNumbers(List<Integer> lottoNumbers) {
         List<Integer> numbers = sortAscending(lottoNumbers);
         System.out.println(numbers);
     }
 
-    public List<Integer> sortAscending(List<Integer> numbers) {
+    public static List<Integer> sortAscending(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;
     }
 
-    public void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
+    public static void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
         System.out.println(LABEL_WINNING_STATISTICS);
         System.out.println(SYMBOL_SEPARATOR_LINE);
 
@@ -53,7 +53,7 @@ public class OutputView {
         }
     }
 
-    public void printTotalProfitRate(double profitRate) {
+    public static void printTotalProfitRate(double profitRate) {
         System.out.printf(Message.TOTAL_PROFIT_RATE.getMessage(), profitRate);
     }
 }

@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
     private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private final ProfitCalculator profitCalculator = new ProfitCalculator();
 
@@ -29,23 +27,23 @@ public class LottoController {
         List<MatchResult> matchResults = getMatchResults(lottoTicket);
 
         double profitRate = getProfitRate(matchResults, enteredPurchaseAmount);
-        outputView.printTotalProfitRate(profitRate);
+        OutputView.printTotalProfitRate(profitRate);
     }
 
     private String enterPurchaseAmount() {
-        outputView.printPurchaseAmountInputMessage();
-        return inputView.inputPurchaseAmount();
+        OutputView.printPurchaseAmountInputMessage();
+        return InputView.inputPurchaseAmount();
     }
 
     private void printPurchaseCount(PurchaseAmount purchaseAmount) {
         int count = purchaseAmount.countLottoQuantity();
         System.out.println();
-        outputView.printPurchaseCount(count);
+        OutputView.printPurchaseCount(count);
     }
 
     private void displayPurchasedLottoNumbers(List<Lotto> ticket) {
         for (Lotto lotto : ticket) {
-            outputView.printPurchasedLottoNumbers(lotto.getNumbers());
+            OutputView.printPurchasedLottoNumbers(lotto.getNumbers());
         }
     }
 
@@ -54,20 +52,20 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         List<MatchResult> matchResults = lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
         Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchResults);
-        outputView.printWinningStatistics(lottoRankCount);
+        OutputView.printWinningStatistics(lottoRankCount);
         return matchResults;
     }
 
     private WinningNumber getWinningNumber() {
-        outputView.printWinningNumbersInputMessage();
-        String inputWinningNumbers = inputView.inputWinningNumbers();
+        OutputView.printWinningNumbersInputMessage();
+        String inputWinningNumbers = InputView.inputWinningNumbers();
         System.out.println();
         return WinningNumber.from(inputWinningNumbers);
     }
 
     private BonusNumber getBonusNumber(WinningNumber winningNumber) {
-        outputView.printBonusNumberInputMessage();
-        String inputBonusNumber = inputView.inputBonusNumber(winningNumber);
+        OutputView.printBonusNumberInputMessage();
+        String inputBonusNumber = InputView.inputBonusNumber(winningNumber);
         System.out.println();
         return BonusNumber.from(inputBonusNumber);
     }
