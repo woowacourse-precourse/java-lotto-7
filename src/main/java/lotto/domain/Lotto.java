@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static java.util.stream.Collectors.toList;
 import static lotto.domain.LottoConstants.IS_DUPLICATE_NUMBER;
+import static lotto.domain.LottoConstants.IS_NOT_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.IS_NOT_LOTTO_SIZE;
 import static lotto.domain.LottoConstants.LOTTO_SIZE;
 
@@ -29,6 +30,7 @@ public class Lotto {
     private void validateLotto(List<Integer> numbers) {
         validateLottoSetSize(numbers);
         valdiateDuplicate(numbers);
+        validateNumberRange(numbers);
     }
 
     private void valdiateDuplicate(List<Integer> numbers) {
@@ -41,6 +43,14 @@ public class Lotto {
     private void validateLottoSetSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(IS_NOT_LOTTO_SIZE);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoConstants.LOTTO_MIN_NUM || number > LottoConstants.LOTTO_MAX_NUM) {
+                throw new IllegalArgumentException(IS_NOT_LOTTO_NUMBER);
+            }
         }
     }
 

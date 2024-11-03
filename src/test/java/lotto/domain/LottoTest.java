@@ -32,4 +32,11 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
         assertThat(lotto).isEqualTo(new Lotto(1, 5, 7, 8, 9, 11));
     }
+
+    @DisplayName("1~45 사이가 아니면 에러 발생")
+    @Test
+    void 숫자_범위_에러() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
