@@ -18,19 +18,19 @@ import lotto.domain.Revenue;
 import lotto.dto.WinningStat;
 import lotto.dto.WinningSummary;
 import lotto.exception.LottoException;
-import lotto.service.BuyerService;
+import lotto.service.UserService;
 import lotto.service.LottoService;
 import lotto.service.StatService;
 import lotto.utils.WinningSummaryGenerator;
 import lotto.view.InputView;
 
 public class LottoGameController {
-    private final BuyerService buyerService;
+    private final UserService userService;
     private final LottoService lottoService;
     private final StatService statService;
 
-    public LottoGameController(BuyerService buyerService, LottoService lottoService, StatService statService) {
-        this.buyerService = buyerService;
+    public LottoGameController(UserService userService, LottoService lottoService, StatService statService) {
+        this.userService = userService;
         this.lottoService = lottoService;
         this.statService = statService;
     }
@@ -61,7 +61,7 @@ public class LottoGameController {
         String input = InputView.inputPurchaseAmount();
 
         try {
-            int lottoQuantity = buyerService.calculateLottoQuantity(input);
+            int lottoQuantity = userService.calculateLottoQuantity(input);
             printPurchaseMessage(lottoQuantity);
 
             return lottoQuantity;
@@ -85,7 +85,7 @@ public class LottoGameController {
         String input = InputView.inputWinningNumbers();
 
         try {
-            Lotto winningLotto = buyerService.createWinningLotto(input);
+            Lotto winningLotto = userService.createWinningLotto(input);
             printNewLine();
 
             return winningLotto;
@@ -100,7 +100,7 @@ public class LottoGameController {
         String input = InputView.inputBonusNumbers();
 
         try {
-            BonusNumber bonusNumber = buyerService.createBonusNumber(winningLotto, input);
+            BonusNumber bonusNumber = userService.createBonusNumber(winningLotto, input);
             printNewLine();
 
             return bonusNumber;
