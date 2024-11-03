@@ -3,9 +3,10 @@ package lotto.view;
 import static lotto.common.ExceptionMessage.CONVERSION_ERROR_MESSAGE;
 import static lotto.common.ExceptionMessage.DUPLICATION_ERROR_MESSAGE;
 import static lotto.common.ExceptionMessage.ERROR_PHRASE;
-import static lotto.common.ExceptionMessage.NEGATIVE_ERROR_MESSAGE;
+import static lotto.common.ExceptionMessage.NOT_INTEGER_ERROR_MESSAGE;
 import static lotto.common.ExceptionMessage.RANGE_ERROR_MESSAGE;
 import static lotto.common.ExceptionMessage.SIZE_ERROR_MESSAGE;
+import static lotto.common.ExceptionMessage.UNDER_ZERO_ERROR_MESSAGE;
 import static lotto.common.ExceptionMessage.UNITS_ERROR_MESSAGE;
 import static lotto.common.LottoConstant.MAX_NUMBER;
 import static lotto.common.LottoConstant.MIN_NUMBER;
@@ -30,21 +31,25 @@ public class InputView {
                 String priceInput = Console.readLine();
                 int price = validateInteger(priceInput);
                 return new LottoPurchase(price);
-            } catch (Exception e){
+            } catch (IllegalArgumentException e){
                 System.out.println(ERROR_PHRASE + e.getMessage());
             }
         }
     }
 
     private int validateInteger(String string){
-        int number = Integer.parseInt(string);
-        checkValidate(number);
-        return number;
+        try {
+            int number = Integer.parseInt(string);
+            checkValidate(number);
+            return number;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(String.format(NOT_INTEGER_ERROR_MESSAGE, string));
+        }
     }
 
     private void checkValidate(int number){
-        if(number<0){
-            throw new IllegalArgumentException(NEGATIVE_ERROR_MESSAGE);
+        if(number<=0){
+            throw new IllegalArgumentException(UNDER_ZERO_ERROR_MESSAGE);
         } else if (number % TICKET_MIN_UNITS != 0){
             throw new IllegalArgumentException(UNITS_ERROR_MESSAGE);
         }
