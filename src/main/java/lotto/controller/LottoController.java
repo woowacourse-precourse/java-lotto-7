@@ -20,6 +20,10 @@ public class LottoController {
         List<Lotto> lottos = getMoneyAndBuyLotto();
 
         printPublicedLottos(lottos);
+
+        Lotto winningLotto = getWinningLotto();
+
+
     }
 
     public List<Lotto> getMoneyAndBuyLotto(){
@@ -37,5 +41,18 @@ public class LottoController {
 
     private void printPublicedLottos(List<Lotto> lottos){
         outputView.showPublicedLottos(lottos);
+    }
+
+    private Lotto getWinningLotto(){
+        while (true) {
+            try {
+                outputView.enterWinningNumberForLotto();
+                List<Integer> lottoNum = inputView.getWinningLottoNum();
+                return new Lotto(lottoNum);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }
