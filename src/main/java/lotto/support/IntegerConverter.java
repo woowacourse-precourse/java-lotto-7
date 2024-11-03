@@ -8,6 +8,7 @@ public class IntegerConverter {
     public List<Integer> convertFrom(List<String> numbers) {
         try {
             return numbers.stream()
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException exception) {
@@ -19,7 +20,7 @@ public class IntegerConverter {
 
     public int convertFrom(final String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException exception) {
             throw new InvalidConvertException("Integer 타입의 정수가 아닙니다");
         } catch (NullPointerException exception) {

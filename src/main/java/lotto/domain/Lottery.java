@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import lotto.exception.InvalidLottoNumberException;
 
 public class Lottery {
@@ -40,8 +41,11 @@ public class Lottery {
         for (Lotto lotto : pickedLottos) {
             int matchingCount = lotto.countMatchingNumber(winningLotto);
             boolean isBonus = lotto.doesMatchBonusNumber(bonusNumber);
-            LottoRank rank = LottoRank.findRank(matchingCount, isBonus);
-            result.add(rank);
+            Optional<LottoRank> rank = LottoRank.findRank(matchingCount, isBonus);
+            if (rank.isEmpty()) {
+                continue;
+            }
+            result.add(rank.get());
         }
         return result;
     }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,15 +16,19 @@ public class LottoResult {
         }
     }
 
-    public void add(LottoRank lottoRank) {
-        result.put(lottoRank, result.get(lottoRank).add(BigDecimal.ONE));
-    }
-
     public BigDecimal calculateProfit() {
         BigDecimal profit = BigDecimal.ZERO;
         for (Entry<LottoRank, BigDecimal> entry : result.entrySet()) {
             profit = profit.add(entry.getKey().getAward().multiply(entry.getValue()));
         }
         return profit;
+    }
+
+    void add(LottoRank lottoRank) {
+        result.put(lottoRank, result.get(lottoRank).add(BigDecimal.ONE));
+    }
+
+    public Map<LottoRank, BigDecimal> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

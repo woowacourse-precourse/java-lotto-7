@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import lotto.exception.InvalidLottoException;
@@ -15,14 +16,14 @@ public class Lotto {
     public Lotto(final List<Integer> numbers) {
         List<Integer> sortedNumbers = sort(numbers);
         validateNumber(sortedNumbers);
-        this.numbers = sortedNumbers;
+        this.numbers = new ArrayList<>(sortedNumbers);
     }
 
     public Lotto(final NumberGenerator<Integer> generator) {
         this(generator.generateNumbers());
     }
 
-    public static List<Lotto> createAsMuchAs(final Quantity quantity, final NumberGenerator<Integer> generator) {
+    public static List<Lotto> createAsMuchAs(final Quantity quantity, final NumberGenerator generator) {
         BigDecimal purchaseQuantity = quantity.getQuantity();
         List<Lotto> lottos = new ArrayList<>();
         for (BigDecimal count = BigDecimal.ZERO; count.compareTo(purchaseQuantity) < 0;
@@ -69,6 +70,10 @@ public class Lotto {
     private boolean isOutOfRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> (number < 1 || number > 45));
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override
