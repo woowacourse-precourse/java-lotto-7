@@ -1,7 +1,9 @@
 package lotto.exceptioin;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,11 +57,17 @@ public class InputException {
         }
     }
 
-    // 로또 번호 개수 및 범위 검증
+    // 로또 번호 개수, 범위 및 중복 검증
     public void validateLottoNumbers(List<Integer> numbers) {
         if (numbers == null || numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개의 숫자로 입력되어야 합니다.");
         }
+        // 중복 검사
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자여야 합니다.");
+        }
+        // 각 번호 범위 검사
         for (Integer number : numbers) {
             validateLottoNumberRange(number);
         }
