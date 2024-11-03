@@ -3,10 +3,7 @@ package lotto.model;
 import lotto.enums.Constants;
 import lotto.enums.ExceptionMessage;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.enums.Constants.MAX_LOTTO_NUM;
 import static lotto.enums.Constants.MIN_LOTTO_NUM;
@@ -19,6 +16,7 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
