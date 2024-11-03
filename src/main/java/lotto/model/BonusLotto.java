@@ -13,7 +13,7 @@ public class BonusLotto {
 
     public void bonusDuplicate(int bonusNumber, List<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
         }
     }
 
