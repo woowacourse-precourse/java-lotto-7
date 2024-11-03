@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.CustomLotto;
 import lotto.domain.LottoGame;
-import lotto.util.LottoRankCalculator;
+import lotto.domain.LottoRankCalculator;
 import lotto.util.Parse;
 import lotto.util.Validator;
 

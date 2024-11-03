@@ -11,19 +11,10 @@ public class CustomLotto extends Lotto{
     public CustomLotto(List<Integer> numbers, Integer bonus) {
         super(numbers);
         this.bonus= bonus;
-        isDuplicateLottoAndBonus();
+        LottoValidator.isDuplicateLottoAndBonus(this);
     }
     public Integer getBonus(){
         return bonus;
     }
-    private void isDuplicateLottoAndBonus(){
-        List<Integer> numbers = new ArrayList<>();
-        numbers.addAll(this.getNumbers());
-        numbers.add(bonus);
-        List<Integer> numbersPlusBonus = numbers.stream().distinct().toList();
 
-        if(numbersPlusBonus.size()!=7){
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
-        }
-    }
 }
