@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.utils.Converter.StringToPrice;
 import static lotto.utils.Converter.priceToLottoCount;
+import static lotto.view.OutputView.printErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class woowahanLotto implements LottoController {
             Validator.priceValidator(input);
             return input;
         } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
             return getLottoCount();
         }
     }
@@ -54,9 +56,10 @@ public class woowahanLotto implements LottoController {
     private List<Integer> getWinningNum() {
         try {
             String input = InputView.getWinningNumber();
-            Validator.lottoNumValidator(input);
+            Validator.winningNumValidator(input);
             return Converter.StringToLottoNumbers(input);
         } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
             return getWinningNum();
         }
     }
@@ -67,6 +70,7 @@ public class woowahanLotto implements LottoController {
             Validator.lottoNumValidator(input);
             return Converter.StringToBonusNumber(input);
         } catch (IllegalArgumentException e) {
+            printErrorMessage(e);
             return getBonusNumber();
         }
     }
