@@ -38,7 +38,7 @@ public class Lotto {
         for (Winning winning : winnings) {
             if (winning.getCount() == count) {
                 map.put(winning.getMean(), map.get(winning.getMean()) + 1);
-                return winning.getPrice();
+                return winning.getWinningPrice();
             }
         }
         return 0;

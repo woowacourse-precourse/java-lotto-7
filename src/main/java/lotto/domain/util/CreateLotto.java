@@ -13,7 +13,7 @@ public class CreateLotto {
 
     private CreateLotto() {}
 
-    public static List<Integer> lotto() {
+    public static List<Integer> create() {
         List<Integer> lottoNumbers = new ArrayList<>(
                 Randoms.pickUniqueNumbersInRange(RANGE_MIN, RANGE_MAX, LOTTO_COUNT));
         Collections.sort(lottoNumbers);

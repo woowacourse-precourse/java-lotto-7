@@ -8,7 +8,7 @@ public class AddBonusNumber {
 
     private AddBonusNumber() {}
 
-    public static List<Integer> create(List<Integer> winningNumbers, String input) {
+    public static List<Integer> add(List<Integer> winningNumbers, String input) {
         validate(input);
 
         int bonusNumber = Integer.parseInt(input);

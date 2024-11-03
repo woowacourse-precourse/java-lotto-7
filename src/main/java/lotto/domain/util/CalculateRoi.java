@@ -1,8 +1,8 @@
 package lotto.domain.util;
 
-public class Calculate {
+public class CalculateRoi {
 
-    private Calculate() {}
+    private CalculateRoi() {}
 
     // 수익률 공식 = (수익금 / 투자금) * 100
     public static String calculate(long winningAmount, int amount) {

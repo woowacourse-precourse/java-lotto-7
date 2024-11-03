@@ -3,10 +3,10 @@ package lotto.domain;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.util.AddBonusNumber;
-import lotto.domain.util.Calculate;
+import lotto.domain.util.CalculateRoi;
 import lotto.domain.util.CreateLottoList;
 import lotto.domain.util.CreateWinningMap;
-import lotto.domain.util.WinningNumber;
+import lotto.domain.util.CreateWinningNumber;
 import lotto.validator.AmountValidator;
 import lotto.validator.Validator;
 
@@ -42,7 +42,7 @@ public class Model {
     }
 
     public String calculate() {
-        return Calculate.calculate(winningAmount, amount);
+        return CalculateRoi.calculate(winningAmount, amount);
     }
 
     public List<Lotto> getLottos() {
@@ -59,11 +59,11 @@ public class Model {
     }
 
     public void setWinningNumbers(String winningNumbers) {
-        this.winningNumbers = WinningNumber.create(winningNumbers);
+        this.winningNumbers = CreateWinningNumber.create(winningNumbers);
     }
 
     public void setBonusNumber(String bonusNumber) {
-        AddBonusNumber.create(winningNumbers, bonusNumber);
+        AddBonusNumber.add(winningNumbers, bonusNumber);
     }
 
 }

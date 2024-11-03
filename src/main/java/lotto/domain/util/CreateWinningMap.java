@@ -11,11 +11,11 @@ public class CreateWinningMap {
     private CreateWinningMap(){}
 
     public static Map<String, Integer> create() {
-        Map<String, Integer> map = new LinkedHashMap<>();
+        Map<String, Integer> winningDetail = new LinkedHashMap<>();
         Winning[] winnings = Winning.values();
         for (Winning winning : winnings) {
-            map.put(winning.getMean(), DEFAULT_COUNT);
+            winningDetail.put(winning.getMean(), DEFAULT_COUNT);
         }
-        return map;
+        return winningDetail;
     }
 }

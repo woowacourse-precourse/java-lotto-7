@@ -9,12 +9,12 @@ public enum Winning {
 
 
     private String mean;
-    private long price;
+    private long winningPrice;
     private int count;
 
-    Winning(String mean, long price, int count) {
+    Winning(String mean, long winningPrice, int count) {
         this.mean = mean;
-        this.price = price;
+        this.winningPrice = winningPrice;
         this.count = count;
     }
 
@@ -22,8 +22,8 @@ public enum Winning {
         return mean;
     }
 
-    public long getPrice() {
-        return price;
+    public long getWinningPrice() {
+        return winningPrice;
     }
 
     public int getCount() {

@@ -22,8 +22,8 @@ public class Controller {
     public void run() {
         Model model = init();
         printLottos(model);
-        winningNumbers(model);
-        bonusNumber(model);
+        setWinningNumbers(model);
+        setBonusNumber(model);
         printResult(model);
     }
 
@@ -43,7 +43,7 @@ public class Controller {
         }
     }
 
-    private void winningNumbers(Model model) {
+    private void setWinningNumbers(Model model) {
         String winningNumbers = InputValidatorUtil.inputValidate(
                 input::readWinningNumbers,
                 new NumberValidator()
@@ -51,7 +51,7 @@ public class Controller {
         model.setWinningNumbers(winningNumbers);
     }
 
-    private void bonusNumber(Model model) {
+    private void setBonusNumber(Model model) {
         String bonusNumber = InputValidatorUtil.inputValidate(
                 input::readBonusNumber,
                 new NumberValidator()
