@@ -4,6 +4,8 @@ import lotto.domain.prize.LottoResult;
 
 public class Revenue {
 
+    private static final int PERCENTAGE = 100;
+
     private final long revenue;
     private final double returns;
 
@@ -27,6 +29,6 @@ public class Revenue {
     }
 
     private double calculateReturns(long revenue, LottoMoney lottoMoney) {
-        return (double) revenue / lottoMoney.getPurchasedAmount();
+        return (double) revenue / lottoMoney.getPurchasedAmount() * PERCENTAGE;
     }
 }
