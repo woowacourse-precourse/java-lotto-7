@@ -37,7 +37,7 @@ public class OutputView {
     }
 
     private void outputProfitRate(double profitRate){
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
     public void outputStatistics(Map<LottoRank, Integer> rankCounts, double profitRate){
