@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -13,8 +15,11 @@ public class Application {
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
-        System.out.println("구입 금액: " + purchaseAmount);
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
+        System.out.println(lottoCount + "개를 구매했습니다.");
 
+        List<Lotto> purchasedLottos = generateLottos(lottoCount);
+        purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     private static int getPurchaseAmount() {
@@ -26,9 +31,20 @@ public class Application {
         return purchaseAmount;
     }
 
+    private static List<Lotto> generateLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = generateLottoNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
     private static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END, LOTTO_NUMBERS_COUNT
         );
+        Collections.sort(numbers);
+        return numbers;
     }
 }
