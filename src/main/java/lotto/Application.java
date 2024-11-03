@@ -22,6 +22,10 @@ public class Application {
             lottos.add(new Lotto( Randoms.pickUniqueNumbersInRange(1,45,6)));
         }
 
+        for (Lotto lotto : lottos) {
+            lotto.getLottoNumbers();
+        }
+
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNum = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(Console.readLine(),",");
@@ -42,6 +46,9 @@ public class Application {
         }
 
         Rank.print(result);
-        
+
+        double ben = ((double)prize/(double)pay)*100;
+
+        System.out.println("총 수익률은 " + String.format("%.1f", ben) + "%입니다.");
     }
 }

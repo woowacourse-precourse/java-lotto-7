@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +15,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    public void getLottoNumbers() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < 5; i++) {
+            sb.append(numbers.get(i));
+            sb.append(", ");
+        }
+        sb.append(numbers.get(5));
+        sb.append("]");
+        System.out.println(sb);
     }
 
     // TODO: 추가 기능 구현
