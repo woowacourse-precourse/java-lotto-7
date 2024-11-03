@@ -8,12 +8,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RankTest {
     @Test
     @DisplayName("매칭된 숫자 개수와 보너스 숫자 매치 여부에 따라 올바른 Rank가 할당된다.")
-    void assignRank() {
-        assertThat(Rank.assignRank(6, false)).isEqualTo(Rank.FIRST);
-        assertThat(Rank.assignRank(5, true)).isEqualTo(Rank.SECOND);
-        assertThat(Rank.assignRank(5, false)).isEqualTo(Rank.THIRD);
-        assertThat(Rank.assignRank(4, false)).isEqualTo(Rank.FOURTH);
-        assertThat(Rank.assignRank(3, false)).isEqualTo(Rank.FIFTH);
+    void matchingRank() {
+        assertThat(Rank.matchingRank(6, false)).isEqualTo(Rank.FIRST);
+        assertThat(Rank.matchingRank(5, true)).isEqualTo(Rank.SECOND);
+        assertThat(Rank.matchingRank(5, false)).isEqualTo(Rank.THIRD);
+        assertThat(Rank.matchingRank(4, false)).isEqualTo(Rank.FOURTH);
+        assertThat(Rank.matchingRank(3, false)).isEqualTo(Rank.FIFTH);
     }
 
     @Test

@@ -31,7 +31,7 @@ class WinningDetailsTest {
 
     @Test
     @DisplayName("구매한 로또와 당첨 번호를 비교하여 랭킹 별 당첨 개수를 계산하고, 정확하게 할당한다.")
-    void countWinningsOfEachRank() {
+    void countWinningOfEachRank() {
         WinningDetails winningDetails = new WinningDetails(winningNumbers, publishedLotteries, bonusNumber);
         Map<Rank, Integer> result = winningDetails.getWinningCountOfEachRank();
 

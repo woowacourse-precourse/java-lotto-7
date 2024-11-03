@@ -35,7 +35,7 @@ class WinningNumberTest {
 
     @Test
     @DisplayName("입력된 문자열을 기준으로 [1, 2, 3, 4, 5, 6] 형식의 당첨 번호로 변환한다.")
-    void processingWinningNumber() {
+    void processingInput() {
         String input = "1,2,3,4,5,6";
         WinningNumber winningNumber = new WinningNumber(input);
 

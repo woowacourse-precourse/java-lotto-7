@@ -15,7 +15,7 @@ public class WinningDetails {
             winningCountOfEachRanks.put(rank, 0);
         }
 
-        countWinningsOfEachRank(winningNumbers, publishedLotteries, bonusNumber);
+        countWinningOfEachRank(winningNumbers, publishedLotteries, bonusNumber);
     }
 
     public Map<Rank, Integer> getWinningCountOfEachRank() {
@@ -26,13 +26,13 @@ public class WinningDetails {
         return totalPrize;
     }
 
-    private void countWinningsOfEachRank(List<Integer> winningNumbers,
-                                         List<Lotto> publishedLotteries, int bonusNumber) {
+    private void countWinningOfEachRank(List<Integer> winningNumbers,
+                                        List<Lotto> publishedLotteries, int bonusNumber) {
         for (Lotto lotto : publishedLotteries) {
             int matchCount = getMatchingNumberCount(winningNumbers, lotto.get());
             boolean matchBonus = lotto.get().contains(bonusNumber);
 
-            Rank rank = Rank.assignRank(matchCount, matchBonus);
+            Rank rank = Rank.matchingRank(matchCount, matchBonus);
 
             if (rank != null) {
                 winningCountOfEachRanks.put(rank, winningCountOfEachRanks.get(rank) + 1);

@@ -15,19 +15,19 @@ public class WinningNumber {
     private List<Integer> winningNumber;
 
     public WinningNumber(String input) {
-        convertInputToWinningNumber(input);
+        convertInputToLottoFormat(input);
     }
 
     public List<Integer> get() {
         return winningNumber;
     }
 
-    private void convertInputToWinningNumber(String input) {
+    private void convertInputToLottoFormat(String input) {
         checkHasValidInputFormat(input);
-        List<Integer> createdLotto = processingWinningNumber(input);
-        checkEachNumberHasValidate(createdLotto);
+        List<Integer> processedWinningNumber = processingInput(input);
+        checkEachNumberHasValidate(processedWinningNumber);
 
-        winningNumber = createdLotto;
+        winningNumber = processedWinningNumber;
     }
 
     private void checkHasValidInputFormat(String input) {
@@ -36,7 +36,7 @@ public class WinningNumber {
         }
     }
 
-    private List<Integer> processingWinningNumber(String input) {
+    private List<Integer> processingInput(String input) {
         List<String> splitInputByComma = List.of(input.split(","));
         List<Integer> processedWinningNumber = new ArrayList<>();
 
