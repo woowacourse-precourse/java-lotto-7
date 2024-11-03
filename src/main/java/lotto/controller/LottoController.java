@@ -84,11 +84,17 @@ public class LottoController {
     }
 
     private List<LottoNumber> inputWinningNumbers() {
-        outputView.printWinningNumbersGuide();
-        String input = inputView.readLine();
-        outputView.printNewLine();
+        try {
+            outputView.printWinningNumbersGuide();
+            String input = inputView.readLine();
+            validateInput(input);
+            outputView.printNewLine();
 
-        return convertToLottoNumbers(input);
+            return convertToLottoNumbers(input);
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputWinningNumbers();
+        }
     }
 
     private List<LottoNumber> convertToLottoNumbers(String input) {
