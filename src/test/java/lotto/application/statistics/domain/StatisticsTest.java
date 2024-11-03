@@ -1,5 +1,6 @@
 package lotto.application.statistics.domain;
 
+import static lotto.application.statistics.domain.Rank.FIRST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -39,6 +40,25 @@ class StatisticsTest {
 
         // then
         assertThat(statistics).isNotNull();
+    }
+
+    @DisplayName("1등 당첨 집계")
+    @Test
+    void 일등_당첨_집계() {
+        // given
+        List<Lotto> lottos = List.of(
+                createLotto(List.of(1, 2, 3, 4, 5, 6))
+        );
+        PrizeNumber prizeNumber = createPrizeNumber(
+                List.of(1, 2, 3, 4, 5, 6), 7
+        );
+        Statistics statistics = Statistics.of(lottos, prizeNumber);
+
+        // when
+        StatisticsResult result = statistics.compile();
+
+        // then
+        assertThat(result.getCount(FIRST)).isEqualTo(1);
     }
 
 }
