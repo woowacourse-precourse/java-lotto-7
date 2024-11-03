@@ -22,6 +22,8 @@ public class LottoController {
 
         lottoOutputView.printWinningNumberNotification();
         Lotto winningLotto = requestWinningLottoInput();
+
+        lottoOutputView.printBonusNumberNotification();
     }
 
     private Cash requestCashInput() {
