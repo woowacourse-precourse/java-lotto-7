@@ -12,6 +12,7 @@ public class Application {
         printTicketCount(ticketCount);
 
         List<Lotto> tickets = generateTickets(ticketCount);
+        printTickets(tickets);
     }
 
     private static int getPurchaseAmount() {
@@ -35,6 +36,13 @@ public class Application {
             tickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         return tickets;
+    }
+
+    private static void printTickets(List<Lotto> tickets) {
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket.printTicketDetail());
+        }
+        System.out.println();
     }
 
 }
