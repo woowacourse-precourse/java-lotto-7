@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ValidatorOfViewTest {
+public class BudgetValidationTest {
     @Test
     @DisplayName("로또 구입 금액 - 1000으로 떨어지지 않는 경우")
     public void isMultipleOfUnitPrice() {
