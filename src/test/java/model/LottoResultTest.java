@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LottoResultTest {
+class LottoResultTest {
     @Test
     void 매칭_개수와_상금_확인() {
         assertThat(LottoResult.THREE_NUMBER_MATCH.lottoMatchCount()).isEqualTo(3);
