@@ -10,6 +10,9 @@ import lotto.Lotto;
 import lotto.domain.CashRegister;
 import lotto.domain.LottoMachine;
 import lotto.domain.Parser;
+import lotto.domain.ScoreBoard;
+import lotto.domain.Winning;
+import lotto.dto.LottoResultDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,16 +27,25 @@ public class Controller {
         List<Lotto> lottos = pickLotto();
         outputView.printLottos(lottos);
 
-        outputView.printResult(WINNING_START.getMessage());
+        Winning winning = createWinning();
 
-        outputView.printResult(BONUS_START.getMessage());
+        ScoreBoard scoreBoard = new ScoreBoard(lottos, winning);
         outputView.printResult(STATISTICS.getMessage());
+        List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
+        lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
     }
 
     private List<Lotto> pickLotto() {
         int money = getIntValue();
         int count = getCount(money);
         return lottoMachine.generateLottos(count);
+    }
+
+    private Winning createWinning() {
+        List<Integer> winningNumber = getWinningNumber();
+        int bonus = getBonusNumber();
+
+        return new Winning(winningNumber, bonus);
     }
 
     private int getCount(int money) {
@@ -44,4 +56,15 @@ public class Controller {
     private int getIntValue() {
         return parser.parseToInt(inputView.inputString());
     }
+
+    private List<Integer> getWinningNumber() {
+        outputView.printResult(WINNING_START.getMessage());
+        return parser.parseToIntList(inputView.inputString());
+    }
+
+    private int getBonusNumber() {
+        outputView.printResult(BONUS_START.getMessage());
+        return getIntValue();
+    }
+
 }
