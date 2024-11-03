@@ -4,7 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String getAmount(){
+    public String getAmount() {
+        return Console.readLine();
+    }
+
+    public String getWinningNumbers() {
         return Console.readLine();
     }
 }
