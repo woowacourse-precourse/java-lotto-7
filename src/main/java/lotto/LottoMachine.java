@@ -19,7 +19,7 @@ public class LottoMachine {
     }
 
     private void validateAmount(int amount) {
-
+        if (amount % AMOUNT_UNIT != 0) throw new IllegalArgumentException("[ERROR] 구매 금액이 1000단위여야 합니다.");
     }
 
     private Lotto generateLotto() {
