@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lottos {
     private final List<Lotto> lottos;
+    private static final String NEXT_LINE = "\n";
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
@@ -21,7 +22,7 @@ public class Lottos {
     public String toString() {
         StringBuilder display = new StringBuilder();
         for (Lotto lotto : lottos) {
-            display.append(lotto.toString()).append("\n");
+            display.append(lotto.toString()).append(NEXT_LINE);
         }
         return display.toString();
     }

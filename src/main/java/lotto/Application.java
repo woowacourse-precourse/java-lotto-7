@@ -4,7 +4,6 @@ package lotto;
 import lotto.config.Container;
 import lotto.config.LottoConfig;
 import lotto.domain.*;
-import lotto.io.Input;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
 import lotto.service.ProfitCalculator;

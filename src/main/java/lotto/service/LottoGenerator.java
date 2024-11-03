@@ -1,7 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.ErrorCode;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
@@ -11,6 +10,7 @@ import java.util.function.Supplier;
 
 public class LottoGenerator {
     private final Supplier<List<Integer>> randomNumbers;
+    private static final Integer PRICE_UNIT = 1000;
     private static final Integer START_NUMBER = 1;
     private static final Integer END_NUMBER = 45;
     private static final Integer TOTAL_COUNT = 6;
@@ -30,7 +30,7 @@ public class LottoGenerator {
 
     public Lottos generateLottos(Integer price) {
         List<Lotto> lottos = new ArrayList<>();
-        int count = price / 1000;
+        int count = price / PRICE_UNIT;
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
         }

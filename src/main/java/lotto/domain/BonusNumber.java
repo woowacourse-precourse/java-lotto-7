@@ -4,6 +4,9 @@ import lotto.ErrorCode;
 
 public class BonusNumber {
     private final Integer bonusNumber;
+    private static final Integer LOTTO_START_NUMBER = 1;
+    private static final Integer LOTTO_END_NUMBER = 45;
+
 
     public BonusNumber(String bonusNumber, WinningNumber winningNumber) {
         validate(bonusNumber, winningNumber);
@@ -30,7 +33,7 @@ public class BonusNumber {
 
     private void validateBonusNumberInRange(String input) {
         int bonusNumber = Integer.parseInt(input);
-        if (!(bonusNumber > 0 && bonusNumber < 46)) {
+        if (!(bonusNumber >= LOTTO_START_NUMBER && bonusNumber <= LOTTO_END_NUMBER)) {
             throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_IN_RANGE.getErrorMessage());
         }
     }

@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class ProfitCalculator {
     private final LottoResult lottoResult;
+    private static final Integer PRICE_UNIT = 1000;
+    private static final Integer PERCENT = 100;
 
     public ProfitCalculator(LottoResult lottoResult) {
         this.lottoResult = lottoResult;
@@ -17,7 +19,7 @@ public class ProfitCalculator {
 
     public Double getProfitRate(Lottos lottos) {
         int totalBenefit = calculateTotalBenefit();
-        double profit = (double) (totalBenefit / lottos.getLottoCount()) / 1000.0 * 100.0;
+        double profit = (double) (totalBenefit / lottos.getLottoCount()) / PRICE_UNIT * PERCENT;
         return Math.round(profit * 10.0) / 10.0;
     }
 
