@@ -3,6 +3,9 @@ package lotto.model;
 import java.util.List;
 
 public class WinningNumbers {
+    private static final String SIZE_ERROR_MESSAGE = "[ERROR] 당첨 번호는 6개여야 합니다.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호와 보너스 번호는 중복되지 않아야 합니다.";
+
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
@@ -19,13 +22,13 @@ public class WinningNumbers {
 
     private void validateSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateNoDuplicates(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 
