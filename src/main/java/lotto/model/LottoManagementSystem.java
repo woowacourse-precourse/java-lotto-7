@@ -37,18 +37,26 @@ public class LottoManagementSystem {
     }
 
     private int checkRank(List<Integer> numbers, int matchCount) {
-        return switch (matchCount) {
-            case 6 -> 1;
-            case 5 -> {
-                if (numbers.contains(bonusNumber)) {
-                    yield 2;
-                }
-                yield 3;
+        if (matchCount == 6) {
+            return 1;
+        }
+
+        if (matchCount == 5) {
+            if (numbers.contains(bonusNumber)) {
+                return 2;
             }
-            case 4 -> 4;
-            case 3 -> 5;
-            default -> 6;
-        };
+            return 3;
+        }
+
+        if (matchCount == 4) {
+            return 4;
+        }
+
+        if (matchCount == 3) {
+            return 5;
+        }
+
+        return 6;
     }
 
 }
