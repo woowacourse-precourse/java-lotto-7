@@ -7,6 +7,7 @@ import java.util.Map;
 
 import lotto.domains.lotto.domain.LottoPrizeNumbers;
 import lotto.domains.lotto.domain.LottoTicket;
+import lotto.domains.lotto.type.LottoPrize;
 import lotto.exception.ExceptionMessage;
 
 public class Customer {
@@ -14,10 +15,12 @@ public class Customer {
 	private static final int BONUS_COUNT = 1;
 	private static final int FOUR_MATCH = 4;
 	private final int money;
+	private long prize;
 
 	private Customer(int money) {
 		validate(money);
 		this.money = money;
+		this.prize = 0;
 	}
 
 	public static Customer from(int money) {
@@ -26,6 +29,13 @@ public class Customer {
 
 	public int calculateAmount() {
 		return money / LOTTO_COST;
+	}
+
+	private double calculateProfit(Map<LottoPrize, Integer> lottoResult) {
+		prize += lottoResult.entrySet().stream()
+			.mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+			.sum();
+		return Math.round(((double)prize / (double)money * 100) * 10) / 10.0;
 	}
 
 	public List<Map<Integer, Boolean>> checkWinningStatus(LottoTicket lottoTickets,

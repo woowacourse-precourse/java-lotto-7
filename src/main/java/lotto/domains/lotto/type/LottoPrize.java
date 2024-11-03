@@ -8,10 +8,10 @@ public enum  LottoPrize {
 	SIX(6, 2_000_000_000, false);
 
 	private int matchCount;
-	private long prize;
+	private int prize;
 	private boolean hasBonusNumber;
 
-	LottoPrize(int matchCount, long prize, boolean hasBonusNumber) {
+	LottoPrize(int matchCount, int prize, boolean hasBonusNumber) {
 		this.matchCount = matchCount;
 		this.prize = prize;
 		this.hasBonusNumber = hasBonusNumber;
@@ -19,6 +19,10 @@ public enum  LottoPrize {
 
 	public int getMatchCount() {
 		return matchCount;
+	}
+
+	public long getPrize() {
+		return prize;
 	}
 
 	public boolean getHasBonusNumber() {
