@@ -28,10 +28,13 @@ public enum WinningKind {
     }
 
     public static WinningKind getWinningKind(int matchCount, boolean bonus) {
-        return Arrays.stream(WinningKind.values())
-                .filter(kind -> kind.matchCount == matchCount && kind.bonus == bonus)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 조건에 맞는 당첨 종류가 없습니다."));
+        if (matchCount != 5) return Arrays.stream(WinningKind.values())
+                                    .filter(kind -> kind.matchCount == matchCount)
+                                    .findFirst()
+                                    .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 조건에 맞는 당첨 종류가 없습니다."));
+
+        if (bonus) return MATCH_5_BONUS;
+        return MATCH_5;
     }
 
 }

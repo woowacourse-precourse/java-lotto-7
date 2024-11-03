@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,44 +9,38 @@ public class Service {
 
     Host host = Host.getHost();
     int amount;
+    int lottoCount;
     List<Lotto> lottos;
     Map<WinningKind, Integer> lottoResult;
 
-    public boolean inputAmount() {
+    public void inputAmount() throws IllegalArgumentException {
         InputGuide.ACCOUNT.guidePrint();
         String inputAccount = Console.readLine();
-        if (!inputAccount.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력하세요.");
-        }
+        numberValidate(inputAccount);
         amount = Integer.parseInt(inputAccount);
-        return true;
+        lottoCount = LottoGenerator.howManyLottos(amount);
     }
 
     public void showLottos() {
-        int lottoCount = LottoGenerator.howManyLottos(amount);
         lottos = LottoGenerator.getLottos(lottoCount);
 
         Output.purchaseCount(lottoCount);
         Output.purchasedLottos(lottos);
     }
 
-    public boolean inputSelectedNumbers() {
+    public void inputSelectedNumbers() {
         InputGuide.NUMBER_SELECT.guidePrint();
         List<String> inputs = Util.seperateInput(Console.readLine());
 
         List<Integer> selectedNumbers = Util.toNumbers(inputs);
         host.setSelectedNumbers(selectedNumbers);
-        return true;
     }
 
-    public boolean inputBonusNumber() {
+    public void inputBonusNumber() {
         InputGuide.BONUS.guidePrint();
         String bonusInput = Console.readLine();
-        if (!bonusInput.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
-        }
+        numberValidate(bonusInput);
         host.setBonusNumber(Integer.parseInt(bonusInput));
-        return true;
     }
 
     public void operateLottos() {
@@ -63,6 +56,12 @@ public class Service {
 
         double yield = LottoUtil.getYield(lottoResult, amount);
         Output.yield(yield);
+    }
+
+    private void numberValidate(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException(Error.INPUT_FORMAT_ERROR.message());
+        }
     }
 
 }

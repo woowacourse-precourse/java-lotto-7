@@ -14,10 +14,10 @@ public class Controller {
     }
 
     private void inputPurchaseAmount() {
-        boolean isOk = false;
-        while (!isOk) {
+        while (true) {
             try {
-                isOk = service.inputAmount();
+                service.inputAmount();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -25,10 +25,10 @@ public class Controller {
     }
 
     private void inputSelectedNumbers() {
-        boolean isOk = false;
-        while (!isOk) {
+        while (true) {
             try {
-                isOk = service.inputSelectedNumbers();
+                service.inputSelectedNumbers();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -36,10 +36,10 @@ public class Controller {
     }
 
     private void inputBonusNumber() {
-        boolean isOk = false;
-        while (!isOk) {
+        while (true) {
             try {
-                isOk = service.inputBonusNumber();
+                service.inputBonusNumber();
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

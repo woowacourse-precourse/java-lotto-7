@@ -35,11 +35,11 @@ public class LottoGenerator {
 
     private static void validate(int account) {
         if (account < PRICE || account > LIMIT_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 최소 1000원부터 최대 10만원입니다.");
+            throw new IllegalArgumentException(Error.AMOUNT_RANGE_ERROR.message());
         }
 
         if (account % PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력하세요.");
+            throw new IllegalArgumentException(Error.AMOUNT_UNIT_ERROR.message());
         }
     }
 }

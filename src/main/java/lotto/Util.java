@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +10,15 @@ import java.util.List;
 public class Util {
 
     private static final String NUMBER_DELIMITER = ",";
+    static DecimalFormat formatter = new DecimalFormat("#,###");
+
+    public static String cashFormat(int amount) {
+        return formatter.format(amount);
+    }
+
+    public static String cashFormat(long amount) {
+        return formatter.format(amount);
+    }
 
     public static List<String> seperateInput(String input) {
         String[] numbersInputs = input.split(NUMBER_DELIMITER);
@@ -23,7 +33,7 @@ public class Util {
         List<Integer> numbers = new ArrayList<>();
         for (String number : inputs) {
             if (!number.matches("\\d+")) {
-                throw new IllegalArgumentException("[ERROR] 6개의 당첨번호를 쉼표(,)로 구분하여 입력해주세요.");
+                throw new IllegalArgumentException(Error.INPUT_FORMAT_ERROR.message());
             }
             numbers.add(Integer.parseInt(number));
         }

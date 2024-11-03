@@ -32,20 +32,20 @@ public class Lotto {
 
     private void countValidation(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_COUNT.message());
         }
     }
 
     private void rangeValidation(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하의 숫자입니다.");
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_RANGE.message());
         }
     }
 
     private void DuplicationValidate(List<Integer> numbers) {
         Set<Integer> distinctedNumbers = new HashSet<>(numbers);
         if (distinctedNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 번호들은 서로 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_DUPLICATED.message());
         }
     }
 }

@@ -16,11 +16,8 @@ public class LottoUtil {
 
     public static void checkLotto(Map<WinningKind, Integer> lottoResult, Lotto lotto, Host host) {
         int matchCount = host.countResult(lotto);
-        boolean bonus = false;
-        if (host.isBonus(lotto)) {
-            matchCount++;
-            bonus = true;
-        }
+        boolean bonus = host.isBonus(lotto);
+
         if (matchCount < WinningKind.MATCH_3.getMatchCount()) return;
 
         WinningKind kind = WinningKind.getWinningKind(matchCount, bonus);

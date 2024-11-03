@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.Util.cashFormat;
 import static lotto.WinningKind.MATCH_5_BONUS;
 
 public class Output {
@@ -23,7 +24,7 @@ public class Output {
         for (WinningKind kind : WinningKind.values()) {
             int count = lottoResult.get(kind);
             int prize = kind.getPrize();
-            print(String.format(getFormat(kind), prize, count));
+            print(String.format(getFormat(kind), kind.getMatchCount(), cashFormat(prize), count));
         }
     }
 
@@ -33,9 +34,9 @@ public class Output {
 
     private static String getFormat(WinningKind kind) {
         if (kind == MATCH_5_BONUS) {
-            return "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+            return "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
         }
-        return "%d개 일치 (%d원) - %d개";
+        return "%d개 일치 (%s원) - %d개";
     }
 
     private static void print(String message) {

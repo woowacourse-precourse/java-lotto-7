@@ -12,7 +12,7 @@ public class Host {
     private Lotto selectedNumbers;
     private int bonusNumber;
 
-    private static Host host = new Host();
+    private static final Host host = new Host();
 
     private Host() {}
 
@@ -51,10 +51,10 @@ public class Host {
 
     private void BonusValidate(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1이상 45이하의 숫자입니다.");
+            throw new IllegalArgumentException(Error.BONUS_NUMBER_INVALID_RANGE.message());
         }
         if (selectedNumbers.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호 6개와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATED.message());
         }
     }
 }
