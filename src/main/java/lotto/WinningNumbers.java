@@ -9,7 +9,7 @@ public class WinningNumbers {
     private final Ball bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        this(Lotto.with(numbers), new Ball(bonusNumber));
+        this(Lotto.with(numbers), Ball.valueOf(bonusNumber));
     }
 
     public WinningNumbers(Lotto lotto, Ball bonusNumber) {

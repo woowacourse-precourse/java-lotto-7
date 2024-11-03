@@ -33,7 +33,7 @@ public class LottoGame {
 
         List<Integer> numbers = input.readWinningNumbers();
         int bonusNumber = input.readBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(Lotto.with(numbers), new Ball(bonusNumber));
+        WinningNumbers winningNumbers = new WinningNumbers(Lotto.with(numbers), Ball.valueOf(bonusNumber));
         Map<Rank, Integer> rankCounts = winningNumbers.countRank(lottos);
         WinningResult winningResult = new WinningResult(rankCounts, money);
         output.printPrizeStatistics(winningResult);
