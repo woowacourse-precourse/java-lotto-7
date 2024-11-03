@@ -5,19 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class WinningLottoTest {
     private Lotto winningNumbers;
+    private Bonus bonus;
     private WinningLotto winningLotto;
 
     @BeforeEach
     void init() {
         this.winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
-        this.winningLotto = new WinningLotto(winningNumbers, 7);
+        this.bonus = new Bonus(winningNumbers.getNumbers(),7);
+        this.winningLotto = new WinningLotto(winningNumbers, bonus);
     }
 
     @Test
