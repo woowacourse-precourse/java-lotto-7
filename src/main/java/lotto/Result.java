@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Result {
-    private static final String WINNING_DETAIL_FORMAT = "%s %d개%n";
+    private static final String MATCHING_COUNT_UNIT = "개";
+    private static final String WINNING_DETAIL_DELIMITER = "\n";
 
     private final Map<Winning, Integer> winningDetails;
 
@@ -26,9 +26,13 @@ public class Result {
     }
 
     public String getFormattedWinningDetails() {
-        return winningDetails.entrySet().stream()
-                .map(entry -> getFormattedWinningDetail(entry.getKey(), entry.getValue()))
-                .collect(Collectors.joining());
+        StringBuilder result = new StringBuilder();
+        for(Map.Entry<Winning, Integer> entry : winningDetails.entrySet()) {
+            result.append(entry.getKey().getPrintFormat());
+            result.append(entry.getValue() + MATCHING_COUNT_UNIT);
+            result.append(WINNING_DETAIL_DELIMITER);
+        }
+        return result.toString();
     }
 
     public void calculate(WinningNumber winningNumber, BonusNumber bonusNumber, PurchasedLotto purchasedLotto) {
@@ -51,10 +55,6 @@ public class Result {
                 .mapToLong(entry -> entry.getKey()
                         .calculatePrize(entry.getValue()))
                 .sum();
-    }
-
-    private String getFormattedWinningDetail(Winning condition, Integer count) {
-        return String.format(WINNING_DETAIL_FORMAT, condition.getPrintFormat(), count);
     }
 
     private Winning getSatisfiedWinning(int matchingCount, boolean isBonusContained) {
