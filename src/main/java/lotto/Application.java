@@ -53,7 +53,7 @@ public class Application {
                 int winningNumber = Integer.parseInt(number);
                 winningNumbers.add(winningNumber);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
             }
         }
     }
