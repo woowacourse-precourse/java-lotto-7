@@ -1,7 +1,8 @@
 package lotto.exception;
 
 public enum ErrorMessages {
-    EMPTY_INPUT("입력값이 공백입니다.")
+    ERROR_NOTICE("\n[ERROR] ")
+    ,EMPTY_INPUT("입력값이 공백입니다.")
     ,NOT_NUMBER("입력값이 숫자가 아닙니다.")
     ,NOT_INT("입력값이 정수가 아닙니다.")
     ,NOT_POSITIVE_INT("입력값이 양의 정수가 아닙니다")
@@ -20,6 +21,7 @@ public enum ErrorMessages {
     }
 
     public String getMessage() {
-        return message;
+
+        return ERROR_NOTICE.message + message;
     }
 }

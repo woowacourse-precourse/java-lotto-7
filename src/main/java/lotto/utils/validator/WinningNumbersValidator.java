@@ -2,10 +2,11 @@ package lotto.utils.validator;
 
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
-import static lotto.constants.LottoConstants.NUMBERS_PER_LOTTO;
+import static lotto.constants.LottoTicket.NUMBERS_PER_LOTTO;
+import static lotto.utils.constants.Constants.DELIMITER;
 
 public class WinningNumbersValidator implements InputValidator<String> {
-    private final String DELIMITER = ",";
+
     private final InputValidator<String> positiveIntValidator;
     private final InputValidator<Integer> lottoNumberValidator;
 
@@ -20,7 +21,7 @@ public class WinningNumbersValidator implements InputValidator<String> {
     @Override
     public void validate(String rawWinningNumbers) {
         validateNotEmpty(rawWinningNumbers);
-        String[] rawWinningNumberList = rawWinningNumbers.split(DELIMITER);
+        String[] rawWinningNumberList = rawWinningNumbers.split(DELIMITER.getDelimiter());
 
         validateLottoFormat(rawWinningNumberList);
     }
