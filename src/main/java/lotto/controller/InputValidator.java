@@ -28,4 +28,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateNumberInput(String numberInput) {
+        try {
+            Integer.parseInt(numberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(IS_NOT_NUMBER.message());
+        }
+    }
+
 }

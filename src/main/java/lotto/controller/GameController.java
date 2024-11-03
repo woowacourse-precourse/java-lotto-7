@@ -4,6 +4,7 @@ import lotto.NumbersGenerator;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,10 +38,10 @@ public class GameController {
             lottoNumbers.add(numbersGenerator.generate(NUMBER_COUNT));
         }
         outputView.printNumbersCollections(lottoNumbers);
-        List<Integer> winningNumbers = getWinningNumbers();
+        WinningNumber winningNumber = new WinningNumber(getWinningNumbers(), getBonusNumber());
         for (List<Integer> numbers : lottoNumbers) {
             Lotto lotto = new Lotto(numbers);
-            Rank rank = lotto.countRank(winningNumbers);
+            Rank rank = lotto.countRank(winningNumber.getNumbers(), winningNumber.getBonusNumber());
         }
     }
 
@@ -64,6 +65,17 @@ public class GameController {
             return getWinningNumbers();
         }
         return Arrays.stream(numbersInput.split(SPLITTER)).map(Integer::parseInt).toList();
+    }
+
+    private Integer getBonusNumber() {
+        String bonusInput = inputView.readBonusNumber();
+        try {
+            InputValidator.validateNumberInput(bonusInput);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getBonusNumber();
+        }
+        return Integer.parseInt(bonusInput);
     }
 
 }
