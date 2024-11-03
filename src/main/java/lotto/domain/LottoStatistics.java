@@ -1,8 +1,24 @@
 package lotto.domain;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class LottoStatistics {
+    private final Map<LottoRanking, Integer> rankingCount;
+
+    public LottoStatistics() {
+        this.rankingCount = new EnumMap<>(LottoRanking.class);
+    }
+
+    private Optional<LottoRanking> calculateRanking(Lotto lotto, WinningLotto winningLotto) {
+        int matchCount = calculateMatchCount(lotto, winningLotto.getNumbers());
+        boolean matchBonus = isBonusNumberMatched(lotto, winningLotto.getBonusNumber());
+
+        return Optional.ofNullable(LottoRanking.of(matchCount, matchBonus));
+    }
+
     private int calculateMatchCount(Lotto lotto, List<Integer> numbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(numbers::contains)
