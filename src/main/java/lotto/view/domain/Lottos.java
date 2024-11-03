@@ -11,7 +11,7 @@ public class Lottos {
         lottos = new ArrayList<>();
         int lottoCount = calculateLottoCount(amount.getValue());
 
-        for (int i = 1; i < lottoCount; i++) {
+        for (int i = 1; i <= lottoCount; i++) {
             lottos.add(new Lotto());
         }
     }
