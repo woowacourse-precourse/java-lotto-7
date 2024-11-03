@@ -54,14 +54,16 @@ public class Lotto {
         }
     }
 
-    // 보너스 넘버 처리
     public static void validateBonusNumbers(List<Integer> numbers, int bonusNumber) {
         if(numbers.contains(bonusNumber)) {
             ExceptionMessage.bonusNumberException();
             throw new IllegalArgumentException();
         }
+        if(bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            ExceptionMessage.outOfRangeException();
+            throw new IllegalArgumentException();
+        }
     }
-
 
     public List<Integer> getNumbers() {
         return numbers;
