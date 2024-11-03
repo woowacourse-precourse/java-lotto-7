@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Input {
 	public void validateRemainder(String input) {
@@ -40,6 +42,15 @@ public class Input {
 			Integer.parseInt(input);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다.");
+		}
+	}
+
+	public void validateDuplicate(String input) {
+		Set<String> numbers = new HashSet<>();
+		for (String s : input.split(",")) {
+			if (!numbers.add(s)) {
+				throw new IllegalArgumentException("[ERROR] 당첨번호에 중복이 있을 수 없습니다.");
+			}
 		}
 	}
 }
