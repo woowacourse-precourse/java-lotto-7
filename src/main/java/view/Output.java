@@ -17,7 +17,7 @@ public class Output {
         List<Lotto> lottos = playerBuyLotto.buyLotto(lottoPurchased);
 
         for(Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.toString());
         }
         System.out.println();
 

@@ -20,6 +20,7 @@ public class RunApplication {
                 String purchaseAmount = input.inputPurchaseAmount();
                 int lottoPurchased = playerBuyLotto.purchasedLottoNums(purchaseAmount);
                 List<Lotto> Lottos = output.printPurchasedLotto(lottoPurchased);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
