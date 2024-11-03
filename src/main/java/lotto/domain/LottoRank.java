@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum LottoRank {
     FIRST(6, 2_000_000_000, "6개 일치"),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
@@ -19,6 +21,15 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
-        return FIRST;
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5 && matchBonus) {
+            return SECOND;
+        }
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchCount == matchCount && rank != SECOND)
+                .findFirst()
+                .orElse(NONE);
     }
 }
