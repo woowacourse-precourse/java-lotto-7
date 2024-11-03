@@ -27,16 +27,16 @@ public class Writer {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        Map<Prize, Integer> prizeCount = result.getImmutablePrizeCount();
         for (Prize prize : Prize.values()) {
             if (prize == Prize.FAIL)
                 continue;
 
             String matchMessage = constructMessageFrom(prize);
-            int count = getCount(prizeCount, prize);
+            int count = getCount(result.getImmutablePrizeCount(), prize);
 
             System.out.printf(matchMessage + " - %d개%n", count);
         }
+        System.out.printf("총 수익률은 %,.1f%%입니다.", result.getReturnRate() * 100);
     }
 
     public static void writeMessage(String message) {
