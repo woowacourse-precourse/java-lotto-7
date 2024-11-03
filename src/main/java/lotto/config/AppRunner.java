@@ -31,7 +31,9 @@ public class AppRunner {
         String inputNumbers = inputView.requestWinningLottoNumbers();
         inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
 
-        WinningLotto winningLotto = controller.readWinningLottoNumbers(inputNumbers);
+        String inputBonusNumber = inputView.requestBonusNumber();
+
+        WinningLotto winningLotto = controller.readWinningLottoNumbers(inputNumbers, inputBonusNumber);
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
 
         String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());

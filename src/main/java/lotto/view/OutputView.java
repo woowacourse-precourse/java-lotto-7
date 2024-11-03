@@ -5,7 +5,7 @@ import static lotto.MessageContainer.WINNING_STATISTICS;
 
 public class OutputView {
     public void printWinningDetails(String winningDetails) {
-        System.out.println(WINNING_STATISTICS);
+        System.out.println(System.lineSeparator() + WINNING_STATISTICS);
         System.out.println(winningDetails);
     }
 

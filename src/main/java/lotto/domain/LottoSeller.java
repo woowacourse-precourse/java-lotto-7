@@ -17,9 +17,9 @@ public class LottoSeller {
         return new LottoReceipt(amount, lottoTicket);
     }
 
-    public WinningLotto createWinningLotto(List<Integer> numbers) {
-        LottoTicket winningTicket = createLottoTicketFor(numbers);
-        return new WinningLotto(winningTicket);
+    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        LottoTicket winningTicket = createLottoTicketFor(winningNumbers);
+        return new WinningLotto(winningTicket, bonusNumber);
     }
 
     public LottoTicket createLottoTicketFor(List<Integer> numbers) {

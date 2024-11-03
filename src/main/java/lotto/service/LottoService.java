@@ -38,8 +38,8 @@ public class LottoService {
         return lottoSeller.sellAsMuchAs(amount);
     }
 
-    public WinningLotto createWinningLotto(List<Integer> numbers) {
-        return lottoSeller.createWinningLotto(numbers);
+    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        return lottoSeller.createWinningLotto(winningNumbers, bonusNumber);
     }
 
     public WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {

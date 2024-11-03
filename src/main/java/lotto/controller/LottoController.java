@@ -25,8 +25,8 @@ public class LottoController {
         return lottoService.createLottoReceipt(toBigInteger(input));
     }
 
-    public WinningLotto readWinningLottoNumbers(String input) {
-        return lottoService.createWinningLotto(extractNumbers(input));
+    public WinningLotto readWinningLottoNumbers(String winningNumbers, String bonusNumber) {
+        return lottoService.createWinningLotto(extractNumbers(winningNumbers), toInt(bonusNumber));
     }
 
     public WinningReport getReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
@@ -39,11 +39,11 @@ public class LottoController {
 
     private List<Integer> extractNumbers(String input) {
         return Arrays.stream(input.split(VIEW_DELIMITER))
-                .map(this::toInteger)
+                .map(this::toInt)
                 .toList();
     }
 
-    private int toInteger(String input) {
+    private int toInt(String input) {
         return Integer.parseInt(input);
     }
 
