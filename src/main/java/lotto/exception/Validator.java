@@ -26,8 +26,8 @@ public class Validator {
         return lotteryNumber;
     }
 
-    public static List<Long> isNumeric(List<String> inputElements) {
-        List<Long> inputNumbers = new ArrayList<>();
+    public static List<Integer> isNumeric(List<String> inputElements) {
+        List<Integer> inputNumbers = new ArrayList<>();
         System.out.println(inputElements);
         for (String element : inputElements) {
             try {
@@ -40,9 +40,9 @@ public class Validator {
         return inputNumbers;
     }
 
-    public static long isNumeric(String input) {
+    public static int isNumeric(String input) {
         try {
-            return Long.parseLong(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMERIC);
         }
@@ -62,13 +62,13 @@ public class Validator {
         return payment / lotteryPrice;
     }
 
-    public static void isRightSize(List<Long> lottoNumbers) {
+    public static void isRightSize(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != LOTTERY_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.IS_INVALID_SIZE);
         }
     }
 
-    public static void isRightRange(List<Long> lottoNumbers) {
+    public static void isRightRange(List<Integer> lottoNumbers) {
         for (long number : lottoNumbers) {
             if (number < MINIMUM_LOTTERY_NUMBER || number > MAXIMUM_LOTTERY_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessage.IS_INVALID_RANGE);
@@ -76,13 +76,13 @@ public class Validator {
         }
     }
 
-    public static void isRightRange(long lottoNumber) {
+    public static void isRightRange(int lottoNumber) {
         if (lottoNumber < MINIMUM_LOTTERY_NUMBER || lottoNumber > MAXIMUM_LOTTERY_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.IS_INVALID_RANGE);
         }
     }
 
-    public static void isDuplicated(List<Long> lottoNumbers) {
+    public static void isDuplicated(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != lottoNumbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATED);
         }

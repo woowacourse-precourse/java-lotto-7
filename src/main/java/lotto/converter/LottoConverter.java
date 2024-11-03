@@ -10,10 +10,10 @@ public class LottoConverter {
     public static final int MINIMUM_LOTTERY_NUMBER = 1;
     public static final int MAXIMUM_LOTTERY_NUMBER = 45;
 
-    private List<Long> lottoNumbers = new ArrayList<>();
-    private long bonusNumber;
+    private List<Integer> lottoNumbers = new ArrayList<>();
+    private int bonusNumber;
 
-    public LottoConverter(List<Long> lottoNumbers) {
+    public LottoConverter(List<Integer> lottoNumbers) {
         validateSize(lottoNumbers);
         validateRange(lottoNumbers);
         validateDuplicate(lottoNumbers);
@@ -26,16 +26,16 @@ public class LottoConverter {
         Validator.isRightRange(this.bonusNumber);
     }
 
-    public List<Long> getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         System.out.println("getLottoNumbers: " + lottoNumbers);
         return lottoNumbers;
     }
 
-    public long getBonusNumber() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 
-    private void validateSize(List<Long> lottoNumbers) {
+    private void validateSize(List<Integer> lottoNumbers) {
         try {
             System.out.println(lottoNumbers);
             Validator.isRightSize(lottoNumbers);
@@ -46,7 +46,7 @@ public class LottoConverter {
 
     }
 
-    private void validateRange(List<Long> lottoNumbers) {
+    private void validateRange(List<Integer> lottoNumbers) {
         try {
             Validator.isRightRange(lottoNumbers);
         } catch (IllegalArgumentException e) {
@@ -56,7 +56,7 @@ public class LottoConverter {
 
     }
 
-    private void validateDuplicate(List<Long> lottoNumbers) {
+    private void validateDuplicate(List<Integer> lottoNumbers) {
         try {
             Validator.isDuplicated(lottoNumbers);
         } catch (IllegalArgumentException e) {

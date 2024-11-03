@@ -6,14 +6,14 @@ import lotto.exception.Validator;
 
 public class StringToLongConverter {
     private static final String DELIMITER = ",";
-    private final List<Long> result;
+    private final List<Integer> result;
 
     public StringToLongConverter(String input) {
         List<String> inputElements = Arrays.stream(input.split(DELIMITER)).toList();
         result = Validator.isNumeric(inputElements);
     }
 
-    public List<Long> getResult() {
+    public List<Integer> getResult() {
         return result;
     }
 }

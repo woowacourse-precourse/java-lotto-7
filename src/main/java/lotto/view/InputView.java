@@ -24,7 +24,7 @@ public class InputView {
         return Validator.inputValid(Console.readLine());
     }
 
-    public List<Long> enterWinningLottery() {
+    public List<Integer> enterWinningLottery() {
         System.out.println(SystemMessage.ENTER_WINNING_LOTTERY);
         try {
             StringToLongConverter stringToLongConverter = new StringToLongConverter(Console.readLine());
@@ -35,7 +35,7 @@ public class InputView {
         }
     }
 
-    public long enterBonusLottery() {
+    public int enterBonusLottery() {
         System.out.println(SystemMessage.ENTER_BONUS_LOTTERY);
         try {
             LottoConverter lottoConverter = new LottoConverter(Console.readLine());
