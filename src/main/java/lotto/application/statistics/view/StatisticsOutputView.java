@@ -23,6 +23,7 @@ public class StatisticsOutputView {
     public void show(StatisticsResponse response) {
         appendHeader();
         appendStatistics(response);
+        appendProfitRate(response);
         printer.execute();
     }
 
@@ -37,6 +38,14 @@ public class StatisticsOutputView {
         printer.appendLine(THIRD.toFormattedString(response.thirdCount()));
         printer.appendLine(SECOND.toFormattedString(response.secondCount()));
         printer.appendLine(FIRST.toFormattedString(response.firstCount()));
+    }
+
+    private void appendProfitRate(StatisticsResponse response) {
+        printer.appendLine(formatProfitRate(response.profitRate()));
+    }
+
+    private String formatProfitRate(double profitRate) {
+        return String.format(PROFIT_RATE_FORMAT, profitRate);
     }
 
 }
