@@ -9,7 +9,7 @@ public enum Message {
     LOTTO_NUMBER_RESULT("\n당첨 통계\n---"),
     LOTTO_NUMBER_CORRECT_RESULT("%d개 일치 (%s원) - %d개"),
     LOTTO_BONUS_NUMBER_CORRECT_RESULT("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    LOTTO_PROFIT_RESULT("총 수익률은 %.1f%%입니다.");
+    LOTTO_PROFIT_RESULT("총 수익률은 %,.1f%%입니다.");
 
     private String msg;
 
