@@ -154,10 +154,20 @@
 ### LottoMatcher
 
 - [x] 로또 당첨 정보를 기반으로 등수를 계산하는 기능 (calculateRank)
+
   - 로또 번호와 당첨 번호의 일치 개수를 센다. (countMatches)
   - 로또 번호에 보너스 번호가 포함되어 있는지 확인한다. (hasBonusNumber)
   - 로또 객체에서 로또 번호들을 가져온다. (getLottoNumbers)
   - 당첨 정보에서 당첨 번호들을 가져온다. (getWinningLottoNumbers)
+
+### LottoStatistics
+
+- [x] 로또 통계 객체를 생성하는 기능 (createLottoStatistics)
+  - 처음 생성하면 모든 등수의 횟수가 0이어야 한다.
+  - 처음 생성하면 상금의 합이 0 이어야 한다.
+- [x] 결과를 적용하는 기능 (addResult)
+- [x] 로또 통계 객체를 반환하는 기능 (getStatistics)
+- [x] 로또 상금을 반환하는 기능 (getTotalPrize)
 
 ### Rank
 
