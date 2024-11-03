@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-import lotto.common.LottoConstants;
 import lotto.util.RandomNumberUtil;
 
 public class TicketGenerator {
@@ -17,6 +16,7 @@ public class TicketGenerator {
     }
 
     private List<Integer> generateLottoNumbers() {
-        return RandomNumberUtil.generateLottoNumber();
+        TreeSet<Integer> uniqueNumbers = new TreeSet<>(RandomNumberUtil.generateLottoNumber());
+        return new ArrayList<>(uniqueNumbers);
     }
 }
