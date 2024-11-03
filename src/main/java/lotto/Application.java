@@ -25,24 +25,12 @@ public class Application {
         Map<LottoRank, Integer> winningStatistics = LottoRankInit.getLottoRank();
 
         // 6 . 당첨&보너스 번호 통계 비교 작업
-        for (Lotto lotto : manager.getLottoRepository()) {
-            List<Integer> intersection = new ArrayList<>(winningNumber);
-            intersection.retainAll(lotto.getNumbers()); //교집합 갯수 구하는 기능
-            int count = intersection.size(); // 해당 교집합 사이즈
-            boolean bonus = lotto.getNumbers().contains(bonusNumber); //보너스 번호 보함 여부
-            LottoRank rank = LottoRank.getLottoRank(count, bonus);
-            if (rank != null) {
-                winningStatistics.put(rank, winningStatistics.get(rank) + 1);
-            }
-        }
+        LottoProcess.extracted(manager, winningNumber, bonusNumber, winningStatistics);
 
         // 7 . 통계 출력 및 수익률 계산 & 출력
         LottoPrint.getTotalPrize(winningStatistics);
 
         LottoPrint.extracted(purchasePrice);
     }
-
-
-
 
 }
