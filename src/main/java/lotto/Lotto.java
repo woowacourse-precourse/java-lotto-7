@@ -9,6 +9,9 @@ import lotto.constant.PrizeTier ;
 public class Lotto {
     private final List<Integer> numbers;
 
+    public Lotto(){
+        this.numbers = new ArrayList<>();
+    }
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
