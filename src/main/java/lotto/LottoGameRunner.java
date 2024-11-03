@@ -23,7 +23,7 @@ public class LottoGameRunner {
 
     public void run() {
 
-        List<WinRank> wins = calculateRankFromMatchResult(matchLottoNumbers());
+        List<WinRank> wins = calculateWinRank(matchLottoNumbers());
 
         Double earningRate = calculateEarningRate(wins);
 
@@ -71,7 +71,7 @@ public class LottoGameRunner {
         return winRank.getPrize();
     }
 
-    private List<WinRank> calculateRankFromMatchResult(List<Integer> winningHistoty) {
+    private List<WinRank> calculateWinRank(List<Integer> winningHistoty) {
         return winningHistoty.stream()
                 .map(LottoGameRunner::calculateRank)
                 .toList();
@@ -91,7 +91,7 @@ public class LottoGameRunner {
             return WinRank.FOURTH;
         }
         if(winCount == 3) {
-            return WinRank.FIRST;
+            return WinRank.FIFTH;
         }
         return WinRank.NONE;
     }

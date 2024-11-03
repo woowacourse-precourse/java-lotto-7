@@ -16,6 +16,6 @@ public enum WinRank {
     }
 
     public int getValue() {
-        return prize;
+        return value;
     }
 }
