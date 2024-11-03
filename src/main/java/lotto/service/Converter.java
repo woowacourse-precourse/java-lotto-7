@@ -3,7 +3,6 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.WinningCondition;
-import lotto.dto.MatchingCountResult;
 
 public class Converter {
     private static String SEPARATOR = ",";
@@ -21,26 +20,26 @@ public class Converter {
         return convertNumbers;
     }
 
-    public static MatchingCountResult matchingCounterResultConvert(int winningCount, int bonusCount) {
+    public static WinningCondition matchingCounterResultConvert(int winningCount, int bonusCount) {
         if (winningCount == 3) {
-            return new MatchingCountResult(WinningCondition.MATCH_3);
+            return WinningCondition.MATCH_3;
         }
         if (winningCount == 4) {
-            return new MatchingCountResult(WinningCondition.MATCH_4);
+            return WinningCondition.MATCH_4;
         }
         if (winningCount == 5) {
             return checkBonusNumber(winningCount, bonusCount);
         }
         if (winningCount == 6) {
-            return new MatchingCountResult(WinningCondition.MATCH_6);
+            return WinningCondition.MATCH_6;
         }
-        return new MatchingCountResult(WinningCondition.NO_MATCH);
+        return WinningCondition.NO_MATCH;
     }
 
-    private static MatchingCountResult checkBonusNumber(int winningCount, int bonusCount) {
+    private static WinningCondition checkBonusNumber(int winningCount, int bonusCount) {
         if (bonusCount == 1) {
-            return new MatchingCountResult(WinningCondition.MATCH_5_BONUS);
+            return WinningCondition.MATCH_5_BONUS;
         }
-        return new MatchingCountResult(WinningCondition.MATCH_5);
+        return WinningCondition.MATCH_5;
     }
 }
