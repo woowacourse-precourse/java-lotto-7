@@ -1,18 +1,27 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.view.Exception;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateOverlap(numbers);
+        validateRange(numbers);
+
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            Exception.sizeException();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -27,5 +36,34 @@ public class Lotto {
     public boolean containNumber(int number) {
 
         return numbers.contains(number);
+    }
+
+    private void validateOverlap(List<Integer> numbers) {
+        Set<Integer> overlapCheck = new HashSet<>();
+        for (int i = 0; i < numbers.size(); i++) {
+            overlapCheck.add(numbers.get(i));
+        }
+
+        if (overlapCheck.size() != 6) {
+            Exception.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int winningNumber = 0; winningNumber < numbers.size(); winningNumber++) {
+            if (numbers.get(winningNumber) < 1 || numbers.get(winningNumber) > 45) {
+                Exception.rangeException();
+                throw new IllegalArgumentException();
+            }
+
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            Exception.overlapException();
+            throw new IllegalArgumentException();
+        }
     }
 }

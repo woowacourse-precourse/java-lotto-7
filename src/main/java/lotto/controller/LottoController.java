@@ -10,6 +10,7 @@ import lotto.domain.LottoRanking;
 import lotto.domain.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.Exception;
 
 public class LottoController {
 
@@ -21,7 +22,7 @@ public class LottoController {
     private static final int PERCENTAGE = 100;
 
     public void start(){
-        lottoPrice = InputView.inputPrice();
+        lottoPrice = inputPriceWithValidation();
         lottoCount = makeLottoCount(lottoPrice);
         OutputView.printLottoCount(lottoCount);
         lottoList = makeLottoList(lottoCount);
@@ -31,6 +32,41 @@ public class LottoController {
         winningResult = new WinningResult(new Lotto(winningNumbers), bonusNumber);
 
         lottoResult(lottoList, winningResult, lottoCount);
+    }
+
+    private int inputPriceWithValidation() {
+        String input = InputView.inputPrice();
+        int price = validateNumber(input);
+        validateAmount(price);
+        return price;
+    }
+
+    private int validateNumber(String amount) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            Exception.numberException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateAmount(int amount) {
+        validateNatural(amount);
+        validateDivisible(amount);
+    }
+
+    private void validateNatural(int amount) {
+        if (amount <= 0) {
+            Exception.naturalException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDivisible(int amount) {
+        if (amount % 1000 != 0) {
+            Exception.divisibleException();
+            throw new IllegalArgumentException();
+        }
     }
 
     public static List<Lotto> makeLottoList(int lottoCount){

@@ -7,9 +7,9 @@ import java.util.List;
 public class InputView {
 
     private List<Integer> winningNumberList;
-    public static int inputPrice(){
+    public static String inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public List<Integer> winningNumbers(){
