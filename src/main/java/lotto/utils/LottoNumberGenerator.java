@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.utils;
 
 import static lotto.constants.LottoConstant.END_NUMBER;
 import static lotto.constants.LottoConstant.PICK_COUNT;
