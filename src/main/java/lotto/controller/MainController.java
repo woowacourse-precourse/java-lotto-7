@@ -13,7 +13,7 @@ public class MainController {
         viewController.showNumber(lottoCount);
         List<Integer> winningNumbers = viewController.getWinningNumber();
         lottoController.saveWinningNumber(winningNumbers);
-        Integer bonus = viewController.getBonus();
-//        lottoController.calWinning();
+        viewController.getBonus();
+        lottoController.calWinning();
     }
 }

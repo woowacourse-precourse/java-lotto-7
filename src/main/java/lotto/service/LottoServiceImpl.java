@@ -1,8 +1,10 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.Winning;
 import lotto.repository.LottoRepository;
 
 public class LottoServiceImpl implements LottoService {
@@ -30,8 +32,13 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public void calWinning() {
-
+    public List<Winning> calWinning() {
+        List<Winning> winnings = new ArrayList<>();
+        for (Lotto lotto : LottoRepository.lottos) {
+            Winning match = lotto.match(LottoRepository.winningNumbers);
+            winnings.add(match);
+        }
+        return winnings;
     }
 
     @Override

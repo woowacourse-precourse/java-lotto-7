@@ -21,4 +21,8 @@ public class LottoController {
     public void saveWinningNumber(List<Integer> winningNumbers){
         lottoService.saveWinningNumber(winningNumbers);
     }
+
+    public void calWinning(){
+        lottoService.calWinning();
+    }
 }
