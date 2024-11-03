@@ -6,6 +6,7 @@ import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.Lotto;
 import lotto.entity.LottoMachine;
 import lotto.entity.ProfitReport;
+import lotto.seirvce.LottoService;
 import lotto.validator.LottoValidator;
 import lotto.validator.PurchaseValidator;
 import lotto.validator.WinningNumbersValidator;
@@ -15,10 +16,12 @@ import lotto.view.ConsoleOutput;
 public class LottoController {
     final private ConsoleInput consoleInput;
     final private ConsoleOutput consoleOutput;
+    final private LottoService lottoService;
 
-    public LottoController(ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
+    public LottoController(ConsoleInput consoleInput, ConsoleOutput consoleOutput, LottoService lottoService) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
+        this.lottoService = lottoService;
     }
 
 
@@ -27,15 +30,15 @@ public class LottoController {
         LottoControllerInputDto inputDto = getUserInputs();
 
         // business logic
-        LottoMachine lottoMachine = new LottoMachine(
-                inputDto.getPaymentAmount(), inputDto.getWinnerNumbers(), inputDto.getBonusNumber());
-        ProfitReport profitReport = new ProfitReport(
-                lottoMachine.getPurchasedLottos(), lottoMachine.getWinningNumbers());
+        LottoMachine lottoMachine = lottoService.createLottoMachine(inputDto);
+        ProfitReport profitReport = lottoService.generateProfitReport(lottoMachine);
 
         // output
-        ProfitStatisticsDto statisticsDto = new ProfitStatisticsDto(
-                profitReport.calculateWinningCountsByRank(), profitReport.calculateProfitRate());
-        displayLottoResults(lottoMachine.getPurchasedLottos(), statisticsDto);
+        ProfitStatisticsDto profitStatisticsDto = new ProfitStatisticsDto(profitReport.calculateWinningCountsByPrize(),
+                profitReport.calculateProfitRate());
+
+        consoleOutput.printPurchasedLottos(lottoMachine.getPurchasedLottos());
+        consoleOutput.printProfitStatistics(profitStatisticsDto);
     }
 
     private void displayLottoResults(List<Lotto> purchaseLottos, ProfitStatisticsDto dto) {
