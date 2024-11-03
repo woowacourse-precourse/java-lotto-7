@@ -18,21 +18,21 @@ public class InputValidationTest {
     @DisplayName("당첨 번호가 1이상 45이하가 아니면 예외가 발생한다.")
     @Test
     void 당첨_번호가_1이상_45이하가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> Validator.validateWinningNumber("1,2,3,4,5,55"))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers("1,2,3,4,5,55"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호 입력이 잘못되면 예외가 발생한다.")
     @Test
     void 당첨_번호_입력이_잘못되면_예외가_발생한다() {
-        assertThatThrownBy(() -> Validator.validateWinningNumber("1,2,3,4,5,6,7"))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> Validator.validateWinningNumber("1,2,3,4,5,5"))
+        assertThatThrownBy(() -> Validator.validateWinningNumbers("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
