@@ -8,6 +8,8 @@ import lotto.domain.PositiveNumber;
 
 public class InputView {
 
+    private static final String DELIMITER = ",";
+
     private final InputValidator inputValidator;
 
     public InputView(InputValidator inputValidator) {
@@ -15,10 +17,16 @@ public class InputView {
     }
 
     public PositiveNumber getPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        long price = Long.parseLong(Console.readLine());
-        inputValidator.isDivisibleByThousand(price);
-        return new PositiveNumber(price);
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                long price = Long.parseLong(Console.readLine());
+                inputValidator.isDivisibleByThousand(price);
+                return new PositiveNumber(price);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public WinningNumberRequestDto getEntireNumber() {
@@ -26,14 +34,27 @@ public class InputView {
     }
 
     private List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Arrays.stream(Console.readLine().split(","))
-            .map(Integer::parseInt)
-            .toList();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                return Arrays.stream(Console.readLine().split(DELIMITER))
+                    .map(Integer::parseInt)
+                    .toList();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private Integer getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                return Integer.parseInt(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

@@ -33,9 +33,11 @@ public class LottoService {
 
     public List<Lotto> purchaseAll(PositiveNumber amount) {
         List<Lotto> lottoList = new ArrayList<>();
+
         for (int round = 0; round < amount.get(); round++) {
             lottoList.add(purchaseLotto());
         }
+
         return lottoList;
     }
 
@@ -43,6 +45,7 @@ public class LottoService {
         long result = prizeIntegerMap.entrySet().stream()
             .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
             .sum();
+
         return (double) result / inputPrice;
     }
 

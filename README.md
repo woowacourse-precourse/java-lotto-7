@@ -153,7 +153,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 4. 예외 처리
 - [x] 예외가 발생했다면 "[ERROR] <<message>>" 형태로 에러 문구를 출력한다
-- [ ] 문구를 출력하고 다시 입력을 받는다
+- [x] 문구를 출력하고 다시 입력을 받는다
 
 5. 당첨 번호 데이터 저장
 - [x] 일치 개수에 따른 상금 저장

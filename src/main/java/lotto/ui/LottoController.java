@@ -2,12 +2,13 @@ package lotto.ui;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.LottoPrize;
+import lotto.app.LottoService;
+import lotto.app.dto.LottoPurchaseResponseDto;
 import lotto.app.dto.LottoResultResponseDto;
 import lotto.app.dto.WinningNumberRequestDto;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.domain.PositiveNumber;
-import lotto.app.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -30,13 +31,13 @@ public class LottoController {
         outputView.printResult(dtoList);
     }
 
-    public PositiveNumber purchaseAll() {
+    public LottoPurchaseResponseDto purchaseAll() {
         PositiveNumber price = getPrice();
         PositiveNumber amount = price.divide(1000L);
         List<Lotto> lottoList = lottoService.purchaseAll(amount);
 
         outputView.printLotties(lottoList);
-        return price;
+        return new LottoPurchaseResponseDto(price, lottoList);
     }
 
     public void getInvestment(Integer inputPrice, Map<LottoPrize, Integer> prizeIntegerMap) {
@@ -46,12 +47,6 @@ public class LottoController {
     }
 
     private PositiveNumber getPrice() {
-        while (true) {
-            try {
-                return inputView.getPrice();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return inputView.getPrice();
     }
 }
