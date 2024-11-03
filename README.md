@@ -125,7 +125,7 @@
   - Lotto 객체의 정보를 저장할 ArrayList를 생성한다.
 - makeLottoNumber
   - Lotto 객체에 로또번호를 저장한다.
-- getRandomNumber
+- getRandomLottoNumber
   - 1에서 45 사이의 중복되지 않은 정수 6개를 반환한다.
 - sortAscending
   - Lotto 번호를 오름차순 정렬한다.

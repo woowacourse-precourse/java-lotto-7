@@ -25,12 +25,12 @@ public class LottoService {
         int lottoAmount = user.getNumOfLottos();
 
         for (int lotto = 0; lotto < lottoAmount; lotto++) {
-            List<Integer> lottoNumbers = getRandomNumber();
+            List<Integer> lottoNumbers = getRandomLottoNumber();
             lottos.addLottoToList(new Lotto(lottoNumbers));
         }
     }
 
-    public static List<Integer> getRandomNumber() {
+    public static List<Integer> getRandomLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

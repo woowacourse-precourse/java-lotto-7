@@ -1,6 +1,6 @@
 package lotto.lotto;
 
-import static lotto.service.LottoService.getRandomNumber;
+import static lotto.service.LottoService.getRandomLottoNumber;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -36,7 +36,7 @@ public class LottoTest {
     @DisplayName("1 ~ 45사이의 중복되지 않는 정수 6개를 Lotto 객체에 저장한다.")
     public void testIsNotDuplicatedSixNumber() {
         // given
-        List<Integer> Lotto = getRandomNumber();
+        List<Integer> Lotto = getRandomLottoNumber();
 
         // when
         HashSet<Integer> LottoSet = new HashSet<>(Lotto);
