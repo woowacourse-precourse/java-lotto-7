@@ -14,8 +14,4 @@ public class TicketService {
     public int getTicketCount() {
         return ticket.ticketCount();
     }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
 }

@@ -15,8 +15,4 @@ public class Money {
         int ticketCount = this.amount / 1000;
         return new Ticket(ticketCount);
     }
-
-    public int getAmount() {
-        return amount;
-    }
 }
