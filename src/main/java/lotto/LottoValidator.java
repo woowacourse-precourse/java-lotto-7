@@ -1,4 +1,4 @@
-package domain.lotto;
+package lotto;
 
 import constants.Constants;
 import constants.ErrorMessage;

@@ -3,7 +3,7 @@ package domain.statistics;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
-import domain.lotto.PurchaseAmount;
+import lotto.PurchaseAmount;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

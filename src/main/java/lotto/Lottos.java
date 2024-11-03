@@ -1,4 +1,4 @@
-package domain.lotto;
+package lotto;
 
 import domain.statistics.WinningRank;
 import domain.winning.WinningLotto;

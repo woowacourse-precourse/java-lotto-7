@@ -1,7 +1,7 @@
 package view;
 
 import constants.Constants;
-import domain.lotto.Lottos;
+import lotto.Lottos;
 import domain.statistics.WinningStatistics;
 
 public class ResultView {

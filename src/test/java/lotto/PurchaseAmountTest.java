@@ -1,9 +1,10 @@
-package domain.lotto;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
+import lotto.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseAmountTest {

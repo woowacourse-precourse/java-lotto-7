@@ -1,7 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.lotto.PurchaseAmount;
+import lotto.PurchaseAmount;
 import domain.winning.BonusNumber;
 import domain.winning.WinningNumbers;
 

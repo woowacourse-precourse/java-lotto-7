@@ -1,4 +1,4 @@
-package domain.lotto;
+package lotto;
 
 import constants.ErrorMessage;
 import java.util.Objects;

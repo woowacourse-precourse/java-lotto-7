@@ -1,9 +1,11 @@
-package domain.lotto;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
 import java.util.List;
+import lotto.Lotto;
+import lotto.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 public class LottoValidatorTest {

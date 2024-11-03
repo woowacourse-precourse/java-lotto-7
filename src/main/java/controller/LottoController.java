@@ -1,8 +1,8 @@
 package controller;
 
-import domain.lotto.LottoGenerator;
-import domain.lotto.Lottos;
-import domain.lotto.PurchaseAmount;
+import lotto.LottoGenerator;
+import lotto.Lottos;
+import lotto.PurchaseAmount;
 import domain.statistics.RevenueCalculator;
 import domain.winning.BonusNumber;
 import domain.winning.WinningLotto;
