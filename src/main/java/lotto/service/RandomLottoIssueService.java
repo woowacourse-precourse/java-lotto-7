@@ -4,18 +4,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.Lotto;
-import lotto.model.db.LottoRepository;
+import lotto.model.db.Buyer;
+import lotto.model.db.UserRepository;
 
 public class RandomLottoIssueService implements LottoIssueService {
 
-    private final LottoRepository lottoRepository = LottoRepository.getInstance();
+    private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public List<Lotto> issue(int lottoCnt) {
-        return lottoRepository.save(
-                IntStream.range(0, lottoCnt)
-                        .mapToObj(lotto -> issueRandomLotto())
-                        .toList());
+        List<Lotto> lotties = IntStream.range(0, lottoCnt)
+                .mapToObj(lotto -> issueRandomLotto())
+                .toList();
+        userRepository.save(Buyer.from(lotties));
+        return lotties;
     }
 
     private static Lotto issueRandomLotto() {

@@ -3,21 +3,23 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
-import lotto.model.db.LottoRepository;
+import lotto.model.db.Buyer;
+import lotto.model.db.UserRepository;
 import lotto.exception.BusinessException;
 import lotto.util.ConsoleInput;
 
 public class CustomLottoIssueService implements LottoIssueService {
 
-    protected final LottoRepository lottoRepository = LottoRepository.getInstance();
+    protected final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
     public List<Lotto> issue(int lottoCnt) {
-        Lotto winningLotto = null;
-        while (winningLotto == null) {
-            winningLotto = getCustomLotto("\n로또 번호를 입력해 주세요.");
+        Lotto lotto = null;
+        while (lotto == null) {
+            lotto = getCustomLotto("\n로또 번호를 입력해 주세요.");
         }
-        return List.of(lottoRepository.save(winningLotto));
+        userRepository.save(Buyer.from(lotto));
+        return List.of(lotto);
     }
 
     protected Lotto getCustomLotto(String prompt) {

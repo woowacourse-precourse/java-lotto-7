@@ -1,17 +1,21 @@
 package lotto.service;
 
+import static lotto.constant.UserId.BUYER;
+import static lotto.constant.UserId.SYSTEM;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
-import lotto.model.db.LottoRepository;
+import lotto.model.db.Buyer;
+import lotto.model.db.Owner;
+import lotto.model.db.UserRepository;
 
 public class LottoCalculationService {
 
     private static final Map<Integer, Long> PRIZE_MONEY = new HashMap<>();
     private static final Map<Integer, Integer> RANK_MAPPER = new HashMap<>();
 
-    private final LottoRepository lottoRepository = LottoRepository.getInstance();
+    private final UserRepository userRepository = UserRepository.getInstance();
 
     static {
         PRIZE_MONEY.put(1, 2_000_000_000L);
@@ -27,16 +31,16 @@ public class LottoCalculationService {
     }
 
     public int[] getMatchCnts() {
-        List<Lotto> userLotties = lottoRepository.getBuyerLotties();
-        Lotto winningLotto = lottoRepository.getWinningLotto();
+        Buyer buyer = (Buyer) userRepository.findById(BUYER);
+        Owner owner = (Owner) userRepository.findById(SYSTEM);
 
         int[] matchCnts = new int[6];
-        for (Lotto lotto : userLotties) {
-            int rank = RANK_MAPPER.getOrDefault(lotto.getMatchCnt(winningLotto), -1);
+        for (Lotto lotto : buyer.getLotties()) {
+            int rank = RANK_MAPPER.getOrDefault(lotto.getMatchCnt(owner.getLotto()), -1);
             if (rank == -1) {
                 continue;
             }
-            if (rank == 3 && lotto.contains(lottoRepository.getBonus())) {
+            if (rank == 3 && lotto.contains(owner.getBonus())) {
                 rank--;
             }
             matchCnts[rank]++;
@@ -45,10 +49,11 @@ public class LottoCalculationService {
     }
 
     public double getRateOfReturn(int[] matchCnts) {
+        Buyer buyer = (Buyer) userRepository.findById(BUYER);
         double sum = 0;
         for (int i = 1; i < matchCnts.length; i++) {
             sum += (matchCnts[i] * PRIZE_MONEY.get(i));
         }
-        return sum / (lottoRepository.getBuyerLotties().size() * 1000) * 100;
+        return sum / (buyer.getLotties().size() * 1000) * 100;
     }
 }
