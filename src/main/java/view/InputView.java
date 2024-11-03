@@ -7,9 +7,9 @@ public class InputView {
     private final static String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public int inputPurchaseAmount() {
+    public String inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public String inputWinningNumber() {
