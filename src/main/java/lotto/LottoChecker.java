@@ -40,4 +40,36 @@ public class LottoChecker {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
         }
     }
+
+    public List<Integer> lottoCheck(Customer customer) {
+        List<Integer> totalRanks = new ArrayList<>();
+        for (Lotto lotto : customer.getLottos()) {
+            int rank = determineRank(lotto);
+            totalRanks.add(rank);
+        }
+
+        return totalRanks;
+    }
+
+    public int determineRank(Lotto lotto) {
+        int count = 0;
+
+        for (int i = 0; i < 6; i++) {
+            int num = lotto.getNumbers().get(i);
+            isWinningLotto(count, num);
+        }
+
+        return count;
+    }
+
+    public int isWinningLotto(int count, int num) {
+        if (winningNumbers.contains(num)) {
+            count++;
+        }
+        if(bonusNumber == num) {
+            count += 10;
+        }
+
+        return count;
+    }
 }
