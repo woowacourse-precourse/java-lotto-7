@@ -20,29 +20,17 @@ public class LottoService {
     }
 
     private void updateMatchCounts(int[] matchCounts, int matchCount, boolean bonusMatch) {
-        if (isSixMatch(matchCount)) {
+        if (matchCount == 6) {
             matchCounts[4]++;
             return;
         }
-        if (isFiveMatchWithBonus(matchCount, bonusMatch)) {
+        if (matchCount == 5 && bonusMatch) {
             matchCounts[3]++;
             return;
         }
-        if (isThreeToFiveMatch(matchCount)) {
+        if (matchCount >= 3 && matchCount <= 5) {
             matchCounts[matchCount - 3]++;
         }
-    }
-
-    private boolean isSixMatch(int matchCount) {
-        return matchCount == 6;
-    }
-
-    private boolean isFiveMatchWithBonus(int matchCount, boolean bonusMatch) {
-        return matchCount == 5 && bonusMatch;
-    }
-
-    private boolean isThreeToFiveMatch(int matchCount) {
-        return matchCount >= 3 && matchCount <= 5;
     }
 
     public double calculateYield(Money money, int[] matchCounts) {

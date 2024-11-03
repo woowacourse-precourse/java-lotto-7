@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.util.InputParser;
+import lotto.util.ValidationUtils;
 import lotto.view.InputView;
 
 import java.util.Set;
@@ -35,11 +36,15 @@ public class InputService {
         }
     }
 
-    public int getValidBonusNumberInput() {
+    public int getValidBonusNumberInput(Set<Integer> winningNum) {
         while (true) {
             try {
                 String bonusNum = inputView.getBonusNum();
-                return inputParser.parseBonusNumber(bonusNum);
+                ValidationUtils.vaildateBonusNumberNotNumber(bonusNum);
+                int bounusNumber = inputParser.parseBonusNumber(bonusNum);
+                ValidationUtils.validateBonusNumberRange(bounusNumber);
+                ValidationUtils.validateBonusNumberDuplication(bounusNumber, winningNum);
+                return bounusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

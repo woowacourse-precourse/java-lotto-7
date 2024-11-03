@@ -33,12 +33,30 @@ public class ValidationUtils {
         }
     }
 
-    public static void validateBonusNumber(int bonusNumber, Set<Integer> numbers) {
+    public static void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
+    }
+
+    public static void validateBonusNumberDuplication(int bonusNumber, Set<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    public static void vaildateBonusNumberNotNumber(String bonusNumber) {
+        if (!bonusNumber.matches("\\d+")) {
+            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateNumberFormat(String s) {
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException(InputErrorMessage.NULL_WINNING_NUMBER.getMessage());
+        }
+        if (!s.matches("\\d+")) {
+            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_WINNING_NUMBER.getMessage());
         }
     }
 }

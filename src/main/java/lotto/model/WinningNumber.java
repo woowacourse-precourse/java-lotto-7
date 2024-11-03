@@ -12,7 +12,7 @@ public class WinningNumber {
     public WinningNumber(Set<Integer> numbers, int bonusNumberValue) {
         ValidationUtils.validateWinningNumbers(numbers);
         this.numbers = new TreeSet<>(numbers);
-        this.bonusNumber = new BonusNumber(bonusNumberValue, this);
+        this.bonusNumber = new BonusNumber(bonusNumberValue);
     }
 
     public Set<Integer> getNumbers() {

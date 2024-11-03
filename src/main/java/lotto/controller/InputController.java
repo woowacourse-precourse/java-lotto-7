@@ -21,7 +21,7 @@ public class InputController {
 
     public WinningNumber getWinningNumber() {
         Set<Integer> winningNumbers = inputService.getValidWinningNumInput();
-        int bonusNumber = inputService.getValidBonusNumberInput();
+        int bonusNumber = inputService.getValidBonusNumberInput(winningNumbers);
         return new WinningNumber(winningNumbers, bonusNumber);
     }
 }

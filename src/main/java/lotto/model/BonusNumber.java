@@ -1,12 +1,9 @@
 package lotto.model;
 
-import lotto.util.ValidationUtils;
-
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(int number, WinningNumber winningNumber) {
-        ValidationUtils.validateBonusNumber(number, winningNumber.getNumbers());
+    public BonusNumber(int number) {
         this.number = number;
     }
 
