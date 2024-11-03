@@ -12,10 +12,17 @@ public class NumberInputView extends InputView {
         return input;
     }
 
-    public static String getBonusNumber() {
+    public static int getBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBER);
         String input = inputValue();
 
-        return input;
+        validateIsNumeric(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void validateIsNumeric(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException("보너스 번호는 숫자 형식이어야 합니다.");
+        }
     }
 }

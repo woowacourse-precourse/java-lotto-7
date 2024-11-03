@@ -39,7 +39,8 @@ public class Controller {
         return NumberInputView.getWinningNumbers();
     }
 
-    private String getBonusNumber() {
-        return NumberInputView.getBonusNumber();
+    private BonusNumber getBonusNumber() {
+        int bonusNumber = NumberInputView.getBonusNumber();
+        return new BonusNumber(bonusNumber);
     }
 }
