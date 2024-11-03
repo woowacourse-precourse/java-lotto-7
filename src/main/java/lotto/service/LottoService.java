@@ -11,9 +11,24 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Result;
+import lotto.view.InputView;
 
 public class LottoService {
     public LottoService() {
+    }
+
+    public Money inputMoney() {
+        Money money;
+        while (true) {
+            try {
+                money = new Money(InputView.inputMoney());
+                return money;
+            } catch (NumberFormatException e){
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Lottos buyLottos(Money money) {
@@ -54,6 +69,6 @@ public class LottoService {
     }
 
     public double calculateEarningRate(long totalPrize, Money money) {
-        return (double) totalPrize /  money.getValue() * 100;
+        return (double) totalPrize / money.getValue() * 100;
     }
 }

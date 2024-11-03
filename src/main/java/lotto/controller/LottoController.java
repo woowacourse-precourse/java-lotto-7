@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     private void buyingLottos() {
-        this.money = new Money(InputView.inputMoney());
+        this.money = lottoService.inputMoney();
 
         this.lottos = lottoService.buyLottos(money);
 
