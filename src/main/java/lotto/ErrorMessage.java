@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public enum ErrorMessage {      // 예외별 메시지 관리
     INVAILD_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1,000원 단위의 양수 입니다.") {
         // 구입 금액은 양수인 1000원 단위
@@ -16,6 +18,15 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         @Override
         public void validate(List<Integer> numbers) {
             if (numbers.size() != 6) {
+                throw new IllegalArgumentException(getMessage());
+            }
+        }
+    },
+
+    INVAILD_NUMBER_RANGE("[ERROR] 번호는 1 ~ 45까지의 양수만 가능합니다.") {
+        @Override
+        public void validate(int number) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(getMessage());
             }
         }
