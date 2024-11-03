@@ -48,4 +48,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호 간 일치하는 개수를 정확히 반환한다.")
+    @Test
+    void 로또_번호_일치_개수_확인() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        assertThat(lotto1.countMatchingNumbers(lotto2)).isEqualTo(3);
+    }
+
 }
