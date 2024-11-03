@@ -116,17 +116,17 @@
     - `PARSING_INTEGER_ERROR` : 정수로 변환할 수 없는 문자열이 입력 되었을 경우
 
 ## 테스트 명세
-- [ ] **LottoGeneratorTest**
+- [x] **LottoGeneratorTest**
     - 로또 번호 생성기의 범위 및 중복 여부 테스트
 
-- [ ] **LottoValidatorTest**
+- [x] **LottoValidatorTest**
     - 입력된 로또 번호의 유효성 검증 테스트
 
-- [ ] **LottoComparerTest**
+- [x] **LottoComparerTest**
     - 로또와 당첨 번호 비교 및 등수 계산 테스트
 
-- [ ] **LottoResultCalculatorTest**
+- [x] **LottoResultCalculatorTest**
     - 당첨 결과 집계 및 수익률 계산 테스트
 
-- [ ] **ExceptionHandlerTest**
+- [x] **ExceptionHandlerTest**
     - 잘못된 입력에 대한 예외 처리 테스트
