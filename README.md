@@ -152,6 +152,8 @@
     - 양수 판별은 숫자인지 확인하며 진행된다.
 - isLottoNumber
   - 1에서 45 사이의 숫자인지 확인한다.
+- isBonusNotInWinning
+  - 보너스 번호가 당첨 번호와 동일하지 않은지 확인한다.
 - containsWinningNumber
   - Lotto에 HashSet과 동일한 값이 있는지 확인한다.
 - removeWinningNumber
