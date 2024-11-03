@@ -6,6 +6,7 @@ import lotto.model.exception.DomainExceptionMessage;
 public class Money {
     private static final Pattern numberPattern = Pattern.compile("^[0-9]+$");
     private static final int MONEY_UNIT_VALUE = 1000;
+    private static final int LOWER_LIMIT = 0;
 
     private final int value;
 
@@ -20,6 +21,16 @@ public class Money {
 
     public Money add(int value) {
         return new Money(this.value + value);
+    }
+
+    public Money minus(int value) {
+        int calculatedValue = this.value - value;
+        if (calculatedValue < LOWER_LIMIT) {
+            throw new IllegalStateException(
+                    DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage()
+            );
+        }
+        return new Money(calculatedValue);
     }
 
     @Override

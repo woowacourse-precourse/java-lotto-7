@@ -76,4 +76,26 @@ class MoneyTest {
         // then
         Assertions.assertThat(addedMoney).isEqualTo(new Money("2000"));
     }
+
+    @Test
+    @DisplayName("Money를 뺄 때 0원 미만이 되면 예외가 발생한다.")
+    void should_ThrowException_When_SubtractMoney() {
+        // given
+        Money money = new Money("1000");
+        // when, then
+        Assertions.assertThatThrownBy(() -> money.minus(2000))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage());
+    }
+
+    @Test
+    @DisplayName("Moeny를 빼면 뺀 값을 지닌 Money를 반환한다.")
+    void should_ReturnMoneyWithSubtractedValue_When_SubtractMoney() {
+        // given
+        Money money = new Money("2000");
+        // when
+        Money subtractedMoney = money.minus(1000);
+        // then
+        Assertions.assertThat(subtractedMoney).isEqualTo(new Money("1000"));
+    }
 }
