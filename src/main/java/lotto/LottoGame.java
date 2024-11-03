@@ -10,17 +10,9 @@ public class LottoGame {
     }
 
     private LottoManager getLottoManager() {
-        final int purchaseAmount = getPurchaseAmount();
+        final int purchaseAmount = InputHandler.inputLottoPurchaseAmount();
         final int lottoAmount = purchaseAmount / 1000;
         return new LottoManager(lottoAmount);
-    }
-
-    private int getPurchaseAmount() {
-        int purchaseAmount = InputHandler.inputLottoPurchaseAmount();
-        while (purchaseAmount == 0) {
-            purchaseAmount = InputHandler.inputLottoPurchaseAmount();
-        }
-        return purchaseAmount;
     }
 
     private WinningLotto getWinningLotto() {
