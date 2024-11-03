@@ -7,34 +7,49 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
-    static final int LOTTO_ROUND = 1;
-
     public static void run() {
 
-        LottoRound lottoRound = new LottoRound(LOTTO_ROUND);
+        LottoRound lottoRound = initializeLottoRound();
+        Order userOrder = createUserOrder(lottoRound);
 
-        int order = InputView.parseOrder(InputView.inputOrderPrice());
-        OutputView.printOrderNumber(order);
+        setupWinningNumbers(lottoRound);
+        userOrder.calculateMatchCounts();
 
-        Order userOrder = new Order(lottoRound, order);
-        System.out.println(userOrder.toString());
-
-
-        // 당첨 번호 로또, 보너스번호 생성
-        Lotto winningLotto = new Lotto(InputView.parseWinningNumber(InputView.inputWinningNumber()));
-        lottoRound.setWinningLotto(winningLotto);
-        int bonusNumber = InputView.parseBonusNumber(InputView.inputBounsNumber());
-        lottoRound.setBonusNumber(bonusNumber);
-
-        // 일치 개수 계산
-        userOrder.countmatch();
-        
-        // 출력
-        OutputView.printWinningAmount(userOrder.getMatchCount());
-        OutputView.printTotalProfit(userOrder.getMatchCount(),order*1000);
-        
+        printResults(userOrder);
     }
 
+    private static LottoRound initializeLottoRound() {
+        final int roundNumber = 1; // 로또 회차
+        return new LottoRound(roundNumber);
+    }
 
+    private static Order createUserOrder(LottoRound lottoRound) {
+        int orderCount = inputOrderCount();
+        return new Order(lottoRound, orderCount);
+    }
+
+    private static void setupWinningNumbers(LottoRound lottoRound) {
+        Lotto winningLotto = inputWinningLotto();
+        lottoRound.setWinningLotto(winningLotto);
+        int bonusNumber = inputBonusNumber();
+        lottoRound.setBonusNumber(bonusNumber);
+    }
+    private static int inputOrderCount() {
+        int orderCount = InputView.parseOrder(InputView.inputOrderPrice());
+        OutputView.printOrderNumber(orderCount);
+        return orderCount;
+    }
+
+    private static Lotto inputWinningLotto() {
+        return new Lotto(InputView.parseWinningNumber(InputView.inputWinningNumber()));
+    }
+
+    private static int inputBonusNumber() {
+        return InputView.parseBonusNumber(InputView.inputBonusNumber());
+    }
+
+    private static void printResults(Order userOrder) {
+        OutputView.printWinningAmount(userOrder.getMatchCounts());
+        OutputView.printTotalProfit(userOrder);
+    }
 }
