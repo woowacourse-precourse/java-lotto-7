@@ -2,7 +2,7 @@ package lotto;
 
 public class LottoCost {
 
-    private final static int LOTTO_COST_MAX = 100000;
+    private final static int LOTTO_COST_MAX = 10000000;
     private final static int LOTTO_COST_MIN = 1000;
     public final static int LOTTO_COST_UNIT = 1000;
 
