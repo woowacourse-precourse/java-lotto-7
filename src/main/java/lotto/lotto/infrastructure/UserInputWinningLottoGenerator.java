@@ -2,7 +2,7 @@ package lotto.lotto.infrastructure;
 
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.service.WinningLottoGenerator;
-import lotto.view.input.hanlder.domain.InputHandlerService;
+import lotto.view.input.hanlder.service.InputHandlerService;
 
 public class UserInputWinningLottoGenerator implements WinningLottoGenerator {
     private final InputHandlerService inputHandlerService;
