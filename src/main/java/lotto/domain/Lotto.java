@@ -12,6 +12,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -19,7 +20,7 @@ public class Lotto {
         if (!isValidRange(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
         }
-        if (hasDuplicates(numbers)) {
+        if (hasDuplicatesEachNumber(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
@@ -28,12 +29,27 @@ public class Lotto {
         return numbers.stream().allMatch(num -> num >= 1 && num <= 45);
     }
 
-    private boolean hasDuplicates(List<Integer> numbers) {
+    private boolean hasDuplicatesEachNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public boolean hasDuplicatedBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int[] matching(List<Integer> userLotto, Bonus bonus) {
+        Set<Integer> numbers = new HashSet<>(this.numbers);
+        Set<Integer> userNumbers = new HashSet<>(userLotto);
+        numbers.retainAll(userNumbers);
+        int matchCount = numbers.size();
+        int bonusMatch = 0;
+        if (userNumbers.contains(bonus.getBonusNumber())) {
+            bonusMatch = 1;
+        }
+        return new int[]{matchCount, bonusMatch};
     }
 }
