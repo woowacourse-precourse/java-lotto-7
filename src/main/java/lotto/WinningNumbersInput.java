@@ -10,7 +10,7 @@ public class WinningNumbersInput{
         List<Integer> numbers;
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String numberSet = Console.readLine();
                 numbers = splitNumbers(numberSet); // 입력 받고 나누기 & 숫자로 변환
                 checkNumbers(numbers);  // 범위 검사 & 중복 검사
