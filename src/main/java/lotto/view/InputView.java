@@ -5,6 +5,8 @@ import lotto.validator.NumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
@@ -20,13 +22,13 @@ public class InputView {
         return Long.parseLong(inputAmount);
     }
 
-    public static int[] inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         String inputWinningNumbers;
         do {
             System.out.println(WINNING_NUMBERS_PROMPT);
             inputWinningNumbers = Console.readLine().trim();
         } while (!NumberValidator.checkValidWinningNumbers(inputWinningNumbers));
-        return Arrays.stream(inputWinningNumbers.split(",")).mapToInt(Integer::valueOf).toArray();
+        return Arrays.stream(inputWinningNumbers.split(",")).map(Integer::valueOf).collect(Collectors.toList());
     }
 
     public static int inputBonusNumber() {
