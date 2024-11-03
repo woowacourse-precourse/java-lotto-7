@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.User;
+import lotto.model.Machine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,16 +15,16 @@ public class LottoSystemController {
     }
 
     public void run() {
-        User user = null;
-        while (user == null) {
+        Machine machine = null;
+        while (machine == null) {
             try {
-                user = new User(inputView.inputAmount());
-                user.publishLotto(user.getMoney());
+                machine = new Machine(inputView.inputAmount());
+                machine.publishLotto(machine.getMoney());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        outputView.outputPurchaseLottoNumber(user.getMoney(), user.getLotteryTickets());
+        outputView.outputPurchaseLottoNumber(machine.getMoney(), machine.getLotteryTickets());
 
         Lotto lotto = null;
         while (lotto == null) {
@@ -40,7 +40,7 @@ public class LottoSystemController {
         boolean isBonusNumberValid = false;
         while (!isBonusNumberValid) {
             try {
-                lotto.matcheNumber(user.getLotteryTickets(), inputView.inputBonusNumber());
+                lotto.matcheNumber(machine.getLotteryTickets(), inputView.inputBonusNumber());
                 isBonusNumberValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -48,6 +48,6 @@ public class LottoSystemController {
         }
 
         outputView.outputLottoWinningStatistics();
-        outputView.outputLateOfReturn(user.lateOfReturn());
+        outputView.outputLateOfReturn(machine.lateOfReturn());
     }
 }

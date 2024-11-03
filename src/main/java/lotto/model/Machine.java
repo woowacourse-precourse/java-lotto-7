@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Result;
 
-public class User {
-    public User(String money) {
+public class Machine {
+    public Machine(String money) {
         Validator.purchasePriceValidate(money);
         this.money = Integer.parseInt(money);
     }

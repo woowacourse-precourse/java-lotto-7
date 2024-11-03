@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.User;
+import lotto.model.Machine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -42,20 +42,20 @@ class LottoTest {
     @ValueSource(strings = {"-7", "50", " ", "칠", " 50 "})
     void 공백없이_1부터_45까지의_숫자가_아니라면_예외가_발생한다(String value) {
         Lotto lotto = new Lotto("1,2,3,4,5,6");
-        User user = new User("8000");
+        Machine machine = new Machine("8000");
 
         assertThatThrownBy(
-                () -> lotto.matcheNumber(user.getLotteryTickets(), value))
+                () -> lotto.matcheNumber(machine.getLotteryTickets(), value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 당첨_번호와_중복_되는_보너스_번호일_경우_예외가_발생한다() {
         Lotto lotto = new Lotto("1,2,3,4,5,6");
-        User user = new User("8000");
+        Machine machine = new Machine("8000");
 
         assertThatThrownBy(
-                () -> lotto.matcheNumber(user.getLotteryTickets(), "4"))
+                () -> lotto.matcheNumber(machine.getLotteryTickets(), "4"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
