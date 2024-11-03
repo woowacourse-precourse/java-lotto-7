@@ -2,6 +2,7 @@ package Controller;
 
 import Service.LottoService;
 import View.LottoView;
+import lotto.LottoList;
 import lotto.PurchaseCount;
 
 public class LottoController {
@@ -20,5 +21,9 @@ public class LottoController {
 
     private String printPurchasedLottoCount(PurchaseCount purchaseCount) {
         return lottoView.printPurchasedLottoCountFromView(purchaseCount);
+    }
+
+    private LottoList purchaseLottos(int purchaseCount) {
+        return lottoService.generateLottos(purchaseCount);
     }
 }
