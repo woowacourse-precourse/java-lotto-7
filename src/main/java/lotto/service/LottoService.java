@@ -1,9 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constant.Prize;
 import lotto.constant.Prompt;
 import lotto.domain.BonusNumber;
@@ -11,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Result;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
@@ -43,11 +42,11 @@ public class LottoService {
     }
 
     public Lotto getWinningNumbers() {
-        System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
         List<Integer> lotto;
 
         while (true) {
             try {
+                System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
                 String numbers = Console.readLine();
 
                 LottoValidator.validateInput(numbers);
@@ -62,9 +61,17 @@ public class LottoService {
 
 
 
-    public BonusNumber getBonusNumber() {
-        System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
-        return new BonusNumber(Console.readLine());
+    public BonusNumber getBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
+                BonusNumber bonusNumber = new BonusNumber(Console.readLine(), winningNumbers);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Result getResult(Lottos lottos, Lotto winningNumber, BonusNumber bonusNumber) {

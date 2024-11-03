@@ -40,7 +40,7 @@ public class LottoController {
 
     private void inputWinningNumbersAndBonusNumber() {
         this.winningNumber = lottoService.getWinningNumbers();
-        this.bonusNumber = lottoService.getBonusNumber();
+        this.bonusNumber = lottoService.getBonusNumber(winningNumber);
     }
 
     private void calculatePrize() {
