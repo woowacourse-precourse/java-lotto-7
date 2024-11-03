@@ -23,6 +23,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("로또 번호가 1에서 45 사이의 수인지 검사")
+    void verifyLottoNumberIsBetween1To45() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 100)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @RepeatedTest(100)
     @DisplayName("로또 번호가 오름차순으로 정렬되는지 검사")
     void verifyLottoNumbersAreIncreasing() {
