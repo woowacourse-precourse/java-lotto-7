@@ -1,5 +1,6 @@
 package lotto.model.service.parser;
 
+import static lotto.message.ErrorMessage.INVALID_BONUS_NUMBER_INPUT;
 import static lotto.message.ErrorMessage.INVALID_WINNING_NUMBER_INPUT;
 
 import java.util.List;
@@ -19,5 +20,13 @@ public class NumberParser {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_INPUT.getMessage());
         }
 
+    }
+
+    public static Integer parseBonusNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT.getMessage());
+        }
     }
 }

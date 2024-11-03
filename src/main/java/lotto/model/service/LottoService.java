@@ -49,7 +49,8 @@ public class LottoService {
     }
 
     public String saveBonusNumber(String bonusNumber) {
-        lottoManager.saveBonusNumber(bonusNumber);
+        Integer number = NumberParser.parseBonusNumber(bonusNumber.trim());
+        lottoManager.saveBonusNumber(number);
         return "success";
     }
 }

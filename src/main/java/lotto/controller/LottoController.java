@@ -54,10 +54,18 @@ public class LottoController {
         return "success";
     }
 
-    private String recordBonusNumber() {
+    public String recordBonusNumber() {
         OutputView.printBlankLine();
-        String bonusNumber = InputView.getBonusNumber();
-        lottoService.saveBonusNumber(bonusNumber);
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                String bonusNumber = InputView.getBonusNumber();
+                lottoService.saveBonusNumber(bonusNumber);
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                ErrorView.printErrorMessage(e.getMessage());
+            }
+        }
         return "success";
     }
 }
