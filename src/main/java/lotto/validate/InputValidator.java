@@ -85,7 +85,7 @@ public class InputValidator {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         if (lottoNumbers.contains(Integer.parseInt(input))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 로또 번호 내에 존재합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호 내에 존재합니다.");
         }
     }
 
