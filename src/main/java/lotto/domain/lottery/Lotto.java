@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.controller.LottoPolicy;
+import lotto.domain.lottery.Lottery;
 import lotto.exception.ExceptionMessage;
 
 public class Lotto implements Lottery {

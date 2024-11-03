@@ -66,15 +66,12 @@ public class Validator {
         validateDuplicateNumbers(verifiedWinningNumbers);
         //당첨번호 개수 검증
         validateWinningNumberSize(verifiedWinningNumbers);
-
-
         return verifiedWinningNumbers;
     }
     private void checkDelimiterOrThrow(String input) {
         if(!input.contains(policy.getDelimiter())){
             throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage()+policy.getDelimiter()+ExceptionMessage.INPUT_CHECK_DELIMITER.getMessage());
         }
-
     }
 
     private void checkNumberOrThrow(String[] unverifiedWinningNumbers) {

@@ -64,8 +64,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
         return 0;
-
     }
 }

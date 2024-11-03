@@ -5,23 +5,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LotteryRoundStatistics {
-    private final Map<Long, List<Statistics>> roundStatistics;
+public class LotteryStatisticsHistory {
+    private final Map<Long, List<Statistics>> lotteryStatisticsHistory;
 
-    private LotteryRoundStatistics() {
-        this.roundStatistics = new HashMap<>();
+    private LotteryStatisticsHistory() {
+        this.lotteryStatisticsHistory = new HashMap<>();
     }
 
-    public LotteryRoundStatistics initInstance(List<LottoDrawStatistics> lottoDrawStatistics) {
-        return new LotteryRoundStatistics();
+    public LotteryStatisticsHistory initInstance(List<LottoDrawStatistics> lottoDrawStatistics) {
+        return new LotteryStatisticsHistory();
     }
 
     public List<Statistics> getStatistics(Long round){
-        return new ArrayList<>(roundStatistics.getOrDefault(round, new ArrayList<>()));
+        return new ArrayList<>(lotteryStatisticsHistory.getOrDefault(round, new ArrayList<>()));
     }
 
-    public void addRound(Long round,List<Statistics> statistics){
-
-
+    public void addLotteryStatisticsHistory(Long round,List<Statistics> statistics){
+        lotteryStatisticsHistory.put(round, List.copyOf(statistics));
     }
 }

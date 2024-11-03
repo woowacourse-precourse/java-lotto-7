@@ -1,12 +1,8 @@
 package lotto.controller.view;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import lotto.controller.LottoPolicy;
-import lotto.controller.view.OutputView;
-import lotto.domain.Lotteries;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGameManager;
+import lotto.domain.lottery.Lotteries;
+import lotto.domain.gameManager.LottoGameManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +13,10 @@ class OutputViewTest {
     void printLotteries() {
         //given
         LottoGameManager lottoGameManager = new LottoGameManager();
-        Lotteries lotteries = lottoGameManager.initLottery(new LottoPolicy(), 5);
+        Lotteries lotteries = lottoGameManager.initLottery(new LottoPolicy(), 5000);
         OutputView outputView = new OutputView();
         //when
-        outputView.printLotteries(5, lotteries);
+        outputView.printLotteries(lotteries);
 
         //then
 

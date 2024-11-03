@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.tier;
 
 public class LottoTier implements Tier {
 
@@ -13,7 +13,7 @@ public class LottoTier implements Tier {
         this.winningAmount = winningAmount;
     }
 
-    public LottoTier initWinningTier(Integer winningMatchCount, Boolean needsBonusNumberMatch, Long winningAmount) {
+    public static LottoTier initWinningTier(Integer winningMatchCount, Boolean needsBonusNumberMatch, Long winningAmount) {
         return new LottoTier(winningMatchCount, needsBonusNumberMatch, winningAmount);
     }
 
