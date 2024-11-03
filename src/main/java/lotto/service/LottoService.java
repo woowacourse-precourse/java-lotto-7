@@ -68,7 +68,7 @@ public class LottoService {
     }
 
     private static boolean isBonusMatch(LottoDto lottoDto, Lotto lotto, int matchedCount) {
-        return matchedCount == FOUR.winningCount && matchedBonusNumber(lottoDto, lotto);
+        return matchedCount == FIVE.winningCount && matchedBonusNumber(lottoDto, lotto);
     }
 
     private static boolean matchedBonusNumber(LottoDto lottoDto, Lotto lotto) {
