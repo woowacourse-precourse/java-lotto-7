@@ -14,11 +14,11 @@ public class PurchaseAmountParser {
     }
 
     private static int processInput(String input) {
-        int purchaseAmount = inputToRoundNum(input);
+        int purchaseAmount = inputToPurchaseAmount(input);
         return validatePurchaseAmount(purchaseAmount);
     }
 
-    private static int inputToRoundNum(String input) {
+    private static int inputToPurchaseAmount(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
