@@ -60,7 +60,7 @@ public class InputView {
         System.out.println(INPUT_PROMPT_BONUS_NUMBER);
         while (true) {
             try {
-                int bonusNumber = Integer.parseInt(Console.readLine());
+                int bonusNumber = stringParser.parseToInteger(Console.readLine());
                 return new Guess(winningNumbers, bonusNumber);
             } catch (CommonException e) {
                 System.out.println(e.getMessage());
