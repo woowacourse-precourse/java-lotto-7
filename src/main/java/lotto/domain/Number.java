@@ -1,11 +1,11 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.view.ErrorMessage;
 
 public class Number implements Comparable<Number> {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
-    private static final String errorMessage = "[ERROR] 1 ~ 45 사이의 정수만 입력 가능합니다";
 
     private final int number;
 
@@ -28,13 +28,13 @@ public class Number implements Comparable<Number> {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorMessage);
+            throw new IllegalArgumentException(ErrorMessage.notValidNumber());
         }
     }
 
     private void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(errorMessage);
+            throw new IllegalArgumentException(ErrorMessage.notValidNumber());
         }
     }
 

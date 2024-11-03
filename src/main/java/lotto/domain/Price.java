@@ -1,11 +1,10 @@
 package lotto.domain;
 
+import lotto.view.ErrorMessage;
+
 public class Price {
     private static final int MIN_PRICE = 1_000;
     private static final int MAX_PRICE = Integer.MAX_VALUE;
-
-    private static final String priceRangeErrorMessage = "[ERROR] 구입금액은 " + MIN_PRICE + "원 이상, " + MAX_PRICE + "원 이하의 숫자만 입력 가능합니다.";
-    private static final String remainderErrorMessage = "[ERROR] 구입금액은 " + MIN_PRICE + "원으로 나누어 떨어져야 합니다.";
 
     private final int price;
 
@@ -24,7 +23,7 @@ public class Price {
         try {
             return Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(priceRangeErrorMessage);
+            throw new IllegalArgumentException(ErrorMessage.notValidPriceRange());
         }
     }
 
@@ -34,11 +33,11 @@ public class Price {
     }
 
     private void validateNoRemainder(int price) {
-        if ((price % MIN_PRICE) != 0) throw new IllegalArgumentException(remainderErrorMessage);
+        if ((price % MIN_PRICE) != 0) throw new IllegalArgumentException(ErrorMessage.priceWithRemainder());
     }
 
     private void validatePriceRange(int price) {
-        if (price < MIN_PRICE || price > MAX_PRICE) throw new IllegalArgumentException(priceRangeErrorMessage);
+        if (price < MIN_PRICE || price > MAX_PRICE) throw new IllegalArgumentException(ErrorMessage.notValidPriceRange());
     }
 
     public int value() {

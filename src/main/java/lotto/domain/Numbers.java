@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.view.ErrorMessage;
 
 public class Numbers {
     private final List<Number> numbers;
@@ -29,12 +30,12 @@ public class Numbers {
     }
 
     private void validateSize(List<Number> numbers) {
-        if (numbers.size() != 6) throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != 6) throw new IllegalArgumentException(ErrorMessage.notValidNumbersSize());
     }
 
     private void validateDuplicate(List<Number> numbers) {
         if (numbers.size() != numbers.stream().distinct().count())
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.duplicateNumber());
     }
 
     private List<Number> parseStringToNumber(String numbers) {
