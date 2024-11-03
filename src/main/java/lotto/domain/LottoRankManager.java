@@ -7,7 +7,7 @@ public class LottoRankManager {
 
     private final static int ZERO = 0;
 
-    private Consumer consumer;
+    private final Consumer consumer;
     private final HashMap<LottoRank, Integer> lottoRankResult = new HashMap<>();
 
     public LottoRankManager(Consumer consumer) {
@@ -21,27 +21,28 @@ public class LottoRankManager {
     }
 
     public void updateLottoRank(int matchNumbers, boolean bonusMatch) {
+        if (!bonusInclude(matchNumbers, bonusMatch)) {
+            bonusNotInclude(matchNumbers);
+        }
+    }
+
+    private boolean bonusInclude(int matchNumbers, boolean bonusMatch) {
+        if (matchNumbers == 5 && bonusMatch) {
+            lottoRankResult.put(LottoRank.SECOND_RANK, lottoRankResult.get(LottoRank.SECOND_RANK) + 1);
+            return true;
+        }
+        return false;
+    }
+
+    private void bonusNotInclude(int matchNumbers) {
         for (LottoRank rank : LottoRank.values()) {
-            updateRanking(matchNumbers, bonusMatch, rank);
-        }
-    }
-
-    private void updateRanking(int matchNumbers, boolean bonusMatch, LottoRank rank) {
-
-        bonusInclude(matchNumbers, bonusMatch, rank);
-
-        if (rank.getCount() == matchNumbers) {
-            lottoRankResult.put(rank, lottoRankResult.get(rank) + 1);
-        }
-    }
-
-    private void bonusInclude(int matchNumbers, boolean bonusMatch, LottoRank rank) {
-        if (matchNumbers == 5) {
-            if (rank.getCount() == matchNumbers && rank.getBonus() == bonusMatch) {
+            if (rank.getCount() == matchNumbers && !rank.getBonus()) {
                 lottoRankResult.put(rank, lottoRankResult.get(rank) + 1);
+                break;
             }
         }
     }
+
 
     public HashMap<LottoRank, Integer> getLottoRankResult() {
         return lottoRankResult;
