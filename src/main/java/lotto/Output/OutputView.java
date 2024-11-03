@@ -34,4 +34,8 @@ public class OutputView {
                 count
         );
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

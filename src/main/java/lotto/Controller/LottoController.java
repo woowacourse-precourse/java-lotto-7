@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import java.util.List;
+import lotto.Input.InputProcessor;
 import lotto.Input.InputView;
 import lotto.Output.OutputView;
 import lotto.Service.LottoService;
@@ -37,14 +38,13 @@ public class LottoController {
     }
 
     private PurchaseAmount purchaseLottos() {
-        while (true) {
-            try {
+        return new InputProcessor<PurchaseAmount>(outputView) {
+            @Override
+            protected PurchaseAmount processInput() {
                 String input = inputView.readPurchaseAmount();
                 return PurchaseAmount.from(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
-        }
+        }.process();
     }
 
     private WinningNumbers createWinningNumbers() {
@@ -54,24 +54,22 @@ public class LottoController {
     }
 
     private WinningLottoNumbers createWinningLottoNumbers() {
-        while (true) {
-            try {
+        return new InputProcessor<WinningLottoNumbers>(outputView) {
+            @Override
+            protected WinningLottoNumbers processInput() {
                 String input = inputView.readWinningNumbers();
                 return WinningLottoNumbers.from(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
-        }
+        }.process();
     }
 
     private BonusNumber createBonusNumber() {
-        while (true) {
-            try {
+        return new InputProcessor<BonusNumber>(outputView) {
+            @Override
+            protected BonusNumber processInput() {
                 String input = inputView.readBonusNumber();
                 return BonusNumber.from(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
-        }
+        }.process();
     }
 }
