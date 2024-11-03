@@ -19,5 +19,6 @@ public class LottoController {
         OutputView.purchaseCount(purchaseCount);
 
         List<Lotto> lottos = lottoService.makeLottos(purchaseCount);
+        OutputView.lottoNumbers(lottos);
     }
 }
