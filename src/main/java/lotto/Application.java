@@ -26,5 +26,7 @@ public class Application {
         LottoMatch lottoMatch = new LottoMatch(inputView.count, lottos.lotto, winLotto, bonusNumber);
         lottoMatch.match();
 
+        double profitRate = (double) lottoMatch.getTotalPrize() / (inputView.count * 1000) * 100;
+        outputView.matchPrint(lottoMatch.getWinCounts(), profitRate);
     }
 }
