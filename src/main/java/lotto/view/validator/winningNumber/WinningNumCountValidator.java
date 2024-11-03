@@ -1,5 +1,7 @@
 package lotto.view.validator.winningNumber;
 
+import static lotto.error.ErrorMessage.INVALID_NUMBER_COUNT;
+
 import java.util.List;
 import lotto.view.PreProcessor;
 import lotto.view.validator.InputValidator;
@@ -18,7 +20,7 @@ public class WinningNumCountValidator extends InputValidator {
     public void validate(final String input) {
         List<String> numbers = PreProcessor.stringToStringList(input);
         if (numbers.size() != MAX_NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(String.format(INVALID_NUMBER_COUNT.getMessage(), MAX_NUMBER_COUNT));
         }
     }
 }

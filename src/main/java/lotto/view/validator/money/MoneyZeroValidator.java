@@ -1,5 +1,7 @@
 package lotto.view.validator.money;
 
+import static lotto.error.ErrorMessage.INVALID_ZERO_AMOUNT;
+
 import lotto.model.money.Money;
 import lotto.view.PreProcessor;
 import lotto.view.validator.InputValidator;
@@ -17,7 +19,7 @@ public class MoneyZeroValidator extends InputValidator {
         Money money = PreProcessor.stringToMoney(input);
 
         if (money.isZero(money)) {
-            throw new IllegalArgumentException("구입금액은 0일 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_ZERO_AMOUNT.getMessage());
         }
     }
 }

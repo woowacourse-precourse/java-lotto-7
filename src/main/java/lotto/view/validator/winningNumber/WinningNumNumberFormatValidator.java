@@ -1,5 +1,7 @@
 package lotto.view.validator.winningNumber;
 
+import static lotto.error.ErrorMessage.POSITIVE_REQUIRED;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.view.validator.InputValidator;
@@ -17,7 +19,7 @@ public class WinningNumNumberFormatValidator extends InputValidator {
     @Override
     public void validate(final String input) {
         if (isNotValid(input)) {
-            throw new IllegalArgumentException("당첨 번호는 양수이어야 합니다.");
+            throw new IllegalArgumentException(POSITIVE_REQUIRED.getMessage());
         }
     }
 

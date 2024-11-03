@@ -1,5 +1,7 @@
 package lotto.view.validator.winningNumber;
 
+import static lotto.error.ErrorMessage.DUPLICATE_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +23,7 @@ public class WinningNumDuplicateValidator extends InputValidator {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("당첨 번호에는 중복된 숫자가 없어야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 }

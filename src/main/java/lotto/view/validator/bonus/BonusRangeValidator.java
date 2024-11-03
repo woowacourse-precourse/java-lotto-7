@@ -1,11 +1,13 @@
 package lotto.view.validator.bonus;
 
+import static lotto.error.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 import lotto.view.validator.RangeValidator;
 
 public class BonusRangeValidator extends RangeValidator {
 
     private BonusRangeValidator() {
-        super("보너스 번호는 1-45 범위 내의 숫자여야 합니다.");
+        super(String.format(NUMBER_OUT_OF_RANGE.getMessage(), MIN_RANGE, MAX_RANGE));
     }
 
     public static BonusRangeValidator initiate() {

@@ -1,5 +1,7 @@
 package lotto.view.validator.bonus;
 
+import static lotto.error.ErrorMessage.DUPLICATE_BONUS;
+
 import lotto.model.lotto.Lotto;
 import lotto.view.PreProcessor;
 import lotto.view.validator.InputValidator;
@@ -20,7 +22,7 @@ public class BonusDuplicateValidator extends InputValidator {
     public void validate(String input) {
         Integer number = PreProcessor.stringToInteger(input);
         if (lotto.hasBonus(number)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되어서는 안됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
     }
 }

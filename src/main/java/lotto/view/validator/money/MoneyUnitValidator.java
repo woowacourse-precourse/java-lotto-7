@@ -1,5 +1,7 @@
 package lotto.view.validator.money;
 
+import static lotto.error.ErrorMessage.INVALID_AMOUNT;
+
 import lotto.model.money.Money;
 import lotto.view.PreProcessor;
 import lotto.view.validator.InputValidator;
@@ -17,7 +19,7 @@ public class MoneyUnitValidator extends InputValidator {
         Money money = PreProcessor.stringToMoney(input);
 
         if (money.isDivisible(money)) {
-            throw new IllegalArgumentException("구입금액은 로또 금액으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(INVALID_AMOUNT.getMessage());
         }
     }
 }

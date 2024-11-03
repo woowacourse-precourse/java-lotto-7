@@ -1,12 +1,14 @@
 package lotto.view.validator.winningNumber;
 
+import static lotto.error.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 import lotto.view.validator.RangeValidator;
 
 public class WinningNumRangeValidator extends RangeValidator {
 
 
     private WinningNumRangeValidator() {
-        super("당첨 번호 중 1-45 범위 이외의 유효하지 않은 숫자가 존재합니다.");
+        super(String.format(NUMBER_OUT_OF_RANGE.getMessage(), MIN_RANGE, MAX_RANGE));
     }
 
     public static WinningNumRangeValidator initiate() {

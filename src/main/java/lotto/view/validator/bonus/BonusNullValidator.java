@@ -1,11 +1,13 @@
 package lotto.view.validator.bonus;
 
+import static lotto.error.ErrorMessage.INVALID_EMPTY_INPUT;
+
 import lotto.view.validator.NullValidator;
 
 public class BonusNullValidator extends NullValidator {
 
     private BonusNullValidator() {
-        super("보너스 번호는 빈 문자열일 수 없습니다.");
+        super(INVALID_EMPTY_INPUT.getMessage());
     }
 
     public static BonusNullValidator initiate() {

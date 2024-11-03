@@ -7,6 +7,8 @@ import lotto.view.PreProcessor;
 
 public class RangeValidator extends InputValidator {
 
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
     private static final Pattern RANGE_NUMBER = Pattern.compile("^([1-9]|[1-3][0-9]|4[0-5])$");
     private final String errorMessage;
 

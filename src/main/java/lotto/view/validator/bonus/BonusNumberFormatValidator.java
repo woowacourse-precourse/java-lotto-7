@@ -1,11 +1,13 @@
 package lotto.view.validator.bonus;
 
+import static lotto.error.ErrorMessage.POSITIVE_REQUIRED;
+
 import lotto.view.validator.NumberFormatValidator;
 
 public class BonusNumberFormatValidator extends NumberFormatValidator {
 
     private BonusNumberFormatValidator() {
-        super("보너스 번호는 양수여야 합니다.");
+        super(POSITIVE_REQUIRED.getMessage());
     }
 
     public static BonusNumberFormatValidator initiate() {

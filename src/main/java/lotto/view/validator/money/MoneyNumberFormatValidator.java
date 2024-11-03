@@ -1,11 +1,13 @@
 package lotto.view.validator.money;
 
+import static lotto.error.ErrorMessage.POSITIVE_REQUIRED;
+
 import lotto.view.validator.NumberFormatValidator;
 
 public class MoneyNumberFormatValidator extends NumberFormatValidator {
 
     private MoneyNumberFormatValidator() {
-        super("구입금액은 양수여야 합니다.");
+        super(POSITIVE_REQUIRED.getMessage());
     }
 
     public static MoneyNumberFormatValidator initiate() {
