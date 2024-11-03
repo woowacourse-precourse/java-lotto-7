@@ -1,5 +1,7 @@
-package lotto;
+package lotto.service;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -29,4 +31,3 @@ class LottoResultCalculatorTest {
         assertThat(matchCounts[LottoRank.FIFTH.ordinal()]).isEqualTo(1);
     }
 }
-

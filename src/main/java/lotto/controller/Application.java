@@ -1,9 +1,14 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.TicketCalculator;
+import lotto.service.LottoResultCalculator;
+import lotto.service.ProfitCalculator;
+import lotto.util.ErrorMessages;
+import lotto.util.LottoValidator;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +19,7 @@ public class Application {
             System.out.println("구입금액을 입력해 주세요.");
             int purchaseAmount = Integer.parseInt(Console.readLine());
 
-            int ticketCount = calculateTicketCount(purchaseAmount);
+            int ticketCount = TicketCalculator.calculateTicketCount(purchaseAmount);
             System.out.println(ticketCount + "개를 구매했습니다.");
 
             System.out.println("당첨 번호를 입력해 주세요.");
@@ -33,7 +38,7 @@ public class Application {
             int[] matchCounts = LottoResultCalculator.calculateResults(userLottos, winningNumbers, bonusNumber);
             printResults(matchCounts);
 
-            double profitRate = calculateProfitRate(matchCounts, purchaseAmount);
+            double profitRate = ProfitCalculator.calculateProfitRate(matchCounts, purchaseAmount);
             System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
 
         } catch (NumberFormatException e) {
@@ -52,14 +57,6 @@ public class Application {
         }
     }
 
-    public static int calculateTicketCount(int purchaseAmount) {
-        final int TICKET_PRICE = 1000;
-        if (purchaseAmount % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT.getMessage());
-        }
-        return purchaseAmount / TICKET_PRICE;
-    }
-
     private static List<Lotto> generateUserLottos(int ticketCount) {
         return java.util.stream.IntStream.range(0, ticketCount)
                 .mapToObj(i -> Lotto.generateLotto())
@@ -68,14 +65,5 @@ public class Application {
 
     private static void printLottoNumbers(List<Lotto> lottos) {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-    }
-
-    public static double calculateProfitRate(int[] matchCounts, int purchaseAmount) {
-        long totalPrize = 0;
-        for (LottoRank rank : LottoRank.values()) {
-            totalPrize += (long) matchCounts[rank.ordinal()] * rank.getPrize();
-        }
-        BigDecimal profitRate = BigDecimal.valueOf((double) totalPrize / purchaseAmount * 100);
-        return profitRate.setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }
