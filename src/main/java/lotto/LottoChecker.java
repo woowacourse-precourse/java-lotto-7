@@ -2,7 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class LottoChecker {
     private List<Integer> winningNumbers;
@@ -21,6 +24,7 @@ public class LottoChecker {
 
         convertToWinningNums(inputWinningNumbers);
         convertToBonusNum(inputBonusNumber);
+        hasDuplicateNum();
     }
 
     public void convertToWinningNums(String input) {
@@ -30,8 +34,8 @@ public class LottoChecker {
         validateWinningNums(inputNums);
 
         try {
-            for (int i = 0; i < inputNums.length; i++) {
-                int number = Integer.parseInt(inputNums[i]);
+            for (String inputNum : inputNums) {
+                int number = Integer.parseInt(inputNum);
                 winningNumbers.add(number);
             }
         } catch (NumberFormatException e) {
@@ -50,6 +54,18 @@ public class LottoChecker {
     public void validateWinningNums(String[] winningNums) {
         if (winningNums.length != 6) {
             throw new IllegalArgumentException("[ERROR] 입력된 당첨 번호가 6개가 아닙니다.");
+        }
+    }
+
+    public void hasDuplicateNum() {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 겹칩니다.");
+        }
+
+        Set<Integer> uniqueWinningNums = new HashSet<>(winningNumbers);
+
+        if (winningNumbers.size() != uniqueWinningNums.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 당첨 번호가 있습니다.");
         }
     }
 
