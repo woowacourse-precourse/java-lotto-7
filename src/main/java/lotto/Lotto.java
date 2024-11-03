@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +9,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
     @Override
@@ -24,8 +26,4 @@ public class Lotto {
 
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
 }
