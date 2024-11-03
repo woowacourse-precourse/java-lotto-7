@@ -26,7 +26,7 @@ public class LottoController {
         displayPurchasedLottoNumbers(ticket);
         System.out.println();
 
-        List<MatchResult> matchResults = getMatchConditions(lottoTicket);
+        List<MatchResult> matchResults = getMatchResults(lottoTicket);
 
         double profitRate = getProfitRate(matchResults, enteredPurchaseAmount);
         outputView.printTotalProfitRate(profitRate);
@@ -49,7 +49,7 @@ public class LottoController {
         }
     }
 
-    private List<MatchResult> getMatchConditions(LottoTicket lottoTicket) {
+    private List<MatchResult> getMatchResults(LottoTicket lottoTicket) {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         List<MatchResult> matchResults = lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
