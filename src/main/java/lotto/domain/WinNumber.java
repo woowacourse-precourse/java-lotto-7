@@ -27,14 +27,14 @@ public class WinNumber {
         }
     }
 
-    private int matchWithLotto(Lotto otherLotto) {
+    public int matchWithLotto(Lotto otherLotto) {
         return (int) lotto.getNumbers()
                 .stream()
                 .filter(otherLotto.getNumbers()::contains)
                 .count();
     }
 
-    private boolean matchWithBonusNumber(Lotto otherLotto) {
+    public boolean matchWithBonusNumber(Lotto otherLotto) {
         return otherLotto.contains(bonusNumber.getBonusNumber());
     }
 }
