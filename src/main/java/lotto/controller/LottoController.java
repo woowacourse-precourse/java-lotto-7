@@ -1,19 +1,21 @@
 package lotto.controller;
 
-import lotto.view.console.ConsoleWriter;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.WinningCondition;
 import lotto.domain.WinningResult;
 import lotto.global.exception.CustomException;
 import lotto.view.InputView;
+import lotto.view.OutputView;
+import lotto.view.console.ConsoleWriter;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -23,7 +25,8 @@ public class LottoController {
         int bonusNumber = requestBonusNumber(winningNumbers);
 
         WinningResult result = new WinningResult(purchasedLottos, winningNumbers, bonusNumber);
-        printResult(result, result.getProfitRate(inputAmount));
+        double profitRate = result.getProfitRate(inputAmount);
+        outputView.printResult(result, profitRate);
     }
 
     private Amount requestAmount() {
@@ -64,29 +67,5 @@ public class LottoController {
             ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
             return requestBonusNumber(winningNumbers);
         }
-    }
-
-    private void printResult(WinningResult result, double profitRate) {
-        ConsoleWriter.printlnMessage("당첨 통계");
-        ConsoleWriter.printlnMessage("---");
-        for (WinningCondition winningCondition : WinningCondition.getAllConditions().reversed()) {
-            String format = determineFormat(winningCondition);
-            String str = String.format(
-                    format,
-                    winningCondition.getWinningNumberCount(),
-                    String.format("%,d", winningCondition.getRewardAmount()),
-                    result.getResultMap().get(winningCondition).size()
-            );
-            ConsoleWriter.printlnMessage(str);
-        }
-        String str = String.format("총 수익률은 %s%%입니다.", profitRate);
-        ConsoleWriter.printlnMessage(str);
-    }
-
-    private String determineFormat(WinningCondition winningCondition) {
-        if (winningCondition.mustIncludeBonusNumber()) {
-            return "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-        }
-        return "%d개 일치 (%s원) - %d개";
     }
 }
