@@ -60,7 +60,7 @@ public class Application {
         try {
             int bonusNumber = isNotNum(inputForBonus);
             rangeOfNumber(bonusNumber);
-            isAlreadyExist(winningNumbers,bonusNumber);
+            isAlreadyExist(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -73,13 +73,17 @@ public class Application {
         final String inputForPrice = Console.readLine();
         try {
             int price = isNotNum(inputForPrice);
-            if (price % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
-            }
+            isThousandUnit(price);
             return price;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPrice();
+        }
+    }
+
+    public static void isThousandUnit(int price) {
+        if (price % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
         }
     }
 
@@ -97,8 +101,8 @@ public class Application {
         }
     }
 
-    public static void isAlreadyExist(List<Integer> listOfInteger, int number){
-        if(listOfInteger.contains(number)){
+    public static void isAlreadyExist(List<Integer> listOfInteger, int number) {
+        if (listOfInteger.contains(number)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 해당하지 않는 숫자만 입력 가능합니다.");
         }
     }
