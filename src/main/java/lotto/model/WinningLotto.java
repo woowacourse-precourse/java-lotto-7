@@ -12,36 +12,39 @@ public class WinningLotto extends Lotto {
 	public WinningLotto(List<Integer> numbers, String bonusStr) {
 		super(numbers);
 
-		int number = validateNumber(bonusStr);
-		validateDuplicate(number);
-		validateRange(number);
-		this.bonusNumber = number;
+		validateNumber(bonusStr);
+		validateDuplicate(bonusStr);
+		validateRange(bonusStr);
+
+		this.bonusNumber = Integer.parseInt(bonusStr);
 	}
 
 	public int getBonusNumber() {
 		return bonusNumber;
 	}
 
-	private int validateNumber(String str) {
+	private void validateNumber(String bonusStr) {
 		try {
-			return Integer.parseInt(str);
+			Integer.parseInt(bonusStr);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_MESSAGE);
 		}
 	}
 
-	private void validateDuplicate(int bonusNumber) {
-		if(super.getNumbers().contains(bonusNumber)) {
+	private void validateDuplicate(String bonusStr) {
+		int number = Integer.parseInt(bonusStr);
+
+		if(super.getNumbers().contains(number)) {
 			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
 		}
 	}
 
-	private int validateRange(int bonusNumber) {
-		if (bonusNumber < Values.LEAST_LOTTO_NUMBER || bonusNumber > Values.MOST_LOTTO_NUMBER) {
+	private void validateRange(String bonusStr) {
+		int number = Integer.parseInt(bonusStr);
+
+		if (number < Values.LEAST_LOTTO_NUMBER || number > Values.MOST_LOTTO_NUMBER) {
 			throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
 		}
-
-		return bonusNumber;
 	}
 
 	public LottoRank calculateRank(List<Integer> numbers) {
