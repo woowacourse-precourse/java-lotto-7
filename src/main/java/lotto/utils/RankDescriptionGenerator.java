@@ -1,22 +1,10 @@
 package lotto.utils;
 
-import java.util.HashMap;
-import java.util.Map;
 import lotto.model.lotto.Rank;
 
-public class RankParser {
+public class RankDescriptionGenerator {
 
-    public static Map<Rank, String> makeDescriptions() {
-        Map<Rank, String> descriptions = new HashMap<>();
-
-        for (Rank rank : Rank.values()) {
-            descriptions.put(rank, makeDescription(rank));
-        }
-
-        return descriptions;
-    }
-
-    private static String makeDescription(Rank rank) {
+    public static String makeDescription(Rank rank) {
         StringBuilder description = new StringBuilder();
         description.append(rank.getMatchingCount()).append("개 일치");
 
