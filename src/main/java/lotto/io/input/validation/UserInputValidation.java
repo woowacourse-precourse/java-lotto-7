@@ -20,7 +20,7 @@ public class UserInputValidation {
 
 	public void validateWinningNumbersDelimiter(String inputWinningNumbers, String delimiter) {
 		if (!inputWinningNumbers.contains(delimiter)) {
-			throw new IllegalArgumentException("aaa");
+			throw new IllegalArgumentException(NOT_USE_DELIMITER_IN_WINNING_NUMBERS.getComment());
 		}
 	}
 
