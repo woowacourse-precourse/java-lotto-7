@@ -1,4 +1,4 @@
-package lotto.app;
+package lotto;
 
 import java.util.List;
 import lotto.domain.LotteryProcess;

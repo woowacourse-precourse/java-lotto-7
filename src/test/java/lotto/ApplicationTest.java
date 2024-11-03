@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.app.Application;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {

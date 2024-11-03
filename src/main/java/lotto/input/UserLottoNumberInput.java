@@ -13,7 +13,7 @@ public class UserLottoNumberInput {
         while (true) {
             try {
                 List<Integer> lottoNumbers = parsingLottoNumbers((createLottoNumberArray(getInput())));
-                Lotto lotto = new Lotto (lottoNumbers);
+                Lotto lotto = new Lotto(lottoNumbers);
                 System.out.println();
                 return lotto;
             } catch (NumberFormatException e) {
