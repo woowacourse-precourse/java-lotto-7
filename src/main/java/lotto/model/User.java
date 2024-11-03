@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    private List<List<Integer>> lottos;
-    private Map<Rule, Integer> results;
+    private final List<List<Integer>> lottos;
+    private final Map<Rule, Integer> results;
 
     public User() {
         this.lottos = new ArrayList<>();
