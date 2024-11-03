@@ -52,7 +52,7 @@ public class PayForLotto {
     private void checkMoneyUnit(int input) {
         String ERROR_MESSAGE = "[ERROR] 구입금액은 1,000원 단위여야 합니다.";
         int REMAINDER = input % 1000;
-        if (REMAINDER != 0) {
+        if (REMAINDER != 0 || input == 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
         }
     }
