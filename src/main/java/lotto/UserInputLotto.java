@@ -45,6 +45,11 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         return delimiterNumber(input);
     }
 
+    private int inputBonusNumberRead() {
+        System.out.println("보너스 번호를 입력하세요");
+        return Integer.parseInt(Console.readLine());
+    }
+
     private List<Integer> delimiterNumber(String input) {
         // 쉼표로 구분하여 숫자 반환
         String[] inputNumbers = input.split(",");
