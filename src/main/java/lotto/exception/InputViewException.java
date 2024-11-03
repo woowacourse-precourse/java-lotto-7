@@ -1,7 +1,9 @@
 package lotto.exception;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.constants.ExceptionsMessageConstants;
 
 public class InputViewException {
@@ -58,7 +60,7 @@ public class InputViewException {
         validateIfInputContainsOtherThanNumbersAndComma(inputNumbers);
         validateNumbersCount(inputNumbers);
         validateNumbersRange(inputNumbers);
-
+        validateIfNumbersDuplicated(inputNumbers);
     }
 
     private void validateIfInputContainsNullOrEmpty(String inputNumbers) {
@@ -91,6 +93,16 @@ public class InputViewException {
                 throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
                         + ExceptionsMessageConstants.INPUT_NUMBERS_MUST_BE_IN_ALLOWED_RANGE);
             }
+        }
+    }
+
+    private void validateIfNumbersDuplicated(String inputNumbers) {
+        List<String> numbers = Arrays.stream(inputNumbers.split(",")).toList();
+        Set<String> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBERS_CANNOT_BE_DUPLICATED);
         }
     }
 
