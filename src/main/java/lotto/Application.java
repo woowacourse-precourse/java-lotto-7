@@ -2,6 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
@@ -16,5 +21,17 @@ public class Application {
         } catch (Exception e) {
             throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
         }
+
+        Integer lottoCount = lottoPrice / 1000;
+        System.out.println(lottoCount + "개를 구매했습니다.");
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator(lottoCount);
+        lottoNumberGenerator.generateLotto().forEach(lottoNumber -> {
+            lottos.add(new Lotto(lottoNumber));
+            System.out.println(lottoNumber);
+        });
+
     }
 }
