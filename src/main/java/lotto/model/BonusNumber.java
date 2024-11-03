@@ -8,7 +8,7 @@ public class BonusNumber {
     private static final int LOWER_LIMIT = 1;
     private static final int UPPER_LIMIT = 45;
 
-    private int number;
+    private final int number;
 
     public BonusNumber(final String number) {
         validate(number);
