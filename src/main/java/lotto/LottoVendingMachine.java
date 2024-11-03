@@ -31,7 +31,7 @@ public class LottoVendingMachine {
             }
 
             if(money > 50000){
-                throw new IllegalArgumentException("로또는 최대 50장까지 구매해야 합니다.");
+                throw new IllegalArgumentException("로또는 최대 50장까지 구매 가능합니다.");
             }
 
             if(money % 1000 != 0){
@@ -44,7 +44,7 @@ public class LottoVendingMachine {
             System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
             return false;
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+e);
+            System.out.println("[ERROR] "+e.getMessage());
             return false;
         }
     }
