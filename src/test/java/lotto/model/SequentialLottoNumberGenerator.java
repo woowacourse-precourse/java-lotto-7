@@ -12,7 +12,7 @@ public class SequentialLottoNumberGenerator implements LottoNumbersGenerator {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             numbers.add(sequence++);
-            if (sequence == 45) {
+            if (45 < sequence) {
                 sequence = 1;
             }
         }

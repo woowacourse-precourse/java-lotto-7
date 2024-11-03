@@ -7,7 +7,8 @@ public record RateReturn(BigDecimal rateOfReturn) {
 
     public static RateReturn by(Won totalOfWinningPrize, Won amountOfPaid) {
         return new RateReturn(new BigDecimal(totalOfWinningPrize.getIntValue())
-                .divide(new BigDecimal(amountOfPaid.getIntValue()), 2, RoundingMode.HALF_UP));
+                .divide(new BigDecimal(amountOfPaid.getIntValue()), 3, RoundingMode.HALF_UP)
+                .scaleByPowerOfTen(2));
     }
 
 }
