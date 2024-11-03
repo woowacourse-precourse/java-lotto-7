@@ -10,7 +10,6 @@ import static lotto.util.ProfitCalculator.calculateProfit;
 import static lotto.view.InputView.getUserInput;
 import static lotto.view.InputView.getUserInputByList;
 import static lotto.view.OutputView.printMessage;
-import static lotto.view.OutputView.printProfit;
 import static lotto.view.OutputView.printPurchaseLottoMessage;
 import static lotto.view.OutputView.printResultMessage;
 
@@ -40,9 +39,7 @@ public class LottoController {
         repeatInputUntilValid(() -> lottoMachine.assignBonusNumber(getUserInput()));
 
         Result lottoResult = generateResult(lottoMachine, lottos);
-        printResultMessage(lottoResult);
-
         double profit = calculateProfit(lottoResult.getTotalPrize(), purchase);
-        printProfit(profit);
+        printResultMessage(lottoResult, profit);
     }
 }

@@ -21,4 +21,8 @@ public class ErrorMessageConstant {
     // 보너스 번호 에러 메세지
     public static final String EMPTY_WINNGING_NUMBER_MESSAGE = SUFFIX + "당첨번호를 먼저 입력해주세요.";
     public static final String DUPLICATED_BONUS_NUMBER_MESSAGE = SUFFIX + "보너스번호는 당첨번호와 중복될 수 없습니다.";
+
+    // 로또 번호 에러 메세지
+    public static final String INSUFFICIENT_LOTTO_NUMBERS_MESSAGE = SUFFIX + "로또 번호는 6개여야 합니다.";
+    public static final String DUPLICATED_LOTTO_NUMBER_MESSAGE = SUFFIX + "로또 번호는 중복될 수 없습니다.";
 }

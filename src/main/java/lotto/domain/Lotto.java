@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.config.ErrorMessageConstant.DUPLICATED_LOTTO_NUMBER_MESSAGE;
+import static lotto.config.ErrorMessageConstant.INSUFFICIENT_LOTTO_NUMBERS_MESSAGE;
+import static lotto.config.GameConstant.NUMBER_OF_WINNING_NUMBER;
+
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,7 +18,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INSUFFICIENT_LOTTO_NUMBERS_MESSAGE);
+        }
+
+        if(new HashSet<>(numbers).size() != NUMBER_OF_WINNING_NUMBER) {
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER_MESSAGE);
         }
     }
 

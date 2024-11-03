@@ -21,15 +21,12 @@ public class OutputView {
         }
     }
 
-    public static void printResultMessage(Result result) {
+    public static void printResultMessage(Result result, double profit) {
         printMessage("당첨 통계");
         printMessage("---");
         for (Map.Entry<Rank, Integer> m : result.getWinningLottos().entrySet()) {
-            printMessage(m.getKey().getDescription() + "-" + m.getValue() + "개");
+            printMessage(m.getKey().getDescription() + " - " + m.getValue() + "개");
         }
-    }
-
-    public static void printProfit(double profit) {
         printMessage("총 수익률은 " + profit + "%입니다.");
     }
 }
