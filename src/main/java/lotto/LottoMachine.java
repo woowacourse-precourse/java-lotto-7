@@ -12,6 +12,7 @@ public class LottoMachine {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
+    Result gameResult = Result.OUTOFRANK;
 
     public void playMachine() {
         Purchase purchase = makePurchase();
@@ -19,6 +20,7 @@ public class LottoMachine {
         showLottos(lottos);
         WinningNumbers winningNumbers = makeWinningNumbers();
         BonusNumber bonusNumber = makeBonusNumber(winningNumbers);
+        gameResult.flushCount();
         calculateResults(lottos, winningNumbers, bonusNumber);
         showResult(purchase);
     }
@@ -45,7 +47,8 @@ public class LottoMachine {
     private List<List<Integer>> makeLottoNumbers(int size) {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            List<Integer> lottoCandidate = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoCandidate = new ArrayList<>();
+            lottoCandidate.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(lottoCandidate);
             lottoNumbers.add(lottoCandidate);
         }
@@ -110,12 +113,12 @@ public class LottoMachine {
                 count += 1;
             }
         }
-        return Result.getRank(count);
+        return gameResult.getRank(count);
     }
 
     private void showResult(Purchase purchase) {
-        outputView.updateResults(Result.values());
-        double prizeRate = ((double)Result.totalPrize() / (double)purchase.money()) * 100;
+        outputView.updateResults(gameResult.values());
+        double prizeRate = ((double) gameResult.totalPrize() / (double) purchase.money()) * 100;
         outputView.updatePrizeRate(prizeRate);
     }
 }

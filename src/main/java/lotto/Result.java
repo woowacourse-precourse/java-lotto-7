@@ -16,20 +16,20 @@ public enum Result {
     private final int prize;
     private int winningCounts;
 
-    private Result(double winningCounts, int prize) {
-        this.winningPoints = winningCounts;
+    private Result(double winningPoints, int prize) {
+        this.winningPoints = winningPoints;
         this.prize = prize;
         this.winningCounts = 0;
     }
 
-    public static Result getRank(double winningCounts) {
+    public Result getRank(double winningPoints) {
         return Arrays.stream(values())
-                .filter(value -> winningCounts == value.winningPoints)
+                .filter(value -> winningPoints == value.winningPoints)
                 .findAny()
                 .orElse(OUTOFRANK);
     }
 
-    public static int totalPrize() {
+    public int totalPrize() {
         int totalPrize = 0;
         for (Result rank : values()) {
             totalPrize += (rank.prize() * rank.winningCounts);
@@ -37,8 +37,14 @@ public enum Result {
         return totalPrize;
     }
 
+    public void flushCount() {
+        for (Result rank : values()) {
+            rank.winningCounts = 0;
+        }
+    }
+
     public void winningCountsUp() {
-        this.winningCounts++;
+        this.winningCounts += 1;
     }
 
     public double winningPoints() {
