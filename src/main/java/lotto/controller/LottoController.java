@@ -35,7 +35,7 @@ public class LottoController {
         outputView.printTicketNumbers(tickets);
 
         Lotto lotto = tryUntilSuccess(() -> new Lotto(getLotto()));
-        Bonus bonus = tryUntilSuccess(() -> new Bonus(getBonus()));
+        Bonus bonus = tryUntilSuccess(() -> new Bonus(getBonus(), lotto.getNumbers()));
 
         RankCounter counter = new RankCounter(tickets, lotto, bonus);
         List<Long> rankCount = counter.getRankCount();

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.List;
 import lotto.util.Constants;
 import lotto.util.Errors;
 import lotto.util.MessageParser;
@@ -11,8 +12,8 @@ import org.assertj.core.util.VisibleForTesting;
 public class Bonus {
     private final int number;
 
-    public Bonus(int number) {
-        validate(number);
+    public Bonus(int number, List<Integer> lotto) {
+        validate(number, lotto);
         this.number = number;
     }
 
@@ -20,8 +21,17 @@ public class Bonus {
         return number;
     }
 
-    private void validate(int number) {
+    private void validate(int number, List<Integer> lotto) {
+        validateDuplicates(number, lotto);
         validateRange(number);
+    }
+
+    @VisibleForTesting
+    void validateDuplicates(int number, List<Integer> lotto) {
+        if (lotto.stream().anyMatch(n -> n.equals(number))) {
+            throw new IllegalArgumentException(
+                    MessageParser.getErrorMessage(Errors.DUPLICATE_NUMBERS.getMessage()));
+        }
     }
 
     @VisibleForTesting
