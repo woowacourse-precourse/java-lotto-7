@@ -1,6 +1,7 @@
 package lotto.result;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -35,6 +36,7 @@ public class ResultTest {
         winningSet.add(3);
         winningSet.add(4);
         winningSet.add(7);
+        winningSet.add(9);
 
         winning.setHashSet(winningSet);
     }
@@ -48,5 +50,16 @@ public class ResultTest {
         int winningCount = resultService.checkWinningNumbersCount(lotto.getNumber());
 
         assertEquals(3, winningCount);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 갯수가 5개이다.")
+    public void testIsWinningNumberFive() {
+        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,7,9)));
+
+        winningService.containsWinningNumber(lotto);
+        int winningCount = resultService.checkWinningNumbersCount(lotto.getNumber());
+
+        assertTrue(resultService.isFiveWinningNumber(winningCount));
     }
 }
