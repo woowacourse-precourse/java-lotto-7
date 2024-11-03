@@ -12,7 +12,6 @@ import static lotto.domain.Lotto.MAX_LOTTO_NUMBER;
 import static lotto.domain.Lotto.SIZE_OF_LOTTO;
 
 public class LottoGenerator {
-
     List<Lotto> generatedLottoNumbers = new ArrayList<>();
 
     public List<Lotto> generate(PurchasePrice purchasePrice) {

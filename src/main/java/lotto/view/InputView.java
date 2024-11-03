@@ -8,7 +8,6 @@ import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumbers;
 
 public class InputView {
-
     public PurchasePrice receivePurchasePrice() {
         while(true) {
             try {
@@ -40,7 +39,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
     }
 
     public BonusNumber receiveBonusNumber(WinningNumbers winningNumbers) {

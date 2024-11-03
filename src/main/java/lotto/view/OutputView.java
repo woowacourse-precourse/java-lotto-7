@@ -9,7 +9,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
 public class OutputView {
-
     public void printLottoNumbers(List<Lotto> generatedLottoNumbers) {
         for(Lotto generatedLottoNumber: generatedLottoNumbers) {
             List<Integer> sortedLottoNumbers = new ArrayList<>(generatedLottoNumber.getLottoNumbers());

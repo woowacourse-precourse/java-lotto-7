@@ -8,7 +8,6 @@ import java.util.List;
 import lotto.view.ErrorMessage;
 
 public class BonusNumber {
-
     private final int bonusNumber;
 
     public BonusNumber(int bonusNumber, List<Integer> winningNumbers) {

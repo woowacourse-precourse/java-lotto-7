@@ -10,7 +10,6 @@ import java.util.Set;
 import lotto.view.ErrorMessage;
 
 public class WinningNumbers {
-
     private final List<Integer> receivedLottoNumbers;
 
     public WinningNumbers(List<Integer> receivedLottoNumbers) {

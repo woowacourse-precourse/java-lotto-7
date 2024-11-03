@@ -58,5 +58,4 @@ public enum Ranking {
     public boolean hasBonus() { // 보너스 볼 일치 개수
         return hasBonus;
     }
-
 }

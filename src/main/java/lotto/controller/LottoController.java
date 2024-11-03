@@ -14,7 +14,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
     private final InputView inputView = new InputView();
     private final LottoGenerator lottoGenerator = new LottoGenerator();
     private final OutputView outputView = new OutputView();
@@ -45,7 +44,5 @@ public class LottoController {
         // 수익률 결과
         double profitRate = profitRateCalculator.calculateProfitRate(purchasePrice, results);
         outputView.printProfitRate(profitRate);
-
-
     }
 }
