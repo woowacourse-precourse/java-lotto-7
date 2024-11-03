@@ -24,21 +24,28 @@ public abstract class Validator {
         }
     }
 
-    public static void validateWinningNumber(String input) {
+    public static void validateWinningNumbersFormat(String input) {
+        try {
+            Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .toList();
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR);
+        }
+    }
+
+    public static void validateWinningNumbers(String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
-
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR);
         }
-
         for (int number : numbers) {
             if (number < 0 || number > 45) {
                 throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR);
             }
         }
-
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_ERROR);
         }
@@ -50,12 +57,10 @@ public abstract class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_POSITIVE_NUMBER_ERROR);
         }
-
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < 0 || bonusNumber > 45) {
             throw new IllegalArgumentException(BONUS_NUMBER_RANGE_ERROR);
         }
-
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR);
         }

@@ -2,7 +2,8 @@ package lotto.io;
 
 import static lotto.io.Validator.validateBonusNumber;
 import static lotto.io.Validator.validatePrice;
-import static lotto.io.Validator.validateWinningNumber;
+import static lotto.io.Validator.validateWinningNumbers;
+import static lotto.io.Validator.validateWinningNumbersFormat;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -29,9 +30,9 @@ public abstract class Input {
         try {
             System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
             String input = Console.readLine();
-            validateWinningNumber(input);
+            validateWinningNumbersFormat(input);
+            validateWinningNumbers(input);
             System.out.println();
-
             return Stream.of(input.split(","))
                     .map(Integer::parseInt)
                     .toList();
