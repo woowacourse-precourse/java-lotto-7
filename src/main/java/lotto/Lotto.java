@@ -87,11 +87,42 @@ public class Lotto {
         }
 
         public static void validateNumberRange(List<Integer> numbers) {
-            for(Integer number : numbers) {
+            for (Integer number : numbers) {
                 if (number < MIN.value || number > MAX.value) {
                     throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
             }
+        }
+    }
+
+
+    public enum MatchType {
+        THREE(3, 5000),
+        FOUR(4, 50000),
+        FIVE(5, 1500000),
+        FIVE_WITH_BONUS(5, 30000000),
+        SIX(6, 2000000000);
+
+        private final int matchCount;
+        private final int prize;
+        private int count;
+
+        MatchType(int matchCount, int prize) {
+            this.matchCount = matchCount;
+            this.prize = prize;
+            this.count = 0;
+        }
+
+        public int getPrize() {
+            return prize;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void increaseCount() {
+            count ++;
         }
     }
 }
