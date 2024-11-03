@@ -2,13 +2,12 @@ package lotto.model.exception;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.Answer;
-import lotto.model.BonusNumber;
+import lotto.model.AnswerNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class AnswerTest {
+class AnswerNumbersTest {
 
     @Test
     @DisplayName("Answer 객체를 생성할 수 있다.")
@@ -16,7 +15,7 @@ class AnswerTest {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         // when
-        Answer answer = new Answer(answerNumbers);
+        AnswerNumbers answer = new AnswerNumbers(answerNumbers);
         // then
         Assertions.assertThat(answer).isNotNull();
     }
@@ -26,7 +25,7 @@ class AnswerTest {
     void should_GetAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Answer answer = new Answer(answerNumbers);
+        AnswerNumbers answer = new AnswerNumbers(answerNumbers);
         // when
         List<Integer> actual = answer.getAnswerNumbers();
         // then
@@ -38,7 +37,7 @@ class AnswerTest {
     void should_NotBeSameInstance_When_GetAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Answer answer = new Answer(answerNumbers);
+        AnswerNumbers answer = new AnswerNumbers(answerNumbers);
         // when
         List<Integer> actual = answer.getAnswerNumbers();
         // then
@@ -50,7 +49,7 @@ class AnswerTest {
     void should_ThrowException_When_ModifyAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Answer answer = new Answer(answerNumbers);
+        AnswerNumbers answer = new AnswerNumbers(answerNumbers);
         // when, then
         Assertions.assertThatThrownBy(() -> answer.getAnswerNumbers().add(7))
                 .isInstanceOf(UnsupportedOperationException.class);
