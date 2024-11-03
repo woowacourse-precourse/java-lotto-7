@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -16,6 +18,9 @@ public class Application {
 
         //2.2 로또의 번호를 생성하는 기능
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        // 2.3 로또 번호를 오름차순으로 정렬하는 기능
+        Collections.sort(lottoNumbers);
 
     }
 
