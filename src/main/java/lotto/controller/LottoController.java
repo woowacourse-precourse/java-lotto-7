@@ -7,13 +7,12 @@ import lotto.service.LottoProvider;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
-import java.util.List;
-
 public class LottoController {
     private final LottoOutputView lottoOutputView = new LottoOutputView();
     private final LottoInputView lottoInputView = new LottoInputView();
     private final LottoProvider lottoProvider = new LottoProvider();
-    public void start(){
+
+    public void start() {
         lottoOutputView.printCashNotification();
         Cash cash = requestCashInput();
 
@@ -22,9 +21,10 @@ public class LottoController {
         lottoOutputView.printLottoInBundle(lottoBundle);
 
         lottoOutputView.printWinningNumberNotification();
+        Lotto winningLotto = requestWinningLottoInput();
     }
 
-    private Cash requestCashInput(){
+    private Cash requestCashInput() {
         while (true) {
             try {
                 String cashAmount = lottoInputView.getUserInput();
@@ -35,7 +35,18 @@ public class LottoController {
         }
     }
 
-    private LottoBundle buyLottoBundle(Cash cash){
+    private LottoBundle buyLottoBundle(Cash cash) {
         return lottoProvider.buyLottoBundle(cash);
+    }
+
+    private Lotto requestWinningLottoInput() {
+        while (true) {
+            try {
+                String winningLottoNumbers = lottoInputView.getUserInput();
+                return lottoProvider.publishWinningLotto(winningLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                lottoOutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
