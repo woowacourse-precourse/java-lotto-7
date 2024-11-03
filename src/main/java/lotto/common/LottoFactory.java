@@ -1,4 +1,4 @@
-package lotto;
+package lotto.common;
 
 import lotto.view.OutputPurchasingView;
 import lotto.winningLotto.WinningController;
