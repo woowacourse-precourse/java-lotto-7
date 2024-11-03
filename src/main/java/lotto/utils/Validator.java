@@ -63,7 +63,7 @@ public class Validator {
     }
     public static void checkDuplicateForBonus(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
     public static void lottoNumValidator(String input) {
