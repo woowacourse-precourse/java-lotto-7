@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.Balance;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
+import lotto.model.Rule;
 import lotto.model.User;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -19,6 +21,7 @@ public class LottoController {
         buyLotto();
         setLottoNumbers();
         setBonusNumber();
+        drawLotto();
         displayResult();
     }
 
@@ -66,6 +69,14 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
             }
+        }
+    }
+
+    public void drawLotto() {
+        for (List<Integer> userLotto : user.getLottos()) {
+            int matchCount = LottoService.calculateMatchCount(lotto.getNumbers(), userLotto);
+            boolean hasBonusMatch = LottoService.calculateBonusMatch(matchCount, bonus.getNumber(), userLotto);
+            user.addResult(Rule.valueOf(matchCount, hasBonusMatch));
         }
     }
 
