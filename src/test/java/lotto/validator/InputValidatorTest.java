@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 
 class InputValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private final InputValidator validator = new InputValidator();
+    private InputValidator validator;
 
     @Test
     void validateInputIsBlankTest() {
         String blank = " ";
+        validator = new InputValidator(blank);
 
-        assertThatThrownBy(() -> validator.validateInputIsBlank(blank))
+        assertThatThrownBy(validator::validate)
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
