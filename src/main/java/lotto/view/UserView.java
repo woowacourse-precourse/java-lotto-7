@@ -65,7 +65,7 @@ public class UserView {
     }
 
     private static void getNumbersList(List<Lotto> lottoList) {
-        for(Lotto lotto : lottoList) {
+        for (Lotto lotto : lottoList) {
             System.out.println(lotto.toString());
         }
     }
@@ -97,15 +97,15 @@ public class UserView {
                     .map(Integer::parseInt)
                     .toList();
 
-            if(winNumbers.size() != 6) {
+            if (winNumbers.size() != 6) {
                 throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_COUNT_ERROR);
             }
 
-            if(!checkValidRangeNumbers(winNumbers)) {
+            if (!checkValidRangeNumbers(winNumbers)) {
                 throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
             }
 
-            if(checkDuplicateNumbers(winNumbers)) {
+            if (checkDuplicateNumbers(winNumbers)) {
                 throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_DUPLICATE_ERROR);
             }
 
@@ -147,11 +147,11 @@ public class UserView {
         try {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-            if(bonusNumber < 1 || 45 < bonusNumber) {
+            if (bonusNumber < 1 || 45 < bonusNumber) {
                 throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
             }
 
-            if(checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
+            if (checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
                 throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_WIN_BONUS_NUMBER_ERROR);
             }
 
@@ -168,7 +168,7 @@ public class UserView {
     public static void printLottoResult(Result result, int amount) {
         System.out.println(PRINT_LOTTO_RESULT_MESSAGE);
 
-        for(Ranking ranking : Ranking.values()) {
+        for (Ranking ranking : Ranking.values()) {
             System.out.println(ranking.getRankResult() + result.getWinCount(ranking) + PRINT_RESULT_SUFFIX);
         }
 
@@ -176,7 +176,7 @@ public class UserView {
     }
 
     private static void printWinPrizeRate(Result result, int amount) {
-        double winPrizeRate = result.getWinPrize() / (double)amount * 100;
+        double winPrizeRate = result.getWinPrize() / (double) amount * 100;
         System.out.printf(PRINT_TOTAL_PRIZE_RATE_MESSAGE + "%n", Math.round(winPrizeRate * 10) / 10.0);
     }
 }

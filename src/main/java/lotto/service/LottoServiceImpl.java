@@ -26,7 +26,7 @@ public class LottoServiceImpl implements LottoService {
     public void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber) {
         int count = amount / ONE_LOTTO_PRICE;
 
-        while(count-- > 0) {
+        while (count-- > 0) {
             lottoRepository.addLottoNumbers(Randoms.pickUniqueNumbersInRange(1, 45, 6)
                     .stream()
                     .sorted()
@@ -43,10 +43,10 @@ public class LottoServiceImpl implements LottoService {
     public void getLottoResult(Result result, List<Integer> winNumbers, int bonusNumber) {
         List<Lotto> lottoList = lottoRepository.findAllLottoList();
 
-        for(Lotto lotto : lottoList) {
+        for (Lotto lotto : lottoList) {
             int matchCount = getMatchCount(lotto.getNumbers(), winNumbers);
             boolean matchBonus = false;
-            if(matchCount == 5) {
+            if (matchCount == 5) {
                 matchBonus = checkMatchBonus(lotto.getNumbers(), bonusNumber);
             }
 
@@ -69,7 +69,7 @@ public class LottoServiceImpl implements LottoService {
         // try - catch?
         Optional<Ranking> optionalRanking = Ranking.findByMatchCountAndBonus(matchCount, matchBonus);
 
-        if(optionalRanking.isPresent()) {
+        if (optionalRanking.isPresent()) {
             Ranking ranking = optionalRanking.get();
             result.addWinPrize(ranking);
             result.addWinCount(ranking);

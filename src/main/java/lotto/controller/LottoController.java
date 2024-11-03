@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
+
 import static lotto.view.UserView.*;
 
 import java.util.List;

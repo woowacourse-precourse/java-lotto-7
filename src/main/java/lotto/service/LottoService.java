@@ -8,6 +8,8 @@ import java.util.List;
 public interface LottoService {
 
     void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber);
+
     List<Lotto> getLottoList();
+
     void getLottoResult(Result result, List<Integer> winNumbers, int bonusNumber);
 }

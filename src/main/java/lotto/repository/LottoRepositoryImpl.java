@@ -9,15 +9,15 @@ public class LottoRepositoryImpl implements LottoRepository {
     private static LottoRepository lottoRepository;
     private static List<Lotto> lottoList;
 
+    private LottoRepositoryImpl() {
+        lottoList = new ArrayList<>();
+    }
+
     public static LottoRepository getInstance() {
         if (lottoRepository == null) {
             lottoRepository = new LottoRepositoryImpl();
         }
         return lottoRepository;
-    }
-
-    private LottoRepositoryImpl() {
-        lottoList = new ArrayList<>();
     }
 
     @Override
@@ -29,5 +29,4 @@ public class LottoRepositoryImpl implements LottoRepository {
     public void addLottoNumbers(List<Integer> lottoNumbers) {
         lottoList.add(new Lotto(lottoNumbers));
     }
-
 }
