@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.INSUFFICIENT_BALANCE;
 import static lotto.constant.ExceptionMessage.INVALID_PAYMENT_AMOUNT;
+import static lotto.constant.ExceptionMessage.MINIMUM_PURCHASE_AMOUNT_REQUIRED;
 import static lotto.constant.LottoConstants.SINGLE_TICKET_PRICE;
 
 import lotto.vo.Money;
@@ -11,6 +12,7 @@ public class LottoPayment {
     private Money remainingAmount;
 
     private LottoPayment(Money amount) {
+        validateNonZeroAmount(amount);
         validatePurchaseWithoutChange(amount);
 
         this.initialAmount = amount;
@@ -19,6 +21,12 @@ public class LottoPayment {
 
     public static LottoPayment from(Money amount) {
         return new LottoPayment(amount);
+    }
+
+    private void validateNonZeroAmount(Money amount) {
+        if (amount.isZeroAmount()) {
+            throw new IllegalArgumentException(MINIMUM_PURCHASE_AMOUNT_REQUIRED.message());
+        }
     }
 
     private void validatePurchaseWithoutChange(Money amount) {

@@ -43,6 +43,10 @@ public class Money {
         return this.value >= other.value;
     }
 
+    public boolean isZeroAmount() {
+        return this.value == 0L;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
