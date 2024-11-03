@@ -33,6 +33,10 @@ public enum Prize {
         return matchCount;
     }
 
+    public boolean isBonusMatch() {
+        return isBonus;
+    }
+
     public int getMoney() {
         return money;
     }
