@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.util.constant;
 
 public enum Separator {
     COMMA(",");
