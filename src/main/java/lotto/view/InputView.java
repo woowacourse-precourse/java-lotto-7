@@ -11,4 +11,11 @@ public class InputView {
         return Console.readLine();
     }
 
+    /**
+     * 사용자에게 로또 번호 입력 받기
+     */
+    public static String getLottoNumbers() {
+        return Console.readLine();
+    }
+
 }
