@@ -91,6 +91,15 @@ class ApplicationTest extends NsTest {
         }
 
         @Test
+        @DisplayName("당첨 번호가 중복")
+        void 당첨_번호가_중복() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,7,7,7");
+                assertThat(output()).contains(DUPLICATED_LOTTO_NUMBER.getMessage());
+            });
+        }
+
+        @Test
         @DisplayName("당첨 번호와 보너스 번호 중복")
         void 당첨_번호와_보너스_번호_중복() {
             assertSimpleTest(() -> {
