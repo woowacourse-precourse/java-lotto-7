@@ -1,6 +1,5 @@
 package lotto.view.output;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,19 +12,15 @@ import lotto.dto.ProfitDto;
 import lotto.dto.RankResultsDto;
 
 import static lotto.constants.LottoRank.*;
+import static lotto.view.constants.OutputMessages.*;
+import static lotto.view.constants.NumberOutputFormat.*;
 
 public class ConsoleOutputView implements OutputView {
-    String RESPONSE_RANK = "\n%d개 일치 (%s원) - %d개";
-    String RESPONSE_RANK_FOR_BONUS = "\n%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    String PURCHASE_NOTICE = "\n%d개를 구매했습니다.%n";
-    String WINNING_STATISTICS = "\n당첨 통계\n---";
-    String PROFIT_RATE = "\n총 수익률은 %.1f%%입니다.";
-    DecimalFormat moneyFormat = new DecimalFormat("###,###");
 
     @Override
     public void outputPurchaseLottoList(LottosDto lottosDto) {
         int lottoCount = lottosDto.lottoDtos().size();
-        System.out.printf(PURCHASE_NOTICE,lottoCount);
+        System.out.printf(PURCHASE_NOTICE.getMessage(),lottoCount);
 
         for (LottoDto lottoDto : lottosDto.lottoDtos()) {
             List<Integer> lottoNumbers = new ArrayList<> (lottoDto.lottoNumbers());
@@ -38,7 +33,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void outputFinalResult(FinalResultsDto finalResultDto) {
-        System.out.print(WINNING_STATISTICS);
+        System.out.print(WINNING_STATISTICS.getMessage());
         outputRankResults(finalResultDto.rankResultsDto());
         outputProfitRate(finalResultDto.profitDto());
     }
@@ -52,6 +47,7 @@ public class ConsoleOutputView implements OutputView {
 
     private void outputRankResults(RankResultsDto rankResultsDto) {
         HashMap<Integer, Integer> rankedResults = rankResultsDto.rankResults();
+
         for (int rank = FIFTH.getRank(); rank >= FIRST.getRank(); rank--) {
             outputRankResult(rank, rankedResults.getOrDefault(rank,0));
         }
@@ -63,21 +59,21 @@ public class ConsoleOutputView implements OutputView {
 
         int numberMatchCount = rankPrize.getMatchCount();
         int prize = rankPrize.getPrize();
-        String formedPrize = moneyFormat.format(prize);
+
+        String formattedPrize = PRIZE_FORMAT.getFormat().format(prize);
 
         if (rank != SECOND.getRank()) {
-            System.out.printf(RESPONSE_RANK, numberMatchCount, formedPrize, winCount);
+            System.out.printf(RESPONSE_RANK.getMessage(), numberMatchCount, formattedPrize, winCount);
         }
         if (rank == SECOND.getRank()) {
-            System.out.printf(RESPONSE_RANK_FOR_BONUS, numberMatchCount, formedPrize, winCount);
+            System.out.printf(RESPONSE_RANK_WITH_BONUS.getMessage(), numberMatchCount, formattedPrize, winCount);
         }
     }
 
     private void outputProfitRate(ProfitDto profitDto) {
-        System.out.printf(PROFIT_RATE,profitDto.profitRate());
+        String formattedProfitRate = PROFIT_RATE_FORMAT.getFormat().format(profitDto.profitRate());
+        System.out.printf(PROFIT_RATE.getMessage(),formattedProfitRate);
     }
-
-
 
 
 }
