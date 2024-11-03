@@ -1,8 +1,7 @@
 package lotto.service;
 
-import lotto.component.Lotto;
-import lotto.component.Prize;
-import lotto.component.LottoMatchCounts;
+import lotto.model.Lotto;
+import lotto.constant.Rank;
 import lotto.domain.WinningLotto;
 
 import java.util.*;
@@ -19,28 +18,39 @@ public class WinningStatisticsService {
         }
         return instance;
     }
-    public LottoMatchCounts countMatches(Lotto purchasedLotto, WinningLotto winningLotto){
+    public int countMatches(Lotto purchasedLotto, WinningLotto winningLotto){
         int matchCount = 0;
-        boolean isBonusMatched = false;
-        Set<Integer> winningNumbers = new HashSet<>(winningLotto.getLotto().getNumbers());
+        Set<Integer> winningNumbers = new HashSet<>(winningLotto.getNumbers());
         for(int number: purchasedLotto.getNumbers()){
             if(winningNumbers.contains(number)){
                 matchCount++;
             }
-            if(winningLotto.getBonusNumber() == number){
-                isBonusMatched = true;
-            }
         }
-        return new LottoMatchCounts(matchCount, isBonusMatched);
+        return matchCount;
     }
 
+    public boolean isBonusMatched(Lotto purchasedLotto, WinningLotto winningLotto){
+        return purchasedLotto.getNumbers().contains(winningLotto.getBonusNumber());
+    }
 
-    public  Map<Prize, Integer> collectWinningStatistics(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+    public  Map<Rank, Integer> collectWinningStatistics(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+//        Map<Rank, Integer> statistics = new HashMap<>();
+//        for(Lotto lotto : purchasedLottos){
+//            int matchCount = countMatches(lotto, winningLotto);
+//            boolean isBonusMatched = isBonusMatched(lotto, winningLotto);
+//            Rank rank = Rank.getRank(matchCount, isBonusMatched);
+//            int rankCount = statistics.getOrDefault(rank, 0);
+//            statistics.put(rank, rankCount + 1);
+//        }
+//        return statistics;
+
         return purchasedLottos.stream()
-                .map(lotto -> Prize.getRank(countMatches(lotto, winningLotto)))
+                .map(lotto -> Rank.getRank(
+                        countMatches(lotto, winningLotto),
+                        isBonusMatched(lotto, winningLotto)))
                 .collect(Collectors.groupingBy(
                         Function.identity(),
-                        Collectors.summingInt(prize -> 1)
+                        Collectors.summingInt(rank -> 1)
                 ));
     }
 }
