@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.dto.WinningLottoInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static lotto.Exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 class WinningLottoTest {
@@ -33,7 +33,7 @@ class WinningLottoTest {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(invalidDelimiterWinningNumbers))
-                .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
+                .withMessage(WINNING_NUMBER_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("당첨번호가 1~45 사이의 숫자가 아니면 예외발생")
@@ -43,7 +43,7 @@ class WinningLottoTest {
         // given, when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(overRangeWinningNumbers))
-                .withMessage("[ERROR] 1~45 사이의 수만 가능합니다.");
+                .withMessage(INVALID_RANGE_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("당첨번호가 중복되면 예외발생")
@@ -55,7 +55,7 @@ class WinningLottoTest {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(dupleWinningNumbers))
-                .withMessage("[ERROR] 숫자가 중복되면 안됩니다.");
+                .withMessage(DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("당첨번호가 숫자가 아니면 예외발생")
@@ -65,7 +65,7 @@ class WinningLottoTest {
         // given, when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(notNumberWinningNumbers))
-                .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
+                .withMessage(WINNING_NUMBER_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("당첨번호가 6개가 아니면 예외발생")
@@ -75,7 +75,7 @@ class WinningLottoTest {
         // given, when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(invalidLengthWinningNumber))
-                .withMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+                .withMessage(INVALID_LOTTO_NUMBER_SIZE.getMessage());
     }
 
     @DisplayName("당첨번호에 공백이 포함되면 예외발생")
@@ -87,7 +87,7 @@ class WinningLottoTest {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Lotto(invalidNumberWinningLottoInfo))
-                .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
+                .withMessage(WINNING_NUMBER_NOT_NUMERIC.getMessage());
     }
 
     @DisplayName("보너스 번호가 1 ~ 45 외의 숫자인 경우 예외발생")
@@ -100,7 +100,7 @@ class WinningLottoTest {
         // then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningLotto(validWinningLotto, invalidBonusNumber))
-                .withMessage("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
+                .withMessage(INVALID_RANGE_LOTTO_NUMBER.getMessage());
     }
 
     @DisplayName("보너스번호가 당첨번호와 중복되면 예외발생")
@@ -113,6 +113,6 @@ class WinningLottoTest {
         // then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningLotto(validWinningLotto, dupleBonusNumber))
-                .withMessage("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
+                .withMessage(DUPLICATE_WINNING_NUMBER.getMessage());
     }
 }

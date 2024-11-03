@@ -1,31 +1,29 @@
 package lotto.model;
 
-import lotto.dto.GeneratedUserLottoInfo;
+import lotto.dto.GeneratedUserLotto;
 import lotto.dto.WinningStatistics;
 
 public class UserLottoInfo {
-    private final Lottos lottos;
+    private final Lottos userLotto;
     private final Money purchaseAmount;
     private final RankingStatus rankingStatus;
 
     public UserLottoInfo(long purchaseAmount) {
         this.purchaseAmount = new Money(purchaseAmount);
-        this.lottos = new Lottos(this.purchaseAmount.getThousandUnitCount());
+        this.userLotto = new Lottos(this.purchaseAmount.getThousandUnitCount());
         this.rankingStatus = new RankingStatus();
     }
 
-    public GeneratedUserLottoInfo getUserLottos() {
-        return lottos.getUserLottos();
+    public GeneratedUserLotto getUserLottos() {
+        return userLotto.getUserLottos();
     }
 
     public WinningStatistics getWinningStatistics(WinningLotto winningLotto) {
-        lottos.makeWinningInfo(winningLotto, rankingStatus);
+        userLotto.calculateUserLottoResults(winningLotto, rankingStatus);
 
-        long totalPrize = rankingStatus.getTotalPrize();
-
-        String matchComment = rankingStatus.makeMatchComment();
-        String returnRate = purchaseAmount.calculateReturnRate(totalPrize);
-
-        return new WinningStatistics(matchComment, returnRate);
+        return new WinningStatistics(
+                rankingStatus.makeMatchComment(),
+                purchaseAmount.calculateReturnRate(rankingStatus.getTotalPrize())
+        );
     }
 }

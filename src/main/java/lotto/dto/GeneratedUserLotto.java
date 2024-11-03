@@ -1,6 +1,6 @@
 package lotto.dto;
 
-public record GeneratedUserLottoInfo(
+public record GeneratedUserLotto(
         long totalGeneratedLottos,
         String generatedLottoNumbers
 ) {

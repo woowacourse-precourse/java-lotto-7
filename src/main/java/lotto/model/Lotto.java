@@ -4,7 +4,10 @@ import lotto.dto.MatchInfo;
 
 import java.util.*;
 
+import static lotto.Exception.ExceptionMessage.*;
+
 public class Lotto {
+    private static final String LOTTO_NUMBER_DELIMITER_COMMA = ",";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,22 +18,16 @@ public class Lotto {
     public Lotto(String numbers) {
         List<Integer> parsingLottoNumbers = parseLottoNumbers(numbers);
         validate(parsingLottoNumbers);
+
         this.numbers = parsingLottoNumbers;
     }
 
-    public MatchInfo makeMatchInfo(Lotto userLotto, int bonusNumber) {
-        int matchCount = 0;
-        boolean isMatchBonusNumber = false;
+    public MatchInfo calculateMatchInfo(Lotto userLotto, int bonusNumber) {
+        long matchCount = userLotto.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
 
-        for (Integer userLottoNumber : userLotto.numbers) {
-            if (this.numbers.contains(userLottoNumber)) {
-                matchCount++;
-            }
-        }
-
-        if (this.numbers.contains(bonusNumber)) {
-            isMatchBonusNumber = true;
-        }
+        boolean isMatchBonusNumber = this.numbers.contains(bonusNumber);
 
         return new MatchInfo(matchCount, isMatchBonusNumber);
     }
@@ -40,23 +37,17 @@ public class Lotto {
     }
 
     private List<Integer> parseLottoNumbers(String rawLottoNumbers) {
-        List<Integer> parsingNumbers = new ArrayList<>();
-        String[] lottoNumbers = rawLottoNumbers.split(",");
-
-        for (String lottoNumber : lottoNumbers) {
-            try {
-                parsingNumbers.add(Integer.parseInt(lottoNumber));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
-            }
+        try {
+            return Arrays.stream(rawLottoNumbers.split(LOTTO_NUMBER_DELIMITER_COMMA))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(WINNING_NUMBER_NOT_NUMERIC.getMessage());
         }
-
-        return parsingNumbers;
     }
 
     private String formatLottoNumber() {
-        List<Integer> sortLottoNumbers = sortLottoNumbers();
-        return String.join(", ", Arrays.toString(sortLottoNumbers.toArray()));
+        return String.join(LOTTO_NUMBER_DELIMITER_COMMA + " ", Arrays.toString(sortLottoNumbers().toArray()));
     }
 
     private List<Integer> sortLottoNumbers() {
@@ -65,13 +56,13 @@ public class Lotto {
 
     public void checkBonusNumberDuple(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoConstant.VALID_LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_SIZE.getMessage());
         }
 
         checkNumberDuple(numbers);
@@ -79,20 +70,20 @@ public class Lotto {
     }
 
     private void checkValidArrange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 1~45 사이의 수만 가능합니다.");
-            }
+        if (numbers.stream()
+                .anyMatch(
+                        number ->
+                                number < LottoConstant.MIN_LOTTO_NUMBER.getValue()
+                                ||
+                                number > LottoConstant.MAX_VALID_LOTTO_NUMBER.getValue())
+        ) {
+            throw new IllegalArgumentException(INVALID_RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void checkNumberDuple(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (Integer number : numbers) {
-            if (uniqueNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 숫자가 중복되면 안됩니다.");
-            }
-            uniqueNumbers.add(number);
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 }

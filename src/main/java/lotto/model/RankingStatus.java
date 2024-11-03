@@ -3,30 +3,24 @@ package lotto.model;
 import java.util.EnumMap;
 
 public class RankingStatus {
-    private final EnumMap<Ranking, Integer> rankingStatus;
+    private final EnumMap<Ranking, Integer> rankingCounts;
 
     public RankingStatus() {
-        rankingStatus = new EnumMap<>(Ranking.class);
+        rankingCounts = new EnumMap<>(Ranking.class);
 
         for (Ranking value : Ranking.values()) {
-            rankingStatus.put(value, 0);
+            rankingCounts.put(value, 0);
         }
     }
 
     public void updateRankStatus(Ranking ranking) {
-        rankingStatus.put(ranking, rankingStatus.get(ranking) + 1);
+        rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
     }
 
     public long getTotalPrize() {
-        long totalPrize = 0;
-
-        for (Ranking ranking : Ranking.values()) {
-            Integer winningCount = rankingStatus.get(ranking);
-
-            totalPrize += ranking.getPrizeMoney(winningCount);
-        }
-
-        return totalPrize;
+        return rankingCounts.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney(entry.getValue()))
+                .sum();
     }
 
     public String makeMatchComment() {
@@ -47,6 +41,6 @@ public class RankingStatus {
     }
 
     private int getRankingCount(Ranking ranking) {
-        return rankingStatus.get(ranking);
+        return rankingCounts.get(ranking);
     }
 }

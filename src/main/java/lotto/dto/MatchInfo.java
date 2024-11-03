@@ -1,7 +1,7 @@
 package lotto.dto;
 
 public record MatchInfo(
-        int matchCount,
+        long matchCount,
         boolean isMatchBonusNumber
 ) {
 

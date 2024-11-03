@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static lotto.Exception.ExceptionMessage.*;
+
 class MoneyTest {
     private Money money;
 
@@ -31,7 +33,19 @@ class MoneyTest {
         // when
         Assertions.assertThatThrownBy(() -> money = new Money(zero))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또를 구매할 수 없습니다.");
+                .hasMessage(ZERO_PURCHASE_AMOUNT.getMessage());
+    }
+
+    @DisplayName("1000원 단위의 구입금액이 아닌경우 예외발생")
+    @Test
+    void 구입금액이_1000원_단위가_아닌_경우_예외발생() {
+        // given
+        long invalidPurchaseAmount = 1001;
+
+        // when
+        Assertions.assertThatThrownBy(() -> money = new Money(invalidPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_THOUSAND_UNIT_PURCHASE_AMOUNT.getMessage());
     }
 
 }

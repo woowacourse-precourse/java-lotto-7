@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.dto.GeneratedUserLottoInfo;
+import lotto.dto.GeneratedUserLotto;
 import lotto.dto.WinningStatistics;
 
 public class OutputView {
@@ -8,10 +8,10 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨통계\n---";
     private static final String RETURN_RATE_MESSAGE = "총 수익률은 %s입니다.";
 
-    public void printCreateLottoInfo(GeneratedUserLottoInfo generatedUserLottoInfo) {
+    public void printCreateLottoInfo(GeneratedUserLotto generatedUserLotto) {
         System.out.println();
-        System.out.println(getPurchaseMessageFormat(generatedUserLottoInfo.totalGeneratedLottos()));
-        System.out.println(generatedUserLottoInfo.generatedLottoNumbers());
+        System.out.println(getPurchaseMessageFormat(generatedUserLotto.totalGeneratedLottos()));
+        System.out.println(generatedUserLotto.generatedLottoNumbers());
     }
 
     private String getPurchaseMessageFormat(long quantity) {

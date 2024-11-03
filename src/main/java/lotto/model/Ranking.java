@@ -4,6 +4,8 @@ import lotto.dto.MatchInfo;
 
 import java.util.Arrays;
 
+import static lotto.Exception.ExceptionMessage.*;
+
 public enum Ranking {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -34,10 +36,10 @@ public enum Ranking {
         return Arrays.stream(values())
                 .filter(ranking -> ranking.matchCount == matchInfo.matchCount())
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 잘못된 로또 입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ZERO_MATCH.getMessage()));
     }
 
     public long getPrizeMoney(int winningCount) {
-        return this.prizeMoney * winningCount;
+        return (long) this.prizeMoney * winningCount;
     }
 }

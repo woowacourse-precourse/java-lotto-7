@@ -2,7 +2,11 @@ package lotto.model;
 
 import java.text.DecimalFormat;
 
+import static lotto.Exception.ExceptionMessage.*;
+import static lotto.model.LottoConstant.*;
+
 public class Money {
+    private static final int ZERO = 0;
     private final long purchaseAmount;
 
     public Money(long purchaseAmount) {
@@ -12,26 +16,30 @@ public class Money {
     }
 
     private void checkPurchaseAmountIsZero(long purchaseAmount) {
-        if (purchaseAmount == 0) {
-            throw new IllegalArgumentException("[ERROR] 로또를 구매할 수 없습니다.");
+        if (purchaseAmount == ZERO) {
+            throw new IllegalArgumentException(ZERO_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     public long getThousandUnitCount() {
-        return purchaseAmount / 1000;
+        return purchaseAmount / PRICE.getValue();
     }
 
     public String calculateReturnRate(long totalPrizeMoney) {
         double returnRate = ((double) totalPrizeMoney / purchaseAmount) * 100.0;
-        returnRate = Math.round(returnRate * 100) / 100.0; // 소수점 둘째 자리 반올림
+        returnRate = Math.round(returnRate * 100) / 100.0;
 
+        return formatReturnRate(returnRate);
+    }
+
+    private String formatReturnRate(double returnRate) {
         DecimalFormat df = new DecimalFormat("#,##0.0");
         return df.format(returnRate) + "%";
     }
 
     private void checkPurchaseAmountIsThousandUnit(long purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 천원 단위로만 입력해주세요.");
+        if (purchaseAmount % PRICE.getValue() != ZERO) {
+            throw new IllegalArgumentException(NOT_THOUSAND_UNIT_PURCHASE_AMOUNT.getMessage());
         }
     }
 }

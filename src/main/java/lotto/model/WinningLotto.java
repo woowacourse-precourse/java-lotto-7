@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.Exception.ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE;
+import static lotto.Exception.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
+
 public class WinningLotto {
     private final Lotto winningNumber;
     private final int bonusNumber;
@@ -12,12 +15,12 @@ public class WinningLotto {
     }
 
     public Ranking calculateRank(Lotto userLotto) {
-        return Ranking.calculateRanking(winningNumber.makeMatchInfo(userLotto, bonusNumber));
+        return Ranking.calculateRanking(winningNumber.calculateMatchInfo(userLotto, bonusNumber));
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
+        if (bonusNumber < LottoConstant.MIN_LOTTO_NUMBER.getValue() || bonusNumber > LottoConstant.MAX_VALID_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(INVALID_RANGE_LOTTO_NUMBER.getMessage());
         }
 
         winningNumber.checkBonusNumberDuple(bonusNumber);
