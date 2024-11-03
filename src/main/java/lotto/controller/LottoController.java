@@ -7,71 +7,72 @@ import lotto.domain.RankResult;
 import lotto.domain.RankType;
 import lotto.model.InputParser;
 import lotto.model.LottoGenerator;
-import lotto.model.WinningStatistics;
+import lotto.model.StatisticsCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
+    private final InputParser inputParser;
+    private final LottoGenerator lottoGenerator;
+    private final StatisticsCalculator statisticsCalculator;
     private final OutputView outputView;
 
     public LottoController() {
-        this.inputView = InputView.getInstance();
-        this.outputView = OutputView.getInstance();
+        this.inputView = new InputView();
+        this.inputParser = new InputParser();
+        this.lottoGenerator = new LottoGenerator();
+        this.statisticsCalculator = new StatisticsCalculator();
+        this.outputView = new OutputView();
     }
 
     public void executeLottoWorkflow() {
-        InputParser inputParser = new InputParser();
-        int purchaseAmount = getPurchaseAmount(inputParser);
+        int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottoList = lottoGenerator.generateLottoList(purchaseAmount);
+        outputView.displayLottoList(purchaseAmount, lottoList);
 
-        LottoGenerator lottoGenerator = new LottoGenerator(purchaseAmount);
-        List<Lotto> generatedlottoList = lottoGenerator.getLottoList();
+        Lotto winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
-        outputView.displayLottoList(purchaseAmount, generatedlottoList);
-
-        Lotto winningNumbers = getWinningNumbers(inputParser);
-        System.out.println();
-        int bonusNumber = getBonusNumber(winningNumbers, inputParser);
-
-        WinningStatistics winningStatistics = new WinningStatistics();
-        winningStatistics.calculateRankResults(generatedlottoList, winningNumbers, bonusNumber);
-
-        Map<RankType, RankResult> statistics = winningStatistics.getStatistics();
-        String earningRate = winningStatistics.calculateEarningRate(purchaseAmount);
-
-        outputView.displayWinningStatistics(statistics, earningRate);
-
-        inputView.close();
-        outputView.close();
+        Map<RankType, RankResult> statistics =
+            statisticsCalculator.calculateStatistics(lottoList, winningNumbers, bonusNumber);
+        String earningRate = statisticsCalculator.calculateEarningRate(purchaseAmount);
+        outputView.displayStatistics(statistics, earningRate);
     }
 
-    public int getPurchaseAmount(InputParser inputParser) {
+    public int getPurchaseAmount() {
         while (true) {
             try {
-                String purchaseAmount = inputView.readPurchaseAmount();
-                return inputParser.parsePurchaseAmount(purchaseAmount);
+                String input = inputView.readPurchaseAmount();
+                int purchaseAmount = inputParser.parsePurchaseAmount(input);
+                System.out.println();
+                return purchaseAmount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public Lotto getWinningNumbers(InputParser inputParser) {
+    public Lotto getWinningNumbers() {
         while (true) {
             try {
-                String winningNumbers = inputView.readWinningNumbers();
-                return inputParser.parseWinningNumbers(winningNumbers);
+                String input = inputView.readWinningNumbers();
+                Lotto winningNumbers = inputParser.parseWinningNumbers(input);
+                System.out.println();
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int getBonusNumber(Lotto winningNumbers, InputParser inputParser) {
+    public int getBonusNumber(Lotto winningNumbers) {
         while (true) {
             try {
-                String bonusNumber = inputView.readBonusNumber();
-                return inputParser.parseBonusNumber(winningNumbers, bonusNumber);
+                String input = inputView.readBonusNumber();
+                int bonusNumber = inputParser.parseBonusNumber(winningNumbers, input);
+                System.out.println();
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

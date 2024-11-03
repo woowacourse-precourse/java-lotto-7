@@ -7,20 +7,23 @@ import lotto.domain.Lotto;
 import lotto.domain.RankResult;
 import lotto.domain.RankType;
 
-public class WinningStatistics {
+public class StatisticsCalculator {
     private final Map<RankType, RankResult> statistics;
 
-    public WinningStatistics() {
-        statistics = new EnumMap<>(RankType.class);
+    public StatisticsCalculator() {
+        this.statistics = new EnumMap<>(RankType.class);
         initializeRankResults();
     }
 
-    public void calculateRankResults(List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber) {
+    public Map<RankType, RankResult> calculateStatistics(
+        List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber) {
+
         for (Lotto lotto : lottoList) {
             int matchCount = LottoMatchCalculator.countMatchedNumbers(lotto, winningNumbers);
             boolean bonusMatched = LottoMatchCalculator.isBonusMatched(lotto, matchCount, bonusNumber);
             incrementRankResult(matchCount, bonusMatched);
         }
+        return statistics;
     }
 
     public String calculateEarningRate(int purchaseAmount) {
@@ -32,10 +35,6 @@ public class WinningStatistics {
         return statistics.values().stream()
             .mapToInt(RankResult::getPrize)
             .sum();
-    }
-
-    public Map<RankType, RankResult> getStatistics() {
-        return statistics;
     }
 
     private void initializeRankResults() {

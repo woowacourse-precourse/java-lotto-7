@@ -6,21 +6,15 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class LottoGenerator {
-    private final List<Lotto> lottoList;
 
-    public LottoGenerator(int purchaseAmount) {
-        lottoList = new ArrayList<>();
-        generateLottoList(purchaseAmount);
-    }
+    public List<Lotto> generateLottoList(int purchaseAmount) {
+        List<Lotto> lottoList = new ArrayList<>();
 
-    private void generateLottoList(int purchaseAmount) {
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoList.add(new Lotto(lottoNumbers));
         }
-    }
 
-    public List<Lotto> getLottoList() {
         return lottoList;
     }
 }
