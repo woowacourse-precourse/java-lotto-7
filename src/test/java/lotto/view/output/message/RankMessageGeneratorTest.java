@@ -1,9 +1,8 @@
-package lotto.view;
+package lotto.view.output.message;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.rank.LottoRank;
-import lotto.view.io.message.RankMessageGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

@@ -1,4 +1,4 @@
-package lotto.view.io.message;
+package lotto.view.output.message;
 
 public class RateOfReturnMessageGenerator {
 

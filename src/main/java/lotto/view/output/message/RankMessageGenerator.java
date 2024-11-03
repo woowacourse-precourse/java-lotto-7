@@ -1,4 +1,4 @@
-package lotto.view.io.message;
+package lotto.view.output.message;
 
 import lotto.domain.rank.LottoRank;
 import lotto.domain.rank.LottoRank.BonusCondition;

@@ -1,11 +1,11 @@
-package lotto.view.io;
+package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.money.PurchaseAmount;
-import lotto.view.io.parser.InputStringParser;
+import lotto.view.input.parser.InputStringParser;
 
 public class InputHandler {
 

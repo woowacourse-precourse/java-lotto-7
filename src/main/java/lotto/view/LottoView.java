@@ -7,8 +7,8 @@ import lotto.domain.LottoNumber;
 import lotto.domain.rank.LottoRank;
 import lotto.domain.money.PurchaseAmount;
 import lotto.exception.LottoApplicationException;
-import lotto.view.io.InputHandler;
-import lotto.view.io.OutputHandler;
+import lotto.view.input.InputHandler;
+import lotto.view.output.OutputHandler;
 
 public class LottoView {
     private final InputHandler inputHandler;
