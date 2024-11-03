@@ -40,4 +40,15 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_VALUE.getMessage());
     }
+
+    @Test
+    @DisplayName("값을 반환한다.")
+    void should_ReturnValue() {
+        // given
+        String number = "1";
+        // when
+        BonusNumber bonusNumber = new BonusNumber(number);
+        // then
+        Assertions.assertThat(bonusNumber.getNumber()).isEqualTo(1);
+    }
 }
