@@ -1,7 +1,6 @@
 package lotto.repository;
 
 import java.util.List;
-import java.util.Optional;
 import lotto.domain.Lotto;
 
 public interface LottoRepository {
@@ -11,4 +10,6 @@ public interface LottoRepository {
     List<Lotto> findAll();
 
     void deleteAll();
+
+    int count();
 }

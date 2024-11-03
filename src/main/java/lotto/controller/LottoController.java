@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,24 +31,22 @@ public class LottoController {
         outputView.printLottoNumbers(lottos);
     }
 
-    public void checkLotto() {
+    public Map<Rank, Integer> calculateLottoResults() {
         String winnerNumbers = inputView.inputWinnerNumbers();
         String bonusNumber = inputView.inputBonusNumber();
-        lottoService.checkLotto(winnerNumbers, bonusNumber);
+        return lottoService.calculateLottoResults(winnerNumbers, bonusNumber);
     }
 
-    public void printWinningStatistics() {
-        // Todo 당첨 통계 계산 서비스 호출
-        String profitRate = "0";
-        outputView.printWinningStatistics();
-        outputView.printProfitRate(profitRate);
+    public void printWinningStatistics(Map<Rank, Integer> rankCounts) {
+        String percent = lottoService.getPercent(rankCounts);
+        outputView.printWinningStatistics(rankCounts);
+        outputView.printProfitRate(percent);
     }
 
     public void startLottoGame() {
-
         buyLotto();
         printLottoNumbers();
-        checkLotto();
-        printWinningStatistics();
+        Map<Rank, Integer> rankCounts = calculateLottoResults();
+        printWinningStatistics(rankCounts);
     }
 }

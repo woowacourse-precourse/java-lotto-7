@@ -34,4 +34,9 @@ public class InMemoryLottoRepository implements LottoRepository {
     public void deleteAll() {
         repository.clear();
     }
+
+    @Override
+    public int count() {
+        return repository.size();
+    }
 }
