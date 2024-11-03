@@ -8,7 +8,9 @@ public enum ExceptionMessage {
     POSITIVE_SIGN_INPUT("양의 부호를 포함할 수 없습니다."),
     INVALID_COMMA_POSITION("입력 값의 맨 앞이나 맨 뒤에 쉼표가 올 수 없습니다."),
     OUT_OF_RANGE_NUMBER("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    DUPLICATE_WITH_WINNING_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    DUPLICATE_WITH_WINNING_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    LOTTO_COUNT_LIMIT("로또 개수는 6개여야 합니다."),
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다.");
 
     private final String message;
 
