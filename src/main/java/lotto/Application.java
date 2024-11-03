@@ -41,10 +41,15 @@ public class Application {
 		OutputInterface.printMessage(OutputInterface.WINNING_STATISTICS_INFORMATION);
 
 		Map<LottoPrize,Integer> lottoResult = lottoResultFactory.generateLottoResult();
-
 		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
+
 		String customerLottoResult = lottoTicketMachine.registerLottoResult(lottoResult, winningStatus);
 		OutputInterface.printMessage(customerLottoResult);
+
+		customer.calculateProfit(lottoResult);
+
+		OutputInterface.printMessage(customer.formattingForPrintProfit());
+
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
