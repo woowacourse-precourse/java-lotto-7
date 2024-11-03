@@ -25,18 +25,23 @@ public class LottoInput {
     public static List<Integer> getValidWinningNo() {
         while (true) {
             try {
-                int[] numbers = getIntArray(split(Console.readLine()));
-                validLotto(numbers);
-                List<Integer> winningNumber = new ArrayList<>();
-                for (int number : numbers) {
-                    winningNumber.add(number);
-                }
+                List<Integer> winningNumber = getWinningNumber();
+                validLotto(winningNumber);
                 return winningNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("\n당첨 번호를 입력해 주세요.");
             }
         }
+    }
+
+    private static List<Integer> getWinningNumber() {
+        int[] numbers = getIntArray(split(Console.readLine()));
+        List<Integer> winningNumber = new ArrayList<>();
+        for (int number : numbers) {
+            winningNumber.add(number);
+        }
+        return winningNumber;
     }
 
     public static int getValidBonus(List<Integer> winningNumber) {
@@ -63,7 +68,7 @@ public class LottoInput {
     }
 
 
-    private static void validLotto(int[] numbers) {
+    private static void validLotto(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요!");
