@@ -4,6 +4,7 @@ import static lotto.common.config.InstructionMessages.INPUT_PURCHASE_AMOUNT;
 import static lotto.common.exception.ExceptionMessages.EMPTY_INPUT;
 import static lotto.common.exception.ExceptionMessages.NONE_NUMERIC_INPUT;
 import static lotto.common.exception.ExceptionMessages.NOT_MULTIPLE_OF_UNIT_PRICE;
+import static lotto.common.exception.ExceptionMessages.OUT_OF_INTEGER_RANGE;
 
 import lotto.common.exception.EmptyInputException;
 import lotto.common.exception.InvalidInputException;
@@ -34,7 +35,7 @@ public class PurchaseAmountInput implements Input<Integer, String> {
             throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessages());
         }
         if (!inputValidator.isIntegerRange(input)) {
-            throw new InvalidInputException(NONE_NUMERIC_INPUT.getMessages());
+            throw new InvalidInputException(OUT_OF_INTEGER_RANGE.getMessages());
         }
         if (!inputValidator.isMultipleOfUnitPrice(input)) {
             throw new InvalidInputException(NOT_MULTIPLE_OF_UNIT_PRICE.getMessages());
