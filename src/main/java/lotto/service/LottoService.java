@@ -20,18 +20,9 @@ public class LottoService {
         this.lottoResults = new LottoResults();
     }
 
-    public LottoTickets purchaseLottoTickets(int amount){
-        LottoPurchase purchase = LottoPurchase.of(amount);
-        return lottoStore.generateLottoTickets(purchase.getTicketCount());
+    public LottoTicketsDto purchaseLottoTickets(int amount) {
+        LottoTickets tickets = lottoStore.generateLottoTickets(LottoPurchase.of(amount).getTicketCount());
+        return LottoTicketsDto.from(tickets.getLottoTickets());
     }
 
-    public List<LottoResultDto> calculateResults(LottoTickets tickets , WinningNumbers winningNumbers, BonusNumber bonusNumber){
-        lottoResults.calculateResults(tickets,winningNumbers,bonusNumber);
-        return lottoResults.generateResultDtos();
-    }
-
-    public double calculateTotalEarningsRate(int purchaseAmount) {
-        long totalEarnings = lottoResults.calculateTotalEarnings();
-        return (double) totalEarnings / purchaseAmount * 100;
-    }
 }
