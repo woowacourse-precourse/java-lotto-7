@@ -1,10 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +22,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_6개_생성() {
+        Lotto lotto = Lotto.generateLotto();
+        List<Integer> numbers = lotto.getNumbers();
+        assertThat(numbers.size()).isEqualTo(6);
+        assertThat(numbers.stream().allMatch(num -> num >= 1 && num <= 45)).isTrue();
+    }
 }
