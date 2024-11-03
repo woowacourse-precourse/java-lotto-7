@@ -1,8 +1,8 @@
 package lotto.model.lotto;
 
-public class LottoStore {
-    private static final int LOTTO_PRICE = 1_000;
+import static lotto.util.Constants.LOTTO_PRICE;
 
+public class LottoStore {
     public int calculateTicketsCount(int budget) {
         return budget / LOTTO_PRICE;
     }

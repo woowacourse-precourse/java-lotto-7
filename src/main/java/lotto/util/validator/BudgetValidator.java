@@ -1,5 +1,7 @@
 package lotto.util.validator;
 
+import static lotto.util.Constants.LOTTO_PRICE;
+
 import java.util.regex.Pattern;
 import lotto.util.ExceptionMessage;
 
@@ -27,11 +29,18 @@ public class BudgetValidator implements Validator {
         throw new IllegalArgumentException(ExceptionMessage.NOT_NUMERIC.getMessage());
     }
 
-    private void validateRange(String budget) {
+    private void validateInputRange(String budget) {
         int budgetValue = Integer.parseInt(budget);
         if (budgetValue < MIN_BUDGET || budgetValue > MAX_BUDGET) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_IN_RANNGE_OF_BUDGET.getMessage());
         }
+    }
+    private void validateInputUnit(String budget) {
+        int remainder = Integer.parseInt(budget) % LOTTO_PRICE;
+        if (remainder == 0) {
+            return;
+        }
+        throw new IllegalArgumentException(ExceptionMessage.INVALID_UNIT_OF_BUDGET.getMessage());
     }
 
 
