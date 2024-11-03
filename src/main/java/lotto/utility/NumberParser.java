@@ -8,13 +8,13 @@ public class NumberParser {
             validateNumber(number);
             return number;
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 숫자를 입력하셨습니다.");
+            throw new IllegalArgumentException(ExceptionEnum.INVALID_NUMBER.getMessage());
         }
     }
 
     private static void validateNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException("[ERROR] 0 이하의 수는 입력하실 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionEnum.CANNOT_UNDER_ZERO.getMessage());
         }
     }
 }

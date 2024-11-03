@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utility.ExceptionEnum;
+
 import java.util.List;
 
 public class Lotto {
@@ -23,7 +25,7 @@ public class Lotto {
                 .anyMatch(num -> num <= 0);
 
         if (hasZero) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에는 0이 포함될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
         }
     }
 
@@ -33,7 +35,7 @@ public class Lotto {
                 .count();
 
         if (uniqueCount != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호는 뽑으실 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionEnum.CANNOT_DRAW_DUPLICATE_NUMBER.getMessage());
         }
     }
 
