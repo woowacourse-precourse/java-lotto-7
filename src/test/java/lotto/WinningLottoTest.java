@@ -1,49 +1,18 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import constants.ErrorMessage;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
 
     @Test
     void 당첨_로또_생성() {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
-        assertThat(winningLotto).isEqualTo(new WinningLotto("1,2,3,4,5,6", "7"));
-    }
-
-    @Test
-    void 입력된_당첨_번호가_6개가_아닌_경우_예외() {
-        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6,7", "8"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-    }
-
-    @Test
-    void 입력된_당첨_번호에_숫자가_중복된_경우_예외() {
-        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,5", "8"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"a,b,3,4,5,6", "1:2:3:4:5:6"})
-    void 입력된_당첨_번호가_유효하지_않은_경우_예외(String winningNumbers) {
-        assertThatThrownBy(() -> new WinningLotto(winningNumbers, "7"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
-    }
-
-    @Test
-    void 입력된_보너스번호가_유효하지_않은_경우_예외() {
-        assertThatThrownBy(() -> new WinningLotto("1:2:3:4:5:6", "7,8"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber("7", winningNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        assertThat(winningLotto).isEqualTo(new WinningLotto(winningNumbers, bonusNumber));
     }
 
     @Test
@@ -51,7 +20,10 @@ public class WinningLottoTest {
         List<LottoNumber> lottoNumbers = List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3),
                 LottoNumber.from(4), LottoNumber.from(5), LottoNumber.from(6));
 
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,43,44", "45");
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,43,44");
+        BonusNumber bonusNumber = new BonusNumber("45", winningNumbers);
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         assertThat(winningLotto.countWinnings(lottoNumbers)).isEqualTo(4);
     }
@@ -61,8 +33,12 @@ public class WinningLottoTest {
         List<LottoNumber> lottoNumbers = List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3),
                 LottoNumber.from(4), LottoNumber.from(5), LottoNumber.from(6));
 
-        WinningLotto winningLotto1 = new WinningLotto("1,2,3,4,5,44", "6");
-        WinningLotto winningLotto2 = new WinningLotto("1,2,3,4,5,44", "45");
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,44");
+        BonusNumber bonusNumber1 = new BonusNumber("6", winningNumbers);
+        BonusNumber bonusNumber2 = new BonusNumber("45", winningNumbers);
+
+        WinningLotto winningLotto1 = new WinningLotto(winningNumbers, bonusNumber1);
+        WinningLotto winningLotto2 = new WinningLotto(winningNumbers, bonusNumber2);
 
         assertThat(winningLotto1.containsBonus(lottoNumbers)).isTrue();
         assertThat(winningLotto2.containsBonus(lottoNumbers)).isFalse();

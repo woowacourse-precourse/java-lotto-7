@@ -1,54 +1,24 @@
 package lotto;
 
-import constants.ErrorMessage;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class WinningLotto {
 
-    private static final String SEPARATOR = ",";
+    private final WinningNumbers winningNumbers;
+    private final BonusNumber bonusNumber;
 
-    private final List<LottoNumber> winningNumbers;
-    private final LottoNumber bonusNumber;
-
-    public WinningLotto(String winningNumbers, String bonusNumber) {
-        this.winningNumbers = parse(winningNumbers);
-        this.bonusNumber = toLottoNumber(bonusNumber);
-    }
-
-    private List<LottoNumber> parse(String winningNumbers) {
-        List<LottoNumber> lottoNumbers = splitBySeparator(winningNumbers).stream()
-                .map(this::toLottoNumber)
-                .toList();
-
-        LottoValidator.validate(lottoNumbers);
-
-        return lottoNumbers;
-    }
-
-    private List<String> splitBySeparator(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(SEPARATOR)).toList();
-    }
-
-    private LottoNumber toLottoNumber(String textNumber) {
-        int number;
-
-        try {
-            number = Integer.parseInt(textNumber);
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ErrorMessage.ENTERED_INVALID_NUMBER);
-        }
-
-        return LottoNumber.from(number);
+    public WinningLotto(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public int countWinnings(List<LottoNumber> numbers) {
-        return (int) winningNumbers.stream().filter(numbers::contains).count();
+        return winningNumbers.countNumbers(numbers);
     }
 
     public boolean containsBonus(List<LottoNumber> numbers) {
-        return numbers.contains(bonusNumber);
+        return bonusNumber.contains(numbers);
     }
 
     @Override

@@ -37,7 +37,11 @@ public class LottosTest {
                 List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3), LottoNumber.from(4),
                         LottoNumber.from(5), LottoNumber.from(6)));
         Lottos lottos = new Lottos(List.of(lotto));
-        WinningLotto winningLotto = new WinningLotto("1,2,3,7,8,9", "10");
+
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,7,8,9");
+        BonusNumber bonusNumber = new BonusNumber("10", winningNumbers);
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         assertThat(lottos.calculateWinnings(lotto, winningLotto)).isEqualTo(3);
     }
 
@@ -48,8 +52,12 @@ public class LottosTest {
                         LottoNumber.from(5), LottoNumber.from(6)));
         Lottos lottos = new Lottos(List.of(lotto));
 
-        WinningLotto winningLotto1 = new WinningLotto("1,2,3,4,5,7", "6");
-        WinningLotto winningLotto2 = new WinningLotto("1,2,3,4,5,7", "45");
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
+        BonusNumber bonusNumber1 = new BonusNumber("6", winningNumbers);
+        BonusNumber bonusNumber2 = new BonusNumber("45", winningNumbers);
+
+        WinningLotto winningLotto1 = new WinningLotto(winningNumbers, bonusNumber1);
+        WinningLotto winningLotto2 = new WinningLotto(winningNumbers, bonusNumber2);
 
         assertThat(lottos.hasBonus(lotto, winningLotto1)).isTrue();
         assertThat(lottos.hasBonus(lotto, winningLotto2)).isFalse();
