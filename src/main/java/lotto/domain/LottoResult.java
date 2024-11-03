@@ -60,11 +60,8 @@ public class LottoResult {
     }
 
     public long calculateWinningPrize() {
-        long result = 0;
-        for (Rank rank : matchNumber.keySet()) {
-            int matchCount = getMatchNumber().getOrDefault(rank, 0);
-            result += (long) rank.prize * matchCount;
-        }
-        return result;
+        return matchNumber.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().prize * entry.getValue())
+                .sum();
     }
 }
