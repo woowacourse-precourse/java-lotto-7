@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoMachineTest {
@@ -13,13 +12,28 @@ class LottoMachineTest {
     LottoMachine lottoMachine = new LottoMachine();
 
     @Test
-    @DisplayName("로또를 발행한다")
+    @DisplayName("하나의 로또를 발행한다")
     void publishLotto() {
-        //given //when
-        Lotto lotto = lottoMachine.publishLotto();
-        List<Integer> numbers = lotto.getNumbers();
+        //given
+        long oneCase = 1L;
+
+        //when
+        Lottos lottos = lottoMachine.publishLottos(oneCase);
 
         //then
-        assertThat(numbers).hasSize(6);
+        assertThat(lottos.getQuantity()).isSameAs(1L);
+    }
+
+    @Test
+    @DisplayName("여러건의 로또를 발행한다")
+    void publishLottos() {
+        //given
+        long coupleCase = 3L;
+
+        //when
+        Lottos lottos = lottoMachine.publishLottos(coupleCase);
+
+        //then
+        assertThat(lottos.getQuantity()).isSameAs(3L);
     }
 }
