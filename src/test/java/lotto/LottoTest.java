@@ -39,4 +39,22 @@ class LottoTest {
                 List.of(46, 1, 2, 3, 4, 5)
         );
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복이면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_당첨_번호와_중복이면_예외가_발생한다() {
+        assertRandomUniqueNumbersInRangeTest(() -> {
+                    // given
+                    Lotto winningNumbers = new Lotto();
+
+                    // when
+                    int bonusNumber = 1;
+
+                    // then
+                    assertThatThrownBy(() -> winningNumbers.validateNumber(bonusNumber))
+                            .isInstanceOf(IllegalArgumentException.class);
+                },
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
 }
