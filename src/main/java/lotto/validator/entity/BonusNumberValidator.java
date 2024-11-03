@@ -1,4 +1,4 @@
-package lotto.validator.input;
+package lotto.validator.entity;
 
 import lotto.validator.Validator;
 

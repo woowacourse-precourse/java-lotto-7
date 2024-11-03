@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.validator.input.WinningNumberValidator;
+import lotto.validator.entity.WinningNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

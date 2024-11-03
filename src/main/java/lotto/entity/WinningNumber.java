@@ -1,7 +1,7 @@
 package lotto.entity;
 
 import lotto.validator.Validator;
-import lotto.validator.input.WinningNumberValidator;
+import lotto.validator.entity.WinningNumberValidator;
 
 import java.util.ArrayList;
 import java.util.List;

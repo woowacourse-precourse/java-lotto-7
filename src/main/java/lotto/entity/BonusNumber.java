@@ -1,7 +1,7 @@
 package lotto.entity;
 
 import lotto.validator.Validator;
-import lotto.validator.input.BonusNumberValidator;
+import lotto.validator.entity.BonusNumberValidator;
 
 public class BonusNumber {
     private final int value;

@@ -1,7 +1,6 @@
 package lotto.view.input;
 
 import lotto.enums.InputMessage;
-import lotto.validator.input.PriceValidator;
 
 public class PriceInputView extends InputView {
     @Override

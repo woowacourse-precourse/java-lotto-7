@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.validator.input.PriceValidator;
+import lotto.validator.entity.PriceValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
