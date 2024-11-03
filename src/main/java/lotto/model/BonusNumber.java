@@ -7,7 +7,6 @@ public class BonusNumber {
     private static final String ONLY_NUMBER = "[ERROR] 숫자만 입력해 주세요!";
     private static final String NEGATIVE_NUMBER = "[ERROR] 양수를 입력해주세요!";
     private static final String WRONG_RANGE = "[ERROR] 숫자 범위가 벗어났습니다.";
-    private static final String DUPLICATE_NUMBER = "[ERROR] 중복되는 숫자가 있습니다.";
 
     public BonusNumber(String bonusNumber) {
         this.bonusNumber = validateNumber(bonusNumber);
