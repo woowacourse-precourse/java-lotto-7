@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -40,7 +41,8 @@ class LottoTest {
     @DisplayName("로또 번호에 범위를 벗어나는 숫자가 있으면 예외가 발생한다.")
     void outOfRangeNumber(final List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.OUT_OF_RANGE.getMessage());
     }
 
     private static Stream<List<Integer>> outOfRangeNumbers() {
