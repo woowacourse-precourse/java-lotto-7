@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.publishingLotto.model.Lotto;
 import lotto.view.Publishing_OutputTicketsView;
 import lotto.view.Purchasing_OutputView;
+import lotto.view.Winning_InputView;
 import lotto.winningLotto.WinningController;
 import lotto.publishingLotto.PublishingController;
 import lotto.purchasingLotto.PurchasingController;
@@ -17,20 +18,24 @@ public class LottoFactory {
     private final PaymentValidator paymentValidator;
     private final Purchasing_OutputView purchasingOutputView;
     private final Publishing_OutputTicketsView publishingOutputTicketsView;
+    private final Winning_InputView winningInputView;
 
     public LottoFactory() {
         this.purchasingInputView = new Purchasing_InputView();
         this.paymentValidator = new PaymentValidator();
         this.purchasingOutputView = new Purchasing_OutputView();
         this.publishingOutputTicketsView = new Publishing_OutputTicketsView();
+        this.winningInputView = new Winning_InputView();
     }
 
     public void create() {
         PurchasingController purchasingController = new PurchasingController(purchasingInputView, paymentValidator,
                 purchasingOutputView);
         int numberOfTickets = purchasingController.purchaseLottoTickets();
+
         PublishingController publishingController = new PublishingController(publishingOutputTicketsView, numberOfTickets);
         List<Lotto> LottoTickets = publishingController.publishLottoTickets();
-        WinningController winningController = new WinningController(LottoTickets);
+
+        WinningController winningController = new WinningController(LottoTickets, winningInputView);
     }
 }
