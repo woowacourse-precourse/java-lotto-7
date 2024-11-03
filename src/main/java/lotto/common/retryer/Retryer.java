@@ -1,6 +1,6 @@
-package lotto.util.retryer;
+package lotto.common.retryer;
 
-import lotto.exception.CustomException;
+import lotto.common.exception.CustomException;
 
 import java.util.function.Supplier;
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.common.retryer.Retryer;
 import lotto.model.Lottos;
 import lotto.model.Score;
 import lotto.model.WinningLotto;
@@ -7,7 +8,6 @@ import lotto.model.number.LottoNumber;
 import lotto.model.number.LottoNumbers;
 import lotto.model.number_generator.RandomNumberGenerator;
 import lotto.model.shop.LottoShop;
-import lotto.util.retryer.Retryer;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 import lotto.view.response.LottoProfitResponse;

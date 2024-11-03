@@ -1,6 +1,6 @@
 package lotto.model.exception;
 
-import lotto.exception.CustomException;
+import lotto.common.exception.CustomException;
 
 public final class LottoNumberInvalidException extends IllegalArgumentException implements CustomException {
 
