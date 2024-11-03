@@ -63,5 +63,12 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1-45 사이의 정수여야 합니다.");
             }
         }
+
+        // 4-3. 입력된 모든 숫자가 서로 다른지 확인
+        for (int winningNumber : winningNumbers) {
+            if (Collections.frequency(winningNumbers, winningNumber) != 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
+            }
+        }
     }
 }
