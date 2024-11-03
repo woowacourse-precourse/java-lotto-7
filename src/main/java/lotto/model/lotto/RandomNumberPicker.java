@@ -1,10 +1,13 @@
 package lotto.model.lotto;
 
+import static lotto.model.lotto.LotteryRule.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomNumberPicker {
     public static List<Integer> pickAscendingNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTERY_NUMBER, MAX_LOTTERY_NUMBER, LOTTERY_NUMBER_COUNT);
     }
 }

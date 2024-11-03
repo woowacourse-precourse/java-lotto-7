@@ -25,7 +25,7 @@ public class LottoMachine {
         for (Lotto lotto : lottos.getLottos()) {
             int matchingWinnerNumberAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
             boolean matchesBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
-            WinningRank winningRank = WinningRank.fromMatchingAmount(matchingWinnerNumberAmount, matchesBonusNumber);
+            WinningRank winningRank = WinningRank.determineRank(matchingWinnerNumberAmount, matchesBonusNumber);
             winningResults.add(winningRank);
         }
         return winningResults;

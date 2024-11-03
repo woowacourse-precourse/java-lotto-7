@@ -15,7 +15,7 @@ public class WinningRankTest {
         int bonusNumber = 7;
         boolean matchesBonusNumber = numbers.contains(bonusNumber);
 
-        Assertions.assertThat(WinningRank.fromMatchingAmount(matchingAmount, matchesBonusNumber))
+        Assertions.assertThat(WinningRank.determineRank(matchingAmount, matchesBonusNumber))
                 .isEqualTo(expectedWinningRank);
     }
     static Stream<Object[]> lottoWithWinningRankProvider() {
