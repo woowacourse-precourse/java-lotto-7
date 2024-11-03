@@ -1,6 +1,4 @@
-package lotto;
-
-import lotto.Model.Lotto;
+package lotto.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,59 +23,59 @@ public class MyInfo {
         this.myReturn = 0.0;
     }
 
-    public Integer getLottoCount(){
+    public Integer getLottoCount() {
         return this.lottoCount;
     }
 
-    public List<Lotto> getMyLottos(){
+    public List<Lotto> getMyLottos() {
         return this.myLottos;
     }
 
-    public Integer getPurchasePrice(){
+    public Integer getPurchasePrice() {
         return this.purchasePrice;
     }
 
-    public Integer getBonusNumber(){
+    public Integer getBonusNumber() {
         return this.bonusNumber;
     }
 
-    public Lotto getAnswerLotto(){
+    public Lotto getAnswerLotto() {
         return this.answerLotto;
     }
 
-    public Integer getRevenue(){
+    public Integer getRevenue() {
         return this.revenue;
     }
 
-    public Double getMyReturn(){
+    public Double getMyReturn() {
         return this.myReturn;
     }
 
-    public void setMyLottos(List<Lotto> myLottos){
+    public void setMyLottos(List<Lotto> myLottos) {
         this.myLottos = myLottos;
     }
 
-    public void setAnswerLotto(Lotto answerLotto){
+    public void setAnswerLotto(Lotto answerLotto) {
         this.answerLotto = answerLotto;
     }
 
-    public void setBonusNumber(Integer bonusNumber){
+    public void setBonusNumber(Integer bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public void setLottoCount(Integer lottoCount){
+    public void setLottoCount(Integer lottoCount) {
         this.lottoCount = lottoCount;
     }
 
-    public void setMyReturn(Double myReturn){
+    public void setMyReturn(Double myReturn) {
         this.myReturn = myReturn;
     }
 
-    public void setPurchasePrice(Integer purchasePrice){
+    public void setPurchasePrice(Integer purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public void setRevenue(Integer revenue){
+    public void setRevenue(Integer revenue) {
         this.revenue = revenue;
     }
 }
