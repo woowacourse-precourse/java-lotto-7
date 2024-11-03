@@ -23,7 +23,7 @@ public class WinBonusController {
         return winNumbers;
     }
 
-    public List<Integer> inputNumbers(List<String> winningNumbers) {
+    private List<Integer> inputNumbers(List<String> winningNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String num : winningNumbers) {
             numbers.add(Integer.parseInt(num));

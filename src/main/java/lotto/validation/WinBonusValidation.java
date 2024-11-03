@@ -20,7 +20,7 @@ public class WinBonusValidation {
         isDuplicate(winningNumbers);
     }
 
-    public static int isNumber(String number) {
+    private static int isNumber(String number) {
         int num = COUNT_ZERO;
         try {
             num = Integer.parseInt(number);
@@ -30,19 +30,19 @@ public class WinBonusValidation {
         return num;
     }
 
-    public static void isInRange(int num) {
+    private static void isInRange(int num) {
         if (num < NUM_MIN || num > NUM_MAX) {
             WinBonusException.exceptionWinningRange();
         }
     }
 
-    public static void isSize(List<String> winningNumbers) {
+    private static void isSize(List<String> winningNumbers) {
         if (winningNumbers.size() != WINNING_SIZE) {
             WinBonusException.exceptionWinningSize();
         }
     }
 
-    public static void isDuplicate(List<String> winningNumbers) {
+    private static void isDuplicate(List<String> winningNumbers) {
         HashSet<String> numberSet = new HashSet<>();
         for (String num : winningNumbers) {
             numberSet.add(num);
@@ -60,7 +60,7 @@ public class WinBonusValidation {
         }
     }
 
-    public static int isNumberBonus(String bonus) {
+    private static int isNumberBonus(String bonus) {
         int num = COUNT_ZERO;
         try {
             num = Integer.parseInt(bonus);
@@ -70,13 +70,13 @@ public class WinBonusValidation {
         return num;
     }
 
-    public static void isInRangeBonus(int numBonus) {
+    private static void isInRangeBonus(int numBonus) {
         if (numBonus < NUM_MIN || numBonus > NUM_MAX) {
             WinBonusException.exceptionBonusRange();
         }
     }
 
-    public static void isDuplicateBonus(int num, int numBonus) {
+    private static void isDuplicateBonus(int num, int numBonus) {
         if (num == numBonus) {
             WinBonusException.exceptionBonusDuplicate();
         }

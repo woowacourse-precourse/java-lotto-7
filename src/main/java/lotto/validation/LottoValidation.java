@@ -20,19 +20,19 @@ public class LottoValidation {
         isAscending(numbers);
     }
 
-    public static void isInRange(int num) {
+    private static void isInRange(int num) {
         if (num < NUM_MIN || num > NUM_MAX) {
             LottoException.exceptionLottoRange();
         }
     }
 
-    public static void isSizeSix(List<Integer> numbers) {
+    private static void isSizeSix(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             LottoException.exceptionLottoSize();
         }
     }
 
-    public static void isDuplicate(List<Integer> numbers) {
+    private static void isDuplicate(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>();
         for (int num : numbers) {
             numberSet.add(num);
@@ -42,14 +42,14 @@ public class LottoValidation {
         }
     }
 
-    public static void isAscending(List<Integer> numbers) {
+    private static void isAscending(List<Integer> numbers) {
         int index = COUNT_ONE;
         for (; index < LOTTO_SIZE; index++) {
             compareNum(numbers, index);
         }
     }
 
-    public static void compareNum(List<Integer> numbers, int index) {
+    private static void compareNum(List<Integer> numbers, int index) {
         if (numbers.get(index - COUNT_ONE) > numbers.get(index)) {
             LottoException.exceptionLottoAscending();
         }

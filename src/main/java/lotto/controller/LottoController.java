@@ -14,19 +14,23 @@ public class LottoController {
         this.outputLottosView = new OutputLottosView();
     }
 
-    public static List<Lotto> setLottos(int amount) {
-        int tickets = TicketsService.purchaseTickets(amount);
+    public List<Lotto> setLottos(int amount) {
+        int tickets = changeTickets(amount);
         List<Lotto> lottos = LottosService.lottos(tickets);
         outputTickets(tickets);
         outputLottos(lottos);
         return lottos;
     }
 
-    public static void outputTickets(int tickets) {
+    public int changeTickets(int amount) {
+        return TicketsService.purchaseTickets(amount);
+    }
+
+    private static void outputTickets(int tickets) {
         OutputLottosView.outputTickets(tickets);
     }
 
-    public static void outputLottos(List<Lotto> lottos) {
+    private static void outputLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             OutputLottosView.outputLottos(lotto.lottoValue());
         }

@@ -23,7 +23,7 @@ public class LottosService {
         return lottos;
     }
 
-    public static List<Integer> generateNumbers() {
+    private static List<Integer> generateNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUM_MIN, NUM_MAX, LOTTO_SIZE);
         return numbers;
     }

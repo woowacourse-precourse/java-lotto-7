@@ -13,7 +13,7 @@ public class AmountValidation {
         isOverZero(amount);
     }
 
-    public static int isNumber(String purchaseAmount) {
+    private static int isNumber(String purchaseAmount) {
         int amount = COUNT_ZERO;
         try {
             amount = Integer.parseInt(purchaseAmount);
@@ -23,13 +23,13 @@ public class AmountValidation {
         return amount;
     }
 
-    public static void isThousand(int amount) {
+    private static void isThousand(int amount) {
         if (amount % TICKET_COST != COUNT_ZERO) {
             AmountException.exceptionAmountThousand();
         }
     }
 
-    public static void isOverZero(int amount) {
+    private static void isOverZero(int amount) {
         if (amount <= COUNT_ZERO) {
             AmountException.exceptionAmountZero();
         }
