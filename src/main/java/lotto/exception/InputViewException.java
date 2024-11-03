@@ -9,6 +9,7 @@ public class InputViewException {
         validateIfMoneyPositive(inputMoney);
         validateIfMoneyMultipleOfThousand(inputMoney);
         validateIfMoneyStartsWithZero(inputMoney);
+        validateIfInputContainsWhitespace(inputMoney);
     }
 
     private void validateMoneyFormat(String inputMoney){
@@ -39,6 +40,13 @@ public class InputViewException {
         if (!inputMoney.equals(String.valueOf(Integer.parseInt(inputMoney)))) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBER_CANNOT_START_WITH_ZERO);
+        }
+    }
+
+    private void validateIfInputContainsWhitespace(String inputMoney) {
+        if (inputMoney.contains(" ")) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_CONTAINS_WHITE_SPACE);
         }
     }
 
