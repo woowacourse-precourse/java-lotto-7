@@ -17,7 +17,6 @@ public enum ExceptionMessage {
             LottoConfig.LOTTO_NUMBER_END_INCLUSIVE)),
     ;
 
-
     private final String message;
 
     ExceptionMessage(String message) {
