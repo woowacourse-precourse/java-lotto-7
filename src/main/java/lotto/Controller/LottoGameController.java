@@ -1,5 +1,7 @@
 package lotto.Controller;
 
+import lotto.DTO.PaymentPriceDTO;
+import lotto.DTO.RandomLottoNumberDTO;
 import lotto.Service.LottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -16,6 +18,10 @@ public class LottoGameController {
     }
 
     public void gameStart() {
-        inputView.inputPaymentPrice();
+        PaymentPriceDTO paymentPriceDTO = inputView.inputPaymentPrice();
+
+        RandomLottoNumberDTO randomLottoNumberDTO = lottoService.purchaseLotto(paymentPriceDTO);
+
+        outputView.outputRandomLottoNumber(randomLottoNumberDTO);
     }
 }
