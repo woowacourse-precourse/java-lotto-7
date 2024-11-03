@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMessage.INVALID_PRICE_INPUT;
+
+import static lotto.enums.Error.INVALID_PRICE_INPUT;
 
 public class LottoPrice {
     private final Integer lottoPrice;

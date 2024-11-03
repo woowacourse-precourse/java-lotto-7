@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.console.ConsoleInput;
 import lotto.domain.*;
+import lotto.enums.InputType;
 import lotto.util.LottoPrinter;
 
 public class LottoGameSetter {
@@ -24,7 +25,7 @@ public class LottoGameSetter {
 
         while(true) {
             try {
-                bonusNumber = BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
+                bonusNumber = BonusNumber.of(ConsoleInput.getInput(InputType.BONUS_NUMBER), winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 LottoPrinter.printError(e);
@@ -39,7 +40,7 @@ public class LottoGameSetter {
 
         while(true) {
             try{
-                lotto = Lotto.from(ConsoleInput.getWinningNumbers());
+                lotto = Lotto.from(ConsoleInput.getInput(InputType.WINNING_NUMBERS));
                 break;
             } catch (IllegalArgumentException e) {
                 LottoPrinter.printError(e);
@@ -54,7 +55,7 @@ public class LottoGameSetter {
 
         while(true) {
             try {
-                lottoPrice = LottoPrice.valueOf(ConsoleInput.getTotalPrice());
+                lottoPrice = LottoPrice.valueOf(ConsoleInput.getInput(InputType.TOTAL_PRICE));
                 break;
             } catch (IllegalArgumentException e) {
                 LottoPrinter.printError(e);

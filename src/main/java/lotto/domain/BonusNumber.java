@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.enums.ErrorMessage.INVALID_BONUS_NUMBER;
+import static lotto.enums.Error.INVALID_BONUS_NUMBER;
 
 public class BonusNumber {
 

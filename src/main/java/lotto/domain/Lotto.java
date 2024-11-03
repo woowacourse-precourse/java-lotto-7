@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static lotto.enums.ErrorMessage.INVALID_LOTTO_NUMBER;
+import static lotto.enums.Error.INVALID_LOTTO_NUMBER;
 
 public class Lotto {
     private final Set<LottoNumber> lottoNumbers;
