@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class BonusNumberTest {
     @Test
     void 객체생성_테스트() {
         Number number = Number.of(9);
-        WinningNumbers winningNumbers = WinningNumbers.of(Lotto.of(numbers));
+        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
 
         BonusNumber bonusNumber = BonusNumber.valueOf(winningNumbers, number);
 
@@ -35,7 +34,7 @@ class BonusNumberTest {
     @Test
     void 중복_숫자_입력_예외() {
         Number number = Number.of(1);
-        WinningNumbers winningNumbers = WinningNumbers.of(Lotto.of(numbers));
+        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
 
         assertThatThrownBy(() -> BonusNumber.valueOf(winningNumbers, number))
                 .isInstanceOf(IllegalArgumentException.class)

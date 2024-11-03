@@ -53,7 +53,7 @@ class LottoTest {
     void 해당_로또_번호에_당첨_번호가_포함된_개수_테스트(Lotto lotto, int expected) {
         WinningNumbers winningNumbers = createWinningNumbers();
 
-        assertThat(lotto.countMatchingNumbers(winningNumbers.getWinningNumbers()))
+        assertThat(lotto.countMatchingNumbers(winningNumbers))
                 .isEqualTo(expected);
     }
 
@@ -89,7 +89,7 @@ class LottoTest {
 
     private WinningNumbers createWinningNumbers() {
         return WinningNumbers.of(
-                Lotto.of(List.of(1, 2, 3, 4, 5, 6)));
+                List.of(1, 2, 3, 4, 5, 6));
     }
 
     private BonusNumber createBonusNumber() {
