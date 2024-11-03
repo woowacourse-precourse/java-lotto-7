@@ -46,7 +46,7 @@ class MoneyTest {
 
     @Test
     @DisplayName("숫자가 아닌 값으로 Money를 생성하면 예외가 발생한다.")
-    void should_ThrowException_When_GivenNonNumericValue() {
+    void should_ThrowException_When_GivenInvalidFormat() {
         // given
         String value = "1000wooteco";
         // when, then
