@@ -14,8 +14,7 @@ public class OutputView {
     private static final String SIX_MATCH_MESSAGE = "6개 일치 (2,000,000,000원) - %d개";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    private static final String NOT_DIVISIBLE_ERROR_MESSAGE = "[ERROR] 금액은 1,000원으로 나누어 떨어져야 합니다.";
-    private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
+    private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
 
     public static void notifyEnterMoneyToBuy() {
         System.out.println(ENTER_MONEY_MESSAGE);
@@ -46,11 +45,7 @@ public class OutputView {
         System.out.printf((PROFIT_RATE_MESSAGE) + "%n", profitRate);
     }
 
-    public static void printNotDivisibleByThousandError() {
-        System.out.println(NOT_DIVISIBLE_ERROR_MESSAGE);
-    }
-
-    public static void printNumberFormatError() {
-        System.out.println(NUMBER_FORMAT_ERROR_MESSAGE);
+    public static void printErrorMessage(String errorMassage) {
+        System.out.println(DEFAULT_ERROR_MESSAGE + errorMassage);
     }
 }

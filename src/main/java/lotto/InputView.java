@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.message.ErrorMessage;
 
 public class InputView {
     public int getMoneyToBuy() {
@@ -10,7 +11,7 @@ public class InputView {
                 String input = Console.readLine();
                 return validateMoneyToBuy(input);
             } catch (Exception e) {
-                // 다시 재입력 받도록
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -19,15 +20,11 @@ public class InputView {
         try {
             int moneyToBuy = Integer.parseInt(input); // 숫자가 아닌 경우 NumberFormatException 발생
             if (moneyToBuy % 1000 != 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_ERROR_MESSAGE.getMessage());
             }
             return moneyToBuy;
         } catch (NumberFormatException e) {
-            OutputView.printNumberFormatError();
-            throw e;
-        } catch (IllegalArgumentException e) {
-            OutputView.printNotDivisibleByThousandError();
-            throw e;
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage(), e);
         }
     }
 }
