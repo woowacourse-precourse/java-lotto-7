@@ -7,7 +7,9 @@ import static lotto.domain.Winning.NONE;
 import static lotto.domain.Winning.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,6 +51,23 @@ class WinningTest {
         return Stream.of(
                 Arguments.of(List.of(4, 5, 3, 6, 1), List.of(FOURTH, THIRD, FIFTH, FIRST, NONE)),
                 Arguments.of(List.of(0, 1, 2, 0), List.of(NONE, NONE, NONE, NONE))
+        );
+    }
+
+    @DisplayName("각 당첨 등수의 당첨 개수에 따라 총 상금을 계산한다.")
+    @ParameterizedTest
+    @MethodSource
+    void calculateTotalPrizeOf(Map<Winning, Integer> winningCounts, BigInteger expected) {
+        BigInteger actual = Winning.tellTotalPrize(winningCounts);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> calculateTotalPrizeOf() {
+        return Stream.of(
+                Arguments.of(Map.of(FIRST, 0, THIRD, 0, FOURTH, 0, FIFTH, 0, NONE, 0), new BigInteger("0")),
+                Arguments.of(Map.of(FIRST, 0, THIRD, 3, FOURTH, 1, FIFTH, 1, NONE, 0), new BigInteger("4555000")),
+                Arguments.of(Map.of(FIRST, 1, THIRD, 0, FOURTH, 2, FIFTH, 5, NONE, 10), new BigInteger("2000125000"))
         );
     }
 }

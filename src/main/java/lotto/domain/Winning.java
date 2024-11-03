@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -63,5 +65,17 @@ public enum Winning {
 
     private static boolean isNone(int condition) {
         return NONE.condition >= condition;
+    }
+
+    public static BigInteger tellTotalPrize(Map<Winning, Integer> winningCounts) {
+        return winningCounts.entrySet().stream()
+                .map(Winning::calculatePrizeOf)
+                .reduce(BigInteger.ZERO, BigInteger::add);
+    }
+
+    private static BigInteger calculatePrizeOf(Entry<Winning, Integer> winningCount) {
+        Winning winning = winningCount.getKey();
+        BigInteger count = BigInteger.valueOf(winningCount.getValue());
+        return winning.prize.multiply(count);
     }
 }
