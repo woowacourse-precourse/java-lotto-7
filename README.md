@@ -386,3 +386,24 @@
 1. 로또 가격 변경
 2. 보너스 번호 수 증가
 3. 수익률 계산 방식 변경
+
+## 📊 클래스 다이어그램 (View클래스,Enum클래스,상수 관리하는 클래스 생략)
+### 클래스 간의 관계 설명
+<img src="https://github.com/user-attachments/assets/cf2a3b9e-2a8c-4b00-a319-6849a1b6327b" alt="클래스 간의 관계 설명" width="600"/>
+
+### Lotto클래스와 Lottos클래스의 관계
+<img src="https://github.com/user-attachments/assets/b9d767dd-25ec-45cc-bbc1-0117ce879c48" alt="Lotto클래스와 Lottos클래스의 관계" width="600"/>
+
+### WinningNumbers클래스와 WinningStatistic클래스의 관계
+<img src="https://github.com/user-attachments/assets/c684dc4a-6ecb-41ca-89d6-682cd28d1561" alt="WinningNumbers클래스와 WinningStatistic클래스의 관계" width="800"/>
+
+### Money클래스와 TotalPrice클래스의 관계
+<img src="https://github.com/user-attachments/assets/9f7bec60-53fa-45cb-987e-1bc22cc91068" alt="Money클래스와 TotalPrice클래스의 관계" width="800"/>
+
+### Model클래스들과 메인Controller 클래스와의 관계
+<img src="https://github.com/user-attachments/assets/77417b10-1d5e-4836-90f7-58a1a8696b2e" alt="Model클래스들과 메인Controller 클래스와의 관계" width="700"/>
+
+
+
+
+
