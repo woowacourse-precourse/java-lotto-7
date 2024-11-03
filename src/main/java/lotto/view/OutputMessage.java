@@ -12,7 +12,7 @@ public enum OutputMessage {
     SHOW_SEPARATOR_LINE("---"),
     SHOW_MATCH_RESULT("%d개 일치 (%,d원) - %d개"),
     SHOW_MATCH_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    SHOW_TOTAL_PROFIT("총 수익률은 %.2f입니다.");
+    SHOW_TOTAL_PROFIT("총 수익률은 %.2f%%입니다.");
 
     private final String message;
 
