@@ -31,6 +31,7 @@ public class LottoController {
 
         LottoManager lottoManager = new LottoManager(createWinningLotto(), getBonusNumber());
         Map<LottoWinnerPrize, Integer> prizeCount = lottoManager.getWinningPrizes(purchasedLotto.getLottos());
+        printPrize(prizeCount);
     }
 
     private int getPurchaseAmount() {
@@ -75,5 +76,18 @@ public class LottoController {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE_INT.getMessage());
         }
     }
+
+    private void printPrize(Map<LottoWinnerPrize, Integer> prizeCount) {
+        OutputView.promptWINNING_STATISTICS();
+        List<LottoWinnerPrize> result = prizeCount.keySet()
+                .stream()
+                .sorted(Comparator.comparingInt(LottoWinnerPrize::getPrize))
+                .toList();
+        for (LottoWinnerPrize prize : result) {
+            int count = prizeCount.get(prize);
+            OutputView.printPrizeCount(prize, count);
+        }
+    }
+
 
 }
