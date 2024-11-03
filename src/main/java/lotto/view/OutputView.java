@@ -1,7 +1,8 @@
 package lotto.view;
 
 public class OutputView {
-    public static void printLottoCount(int lottoCount) {
+    public void printLottoCount(int lottoCount) {
+        System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", lottoCount);
     }
 

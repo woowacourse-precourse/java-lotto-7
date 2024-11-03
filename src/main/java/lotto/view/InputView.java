@@ -19,15 +19,15 @@ public class InputView {
         }
     }
 
-    public static String getPurchaseAmount() {
+    public String getPurchaseAmount() {
         return getInput(PURCHASE_AMOUNT_PROMPT);
     }
 
-    public static String getWinningNumberInput() {
+    public String getWinningNumberInput() {
         return getInput(WINNING_NUMBER_PROMPT);
     }
 
-    public static String getBonusNumberInput() {
+    public String getBonusNumberInput() {
         return getInput(BONUS_NUMBER_PROMPT);
     }
 }
