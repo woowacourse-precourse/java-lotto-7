@@ -11,7 +11,7 @@ public enum ErrorMessage {
     EMPTY_WINNING_NUMBERS("[ERROR] 당첨 번호는 비어있을 수 없습니다."),
     INVALID_DELIMITER("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다."),
     INVALID_WINNING_NUMBERS_COUNT("[ERROR] 당첨 번호는 6개여야 합니다."),
-    NON_NUMERIC_WINNING_NUMBER("[ERROR] 딩첨 번호는 숫자만 입력 가능합니다."),
+    NON_NUMERIC_WINNING_NUMBER("[ERROR] 당첨 번호는 숫자만 입력 가능합니다."),
     WINNING_NUMBER_OUT_OF_RANGE("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다."),
     DUPLICATE_WINNING_NUMBERS("[ERROR] 당첨 번호는 중복될 수 없습니다."),
     EMPTY_BONUS_NUMBER("[ERROR] 보너스 번호는 비어있을 수 없습니다."),
