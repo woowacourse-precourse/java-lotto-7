@@ -11,7 +11,7 @@ public record LottoNumber(int number) {
         validate(number);
     }
 
-    public static LottoNumber from(int number) {
+    public static LottoNumber from(final int number) {
         return new LottoNumber(number);
     }
 

@@ -9,7 +9,7 @@ public record WinningNumbers(Lotto lotto, LottoNumber bonusNumber) {
         validate(lotto, bonusNumber);
     }
 
-    public static WinningNumbers of(List<Integer> numbers, int number) {
+    public static WinningNumbers of(final List<Integer> numbers, final int number) {
         return new WinningNumbers(Lotto.from(numbers), LottoNumber.from(number));
     }
 

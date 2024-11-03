@@ -11,7 +11,7 @@ public record Lotto(List<LottoNumber> numbers) {
         validate(numbers);
     }
 
-    public static Lotto from(List<Integer> intNumbers) {
+    public static Lotto from(final List<Integer> intNumbers) {
         List<LottoNumber> lottoNumbers = intNumbers.stream()
                 .map(LottoNumber::new)
                 .toList();
