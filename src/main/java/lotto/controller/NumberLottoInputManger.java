@@ -53,7 +53,7 @@ public class NumberLottoInputManger implements LottoInputManger {
     }
 
     private static void inputPriceIsNotBlank(String inputprice) {
-        if(inputprice.isBlank()){
+        if (inputprice.isBlank()) {
             throw new IllegalArgumentException(InputError.BLANK_INPUT_PRICE.getInstance());
         }
     }
@@ -118,8 +118,7 @@ public class NumberLottoInputManger implements LottoInputManger {
 
     /**
      * @param winningComponent
-     * @param inputBonusComponent
-     * 보너스 숫자에 대한 검증입니다.
+     * @param inputBonusComponent 보너스 숫자에 대한 검증입니다.
      */
     private BonusComponent validateInputBonusComponent(Lotto winningComponent, String inputBonusComponent) {
         bonusNumberIsNotBlank(inputBonusComponent);
