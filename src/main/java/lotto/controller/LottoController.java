@@ -26,7 +26,8 @@ public class LottoController {
         customer = new Customer(inputView.readPayAmount());
     }
     private void initializeLottoGame() {
-        lottoGame = new LottoGame(inputView.readGoldenNumbers(), inputView.readBonusNumber());
+        List<Integer> goldenNumbers = inputView.readGoldenNumbers();
+        lottoGame = new LottoGame(goldenNumbers, inputView.readBonusNumber(goldenNumbers));
     }
     public void run() {
         initializeCustomer();

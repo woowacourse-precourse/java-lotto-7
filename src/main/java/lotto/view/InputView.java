@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,8 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
             validateNumbersInRange(golden_numbers, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
+            validateListSize(golden_numbers);
+            validateDuplicate(golden_numbers);
             return golden_numbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -40,17 +43,20 @@ public class InputView {
         }
     }
 
-    public int readBonusNumber() {
+    public int readBonusNumber(List<Integer> golden_numbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String input_number = readLine().trim();
         try{
             validateStringToInteger(input_number);
             Integer bonus_number = Integer.parseInt(input_number);
             validateNumberInRange(bonus_number, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
+            List<Integer> all_numbers = new ArrayList<>(golden_numbers);
+            all_numbers.add(bonus_number);
+            validateDuplicate(all_numbers);
             return bonus_number;
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
-            return readBonusNumber();
+            return readBonusNumber(golden_numbers);
         }
     }
 }
