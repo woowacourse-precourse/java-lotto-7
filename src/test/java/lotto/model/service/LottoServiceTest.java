@@ -2,6 +2,8 @@ package lotto.model.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
+import lotto.model.dto.LottoStatisticsResponse;
 import lotto.model.dto.LottosResponse;
 import org.junit.jupiter.api.Test;
 
@@ -57,5 +59,21 @@ class LottoServiceTest {
 
         // then
         assertThat(result).isEqualTo("success");
+    }
+
+    @Test
+    void 당첨통계_수익률_반환_성공_테스트() {
+        // given
+        Integer customerId = lottoService.savePayment(VALID_PAYMENT);
+        lottoService.issueLottos(customerId);
+        lottoService.saveWinningLottos(VALID_WINNING_NUMBERS);
+
+        // when
+        LottoStatisticsResponse statisticsResponse = lottoService.statisticsWinningOfCustomerLottos(customerId);
+
+        // then
+        assertThat(statisticsResponse).isNotNull();
+        assertThat(statisticsResponse.statistics()).containsKeys("3", "4", "5", "5B", "6");
+        assertThat(statisticsResponse.rateOfRevenue()).isInstanceOf(BigDecimal.class);
     }
 }
