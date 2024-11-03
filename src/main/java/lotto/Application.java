@@ -1,5 +1,6 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
@@ -30,10 +31,9 @@ public class Application {
         }
     }
 
-    public static int makeLotto(int lotto_cost) {
+    public static void makeLotto(int lotto_cost) {
         for (int i = lotto_cost; i >= 0; i -= 1000) {
-            Lotto element;
-            element.pickRandNum();
+            Lotto element = new Lotto(pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(element);
         }
     }
