@@ -15,6 +15,10 @@ public class LottoPurchase {
         lottos.add(lotto);
     }
 
+    public int count() {
+        return lottos.size();
+    }
+
     public static LottoPurchase purchase(List<Lotto> lottos) {
         validate(lottos);
 
