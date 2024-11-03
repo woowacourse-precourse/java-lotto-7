@@ -1,9 +1,11 @@
 package lotto.view;
 
+import java.util.List;
+
 public interface InputView {
     String startLottoGameAndReadBuyingPrice();
 
-    String readWinningNumbers();
+    List<Integer> readWinningNumbers();
 
     String readBonusNumber();
 }
