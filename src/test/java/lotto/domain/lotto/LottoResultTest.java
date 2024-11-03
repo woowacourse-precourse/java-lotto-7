@@ -1,29 +1,35 @@
 package lotto.domain.lotto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.Rank;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import java.math.BigInteger;
+import java.util.HashMap;
+import lotto.domain.Investment;
+import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
 
-    @ParameterizedTest
-    @CsvSource({
-            "6, false, FIRST",
-            "5, true, SECOND",
-            "5, false, THIRD",
-            "4, false, FOURTH",
-            "3, false, FIFTH",
-            "2, false, MISS",
-            "1, false, MISS",
-            "0, false, MISS"
-    })
-    void testRankOf(int matchCount, boolean hasBonusNumber, Rank expectedRank) {
-        // when
-        Rank lottoResult = Rank.of(matchCount, hasBonusNumber);
+    @Test
+    void 수익률은_잘나와야_한다() {
+        //given
+        LottoResult lottoResult = new LottoResult(new HashMap<>(), BigInteger.valueOf(5000));
 
-        // then
-        assertEquals(expectedRank, lottoResult);
+        //when
+        Double profitRate = lottoResult.calculateReturnRate(new Investment(BigInteger.valueOf(8000)));
+
+        //then
+        assertThat(profitRate).isEqualTo(62.5);
+    }
+
+    @Test
+    void 수익률_계산_반올림() {
+        //given
+        LottoResult lottoResult = new LottoResult(new HashMap<>(), BigInteger.valueOf(8234));
+
+        //when
+        Double profitRate = lottoResult.calculateReturnRate(new Investment(BigInteger.valueOf(10000)));
+
+        //then
+        assertThat(profitRate).isEqualTo(82.3);
     }
 }
