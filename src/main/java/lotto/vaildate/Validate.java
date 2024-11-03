@@ -19,9 +19,10 @@ public class Validate {
 
     public static int parseIntegerValidate(String value) {
         try {
+            isValidEmpty(value);
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_ALLOWED);
+            throw new IllegalArgumentException(ONLY_NUMBER_INPUT_ALLOWED);
         }
     }
 
@@ -33,14 +34,22 @@ public class Validate {
     }
 
     public static int parseIntegerBonusValidate(String value, List<Integer> winningNumbers) {
+        isValidEmpty(value);
         int parsedValue = parseIntegerValidate(value);
         validateBonusNumber(parsedValue);
         bonusNumberDuplicateValidate(winningNumbers, parsedValue);
         return parsedValue;
     }
 
+    private static void isValidEmpty(String price) {
+        if (price == null || price.isEmpty()) {
+            throw new IllegalArgumentException(INPUT_PROMPT);
+        }
+    }
+
     private static boolean validPurchasePrice(int purchasePrice) {
-        return (purchasePrice % TICKET_PRICE_UNIT.value) != MINIMUM_NUMBER.value || purchasePrice < MINIMUM_NUMBER.value;
+        return (purchasePrice % TICKET_PRICE_UNIT.value) != MINIMUM_NUMBER.value
+                || purchasePrice < MINIMUM_NUMBER.value;
     }
 
     private static void validateWinningNumberCount(List<Integer> validNumbers) {
