@@ -7,6 +7,11 @@ import java.util.Map;
 
 public class Output {
 
+    public static final String ASK_BUY_AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String CONFIRM_BUY_AMOUNT = "%d개를 구매했습니다.";
+    public static final String ASK_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
+    public static final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
     public void write(String string) {
         System.out.println(string);
     }
@@ -30,7 +35,7 @@ public class Output {
         write("당첨 통계");
         write("---");
         map.forEach(this::writeDetailResult);
-        write("총 수익률 %.1f%%입니다.", roi);
+        write("총 수익률은 %.1f%%입니다.", roi);
     }
 
     private void writeDetailResult(LottoPrize lottoPrize, Integer result) {
