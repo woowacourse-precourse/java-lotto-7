@@ -41,15 +41,19 @@ public class Lottery {
     private LottoResult calculateLottoResult() {
         LottoResult result = new LottoResult();
         for (Lotto lotto : drawnLottos) {
-            int matchingCount = lotto.countMatchingNumber(winningLotto);
-            boolean isBonus = lotto.doesMatchBonusNumber(bonusNumber);
-            Optional<LottoRank> rank = LottoRank.findRank(matchingCount, isBonus);
+            Optional<LottoRank> rank = getRank(lotto);
             if (rank.isEmpty()) {
                 continue;
             }
             result.add(rank.get());
         }
         return result;
+    }
+
+    private Optional<LottoRank> getRank(final Lotto lotto) {
+        int matchingCount = lotto.countMatchingNumber(winningLotto);
+        boolean isBonus = lotto.doesMatchBonusNumber(bonusNumber);
+        return LottoRank.findRank(matchingCount, isBonus);
     }
 
     public LottoResult getLottoResult() {

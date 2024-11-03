@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import lotto.domain.lotto.Lottery;
 import lotto.domain.lotto.Lotto;
@@ -73,16 +75,12 @@ public class LottoController {
 
     private void getLottoResult(final LottoResult lottoResult) {
         outputView.showCommentForLottoResult();
-        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
-            LottoRank lottoRank = LottoRank.values()[i];
-            BigDecimal count = lottoResult.get(lottoRank);
-            outputView.showCommentForMatchingCount(lottoRank.getMatchingCount());
-            if (lottoRank == LottoRank.SECOND) {
-                outputView.showLottoResultForSecond(lottoRank.getAward(), count);
-                continue;
-            }
-            outputView.showLottoResult(lottoRank.getAward(), count);
-        }
+        Arrays.stream(LottoRank.values())
+                .sorted(Comparator.comparing(LottoRank::getMatchCount))
+                .forEach(lottoRank -> {
+                    BigDecimal count = lottoResult.get(lottoRank);
+                    outputView.showLottoResult(lottoRank, count);
+                });
     }
 
     private void calculateProfitRate(final BigDecimal profitRate) {

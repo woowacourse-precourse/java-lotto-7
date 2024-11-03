@@ -1,12 +1,10 @@
 package lotto.view.output;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
+import lotto.domain.lotto.LottoRank;
 import lotto.dto.LottoNumberDto;
 
 public class ConsoleOutputView implements OutputView {
-
-    private static final NumberFormat numberFormat = NumberFormat.getInstance();
 
     @Override
     public void showCommentForPurchasePrice() {
@@ -34,18 +32,9 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showCommentForMatchingCount(final int matchingCount) {
-        System.out.print(matchingCount + "개 일치");
-    }
-
-    @Override
-    public void showLottoResultForSecond(final BigDecimal award, final BigDecimal count) {
-        System.out.println(", 보너스 볼 일치 (" + numberFormat.format(award) + "원) - " + count + "개");
-    }
-
-    @Override
-    public void showLottoResult(final BigDecimal award, final BigDecimal count) {
-        System.out.println(" (" + numberFormat.format(award) + "원) - " + count + "개");
+    public void showLottoResult(final LottoRank lottoRank, final BigDecimal count) {
+        System.out.printf(lottoRank.getFormat() + System.lineSeparator(), lottoRank.getMatchCount(),
+                lottoRank.getAward(), count);
     }
 
     @Override
