@@ -20,7 +20,7 @@ public class LottoDrawingService {
     public List<Integer> drawWinningNumbers(String input) {
         inputValidator.validateWinningNumbersInput(input);
         String filteredComma = cleanConsecutiveCommas(input);
-        List<Integer> winningNumbers = trimWinningNumbers(splitByComma(filteredComma));
+        List<Integer> winningNumbers = trimWinningNumbers(splitStringByComma(filteredComma));
         inputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
@@ -37,7 +37,7 @@ public class LottoDrawingService {
                 .replaceAll(LEADING_TRAILING_COMMA_REGEX, EMPTY_STRING);
     }
 
-    public List<String> splitByComma(String input) {
+    public List<String> splitStringByComma(String input) {
         return Arrays.asList(input.split(SINGLE_COMMA)); // 쉼표로 분리한 후 리스트로 반환
     }
 

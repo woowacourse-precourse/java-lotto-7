@@ -106,7 +106,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_문자열분리메소드_테스트() {
         String input = "1,2,3,4,5,6";
-        List<String> result = lottoDrawingService.splitByComma(input);
+        List<String> result = lottoDrawingService.splitStringByComma(input);
         assertThat(result).containsExactly("1", "2", "3", "4", "5", "6");
     }
 
