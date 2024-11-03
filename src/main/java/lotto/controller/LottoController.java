@@ -20,6 +20,12 @@ public class LottoController {
             int amount = InputView.getPurcahseAmount();
             List<Lotto> userLottos = lottoService.purchase(amount);
             OutputView.purchase(userLottos);
+
+            // 당첨 번호를 입력 받음
+            String winningNumbersInput = InputView.getWinningNumbers();
+            Lotto winningNumbers = lottoService.parseLotto(winningNumbersInput);
+
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

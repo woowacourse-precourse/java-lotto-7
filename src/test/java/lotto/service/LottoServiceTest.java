@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoServiceTest {
 
@@ -39,4 +40,22 @@ class LottoServiceTest {
         // 금액이 부족하여 로또가 생성되지 않는지 확인
         assertEquals(0, lottos.size(), "로또 한 장의 가격보다 낮은 금액으로는 로또가 생성되지 않아야 합니다.");
     }
+
+    @Test
+    void 유효한_문자열_입력으로_로또_생성() {
+        String input = "1, 2, 3, 4, 5, 6";
+        Lotto lotto = lottoService.parseLotto(input);
+
+        // 생성된 로또 객체의 번호가 입력과 일치하는지 확인
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers(), "입력된 문자열에 따라 올바른 로또가 생성되어야 합니다.");
+    }
+
+    @Test
+    void 숫자가_아닌_값이_포함된_입력_예외_확인() {
+        String invalidInput = "1, 2, a, 4, 5, 6";
+
+        // 예외가 발생하는지 확인
+        assertThrows(IllegalArgumentException.class, () -> lottoService.parseLotto(invalidInput), "[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
+    }
+
 }

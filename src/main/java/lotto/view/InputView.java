@@ -10,4 +10,10 @@ public class InputView {
         Validator.purchaseAmount(input);
         return Integer.parseInt(input);
     }
+
+    public static String getWinningNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine().trim();
+    }
 }
