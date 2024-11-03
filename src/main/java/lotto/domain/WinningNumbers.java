@@ -35,7 +35,7 @@ public class WinningNumbers {
 		HashSet<Integer> winningNumbersSet = new HashSet<>(winningNumbers);
 
 		if (winningNumbersSet.size() != winningNumbers.size()) {
-			throw new IllegalArgumentException(DUPLICATION_WINNING_NUMBERS_NUMBERS.getComment());
+			throw new IllegalArgumentException(DUPLICATION_WINNING_NUMBERS.getComment());
 		}
 	}
 
