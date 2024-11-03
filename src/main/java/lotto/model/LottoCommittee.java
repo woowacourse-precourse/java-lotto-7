@@ -5,6 +5,11 @@ import java.util.List;
 
 public class LottoCommittee {
 
+    private static final int INITIAL_COUNT = 0;
+    private static final int LOOP_START_INDEX = 0;
+    private static final int DEFAULT_COUNT_ZERO = 0;
+    private static final int ONE = 1;
+
     private final List<Integer> winningNumber;
     private final int bonusNumber;
 
@@ -17,9 +22,9 @@ public class LottoCommittee {
         List<Integer> numbers = lotto.getNumbers();
         int size = numbers.size();
 
-        int matchingCount = 0;
+        int matchingCount = INITIAL_COUNT;
         boolean isBonusNumberMatching = false;
-        for (int i = 0; i < size; i++) {
+        for (int i = LOOP_START_INDEX; i < size; i++) {
             if (numbers.contains(winningNumber.get(i))) {
                 matchingCount++;
             }
@@ -37,7 +42,7 @@ public class LottoCommittee {
         lottos.forEach(
                 lotto -> {
                     Ranking ranking = calculateRanking(lotto);
-                    rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0) + 1);
+                    rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO) + ONE);
                 }
         );
         return rankingCountMap;
