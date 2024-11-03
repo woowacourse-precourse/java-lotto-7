@@ -55,6 +55,7 @@ public class LottoController {
 
     private void handleCreatedLottos(int count) {
         Lottos lottos = createLottosWithCount(count);
+        output.printLottoNumbers(lottos);
     }
 
     private Lottos createLottosWithCount(int count) {
