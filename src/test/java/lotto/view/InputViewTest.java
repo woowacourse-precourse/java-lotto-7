@@ -43,4 +43,16 @@ class InputViewTest {
         int purchaseAmount = InputView.getPurchaseAmount();
         assertEquals(5000, purchaseAmount);
     }
+
+    @Test
+    @DisplayName("잘못된 로또 구매 금액 입력 시 예외 메시지 출력")
+    void displayErrorMessageWhenPurchaseAmountIsInvalid() {
+        setInput("300\n1000\n");
+        InputView.getPurchaseAmount();
+        String output = outputStreamCaptor.toString().trim();
+
+        String[] messages = output.split("\n");
+        String lastMessage = messages[messages.length - 2];
+        assertEquals(ErrorMessage.INVALID_AMOUNT.getMessage(), lastMessage);
+    }
 }
