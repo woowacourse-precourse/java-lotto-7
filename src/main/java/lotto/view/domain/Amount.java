@@ -6,10 +6,9 @@ import lotto.view.global.exception.ErrorMessage;
 public class Amount {
     private Integer value;
 
-    public Amount(String amount) {
-        int value = Integer.parseInt(amount);
-        validateAmount(value);
-        this.value = value;
+    public Amount(Integer amount) {
+        validateAmount(amount);
+        this.value = amount;
     }
 
     private void validateAmount(Integer amount) {
