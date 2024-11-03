@@ -1,5 +1,40 @@
 # java-lotto-precourse
 
+# 프로젝트 구조
+
+```plaintext
+└── lotto
+    ├── Application.java
+    ├── controller
+    │   └── LottoController.java
+    ├── domain
+    │   ├── Lotto.java
+    │   ├── LottoGenerator.java
+    │   ├── LottoPrize.java
+    │   ├── LottoProfit.java
+    │   ├── LottoRank.java
+    │   ├── LottoTickets.java
+    │   ├── Money.java
+    │   ├── Rank.java
+    │   └── WinningLotto.java
+    ├── handler
+    │   ├── ConstantHandler.java
+    │   ├── ErrorHandler.java
+    │   ├── InputHandler.java
+    │   ├── OutputHandler.java
+    │   └── PatternHandler.java
+    └── view
+        ├── input
+        │   ├── InputBonusNumberView.java
+        │   ├── InputMoneyView.java
+        │   ├── InputView.java
+        │   └── InputWinningNumbersView.java
+        └── output
+            ├── OutputErrorMessageView.java
+            ├── OutputLottoTicketsView.java
+            └── OutputWinningStatisticView.java
+```
+
 ---
 
 # 구현할 기능 목록
