@@ -1,12 +1,15 @@
 package lotto.validate;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottosValidate {
 
-    public static boolean isValidRangeOfList(int index, int lottosTotalAmount) {
-        if (index >= 0 && index < lottosTotalAmount) {
-            return true;
-        }
+    public static boolean isAscendingNumber(List<Integer> list) {
+        List<Integer> ascendingList = new ArrayList<>(list);
+        Collections.sort(ascendingList);
 
-        return false;
+        return ascendingList.equals(list);
     }
 }
