@@ -6,6 +6,7 @@ public enum ErrorMessage {
     INVALID_AMOUNT_TYPE_ERROR("입력된 금액은 양의 정수여야 합니다."),
     INVALID_AMOUNT_RANGE_ERROR("입력된 금액은 올바른 범위 내에 있어야 합니다.");
 
+    private final static String PREFIX = "[ERROR]";
     private final String message;
 
     ErrorMessage(String message) {
@@ -13,6 +14,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return this.message;
+        return PREFIX + " " + this.message;
     }
 }
