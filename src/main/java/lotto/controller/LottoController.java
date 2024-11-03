@@ -25,28 +25,69 @@ public class LottoController {
     }
 
     public void run() {
-        MoneyDTO moneyDTO = inputView.readMoney();
-        LottoSeller seller = new LottoSeller();
-        List<Lotto> myLottos = seller.sell(moneyDTO);
+        List<Lotto> myLottos = buyLottos();
+        printMyLottos(myLottos);
+
+        WinningLotto winningLotto = readWinningLotto();
         System.out.println();
 
-        outputView.printLotto(myLottos.size());
-        outputView.printLottoDetail(BuyLottosDTO.from(myLottos));
-        System.out.println();
-
-        WinningLottoDTO winningLottoDTO = inputView.readWinningLottoNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningLottoDTO.numbers());
-        System.out.println();
-
-        BonusDTO bonusDTO = inputView.readBonus();
-        BonusNumber bonusNumber = new BonusNumber(bonusDTO.number());
+        BonusNumber bonusNumber = readBonusNumber();
         System.out.println();
 
         LottoBank lottoBank = new LottoBank();
         LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
 
+        printLottoResult(lottoResult);
+        double profitRate = lottoBank.calculateProfitRate(lottoResult, myLottos.size());
+        printProfitRate(profitRate);
+    }
+
+
+    private List<Lotto> buyLottos() {
+        try {
+            MoneyDTO moneyDTO = inputView.readMoney();
+            LottoSeller seller = new LottoSeller();
+            return seller.sell(moneyDTO);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return buyLottos();
+        }
+    }
+
+    private void printMyLottos(List<Lotto> myLottos) {
+        System.out.println();
+        outputView.printLotto(myLottos.size());
+        outputView.printLottoDetail(BuyLottosDTO.from(myLottos));
+        System.out.println();
+    }
+
+    private WinningLotto readWinningLotto() {
+        try {
+            WinningLottoDTO winningLottoDTO = inputView.readWinningLottoNumbers();
+            WinningLotto winningLotto = new WinningLotto(winningLottoDTO.numbers());
+            return winningLotto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWinningLotto();
+        }
+    }
+
+    private BonusNumber readBonusNumber() {
+        try {
+            BonusDTO bonusDTO = inputView.readBonus();
+            BonusNumber bonusNumber = new BonusNumber(bonusDTO.number());
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readBonusNumber();
+        }
+    }
+
+    private void printLottoResult(LottoResult lottoResult) {
         outputView.printLottoResult(lottoResult);
-        double profitRate = lottoBank.calculateProfitRate(lottoResult, moneyDTO.money());
+    }
+
+    private void printProfitRate(double profitRate) {
         outputView.printProfitRate(profitRate);
     }
 }
