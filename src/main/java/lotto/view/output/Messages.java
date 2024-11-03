@@ -3,7 +3,7 @@ package lotto.view.output;
 import static lotto.model.lotto.LotteryRule.LOTTERY_NUMBER_COUNT;
 
 import java.util.List;
-import lotto.model.winningResult.WinningRank;
+import lotto.model.winnerRank.WinnerRank;
 
 public class Messages {
     private static final String NUMBER_SEPERATOR = ", ";
@@ -26,11 +26,11 @@ public class Messages {
         return issuedLotto.toString();
     }
 
-    public static final String MATCHING_CONDITION(WinningRank winningRank) {
+    public static final String MATCHING_CONDITION(WinnerRank winnerRank) {
         StringBuilder matchingContidion = new StringBuilder(
-                String.format("%d개 일치", winningRank.getMatchingAmount())
+                String.format("%d개 일치", winnerRank.getMatchingAmount())
         );
-        if (winningRank == WinningRank.SECOND) {
+        if (winnerRank == WinnerRank.SECOND) {
             matchingContidion.append(", 보너스 볼 일치");
         }
         return matchingContidion.toString();

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.model.winnerRank.WinnerRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,11 +21,11 @@ public class WinningResultsTest {
     @Test
     @DisplayName("[success] 특정 등수에 해당하는 당첨 로또 개수를 1 증가시킨다.")
     void increaseLottoAmountOfWinningResultByWinningRank() {
-        defaultWinningResults.add(WinningRank.FIRST);
-        defaultWinningResults.add(WinningRank.FIRST);
-        defaultWinningResults.add(WinningRank.FIRST);
+        defaultWinningResults.add(WinnerRank.FIRST);
+        defaultWinningResults.add(WinnerRank.FIRST);
+        defaultWinningResults.add(WinnerRank.FIRST);
 
-        assertThat(defaultWinningResults.findLottoAmountByRank(WinningRank.FIRST))
+        assertThat(defaultWinningResults.findLottoAmountByRank(WinnerRank.FIRST))
                 .isEqualTo(3);
     }
 
@@ -34,7 +35,7 @@ public class WinningResultsTest {
         WinningResults winningResults = new WinningResults();
         List<WinningResult> winningResultList = winningResults.getWinningResults();
 
-        assertThatThrownBy(() -> winningResultList.add(new WinningResult(WinningRank.FAIL)))
+        assertThatThrownBy(() -> winningResultList.add(new WinningResult(WinnerRank.FAIL)))
                 .isInstanceOf(UnsupportedOperationException.class);
         assertThatThrownBy(() -> winningResultList.remove(0))
                 .isInstanceOf(UnsupportedOperationException.class);

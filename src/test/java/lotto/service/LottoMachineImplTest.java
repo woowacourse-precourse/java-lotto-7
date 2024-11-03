@@ -5,12 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.winnerRank.WinnerRankDeterminer;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.Lotto;
 import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
 import lotto.model.winningNumber.WinningNumber;
-import lotto.model.winningResult.WinningRank;
+import lotto.model.winnerRank.WinnerRank;
 import lotto.model.winningResult.WinningResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class LottoMachineImplTest {
-    private final LottoMachineImpl lottoMachineImpl = new LottoMachineImpl();
+    private final LottoMachineImpl lottoMachineImpl = new LottoMachineImpl(new WinnerRankDeterminer());
 
     WinningResults setUpDefaultWinningResults() {
         Lottos lottos = new Lottos(new ArrayList<>(Arrays.asList(
@@ -55,10 +56,10 @@ public class LottoMachineImplTest {
     @DisplayName("[success] 각 등수 별로 몇 개의 로또가 당첨되었는지 확인하여 WinningResults를 생성한다.")
     @CsvSource(value = {"FIRST:1", "SECOND:1", "THIRD:1", "FOURTH:1", "FIFTH:1", "FAIL:3"}
             , delimiter = ':')
-    void checkWinningResultsOfAllWinningRanks(WinningRank winningRank, int expectedLottoAmount) {
+    void checkWinningResultsOfAllWinningRanks(WinnerRank winnerRank, int expectedLottoAmount) {
         WinningResults winningResults = setUpDefaultWinningResults();
 
-        assertThat(winningResults.findLottoAmountByRank(winningRank))
+        assertThat(winningResults.findLottoAmountByRank(winnerRank))
                 .isEqualTo(expectedLottoAmount);
     }
 

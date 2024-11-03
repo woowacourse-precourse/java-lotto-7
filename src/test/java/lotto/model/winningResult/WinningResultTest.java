@@ -2,6 +2,7 @@ package lotto.model.winningResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.model.winnerRank.WinnerRank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class WinningResultTest {
 
     @BeforeEach
     void setUp() {
-        defaultWinningResult = new WinningResult(WinningRank.FIRST);
+        defaultWinningResult = new WinningResult(WinnerRank.FIRST);
     }
 
     @Test

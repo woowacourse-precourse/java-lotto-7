@@ -3,12 +3,12 @@ package lotto.view.output;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.winningResult.WinningRank;
+import lotto.model.winnerRank.WinnerRank;
 
 public class Sorter {
-    public static List<WinningRank> sortDescending(List<WinningRank> winningRanks) {
-        return winningRanks.stream()
-                .sorted(Comparator.comparing(WinningRank::getRank).reversed())
+    public static List<WinnerRank> sortDescending(List<WinnerRank> winnerRanks) {
+        return winnerRanks.stream()
+                .sorted(Comparator.comparing(WinnerRank::getRank).reversed())
                 .collect(Collectors.toList());
     }
 
