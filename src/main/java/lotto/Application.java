@@ -56,13 +56,21 @@ public class Application {
         outputLottoNumbers();
     }
 
+    public static void checkRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1부터 45까지만 입력가능합니다.");
+        }
+    }
+
     public static void checkLottoVaild(Set<String> uniqueNumbers) {
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
         }
         List<Integer> numbers = new ArrayList<Integer>();
         for (String e : uniqueNumbers) {
-            numbers.add(stringToNum(e));
+            int element = stringToNum(e);
+            checkRange(element);
+            numbers.add(element);
         }
         winningLotto = new Lotto(numbers);
     }
