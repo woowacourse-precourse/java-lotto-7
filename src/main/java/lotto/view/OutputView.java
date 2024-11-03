@@ -1,26 +1,27 @@
 package lotto.view;
 
-public enum OutputView {
-    PURCHASE_COUNT("%d개를 구매했습니다."),
-    WINNING_RESULT("당첨 통계\\n---\\n"),
-    DETAIL_RESULT("%d개 일치 (%,d)원 - %d개"),
-    RATE_OF_RETURN("총 수익률은 %.2f%%입니다.");
+public class OutputView {
 
-    private final String message;
-
-    OutputView(String message) {
-        this.message = message;
+    public void printPurchaseQuantity(int purchaseQuantity) {
+        System.out.printf("%d개를 구매했습니다.\n", purchaseQuantity);
     }
 
-    public void printMessage() {
-        System.out.println(message);
+    public void printWinningResult() {
+        System.out.println("당첨 통계\n---");
     }
 
-    public void printMessage(Object... args) {
-        System.out.println(String.format(message, args));
+    public void printDetailResult(int matchNumberCount, int prizeMoney, int winningQuantity, boolean isBonusNumber) {
+        if (!isBonusNumber) {
+            System.out.printf("%d개 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+        }
+        if (isBonusNumber) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+        }
     }
 
-    public void errorMessage(RuntimeException e) {
-        System.out.println(e.getMessage());
+    public void printRateOfReturn(int totalPrizeMoney, int purchaseMoney) {
+        double rateOfReturn = (double) (totalPrizeMoney / purchaseMoney) * 100;
+        System.out.printf("총 수익률은 %.1f%% 입니다.", rateOfReturn);
     }
+
 }
