@@ -105,11 +105,16 @@ class HandlerTest {
     // 총 수익률 예시
     double given = 62.5;
     String expect = "총 수익률은 62.5%입니다.";
+    String resultExam = "3개 일치 (5,000원) - 1개\n" +
+        "4개 일치 (50,000원) - 0개\n" +
+        "5개 일치 (1,500,000원) - 0개\n" +
+        "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
+        "6개 일치 (2,000,000,000원) - 0개";
 
     // 수익률 계산
-    double revenue = handler.calculateRevenue();
+    double revenue = handler.calculateRevenue(resultExam, input);
     // 수익률 계산 결과 조회
-    String actual = handler.getResult(handler.calculateRevenue());
+    String actual = handler.getResult(revenue);
     // 검증
     assertEquals(expect, actual);
   }

@@ -12,6 +12,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.view.Input;
@@ -61,10 +63,11 @@ public class Handler {
     return 0;
   }
   // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
-  public String compareNumbersResult(Lotto<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
+  public String compareNumbersResult(List<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
     String result = "";
     // 6개 일치
     if(first()) {
+
       // 어떻게 비교할 것인가 -> 반복문 vs 스트림
       result = FIRST.getMessage();
     }
@@ -95,14 +98,16 @@ public class Handler {
     // 수익률 = 당첨 금액 / 투입 금액 * 100
     // 결과 문자열에서 당첨 금액 추출
     int winningAmount = 0;
-    // "3개 일치 (5,000원) - 1개" 에서 5000만 추출
-    for(int i = 0; i < result.length(); i++) {
-      if(result.charAt(i) =='원') {
-        // 쉼표를 제외한 정수를 winningAmount에 할당
-        Arrays.stream(r)
-      }
+    // 정규식으로 "원" 앞에 있는 금액 추출
+    Pattern pattern = Pattern.compile("(\\d{1, 3}(,\\d{3})*)원");
+    Matcher matcher = pattern.matcher(result);
+
+    // mathcer 패턴과 일치하는 부분이 있는지 확인
+    if (matcher.find()) {
+      String amountString = matcher.group(1).replaceAll(",", "");
+      winningAmount = Integer.parseInt(amountString);
     }
-    revenue = (winningAmount / input.readAmount()) * 100;
+    revenue = (winningAmount / (double) input.readAmount()) * 100;
     // 입력값에서 투입 금액 추출
     return revenue;
   }
