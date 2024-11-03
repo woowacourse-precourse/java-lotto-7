@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 
 public class CheckingWinningService {
 
-    private List<Integer> getNumberOfMatches(List<Lotto> LottoTickets, List<Integer> winningNumbers) {
+    public List<Integer> getNumberOfMatches(List<Lotto> LottoTickets, List<Integer> winningNumbers) {
         return LottoTickets.stream()
                 .map(lotto -> (int) lotto.getNumbers().stream()
                         .filter(winningNumbers::contains)
@@ -14,7 +14,7 @@ public class CheckingWinningService {
                 .collect(Collectors.toList());
     }
 
-    private void checkBonusWinning(List<Lotto> LottoTickets, List<Integer> numberOfMatches, int bonusNumber) {
+    public void checkBonusWinning(List<Lotto> LottoTickets, List<Integer> numberOfMatches, int bonusNumber) {
         for (int i = 0; i < numberOfMatches.size(); i++) {
             if(numberOfMatches.get(i) == 5) {
                 numberOfMatches.set(i, matchBonusNumber(LottoTickets.get(i), bonusNumber));

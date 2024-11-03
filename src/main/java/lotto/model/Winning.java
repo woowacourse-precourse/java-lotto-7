@@ -3,17 +3,23 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.service.CheckingWinningService;
 
 public class Winning {
-    private List<Integer> winningNumbers;
+    private static String DELIMITER = ",";
 
-    public Winning(String inputWinningNumbers) {
-        //1~45 숫자 유효성 검사 추가
-        validateSplitting(inputWinningNumbers);
-        this.winningNumbers = splitWinningNumbers(inputWinningNumbers);
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
+    private final CheckingWinningService checkingWinningService;
+
+    public Winning(CheckingWinningService checkingWinningService) {
+        this.checkingWinningService = checkingWinningService;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumbers(String inputWinningNumbers) {
+        validateSplitting(inputWinningNumbers);
+        //1~45 숫자 유효성 검사 추가
+        this.winningNumbers = splitWinningNumbers(inputWinningNumbers);
         return winningNumbers;
     }
 
@@ -26,11 +32,10 @@ public class Winning {
         }
     }
 
-    // service로 분리할지 고민해봐
-    private List<Integer> splitWinningNumbers(String inputWinningNumbers) {
+    public List<Integer> splitWinningNumbers(String inputWinningNumbers) {
         List<Integer> winningNumbers = new ArrayList<>();
 
-        for (String winningNumber : inputWinningNumbers.split(",")) {
+        for (String winningNumber : inputWinningNumbers.split(DELIMITER)) {
             winningNumbers.add(Integer.valueOf(winningNumber)); //예외 확인 필요
         }
         Collections.sort(winningNumbers);
@@ -38,4 +43,13 @@ public class Winning {
         return winningNumbers;
     }
 
+    public int getBonusNumber(String inputBonusNumber) {
+        validateBonusNumber(inputBonusNumber);
+        this.bonusNumber = Integer.parseInt(inputBonusNumber);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(String inputBonusNumber) {
+        //1~45 숫자, winning과 중복 검사
+    }
 }
