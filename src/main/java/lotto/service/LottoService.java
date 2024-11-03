@@ -2,13 +2,15 @@ package lotto.service;
 
 import lotto.application.LottoDto;
 import lotto.application.LottoTicketsDto;
-import lotto.domain.*;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
+import lotto.domain.UserMoney;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.domain.MonetaryUnit.PERCENTAGE;
-import static lotto.domain.MonetaryUnit.ROUND_UP_TO_TWO_DECIMAL_PLACES;
 
 public class LottoService {
     public LottoTicketsDto createLottoTickets(int money) {
@@ -33,8 +35,7 @@ public class LottoService {
         double prizeSum = ranks.stream()
                 .mapToDouble(Rank::getPrize)
                 .sum();
-        int roundingUnit = ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit();
 
-        return (double) Math.round((prizeSum / userMoney) * PERCENTAGE.getUnit() * roundingUnit) / roundingUnit;
+        return (prizeSum / userMoney) * PERCENTAGE.getUnit();
     }
 }
