@@ -7,10 +7,7 @@ import lotto.domain.Result;
 import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoArgumentException;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserView {
@@ -28,12 +25,11 @@ public class UserView {
     }
 
     private static int getAmount() {
-        while (true) {
-            try {
-                return checkAmount(Console.readLine());
-            } catch (LottoArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return checkAmount(Console.readLine());
+        } catch (LottoArgumentException e) {
+            System.out.println(e.getMessage());
+            return getAmount();
         }
     }
 
@@ -76,12 +72,11 @@ public class UserView {
     }
 
     private static List<Integer> getWinNumbers() {
-        while (true) {
-            try {
-                return checkWinNumbers(Console.readLine());
-            } catch (LottoArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return checkWinNumbers(Console.readLine());
+        } catch (LottoArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinNumbers();
         }
     }
 
@@ -130,12 +125,11 @@ public class UserView {
     }
 
     private static int getBonusNumber(List<Integer> winNumbers) {
-        while (true) {
-            try {
-                return checkBonusNumbers(Console.readLine(), winNumbers);
-            } catch (LottoArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return checkBonusNumbers(Console.readLine(), winNumbers);
+        } catch (LottoArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(winNumbers);
         }
     }
 

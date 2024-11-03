@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     public void showLottoResult(int amount, List<Integer> winNumbers, int bonusNumber) {
-        Result result = Result.getInstance();
+        Result result = Result.getResult();
         lottoService.getLottoResult(result, winNumbers, bonusNumber);
         printLottoResult(result, amount);
     }

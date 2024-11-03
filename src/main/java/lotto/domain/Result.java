@@ -16,7 +16,7 @@ public class Result {
         winPrize = 0;
     }
 
-    public static Result getInstance() {
+    public static Result getResult() {
         return result;
     }
 

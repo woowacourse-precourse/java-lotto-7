@@ -66,7 +66,6 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private void updateLottoResult(Result result, int matchCount, boolean matchBonus) {
-        // try - catch?
         Optional<Ranking> optionalRanking = Ranking.findByMatchCountAndBonus(matchCount, matchBonus);
 
         if (optionalRanking.isPresent()) {
