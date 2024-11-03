@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.exception.LottoNumberDuplicateException;
-import lotto.exception.LottoNumberRangeException;
+import lotto.exception.lotto.LottoNumberDuplicateException;
+import lotto.exception.lotto.LottoNumberRangeException;
 import lotto.util.Limit;
 
 public class BonusNumber {

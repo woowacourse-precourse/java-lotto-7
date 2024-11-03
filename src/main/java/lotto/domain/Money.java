@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.exception.DivideMoneyException;
-import lotto.exception.MaximunMoneyException;
-import lotto.exception.ZeroMoneyException;
+import lotto.exception.money.DivideMoneyException;
+import lotto.exception.money.MaximunMoneyException;
+import lotto.exception.money.ZeroMoneyException;
 import lotto.util.Limit;
 
 public class Money {

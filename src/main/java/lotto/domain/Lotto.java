@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.exception.LottoNumberDuplicateException;
-import lotto.exception.LottoNumberRangeException;
-import lotto.exception.LottoNumberSizeException;
+import lotto.exception.lotto.LottoNumberDuplicateException;
+import lotto.exception.lotto.LottoNumberRangeException;
+import lotto.exception.lotto.LottoNumberSizeException;
 import lotto.util.Limit;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.exception.LottoInputFormatException;
+import lotto.exception.lotto.LottoInputFormatException;
 import lotto.exception.InputNumberFormatException;
 import lotto.util.Parser;
 
