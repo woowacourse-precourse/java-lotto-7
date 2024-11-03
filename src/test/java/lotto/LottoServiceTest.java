@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoServiceTest {
 
     private final static int MIN_COST = 1000;
-    private final static int MAX_COST = 100000;
     private LottoService lottoService;
     private Consumer consumer;
     private LottoRankManager lottoRankManager;
@@ -29,14 +29,14 @@ class LottoServiceTest {
         lottoPrize = LottoPrize.createLottoBonus(lottoPrize.getLottoPrizeNumbers(), 7);
     }
 
-    @DisplayName("로또 구매 테스트")
+    @DisplayName("로또 구매 실패 1000 미만")
     @Test
-    void 로또_구매_성공() {
+    void 로또_구매_실패_1000미만() {
         //when
-        lottoService.buyLottoes(consumer, MIN_COST);
+        Throwable throwable = assertThrows(IllegalArgumentException.class, () ->
+                lottoService.buyLottoes(consumer, MIN_COST - 100));
 
-        //then
-        assertEquals(2, consumer.getLottoes().size());
+        assertEquals(throwable.getMessage(), "");
     }
 
     @DisplayName("로또 랭크 계산 테스트")
