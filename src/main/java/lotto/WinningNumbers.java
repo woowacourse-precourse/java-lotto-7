@@ -72,5 +72,5 @@ public class WinningNumbers {
         }
         return counts;
     }
-    
+
 }
