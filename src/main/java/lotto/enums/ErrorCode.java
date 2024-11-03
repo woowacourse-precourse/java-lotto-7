@@ -6,7 +6,9 @@ public enum ErrorCode {
     LOTTO_PRICE_ERROR("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다."),
     LOTTO_NUMBER_COUNT_ERROR("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUMBER_RANGE_ERROR("[ERROR] 로또 번호는 1부터 45사이여야 합니다."),
-    LOTTO_NUMBER_DUPLICATE_ERROR("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+    LOTTO_NUMBER_DUPLICATE_ERROR("[ERROR] 로또 번호에 중복된 숫자가 있습니다."),
+    WINNING_NUMBER_TYPE_ERROR("[ERROR] 당첨 번호는 숫자여야 합니다."),
+    BONUS_NUMBER_TYPE_ERROR("[ERROR] 보너스 번호는 숫자여야 합니다.");
 
     private final String message;
 
