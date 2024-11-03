@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import static lotto.model.LottoPrizeCalculator.*;
-import static lotto.validation.PurchaseAmountValidation.*;
-import static lotto.validation.WinningNumberValidation.parseValidatedBonusNumber;
+import static lotto.validation.PurchaseAmountValidator.*;
+import static lotto.validation.WinningNumberValidator.parseValidatedBonusNumber;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
@@ -11,63 +11,66 @@ import java.util.Map;
 import lotto.model.LottoTickets;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
-import lotto.validation.WinningNumberValidation;
+import lotto.validation.WinningNumberValidator;
 
 
 public class LottoController {
 
     public void run() {
-        int attemptCount = getAttemptCount();
-        printPurchaseLottoCount(attemptCount);
+        int ticketCount = calculateTicketCount();
+        printPurchaseLottoCount(ticketCount);
 
-        LottoTickets lottoTickets = new LottoTickets(attemptCount);
-        WinningLotto winningLotto = createWinningLotto();
+        LottoTickets lottoTickets = new LottoTickets(ticketCount);
+        WinningLotto winningLotto = generateWinningLotto();
 
         Map<Prize, Integer> lottoResult = calculate(lottoTickets, winningLotto);
-        double profitRatio = calculateProfitRatio(attemptCount, getTotalAmount());
+        double profitRatio = calculateProfitRatio(ticketCount, getTotalAmount());
 
         printResultStatistics(lottoResult, profitRatio);
     }
 
-    private int getAttemptCount() {
+    private int calculateTicketCount() {
+        String purchaseAmount = requestPurchaseAmount();
+        return parseValidatedTicketCount(purchaseAmount);
+    }
+
+    private String requestPurchaseAmount() {
         printPurchaseAmountInputMessage();
         try {
-            String purchaseAmount = UserInput();
-            return parseValidatedLottoCount(purchaseAmount);
+            return userInput();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return getAttemptCount();
+            return requestPurchaseAmount();
         }
     }
 
-    private WinningLotto createWinningLotto() {
-        List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber(winningNumber);
+    private WinningLotto generateWinningLotto() {
+        List<Integer> winningNumber = requestWinningNumber();
+        int bonusNumber = requestBonusNumber(winningNumber);
         return new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private List<Integer> getWinningNumber() {
+    private List<Integer> requestWinningNumber() {
         printWinningNumberInputMessage();
         try {
-            String winningNumber = UserInput();
-            return WinningNumberValidation.parseValidatedWinningNumber(winningNumber);
+            String winningNumber = userInput();
+            return WinningNumberValidator.parseValidatedWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return getWinningNumber();
+            return requestWinningNumber();
         }
     }
 
-    private int getBonusNumber(List<Integer> winningNumber) {
+    private int requestBonusNumber(List<Integer> winningNumber) {
         printBonusNumberInputMessage();
         try {
-            String bonusNumber = UserInput();
+            String bonusNumber = userInput();
             return parseValidatedBonusNumber(bonusNumber, winningNumber);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return getBonusNumber(winningNumber);
+            return requestBonusNumber(winningNumber);
         }
     }
-
 
     private void printResultStatistics(Map<Prize, Integer> lottoResult, double profitRatio) {
         printWinningStatisticsMessage();

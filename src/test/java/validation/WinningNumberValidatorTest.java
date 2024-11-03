@@ -1,7 +1,7 @@
 package validation;
 
 import java.util.List;
-import lotto.validation.WinningNumberValidation;
+import lotto.validation.WinningNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 
 
-public class WinningNumberValidationTest {
+public class WinningNumberValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a,1", "a,b,c,d,e,f"})
@@ -19,7 +19,7 @@ public class WinningNumberValidationTest {
     @DisplayName("구매 금액이 null이거나 빈 값, 또는 문자가 입력될 때 예외 처리")
     void NullOrEmptyOrStringWinningNumberTest(String input) {
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedWinningNumber(input);
+            WinningNumberValidator.parseValidatedWinningNumber(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -29,7 +29,7 @@ public class WinningNumberValidationTest {
     @DisplayName("입력된 숫자가 6개가 아닐 때 예외 처리")
     void InvalidWinningNumberSizeTest(String input) {
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedWinningNumber(input);
+            WinningNumberValidator.parseValidatedWinningNumber(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -39,7 +39,7 @@ public class WinningNumberValidationTest {
     @DisplayName("입력된 숫자가 1~45사이의 숫자가 아닐 때 예외 처리")
     void InvalidWinningNumberRangeTest(String input) {
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedWinningNumber(input);
+            WinningNumberValidator.parseValidatedWinningNumber(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -49,7 +49,7 @@ public class WinningNumberValidationTest {
     @DisplayName("공백이 있어도 유효한 숫자면 예외를 발생시키지 않는다.")
     void ValidWinningNumberLengthTest(String input) {
         assertThatNoException().isThrownBy(() -> {
-            WinningNumberValidation.parseValidatedWinningNumber(input);
+            WinningNumberValidator.parseValidatedWinningNumber(input);
         });
     }
 
@@ -60,7 +60,7 @@ public class WinningNumberValidationTest {
     void InvalidBonusNumberTest(String input) {
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedBonusNumber(input, winningNumber);
+            WinningNumberValidator.parseValidatedBonusNumber(input, winningNumber);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -72,7 +72,7 @@ public class WinningNumberValidationTest {
     void DuplicateBonusNumberTest(String input) {
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> {
-            WinningNumberValidation.parseValidatedBonusNumber(input, winningNumber);
+            WinningNumberValidator.parseValidatedBonusNumber(input, winningNumber);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }

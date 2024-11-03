@@ -1,6 +1,6 @@
 package validation;
 
-import lotto.validation.PurchaseAmountValidation;
+import lotto.validation.PurchaseAmountValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 
-public class PurchaseAmountValidationTest {
+public class PurchaseAmountValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a","abc"})
@@ -18,7 +18,7 @@ public class PurchaseAmountValidationTest {
     @DisplayName("구매 금액이 null이거나 빈 값, 또는 숫자가 아닐 때 에러 발생")
     void validateNullOrEmptyTest(String input){
         assertThatThrownBy(() -> {
-            PurchaseAmountValidation.parseValidatedLottoCount(input);
+            PurchaseAmountValidator.parseValidatedTicketCount(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -27,7 +27,7 @@ public class PurchaseAmountValidationTest {
     @DisplayName("구매 금액이 0이거나 빈 값, 또는 숫자가 아닐 때 에러 발생")
     void validateZeroOrNotDividedTest(String input){
         assertThatThrownBy(() -> {
-            PurchaseAmountValidation.parseValidatedLottoCount(input);
+            PurchaseAmountValidator.parseValidatedTicketCount(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }

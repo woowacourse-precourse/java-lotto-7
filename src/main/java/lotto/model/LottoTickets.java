@@ -10,8 +10,8 @@ import java.util.List;
 public class LottoTickets {
     private final List<Lotto> lottoTickets = new ArrayList<>();
 
-    public LottoTickets(int attemptCount) {
-        for (int count = 1; count <= attemptCount; count++) {
+    public LottoTickets(int ticketCount) {
+        for (int count = 1; count <= ticketCount; count++) {
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             printEachLotto(numbers);
