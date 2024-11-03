@@ -34,10 +34,6 @@ public class LottoFactory {
         return lottoPrice / oneLottoPrice;
     }
 
-    public void getPrice(Lotto lotto, List<Integer> lottoNumber){
-
-    }
-
     private void canPurchaseLotto(int lottoPrice){
         if(lottoPrice % oneLottoPrice != zeroNumber)
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위입니다.");
