@@ -19,6 +19,10 @@ public class WinningStatisticsDto {
         return map;
     }
 
+    public Map<Rank, Integer> getWinningStatistics() {
+        return new HashMap<>(winningStatistics);
+    }
+
     public double getLottoYield(int purchaseAmount) {
         long totalPrize = winningStatistics.entrySet().stream()
             .mapToLong(entry -> (long) entry.getKey().getPrizeAmount() * entry.getValue())
