@@ -6,7 +6,6 @@ import domain.LottoResult;
 import domain.Lottos;
 import domain.Profit;
 import domain.Ticket;
-import domain.Winning;
 import domain.WinningPrice;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ public class WinningService {
     private Ticket ticket;
     private Lottos lottos = Lottos.create();
     private LottoResult lottoResult = LottoResult.create();
-    private Winning winning;
 
     public int buyTicket(int purchaseAmount) {
         ticket = Ticket.from(purchaseAmount);
@@ -36,11 +34,8 @@ public class WinningService {
         return tmpLottos;
     }
 
-    public int getTicketQuantity() {
-        return ticket.getQuantity();
-    }
-
-    public void winningStatistics(List<Integer> winningNumbers, List<List<Integer>> lottos, int bonusNumber) {
+    public void winningStatistics(List<Integer> winningNumbers, List<List<Integer>> lottos,
+            int bonusNumber) {
         for (List<Integer> lotto : lottos) {
             int matchCount = WinningCalculator.countMatchingNumber(winningNumbers, lotto);
             boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lotto, bonusNumber);
@@ -56,6 +51,5 @@ public class WinningService {
     public String getProfit() {
         return Profit.calculate(lottoResult.getResult(), ticket.getPurchaseAmount());
     }
-
 
 }
