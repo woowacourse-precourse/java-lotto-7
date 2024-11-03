@@ -1,6 +1,5 @@
 package lotto.Service;
 
-import lotto.exception.InvalidInputException;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.UserNumber;
@@ -12,6 +11,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoService {
+    private final static int THREE_MATCHING_INDEX = 0;
+    private final static int FOUR_MATCHING_INDEX = 1;
+    private final static int FIVE_MATCHING_INDEX = 2;
+    private final static int BONUS_MATCHING_INDEX = 3;
+    private final static int SIX_MATCHING_INDEX = 4;
+
     private UserNumbers userNumbers;
     private Lotto lotto;
     private BonusNumber bonusNumber;
@@ -47,25 +52,25 @@ public class LottoService {
     }
 
     private void setResults(long matchingCount, UserNumber userNumber) {
-        int bonus = this.bonusNumber.getNumber(); //상수로 관리
+        int bonus = this.bonusNumber.getNumber();
         if (matchingCount == 3) {
-            results.set(0, results.get(0) + 1);
+            results.set(THREE_MATCHING_INDEX, results.get(THREE_MATCHING_INDEX) + 1);
             return;
         }
         if (matchingCount == 4) {
-            results.set(1, results.get(1) + 1);
+            results.set(FOUR_MATCHING_INDEX, results.get(FOUR_MATCHING_INDEX) + 1);
             return;
         }
         if (matchingCount == 5) {
             if (userNumber.getUserNumber().contains(bonus)) {
-                results.set(3, results.get(3) + 1);
+                results.set(BONUS_MATCHING_INDEX, results.get(BONUS_MATCHING_INDEX) + 1);
                 return;
             }
-            results.set(2, results.get(2) + 1);
+            results.set(FIVE_MATCHING_INDEX, results.get(FIVE_MATCHING_INDEX) + 1);
             return;
         }
         if (matchingCount == 6) {
-            results.set(4, results.get(4) + 1);
+            results.set(SIX_MATCHING_INDEX, results.get(SIX_MATCHING_INDEX) + 1);
         }
     }
 
@@ -82,8 +87,8 @@ public class LottoService {
     }
 
     private long getProfit() {
-        return 5000L * results.get(0) + 50000L * results.get(1) + 1500000L * results.get(2) + 30000000L * results.get(3) + 2000000000L * results.get(4);
-    } //int의 범위를 고려해야 하는가?
+        return 5000L * results.get(THREE_MATCHING_INDEX) + 50000L * results.get(FOUR_MATCHING_INDEX) + 1500000L * results.get(FIVE_MATCHING_INDEX) + 30000000L * results.get(BONUS_MATCHING_INDEX) + 2000000000L * results.get(SIX_MATCHING_INDEX);
+    }
 
     public UserNumbers getUserNumbers() {
         return userNumbers;
