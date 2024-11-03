@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
+import lotto.domain.Winning;
 import lotto.service.WinningService;
 import lotto.validate.WinningValidate;
 import org.junit.jupiter.api.DisplayName;
@@ -90,5 +91,21 @@ public class WinningTest {
         String bonusString = "bonus";
 
         assertFalse(WinningValidate.isNumeric(bonusString));
+    }
+
+    @Test
+    @DisplayName("1~45 사이의 숫자라면 보너스 문자로 가능하다.")
+    public void testIsRangeOfBonusNumber() {
+        int bonusNumber = 10;
+
+        assertTrue(WinningValidate.isLottoNumber(bonusNumber));
+    }
+
+    @Test
+    @DisplayName("1~45 사이의 숫자가 아니라면 보너스 문자로 불가능하다.")
+    public void testIsNotRangeOfBonusNumber() {
+        int bonusNumber = 100;
+
+        assertFalse(WinningValidate.isLottoNumber(bonusNumber));
     }
 }
