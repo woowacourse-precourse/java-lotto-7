@@ -53,8 +53,8 @@ public class WinningService {
         return lottoResult.getResult();
     }
 
-    public String getProfit(int purchaseAmount) {
-        return Profit.calculate(lottoResult.getResult(), purchaseAmount);
+    public String getProfit() {
+        return Profit.calculate(lottoResult.getResult(), ticket.getPurchaseAmount());
     }
 
 

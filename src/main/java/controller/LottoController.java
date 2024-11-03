@@ -20,8 +20,8 @@ public class LottoController {
 
         winningService.winningStatistics(winningNumbers, lottos, bonusNumber);
         OutputView.printResult(winningService.getLottoResult());
-        //String profit = winningService.getProfit(purchaseAmount);
-        //OutputView.printProfit(profit);
+        String profit = winningService.getProfit();
+        OutputView.printProfit(profit);
     }
 
     private List<List<Integer>> purchaseLottoResult(int ticketQuantity) {

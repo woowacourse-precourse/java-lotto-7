@@ -12,14 +12,20 @@ public class Ticket {
     }
 
     private int quantity;
+    private int purchaseAmount;
 
     private Ticket(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
         quantity = purchaseAmount / TICKET_PRICE;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
