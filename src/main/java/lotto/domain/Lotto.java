@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +18,7 @@ public class Lotto {
         validate(numbers);
         validateRange(numbers);
         validateNumbers(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
