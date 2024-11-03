@@ -14,6 +14,10 @@ public class InputHandler {
         return handleError(inputView::inputNumbers);
     }
 
+    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
+        return handleError(() -> inputView.inputNumber(winningNumbers));
+    }
+
     private <T> T handleError(Supplier<T> supplier) {
         while (true) {
             try {
