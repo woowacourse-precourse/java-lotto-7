@@ -8,12 +8,12 @@ import lotto.util.LottoNumberGenerator;
 
 public class UserLottoList {
 
-    private final int number;
+    private final int count;
     private final List<Lotto> lottoList;
 
-    public UserLottoList(int number) {
-        this.number = number;
-        this.lottoList = generateNumberOfLotto(number);
+    public UserLottoList(int count) {
+        this.count = count;
+        this.lottoList = generateNumberOfLotto(count);
     }
 
     private List<Lotto> generateNumberOfLotto(int number) {

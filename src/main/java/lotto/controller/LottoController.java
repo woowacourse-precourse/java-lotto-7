@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.UserLottoList;
+import lotto.util.MoneyToLottoCountUtil;
 
 public class LottoController {
 
@@ -12,7 +13,8 @@ public class LottoController {
 
     public void run() {
         int money = inputController.getMoney();
+        int lottoCount = MoneyToLottoCountUtil.moneyToLottoCount(money);
 
-        UserLottoList userLottoList = new UserLottoList(money);
+        UserLottoList userLottoList = new UserLottoList(lottoCount);
     }
 }
