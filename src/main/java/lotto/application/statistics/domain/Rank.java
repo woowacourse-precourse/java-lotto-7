@@ -56,13 +56,6 @@ public enum Rank {
         return findMatchedRank(matchCount, matchBonus);
     }
 
-    private static Rank findMatchedRank(int matchCount, boolean matchBonus) {
-        return Stream.of(values())
-                .filter(rank -> rank.matches(matchCount, matchBonus))
-                .findFirst()
-                .orElse(NONE);
-    }
-
     public int getMatchCount() {
         return matchCount;
     }
@@ -73,6 +66,17 @@ public enum Rank {
 
     public String getDescription() {
         return description;
+    }
+
+    public String toFormattedString(long count) {
+        return String.format("%s (%,d원) - %d개", description, prize, count);
+    }
+
+    private static Rank findMatchedRank(int matchCount, boolean matchBonus) {
+        return Stream.of(values())
+                .filter(rank -> rank.matches(matchCount, matchBonus))
+                .findFirst()
+                .orElse(NONE);
     }
 
 }
