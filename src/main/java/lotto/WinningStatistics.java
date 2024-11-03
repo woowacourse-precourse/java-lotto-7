@@ -14,12 +14,17 @@ public class WinningStatistics {
     private final List<Lotto> purchasedLottos;
     private final Lotto winningLotto;
     private final int bonusNumber;
-    private final Map<WinningCategory, Integer> statistics = new HashMap<>();
+    private final Map<WinningCategory, Integer> statistics;
 
     public WinningStatistics(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
         this.purchasedLottos = purchasedLottos;
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+        this.statistics = new HashMap<>();
+
+        for (WinningCategory category : WinningCategory.values()) {
+            statistics.put(category, 0);
+        }
     }
 
     public List<Lotto> getPurchasedLottos() {
@@ -59,6 +64,13 @@ public class WinningStatistics {
         int matchCount = getMatchCount(lotto);
         boolean hasBonus = hasBonus(lotto);
         return determineCategory(lotto, matchCount, hasBonus);
+    }
+
+    public void countWinningCategory(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            WinningCategory winningCategory = getWinningCategory(lotto);
+            statistics.put(winningCategory, statistics.get(winningCategory) + 1);
+        }
     }
 
 }
