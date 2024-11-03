@@ -16,7 +16,7 @@ public class LottoController {
     private Balance balance;
     private Bonus bonus;
     private Lotto lotto;
-    private User user = new User();
+    private final User user = new User();
 
     public void run() {
         insertMoney();
