@@ -83,9 +83,18 @@ public class LottoService {
         Set<Integer> nowNumber = new HashSet<>(numbers);
         Set<Integer> NowWinningNumber = new HashSet<>(winningSixNumbers);
 
-        boolean winningBonusMatch = nowNumber.contains(winningBonusNumber);
-        nowNumber.retainAll(NowWinningNumber);
+        boolean bonusNumberMatched = nowNumber.contains(winningBonusNumber);
 
+        eraseNotMatchedNumbers(nowNumber, NowWinningNumber);
+
+        return calculateResultTypeIndex(nowNumber, bonusNumberMatched);
+    }
+
+    private static void eraseNotMatchedNumbers(Set<Integer> target, Set<Integer> eraser) {
+        target.retainAll(eraser);
+    }
+
+    private static Integer calculateResultTypeIndex(Set<Integer> nowNumber, boolean winningBonusMatch) {
         if (nowNumber.size() == 3) {
             return LottoWinType.THREE_MATCH.getType();
         } else if (nowNumber.size() == 4) {
@@ -93,9 +102,8 @@ public class LottoService {
         } else if (nowNumber.size() == 5) {
             if (winningBonusMatch) {
                 return LottoWinType.FIVE_MATCH_WITH_BONUS.getType();
-            } else {
-                return LottoWinType.FIVE_MATCH.getType();
             }
+            return LottoWinType.FIVE_MATCH.getType();
         } else if (nowNumber.size() == 6) {
             return LottoWinType.SIX_MATCH.getType();
         }
@@ -105,11 +113,13 @@ public class LottoService {
     public Double calculateEarningRate(Money money, List<Integer> lottoMatchResults) {
         BigInteger sumAllResults = BigInteger.ZERO;
 
-        sumAllResults = sumAllResults.add(BigInteger.valueOf(lottoMatchResults.get(LottoWinType.THREE_MATCH.getType()) * LottoPrizeType.THREE_MATCH.getType()));
-        sumAllResults = sumAllResults.add(BigInteger.valueOf(lottoMatchResults.get(LottoWinType.FOUR_MATCH.getType()) * LottoPrizeType.FOUR_MATCH.getType()));
-        sumAllResults = sumAllResults.add(BigInteger.valueOf(lottoMatchResults.get(LottoWinType.FIVE_MATCH.getType()) * LottoPrizeType.FIVE_MATCH.getType()));
-        sumAllResults = sumAllResults.add(BigInteger.valueOf(lottoMatchResults.get(LottoWinType.FIVE_MATCH_WITH_BONUS.getType()) * LottoPrizeType.FIVE_MATCH_WITH_BONUS.getType()));
-        sumAllResults = sumAllResults.add(BigInteger.valueOf(lottoMatchResults.get(LottoWinType.SIX_MATCH.getType()) * LottoPrizeType.SIX_MATCH.getType()));
+        for (LottoWinType winType : LottoWinType.values()) {
+            if (!winType.getType().equals(LottoWinType.NO_MATCH.getType())) {
+                sumAllResults = sumAllResults.add(
+                        BigInteger.valueOf(lottoMatchResults.get(winType.getType()) * LottoPrizeType.valueOf(winType.name()).getType())
+                );
+            }
+        }
 
         BigDecimal sumAsDecimal = new BigDecimal(sumAllResults.multiply(BigInteger.valueOf(100)));
         BigDecimal divisor = new BigDecimal(money.getMoney());
