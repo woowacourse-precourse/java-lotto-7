@@ -21,47 +21,39 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = getPurchaseAmount();
+        String purchaseAmount = getValidatedPurchaseAmount();
         List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
 
-        displayLottoNumbers(lottos);
+        OutputView.showLottoNumbers(lottos);
 
-        String winningNumbers = getWinningNumbers();
-        String bonusNumber = getBonusNumber(winningNumbers);
+        String winningNumbers = getValidatedWinningNumbers();
+        String bonusNumber = getValidatedBonusNumber(winningNumbers);
 
         Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+        double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
 
-        displayFinalResult(matchCounts, purchaseAmount);
+        OutputView.showFinalResult(matchCounts, yield);
     }
 
-    private String getPurchaseAmount() {
+    private String getValidatedPurchaseAmount() {
         OutputView.showPrompt(PURCHASE_AMOUNT);
+        String purchaseNumber = getValidInput(InputValidator::validatePurchaseAmount);
 
-        return getValidInput(InputValidator::validatePurchaseAmount);
+        return  purchaseNumber;
     }
 
-    private void displayLottoNumbers(List<Lotto> lottos) {
-        OutputView.showLottoNumbers(lottos);
-    }
-
-    private String getWinningNumbers() {
+    private String getValidatedWinningNumbers() {
         OutputView.showPrompt(WINNING_NUMBERS);
         String winningNumbers = getValidInput(InputValidator::validateWinningNumbers);
 
         return winningNumbers;
     }
 
-    private String getBonusNumber(String winningNumbers) {
+    private String getValidatedBonusNumber(String winningNumbers) {
         OutputView.showPrompt(BONUS_NUMBER);
         String bonusNumber = getValidInput(input -> InputValidator.validateBonusNumber(winningNumbers, input));
 
         return bonusNumber;
-    }
-
-    private void displayFinalResult(Map<Integer, Integer> matchCounts, String purchaseAmount) {
-        double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
-
-        OutputView.showFinalResult(matchCounts, yield);
     }
 
     private String getValidInput(Consumer<String> validator) {
