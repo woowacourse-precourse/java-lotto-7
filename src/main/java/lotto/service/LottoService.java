@@ -11,6 +11,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Result;
+import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
 public class LottoService {
@@ -43,14 +44,23 @@ public class LottoService {
 
     public Lotto getWinningNumbers() {
         System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
-        String numbers = Console.readLine();
+        List<Integer> lotto;
 
-        List<Integer> list = Arrays.stream(numbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return new Lotto(list);
+        while (true) {
+            try {
+                String numbers = Console.readLine();
+
+                LottoValidator.validateInput(numbers);
+                lotto = LottoValidator.makeLottoNumberList(numbers);
+
+                return new Lotto(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
+
 
     public BonusNumber getBonusNumber() {
         System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());

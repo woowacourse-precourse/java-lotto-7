@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constant.Prize;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,9 +14,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        LottoValidator.validSize(numbers);
+        LottoValidator.validateNumberRange(numbers);
+        LottoValidator.checkDuplicateNumber(numbers);
     }
 
     public List<Integer> getNumbers() {
