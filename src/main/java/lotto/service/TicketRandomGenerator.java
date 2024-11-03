@@ -14,10 +14,12 @@ public class TicketRandomGenerator implements TicketGenerator {
 
     private long money;
 
+    @Override
     public void setMoney(long money) {
         this.money = money;
     }
 
+    @Override
     public List<Ticket> getTickets() {
         List<Ticket> tickets = new ArrayList<>();
 
@@ -28,6 +30,7 @@ public class TicketRandomGenerator implements TicketGenerator {
         return tickets;
     }
 
+    @Override
     public Ticket getTicket() {
         List<Integer> numbers = new ArrayList<>(generateRandomNumbers());
         Collections.sort(numbers);
