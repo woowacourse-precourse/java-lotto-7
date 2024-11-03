@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Lottos {
@@ -21,19 +23,18 @@ public class Lottos {
     private static int WINNING_RATE_MULTIPLIER = 100;
     private final Map<Lotto, Winning> lottos = new LinkedHashMap<>();
 
-    public void allocateLottosByRandomNumber(int lottoCount) {
-        IntStream.range(0, lottoCount).forEach(i ->
-                lottos.put(createLotto(), NONE));
-    }
-
-    private Lotto createLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    public void allocateLottosByRandomNumber(List<Integer> randomNumbers, Function<List<Integer>, Lotto> create) {
+        lottos.put(create.apply(randomNumbers), NONE);
     }
 
     public String toStringAllLottoNumber() {
         StringBuilder sb = new StringBuilder();
         lottos.keySet().forEach(lotto -> sb.append(lotto.toString()).append("\n"));
         return sb.toString();
+    }
+
+    public int size() {
+        return lottos.size();
     }
 
     public void setByCorrectCount(List<Integer> winningNumber, int bonusNumber) {

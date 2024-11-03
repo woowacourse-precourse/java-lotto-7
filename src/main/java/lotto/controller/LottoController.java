@@ -2,7 +2,10 @@ package lotto.controller;
 
 import static lotto.model.Winning.toStringWithoutNone;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.IntStream;
+import lotto.model.Lotto;
 import lotto.model.LottoValue;
 import lotto.model.Lottos;
 import lotto.view.LottoView;
@@ -21,8 +24,14 @@ public class LottoController {
 
     public void setAndPrintLottos() {
         view.printLottoCount(lottoValue.lottoCount());
-        lottos.allocateLottosByRandomNumber(lottoValue.lottoCount());
+        IntStream.range(0, lottoValue.lottoCount()).forEach(i -> putLottos());
         view.printLottoNumbers(lottos.toStringAllLottoNumber());
+    }
+
+    private void putLottos() {
+        lottos.allocateLottosByRandomNumber(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6),
+                Lotto::new);
     }
 
     public List<Integer> getWinningNumber() {
