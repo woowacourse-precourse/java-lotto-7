@@ -36,17 +36,18 @@ class CustomerTest {
     }
 
     @Test
-    @DisplayName("고객은 당첨내역을 확인할 수 있다.")
-    void should_CheckMyLotto() {
+    @DisplayName("고객은 수익률을 계산할 수 있다.")
+    void should_CalculateEarningRate() {
         // given
-        Money budget = new Money("8000");
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        AnswerNumbers answerNumbers = AnswerNumbers.from("1,2,3,4,5,7");
-        MyLotto myLotto = new MyLotto(new ArrayList<>(List.of(lotto)));
+        Money budget = new Money("1000");
+        ArrayList<Lotto> lottos = new ArrayList<>(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+        MyLotto myLotto = new MyLotto(lottos);
         Customer customer = new Customer(budget, myLotto);
+        AnswerNumbers answerNumbers = AnswerNumbers.from("1,2,3,4,5,8");
+        BonusNumber bonusNumber = new BonusNumber("6");
         // when
-        List<WinningType> result = customer.checkMyLotto(answerNumbers, new BonusNumber("6"));
+        float earningRate = customer.getEarningRate(answerNumbers, bonusNumber);
         // then
-        Assertions.assertThat(result).contains(WinningType.SECOND);
+        assertEquals(30000.0, earningRate);
     }
 }

@@ -28,6 +28,10 @@ public enum WinningType {
                 .orElse(NONE);
     }
 
+    public long getPrize() {
+        return prize;
+    }
+
     private static boolean hasSameMatchBonus(boolean matchBonus, WinningType winningType) {
         return winningType.matchBonus == matchBonus;
     }

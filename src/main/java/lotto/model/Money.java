@@ -33,6 +33,10 @@ public class Money {
         return new Money(calculatedValue);
     }
 
+    public long getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -42,6 +46,11 @@ public class Money {
             return false;
         }
         return this.value == money.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(value);
     }
 
     private void validate(final String money) {
