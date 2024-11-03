@@ -4,21 +4,14 @@ import java.util.List;
 
 public class PrizeNumber {
     private final List<Integer> numbers;
-    private final Integer bonusNumber;
 
     public PrizeNumber(
-            List<Integer> numbers,
-            Integer bonusNumber
+            List<Integer> numbers
     ) {
         this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getNumbers() {
         return this.numbers;
-    }
-
-    public Integer getBonusNumber() {
-        return this.bonusNumber;
     }
 }
