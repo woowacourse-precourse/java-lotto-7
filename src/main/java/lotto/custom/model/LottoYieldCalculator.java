@@ -10,6 +10,6 @@ public class LottoYieldCalculator {
         for (LottoPrize prize : LottoPrize.values()) {
             revenue += prize.getPrizeMoney() * result.get(index++);
         }
-        return revenue / purchaseAmount * 100; // 수익률 = 수익금 / 투자금 X 100
+        return revenue / purchaseAmount * 100; // 수익률 = (총 수익금 / 투자금) * 100
     }
 }

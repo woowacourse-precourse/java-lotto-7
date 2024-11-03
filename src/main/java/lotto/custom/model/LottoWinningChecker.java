@@ -7,6 +7,7 @@ public class LottoWinningChecker {
         for (Lotto ticket : myLottoTickets.getLottos()) {
             List<Integer> lottoTicket = ticket.getNumbers();
             int matchCount = countMatchingNumbers(lottoTicket, winningNumbers);
+            
             updateResult(result, matchCount, lottoTicket.contains(bonusNumber));
         }
     }
