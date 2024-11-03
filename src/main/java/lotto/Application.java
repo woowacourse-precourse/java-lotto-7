@@ -17,7 +17,7 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-        LottoIssuer issuer = new LottoIssuer(price.getValue());
+        LottoIssuer issuer = new LottoIssuer(price);
         int lottoCount = issuer.getLottoCount();
         System.out.println(lottoCount + "개를 구매했습니다.");
 

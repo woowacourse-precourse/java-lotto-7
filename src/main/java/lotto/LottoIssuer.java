@@ -8,8 +8,11 @@ public class LottoIssuer {
     // TODO : 자료구조 수정해야
     private final Lotto[] lottos;
 
-    public LottoIssuer(int price) {
-        lottos = new Lotto[price / 1000];
+    public LottoIssuer(Price price) {
+        if(price == null) {
+            throw new IllegalArgumentException("[ERROR] " + "로또 구입 금액이 null이어서는 안 됩니다.");
+        }
+        lottos = new Lotto[price.getValue() / 1000];
         execute();
     }
 
