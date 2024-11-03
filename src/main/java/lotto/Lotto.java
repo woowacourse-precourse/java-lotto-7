@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,7 +14,13 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
+        this.numbers = AscNumberList(numbers);
+    }
+
+    private static List<Integer> AscNumberList(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -33,8 +40,7 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        numbers.forEach(num ->
-        {
+        numbers.forEach(num -> {
             if (num < lowerBound || num > upperBound) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 숫자만 가능합니다.");
             }
