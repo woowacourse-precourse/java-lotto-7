@@ -4,6 +4,7 @@ import lotto.commons.numbers.Integers;
 import lotto.core.constants.Error.BonusNumberError;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
+import lotto.core.model.Lotto;
 import lotto.core.model.LottoNumber;
 
 public class CreateBonusLottoNumberService {
@@ -25,8 +26,9 @@ public class CreateBonusLottoNumberService {
         }
     }
 
-    private void validateWinningLottoContains(LottoDto winningLotto, LottoNumber bonusNumber) {
-        if (winningLotto.numbers().contains(bonusNumber.value())) {
+    private void validateWinningLottoContains(LottoDto winningLottoDto, LottoNumber bonusNumber) {
+        Lotto winningLotto = Lotto.dtoOf(winningLottoDto);
+        if(winningLotto.containsBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException(BonusNumberError.DUPLICATED_NUMBER);
         }
     }
