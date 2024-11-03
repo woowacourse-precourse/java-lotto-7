@@ -22,6 +22,18 @@ public class LottoController {
         this.inputView = new InputView();
     }
 
+    public void run() {
+        Money money = retryIfErrorOccur(this::setMoney);
+        int quantity = money.getQuantity();
+
+        LottoTicket lottoTicket = lottoService.purchase(quantity);
+        outputView.purchaseHistory(quantity, lottoTicket);
+
+        WinningNumbers winningNumbers = retryIfErrorOccur(this::setWinningNumbers);
+
+        winningStatistics(lottoTicket, winningNumbers, money);
+    }
+
     private Money setMoney() {
         outputView.inputMoney();
         return new Money(inputView.inputNumber());
