@@ -34,7 +34,7 @@ public class LottoResult {
                     appendWinningNumber(key, sb);
                     sb.append(OutputMessage.NEW_LINE.getMessage());
                 });
-        sb.append(String.format(OutputMessage.RETURN_OF_RATE.getMessage(), getRateOrReturn()));
+        sb.append(String.format(OutputMessage.RETURN_OF_RATE.getMessage(), getRateOfReturn()));
         return sb.toString();
     }
 
@@ -62,7 +62,7 @@ public class LottoResult {
         sb.append(String.format(message.getMessage(), winningNumber));
     }
 
-    public double getRateOrReturn() {
+    public double getRateOfReturn() {
         int purchaseAmount = calculatePurchaseAmount();
         int prize = calculatePrize();
         return ((double)prize / purchaseAmount) * PERCENTAGE;
