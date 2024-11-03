@@ -71,4 +71,14 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateWinningNumberSeparatorAndNotNumber(lottoWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_숫자를_여러개_입력한_경우_예외_테스트(){
+        //given
+        String lottoWinningNumbers = "41,42";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateSingleBonusNumber(lottoWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

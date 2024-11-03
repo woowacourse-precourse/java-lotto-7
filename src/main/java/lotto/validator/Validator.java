@@ -60,4 +60,14 @@ public class Validator {
             throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
     }
+
+    public static Integer validateSingleBonusNumber(String bonusNumber){
+
+        try{
+            return Integer.parseInt(bonusNumber);
+
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("숫자를 하나만 입력해 주세요.");
+        }
+    }
 }
