@@ -10,7 +10,6 @@ public class Lotto {
     public static final int PRICE = 1000;
     private final List<Integer> numbers;
 
-
     public Lotto(List<Integer> numbers) {
         Collections.sort(numbers);
         validate(numbers);
@@ -35,5 +34,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean hasValue(int num){
+        return numbers.contains(num);
+    }
 }
