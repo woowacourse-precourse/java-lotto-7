@@ -5,8 +5,8 @@ import lotto.model.LottoPrize;
 
 public class LottoPrizeStatus {
 
-    private HashMap<LottoPrize, Integer> prizeStatus;
-    private double returnOnInvestment;
+    private final HashMap<LottoPrize, Integer> prizeStatus;
+    private final double returnOnInvestment;
 
     public LottoPrizeStatus(HashMap<LottoPrize, Integer> prizeStatus, double returnOnInvestment) {
         this.prizeStatus = prizeStatus;

@@ -7,10 +7,10 @@ import lotto.dto.LottoBundle;
 import lotto.dto.LottoNumbers;
 import lotto.dto.LottoPrizeStatus;
 
-public class LottoPrizeRanker {
+public class LottoEvaluator {
     private final HashMap<LottoPrize, Integer> prizeStatus = new HashMap<>();
 
-    public LottoPrizeRanker(LottoTicket lottoTickets, Lotto winningNumbers, int bonusNumbers) {
+    public LottoEvaluator(LottoTicket lottoTickets, Lotto winningNumbers, int bonusNumbers) {
         LottoBundle lottoBundle = lottoTickets.getLottoTicketStatus();
         List<LottoNumbers> lottoNumbers = lottoBundle.getLottoNumbers();
 
