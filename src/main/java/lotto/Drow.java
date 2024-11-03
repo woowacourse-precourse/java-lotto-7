@@ -4,6 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+
+
 
 public class Drow {
 
@@ -122,7 +126,55 @@ public class Drow {
         }
     }
 
+    public void drowLotto(List<Lotto> lottos){
+
+        for(Lotto lotto : lottos){
+            compareNumber(lotto);
+        }
 
 
+    }
+
+    private void compareNumber(Lotto lotto){
+
+        List<Integer> numbers = lotto.getNumbers(); // 로또 별 번호 정보를 받아옴
+        Set<Integer> numbersSet = new HashSet<>(numbers); // Set의 contains를 이용하여 일치하는 갯수 확인
+        int validCount = 0;
+        boolean bonus = false;
+
+        for(Integer drowNumber : drowNumbers){
+
+            if(numbersSet.contains(drowNumber)){
+                validCount++;
+            }
+
+            if(numbersSet.contains(bonusNumber)){
+                bonus = true;
+            }
+
+        }
+
+        getPrize(validCount, bonus);
+    }
+
+    private void getPrize(int validCount, boolean bonus){
+
+        if(validCount == 6){
+            Prize.First.increaseCount();
+        }
+        if(validCount == 5 && bonus){
+            Prize.Second.increaseCount();
+        }
+        if(validCount == 5 && !bonus){
+            Prize.Third.increaseCount();
+        }
+        if(validCount == 4){
+            Prize.Fourth.increaseCount();
+        }
+        if(validCount == 3){
+            Prize.Fifth.increaseCount();
+        }
+
+    }
 
 }
