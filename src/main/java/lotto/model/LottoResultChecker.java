@@ -6,7 +6,19 @@ import java.util.Map;
 
 public class LottoResultChecker {
 
-    public static Map<LottoRank, Integer> lottoResultFrom(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
+    private final PurchasedLottos purchasedLottos;
+    private final WinningLotto winningLotto;
+
+    private LottoResultChecker(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
+        this.purchasedLottos = purchasedLottos;
+        this.winningLotto = winningLotto;
+    }
+
+    public static LottoResultChecker of(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
+        return new LottoResultChecker(purchasedLottos, winningLotto);
+    }
+
+    public Map<LottoRank, Integer> getLottoResult() {
         Map<LottoRank, Integer> lottoResult = new HashMap<>();
         List<Lotto> lottos = purchasedLottos.getLottos();
 

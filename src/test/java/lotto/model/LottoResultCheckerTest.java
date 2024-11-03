@@ -28,7 +28,8 @@ class LottoResultCheckerTest {
         int bonusNumber = 7;
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
 
-        Map<LottoRank, Integer> lottoResult = LottoResultChecker.lottoResultFrom(purchasedLottos, winningLotto);
+        LottoResultChecker lottoResultChecker = LottoResultChecker.of(purchasedLottos, winningLotto);
+        Map<LottoRank, Integer> lottoResult = lottoResultChecker.getLottoResult();
 
         Assertions.assertEquals(3, lottoResult.get(LottoRank.FIRST));
     }

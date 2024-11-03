@@ -33,7 +33,7 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
 
-        Map<LottoRank, Integer> lottoResult = LottoResultChecker.lottoResultFrom(purchasedLottos, winningLotto);
+        Map<LottoRank, Integer> lottoResult = getLottoResult(purchasedLottos, winningLotto);
         outputView.showLottoResult(lottoResult);
 
         double revenue = calculateLottoRevenue(lottoResult, purchaseMoney);
@@ -93,6 +93,12 @@ public class LottoController {
         Lotto lottoWinningNumbers = getLottoWinningNumbers();
         int lottoBonusNumber = getLottoBonusNumber();
         return createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+    }
+
+    private Map<LottoRank, Integer> getLottoResult(PurchasedLottos purchasedLottos,
+                                                   WinningLotto winningLotto) {
+        LottoResultChecker lottoResultChecker = LottoResultChecker.of(purchasedLottos, winningLotto);
+        return lottoResultChecker.getLottoResult();
     }
 
     private double calculateLottoRevenue(Map<LottoRank, Integer> lottoResult, int purchaseMoney) {
