@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class NumberValidator implements Validator {
 
+    private static final String ERROR = "[ERROR] ";
     private static final String DELIMITER = ",";
     private static final int LOTTO_NUMBER_RANGE_MIN = 1;
     private static final int LOTTO_NUMBER_RANGE_MAX = 45;
@@ -16,10 +17,10 @@ public class NumberValidator implements Validator {
         if (isWinningNumbers(input)) {
             String[] values = input.split(DELIMITER);
             if (values.length != LOTTO_LENGTH) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 입니다.");
+                throw new IllegalArgumentException(ERROR + "당첨 번호는 6자리 입니다.");
             }
             if (isDuplication(values)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
+                throw new IllegalArgumentException(ERROR + "당첨 번호는 중복되면 안됩니다.");
             }
             for (String value : values) {
                 int number = isNumber(value.trim());
@@ -37,7 +38,7 @@ public class NumberValidator implements Validator {
 
     private void isOneBetweenFortyFive(int number) {
         if (number < LOTTO_NUMBER_RANGE_MIN || number > LOTTO_NUMBER_RANGE_MAX) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR + "1 ~ 45 사이의 숫자만 입력 가능합니다.");
         }
     }
 
@@ -49,7 +50,7 @@ public class NumberValidator implements Validator {
         try{
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 양수만 입력가능합니다.");
+            throw new IllegalArgumentException(ERROR + "양수만 입력가능합니다.");
         }
     }
 

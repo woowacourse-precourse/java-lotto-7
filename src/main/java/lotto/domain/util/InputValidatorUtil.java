@@ -14,7 +14,6 @@ public class InputValidatorUtil {
                 return input;
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e.getMessage());
-                System.out.println("다시 입력하세요");
             }
         }
     }
