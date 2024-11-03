@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.external;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.NumbersGenerator;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
 
