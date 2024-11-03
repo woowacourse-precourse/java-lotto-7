@@ -12,7 +12,12 @@ import lotto.generator.LottoGenerator;
 import lotto.view.LottoInfoMessages;
 
 public class ValidationService {
+    private static final String MANUAL = "manual";
+    private static final String WINNER = "winner";
+    private static final int WINNER_UNIT = 1;
     LottoGenerator lottoGenerator = LottoGenerator.createLottoGenerator();
+    PrintService printService = PrintService.createPrintService();
+
     private ValidationService() {
 
     }
@@ -63,30 +68,34 @@ public class ValidationService {
         return amount;
     }
 
-    public Set<Integer> validateCorrectManualNumber(int manualAmount) {
+    public Set<Integer> validateCorrectManualNumber(int manualAmount, String manualMode) {
+        if (manualMode.equals(MANUAL)) {
+            printService.printInsertManualNumbers(manualAmount);
+        }
+        if (manualMode.equals(WINNER)) {
+            printService.printInsertWinnerNumbers(WINNER_UNIT);
+        }
         if (manualAmount != 0) {
-            System.out.println(LottoInfoMessages.INSERT_MANUAL_NUMBERS_START.text()
-                    + manualAmount + LottoInfoMessages.INSERT_MANUAL_NUMBERS_END.text());
             String numbers = Console.readLine();
             if (numbers.isEmpty()) {
                 return new HashSet<>(lottoGenerator.getLottoNumbers());
             }
-            return validateCorrectPattern(numbers, manualAmount);
+            return validateCorrectPattern(numbers, manualAmount, manualMode);
         }
         return new HashSet<>();
     }
 
-    private Set<Integer> validateCorrectPattern(String numbers, int manualAmount) {
+    private Set<Integer> validateCorrectPattern(String numbers, int manualAmount, String manualMode) {
         try {
             String[] numberList = numbers.split(",");
-            return validateDuplicatedNumbers(numberList, manualAmount);
+            return validateDuplicatedNumbers(numberList, manualAmount, manualMode);
         } catch (PatternSyntaxException e) {
             System.out.println(LottoErrorMessages.SYNTAX_NUMBER_ERROR.text());
-            return validateCorrectManualNumber(manualAmount);
+            return validateCorrectManualNumber(manualAmount, manualMode);
         }
     }
 
-    private Set<Integer> validateDuplicatedNumbers(String[] numberList, int manualAmount) {
+    private Set<Integer> validateDuplicatedNumbers(String[] numberList, int manualAmount, String manualMode) {
         try {
             List<Integer> newNumberList = new ArrayList<>();
             for (String s : numberList) {
@@ -101,8 +110,35 @@ public class ValidationService {
             }
             return newNumberSet;
         } catch (IllegalArgumentException e) {
-            return validateCorrectManualNumber(manualAmount);
+            return validateCorrectManualNumber(manualAmount, manualMode);
         }
+    }
+
+    public int validateBonusNumber(List<Set<Integer>> winnerLotto) {
+        String bonusInput = Console.readLine();
+        return validateIsNumber(winnerLotto, bonusInput);
+    }
+
+    private int validateIsNumber(List<Set<Integer>> winnerLotto, String bonusInput) {
+        try {
+            int bonusNumber = Integer.parseInt(bonusInput);
+            return validateCorrectRange(winnerLotto, bonusNumber);
+        } catch (NumberFormatException e) {
+            printService.printWrongRange();
+            return validateBonusNumber(winnerLotto);
+        }
+    }
+
+    private int validateCorrectRange(List<Set<Integer>> winnerLotto, int bonusNumber) {
+        if(bonusNumber>45 || bonusNumber<1){
+            printService.printWrongRange();
+            return validateBonusNumber(winnerLotto);
+        }
+        if(winnerLotto.getFirst().contains(bonusNumber)){
+            printService.printWrongBonusNumber(bonusNumber);
+            return validateBonusNumber(winnerLotto);
+        }
+        return bonusNumber;
     }
 }
 
