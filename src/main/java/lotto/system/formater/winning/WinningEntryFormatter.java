@@ -2,7 +2,7 @@ package lotto.system.formater.winning;
 
 import lotto.system.utils.PrizeType;
 
-public class WinningFormatter { // 당첨 결과를 출력하는 클래스
+public class WinningEntryFormatter { // 각 개별 당첨 항목 포맷
 
     private final static String WINNINGS_MESSAGE = "%d개 일치 (%d원)- %d개";
     private final static String BONUS_WINNINGS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%d원)- %d개";

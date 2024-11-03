@@ -3,10 +3,9 @@ package lotto.system.formater.winning;
 import java.util.Map;
 import lotto.system.formater.profit.ProfitRateCalculator;
 import lotto.system.formater.profit.ProfitRateFormatter;
-import lotto.system.formater.winning.WinningFormatter;
 import lotto.system.utils.PrizeType;
 
-public class WinningStatistics {
+public class WinningStatisticsFormatter {
 
     private static final String STATISTICS_HEADER = "당첨 통계\n---";
 
@@ -16,7 +15,7 @@ public class WinningStatistics {
 
         for (PrizeType prizeType : PrizeType.values()) {
             int count = statistics.getOrDefault(prizeType, 0);
-            String formattedWinning = WinningFormatter.formatWinnings(prizeType.getCode(), count);
+            String formattedWinning = WinningEntryFormatter.formatWinnings(prizeType.getCode(), count);
             sb.append(formattedWinning).append("\n");
         }
 
