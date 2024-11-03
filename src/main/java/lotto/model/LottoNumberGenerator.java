@@ -9,7 +9,13 @@ public class LottoNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-
+    public int generateBonusNumber(List<Integer> numbers) {
+        int bonus;
+        do {
+            bonus = Randoms.pickNumberInRange(1, 45);
+        } while (numbers.contains(bonus));
+        return bonus;
+    }
 
 
 
