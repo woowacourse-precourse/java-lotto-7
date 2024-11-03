@@ -14,6 +14,7 @@
   - [x] `lottoNumValidator` : 번호 검증 (1 ~ 45) 
     - [x] 정수가 아닌 경우
     - [x] 1에서 45 사이의 값이 아닌 경우
+  - [x] `checkForDuplicates` : 중복된 숫자가 있는지 검증한다.
 - [x] `Parser`
   - [x] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
 - [x] `Converter`
