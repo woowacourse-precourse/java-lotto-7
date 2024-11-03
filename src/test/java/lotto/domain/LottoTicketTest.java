@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTicketTest {
     private static final int TEST_LOTTO_COUNT = 5;
+
     private LottoTicket lottoTicket;
 
     @BeforeEach
