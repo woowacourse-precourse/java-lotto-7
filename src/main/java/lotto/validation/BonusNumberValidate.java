@@ -1,8 +1,5 @@
 package lotto.validation;
 
-import static lotto.constants.BonusException.ALREADY_CONTAINED_BONUS;
-import static lotto.constants.BonusException.INVALID_INPUT_BONUS;
-import static lotto.constants.BonusException.INVALID_RANGE_BONUS;
 import static lotto.constants.LottoRule.Lotto_Number_Max;
 import static lotto.constants.LottoRule.Lotto_Number_Min;
 
@@ -21,20 +18,20 @@ public class BonusNumberValidate {
         try {
             return Integer.parseInt(inputBonusAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT_BONUS.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
     public static void checkNumberRange(int amount) {
         if (amount < Lotto_Number_Min.getValue() ||
                 amount > Lotto_Number_Max.getValue()) {
-            throw new IllegalArgumentException(INVALID_RANGE_BONUS.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
     public static void checkContainBonusNumber(List<Integer> winNumbers, int bonus) {
         if (winNumbers.contains(bonus)) {
-            throw new IllegalArgumentException(ALREADY_CONTAINED_BONUS.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 

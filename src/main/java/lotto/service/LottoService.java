@@ -1,6 +1,9 @@
 package lotto.service;
 
 
+import static lotto.constants.InputException.VALID_AMOUNT_INPUT;
+import static lotto.constants.InputException.VALID_INPUT_BONUS;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +35,7 @@ public class LottoService {
             String inputAmount = Input.InputAmount();
             return BuyLottoValidate.lottoBuyValidation(inputAmount);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(VALID_AMOUNT_INPUT);
             return buyLotto();
         }
     }
@@ -72,7 +75,7 @@ public class LottoService {
             String inputBonusNumber = Input.InputBonusNumber();
             return BonusNumberValidate.bonusValidation(winNumbers.getNumbers(), inputBonusNumber);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(VALID_INPUT_BONUS.getMessage());
             return setBonusNumber(winNumbers);
         }
     }

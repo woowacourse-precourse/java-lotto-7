@@ -1,8 +1,5 @@
 package lotto.validation;
 
-import static lotto.constants.LottoBuyException.INVALID_AMOUNT_MULTIPLE;
-import static lotto.constants.LottoBuyException.INVALID_POSITIVE_INPUT;
-import static lotto.constants.LottoBuyException.NEGATIVE_NUMBER_NOT_ALLOWED;
 import static lotto.constants.LottoRule.Thousand_Multi_Number;
 import static lotto.constants.LottoRule.USE_ZERO;
 
@@ -20,20 +17,20 @@ public class BuyLottoValidate {
         try {
             return Integer.parseInt(inputAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_POSITIVE_INPUT.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
     public static void checkNegativeNumber(int amount) {
         if (amount < USE_ZERO.getValue()) {
-            throw new IllegalArgumentException(NEGATIVE_NUMBER_NOT_ALLOWED.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
     public static int thousandMultiple(int amount) {
         if (amount % Thousand_Multi_Number.getValue() != USE_ZERO.getValue()
                 || amount == USE_ZERO.getValue()) {
-            throw new IllegalArgumentException(INVALID_AMOUNT_MULTIPLE.getMessage());
+            throw new IllegalArgumentException();
         }
         return amount /= Thousand_Multi_Number.getValue();
     }
