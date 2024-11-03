@@ -136,4 +136,13 @@ public class UtilsTest {
 
         assertThat(utils.totalPrize(resultCounts)).isEqualTo(2_060_000_000);
     }
+
+    @DisplayName("산 금액 대비 로또 맞은 총액 비율을 계산한다.")
+    @Test
+    void 산금액_대비_맞은총액_비율_계산() {
+        int sum = 5000;
+        int price = 10000;
+
+        assertThat(utils.calculateYieldRate(sum, price)).isEqualTo(50);
+    }
 }
