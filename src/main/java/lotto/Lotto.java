@@ -28,4 +28,13 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    private void validateUserLottoDuplication(final List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(Message.INPUT_NUMBER_DUPLICATION_ERROR.getMessage());
+            }
+        }
+    }
 }
