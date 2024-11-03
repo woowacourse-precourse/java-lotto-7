@@ -14,7 +14,7 @@ public class LottoManager {
         this.lottos = new ArrayList<>();
     }
 
-    private Lotto generateLotto() {
+    private Lotto generateLotto() { //로또 자동선택
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
@@ -25,12 +25,12 @@ public class LottoManager {
             this.lottos.add(lotto);
         }
     }
-    public Lotto generateLottoWithNumbers(List<Integer> numbers){
+    public Lotto generateLottoWithNumbers(List<Integer> numbers){ //로또 수동 번호 선택
         return new Lotto(numbers);
     }
 
     public List<Lotto> getLottos(){
-        return this.lottos;
+        return new ArrayList<>(this.lottos);
     }
 
 }
