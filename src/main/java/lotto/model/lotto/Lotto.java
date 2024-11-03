@@ -1,25 +1,10 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
 
 public class Lotto {
-    public enum LottoNumber {
-        VALID(1, 45);
-
-        private final int min;
-        private final int max;
-
-        LottoNumber(int min, int max) {
-            this.min = min;
-            this.max = max;
-        }
-
-        public boolean isValid(int number) {
-            return number >= min && number <= max;
-        }
-    }
-
     private final List<Integer> numbers;
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -27,7 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
