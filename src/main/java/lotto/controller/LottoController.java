@@ -5,6 +5,7 @@ import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,9 +34,11 @@ public class LottoController {
 
             outputView.printInputWinnerNumber();
             List<Integer> winningNumber = inputView.getWinningNumbers();
+            WinningNumbersValidator.validateWinningNumbers(winningNumber);
 
             outputView.printInputBonusNumber();
             int bonusNumber = inputView.getBonusNumber();
+            WinningNumbersValidator.validateBonusNumber(winningNumber,bonusNumber);
 
             WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
 
