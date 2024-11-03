@@ -5,8 +5,9 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.message.PrintMessage;
 import lotto.service.Payment;
+import lotto.service.calculator.BonusCalculator;
 import lotto.service.calculator.ResultCalculator;
-import lotto.service.generator.ResultGenerator;
+import lotto.service.calculator.WinningCalculator;
 import lotto.util.ProfitCalculator;
 import lotto.view.OutputView;
 
@@ -23,11 +24,12 @@ public class ResultController {
     }
 
     public void showWinning(Lotto winning, Bonus bonus) {
-        ResultGenerator resultGenerator = ResultGenerator.create(lottoTicket, winning, bonus);
+        WinningCalculator resultGenerator = WinningCalculator.create(lottoTicket, winning);
+        BonusCalculator bonusCalculator = BonusCalculator.create(lottoTicket, bonus);
 
         outputView.printlnMessage(PrintMessage.LOTTO_WINNING_RESULT_MESSAGE);
         ResultCalculator resultCalculator = ResultCalculator.create(resultGenerator.getWinningResult(),
-                resultGenerator.getBonusResult());
+                bonusCalculator.getBonusResult());
         outputView.printWinningDetail(resultCalculator.getDetail());
 
         outputView.printProfitRate(ProfitCalculator.calculate(payment, resultCalculator.getPrizeMoney()));
