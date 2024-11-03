@@ -23,7 +23,7 @@ public enum Rank {
     }
 
     public String getDisplayText() {
-        if (this == NONE) return "";  // NONE은 출력하지 않음
+        if (this == NONE) return "";
         String bonusText = matchBonus ? ", 보너스 볼 일치" : "";
         return String.format("%d개 일치%s (%s원)", matchCount, bonusText, formatPrize(prize));
     }
