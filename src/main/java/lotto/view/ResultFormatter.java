@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.model.LottoPurchaseResult;
 
-public class LottoPurchaseResultFormatter {
+public class ResultFormatter {
     private static final String AMOUNT_POSTFIX = "개를 구매했습니다.";
     private static final String NEW_LINE = "\n";
 
