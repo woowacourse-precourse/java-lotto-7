@@ -14,24 +14,34 @@ public class InputWinningNumberView {
         String[] input = Console.readLine().split(",");
         System.out.println();
 
+        return validate(input);
+    }
+
+    private static Set<Integer> validate(String[] input) {
+        countValidation(input);
+
         Set<Integer> winningNumbers = new HashSet<>();
-
-        if (input.length != 6) {
-            throw new WinningNumberCountException();
-        }
-
         for (String str : input) {
-            winningNumbers.add(validate(str));
+            winningNumbers.add(rangeValidatation(str));
         }
-
-        if (winningNumbers.size() != 6) {
-            throw new WinningNumberDuplicationException();
-        }
+        duplicationValidation(winningNumbers);
 
         return winningNumbers;
     }
 
-    private static int validate(String input) {
+    private static void countValidation(String[] input) {
+        if (input.length != 6) {
+            throw new WinningNumberCountException();
+        }
+    }
+
+    private static void duplicationValidation(Set<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new WinningNumberDuplicationException();
+        }
+    }
+
+    private static int rangeValidatation(String input) {
         try {
             int winningNumber = Integer.parseInt(input);
             if (winningNumber <= 0 || winningNumber > 45) {

@@ -13,20 +13,30 @@ public class InputBonusNumberView {
         String[] input = Console.readLine().split(",| ");
         System.out.println();
 
-        if (input.length != 1) {
-            throw new BonusNumberCountException();
-        }
+        return validate(input, winningNumbers);
+    }
 
-        int bonusNumber = validate(input[0]);
-
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new BonusNumberDuplicationException();
-        }
+    private static int validate(String[] input, Set<Integer> winningNumbers) {
+        countValidation(input);
+        int bonusNumber = rangeValidatation(input[0]);
+        duplicationValidation(winningNumbers, bonusNumber);
 
         return bonusNumber;
     }
 
-    private static int validate(String input) {
+    private static void countValidation(String[] input) {
+        if (input.length != 1) {
+            throw new BonusNumberCountException();
+        }
+    }
+
+    private static void duplicationValidation(Set<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new BonusNumberDuplicationException();
+        }
+    }
+
+    private static int rangeValidatation(String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
             if (bonusNumber <= 0 || bonusNumber > 45) {

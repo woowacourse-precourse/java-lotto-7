@@ -5,11 +5,12 @@ import lotto.exception.PurchaseAmountFormatException;
 import lotto.exception.PurchaseAmountTypeException;
 import lotto.exception.PurchaseAmountZeroException;
 
-public class InputPurchaseAmountVIew {
+public class InputPurchaseAmountView {
     public static int purchaseAmountInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         System.out.println();
+
         int purchaseAmount = validate(input);
 
         return purchaseAmount / 1000;
