@@ -18,6 +18,7 @@ public class OutputHandler {
     }
 
     public void printWinningStatics(final Map<CorrectStatus,Integer> map){
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         map.keySet().forEach(correctStatus -> {

@@ -26,8 +26,10 @@ public class InputHandler {
 
     public WinningNumber inputWinningLottoNumber(){
 
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto winningRegularLotto = getWinningRegularLotto();
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return getWinningNumber(winningRegularLotto);
     }
