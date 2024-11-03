@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 class LottoResultDetailsTest {
     @DisplayName("발행한 로또와 당첨번호를 비교하여 올바른 rank를 반환한다.")
     @Test
-    public void 발행한_로또와_당첨번호를_비교하여_올바른_rank를_반환한다() {
+    public void 발행한_로또와_당첨번호를_비교하여_올바른_랭크를_반환한다() {
+        Rank.resetCount();
         Lottos lottos = new Lottos(Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)), //5개 일치, 보너스 일치x
                 new Lotto(Arrays.asList(1, 2, 3, 4, 6, 10)), //4개 일치

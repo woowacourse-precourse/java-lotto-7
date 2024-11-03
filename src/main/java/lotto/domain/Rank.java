@@ -19,6 +19,12 @@ public enum Rank {
         this.count = 0;
     }
 
+    public static void resetCount() {
+        for (Rank rank : Rank.values()) {
+            rank.count = 0;
+        }
+    }
+
     public static Rank of(int matchCount, boolean checkBonus){
         for(Rank rank:Rank.values()){
             if(checkBonus){
