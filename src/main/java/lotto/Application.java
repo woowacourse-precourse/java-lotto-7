@@ -14,6 +14,7 @@ public class Application {
         int lottoCount;
         List<Lotto> lottos = new ArrayList<>();
 
+        // 로또 구매
         System.out.println("구입금액을 입력해 주세요.");
         try {
             money = Integer.parseInt(readLine());
@@ -37,9 +38,10 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
 
+        // 당첨번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] tokens = readLine().split(",");
-        List<Integer> winningNumbers = Arrays.stream(tokens).map(token -> {
+        List<Integer> winningNumbersNoBonus = Arrays.stream(tokens).map(token -> {
             try {
                 return Integer.parseInt(token.trim());
             } catch (NumberFormatException e) {
