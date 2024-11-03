@@ -1,12 +1,17 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private static final String LOTTO_NUMBER_DELIMITER = ", ";
+    private static final String LOTTO_NUMBER_START = "[";
+    private static final String LOTTO_NUMBER_END = "]";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +19,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> get() {
         return Collections.unmodifiableList(numbers);
     }
 
@@ -22,35 +27,30 @@ public class Lotto {
         return numbers.stream()
                 .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NUMBER_START, LOTTO_NUMBER_END));
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers == null) {
-            throw new IllegalArgumentException("[ERROR] " + "로또 번호가 null이어서는 안 됩니다.");
+            throw new IllegalArgumentException(NULL_INPUT_ERROR);
         }
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE_ERROR);
         }
         if (isDuplicateExisted(numbers)) {
-            throw new IllegalArgumentException("[ERROR] " + "로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
         }
         if (isNotInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] " + "로또 번호는 1에서 45사이여야 합니다.");
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR);
         }
     }
 
     private boolean isDuplicateExisted(List<Integer> numbers) {
-        Set<Integer> noDuplicateNumbers = new HashSet<>(numbers);
-        return noDuplicateNumbers.size() != numbers.size();
+        return numbers.size() != new HashSet<>(numbers).size();
     }
 
     private boolean isNotInRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                return true;
-            }
-        }
-        return false;
+        return numbers.stream()
+                .anyMatch(number -> number < LOTTO_MIN_VALUE || number > LOTTO_MAX_VALUE);
     }
 }

@@ -35,7 +35,7 @@ public class Result {
         List<Lotto> purchasedLottos = purchasedLotto.get();
 
         for(Lotto lotto : purchasedLottos) {
-            List<Integer> lottoNumbers = new ArrayList<>(lotto.getNumbers());
+            List<Integer> lottoNumbers = new ArrayList<>(lotto.get());
             boolean isBonusContained = lottoNumbers.contains(bonusNumber);
 
             lottoNumbers.retainAll(winningNumbers);
