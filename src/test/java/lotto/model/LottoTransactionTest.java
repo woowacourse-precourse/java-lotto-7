@@ -35,19 +35,19 @@ class LottoTransactionTest {
   }
 
   @Test
-  public void 매칭_카운트_추가_테스트() {
+  public void 랭크_카운트_추가_테스트() {
     PrizeRank prizeRank = PrizeRank.FIRST;
 
     lottoTransaction.addMatchCount(prizeRank);
     lottoTransaction.addMatchCount(prizeRank);
 
-    EnumMap<PrizeRank, Integer> matchCounts = lottoTransaction.getMatchCounts();
+    EnumMap<PrizeRank, Integer> matchCounts = lottoTransaction.getRankCounts();
     assertEquals(2, matchCounts.get(prizeRank).intValue());
   }
 
   @Test
-  public void 초기_매칭_카운트_테스트() {
-    EnumMap<PrizeRank, Integer> matchCounts = lottoTransaction.getMatchCounts();
+  public void 초기_랭크_카운트_테스트() {
+    EnumMap<PrizeRank, Integer> matchCounts = lottoTransaction.getRankCounts();
 
     for (PrizeRank rank : PrizeRank.values()) {
       assertEquals(0, matchCounts.get(rank).intValue());

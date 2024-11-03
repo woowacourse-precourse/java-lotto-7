@@ -7,12 +7,12 @@ import java.util.List;
 public class LottoTransaction {
   private int amount = 0;
   private List<Lotto> purchasedLottos = new ArrayList<>();
-  private final EnumMap<PrizeRank, Integer> matchCounts;
+  private final EnumMap<PrizeRank, Integer> rankCounts;
 
   public LottoTransaction() {
-    this.matchCounts = new EnumMap<>(PrizeRank.class);
+    this.rankCounts = new EnumMap<>(PrizeRank.class);
     for (PrizeRank count : PrizeRank.values()) {
-      matchCounts.put(count, 0);
+      rankCounts.put(count, 0);
     }
   }
 
@@ -26,7 +26,7 @@ public class LottoTransaction {
 
   public void addMatchCount(PrizeRank prizeRank) {
 
-    matchCounts.put(prizeRank, matchCounts.get(prizeRank) + 1);
+    rankCounts.put(prizeRank, rankCounts.get(prizeRank) + 1);
   }
 
   public int getAmount() {
@@ -39,8 +39,8 @@ public class LottoTransaction {
     return this.purchasedLottos;
   }
 
-  public EnumMap<PrizeRank, Integer> getMatchCounts() {
+  public EnumMap<PrizeRank, Integer> getRankCounts() {
 
-    return this.matchCounts;
+    return this.rankCounts;
   }
 }
