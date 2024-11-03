@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.domain.LottoConstants;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningNumbers;
@@ -58,34 +59,42 @@ public class LottoController {
     }
 
     private WinningNumbers inputWinningNumbers() {
+        List<Integer> winningNumbers = inputValidWinningNumbers();
+        System.out.println();
+        int bonusNumber = inputValidBonusNumber(winningNumbers);
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> inputValidWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = inputWinningNumberList();
-                int bonusNumber = inputBonusNumber();
-                return new WinningNumbers(winningNumbers, bonusNumber);
+                List<Integer> winningNumbers = InputView.inputWinningNumbers();
+                new Lotto(winningNumbers);
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private int inputBonusNumber() {
+    private int inputValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                return InputView.inputBonusNumber();
+                int bonusNumber = InputView.inputBonusNumber();
+                validBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Integer> inputWinningNumberList() {
-        while (true) {
-            try {
-                return InputView.inputWinningNumbers();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    private void validBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
