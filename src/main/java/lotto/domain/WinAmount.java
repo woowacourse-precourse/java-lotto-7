@@ -27,4 +27,16 @@ public enum WinAmount {
     public int getNumber() {
         return number;
     }
+
+    public static WinAmount determineWinAmount(int correctNumber, boolean fiveAndBonus) {
+        if (correctNumber == 5 && fiveAndBonus) {
+            return FiveBonus;
+        }
+        for (WinAmount winAmount : WinAmount.values()) {
+            if (winAmount.getNumber() == correctNumber) {
+                return winAmount;
+            }
+        }
+        return null;
+    }
 }
