@@ -1,21 +1,17 @@
 package model;
 
-import exception.ErrorCode;
+import service.Validator;
 
 import java.util.List;
 
 public class Lotto {
+    private final static Validator validator = new Validator();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validator.validateLottoCount(numbers);
+        validator.validateDuplicatedWinningNumber(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorCode.RESTRICTION_WINNING_NUMBER.getErrorMessage());
-        }
     }
 
     public List<Integer> getNumbers() {
