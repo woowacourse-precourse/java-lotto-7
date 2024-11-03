@@ -39,4 +39,8 @@ public class OutputView {
     public void printLottoRate(double rate) {
         System.out.println(String.format(OutputMessage.LOTTO_RATE_MESSAGE.getMessage(), rate));
     }
+
+    public void printRetryGuide() {
+        System.out.println(String.format(OutputMessage.RETRY_MESSAGE.getMessage()));
+    }
 }

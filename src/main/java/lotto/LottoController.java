@@ -6,7 +6,6 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public static final int lottoPrice = 1000;
-
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     final Lottos lottos = new Lottos();
@@ -22,12 +21,23 @@ public class LottoController {
     }
 
     private int purchaseLottos() {
-        outputView.printPurchaseGuide();
-        String price = inputView.getPurchasePrice();
-        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(price);
-        int lottoCount = lottoPurchaseService.getLottoCount();
+        int lottoCount = 0;
+        while (true) {
+            outputView.printPurchaseGuide();
+            String price = inputView.getPurchasePrice();
+            LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(price);
+            lottoCount = lottoPurchaseService.getLottoCount();
+            if (!isError(lottoCount)) {
+                break;
+            }
+            outputView.printRetryGuide();
+        }
         outputView.printLottoCount(lottoCount);
         return lottoCount;
+    }
+
+    private static boolean isError(int lottoCount) {
+        return lottoCount < 1;
     }
 
     private void playLotto(int lottoCount) {

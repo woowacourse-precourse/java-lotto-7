@@ -11,7 +11,8 @@ public enum OutputMessage {
     PURCHASE_GUIDE("로또를 구입할 금액을 입력하세요."),
     WINNING_NUMBERS_GUIDE("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_GUIDE("보너스 번호를 입력해 주세요."),
-    LOTTO_COUNT_MESSAGE("%d개를 구매했습니다.");
+    LOTTO_COUNT_MESSAGE("%d개를 구매했습니다."),
+    RETRY_MESSAGE("다시 입력해 주세요.");
 
     private final String message;
 
