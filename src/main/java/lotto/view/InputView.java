@@ -61,7 +61,7 @@ public class InputView {
                 System.out.println(INFO_LOTTO_ANSWER);
                 String input = Console.readLine();
                 return getWinningNumbers(input);
-            }catch (Exception e){
+            }catch (IllegalArgumentException e){
                 System.out.println(ERROR_PHRASE + e.getMessage());
             }
         }
@@ -100,7 +100,7 @@ public class InputView {
                 System.out.println(INFO_LOTTO_BONUS);
                 String input = Console.readLine();
                 return validateBonus(input, winningNumbers);
-            }catch (Exception e){
+            } catch (IllegalArgumentException e){
                 System.out.println(ERROR_PHRASE + e.getMessage());
             }
         }

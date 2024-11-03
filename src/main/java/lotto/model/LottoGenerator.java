@@ -17,7 +17,7 @@ public class LottoGenerator {
                         .stream()
                         .sorted()
                         .toList();
-//        sixNumbers.sort(Integer::compareTo);
+
         return sixNumbers;
     }
 }
