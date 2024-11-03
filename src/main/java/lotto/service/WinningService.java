@@ -2,7 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -29,17 +28,8 @@ public class WinningService {
     public void findWinningNumber(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             containsWinningNumber(lotto);
-            //containsBonusNumber(lotto);
         }
     }
-
-//    public static void containsBonusNumber(Lotto lotto) {
-//        List<Integer> lottoList = lotto.getNumber();
-//
-//        if (lottoList.contains(winning.getBonusNumber())) {
-//            lotto.checkBonusNumber();
-//        }
-//    }
 
     public static void containsWinningNumber(Lotto lotto) {
         List<Integer> lottoList = lotto.getNumber();
