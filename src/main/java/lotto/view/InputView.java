@@ -22,14 +22,8 @@ public class InputView {
 
     public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBERS_PROMPT);
-        while (true) {
-            String input = Console.readLine().trim();
-            try {
-                return parseWinningNumbers(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String input = Console.readLine().trim();
+        return parseWinningNumbers(input);
     }
 
     public static int getBonusNumber() {
@@ -38,12 +32,11 @@ public class InputView {
     }
 
     private static int readValidatedIntegerInput() {
-        while (true) {
-            try {
-                return Integer.parseInt(Console.readLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println(NUMBER_ERROR_MESSAGE);
-            }
+        String input = Console.readLine().trim();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
         }
     }
 
