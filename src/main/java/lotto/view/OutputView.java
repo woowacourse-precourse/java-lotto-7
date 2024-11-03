@@ -70,4 +70,8 @@ public class OutputView {
     public static void printRatio(String ratio) {
         System.out.printf(PRINT_RATIO, ratio);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

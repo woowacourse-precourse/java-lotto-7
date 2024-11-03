@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningLotto;
+import static lotto.view.OutputView.printErrorMessage;
 import static lotto.view.OutputView.printLottoGames;
 import static lotto.view.OutputView.printRatio;
 import static lotto.view.OutputView.printResults;
@@ -19,8 +20,7 @@ public class Application {
         LottoGame lottoGame = makeLottoGame();
         printLottoGames(lottoGame);
 
-        WinningLotto winningLotto = new WinningLotto(new Lotto(inputWinningLotto()),
-                inputBonusNumber());
+        WinningLotto winningLotto = makeWinningLotto();
 
         LottoResults lottoResults = lottoGame.makeLottoResult(winningLotto);
 
@@ -29,7 +29,26 @@ public class Application {
     }
 
     private static LottoGame makeLottoGame() {
-        LottoPurchase lottoPurchase = new LottoPurchase(InputView.inputPrice());
-        return new LottoGame(lottoPurchase);
+        while (true) {
+            try {
+                LottoPurchase lottoPurchase = new LottoPurchase(InputView.inputPrice());
+                return new LottoGame(lottoPurchase);
+            } catch (IllegalArgumentException exception) {
+                printErrorMessage(exception.getMessage());
+            }
+        }
+
     }
+
+    private static WinningLotto makeWinningLotto() {
+        while (true) {
+            try {
+                return new WinningLotto(new Lotto(inputWinningLotto()),
+                        inputBonusNumber());
+            } catch (IllegalArgumentException exception) {
+                printErrorMessage(exception.getMessage());
+            }
+        }
+    }
+
 }
