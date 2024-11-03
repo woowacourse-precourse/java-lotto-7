@@ -21,4 +21,10 @@ public class LottoContainer {
                 .collect(Collectors.toList());
         return new Results(results);
     }
+
+    public List<LottoInfo> getInfos() {
+        return lotteries.stream()
+                .map(lotto -> new LottoInfo(lotto))
+                .collect(Collectors.toList());
+    }
 }
