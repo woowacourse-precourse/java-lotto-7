@@ -33,4 +33,5 @@ public enum WinningKind {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 해당 조건에 맞는 당첨 종류가 없습니다."));
     }
+
 }

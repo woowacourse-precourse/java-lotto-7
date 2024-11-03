@@ -1,16 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import static lotto.InputGuide.*;
+import static lotto.LottoUtil.checkResult;
 
 public class Application {
     public static void main(String[] args) {
 
         Host host = Host.getHost();
 
-        System.out.println("구입금액을 입력해 주세요.");
+        ACCOUNT.guidePrint();
 
         String inputAccount = Console.readLine();
 
@@ -18,21 +19,15 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력하세요.");
         }
 
-        int account = Integer.parseInt(inputAccount);
-        int lottoCount = LottoGenerator.howManyLottos(account);
+        int amount = Integer.parseInt(inputAccount);
+        int lottoCount = LottoGenerator.howManyLottos(amount);
         List<Lotto> lottos = LottoGenerator.getLottos(lottoCount);
 
-        System.out.println(lottoCount + "개 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.toString());
-        }
+        Output.purchaseCount(lottoCount);
+        Output.purchasedLottos(lottos);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] numbersInputs = Console.readLine().split(",");
-        List<String> inputs = Arrays.stream(numbersInputs)
-                .map(String::trim)
-                .filter(x -> !x.isEmpty())
-                .toList();
+        NUMBER_SELECT.guidePrint();
+        List<String> inputs = Util.seperateInput(Console.readLine());
 
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputs) {
@@ -44,51 +39,20 @@ public class Application {
 
         host.setSelectedNumbers(winningNumbers);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        BONUS.guidePrint();
         String bonusInput = Console.readLine();
         if (!bonusInput.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
         host.setBonusNumber(Integer.parseInt(bonusInput));
 
-        Map<WinningKind, Integer> lottoResult = new HashMap<>();
-        for (WinningKind winningKind : WinningKind.values()) {
-            lottoResult.put(winningKind, 0);
-        }
+        Map<WinningKind, Integer> lottoResult = checkResult(lottos, host);
 
-        for (Lotto lotto : lottos) {  // `lottos`는 구입한 로또 목록
-            int matchCount = host.countResult(lotto);
-            boolean bonus = false;
-            if (host.isBonus(lotto)) {
-                matchCount++;
-                bonus = true;
-            }
+        Output.resultStart();
+        Output.wonResult(lottoResult);
 
-            WinningKind kind = WinningKind.getWinningKind(matchCount, bonus);
-            lottoResult.put(kind, lottoResult.get(kind) + 1);
-        }
-
-        System.out.println("당첨 통계\n---");
-
-        int totalPrize = 0;
-        for (WinningKind kind : WinningKind.values()) {
-            int count = lottoResult.get(kind);
-            int prize = kind.getPrize();
-            totalPrize += count * prize;
-            if (kind == WinningKind.MATCH_5_BONUS) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",
-                        kind.getMatchCount(), prize, count);
-            } else {
-                System.out.printf("%d개 일치 (%d원) - %d개\n",
-                        kind.getMatchCount(), prize, count);
-            }
-        }
-
-        double yield = (double) totalPrize / account * 100;
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
+        double yield = LottoUtil.getYield(lottoResult, amount);
+        Output.yield(yield);
 
     }
-
-
-
 }
