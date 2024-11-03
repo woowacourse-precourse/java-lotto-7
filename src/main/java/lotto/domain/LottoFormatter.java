@@ -14,8 +14,8 @@ public class LottoFormatter {
 
     private static final String PRINT_NUMBERS_PREFIX = "[";
     private static final String PRINT_NUMBERS_POSTFIX = "]" + System.lineSeparator();
-    private final static String LOTTOS_NUM_BUY_MESSAGE = "%d개를 구매했습니다." + System.lineSeparator();
-    private final static String WIN_LOTTO_RESULT_START_MSG = "당첨 통계" + System.lineSeparator() + "---" + System.lineSeparator();
+    private final static String LOTTOS_NUM_BUY_MESSAGE = System.lineSeparator() + "%d개를 구매했습니다." + System.lineSeparator();
+    private final static String WIN_LOTTO_RESULT_START_MSG = System.lineSeparator() + "당첨 통계" + System.lineSeparator() + "---" + System.lineSeparator();
     private final static String WIN_LOTTO_WIN_COUNT = "%d개 일치 (%s원) - %d개" + System.lineSeparator();
     private final static String BONUS_CASE_LOTTO_WIN = "%d개 일치, 보너스 볼 일치 (%s원) - %d개" + System.lineSeparator();
     private final static String WIN_MONEY_RATE_FORMAT = "총 수익률은 %.1f%%입니다." + System.lineSeparator();
