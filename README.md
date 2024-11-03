@@ -108,6 +108,7 @@
 |             |                             | Prize 번호 생성 서비스                   | ✅       |
 |             |                             | WinnerNumbers 생성                  | ✅       |
 |             |                             | BonusNumber 생성                    | ✅       |
+|             |                             | Prize Id 자동 생성기 생성                | ✅       |
 
 ---
 
