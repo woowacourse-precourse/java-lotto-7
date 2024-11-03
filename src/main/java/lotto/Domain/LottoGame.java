@@ -1,8 +1,8 @@
 package lotto.Domain;
 
 public class LottoGame {
-    private Lottos lottos;
-    private Lotto winningLotto;
+    private Lottos issuedLottos;
+    private WinningNumbers winningNumbers;
 
     private LottoGame() {
     }
@@ -12,11 +12,11 @@ public class LottoGame {
     }
 
     public void setIssuedLottos(Lottos lottos) {
-        this.lottos = lottos;
+        this.issuedLottos = lottos;
     }
 
-    public void setWinningLotto(Lotto lotto) {
-        this.winningLotto = lotto;
+    public void setWinningNumbers(WinningNumbers winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 
 }

@@ -30,4 +30,8 @@ public class Validator {
         }
     }
 
+    public static boolean inRange(int num, int min, int max) {
+        return min <= num && num <= max;
+    }
+
 }

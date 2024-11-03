@@ -49,19 +49,24 @@ public class LottoGameController {
     }
 
     private void draw() {
+        OutputView.printMessage();
+        WinningNumbers winningNumbers = WinningNumbers.create();
         while (true) {
             try {
                 String winningNumbersInput = userInput.winningNumbers();
-                WinningNumbers winningNumbers = WinningNumbers.from(winningNumbersInput);
-                game.setWinningLotto(winningNumbers.getNumbers());
+                winningNumbers.registerMainNumbers(winningNumbersInput);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
         }
 
-        String bonusNumberInput = userInput.bonusNumber();
+        OutputView.printMessage();
 
+        String bonusNumberInput = userInput.bonusNumber();
+        winningNumbers.registerBonus(bonusNumberInput);
+
+        game.setWinningNumbers(winningNumbers);
     }
 
 }

@@ -9,11 +9,12 @@ public class Parser {
         return Integer.parseInt(input);
     }
 
-    public static List<Integer> stringToNumberList(String[] input) {
-        List<Integer> result = new ArrayList<Integer>();
+    public static List<Integer> stringToNumberList(String input) {
+        String[] tokens = input.split(",");
+        List<Integer> result = new ArrayList<>();
 
-        for (String s : input) {
-            result.add(stringToInteger(s));
+        for (String token : tokens) {
+            result.add(stringToInteger(token));
         }
 
         return result;
