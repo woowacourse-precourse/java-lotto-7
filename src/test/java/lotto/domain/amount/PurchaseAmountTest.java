@@ -1,7 +1,6 @@
 package lotto.domain.amount;
 
-import static lotto.ErrorCode.INVALID_NUMBER_FORMAT;
-import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
+import static lotto.infrastructure.exception.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;

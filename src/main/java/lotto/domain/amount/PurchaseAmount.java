@@ -1,6 +1,6 @@
 package lotto.domain.amount;
 
-import static lotto.ErrorCode.*;
+import static lotto.infrastructure.exception.ErrorCode.*;
 
 public class PurchaseAmount extends Amount {
 
