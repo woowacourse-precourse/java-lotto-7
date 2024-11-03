@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.Bag;
-import lotto.LotteryMachine;
-import lotto.User;
+import lotto.dto.Result;
+import lotto.domain.LotteryMachine;
+import lotto.domain.User;
 import lotto.view.InputView;
 import lotto.view.outputView;
 
@@ -23,6 +23,18 @@ public class LottoController {
                 user = new User(InputView.inputPurchaseAmount());
                 lotteryMachine.purchaseLottoTickets(user);
                 outputView.printPurchasedLottoTickets(user.getBag());
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public void inputWinningNumbers() {
+        while(true) {
+            try{
+                Result result = new Result(InputView.inputWinningNumbers());
+                result.setBonusNumber(InputView.inputBonusNumber());
+
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

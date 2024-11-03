@@ -1,9 +1,7 @@
-package lotto;
+package lotto.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static lotto.Validator.*;
 
 public class Bag {
     private int numberOfLottoTickets;

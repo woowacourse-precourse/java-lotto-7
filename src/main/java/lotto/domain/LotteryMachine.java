@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.Lotto;
+import lotto.dto.Result;
+import lotto.util.LottoRank;
 
-import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class LotteryMachine {

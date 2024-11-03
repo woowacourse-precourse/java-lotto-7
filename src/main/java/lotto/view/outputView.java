@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.Bag;
-import lotto.Lotto;
+import lotto.dto.Bag;
+import lotto.dto.Lotto;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Bag;
 
-import static lotto.Validator.validateEmptyString;
-import static lotto.Validator.validatePositiveNumber;
+import static lotto.util.Validator.validateEmptyString;
+import static lotto.util.Validator.validatePositiveNumber;
 
 public class InputView {
 
