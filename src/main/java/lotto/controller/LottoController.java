@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoPurchaseHistory;
 import lotto.model.lottoInfo.LottoGame;
 import lotto.model.lottoInfo.PriceDataImpl;
 import lotto.model.lottoInfo.StandardLottoPrice;
@@ -17,6 +18,7 @@ public class LottoController {
     public void run() {
         LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
         int money = inputMoney(lottoGame.getPrice());
+        LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
     }
 
     private int inputMoney(int lottoPrice) {
@@ -31,5 +33,10 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private LottoPurchaseHistory buyLotto(int money, int lottoPrice) {
+        int lottoAmount = money / lottoPrice;
+        return lottoService.buyLotto(lottoAmount);
     }
 }
