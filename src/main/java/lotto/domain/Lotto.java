@@ -70,9 +70,7 @@ public class Lotto {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .toList();
+        return numbers.stream().sorted().toList();
     }
 
     private boolean isNumberInList(Integer number) {

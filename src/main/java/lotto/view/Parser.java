@@ -24,10 +24,17 @@ public class Parser {
     }
 
     public List<Integer> parseWinningLottoNumbers(String numbers) {
+        validateNumbersInput(numbers);
+        return splitAndParseToIntegerList(numbers);
+    }
+
+    private void validateNumbersInput(String numbers) {
         if (numbers == null || numbers.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 번호를 입력해주세요.");
         }
+    }
 
+    private List<Integer> splitAndParseToIntegerList(String numbers) {
         try {
             String removedSpacesNumbers = removeSpaces(numbers);
             return Arrays.stream(removedSpacesNumbers.split(INPUT_DELIMITER))

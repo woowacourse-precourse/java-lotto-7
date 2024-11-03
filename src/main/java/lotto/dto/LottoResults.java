@@ -19,18 +19,16 @@ public class LottoResults {
 
     public long getNumberOfMatched(Rank rank) {
         return results.stream().
-                filter(result -> result.getRank() == rank)
+                filter(result -> isMatchingRank(rank, result))
                 .count();
     }
 
-    public double getPercentageOfMatched() {
-        double totalPrize = getTotalPrize();
-        int purchase = getPurchase();
-        return totalPrize / purchase * 100;
+    private boolean isMatchingRank(Rank rank, LottoResult result) {
+        return result.getRank() == rank;
     }
 
-    private int getPurchase() {
-        return results.size() * PRICE;
+    public double getPercentageOfMatched() {
+        return getTotalPrize() / getPurchase() * 100;
     }
 
     private double getTotalPrize() {
@@ -38,6 +36,10 @@ public class LottoResults {
             Rank rank = result.getRank();
             return rank.getPrizeMoney();
         }).sum();
+    }
+
+    private int getPurchase() {
+        return results.size() * PRICE;
     }
 
     public List<LottoResult> getResults() {
