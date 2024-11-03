@@ -10,6 +10,14 @@ public class WinLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public static WinLotto of(Lotto lotto, int bonusNumber) {
         return new WinLotto(lotto, bonusNumber);
     }

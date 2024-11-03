@@ -53,5 +53,6 @@ public class LottoApplication {
         String winNumber = applicationView.requestWinNumber();
         int bonusNumber = applicationView.requestBonusNumber();
         lottoResultUseCase.createWinLotto(messageParser.toNumbers(winNumber), bonusNumber);
+        lottoResultUseCase.checkWinning();
     }
 }
