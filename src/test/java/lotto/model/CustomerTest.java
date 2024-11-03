@@ -34,4 +34,19 @@ class CustomerTest {
         // then
         Assertions.assertThat(myLotto.getLottos()).hasSize(1);
     }
+
+    @Test
+    @DisplayName("고객은 당첨내역을 확인할 수 있다.")
+    void should_CheckMyLotto() {
+        // given
+        Money budget = new Money("8000");
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        AnswerNumbers answerNumbers = AnswerNumbers.from("1,2,3,4,5,7");
+        MyLotto myLotto = new MyLotto(new ArrayList<>(List.of(lotto)));
+        Customer customer = new Customer(budget, myLotto);
+        // when
+        List<WinningType> result = customer.checkMyLotto(answerNumbers, new BonusNumber("6"));
+        // then
+        Assertions.assertThat(result).contains(WinningType.SECOND);
+    }
 }
