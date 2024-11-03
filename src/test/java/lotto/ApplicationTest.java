@@ -147,9 +147,16 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어날 때 예외 메시지 출력")
+    void displayErrorMessageWhenBonusNumberOutOfRange() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "50");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     
-
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
