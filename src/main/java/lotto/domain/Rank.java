@@ -34,10 +34,7 @@ public enum Rank {
     }
 
     private static boolean isFiveMatchesAndBonus(int matchCount, boolean matchBonus) {
-        if (matchCount == 5 && matchBonus) {
-            return true;
-        }
-        return false;
+        return matchCount == LottoValue.FIVE_MATCHES.getValue() && matchBonus;
     }
 
     public String getLotteryStatistics() {

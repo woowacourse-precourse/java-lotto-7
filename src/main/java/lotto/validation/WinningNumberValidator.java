@@ -50,7 +50,7 @@ public class WinningNumberValidator {
     private static void validateSixNumbers(String input) {
         String [] values = getSplit(input);
 
-        if (values.length != 6) {
+        if (values.length != LottoValue.NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.NOT_INPUT_SIX_NUMBERS.getErrorMessage());
         }
     }

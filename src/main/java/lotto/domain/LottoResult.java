@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.enums.LottoValue;
 
 public class LottoResult {
 
@@ -35,6 +36,6 @@ public class LottoResult {
     }
 
     public int getPurchasePrice() {
-        return lottoCount * 1000;
+        return lottoCount * LottoValue.LOTTO_PRICE.getValue();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.enums.LottoValue;
 import lotto.util.Converter;
 import lotto.validation.PriceValidator;
 
@@ -17,6 +18,6 @@ public class PurchasePrice {
     }
 
     public int calculatePurchaseCount() {
-        return (int) (price / 1000);
+        return (int) (price / LottoValue.LOTTO_PRICE.getValue());
     }
 }

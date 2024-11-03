@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
 import lotto.util.Converter;
 
 public class PriceValidator {
@@ -27,13 +28,13 @@ public class PriceValidator {
     }
 
     private static void validateUnderThousand(long price) {
-        if (price < 1000) {
+        if (price < LottoValue.LOTTO_PRICE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.PRICE_UNDER_THOUSAND.getErrorMessage());
         }
     }
 
     private static void validateDivideThousand(long price) {
-        if (price % 1000 != 0) {
+        if (price % LottoValue.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.PRICE_NOT_DIVIDE_THOUSAND.getErrorMessage());
         }
     }
