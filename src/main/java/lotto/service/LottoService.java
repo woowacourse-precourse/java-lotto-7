@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -36,13 +37,12 @@ public class LottoService {
             throw new IllegalArgumentException(LottoServiceErrorConfig.COMMA_SPLIT_ERROR.getErrorMessage());
         }
 
-        Arrays.sort(numbersArray);
         return numbersArray;
     }
 
     private static List<Integer> convertToIntegerList(String[] numbersArray) {
         try {
-            return Arrays.stream(numbersArray).map(LottoService::convertStringToInt).toList();
+            return Arrays.stream(numbersArray).map(LottoService::convertStringToInt).sorted().collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getErrorMessage());
         }
@@ -50,14 +50,24 @@ public class LottoService {
 
     public Integer getBonusNumber(String number) {
         try {
-            return convertStringToInt(number);
+            int convertedNumber = convertStringToInt(number);
+            if (convertedNumber > 45 || convertedNumber < 0) {
+                throw new IllegalArgumentException(LottoServiceErrorConfig.LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
+            }
+            return convertedNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getErrorMessage());
         }
     }
 
     private static int convertStringToInt(String number) {
-        return Integer.parseInt(number);
+        int convertedNumber = Integer.parseInt(number);
+
+        if (convertedNumber > 45 || convertedNumber <= 0) {
+            throw new IllegalArgumentException(LottoServiceErrorConfig.LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
+        }
+
+        return convertedNumber;
     }
 
     public List<Integer> calculateLottoResults(Lottos lottos, List<Integer> winningSixNumbers, Integer winningBonusNumber) {
