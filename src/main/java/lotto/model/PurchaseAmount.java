@@ -5,7 +5,7 @@ import lotto.exception.ErrorMessage;
 
 public class PurchaseAmount {
 
-    private static final int STANDARD_AMOUNT_UNIT = 1000;
+    private static final int LOTTO_TICKET_PRICE = 1000;
     private static final int MAX_AMOUNT = 100000;
 
     private final int purchaseAmount;
@@ -21,7 +21,7 @@ public class PurchaseAmount {
     }
 
     public int calculateQuantity() {
-        return this.purchaseAmount / STANDARD_AMOUNT_UNIT;
+        return this.purchaseAmount / LOTTO_TICKET_PRICE;
     }
 
     private void validateExceedAmount(int purchaseAmount) {
@@ -31,7 +31,7 @@ public class PurchaseAmount {
     }
 
     private void validateDivisibleAmount(int purchaseAmount) {
-        if (purchaseAmount < STANDARD_AMOUNT_UNIT || purchaseAmount % STANDARD_AMOUNT_UNIT != 0) {
+        if (purchaseAmount < LOTTO_TICKET_PRICE || purchaseAmount % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDE_PURCHASE_AMOUNT.getErrorMessage());
         }
     }
