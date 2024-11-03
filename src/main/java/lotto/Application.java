@@ -12,25 +12,25 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        int amount;
         int lottoCount;
         List<Lotto> lottos = new ArrayList<>();
         int totalPrice = 0;
 
         // 로또 구매
-        System.out.println("구입금액을 입력해 주세요.");
-        try {
-            amount = Integer.parseInt(readLine());
-            System.out.println();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
-        }
-        if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 0이상의 값을 입력해야 합니다.");
-        }
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나눠 떨어지는 값을 입력해야 합니다.");
-        }
+        int amount = InputHandler.getPurchaseAmount();
+//        System.out.println("구입금액을 입력해 주세요.");
+//        try {
+//            amount = Integer.parseInt(readLine());
+//            System.out.println();
+//        } catch (NumberFormatException e) {
+//            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+//        }
+//        if (amount < 0) {
+//            throw new IllegalArgumentException("[ERROR] 0이상의 값을 입력해야 합니다.");
+//        }
+//        if (amount % LOTTO_PRICE != 0) {
+//            throw new IllegalArgumentException("[ERROR] 1000원으로 나눠 떨어지는 값을 입력해야 합니다.");
+//        }
         lottoCount = amount / LOTTO_PRICE;
 
         for (int i = 0; i < lottoCount; i++) {
