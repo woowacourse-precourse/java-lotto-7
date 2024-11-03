@@ -7,6 +7,7 @@ import lotto.validate.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoMachine {
     private final int MAX = 45;
@@ -25,8 +26,9 @@ public class LottoMachine {
 
     /**
      * 당첨 번호와 보너스 번호 넣기
+     *
      * @param winner 당첨 번호
-     * @param bonus 보너스 번호
+     * @param bonus  보너스 번호
      */
     public void init(List<Integer> winner, int bonus) {
         this.winner = new Lotto(winner);
@@ -36,8 +38,9 @@ public class LottoMachine {
 
     /**
      * 보너스 번호 유효성 검사
+     *
      * @param winner 당첨 번호
-     * @param bonus 보너스 번호
+     * @param bonus  보너스 번호
      */
     private void validateWinner(List<Integer> winner, int bonus) {
         if (!Validator.inRange(bonus)) {
@@ -47,16 +50,26 @@ public class LottoMachine {
         }
     }
 
+    /**
+     * 로또 구매
+     *
+     * @param money 로또를 구매할 돈
+     */
     public void buyLotto(int money) {
         validatePrice(money);
 
-        int lottoCount = money/PRICE;
+        int lottoCount = money / PRICE;
 
-        for (int i=0; i<lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             addLotto(generateNumber());
         }
     }
 
+    /**
+     * 금액 유효성 검사
+     *
+     * @param money
+     */
     private void validatePrice(int money) {
         if (Validator.isOver(money, MAX_PRICE)) {
             throw new LottoException(ErrorMessage.ILLEGAL_GAMBLING);
@@ -65,12 +78,18 @@ public class LottoMachine {
         }
     }
 
+    /**
+     * 1~45 숫자 중복없이 6개 생성
+     *
+     * @return 6개 숫자 리스트
+     */
     private List<Integer> generateNumber() {
         return Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT);
     }
 
     /**
      * 로또 추가
+     *
      * @param nums 추가시킬 로또 번호
      */
     private void addLotto(List<Integer> nums) {
@@ -79,6 +98,7 @@ public class LottoMachine {
 
     /**
      * 모든 로또 번호 반환
+     *
      * @return 로또 번호 2차원 리스트
      */
     public List<List<Integer>> getLottoNums() {
@@ -93,15 +113,23 @@ public class LottoMachine {
 
     /**
      * 로또 결과 반환
+     *
      * @return 로또 결과
      */
     public Result getResult() {
         Result result = new Result();
 
+        initValidate();
         for (Lotto lotto : lottos) {
             result.add(lotto.getRank(winner, bonus));
         }
 
         return result;
+    }
+
+    private void initValidate() {
+        if (this.lottos.isEmpty() || Objects.isNull(winner) || bonus == 0) {
+            throw new LottoException(ErrorMessage.NOT_INIT_STATE);
+        }
     }
 }

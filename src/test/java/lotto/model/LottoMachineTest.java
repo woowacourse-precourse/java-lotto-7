@@ -120,6 +120,38 @@ class LottoMachineTest {
     }
 
     @Test
+    @DisplayName("로또가 없는 경우")
+    void 로또가_없는_경우() {
+        // given
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Integer> winnerNum = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 10;
+
+        // when
+        lottoMachine.init(winnerNum, bonus);
+        LottoException e = assertThrows(LottoException.class, lottoMachine::getResult);
+
+        // then
+        assertEquals(ErrorMessage.NOT_INIT_STATE.getMessage(), e.getMessage());
+    }
+
+    @Test
+    @DisplayName("초기화가 안된 경우")
+    void 초기화가_안된_경우() {
+        // given
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Integer> winnerNum = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 10;
+
+        // when
+        lottoMachine.buyLotto(5000);
+        LottoException e = assertThrows(LottoException.class, lottoMachine::getResult);
+
+        // then
+        assertEquals(ErrorMessage.NOT_INIT_STATE.getMessage(), e.getMessage());
+    }
+
+    @Test
     @DisplayName("로또 결과 받기")
     void 로또_결과_받기() {
         // given
