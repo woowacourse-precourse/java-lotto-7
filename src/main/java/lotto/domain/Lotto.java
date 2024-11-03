@@ -31,7 +31,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.getValue()) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new InvalidLottoSizeException();
         }
     }
@@ -41,7 +41,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(Integer number) {
-        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new NumberOutOfRangeException();
         }
     }
