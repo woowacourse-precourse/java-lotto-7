@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 class ValidatorTest {
 
     private static final String ERROR_NOT_DIVISIBLE_BY_1000 = "[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다.";
+    private static final String ERROR_NOT_NEGATIVE_PURCHASE_NUMBER = "[ERROR] 구입 금액은 양수여야 합니다.";
     private static final String ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 총 6개 입력되어야 합니다.";
     private static final String ERROR_OUT_OF_RANGE_WINNING_NUMBER_MESSAGE =
             "[ERROR] 당첨 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
@@ -28,6 +29,16 @@ class ValidatorTest {
                 .hasMessage(ERROR_NOT_DIVISIBLE_BY_1000);
     }
 
+    @Test
+    public void 구입_금액이_음수일_경우_예외_발생() {
+        // given
+        int input = -1;
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> Validator.validatePurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_NOT_NEGATIVE_PURCHASE_NUMBER);
+    }
 
     @Test
     public void 당첨_번호의_총_개수가_6이_아니면_예외_발생() {
