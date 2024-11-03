@@ -2,6 +2,13 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PrizeController controller = new PrizeController();
+
+        try {
+            controller.lottoStart();
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
+
 }
