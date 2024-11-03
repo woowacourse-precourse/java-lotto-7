@@ -41,4 +41,12 @@ public class InputView {
                 .collect(Collectors.toList());
         return inputValidator.validateWinningNumbers(winningNumbers);
     }
+
+    public int getBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        String input = Console.readLine();
+        return inputValidator.validateBonusNumber(input);
+    }
 }
+
+

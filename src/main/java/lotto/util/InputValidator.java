@@ -72,4 +72,12 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    public int validateBonusNumber(String input) {
+        checkBlank(input);
+        int bonus = convertStrToInt(input);
+
+        checkRange(bonus);
+        return bonus;
+    }
 }

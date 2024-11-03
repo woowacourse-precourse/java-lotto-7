@@ -28,7 +28,7 @@ public class LottoController {
         List<Integer> winningNumber = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
 
-        WinningLotto winningLotto = lottoService.issueWinningLotto(winningNumber, bonusNumber);
+//        WinningLotto winningLotto = lottoService.issueWinningLotto(winningNumber, bonusNumber);
         // 당첨 통계 및 수익률 출력
 
     }
