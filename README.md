@@ -129,7 +129,7 @@
   - 1에서 45 사이의 중복되지 않은 정수 6개를 반환한다.
 - sortAscending
   - Lotto 번호를 오름차순 정렬한다.
-- printLottoNumbers
+- displayLottoNumbers
   - Lotto 번호를 출력한다.
 
 ## 로직
