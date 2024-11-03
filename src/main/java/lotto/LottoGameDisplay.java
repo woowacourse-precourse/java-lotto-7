@@ -26,10 +26,19 @@ public class LottoGameDisplay {
     }
 
     public List<Integer> inputWinnerNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("당첨 번호를 입력해 주세요.");
 
-        return inputNumbers(",");
+                List<Integer> winNumbers = inputNumbers(",");
+                LottoGameValidator.checkWinNumbersValid(winNumbers);
+
+                return winNumbers;
+            } catch (Exception e) {
+                printErrorMessage(e);
+            }
+        }
     }
 
     public int inputBonusNumber(List<Integer> winnerNumbers) {
