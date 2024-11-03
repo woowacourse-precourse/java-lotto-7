@@ -26,12 +26,8 @@ public class Lotto {
         }
     }
 
-    private boolean validateLottoRange(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number ->
-                        number < LottoRule.LOTTO_MIN_NUMBER.getValue() ||
-                        number > LottoRule.LOTTO_MAX_NUMBER.getValue()
-                );
+    private static boolean validateLottoSize(List<Integer> numbers) {
+        return numbers.size() != LottoRule.LOTTO_SIZE.getValue();
     }
 
     private static boolean validateLottoDuplicate(List<Integer> numbers) {
@@ -40,31 +36,26 @@ public class Lotto {
                 .count();
     }
 
-    private static boolean validateLottoSize(List<Integer> numbers) {
-        return numbers.size() != LottoRule.LOTTO_SIZE.getValue();
+    private boolean validateLottoRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number ->
+                        number < LottoRule.LOTTO_MIN_NUMBER.getValue() ||
+                        number > LottoRule.LOTTO_MAX_NUMBER.getValue()
+                );
+    }
+
+    public int matchCount(List<Integer> winNumber, int bonusNumber) {
+        return (int) numbers.stream()
+                .filter(number -> winNumber.contains(number) || number == bonusNumber)
+                .count();
+    }
+
+    public boolean contain(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     @Override
     public String toString() {
         return numbers.toString();
-    }
-
-    public int matchCount(List<Integer> winNumber, int bonusNumber) {
-        int matchCount = 0;
-        for (int number : numbers) {
-            if (winNumber.contains(number)) {
-                matchCount++;
-            }
-        }
-
-        if (numbers.contains(bonusNumber)) {
-            matchCount++;
-        }
-
-        return matchCount;
-    }
-
-    public boolean bonus(int bonusNumber) {
-        return numbers.contains(bonusNumber);
     }
 }

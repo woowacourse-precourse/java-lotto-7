@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoResult {
-    List<Rank> ranks;
+    private final List<Rank> ranks;
 
     public LottoResult(List<Rank> ranks) {
         this.ranks = ranks;

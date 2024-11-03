@@ -32,11 +32,11 @@ public enum Rank {
     }
 
     private static boolean isBonus(Lotto lotto, int bonusNumber, int matchCount) {
-        boolean asdf = false;
+        boolean bonus = false;
         if (matchCount == BONUS_MATCH_COUNT) {
-            asdf = lotto.bonus(bonusNumber);
+            bonus = lotto.contain(bonusNumber);
         }
-        return asdf;
+        return bonus;
     }
 
     public int getPrize() {
