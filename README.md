@@ -100,7 +100,8 @@
 | --------    | ------                      | -----------                       | ------- |
 | Prize 도메인 외 | Repository 관리               | ConcurrentHashMap으로 저장소 생성        | ✅       |
 |             |                             | Prize 객체 저장                       | ✅       |
-|             |                             | ID로 저장 결과 반환                      | ⬜️      |
+|             |                             | ID로 저장 결과 반환                      | ✅       |
+|             |                             | Prize Id로 단건 조회                   | ✅       |
 |             | Service 관리                  | Prize 생성 서비스                      | ✅       |
 |             |                             | ID 생성                             | ✅       |
 |             |                             | Prize 저장                          | ✅       |
