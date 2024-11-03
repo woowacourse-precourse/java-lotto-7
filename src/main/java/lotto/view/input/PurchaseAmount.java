@@ -9,27 +9,28 @@ public class PurchaseAmount {
             try {
                 InputMessageEnum.PURCHASE_AMOUNT.printMessage();
                 String purchaseAmount = readLine();
-                int amount = Integer.parseInt(purchaseAmount);
-                validatePurchaseAmount(amount);
+                int amount = parseAndValidateAmount(purchaseAmount);
                 return amount;
-            } catch (Exception e) {
-                handleInputException(e);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private void validatePurchaseAmount(int amount) {
-        if (amount <= 0 || amount % 1000 != 0) {
-            throw new IllegalArgumentException(InputMessageEnum.INVALID_AMOUNT_ERROR.getMessage());
-        }
+    public int parseAndValidateAmountForTest(String purchaseAmount) {
+        return parseAndValidateAmount(purchaseAmount);
     }
 
-    private void handleInputException(Exception e) {
-        if (e instanceof NumberFormatException) {
-            System.out.println(InputMessageEnum.INVALID_AMOUNT_ERROR.getMessage());
-        }
-        if (e instanceof IllegalArgumentException) {
-            System.out.println(e.getMessage());
+    private int parseAndValidateAmount(String purchaseAmount) {
+        try {
+            int amount = Integer.parseInt(purchaseAmount);
+            if (amount <= 0 || amount % 1000 != 0) {
+                throw new IllegalArgumentException(
+                    InputMessageEnum.INVALID_AMOUNT_ERROR.getMessage());
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputMessageEnum.INVALID_AMOUNT_ERROR.getMessage());
         }
     }
 }
