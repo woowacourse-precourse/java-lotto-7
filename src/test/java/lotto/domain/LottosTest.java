@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import lotto.domain.provider.RandomNumberProvider;
+import lotto.domain.provider.DefinedNumberProvider;
+import lotto.domain.provider.NumberProvider;
 import lotto.domain.validator.DefaultRangeValidator;
+import lotto.domain.validator.RangeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +33,7 @@ class LottosTest {
 
         Lottos lottos = new Lottos(lottoList);
 
-        assertThat(lottos.count()).isEqualTo(3);
+        assertThat(lottos.getLottos()).hasSize(3);
     }
 
     @DisplayName("3개의 로또 당첨 처리 시 3개의 등수를 반환한다.")

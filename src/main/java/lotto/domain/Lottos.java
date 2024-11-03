@@ -11,10 +11,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public int count() {
-        return lottos.size();
-    }
-
     public Ranks draw(Draw draw) {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
@@ -23,4 +19,9 @@ public class Lottos {
         }
         return new Ranks(ranks);
     }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
 }
