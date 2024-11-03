@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 class LottoTest {
 
     @Test
-    void 로또_번호_발행() {
+    @DisplayName("로또 발행")
+    void constructor() {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     Lotto lotto = new Lotto(Lotto.generate());
                     assertThat(lotto).isEqualTo(new Lotto(List.of(
@@ -29,7 +30,18 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    @DisplayName("일치 번호 개수 반환")
+    void calcMatchCount() {
+        assertSimpleTest(() -> {
+            Lotto lotto = Lotto.from("1,3,5,14,22,45");
+            Lotto other = Lotto.from("1,2,3,4,5,6");
+            assertThat(lotto.calcMatchCount(other)).isEqualTo(3);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
+    void validateSize() {
         assertThatThrownBy(() -> new Lotto(List.of(
                 new LottoNumber(1),
                 new LottoNumber(2),
@@ -41,9 +53,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
+    void validateDuplicate() {
         assertThatThrownBy(() -> new Lotto(List.of(
                 new LottoNumber(1),
                 new LottoNumber(2),
@@ -52,16 +64,6 @@ class LottoTest {
                 new LottoNumber(5),
                 new LottoNumber(5))))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("일치 번호 개수 반환")
-    void calcMatchCount() {
-        assertSimpleTest(() -> {
-            Lotto lotto = Lotto.from("1,3,5,14,22,45");
-            Lotto other = Lotto.from("1,2,3,4,5,6");
-            assertThat(lotto.calcMatchCount(other)).isEqualTo(3);
-        });
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성

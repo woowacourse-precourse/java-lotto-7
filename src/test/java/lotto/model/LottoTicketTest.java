@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 class LottoTicketTest {
 
     @Test
-    void 로또_티켓_발행() {
+    @DisplayName("로또 티켓 발행")
+    void of() {
         assertSimpleTest(() -> {
                     LottoTicket ticket = LottoTicket.of(3);
                     assertThat(ticket.getTicket().size()).isEqualTo(3);
@@ -20,7 +21,7 @@ class LottoTicketTest {
     }
 
     @Test
-    @DisplayName("로또 등수 번호 반환")
+    @DisplayName("로또 티켓 등수 목록 반환")
     void getRanks() {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     LottoTicket lottoTicket = LottoTicket.of(6);
