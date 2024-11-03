@@ -52,7 +52,7 @@ public class LottoResultCollector {
     }
 
     private double calculateTotalYield(int quantity) {
-        int purchaseAmount = quantity * LottoRule.PURCHASE_AMOUNT_UNIT;
+        int purchaseAmount = quantity * LottoRule.PURCHASE_AMOUNT_UNIT.get();
         double prizeAmount = calculateWinningAmount();
         return (prizeAmount / purchaseAmount) * 100;
     }

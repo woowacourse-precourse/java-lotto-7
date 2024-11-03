@@ -18,7 +18,7 @@ class TicketSellerTest {
         LottoMachine lottoMachine = new LottoMachine();
         TicketSeller ticketSeller = new TicketSeller(lottoMachine);
 
-        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT;
+        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT.get();
         LottoTickets lottoTickets = ticketSeller.exchangeMoneyForTickets(purchaseAmount);
         assertEquals(lottoTickets.getCount(), 1);
     }
@@ -29,7 +29,7 @@ class TicketSellerTest {
         LottoMachine lottoMachine = new LottoMachine();
         TicketSeller ticketSeller = new TicketSeller(lottoMachine);
 
-        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT - 1;
+        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT.get() - 1;
         assertThatThrownBy(() -> ticketSeller.exchangeMoneyForTickets(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessage.PURCHASE_AMOUNT_UNDER_BASE_LIMIT.get());
@@ -41,7 +41,7 @@ class TicketSellerTest {
         LottoMachine lottoMachine = new LottoMachine();
         TicketSeller ticketSeller = new TicketSeller(lottoMachine);
 
-        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT + 1;
+        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT.get() + 1;
         assertThatThrownBy(() -> ticketSeller.exchangeMoneyForTickets(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessage.PURCHASE_AMOUNT_UNIT_INVALID.get());

@@ -24,6 +24,6 @@ public class TicketSeller {
     }
 
     private int calculateLottoQuantity(int purchaseAmount) {
-        return purchaseAmount / LottoRule.PURCHASE_AMOUNT_UNIT;
+        return purchaseAmount / LottoRule.PURCHASE_AMOUNT_UNIT.get();
     }
 }

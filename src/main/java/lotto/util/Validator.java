@@ -13,19 +13,19 @@ public class Validator {
     }
 
     public static void checkAboveBaseAmount(int purchaseAmount) {
-        if (purchaseAmount < LottoRule.PURCHASE_AMOUNT_UNIT) {
+        if (purchaseAmount < LottoRule.PURCHASE_AMOUNT_UNIT.get()) {
             throw new IllegalArgumentException(LottoErrorMessage.PURCHASE_AMOUNT_UNDER_BASE_LIMIT.get());
         }
     }
 
     public static void checkPurchaseAmountUnit(int purchaseAmount) {
-        if (purchaseAmount % LottoRule.PURCHASE_AMOUNT_UNIT != 0) {
+        if (purchaseAmount % LottoRule.PURCHASE_AMOUNT_UNIT.get() != 0) {
             throw new IllegalArgumentException(LottoErrorMessage.PURCHASE_AMOUNT_UNIT_INVALID.get());
         }
     }
 
     public static void checkPurchaseQuantity(int quantity) {
-        if (quantity < LottoRule.MIN_PURCHASE_QUANTITY) {
+        if (quantity < LottoRule.MIN_PURCHASE_QUANTITY.get()) {
             throw new IllegalArgumentException(LottoErrorMessage.MIN_QUANTITY_LOTTO_ISSUE.get());
         }
     }
@@ -55,7 +55,7 @@ public class Validator {
     }
 
     public static void checkBonusNumberRange(int number) {
-        if (!isValidRangeInLotto(number)) {
+        if (!LottoRule.isValidRange(number)) {
             throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.get());
         }
     }
@@ -63,13 +63,13 @@ public class Validator {
     public static void checkWinningSetDuplicate(List<Integer> winningNumbers, int bonusNumber) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         uniqueNumbers.add(bonusNumber);
-        if (uniqueNumbers.size() != LottoRule.LOTTO_NUMBERS_COUNT + 1) {
+        if (uniqueNumbers.size() != LottoRule.LOTTO_NUMBERS_COUNT.get() + 1) {
             throw new IllegalArgumentException(LottoErrorMessage.WINNING_SET_NUMBERS_DUPLICATE.get());
         }
     }
 
     private static void validateCount(List<Integer> numbers, Message message) {
-        if (numbers.size() != LottoRule.LOTTO_NUMBERS_COUNT) {
+        if (numbers.size() != LottoRule.LOTTO_NUMBERS_COUNT.get()) {
             throw new IllegalArgumentException(message.get());
         }
     }
@@ -83,15 +83,10 @@ public class Validator {
 
     private static void validateRange(List<Integer> numbers, Message message) {
         long validNumbersCount = numbers.stream()
-                .filter(Validator::isValidRangeInLotto)
+                .filter(LottoRule::isValidRange)
                 .count();
-        if (validNumbersCount != LottoRule.LOTTO_NUMBERS_COUNT) {
+        if (validNumbersCount != LottoRule.LOTTO_NUMBERS_COUNT.get()) {
             throw new IllegalArgumentException(message.get());
         }
-    }
-
-    private static boolean isValidRangeInLotto(Integer number) {
-        return LottoRule.MIN_LOTTO_NUMBER <= number
-                && number <= LottoRule.MAX_LOTTO_NUMBER;
     }
 }
