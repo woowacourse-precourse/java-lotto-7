@@ -87,8 +87,8 @@
 |-----------|-----------------------------|-----------------------------------|----|
 | Prize 도메인 | Prize(당첨) 관리                | ID와 PrizeNumber로 당첨 생성            | ✅  |
 |           |                             | 당첨 결과 조회                          | ✅  |
-|           | Prize 번호(PrizeNumber) 관리    | Lotto 객체로 당첨 번호 설정                | ⬜️ |
-|           |                             | BonusNumber 객체로 보너스 번호 설정         | ⬜️ |
+|           | Prize 번호(PrizeNumber) 관리    | Lotto 객체로 당첨 번호 설정                | ✅  |
+|           |                             | BonusNumber 객체로 보너스 번호 설정         | ✅  |
 |           |                             | 당첨 정보를 DTO(PrizeNumberResult)로 변환 | ⬜️ |
 |           | 보너스 번호(BonusNumber) 관리      | 보너스 번호 생성                         | ⬜️ |
 |           |                             | 보너스 번호 범위 검증(1~45)                | ⬜️ |
