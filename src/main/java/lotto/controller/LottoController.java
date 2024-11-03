@@ -46,17 +46,28 @@ public class LottoController {
         return new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private int getBonusNumber(List<Integer> winningNumber) {
-        printBonusNumberInputMessage();
-        String bonusNumber = UserInput();
-        return parseValidatedBonusNumber(bonusNumber, winningNumber);
-    }
-
     private List<Integer> getWinningNumber() {
         printWinningNumberInputMessage();
-        String winningNumber = UserInput();
-        return WinningNumberValidation.parseValidatedWinningNumber(winningNumber);
+        try {
+            String winningNumber = UserInput();
+            return WinningNumberValidation.parseValidatedWinningNumber(winningNumber);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getWinningNumber();
+        }
     }
+
+    private int getBonusNumber(List<Integer> winningNumber) {
+        printBonusNumberInputMessage();
+        try {
+            String bonusNumber = UserInput();
+            return parseValidatedBonusNumber(bonusNumber, winningNumber);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getBonusNumber(winningNumber);
+        }
+    }
+
 
     private void printResultStatistics(Map<Prize, Integer> lottoResult, double profitRatio) {
         printWinningStatisticsMessage();

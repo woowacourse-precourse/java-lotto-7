@@ -12,7 +12,7 @@ public class LottoTickets {
 
     public LottoTickets(int attemptCount) {
         for (int count = 1; count <= attemptCount; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             printEachLotto(numbers);
             lottoTickets.add(new Lotto(numbers));

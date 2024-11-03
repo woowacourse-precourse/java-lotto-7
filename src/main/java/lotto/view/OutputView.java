@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -37,17 +38,21 @@ public class OutputView {
     }
 
     public static void printResult(Map<Prize, Integer> lottoResult) {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
         for (Prize prize : Prize.values()) {
             int count = lottoResult.getOrDefault(prize, 0);
-            System.out.printf("%d개 일치%s (%d원) - %d개%n",
+            String formattedPrizeMoney = numberFormat.format(prize.getPrizeMoney());
+            System.out.printf("%d개 일치%s (%s원) - %d개%n",
                     prize.getMatchCount(),
                     prize.isMatchBonus() ? ", 보너스 볼 일치" : "",
-                    prize.getPrizeMoney(),
+                    formattedPrizeMoney,
                     count);
         }
     }
+
     public static void printProfitRatio(double profitRatio) {
-        System.out.printf("총 수익률은 %.1f%% 입니다.%n",profitRatio);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRatio);
     }
 
     public static void printErrorMessage(String message) {
