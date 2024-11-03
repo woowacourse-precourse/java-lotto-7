@@ -14,8 +14,15 @@ public class LottoController {
 
     public void purchaseLotto() {
         PurchaseView purchaseView = new PurchaseView();
-        String paymentInput = purchaseView.readPayment();
-        purchase = new Purchase(paymentInput);
+        while (true) {
+            try {
+                String paymentInput = purchaseView.readPayment();
+                purchase = new Purchase(paymentInput);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage() + "\n");
+            }
+        }
         purchaseView.displayPurchaseResult(purchase.calculateLottoCount(), purchase.getPurchasedLottoTickets());
     }
 
