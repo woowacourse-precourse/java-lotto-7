@@ -18,6 +18,6 @@ public class RandomLottoPurchaseController implements Controller {
     public View execute() {
         int lottoCnt = paymentService.buyLotto();
         return new LottoPaymentView(
-                lottoIssueService.issue(lottoCnt));
+                lottoIssueService.issue(null, lottoCnt));
     }
 }

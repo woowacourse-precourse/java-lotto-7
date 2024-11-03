@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.model.db.Buyer;
 import lotto.model.db.UserRepository;
@@ -13,13 +14,21 @@ public class CustomLottoIssueService implements LottoIssueService {
     protected final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
-    public List<Lotto> issue(int lottoCnt) {
+    public List<Lotto> issue(String prompt, int lottoCnt) {
+        List<Lotto> lotties = IntStream.range(0, lottoCnt)
+                .mapToObj(lotto -> issue(prompt))
+                .toList();
+        userRepository.save(Buyer.from(lotties));
+        return lotties;
+    }
+
+    @Override
+    public Lotto issue(String prompt) {
         Lotto lotto = null;
         while (lotto == null) {
-            lotto = getCustomLotto("\n로또 번호를 입력해 주세요.");
+            lotto = getCustomLotto(prompt);
         }
-        userRepository.save(Buyer.from(lotto));
-        return List.of(lotto);
+        return lotto;
     }
 
     protected Lotto getCustomLotto(String prompt) {

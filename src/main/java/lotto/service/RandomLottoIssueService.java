@@ -12,15 +12,16 @@ public class RandomLottoIssueService implements LottoIssueService {
     private final UserRepository userRepository = UserRepository.getInstance();
 
     @Override
-    public List<Lotto> issue(int lottoCnt) {
+    public List<Lotto> issue(String prompt, int lottoCnt) {
         List<Lotto> lotties = IntStream.range(0, lottoCnt)
-                .mapToObj(lotto -> issueRandomLotto())
+                .mapToObj(lotto -> issue(prompt))
                 .toList();
         userRepository.save(Buyer.from(lotties));
         return lotties;
     }
 
-    private static Lotto issueRandomLotto() {
+    @Override
+    public Lotto issue(String prompt) {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }

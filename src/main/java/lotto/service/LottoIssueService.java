@@ -4,5 +4,8 @@ import java.util.List;
 import lotto.Lotto;
 
 public interface LottoIssueService {
-    List<Lotto> issue(int lottoCnt);
+
+    List<Lotto> issue(String prompt, int lottoCnt);
+
+    Lotto issue(String prompt);
 }

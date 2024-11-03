@@ -14,7 +14,7 @@ public class WinningLottoController implements Controller {
 
     @Override
     public View execute() {
-        lottoIssueService.issue(1);
+        lottoIssueService.issue("\n당첨 번호를 입력해 주세요.");
         return new VoidView();
     }
 }
