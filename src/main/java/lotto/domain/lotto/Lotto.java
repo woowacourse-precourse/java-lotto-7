@@ -36,11 +36,6 @@ public class Lotto {
                 .count();
     }
 
-    public boolean hasBonusNumbers(Number bonusNumber) {
-        return numbers.stream()
-                .anyMatch(bonusNumber::equals);
-    }
-
     public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

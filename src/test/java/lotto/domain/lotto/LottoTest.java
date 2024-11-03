@@ -63,7 +63,7 @@ class LottoTest {
     void 로또_번호에_보너스_번호_포함_테스트(Lotto lotto, boolean expected) {
         BonusNumber bonusNumber = createBonusNumber();
 
-        assertThat(lotto.hasBonusNumbers(bonusNumber.getBonusNumber()))
+        assertThat(lotto.contains(bonusNumber.getBonusNumber()))
                 .isEqualTo(expected);
     }
 
