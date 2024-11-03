@@ -73,7 +73,7 @@
 - [X] 당첨 번호를 입력받는다.
     - [X] 중복되는 숫자인 경우 예외처리(IllegalArgumentException)를 진행한다.
 - [X] 보너스 번호를 입력 받는다.
-    - [ ] 뽑힌 6개의 번호와 중복되는 숫자인 경우 예외처리(IllegalArgumentException)를 진행한다.
+    - [X] 뽑힌 6개의 번호와 중복되는 숫자인 경우 예외처리(IllegalArgumentException)를 진행한다.
 
 ### 2. 로또 기계 동작
 
