@@ -35,8 +35,7 @@ public class LottoController {
     }
 
     private Lottos getLottos(Money money) {
-        LottoShop lottoShop = new LottoShop();
-        return lottoShop.buyLottos(money.getTicket());
+        return new LottoShop().buyLottos(money.getTicket());
     }
 
     private WinningLotto getWinningLotto() {
