@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -156,114 +158,41 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    void 입력값_유효성_검증_콤마_구분자_숫자_문자열() {
+    @ParameterizedTest
+    @ValueSource(strings = {"2147483648", "a", "-1000", "0", "1500"})
+    void 입력값_유효성_검증_정수_자료형_범위(String inputAmount) {
         assertSimpleTest(() -> {
-            runException("1000", "1|2|3|4|5|6");
+            runException(inputAmount);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 입력값_유효성_검증_콤마_구분자_숫자_양의_정수() {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "1|2|3|4|5|6",
+            "1,2,-3,4,-5,6",
+            "1,2,a,b,-5,6",
+            "1,2,2147483648,3,4,6",
+            "1,2,3,4,5",
+            "1,2,3,4,5,6,7",
+            "1,2,3,4,5,46",
+            "1,2,3,4,5,5"
+    })
+    void 입력값_유효성_검증_콤마_구분자_숫자(String winningLottoWithoutBonusNumberInput) {
+        String inputAmount = "1000";
         assertSimpleTest(() -> {
-            runException("1000", "1,2,-3,4,-5,6");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,a,b,-5,6");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,2147483648,3,4,6");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 입력값_유효성_검증_정수_자료형_범위() {
-        assertSimpleTest(() -> {
-            runException("2147483648");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6", "aa");
+            runException(inputAmount, winningLottoWithoutBonusNumberInput);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    @Test
-    void 입력값_유효성_검증_양의_정수() {
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "46", "3", "aa"})
+    void 입력값_유효성_검증_양의_정수(String inputBonusNumber) {
+        String inputAmount = "1000";
+        String winningLottoWithoutBonusNumberInput = "1,2,3,4,5,6";
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6", "-1");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("-1000");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 로또_검증_번호_6개() {
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6,7");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 로또_검증_번호_1에서_45_사이_숫자() {
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,46");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 로또_검증_번호_중복_불가() {
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 보너스_번호_1에서_45_사이_숫자() {
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6", "46");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 보너스_번호_당첨_번호_중복_불가() {
-        assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6", "3");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 지불_금액_0원() {
-        assertSimpleTest(() -> {
-            runException("0");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 지불_금액_1000으로_나누어_떨어지지_않음() {
-        assertSimpleTest(() -> {
-            runException("1500");
+            runException(inputAmount, winningLottoWithoutBonusNumberInput, inputBonusNumber);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

@@ -4,13 +4,19 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.Map;
 import lotto.common.LottoRank;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoStatisticsTest {
+    private LottoStatistics statistics;
+
+    @BeforeEach
+    void setUp() {
+        statistics = new LottoStatistics();
+    }
+
     @Test
     void testRecordResult() {
-        LottoStatistics statistics = new LottoStatistics();
-
         statistics.recordResult(LottoRank.FIRST);
         statistics.recordResult(LottoRank.SECOND);
         statistics.recordResult(LottoRank.SECOND);
@@ -31,7 +37,6 @@ class LottoStatisticsTest {
 
     @Test
     void testCalculateProfitRate() {
-        LottoStatistics statistics = new LottoStatistics();
         int totalInvestment = 5000;
 
         statistics.recordResult(LottoRank.FIRST);
@@ -48,8 +53,6 @@ class LottoStatisticsTest {
 
     @Test
     void testInitialResultsAreZero() {
-        LottoStatistics statistics = new LottoStatistics();
-
         assertSoftly(softly -> {
             statistics.getResults().forEach((rank, count) ->
                     softly.assertThat(count).as("count: %s", rank).isEqualTo(0)

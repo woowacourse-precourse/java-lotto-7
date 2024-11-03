@@ -8,6 +8,8 @@ import java.util.List;
 import lotto.common.LottoRank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningLottoTest {
 
@@ -21,7 +23,6 @@ class WinningLottoTest {
 
     @Test
     void testWinningLottoCreation_validInput() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
         WinningLotto winningLotto = new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber);
@@ -29,11 +30,9 @@ class WinningLottoTest {
         assertThat(winningLotto).isNotNull();
     }
 
-    @Test
-    void testWinningLottoCreation_bonusNumberOutOfRange() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 46;
-
+    @ParameterizedTest
+    @ValueSource(ints = {46, 0})
+    void testWinningLottoCreation_bonusNumberOutOfRange(int bonusNumber) {
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -41,23 +40,9 @@ class WinningLottoTest {
         });
     }
 
-    @Test
-    void testWinningLottoCreation_bonusNumberZero() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 0;
-
-        assertSoftly(softly -> {
-            softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        });
-    }
-
-    @Test
-    void testWinningLottoCreation_bonusNumberDuplicated() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 6;
-
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6})
+    void testWinningLottoCreation_bonusNumberDuplicated(int bonusNumber) {
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
@@ -67,7 +52,6 @@ class WinningLottoTest {
 
     @Test
     void testDetermineRank() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         WinningLotto winningLotto = new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber);
 

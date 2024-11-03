@@ -4,17 +4,21 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import lotto.filter.Filter;
 import lotto.filter.FilterChain;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PositiveIntegerFilterTest {
-
     private final PositiveIntegerFilter filter = new PositiveIntegerFilter();
+    private TestFilterChain filterChain;
+
+    @BeforeEach
+    void setUp() {
+        filterChain = new TestFilterChain();
+    }
 
     @Test
     void testValidPositiveIntegerInput() {
         String validInput = "10";
-        TestFilterChain filterChain = new TestFilterChain();
-
         assertSoftly(softly -> {
             softly.assertThatCode(() -> filter.doFilter(validInput, filterChain))
                     .doesNotThrowAnyException();
