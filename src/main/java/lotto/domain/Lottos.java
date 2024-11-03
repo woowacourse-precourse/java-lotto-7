@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.exception.LottoException;
 
 public class Lottos {
     public final List<Lotto> lottos;
@@ -26,7 +27,7 @@ public class Lottos {
                 .collect(Collectors.toSet());
 
         if (uniqueLottos.size() != lottos.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또가 존재합니다.");
+            throw new IllegalArgumentException(LottoException.DUPLICATE_LOTTO);
         }
     }
 
