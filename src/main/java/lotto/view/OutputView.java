@@ -37,9 +37,7 @@ public class OutputView {
     }
 
     public static void printLottoTickets(List<Lotto> lottoTickets) {
-        for (Lotto ticket : lottoTickets) {
-            printTicket(ticket.getNumbers());
-        }
+        lottoTickets.forEach(ticket -> printTicket(ticket.getNumbers()));
     }
 
     private static void printTicket(List<Integer> ticket) {
