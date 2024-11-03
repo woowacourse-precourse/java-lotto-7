@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final String NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "[ERROR] 중복된 번호가 있습니다.";
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,7 +18,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR_MESSAGE);
+        }
+        if(hasDuplicate(numbers)){
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
 
@@ -34,7 +39,6 @@ public class Lotto {
         sb.append("]");
         System.out.println(sb);
     }
-
 
     public LottoPrizeMoney judgeWinning(List<Integer> numbers, List<Integer> winningNumber, int luckyNumber) {
         int correct = countCorrect(numbers, winningNumber);
@@ -63,5 +67,11 @@ public class Lotto {
                 + LottoPrizeMoney.FOURTH.getPrizeMoney() * countFourth
                 + LottoPrizeMoney.FIFTH.getPrizeMoney() * countFifth;
         return (float) totalPrize / (purchaseAmount * 1000) * 100;
+    }
+
+
+    private boolean hasDuplicate(List<Integer> list) {
+        Set<Integer> set = new HashSet<>(list);
+        return set.size() != list.size();
     }
 }

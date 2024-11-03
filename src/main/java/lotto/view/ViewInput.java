@@ -3,7 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ViewInput {
     public static final String INITIAL_MESSAGE = "구입금액을 입력해 주세요.";
@@ -16,7 +18,7 @@ public class ViewInput {
     public static final String WINNING_NUMBER_SIZE_ERROR = "[ERROR] 당첨 번호는 6개 이어야 합니다.";
     public static final String WINNING_NUMBER_VALUE_ERROR = "[ERROR] 당첨 번호는 1~45사이의 숫자이어야 합니다.";
     public static final String LUCK_NUMBER_VALUE_ERROR = "[ERROR] 행운의 순자는 1~45사이의 숫자이어야 합니다.";
-    public static final String WINNING_NUMBER_DUPLICATE_ERROR ="[ERROR] 행운의 숫자와 당첨 번호는 중복될 수 없습니다.";
+    public static final String WINNING_NUMBER_DUPLICATE_ERROR ="[ERROR] 당첨 번호는 중복된 값이 올 수 없습니다.";
 
     public static List<Integer> winningNumberList = new ArrayList<>();
 
@@ -28,9 +30,7 @@ public class ViewInput {
                 validatorPurchaseAmount(Integer.parseInt(purchaseAmount));
                 printPurchaseAmount(Integer.parseInt(purchaseAmount));
                 return Integer.parseInt(purchaseAmount) / 1000;
-            }catch(NumberFormatException | IllegalStateException e) {
-                System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());
-            }
+            }catch(NumberFormatException | IllegalStateException e) { System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage()); }
         }
     }
 
@@ -41,14 +41,10 @@ public class ViewInput {
                 String winningNumber = Console.readLine();
                 String[] winningNumberArray = winningNumber.split(",");
                 winningNumberList.clear();
-                for (String s : winningNumberArray) {
-                    winningNumberList.add(Integer.parseInt(s.trim()));
-                }
+                for (String s : winningNumberArray) { winningNumberList.add(Integer.parseInt(s.trim()));}
                 validatorWinningNumber(winningNumberList);
                 return winningNumberList;
-            }catch(NumberFormatException | IllegalStateException e) {
-                System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());;
-            }
+            }catch(NumberFormatException | IllegalStateException e) { System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());;}
         }
     }
 
@@ -59,9 +55,7 @@ public class ViewInput {
                 String luckyNumber = Console.readLine();
                 validatorLuckyNumber(Integer.parseInt(luckyNumber),winningNumberList);
                 return Integer.parseInt(luckyNumber.trim());
-            }catch(NumberFormatException | IllegalStateException e) {
-                System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage());
-            }
+            }catch(NumberFormatException | IllegalStateException e) { System.out.println(ILLEGAL_NUMBER_FORMAT_ERROR_MESSAGE + e.getMessage()); }
         }
 
     }
@@ -91,16 +85,22 @@ public class ViewInput {
         }
     }
 
+
     private void validatorLuckyNumber(int luckyNumber, List<Integer> winningNumberList){
         if(luckyNumber < 0 || luckyNumber > 45){
             throw new IllegalArgumentException(LUCK_NUMBER_VALUE_ERROR);
         }
         List<Integer> winningNumberListCheck = winningNumberList;
         for(Integer number : winningNumberListCheck){
-            if(luckyNumber == number){
+            if(luckyNumber == number || hasDuplicate(winningNumberList)){
                 throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_ERROR);
             }
         }
+    }
+
+    private boolean hasDuplicate(List<Integer> list) {
+        Set<Integer> set = new HashSet<>(list);
+        return set.size() != list.size();
     }
 
 }
