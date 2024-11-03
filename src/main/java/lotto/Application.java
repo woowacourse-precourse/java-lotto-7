@@ -11,6 +11,9 @@ public class Application {
     public static void main(String[] args) {
         String inputMoney = Console.readLine();
         int lottoPieces = buyLotto(inputMoney);
+
+        List<Lotto> lottos = createLotto(lottoPieces);
+        lottosView(lottos);
     }
 
     public static int buyLotto(final String input) {
@@ -32,5 +35,12 @@ public class Application {
 
     public static List<Integer> createLottoNum() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public static void lottosView(List<Lotto> lottos) {
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            lotto.lottoView();
+        }
     }
 }
