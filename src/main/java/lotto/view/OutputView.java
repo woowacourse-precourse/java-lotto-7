@@ -25,7 +25,8 @@ public class OutputView extends View {
         System.out.println(lottos.size() + PURCHASE_PROMPT);
 
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.numbers());
+            List<Integer> sortedNumber = new ArrayList<>(lotto.numbers()).stream().sorted().toList();
+            System.out.println(sortedNumber);
         }
     }
 
