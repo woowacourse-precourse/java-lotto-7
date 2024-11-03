@@ -13,23 +13,17 @@ public class LottoPublisher {
     private final int LOTTO_NUMBERS_COUNT = 6;
 
     private List<List<Integer>> publishedLotto = new ArrayList<>();
-    private List<Integer> publishedBonusLotto = new ArrayList<>();
 
     public LottoPublisher(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
-                    LOTTO_NUMBERS_COUNT);
-            Collections.sort(lotto);
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            //Collections.sort(lotto);
             publishedLotto.add(lotto);
         }
-        publishedBonusLotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER,LOTTO_MAX_NUMBER,repeatCount);
     }
 
     public List<List<Integer>> getPublishedLotto() {
         return publishedLotto;
     }
 
-    public List<Integer> getPublishedBonusLotto() {
-        return publishedBonusLotto;
-    }
 }

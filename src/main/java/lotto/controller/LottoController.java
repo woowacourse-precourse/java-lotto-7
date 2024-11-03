@@ -26,35 +26,34 @@ public class LottoController {
     }
 
     public void play() {
-        boolean valid = true;
-        while (valid) {
-            Amount validAmount = handleAmountInputError();
-            LottoPublisher lottoPublisher = new LottoPublisher(validAmount.getPublishCount());
-            List<List<Integer>> publishedLotto = lottoPublisher.getPublishedLotto();
-            List<Integer> validLottoNumbers = handleLottoNumberInputError();
+        Amount validAmount = handleAmountInputError();
+        LottoPublisher lottoPublisher = new LottoPublisher(validAmount.getPublishCount());
+        List<List<Integer>> publishedLotto = lottoPublisher.getPublishedLotto();
+        List<Integer> validLottoNumbers = handleLottoNumberInputError();
 
-            outputView.printPublishedLotto(publishedLotto);
-            int validBonusNumber = handleBonusInputError();
-            LottoMatchEvaluator lottoMatchEvaluator = new LottoMatchEvaluator(validLottoNumbers, validBonusNumber,
-                    lottoPublisher);
+        outputView.printPublishedLotto(publishedLotto);
+        int validBonusNumber = handleBonusInputError();
+        LottoMatchEvaluator lottoMatchEvaluator = new LottoMatchEvaluator(validLottoNumbers, validBonusNumber,
+                lottoPublisher);
 
-            List<Integer> lottoWinningCounts = lottoMatchEvaluator.getLottoWinningCounts();
-            outputView.printOrderdLottoResult(lottoWinningCounts);
-            EarningRate earningRate = new EarningRate(lottoWinningCounts, validAmount);
-            outputView.printEarningRate(earningRate.getEarningRate());
-            valid = false;
-        }
+        List<Integer> lottoWinningCounts = lottoMatchEvaluator.getLottoWinningCounts();
+        outputView.printOrderdLottoResult(lottoWinningCounts);
+        EarningRate earningRate = new EarningRate(lottoWinningCounts, validAmount);
+        outputView.printEarningRate(earningRate.getEarningRate());
     }
 
     public Amount handleAmountInputError() {
         Amount amount;
-        try {
-            String input = inputView.readInput(Amount.getRequestMessage());
-            isValidAmountInput(input);
-            amount = new Amount(TypeConverter.ToNumber(input)); //1000으로 나누어떨어지는 지 확인 후 생성
-            return amount;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        boolean valid = false;
+        while (!valid) {
+            try {
+                String input = inputView.readInput(Amount.getRequestMessage());
+                isValidAmountInput(input);
+                amount = new Amount(TypeConverter.ToNumber(input)); //1000으로 나누어떨어지는 지 확인 후 생성
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
@@ -66,27 +65,33 @@ public class LottoController {
 
     public List<Integer> handleLottoNumberInputError() {
         Lotto lotto;
-        try {
-            String lottoInput = inputView.readInput(Lotto.getRequestMessage());
-            validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
-            lotto = new Lotto(TypeConverter.ToNumberList(lottoInput));//6자 이상인지 범위는 (1-45)인지 확인후 객체 생성
-            return lotto.getLottoNumbers();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        boolean valid = false;
+        while (!valid) {
+            try {
+                String lottoInput = inputView.readInput(Lotto.getRequestMessage());
+                validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
+                lotto = new Lotto(TypeConverter.ToNumberList(lottoInput));//6자 이상인지 범위는 (1-45)인지 확인후 객체 생성
+                return lotto.getLottoNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return null;
     }
 
     public int handleBonusInputError() {
         Bonus bonus;
-        try {
-            String input = inputView.readInput(Bonus.getRequestMessage());
-            validationManager.isNotEmptyInput(input);
-            validationManager.isNumber(input);
-            bonus = new Bonus(TypeConverter.ToNumber(input));
-            return bonus.getBonusNumber();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        boolean valid = false;
+        while (!valid) {
+            try {
+                String input = inputView.readInput(Bonus.getRequestMessage());
+                validationManager.isNotEmptyInput(input);
+                validationManager.isNumber(input);
+                bonus = new Bonus(TypeConverter.ToNumber(input));
+                return bonus.getBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return 0;
     }
