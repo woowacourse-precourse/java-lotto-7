@@ -1,5 +1,6 @@
-package lotto.util;
+package lotto.util.StrinConverter;
 
+import lotto.util.StringConverter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -64,6 +65,7 @@ class StringConverterTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage("[ERROR] 문자열은 null일 수 없습니다.");
         }
+
     }
 
 }
