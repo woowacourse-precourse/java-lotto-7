@@ -18,7 +18,6 @@ public class LottoController {
 
     public void start() {
         Money money = createMoneyFromUserInput();
-
         buyLottos(money);
 
         WinningLotto winningLotto = createWinningLottoFromLottoAndBonusNumber();
@@ -34,9 +33,18 @@ public class LottoController {
         return getValidInput(() -> Money.from(view.inputMoney()));
     }
 
+    private void buyLottos(Money money) {
+        Lottos lottos = money.buyLottos();
+        view.outputLottos(lottos.getLottos());
+    }
+
     private WinningLotto createWinningLottoFromLottoAndBonusNumber() {
         Lotto lotto = getValidInput(this::createLottoFromUserInput);
         return getValidInput(() -> createWinningLottoFromUserInput(lotto));
+    }
+
+    private Lotto createLottoFromUserInput() {
+        return Lotto.from(view.inputWinningLotto());
     }
 
     private WinningLotto createWinningLottoFromUserInput(Lotto lotto) {
@@ -44,12 +52,4 @@ public class LottoController {
         return WinningLotto.of(lotto, bonusNumber);
     }
 
-    private Lotto createLottoFromUserInput() {
-        return Lotto.from(view.inputWinningLotto());
-    }
-
-    private void buyLottos(Money money) {
-        Lottos lottos = money.buyLottos();
-        view.outputLottos(lottos.getLottos());
-    }
 }
