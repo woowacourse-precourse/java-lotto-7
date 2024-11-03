@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.constant.Rank;
+import lotto.domain.constant.Rank;
 import lotto.domain.model.Lotto;
 
 public class LottoStatistics {
@@ -17,7 +17,7 @@ public class LottoStatistics {
     private final Map<Rank, Integer> winningStatusTable;
     private final double profitRate;
 
-    public LottoStatistics(AutomaticLottoMachine automaticLottoMachine, WinningLottos winningNumbers) {
+    public LottoStatistics(AutomaticLottoMachine automaticLottoMachine, WinningLotto winningNumbers) {
         winningStatusTable = initialize();
         buildWinningStatus(automaticLottoMachine, winningNumbers);
 
@@ -67,14 +67,14 @@ public class LottoStatistics {
 
     }
 
-    private void buildWinningStatus(AutomaticLottoMachine automaticLottoMachine, WinningLottos winningNumbers) {
+    private void buildWinningStatus(AutomaticLottoMachine automaticLottoMachine, WinningLotto winningNumbers) {
         automaticLottoMachine.getLottos()
                 .filter((automaticLotto) -> Rank.contains(winningNumbers.match(automaticLotto)))
                 .map(lotto -> toRanker(winningNumbers, lotto))
                 .forEach((rank) -> winningStatusTable.put(rank, winningStatusTable.getOrDefault(rank, 0) + 1));
     }
 
-    private Rank toRanker(WinningLottos winningNumbers, Lotto lotto) {
+    private Rank toRanker(WinningLotto winningNumbers, Lotto lotto) {
         boolean isPromiseWithBonusMatch = winningNumbers.match(lotto) == SPECIAL_MATCH_COUNT_CASE;
         if (isPromiseWithBonusMatch) {
             return Rank.getRank(winningNumbers.match(lotto), winningNumbers.isMatchBonus(lotto));

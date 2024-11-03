@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain.constant;
 
 import java.util.Arrays;
 
@@ -8,6 +8,8 @@ public enum Rank {
     FIFTH(5, false, 1_500_000, "5개 일치 (1,500,000원)"),
     FIFTH_WITH_BONUS(4, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     SIX(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원)");
+
+    private static final String ERROR_NOT_EXISTING_RANKINGS = "[ERROR] 기존 순위에 포함되지 않은 경우의수가 존재합니다.";
 
     private final int matchCount;
     private final boolean matchBonus;
@@ -25,7 +27,7 @@ public enum Rank {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus)
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("기존 순위에 포함되지 않은 경우의수가 존재합니다."));
+                .orElseThrow(() -> new IllegalArgumentException(ERROR_NOT_EXISTING_RANKINGS));
     }
 
     public static boolean contains(int matchCount) {

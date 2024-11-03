@@ -4,7 +4,7 @@ import static java.lang.String.format;
 import static java.lang.String.join;
 import static java.lang.System.lineSeparator;
 
-public enum DefaultPrompt {
+public enum Prompt {
     ENTER_PURCHASE_AMOUNT_TEXT("구입금액을 입력해 주세요.") {
         @Override
         public void display(Object... args) {
@@ -46,7 +46,7 @@ public enum DefaultPrompt {
 
     private final String text;
 
-    DefaultPrompt(String text) {
+    Prompt(String text) {
         this.text = text;
     }
 

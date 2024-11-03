@@ -1,17 +1,18 @@
 package lotto.constant;
 
-import static lotto.constant.Rank.FIFTH;
-import static lotto.constant.Rank.FIFTH_WITH_BONUS;
-import static lotto.constant.Rank.FOURTH;
-import static lotto.constant.Rank.SIX;
-import static lotto.constant.Rank.THIRDS;
-import static lotto.constant.Rank.calculateReward;
-import static lotto.constant.Rank.contains;
-import static lotto.constant.Rank.getRank;
+import static lotto.domain.constant.Rank.FIFTH;
+import static lotto.domain.constant.Rank.FIFTH_WITH_BONUS;
+import static lotto.domain.constant.Rank.FOURTH;
+import static lotto.domain.constant.Rank.SIX;
+import static lotto.domain.constant.Rank.THIRDS;
+import static lotto.domain.constant.Rank.calculateReward;
+import static lotto.domain.constant.Rank.contains;
+import static lotto.domain.constant.Rank.getRank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.Stream;
+import lotto.domain.constant.Rank;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -6,7 +6,7 @@ import lotto.domain.model.LottoNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class WinningLottosTest {
+class WinningLottoTest {
 
     @Test
     void 당첨_로또번호6개와_보너스번호가_중복되지않으면_객체가_생성된다() {
@@ -14,9 +14,9 @@ class WinningLottosTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
         //when
-        WinningLottos winningLottos = new WinningLottos(lotto, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         //then
-        Assertions.assertThat(winningLottos).isNotNull();
+        Assertions.assertThat(winningLotto).isNotNull();
     }
 
     @Test
@@ -26,7 +26,7 @@ class WinningLottosTest {
         LottoNumber bonusNumber = new LottoNumber(2);
         //when
         //then
-        Assertions.assertThatThrownBy(() -> new WinningLottos(lotto, bonusNumber))
+        Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,10 +35,10 @@ class WinningLottosTest {
         //given
         Lotto automaticLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto wininigLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLottos winningLottos = new WinningLottos(wininigLotto, new LottoNumber(45));
+        WinningLotto winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
         int expectedMatchCount = wininigLotto.match(automaticLotto);
         //when
-        int matchCount = winningLottos.match(automaticLotto);
+        int matchCount = winningLotto.match(automaticLotto);
         //then
         Assertions.assertThat(matchCount).isEqualTo(expectedMatchCount);
     }
@@ -49,9 +49,9 @@ class WinningLottosTest {
         int winningNumber = 45;
         Lotto automaticLotto = new Lotto(List.of(1, 2, 3, 4, 5, winningNumber));
         Lotto wininigLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLottos winningLottos = new WinningLottos(wininigLotto, new LottoNumber(winningNumber));
+        WinningLotto winningLotto = new WinningLotto(wininigLotto, new LottoNumber(winningNumber));
         //when
-        boolean isMatchBonus = winningLottos.isMatchBonus(automaticLotto);
+        boolean isMatchBonus = winningLotto.isMatchBonus(automaticLotto);
         //then
         Assertions.assertThat(isMatchBonus).isTrue();
     }
@@ -61,9 +61,9 @@ class WinningLottosTest {
         //given
         Lotto automaticLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto wininigLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLottos winningLottos = new WinningLottos(wininigLotto, new LottoNumber(45));
+        WinningLotto winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
         //when
-        boolean isMatchBonus = winningLottos.isMatchBonus(automaticLotto);
+        boolean isMatchBonus = winningLotto.isMatchBonus(automaticLotto);
         //then
         Assertions.assertThat(isMatchBonus).isFalse();
     }
