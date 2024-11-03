@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 
 import lotto.model.LottoCreator;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +17,10 @@ public class LottoDrawController {
 		this.inputView = inputView;
 		this.outputView = outputView;
 		this.lottoCreator = lottoCreator;
+	}
+
+	private WinningLotto getWinningLotto() {
+		List<Integer> winningNumbers = getWinningNumbers();
 	}
 
 	private List<Integer> getWinningNumbers() {
