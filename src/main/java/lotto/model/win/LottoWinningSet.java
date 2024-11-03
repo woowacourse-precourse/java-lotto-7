@@ -9,12 +9,12 @@ public class LottoWinningSet {
     private final BonusNumber bonusNumber;
 
     public LottoWinningSet(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        validate(winningNumbers, bonusNumber);
+        validateWinningSet(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private void validateWinningSet(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         Validator.checkWinningSetDuplicate(winningNumbers.get(), bonusNumber.get());
     }
 

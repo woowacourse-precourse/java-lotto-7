@@ -7,11 +7,11 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(int number) {
-        validate(number);
+        validateBonusNumber(number);
         this.number = number;
     }
 
-    private void validate(int number) {
+    private void validateBonusNumber(int number) {
         Validator.checkBonusNumberRange(number);
     }
 
