@@ -12,7 +12,8 @@ public class InputView {
     }
 
     public String promptNumbers() {
-        System.out.println(ViewMessages.PROMPT_WINNING_NUMBERS.getMessage(Constants.LOTTO_NUMBER_SIZE.getValue()));
+        System.out.println(ViewMessages.PROMPT_WINNING_NUMBERS.getMessage(Constants.LOTTO_LOWER_BOUND.getValue(),
+                Constants.LOTTO_UPPER_BOUND.getValue(), Constants.LOTTO_NUMBER_SIZE.getValue()));
         return Console.readLine();
     }
 }
