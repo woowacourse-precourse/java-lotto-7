@@ -26,4 +26,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("구매 금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
