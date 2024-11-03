@@ -63,4 +63,16 @@ class ServiceTest {
     assertThat(result).containsExactly(0, 0, 0, 1, 0);
   }
 
+  @Test
+  @DisplayName("수익률 테스트")
+  void 수익률_테스트() {
+    List<Integer> winningResults = List.of(1, 0, 0, 0, 0);
+    int investmentAmount = 8000;
+
+    float actualResult = lottosService.calculateYield(winningResults, investmentAmount);
+
+    float expectResult = 62.5F;
+
+    assertThat(actualResult).isEqualTo(expectResult);
+  }
 }
