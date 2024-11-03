@@ -35,4 +35,15 @@ class UserMoneyTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("로또 구매 가능한 최고 금액의 UserMoney를 반환하는지 확인")
+    @Test
+    void testGetMaxSpendAvailable() {
+        UserMoney userMoney = new UserMoney(8010);
+        UserMoney expected = new UserMoney(8000);
+
+        UserMoney actual = userMoney.getMaxSpendAvailable();
+
+        assertThat(actual.getValue()).isEqualTo(expected.getValue());
+    }
 }
