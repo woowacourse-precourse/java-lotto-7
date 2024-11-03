@@ -21,6 +21,9 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto lottoNumbers = inputWinningLottoNumbers();
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = inputBonusNumber(lottoNumbers);
+
     }
 
     public static int inputLottoPurchaseAmount() {
@@ -70,6 +73,7 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
     }
+
     public static Lotto inputWinningLottoNumbers() {
         try {
             String[] s = readLine().split(",");
@@ -85,6 +89,35 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningLottoNumbers();
+        }
+    }
+
+    public static int inputBonusNumber(Lotto lotto) {
+        try {
+            int bonusNumber = Integer.parseInt(readLine());
+            isBonusNumber(bonusNumber);
+            isDuplicatePresent(lotto, bonusNumber);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요");
+            return inputBonusNumber(lotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber(lotto);
+        }
+    }
+
+    public static void isBonusNumber(int input) {
+        if (!(input > 0 && input <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 값을 입력해주세요.");
+        }
+    }
+
+    public static void isDuplicatePresent(Lotto lotto, int input) {
+        for (int n : lotto.getNumbers()) {
+            if (n == input) {
+                throw new IllegalArgumentException("[ERROR] 중복된 값입니다. 다시 입력해 주세요. ");
+            }
         }
     }
 
