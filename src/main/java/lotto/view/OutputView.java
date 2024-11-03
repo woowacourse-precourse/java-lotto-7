@@ -12,8 +12,8 @@ public class OutputView {
     private static final String PRINT_BUY_LOTTO_COUNT = "%d개를 구매했습니다.\n";
     private static final String PRINT_WINNING_LOTTO = "당첨 번호를 입력해 주세요.";
     private static final String PRINT_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String PRINT_RANK_LIST = "%d개 일치 (%,d원)- %d개\n";
-    private static final String PRINT_SENCOND_RANK = "%d개 일치, 보너스 볼 일치 (%,d원)- %d개\n";
+    private static final String PRINT_RANK_LIST = "%d개 일치 (%,d원) - %d개\n";
+    private static final String PRINT_SENCOND_RANK = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String PRINT_RATIO = "총 수익률은 %s%%입니다.\n";
 
     public static void printInputPrice() {

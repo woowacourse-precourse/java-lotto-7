@@ -77,8 +77,9 @@ public class Lotto {
     }
 
     private List<Integer> makeSortLotto(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        List<Integer> sortableList = new ArrayList<>(lottoNumbers);
+        Collections.sort(sortableList);
+        return sortableList;
     }
 
     public List<Integer> getNumbers() {

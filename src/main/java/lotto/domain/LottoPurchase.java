@@ -17,6 +17,7 @@ public class LottoPurchase {
 
     private static int convertToInt(String input) {
         try {
+            System.out.println(input);
             int number = Integer.parseInt(input.trim());
             return number;
         } catch (NumberFormatException e) {
