@@ -14,4 +14,8 @@ public class DrawNumbers {
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
