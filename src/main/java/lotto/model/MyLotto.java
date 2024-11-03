@@ -17,5 +17,9 @@ public class MyLotto {
         return List.copyOf(lottos);
     }
 
-
+    public List<WinningType> checkWinningLotto(AnswerNumbers answerNumbers, BonusNumber bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.match(answerNumbers, bonusNumber))
+                .toList();
+    }
 }
