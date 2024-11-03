@@ -5,6 +5,7 @@ import java.util.Objects;
 public class LottoNumber {
 
     public static final String LOTTO_NUMBER_ERROR_MSG = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.";
+    
     private final int number;
 
     public LottoNumber(int number) {

@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
@@ -6,8 +6,6 @@ import lotto.domain.LottoWinningStatistics;
 import lotto.domain.WinningNumber;
 import lotto.prompt.LottoDrawPrompt;
 import lotto.prompt.LottoPurchasePrompt;
-import lotto.service.LottoDraw;
-import lotto.service.LottoPurchase;
 
 public class LottoMachine {
 

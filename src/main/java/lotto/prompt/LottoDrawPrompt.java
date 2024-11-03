@@ -54,7 +54,7 @@ public class LottoDrawPrompt {
             msg = DRAW_WINNING_BONUS_OUTPUT_MSG;
         }
         long prize = LottoWinningRule.getPrize(rank);
-        int winningNumber = statistics.searchWinningNumber(rank);
+        int winningNumber = statistics.search(rank);
         return String.format(msg, rank.matches, formatPrize(prize), winningNumber);
     }
 

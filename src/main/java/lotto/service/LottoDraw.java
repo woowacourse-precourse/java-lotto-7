@@ -39,14 +39,14 @@ public class LottoDraw {
             int matchesWinning = compareWinningNumber(lotto, winningNumber);
             boolean isMatchBonus = compareBonusNumber(lotto, bonusNumber);
             LottoRank rank = LottoWinningRule.getRank(matchesWinning, isMatchBonus);
-            statistics.updateWinningNumber(rank);
+            statistics.update(rank);
         }
     }
 
     public double calcTotalPrize() {
         double totalPrize = 0.0;
         for (LottoRank key : LottoRank.values()) {
-            totalPrize += LottoWinningRule.getPrize(key) * statistics.searchWinningNumber(key);
+            totalPrize += LottoWinningRule.getPrize(key) * statistics.search(key);
         }
         return totalPrize;
     }
