@@ -1,7 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.model.service.LottoService;
+import lotto.model.service.LottoCreationService;
 import lotto.view.InputView;
 import lotto.view.LottoView;
 
@@ -18,7 +18,7 @@ public class AppConfig {
         return new LottoView();
     }
 
-    private LottoService lottoService() {
-        return new LottoService();
+    private LottoCreationService lottoService() {
+        return new LottoCreationService();
     }
 }

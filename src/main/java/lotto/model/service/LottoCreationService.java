@@ -7,7 +7,7 @@ import lotto.util.generator.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoService {
+public class LottoCreationService {
     private static final int LOTTO_PRICE = 1000;
     private final static int MIN_NUMBER = 1;
     private final static int MAX_NUMBER = 45;
