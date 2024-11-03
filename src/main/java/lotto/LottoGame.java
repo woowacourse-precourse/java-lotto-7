@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoGame {
@@ -15,6 +12,7 @@ public class LottoGame {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
+    // 1. 구입 금액 입력 및 검증
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
@@ -28,6 +26,7 @@ public class LottoGame {
         }
     }
 
+    // 2. 로또 발행 및 출력
     public void purchaseLottos(int quantity) {
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6); // 로또 번호 생성
@@ -43,6 +42,7 @@ public class LottoGame {
         }
     }
 
+    // 3. 당첨 번호 및 보너스 번호 입력 및 검증
     public void inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         winningNumbers = parseAndValidate(Console.readLine());
@@ -73,5 +73,22 @@ public class LottoGame {
         if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며, 당첨 번호와 중복되지 않아야 합니다.");
         }
+    }
+
+    // 4. 당첨 결과 계산
+    private int calculateMatchCount(List<Integer> lottoNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public int getRank(List<Integer> lottoNumbers) {
+        int matchCount = calculateMatchCount(lottoNumbers);
+        if (matchCount == 6) return 1;
+        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) return 2;
+        if (matchCount == 5) return 3;
+        if (matchCount == 4) return 4;
+        if (matchCount == 3) return 5;
+        return 0; // 미당첨
     }
 }
