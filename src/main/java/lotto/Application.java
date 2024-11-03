@@ -21,7 +21,7 @@ public class Application {
 
     public static int[] matchCount = new int[8];
 
-    public static int revenue = 0;
+    public static long revenue;
     public static double revenueRate;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -57,6 +57,8 @@ public class Application {
         for (Lotto lotto : lottos) {
             matchTest(lotto);
         }
+        calculateRevenue();
+        calculateRevenueRate();
         printResult();
     }
 
@@ -88,9 +90,9 @@ public class Application {
         String lottoNumber = "[";
         List<Integer> numbers = lotto.getNumbers();
         for (int number : numbers) {
-            lottoNumber += number + ",";
+            lottoNumber += number + ", ";
         }
-        lottoNumber = lottoNumber.substring(0,lottoNumber.length() - 1);
+        lottoNumber = lottoNumber.substring(0,lottoNumber.length() - 2);
         lottoNumber += "]";
         System.out.println(lottoNumber);
     }
@@ -116,7 +118,7 @@ public class Application {
     }
 
     public static void printResult() {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer("");
         sb.append("당첨 통계\n");
         sb.append("---\n");
         sb.append("3개 일치 (5,000원) - " + matchCount[3] + "개\n");
@@ -129,7 +131,7 @@ public class Application {
     }
 
     public static void calculateRevenue() {
-        revenue += matchCount[3] * 5000;
+        revenue = matchCount[3] * 5000;
         revenue += matchCount[4] * 50000;
         revenue += matchCount[5] * 1500000;
         revenue += matchCount[7] * 30000000;

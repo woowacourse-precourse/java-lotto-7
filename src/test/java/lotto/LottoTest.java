@@ -26,6 +26,7 @@ class LottoTest {
     @BeforeEach
     void setup() {
         lottos.clear();
+        winningNumbers = new ArrayList<>();
     }
 
     private void publishLotto() {
@@ -91,6 +92,7 @@ class LottoTest {
     @DisplayName("당첨 번호가 정상적으로 받아졌는지 테스트")
     void testGetWinningNumbers() {
         String input = "1,2,3,4,5,6";
+        winningNumbers.clear();
         getWinningNumbers(input);
         assertThat(winningNumbers).contains(1,2,3,4,5,6);
     }
