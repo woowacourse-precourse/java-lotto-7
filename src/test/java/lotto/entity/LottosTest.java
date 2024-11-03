@@ -33,8 +33,8 @@ class LottosTest {
     }
 
     @Test
-    @DisplayName("Lottos 객체의 calculateResults 메서드가 올바른 당첨 결과를 반환하는지 테스트")
-    void shouldCalculateCorrectResults() {
+    @DisplayName("유효한 당첨 번호와 보너스 번호로 올바른 당첨 결과 계산")
+    void calculateCorrectResultsWithValidWinningNumbers() {
         // When
         List<Prize> results = lottos.calculateResults(winningNumbers);
 
@@ -47,15 +47,15 @@ class LottosTest {
     }
 
     @Test
-    @DisplayName("Lottos 객체의 size 메서드가 로또 개수를 올바르게 반환하는지 테스트")
-    void shouldReturnCorrectSize() {
+    @DisplayName("Lottos 객체가 로또 개수를 올바르게 반환")
+    void returnCorrectSizeForLottos() {
         // When & Then
         assertEquals(5, lottos.size());
     }
 
     @Test
-    @DisplayName("Lottos 객체의 toString 메서드가 로또 리스트를 올바르게 문자열로 반환하는지 테스트")
-    void shouldReturnCorrectStringRepresentation() {
+    @DisplayName("Lottos 객체가 로또 리스트를 올바르게 문자열로 반환")
+    void returnCorrectStringRepresentationForLottos() {
         // Given
         String expectedString = "[1, 2, 3, 4, 5, 6]\n" +
                 "[1, 2, 3, 4, 5, 7]\n" +
