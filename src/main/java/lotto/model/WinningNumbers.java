@@ -8,11 +8,12 @@ public record WinningNumbers(List<Integer> winningNumbers) {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    public WinningNumbers {
+    public static WinningNumbers of(List<Integer> winningNumbers) {
         validateWinningNumber(winningNumbers);
+        return new WinningNumbers(winningNumbers);
     }
 
-    private void validateWinningNumber(List<Integer> winningNumbers) {
+    private static void validateWinningNumber(List<Integer> winningNumbers) {
         validateWinningNumbersCount(winningNumbers);
         validateWinningNumbersDuplicates(winningNumbers);
         validateWinningNumbersAreInRange(winningNumbers);
@@ -23,36 +24,36 @@ public record WinningNumbers(List<Integer> winningNumbers) {
         return List.copyOf(winningNumbers);
     }
 
-    private void validateWinningNumbersCount(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() != WINNING_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.message());
         }
     }
 
-    private void validateWinningNumbersDuplicates(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersDuplicates(List<Integer> winningNumbers) {
         if (hasDuplicateNumbers(winningNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS.message());
         }
     }
 
-    private void validateWinningNumbersAreInRange(List<Integer> winningNumbers) {
+    private static void validateWinningNumbersAreInRange(List<Integer> winningNumbers) {
         if (areNumbersNotInRange(winningNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.message());
         }
     }
 
-    private boolean hasDuplicateNumbers(List<Integer> numbers) {
+    private static boolean hasDuplicateNumbers(List<Integer> numbers) {
         return numbers.size() != numbers.stream()
                 .distinct()
                 .count();
     }
 
-    private boolean areNumbersNotInRange(List<Integer> numbers) {
+    private static boolean areNumbersNotInRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(this::isNumberOutOfRange);
+                .anyMatch(WinningNumbers::isNumberOutOfRange);
     }
 
-    private boolean isNumberOutOfRange(int number) {
+    private static boolean isNumberOutOfRange(int number) {
         return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 }

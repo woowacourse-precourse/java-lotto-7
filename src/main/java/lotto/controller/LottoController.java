@@ -57,7 +57,7 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .toList();
 
-        return new WinningNumbers(winningNumbers);
+        return WinningNumbers.of(winningNumbers);
     }
 
     private BonusNumber createBonusNumberFromInput(WinningNumbers winningNumbers) {
