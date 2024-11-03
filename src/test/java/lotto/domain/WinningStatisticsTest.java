@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.withPrecision;
 
-import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ class WinningStatisticsTest {
         double rateOfReturn = winningStatistics.calculateRateOfReturn(10000);
 
         // then
-        assertThat(rateOfReturn).isCloseTo(500, Offset.offset(0.01));
+        assertThat(rateOfReturn).isEqualTo(500, withPrecision(2d));
     }
 
 
