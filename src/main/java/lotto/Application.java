@@ -15,7 +15,7 @@ public class Application {
 
         int lottoCount = 3;
 
-        LottoMachine lottoMachine = new LottoMachine(3, new RandomNumbersGenerator());
+        LottoMachine lottoMachine = new LottoMachine(lottoCount, new RandomNumbersGenerator());
 
         LottoTicket lottoTicket = new LottoTicket(lottoMachine.generateLottos());
 
@@ -23,7 +23,7 @@ public class Application {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
         );
 
-        Map<Rank, Integer> lottoResult = winningLotto.calculateRanks(lottoTicket);
+        Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
 
     }
 }

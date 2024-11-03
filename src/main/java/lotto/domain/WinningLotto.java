@@ -13,7 +13,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Rank, Integer> calculateRanks(LottoTicket lottoTicket) {
+    public Map<Rank, Integer> lottoWinningResult(LottoTicket lottoTicket) {
         Map<Rank, Integer> rankCounts = new HashMap<>();
 
         for (Lotto lotto : lottoTicket.getLottos()) {
