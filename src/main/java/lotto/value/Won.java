@@ -1,6 +1,7 @@
 package lotto.value;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class Won {
@@ -68,6 +69,12 @@ public class Won {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
+    }
+
+    @Override
+    public String toString() {
+        return new DecimalFormat("#,###")
+                .format(amount);
     }
 
 }

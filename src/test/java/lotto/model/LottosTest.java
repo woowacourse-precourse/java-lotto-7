@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import lotto.value.BonusNumber;
 import lotto.value.LottoNumbers;
-import lotto.value.RateReturn;
 import lotto.value.WinningStatistics;
 import lotto.value.Won;
 import org.junit.jupiter.api.Test;
@@ -62,8 +61,7 @@ class LottosTest {
         assertThat(winningStatistics.findWinningBy(SECOND.ranking).getValue()).isEqualTo(0L);
         assertThat(winningStatistics.findWinningBy(FIRST.ranking).getValue()).isEqualTo(0L);
 
-        RateReturn rateReturn = winningStatistics.getRateReturn();
-        assertThat(rateReturn.rateOfReturn()).isEqualTo(new BigDecimal("100.0"));
+        assertThat(winningStatistics.getRateReturn()).isEqualTo(new BigDecimal("100.0"));
     }
 
 }

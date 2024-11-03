@@ -6,26 +6,26 @@ import java.util.stream.Stream;
 
 public enum WinningResult {
 
-    FIRST(1, 2, 1, 6, false, 2_000_000_000L),
-    SECOND(2, 1, 2, 5, true, 30_000_000L),
-    THIRD(3, 3, 3, 5, false, 1_500_000L),
-    FOURTH(4, 4, 4, 4, false, 50_000L),
-    FIFTH(5, 5, 5, 3, false, 5_000L),
-    LOSE(6, 6, null, 0, false, 0L);
+    FIRST(1, 2, 1, 6, false, Won.of(2_000_000_000L)),
+    SECOND(2, 1, 2, 5, true, Won.of(30_000_000L)),
+    THIRD(3, 3, 3, 5, false, Won.of(1_500_000L)),
+    FOURTH(4, 4, 4, 4, false, Won.of(50_000L)),
+    FIFTH(5, 5, 5, 3, false, Won.of(5_000L)),
+    LOSE(6, 6, null, 0, false, Won.of(0L));
 
     private final int order;
     private final int matchOrder;
     public final Integer ranking;
     public final int minCountOfWinningNumber;
     public final boolean isRequiredWinningBonus;
-    public final long prize;
+    public final Won prize;
 
     WinningResult(int order,
                   int matchOrder,
                   Integer ranking,
                   int minCountOfWinningNumber,
                   boolean isRequiredWinningBonus,
-                  long prize) {
+                  Won prize) {
         this.order = order;
         this.matchOrder = matchOrder;
         this.ranking = ranking;
