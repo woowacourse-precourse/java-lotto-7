@@ -147,6 +147,9 @@
   - 보너스 번호를 입력받는다.
 - runValidBonusString
   - 보너스 번호가 올바른 문자열이 아니라면 재입력을 요청한다.
+- isNumeric(winning)
+  - 숫자 문자열인지 확인한다.
+    - 양수 판별은 숫자인지 확인하며 진행된다.
 - isLottoNumber
   - 1에서 45 사이의 숫자인지 확인한다.
 - containsWinningNumber
