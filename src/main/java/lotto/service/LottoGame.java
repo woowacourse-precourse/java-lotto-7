@@ -6,18 +6,43 @@ import lotto.utils.Utils;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
     private static final int LOTTO_PRICE = 1000;
     private final int lottoAmount;
     private final List<Lotto> userLottoList = new ArrayList<>();
-    private final List<WinningResult> winningResultList = new ArrayList<>();
+    private final Map<WinningResult, Integer> winningResultCount = new HashMap<>();
+    private int totalPrize = 0;
 
     public LottoGame(int lottoCost){
 
         this.lottoAmount = lottoCost / LOTTO_PRICE;
+        for (WinningResult result : WinningResult.values()) {
+            winningResultCount.put(result, 0);
+        }
+    }
+
+    public void generateWinningResults(List<Integer> winningNumbers, int bonusNumber){
+
+        for (Lotto lotto : userLottoList) {
+
+            int matchCount = checkMatchCount(lotto, winningNumbers);
+
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            WinningResult result = WinningResult.matchCount(matchCount, bonusMatch);
+
+            if (result != null) {
+                winningResultCount.put(result, winningResultCount.get(result) + 1);
+                totalPrize += result.getPrize();
+            }
+
+        }
+
     }
 
     public List<Lotto> generateUserLotto(){
