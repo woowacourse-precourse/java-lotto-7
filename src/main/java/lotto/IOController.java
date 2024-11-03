@@ -11,46 +11,22 @@ public class IOController {
 
     public String inputPurchaseAmount() {
         String purchaseAmountInput;
-        while (true) {
-            try {
-                System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
-                purchaseAmountInput = Console.readLine();
-                validator.validatePurchaseAmount(purchaseAmountInput);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
+        purchaseAmountInput = Console.readLine();
         return purchaseAmountInput;
     }
 
     public String inputWinningNumbers() {
         String winningNumbersInput;
-        while (true) {
-            try {
-                System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
-                winningNumbersInput = Console.readLine();
-                validator.validateWinningNumbers(winningNumbersInput);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+        winningNumbersInput = Console.readLine();
         return winningNumbersInput;
     }
 
     public String inputBonusNumber() {
         String bonusNumberInput;
-        while (true) {
-            try {
-                System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-                bonusNumberInput = Console.readLine();
-                validator.validateBonusNumber(bonusNumberInput);
-                break;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        bonusNumberInput = Console.readLine();
         return bonusNumberInput;
     }
 
