@@ -35,7 +35,7 @@ public class Output {
 
     private void printCommaIfNotLast(int i, int size) {
         if (i < size - 1) {
-            System.out.print(Constants.COMMA.getMessage());
+            System.out.print(Constants.COMMA.getMessage() + " ");
         }
     }
 
