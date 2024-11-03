@@ -36,6 +36,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers; // 필요에 따라 리스트를 반환하는 메서드
+        return numbers;
     }
 }

@@ -10,7 +10,7 @@ public class AmountValidator {
 
 
     public void validateInput(String input) {
-        if (input.isEmpty()) {
+        if (input.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
         }
 

@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
         LottoPurchase lottoPurchase = new LottoPurchase();
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        Input6Numbers inputNumbers = new Input6Numbers();
+        InputNumbers inputNumbers = new InputNumbers();
 
         //1. 구입 금액 입력, 로또 구입 개수
         int lottoCount = lottoPurchase.inputPurchaseAmount();
@@ -18,6 +18,6 @@ public class Application {
         lottoNumberGenerator.printLottos(lottos);
 
         //4. 당첨 번호 6개 입력받기
-        Lotto winningNumbers = inputNumbers.input6Numbers();
+        Lotto lottoNumbers = inputNumbers.InputLottoNumbers();
     }
 }

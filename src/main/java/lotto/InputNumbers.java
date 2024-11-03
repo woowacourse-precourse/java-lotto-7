@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Input6Numbers {
-    public Lotto input6Numbers() {
+public class InputNumbers {
+    public Lotto InputLottoNumbers() {
         List<Integer> numbers;
 
         while (true) {

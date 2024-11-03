@@ -29,5 +29,6 @@ public class LottoNumberGenerator {
         for (List<Integer> lotto : lottos){
             System.out.println(lotto);
         }
+        System.out.println();
     }
 }
