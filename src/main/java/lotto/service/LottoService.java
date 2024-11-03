@@ -18,11 +18,6 @@ public class LottoService {
         }
         return purchaseLottoNumbers;
     }
-    public void sortPurchaseLotto (List<Lotto> purchaseLottoNumbers) {
-        for (Lotto lotto : purchaseLottoNumbers) {
-            lotto.getNumbers().sort(Integer::compareTo);
-        }
-    }
 
     public void updateWinningStatus(LottoWinningTierManager lottoWinningTierManager, List<Lotto> purchaseLottoNumbers, LottoWinningNumbers winningNumbers) {
         for (Lotto lotto : purchaseLottoNumbers) {

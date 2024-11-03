@@ -25,7 +25,6 @@ public class LottoController {
                 String purchaseAmount = inputView.requestPurchaseAmount();
                 purchaseLottoNumbers = lottoService.purchaseLotto(
                         validate.validatePurchaseAmount(purchaseAmount));
-                lottoService.sortPurchaseLotto(purchaseLottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
