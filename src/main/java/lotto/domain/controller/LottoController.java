@@ -1,8 +1,9 @@
 package lotto.domain.controller;
 
-import lotto.domain.model.lotto.Lotto;
-import lotto.domain.model.lotto.LottoService;
-import lotto.domain.model.lotto.LottoSummary;
+import lotto.domain.model.user.Lotto;
+import lotto.domain.model.lotto.service.LottoService;
+import lotto.domain.model.lotto.result.LottoSummary;
+import lotto.domain.model.user.UserPurchasedLotto;
 import lotto.domain.model.user.User;
 import lotto.domain.view.InputView;
 import lotto.domain.view.OutputView;
@@ -22,9 +23,11 @@ public class LottoController {
     }
 
     public void run() {
-        int amount = inputView.getUserPurchaseAmount();
-        List<Lotto> lottos = lottoService.issueByAmount(amount);
-        User user = User.create(amount, lottos);
+        int userPurchasedAmount = inputView.getUserPurchaseAmount();
+        List<Lotto> lottos = lottoService.issueByAmount(userPurchasedAmount);
+
+        UserPurchasedLotto userPurchasedLotto = UserPurchasedLotto.create(lottos);
+        User user = User.create(userPurchasedAmount, userPurchasedLotto);
 
         outputView.printLottos(user.getLottos());
 

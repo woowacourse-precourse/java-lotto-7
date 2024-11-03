@@ -1,27 +1,24 @@
 package lotto.domain.model.user;
 
-import lotto.domain.model.lotto.Lotto;
-
-import java.util.Collections;
 import java.util.List;
 
 public class User {
 
-    private final List<Lotto> lottos;
+    private final UserPurchasedLotto lottos;
     private int totalAmountPurchased;
-    private double profitRate = 0;
+    private double profitRate = 0.0;
 
-    private User(int amount, List<Lotto> lottos) {
+    private User(int amount, UserPurchasedLotto lottos) {
         this.totalAmountPurchased = amount;
         this.lottos = lottos;
     }
 
-    public static User create(int amount, List<Lotto> lottos) {
+    public static User create(int amount, UserPurchasedLotto lottos) {
         return new User(amount, lottos);
     }
 
     public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(this.lottos);
+        return lottos.getUserPurchasedLotto();
     }
 
     public int getTotalAmountPurchased() {
