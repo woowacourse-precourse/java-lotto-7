@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.LottoConstant;
+import lotto.constant.NumberConstant;
 import lotto.model.Lotto;
 import lotto.model.LottoGrade;
 import lotto.model.LottoResult;
@@ -12,11 +14,8 @@ import lotto.model.LottoResult;
 public class LottoService {
 
     public List<Integer> makeLottoNumber() {
-        int LOTTO_NUMBER_COUNT = 6;
-        int LOTTO_NUMBER_START = 1;
-        int LOTTO_NUMBER_END = 45;
-
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START, LOTTO_NUMBER_END, LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_RANGE_START, LottoConstant.LOTTO_RANGE_END,
+                LottoConstant.LOTTO_SIZE);
     }
 
     public LottoGrade checkLottoGrade(Lotto lotto, Lotto winningLotto, int bonusNumber) {
@@ -35,17 +34,17 @@ public class LottoService {
     }
 
     public double calculateRateOfReturn(int lottoValue, int lottoCost) {
-        if (lottoCost == 0) {
-            return 0;
+        if (lottoCost == NumberConstant.ZERO) {
+            return NumberConstant.ZERO;
         }
-        double rateOfReturn = ((double) lottoValue / lottoCost) * 100;
-        return Math.round(rateOfReturn * 100.0) / 100.0;
+        double rateOfReturn = ((double) lottoValue / lottoCost) * NumberConstant.HUNDRED;
+        return Math.round(rateOfReturn * NumberConstant.HUNDRED_ONE_DECIMAL) / NumberConstant.HUNDRED_ONE_DECIMAL;
     }
 
     public int sumLottoPrize(LottoResult lottoResult) {
-        int lottoValue = 0;
+        int lottoValue = NumberConstant.ZERO;
         for (LottoGrade lottoGrade : LottoGrade.values()) {
-            if (lottoGrade.getRanking() >= 6) {
+            if (lottoGrade.getRanking() > LottoConstant.LOTTO_MIN_PRIZE_RANKING) {
                 continue;
             }
             lottoValue += (lottoGrade.getPrize() * lottoResult.getGradeCount(lottoGrade));
