@@ -30,6 +30,12 @@ public class Validators {
         }
     }
 
+    public void validateNumberRange(int number) {
+        if (!(number > 0 && number <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 번호는 0~45사이의 숫자여야 합니다.");
+        }
+    }
+
     public void validateBonusNotInWinningNumbers(Lotto lotto, int bonusNumber) {
         if (lotto.matchNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 일치합니다.");
