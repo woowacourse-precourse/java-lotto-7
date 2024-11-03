@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,5 +29,11 @@ public class Lotto {
 
     public boolean contains(int number){
         return numbers.contains(number);
+    }
+
+    public int matchCount(Lotto other){
+        return (int) numbers.stream()
+                .filter(other.getNumbers()::contains)
+                .count();
     }
 }
