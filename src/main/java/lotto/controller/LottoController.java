@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.LottoMachine;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,6 +24,7 @@ public class LottoController {
         outputView.displayPurchasedLottos(purchasedLottos);
 
         WinningLotto winningLotto = repeatUntilValid(this::getWinningLotto);
+        BonusNumber bonusNumber = repeatUntilValid(() -> getBonusNumber(winningLotto));
     }
 
     private Money getLottoMoney() {
@@ -41,16 +39,21 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        outputView.requestWinningLotto();
-        List<Integer> inputWinningLotto = inputView.inputWinningLotto();
+        outputView.requestWinningNumber();
+        List<Integer> inputWinningNumber = inputView.inputWinningNumber();
+        return WinningLotto.from(inputWinningNumber);
+    }
 
-        return WinningLotto.from(inputWinningLotto);
+    private BonusNumber getBonusNumber(WinningLotto winningLotto) {
+        outputView.requestBonusNumber();
+        int inputBonusNumber = inputView.inputBonusNumber();
+        return BonusNumber.of(winningLotto, inputBonusNumber);
     }
 
     private <T> T repeatUntilValid(Supplier<T> supplier) {
         try {
             return supplier.get();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return repeatUntilValid(supplier);
         }

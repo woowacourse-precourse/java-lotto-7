@@ -38,4 +38,8 @@ public class Lotto {
         numbers.sort(Integer::compareTo);
         return numbers.toString();
     }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
 }

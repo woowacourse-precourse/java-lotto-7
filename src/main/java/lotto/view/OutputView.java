@@ -16,8 +16,13 @@ public class OutputView extends OutputWriter {
         lottos.forEach(lotto -> {displayMessage(lotto.getLottoString());});
     }
 
-    public void requestWinningLotto() {
+    public void requestWinningNumber() {
         displayNewLine();
         displayMessage("당첨 번호를 입력해 주세요.");
+    }
+
+    public void requestBonusNumber() {
+        displayNewLine();
+        displayMessage("보너스 번호를 입력해 주세요.");
     }
 }

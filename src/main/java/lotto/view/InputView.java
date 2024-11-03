@@ -10,29 +10,36 @@ import java.util.List;
 public class InputView extends InputReader {
     public int inputLottoMoney() {
         String inputLottoMoney = inputMessage();
-        validateInputLottoMoney(inputLottoMoney);
+        validateInputNumberFormat(inputLottoMoney);
 
         return Parser.stringToInt(inputLottoMoney);
     }
 
-    private void validateInputLottoMoney(String inputLottoMoney) {
-        if (!inputLottoMoney.matches("^[0-9]+$")) {
+    private void validateInputNumberFormat(String input) {
+        if (!input.matches("^[0-9]+$")) {
             throw new NumberFormatException();
         }
     }
 
-    public List<Integer> inputWinningLotto() {
-        String inputWinningLotto = inputMessage();
-        validateInputWinningLotto(inputWinningLotto);
+    public List<Integer> inputWinningNumber() {
+        String inputWinningNumber = inputMessage();
+        validateInputWinningNumber(inputWinningNumber);
 
-        return Arrays.stream(Parser.stringToArray(inputWinningLotto))
+        return Arrays.stream(Parser.stringToArray(inputWinningNumber))
                 .map(Parser::stringToInt)
                 .toList();
     }
 
-    private void validateInputWinningLotto(String inputWinningLotto) {
-        if (!inputWinningLotto.matches("^(\\d{1,2},){5}\\d{1,2}$")) {
+    private void validateInputWinningNumber(String inputWinningNumber) {
+        if (!inputWinningNumber.matches("^(\\d{1,2},){5}\\d{1,2}$")) {
             throw new LottoInputFormatException();
         }
+    }
+
+    public int inputBonusNumber() {
+        String inputBonusNumber = inputMessage();
+        validateInputNumberFormat(inputBonusNumber);
+
+        return Parser.stringToInt(inputBonusNumber);
     }
 }
