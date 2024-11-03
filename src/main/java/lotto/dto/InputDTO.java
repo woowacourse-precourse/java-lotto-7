@@ -32,4 +32,6 @@ public class InputDTO {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public int getMoney(){return money;}
 }

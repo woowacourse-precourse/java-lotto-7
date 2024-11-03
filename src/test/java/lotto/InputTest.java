@@ -1,48 +1,68 @@
 package lotto;
 
-import lotto.handler.InputHandler;
-import org.junit.jupiter.api.BeforeEach;
+import lotto.dto.InputDTO;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InputTest {
-    private InputHandler inputHandler;
-
-    @BeforeEach
-    public void setUp() {
-        inputHandler = new InputHandler();
-    }
-    @Test
-    public void testInputMoney_validInput() {
-        String input = "1000";
-        int result = inputHandler.inputMoney(input);
-        assertEquals(1000, result, "The money input should be parsed correctly.");
-    }
 
     @Test
-    public void 당첨번호_구분_후_입력() {
-        String input = "1, 2, 3, 4, 5, 6";
-        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> result = inputHandler.inputWinningNumbers(input);
-        assertEquals(expected, result, "당첨 번호는 ','로 구분되어야 합니다.");
+    public void testValidInput() {
+        // Given: 유효한 당첨 번호, 보너스 번호, 구입 금액
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        int money = 1000;
+
+        // When: 유효한 값으로 InputDTO 생성
+        InputDTO inputDTO = new InputDTO(winningNumbers, bonusNumber, money);
+
+        // Then: 입력된 값이 올바르게 저장되어야 함
+        assertEquals(winningNumbers, inputDTO.getWinningNumbers(), "당첨 번호가 올바르게 저장되어야 합니다.");
+        assertEquals(bonusNumber, inputDTO.getBonusNumber(), "보너스 번호가 올바르게 저장되어야 합니다.");
+        assertEquals(money, inputDTO.getMoney(), "구입 금액이 올바르게 저장되어야 합니다.");
     }
 
     @Test
-    public void 당첨번후_구분_후_입력_공백포함() {
-        String input = " 1 , 2 , 3 , 4 , 5 , 6 ";
-        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> result = inputHandler.inputWinningNumbers(input);
-        assertEquals(expected, result, "공백이 있어도 당첨 번호를 올바르게 구문 분석해야 합니다.");
+    public void testInvalidWinningNumbers() {
+        // Given: 유효하지 않은 당첨 번호 (7개 숫자)
+        List<Integer> invalidWinningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        int bonusNumber = 8;
+        int money = 1000;
+
+        // When & Then: 잘못된 당첨 번호로 InputDTO 생성 시 예외가 발생해야 함
+        assertThrows(IllegalArgumentException.class, () -> {
+            new InputDTO(invalidWinningNumbers, bonusNumber, money);
+        }, "당첨 번호가 6개가 아니면 예외가 발생해야 합니다.");
     }
 
     @Test
-    public void 보너스_숫자_입력() {
-        String input = "7";
-        int result = inputHandler.inputBonusNumber(input);
-        assertEquals(7, result, "보너스 번후 입력.");
+    public void testInvalidBonusNumber() {
+        // Given: 유효하지 않은 보너스 번호 (범위 초과)
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int invalidBonusNumber = 50; // 1~45 범위를 벗어남
+        int money = 1000;
+
+        // When & Then: 잘못된 보너스 번호로 InputDTO 생성 시 예외가 발생해야 함
+        assertThrows(IllegalArgumentException.class, () -> {
+            new InputDTO(winningNumbers, invalidBonusNumber, money);
+        }, "보너스 번호가 1~45 범위를 벗어나면 예외가 발생해야 합니다.");
+    }
+
+    @Test
+    public void testInvalidMoney() {
+        // Given: 유효하지 않은 구입 금액 (1000원 단위가 아님)
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        int invalidMoney = 1500;
+
+        // When & Then: 잘못된 구입 금액으로 InputDTO 생성 시 예외가 발생해야 함
+        assertThrows(IllegalArgumentException.class, () -> {
+            new InputDTO(winningNumbers, bonusNumber, invalidMoney);
+        }, "구입 금액이 1000원 단위가 아니면 예외가 발생해야 합니다.");
     }
 }
