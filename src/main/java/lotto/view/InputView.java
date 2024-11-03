@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,14 +26,18 @@ public class InputView {
         String input = Console.readLine();
         System.out.println();
         validateInputNumbers(input);
-        return parseWinningNumbers(input);
+        List<Integer> numbers = parseWinningNumbers(input);
+        validateWinningNumbers(numbers);
+        return numbers;
     }
 
     public int inputBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         validateNumberFormat(input);
-        return parseAndValidateNumber(input);
+        int number = Integer.parseInt(input);
+        new Lotto(List.of(number, 1, 2, 3, 4, 5));
+        return number;
     }
 
     private void validateInputNumbers(String input) {
@@ -63,25 +68,14 @@ public class InputView {
         }
     }
 
-    private void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
-            throw ErrorCode.INVALID_LOTTO_RANGE.throwError();
-        }
-    }
-
     private List<Integer> parseWinningNumbers(String input) {
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        numbers.forEach(this::validateNumberRange);
-        return numbers;
     }
 
-    private int parseAndValidateNumber(String input) {
-        int number = Integer.parseInt(input);
-        validateNumberRange(number);
-        return number;
+    private void validateWinningNumbers(List<Integer> numbers) {
+        new Lotto(numbers);
     }
 }
