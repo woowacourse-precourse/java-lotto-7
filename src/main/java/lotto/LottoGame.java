@@ -27,6 +27,10 @@ public class LottoGame {
         String rawPurchaseAmount = input.readPurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
 
+        draw(purchaseAmount);
+    }
+
+    private void draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount, randomNumbersGenerator);
 
