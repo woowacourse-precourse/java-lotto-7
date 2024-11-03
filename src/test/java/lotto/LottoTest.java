@@ -41,4 +41,19 @@ class LottoTest {
 
         Assertions.assertThat(actualMatchCount).isEqualTo(4);
     }
+
+    @DisplayName("로또 번호와 보너스 번호를 비교해 보너스 번호 포함 여부를 확인한다.")
+    @Test
+    void containsBonusNumber() {
+        String enteredBonusNumber = "7";
+        List<Integer> lottoNumbers = List.of(1,2,3,4,7,9);
+
+        BonusNumber bonusNumber = BonusNumber.from(enteredBonusNumber);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        MatchCondition matchCondition = lotto.compareWithWinningNumbers(WinningNumber.from("10,11,12,13,14,15"), bonusNumber);
+        boolean actualContainsBonusNumber = matchCondition.containBonusNumber();
+
+        Assertions.assertThat(actualContainsBonusNumber).isEqualTo(true);
+    }
 }
