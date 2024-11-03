@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.Bonus;
 import lotto.model.Budget;
 import lotto.model.Lotto;
@@ -32,12 +33,7 @@ public class Controller {
     }
 
     private Budget inputBudget() {
-        try {
-            return inputView.inputBudget();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputBudget();
-        }
+        return retry(inputView::inputBudget);
     }
 
     private List<Lotto> buyLottos(Budget budget) {
@@ -47,35 +43,28 @@ public class Controller {
     }
 
     private WinningLotto makeWinningLotto(Lotto winningNumber) {
-        try {
-            Bonus bonus = inputBonusNumber();
+        return retry(() -> {
+            Bonus bonus = inputView.inputBonusNumber();
             return new WinningLotto(winningNumber, bonus);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return makeWinningLotto(winningNumber);
-        }
+        });
     }
 
     private Lotto inputWinningNumber() {
-        try {
-            return inputView.inputWinningNumber();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputWinningNumber();
-        }
-    }
-
-    private Bonus inputBonusNumber() {
-        try {
-            return inputView.inputBonusNumber();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputBonusNumber();
-        }
+        return retry(inputView::inputWinningNumber);
     }
 
     private void showStatistics(WinningLotto winningLotto, List<Lotto> purchasedLotto) {
         MatchingResult matchingResult = lottoService.calculateMatchingResult(winningLotto, purchasedLotto);
         outputView.outputStatistics(matchingResult);
+    }
+
+    private <T> T retry(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
