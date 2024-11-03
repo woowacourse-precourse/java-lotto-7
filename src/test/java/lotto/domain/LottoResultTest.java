@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoResultTest {
     private static final int EXPECTED_FIRST_COUNT = 2;
     private static final int EXPECTED_SECOND_COUNT = 1;
+    private static final int EXPECTED_THIRD_COUNT = 0;
     private static final int PURCHASE_AMOUNT = 10_000;
     private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
 
@@ -38,8 +39,9 @@ class LottoResultTest {
         lottoResult.addResult(Rank.FIRST);
         Map<Rank, Integer> winningResults = lottoResult.getWinningResults();
 
-        assertThat(winningResults).containsEntry(Rank.FIRST, EXPECTED_FIRST_COUNT).containsEntry(Rank.SECOND, EXPECTED_SECOND_COUNT);
-        assertThat(winningResults.get(Rank.THIRD)).isZero();
+        assertThat(winningResults).containsEntry(Rank.FIRST, EXPECTED_FIRST_COUNT)
+                .containsEntry(Rank.SECOND, EXPECTED_SECOND_COUNT)
+                .containsEntry(Rank.THIRD, EXPECTED_THIRD_COUNT);
     }
 
     @DisplayName("수익률 계산 기능이 정상적으로 동작하는지 테스트")
