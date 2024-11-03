@@ -1,7 +1,9 @@
 package lotto.view.controller;
 
 import lotto.view.InputView;
+import lotto.view.console.ConsoleWriter;
 import lotto.view.domain.Amount;
+import lotto.view.global.exception.CustomException;
 
 public class LottoController {
     private final InputView inputView;
@@ -11,6 +13,15 @@ public class LottoController {
     }
 
     public void run() {
-        Amount inputAmount = new Amount(inputView.enterAmount());
+        Amount amount = requestAmount();
+    }
+
+    private Amount requestAmount() {
+        try {
+            return new Amount(inputView.enterAmount());
+        } catch (CustomException e) {
+            ConsoleWriter.printlnMessage(e.getMessage());
+            return requestAmount();
+        }
     }
 }
