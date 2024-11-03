@@ -30,7 +30,7 @@ public enum WinningNums {
         return name;
     }
 
-    public static WinningNums checkRank(int matchingCount) {
+    public static WinningNums checkRank(int matchingCount) { //순위 체크
         for (WinningNums rank : values()) {
             if (rank.getMatchingCount() == matchingCount) {
                 return rank;
