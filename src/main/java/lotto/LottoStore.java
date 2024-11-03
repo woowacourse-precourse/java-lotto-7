@@ -8,6 +8,19 @@ import java.util.List;
 public class LottoStore {
     private static final int LOTTO_PRICE = 1_000;
 
+    public void run() {
+        int amount = inputAmount();
+        List<Lotto> lottoList = buyLotto(amount);
+
+        WinningNumber winningNumber = new WinningNumber();
+        winningNumber.inputWinningNumber();
+        winningNumber.inputBonusNumber();
+
+        LottoDraw lottoDraw = new LottoDraw();
+        lottoList.forEach(lotto -> lottoDraw.countWinningResult(lotto, winningNumber));
+        lottoDraw.printResults(amount);
+    }
+
     public int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
@@ -20,7 +33,7 @@ public class LottoStore {
         try {
             return Integer.parseInt(amount);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액 입력이 잘못되었습니다.");
         }
     }
 
@@ -37,7 +50,6 @@ public class LottoStore {
         int ticketCount = amount / LOTTO_PRICE;
         List<Lotto> lottos = generateLotto(ticketCount);
         printPurchaseResult(ticketCount, lottos);
-
         return lottos;
     }
 
