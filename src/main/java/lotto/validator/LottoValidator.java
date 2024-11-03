@@ -9,6 +9,7 @@ import lotto.util.Regex;
 import org.assertj.core.util.VisibleForTesting;
 
 public class LottoValidator extends Validator {
+    
     public LottoValidator(String input) {
         super(input);
     }

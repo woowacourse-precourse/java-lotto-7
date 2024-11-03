@@ -6,10 +6,11 @@ import lotto.util.Errors;
 import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
-/*
-로또 당첨 보너스 번호
-*/
+/**
+ * 로또 당첨 보너스 번호
+ */
 public class Bonus {
+
     private final int number;
 
     public Bonus(int number, List<Integer> lotto) {

@@ -6,6 +6,7 @@ import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
 public class Validator {
+
     final String input;
 
     public Validator(String input) {

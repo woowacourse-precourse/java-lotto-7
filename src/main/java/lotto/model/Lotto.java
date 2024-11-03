@@ -6,10 +6,11 @@ import lotto.util.Errors;
 import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
-/*
-로또 당첨번호
-*/
+/**
+ * 로또 당첨번호
+ */
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

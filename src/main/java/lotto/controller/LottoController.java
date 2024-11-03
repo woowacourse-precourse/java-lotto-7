@@ -17,6 +17,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+
     private final InputView inputView;
     private final OutputView outputView;
     private final TicketGenerator generator;
@@ -46,7 +47,6 @@ public class LottoController {
         outputView.printStatistics();
         outputView.printRanks(rankCount);
         outputView.printRevenuePercent(revenuePercent);
-
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {

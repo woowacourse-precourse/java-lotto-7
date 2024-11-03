@@ -6,6 +6,7 @@ import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
 public class MoneyValidator extends Validator {
+    
     public MoneyValidator(String input) {
         super(input);
     }

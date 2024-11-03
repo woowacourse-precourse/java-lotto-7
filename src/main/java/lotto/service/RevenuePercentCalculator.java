@@ -4,6 +4,9 @@ import java.util.List;
 import lotto.util.Constants;
 import lotto.util.Ranks;
 
+/**
+ * 수익률 계산기
+ */
 public class RevenuePercentCalculator {
 
     private final List<Long> rankCount;

@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
+
     private final List<Integer> NORMAL_INPUT = List.of(1, 2, 3, 4, 5, 6);
     Lotto lotto = new Lotto(NORMAL_INPUT);
 

@@ -1,6 +1,10 @@
 package lotto.util;
 
+/**
+ * 등수와 관련된 상수
+ */
 public enum Ranks {
+
     FIFTH(5, 3, BonusCondition.NOT_APPLICABLE, 5000),
     FOURTH(4, 4, BonusCondition.NOT_APPLICABLE, 50000),
     THIRD(3, 5, BonusCondition.LOSE, 1500000),
@@ -8,10 +12,10 @@ public enum Ranks {
     FIRST(1, 6, BonusCondition.NOT_APPLICABLE, 2000000000),
     NO_WIN(0, 0, BonusCondition.NOT_APPLICABLE, 0);
 
-    private final int number;
-    private final int matchCount;
-    private final BonusCondition bonusCondition;
-    private final int prize;
+    private final int number; // 등수
+    private final int matchCount; // 일치하는 번호 개수
+    private final BonusCondition bonusCondition; // 보너스 번호 당첨 여부
+    private final int prize; // 상금
 
     Ranks(int number, int matchCount, BonusCondition bonusCondition, int prize) {
         this.number = number;

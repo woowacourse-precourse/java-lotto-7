@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class MoneyTest {
+
     private final long NORMAL_INPUT = Constants.LOTTO_PRICE.getLong();
     Money money = new Money(NORMAL_INPUT);
 

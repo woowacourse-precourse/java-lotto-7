@@ -5,10 +5,11 @@ import lotto.util.Errors;
 import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
-/*
-로또 구입금액
-*/
+/**
+ * 로또 구입금액
+ */
 public class Money {
+
     private final long amount;
 
     public Money(long amount) {

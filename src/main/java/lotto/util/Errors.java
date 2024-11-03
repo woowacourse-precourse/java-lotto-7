@@ -1,6 +1,7 @@
 package lotto.util;
 
 public enum Errors {
+
     ERROR("[ERROR]"),
     NULL_OR_EMPTY_INPUT("값이 비어있습니다."),
     NOT_A_WHOLE_NUMBER("정수가 아닙니다."),

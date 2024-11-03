@@ -10,10 +10,11 @@ import lotto.model.Ticket;
 import lotto.util.BonusCondition;
 import lotto.util.Ranks;
 
-/*
-등수를 카운트한 List<Long> rankCount 반환 : [꽝, 1등, 2등, 3등, 4등, 5등]
-*/
+/**
+ * 등수를 카운트한 리스트 반환 : [꽝, 1등, 2등, 3등, 4등, 5등]
+ */
 public class RankCounter {
+
     private final List<Ticket> tickets;
     private final Lotto lotto;
     private final Bonus bonus;

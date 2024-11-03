@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusTest {
+
     private final int NORMAL_BONUS = 7;
     private final List<Integer> NORMAL_LIST = List.of(1, 2, 3, 4, 5, 6);
     Bonus bonus = new Bonus(NORMAL_BONUS, NORMAL_LIST);

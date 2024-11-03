@@ -7,6 +7,9 @@ import java.util.List;
 import lotto.model.Ticket;
 import lotto.util.Constants;
 
+/**
+ * 구매한 로또 번호 랜덤 생성기
+ */
 public class TicketRandomGenerator implements TicketGenerator {
 
     private long money;
