@@ -1,12 +1,12 @@
 package lotto.Controller;
 
 import java.util.List;
-import lotto.BonusNumber;
+import lotto.domain.BonusNumber;
 import lotto.Input.InputView;
 import lotto.Output.OutputView;
 import lotto.Service.LottoService;
-import lotto.WinningLottoNumbers;
-import lotto.WinningNumbers;
+import lotto.domain.WinningLottoNumbers;
+import lotto.domain.WinningNumbers;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 

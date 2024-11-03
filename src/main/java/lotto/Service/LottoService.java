@@ -1,7 +1,7 @@
 package lotto.Service;
 
 import java.util.List;
-import lotto.LottoNumberGenerator;
+import lotto.generator.LottoNumberGenerator;
 import lotto.domain.Lotto;
 
 public class LottoService {

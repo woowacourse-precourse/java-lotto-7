@@ -4,6 +4,8 @@ import lotto.Controller.LottoController;
 import lotto.Input.InputView;
 import lotto.Output.OutputView;
 import lotto.Service.LottoService;
+import lotto.generator.LottoNumberGenerator;
+import lotto.generator.RandomLottoGenerator;
 
 public class Application {
     public static void main(String[] args) {
