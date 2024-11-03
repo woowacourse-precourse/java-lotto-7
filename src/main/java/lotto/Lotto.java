@@ -94,8 +94,8 @@ public class Lotto {
 
     }
 
-    public void checkBonusNumber(List<Integer> winNumbers ,int bonusNumber) {
-        if (winNumbers.contains(bonusNumber)) {
+    public void checkBonusNumber(int bonusNumber) {
+        if (this.numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         } else if (bonusNumber < 0 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");

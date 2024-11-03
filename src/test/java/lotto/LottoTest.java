@@ -38,14 +38,14 @@ class LottoTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto().checkBonusNumber(List.of(1,2,3,4,5,6), 1))
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)).checkBonusNumber(1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호에 범위가 아닌 숫자가 있으면 예외가 발생한다.")
     @Test
     void 보너스_번호에_범위가_아닌_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto().checkBonusNumber(List.of(1,2,3,4,5,6), -1))
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)).checkBonusNumber(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
