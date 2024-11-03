@@ -1,10 +1,14 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
+
+import java.util.List;
 
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
+import static lotto.constant.SystemMessage.NUMBER_OF_PURCHASED_LOTTOS;
 import static lotto.constant.SystemMessage.PURCHASE_AMOUNT_INPUT;
 
 public class LottoController {
@@ -15,6 +19,9 @@ public class LottoController {
     public void execute() {
         int purchaseAmount = inputPurchaseAmount();
         lottoService.purchaseLottos(purchaseAmount);
+
+        List<Lotto> purchasedLottos = lottoService.getPurchasedLottos();
+        printPurchasedLottos(purchasedLottos);
     }
 
     private int inputPurchaseAmount() {
@@ -53,5 +60,18 @@ public class LottoController {
         if(change != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
+    }
+
+    private void printPurchasedLottos(List<Lotto> lottos) {
+        StringBuilder message = new StringBuilder();
+        String numberOfLottosMessage = NUMBER_OF_PURCHASED_LOTTOS.formatted(lottos.size());
+        message.append(numberOfLottosMessage);
+        message.append('\n');
+        for (Lotto lotto: lottos) {
+            message.append(lotto.getNumbers());
+            message.append('\n');
+        }
+
+        System.out.println(message);
     }
 }
