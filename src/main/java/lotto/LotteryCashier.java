@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.common.Price;
 import lotto.domain.lotto.Lotto;
@@ -27,7 +26,7 @@ public class LotteryCashier {
                 .map(this::convertMutable)
                 .peek(Collections::sort)
                 .map(Lotto::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<Integer> generateUniqueNumbers() {
