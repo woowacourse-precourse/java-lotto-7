@@ -5,17 +5,20 @@ import static lotto.global.ErrorMessage.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.common.Random;
 
 public class LottoMachine {
 
 	private static final int LOTTO_PRICE = 1000;
+	private static final int LOTTO_START_NUMBER = 1;
+	private static final int LOTTO_END_NUMBER = 45;
+	private static final int LOTTO_NUMBER_COUNT = 6;
 
-	public List<Lotto> purchaseLottos(Money money) {
+	public List<Lotto> purchaseLottos(Money money, Random randoms) {
 		validatePurchaseMoneyUnit(money);
 		int lottoCount = money.getAmount() / LOTTO_PRICE;
 
-		List<Lotto> lottos = generateLottos(lottoCount);
+		List<Lotto> lottos = generateLottos(lottoCount, randoms);
 
 		return lottos;
 	}
@@ -26,10 +29,10 @@ public class LottoMachine {
 		}
 	}
 
-	private List<Lotto> generateLottos(int lottoCount) {
+	private List<Lotto> generateLottos(int lottoCount, Random randoms) {
 		List<Lotto> lottos = new ArrayList<>();
 		for(int i = 0; i< lottoCount; i++) {
-			List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			List<Integer> lottoNumbers = randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT);
 			lottos.add(new Lotto(lottoNumbers));
 		}
 		return lottos;
