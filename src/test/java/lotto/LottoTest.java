@@ -32,5 +32,5 @@ class LottoTest {
     void 로또_번호에_46_이상의_숫자가_있으면_예외가_발생한다(){
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);}
-    
+
 }
