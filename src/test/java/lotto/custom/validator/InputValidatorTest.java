@@ -37,12 +37,20 @@ public class InputValidatorTest {
                 .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
-    @DisplayName("유효성검증_구입금액입력_숫자외의문자가있을때_테스트")
+    @DisplayName("유효성검증_구입금액입력_숫자와공백외의문자가있을때_테스트")
     @Test
-    void 유효성검증_구입금액입력_숫자외의문자가있을때_테스트() {
+    void 유효성검증_구입금액입력_숫자와공백외의문자가있을때_테스트() {
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("123#5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS_INPUT);
+    }
+
+    @DisplayName("유효성검증_구입금액입력_숫자와숫자사이에공백이있을때_테스트")
+    @Test
+    void 유효성검증_구입금액입력_숫자와숫자사이에공백이있을때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("3000 0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.SPACES_BETWEEN_NUMBERS);
     }
 
     @DisplayName("유효성검증_구입금액입력_int타입의범위를벗어날때_테스트")

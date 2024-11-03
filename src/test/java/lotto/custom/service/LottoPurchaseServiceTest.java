@@ -2,6 +2,7 @@ package lotto.custom.service;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.custom.common.ErrorMessages;
 import lotto.custom.validator.CustomErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,12 +34,20 @@ public class LottoPurchaseServiceTest {
                 .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
-    @DisplayName("서비스_구입금액입력_숫자외의문자가있을때_테스트")
+    @DisplayName("서비스_구입금액입력_숫자와공백외의문자가있을때_테스트")
     @Test
-    void 서비스_구입금액입력_숫자외의문자가있을때_테스트() {
+    void 서비스_구입금액입력_숫자와공백외의문자가있을때_테스트() {
         assertThatThrownBy(() -> lottoPurchaseService.run("123#5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS_INPUT);
+    }
+
+    @DisplayName("서비스_구입금액입력_숫자와숫자사이에공백이있을때_테스트")
+    @Test
+    void 서비스_구입금액입력_숫자와숫자사이에공백이있을때_테스트() {
+        assertThatThrownBy(() -> lottoPurchaseService.run("300 00"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.SPACES_BETWEEN_NUMBERS);
     }
 
     @DisplayName("서비스_구입금액입력_int타입의범위를벗어날때_테스트")

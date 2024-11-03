@@ -15,7 +15,7 @@ public class LottoPurchaseService {
 
     public Lottos run(String purchaseAmountInput) {
         inputValidator.validatePurchaseAmountInput(purchaseAmountInput);
-        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        int purchaseAmount = Integer.parseInt(purchaseAmountInput.trim());
         return lottoMaker.run(purchaseAmount);
     }
 }

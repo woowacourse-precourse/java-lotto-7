@@ -6,7 +6,6 @@ import static lotto.custom.constants.NumberConstants.LOTTO_NUMBER_RANGE_START;
 import static lotto.custom.constants.NumberConstants.LOTTO_PRICE;
 import static lotto.custom.constants.RegexConstants.DIGITS_SPACE_ONLY_REGEX;
 import static lotto.custom.constants.RegexConstants.DIGIT_COMMA_SPACE_ONLY_REGEX;
-import static lotto.custom.constants.RegexConstants.DIGIT_ONLY_REGEX;
 
 import java.util.List;
 import lotto.custom.common.Exceptions;
@@ -22,7 +21,8 @@ public class InputValidator {
 
     public void validatePurchaseAmountInput(String input) {
         exceptions.checkEmptyInput(input);
-        exceptions.checkInvalidCharacters(input, DIGIT_ONLY_REGEX);
+        exceptions.checkInvalidCharacters(input, DIGITS_SPACE_ONLY_REGEX);
+        exceptions.checkSpacesBetweenNumbers(input);
         exceptions.checkIntegerOverflow(input);
         validateAmountDivisibilityByLOTTOPRICE(input);
     }
