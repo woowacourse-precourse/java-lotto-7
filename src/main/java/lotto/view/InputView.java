@@ -10,9 +10,20 @@ public class InputView {
         return amount;
     }
 
+    private void validate(final String input) {
+        validateNull(input);
+        validateBlank(input);
+    }
+
     private void validateNull(final String input) {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getMessage());
+        }
+    }
+
+    private void validateBlank(final String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.BLANK_INPUT.getMessage());
         }
     }
 }

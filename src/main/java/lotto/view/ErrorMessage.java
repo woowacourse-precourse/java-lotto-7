@@ -1,7 +1,8 @@
 package lotto.view;
 
 public enum ErrorMessage {
-    NULL_INPUT("[ERROR] 입력값이 존재하지 않습니다.");
+    NULL_INPUT("[ERROR] 입력값이 존재하지 않습니다."),
+    BLANK_INPUT("[ERROR] 입력값이 공백입니다.");
 
     private final String message;
 
