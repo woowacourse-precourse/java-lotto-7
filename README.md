@@ -3,10 +3,10 @@
 ## ✨ 기능 구현 목록
 
 - [x] 구입금액을 입력받는 기능 구현.
-    - [ ] 입력받은 금액이 숫자가 아닐시 `IllegalArgumentException` 발생 시키는 기능
-    - [ ] 입력 받은 금액이 1000의 배수가 아닐시 `IllegalArgumentException` 발생 시키는 기능
-    - [ ] 공백을 입력했을 경우 `IllegalArgumentException` 발생 시키는 기능
-    - [ ] 0을 입력 했을 경우 `IllegalArgumentException` 발생 시키는 기능
+    - [x] 입력받은 금액이 숫자가 아닐시 `IllegalArgumentException` 발생 시키는 기능
+    - [x] 입력 받은 금액이 1000의 배수가 아닐시 `IllegalArgumentException` 발생 시키는 기능
+    - [x] 공백을 입력했을 경우 `IllegalArgumentException` 발생 시키는 기능
+    - [x] 0을 입력 했을 경우 `IllegalArgumentException` 발생 시키는 기능
 
 
 - [x] 입력받는 금액에 따라 겹치지 않는 1 ~ 45 사이의 랜덤한 숫자 6개를 생성하는 기능
@@ -27,19 +27,17 @@
     - [ ] 입력받은 값의 위의 당첨번호와 겹치는 경우 `IllegalArgumentException` 발생 시키는 기능
 
 
-- [ ] 당첨 번호와 로또번호를 비교하는 기능
+- [x] 당첨 번호와 로또번호를 비교하는 기능
 
-- [ ] 입금 금액과 당첨금액을 토대로 수익률을 계산하는 기능
-    - [ ] 위의 결과를 출력하는 기능
+- [x] 입금 금액과 당첨금액을 토대로 수익률을 계산하는 기능
+    - [x] 위의 결과를 출력하는 기능
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] Exception 이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [x] Exception 이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
-
-
-- [ ] `enum`을 이용한 상수화
-    - [ ] 로또에 관련된 정보 상수화
-    - [ ] 로또 당첨 등수에 대한 정보 상수화
+- [x] `enum`을 이용한 상수화
+    - [x] 로또 당첨 등수에 대한 정보 상수화
+    - [x] 로또결과 메시지에 대한 정보 상수화
 ---
 
 
