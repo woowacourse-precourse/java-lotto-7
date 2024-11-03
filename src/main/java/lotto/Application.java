@@ -48,7 +48,7 @@ public class Application {
         return buyLottoNumbers;
     }
 
-    public static void printBuyLottoNumbers(List<List<Integer>> buyLottoNumbers){
+    public static void printBuyLottoNumbers(List<List<Integer>> buyLottoNumbers){ //랜덤 로또 번호 출력
         for(var numbers : buyLottoNumbers){
             System.out.println(numbers);
         }
