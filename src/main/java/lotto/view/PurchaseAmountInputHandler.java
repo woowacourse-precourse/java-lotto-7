@@ -6,9 +6,15 @@ public class PurchaseAmountInputHandler {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     public static int promptPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        return validatePurchaseAmount(input);
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = Console.readLine();
+            try {
+                return validatePurchaseAmount(input);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int validatePurchaseAmount(String input) {
