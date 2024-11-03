@@ -41,7 +41,7 @@ public class ValidationUtils {
 
     public static void validateBonusNumberDuplication(int bonusNumber, Set<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
@@ -57,6 +57,11 @@ public class ValidationUtils {
         }
         if (!s.matches("\\d+")) {
             throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_WINNING_NUMBER.getMessage());
+        }
+        try {
+            Integer.parseInt(s); // int로 파싱을 시도하여 범위를 벗어나는지 검사
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT.getMessage()); // 범위 초과 시 예외 메시지
         }
     }
 }

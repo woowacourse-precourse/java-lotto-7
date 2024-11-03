@@ -27,7 +27,11 @@ public class InputParser {
 
     public int parseBonusNumber(String bonusNumInput) {
         int bonusNumber;
-        bonusNumber = Integer.parseInt(bonusNumInput);
+        try {
+            bonusNumber = Integer.parseInt(bonusNumInput.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_BONUS_NUMBER.getMessage());
+        }
         return bonusNumber;
     }
 }
