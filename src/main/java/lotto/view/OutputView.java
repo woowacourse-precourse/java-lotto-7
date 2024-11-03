@@ -14,6 +14,8 @@ public class OutputView {
     private static final String FIVE_MATCHING_OUTPUT_MESSAGE = "5개 일치 (1,500,000원) - ";
     private static final String FIVE_MATCHING_BONUS_OUTPUT_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String SIX_MATCHING_OUTPUT_MESSAGE = "6개 일치 (2,000,000,000원) - ";
+    private static final String PROFIT_RATE_OUTPUT_MESSAGE_1 = "총 수익률은 ";
+    private static final String PROFIT_RATE_OUTPUT_MESSAGE_2 = "% 입니다.";
 
     public void printIssuedLottos(Lottos lottos) {
         System.out.println();
@@ -34,7 +36,7 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.2f", profitRate);
-        System.out.println("% 입니다.");
+        System.out.printf(PROFIT_RATE_OUTPUT_MESSAGE_1 + "%.2f", profitRate);
+        System.out.println(PROFIT_RATE_OUTPUT_MESSAGE_2);
     }
 }
