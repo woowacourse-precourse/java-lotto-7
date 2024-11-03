@@ -1,6 +1,7 @@
 package lotto.system.Config;
 
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,7 @@ public class SystemConfig {
         this.outputTask = new OutputTask(outputMessageQueue);
         this.inputThread = new Thread(inputTask, "InputThread");
         this.outputThread = new Thread(outputTask, "OutputThread");
+
     }
 
     public static SystemConfig getInstance() {
