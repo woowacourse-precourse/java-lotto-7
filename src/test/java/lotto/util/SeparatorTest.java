@@ -25,7 +25,7 @@ class SeparatorTest {
         String input = "1;2,3;4;5;6";
 
         assertThatThrownBy(() -> Separator.splitWithCommaToInteger(input))
-                .isInstanceOf(NumberFormatException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("문자열에 숫자가 아닌 문자가 포함되어 있으면 예외가 발생한다.")
@@ -34,6 +34,6 @@ class SeparatorTest {
         String input = "1,2,three,4,5,6";
 
         assertThatThrownBy(() -> Separator.splitWithCommaToInteger(input))
-                .isInstanceOf(NumberFormatException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -21,24 +21,42 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
         Lotto lotto = createLotto();
-        int bonusNumber = getValidatedBonusNumber();
+        int bonusNumber = getBonusNumber();
     }
 
     private int getPurchaseAmount() {
-        int purchaseAmount = parseInt(InputView.getPurchaseAmount());
-        inputValidator.validatePurchaseAmount(purchaseAmount, LOTTO_PRICE);
-        return purchaseAmount;
+        while (true) {
+            try {
+                int purchaseAmount = parseInt(InputView.getPurchaseAmount());
+                inputValidator.validatePurchaseAmount(purchaseAmount, LOTTO_PRICE);
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto createLotto() {
-        List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
-        return new Lotto(winningNumbers);
+        while (true) {
+            try {
+                List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private int getValidatedBonusNumber() {
-        int bonusNumber = parseInt(InputView.getBonusNumber());
-        inputValidator.validateBonusNumber(bonusNumber);
-        return bonusNumber;
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                int bonusNumber = parseInt(InputView.getBonusNumber());
+                inputValidator.validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int parseInt(String input) {
