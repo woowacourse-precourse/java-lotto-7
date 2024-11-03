@@ -25,8 +25,7 @@ public class LottoService {
 
         return lottoPrizeResult.entrySet().stream()
             .map(entry -> new LottoResultDto(
-                entry.getKey().getWinningCount(),
-                entry.getKey().getPrize(),
+                entry.getKey(),
                 entry.getValue()))
             .toList();
     }
@@ -42,10 +41,10 @@ public class LottoService {
     }
 
     public double getInvestment(PositiveNumber inputPrice, List<LottoResultDto> dtos) {
-        long prizeSum = dtos.stream().mapToLong(dto -> dto.prize() * dto.amount())
+        long prizeSum = dtos.stream().mapToLong(dto -> dto.lottoPrize().getPrize() * dto.amount())
             .sum();
 
-        return (double) prizeSum / inputPrice.get();
+        return (double) prizeSum * 100 / inputPrice.get();
     }
 
     private Lotto purchaseLotto() {

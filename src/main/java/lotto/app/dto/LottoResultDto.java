@@ -1,5 +1,7 @@
 package lotto.app.dto;
 
-public record LottoResultDto(int correctNumber, Long prize, int amount) {
+import lotto.domain.LottoPrize;
+
+public record LottoResultDto(LottoPrize lottoPrize, Integer amount) {
 
 }

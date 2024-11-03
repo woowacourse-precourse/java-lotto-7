@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.app.dto.WinningNumberRequestDto;
 import lotto.domain.PositiveNumber;
+import lotto.exception.ErrorMessage;
 
 public class InputView {
 
@@ -23,6 +24,8 @@ public class InputView {
                 long price = Long.parseLong(Console.readLine());
                 inputValidator.isDivisibleByThousand(price);
                 return new PositiveNumber(price);
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.INVALID_DATA_TYPE.get());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -43,6 +46,8 @@ public class InputView {
                     .toList();
                 inputValidator.isSizeSix(numbers);
                 return numbers;
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.INVALID_DATA_TYPE.get());
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }

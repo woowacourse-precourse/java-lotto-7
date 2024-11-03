@@ -7,12 +7,12 @@ import java.util.Map;
 
 public enum LottoPrize {
 
-    FIRST_PRIZE(6, false, 2_000_000_000L),
-    SECOND_PRIZE(5, true, 30_000_000L),
-    THIRD_PRIZE(5, false, 1_500_000L),
-    FOURTH_PRIZE(4, false, 50_000L),
-    FIFTH_PRIZE(3, false, 5_000L),
     NO_PRIZE(0, false, 0L),
+    FIFTH_PRIZE(3, false, 5_000L),
+    FOURTH_PRIZE(4, false, 50_000L),
+    THIRD_PRIZE(5, false, 1_500_000L),
+    SECOND_PRIZE(5, true, 30_000_000L),
+    FIRST_PRIZE(6, false, 2_000_000_000L),
     ;
 
     private final int winningCount;
