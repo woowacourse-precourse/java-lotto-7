@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.common.Constant.MAX_LOTTO_NUMBER;
+import static lotto.common.Constant.MIN_LOTTO_NUMBER;
+import static lotto.common.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 public class BonusNumber {
     private final int bonusNumber;
     public BonusNumber(int bonusNumber){
@@ -7,8 +11,8 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
     private void isNumberBetween1And45(int bonusNumber){
-        if(bonusNumber < 1 || bonusNumber > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if(bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER){
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.format());
         }
     }
     public int getBonusNumber(){

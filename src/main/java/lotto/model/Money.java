@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.common.Constant.ZERO;
 import static lotto.common.ErrorMessage.INVALID_PRICE;
+import static lotto.common.Constant.THOUSAND;
+
 
 public class Money {
     private final int userInputMoney;
@@ -10,7 +13,7 @@ public class Money {
         this.userInputMoney = userInputMoney;
     }
     private void checkAmountWithinRange(int userInputMoney){
-        if (userInputMoney % 1000 != 0){
+        if (userInputMoney % THOUSAND != ZERO){
             throw new IllegalArgumentException(INVALID_PRICE.format());
         }
     }

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.common.Constant.THOUSAND;
+
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Controller {
     public int divideUserMoneyByThousand() {
         InputView.printRequestPurchaseAmountInput();
         this.userMoney = InputHandler.getMoneyUntilValid(InputView.getUserInput());
-        return userMoney / 1000;
+        return userMoney / THOUSAND;
     }
 
     public ArrayList<List<Integer>> generatePurchasedLottoNumbers(int times){

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.common.Constant.ZERO;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +13,7 @@ public class RandomNumbers {
 
     public static ArrayList<List<Integer>> generateSortedRandomLottoSets(int times){
         ArrayList<List<Integer>> randomNumbers = new ArrayList<>();
-        for (int i = 0; i < times; i++) {
+        for (int i = ZERO; i < times; i++) {
             randomNumbers.add(generateSortedLottoNumbers());
         }
         return randomNumbers;
