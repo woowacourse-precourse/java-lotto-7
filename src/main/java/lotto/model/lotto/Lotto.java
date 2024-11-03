@@ -34,8 +34,10 @@ public class Lotto {
     }
 
     private String getJoinedNumbers() {
-        numbers.sort(Integer::compareTo);
-        return numbers.stream()
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .toList();
+        return sortedNumbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
     }
