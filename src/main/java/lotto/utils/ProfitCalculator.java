@@ -5,7 +5,7 @@ import lotto.domain.WinningPrice;
 
 public class ProfitCalculator {
 
-    private static final String FORMAT_LENGTH = "%.1f";
+    private static final String FORMAT_LENGTH = "%,.1f";
 
     private ProfitCalculator() {
     }
