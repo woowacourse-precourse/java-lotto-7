@@ -1,6 +1,7 @@
 package lotto.output;
 
 import lotto.LottoPrize;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class OutputTest {
     private PrintStream standardOut;
@@ -76,11 +75,25 @@ public class OutputTest {
                 5개 일치 (1,500,000원) - 3개
                 5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
                 6개 일치 (2,000,000,000원) - 0개
-                총 수익률 1030.5%입니다.""";
+                총 수익률은 1030.5%입니다.""";
 
         output.writeLottoPrize(map, roi);
 
         Assertions.assertEquals(expected, output());
+    }
+
+    @Test
+    void 로또_리스트가_주어지면_정해진_형식으로_출력해야_한다() {
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottoList.add(new Lotto(List.of(1,2,3,4,5,7)));
+        output.writeLottoList(convertLottoListToIntegerList(lottoList));
+
+        String expected = """
+                [1, 2, 3, 4, 5, 6]
+                [1, 2, 3, 4, 5, 7]
+                """;
+
     }
 
     private Map<LottoPrize, Integer> initializePrizeMap() {
@@ -88,5 +101,11 @@ public class OutputTest {
         Arrays.stream(LottoPrize.values())
                 .forEach(prize -> prizeMap.put(prize, 0));
         return prizeMap;
+    }
+
+    private List<List<Integer>> convertLottoListToIntegerList(List<Lotto> lottoList) {
+        return lottoList.stream()
+                .map(Lotto::getNumbers)
+                .toList();
     }
 }
