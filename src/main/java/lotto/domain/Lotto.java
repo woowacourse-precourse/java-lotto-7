@@ -4,7 +4,7 @@ import static lotto.exception.ErrorMessage.INVALID_LOTTO_COUNTS;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_DUPLICATE;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_RANGE;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +15,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -50,7 +49,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
+        return new ArrayList<>(numbers);
     }
-
 }
