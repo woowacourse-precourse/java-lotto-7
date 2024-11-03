@@ -36,11 +36,15 @@ public class WinningResult {
     private Map<LottoRank, Integer> initializeRankCount() {
         Map<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
         for (LottoRank rank : LottoRank.values()) {
-            if (rank != LottoRank.NONE) {
-                result.put(rank, 0);
-            }
+            initializeValidRank(rank, result);
         }
         return result;
+    }
+
+    private static void initializeValidRank(LottoRank rank, Map<LottoRank, Integer> result) {
+        if (rank != LottoRank.NONE) {
+            result.put(rank, 0);
+        }
     }
 
     private Revenue createRevenue(final int purchaseCount) {
