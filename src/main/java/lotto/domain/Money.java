@@ -39,4 +39,8 @@ public class Money {
     public int getAmount() {
         return amount;
     }
+
+    public int getPurchaseCount() {
+        return this.amount / UNIT_OF_PURCHASE_AMOUNT;
+    }
 }
