@@ -48,7 +48,7 @@ public class OutputView {
     }
 
     public static void promptLottoCount(int lottoCount) {
-        print(LINE_SPACE + lottoCount + LOTTO_COUNT_TEXT);
+        print(String.format(LINE_SPACE + LOTTO_COUNT_TEXT, lottoCount));
     }
 
     public static void printWinningResult(TreeMap<Integer, Integer> winningResult) {

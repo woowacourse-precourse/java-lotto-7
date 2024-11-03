@@ -75,7 +75,7 @@ public class LottoConstants {
     public static final String PURCHASE_AMOUNT_TEXT = "구입금액을 입력해 주세요.";
     public static final String WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
-    public static final String LOTTO_COUNT_TEXT = "개를 구매했습니다.";
+    public static final String LOTTO_COUNT_TEXT = "%d개를 구매했습니다.";
     public static final String TICKET_START_TEXT = "[";
     public static final String TICKET_END_TEXT = "]";
     public static final String WINNING_RESULT_TEXT = "당첨 통계";
