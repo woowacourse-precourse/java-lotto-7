@@ -7,4 +7,6 @@ public class LottoConstants {
     public static final String IS_NOT_LOTTO_NUMBER = "로또번호가 1~45가 아닙니다.";
     public static final int LOTTO_MIN_NUM = 1;
     public static final int LOTTO_MAX_NUM = 45;
+    public static final String CAN_NOT_BUY_LOTTO = "[ERROR] 로또를 살 수 없는 금액입니다.";
+    public static final int GAME_PRICE = 1000;
 }
