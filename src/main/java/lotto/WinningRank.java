@@ -1,23 +1,46 @@
 package lotto;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.List;
 
 public enum WinningRank {
 
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
+    FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000);
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false, 2000000000);
 
-    private final int winnings;
     private final int matchCounts;
     private final boolean matchBonus;
+    private final int winnings;
+    private int count;
 
     WinningRank(int matchCounts, boolean matchBonus, int winnings) {
         this.matchCounts = matchCounts;
         this.matchBonus = matchBonus;
         this.winnings = winnings;
+    }
+
+    public static WinningRank findRank(int matchCount, boolean matchBonus) {
+        return Arrays.stream(WinningRank.values())
+                .filter(rank -> rank.matchCounts == matchCount && rank.matchBonus == matchBonus)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static void winningCounts(List<Lotto> lottos, LottoChecker checker) {
+        for (Lotto lotto : lottos) {
+            WinningRank rank = checker.countMatchingNumbers(lotto);
+            if (rank != null) {
+                rank.increaseCount();
+            }
+        }
+    }
+
+    private void increaseCount() {
+        count++;
     }
 
     private String transferFormat() {
@@ -26,16 +49,25 @@ public enum WinningRank {
         return printWinnings.format(winnings);
     }
 
-    public static void printWinnings(WinningRank rank) {
-        System.out.println(rank.matchCounts + "개 일치 ");
-        if (rank.matchBonus) {
-            System.out.println(", 보너스 볼 일치");
+    private void printWinnings() {
+        System.out.print(matchCounts + "개 일치 ");
+        if (matchBonus) {
+            System.out.print(", 보너스 볼 일치");
         }
-        System.out.println(" (" + rank.transferFormat() + "원) - ");
+        System.out.println(" (" + transferFormat() + "원) - " + count);
     }
 
-    public int getWinnings() {
-        return winnings;
+    public void printWinningsResult() {
+        System.out.println("당첨 통계\n---");
+        for (WinningRank rank : WinningRank.values()) {
+            rank.printWinnings();
+        }
+    }
+
+    public static int calculateTotalWinnings() {
+        return Arrays.stream(WinningRank.values())
+                .mapToInt(rank -> rank.winnings * rank.count)
+                .sum();
     }
 
 }
