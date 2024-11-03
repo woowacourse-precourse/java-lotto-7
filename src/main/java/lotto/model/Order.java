@@ -8,44 +8,81 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Order {
+    private static final int BONUS_MATCH_INDEX = 7;
+    private static final int REQUIRED_MATCH_WITH_BONUS = 5;
+
     public final LottoRound lottoRound;
     public final int orderCount;
-    public List<Lotto> orderLotto;
-    private final List<Integer> matchCount;
+    public final List<Lotto> orderedLottos;
+    private final List<Integer> matchCounts;
 
     public Order(LottoRound lottoRound, int orderCount) {
         this.lottoRound = lottoRound;
         this.orderCount = orderCount;
-        this.orderLotto = new ArrayList<>();
-        this.matchCount = new ArrayList<>(Collections.nCopies(8, 0));
+        this.orderedLottos = generateOrderedLotto(orderCount);
+        this.matchCounts = new ArrayList<>(Collections.nCopies(8, 0));
+    }
+
+    private List<Lotto> generateOrderedLotto(int orderCount) {
+        List<Lotto> orderedLottos = new ArrayList<>();
         for (int i = 0; i < orderCount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            this.orderLotto.add(lotto);
+            Lotto lotto = createRandomLotto();
+            orderedLottos.add(lotto);
+        }
+        return orderedLottos;
+    }
+
+    private Lotto createRandomLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    public void calculateMatchCounts() {
+        for (Lotto lotto : orderedLottos) {
+            int matchCount = lotto.countMatchingNumbers(lottoRound.getWinningLotto());
+            boolean hasBonusNumber = lotto.hasBonusNumber(lottoRound.getBonusNumber());
+            updateMatchCounts(matchCount, hasBonusNumber);
         }
     }
 
-    public void countmatch(){
-        for (Lotto lotto : orderLotto) {
-            int matches = lotto.compare(this.lottoRound.getWinningLotto());
-            boolean hasBonus = lotto.bonuscheck(this.lottoRound.getBonusNumber());
-
-            if(matches == 5 && hasBonus) {
-                matchCount.set(7, matchCount.get(7) + 1);
-                return;
-            }
-            matchCount.set(matches, matchCount.get(matches) + 1);
-        }
+    private void updateMatchCounts(int matchCount, boolean hasBonusNumber) {
+        if (isBonusMatch(matchCount, hasBonusNumber)) matchCount = BONUS_MATCH_INDEX;
+        incrementMatchCount(matchCount);
     }
 
-    public List<Integer> getMatchCount() {
-        return matchCount;
+    private boolean isBonusMatch(int matchCount, boolean hasBonusNumber) {
+        return matchCount == REQUIRED_MATCH_WITH_BONUS && hasBonusNumber;
+    }
+
+    private void incrementMatchCount(int index) {
+        matchCounts.set(index, matchCounts.get(index) + 1);
+    }
+
+    public double calculateTotalProfit() {
+        double winAmount = calculateWinAmount();
+        return (winAmount / (orderCount * 1000)) * 100;
+    }
+
+    private double calculateWinAmount() {
+        double winAmount = 0;
+        for (Winnings winnings : Winnings.values()) {
+            int count = matchCounts.get(winnings.getMatchCount());
+            winAmount += winnings.getPrize() * count;
+        }
+        return winAmount;
+    }
+
+    public int getOrderCount() {
+        return orderCount;
+    }
+
+    public List<Integer> getMatchCounts() {
+        return matchCounts;
     }
 
     @Override
     public String toString() {
-        return orderLotto.stream()
+        return orderedLottos.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));
     }
-
 }
