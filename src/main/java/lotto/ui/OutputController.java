@@ -22,4 +22,12 @@ public class OutputController {
             outputUi.printWithLineBreak(lottoInfo.lottoNumbers().toString());
         }
     }
+
+    public void printToGetWinningNumberInput() {
+        outputUi.printWithLineBreak("당첨번호를 입력해주세요.");
+    }
+
+    public void printToGetBonusNumberInput() {
+        outputUi.printWithLineBreak("보너스 번호를 입력해 주세요.");
+    }
 }
