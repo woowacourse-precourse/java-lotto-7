@@ -1,7 +1,7 @@
 package lotto.model.winningNumber;
 
 import static lotto.model.lotto.LotteryRule.MAX_LOTTERY_NUMBER;
-import static lotto.Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE;
+import static lotto.exception.Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE;
 
 import lotto.model.lotto.LotteryRule;
 

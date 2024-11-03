@@ -1,6 +1,6 @@
 package lotto.view.input;
 
-import static lotto.Exceptions.*;
+import static lotto.exception.Exceptions.*;
 
 public class InputValidator {
     private static final String POSITIVE_INTEGER_REGEX = "^[1-9]\\d*$";

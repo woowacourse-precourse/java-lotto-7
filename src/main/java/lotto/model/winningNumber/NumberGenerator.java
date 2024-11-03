@@ -1,6 +1,6 @@
 package lotto.model.winningNumber;
 
-import static lotto.Exceptions.*;
+import static lotto.exception.Exceptions.*;
 
 import java.util.Arrays;
 import java.util.List;

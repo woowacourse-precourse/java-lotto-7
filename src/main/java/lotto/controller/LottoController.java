@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.model.winningNumber.BonusNumber;
-import lotto.model.lotto.PurchaseAmount;
+import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
-import lotto.model.lotto.PurchaseAmountGenerator;
+import lotto.model.purchaseAmount.PurchaseAmountGenerator;
 import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningNumber.NumberGenerator;
 import lotto.model.winningResult.WinningResults;

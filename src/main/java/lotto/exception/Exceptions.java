@@ -1,4 +1,4 @@
-package lotto;
+package lotto.exception;
 
 public enum Exceptions {
     EMPTY_VALUE("값을 입력해주세요.", Type.GENERAL),

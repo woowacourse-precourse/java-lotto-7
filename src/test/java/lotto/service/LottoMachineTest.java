@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.PurchaseAmount;
+import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
 import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningResult.WinningRank;

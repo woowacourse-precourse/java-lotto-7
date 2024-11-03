@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.PurchaseAmount;
+import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.RandomNumberPicker;
 import lotto.model.winningNumber.WinningNumber;

@@ -3,7 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import lotto.Exceptions;
+import lotto.exception.Exceptions;
 import lotto.view.input.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
