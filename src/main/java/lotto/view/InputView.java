@@ -1,7 +1,10 @@
 package lotto.view;
 
+import java.util.function.Supplier;
 import lotto.model.lotto.Lotto;
 import lotto.model.money.Money;
+import lotto.utils.PreProcessor;
+import lotto.utils.ReInputProcessor;
 import lotto.view.validator.InputValidatorFacade;
 
 public class InputView {
@@ -30,38 +33,33 @@ public class InputView {
     }
 
     public Money readPurchaseAmount() {
-        try {
+        return reInputOnException(() -> {
             writer.printLineBefore(ASK_PURCHASE_AMOUNT);
             String input = reader.readInput();
             InputValidatorFacade.moneyValidators(input);
             return PreProcessor.stringToMoney(input);
-        } catch (IllegalArgumentException e) {
-            writer.printErrorMessage(e.getMessage());
-            return readPurchaseAmount();
-        }
+        });
     }
 
     public Lotto readWinningNumber() {
-        try {
+        return reInputOnException(() -> {
             writer.printLineBefore(ASK_WINNING_NUMBER);
             String input = reader.readInput();
             InputValidatorFacade.winningNumValidators(input);
             return PreProcessor.stringToLotto(input);
-        } catch (IllegalArgumentException e) {
-            writer.printErrorMessage(e.getMessage());
-            return readWinningNumber();
-        }
+        });
     }
 
     public Integer readBonus(Lotto lotto) {
-        try {
+        return reInputOnException(() -> {
             writer.printLineBefore(ASK_BONUS_NUMBER);
             String input = reader.readInput();
             InputValidatorFacade.bonusValidators(input, lotto);
             return PreProcessor.stringToInteger(input);
-        } catch (IllegalArgumentException e) {
-            writer.printErrorMessage(e.getMessage());
-            return readBonus(lotto);
-        }
+        });
+    }
+
+    private <T> T reInputOnException(Supplier<T> function) {
+        return ReInputProcessor.execute(function, IllegalArgumentException.class);
     }
 }
