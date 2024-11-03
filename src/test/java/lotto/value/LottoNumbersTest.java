@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
+import lotto.lottoapp.value.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 class LottoNumbersTest {

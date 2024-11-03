@@ -1,11 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.business.LottoService;
-import lotto.controller.LottoController;
-import lotto.model.AutomaticLottoNumbersGenerator;
-import lotto.view.LottoInput;
-import lotto.view.LottoOutput;
+import lotto.lottoapp.business.LottoService;
+import lotto.lottoapp.controller.LottoController;
+import lotto.lottoapp.model.AutomaticLottoNumbersGenerator;
+import lotto.lottoapp.view.LottoInput;
+import lotto.lottoapp.view.LottoOutput;
 
 public class Application {
 

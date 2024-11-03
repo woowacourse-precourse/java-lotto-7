@@ -4,8 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.value.BonusNumber;
-import lotto.value.LottoNumbers;
+import lotto.lottoapp.model.WinningLotto;
+import lotto.lottoapp.value.BonusNumber;
+import lotto.lottoapp.value.LottoNumbers;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {

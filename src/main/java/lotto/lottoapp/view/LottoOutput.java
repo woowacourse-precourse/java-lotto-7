@@ -1,12 +1,12 @@
-package lotto.view;
+package lotto.lottoapp.view;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningResult;
-import lotto.value.WinningStatistics;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningResult;
+import lotto.lottoapp.value.WinningStatistics;
 
 public class LottoOutput {
 

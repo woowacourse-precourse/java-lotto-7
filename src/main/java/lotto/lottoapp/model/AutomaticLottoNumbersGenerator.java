@@ -1,7 +1,7 @@
-package lotto.model;
+package lotto.lottoapp.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.common.util.RandomUtil;
 
 public class AutomaticLottoNumbersGenerator implements LottoNumbersGenerator {
 
@@ -11,10 +11,8 @@ public class AutomaticLottoNumbersGenerator implements LottoNumbersGenerator {
 
     @Override
     public List<Integer> generate() {
-        return List.copyOf(Randoms.pickUniqueNumbersInRange(
-                MIN_VALUE_OF_GENERATE,
-                MAX_NUMBER_OF_GENERATE,
-                SIZE_OF_NUMBERS));
+        return List.copyOf(RandomUtil.pickUniqueNumbersInRange(
+                MIN_VALUE_OF_GENERATE, MAX_NUMBER_OF_GENERATE, SIZE_OF_NUMBERS));
     }
 
 }

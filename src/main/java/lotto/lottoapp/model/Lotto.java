@@ -1,10 +1,10 @@
-package lotto.model;
+package lotto.lottoapp.model;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.value.LottoNumber;
-import lotto.value.LottoNumbers;
-import lotto.value.Won;
+import lotto.lottoapp.value.LottoNumber;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.Won;
 
 public class Lotto {
 

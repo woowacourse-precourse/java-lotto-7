@@ -1,4 +1,4 @@
-package lotto.value;
+package lotto.lottoapp.value;
 
 public final class BonusNumber extends LottoNumber {
 

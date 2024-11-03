@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.lottoapp.model.LottoNumbersGenerator;
 
 public class SequentialLottoNumberGenerator implements LottoNumbersGenerator {
 

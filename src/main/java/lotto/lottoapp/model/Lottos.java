@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.lottoapp.model;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -8,10 +8,10 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningResult;
-import lotto.value.WinningStatistics;
-import lotto.value.Won;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningResult;
+import lotto.lottoapp.value.WinningStatistics;
+import lotto.lottoapp.value.Won;
 
 public class Lottos {
 

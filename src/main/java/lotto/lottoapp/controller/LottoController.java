@@ -1,14 +1,14 @@
-package lotto.controller;
+package lotto.lottoapp.controller;
 
 import java.util.List;
-import lotto.business.LottoService;
 import lotto.common.controller.InteractionRepeatable;
-import lotto.model.WinningLotto;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningStatistics;
-import lotto.value.Won;
-import lotto.view.LottoInput;
-import lotto.view.LottoOutput;
+import lotto.lottoapp.business.LottoService;
+import lotto.lottoapp.model.WinningLotto;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningStatistics;
+import lotto.lottoapp.value.Won;
+import lotto.lottoapp.view.LottoInput;
+import lotto.lottoapp.view.LottoOutput;
 
 public class LottoController implements InteractionRepeatable {
 

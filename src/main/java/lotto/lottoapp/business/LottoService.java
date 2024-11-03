@@ -1,12 +1,12 @@
-package lotto.business;
+package lotto.lottoapp.business;
 
 import java.util.List;
-import lotto.model.LottoNumbersGenerator;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningStatistics;
-import lotto.value.Won;
+import lotto.lottoapp.model.LottoNumbersGenerator;
+import lotto.lottoapp.model.Lottos;
+import lotto.lottoapp.model.WinningLotto;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningStatistics;
+import lotto.lottoapp.value.Won;
 
 public class LottoService {
 

@@ -1,19 +1,22 @@
 package lotto.model;
 
-import static lotto.value.WinningResult.FIFTH;
-import static lotto.value.WinningResult.FIRST;
-import static lotto.value.WinningResult.FOURTH;
-import static lotto.value.WinningResult.SECOND;
-import static lotto.value.WinningResult.THIRD;
+import static lotto.lottoapp.value.WinningResult.FIFTH;
+import static lotto.lottoapp.value.WinningResult.FIRST;
+import static lotto.lottoapp.value.WinningResult.FOURTH;
+import static lotto.lottoapp.value.WinningResult.SECOND;
+import static lotto.lottoapp.value.WinningResult.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.value.BonusNumber;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningStatistics;
-import lotto.value.Won;
+import lotto.lottoapp.model.AutomaticLottoNumbersGenerator;
+import lotto.lottoapp.model.Lottos;
+import lotto.lottoapp.model.WinningLotto;
+import lotto.lottoapp.value.BonusNumber;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningStatistics;
+import lotto.lottoapp.value.Won;
 import org.junit.jupiter.api.Test;
 
 class LottosTest {

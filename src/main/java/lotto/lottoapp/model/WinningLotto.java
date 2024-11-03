@@ -1,8 +1,8 @@
-package lotto.model;
+package lotto.lottoapp.model;
 
-import lotto.value.BonusNumber;
-import lotto.value.LottoNumbers;
-import lotto.value.WinningResult;
+import lotto.lottoapp.value.BonusNumber;
+import lotto.lottoapp.value.LottoNumbers;
+import lotto.lottoapp.value.WinningResult;
 
 public class WinningLotto {
 
