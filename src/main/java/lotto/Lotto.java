@@ -34,8 +34,10 @@ public class Lotto {
         //입력받기
         System.out.println("구입금액을 입력해 주세요.");
         int tickets = 0;
+        int price = 0;
+
         try {
-            int price = parseInt(Console.readLine());
+            price = parseInt(Console.readLine());
             if (price <= 0 || price % 1000 != 0) {
                 throw new IllegalArgumentException();
             }
@@ -44,9 +46,14 @@ public class Lotto {
             System.out.println("[Error] 구입 금액은 1,000원 단위로 입력되어야 합니다.");
         }
 
-        //로또발행
-        MakeTickets makeTickets = new MakeTickets(tickets);
+        MakeTickets makeTickets = new MakeTickets();
+        makeTickets.makeTickets(tickets);
         List<List<Integer>> randomTickets = makeTickets.getTickets();
+
+        System.out.println(tickets + "개를 구매했습니다.");
+        for (int i = 0; i < randomTickets.size(); i++) {
+            System.out.println(randomTickets.get(i));
+        }
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
@@ -54,21 +61,27 @@ public class Lotto {
             numbers.add(Integer.parseInt(num.trim()));
         }
         new Lotto(numbers);
-        //예외처리 클라스로 Lotto를 호출하는 게 나을까 아님 validate메소드를 호출하는 게 나을까
 
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             int bonusNum = parseInt(Console.readLine());
-            if(bonusNum<1 || bonusNum>45){
+            if (bonusNum < 1 || bonusNum > 45) {
                 throw new IllegalArgumentException();
             }
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("보너스번호는 1~45의 정수 입니다.");
         }
 
+        //당첨확인, 수익률계산 메소드
+        LottoChecker lottoChecker = new LottoChecker();
+        ProfitCalc profit = new ProfitCalc();
+        profit.profitCalc(price);
+
         //출력하기
-        System.out.println(tickets+"개를 구매했습니다.");
-        System.out.println(randomTickets);
+        System.out.println("당첨통계");
+        System.out.println("---");
+        //Enum클래스 호출
+
 
     }
 

@@ -18,5 +18,4 @@ public class MakeTickets {
     public List<List<Integer>> getTickets(){
         return tickets;
     }
-
 }
