@@ -15,17 +15,21 @@ public class Customer {
         return lottos;
     }
 
-    public void buyLotto(String money) {
+    public void buyLottos(String money) {
         int count = LottoTicketFactory.getLottoTicketCount(money);
 
-        while(count > 0) {
-            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(lottoNums);
+        while (count > 0) {
+            Lotto lotto = makeLotto();
             lottos.add(lotto);
             count--;
         }
 
         printLottoInfo(lottos.size());
+    }
+
+    public Lotto makeLotto() {
+        List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(lottoNums);
     }
 
     public void printLottoInfo(int count) {

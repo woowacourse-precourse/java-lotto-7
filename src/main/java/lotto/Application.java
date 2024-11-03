@@ -10,7 +10,7 @@ public class Application {
         System.out.println();
 
         Customer customer = new Customer();
-        customer.buyLotto(purchase);
+        customer.buyLottos(purchase);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinningNumbers = Console.readLine();
