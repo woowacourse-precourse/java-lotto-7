@@ -33,5 +33,29 @@ public class Application {
             System.out.println(lottoNumber);
         });
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winninglottoString = Console.readLine();
+        Lotto winningLotto;
+
+        try{
+            winningLotto = new Lotto(Arrays
+                    .stream(winninglottoString.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+        }
+
+        System.out.println("보너스 볼을 입력해 주세요.");
+        String bonusNumberString = Console.readLine();
+        Integer bonusNumber;
+
+        try{
+            bonusNumber = Integer.parseInt(bonusNumberString);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+        }
+
+        LottoManager lottoManager = new LottoManager(lottos, winningLotto, bonusNumber);
     }
 }
