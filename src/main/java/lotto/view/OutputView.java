@@ -2,6 +2,8 @@ package lotto.view;
 
 import lotto.model.Lotto;
 
+import java.util.List;
+
 public class OutputView implements UserOutput{
     @Override
     public void outputLottoCount(int lottoCount) {
@@ -9,8 +11,9 @@ public class OutputView implements UserOutput{
     }
 
     @Override
-    public void outputStatistics(Lotto lotto) {
-        String lottoNumbers = lotto.toString();
-        System.out.println(lottoNumbers);
+    public void outputStatistics(List<List<Integer>> lottoNumbers) {
+        for(List<Integer> lottoNumber : lottoNumbers){
+            System.out.println(lottoNumber.toString());
+        }
     }
 }
