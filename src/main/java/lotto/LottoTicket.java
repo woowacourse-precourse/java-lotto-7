@@ -14,11 +14,13 @@ public class LottoTicket {
     }
 
     public List<Integer> getSortedNumbers() {
-        return numbers.stream().distinct().collect(Collectors.toList());
+        return numbers.stream().sorted().collect(Collectors.toUnmodifiableList());
     }
 
     public int matchCount(LottoTicket winningTicket) {
-        return (int) winningTicket.numbers.stream().filter(numbers::contains).count();
+        return (int) winningTicket.numbers.stream()
+                .filter(numbers::contains)
+                .count();
     }
 
     public boolean contains(int number) {

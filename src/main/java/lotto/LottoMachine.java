@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoMachine {

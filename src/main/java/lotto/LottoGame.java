@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 public class LottoGame {
+    private final int Lotto_PRICE = 1000;
     private final LottoMachine lottoMachine = new LottoMachine();
     private List<Lotto> userTickets;
     private Lotto winningTicket;
@@ -41,6 +43,7 @@ public class LottoGame {
 
     private List<Lotto> generateTickets(int count) {
         List<Lotto> tickets = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             tickets.add(lottoMachine.generateTicket());
         }
@@ -48,7 +51,7 @@ public class LottoGame {
     }
 
     private Lotto inputWinningTicket() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         try {
@@ -61,7 +64,7 @@ public class LottoGame {
     }
 
     private int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         try {
@@ -75,22 +78,22 @@ public class LottoGame {
     }
 
     private void printTickets(List<Lotto> tickets) {
-        System.out.println(tickets.size() + "개를 구매했습니다.");
+        System.out.println("\n" + tickets.size() + "개를 구매했습니다.");
         tickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
     }
 
     private void printResults() {
-        int[] matchCounts = calculateMatchcounts();
+        int[] matchCounts = calculateMatchCounts();
         int totalPrize = calculateTotalPrize(matchCounts);
 
         printMatchResult(matchCounts);
         printProfitRate(totalPrize);
     }
 
-    private int[] calculateMatchcounts() {
+    private int[] calculateMatchCounts() {
         int[] matchCounts = new int[5];
 
-        for (LottoTicket ticket : userTickets) {
+        for (Lotto ticket : userTickets) {
             int matchCount = ticket.matchCount(winningTicket);
             boolean bonusMatch = ticket.contains(bonusNumber);
 
@@ -112,7 +115,7 @@ public class LottoGame {
     }
 
     private void printMatchResult(int[] matchCounts) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + matchCounts[4] + "개");
         System.out.println("4개 일치 (50,000원) - " + matchCounts[3] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchCounts[2] + "개");
@@ -121,8 +124,8 @@ public class LottoGame {
     }
 
     private void printProfitRate(int totalPrize) {
-        int totalSpent = userTickets.size() * 1000;
+        int totalSpent = userTickets.size() * Lotto_PRICE;
         double profitRate = (double) totalPrize / totalSpent * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n" + profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }

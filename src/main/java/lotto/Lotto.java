@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -20,5 +20,13 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
+    }
+
+    public int matchCount(Lotto winningTicket) {
+        return (int) winningTicket.numbers.stream().filter(numbers::contains).count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

@@ -43,7 +43,7 @@ public class ValidationUtil {
         }
     }
 
-    public Set<Integer> parseAndValidateWinningNumbers(String input) {
+    public static Set<Integer> parseAndValidateWinningNumbers(String input) {
         try {
             String[] tokens = input.split(",");
 
