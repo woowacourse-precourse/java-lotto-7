@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -22,5 +23,36 @@ public class Application {
 
         LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = lottoMachine.createLotto(quantity);
+
+        String inputWinningNumbers;
+        String[] splitWinningNumbers;
+        while (true){
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            inputWinningNumbers = Console.readLine();
+            try{
+                splitWinningNumbers = inputWinningNumbers.split(",");
+                Validation.validateWinningNumbers(splitWinningNumbers);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        String inputBonusNumber;
+        while (true){
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            inputBonusNumber = Console.readLine();
+            try{
+                Validation.validateBonusNumbers(inputBonusNumber);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String splitWinningNumber : splitWinningNumbers)
+            winningNumbers.add(Integer.parseInt(splitWinningNumber));
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 }
