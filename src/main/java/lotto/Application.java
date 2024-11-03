@@ -25,6 +25,9 @@ public class Application {
 
         List<Integer> winningNumbers = getWinningNumbers();
         System.out.println("당첨 번호: " + winningNumbers);
+
+        int bonusNumber = getBonusNumber();
+        System.out.println("보너스 번호: " + bonusNumber);
     }
 
     private static int getPurchaseAmount() {
@@ -59,6 +62,11 @@ public class Application {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine().trim());
     }
 }
 
