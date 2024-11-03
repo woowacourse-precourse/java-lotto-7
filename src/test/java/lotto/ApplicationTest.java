@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,15 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("잘못된 보너스 번호 입력")
+    @Test
+    void 예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","7,8");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
