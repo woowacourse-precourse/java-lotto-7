@@ -3,6 +3,9 @@ package lotto.validator;
 import lotto.enums.ErrorMessage;
 
 public class InputValidator {
+    private static final String DOUBLE_COMMA = ",,";
+    private static final String NUMBER_PATTERN = "-?\\d+";
+    private static final String COMMA = ",";
 
     private InputValidator() {
     }
@@ -14,6 +17,7 @@ public class InputValidator {
 
     public static void validateWinningNumbers(String input) {
         validateBlank(input);
+        validateCommaSeparatedSyntax(input);
     }
 
     private static void validateBlank(String input) {
@@ -27,6 +31,19 @@ public class InputValidator {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
+        }
+    }
+
+    private static void validateCommaSeparatedSyntax(String input) {
+        if (input.contains(DOUBLE_COMMA)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+        }
+
+        String[] numbers = input.split(COMMA);
+        for (String number : numbers) {
+            if (!number.trim().matches(NUMBER_PATTERN)) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+            }
         }
     }
 }

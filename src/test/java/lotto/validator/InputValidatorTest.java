@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import lotto.enums.ErrorMessage;
 import org.junit.jupiter.api.Nested;
@@ -45,5 +46,30 @@ class InputValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.BLANK_INPUT_NOT_ALLOWED.getMessage());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,,2,3,4,5,6", "1,2,3,,4,5,6"})
+        void 당첨_번호에_중복된_콤마가_있으면_예외가_발생한다(String input) {
+            // when & then
+            assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2 ,a,4,5,6", "1,2;3,4,5,6", "1 2,3,4,5,6"})
+        void 당첨_번호에_숫자와_숫자_사이에_콤마가_아닌_다른_문자가_있으면_예외가_발생한다(String input) {
+            // when & then
+            assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,6", "10,20,30,40,41,42", "-10,20,30,40,41,42"})
+        void 당첨_번호가_올바르게_콤마로_구분된_형식일_경우_예외가_발생하지_않는다(String input) {
+            assertDoesNotThrow(() -> InputValidator.validateWinningNumbers(input));
+        }
     }
+
 }

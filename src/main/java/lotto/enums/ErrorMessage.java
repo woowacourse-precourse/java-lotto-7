@@ -7,7 +7,8 @@ public enum ErrorMessage {
     NEGATIVE_AMOUNT_NOT_ALLOWED("[ERROR] 구입 금액은 1,000원 단위의 양의 정수여야 합니다."),
     DUPLICATE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 모두 다른 번호여야 합니다."),
     INVALID_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다."),
-    NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 양의 정수여야 합니다.");
+    NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 양의 정수여야 합니다."),
+    INVALID_WINNING_NUMBERS_FORMAT("[ERROR] 당첨 번호는 숫자와 콤마로만 구성되어야 합니다.");
 
     private final String message;
 
