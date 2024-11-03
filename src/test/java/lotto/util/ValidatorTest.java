@@ -24,4 +24,22 @@ class ValidatorTest {
             validator.validateEmptyInput(input);
         }, "입력이 null이면 예외 발생");
     }
+
+    @Test
+    void 정수가_아닐_경우_예외_발생() {
+        String input = "abc";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateNonNumber(input);
+        }, "정수가 아닐 경우 예외 발생");
+    }
+
+    @Test
+    void int범위를_벗어난_경우_예외_발생() {
+        String input = String.valueOf(Long.MAX_VALUE);;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateNonNumber(input);
+        }, "int 범위를 벗어난 경우 예외 발생");
+    }
 }
