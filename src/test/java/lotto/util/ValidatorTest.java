@@ -2,6 +2,9 @@ package lotto.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidatorTest {
@@ -68,5 +71,15 @@ class ValidatorTest {
         assertThrows(IllegalArgumentException.class, () -> {
             validator.validateNumberRange(input);
         }, "로또 번호 범위(1~45)가 아닌 경우 예외 발생");
+    }
+
+    @Test
+    void 보너스번호가_당첨번호에_포함되면_예외_발생() {
+        String input = "1";
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateWinningNumbersContainBonus(input, winningNumbers);
+        }, "보너스 번호가 당첨 번호에 포함되면 예외 발생");
     }
 }
