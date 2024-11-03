@@ -34,6 +34,14 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45여야 합니다.");
         }
     }
+    
+    public static void bonusDuple(int bonusNumber, List<Integer> winningNumbers) {
+        for (int num : winningNumbers) {
+            if (num == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨번호와 숫자가 중복됩니다.");
+            }
+        }
+    }
 
     private static List<String> parseInput(String input) {
         String[] splitNumbers = input.split(",");
@@ -92,4 +100,5 @@ public class InputValidator {
         String trimmedInput = input.trim();
         return trimmedInput.isEmpty();
     }
+
 }

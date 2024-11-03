@@ -37,6 +37,7 @@ public class LottoService {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        InputValidator.bonusDuple(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
