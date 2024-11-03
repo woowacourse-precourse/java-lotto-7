@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @SuppressWarnings("unchecked")
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -44,6 +45,7 @@ class ApplicationTest extends NsTest {
             List.of(1, 3, 5, 14, 22, 45));
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     void 당첨번호가_없는_테스트() {
         assertRandomUniqueNumbersInRangeTest(
