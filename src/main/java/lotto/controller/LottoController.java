@@ -20,6 +20,8 @@ public class LottoController {
         LottoBundle lottoBundle = buyLottoBundle(cash);
         lottoOutputView.printLottoBundleAmount(lottoBundle.getLottoAmount());
         lottoOutputView.printLottoInBundle(lottoBundle);
+
+        lottoOutputView.printWinningNumberNotification();
     }
 
     private Cash requestCashInput(){
