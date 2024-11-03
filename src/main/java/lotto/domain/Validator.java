@@ -22,7 +22,7 @@ public class Validator {
         }
     }
 
-    public int validateLottoNumber(String input) {
+    public int validateBonusNumber(String input) {
         try {
             int number = Integer.parseInt(input);
             if(number < 0 || number > 45) {
