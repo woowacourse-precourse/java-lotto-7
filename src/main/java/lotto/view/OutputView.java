@@ -17,6 +17,7 @@ public class OutputView {
 
     public static void printLottoNumbers(List<Integer> numbers) {
         String result = numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
         System.out.println(result);
