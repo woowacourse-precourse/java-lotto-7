@@ -7,17 +7,23 @@ import lotto.message.LottoMessage;
 public class Lotto {
     private final List<Integer> numbers;
     private final HashSet<Integer> lottoSet;
+    private boolean bonusState;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
         this.lottoSet = new HashSet<>(numbers);
+        this.bonusState = false;
     }
 
     private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoMessage.OUT_OF_RANGE_LOTTO_NUMBER_AMOUNT.getMessage());
         }
+    }
+
+    public void checkBonusNumber() {
+        this.bonusState = true;
     }
 
     public HashSet<Integer> getLottoSet() {
