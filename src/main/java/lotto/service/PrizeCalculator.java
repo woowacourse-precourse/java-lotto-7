@@ -29,11 +29,11 @@ public class PrizeCalculator {
     }
 
     public static double calculateProfitRate(Map<Integer, Integer> prizeCounts, UserMoney userMoney) {
-        int totalPrize = prizeCounts.entrySet().stream()
-                .mapToInt(entry -> Integer.parseInt(prizeAmounts.get(entry.getKey())) * entry.getValue())
+        double totalPrize = prizeCounts.entrySet().stream()
+                .mapToDouble(entry -> Double.parseDouble(prizeAmounts.get(entry.getKey())) * entry.getValue())
                 .sum();
 
-        return (double) totalPrize / userMoney.getUserMoney() * 100;
+        return totalPrize / userMoney.getUserMoney() * 100;
     }
 
     private static Map<Integer, Integer> initializeRankCounts() {
