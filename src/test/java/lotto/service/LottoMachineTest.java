@@ -21,7 +21,7 @@ public class LottoMachineTest {
 
     @Test
     void 구매_개수만큼_로또를_발행한다() {
-        String purchaseAmount = "2000";
+        int purchaseAmount = 2000;
         PurchaseAmount lottoAmount = new PurchaseAmount(purchaseAmount);
 
         Lottos lottos = lottoMachine.issueLottos(lottoAmount);

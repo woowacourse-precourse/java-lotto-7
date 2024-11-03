@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.PurchaseAmount;
 import lotto.model.Lottos;
+import lotto.model.PurchaseAmountGenerator;
 import lotto.model.WinningNumber;
 import lotto.model.NumberGenerator;
 import lotto.model.WinningResults;
@@ -34,7 +35,7 @@ public class LottoController {
     private PurchaseAmount purchaseLottos() {
         try {
             String purchaseAmountInput = inputView.inputPurchaseAmount();
-            return new PurchaseAmount(purchaseAmountInput);
+            return PurchaseAmountGenerator.registerPurchaseAmount(purchaseAmountInput);
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return purchaseLottos();
