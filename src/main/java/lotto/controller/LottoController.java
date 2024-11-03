@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.MatchResult;
 import lotto.domain.PurchasedLottos;
 import lotto.service.LottoChecker;
 import lotto.service.LottoGenerator;
@@ -37,8 +39,8 @@ public class LottoController {
             Lotto winning = winningNumbersInput.input();
             Integer bonus = bonusNumberInput.input(winning);
             checker.setWinningNumbers(winning, bonus);
-//            checker.checkLottos();
-//            output.printWinningStatistics();
+            List<MatchResult> matchResults = checker.checkLottos(purchasedLottos.getPurchasedLottos());
+//            output.printWinningStatistics(results);
         } finally {
             Console.close();
         }
