@@ -15,9 +15,8 @@ class AnswerTest {
     void should_CreateAnswer_WhenGivenNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        BonusNumber bonusNumber = new BonusNumber("7");
         // when
-        Answer answer = new Answer(answerNumbers, bonusNumber);
+        Answer answer = new Answer(answerNumbers);
         // then
         Assertions.assertThat(answer).isNotNull();
     }
@@ -27,8 +26,7 @@ class AnswerTest {
     void should_GetAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        BonusNumber bonusNumber = new BonusNumber("7");
-        Answer answer = new Answer(answerNumbers, bonusNumber);
+        Answer answer = new Answer(answerNumbers);
         // when
         List<Integer> actual = answer.getAnswerNumbers();
         // then
@@ -40,8 +38,7 @@ class AnswerTest {
     void should_NotBeSameInstance_When_GetAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        BonusNumber bonusNumber = new BonusNumber("7");
-        Answer answer = new Answer(answerNumbers, bonusNumber);
+        Answer answer = new Answer(answerNumbers);
         // when
         List<Integer> actual = answer.getAnswerNumbers();
         // then
@@ -53,23 +50,9 @@ class AnswerTest {
     void should_ThrowException_When_ModifyAnswerNumbers() {
         // given
         List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        BonusNumber bonusNumber = new BonusNumber("7");
-        Answer answer = new Answer(answerNumbers, bonusNumber);
+        Answer answer = new Answer(answerNumbers);
         // when, then
         Assertions.assertThatThrownBy(() -> answer.getAnswerNumbers().add(7))
                 .isInstanceOf(UnsupportedOperationException.class);
-    }
-
-    @Test
-    @DisplayName("보너스 번호를 반환 받을 수 있다.")
-    void should_GetBonusNumber() {
-        // given
-        List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        BonusNumber bonusNumber = new BonusNumber("7");
-        Answer answer = new Answer(answerNumbers, bonusNumber);
-        // when
-        BonusNumber actual = answer.getBonusNumber();
-        // then
-        Assertions.assertThat(actual).isEqualTo(bonusNumber);
     }
 }
