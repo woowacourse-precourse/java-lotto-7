@@ -1,14 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
-
-    private static final DecimalFormat df = new DecimalFormat("0.0#");
 
     private static final String[] resultString = {
             "3개 일치 (5,000원) - ",
@@ -37,10 +33,6 @@ public class OutputView {
     }
 
     public static void outputEarningRate(Double earningRate) {
-        System.out.println("총 수익률은 " + refineEarningRateFormat(earningRate) + "%입니다.");
-    }
-
-    private static String refineEarningRateFormat(Double earningRate) {
-        return df.format(earningRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
     }
 }
