@@ -10,5 +10,6 @@ public class OutputView {
         for(int i = 0; i < lottoSize; i++) {
             System.out.println(lottos.getLotto(i).getNumbers());
         }
+        System.out.println();
     }
 }
