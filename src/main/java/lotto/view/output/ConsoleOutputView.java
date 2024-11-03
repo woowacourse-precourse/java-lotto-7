@@ -59,6 +59,7 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printErrorMessage(String message) {
         System.out.println(message);
+        System.out.println();
     }
 
     @Override
