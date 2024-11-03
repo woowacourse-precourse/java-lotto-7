@@ -43,6 +43,8 @@ public class LottoGame {
 
         }
 
+        OutputView.printLottoResult(winningResultCount);
+
     }
 
     public List<Lotto> generateUserLotto(){
