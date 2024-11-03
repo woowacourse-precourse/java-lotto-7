@@ -19,10 +19,6 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public int getMatchNumber() {
-        return matchNumber;
-    }
-
     public String getMessage() {
         return message;
     }
