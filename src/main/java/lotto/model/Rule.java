@@ -31,4 +31,8 @@ public enum Rule {
         }
         return null;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

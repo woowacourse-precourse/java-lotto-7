@@ -30,4 +30,8 @@ public class OutputView {
     public static void printResultMessage() {
         System.out.println("\n당첨 통계\n---");
     }
+
+    public static void printResult(String description, int count) {
+        System.out.println(description + " - " + count + "개");
+    }
 }

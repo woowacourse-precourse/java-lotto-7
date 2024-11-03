@@ -30,4 +30,8 @@ public class User {
             this.results.put(rule, this.results.get(rule) + 1);
         }
     }
+
+    public Map<Rule, Integer> getResults() {
+        return this.results;
+    }
 }

@@ -82,5 +82,8 @@ public class LottoController {
 
     public void displayResult() {
         OutputView.printResultMessage();
+        for (Rule rule : Rule.values()) {
+            OutputView.printResult(rule.getDescription(), user.getResults().get(rule));
+        }
     }
 }
