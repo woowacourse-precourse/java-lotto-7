@@ -2,6 +2,9 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,4 +24,14 @@ class LottoCreatorTest {
 		assertEquals(LOTTO_NUMBER_COUNT, purchasedLotto.getNumbers().size());
 	}
 
+	@Test
+	@DisplayName("중복이 존재하지 않는 구매 로또를 생성할 수 있다.")
+	void 중복이_존재하지_않는_구매_로또를_생성한다() {
+		// when
+		Lotto purchasedLotto = lottoCreator.createPurchasedLotto();
+		Set<LottoNumber> uniqueNumbers = new HashSet<>(purchasedLotto.getNumbers());
+
+		// then
+		assertEquals(uniqueNumbers.size(), purchasedLotto.getNumbers().size());
+	}
 }
