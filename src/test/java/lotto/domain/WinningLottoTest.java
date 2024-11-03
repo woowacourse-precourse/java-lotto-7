@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningLottoTest {
@@ -35,5 +37,26 @@ class WinningLottoTest {
     void 유효한_보너스_번호일_때_예외_미발생(int bonusNumber) {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertDoesNotThrow(() -> new WinningLotto(winningNumbers, bonusNumber));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideLottoAndRank")
+    @DisplayName("로또 당첨 결과가 정상적으로 반환되는지 테스트")
+    void 로또_당첨_결과_테스트(List<Integer> numbers, Rank expectedRank) {
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Lotto lotto = new Lotto(numbers);
+        Rank resultRank = winningLotto.determineRank(lotto);
+        assertThat(resultRank).isEqualTo(expectedRank);
+    }
+
+    private static List<Object[]> provideLottoAndRank() {
+        return List.of(
+                new Object[]{List.of(1, 2, 3, 4, 5, 6), Rank.FIRST_PLACE},
+                new Object[]{List.of(1, 2, 3, 4, 5, 7), Rank.SECOND_PLACE},
+                new Object[]{List.of(1, 2, 3, 4, 5, 40), Rank.THIRD_PLACE},
+                new Object[]{List.of(1, 2, 3, 4, 40, 41), Rank.FOURTH_PLACE},
+                new Object[]{List.of(1, 2, 3, 40, 41, 42), Rank.FIFTH_PLACE},
+                new Object[]{List.of(1, 2, 40, 41, 42, 43), Rank.MISS}
+        );
     }
 }
