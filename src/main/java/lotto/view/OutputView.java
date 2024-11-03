@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoRanks;
 import lotto.domain.Lottos;
+import lotto.domain.PurchasedPrice;
+import lotto.utils.Calculate;
 
 import javax.xml.transform.stream.StreamSource;
 import java.util.stream.Collectors;
@@ -19,7 +21,7 @@ public class OutputView {
         System.out.println(output);
     }
 
-    public static void printResult(LottoRanks lottoRanks) {
+    public static void printResult(LottoRanks lottoRanks, PurchasedPrice purchasedPrice) {
         System.out.println("당첨 통계\n---\n");
         for(LottoRank lottoRank : lottoRanks.getRanks()) {
             System.out.printf(
@@ -29,5 +31,6 @@ public class OutputView {
                     lottoRank.getWinningCount()
             );
         }
+        System.out.printf("총 수익률은 %.1f%입니다.\n", Calculate.profitRate(lottoRanks, purchasedPrice));
     }
 }

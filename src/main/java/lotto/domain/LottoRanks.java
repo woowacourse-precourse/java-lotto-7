@@ -13,6 +13,7 @@ import static lotto.domain.LottoConstants.LOTTO_SIZE;
 public class LottoRanks {
     private final List<LottoRank> ranks;
 
+
     public LottoRanks() {
         this.ranks = List.of(
                 new LottoRank("1등", LOTTO_1ST_PRIZE, LOTTO_SIZE, false),
@@ -30,6 +31,7 @@ public class LottoRanks {
             }
         }
     }
+
 
     public List<LottoRank> getRanks() {
         return ranks;
