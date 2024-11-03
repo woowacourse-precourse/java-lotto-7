@@ -47,9 +47,9 @@ public class Validator {
         }
     }
 
-    public static void isNotDuplicate(List<String> inputs) {
-        Set<String> uniqueNumbers = new HashSet<>();
-        for (String input : inputs) {
+    public static <T> void isNotDuplicate(List<T> inputs) {
+        Set<T> uniqueNumbers = new HashSet<>();
+        for (T input : inputs) {
             if (!uniqueNumbers.add(input)) {
                 throw new IllegalArgumentException(ErrorMessage.ERR_IS_DUPLICATED.getMessage());
             }
