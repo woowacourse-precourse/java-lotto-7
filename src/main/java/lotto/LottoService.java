@@ -48,7 +48,7 @@ public class LottoService {
         int totalPrize = statistics.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        return Math.round((double) totalPrize / purchaseAmount * 1000.0) / 10.0;
+        return Math.round((double) totalPrize / purchaseAmount * 1000.0) / 10.0; // 이부분 예상 수익률이 정확하게 계산 체크 테케 작성해보기.
     }
 
 }

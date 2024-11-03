@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum WinningRank {
 
-    First(6, 0, 2_000_000_000, "6개 일치"),
+    FIRST(6, 0, 2_000_000_000, "6개 일치"),
     SECOND(5, 1, 30_000_000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, 0, 1_500_000, "5개 일치"),
     FOURTH(4, 0, 50_000, "4개 일치"),
@@ -16,7 +16,7 @@ public enum WinningRank {
     private final int prize;
     private final String description;
 
-    WinningRank(int bonusMatch, int matchCount, int prize, String description) {
+    WinningRank(int matchCount, int bonusMatch, int prize, String description) {
         this.bonusMatch = bonusMatch;
         this.matchCount = matchCount;
         this.prize = prize;
@@ -24,6 +24,9 @@ public enum WinningRank {
     }
 
     public static WinningRank valueOf(int matchCount, boolean matchBonus){
+        if (matchCount == 6) {
+            return FIRST;
+        }
         if(matchCount == 5 && matchBonus){
             return SECOND;
         }

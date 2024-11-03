@@ -16,10 +16,10 @@ public class LottoGameController {
     }
 
     public void play(){
-        List<Lotto> purchaseLottos = purchaseLottos(); // 로또를 구입한 후
-        Lotto winningLotto = getWinningLotto(); // 이긴 로또 가져오고
-        int bonusNumber = getBonusNumber(winningLotto); // 보너스 로또를 체크하고
-        showResult(purchaseLottos, winningLotto,bonusNumber); // 결과 보여주기
+        List<Lotto> purchaseLottos = purchaseLottos();
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto);
+        showResult(purchaseLottos, winningLotto,bonusNumber);
     }
 
     private List<Lotto> purchaseLottos(){
