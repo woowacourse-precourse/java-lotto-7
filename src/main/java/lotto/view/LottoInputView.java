@@ -1,34 +1,25 @@
 package lotto.view;
 
-import static lotto.config.LottoErrorMessage.INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR;
-import static lotto.config.LottoErrorMessage.INPUT_BONUS_NUMBER_RANGE_ERROR;
-import static lotto.config.LottoErrorMessage.INPUT_MONEY_DIVIDE_ERROR;
-import static lotto.config.LottoErrorMessage.INPUT_MONEY_ERROR;
-import static lotto.config.LottoErrorMessage.INPUT_WIN_NUMBER_DUPLICATE_ERROR;
-import static lotto.config.LottoMessage.INPUT_MONEY;
-import static lotto.config.LottoMessage.INPUT_WIN_NUMBER;
-import static lotto.config.LottoRule.LOTTO_MAX_NUMBER;
-import static lotto.config.LottoRule.LOTTO_MIN_NUMBER;
-import static lotto.config.LottoRule.LOTTO_PRICE;
-
 import camp.nextstep.edu.missionutils.Console;
+import lotto.config.LottoRule;
+import lotto.config.message.LottoErrorMessage;
+import lotto.config.message.LottoInputMessage;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import lotto.config.LottoErrorMessage;
-import lotto.config.LottoMessage;
-import lotto.config.LottoRule;
+import static lotto.config.LottoRule.*;
+import static lotto.config.message.LottoErrorMessage.*;
+import static lotto.config.message.LottoInputMessage.INPUT_MONEY;
+import static lotto.config.message.LottoInputMessage.INPUT_WIN_NUMBER;
 
 public class LottoInputView {
 
     public static final String WIN_NUMBER_DELIMITER = ",";
 
-    private LottoInputView() {
-    }
 
-    public static int getMoney() {
+    public int getMoney() {
         while (true) {
             printInputMoney();
             try {
@@ -45,11 +36,11 @@ public class LottoInputView {
         }
     }
 
-    private static void printInputMoney() {
+    private void printInputMoney() {
         System.out.println(INPUT_MONEY.getMessage());
     }
 
-    public static List<Integer> getWinNumber() {
+    public List<Integer> getWinNumber() {
         while (true) {
             printWinNumber();
             try {
@@ -70,23 +61,23 @@ public class LottoInputView {
         }
     }
 
-    private static boolean isNotRange(List<Integer> winNumber) {
+    private boolean isNotRange(List<Integer> winNumber) {
         return winNumber.stream().anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue());
     }
 
-    private static boolean isDuplicated(List<Integer> winNumber) {
+    private boolean isDuplicated(List<Integer> winNumber) {
         return new HashSet<>(winNumber).size() != LottoRule.LOTTO_SIZE.getValue();
     }
 
-    private static void printWinNumber() {
+    private void printWinNumber() {
         System.out.println(INPUT_WIN_NUMBER.getMessage());
     }
 
-    private static String[] split(String winNumber) {
+    private String[] split(String winNumber) {
         return winNumber.split(WIN_NUMBER_DELIMITER);
     }
 
-    private static List<Integer> parseToIntegers(String[] numbers) {
+    private List<Integer> parseToIntegers(String[] numbers) {
         try {
             return Arrays.stream(numbers).map(Integer::parseInt).toList();
         } catch (Exception e) {
@@ -94,7 +85,7 @@ public class LottoInputView {
         }
     }
 
-    public static int getBonusNumber(List<Integer> winNumber) {
+    public int getBonusNumber(List<Integer> winNumber) {
         while (true) {
             printBonusNumber();
             try {
@@ -120,15 +111,15 @@ public class LottoInputView {
         }
     }
 
-    private static void printBonusNumber() {
-        System.out.println(LottoMessage.INPUT_BONUS_NUMBER.getMessage());
+    private void printBonusNumber() {
+        System.out.println(LottoInputMessage.INPUT_BONUS_NUMBER.getMessage());
     }
 
-    private static boolean isContain(List<Integer> winNumber, int bonusNumber) {
+    private boolean isContain(List<Integer> winNumber, int bonusNumber) {
         return winNumber.contains(bonusNumber);
     }
 
-    private static boolean isNotRange(int bonusNumber) {
+    private boolean isNotRange(int bonusNumber) {
         return bonusNumber < LOTTO_MIN_NUMBER.getValue() || bonusNumber > LOTTO_MAX_NUMBER.getValue();
     }
 

@@ -1,22 +1,20 @@
 package lotto.view;
 
-import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 
+import java.util.List;
+
 public class LottoOutputView {
 
-    private LottoOutputView() {
-    }
 
-    public static void printPurchaseLotto(List<Lotto> lottos) {
+    public void printPurchaseLotto(List<Lotto> lottos) {
         System.out.format("%d개를 구매했습니다.\n", lottos.size());
         lottos.forEach(System.out::println);
     }
 
-    public static void printResult(LottoResult lottoResult, int money) {
+    public void printResult(LottoResult lottoResult, int money) {
         System.out.println("당첨 통계");
         System.out.println("---------");
         System.out.format("3개 일치 (5,000원) - %d개\n", lottoResult.count(Rank.FIFTH));
