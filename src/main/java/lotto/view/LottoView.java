@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.PrizeTier;
 import lotto.view.constant.UserInterfaceMessage;
 
 public class LottoView {
@@ -53,6 +54,34 @@ public class LottoView {
 
         System.out.println();
     }
+
+    public void printWinningInfo(Map<PrizeTier,Integer> winningInfo){
+        PrizeTier[] keys = PrizeTier.getWinningPrizeTierValues();
+
+        System.out.println(UserInterfaceMessage.PRINT_WINNING_INFO_HEAD);
+
+        for(PrizeTier key : keys){
+            int winningCount = winningInfo.get(key);
+            printPrizeInfo(key,winningCount);
+        }
+
+    }
+
+    /*TODO
+       - 해당 메세지 출력 책임을 UserInterfaceMessage 맡길지 고려하기
+     */
+    public void printPrizeInfo(PrizeTier prizeTier, int winningCount){
+        int prizeMoney = prizeTier.getPrizeMoney();
+        int matchCount = prizeTier.getMatchCount();
+        String message = UserInterfaceMessage.PRINTF_MATCH_COUNT;
+        if(prizeTier == PrizeTier.SECOND){
+            message = message.concat(UserInterfaceMessage.PRINT_BONUS_NUMBER_MATCH);
+        }
+
+        message = message.concat(UserInterfaceMessage.PRINTF_WINNING_INFO);
+        System.out.printf(message+"\n",matchCount,prizeMoney,winningCount);
+    }
+
     public List<Integer> transformToIntegerList(String[] rawNumberList){
         List<Integer> numberList = new ArrayList<>();
 
@@ -63,6 +92,7 @@ public class LottoView {
 
         return numberList;
     }
+
 
     public int parseInt(String rawNumber){
 

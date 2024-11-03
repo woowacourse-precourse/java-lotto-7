@@ -59,4 +59,8 @@ public enum PrizeTier  {
 
         return PrizeTier .NONE;
     }
+
+    static public PrizeTier[] getWinningPrizeTierValues(){
+        return new PrizeTier[]{FIFTH, FORTH, THIRD, SECOND, FIRST};
+    }
 }

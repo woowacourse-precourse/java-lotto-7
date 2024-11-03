@@ -12,4 +12,9 @@ public class UserInterfaceMessage {
     public final static String PRINT_LOTTO_LIST_END_DELIMITER = "]";
     ;
 
+    public final static String PRINT_WINNING_INFO_HEAD ="당첨 통계\n"
+            + "---";
+    public final static String PRINTF_MATCH_COUNT = "%d개 일치";
+    public final static String PRINT_BONUS_NUMBER_MATCH = ", 보너스 볼 일치";
+    public final static String PRINTF_WINNING_INFO= " (%d원) - %d개";
 }

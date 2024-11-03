@@ -37,3 +37,4 @@
   - [ ] read input money from user
   - [ ] read input winning number and bonus number from user
   - [ ] print bought Lotto info
+  - [ ] print winning Lotto info from bough Lotto info
