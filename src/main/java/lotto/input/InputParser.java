@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InputParser {
     public List<Integer> splitWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+        return Arrays.stream(winningNumbers.split(", "))
                 .map(Integer::parseInt)
                 .toList();
     }
