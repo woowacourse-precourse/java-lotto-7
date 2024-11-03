@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.exception.LottoErrorStatus;
+import lotto.exception.LottoException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,8 @@ class BudgetValidatorTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> BudgetValidator.validateInputBudget(inputBudget))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.INVALID_BUDGET_FORMAT.getMessage());
     }
 
     @Test
@@ -35,6 +38,7 @@ class BudgetValidatorTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> BudgetValidator.validateInputBudget(inputBudget))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.INVALID_BUDGET_AMOUNT.getMessage());
     }
 }

@@ -1,6 +1,8 @@
 package lotto.util;
 
 import java.util.List;
+import lotto.exception.LottoErrorStatus;
+import lotto.exception.LottoException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,8 @@ class LottoNumberParserTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> LottoNumberParser.parseLottoNumbers(winningLottoInput))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.INVALID_LOTTO_FORMAT.getMessage());
     }
 
     @Test
@@ -37,7 +40,8 @@ class LottoNumberParserTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> LottoNumberParser.parseLottoNumbers(winningLottoInput))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.INVALID_LOTTO_FORMAT.getMessage());
     }
 
     @Test
@@ -59,6 +63,7 @@ class LottoNumberParserTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> LottoNumberParser.parseBonusNumber(inputBonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.INVALID_BONUS_NUMBER.getMessage());
     }
 }

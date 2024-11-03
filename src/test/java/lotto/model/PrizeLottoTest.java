@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.exception.LottoErrorStatus;
+import lotto.exception.LottoException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +31,8 @@ class PrizeLottoTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> PrizeLotto.from(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.LOTTO_NUMBER_DUPLICATED.getMessage());
     }
 
     @Test
@@ -40,7 +43,8 @@ class PrizeLottoTest {
 
         // when, then
         Assertions.assertThatThrownBy(() -> PrizeLotto.from(winningLottoNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessage(LottoErrorStatus.LOTTO_NUMBER_DUPLICATED.getMessage());
     }
 
     @Test

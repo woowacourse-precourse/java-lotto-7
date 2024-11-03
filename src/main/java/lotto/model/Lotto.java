@@ -1,10 +1,15 @@
 package lotto.model;
 
+import static lotto.exception.LottoErrorStatus.INVALID_LOTTO_SIZE;
+import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_DUPLICATED;
+import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_OUT_OF_RANGE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,7 +34,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new LottoException(INVALID_LOTTO_SIZE);
         }
     }
 
@@ -38,13 +43,13 @@ public class Lotto {
         Set<Integer> distincted = new HashSet<>(numbers);
         int afterDistinct = distincted.size();
         if (beforeDistinct != afterDistinct) {
-            throw new IllegalArgumentException("로또 번호는 중복이 될 수 없습니다.");
+            throw new LottoException(LOTTO_NUMBER_DUPLICATED);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> (number < 1 || number > 45))) {
-            throw new IllegalArgumentException("로또 번호의 범위는 1부터 45입니다.");
+            throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 }

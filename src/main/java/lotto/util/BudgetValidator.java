@@ -1,5 +1,11 @@
 package lotto.util;
 
+import static lotto.exception.LottoErrorStatus.EMPTY_USER_INPUT;
+import static lotto.exception.LottoErrorStatus.INVALID_BUDGET_AMOUNT;
+import static lotto.exception.LottoErrorStatus.INVALID_BUDGET_FORMAT;
+
+import lotto.exception.LottoException;
+
 public class BudgetValidator {
     private BudgetValidator() {
     }
@@ -13,13 +19,13 @@ public class BudgetValidator {
 
     private static void validateNotEmpty(String inputBudget) {
         if (inputBudget == null || inputBudget.isEmpty()) {
-            throw new IllegalArgumentException("사용자의 입력이 비었습니다.");
+            throw new LottoException(EMPTY_USER_INPUT);
         }
     }
 
     private static void validateNumberFormat(String inputBudget) {
         if (!inputBudget.matches("\\d+")) {
-            throw new IllegalArgumentException("구매 금액은 숫자만 입력할 수 있습니다.");
+            throw new LottoException(INVALID_BUDGET_FORMAT);
         }
     }
 
@@ -27,7 +33,7 @@ public class BudgetValidator {
         try {
             Integer.parseInt(inputBudget);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입 금액은 정수 형태여야 합니다.");
+            throw new LottoException(INVALID_BUDGET_AMOUNT);
         }
     }
 }

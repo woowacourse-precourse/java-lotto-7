@@ -1,6 +1,10 @@
 package lotto.model;
 
+import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_DUPLICATED;
+import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_OUT_OF_RANGE;
+
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class PrizeLotto {
     private final Lotto winningLotto;
@@ -31,10 +35,10 @@ public class PrizeLotto {
 
     private void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("로또 숫자의 범위는 1부터 45입니다.");
+            throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 숫자가 중복될 수 없습니다.");
+            throw new LottoException(LOTTO_NUMBER_DUPLICATED);
         }
     }
 }

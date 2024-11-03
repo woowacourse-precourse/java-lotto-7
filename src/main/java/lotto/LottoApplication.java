@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.exception.LottoException;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
@@ -39,7 +40,7 @@ public class LottoApplication {
                 String inputBudget = inputView.getBudget();
                 BudgetValidator.validateInputBudget(inputBudget);
                 return new Budget(Integer.parseInt(inputBudget));
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 errorView.printError(e.getMessage());
             }
         }
@@ -52,7 +53,7 @@ public class LottoApplication {
                 String inputBonusNumber = inputView.getBonusNumber();
                 int bonusNumber = LottoNumberParser.parseBonusNumber(inputBonusNumber);
                 return new PrizeLotto(winningLotto, bonusNumber);
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 errorView.printError(e.getMessage());
             }
         }
@@ -64,7 +65,7 @@ public class LottoApplication {
                 String inputLotto = inputView.getWinningLottoNumbers();
                 List<Integer> winningLottoNumbers = LottoNumberParser.parseLottoNumbers(inputLotto);
                 return new Lotto(winningLottoNumbers);
-            } catch (IllegalArgumentException e) {
+            } catch (LottoException e) {
                 errorView.printError(e.getMessage());
             }
         }

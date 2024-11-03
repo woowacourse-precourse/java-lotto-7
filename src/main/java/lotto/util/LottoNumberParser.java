@@ -1,7 +1,11 @@
 package lotto.util;
 
+import static lotto.exception.LottoErrorStatus.INVALID_BONUS_NUMBER;
+import static lotto.exception.LottoErrorStatus.INVALID_LOTTO_FORMAT;
+
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class LottoNumberParser {
     private LottoNumberParser() {
@@ -15,7 +19,7 @@ public class LottoNumberParser {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 번호는 \",\"로 구분된 정수여야 합니다.");
+            throw new LottoException(INVALID_LOTTO_FORMAT);
         }
     }
 
@@ -23,7 +27,7 @@ public class LottoNumberParser {
         try {
             return Integer.parseInt(inputBonusNumbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 정수여야 합니다.");
+            throw new LottoException(INVALID_BONUS_NUMBER);
         }
     }
 }
