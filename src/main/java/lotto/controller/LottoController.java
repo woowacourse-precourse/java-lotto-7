@@ -4,7 +4,6 @@ import lotto.Consumer;
 import lotto.Lotto;
 import lotto.WinningNumber;
 import lotto.constant.CompareInteger;
-import lotto.constant.LottoGuide;
 import lotto.constant.PriceRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
@@ -27,6 +26,8 @@ public class LottoController {
         List<Integer> mainNumber = getWinningNumber();
         Integer bonusNumber = getBonusNumber(mainNumber);
         WinningNumber winningNumber = new WinningNumber(mainNumber, bonusNumber);
+        consumer.setLottoResult(winningNumber);
+        OutputView.printResult(consumer.getLottoResult(), consumer.getSecondPlace());
     }
 
     private int getLottoPrice() {
