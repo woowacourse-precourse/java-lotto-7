@@ -65,6 +65,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("금액 입력시 0인 경우 예외처리")
+    @Test
+    void 금액_입력시_0인경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(PRICE_UNMATCHED.getMessage());
+        });
+    }
+
     @DisplayName("당첨번호 입력시 숫자가 아닐경우 예외처리")
     @Test
     void 당첨번호_입력시_숫자가_아닐경우_예외처리() {
