@@ -14,13 +14,13 @@ import lotto.exception.InputException;
 
 public class OutputView {
     public static void printPurchasedResult(Money money, List<Lotto> lottos) {
-        printPurchasedCount(money.getMoney());
+        printPurchasedCount(money.calculateTicketCount());
         lottos.forEach(OutputView::printLottoNumbers);
     }
 
-    private static void printPurchasedCount(int money) {
+    private static void printPurchasedCount(int ticketCount) {
         printNewLine();
-        System.out.printf(SHOW_PURCHASE_COUNT.getMessage(), money);
+        System.out.printf(SHOW_PURCHASE_COUNT.getMessage(), ticketCount);
     }
 
     private static void printLottoNumbers(Lotto lotto) {
