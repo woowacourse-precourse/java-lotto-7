@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     public String numbersToString() {
-        return LottoPrintFormat.PREFIX + getJoinedNumbers() + LottoPrintFormat.SUFFIX;
+        return LottoNumberPrintFormat.PREFIX + getJoinedNumbers() + LottoNumberPrintFormat.SUFFIX;
     }
 
     private String getJoinedNumbers() {
@@ -39,7 +39,7 @@ public class Lotto {
                 .toList();
         return sortedNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
+                .collect(Collectors.joining(LottoNumberPrintFormat.DELIMITER));
     }
 
     public Winning checkWinner(DrawNumbers drawNumbers) {

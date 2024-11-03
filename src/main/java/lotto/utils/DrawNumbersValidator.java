@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoPrintFormat;
 import lotto.model.lotto.LottoNumber;
 
 import java.util.List;

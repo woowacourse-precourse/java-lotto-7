@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoPrintFormat;
+import lotto.model.lotto.LottoNumberPrintFormat;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.LottoPublisher;
 import lotto.number_generator.NumberGenerator;
@@ -91,7 +91,7 @@ public class OutputViewTest {
         numbers.sort(Integer::compareTo);
         String joinedNumbers = numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
-        return LottoPrintFormat.PREFIX + joinedNumbers + LottoPrintFormat.SUFFIX;
+                .collect(Collectors.joining(LottoNumberPrintFormat.DELIMITER));
+        return LottoNumberPrintFormat.PREFIX + joinedNumbers + LottoNumberPrintFormat.SUFFIX;
     }
 }
