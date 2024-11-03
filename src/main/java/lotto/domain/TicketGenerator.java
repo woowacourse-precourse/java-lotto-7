@@ -17,10 +17,6 @@ public class TicketGenerator {
     }
 
     private List<Integer> generateLottoNumbers() {
-        TreeSet<Integer> uniqueNumbers = new TreeSet<>();
-        while (uniqueNumbers.size() < LottoConstants.LOTTO_NUMBER_COUNT) {
-            uniqueNumbers.add(RandomNumberUtil.generateLottoNumber());
-        }
-        return new ArrayList<>(uniqueNumbers);
+        return RandomNumberUtil.generateLottoNumber();
     }
 }
