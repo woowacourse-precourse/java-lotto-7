@@ -54,6 +54,7 @@ class WinningInfoTest {
     @Test
     void 당첨시_해당_등수의_당첨티켓개수_확인() {
 
+        WinningInfo.resetWinningTicketCount();
         for (WinningInfo info : WinningInfo.values()) {
             info.win();
 
