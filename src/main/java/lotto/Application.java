@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,13 +20,13 @@ public class Application {
 
         final List<List<Integer>> listOfLotto = new ArrayList<>();
 
-        for (int i = 0; i < numOfLotto; i++){
+        for (int i = 0; i < numOfLotto; i++) {
             List<Integer> pickLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(pickLotto);
             listOfLotto.add(pickLotto);
         }
 
-        for (List<Integer> eachOfLotto : listOfLotto){
+        for (List<Integer> eachOfLotto : listOfLotto) {
             System.out.println(eachOfLotto);
         }
 
@@ -42,9 +42,11 @@ public class Application {
 
         List<Integer> winningNumbers = new ArrayList<>();
 
-        for (String winningNumber : listOfWinningNumbers){
+        for (String winningNumber : listOfWinningNumbers) {
             try {
-                winningNumbers.add(isNotNum(winningNumber));
+                int number = isNotNum(winningNumber);
+                rangeOfNumber(number);
+                winningNumbers.add(number);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -72,6 +74,12 @@ public class Application {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public static void rangeOfNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
         }
     }
 }
