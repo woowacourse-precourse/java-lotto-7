@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public enum LottoWinningTier {
     NONE(0, 0, null),
-    MATCH_THREE(3, 5000, "3개 일치 (5,000) - %d개"),
-    MATCH_FOUR(4, 50000, "4개 일치 (50,000) - %d개"),
+    MATCH_THREE(3, 5000, "3개 일치 (5,000원) - %d개"),
+    MATCH_FOUR(4, 50000, "4개 일치 (50,000원) - %d개"),
     MATCH_FIVE(5, 1500000, "5개 일치 (1,500,000원) - %d개"),
-    MATCH_FIVE_WITH_BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000) - %d개"),
+    MATCH_FIVE_WITH_BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     MATCH_SIX(6, 2000000000, "6개 일치 (2,000,000,000원) - %d개");
     private final int matchCount;
     private final int prize;
