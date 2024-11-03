@@ -9,6 +9,9 @@ public enum LottoPrize {
     FIRST_PRIZE(6, 0, "6개 일치 (2,000,000,000원)", 2000000000)
     ;
 
+    private final String PRIZE_SEPARATOR = " - ";
+    private final String UNIT_COUNT = "개";
+
     private final int matchingWinningCount;
     private final int matchingBonusCount;
     private final String prizeDetails;
@@ -35,5 +38,9 @@ public enum LottoPrize {
 
     public long getPrizeAmounts() {
         return prizeAmounts;
+    }
+
+    public String getPrizeStatusMessage(int prizeCount) {
+        return getPrizeDetails() + PRIZE_SEPARATOR + prizeCount + UNIT_COUNT;
     }
 }
