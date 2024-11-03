@@ -12,6 +12,16 @@ public class GameResultManager {
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
+    private Map<Prize, Integer> getPrizeCountFrom(Player player) {
+
+        return player.getLottos().stream()
+                .map(this::getPrizeOf)
+                .collect(Collectors.groupingBy(
+                        prize -> prize,
+                        Collectors.summingInt(prize -> 1)
+                ));
+    }
+
     private Prize getPrizeOf(Lotto lotto) {
 
         int matchCount = countMatchNumberWith(lotto);
