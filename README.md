@@ -13,8 +13,6 @@
 
 <br>
 
-<img src="https://raw.githubusercontent.com/HJ-Rich/java-baseball-precourse/as/operation.gif">
-
 # 목차
 
 - [기능 요구 사항](#기능-요구-사항)
