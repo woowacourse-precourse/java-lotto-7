@@ -11,6 +11,7 @@ public class OutputView {
         for (Lotto ticket : tickets) {
             System.out.println(ticket.getNumbers());
         }
+        System.out.println();
     }
 
     // 당첨 결과 출력 메소드
