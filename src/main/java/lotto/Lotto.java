@@ -56,11 +56,6 @@ public class Lotto {
         return numbers.size() != numbers.stream().distinct().count();
     }
 
-    public boolean isNumberInLottoResult(int bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
-
-
     public int findDuplicateNumber(List<Integer> lottoNumbers) {
         Set<Integer> myNumbers = new HashSet<>(numbers);
         Set<Integer> compareNumbers = new HashSet<>(lottoNumbers);
