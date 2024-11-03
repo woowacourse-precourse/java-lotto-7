@@ -72,11 +72,15 @@ public class LottoController {
         return intList;
     }
 
-    public static void checkRange(List<Integer> numbers){
+    public static void checkRange(Integer number){
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException(Error_Messages.NUMBER_RANGE_ERROR);
+        }
+    }
+
+    public static void checkNumbersRange(List<Integer> numbers){
         for (Integer number : numbers) {
-            if (number > 45 || number < 1) {
-                throw new IllegalArgumentException(Error_Messages.NUMBER_RANGE_ERROR);
-            }
+            checkRange(number);
         }
     }
 
@@ -86,7 +90,7 @@ public class LottoController {
         if (set.size() != numbers.size()) {
             throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
-        checkRange(numbers);
+        checkNumbersRange(numbers);
     }
 
     public static WinningLotto makeWinningLotto() {
@@ -107,6 +111,7 @@ public class LottoController {
     private static int checkBonusNumber(WinningLotto winningLotto, String number){
         inputNullCheck(number);
         int num = Integer.parseInt(number);
+        checkRange(num);
         if (winningLotto.getNumbers().contains(num)) {
             throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
@@ -116,7 +121,8 @@ public class LottoController {
     public static void bonusNumber(WinningLotto winningLotto){
         String bonusNumber = readBonusNumber();
         try{
-            winningLotto.setBonusNumber(checkBonusNumber(winningLotto, bonusNumber));
+            int vaildBonusNum = checkBonusNumber(winningLotto, bonusNumber);
+            winningLotto.setBonusNumber(vaildBonusNum);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bonusNumber(winningLotto);
@@ -126,7 +132,7 @@ public class LottoController {
     public static void getSummary(LottoController lottoController, WinningLotto winningLotto) {
         CalculateResult calculator = new CalculateResult(winningLotto);
         calculator.calculateMatches(lottoController.getLottos());
-        calculator.getTotalResult();
+        calculator.getTotalResult(lottoController.totalCount);
     }
 }
 

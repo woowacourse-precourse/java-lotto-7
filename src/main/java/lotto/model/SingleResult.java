@@ -34,8 +34,8 @@ public class SingleResult {
         return this.rank;
     }
 
-    public String getPrize(){
+    public int getPrize(){
         Prize prize = new Prize();
-        return prize.getPrizeAmount(rank);
+        return prize.getOfPrizeAmount(rank);
     }
 }

@@ -32,7 +32,11 @@ public class output {
     public static void printWinCounts(List<Integer> winCounts){
         printSummaryMessage();
         for (int i = 0; i < winCounts.size() - 1; i++) {
-            System.out.println(MATCH_MESSAGE[i] + winCounts.get(i) + "개");
+            System.out.println(MATCH_MESSAGE[i] + winCounts.get(4-i) + "개");
         }
+    }
+
+    public static void printLottoReturn(float lottoReturn){
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturn) + "%입니다.");
     }
 }

@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Prize {
-    private final Map<Integer, String> prizeMap = new HashMap<>();
+    private final Map<Integer, Integer> prizeMap = new HashMap<>();
     public Prize() {
-        prizeMap.put(1, "2,000,000,000");
-        prizeMap.put(2, "30,000,000");
-        prizeMap.put(3, "1,500,000");
-        prizeMap.put(4, "50,000");
-        prizeMap.put(5, "5,000");
-        prizeMap.put(6, "0");
+        prizeMap.put(1, 2000000000);
+        prizeMap.put(2, 30000000);
+        prizeMap.put(3, 1500000);
+        prizeMap.put(4, 50000);
+        prizeMap.put(5, 5000);
+        prizeMap.put(6, 0);
     }
 
-    public String getPrizeAmount(int rank){
+    public int getOfPrizeAmount(int rank){
         return this.prizeMap.get(rank);
     }
 }

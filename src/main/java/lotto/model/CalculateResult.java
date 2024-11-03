@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.view.output.printLottoReturn;
 import static lotto.view.output.printWinCounts;
 
 import java.util.ArrayList;
@@ -47,8 +48,20 @@ public class CalculateResult {
         return winCounts;
     }
 
-    public void getTotalResult(){
-        List<Integer> winCounts = getWinCounts();
-        printWinCounts(winCounts);
+    public float getLottoReturns(int totalCount){
+        int total = 0;
+        for (SingleResult singleResult : this.results) {
+            total += singleResult.getPrize();
+        }
+        return ((float) total / (totalCount * 1000)) * 100;
     }
+
+    public void getTotalResult(int totalCount){
+        List<Integer> winCounts = getWinCounts();
+        float lottoReturn = getLottoReturns(totalCount);
+        printWinCounts(winCounts);
+        printLottoReturn(lottoReturn);
+    }
+
+
 }
