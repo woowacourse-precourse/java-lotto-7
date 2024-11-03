@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.util.ErrorMessage;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -15,8 +18,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumbersCount(numbers);
+        validateDuplicateNumbers(numbers);
+    }
+
+    private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_COUNT.getMessage());
+        }
+    }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
         }
     }
 }
