@@ -16,6 +16,7 @@ public class Input {
     public Integer getAmountWithMessage() {
         while (true) {
             try {
+                System.out.println(INPUT_AMOUNT_MESSAGE);
                 return getValidatedAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -24,7 +25,6 @@ public class Input {
     }
 
     private Integer getValidatedAmount() {
-        System.out.println(INPUT_AMOUNT_MESSAGE);
         Integer amount = Parser.toInteger(Console.readLine());
         inputValidator.validateAmount(amount);
         return amount;

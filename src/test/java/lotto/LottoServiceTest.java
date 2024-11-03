@@ -14,7 +14,7 @@ class LottoServiceTest {
     @BeforeEach
     void setUp() {
         LottoGenerator lottoGenerator = new LottoGenerator(new RandomStrategy());
-        lottoService = new LottoService(lottoGenerator);
+        lottoService = new LottoService(lottoGenerator, new RevenueCalculator());
     }
 
     @Test

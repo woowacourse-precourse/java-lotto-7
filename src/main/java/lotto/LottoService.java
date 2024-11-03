@@ -1,17 +1,16 @@
 package lotto;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoService {
     private final LottoGenerator lottoGenerator;
+    public final RevenueCalculator revenueCalculator;
 
-    public LottoService(LottoGenerator lottoGenerator) {
+    public LottoService(LottoGenerator lottoGenerator, RevenueCalculator revenueCalculator) {
         this.lottoGenerator = lottoGenerator;
+        this.revenueCalculator = revenueCalculator;
     }
 
     public Lottos createLottos(Integer count) {
@@ -21,11 +20,11 @@ public class LottoService {
                         .collect(Collectors.toList()));
     }
 
+    public List<Rank> calculateWinnings(Lottos lottos, WinLotto winLotto) {
+        return lottos.compareWithWinLotto(winLotto);
+    }
+
     public double calculateRevenue(List<Rank> ranks, Integer count) {
-        long total = 0L;
-        for (Rank rank : ranks) {
-            total += rank.calculate(1);
-        }
-        return Math.round((total / (double)count * 100) * 10)/10.0;
+        return revenueCalculator.calculate(ranks, count);
     }
 }

@@ -14,7 +14,7 @@ public class Application {
         Integer count = amount/1000;
         Lotto winNumberLotto = input.getWinNumberLotto();
         WinLotto winLotto = input.getBonusNumber(winNumberLotto);
-        LottoService lottoService = new LottoService(new LottoGenerator(new RandomStrategy()));
+        LottoService lottoService = new LottoService(new LottoGenerator(new RandomStrategy()), new RevenueCalculator());
         Lottos lottos = lottoService.createLottos(count);
 
         System.out.println(count+"개를 구매했습니다.");
@@ -24,7 +24,7 @@ public class Application {
         }
 
 
-        List<Rank> ranks = lottos.compareWithWinLotto(winLotto);
+        List<Rank> ranks = lottoService.calculateWinnings(lottos, winLotto);
 
         Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {

@@ -1,7 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -15,20 +15,19 @@ public class Lottos {
     }
 
     public List<Rank> compareWithWinLotto(WinLotto winLotto) {
-        List<Integer> winLottoNumbers = winLotto.getWinLottoNumbers();
-        List<Rank> ranks = new ArrayList<>();;
-        for (Lotto lotto : lottos) {
-            Integer matched = lotto.compareWithWinLotto(winLottoNumbers);
-            if (matched != 5)  {
-                ranks.add(Rank.valueOf(matched, false));
-                continue;
-            }
-            if (lotto.getNumbers().contains(winLotto.getBonus())) {
-                ranks.add(Rank.valueOf(matched, true));
-                continue;
-            }
-            ranks.add(Rank.valueOf(matched, false));
+        List<Integer> winNumbers = winLotto.getWinLottoNumbers();
+
+        return lottos.stream()
+                .map(lotto -> determineRank(lotto, winNumbers, winLotto.getBonus()))
+                .collect(Collectors.toList());
+    }
+
+    public Rank determineRank(Lotto lotto, List<Integer> winNumbers, Integer bonus) {
+        Integer matched = lotto.compareWithWinLotto(winNumbers);
+        if (matched != 5) {
+            return Rank.valueOf(matched, false);
         }
-        return ranks;
+        boolean hasBonus = lotto.getNumbers().contains(bonus);
+        return Rank.valueOf(matched, hasBonus);
     }
 }
