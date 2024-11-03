@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class LottoGeneration {
     public static int inputPurchaseAmount() {
@@ -40,5 +45,16 @@ public class LottoGeneration {
 
     public static int extractQuantity(int amount) {
         return amount / 1000;
+    }
+
+    public static List<Lotto> issueLotto(int quantity) {
+        List<Lotto> lottoSets = new ArrayList<>();
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottoSets.add(lotto);
+        }
+        return lottoSets;
     }
 }
