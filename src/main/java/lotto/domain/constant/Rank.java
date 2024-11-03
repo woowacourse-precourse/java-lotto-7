@@ -36,8 +36,8 @@ public enum Rank {
                 .anyMatch(originalMatchCount -> originalMatchCount == matchCount);
     }
 
-    public static int calculateReward(Rank rank, int count) {
-        return rank.reward * count;
+    public int calculateReward(int count) {
+        return this.reward * count;
     }
 
     public String getDescription() {

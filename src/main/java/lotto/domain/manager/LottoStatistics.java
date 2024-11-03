@@ -62,7 +62,7 @@ public class LottoStatistics {
     private int calculateTotalReward() {
         return winningStatusTable.entrySet().stream()
                 .filter(entry -> entry.getValue() > 0)
-                .map(entry -> Rank.calculateReward(entry.getKey(), entry.getValue()))
+                .map(entry -> entry.getKey().calculateReward(entry.getValue()))
                 .reduce(0, Integer::sum);
 
     }

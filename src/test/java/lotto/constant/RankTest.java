@@ -5,7 +5,6 @@ import static lotto.domain.constant.Rank.FIFTH_WITH_BONUS;
 import static lotto.domain.constant.Rank.FOURTH;
 import static lotto.domain.constant.Rank.SIX;
 import static lotto.domain.constant.Rank.THIRDS;
-import static lotto.domain.constant.Rank.calculateReward;
 import static lotto.domain.constant.Rank.contains;
 import static lotto.domain.constant.Rank.getRank;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -67,7 +66,7 @@ class RankTest {
     void 각_순위에맞는_보상금액을_연산한다(Rank rank, int matchCount, int expectedReward) {
         //given
         //when
-        int reward = calculateReward(rank, matchCount);
+        int reward = rank.calculateReward(matchCount);
         //then
         assertThat(reward).isEqualTo(expectedReward);
     }
