@@ -2,8 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -11,6 +15,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    private static Stream<Arguments> provideInvalidInputs() {
+        return Stream.of(
+                Arguments.of("1000j", ERROR_MESSAGE),  // 잘못된 입력 형식
+                Arguments.of("8000\n1,2,3,4,5,6\n46\n", ERROR_MESSAGE),  // 유효하지 않은 보너스 번호
+                Arguments.of("8000\n1,2,3,4,5,6\n\n", ERROR_MESSAGE),  // 빈 보너스 번호 입력
+                Arguments.of("8000\n1,2,3,4,5,6\n3,4", ERROR_MESSAGE) // 잘못된 보너스 번호 형식
+        );
+    }
 
     @Test
     void 기능_테스트() {
@@ -46,11 +59,12 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @MethodSource("provideInvalidInputs")
+    void 예외_테스트(String input, String errorMessage) {
         assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            runException(input);
+            assertThat(output()).contains(errorMessage);
         });
     }
 
