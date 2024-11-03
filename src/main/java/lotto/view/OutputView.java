@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.WinningType;
@@ -15,10 +16,11 @@ public class OutputView {
     public static final String ISSUED_LOTTO_PRINTING_START_MESSAGE = "%d개를 구매했습니다.";
     public static final String ISSUED_LOTTO_PRINT_MESSAGE = "[%s]";
     public static final String WINNING_RESULT_PRINTING_START_MESSAGE = "당첨 통계\n---";
-    public static final String WINNING_RESULT_CONTENT_MESSAGE = "%d개 일치 %s(%,d원) - %d개";
-    public static final String BONUS_NUMBER_MATCHED_MESSAGE = "보너스 볼 일치 ";
-    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    public static final String WINNING_RESULT_CONTENT_MESSAGE = "%d개 일치%s(%,d원) - %d개";
+    public static final String BONUS_NUMBER_MATCHED_MESSAGE = ", 보너스 볼 일치 ";
+    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s입니다.";
     public static final String INPUT_EXCEPTION_MESSAGE = "[ERROR] %s";
+    public static final String RATE_OF_RETURN_FORMAT = "#.##%";
 
     public void printEmptyLine() {
         System.out.println();
@@ -57,22 +59,33 @@ public class OutputView {
     }
 
     private void printWinningResultContent(WinningType winningType, int count) {
-        WinningCondition winningCondition = winningType.getCondition();
-
-        String bonusBoolContent = "";
-        if (winningCondition.isBonusNumberRequired()) {
-            bonusBoolContent = BONUS_NUMBER_MATCHED_MESSAGE;
+        if (winningType.equals(WinningType.NONE)) {
+            return;
         }
 
-        String content = String.format(
-                WINNING_RESULT_CONTENT_MESSAGE,
-                winningCondition.getMatchedNumberCount(), bonusBoolContent,
-                winningType.getPrizeMoney(), count);
+        String content = makeWinningResultContent(winningType, count);
         System.out.println(content);
     }
 
+    private String makeWinningResultContent(WinningType winningType, int count) {
+        WinningCondition winningCondition = winningType.getCondition();
+
+        String bonusNumberContent = " ";
+        if (winningCondition.isBonusNumberRequired()) {
+            bonusNumberContent = BONUS_NUMBER_MATCHED_MESSAGE;
+        }
+
+        return String.format(
+                WINNING_RESULT_CONTENT_MESSAGE,
+                winningCondition.getMatchedNumberCount(), bonusNumberContent,
+                winningType.getPrizeMoney(), count);
+    }
+
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn));
+        DecimalFormat rateFormat = new DecimalFormat(RATE_OF_RETURN_FORMAT);
+        String rate = rateFormat.format(rateOfReturn);
+        String content = String.format(RATE_OF_RETURN_MESSAGE, rate);
+        System.out.println(content);
     }
 
     public void printInputExceptionMessage(String exceptionMessage) {
