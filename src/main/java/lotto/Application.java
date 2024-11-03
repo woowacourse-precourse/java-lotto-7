@@ -50,6 +50,6 @@ public class Application {
             System.out.printf("%d개 일치 (%,d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
             System.out.println();
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.",lottoResult.getRateOfReturn(result,price));
+        System.out.printf("총 수익률은 %.1f%%입니다.",lottoResult.getRateOfReturn(result, budget));
     }
 }
