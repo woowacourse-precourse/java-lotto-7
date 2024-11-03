@@ -1,7 +1,5 @@
 package lotto.error;
 
-import static lotto.LottoConstant.PRICE;
-
 public enum ErrorMessage {
 
     AMOUNT_FORMAT_ERROR("금액은 정수 형태로 입력해야 합니다."),

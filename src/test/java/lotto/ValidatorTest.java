@@ -1,7 +1,6 @@
 package lotto;
 
 import static lotto.LottoConstant.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
