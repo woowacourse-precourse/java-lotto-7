@@ -53,6 +53,7 @@ public class InputView {
     private Integer getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 inputValidator.isExistsIn(winningNumbers, bonusNumber);
