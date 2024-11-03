@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static lotto.constant.LottoConfig.Rank.*;
+import static lotto.constant.SystemConfig.*;
 
 public class LottoPrize {
     private final Lotto lotto;
@@ -27,18 +28,22 @@ public class LottoPrize {
     public Double calculateRateOfReturn(Map<Rank, Integer> rankCount, Purchase purchase) {
         long totalPrize = calculateTotalPrize(rankCount);
         int cost = purchase.getCost();
-        double result = ((double) totalPrize / cost) * 100;
-        return Math.round(result * 10) / 10.0;
+        double rateOfReturn = ((double) totalPrize / cost) * HUNDRED_PERCENT;
+        return roundToFirstDecimal(rateOfReturn);
+    }
+
+    private static double roundToFirstDecimal(double rateOfReturn) {
+        return Math.round(rateOfReturn * ROUND_TO_FIRST_DECIMAL) / ROUND_TO_FIRST_DECIMAL;
     }
 
     private long calculateTotalPrize(Map<Rank, Integer> rankCount) {
         return Stream.of(values())
-                .mapToLong(rank -> calculatePrize(rankCount, rank))
+                .mapToLong(rank -> calculateTotalPrizeForRank(rankCount.getOrDefault(rank, DEFAULT_VALUE), rank))
                 .sum();
     }
 
-    private long calculatePrize(Map<Rank, Integer> rankCount, Rank rank) {
-        return rankCount.getOrDefault(rank, 0) * rank.getPrizeMoney();
+    private long calculateTotalPrizeForRank(int count, Rank rank) {
+        return count * rank.getPrizeMoney();
     }
 
     public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {
@@ -46,7 +51,7 @@ public class LottoPrize {
 
         for(Lotto ticket : lottos.getTickets()) {
             Rank rank = determineRank(lotto.getNumbers(), ticket.getNumbers());
-            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+            rankCount.put(rank, rankCount.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
         }
         return rankCount;
     }

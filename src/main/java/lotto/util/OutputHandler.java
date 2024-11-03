@@ -7,9 +7,9 @@ import lotto.constant.LottoConfig.Rank;
 import java.util.Map;
 
 import static lotto.constant.IOMessage.*;
+import static lotto.constant.SystemConfig.DEFAULT_VALUE;
 
 public class OutputHandler {
-
 
     public static void printCount(int count) {
         output("");
@@ -29,7 +29,7 @@ public class OutputHandler {
             if(rank == Rank.NOTHING) {
                 continue;
             }
-            Integer count = results.getOrDefault(rank, 0);
+            Integer count = results.getOrDefault(rank, DEFAULT_VALUE);
             output(getLottoResultForm(rank, count));
         }
     }
