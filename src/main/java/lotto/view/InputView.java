@@ -16,6 +16,11 @@ public class InputView {
 		}
 	}
 
+	public List<Integer> getWinningLottoInput() {
+		String winningLotto = Console.readLine();
+		return parseToNumbers(winningLotto);
+	}
+
 	private List<Integer> parseToNumbers(String input) {
 		return Arrays.stream(input.split(","))
 				.map(Integer::parseInt)
