@@ -63,6 +63,19 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        int bonusNumber;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = parseInt(Console.readLine().trim());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
-
