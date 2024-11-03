@@ -8,16 +8,16 @@ import java.util.List;
 
 public class Output {
 
-    public List<List<Integer>> printPurchasedLotto(int lottoPurchased) {
+    public List<Lotto> printPurchasedLotto(int lottoPurchased) {
 
         PlayerBuyLotto playerBuyLotto = new PlayerBuyLotto();
 
         System.out.println(lottoPurchased + Message.AMOUNT_PURCHASED.getMessage());
 
-        List<List<Integer>> lottos = playerBuyLotto.buyLotto(lottoPurchased);
+        List<Lotto> lottos = playerBuyLotto.buyLotto(lottoPurchased);
 
-        for(List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
         }
         System.out.println();
 

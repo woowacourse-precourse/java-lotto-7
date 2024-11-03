@@ -1,6 +1,8 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumbers {
@@ -14,6 +16,14 @@ public class LottoNumbers {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMS);
 
         return new Lotto(numbers);
+    }
+
+    public WinningNumbers generateWinningNumbers(String numbers) {
+
+        String[] temps = numbers.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+
     }
 
 

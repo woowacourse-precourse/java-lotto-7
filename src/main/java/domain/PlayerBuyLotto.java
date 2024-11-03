@@ -18,16 +18,16 @@ public class PlayerBuyLotto {
         return amount / 1000;
     }
 
-    public List<List<Integer>> buyLotto(int lottoPurchased) {
+    public List<Lotto> buyLotto(int lottoPurchased) {
 
         LottoNumbers lottoNumbers = new LottoNumbers();
 
-        List<List<Integer>> lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoPurchased; i++) {
 
             Lotto lotto = lottoNumbers.generateLotto();
-            lottos.add(lotto.getNumbers());
+            lottos.add(lotto);
         }
 
         return lottos;

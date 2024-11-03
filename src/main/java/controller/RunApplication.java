@@ -19,7 +19,7 @@ public class RunApplication {
             try {
                 String purchaseAmount = input.inputPurchaseAmount();
                 int lottoPurchased = playerBuyLotto.purchasedLottoNums(purchaseAmount);
-                List<List<Integer>> Lottos = output.printPurchasedLotto(lottoPurchased);
+                List<Lotto> Lottos = output.printPurchasedLotto(lottoPurchased);
                 break;
 //                String winningNumbers = input.inputWinningNumbers();
 
