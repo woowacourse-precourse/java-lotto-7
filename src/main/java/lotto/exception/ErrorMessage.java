@@ -26,6 +26,10 @@ public enum ErrorMessage {
     EMPTY_PART_INPUT("[ERROR] 입력값에 빈 항목이 포함되어 있습니다. 쉼표로 구분된 숫자만 입력하세요."),
     INVALID_VALUE_INPUT("[ERROR] 잘못된 값이 포함되어 있습니다. 숫자만 입력하세요."),
     INVALID_COMMA_POSITION("[ERROR] 입력 값의 시작 또는 끝에 콤마가 포함될 수 없습니다."),
+
+    INVALID_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
+    DUPLICATE_NUMBER("[ERROR] 로또 번호에는 중복된 숫자가 포함될 수 없습니다."),
+    INVALID_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ;
 
     private final String message;
