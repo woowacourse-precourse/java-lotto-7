@@ -22,7 +22,7 @@ public class LottoController {
     private Budget setUpBudget() {
         try {
             return new Budget(InputView.inputBudget());
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return setUpBudget();
         }
@@ -37,7 +37,7 @@ public class LottoController {
             Lotto winningNumber = new Lotto(InputView.inputWinningNumber());
             int bonusNumber = InputView.inputBonusNumber();
             return new WinningNumber(winningNumber, bonusNumber);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return setUpWinningNumber();
         }
