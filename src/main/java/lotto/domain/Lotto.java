@@ -8,10 +8,6 @@ import java.util.Set;
 
 public class Lotto {
 
-	private static final int LOTTO_SIZE = 6;
-	private static final int MIN_NUMBER = 1;
-	private static final int MAX_NUMBER = 45;
-
 	private final List<Integer> numbers;
 
 	public Lotto(List<Integer> numbers) {
@@ -23,7 +19,7 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != LOTTO_SIZE) {
+		if (numbers.size() != LottoInfo.SIZE.getInfo()) {
 			throw new IllegalArgumentException(OVER_FLOW_LOTTO_SIZE.getComment());
 		}
 	}
@@ -38,7 +34,7 @@ public class Lotto {
 
 	private void validateNumbersRange(List<Integer> numbers) {
 		boolean hasOverFlowRange = numbers.stream()
-			.anyMatch(number -> number < MIN_NUMBER || MAX_NUMBER < number);
+			.anyMatch(number -> number < LottoInfo.MIN_NUMBER.getInfo() || LottoInfo.MAX_NUMBER.getInfo() < number);
 
 		if (hasOverFlowRange) {
 			throw new IllegalStateException(OVER_FLOW_LOTTO_NUMBER_RANGE.getComment());
