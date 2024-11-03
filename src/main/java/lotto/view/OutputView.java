@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+
 public class OutputView {
     public void showTotalEarningRatio(String formatEarningRatio) {
         System.out.println("총 수익률은 " + formatEarningRatio + "%입니다.");
@@ -29,6 +31,10 @@ public class OutputView {
 
     public void showPurchaseResult(int purchaseCount) {
         System.out.println(purchaseCount + "개를 구매했습니다.");
+    }
+
+    public void showLottoNumbers(int i, List<List<Integer>> lottoNumbers) {
+        System.out.println(lottoNumbers.get(i));
     }
 
     public void showInsertNewLine() {

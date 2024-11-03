@@ -1,19 +1,18 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final List<List<Integer>> lottoNumbers = new ArrayList<>();
     private final OutputView outputView;
     private final InputView inputView;
     private Lotto lotto;
+    private LottoNumbers lottoNumbers;
     private int cost;
     private int bonusNumber;
 
@@ -33,12 +32,9 @@ public class LottoController {
 
         outputView.showPurchaseResult(purchaseCount);
 
-        for (int i = 0; i < purchaseCount; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(numbers);
-            lottoNumbers.add(numbers);
-            System.out.println(lottoNumbers.get(i));
-        }
+        lottoNumbers = LottoNumbers.from(new ArrayList<>());
+
+        lottoNumbers.purchaseLotto(purchaseCount, outputView);
 
         outputView.showInsertNewLine();
 
@@ -62,7 +58,7 @@ public class LottoController {
         int bonusMatched = 0;
         int allMatched = 0;
 
-        for (List<Integer> lottoNumber : lottoNumbers) {
+        for (List<Integer> lottoNumber : lottoNumbers.getLottoNumbers()) {
             int lottoCount = 0;
             boolean isBonusMatched = lottoNumber.contains(bonusNumber);
 
