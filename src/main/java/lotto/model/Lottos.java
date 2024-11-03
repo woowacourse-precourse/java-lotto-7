@@ -33,4 +33,11 @@ public class Lottos {
                 .map(Lotto::getLottoNumbers)
                 .toList();
     }
+
+    @Override
+    public String toString() {
+        return "Lottos{" +
+                "lottos=" + lottos +
+                '}';
+    }
 }

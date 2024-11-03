@@ -45,4 +45,12 @@ public class WinningLotto {
             throw LottoNumberInvalidException.bonusNumberDuplicate();
         }
     }
+
+    @Override
+    public String toString() {
+        return "WinningLotto{" +
+                "lottoNumbers=" + lottoNumbers +
+                ", bonusLottoNumber=" + bonusLottoNumber +
+                '}';
+    }
 }
