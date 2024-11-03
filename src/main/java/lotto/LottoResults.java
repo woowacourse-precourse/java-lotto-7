@@ -17,8 +17,12 @@ public class LottoResults {
     }
 
     public void printResults() {
-        System.out.println("당첨 통계\n---");
+        printPrizeStatistics();
+        printProfitRate();
+    }
 
+    private void printPrizeStatistics() {
+        System.out.println("당첨 통계\n---");
         for (Prize prize : Prize.values()) {
             int count = prizeCount.getOrDefault(prize, 0);
             System.out.printf("%s (%s) - %d개%n",
@@ -26,24 +30,18 @@ public class LottoResults {
                 formatCurrency(prize.getPrizeAmount()),
                 count);
         }
+    }
 
+    private void printProfitRate() {
         double profitRate = calculateProfitRate();
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
     private double calculateProfitRate() {
-        if (moneySpent == 0) {
-            return 0;
-        }
+        if (moneySpent == 0) return 0;
         return ((double) totalPrize / moneySpent) * 100;
     }
 
-    // 로또 번호를 형식에 맞게 출력
-    public static String formatLottoNumbers(List<Integer> numbers) {
-        return numbers.toString();
-    }
-
-    // 금액을 쉼표가 포함된 형식으로 출력
     public static String formatCurrency(int amount) {
         return NumberFormat.getInstance().format(amount) + "원";
     }

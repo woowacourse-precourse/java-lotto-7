@@ -6,40 +6,45 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
-        System.out.println();
+        int money = getPurchaseAmount();
+        List<Lotto> lottos = buyLottos(money);
+        WinNumber winNumber = inputWinNumbers();
+        int bonusNumber = inputBonusNumber();
 
-        // 로또 구매 및 출력
+        checkAndPrintResults(lottos, winNumber, bonusNumber, money);
+    }
+
+    private static int getPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    private static List<Lotto> buyLottos(int money) {
         Buy buy = new Buy();
         int count = buy.countLotto(money);
         System.out.println(count + "개를 구매했습니다.");
         List<Lotto> lottos = Lotto.generateLottos(count);
-        for (Lotto l : lottos) {
-            System.out.println(l.getNumbers());
-        }
-        System.out.println();
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        return lottos;
+    }
 
-        // 당첨 번호 입력
+    private static WinNumber inputWinNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinNumbers = Console.readLine();
         WinNumber winNumber = new WinNumber();
         winNumber.inputWinNumber(inputWinNumbers);
-        System.out.println();
+        return winNumber;
+    }
 
-        // 보너스 번호 입력
+    private static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        winNumber.inputBonusNumber(bonusNumber);
-        System.out.println();
+        return Integer.parseInt(Console.readLine());
+    }
 
-        // 당첨 결과 확인
+    private static void checkAndPrintResults(List<Lotto> lottos, WinNumber winNumber, int bonusNumber, int money) {
         MatchNumber matchNumber = new MatchNumber(winNumber, bonusNumber);
         matchNumber.checkWinNumber(lottos);
-
-        // 당첨 통계 출력
-        LottoResults results = new LottoResults(matchNumber.getPrizeCount(),
-            matchNumber.getTotalPrize(), money);
+        LottoResults results = new LottoResults(matchNumber.getPrizeCount(), matchNumber.getTotalPrize(), money);
         results.printResults();
     }
 }
