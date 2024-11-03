@@ -2,6 +2,7 @@ package lotto.global.util;
 
 import static lotto.global.constant.Config.LOTTO_PRICE;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
+import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
 
@@ -11,6 +12,13 @@ import lotto.UniqueNumber;
 public class Validator {
     public static void validateLotto(Lotto lotto) {
         validateDuplicateNumber(lotto);
+        validateLottoNumberInRange(lotto);
+    }
+
+    private static void validateLottoNumberInRange(Lotto lotto) {
+        if (!lotto.isNumbersInRange()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE);
+        }
     }
 
     private static void validateDuplicateNumber(UniqueNumber uniqueNumber) {

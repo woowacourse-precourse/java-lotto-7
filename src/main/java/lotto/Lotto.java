@@ -1,6 +1,8 @@
 package lotto;
 
 import static lotto.global.constant.Config.LOTTO_NUMBER_SIZE;
+import static lotto.global.constant.Config.MAXIMUM_LOTTO_NUMBER;
+import static lotto.global.constant.Config.MINIMUM_LOTTO_NUMBER;
 import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_SIZE;
 import static lotto.global.util.Validator.validateLotto;
 
@@ -35,6 +37,18 @@ public class Lotto implements UniqueNumber {
         return (int) numberOfCompare.stream()
                 .filter(numbers::contains)
                 .count();
+    }
+
+    public boolean isNumbersInRange() {
+        long sizeOfInRange = numbers.stream()
+                .filter(this::isNumberInRange)
+                .count();
+        return LOTTO_NUMBER_SIZE == sizeOfInRange;
+    }
+
+
+    private boolean isNumberInRange(int number) {
+        return (number >= MINIMUM_LOTTO_NUMBER && number <= MAXIMUM_LOTTO_NUMBER);
     }
 
     @Override
