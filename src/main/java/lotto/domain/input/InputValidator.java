@@ -10,6 +10,11 @@ import java.util.Set;
 
 public class InputValidator {
 
+    private static final int PURCHASE_MIN_UNIT = 1000;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_NUMBER_MIN_RANGE = 1;
+    private static final int LOTTO_NUMBER_MAX_RANGE = 45;
+
     /**
      * 올바른 구입 금액 입력 받기
      */
@@ -40,7 +45,7 @@ public class InputValidator {
      * 구입 금액이 1000원 단위인지 검사
      */
     public static void isValidUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % PURCHASE_MIN_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_UNIT.getMessage());
         }
     }
@@ -90,7 +95,7 @@ public class InputValidator {
      */
     public static void isValidRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_NUMBER_MIN_RANGE || number > LOTTO_NUMBER_MAX_RANGE) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
             }
         }
@@ -100,7 +105,7 @@ public class InputValidator {
      * 입력된 당첨 번호가 6개인지 검사
      */
     public static void isValidLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
     }
@@ -135,7 +140,7 @@ public class InputValidator {
      * 보너스 번호가 1-45 범위 안에 있는지 검사
      */
     public static void isValidRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_NUMBER_MIN_RANGE || number > LOTTO_NUMBER_MAX_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
         }
     }
