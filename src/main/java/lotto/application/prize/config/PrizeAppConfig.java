@@ -1,19 +1,17 @@
 package lotto.application.prize.config;
 
 import lotto.application.common.IdGenerator;
+import lotto.application.prize.controller.PrizeController;
 import lotto.application.prize.repository.PrizeReadRepository;
 import lotto.application.prize.repository.PrizeWriteRepository;
 import lotto.application.prize.service.PrizeIdGenerator;
-import lotto.application.prize.view.input.PrizeInputView;
 
 public class PrizeAppConfig {
-    private final ViewConfig viewConfig;
     private final ControllerConfig controllerConfig;
     private final ServiceConfig serviceConfig;
     private final RepositoryConfig repositoryConfig;
 
     public PrizeAppConfig() {
-        this.viewConfig = new ViewConfig(getPrizeInputView());
         this.repositoryConfig = new RepositoryConfig(
                 getPrizeWriteRepository(),
                 getPrizeReadRepository()
@@ -29,17 +27,14 @@ public class PrizeAppConfig {
         );
     }
 
-    public ControllerConfig getControllerConfig() {
-        return controllerConfig;
+    public PrizeController getPrizeController() {
+        return controllerConfig.getPrizeController();
     }
 
     private IdGenerator getIdGenerator() {
         return new PrizeIdGenerator();
     }
 
-    private PrizeInputView getPrizeInputView() {
-        return new PrizeInputView();
-    }
 
     private PrizeWriteRepository getPrizeWriteRepository() {
         return new PrizeWriteRepository();
