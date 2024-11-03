@@ -17,6 +17,7 @@ public class Application {
         printTickets(tickets);
 
         Lotto winningLotto = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private static int getPurchaseAmount() {
@@ -59,6 +60,11 @@ public class Application {
         return Arrays.stream(Console.readLine().split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
 }
