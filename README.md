@@ -279,4 +279,26 @@ public class Lotto {
 
 1. 예외 처리(ERROR 문구 포함)
 2. 입출력 View 클래스로 분류
-3. IllegalArgumentException이면, 그 부분부터 다시 입력 받기 처리
+3. Model, Controller로 분류
+4. IllegalArgumentException이면, 그 부분부터 다시 입력 받기 처리
+
+### 클래스 설명
+
+* Lotto
+  * lotto에 대한 정보(lotto 번호들)을 담는 클래스
+  * validate 메소드 : 로또 번호의 유효성 검증(6개인지, 범위가 똑바른지, 중복된 숫자는 없는지)
+  * getLotto 메소드 : 1 ~ 45 사이의 랜덤한 숫자 6개를 골라 리스트에 넣고, 로또 발급
+  * sortLotto 메소드 : Lotto 안에 numbers를 정렬하는 메소드
+  * sortLottoList 메소드 : lottoCount만큼 로또를 발급해주고, 그 number들을 정렬해주는 메소드
+  * gradeLotto 메소드 : Lotto의 결과를 저장 (몇개 맞췄는지, 보너스 맞췄는지 여부)
+* MyInfo
+  * 내가 입력한 정보들(purchaseAmount, bonusNumber, answer)
+  * 그로 부터 도출되는 정보들(lottoCount, myLottos, revenue, myReturn)
+* MyResults
+  * Lotto 한개 당 결과 정보 저장
+  * matches -> 일반 정답 중 몇 개 맞췄는지
+  * isBonus -> 보너스 정답 맞췄는지 여부
+* WinningDetails
+  * 내가 발급받은 로또"들"로부터 몇 등 했는지를 저장하는 클래스
+  * sumUpGrade 메소드 : MyResult들을 바탕으로 몇 등씩 했는지 집계
+  * saveMyGrade 메소드 : Lotto를 채점하는 메소드
