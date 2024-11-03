@@ -18,4 +18,8 @@ public class LottoTickets {
             lottoTickets.add(new Lotto(numbers));
         }
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

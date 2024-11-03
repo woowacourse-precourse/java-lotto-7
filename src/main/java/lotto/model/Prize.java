@@ -16,4 +16,16 @@ public enum Prize {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }
