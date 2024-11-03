@@ -1,9 +1,7 @@
 package lotto.view;
 
 import static lotto.CommonSymbols.NEW_LINE;
-import static lotto.view.Prompt.BONUS_NUMBER;
-import static lotto.view.Prompt.PURCHASE_AMOUNT;
-import static lotto.view.Prompt.WINNING_NUMBERS;
+import static lotto.view.Prompt.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
