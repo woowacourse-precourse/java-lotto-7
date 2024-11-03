@@ -14,7 +14,7 @@ public class LottoInput {
     public Integer getLottoPurchaseAmount() {
         // 로또 구입 금액 입력 받기
         System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = scanner.next();
+        String purchaseAmount = scanner.nextLine();
 
         PurchaseAmountErrors errorHandler = new PurchaseAmountErrors();
         errorHandler.errorCheck(purchaseAmount);
@@ -31,13 +31,14 @@ public class LottoInput {
         String winningNumbersInput = scanner.nextLine();
         List<Integer> winningNumbers = new ArrayList<>();
 
-        WinningNumbersErrors errorHandler = new WinningNumbersErrors();
-        errorHandler.errorCheck(winningNumbers);
-
         winningNumbers = Arrays.stream(winningNumbersInput.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
+
+        WinningNumbersErrors errorHandler = new WinningNumbersErrors();
+        errorHandler.errorCheck(winningNumbers);
+
         Collections.sort(winningNumbers);
 
         return winningNumbers;
@@ -46,12 +47,12 @@ public class LottoInput {
     public Integer inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        Integer bonusNumber = scanner.nextInt();
+        String bonusNumber = scanner.nextLine();
 
         BonusNumberErrors errorHandler = new BonusNumberErrors();
         errorHandler.errorCheck(bonusNumber, winningNumbers);
 
-        return bonusNumber;
+        return Integer.parseInt(bonusNumber);
     }
 
 }
