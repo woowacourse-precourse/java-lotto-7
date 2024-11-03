@@ -26,6 +26,10 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
