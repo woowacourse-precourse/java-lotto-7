@@ -12,6 +12,7 @@ public class OutputView {
             String numbers = String.join(",", lotto.get().stream().map(String::valueOf).toList());
             System.out.println("[" + numbers + "]");
         }
+        System.out.println();
     }
 
     public void printResult(List<LottoResultResponseDto> dtos) {
