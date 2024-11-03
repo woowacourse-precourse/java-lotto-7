@@ -8,14 +8,18 @@ import lotto.enums.ErrorType;
 
 public class CheckInput {
 
-    public static void checkInputMoney(int inputMoney) {
+    public static boolean checkInputMoney(int inputMoney) {
         if (inputMoney < 1000) {
-            throw new IllegalArgumentException(ErrorType.INVALID_PURCHASE_RANGE.getErrorMessage());
+            System.out.println(ErrorType.INVALID_PURCHASE_RANGE.getErrorMessage());
+            return false;
         }
 
         if (inputMoney % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorType.INVALID_PURCHASE_UNIT.getErrorMessage());
+            System.out.println(ErrorType.INVALID_PURCHASE_UNIT.getErrorMessage());
+            return false;
         }
+
+        return true;
     }
 
     public static Lotto checkLottoNumbers(String inputLottoNumbers){

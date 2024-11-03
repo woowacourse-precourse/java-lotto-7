@@ -16,14 +16,12 @@ public class InputConsole {
         while(!isValid){
             try{
                 inputMoney = Integer.parseInt(readLine());
-                isValid = true;
+                isValid = CheckInput.checkInputMoney(inputMoney);
             } catch (NumberFormatException e){
                 System.out.println(ErrorType.INVALID_PRICE_FORMAT.getErrorMessage());
                 System.out.println("구매금액을 다시 입력해 주세요.");
             }
         }
-
-        CheckInput.checkInputMoney(inputMoney);
 
         return inputMoney;
     }
