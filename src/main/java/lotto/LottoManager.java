@@ -21,10 +21,7 @@ public class LottoManager {
 
 
     public void setPurchaseAmount(){
-        while(true){
-            if (getPurchaseAmount()) {
-                break;
-            }
+        while (!getPurchaseAmount()){
         }
         //Console.close();
     }
@@ -37,23 +34,18 @@ public class LottoManager {
     }
 
     public void setWinningNumber(){
-        while (true){
-            if (getWinningNumbers()) {
-                break;
-            }
-        }
-
+        while (!getWinningNumbers()) {}
     }
 
     public void setBonusNumber(){
-        while (true){
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            String userInput = Console.readLine().trim();
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String userInput = Console.readLine().trim();
 
-            if (convertBonusNumToInteger(userInput)) {
-                break;
-            }
+        while (!convertBonusNumToInteger(userInput)){
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            userInput = Console.readLine().trim();
         }
+
     }
 
     private boolean convertBonusNumToInteger(String userInput) {
