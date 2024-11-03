@@ -22,7 +22,7 @@ public class WinningService {
             WinningView.requestBonusInput();
             String bonusNumberString = Console.readLine();
 
-            if (!WinningValidate.runValidBonusString(bonusNumberString)) {
+            if (!WinningValidate.runValidBonusString(bonusNumberString, winning)) {
                 continue;
             }
 

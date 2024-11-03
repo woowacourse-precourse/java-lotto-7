@@ -11,9 +11,13 @@ public class WinningValidate {
     private static final String BONUS_REGEX = "[0-9]+";
     private static Pattern pattern;
 
-    static Winning winning;
+    private final Winning winning;
 
-    public static boolean runValidBonusString(String bonusString) {
+    public WinningValidate(Winning winning) {
+        this.winning = winning;
+    }
+
+    public static boolean runValidBonusString(String bonusString, Winning winning) {
         try {
             if (!isNumeric(bonusString)) {
                 throw new IllegalArgumentException(WinningInputMessage.INVALID_BONUS_NUMBER.getMessage());
@@ -25,7 +29,7 @@ public class WinningValidate {
                 throw new IllegalArgumentException(WinningInputMessage.INVALID_BONUS_NUMBER.getMessage());
             }
 
-            if (!isBonusNotInWinning(winning, bonusNumber)) {
+            if (!isBonusNotInWinning(bonusNumber, winning)) {
                 throw new IllegalArgumentException(WinningInputMessage.DUPLICATE_WINNING_NUMBER.getMessage());
             }
 
@@ -54,10 +58,10 @@ public class WinningValidate {
         return true;
     }
 
-    public static boolean isBonusNotInWinning(Winning winning, int bonusNumber) {
+    public static boolean isBonusNotInWinning(int bonusNumber, Winning winning) {
         HashSet<Integer> winningSet = winning.getWinningNumbers();
 
-        return winningSet.contains(bonusNumber);
+        return !winningSet.contains(bonusNumber);
     }
 
     public static boolean isLottoNumber(int bonusNumber) {

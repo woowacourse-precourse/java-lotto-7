@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import lotto.domain.Winning;
 import lotto.service.WinningService;
@@ -107,5 +108,29 @@ public class WinningTest {
         int bonusNumber = 100;
 
         assertFalse(WinningValidate.isLottoNumber(bonusNumber));
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 동일하지 않은 숫자는 보너스 숫자로 가능하다.")
+    public void testIsBonusNotInWinning() {
+        Winning winning = new Winning();
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        winning.setHashSet(winningSet);
+
+        int bonusNumber = 10;
+
+        assertTrue(WinningValidate.isBonusNotInWinning(bonusNumber, winning));
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 동일한 숫자는 보너스 숫자로 불가능하다.")
+    public void testIsBonusInWinning() {
+        Winning winning = new Winning();
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        winning.setHashSet(winningSet);
+
+        int bonusNumber = 2;
+
+        assertFalse(WinningValidate.isBonusNotInWinning(bonusNumber, winning));
     }
 }
