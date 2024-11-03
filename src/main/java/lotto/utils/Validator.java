@@ -13,7 +13,6 @@ public class Validator {
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
     public static final int LOTTO_PRICE = 1000;
     public static final int MINIMAL_PRICE_INPUT = 0;
-
     public static void priceValidator(String input) {
         nullAndEmptyValidator(input);
 
@@ -25,7 +24,7 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT.getMessage());
         }
 
-        if (MINIMAL_PRICE_INPUT <= 0) {
+        if (price <= MINIMAL_PRICE_INPUT) {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NEGATIVE.getMessage());
         }
 
