@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
+import lotto.model.lotto.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,13 +17,13 @@ public class LottoController {
 
     public void play() {
         try {
-          int totalTicketCount = readValidTicketCount();
-          outputView.printTotalTickets(totalTicketCount);
-
-        } catch (IllegalArgumentException exception) {
+            int ticketCount = readValidTicketCount();
+            outputView.printTicketNumber(ticketCount);
+            LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
+            outputView.printLottoTickets(lottoTickets);
+        } catch (IllegalArgumentException | IllegalStateException exception) {
             outputView.printExceptionMessage(exception);
         }
-
     }
 
     private int readValidTicketCount() {
@@ -33,11 +34,9 @@ public class LottoController {
                 LottoBuyer buyer = new LottoBuyer();
                 buyer.buyTickets(budget, store);
                 return buyer.getOwnedTickets();
-
             } catch (IllegalArgumentException exception) {
                 outputView.printExceptionMessage(exception);
             }
         }
     }
 }
-

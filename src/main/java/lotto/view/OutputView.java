@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.model.lotto.LottoNumbersGenerator;
+import lotto.model.lotto.LottoTickets;
+
 public class OutputView {
 
     public enum ConsoleMessage {
@@ -10,14 +13,17 @@ public class OutputView {
             this.message = message;
         }
     }
-
-
     public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
     }
 
-
-    public void printTotalTickets(int totalTickets) {
+    public void printTicketNumber(int totalTickets) {
         System.out.printf(ConsoleMessage.TOTAL_TICKETS.message, totalTickets);
+    }
+
+    public void printLottoTickets(LottoTickets lottoTickets) {
+        for (LottoNumbersGenerator lottoNumbers : lottoTickets.getLottoTickets()) {
+            System.out.println(lottoNumbers.getLottoNumbers());
+        }
     }
 }
