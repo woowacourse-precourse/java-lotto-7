@@ -1,18 +1,15 @@
 package lotto.domain;
 
-import java.util.List;
-import java.util.Set;
-
 public class LottoGame {
 
     private final LottoPrice totalPrice;
-    private final Lottos lottos;
+    private final Lottos purchasedLottos;
     private final Lotto winningNumbers;
     private final BonusNumber bonusNumber;
 
-    private LottoGame(LottoPrice totalPrice, Lottos lottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+    private LottoGame(LottoPrice totalPrice, Lottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         this.totalPrice = totalPrice;
-        this.lottos = lottos;
+        this.purchasedLottos = purchasedLottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -25,8 +22,8 @@ public class LottoGame {
         return totalPrice;
     }
 
-    public Lottos getLottos() {
-        return lottos;
+    public Lottos getPurchasedLottos() {
+        return purchasedLottos;
     }
 
     public Lotto getWinningNumbers() {

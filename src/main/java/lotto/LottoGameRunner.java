@@ -125,7 +125,7 @@ public class LottoGameRunner {
     }
 
     private List<Integer> matchLottoNumbers() {
-        return lottoGame.getLottos().getValue().stream()
+        return lottoGame.getPurchasedLottos().getValue().stream()
                 .map(this::countMatchedNumbers)
                 .toList();
     }
