@@ -14,14 +14,14 @@ public class LottoController {
 
     public void run(){
         LottoStore lottoStore = new LottoStore(new LottoNumbersGenerator());
-        LottoTicket lottoTicket =  Retry.retryOnException(() -> buyLotto(lottoStore));
+        LottoTicket lottoTicket =  buyLotto(lottoStore);
         WinningLotto winningLotto = createWinningLotto();
         checkLottoResult(lottoTicket, winningLotto);
     }
 
     private LottoTicket buyLotto(final LottoStore lottoStore){
         int amount =  Retry.retryOnException(() -> InputView.inputPurchaseAmount());
-        LottoTicket lottoTicket = lottoStore.buyLottoTicket(amount);
+        LottoTicket lottoTicket = Retry.retryOnException(() -> lottoStore.buyLottoTicket(amount));
         OutputView.printLottoTicketInformation(lottoTicket.getAllLottoNumbers(), lottoTicket.getLottoCount());
         return lottoTicket;
     }
