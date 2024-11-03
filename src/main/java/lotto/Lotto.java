@@ -27,6 +27,7 @@ public class Lotto {
         for (int i = 1; i < numbers.size(); i++) {
             string += ", " + numbers.get(i);
         }
+        string+="]";
         return string;
     }
 }

@@ -1,21 +1,22 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import lotto.Lotto;
 import lotto.util.LottoManager;
 import lotto.util.Saparater;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class Cotroller {
+public class Controller {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     LottoManager lottoManager = new LottoManager();
     ArrayList<Lotto> lottos;
 
     public void start(){
-
+        purchaseProcess();
+        getWinningNumbersProcess();
+        winningResultProcess();
     }
 
     public void purchaseProcess(){
