@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,7 +34,8 @@ class WinningLottoTest {
 
         // when & then
         assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.LOTTO_CONFLICT_ERROR.getMessage());
     }
 
     @ParameterizedTest
