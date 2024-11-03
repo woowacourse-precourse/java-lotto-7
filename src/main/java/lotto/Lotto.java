@@ -27,4 +27,12 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
+    public long getMatchCount(WinningLotto winningLotto) {
+        long matchCount = numbers.stream()
+                .filter(winningLotto::isWinningNumber)
+                .count();
+
+        return matchCount;
+    }
+
 }
