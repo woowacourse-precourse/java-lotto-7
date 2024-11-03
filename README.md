@@ -1,5 +1,283 @@
 ## 🎰 java-lotto 🎰
 
+---
+
+## 📔 패키지 구조
+
+<div align="center">
+<table>
+<tr>
+<th align="center">Package</th>
+<th align="center">Class</th>
+<th align="center">Description</th>
+</tr>
+
+<tr>
+<td rowspan="3"><b>⚙️  config</b></td>
+<td><b> AppConfig</b></td>
+<td>  애플리케이션의 전반적인 설정과 의존성 주입을 관리하는 구성 클래스 </td>
+</tr>
+
+<tr>
+<td><b> DtoMapperConfig</b></td>
+<td> DTO 변환을 위한 매퍼 설정을 정의하는 구성 클래스 </td>
+</tr>
+
+<tr>
+<td><b> ValidatorConfig</b></td>
+<td>입력 검증 로직을 위한 유효성 검사기 설정을 제공하는 구성 클래스 </td>
+</tr>
+
+
+
+<tr>
+<td><b>🕹&nbsp;&nbsp;controller</b></td>
+<td><b> LottoGameController </b></td>
+<td> 로또 로직을 메인으로 동작하는 컨트롤러 클래스 </td>
+</tr>
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="10"><b>💻  domain</b></td>
+<td><b> MatchResult</b></td>
+<td> winningLotto와 로또 한 장을 비교한 결과를 저장하는 클래스</td>
+</tr>
+
+<tr>
+<td><b> MatchResults</b></td>
+<td> MatchResult 객체 리스트를 가지는 일급 컬렉션 </td>
+</tr>
+
+<tr>
+<td><b> RankDecider </b></td>
+<td> MatchResult를 보고 등수를 결정하는 기능의 클래스 </td>
+</tr>
+
+<tr>
+<td><b> WinningLotto</b></td>
+<td> 당첨 번호와 보너스 번호 정보 및 관련 메서드가 있는 클래스 </td>
+</tr>
+
+<tr>
+<td><b> DefaultLottoFactory</b></td>
+<td> LottoFactory의 구현체 </td>
+</tr>
+
+<tr>
+<td><b> Lotto</b></td>
+<td> 로또 한 장의 번호 정보를 가지고 있는 클래스  </td>
+</tr>
+
+<tr>
+<td><b> LottoFactory</b></td>
+<td> Lotto 객체 생성 Factory Interface </td>
+</tr>
+
+<tr>
+<td><b> LottoNumbersGenerator</b></td>
+<td> 임의의 로또 번호를 생성하는 NumberGenerator의 구현체 </td>
+</tr>
+
+<tr>
+<td><b> Lottos</b></td>
+<td> Lotto 객체 리스트를 갖는 일급 컬렉션 </td>
+</tr>
+
+<tr>
+<td><b> NumberGenerator</b></td>
+<td> 임의의 숫자를 생성하는 기능의 Interface </td>
+</tr>
+
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="5"><b>✉️&nbsp;&nbsp;dto</b></td>
+<td><b> FinalResultsDto</b></td>
+<td> 라운드 별 모든 자동차의 이름 및 위치 정보를 리턴하는 DTO 레코드 </td>
+</tr>
+
+
+<tr>
+<td><b> LottoDto </b></td>
+<td> 로또 한 장의 번호 정보를 리턴하는 DTO 레코드</td>
+</tr>
+
+<tr>
+<td><b> LottosDto</b></td>
+<td> 로또들의 정보를 리턴하는 DTO 레코드</td>
+</tr>
+
+<tr>
+<td><b> ProfitDto</b></td>
+<td> 수익과 수익률을 리턴하는 DTO 레코드 </td>
+</tr>
+
+
+<tr>
+<td><b> RankResultsDto </b></td>
+<td> 등수 관련 정보를 리턴하는 DTO 레코드</td>
+</tr>
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="1"><b>🚫&nbsp;&nbsp;exception</b></td>
+<td><b> ErrorMessage </b></td>
+<td> 예외 발생 시 사용되는 에러 메세지 Enum 클래스</td>
+</tr>
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="7"><b>💼&nbsp;&nbsp;service</b></td>
+<td><b> DtoMapper  </b></td>
+<td> DTO의 Mapper 담당 Interface</td>
+</tr>
+
+<tr>
+<td><b> LottoDtoMapper  </b></td>
+<td> LottoDto 생성  Mapper 클래서</td>
+</tr>
+
+<tr>
+<td><b> LottosDtoMapper  </b></td>
+<td> LottosDto 생성 Mapper 클래스 </td>
+</tr>
+
+<tr>
+<td><b> LottoPurchaseService  </b></td>
+<td> 발행한 로또와 당첨번호를 비교하여 결과값 산출하는 Interface </td>
+</tr>
+
+
+<tr>
+<td><b> LottoPurchaseServiceImpl  </b></td>
+<td> LottoPurchaseService의 구현체 </td>
+</tr>
+
+<tr>
+<td><b> LottoResultService  </b></td>
+<td> 입력값에 맞춰 로또를 발행하는 기능의 서비스 Interface</td>
+</tr>
+
+<tr>
+<td><b> LottoResultServiceImpl  </b></td>
+<td> LottoResultService의 구현체 </td>
+</tr>
+
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="11"><b>🌟&nbsp;&nbsp;utils</b></td>
+
+<td><b> constants </b></td>
+<td> 검증, 파싱 과정에서 사용되는 상수 보관 enum 클래스</td>
+</tr>
+
+<tr>
+<td><b> BonusNumberValidator </b></td>
+<td> 입력된 보너스 번호의 유효성 검증을 담당하는 클래스</td>
+</tr>
+
+<tr>
+<td><b> ComparisonValidator </b></td>
+<td> 입력값을 다른 값과 비교하여 유효성을 검증하는 Interface </td>
+</tr>
+
+<tr>
+<td><b> InputValidator </b></td>
+<td> 입력값을 검증하는 validator 클래스들의 Interface</td>
+</tr>
+
+<tr>
+<td><b> LottoNumberValidator </b></td>
+<td> 숫자가 로또 번호로 유효한 지 검증하는 클래스</td>
+</tr>
+
+<tr>
+<td><b> PositiveIntValidator </b></td>
+<td> 입력값의 양의 정수 여부 검증 클래스</td>
+</tr>
+
+<tr>
+<td><b> PurchaseAmountValidator </b></td>
+<td> 입력한 구매 금액의 유효성 검증 클래스 </td>
+</tr>
+
+<tr>
+<td><b> WinningNumbersValidator </b></td>
+<td> 입력한 당첨 번호들의 유효성 검증 클래스 </td>
+</tr>
+
+<tr>
+<td><b> Parser </b></td>
+<td> 각종 파싱 클래스의 Interface</td>
+</tr>
+
+<tr>
+<td><b> StringToIntListParser </b></td>
+<td> String -> Integer List 로의 변환 담당 클래스</td>
+</tr>
+
+<tr>
+<td><b> StringToIntParser </b></td>
+<td> String ->Int 로의 변환 담당 클래스</td>
+</tr>
+
+<tr><td colspan="3"></td></tr>
+
+<tr>
+<td rowspan="7"><b>💬&nbsp;&nbsp;view</b></td>
+<td><b> InputMessages </b></td>
+<td> 사용자 입력 관련 안내 메세지지를 저장하는 enum 클래스</td>
+</tr>
+
+<tr>
+<td><b> NumberOutputFormat </b></td>
+<td> 출력시 숫자 포맷 정보를 저장하는 enum 클래스</td>
+</tr>
+
+
+<tr>
+<td><b> OutputMessages </b></td>
+<td> 출력 메세지를 저장하는 enum클래스 </td>
+</tr>
+
+<tr>
+<td><b> ConsoleInputView </b></td>
+
+<td> 사용자에게 입력을 받는 기능을 담당하는 클래스 </td>
+</tr>
+
+<tr>
+<td><b> InputView </b></td>
+
+<td> Input 클래스 Interface </td>
+</tr>
+
+
+<tr>
+<td><b> ConsoleOutputView </b></td>
+<td> 사용자에게 응답을 출력하는 클래스</td>
+</tr>
+
+
+
+
+<tr>
+<td><b> OutputView </b></td>
+
+<td> Output 클래스 Interface </td>
+</tr>
+
+
+
+
+</table>
+</div>
 
 ---
 
