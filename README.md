@@ -40,11 +40,11 @@
 
 ### 구현 기능 - 도메인 객체
 - [x] 등수 별 로또를 관리한다. (추상클래스 PrizeLotto)
-    -[x] 1등 로또의 정보를 관리한다. (FirstPrizeLotto)
-    -[x] 2등 로또의 정보를 관리한다. (SecondPrizeLotto)
-    -[x] 3등 로또의 정보를 관리한다. (ThirdPrizeLotto)
-    -[x] 4등 로또의 정보를 관리한다. (FourthPrizeLotto)
-    -[x] 5등 로또의 정보를 관리한다. (FifthPrizeLotto)
+    - [x] 1등 로또의 정보를 관리한다. (FirstPrizeLotto)
+    - [x] 2등 로또의 정보를 관리한다. (SecondPrizeLotto)
+    - [x] 3등 로또의 정보를 관리한다. (ThirdPrizeLotto)
+    - [x] 4등 로또의 정보를 관리한다. (FourthPrizeLotto)
+    - [x] 5등 로또의 정보를 관리한다. (FifthPrizeLotto)
 - [x] 한 장의 로또 정보를 관리한다. (Lotto)
 - [x] 로또의 수량 정보를 관리한다. (LottoQuantity)
 - [x] 구매한 수량만큼의 로또를 모아서 관리한다. (Lottos)
