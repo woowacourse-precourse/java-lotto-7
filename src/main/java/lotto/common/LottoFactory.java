@@ -25,8 +25,8 @@ public class LottoFactory {
 
     public void create() {
         PurchasingController purchasingController = new PurchasingController(inputPaymentView, paymentValidator, outputPurchasingView);
-        purchasingController.purchaseLottoTickets();
-        PublishingController publishingController = new PublishingController(outputPublishedTicketsView);
+        int numberOfTickets = purchasingController.purchaseLottoTickets();
+        PublishingController publishingController = new PublishingController(outputPublishedTicketsView, numberOfTickets);
         WinningController winningController = new WinningController();
     }
 }
