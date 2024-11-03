@@ -25,4 +25,20 @@ public class LottoGame {
 
         }
     }
+
+    public double rateOfReturn(int lottoPurchase) {
+
+        int total = 0;
+
+        for (Map.Entry<LottoRank, Integer> entry : result.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+            int prize = rank.getPrize();
+
+            total += prize * count;
+        }
+
+        return (double) total / lottoPurchase * 100;
+
+    }
 }
