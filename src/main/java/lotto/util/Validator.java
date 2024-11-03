@@ -1,10 +1,10 @@
 package lotto.util;
 
+import static lotto.enums.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.enums.Constants.LOTTO_NUMBER_MAXIMUM;
 import static lotto.enums.Constants.LOTTO_NUMBER_MINIMUM;
 import static lotto.enums.Constants.PURCHASE_AMOUNT_MINIMUM;
 import static lotto.enums.Constants.PURCHASE_AMOUNT_UNIT;
-import static lotto.enums.Constants.WINNING_NUMBER_COUNT;
 import static lotto.enums.Constants.ZERO_VALUE;
 import static lotto.enums.ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.enums.ExceptionMessage.BONUS_NUMBER_FORMAT_EXCEPTION;
@@ -66,7 +66,7 @@ public class Validator {
 
     private static void validateSize(String[] winningNumbers) {
         Set<String> unique = new HashSet<>(Arrays.asList(winningNumbers));
-        if (unique.size() != WINNING_NUMBER_COUNT.getValue()) {
+        if (unique.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION.getMessage());
         }
     }
@@ -76,7 +76,7 @@ public class Validator {
                 .mapToInt(Integer::parseInt)
                 .anyMatch(number ->
                         number < LOTTO_NUMBER_MINIMUM.getValue() ||
-                        number > LOTTO_NUMBER_MAXIMUM.getValue()
+                                number > LOTTO_NUMBER_MAXIMUM.getValue()
                 );
         if (anyMatch) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION.getMessage());

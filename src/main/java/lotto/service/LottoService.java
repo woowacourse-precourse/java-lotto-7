@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.enums.Constants.ONE_VALUE;
+import static lotto.enums.Constants.ONE_HUNDRED_VALUE;
+import static lotto.enums.Constants.ZERO_VALUE;
 import static lotto.util.RandomUtil.generateLottoNumbers;
 
 import java.util.ArrayList;
@@ -24,20 +27,19 @@ public class LottoService {
         lottos.forEach(lotto -> {
             int count = lotto.countMatchingNumbers(winningNumbers);
             Rank rank = Rank.getRank(count, lotto.containsBonusNumber(bonusNumber));
-            results.put(rank, results.getOrDefault(rank, 0) + 1);
+            results.put(rank, results.getOrDefault(rank, ZERO_VALUE.getValue()) + ONE_VALUE.getValue());
         });
     }
 
     public long calculateWinningAmount() {
         return results.entrySet().stream()
-                .filter(entry -> entry.getValue() > 0)
+                .filter(entry -> entry.getValue() > ZERO_VALUE.getValue())
                 .mapToLong(entry -> (long) entry.getKey().getWinningAmount() * entry.getValue())
                 .sum();
     }
 
     public double calculateProfitRate(long winningAmount, int purchaseAmount) {
-        double profitRate = (double) winningAmount / purchaseAmount * 100.0;
-        return Math.round(profitRate * 100.0) / 100.0;
+        return (double) winningAmount / purchaseAmount * ONE_HUNDRED_VALUE.getValue();
     }
 
     public List<Lotto> getLottos() {
