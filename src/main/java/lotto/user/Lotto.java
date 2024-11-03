@@ -24,4 +24,8 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
             }
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

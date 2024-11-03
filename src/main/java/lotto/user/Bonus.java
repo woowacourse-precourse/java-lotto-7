@@ -17,4 +17,8 @@ public class Bonus { // 사용자 입력 보너스 검증 후 객체 생성
                     LottoNumber.LOTTO_NUMBER_LOWER_BOUND, LottoNumber.LOTTO_NUMBER_UPPER_BOUND));
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

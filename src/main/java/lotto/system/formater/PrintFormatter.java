@@ -1,6 +1,8 @@
 package lotto.system.formater;
 
+import java.util.List;
 import lotto.system.lottoGetter.LottoTicketIssuer;
+import lotto.system.unit.LottoTicket;
 import lotto.system.utils.Parser;
 import lotto.user.Bonus;
 import lotto.user.Lotto;
@@ -18,18 +20,19 @@ public class PrintFormatter {
         return new LottoTicketIssuer(InputView.inputPurchaseAmount());
     }
 
-    public static void formatLottoTickets(LottoTicketIssuer ticketIssuer) {
-        ticketIssuer.issueLottoTickets().forEach(System.out::println);
+    public static void formatLottoTickets(List<LottoTicket> lottoTickets) {
+        lottoTickets
+                .forEach(System.out::println);
     }
 
-    public static void formatWinningNumbers() {
+    public static Lotto formatWinningNumbers() {
         OutView.printMessage(WINNING_NUMBER_MESSAGE);
-        new Lotto(Parser.parseWithDelimiter(InputView.inputWinningNumbers()));
+        return new Lotto(Parser.parseWithDelimiter(InputView.inputWinningNumbers()));
     }
 
-    public static void formatBonusNumber() {
+    public static Bonus formatBonusNumber() {
         OutView.printMessage(BONUS_NUMBER_MESSAGE);
-        new Bonus(InputView.inputBonusNumber());
+        return new Bonus(InputView.inputBonusNumber());
     }
 
     public static void formatResult(String result) {

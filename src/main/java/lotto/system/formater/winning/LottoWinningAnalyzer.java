@@ -9,24 +9,32 @@ import lotto.system.unit.LottoNumber;
 
 public class LottoWinningAnalyzer {
 
-    public static Map<PrizeType, Integer> analyzeWinningStatistics(LottoTicket winningTicket, List<LottoTicket> tickets, LottoNumber bonusNumber) {
+    public static Map<PrizeType, Integer> analyzeWinningStatistics(
+            /** 유저가 발행 받은 티켓들 **/ List<LottoTicket> issueTickets,
+            /** 당첨 로또 번호 리스트 **/ List<Integer> winningNumbers,
+            /** 당첨 보너스 번호 **/ int bonusNumber) {
+
         Map<PrizeType, Integer> statistics = new HashMap<>();
 
         for (PrizeType prizeType : PrizeType.values()) {
             statistics.put(prizeType, 0);
         }
 
-        for (LottoTicket ticket : tickets) {
-            PrizeType prizeType = match(winningTicket, ticket, bonusNumber);
+        for (LottoTicket issueTicket : issueTickets) {
+            PrizeType prizeType = match(issueTicket, winningNumbers, bonusNumber);
             statistics.put(prizeType, statistics.get(prizeType) + 1);
         }
 
         return statistics;
     }
 
-    public static PrizeType match(LottoTicket winningTicket, LottoTicket ticket, LottoNumber bonusNumber) {
-        int count = matchLotto(winningTicket, ticket);
-        boolean matchBonus = matchBonus(bonusNumber, ticket);
+    public static PrizeType match(
+            /** 유저가 발행 받은 티켓 한 장 **/ LottoTicket issueTicket,
+            /** 당첨 로또 번호 리스트 **/ List<Integer> winningNumbers,
+            /** 당첨 보너스 번호 **/ int bonusNumber) {
+
+        int count = matchLotto(issueTicket, winningNumbers);
+        boolean matchBonus = matchBonus(issueTicket, bonusNumber);
 
         if (matchBonus && count == 5) {
             return PrizeType.getTypeByCode(6);
@@ -39,10 +47,10 @@ public class LottoWinningAnalyzer {
         }
     }
 
-    public static int matchLotto(LottoTicket winningTicket, LottoTicket ticket) {
+    public static int matchLotto(LottoTicket issueTicket, List<Integer> winningNumbers) {
         int count = 0;
-        for (LottoNumber number : ticket.getTicket()) {
-            if (winningTicket.getTicket().contains(number)) {
+        for (LottoNumber number : issueTicket.getTicket()) {
+            if (winningNumbers.contains(number)) {
                 count++;
             }
         }
@@ -50,7 +58,7 @@ public class LottoWinningAnalyzer {
         return count;
     }
 
-    public static boolean matchBonus(LottoNumber bonusNumber, LottoTicket ticket) {
-        return ticket.getTicket().contains(bonusNumber);
+    public static boolean matchBonus(LottoTicket issueTicket, int bonusNumber) {
+        return issueTicket.getTicket().contains(bonusNumber);
     }
 }
