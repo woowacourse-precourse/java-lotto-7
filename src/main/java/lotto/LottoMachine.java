@@ -1,11 +1,12 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LottoMachine {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
+
 
     public void playMachine() {
         Purchase purchase = makePurchase();
@@ -35,7 +36,7 @@ public class LottoMachine {
     }
 
     private void showLottos(Lottos lottos) {
-
+        outputView.updateLottos(lottos.showAllNumbersOfLottos());
     }
 
     private WinningNumbers makeWinningNumbers() {
