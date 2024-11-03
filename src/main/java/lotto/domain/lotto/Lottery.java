@@ -8,6 +8,7 @@ import lotto.exception.lotto.InvalidLottoNumberException;
 public class Lottery {
 
     private static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
+    private static final int SCALE = 1;
 
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
@@ -26,8 +27,9 @@ public class Lottery {
     public BigDecimal calculateProfitRate() {
         BigDecimal profit = lottoResult.calculateProfit();
         BigDecimal purchaseAmount = LOTTO_UNIT_PRICE.multiply(BigDecimal.valueOf(drawnLottos.size()));
-        return profit.divide(purchaseAmount, 1, BigDecimal.ROUND_HALF_UP)
-                .multiply(BigDecimal.valueOf(100));
+        return profit.divide(purchaseAmount)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(SCALE, BigDecimal.ROUND_HALF_UP);
     }
 
     private void validateBonusNumber(final Lotto lotto, final LottoNumber bonusNumber) {

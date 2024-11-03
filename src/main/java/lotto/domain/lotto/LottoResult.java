@@ -23,7 +23,7 @@ public class LottoResult {
         return profit;
     }
 
-    void add(LottoRank lottoRank) {
+    public void add(LottoRank lottoRank) {
         result.put(lottoRank, result.get(lottoRank).add(BigDecimal.ONE));
     }
 
