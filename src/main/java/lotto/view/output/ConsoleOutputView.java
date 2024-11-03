@@ -19,17 +19,20 @@ public class ConsoleOutputView implements OutputView {
 
     private final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
 
+    @Override
     public void printPurchasedLottos(PurchaseLottoResponse response) {
         System.out.printf(PURCHASE_MESSAGE, response.getPurchasedAmount());
         response.getLottoNumberResponses().forEach(this::printLotto);
     }
 
+    @Override
     public void printScores(LottoScoreResponses response) {
         System.out.printf(MATCH_RESULT_HEADER);
         System.out.printf(MATCH_RESULT_DIVIDER);
         response.getLottoScoreResponses().forEach(this::printScore);
     }
 
+    @Override
     public void printProfitRate(LottoProfitResponse response) {
         System.out.printf(PROFIT_RATE_MESSAGE, response.getProfitRate());
     }
