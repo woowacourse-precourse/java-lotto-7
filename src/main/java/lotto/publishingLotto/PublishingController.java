@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.publishingLotto;
 
 public class PublishingController {
 

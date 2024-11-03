@@ -1,4 +1,4 @@
-package lotto.purchasing;
+package lotto.purchasingLotto;
 
 public class PaymentValidator {
 

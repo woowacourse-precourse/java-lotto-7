@@ -1,6 +1,6 @@
-package lotto.purchasing.view;
+package lotto.view;
 
-public class OutputView {
+public class OutputPurchasingView {
 
     public void printPurchasing(int numberOfTicket) {
         System.out.println();

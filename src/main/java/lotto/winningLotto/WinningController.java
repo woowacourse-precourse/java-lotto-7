@@ -1,6 +1,6 @@
-package lotto.controller;
+package lotto.winningLotto;
 
-import lotto.purchasing.view.InputPaymentView;
+import lotto.view.InputPaymentView;
 
 public class WinningController {
     private InputPaymentView inputPaymentView;
@@ -10,7 +10,6 @@ public class WinningController {
     }
 
     public void create() {
-        this.inputPaymentView = InputPaymentView.getInputView();
 
     }
 }

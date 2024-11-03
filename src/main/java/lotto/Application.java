@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.model.Lotto;
+import lotto.publishingLotto.model.Lotto;
 
 public class Application {
     public static void main(String[] args) {
