@@ -20,8 +20,8 @@ public class LottoConstants {
     public static final int FOURTH_RANK = 4;
     public static final int FIFTH_RANK = 5;
     public static final int FIRST_RANK_MATCH_COUNT = 6;
-    public static final Integer SECOND_RANK_MATCH_COUNT = new Integer(5);
-    public static final Integer THIRD_RANK_MATCH_COUNT = 5;
+    public static final int SECOND_RANK_MATCH_COUNT = 5;
+    public static final int THIRD_RANK_MATCH_COUNT = 5;
     public static final int FOURTH_RANK_MATCH_COUNT = 4;
     public static final int FIFTH_RANK_MATCH_COUNT = 3;
     public static final int FIRST_RANK_PRIZE_AMOUNT = 2000000000;
@@ -56,7 +56,7 @@ public class LottoConstants {
 
     // NumbersValidator 클래스
     public static final String ERROR_MESSAGE_BEGINNING = "[ERROR]";
-    public static final String DELIMITER = ",";
+    public static final String INPUT_DELIMITER = ",";
     public static final String NUMBERS = "로또 번호";
     public static final String WINNING = "당첨";
     public static final String BONUS = "보너스";
@@ -80,6 +80,7 @@ public class LottoConstants {
     public static final String TICKET_END_TEXT = "]";
     public static final String WINNING_RESULT_TEXT = "당첨 통계";
     public static final String DIVIDING_LINE = "---";
+    public static final String JOIN_DELIMITER = ", ";
     public static final String DESCRIPTION = "%d개 일치 (%s원) - %d개";
     public static final String SECOND_RANK_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     public static final String EARNING_RATE_TEXT = "총 수익률은 %s%%입니다.";

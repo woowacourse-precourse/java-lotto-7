@@ -43,7 +43,7 @@ public class OutputView {
     private static void printTicket(List<Integer> ticket) {
         String numbers = ticket.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(DELIMITER));
+                .collect(Collectors.joining(JOIN_DELIMITER));
         print(TICKET_START_TEXT + numbers + TICKET_END_TEXT);
     }
 
@@ -56,10 +56,10 @@ public class OutputView {
             int matchCount = MATCH_COUNT_BY_RANK.get(rank);
             String formattedPrizeAmount = formatPrizeAmount(rank);
 
-            if (matchCount == SECOND_RANK_MATCH_COUNT) {
+            if (rank == SECOND_RANK) {
                 print(String.format(SECOND_RANK_DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
             }
-            if (matchCount != SECOND_RANK_MATCH_COUNT) {
+            if (rank != SECOND_RANK) {
                 print(String.format(DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
             }
         });
