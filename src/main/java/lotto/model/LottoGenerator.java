@@ -1,6 +1,5 @@
-package lotto;
+package lotto.model;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -16,8 +15,8 @@ public class LottoGenerator {
     private final int price;
     private final List<Lotto> lottoList;
 
-    public LottoGenerator(String price) {
-        this.price = Integer.parseInt(price);
+    public LottoGenerator(int price) {
+        this.price = price;
         lottoList = new ArrayList<>();
 
         generateLottoList();
