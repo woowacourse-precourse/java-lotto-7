@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.lotto.Bonus;
-import lotto.domain.lotto.Lotto;
+import lotto.Lotto;
 
 import java.util.List;
 
@@ -23,5 +23,9 @@ public class LottoService {
     // 4. 로또 보너스 번호를 입력하는 기능
     public void updateBonusNumber(int number) {
         bonus.updateNumber(number);
+    }
+
+    public Lotto getLotto() {
+        return lotto;
     }
 }

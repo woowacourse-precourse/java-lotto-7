@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.lotto.Bonus;
-import lotto.domain.lotto.Lotto;
+import lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
 import lotto.domain.player.PlayerResult;
@@ -156,5 +156,9 @@ public class PlayerService {
 
     public float calculateProfitRate(int price, long profit) {
         return ((float) profit / price) * 100;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

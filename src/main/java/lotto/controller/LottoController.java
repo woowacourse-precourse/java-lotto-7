@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.lotto.Bonus;
-import lotto.domain.lotto.Lotto;
+import lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
 import lotto.service.LottoService;
@@ -19,18 +19,16 @@ public class LottoController {
     private final LottoService lottoService;
     private final PlayerService playerService;
 
-    private final Lotto lotto;
-    private final Player player;
-    private final Bonus bonus;
-
-    public LottoController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.lotto = new Lotto();
-        this.player = new Player();
-        this.bonus = new Bonus();
-        this.lottoService = new LottoService(lotto, bonus);
-        this.playerService = new PlayerService(player, lotto, bonus);
+    public LottoController(
+            InputView inputView,
+            OutputView outputView,
+            LottoService lottoService,
+            PlayerService playerService
+    ) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoService = lottoService;
+        this.playerService = playerService;
     }
 
     public void run() {
@@ -46,8 +44,8 @@ public class LottoController {
         int purchasePrice = inputView.readPriceInput();
         int lottoCount = playerService.updateLottoCount(purchasePrice);
         playerService.addLottos(lottoCount);
-        outputView.printLottoCountOutputMessage(player);
-        outputView.printLottoNumbers(player);
+        outputView.printLottoCountOutputMessage(playerService.getPlayer());
+        outputView.printLottoNumbers(playerService.getPlayer());
     }
 
     private void receiveWinningNumbers() {
@@ -58,20 +56,21 @@ public class LottoController {
 
     private void receiveBonusNumber() {
         outputView.printBonusNumberInputMessage();
-        int bonusNumber = inputView.readBonusNumberInput(lotto.getNumbers());
+        int bonusNumber = inputView.readBonusNumberInput(lottoService.getLotto().getNumbers());
         lottoService.updateBonusNumber(bonusNumber);
     }
 
     private void startLottoGame() {
-        List<PlayerLotto> playerLottos = player.getLottos();
+        List<PlayerLotto> playerLottos = playerService.getPlayer().getLottos();
         for (PlayerLotto playerLotto : playerLottos) {
             playerService.calculateWinningCount(playerLotto);
         }
-        playerService.updatePlayerResult(player);
+        playerService.updatePlayerResult(playerService.getPlayer());
     }
 
     private void getLottoResult() {
         outputView.printResultMessage();
-        outputView.printLottoResult(player);
+        outputView.printLottoResult(playerService.getPlayer());
     }
+
 }
