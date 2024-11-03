@@ -17,7 +17,7 @@ public class LottoMoney {
 
     private void validate(int money) {
         if (isThousandUnit(money)) {
-            throw new IllegalArgumentException("[ERROR] 돈은 1000 단위어야 합니다");
+            throw new IllegalArgumentException("돈은 1000 단위어야 합니다");
         }
     }
 

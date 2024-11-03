@@ -32,7 +32,7 @@ public class UserMoney {
 
     private void validatePositive(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("[ERROR] Number must be a positive number");
+            throw new IllegalArgumentException("Number must be a positive number");
         }
     }
 

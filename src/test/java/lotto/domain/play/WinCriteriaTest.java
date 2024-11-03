@@ -16,15 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinCriteriaTest {
-    @DisplayName("당첨번호와 보너스 번호에 중복이 있으면 [ERROR] 로 시작하는 IllegalArgumentException을 반환")
+    @DisplayName("당첨번호와 보너스 번호에 중복이 있으면 IllegalArgumentException을 반환")
     @Test
     void testThrowIllegalArgumentExceptionWhenDuplicate() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber duplicate = LottoNumber.of(1);
 
         assertThatThrownBy(() -> new WinCriteria(lotto, duplicate))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨번호와 보너스 번호에 맞는 PrizeEnum을 반환")

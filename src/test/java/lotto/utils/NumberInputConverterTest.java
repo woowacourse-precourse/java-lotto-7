@@ -7,17 +7,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class NumberInputConverterTest {
-    @DisplayName("숫자가 아니면 [ERROR]로 시작하는 illegalArgumentException 반환")
+    @DisplayName("문자가 없으면 illegalArgumentException 반환")
     @ParameterizedTest
     @CsvSource({"''", "' '", "','"})
     void testToIntThrowIllegalArgumentExceptionWhenInvalidString(String invalidInput) {
         NumberInputConverter numberInputConverter = NumberInputConverter.getInstance();
         assertThatThrownBy(() -> numberInputConverter.toInt(invalidInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] ");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("숫자가 아니면 [ERROR]로 시작하는 illegalArgumentException 반환")
+    @DisplayName("숫자로만 구성된 문자가 아니면 illegalArgumentException 반환")
     @ParameterizedTest
     @CsvSource({
             "',2'",
@@ -29,7 +28,6 @@ class NumberInputConverterTest {
     void testToListThrowIllegalArgumentExceptionWhenInvalidString(String invalidInput) {
         NumberInputConverter numberInputConverter = NumberInputConverter.getInstance();
         assertThatThrownBy(() -> numberInputConverter.toList(invalidInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] ");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

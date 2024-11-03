@@ -18,10 +18,10 @@ public class NumberInputConverter {
 
     private void validate(String input) {
         if (input.isEmpty() || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] has empty input");
+            throw new IllegalArgumentException("has empty input");
         }
         if (!input.matches(REGEX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] " + input + " is not a valid number");
+            throw new IllegalArgumentException(input + " is not a valid number");
         }
     }
 

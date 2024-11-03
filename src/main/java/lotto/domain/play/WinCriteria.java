@@ -16,7 +16,7 @@ public class WinCriteria {
 
     private void validateNoDuplicateBetween(Lotto lotto, LottoNumber bonusNumber) {
         if (lotto.has(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 중복이 없어야 합니다.");
         }
     }
 

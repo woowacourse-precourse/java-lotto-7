@@ -13,13 +13,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoNumberTest {
 
-    @DisplayName("1~45범위가 아닌 수로 생성 시 [ERROR]로 시작하는 IllegalArgumentException을 반환하는지 확인")
+    @DisplayName("1~45범위가 아닌 수로 생성 시 IllegalArgumentException을 반환하는지 확인")
     @ParameterizedTest
     @MethodSource("generateInvalidRange")
     void testThrowIllegalArgumentException(int numberValue) {
         assertThatThrownBy(() -> LottoNumber.of(numberValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR] ");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> generateInvalidRange() {

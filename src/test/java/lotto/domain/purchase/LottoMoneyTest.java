@@ -14,12 +14,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoMoneyTest {
     @ParameterizedTest
-    @DisplayName("1000으로 나누어떨어지지 않으면 [Error]로 시작하는 IllegalArgumentException을 반환하는지 확인")
+    @DisplayName("1000으로 나누어떨어지지 않으면 IllegalArgumentException을 반환하는지 확인")
     @MethodSource("generateInvalidMoneyValue")
     void testThrowIllegalArgumentException(int moneyValue) {
         assertThatThrownBy(() -> LottoMoney.of(moneyValue))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream<Arguments> generateInvalidMoneyValue() {
