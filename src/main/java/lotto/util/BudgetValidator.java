@@ -5,12 +5,12 @@ public class BudgetValidator {
     }
 
     public static void validateInputBudget(String inputBudget) {
-        validateBudgetEmpty(inputBudget);
+        validateNotEmpty(inputBudget);
         validateNumberFormat(inputBudget);
         validateIntegerFormat(inputBudget);
     }
 
-    private static void validateBudgetEmpty(String inputBudget) {
+    private static void validateNotEmpty(String inputBudget) {
         if (inputBudget == null || inputBudget.isEmpty()) {
             throw new IllegalArgumentException("사용자의 입력이 비었습니다.");
         }
