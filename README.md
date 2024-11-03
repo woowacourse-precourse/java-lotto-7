@@ -55,6 +55,7 @@
 - [x] 구분자가 쉼표(,)가 아닌 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 쉼표(,)가 2개 이상 연속적으로 입력된 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 쉼표(,)로 구분된 수가 공백인 경우, ``IllegalArgumentException``을 발생시킨다.
+- [ ] 숫자 자리에 공백을 포함한 문자가 포함된 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 6개의 숫자를 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 쉼표(,)로 구분된 수가 0으로 시작하는 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 중복된 숫자가 있을 경우, ``IllegalArgumentException``을 발생시킨다.
