@@ -27,4 +27,8 @@ public class Investment {
             throw new IllegalArgumentException("금액은 1000으로 나누어 떨어져야 합니다.");
         }
     }
+
+    public BigInteger getAmount() {
+        return initialInvestment;
+    }
 }
