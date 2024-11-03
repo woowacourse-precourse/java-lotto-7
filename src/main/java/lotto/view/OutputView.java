@@ -78,7 +78,7 @@ public class OutputView {
     }
 
     private static void printDefaultRewardStatistic(int matchNumberCount, String prize, int count) {
-        System.out.println(matchNumberCount + "개 일치, 보너스 볼 일치 (" +
+        System.out.println(matchNumberCount + "개 일치 (" +
                 prize + "원) - " +
                 count + "개");
     }
