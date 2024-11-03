@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.LottoManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class LottoTest {
 
     @Test
     void 로또의_크기에_맞게_로또를_만들어야_한다() {
-        Lotto lotto = Lotto.makeRandomLotto();
+        Lotto lotto = Lotto.makeRandomLottoList(1).getFirst();
         int expected = 6;
         Assertions.assertEquals(expected,lotto.getNumbers().size());
     }
@@ -52,7 +53,7 @@ class LottoTest {
         List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    Lotto lotto = Lotto.makeRandomLotto();
+                    Lotto lotto = Lotto.makeRandomLottoList(1).getFirst();
                     Assertions.assertEquals(
                             expected,
                             lotto.getNumbers()
@@ -60,5 +61,37 @@ class LottoTest {
                 },
                 expected
         );
+    }
+
+    @Test
+    void 시도에_맞춰서_랜덤_로또를_알맞은_개수를_뽑아야_한다() {
+        List<Lotto> lottoList = Lotto.makeRandomLottoList(4);
+
+        long expected = 4;
+
+        Assertions.assertEquals(expected,lottoList.size());
+    }
+
+    @Test
+    void 랜덤_로또를_알맞게_뽑아야_한다() {
+        List<Lotto> expected = getRandomList().stream()
+                .map(Lotto::new)
+                .toList();
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> Assertions.assertEquals(expected,Lotto.makeRandomLottoList(4)),
+                getRandomList().get(0),
+                getRandomList().get(1),
+                getRandomList().get(2),
+                getRandomList().get(3)
+        );
+    }
+
+    private List<List<Integer>> getRandomList() {
+        return List.of(
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42));
     }
 }

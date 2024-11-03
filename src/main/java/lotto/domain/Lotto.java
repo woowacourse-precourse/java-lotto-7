@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Constant;
 import lotto.validation.LottoValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -46,11 +47,19 @@ public class Lotto {
         return bitmask;
     }
 
-    public static Lotto makeRandomLotto() {
+    private static Lotto makeRandomLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(
                 Constant.MINIMUM_LOTTO_NUMBER,
                 Constant.MAXIMUM_LOTTO_NUMBER,
                 Constant.LOTTO_SIZE));
+    }
+
+    public static List<Lotto> makeRandomLottoList(Integer amount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            lottoList.add(Lotto.makeRandomLotto());
+        }
+        return lottoList;
     }
 
     //getter

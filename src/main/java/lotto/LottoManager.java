@@ -12,19 +12,11 @@ public class LottoManager {
     private final BonusLotto bonusLotto;
     private final List<Lotto> randomLottoList;
 
-    public LottoManager(Attempt attempt, Lotto lotto, BonusLotto bonusLotto) {
+    public LottoManager(Attempt attempt, Lotto lotto, BonusLotto bonusLotto,List<Lotto> randomLottoList) {
         this.attempt = attempt;
         this.lotto = lotto;
         this.bonusLotto = bonusLotto;
-        this.randomLottoList = makeRandomLottoList(attempt.getLottoAmount());
-    }
-
-    private List<Lotto> makeRandomLottoList(Integer amount) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            lottoList.add(Lotto.makeRandomLotto());
-        }
-        return lottoList;
+        this.randomLottoList = randomLottoList;
     }
 
     public Map<LottoPrize, Integer> doLotto() {
