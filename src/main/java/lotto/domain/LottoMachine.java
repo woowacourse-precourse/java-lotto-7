@@ -34,6 +34,10 @@ public class LottoMachine {
         }
     }
 
+    public void createWinningNumbers(List<Integer> numbers, int bonusNumber) {
+        WinningNumbers winningNumbers = WinningNumbers.getInstance(numbers, bonusNumber);
+    }
+
     public List<Integer> makeNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Set<Integer> safeNumbers = new HashSet<>(numbers);
@@ -53,4 +57,5 @@ public class LottoMachine {
     public void printAllLottoNumbers() {
         lottos.forEach(lotto -> System.out.println(lotto.toString()));
     }
+
 }

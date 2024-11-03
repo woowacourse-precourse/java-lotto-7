@@ -23,7 +23,11 @@ public class Lotto {
     public static boolean hasDuplicates(List<Integer> list) {
         return list.stream().distinct().count() < list.size();
     }
-        
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public String toString() {
         return numbers.toString();
     }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.view.InputView;
@@ -8,6 +9,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final LottoService lottoService = new LottoService();
 
     public void purchaseLotto() {
         PurchaseService purchaseService = new PurchaseService();
@@ -19,8 +21,15 @@ public class LottoController {
     }
 
     public void makeLotto(int lottoCount) {
-        LottoService lottoService = new LottoService();
         lottoService.makeLotto(lottoCount);
+
         lottoService.printLottoNumbers();
+        countWonLotto();
+    }
+
+    public void countWonLotto() {
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
+        int bonusNumber = inputView.getBonusNumber();
+        lottoService.makeWinningLotto(winningNumbers, bonusNumber);
     }
 }
