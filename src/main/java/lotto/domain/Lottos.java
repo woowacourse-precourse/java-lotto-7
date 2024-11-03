@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public final class Lottos {
+    public static final int FIRST_PRIZE_AMOUNT = 2000000000;
+    public static final int SECOND_PRIZE_AMOUNT = 30000000;
+    public static final int THIRD_PRIZE_AMOUNT = 1500000;
+    public static final int FOURTH_PRIZE_AMOUNT = 50000;
+    public static final int FIFTH_PRIZE_AMOUNT = 5000;
+
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -60,11 +66,11 @@ public final class Lottos {
 
     public int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
         int totalPrize = 0;
-        totalPrize += lottoResult.get("1등") * 2000000000;
-        totalPrize += lottoResult.get("2등") * 30000000;
-        totalPrize += lottoResult.get("3등") * 1500000;
-        totalPrize += lottoResult.get("4등") * 50000;
-        totalPrize += lottoResult.get("5등") * 5000;
+        totalPrize += lottoResult.get("1등") * FIRST_PRIZE_AMOUNT;
+        totalPrize += lottoResult.get("2등") * SECOND_PRIZE_AMOUNT;
+        totalPrize += lottoResult.get("3등") * THIRD_PRIZE_AMOUNT;
+        totalPrize += lottoResult.get("4등") * FOURTH_PRIZE_AMOUNT;
+        totalPrize += lottoResult.get("5등") * FIFTH_PRIZE_AMOUNT;
 
         return totalPrize;
     }

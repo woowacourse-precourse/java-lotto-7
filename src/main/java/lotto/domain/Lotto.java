@@ -2,11 +2,12 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
+import lotto.message.ExceptionMessage;
 
 public class Lotto {
+    public static final int LOTTO_NUMBER_COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +23,7 @@ public class Lotto {
     public static Lottos buyAsMoney(int money) {
         List<Lotto> boughtLottos = new ArrayList<>();
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[Error] 구매금액은 1,000원단위로 입력주세요");
+            throw new IllegalArgumentException(ExceptionMessage.AMOUNT_NOT_IN_THOUSANDS.getMessage());
         }
         for (int i = 0; i < money / 1000; i++) {
             boughtLottos.add(createLotto());
@@ -51,14 +52,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER.getMessage());
         }
     }
 }
