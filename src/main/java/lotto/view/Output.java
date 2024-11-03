@@ -1,10 +1,13 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Lotto;
+import lotto.domain.WinningKind;
 
 import java.util.List;
 import java.util.Map;
 
-import static lotto.Util.cashFormat;
-import static lotto.WinningKind.MATCH_5_BONUS;
+import static lotto.util.Util.cashFormat;
+import static lotto.domain.WinningKind.MATCH_5_BONUS;
 
 public class Output {
 

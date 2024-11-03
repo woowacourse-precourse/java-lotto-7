@@ -1,7 +1,7 @@
-package lotto;
+package lotto.view;
 
-import static lotto.LottoGenerator.*;
-import static lotto.Util.cashFormat;
+import static lotto.domain.LottoGenerator.*;
+import static lotto.util.Util.cashFormat;
 
 public enum Error {
 

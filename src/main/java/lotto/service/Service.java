@@ -1,6 +1,14 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningKind;
+import lotto.view.Error;
+import lotto.util.Util;
+import lotto.view.InputGuide;
+import lotto.view.Output;
+import lotto.domain.Host;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 
 import java.util.List;
 import java.util.Map;

@@ -1,11 +1,13 @@
-package lotto;
+package lotto.domain;
+
+import lotto.view.Error;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoGenerator.MIN_NUMBER;
-import static lotto.LottoGenerator.MAX_NUMBER;
+import static lotto.domain.LottoGenerator.MIN_NUMBER;
+import static lotto.domain.LottoGenerator.MAX_NUMBER;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -32,13 +34,13 @@ public class Lotto {
 
     private void countValidation(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(Error.LOTTO_NUMBER_COUNT.message());
+            throw new IllegalArgumentException(lotto.view.Error.LOTTO_NUMBER_COUNT.message());
         }
     }
 
     private void rangeValidation(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(Error.LOTTO_NUMBER_RANGE.message());
+            throw new IllegalArgumentException(lotto.view.Error.LOTTO_NUMBER_RANGE.message());
         }
     }
 

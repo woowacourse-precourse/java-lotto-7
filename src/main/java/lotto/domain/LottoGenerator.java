@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.Error;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class LottoGenerator {
 
     private static void validate(int account) {
         if (account < PRICE || account > LIMIT_PRICE) {
-            throw new IllegalArgumentException(Error.AMOUNT_RANGE_ERROR.message());
+            throw new IllegalArgumentException(lotto.view.Error.AMOUNT_RANGE_ERROR.message());
         }
 
         if (account % PRICE != 0) {

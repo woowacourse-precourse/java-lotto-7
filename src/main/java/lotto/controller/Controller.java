@@ -1,4 +1,6 @@
-package lotto;
+package lotto.controller;
+
+import lotto.service.Service;
 
 public class Controller {
 

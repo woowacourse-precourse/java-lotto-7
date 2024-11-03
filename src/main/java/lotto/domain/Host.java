@@ -1,11 +1,13 @@
-package lotto;
+package lotto.domain;
+
+import lotto.view.Error;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoGenerator.MIN_NUMBER;
-import static lotto.LottoGenerator.MAX_NUMBER;
+import static lotto.domain.LottoGenerator.MIN_NUMBER;
+import static lotto.domain.LottoGenerator.MAX_NUMBER;
 
 public class Host {
 
@@ -51,7 +53,7 @@ public class Host {
 
     private void BonusValidate(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException(Error.BONUS_NUMBER_INVALID_RANGE.message());
+            throw new IllegalArgumentException(lotto.view.Error.BONUS_NUMBER_INVALID_RANGE.message());
         }
         if (selectedNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATED.message());

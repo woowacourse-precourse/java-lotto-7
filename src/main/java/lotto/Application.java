@@ -1,9 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.*;
-import static lotto.InputGuide.*;
+import lotto.controller.Controller;
 
 public class Application {
     public static void main(String[] args) {

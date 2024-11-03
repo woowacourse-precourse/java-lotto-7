@@ -1,6 +1,6 @@
-package lotto;
+package lotto.util;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.view.Error;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

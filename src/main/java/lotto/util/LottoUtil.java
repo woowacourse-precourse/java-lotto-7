@@ -1,7 +1,10 @@
-package lotto;
+package lotto.util;
+
+import lotto.domain.Host;
+import lotto.domain.Lotto;
+import lotto.domain.WinningKind;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LottoUtil {
