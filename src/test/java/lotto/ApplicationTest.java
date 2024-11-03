@@ -70,6 +70,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_당첨번호와_보너스번호가_중복되면_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
