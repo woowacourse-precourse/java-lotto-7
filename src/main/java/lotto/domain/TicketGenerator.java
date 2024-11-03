@@ -1,20 +1,14 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
+import lotto.common.LottoConstants;
+import lotto.util.RandomNumberUtil;
 
 public class TicketGenerator {
 
-    private static final int TICKET_PRICE = 1000;
-    private final int ticketCount;
-
-    public TicketGenerator(int purchaseAmount) {
-        this.ticketCount = purchaseAmount/TICKET_PRICE;
-    }
-
-    public List<Lotto> generateTickets() {
+    public List<Lotto> generateTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             tickets.add(new Lotto(generateLottoNumbers()));
@@ -24,8 +18,8 @@ public class TicketGenerator {
 
     private List<Integer> generateLottoNumbers() {
         TreeSet<Integer> uniqueNumbers = new TreeSet<>();
-        while (uniqueNumbers.size() < 6) {
-            uniqueNumbers.add(Randoms.pickNumberInRange(1, 45));
+        while (uniqueNumbers.size() < LottoConstants.LOTTO_NUMBER_COUNT) {
+            uniqueNumbers.add(RandomNumberUtil.generateLottoNumber());
         }
         return new ArrayList<>(uniqueNumbers);
     }
