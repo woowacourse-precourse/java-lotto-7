@@ -9,7 +9,7 @@ public class OutputView {
 
     public void outputPurchaseLottoAmount(List<Lotto> lottos) {
         ViewMessage.OUTPUT_PURCHASE_LOTTO_AMOUNT.print(lottos.size());
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        lottos.forEach(lotto -> System.out.println(lotto.getAscNumber()));
     }
 
     public void outputWinningStatistics(Map<Rank, Long> rankResult) {
