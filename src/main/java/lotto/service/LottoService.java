@@ -59,14 +59,19 @@ public class LottoService {
     }
 
     private void calculateWinningCount(WinningCount winningCount, int matchCount, boolean isBonusMatch) {
-        if (matchCount < 3) {
+        if (matchCount < Constant.MIN_PRIZE_COUNT) {
             return;
         }
-        String key = Constant.PRIZE_NAME_PREFIX + matchCount;
+        String prizeName = getPrizeName(matchCount, isBonusMatch);
+        winningCount.increaseCount(Prize.valueOf(prizeName));
+    }
+
+    private String getPrizeName(int matchCount, boolean isBonusMatch) {
+        String prizeName = Constant.PRIZE_NAME_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            key += Constant.PRIZE_BONUS_MATCH_NAME_SUFFIX;
+            prizeName += Constant.PRIZE_BONUS_MATCH_NAME_SUFFIX;
         }
-        winningCount.increaseCount(Prize.valueOf(key));
+        return prizeName;
     }
 
     private int getTotalProfit(Map<Prize, Integer> winningCount) {

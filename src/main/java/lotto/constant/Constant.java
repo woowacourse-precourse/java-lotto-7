@@ -15,4 +15,5 @@ public class Constant {
     public static final int SIX_MATCHES_PROFIT = 2000000000;
     public static final String PRIZE_NAME_PREFIX = "MATCHES_";
     public static final String PRIZE_BONUS_MATCH_NAME_SUFFIX = "_BONUS_MATCH";
+    public static final int MIN_PRIZE_COUNT = 3;
 }
