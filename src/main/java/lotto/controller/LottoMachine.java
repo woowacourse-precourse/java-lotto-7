@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.utils.Parser;
@@ -18,6 +20,22 @@ public class LottoMachine {
     public void lottery() {
         PurchaseAmount purchaseAmount = initializePurchaseAmount();
         Lottos purchasedLottos = purchaseLottos(purchaseAmount);
+        Lotto winNumbers = initializeLottoWinNumbers();
+    }
+
+    private Lotto initializeLottoWinNumbers() {
+        final String WIN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+
+        while (true) {
+            try {
+                String rawWinNumbers = inputView.readLine(WIN_NUMBERS_MESSAGE);
+                List<Integer> winNumbers = Parser.splitNumbers(rawWinNumbers);
+
+                return new Lotto(winNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lottos purchaseLottos(PurchaseAmount purchaseAmount) {
