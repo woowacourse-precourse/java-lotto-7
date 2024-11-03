@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstant.LOTTO_PER_PRICE;
+
 import lotto.validation.PurchasePriceValidator;
 
 public class PurchasePrice {
-
-    private static final int LOTTO_PER_PRICE = 1000;
 
     private final int amount;
 

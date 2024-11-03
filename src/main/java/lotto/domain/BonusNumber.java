@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.constants.ErrorMessage.CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER;
 import static lotto.constants.ErrorMessage.INPUT_LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.constants.LottoConstant.END_NUMBER;
+import static lotto.constants.LottoConstant.START_NUMBER;
 
 public class BonusNumber {
 
@@ -18,7 +20,7 @@ public class BonusNumber {
     }
 
     private void checkNumberRange(int number){
-        if(number < 1 || number > 45){
+        if(number < START_NUMBER || number > END_NUMBER){
             throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstant.PROFIT_RATE;
+
 public class LottoProfitRate {
 
     private double lottoProfitRate;
@@ -17,7 +19,7 @@ public class LottoProfitRate {
     }
 
     private static double getLottoProfit(PurchasePrice purchasePrice){
-        return getLottoProfitSum()/ purchasePrice.getAmount() * 100;
+        return getLottoProfitSum()/ purchasePrice.getAmount() * PROFIT_RATE;
     }
 
     public double getLottoProfitRate() {
