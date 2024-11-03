@@ -53,18 +53,27 @@ class LottoServiceTest {
 
         while (!randomNumbers.isEmpty()) {
             int num = randomNumbers.get(0);
-            randomNumbers.remove(num);
+            randomNumbers.remove(0);
             assertThat(randomNumbers).doesNotContain(num);
         }
     }
 
     @Test
-    @DisplayName("발급한 랜덤한 숫자들의 범위는 1이상 45 이하이다.")
+    @DisplayName("발급한 랜덤한 숫자들의 범위는 1이상 45 이하여야 한다.")
     void t004() {
         List<Integer> randomNumbers = lottoService.generateRandomNumbers();
 
         for (int num : randomNumbers) {
             assertThat(num).isBetween(1, 45);
         }
+    }
+
+    @Test
+    @DisplayName("로또를 생성할 때에 필요한 숫자는 6개이다.")
+    void t005() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
+        assertThatThrownBy(() -> lottoService.create(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

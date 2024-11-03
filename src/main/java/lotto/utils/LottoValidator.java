@@ -4,6 +4,9 @@ import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
 
 import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class LottoValidator {
 
@@ -58,6 +61,15 @@ public class LottoValidator {
     private void purchaseAmountUnitValidate(BigInteger purchaseAmount) {
         if (!purchaseAmount.remainder(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
             throw new IllegalArgumentException(ERROR_MSG_PREFIX + PURCHASE_AMOUNT_UNIT + "원 단위의 입력만 가능합니다.");
+        }
+    }
+
+    public static void numbersDuplicateValidate(List<Integer> numbers) {
+        //FIXME: 이름에 자료형을 쓰지 말 것(Set)
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        if(numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "중복된 값은 불가합니다.");
         }
     }
 }

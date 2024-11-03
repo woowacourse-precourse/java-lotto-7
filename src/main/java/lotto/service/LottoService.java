@@ -1,7 +1,11 @@
 package lotto.service;
 
+import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigInteger;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.repository.LottoRepositoryImpl;
 
 public class LottoService {
@@ -13,11 +17,16 @@ public class LottoService {
     }
 
     public void generateByPurchaseAmount(BigInteger purchaseAmount) {
-        //TODO: 입력한 금액을 1000원으로 나눈 만큼 생성을 호출한다
+        BigInteger count = purchaseAmount.divide(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT));
+
+        for (BigInteger i = BigInteger.ZERO; i.compareTo(count) < 0; i = i.add(BigInteger.ONE)) {
+            create(generateRandomNumbers());
+        }
     }
 
     public void create(List<Integer> numbers) {
-        //TODO: 생성한 로또 객체를 저장한다
+        Lotto lotto = new Lotto(numbers);
+        lottoRepository.save(lotto);
     }
 
     public BigInteger count() {
@@ -25,8 +34,6 @@ public class LottoService {
     }
 
     public List<Integer> generateRandomNumbers() {
-        //TODO: 중복이 없는 6개의 숫자 반환
-
-        return null;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
