@@ -16,10 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if(numbers.stream().distinct().count() != numbers.size()){
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 정렬된 상태로 입력되어야 합니다.");
         }
-        if(numbers.getFirst() < 1 || numbers.getLast() > 45){
+        if (numbers.getFirst() < 1 || numbers.getLast() > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.");
         }
     }
