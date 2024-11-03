@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.InputMismatchException;
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.utils.Utils;
 import lotto.validator.Validators;
 import lotto.view.InputView;
@@ -32,5 +34,10 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Lotto> generateLottos(int price) {
+        List<Lotto> lottos = utils.generateRandomLottoNumbers(price);
+        return utils.sortLottos(lottos);
     }
 }
