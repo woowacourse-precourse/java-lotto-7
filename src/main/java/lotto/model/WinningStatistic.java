@@ -21,4 +21,15 @@ public final class WinningStatistic {
             matchCounts.put(type, matchCounts.get(type) + 1);
         }
     }
+
+    public static String getWinningStatistics() {
+        StringBuilder result = new StringBuilder();
+        for (NumberMatchType type : NumberMatchType.values()) {
+            result.append(type.getMessage())
+                    .append(matchCounts.get(type))
+                    .append("개")
+                    .append(System.lineSeparator());
+        }
+        return result.toString();
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.dto.LottoMatchDTO;
+import lotto.io.Output;
 import lotto.model.Lotto;
 import lotto.model.NumberMatchType;
 import lotto.model.WinningStatistic;
@@ -8,6 +9,7 @@ import lotto.model.WinningStatistic;
 public final class WinningStatisticView {
     public static void winningStatistic(LottoMatchDTO lottoMatchDTO) {
         getWinningStatistic(lottoMatchDTO);
+        Output.printlnMessage(WinningStatistic.getWinningStatistics());
     }
 
     private static void getWinningStatistic(LottoMatchDTO lottoMatchDTO) {
