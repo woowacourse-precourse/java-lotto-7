@@ -1,20 +1,35 @@
 package lotto.domain;
 
 import static lotto.utils.Constant.COMMA;
+import static lotto.utils.Constant.LOTTO_SIZE;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
-    private final List<String> winningNumbers;
+    private final List<Integer> winningNumbers;
 
     public WinningNumbers(String winningNumbers) {
         validateFormat(winningNumbers);
         validateWinningNumbers(winningNumbers);
-        this.winningNumbers = convertToList(winningNumbers);
+        List<Integer> sortedWinningNumbers = convertToListAndSort(winningNumbers);
+        this.winningNumbers = Collections.unmodifiableList(sortedWinningNumbers);
     }
 
-
+    public int countMatchingNumbers(Lotto lotto) {
+        Set<Integer> winningset = new HashSet<>(winningNumbers);
+        int count = 0;
+        for(int i=0;i<LOTTO_SIZE;i++){
+            Integer number = lotto.getElement(i);
+            if(winningset.contains(number)){
+                count++;
+            }
+        }
+        return count;
+    }
 
     private void validateFormat(String winningNumbers) {
         if(winningNumbers == null || winningNumbers.isEmpty()) {
@@ -43,7 +58,10 @@ public class WinningNumbers {
         }
     }
 
-    private List<String> convertToList(String winningNumbers) {
-        return Arrays.asList(winningNumbers.split(COMMA));
+    private List<Integer> convertToListAndSort(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(COMMA))
+                .map(Integer::parseInt)
+                .sorted()
+                .toList();
     }
 }
