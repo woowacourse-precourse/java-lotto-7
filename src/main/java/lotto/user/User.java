@@ -21,5 +21,9 @@ public class User {
             this.lotto = lotto;
             this.winningStatus = winningStatus;
         }
+
+        public WinningStatus getWinningStatus() {
+            return winningStatus;
+        }
     }
 }

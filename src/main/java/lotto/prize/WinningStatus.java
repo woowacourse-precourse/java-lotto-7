@@ -17,4 +17,7 @@ public enum WinningStatus {
         this.winningMoney = winningMoney;
     }
 
+    public int getWinningMoney() {
+        return winningMoney;
+    }
 }
