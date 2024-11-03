@@ -99,4 +99,9 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
         assertThat(ProfitCalculator.calculate(2147483000, matchedCount)).isEqualTo("118.0");
     }
+
+    @Test
+    void 여러_개의_경우_6() {
+        assertThat(ProfitCalculator.calculate(2147483000, matchedCount)).isEqualTo("0.0");
+    }
 }

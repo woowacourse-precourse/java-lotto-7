@@ -16,7 +16,7 @@ public class ProfitCalculator {
         double profit = (revenue / (double)purchaseCost) * 100;
         BigDecimal profitRate = new BigDecimal(profit).setScale(1, RoundingMode.HALF_UP);
 
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         return decimalFormat.format(profitRate);
     }
 }
