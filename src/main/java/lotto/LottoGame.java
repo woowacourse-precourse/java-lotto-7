@@ -8,11 +8,20 @@ import lotto.domain.LottoTicket;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.external.RandomNumbersGenerator;
+import lotto.view.Input;
 
 public class LottoGame {
 
+    private final Input input;
+
+    public LottoGame(Input input) {
+        this.input = input;
+    }
+
     public void run() {
-        
+
+        String rawPurchaseAmount = input.readPurchaseAmount();
+
         int lottoCount = 3;
 
         LottoMachine lottoMachine = new LottoMachine(lottoCount, new RandomNumbersGenerator());
