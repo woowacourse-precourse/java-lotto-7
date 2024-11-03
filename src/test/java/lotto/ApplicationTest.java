@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,9 +9,28 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @DisplayName("inputMoney 단위 테스트")
+    @Test
+    void buyLotto_기능_테스트() {
+        assertThat(Application.buyLotto("7000")).isEqualTo(7);
+    }
+
+    @DisplayName("금액 입력이 1,000원 단위의 값이 아닌 경우")
+    @Test
+    void buyLotto_1000원_단위() {
+        assertThatThrownBy(() -> Application.buyLotto("1001")).isInstanceOf(IllegalArgumentException.class);
+    }
+
+//    @DisplayName("잘못된 값 입력 시 [ERROR] 출력")
+//    @Test
+//    void inputMoney_예외_테스트() {
+//        assertThatThrownBy(IllegalArgumentException.class, () -> )
+//    }
 
     @Test
     void 기능_테스트() {
