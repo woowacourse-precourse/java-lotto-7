@@ -1,5 +1,8 @@
 package lotto.Domain;
 
+import static lotto.Util.Error.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +15,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
