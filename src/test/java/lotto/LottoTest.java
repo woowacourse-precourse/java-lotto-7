@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -44,5 +45,18 @@ class LottoTest {
                     }
                 }
         ));
+    }
+
+    @Test
+    @DisplayName("로또 번호를 오름차순으로 정렬하여 로또 정보를 제공한다")
+    void lottoToStringWithAscendingOrder() {
+        // given
+        List<Integer> inputs = List.of(6, 5, 4, 3, 2, 1);
+
+        // when
+        Lotto lotto = new Lotto(inputs);
+
+        // then
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }
