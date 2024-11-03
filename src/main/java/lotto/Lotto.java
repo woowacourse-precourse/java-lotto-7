@@ -30,5 +30,15 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public Rank match(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumbers.getNumbers()::contains)
+                .count();
+
+        boolean matchBonus = numbers.contains(bonusNumber.getNumber());
+        return Rank.valueOf(matchCount, matchBonus);
+    }
+
     // TODO: 추가 기능 구현
 }
