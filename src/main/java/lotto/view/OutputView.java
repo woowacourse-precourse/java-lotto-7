@@ -29,12 +29,12 @@ public class OutputView {
         result.append(System.lineSeparator())
                 .append(RESULT_TITLE).append(System.lineSeparator())
                 .append(DIVIDER).append(System.lineSeparator())
-                .append(String.format(THREE_MATCHES_RESULT, winningCount.get(Profit.THREE_MATCHES.name())))
-                .append(String.format(FOUR_MATCHES_RESULT, winningCount.get(Profit.FOUR_MATCHES.name())))
-                .append(String.format(FIVE_MATCHES_RESULT, winningCount.get(Profit.FIVE_MATCHES.name())))
+                .append(String.format(THREE_MATCHES_RESULT, winningCount.get(Profit.MATCHES_3.name())))
+                .append(String.format(FOUR_MATCHES_RESULT, winningCount.get(Profit.MATCHES_4.name())))
+                .append(String.format(FIVE_MATCHES_RESULT, winningCount.get(Profit.MATCHES_5.name())))
                 .append(String.format(FIVE_MATCHES_BONUS_MATCH_RESULT,
-                        winningCount.get(Profit.FIVE_MATCHES_BONUS_MATCH.name())))
-                .append(String.format(SIX_MATCHES_RESULT, winningCount.get(Profit.SIX_MATCHES.name())))
+                        winningCount.get(Profit.MATCHES_5_BONUS_MATCH.name())))
+                .append(String.format(SIX_MATCHES_RESULT, winningCount.get(Profit.MATCHES_6.name())))
                 .append(String.format(PROFIT_RATE_RESULT, profitRate));
         System.out.println(result);
         Console.close();
