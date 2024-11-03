@@ -48,10 +48,9 @@ public class Controller {
 
     public List<Lotto> generateLottos(int price) {
         List<Lotto> lottos = utils.generateRandomLottoNumbers(price);
-        List<Lotto> sortLottos = utils.sortLottos(lottos);
-        outputView.printLottoQuantity(sortLottos);
-        outputView.printLottoNumbers(sortLottos);
-        return sortLottos;
+        outputView.printLottoQuantity(lottos);
+        outputView.printLottoNumbers(lottos);
+        return lottos;
     }
 
     public Lotto setWinningNumbers() {

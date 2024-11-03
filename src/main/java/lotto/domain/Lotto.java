@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -21,9 +20,6 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public void sort() {
-        Collections.sort(numbers);
-    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
