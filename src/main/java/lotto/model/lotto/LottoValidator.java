@@ -3,16 +3,15 @@ package lotto.model.lotto;
 import static lotto.model.ErrorMessages.Lotto.DUPLICATED;
 import static lotto.model.ErrorMessages.Lotto.INVALID_RANGE;
 import static lotto.model.ErrorMessages.Lotto.INVALID_SIZE;
+import static lotto.model.lotto.LottoConstants.END_INCLUSIVE;
+import static lotto.model.lotto.LottoConstants.START_INCLUSIVE;
+import static lotto.model.lotto.LottoConstants.VALID_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
-
-    private static final int VALID_SIZE = 6;
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
 
     protected LottoValidator() {
     }
