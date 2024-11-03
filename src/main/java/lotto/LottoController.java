@@ -14,6 +14,8 @@ public class LottoController {
         int bonusNumber = requestBonusNumber(winningNumbers);
 
         Map<LottoRanking, Integer> compareResult = lottos.compareWinningNumbers(winningNumbers, bonusNumber);
+        LottoResult lottoResult = new LottoResult(compareResult);
+        OutputView.printWinningStatistics(lottoResult);
     }
 
     private int requestPurchaseAmount() {
