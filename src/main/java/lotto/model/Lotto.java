@@ -16,6 +16,10 @@ public class Lotto {
         }
     }
 
+    public void printLottoNumbers() {
+        System.out.println(numbers);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
