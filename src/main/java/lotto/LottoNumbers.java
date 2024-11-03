@@ -22,7 +22,7 @@ public class LottoNumbers {
     }
 
     private List<Integer> createLotto() {
-        List<Integer> lottoNumbers = (camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1,45,6));
+        List<Integer> lottoNumbers = new ArrayList<>(camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1,45,6));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

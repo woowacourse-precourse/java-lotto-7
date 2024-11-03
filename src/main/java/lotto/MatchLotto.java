@@ -57,18 +57,18 @@ public class MatchLotto {
     private void printRankResult(Rank rank, int count) {
         NumberFormat format = NumberFormat.getInstance();
         if(rank.getMatchCount() == 5 && rank.getBonusMatch()){
-            String output = String.format("%d개 일치, 보너스 볼 일치 (%s)원 - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
+            String output = String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
             System.out.println(output);
         }
         if(!rank.getBonusMatch()){
-            String output = String.format("%d개 일치 (%s)원 - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
+            String output = String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), format.format(rank.getPrize()), count);
             System.out.println(output);
         }
     }
 
     public void printTotalResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+//        System.out.println("\n당첨 통계");
+//        System.out.println("---");
         for (Map.Entry<Rank, Integer> entry : getTotalResult().entrySet()) {
             Rank rank = entry.getKey();
             Integer count = entry.getValue();
