@@ -7,9 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Winning;
 import lotto.service.WinningService;
@@ -145,13 +143,13 @@ public class WinningTest {
         HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
         winning.setHashSet(winningSet);
 
-        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,5,6)));
+        List lottoNumbers = Arrays.asList(1,2,3,4,5,6);
         Lottos lottos = new Lottos();
         WinningService winningService = new WinningService(lottos, winning);
 
-        WinningService.containsWinningNumber(lotto);
+        WinningService.containsWinningNumber(lottoNumbers);
 
-        assertEquals(0, lotto.getNumber().size());
+        assertEquals(0, lottoNumbers.size());
     }
 
     @Test
@@ -161,12 +159,12 @@ public class WinningTest {
         HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
         winning.setHashSet(winningSet);
 
-        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(7,8,9,10,11,12)));
+        List lottoNumbers = Arrays.asList(7,8,9,10,11,12);
         Lottos lottos = new Lottos();
         WinningService winningService = new WinningService(lottos, winning);
 
-        WinningService.containsWinningNumber(lotto);
+        WinningService.containsWinningNumber(lottoNumbers);
 
-        assertEquals(6, lotto.getNumber().size());
+        assertEquals(6, lottoNumbers.size());
     }
 }

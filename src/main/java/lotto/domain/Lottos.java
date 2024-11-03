@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Lottos {
 
-    private final List<Lotto> lottos;
+    private final List<List<Integer>> lottos;
 
     public Lottos() {
         this.lottos = new ArrayList<>();
@@ -15,11 +15,11 @@ public class Lottos {
         return lottos.size();
     }
 
-    public void addLottoToList(Lotto lotto) {
-        lottos.add(lotto);
+    public void addLottoToList(List<Integer> numbers) {
+        lottos.add(numbers);
     }
 
-    public List<Lotto> getLottos() {
+    public List<List<Integer>> getLottos() {
         return lottos;
     }
 }

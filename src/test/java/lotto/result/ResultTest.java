@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
@@ -47,10 +48,10 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수를 확인한다.")
     public void testWinningNumbersCount() {
-        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,5,6)));
+        List lottoNumbers = Arrays.asList(1,2,3,4,5,6);
 
-        winningService.containsWinningNumber(lotto);
-        int winningCount = resultService.checkWinningNumbersCount(lotto.getNumber());
+        winningService.containsWinningNumber(lottoNumbers);
+        int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);
 
         assertEquals(3, winningCount);
     }
@@ -58,10 +59,10 @@ public class ResultTest {
     @Test
     @DisplayName("당첨 번호 갯수가 5개이다.")
     public void testIsWinningNumberFive() {
-        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,7,9)));
+        List lottoNumbers = Arrays.asList(1,2,3,4,7,9);
 
-        winningService.containsWinningNumber(lotto);
-        int winningCount = resultService.checkWinningNumbersCount(lotto.getNumber());
+        winningService.containsWinningNumber(lottoNumbers);
+        int winningCount = resultService.checkWinningNumbersCount(lottoNumbers);
 
         assertTrue(resultService.isFiveWinningNumber(winningCount));
     }

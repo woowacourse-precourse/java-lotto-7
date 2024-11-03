@@ -47,8 +47,8 @@ public class ResultService {
     public void loopResult(Lottos lottos) {
         HashMap<Integer, Integer> resultMap = result.getResultMap();
 
-        for (Lotto lotto : lottos.getLottos()) {
-            int winningCount = checkWinningNumbersCount(lotto.getNumber());
+        for (List LottoNumbers : lottos.getLottos()) {
+            int winningCount = checkWinningNumbersCount(LottoNumbers);
             resultMap.put(winningCount, resultMap.getOrDefault(resultMap.get(winningCount), 0) + 1);
         }
     }
