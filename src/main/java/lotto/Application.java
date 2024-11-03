@@ -94,6 +94,8 @@ public class Application {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int n = stringToNum(readLine());
+                checkRange(n);
+                winningLotto.checkBounsVaild(n);
 
             } catch (Exception e) {
                 System.out.println(e);
