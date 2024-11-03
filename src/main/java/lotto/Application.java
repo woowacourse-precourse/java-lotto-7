@@ -83,5 +83,10 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
         }
+
+        // 5-1. 보너스 번호가 1-45 사이에 있는 숫자인지 확인
+        if (bonusNumber > 45 || bonusNumber < 1) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
+        }
     }
 }
