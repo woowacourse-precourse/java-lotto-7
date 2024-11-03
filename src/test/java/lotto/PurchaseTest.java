@@ -15,4 +15,11 @@ public class PurchaseTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 10만원을 초과하는 경우 예외를 호출한다.")
+    @Test
+    void 구매_금액이_10만원을_초과하는_경우_예외를_호출한다() {
+        assertThatThrownBy(() -> new LottoPurchase(101_000))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
