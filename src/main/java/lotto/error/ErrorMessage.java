@@ -1,4 +1,4 @@
-package lotto;
+package lotto.error;
 
 import static lotto.LottoConstant.PRICE;
 

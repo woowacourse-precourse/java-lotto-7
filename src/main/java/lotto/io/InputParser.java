@@ -2,7 +2,7 @@ package lotto.io;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.ErrorMessage;
+import lotto.error.ErrorMessage;
 
 public class InputParser {
 

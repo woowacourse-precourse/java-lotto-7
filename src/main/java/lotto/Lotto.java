@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.error.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

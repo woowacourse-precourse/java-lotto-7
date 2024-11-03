@@ -2,7 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.ErrorHandler;
+import lotto.error.ErrorHandler;
 import lotto.Validator;
 
 public class InputReader {
