@@ -61,7 +61,7 @@ public class Application {
 				OutputInterface.printMessage(OutputInterface.ENTER_WINNING_NUMBERS);
 				String winningNumbers = inputInterface.readLine();
 
-				return lottoService.drawWinningNumbers(winningNumbers);
+				return lottoService.drawWinningNumbers(winningNumbers.trim());
 			} catch (IllegalArgumentException exception) {
 				processException(exception);
 			}
