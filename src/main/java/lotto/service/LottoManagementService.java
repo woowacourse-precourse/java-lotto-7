@@ -14,6 +14,8 @@ public class LottoManagementService {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int LOTTO_NUMBERS_COUNT = 6;
+    public static final int SECOND_MATCH_COUNT = 5;
+    public static final int BONUS_NUM_NOT_APPLICABLE = -1; // 보너스 번호가 필요없는 경우의 상수 (2등을 제외한 모든 등수)
 
     private final UserLottoRepository userLottoRepository;
     private final LottoRepository lottoRepository;
@@ -52,6 +54,52 @@ public class LottoManagementService {
         Collections.sort(lottoNumbers); // 오름차순 정렬
 
         return new UserLotto(lottoNumbers);
+    }
+
+    // 유저의 로또와 당첨 번호를 비교하여 당첨 여부를 확인
+    public void drawLotto() {
+        List<UserLotto> userLotto = userLottoRepository.findAll();
+        Lotto lotto = lottoRepository.findWinningNums();
+
+        userLotto.forEach(user -> {
+            WinningRank winningRank = determineWinningRank(user, lotto);
+            user.setWinningRank(winningRank);
+        });
+    }
+
+    // 당첨 등수를 결정하는 메서드
+    private WinningRank determineWinningRank(UserLotto userLotto, Lotto lotto) {
+        List<Integer> userNums = userLotto.getNumbers();
+        List<Integer> winningNumbers = lotto.getNumbers();
+
+        boolean hasBonusNum = hasBonusNum(userLotto);
+        long matchCount = calculateMatchCount(userNums, winningNumbers);
+
+        return getWinningRank(matchCount, hasBonusNum);
+    }
+
+    // 일치하는 번호의 개수를 계산
+    private long calculateMatchCount(List<Integer> userNums, List<Integer> winningNumbers) {
+        return userNums.stream()
+                .filter(winningNumbers::contains) // 당첨 번호에 포함된 사용자 번호 필터링
+                .count();
+    }
+
+    // 일치하는 번호와 보너스 번호 여부에 따라 WinningRank를 결정 후 반환
+    private WinningRank getWinningRank(long matchCount, boolean hasBN) {
+        // 2등 여부 확인: 일치 숫자가 5개이고 보너스 번호가 일치하는 경우
+        if (matchCount == SECOND_MATCH_COUNT && hasBN) {
+            return WinningRank.SECOND;
+        }
+
+        // matchCount가 일치하고 보너스 번호가 필요 없는 등수 찾기
+        for (WinningRank rank : WinningRank.values()) {
+            if (rank.getMatchCount() == matchCount && rank.getBonusNumMatch() == BONUS_NUM_NOT_APPLICABLE) {
+                return rank; // 해당 조건에 맞는 WinningRank 반환
+            }
+        }
+
+        return WinningRank.NONE;
     }
 
 }
