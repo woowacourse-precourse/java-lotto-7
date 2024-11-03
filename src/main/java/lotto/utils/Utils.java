@@ -70,11 +70,11 @@ public class Utils {
         return Rank.FIVE;
     }
 
-    public int totalPrize(Map<Rank, Integer> map) {
+    public int totalPrize(Map<Rank, Integer> resultCounts) {
         int sum = 0;
-        for (Rank rank : map.keySet()) {
-            if (map.get(rank) > 0) {
-                sum += rank.getAmount() * map.get(rank);
+        for (Rank rank : resultCounts.keySet()) {
+            if (resultCounts.get(rank) > 0) {
+                sum += rank.getAmount() * resultCounts.get(rank);
             }
         }
         return sum;

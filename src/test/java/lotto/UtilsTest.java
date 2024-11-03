@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -124,5 +125,15 @@ public class UtilsTest {
         Map<Rank, Integer> resultCounts = utils.evaluateLottoRanks(winningNumber, bonusNumber, lottos);
 
         assertThat(resultCounts.get(Rank.FIVE)).isEqualTo(1);
+    }
+
+    @DisplayName("맞은 로또 수 만큼 돈을 합산한다.")
+    @Test
+    void 로또번호_여러개_맞으면_그만큼합산() {
+        Map<Rank, Integer> resultCounts = new HashMap<>();
+        resultCounts.put(Rank.ONE, 1);
+        resultCounts.put(Rank.TWO, 2);
+
+        assertThat(utils.totalPrize(resultCounts)).isEqualTo(2_060_000_000);
     }
 }
