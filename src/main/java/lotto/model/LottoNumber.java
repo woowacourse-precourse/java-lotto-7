@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBER;
 
+import java.util.Objects;
+
 public class LottoNumber {
 
     private static final int LOTTO_NUMBER_MIN_VALUE = 1;
@@ -39,5 +41,22 @@ public class LottoNumber {
         if (number < LOTTO_NUMBER_MIN_VALUE || number > LOTTO_NUMBER_MAX_VALUE) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }
