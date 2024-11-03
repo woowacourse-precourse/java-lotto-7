@@ -31,13 +31,13 @@ class LottoTest {
     @DisplayName("로또를 생성할 때 번호는 오름차순으로 저장된다.")
     @Test
     void 로또를_생성할_때_번호는_오름차순으로_저장된다() {
-        /* given */
+        // given
         Lotto lotto = new Lotto(List.of(10, 9, 8, 7, 6, 5));
 
-        /* when */
+        // when
         List<Integer> numbers = lotto.getNumbers();
 
-        /* then */
+        // then
         for (int i = 1; i < numbers.size(); i++) {
             assertThat(numbers.get(i - 1) < numbers.get(i)).isTrue();
         }
