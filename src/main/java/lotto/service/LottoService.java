@@ -14,17 +14,35 @@ public class LottoService {
 
         for (Lotto lotto : lottos) {
             int matchCount = countMatchingNumbers(lotto, winningNumber);
-            boolean bonusMatch = isBonusNumberMatch(lotto, winningNumber);
-
-            if (matchCount == 6) {
-                matchCounts[4]++; // 6개 일치
-            } else if (matchCount == 5 && bonusMatch) {
-                matchCounts[3]++; // 5개 일치 + 보너스 번호 일치
-            } else if (matchCount >= 3 && matchCount <= 5) {
-                matchCounts[matchCount - 3]++;
-            }
+            updateMatchCounts(matchCounts, matchCount, isBonusNumberMatch(lotto, winningNumber));
         }
         return matchCounts;
+    }
+
+    private void updateMatchCounts(int[] matchCounts, int matchCount, boolean bonusMatch) {
+        if (isSixMatch(matchCount)) {
+            matchCounts[4]++;
+            return;
+        }
+        if (isFiveMatchWithBonus(matchCount, bonusMatch)) {
+            matchCounts[3]++;
+            return;
+        }
+        if (isThreeToFiveMatch(matchCount)) {
+            matchCounts[matchCount - 3]++;
+        }
+    }
+
+    private boolean isSixMatch(int matchCount) {
+        return matchCount == 6;
+    }
+
+    private boolean isFiveMatchWithBonus(int matchCount, boolean bonusMatch) {
+        return matchCount == 5 && bonusMatch;
+    }
+
+    private boolean isThreeToFiveMatch(int matchCount) {
+        return matchCount >= 3 && matchCount <= 5;
     }
 
     public double calculateYield(Money money, int[] matchCounts) {
