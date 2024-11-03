@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.model.LottoInfo;
+import lotto.model.PriceDataImpl;
+import lotto.model.StandardLottoPrice;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
@@ -8,6 +11,7 @@ public class LottoController {
     private static final OutputView outputView = new OutputView();
 
     public void run() {
+        LottoInfo lottoInfo = new LottoInfo(new StandardLottoPrice(), new PriceDataImpl());
         int money = inputMoney();
     }
 
