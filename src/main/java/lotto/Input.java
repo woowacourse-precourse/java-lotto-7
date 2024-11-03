@@ -16,4 +16,12 @@ public class Input {
             throw new IllegalArgumentException("[ERROR] ");
         }
     }
+
+    public int readBonusNumber(){
+        try {
+            return Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] ");
+        }
+    }
 }
