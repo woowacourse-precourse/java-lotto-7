@@ -6,7 +6,7 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class makeLotto {
+public class MakeLotto {
 
     public int splitAmount(int amount){
         validate(amount);
