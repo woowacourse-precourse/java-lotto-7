@@ -30,7 +30,7 @@ public class LottoController {
         int purchasePrice = handlePurchasePrice();
         int count = handleLottoCount(purchasePrice);
         handleCreatedLottos(count);
-        handleWinningNumbers();
+        Lotto lottoWinningNumbers = handleWinningNumbers();
     }
 
     private int handlePurchasePrice() {
@@ -74,11 +74,16 @@ public class LottoController {
         return lottos;
     }
 
-    private void handleWinningNumbers() {
+    private Lotto handleWinningNumbers() {
         output.printWinningNumbersInputPrompt();
         String winningNumbersInput = input.inputString();
 
         List<String> winningNumbersSplit = validateWinningNumbersInput(winningNumbersInput);
+        List<Integer> validWinningNumbers = winningNumbersSplit.stream()
+                .map(Integer::parseInt)
+                .toList();
+
+        return new Lotto(validWinningNumbers);
     }
 
     private List<String> validateWinningNumbersInput(String input) {
