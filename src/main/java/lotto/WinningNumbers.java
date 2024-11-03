@@ -14,6 +14,12 @@ public class WinningNumbers {
         this.numbers = numbers;
     }
 
+    public void validateDuplicateByBonusNumber(int bonusNumber) {
+        if(!numbers.isEmpty() && numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되어 있는 숫자입니다.");
+        }
+    }
+
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
