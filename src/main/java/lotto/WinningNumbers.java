@@ -10,6 +10,7 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNumberRange(numbers);
+        validateNumberDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -23,6 +24,14 @@ public class WinningNumbers {
         for (int number : numbers) {
             if (number < 0 || number > 46) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private void validateNumberDuplication(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
             }
         }
     }
