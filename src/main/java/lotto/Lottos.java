@@ -13,20 +13,20 @@ import lotto.Lotto.Rank;
  * 구입한 로또 리스트를 관리
  */
 public class Lottos {
-    public final int NUMBER;
+    public final int lottoQuantity;
 
     private Lottos(int number) {
-        this.NUMBER = number;
+        this.lottoQuantity = number;
     }
 
     /**
      * 로또 발행
-     * @param number 발행할 로또의 수
+     * @param quantity 발행할 로또의 수
      * @return 로또 리스트
      */
-    public static List<Lotto> getLottos(int number) {
+    public static List<Lotto> getLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < number; i++) {
+        for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> sortedNumbers = numbers.stream().sorted().toList();
             lottos.add(new Lotto(sortedNumbers));
@@ -40,7 +40,7 @@ public class Lottos {
     }
 
     public static List<Integer> parsed(String input) {
-        List<String> splitedInput = Stream.of(input.split(",")).toList();
+        List<String> splitedInput = Stream.of(input.split(io.Input.SPLITTER)).toList();
         return splitedInput.stream().map(Integer::parseInt).toList();
     }
 
