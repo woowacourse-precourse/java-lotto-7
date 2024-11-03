@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.parser.NumberParser;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.Validator;
 import lotto.validator.WinningNumbersValidator;
@@ -12,7 +13,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoVending {
-    private static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
     private final InputView inputView;
     private final OutputView outputView;
     private Validator validator;
@@ -22,7 +22,7 @@ public class LottoVending {
         this.outputView = outputView;
     }
 
-    private long getPurchaseAmountUntilValid() {
+    private Long getPurchaseAmountUntilValid() {
         while (true) {
             try {
                 String purchaseAmountInput = inputView.getPurchaseAmount();
@@ -44,7 +44,7 @@ public class LottoVending {
 
                 String winningNumbersInput = inputView.getWinningNumbers();
 
-                for(String winningNumberInput : winningNumbersInput.split(",")) {
+                for (String winningNumberInput : winningNumbersInput.split(",")) {
                     Integer winningNumber = NumberParser.parseInteger(winningNumberInput);
                     winningNumbers.add(winningNumber);
                 }
@@ -57,12 +57,24 @@ public class LottoVending {
         }
     }
 
-    public void take() {
-        String errorMessage;
+    private Integer getBonusNumbersUntilValid(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.getBonusNumber();
+                Integer bonusNumber = NumberParser.parseInteger(bonusNumberInput);
+                validator = new BonusNumberValidator(winningNumbers, bonusNumber);
+                validator.validate();
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
 
+    public void take() {
         // 구입 금액 입력, 검증 및 파싱
         outputView.printPurchaseAmountMessage();
-        long purchaseAmount = getPurchaseAmountUntilValid();
+        Long purchaseAmount = getPurchaseAmountUntilValid();
 
         // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
@@ -70,31 +82,7 @@ public class LottoVending {
 
         //보너스 번호 입력
         outputView.printBonusNumberMessage();
-        int bonusNumber = 0;
-        boolean bonusInputFailed = true;
-        while (bonusInputFailed) {
-            try {
-                String bonusNumberInput = inputView.getBonusNumber();
-                try {
-                    bonusNumber = Integer.parseInt(bonusNumberInput);
-                    if (bonusNumber < 1 || bonusNumber > 45) {
-                        throw new NumberFormatException();
-                    }
-                } catch (NumberFormatException e) {
-                    errorMessage =
-                        ERROR_MESSAGE_PREFIX + "보너스 번호는 1~45 사이의 정수로 입력해주세요. 잘못된 보너스 번호: " + bonusNumberInput;
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                if (winningNumbers.contains(bonusNumber)) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "보너스 번호가 당첨 번호와 중복됩니다. 중복된 보너스 번호: " + bonusNumber;
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                bonusInputFailed = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println();
+        Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
 
         // 로또 발행
         List<Lotto> lottos = new ArrayList<>();
