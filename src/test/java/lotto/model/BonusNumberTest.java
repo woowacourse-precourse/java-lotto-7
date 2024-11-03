@@ -36,8 +36,9 @@ class BonusNumberTest {
     static Stream<Arguments> 잘못된_금액을_통해_객체_생성을_시도() {
         List<Integer> bannedNumbers = List.of(10, 11, 12, 13, 14, 15);
         return Stream.of(
-                Arguments.of(0, bannedNumbers, BonusNumber.NOT_POSITIVE_NUMBER_EXCEPTION_MESSAGE),
-                Arguments.of(-1, bannedNumbers, BonusNumber.NOT_POSITIVE_NUMBER_EXCEPTION_MESSAGE),
+                Arguments.of(0, bannedNumbers, BonusNumber.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE),
+                Arguments.of(-1, bannedNumbers, BonusNumber.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE),
+                Arguments.of(46, bannedNumbers, BonusNumber.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE),
                 Arguments.of(10, bannedNumbers, BonusNumber.BANNED_NUMBER_MESSAGE),
                 Arguments.of(10, null, BonusNumber.NULL_BANNED_NUMBER_EXCEPTION_MESSAGE)
         );
