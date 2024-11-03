@@ -6,6 +6,11 @@ import java.util.Set;
 
 import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.constants.ErrorMessage.NOT_ALLOWED_DUPLICATED_NUMBERS;
+import static lotto.model.WinnerType.FIFTH;
+import static lotto.model.WinnerType.FIRST;
+import static lotto.model.WinnerType.FOURTH;
+import static lotto.model.WinnerType.SECOND;
+import static lotto.model.WinnerType.THIRD;
 
 public class Lotto {
     private static final String LINE_BREAK = "\n";
@@ -71,32 +76,32 @@ public class Lotto {
     }
 
     private void updateFifth(int count, boolean hasBonus) {
-        if (count == 3 && hasBonus == WinnerType.FIFTH.getHasBonus()) {
-            WinnerType.FIFTH.increaseCount();
+        if (count == FIFTH.getMatchNumberCount() && hasBonus == FIFTH.getHasBonus()) {
+            FIFTH.increaseCount();
         }
     }
 
     private void updateFourth(int count, boolean hasBonus) {
-        if (count == 4 && hasBonus == WinnerType.FOURTH.getHasBonus()) {
-            WinnerType.FOURTH.increaseCount();
+        if (count == FOURTH.getMatchNumberCount() && hasBonus == FOURTH.getHasBonus()) {
+            FOURTH.increaseCount();
         }
     }
 
     private void updateThird(int count, boolean hasBonus) {
-        if (count == 5 && hasBonus == WinnerType.THIRD.getHasBonus()) {
-            WinnerType.THIRD.increaseCount();
+        if (count == THIRD.getMatchNumberCount() && hasBonus == THIRD.getHasBonus()) {
+            THIRD.increaseCount();
         }
     }
 
     private void updateSecond(int count, boolean hasBonus) {
-        if (count == 5 && hasBonus == WinnerType.SECOND.getHasBonus()) {
-            WinnerType.SECOND.increaseCount();
+        if (count == SECOND.getMatchNumberCount() && hasBonus == SECOND.getHasBonus()) {
+            SECOND.increaseCount();
         }
     }
 
     private void updateFirst(int count, boolean hasBonus) {
-        if (count == 6 && hasBonus == WinnerType.FIRST.getHasBonus()) {
-            WinnerType.FIRST.increaseCount();
+        if (count == FIRST.getMatchNumberCount() && hasBonus == FIRST.getHasBonus()) {
+            FIRST.increaseCount();
         }
     }
 }

@@ -52,6 +52,10 @@ public enum WinnerType {
         count++;
     }
 
+    public int getMatchNumberCount() {
+        return matchNumberCount;
+    }
+
     public boolean getHasBonus() {
         return hasBonus;
     }
