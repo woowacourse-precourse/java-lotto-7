@@ -37,11 +37,11 @@ public class LottoResult {
 
     public StringBuilder getResultMessage() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("3개 일치 (5,000원) - " + threeMatchesCount + "\n");
-        stringBuilder.append("4개 일치 (50,000원) - " + fourMatchesCount + "\n");
-        stringBuilder.append("5개 일치 (1,500,000원) - " + fiveMatchesCount + "\n");
-        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveMatchesWithBonusCount + "\n");
-        stringBuilder.append("6개 일치 (2,000,000,000원) - " + sixMatchesCount + "\n");
+        stringBuilder.append("3개 일치 (5,000원) - " + threeMatchesCount + "개\n");
+        stringBuilder.append("4개 일치 (50,000원) - " + fourMatchesCount + "개\n");
+        stringBuilder.append("5개 일치 (1,500,000원) - " + fiveMatchesCount + "개\n");
+        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveMatchesWithBonusCount + "개\n");
+        stringBuilder.append("6개 일치 (2,000,000,000원) - " + sixMatchesCount + "개\n");
         return stringBuilder;
     }
 
