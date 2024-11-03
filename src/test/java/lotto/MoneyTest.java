@@ -12,7 +12,7 @@ class MoneyTest {
     @DisplayName("로또 금액과 나머지 연산한 결과가 0이 아니면 예외가 발생한다.")
     void 로또_금액과_나머지_연산한_결과가_0이_아니면_예외가_발생한다() {
         //given
-        long amount = 12500;
+        Integer amount = 12500;
 
         //when //then
         assertThatThrownBy(() -> new Money(amount))

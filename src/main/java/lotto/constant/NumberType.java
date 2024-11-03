@@ -3,13 +3,13 @@ package lotto.constant;
 public enum NumberType {
     LOTTO_PRICE(1000);
 
-    private final long price;
+    private final Integer price;
 
-    NumberType(long price) {
+    NumberType(Integer price) {
         this.price = price;
     }
 
-    public long getPrice() {
+    public Integer getPrice() {
         return price;
     }
 }

@@ -10,12 +10,12 @@ public class Seller {
     }
 
     public void sellLottoTo(Person person) {
-        long buyQuantity = getBuyQuantity(person.pay());
+        Integer buyQuantity = getBuyQuantity(person.pay());
         Lottos lottos = lottoMachine.publishLottos(buyQuantity);
         person.setLottos(lottos);
     }
 
-    private long getBuyQuantity(Money money) {
+    private Integer getBuyQuantity(Money money) {
         return money.getAmount() / NumberType.LOTTO_PRICE.getPrice();
     }
 }

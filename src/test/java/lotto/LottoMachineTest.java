@@ -15,25 +15,25 @@ class LottoMachineTest {
     @DisplayName("하나의 로또를 발행한다")
     void publishLotto() {
         //given
-        long oneCase = 1L;
+        Integer oneCase = 1;
 
         //when
         Lottos lottos = lottoMachine.publishLottos(oneCase);
 
         //then
-        assertThat(lottos.getQuantity()).isSameAs(1L);
+        assertThat(lottos.getQuantity()).isSameAs(1);
     }
 
     @Test
     @DisplayName("여러건의 로또를 발행한다")
     void publishLottos() {
         //given
-        long coupleCase = 3L;
+        Integer coupleCase = 3;
 
         //when
         Lottos lottos = lottoMachine.publishLottos(coupleCase);
 
         //then
-        assertThat(lottos.getQuantity()).isSameAs(3L);
+        assertThat(lottos.getQuantity()).isSameAs(3);
     }
 }

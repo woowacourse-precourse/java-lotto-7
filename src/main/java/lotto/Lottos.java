@@ -9,7 +9,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public long getQuantity() {
+    public Integer getQuantity() {
         return lottos.size();
     }
 }

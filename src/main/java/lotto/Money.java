@@ -5,9 +5,9 @@ import lotto.constant.NumberType;
 import static lotto.constant.ErrorMessage.PURCHASE_PRICE_ERROR;
 
 public class Money {
-    private long amount;
+    private Integer amount;
 
-    public Money(long amount) {
+    public Money(Integer amount) {
         validMoney(amount);
         this.amount = amount;
     }
@@ -16,17 +16,17 @@ public class Money {
         this.amount -= money.amount;
     }
 
-    public long getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    private void validMoney(long amount) {
+    private void validMoney(Integer amount) {
         if (!isFitPurchasePrice(amount)) {
             throw new IllegalArgumentException(PURCHASE_PRICE_ERROR.getMessage());
         }
     }
 
-    private boolean isFitPurchasePrice(long amount) {
+    private boolean isFitPurchasePrice(Integer amount) {
         return amount % NumberType.LOTTO_PRICE.getPrice() == 0;
     }
 }

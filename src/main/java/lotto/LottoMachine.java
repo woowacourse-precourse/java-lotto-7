@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LottoMachine {
 
-    public Lottos publishLottos(long quantity) {
+    public Lottos publishLottos(Integer quantity) {
         List<Lotto> lottoList = new ArrayList<>();
 
         for (int count = 1; count <= quantity; count++) {
