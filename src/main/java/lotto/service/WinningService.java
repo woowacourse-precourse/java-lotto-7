@@ -12,6 +12,7 @@ public class WinningService {
 
     public void run() {
         getWinningInput();
+        getBonusInput();
     }
 
     public void getBonusInput() {

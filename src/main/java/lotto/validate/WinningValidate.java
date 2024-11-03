@@ -1,6 +1,8 @@
 package lotto.validate;
 
+import java.util.HashSet;
 import java.util.regex.Pattern;
+import lotto.domain.Winning;
 import lotto.message.WinningInputMessage;
 
 public class WinningValidate {
@@ -8,6 +10,8 @@ public class WinningValidate {
     private static final String WINNITG_REGEX = "[0-9]+(,[0-9]+)*$";
     private static final String BONUS_REGEX = "[0-9]+";
     private static Pattern pattern;
+
+    static Winning winning;
 
     public static boolean runValidBonusString(String bonusString) {
         try {
@@ -19,6 +23,10 @@ public class WinningValidate {
 
             if (!isLottoNumber(bonusNumber)) {
                 throw new IllegalArgumentException(WinningInputMessage.INVALID_BONUS_NUMBER.getMessage());
+            }
+
+            if (!isBonusNotInWinning(winning, bonusNumber)) {
+                throw new IllegalArgumentException(WinningInputMessage.DUPLICATE_WINNING_NUMBER.getMessage());
             }
 
         } catch (IllegalArgumentException e) {
@@ -44,6 +52,12 @@ public class WinningValidate {
             return false;
         }
         return true;
+    }
+
+    public static boolean isBonusNotInWinning(Winning winning, int bonusNumber) {
+        HashSet<Integer> winningSet = winning.getWinningNumbers();
+
+        return winningSet.contains(bonusNumber);
     }
 
     public static boolean isLottoNumber(int bonusNumber) {
