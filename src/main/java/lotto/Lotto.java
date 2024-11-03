@@ -16,5 +16,24 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public Grade compare(Lotto winningLotto, int bonusNumber) {
+        int count = 0;
+        boolean bonusCount = false;
+
+        for (int number : numbers) {
+            if (winningLotto.contains(number)) {
+                count++;
+            }
+            if (number == bonusNumber) {
+                bonusCount = true;
+            }
+        }
+
+        return Grade.valueOf(count, bonusCount);
+    }
+
 }
