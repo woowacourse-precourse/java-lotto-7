@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
+import lotto.domain.LottoInfo;
 import lotto.domain.LottoNumbersGenerator;
 import lotto.domain.WinningInfo;
 import lotto.domain.WinningNumbers;
@@ -12,8 +13,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoMachine {
-
-    private static final int LOTTO_PRICE = 1000;
 
     private List<Lotto> purchasedLotto;
 
@@ -23,7 +22,7 @@ public class LottoMachine {
 
     public void run() {
         Budget budget = inputBudget();
-        int lottoQuantity = budget.getAmount() / LOTTO_PRICE;
+        int lottoQuantity = budget.getAmount() / LottoInfo.PRICE;
         purchaseLotto(lottoQuantity);
         OutputView.displayPurchasedLottoNumbers(purchasedLotto);
 
