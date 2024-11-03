@@ -16,7 +16,7 @@ public class LottoController {
 
     public void run() {
         List<Lotto> lotto = initializeLottos();
-        OutputView.printLottos(lotto);
+        OutputView.printLotto(lotto);
 
         List<Integer> winningNumbers = InputView.winningNumber();
         int bonusNumber = InputView.bonusNumber();
@@ -29,11 +29,8 @@ public class LottoController {
     private List<Lotto> initializeLottos() {
         List<Lotto> lotto = new ArrayList<>();
         int lottoCount = InputView.purchaseAmount();
-        if (lottoCount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-        }
-        lottoCount /= 1000;
         OutputView.purchaseCount(lottoCount);
+
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lotto.add(new Lotto(lottoNumbers));

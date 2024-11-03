@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(count + "개를 구매했습니다.");
     }
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void printLotto(List<Lotto> lottos) {
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
             System.out.println(lotto.getNumbers());
@@ -39,7 +39,7 @@ public class OutputView {
         };
 
         for (int i = 5; i >= 1; i--) {
-            int count = rankResults.getOrDefault(i, 0);
+            int count = rankResults.getOrDefault(i - 1, 0);
             System.out.printf("%s - %d개%n", rankDescriptions[5 - i], count);
         }
     }
