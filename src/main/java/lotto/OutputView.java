@@ -18,6 +18,7 @@ public class OutputView {
     }
 
     public void printLottoBonusNumberPrompt() {
+        System.out.println();
         System.out.println(LOTTO_BONUS_NUMBER_PROMPT);
     }
 
@@ -30,9 +31,11 @@ public class OutputView {
         for (List<Integer> userLottoNumber : userLottoNumbers) {
             System.out.println(userLottoNumber);
         }
+        System.out.println();
     }
 
     public void printLottoResult(Map<Rank, Integer> lottoPrizeCount) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Rank rank : lottoPrizeCount.keySet()) {
