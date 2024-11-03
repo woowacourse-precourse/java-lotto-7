@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
 import lotto.service.LottoService;
@@ -23,6 +24,9 @@ public class LottoController {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         List<LottoResponse> lottoResponses = generateLottos(purchaseAmount);
         outputView.printFormattedLottoNumbers(lottoResponses);
+
+        int bonusNumberInput = inputView.readBonusNumberInput();
+        LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
     }
 
     private PurchaseAmount readPurchaseAmount() {
