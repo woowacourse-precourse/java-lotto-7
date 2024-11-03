@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.utility.MatchedCountNameEnum;
 import lotto.utility.MatchedNumberEnum;
 
 import java.util.Collections;
@@ -21,11 +22,11 @@ public class OutputView {
     public static void outputMatchedCount(Map<String, Integer> matchedCount) {
         System.out.println();
         System.out.println("당첨 통계\n---");
-        System.out.println(MatchedNumberEnum.THREE_MATCHED.getMessage() + " - " + matchedCount.get("threeMatched") + "개");
-        System.out.println(MatchedNumberEnum.FOUR_MATCHED.getMessage() + " - " + matchedCount.get("fourMatched") + "개");
-        System.out.println(MatchedNumberEnum.FIVE_MATCHED.getMessage() + " - " + matchedCount.get("fiveMatched") + "개");
-        System.out.println(MatchedNumberEnum.FIVE_WITH_BONUS_MATCHED.getMessage() + " - " + matchedCount.get("fiveWithBonusMatched") + "개");
-        System.out.println(MatchedNumberEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get("sixMatched") + "개");
+        System.out.println(MatchedNumberEnum.THREE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.THREE_MATCHED.getMessage()) + "개");
+        System.out.println(MatchedNumberEnum.FOUR_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FOUR_MATCHED.getMessage()) + "개");
+        System.out.println(MatchedNumberEnum.FIVE_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FIVE_MATCHED.getMessage()) + "개");
+        System.out.println(MatchedNumberEnum.FIVE_WITH_BONUS_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage()) + "개");
+        System.out.println(MatchedNumberEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage()) + "개");
     }
 
     public static void outputProfitRate(double profitRate) {
