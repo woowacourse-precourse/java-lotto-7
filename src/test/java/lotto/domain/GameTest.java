@@ -54,12 +54,12 @@ public class GameTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))   // correct 6
         );
 
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningNumbers, bonusNumber);
+        Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningNumbers);
+        int[] results = game.compareNumbers(winningLotto);
 
         // then
         assertArrayEquals(new int[]{1, 1, 1, 1, 1}, results);
@@ -70,12 +70,12 @@ public class GameTest {
         // given
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
         int purchaseAmount = 1000;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningNumbers, bonusNumber);
+        Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results1 = game.compareNumbers(winningNumbers);
+        int[] results1 = game.compareNumbers(winningLotto);
         long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results1);
 
         // then
@@ -93,12 +93,13 @@ public class GameTest {
                 new Lotto(List.of(1, 2, 7, 8, 9, 11))
                 );
         int purchaseAmount = 5000;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningNumbers, bonusNumber);
+
+        Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningNumbers);
+        int[] results = game.compareNumbers(winningLotto);
         long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
@@ -110,12 +111,12 @@ public class GameTest {
         // 수익률 100% 미만
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 7, 8, 9, 11)));
         int purchaseAmount = 1000;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
-        Game game = new Game(lottos, winningNumbers, bonusNumber);
+        Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningNumbers);
+        int[] results = game.compareNumbers(winningLotto);
         long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
