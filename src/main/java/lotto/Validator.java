@@ -11,9 +11,11 @@ public class Validator {
     private static final String POSITIVE_RANGE_ERROR_MESSAGE = "양수 범위 내에서 입력 가능합니다.";
     private static final String LOTTERY_RANGE_ERROR_MESSAGE = "로또 번호는 1부터 45 사이의 값이어야 합니다";
     private static final String AMOUNT_UNIT_ERROR_MESSAGE = "입력은 1000단위어야 합니다.";
+    private static final String LOTTERY_NUMBER_COUNT_ERROR = "로또 번호는 총 6개여야 합니다.";
 
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
+    private static final int LOTTERY_NUMBER_COUNT = 6;
 
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
@@ -70,6 +72,9 @@ public class Validator {
                     throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
                 }
                 winningDigits.add(parseInt);
+            }
+            if (winningDigits.size() != LOTTERY_NUMBER_COUNT) {
+                throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR);
             }
 
             for (Integer winningDigit : winningDigits) {
