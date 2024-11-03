@@ -37,4 +37,14 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         System.out.println("얼마어치를 구매하시겠습니까? (1,000원 단위)");
         int amount = Integer.parseInt(Console.readLine());
     }
+    private List<Integer> delimiterNumber(String input) {
+        // 쉼표로 구분하여 숫자 반환
+        String[] inputNumbers = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : inputNumbers) {
+            numbers.add(Integer.parseInt(number));
+        }
+
+        return numbers;
+    }
 }
