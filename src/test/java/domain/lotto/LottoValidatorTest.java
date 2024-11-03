@@ -1,10 +1,8 @@
-package lotto;
+package domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
-import domain.lotto.Lotto;
-import domain.lotto.LottoNumber;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
