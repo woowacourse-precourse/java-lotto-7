@@ -9,8 +9,11 @@ public class Application {
         // TODO: 프로그램 구현
         int purchaseAmount = inputPurchaseAmount();
         int lottoCount = getLottoCount(purchaseAmount);
+
         Lotto[] lottos = Lotto.generateLottos(lottoCount);
         Lotto.printLottos(lottos);
+
+        Lotto winningNumbers = inputWinningNumbers();
     }
 
 
@@ -52,5 +55,12 @@ public class Application {
         int lottoCount = input / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
+    }
+
+    private static Lotto inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        Lotto winningNumbers = parseWinningNumbers(input);
+        return winningNumbers;
     }
 }
