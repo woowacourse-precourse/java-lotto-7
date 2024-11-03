@@ -1,5 +1,7 @@
 package lotto;
 
+import static java.lang.Math.round;
+
 public class ProfitCalc {
     float profit=0;
     public float profitCalc(int won){
@@ -7,7 +9,8 @@ public class ProfitCalc {
         int prize=0;
         int price=won;
 
-        profit=((prize-price)/price)*100;
+        profit=(float)(prize - price)/price * 100;
+
         return profit;
     }
 }

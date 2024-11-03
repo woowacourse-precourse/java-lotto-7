@@ -75,13 +75,14 @@ public class Lotto {
         //당첨확인, 수익률계산 메소드
         LottoChecker lottoChecker = new LottoChecker();
         ProfitCalc profit = new ProfitCalc();
-        profit.profitCalc(price);
+        float profit_ = profit.profitCalc(price);
 
         //출력하기
         System.out.println("당첨통계");
         System.out.println("---");
-        //Enum클래스 호출
 
+
+        System.out.println("총 수익률은 "+String.format(".1f",profit_)+"% 입니다.");
 
     }
 
