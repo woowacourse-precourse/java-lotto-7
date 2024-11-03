@@ -42,10 +42,10 @@ public class WinningNumberTest {
     void 이미_추첨완료된_당첨번호에_번호를_추가하려고_하면_예외가_발생한다() {
         assertThatThrownBy(() -> winningNumbers.addMainNumbers(List.of(1,2,3,4,5,6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MessageCenter.ERROR_MESSAGE.get());
+                .hasMessage(MessageCenter.ERROR_NOTNULL.get());
         assertThatThrownBy(() -> winningNumbers.addBonusNumber(23))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(MessageCenter.ERROR_MESSAGE.get());
+                .hasMessage(MessageCenter.ERROR_NOTNULL.get());
     }
 
     @Test

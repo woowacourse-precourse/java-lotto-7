@@ -46,25 +46,25 @@ public class WinningNumbers {
 
     private void validateMainNotNull() {
         if (wonMainNumbers == null) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_NULL.get());
         }
     }
 
     private void validateBothNotNull() {
         if (wonMainNumbers == null || wonBonusNumber == null) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_NULL.get());
         }
     }
 
     private void validateMainNull() {
         if (wonMainNumbers != null) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_NOTNULL.get());
         }
     }
 
     private void validateBonusNull() {
         if (wonBonusNumber != null) {
-            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+            throw new IllegalArgumentException(MessageCenter.ERROR_NOTNULL.get());
         }
     }
 }
