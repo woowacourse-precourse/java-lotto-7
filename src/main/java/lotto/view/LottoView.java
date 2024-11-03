@@ -26,6 +26,10 @@ public class LottoView {
     public String readMoney(){
         this.guideInputMoney();
         String money = Console.readLine();
+        /*TODO
+            - 숫자로 변환후 반환하기
+            - 1000원으로 나눈 몫을 반환하는 로직을 추가
+        */
         return money;
     }
 
