@@ -31,4 +31,14 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
+    public Lotto getUserLotto() {
+        System.out.println(Message.WINNING_NUMBERS.getMessage());
+        String inputWinningNumber = Console.readLine();
+        List<Integer> winningNumberTokens = Arrays.stream(inputWinningNumber.split(NUMBER_REGEX))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+        return new Lotto(winningNumberTokens);
+    }
 }
