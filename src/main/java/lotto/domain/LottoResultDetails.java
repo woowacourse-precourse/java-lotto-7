@@ -3,33 +3,29 @@ package lotto.domain;
 public class LottoResultDetails {
 
     public static void count(Lottos lottos, WinningLottoNumber winningLottoNumber){
-        int cnt = 0;
+        int matchingCount = 0;
 
         for(Lotto lotto:lottos.getLottos()){
             boolean checkBonus = false;
-            cnt = matchingCount(lotto, winningLottoNumber);
-            if(cnt == 5){
+            matchingCount = checkMatchingCount(lotto, winningLottoNumber);
+            if(matchingCount == 5){
                 checkBonus = checkBonusInWinningLottoNumber(lotto,winningLottoNumber);
             }
-            Rank.of(cnt,checkBonus);
+            Rank.of(matchingCount,checkBonus);
         }
     }
 
     private static boolean checkBonusInWinningLottoNumber(Lotto lotto, WinningLottoNumber winningLottoNumber){
-        boolean checkBonus = false;
-        if(lotto.getNumbers().contains(winningLottoNumber.getBonusNumber().getBonus())){
-            checkBonus = true;
-        }
-        return checkBonus;
+        return lotto.getNumbers().contains(winningLottoNumber.getBonusNumber());
     }
 
-    private static int matchingCount(Lotto lotto, WinningLottoNumber winningLottoNumber){
-        int cnt = 0;
-        for(Integer winningNumber : winningLottoNumber.getWinningNumber().getNumbers()){
+    private static int checkMatchingCount(Lotto lotto, WinningLottoNumber winningLottoNumber){
+        int matchingCount = 0;
+        for(Integer winningNumber : winningLottoNumber.getWinningNumber()){
             if(lotto.getNumbers().contains(winningNumber)){
-                cnt++;
+                matchingCount++;
             }
         }
-        return cnt;
+        return matchingCount;
     }
 }
