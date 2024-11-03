@@ -19,9 +19,4 @@ public class InputView {
         System.out.println(IOMessage.BOUNS_NUM_INPUT.getMessage());
         return Console.readLine();
     }
-
-    public void printWithNewLine(String message) {
-        System.out.println(message);
-        System.out.println(); // 줄바꿈 추가
-    }
 }
