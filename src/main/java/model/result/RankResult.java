@@ -2,6 +2,7 @@ package model.result;
 
 import java.util.HashMap;
 import java.util.Map;
+import model.money.Money;
 
 public class RankResult {
 
@@ -20,5 +21,13 @@ public class RankResult {
 
     public void compute(Rank rank) {
         result.computeIfPresent(rank, (status, value) -> value + 1);
+    }
+
+    public Money calculateTotalPrize() {
+        long totalPrizeValue = result.entrySet()
+                .stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return Money.from(totalPrizeValue);
     }
 }

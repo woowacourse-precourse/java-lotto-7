@@ -4,6 +4,8 @@ import static model.result.Rank.hasCountToBeSecond;
 
 import model.lotto.Lotto;
 import model.lotto.Lottos;
+import model.money.Money;
+import model.result.EarningsRate;
 import model.result.Rank;
 import model.result.RankResult;
 
@@ -31,5 +33,10 @@ public class ResultService {
         }
 
         return Rank.findRank(matchingCount, bonusMatched);
+    }
+
+    public EarningsRate getEarningsRate(RankResult rankResult, Money purchaseAmount) {
+        Money totalPrize = rankResult.calculateTotalPrize();
+        return EarningsRate.from(totalPrize, purchaseAmount);
     }
 }
