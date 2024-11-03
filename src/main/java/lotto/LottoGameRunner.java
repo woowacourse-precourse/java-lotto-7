@@ -4,6 +4,7 @@ import lotto.console.ConsoleOutput;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoNumber;
+import lotto.enums.WinRank;
 import lotto.util.StringMaker;
 
 import java.util.List;
@@ -22,36 +23,36 @@ public class LottoGameRunner {
 
     public void run() {
 
-        List<Integer> wins = calculateRankFromMatchResult(matchLottoNumbers());
+        List<WinRank> wins = calculateRankFromMatchResult(matchLottoNumbers());
 
         Double earningRate = calculateEarningRate(wins);
 
         printLottoGameResult(wins, earningRate);
     }
 
-    private void printLottoGameResult(List<Integer> winningRanks, Double earningRate) {
-        ConsoleOutput.print(makeWinStatusResult(winningRanks, earningRate));
+    private void printLottoGameResult(List<WinRank> winningWinRanks, Double earningRate) {
+        ConsoleOutput.print(makeWinStatusResult(winningWinRanks, earningRate));
     }
 
-    private static String makeWinStatusResult(List<Integer> winningRanks, Double earningRate) {
+    private static String makeWinStatusResult(List<WinRank> winningWinRanks, Double earningRate) {
 
-        int[] countPerWinningRank = countRanks(winningRanks);
+        int[] countPerWinningRank = countRanks(winningWinRanks);
 
         return StringMaker.make(earningRate, countPerWinningRank);
     }
 
-    private static int[] countRanks(List<Integer> winningRanks) {
+    private static int[] countRanks(List<WinRank> winningWinRanks) {
         int[] countPerWinningRank = new int[6];
-        winningRanks
-                .forEach(rank -> {
-                    countPerWinningRank[rank]++;
+        winningWinRanks
+                .forEach(winRank -> {
+                    countPerWinningRank[winRank.getValue()]++;
                 });
         return countPerWinningRank;
     }
 
-    private Double calculateEarningRate(List<Integer> winningRanks) {
+    private Double calculateEarningRate(List<WinRank> winningWinRanks) {
 
-        double earnRate = ((double) calculateTotalEarning(winningRanks) / lottoGame.getTotalPrice().getValue()) * 100;
+        double earnRate = ((double) calculateTotalEarning(winningWinRanks) / lottoGame.getTotalPrice().getValue()) * 100;
 
         return roundToSecondDecimalPlace(earnRate);
     }
@@ -60,59 +61,39 @@ public class LottoGameRunner {
         return Math.round(earnRate * 100) / 100.0;
     }
 
-    private Integer calculateTotalEarning(List<Integer> winningRanks) {
-        return winningRanks.stream()
+    private Integer calculateTotalEarning(List<WinRank> winningWinRanks) {
+        return winningWinRanks.stream()
                 .mapToInt(LottoGameRunner::winPriceFromRank)
                 .sum();
     }
 
-    private static int winPriceFromRank(Integer rank) {
-        if(rank == 1) {
-            return 2000000000;
-        }
-
-        if(rank == 2) {
-            return 30000000;
-        }
-
-        if(rank == 3) {
-            return 1500000;
-        }
-
-        if(rank == 4) {
-            return 50000;
-        }
-
-        if(rank == 5) {
-            return 5000;
-        }
-
-        return 0;
+    private static int winPriceFromRank(WinRank winRank) {
+        return winRank.getPrize();
     }
 
-    private List<Integer> calculateRankFromMatchResult(List<Integer> winningHistoty) {
+    private List<WinRank> calculateRankFromMatchResult(List<Integer> winningHistoty) {
         return winningHistoty.stream()
-                .map(LottoGameRunner::gradeFromWinCount)
+                .map(LottoGameRunner::calculateRank)
                 .toList();
     }
 
-    private static int gradeFromWinCount(Integer winCount) {
+    private static WinRank calculateRank(Integer winCount) {
         if(winCount == 6) {
-            return 1;
+            return WinRank.FIRST;
         }
         if(winCount == 7) {
-            return 2;
+            return WinRank.SECOND;
         }
         if(winCount == 5) {
-            return 3;
+            return WinRank.THIRD;
         }
         if(winCount == 4) {
-            return 4;
+            return WinRank.FOURTH;
         }
         if(winCount == 3) {
-            return 5;
+            return WinRank.FIRST;
         }
-        return 0;
+        return WinRank.NONE;
     }
 
     private List<Integer> matchLottoNumbers() {
