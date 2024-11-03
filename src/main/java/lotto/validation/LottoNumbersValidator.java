@@ -1,10 +1,15 @@
 package lotto.validation;
 
+import static lotto.util.LottoConstants.LOTTO_LENGTH;
+import static lotto.util.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.util.LottoConstants.MIN_LOTTO_NUMBER;
+
 import java.util.List;
 import lotto.view.input.InputErrorMessage;
 import lotto.view.input.InvalidInputException;
 
 public class LottoNumbersValidator {
+
     public static void validate(List<Integer> numbers) {
         validateLottoLength(numbers);
         validateLottoRange(numbers);
@@ -13,7 +18,7 @@ public class LottoNumbersValidator {
 
 
     private static void validateLottoLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_LENGTH_INVALID);
         }
     }
@@ -25,7 +30,8 @@ public class LottoNumbersValidator {
     }
 
     private static boolean isLottoRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> number >= 1 && number <= 45);
+        return numbers.stream()
+                .allMatch(number -> number >= MIN_LOTTO_NUMBER.getValue() && number <= MAX_LOTTO_NUMBER.getValue());
     }
 
     private static void validateDuplicate(List<Integer> numbers) {
