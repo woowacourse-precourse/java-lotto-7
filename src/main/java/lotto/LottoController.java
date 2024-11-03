@@ -5,12 +5,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public static final int lottoPrice = 1000;
+    public static final int LOTTO_PRICE = 1000;
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     final Lottos lottos = new Lottos();
     final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
     final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
+    final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
 
@@ -18,7 +19,7 @@ public class LottoController {
         int lottoCount = purchaseLottos();
         createLottos(lottoCount);
         makeWinningNumbers();
-        calculateResults(lottoCount * lottoPrice);
+        calculateResults(lottoCount * LOTTO_PRICE);
         displayResults();
     }
 
@@ -34,12 +35,14 @@ public class LottoController {
         while (true) {
             outputView.printPurchaseGuide();
             String price = inputView.getPurchasePrice();
-            LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(price);
-            lottoCount = lottoPurchaseService.getLottoCount();
-            if (!isPriceInputError(price, lottoPurchaseService.getPrice())) {
+            String checkPrice = lottoPriceValidator.validate(price);
+
+            if (!isPriceInputError(price, checkPrice)) {
+                lottoCount = Integer.parseInt(price) / LOTTO_PRICE;
                 break;
             }
-            outputView.printErrorMessage(lottoPurchaseService.getPrice());
+
+            outputView.printErrorMessage(checkPrice);
             outputView.printRetryGuide();
         }
         outputView.printLottoCount(lottoCount);
@@ -64,5 +67,4 @@ public class LottoController {
         outputView.printLottoResult(lottoResultCalculator.getResult());
         outputView.printLottoRate(lottoRateCalculator.getRate());
     }
-
 }
