@@ -5,7 +5,10 @@ import lotto.Domain.LottoGame;
 import lotto.Domain.LottoMachine;
 import lotto.Domain.Lottos;
 import lotto.Domain.PurchaseAmount;
+import lotto.Domain.WinningAnalyzer;
 import lotto.Domain.WinningNumbers;
+import lotto.Domain.WinningResult;
+import lotto.Messages.OutputMessage;
 import lotto.Utils.Formatter;
 import lotto.Utils.UserInput;
 import lotto.View.OutputView;
@@ -21,6 +24,7 @@ public class LottoGameController {
     public void run() {
         ready();
         draw();
+        result();
     }
 
     private void ready() {
@@ -32,6 +36,7 @@ public class LottoGameController {
                 PurchaseAmount amount = PurchaseAmount.from(amountInput);
                 LottoMachine machine = LottoMachine.create();
                 issuedLottos = machine.buyLottos(amount);
+                game.setAmount(amount.getValue());
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
@@ -62,17 +67,31 @@ public class LottoGameController {
         }
 
         OutputView.printMessage();
-        while (true){
+        while (true) {
             try {
                 String bonusNumberInput = userInput.bonusNumber();
                 winningNumbers.registerBonus(bonusNumberInput);
                 break;
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
         }
 
         game.setWinningNumbers(winningNumbers);
+    }
+
+    private void result() {
+        OutputView.printMessage();
+        WinningAnalyzer winningAnalyzer = new WinningAnalyzer();
+        WinningResult winningResult = winningAnalyzer.analyze(game.getIssuedLottos(), game.getWinningNumbers());
+        game.setWinningResult(winningResult);
+
+        List<String> winningStatistics = Formatter.formatWinningStatistics(winningResult);
+        OutputView.printMessages(winningStatistics);
+
+        double profit = game.calculateProfit();
+        String totalYieldMessage = String.format(OutputMessage.TOTAL_PROFIT.getMessage(), profit);
+        OutputView.printMessage(totalYieldMessage);
     }
 
 }

@@ -26,7 +26,7 @@ public class WinningNumbers {
     }
 
     public Lotto getMainNumbers() {
-        return mainNumbers;
+        return mainNumbers.getLotto();
     }
 
     public void registerMainNumbers(String userInput) {
