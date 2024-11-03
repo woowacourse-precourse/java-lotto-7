@@ -6,7 +6,9 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningLottoNumbers;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,5 +57,29 @@ public class LottoResultTest {
         assertThat(LottoRank.valueOf(4, false)).isEqualTo(LottoRank.FOURTH);
         assertThat(LottoRank.valueOf(3, false)).isEqualTo(LottoRank.FIFTH);
         assertThat(LottoRank.valueOf(2, false)).isEqualTo(LottoRank.NONE);
+    }
+
+    @Test
+    @DisplayName("당첨 통계를 생성한다")
+    void 성공_당첨통계생성_유효한파라미터() {
+        // given
+        String winningNumberList = "1, 2, 3, 4, 5, 8";
+        String bonusNumber = "7";
+
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 8))
+        );
+        WinningNumbers winningNumbers = WinningNumbers.from(WinningLottoNumbers.from(winningNumberList),
+                BonusNumber.from(bonusNumber));
+
+        // when
+        LottoResult result = LottoResult.of(lottos, winningNumbers);
+
+        // then
+        assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(result.getCountByRank(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(result.getCountByRank(LottoRank.THIRD)).isEqualTo(1);
     }
 }

@@ -32,4 +32,8 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(NONE);
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }
