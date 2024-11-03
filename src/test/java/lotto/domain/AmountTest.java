@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import lotto.validator.LottoValidationMessage;
+import lotto.validator.InputValidationMessage;
 
 class AmountTest {
 	@DisplayName("Amount를 생성한다.")
@@ -34,10 +34,10 @@ class AmountTest {
 		//when & then
 		assertThatThrownBy(() -> Amount.of(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
 	}
 
 	static Stream<Integer> invalidNumbers() {
-		return Stream.of(999, 1001);
+		return Stream.of(999, 1001, 1234, 9999, 10001);
 	}
 }
