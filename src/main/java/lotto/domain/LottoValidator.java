@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.util.ErrorMessage.*;
 
+import java.util.List;
+
 public class LottoValidator {
 
     private static final int LOTTO_SIZE = 6;
@@ -17,6 +19,12 @@ public class LottoValidator {
     public static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
+        }
+    }
+
+    public static void validateNumber(String input) {
+        if (!input.matches("^[0-9]*$")) {
+            throw new IllegalArgumentException(INVALID_NUMBER.getMessage());
         }
     }
 
@@ -38,6 +46,17 @@ public class LottoValidator {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateWinningLottoNumbers(List<Integer> lottoNumbers, int bonusNumber) {
+        validateLottoNumbers(lottoNumbers);
+        validateBonusNumber(bonusNumber, lottoNumbers);
     }
 
     public static void validateMoney(int money) {
