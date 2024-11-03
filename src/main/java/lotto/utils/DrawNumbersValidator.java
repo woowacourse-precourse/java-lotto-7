@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 
 public class DrawNumbersValidator {
 
+    private static final String DELIMITER = ",";
+
     public List<Integer> validateWinningNumbers(String winningNumbers) {
         validateEmpty(winningNumbers);
         validateWinningNumbersFormat(winningNumbers);
 
-        List<String> splitWinningNumbers = List.of(winningNumbers.split(LottoPrintFormat.DELIMITER));
+        List<String> splitWinningNumbers = List.of(winningNumbers.split(DELIMITER));
         validateCountWinningNumbers(splitWinningNumbers);
         validateAllNoLetters(splitWinningNumbers);
         validateDuplicateWiningNumbers(splitWinningNumbers);
@@ -79,7 +81,7 @@ public class DrawNumbersValidator {
     }
 
     private void validateWinningNumbersFormat(String winningNumbers) {
-        if (winningNumbers.startsWith(LottoPrintFormat.DELIMITER) || winningNumbers.endsWith(LottoPrintFormat.DELIMITER)) {
+        if (winningNumbers.startsWith(DELIMITER) || winningNumbers.endsWith(DELIMITER)) {
             throw new IllegalArgumentException("잘못된 당첨 번호 형식입니다.");
         }
     }
