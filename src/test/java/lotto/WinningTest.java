@@ -21,6 +21,8 @@ public class WinningTest {
 
     @BeforeEach
     void beforeEach() {
+        int hackedMinWinningNumber = DrawNumberHacker.MIN_WINNING_NUMBER;
+        int hackedMaxWinningNumber = DrawNumberHacker.MAX_WINNING_NUMBER;
         NumberGenerator testNumberGenerator = new TestNumberGenerator(hackedMinWinningNumber, hackedMaxWinningNumber);
         this.lottoPublisher = new LottoPublisher(testNumberGenerator);
     }
