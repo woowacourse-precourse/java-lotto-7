@@ -1,6 +1,10 @@
-package View;
+package view;
+
+import static util.LottoFormatter.formatLotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.Lotto;
 import lotto.PurchaseCount;
 
 public class LottoView {
@@ -15,5 +19,11 @@ public class LottoView {
         String result = count + "개를 구매했습니다.";
         System.out.println(result);
         return result;
+    }
+
+    public void printPurchasedLottoNumbersFromView(List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            System.out.println(formatLotto(lotto.getNumbers()));
+        }
     }
 }

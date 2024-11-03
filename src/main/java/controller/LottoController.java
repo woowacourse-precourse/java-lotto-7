@@ -1,9 +1,9 @@
-package Controller;
+package controller;
 
-import Service.LottoService;
-import View.LottoView;
 import lotto.LottoList;
 import lotto.PurchaseCount;
+import service.LottoService;
+import view.LottoView;
 
 public class LottoController {
     private final LottoView lottoView;
@@ -25,5 +25,9 @@ public class LottoController {
 
     private LottoList purchaseLottos(int purchaseCount) {
         return lottoService.generateLottos(purchaseCount);
+    }
+
+    private void displayPurchasedLottoNumbers(LottoList lottoList) {
+        lottoView.printPurchasedLottoNumbersFromView(lottoList.getLottoList());
     }
 }
