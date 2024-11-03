@@ -9,7 +9,7 @@ import lotto.controller.NumberLottoInputManger;
 import lotto.domain.LottoMachine;
 import lotto.domain.factory.NumberLottoFactory;
 import lotto.domain.score.Score;
-import lotto.view.InputView;
+import lotto.view.InputViewImpl;
 import lotto.view.OutputView;
 
 public class Application {
@@ -32,7 +32,7 @@ public class Application {
 
         //숫자 기반 로또를 위한 입력값 매니저를 초기화합니다
         LottoInputManger lottoInputManger = new NumberLottoInputManger(
-                InputView.getInstance());
+                InputViewImpl.getInstance());
 
 
         //컨트롤러에 필요한 것을 모두 주입합니다.
