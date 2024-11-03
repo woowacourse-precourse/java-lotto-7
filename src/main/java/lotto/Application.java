@@ -1,16 +1,16 @@
 package lotto;
 
-import lotto.shop.bandingmachine.BandingMachine;
+import lotto.shop.bandingmachine.TouchScreen;
 import lotto.shop.bandingmachine.TrialHistory;
 
 public class Application {
     public static void main(String[] args) {
 
-        BandingMachine bandingMachine = new BandingMachine();
+        TouchScreen touchScreen = new TouchScreen();
 
-        bandingMachine.inputMoney();
-        TrialHistory trialHistory = bandingMachine.getTrialHistory();
-        bandingMachine.drawNumbers(trialHistory.getTotalCount());
+        touchScreen.inputMoney();
+        TrialHistory trialHistory = touchScreen.getTrialHistory();
+        touchScreen.pushDraw(trialHistory.getTotalCount());
 
 
     }

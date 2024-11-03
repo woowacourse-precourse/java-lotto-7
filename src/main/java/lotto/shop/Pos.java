@@ -52,7 +52,7 @@ public class Pos {
     }
 
     private void validateBlank(String textWon) {
-        if (textWon == null || textWon.isBlank()) {
+        if (textWon == null || textWon.isEmpty()) {
             throwException();
         }
     }
