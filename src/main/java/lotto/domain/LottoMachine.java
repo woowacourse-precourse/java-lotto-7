@@ -24,4 +24,22 @@ public class LottoMachine {
             throw new LottoException(INVALID_BONUS_NUMBER_DUPLICATE);
         }
     }
+
+    public LottoResult getLottoResult(Lotto purchasedLotto) {
+        int matchedCount = getMatchedCount(purchasedLotto);
+        boolean isBonusMatched = isBonusMatched(purchasedLotto);
+        return LottoResult.findLottoResult(matchedCount, isBonusMatched);
+    }
+
+    private int getMatchedCount(Lotto purchasedLotto) {
+        List<Integer> answer = lotto.getNumbers();
+        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        return (int) purchasedNumbers.stream().filter(answer::contains).count();
+    }
+
+    private boolean isBonusMatched(Lotto purchasedLotto) {
+        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        return purchasedNumbers.contains(bonusNumber.getBonusNumber());
+    }
+
 }
