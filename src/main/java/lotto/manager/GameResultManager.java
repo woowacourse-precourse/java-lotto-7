@@ -11,4 +11,9 @@ public class GameResultManager {
 
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
+
+    private boolean matchBonusNumberWith(Lotto lotto) {
+
+        return lotto.getImmutableNumbers().contains(winningLotto.getImmutableBonusNumber().getNumber());
+    }
 }
