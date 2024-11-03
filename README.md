@@ -16,3 +16,6 @@
    - [x] sort numbers in ascending order
 - manage Internal Lotto data
    - [ ] verify duplicated numbers
+
+- provide interface for Lotto Data
+   - [ ] return stored Lotto data

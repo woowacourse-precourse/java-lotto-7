@@ -29,5 +29,11 @@ public class Lotto {
         return set.size() != list.size();
     }
 
+    public List<Integer> getNumbers(){
+        return new ArrayList<>(this.numbers);
+    }
+
+
+
     // TODO: 추가 기능 구현
 }
