@@ -1,7 +1,6 @@
 package lotto.config;
 
 import java.util.Arrays;
-import lotto.model.Lotto;
 
 public enum LottoRule {
     FIRST(6, false, 2_000_000_000),
