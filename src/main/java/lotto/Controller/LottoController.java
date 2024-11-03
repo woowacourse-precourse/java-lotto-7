@@ -22,6 +22,7 @@ public class LottoController {
         gainPurchaseAmount();
         myInfo.setLottoCount(myInfo.getLottoCount());
         myInfo.setMyLottos(Lotto.sortLottoList(myInfo.getLottoCount()));
+        System.out.println();
         myInfo.setAnswerLotto(gainWinningInput());
         myInfo.setBonusNumber(gainBonusInput(myInfo.getAnswerLotto()));
         List<MyResults> myResults = WinningDetails
@@ -70,9 +71,9 @@ public class LottoController {
         Lotto answer = null;
         boolean isValid = false;
 
-        OutputView.printWinning();
         while (!isValid) {
             try {
+                OutputView.printWinning();
                 answer = InputView.readWinningNum();
                 isValid = true; // 입력이 성공적이면 루프 종료
             } catch (IllegalArgumentException e) {
@@ -86,10 +87,9 @@ public class LottoController {
     public int gainBonusInput(Lotto answer) {
         int bonus = 0;
         boolean isValid = false;
-
-        OutputView.printBonus();
         while (!isValid) {
             try {
+                OutputView.printBonus();
                 bonus = InputView.readBonus(answer);
                 isValid = true; // 입력이 성공적이면 루프 종료
             } catch (IllegalArgumentException e) {

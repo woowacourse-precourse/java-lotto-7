@@ -19,17 +19,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            OutputView.printError(ErrorMessage.LOTTO_NUM.getError());
+            //OutputView.printError(ErrorMessage.LOTTO_NUM.getError());
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM.getError());
         }
         if (!InputView.checkRangeList(numbers)) {
-            OutputView.printError(ErrorMessage.LOTTO_RANGE.getError());
+            //OutputView.printError(ErrorMessage.LOTTO_RANGE.getError());
             throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE.getError());
         }
         Set<Integer> numberSet = numbers.stream()
                 .collect(Collectors.toSet());
         if (numberSet.size() != numbers.size()) {
-            OutputView.printError(ErrorMessage.LOTTO_DUPLICATE.getError());
+            //OutputView.printError(ErrorMessage.LOTTO_DUPLICATE.getError());
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getError());
         }
     }
