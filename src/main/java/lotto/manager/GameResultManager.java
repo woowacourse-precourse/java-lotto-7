@@ -1,7 +1,6 @@
 package lotto.manager;
 
 import lotto.domain.*;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -9,8 +8,7 @@ import java.util.stream.Collectors;
 public class GameResultManager {
     private WinningLotto winningLotto;
 
-    public void changeWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        Lotto lotto = new Lotto(winningNumbers);
+    public void changeWinningLotto(Lotto lotto, int bonusNumber) {
         this.winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 
