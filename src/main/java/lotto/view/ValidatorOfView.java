@@ -13,6 +13,7 @@ public class ValidatorOfView {
             "[ERROR] 당첨 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
     private final static String ERROR_DUPLICATE_WINNING_NUMBER_DESC =
             "[ERROR] 당첨 번호는 중복되지 않은 서로 다른 6개의 숫자가 입력 되어야 합니다.";
+    private final static String ERROR_DUPLICATE_BONUS_NUMBER_DESC = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
     private final static int WINNING_NUMBER_SIZE = 6;
     private final static int MINIMUM_WINNING_NUMBER = 1;
     private final static int MAXIMUM_WINNING_NUMBER = 45;
@@ -37,6 +38,10 @@ public class ValidatorOfView {
             throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBER_DESC);
     }
 
+    public static void isValidateBonusNumber(List<Integer> winningNumbers, int bonusNumber){
+        if(!isDuplicateOfBonus(winningNumbers,bonusNumber))
+            throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER_DESC);
+    }
     public static boolean isGreaterThanZero(int budget) {
         return budget > 0;
     }
@@ -60,6 +65,10 @@ public class ValidatorOfView {
 
     public static boolean isDuplicate(List<Integer> winningNumbers){
         return  new HashSet<>(winningNumbers).size() == WINNING_NUMBER_SIZE;
+    }
+
+    public static boolean isDuplicateOfBonus(List<Integer> winningNumbers, int bonusNumber){
+        return winningNumbers.contains(bonusNumber);
     }
 
 }

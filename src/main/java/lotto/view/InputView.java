@@ -31,4 +31,15 @@ public class InputView {
         }
         return winningNumbers;
     }
+
+    public static int inputBonusNumber(){
+        int bonusNumber;
+        try{
+            bonusNumber = Integer.parseInt(Console.readLine());
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+        return bonusNumber;
+    }
 }

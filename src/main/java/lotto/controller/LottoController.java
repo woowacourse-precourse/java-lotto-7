@@ -23,4 +23,9 @@ public class LottoController {
         return InputView.inputWinningNumber();
     }
 
+    public int readBonusNumber(){
+        OutputView.printBonusNumberInputDescription();
+        return InputView.inputBonusNumber();
+    }
+
 }
