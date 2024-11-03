@@ -1,29 +1,24 @@
 package lotto.service;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lotto.domain.BonusNumber;
+import lotto.domain.LottoPurchase;
 import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
+import lotto.dto.LottoResultDto;
 import lotto.dto.LottoTicketsDto;
 
 public class LottoService {
     private final LottoStore lottoStore;
-    private final LottoResults lottoResults;
 
     public LottoService() {
         this.lottoStore = new LottoStore();
-        this.lottoResults = new LottoResults();
     }
 
-    public LottoTicketsDto purchaseLottoTickets(int amount){
-        int ticketCount = lottoStore.calculateLottoCount(amount);
-        LottoTickets tickets = lottoStore.generateLottoTickets(ticketCount);
-        return LottoTicketsDto.from(tickets.getLottoTickets());
+    public LottoTickets purchaseLottoTickets(int amount){
+        LottoPurchase purchase = LottoPurchase.of(amount);
+        return lottoStore.generateLottoTickets(purchase.getTicketCount());
     }
-
-    private long calculateTotalEarnings() {
-        return lottoResults.calculateTotalEarnings();
-    }
-
-    private double calculateProfitRate(int ticketCount, long totalEarnings) {
-        return (totalEarnings - (ticketCount * 1000)) / (double)(ticketCount * 1000) * 100;
-    }
-
 }
