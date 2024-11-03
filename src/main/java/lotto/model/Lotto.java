@@ -1,7 +1,10 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
+import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppErrorType.NUMBER_DUPLICATE_ERROR;
+import static lotto.common.AppErrorType.NUMBER_RANGE_ERROR;
 import static lotto.common.AppErrorType.NUMBER_SIZE_ERROR;
 
 import java.util.Comparator;
@@ -13,8 +16,17 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateInvalidNumberRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers.stream().sorted(Comparator.naturalOrder()).toList();
+    }
+
+    private void validateInvalidNumberRange(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if (LOTTO_START_RANGE > number || number > LOTTO_END_RANGE) {
+                throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+            }
+        });
     }
 
     private void validate(List<Integer> numbers) {
