@@ -4,13 +4,18 @@ import lotto.handler.LottoCheckController;
 import lotto.handler.LottoGenerateController;
 import lotto.handler.LottoResultController;
 import lotto.handler.RandomValueGenerator;
+import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class AppConfig {
 
     public InputView inputView() {
-        return new InputView();
+        return new InputView(inputValidator());
+    }
+
+    public InputValidator inputValidator() {
+        return new InputValidator();
     }
 
     public OutputView outputView() {

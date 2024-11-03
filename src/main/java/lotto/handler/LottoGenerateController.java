@@ -3,6 +3,7 @@ package lotto.handler;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.PositiveNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,9 +30,16 @@ public class LottoGenerateController {
         outputView.printLotties(lottoList);
     }
 
-    private int getAmount() {
-        int price = inputView.getPrice();
-        return price / 1000;
+    private PositiveNumber getAmount() {
+        while (true) {
+            try {
+                return inputView.getPrice();
+                break;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                continue;
+            }
+        }
     }
 
     private Lotto purchaseLotto() {

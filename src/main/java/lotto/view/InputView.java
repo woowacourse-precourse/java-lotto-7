@@ -4,12 +4,22 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.dto.WinningNumberRequestDto;
+import lotto.model.PositiveNumber;
+import lotto.model.PositiveNumbers;
 
 public class InputView {
 
-    public int getPrice() {
+    private final InputValidator inputValidator;
+
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
+
+    public PositiveNumber getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        long price = Long.parseLong(Console.readLine());
+        inputValidator.isDivisibleByThousand(price);
+        return new PositiveNumber(price);
     }
 
     public WinningNumberRequestDto getEntireNumber() {
@@ -23,7 +33,7 @@ public class InputView {
             .toList();
     }
 
-    private int getBonusNumber() {
+    private Integer getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
