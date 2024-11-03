@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.Message.ErrorMessage;
+import lotto.Utils;
 
 public class BonusNumber {
     private static final int MIN_NUMBER = 1;
@@ -9,17 +10,9 @@ public class BonusNumber {
     private final int bonusNumber;
 
     public BonusNumber(String input) {
-        int bonusNumber = validateNumber(input);
+        int bonusNumber = Utils.parseToInt(input);
         validateRange(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    public static int validateNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.toString());
-        }
     }
 
     private void validateRange(int bonusNumber) {
