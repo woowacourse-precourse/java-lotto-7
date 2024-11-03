@@ -30,15 +30,12 @@ public class LottoMatch {
             int matchCount = 0;
             boolean hasBonus = false;
 
-            for (Integer value : iLotto) {
-                if (winLotto.contains(value)) matchCount++;
-                if (value == bonusNumber) hasBonus = true;
-            }
+            Count count = getCount(iLotto, matchCount, hasBonus);
 
-            WinValue winValue = getWinValue(matchCount, hasBonus);
+            WinValue winValue = getWinValue(count.matchCount(), count.hasBonus());
             if (winValue != null) {
                 totalPrize += winValue.getAmount();
-                recordWinCount(matchCount, hasBonus);
+                recordWinCount(count.matchCount(), count.hasBonus());
             }
         }
 
@@ -47,6 +44,18 @@ public class LottoMatch {
 
         printStatistics();
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    private Count getCount(List<Integer> iLotto, int matchCount, boolean hasBonus) {
+        for (Integer value : iLotto) {
+            if (winLotto.contains(value)) matchCount++;
+            if (value == bonusNumber) hasBonus = true;
+        }
+        Count count = new Count(matchCount, hasBonus);
+        return count;
+    }
+
+    private record Count(int matchCount, boolean hasBonus) {
     }
 
     private WinValue getWinValue(int matchCount, boolean hasBonus) {
