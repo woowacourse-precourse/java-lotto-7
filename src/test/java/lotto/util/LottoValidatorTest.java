@@ -44,7 +44,7 @@ class LottoValidatorTest {
         int uniqueNumber = 7;
 
         // then
-        assertDoesNotThrow(() -> LottoValidator.validateDuplicateNumber(winningLotto, uniqueNumber));
+        assertDoesNotThrow(() -> LottoValidator.validateDuplicateBonusNumber(winningLotto, uniqueNumber));
     }
 
     // EXCEPTION
@@ -77,6 +77,6 @@ class LottoValidatorTest {
 
         // when & then
         assertThrows(IllegalArgumentException.class,
-                () -> LottoValidator.validateDuplicateNumber(winningLotto, duplicateNumber));
+                () -> LottoValidator.validateDuplicateBonusNumber(winningLotto, duplicateNumber));
     }
 }
