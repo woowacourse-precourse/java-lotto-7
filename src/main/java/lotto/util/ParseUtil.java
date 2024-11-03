@@ -17,4 +17,8 @@ public class ParseUtil {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public static String removeSpace(String input) {
+        return input.replaceAll("\\s+", "");
+    }
 }

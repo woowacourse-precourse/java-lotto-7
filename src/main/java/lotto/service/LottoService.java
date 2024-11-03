@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.Lotto;
 import lotto.util.ParseUtil;
 import lotto.util.RandomUtil;
+import lotto.validator.LottoNumberValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -57,7 +58,10 @@ public class LottoService {
     }
 
     public Lotto getWinningLotto(String winningNumbersInput) {
+        winningNumbersInput = ParseUtil.removeSpace(winningNumbersInput);
         List<String> tokens = ParseUtil.splitByDelimiters(winningNumbersInput, DELIMITER);
+        LottoNumberValidator.validateNumberCount(tokens);
+
         List<Integer> winningNumbers = ParseUtil.parseToIntegerList(tokens);
         Lotto winningLotto = new Lotto(winningNumbers);
         return winningLotto;
