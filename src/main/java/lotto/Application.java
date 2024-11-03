@@ -23,14 +23,16 @@ public class Application {
             allLottos.add(lotto);
         }
 
-        StringBuilder purchasedLottoOutput = new StringBuilder();
-        purchasedLottoOutput.append(totalLottoCount).append("개를 구매했습니다.\n");
+        StringBuilder lottoPurchaseResult = new StringBuilder();
+        lottoPurchaseResult.append(totalLottoCount).append("개를 구매했습니다.\n");
         allLottos.stream()
                         .forEach(lotto -> {
-                            purchasedLottoOutput.append("[");
-                            purchasedLottoOutput.append(String.join(",", lotto.stream().toString()));
-                            purchasedLottoOutput.append("]\n");
+                            lottoPurchaseResult.append("[");
+                            lottoPurchaseResult.append(String.join(",", lotto.stream().toString()));
+                            lottoPurchaseResult.append("]\n");
                         });
+
+        System.out.println(lottoPurchaseResult);
 
 
         System.out.println("당첨 번호를 입력해 주세요.");
