@@ -12,8 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PrizeMachineTest {
     PrizeMachine prizeMachine;
     List<Lotto> lottos;
-    List<Integer> winningNumbers;
-    int bonusNumber;
+    DrawNumbers drawNumbers;
 
     @BeforeEach
     void setUp(){
@@ -26,8 +25,7 @@ class PrizeMachineTest {
         );
 
         prizeMachine=new PrizeMachine(lottos);
-        winningNumbers=List.of(4,5,6,7,8,9);
-        bonusNumber=13;
+        drawNumbers=new DrawNumbers(new WinningNumbers(List.of(4,5,6,7,8,9)),new BonusNumber(13));
     }
 
     @Test
@@ -42,7 +40,7 @@ class PrizeMachineTest {
         expected.put(Rank.FIVE_HIT_WITH_BONUS, 1);
         expected.put(Rank.SIX_HIT, 1);
 
-        assertThat(prizeMachine.getAmountOfPrize(winningNumbers,bonusNumber))
+        assertThat(prizeMachine.getAmountOfPrize(drawNumbers))
                 .isEqualTo(expected);
     }
 
