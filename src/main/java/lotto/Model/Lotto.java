@@ -40,7 +40,7 @@ public class Lotto {
         return numbers;
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> GetNumbers() {
         return numbers;
     }
 }

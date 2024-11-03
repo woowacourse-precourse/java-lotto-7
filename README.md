@@ -8,6 +8,7 @@
 │    └── Play.java <br>
 ├── Model <br>
 │    ├── Lotto.java <br>
+│    ├── Rank.java <br>
 │    ├── Statistics.java <br>
 │    └── Rate.java <br>
 ├── Validation <br>
@@ -35,10 +36,12 @@
   - [ ] Play.java <br>
     - [ ] 시행 횟수 만큼 Model(Lotto) 반복 <br>
 ---
-- [ ] Model <br>
+- [X] Model <br>
   - [X] Lotto.java <br>
     - [X] 당첨 번호 6개 아닐 시 예외 처리 <br>
     - [X] 랜덤한 번호 추출 <br>
+  - [X] Rank.java <br>
+    - [X] 당첨 등수 및 당첨 금액 통계 표시 <br>
   - [X] Statistics.java <br>
     - [X] 당첨 등수 및 당첨 금액 통계 계산 <br>
   - [X] Rate.java <br>
@@ -60,10 +63,10 @@
     - [X] 1 ~ 45 사이 아닐 시 예외 처리 <br>
     - [X] 당첨 번호와 중복 시 예외 처리 <br>
 ---
-- [ ] View <br>
+- [X] View <br>
   - [X] Input.java <br>
     - [X] 로또 구입 금액 입력 <br>
     - [X] 당첨 번호 입력 <br>
     - [X] 보너스 번호 입력 <br>
-  - [ ] Output.java <br>
-    - [ ] 당첨 통계와 수익률 출력 <br>
+  - [X] Output.java <br>
+    - [X] 당첨 통계와 수익률 출력 <br>

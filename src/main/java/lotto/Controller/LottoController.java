@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.View.Input;
+import lotto.View.Output;
 import lotto.Validation.NumberValidation;
 import lotto.Validation.BonusValidation;
 import lotto.Model.Lotto;
@@ -17,7 +18,7 @@ public class LottoController {
                 String NumberInput = Input.GetNumber();
                 return NumberValidation(NumberInput);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.ErrorMessage(e);
             }
         }
     }
@@ -47,7 +48,7 @@ public class LottoController {
                 bonus = BonusValidation(Numbers, InputBonus);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.ErrorMessage(e);
             }
         }
         return bonus;
