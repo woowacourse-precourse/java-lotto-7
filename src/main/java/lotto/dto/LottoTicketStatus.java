@@ -15,4 +15,8 @@ public class LottoTicketStatus {
     public List<LottoStatus> getLottoStatuses() {
         return lottoStatuses;
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

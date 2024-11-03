@@ -58,7 +58,9 @@ public class LottoCalculator {
     private double calculateEarningRate(HashMap<Rank, Integer> lottoResult, LottoTicket lottoTicket) {
 
         long totalPrize = 0;
-        int purchaseAmount = lottoTicket.getPurchaseAmount();
+
+        LottoTicketStatus lottoTicketStatus = lottoTicket.getLottoTicketStatus();
+        int purchaseAmount = lottoTicketStatus.getPurchaseAmount();
 
         for (Rank rank : lottoResult.keySet()) {
             long prize = rank.getPrize();

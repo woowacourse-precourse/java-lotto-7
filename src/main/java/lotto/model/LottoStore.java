@@ -9,10 +9,8 @@ import lotto.util.random.LottoNumberGenerator;
 public class LottoStore {
 
     public static LottoTicket purchaseLottoTicket(int purchaseAmount) {
-
         int lottoCount = getLottoCount(purchaseAmount);
         return createLottoTicket(lottoCount, purchaseAmount);
-
     }
 
     private static int getLottoCount(int purchaseAmount) {

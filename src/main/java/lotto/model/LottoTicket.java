@@ -19,10 +19,6 @@ public class LottoTicket {
         return lottos.size();
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
-
     public LottoTicketStatus getLottoTicketStatus() {
 
         List<LottoStatus> lottoStatuses = lottos.stream()
