@@ -20,7 +20,7 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT);
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPurchasableQuantity() {
+        return amount/LOTTO_PRICE;
     }
 }

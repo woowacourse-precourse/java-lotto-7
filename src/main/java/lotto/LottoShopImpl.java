@@ -13,8 +13,7 @@ public class LottoShopImpl implements LottoShop {
     }
 
     @Override
-    public LottoTickets publishTickets(int purchaseAmount) {
-        int purchaseQuantity = purchaseAmount / LOTTO_PRICE;
+    public LottoTickets publishTickets(int purchaseQuantity) {
         return generateTickets(purchaseQuantity);
     }
 
