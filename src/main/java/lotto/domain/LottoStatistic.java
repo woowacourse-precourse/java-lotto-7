@@ -31,4 +31,12 @@ public class LottoStatistic {
     public Map<WinningRank, Integer> getRankCount() {
         return new HashMap<>(rankCount);
     }
+
+    public double calculateProfitRate() {
+        long totalPrize = 0;
+        for (Map.Entry<WinningRank, Integer> entry : rankCount.entrySet()) {
+            totalPrize += (long) entry.getKey().getPrize() * entry.getValue();
+        }
+        return Math.round((totalPrize * 100.0 / totalPrice) * 10.0) / 10.0;
+    }
 }
