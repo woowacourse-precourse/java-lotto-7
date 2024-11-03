@@ -25,7 +25,7 @@ public class MainController {
         Wallet wallet = createWallet();
         RandomLottos randomLottos = new RandomLottos(new RandomLottoNumberMaker());
         createRandomLottos(wallet, randomLottos);
-        Output.printPurchasedLottoList(wallet, randomLottos);
+        Output.printPurchasedLottoList(randomLottos);
 
         UserLotto userLotto = createUserLotto();
         WinningRank winningRank = new WinningRank(new FinalPrizeCalculator());

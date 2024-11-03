@@ -116,10 +116,10 @@
 ```
 
 - 서비스
-    - `RandomLottoMarket` : **입력받은 구매금액으로 티켓 개수 계산과, 랜덤 로또 생성을 요청한다.**
+    - `RandomLottoMarket` : **티켓 개수 계산과, 랜덤 로또 생성을 요청한다.**
         - `TicketCalculator` : 티켓 개수(로또 구매 가능 개수)를 계산한다.
         - `RandomLottos` : 랜덤 숫자 6개를 생성한다.
-        - `Wallet` : 구매 금액 데이터를 제공하고 티켓을 저장 및 반환한다.
+        - `Wallet` : 구매 금액 데이터를 제공하고 계산된 티켓 개수를 반환한다.
     - `LottoMatchService` : **사용자 로또<->랜덤 로또의 매칭과, 당첨 통계 업데이트를 요청한다.**
         - `UserLotto` : 로또 매칭시 자신의 매칭 결과를 반환한다.
         - `RandomLottos` : 자신과 사용자의 로또를 매칭한다.
@@ -132,7 +132,6 @@
 - 객체
     - `Wallet`
         - amount : 구매 금액
-        - ticket : 구매한(구매 가능한) 로또 개수
         - rateOfReturn : 수익률
     - `UserLotto`
         - `mainLotto` : 6개 메인 로또
