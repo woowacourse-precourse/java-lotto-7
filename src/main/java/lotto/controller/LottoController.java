@@ -16,6 +16,8 @@ public class LottoController {
 
         Lottos lottos = lottoService.generateLottos(money.getPurchasableLottoCount());
         OutputView.printPurchasedLottos(money.getPurchasableLottoCount(), OutputviewFormatter.formatLottoNumbers(lottos));
+
+        OutputView.printRequestWinningLottoNumbers();
     }
 
     private static Money requestPurchaseMoneyAmount() {
