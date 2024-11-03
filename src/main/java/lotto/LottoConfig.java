@@ -13,10 +13,14 @@ public final class LottoConfig {
     }
 
     public LottoApplication lottoApplication() {
-        return new LottoApplication(applicationView());
+        return new LottoApplication(applicationView(), purchaseLottoUseCase());
     }
 
-    public ApplicationView applicationView() {
+    private ApplicationView applicationView() {
         return new ApplicationConsoleView();
+    }
+
+    private PurchaseLottoUseCase purchaseLottoUseCase() {
+        return new PurchaseLottoService();
     }
 }
