@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 import lotto.Lotto;
+import lotto.constant.ErrorMessage;
 import lotto.constant.WinningRank;
 import lotto.service.CalculateProfitRateService;
 import lotto.service.LottoMatchNumberService;
 import lotto.service.LottoNumberGeneratorService;
 import lotto.service.LottoTicketBuyingService;
 import lotto.service.LottoTicketIssueService;
+import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutPutView;
 
@@ -25,28 +27,51 @@ public class LottoController {
     }
 
     public void run() {
-        String buyingPrice = inputView.startLottoGameAndReadBuyingPrice();
-        Integer lottoTicketAmount = LottoTicketBuyingService.buyingLottoTicket(buyingPrice);
-        LottoNumberGeneratorService lottoNumberGeneratorService = new LottoNumberGeneratorService();
-        LottoTicketIssueService lottoTicketIssueService = new LottoTicketIssueService(lottoTicketAmount,
-                lottoNumberGeneratorService);
-        List<Lotto> issuedLotto = lottoTicketIssueService.issueLotto();
-        outPutView.printBoughtLotto(issuedLotto);
-        splitCommaAndConvertToList(inputView.readWinningNumbers());
-        int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
-        LottoMatchNumberService lottoMatchNumberService = new LottoMatchNumberService(winningNumbers, bonusNumber);
-        Map<WinningRank, Integer> winningRankIntegerMap = lottoMatchNumberService.calculateResults(issuedLotto);
-        outPutView.printWinningStatistic(winningRankIntegerMap);
-        double profitRate = CalculateProfitRateService.calculateProfitRate(winningRankIntegerMap,
-                Integer.parseInt(buyingPrice));
-        outPutView.printProfitRate(profitRate);
-    }
+        try {
+            String buyingPrice = inputView.startLottoGameAndReadBuyingPrice();
+            Integer lottoTicketAmount = LottoTicketBuyingService.buyingLottoTicket(buyingPrice);
 
-    private void splitCommaAndConvertToList(String winningNumber) {
-        StringTokenizer stringTokenizer = new StringTokenizer(winningNumber, ",");
-        while (stringTokenizer.hasMoreTokens()) {
-            winningNumbers.add(Integer.parseInt(stringTokenizer.nextToken()));
+            LottoNumberGeneratorService lottoNumberGeneratorService = new LottoNumberGeneratorService();
+            LottoTicketIssueService lottoTicketIssueService = new LottoTicketIssueService(lottoTicketAmount,
+                    lottoNumberGeneratorService);
+            List<Lotto> issuedLotto = lottoTicketIssueService.issueLotto();
+
+            outPutView.printBoughtLotto(issuedLotto);
+
+            String winningNumberInput = inputView.readWinningNumbers();
+            splitCommaAndConvertToList(winningNumberInput);
+
+            int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
+            LottoValidator.validateWinningAndBonusNumbers(winningNumbers, bonusNumber);
+
+            LottoMatchNumberService lottoMatchNumberService = new LottoMatchNumberService(winningNumbers, bonusNumber);
+
+            Map<WinningRank, Integer> winningRankIntegerMap = lottoMatchNumberService.calculateResults(issuedLotto);
+            outPutView.printWinningStatistic(winningRankIntegerMap);
+
+            double profitRate = CalculateProfitRateService.calculateProfitRate(winningRankIntegerMap,
+                    Integer.parseInt(buyingPrice));
+            outPutView.printProfitRate(profitRate);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
         }
     }
 
+    private void splitCommaAndConvertToList(String winningNumber) throws IllegalArgumentException {
+        StringTokenizer stringTokenizer = new StringTokenizer(winningNumber, ",");
+        winningNumbers.clear();
+
+        while (stringTokenizer.hasMoreTokens()) {
+            int number = Integer.parseInt(stringTokenizer.nextToken().trim());
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
+            winningNumbers.add(number);
+        }
+
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
+        }
+    }
 }

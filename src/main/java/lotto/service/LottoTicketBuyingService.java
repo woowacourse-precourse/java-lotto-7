@@ -1,7 +1,12 @@
 package lotto.service;
 
+import lotto.validator.LottoValidator;
+
 public class LottoTicketBuyingService {
     public static Integer buyingLottoTicket(String buyingPrice) {
-        return Integer.parseInt(buyingPrice) / 1000;
+        LottoValidator.validatePurchaseAmountFormat(buyingPrice);
+        int price = Integer.parseInt(buyingPrice);
+        LottoValidator.validatePurchaseAmount(price);
+        return price / 1000;
     }
 }
