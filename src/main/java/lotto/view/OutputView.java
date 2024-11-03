@@ -47,6 +47,7 @@ public class OutputView {
     }
 
     private static void printPrizeStatistics(Map<WinningPrize, Integer> results) {
+
         for (WinningPrize prize : WinningPrize.values()) {
             printValidPrizeResult(prize, results);
         }
