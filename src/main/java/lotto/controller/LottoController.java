@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.view.InputView;
@@ -8,10 +9,12 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoGenerator lottoGenerator;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public void run() {
@@ -28,8 +31,8 @@ public class LottoController {
     private Lottos issueLottos(PurchaseAmount purchaseAmount) {
         int quantity = purchaseAmount.calculateQuantity();
         outputView.printQuantity(quantity);
-
-        // TODO: 추가 기능 구현
-        return null;
+        Lottos lottos = lottoGenerator.issue(quantity);
+        outputView.printLottos(lottos);
+        return lottos;
     }
 }

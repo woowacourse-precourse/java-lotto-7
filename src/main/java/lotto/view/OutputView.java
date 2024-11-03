@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lottos;
+
 public class OutputView {
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
 
@@ -9,5 +11,9 @@ public class OutputView {
 
     public void printQuantity(int quantity) {
         System.out.printf("%d개를 구매했습니다.\n", quantity);
+    }
+
+    public void printLottos(Lottos lottos) {
+        System.out.println(lottos);
     }
 }
