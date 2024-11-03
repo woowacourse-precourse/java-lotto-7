@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class Balance {
-    private int money;
+    private final int money;
     private final int ticket;
     private int profit;
     private double profitRate;
