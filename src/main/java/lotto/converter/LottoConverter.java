@@ -2,6 +2,7 @@ package lotto.converter;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.ErrorMessage;
 import lotto.exception.Validator;
 import lotto.view.OutputView;
 
@@ -17,9 +18,11 @@ public class LottoConverter {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public LottoConverter(String bonusNumber) {
-        this.bonusNumber = Validator.isNumeric(bonusNumber);
-        Validator.isRightRange(this.bonusNumber);
+    public LottoConverter(String bonusNumberString) {
+        int bonusNumber = Validator.isNumeric(bonusNumberString);
+        Validator.isRightRange(bonusNumber);
+        isAlreadyExistInLotteries(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getLottoNumbers() {
@@ -59,6 +62,12 @@ public class LottoConverter {
             throw new IllegalArgumentException();
         }
 
+    }
+
+    private void isAlreadyExistInLotteries(int bonusNumber) {
+        if (this.lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATED);
+        }
     }
 
 

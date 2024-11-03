@@ -8,6 +8,7 @@ import lotto.exception.Validator;
 
 public class InputView {
     private static InputView inputView;
+    private LottoConverter lottoConverter;
 
     private InputView() {
     }
@@ -28,7 +29,7 @@ public class InputView {
         System.out.println(SystemMessage.ENTER_WINNING_LOTTERY);
         try {
             StringToLongConverter stringToLongConverter = new StringToLongConverter(Console.readLine());
-            LottoConverter lottoConverter = new LottoConverter(stringToLongConverter.getResult());
+            lottoConverter = new LottoConverter(stringToLongConverter.getResult());
             return lottoConverter.getLottoNumbers();
         } catch (IllegalArgumentException e) {
             return enterWinningLottery();
@@ -38,7 +39,7 @@ public class InputView {
     public int enterBonusLottery() {
         System.out.println(SystemMessage.ENTER_BONUS_LOTTERY);
         try {
-            LottoConverter lottoConverter = new LottoConverter(Console.readLine());
+            lottoConverter = new LottoConverter(Console.readLine());
             return lottoConverter.getBonusNumber();
         } catch (IllegalArgumentException e) {
             OutputView.getInstance().printErrorMessage(e.getMessage());
