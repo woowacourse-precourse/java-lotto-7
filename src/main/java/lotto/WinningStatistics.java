@@ -27,6 +27,10 @@ public class WinningStatistics {
         }
     }
 
+    public Map<WinningCategory, Integer> getStatistics() {
+        return statistics;
+    }
+
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
     }
