@@ -15,7 +15,7 @@
    - [x] validate numbers **whether number is duplicated or not** 
    - [x] sort numbers in ascending order
 - manage Internal Lotto data
-   - [ ] verify duplicated numbers
+   - [x] verify duplicated numbers
 
 - provide interface for Lotto Data
-   - [ ] return stored Lotto data
+   - [x] return stored Lotto data

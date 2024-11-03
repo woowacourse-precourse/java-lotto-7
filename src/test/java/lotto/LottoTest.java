@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.utils.NumberList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +23,39 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("Lotto data should be same to input ")
+    @Test
+    void verifyAccessingLottoData(){
+
+        NumberList numberList = new NumberList();
+        numberList.generateRandomNumberList();
+
+        Lotto lotto = new Lotto(numberList);
+
+        List<Integer> lottoNumber = lotto.getNumbers();
+
+        assertThat(lottoNumber.size()).isEqualTo(numberList.size());
+        for(int i = 0; i < lottoNumber.size(); ++i){
+            assertThat(lottoNumber.get(i)).isEqualTo(numberList.get(i));
+        }
+    }
+
+    @DisplayName("Lotto should return deep copied")
+    @Test
+    void verifyLottoDataNotShallowCopy(){
+
+        NumberList numberList = new NumberList();
+        numberList.generateRandomNumberList();
+
+        Lotto lotto = new Lotto(numberList);
+
+        List<Integer> lottoNumber = lotto.getNumbers();
+        int size = lottoNumber.size();
+
+        assertThat(size).isEqualTo(numberList.size());
+        lottoNumber.clear();
+
+        assertThat(lotto.getNumbers().size()).as("Internal numbers is not cleared").isEqualTo(numberList.size());
+
+    }
 }
