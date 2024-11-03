@@ -10,12 +10,18 @@ import java.util.stream.Stream;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizes;
+import lotto.view.InputView;
 
 public class LottoController {
 
+    private final InputView inputView;
+
+    public LottoController(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     public void run() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String lottoBudgetInput = Console.readLine();
+        String lottoBudgetInput = inputView.readLottoBudget();
         int lottoBudget = Integer.parseInt(lottoBudgetInput);
 
         int lottoCount = lottoBudget / 1000;
