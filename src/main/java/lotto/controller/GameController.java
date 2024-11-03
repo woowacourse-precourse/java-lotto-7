@@ -2,81 +2,55 @@ package lotto.controller;
 
 
 import java.util.List;
+import lotto.helper.handler.InputHandler;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
+import lotto.model.LottoMachine;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
-import lotto.service.GameService;
-import lotto.util.InputUtil;
+import lotto.model.WinningLotto;
+import lotto.helper.util.InputUtil;
 import lotto.view.error.ErrorView;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class GameController {
 
-    private GameService gameService;
+    private LottoMachine lottoMachine;
+    private LottoTicket lottoTicket;
+    private WinningLotto winningLotto;
+    private LottoResult lottoResult;
 
     public GameController() {
-        this.gameService = new GameService();
+        this.lottoMachine = new LottoMachine();
     }
 
     public void run() {
-        purchaseAndViewLottos();
-        generateWinningLottoAndViewResult();
+        purchaseAndViewLottoTicket();
+        generateWinningLotto();
+        calculateAndViewResult();
     }
 
-    public void purchaseAndViewLottos() {
-        int money = inputMoney();
-
-        LottoTicket lottoTicket = gameService.purchaseLotto(money);
+    public void purchaseAndViewLottoTicket() {
+        int money = InputHandler.inputMoney();
+        lottoTicket = lottoMachine.purchaseTicket(money);
         OutputView.outputLottoNumbers(lottoTicket);
     }
 
-    public int inputMoney() {
-        while(true) {
-            String inputMoney = InputView.inputMoney();
-            try {
-                return InputUtil.parseMoney(inputMoney);
-            } catch (IllegalArgumentException e) {
-                ErrorView.printErrorMessage(e.getMessage());
-            }
-        }
+    public void generateWinningLotto() {
+        Lotto winLotto = InputHandler.inputLottoNumbers();
+        Bonus bonusNumber = InputHandler.inputBonusNumber(winLotto.getNumbers());
+        winningLotto = new WinningLotto(winLotto, bonusNumber);
     }
 
-    public void generateWinningLottoAndViewResult() {
-        Lotto lotto = inputLottoNumbers();
-        Bonus bonusNumber = inputBonusNumber(lotto.getNumbers());
-
-        LottoResult lottoResult = gameService.resultLotto(lotto, bonusNumber);
+    public void calculateAndViewResult() {
+        lottoResult = new LottoResult(lottoTicket.getPrice());
+        for (Lotto lotto : lottoTicket.getLottos()) {
+            lottoResult.recordResult(winningLotto, lotto);
+        }
         OutputView.outputRankSummary(lottoResult.getResultRank(), lottoResult.calculateProfitRate());
     }
 
-
-    public Lotto inputLottoNumbers() {
-        List<Integer> numbers;
-        while(true) {
-            String inputLottoNumbers = InputView.inputLottoNumbers();
-            try {
-                numbers = InputUtil.splitNumbers(inputLottoNumbers);
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                ErrorView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    public Bonus inputBonusNumber(List<Integer> numbers) {
-        int bonus;
-        while(true) {
-            String inputBonusNumber = InputView.inputBonusNumber();
-            try {
-                bonus = InputUtil.parseBonusNumber(inputBonusNumber);
-                return new Bonus(numbers, bonus);
-            } catch (IllegalArgumentException e) {
-                ErrorView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
 
 
 }
