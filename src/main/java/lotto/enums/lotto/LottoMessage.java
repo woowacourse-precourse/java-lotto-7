@@ -5,6 +5,7 @@ public enum LottoMessage {
     PRINT_INPUT_LOTTO_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     PRINT_INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PRINT_INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
+    PRINT_OUTPUT_LOTTO_PURCHASE_COUNT("%d개를 구매했습니다."),
 
     // exception
     EXCEPTION_NUMBER_VALID("[ERROR] 올바른 형식의 숫자가 아닙니다."),

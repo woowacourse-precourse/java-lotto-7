@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.enums.lotto.LottoMessage;
 
 public class LottoParser {
 
@@ -23,5 +24,9 @@ public class LottoParser {
 
     public static double parsingRate(int totalPrize, int purchaseAmount) {
         return (double) Math.round((totalPrize * PERCENTAGE) / purchaseAmount * DECIMAL_POINT) / DECIMAL_POINT;
+    }
+
+    public static String parsingMessage(LottoMessage message, Object... args) {
+        return String.format(message.getMessage(), args);
     }
 }
