@@ -41,4 +41,19 @@ public class StatisticsReport { // 책임: 통계를 넘겨 준다. 이걸로 �
         this.profitRate = (double) (sumReward / seedMoney) * PERCENT;
     }
 
+    public List<LottoReward> getLottoRewardInfo() {
+        return lottoRewardInfo;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
+    }
+
+    public Map<LottoReward, Integer> getCountLottoReward() {
+        return countLottoReward;
+    }
+
+    public LottoBuyer getLottoBuyer() {
+        return lottoBuyer;
+    }
 }
