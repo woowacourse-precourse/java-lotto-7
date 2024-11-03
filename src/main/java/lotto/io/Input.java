@@ -16,13 +16,15 @@ public abstract class Input {
         System.out.println(INPUT_PRICE_MESSAGE);
         String input = Console.readLine();
         validatePrice(input);
+        System.out.println();
         return Integer.parseInt(input);
     }
 
-    public static List<Integer> winningNumber() {
+    public static List<Integer> winningNumbers() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         validateWinningNumber(input);
+        System.out.println();
         return Stream.of(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
@@ -32,6 +34,7 @@ public abstract class Input {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         validateBonusNumber(input);
+        System.out.println();
         return Integer.parseInt(input);
     }
 
