@@ -39,4 +39,8 @@ public class Lottos {
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));
     }
+
+    public int purchaseNumber() {
+        return lottos.size();
+    }
 }
