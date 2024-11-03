@@ -7,20 +7,23 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.UserLotto;
+import lotto.enums.LottoNumberConstants;
+import lotto.enums.PriceConstants;
+import lotto.enums.RankConstants;
 
 public class LottoManager {
     private final List<LottoRank> ranks = new ArrayList<>();
 
     public LottoManager() {
-        ranks.add(new LottoRank(1, 2000000000, 6, false));
-        ranks.add(new LottoRank(2, 30000000, 5, true));
-        ranks.add(new LottoRank(3, 1500000, 5, false));
-        ranks.add(new LottoRank(4, 50000, 4, false));
-        ranks.add(new LottoRank(5, 5000, 3, false));
+        ranks.add(new LottoRank(RankConstants.FIRST_PRIZE, RankConstants.FIRST_PRIZE_AMOUNT, RankConstants.FIRST_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.SECOND_PRIZE, RankConstants.SECOND_PRIZE_AMOUNT, RankConstants.SECOND_PRIZE_WINNING_COUNT, true));
+        ranks.add(new LottoRank(RankConstants.THIRD_PRIZE, RankConstants.THIRD_PRIZE_AMOUNT, RankConstants.THIRD_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.FOURTH_PRIZE, RankConstants.FOURTH_PRIZE_AMOUNT, RankConstants.FOURTH_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.FIFTH_PRIZE, RankConstants.FIFTH_PRIZE_AMOUNT, RankConstants.FIFTH_PRIZE_WINNING_COUNT, false));
     }
 
     public List<Lotto> generateLotteries(int purchaseAmount) {
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / PriceConstants.LOTTO_PRICE;
         List<Lotto> lotteries = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -73,7 +76,7 @@ public class LottoManager {
     }
 
     private List<Integer> generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumberConstants.MIN_VALUE.getValue(), LottoNumberConstants.MAX_VALUE.getValue(), LottoNumberConstants.NUMBER_COUNT.getValue());
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
