@@ -13,7 +13,11 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public int size() {
+        return winningNumbers.size();
+    }
+
+    public Integer get(int idx) {
+        return winningNumbers.get(idx);
     }
 }

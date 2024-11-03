@@ -10,6 +10,14 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+    public int size() {
+        return lottos.size();
+    }
+
+    public Lotto get(int idx) {
+        return lottos.get(idx);
+    }
+
     @Override
     public String toString() {
         StringJoiner sj = new StringJoiner("\n");
