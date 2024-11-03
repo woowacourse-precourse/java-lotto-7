@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class OutputView {
     public void printResult(String result) {
@@ -12,5 +12,5 @@ public class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(System.out::println);
     }
-    
+
 }

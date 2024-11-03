@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.Lotto;
 import lotto.domain.constant.LottoRank;
 import lotto.dto.LottoResultDto;
 

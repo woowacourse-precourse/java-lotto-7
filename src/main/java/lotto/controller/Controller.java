@@ -6,8 +6,8 @@ import static lotto.view.constant.Message.STATISTICS;
 import static lotto.view.constant.Message.WINNING_START;
 
 import java.util.List;
-import lotto.Lotto;
 import lotto.domain.CashRegister;
+import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Parser;
 import lotto.domain.ScoreBoard;

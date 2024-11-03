@@ -1,7 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
-import lotto.domain.Winning;
 import lotto.domain.constant.LottoRank;
 
 public class Lotto {
