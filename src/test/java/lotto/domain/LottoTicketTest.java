@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoTicketTest {
     @ParameterizedTest
     @CsvSource({
-        "-1000",
+        "-1_000",
         "100",
-        "10500",
+        "10_500",
         "1_000_000",
 
 
@@ -21,6 +21,11 @@ public class LottoTicketTest {
         assertThatThrownBy(()->new LottoTicket(price))
             .isInstanceOf(IllegalArgumentException.class);
     }
+    @ParameterizedTest
+    @CsvSource({
+        "14_000, 14",
+        "1000, 1"
+    })
     void 로또_티켓_발행_테스트(int price,int count){
         LottoTicket ticket = new LottoTicket(price);
 
