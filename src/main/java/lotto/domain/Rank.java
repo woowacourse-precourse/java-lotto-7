@@ -3,47 +3,47 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
-    SIX_MATCHES(6, 2_000_000_000) {
+    SIX_MATCHES("6개 일치", 2_000_000_000) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount == 6;
         }
     },
-    FIVE_MATCHES_WITH_BONUS(5, 30_000_000) {
+    FIVE_MATCHES_WITH_BONUS("5개 일치, 보너스 볼 일치", 30_000_000) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount == 5 && bonusMatch;
         }
     },
-    FIVE_MATCHES(5, 1_500_000) {
+    FIVE_MATCHES("5개 일치", 1_500_000) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount == 5 && !bonusMatch;
         }
     },
-    FOUR_MATCHES(4, 50_000) {
+    FOUR_MATCHES("4개 일치", 50_000) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount == 4;
         }
     },
-    THREE_MATCHES(3, 5_000) {
+    THREE_MATCHES("3개 일치", 5_000) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount == 3;
         }
     },
-    NO_MATCH(0, 0) {
+    NO_MATCH(null, 0) {
         @Override
         public boolean isMatch(int matchCount, boolean bonusMatch) {
             return matchCount < 3;
         }
     };
 
-    private final int matchCount;
+    private final String matchCount;
     private final int prize;
 
-    Rank(int matchCount, int prize) {
+    Rank(String matchCount, int prize) {
         this.matchCount = matchCount;
         this.prize = prize;
     }
@@ -57,7 +57,7 @@ public enum Rank {
                 .orElse(NO_MATCH);
     }
 
-    public int getMatchCount() {
+    public String getMatchCount() {
         return matchCount;
     }
 
