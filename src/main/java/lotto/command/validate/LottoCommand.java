@@ -42,9 +42,7 @@ public class LottoCommand implements ValidateCommand {
     validateCount(lottoNumbers);
     return lottoNumbers;
   }
-
-
-
+  
   private List<Integer> validateLottoNumbers(String[] rawNumbers) {
     List<Integer> numbers = new ArrayList<>();
     for (String rawNumber : rawNumbers) {
