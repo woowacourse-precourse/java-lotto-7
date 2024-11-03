@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,6 +14,13 @@ public class Application {
         Integer totalPrice = Integer.parseInt(readLine());
         if(totalPrice % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 정수를 입력해야 합니다.");
+        }
+
+        Integer totalLottoCount = totalPrice / 1000;
+        List<List<Integer>> allLottos = new ArrayList<>();
+        for(int i = 0; i < totalLottoCount; i++) {
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            allLottos.add(lotto);
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -42,6 +51,9 @@ public class Application {
         if(numbersInput.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
         }
+
+
+
 
 
 
