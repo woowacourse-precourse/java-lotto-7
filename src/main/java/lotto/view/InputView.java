@@ -28,9 +28,17 @@ public class InputView {
     }
 
     public String inputNumbers() {
-        System.out.println(IOMessageConstants.INPUT_LOTTO_NUMBERS);
-        String inputNumbers = Console.readLine();
-        inputViewException.validateInputNumbers(inputNumbers);
+        String inputNumbers;
+        while(true){
+            try {
+                System.out.println(IOMessageConstants.INPUT_LOTTO_NUMBERS);
+                inputNumbers = Console.readLine();
+                inputViewException.validateInputNumbers(inputNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         return inputNumbers;
     }
 }
