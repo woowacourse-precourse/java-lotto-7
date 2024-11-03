@@ -2,7 +2,6 @@ package lotto.validator;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class NumberValidator implements Validator {
@@ -14,7 +13,7 @@ public class NumberValidator implements Validator {
     private static final int WINNING_LENGTH = 6;
     private static final int BONUS_LENGTH = 7;
 
-    private Set<String> winningNumbers;
+    private static final Set<String> winningNumbers = new HashSet<>();
 
     @Override
     public void validate(String input) {
@@ -40,9 +39,12 @@ public class NumberValidator implements Validator {
     }
 
     private boolean isDuplication(String[] values) {
-        winningNumbers = new HashSet<>();
         Collections.addAll(winningNumbers, values);
-        return winningNumbers.size() != values.length;
+        if (winningNumbers.size() != values.length) {
+            winningNumbers.clear();
+            return true;
+        }
+        return false;
     }
 
     private int isNumber(String input) {
