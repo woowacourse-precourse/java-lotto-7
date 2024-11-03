@@ -39,7 +39,7 @@ public class MatchingResult {
         matchingResult.forEach((rank, count) -> {
             result.append(String.format(rank.toString() + " - %d개\n", count));
         });
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
         result.append(String.format("총 수익률은 %s%%입니다.\n", decimalFormat.format(calculateEarningsRate())));
         return result.toString();
     }
