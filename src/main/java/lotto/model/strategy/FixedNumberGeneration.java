@@ -7,7 +7,7 @@ import java.util.List;
  * 고정 번호 생성 클래스
  * NumberGenerationStrategy 인터페이스를 구현하여, 테스트용 고정된 로또 번호를 반환.
  */
-public class FixNumberGeneration implements NumberGenerationStrategy{
+public class FixedNumberGeneration implements NumberGenerationStrategy{
 
     /**
      * 고정된 로또 번호 리스트 반환

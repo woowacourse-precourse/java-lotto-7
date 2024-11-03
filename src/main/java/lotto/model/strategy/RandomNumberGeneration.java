@@ -2,7 +2,6 @@ package lotto.model.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.Random;
 
 /**
  * 랜덤 번호 생성 클래스

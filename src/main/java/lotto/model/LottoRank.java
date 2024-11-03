@@ -15,7 +15,11 @@ public enum LottoRank {
     private final boolean matchBonus;
     private final int prize;
 
-    LottoRank(int matchCount, boolean matchBonus, int prize) {
+    LottoRank(
+            int matchCount,
+            boolean matchBonus,
+            int prize
+    ) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.prize = prize;
@@ -25,7 +29,10 @@ public enum LottoRank {
         return prize;
     }
 
-    public static LottoRank valueOf(int matchCount, boolean matchBonus) {
+    public static LottoRank valueOf(
+            int matchCount,
+            boolean matchBonus
+    ) {
         if (matchCount < MIN_MATCH_COUNT_FOR_RANKING) {
             return NONE;
         }
