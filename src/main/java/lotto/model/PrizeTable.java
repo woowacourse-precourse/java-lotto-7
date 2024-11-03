@@ -8,29 +8,31 @@ public enum PrizeTable {
     SIX_MATCHES(6, 2_000_000_000);
 
     private final int prizeMoney;
-    private int count = 0;
+    private final int matchNumbers;
+    private int winningCount = 0;
 
     PrizeTable(int matchNumbers, int prizeMoney) {
+        this.matchNumbers = matchNumbers;
         this.prizeMoney = prizeMoney;
     }
 
-    public void addCount() {
-        count++;
+    public void addWinningCount() {
+        winningCount++;
     }
 
-    public int getCount() {
-        return count;
+    public int getWinningCount() {
+        return winningCount;
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
     }
 
-    public int getTotalPrizeMoney() {
-        return count * prizeMoney;
+    public int getMatchNumbers() {
+        return matchNumbers;
     }
 
-    public void getRateOfReturn() {
-
+    public int getTotalPrizeMoney() {
+        return winningCount * prizeMoney;
     }
 }
