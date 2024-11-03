@@ -1,9 +1,10 @@
 package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
+import static lotto.constant.LottoConfig.LOTTO_COST;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,28 +13,29 @@ import lotto.random.LottoRandom;
 
 public class Wallet {
 
-    private long money;
-    private long originalMoney;
-    private Map<Rank, Integer> ranks = new HashMap<>();
     private final List<Lotto> lottos = new ArrayList<>();
+    private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
+
+    private long money;
+    private long initalMoney;
 
     public Wallet(long money) {
         validateMoney(money);
         this.money = money;
-        originalMoney = money;
+        initalMoney = money;
     }
 
     public void buyLottoTickets(LottoRandom strategy) {
-        long ticketCount = money / 1000;
-        money -= ticketCount * 1000;
+        long ticketCount = money / LOTTO_COST;
+        money -= ticketCount * LOTTO_COST;
         while (ticketCount-- > 0) {
             lottos.add(new Lotto(strategy.getLottoNumbers()));
         }
     }
 
     private void validateMoney(long money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException(INVALID_MONEY_UNIT.getMessage(1000));
+        if (money % LOTTO_COST != 0) {
+            throw new IllegalArgumentException(INVALID_MONEY_UNIT.getMessage());
         }
     }
 
@@ -46,17 +48,21 @@ public class Wallet {
     }
 
     public void addRank(Rank rank) {
-        ranks.merge(rank, 1, Integer::sum);
+        rankCounts.merge(rank, 1, Integer::sum);
     }
 
     public double gain() {
-        long totalPrice = ranks.entrySet().stream()
-            .mapToLong(set -> set.getKey().getPrice() * set.getValue())
+        long totalPrice = rankCounts.entrySet().stream()
+            .mapToLong(set -> {
+                Rank rank = set.getKey();
+                int count = set.getValue();
+                return rank.getPrice() * count;
+            })
             .sum();
-        return (double)totalPrice / originalMoney;
+        return (double)totalPrice / initalMoney;
     }
 
     public Map<Rank, Integer> getRanks() {
-        return ranks;
+        return rankCounts;
     }
 }
