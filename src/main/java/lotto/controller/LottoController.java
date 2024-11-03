@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import lotto.controller.dto.BonusNumberSaveRequest;
-import lotto.controller.dto.LottoPurchaseResponse;
-import lotto.controller.dto.PrizeResultResponse;
-import lotto.controller.dto.WinningNumberSaveResponse;
+import lotto.controller.dto.*;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.utils.LottoUtils;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -17,32 +16,49 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public LottoPurchaseResponse saveLottoAmountInput(String request) {
-        LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
-        );
+    public int saveLottoAmountInput(String request) {
+        while (true) {
+            try {
+                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request));
+                return lottoService.saveLottoPurchase(request);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
-        lottoService.saveLottoPurchase(request);
+    public LottoPurchaseResponse getLottoNumber() {
         return lottoService.createLottoNumbers();
     }
 
     public WinningNumberSaveResponse saveLottoWinningNumberInput(String request) {
-        LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
-        );
-
-        return lottoService.saveWinningNumber(request);
+        while (true) {
+            try {
+                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request));
+                return lottoService.saveWinningNumber(request);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void saveBonusNumber(BonusNumberSaveRequest request) {
-        LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request.bonusNumber())
-        );
+        while (true) {
+            try {
+                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request.bonusNumber()));
+                lottoService.saveBonusNumber(request);
+                return;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        lottoService.saveBonusNumber(request);
     }
 
-    public PrizeResultResponse getPrizeResult(int index) {
-        return lottoService.calculatePrizeResult(index);
+    public PrizeResultResponse getPrizeResult(int winningNumberIndex, int purchaseIndex) {
+        List<PrizeResultDto> statistics = lottoService.calculatePrizeResult(winningNumberIndex);
+        double rate = lottoService.calculateRate(statistics, purchaseIndex);
+
+        return new PrizeResultResponse(statistics, rate);
     }
 }

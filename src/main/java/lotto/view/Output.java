@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Output {
 
-    public static final String NUMBER_OF_LOTTO_PURCHASES = "\n%d개를 구매하셨습니다.\n";
+    public static final String NUMBER_OF_LOTTO_PURCHASES = "\n%d개를 구매했습니다.\n";
     public static final String WINNING_STATISTICS_OUTPUT_MESSAGE = "\n당첨 통계\n---";
 
     private static final NumberFormat numberFormat = NumberFormat.getNumberInstance();
@@ -47,6 +47,11 @@ public class Output {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", standard.getCount(), numberFormat.format(standard.getPrizeMoney()), statistic.getCount());
         }
 
+        System.out.println(getStatisticsRateFormat(response));
+    }
+
+    public static String getStatisticsRateFormat(PrizeResultResponse response) {
+        return String.format("총 수익률은 %.1f%%입니다.", response.rate());
     }
 
 }

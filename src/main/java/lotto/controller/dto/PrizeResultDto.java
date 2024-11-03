@@ -20,6 +20,14 @@ public class PrizeResultDto implements Comparable<PrizeResultDto> {
         return count;
     }
 
+    public int getTotalPrize() {
+        return count * standard.getPrizeMoney();
+    }
+
+    public boolean hasPrize() {
+        return count > 0;
+    }
+
     @Override
     public int compareTo(PrizeResultDto o) {
         return this.standard.getPrizeMoney() - o.standard.getPrizeMoney();

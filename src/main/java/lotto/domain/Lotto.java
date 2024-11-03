@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import lotto.controller.dto.PrizeResultDto;
 import lotto.exception.LottoException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        sortNumbers(numbers);
 
         this.numbers = numbers;
     }
@@ -41,5 +43,16 @@ public class Lotto {
 
     private boolean isInRange(int number) {
         return number >= 1 && number <= 45;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        try {
+            Collections.sort(numbers);
+        } catch (UnsupportedOperationException uoe) {
+            numbers = new ArrayList<>(numbers);
+            Collections.sort(numbers);
+        }
+
+        return numbers;
     }
 }

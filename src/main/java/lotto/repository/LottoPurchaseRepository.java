@@ -37,6 +37,10 @@ public class LottoPurchaseRepository {
         return lottoPurchases.getLast();
     }
 
+    public int findIndexByLottoPurchase(LottoPurchase lottoPurchase) {
+        return lottoPurchases.indexOf(lottoPurchase);
+    }
+
     public int size() {
         return lottoPurchases.size();
     }

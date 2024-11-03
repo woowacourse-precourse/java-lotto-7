@@ -29,8 +29,10 @@ public class LottoService {
         this.winningNumberRepository = winningNumberRepository;
     }
 
-    public void saveLottoPurchase(String request) {
-        lottoPurchaseRepository.save(LottoPurchase.to(request));
+    public int saveLottoPurchase(String request) {
+        LottoPurchase lottoPurchase = LottoPurchase.to(request);
+        lottoPurchaseRepository.save(lottoPurchase);
+        return lottoPurchaseRepository.findIndexByLottoPurchase(lottoPurchase);
     }
 
     public LottoPurchaseResponse createLottoNumbers() {
@@ -60,16 +62,28 @@ public class LottoService {
         winningNumber.setBonusNumber(bonusNumber);
     }
 
-    public PrizeResultResponse calculatePrizeResult(int index) {
+    public List<PrizeResultDto> calculatePrizeResult(int index) {
         WinningNumber winningNumber = winningNumberRepository.findByIndex(index);
         List<Lotto> lottoList = lottoRepository.findAll();
 
-        List<PrizeResultDto> result = Arrays.stream(Standard.values())
+        return Arrays.stream(Standard.values())
             .map(standard -> calculateCount(standard, winningNumber, lottoList))
             .filter(Objects::nonNull)
             .collect(Collectors.toList());
+    }
 
-        return new PrizeResultResponse(result);
+    public double calculateRate(List<PrizeResultDto> prizeResultDtos, int purchaseIndex) {
+        LottoPurchase purchase = lottoPurchaseRepository.findByIndex(purchaseIndex);
+        int total = getPrizeTotalAmount(prizeResultDtos);
+
+        return (double) total / purchase.getPurchase() * 100;
+    }
+
+    private int getPrizeTotalAmount(List<PrizeResultDto> prizeResultDtos) {
+        return prizeResultDtos.stream()
+            .filter(PrizeResultDto::hasPrize)
+            .mapToInt(PrizeResultDto::getTotalPrize)
+            .sum();
     }
 
     private List<Integer> getRandomNumbers() {

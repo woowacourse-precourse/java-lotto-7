@@ -20,7 +20,8 @@ public class LottoApplication {
 
         //lotto 구입, 저장, 출력
         String userInput = input.printPurchaseAmountInputMessage();
-        LottoPurchaseResponse purchaseResponse = controller.saveLottoAmountInput(userInput);
+        int purchaseIndex = controller.saveLottoAmountInput(userInput);
+        LottoPurchaseResponse purchaseResponse = controller.getLottoNumber();
         output.printPurchaseLotto(purchaseResponse);
 
         //당첨 번호 입력 및 저장
@@ -28,14 +29,14 @@ public class LottoApplication {
         WinningNumberSaveResponse winningNumberSaveResponse = controller.saveLottoWinningNumberInput(userInput);
 
         //key값 저장
-        int index = winningNumberSaveResponse.winningNumberIndex();
+        int winningNumberIndex = winningNumberSaveResponse.winningNumberIndex();
 
         //보너스 번호 입력 및 저장
         userInput = input.printBonusNumberInputMessage();
-        controller.saveBonusNumber(new BonusNumberSaveRequest(index, userInput));
+        controller.saveBonusNumber(new BonusNumberSaveRequest(winningNumberIndex, userInput));
 
         //당첨 통계 계산
-        PrizeResultResponse prizeResult = controller.getPrizeResult(index);
+        PrizeResultResponse prizeResult = controller.getPrizeResult(winningNumberIndex, purchaseIndex);
         output.printStatistics(prizeResult);
     }
 
