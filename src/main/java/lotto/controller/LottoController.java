@@ -27,8 +27,11 @@ public class LottoController {
         OutputView.printPurchaseMessage(lottoTicket.getLottos().size());
         OutputView.printLottos(lottoTicket);
 
-        List<Integer> winningNumbersInteger = InputValidator.validateWinningNumbers(InputView.requestWinningNumbers());
-        int bonusNumber = InputValidator.validateBonusNumber(InputView.requestBonusNumber(), winningNumbersInteger);
+        List<String> winningNumbersInput = InputView.requestWinningNumbers();
+        List<Integer> winningNumbersInteger = InputValidator.validateWinningNumbers(winningNumbersInput);
+
+        String bonusNumberInput = InputView.requestBonusNumber();
+        int bonusNumber = InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
 
         Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(
                 lottoTicket, winningNumbersInteger, bonusNumber);
@@ -37,5 +40,5 @@ public class LottoController {
         double rateEarning = statisticsService.calculateRateEarning(lottoResultCount, purchaseAmountInt);
         OutputView.printRateEarning(rateEarning);
     }
-    
+
 }
