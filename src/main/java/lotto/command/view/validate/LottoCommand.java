@@ -21,12 +21,7 @@ public class LottoCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    try {
-      return validate(input);
-    } catch (IllegalArgumentException | IllegalStateException e) {
-      view.displayOutput(e.getMessage());
-      return redo();
-    }
+    return validate(input);
   }
 
   private WinningLottoUserInput validate(String input) {
