@@ -6,6 +6,7 @@ import lotto.util.ErrorMessage;
 import lotto.util.InputValidator;
 import lotto.util.Separator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getPurchaseAmount();
         PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseAmount/LOTTO_PRICE);
+        OutputView.printPurchasedLottos(purchasedLotto);
 
         Lotto lotto = createWinningLotto();
         int bonusNumber = getBonusNumber();
