@@ -30,28 +30,33 @@ public class InputView {
     }
 
     public WinningNumberRequestDto getEntireNumber() {
-        return new WinningNumberRequestDto(getWinningNumbers(), getBonusNumber());
+        List<Integer> winningNumbers = getWinningNumbers();
+        return new WinningNumberRequestDto(winningNumbers, getBonusNumber(winningNumbers));
     }
 
     private List<Integer> getWinningNumbers() {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                return Arrays.stream(Console.readLine().split(DELIMITER))
+                List<Integer> numbers = Arrays.stream(Console.readLine().split(DELIMITER))
                     .map(Integer::parseInt)
                     .toList();
-            } catch (IllegalArgumentException e) {
+                inputValidator.isSizeSix(numbers);
+                return numbers;
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
 
     }
 
-    private Integer getBonusNumber() {
+    private Integer getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                return Integer.parseInt(Console.readLine());
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                inputValidator.isExistsIn(winningNumbers, bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

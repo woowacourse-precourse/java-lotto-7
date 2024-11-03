@@ -11,8 +11,7 @@ public enum LottoPrize {
     SECOND_PRIZE(5, true, 30_000_000L),
     THIRD_PRIZE(5, false, 1_500_000L),
     FOURTH_PRIZE(4, false, 50_000L),
-    FIFTH_PRIZE(3, false, 5_000L),
-    NO_PRIZE(0, false, 0L);
+    FIFTH_PRIZE(3, false, 5_000L);
 
     private final int winningCount;
     private final boolean bonusExists;
@@ -29,7 +28,7 @@ public enum LottoPrize {
             .filter(prize -> prize.winningCount == matchingCount
                 && prize.bonusExists == hasBonus)
             .findFirst()
-            .orElse(NO_PRIZE);
+            .orElse(null);
     }
 
     public static Map<LottoPrize, Integer> createLottoPrizeResult(List<Lotto> lottoList,
@@ -42,7 +41,7 @@ public enum LottoPrize {
 
         for (Lotto lotto : lottoList) {
             LottoPrize prize = lotto.compareNumber(winningLotto, bonusNumber);
-            prizeCountMap.compute(prize, (k, count) -> count + 1);
+            prizeCountMap.put(prize, prizeCountMap.getOrDefault(prize, 0) + 1);
         }
         return prizeCountMap;
     }
@@ -58,4 +57,4 @@ public enum LottoPrize {
     public Long getPrize() {
         return prize;
     }
-}
+    }
