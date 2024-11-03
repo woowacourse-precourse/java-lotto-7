@@ -32,4 +32,9 @@ public class Validator {
         if (uniqueNumbers.size() != numbers.size())
             throw new IllegalArgumentException("중복된 숫자가 포함되어 있습니다.");
     }
+
+    public static void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != Constants.LOTTO_NUMBER_SIZE)
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
 }
