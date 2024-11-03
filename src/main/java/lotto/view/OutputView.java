@@ -45,27 +45,27 @@ public class OutputView {
         printEarningRate(earningRate);
     }
 
-    private static void printNewLine() {
+    private void printNewLine() {
         System.out.println();
     }
 
-    private static void printLottoCount(LottoTicketStatus lottoTicketStatus) {
+    private void printLottoCount(LottoTicketStatus lottoTicketStatus) {
         List<LottoStatus> lottoStatuses = lottoTicketStatus.getLottoStatuses();
         int size = lottoStatuses.size();
 
         System.out.println(size + LOTTO_COUNT_MESSAGE);
     }
 
-    private static void printLottoStatus(LottoStatus lottoStatus) {
+    private void printLottoStatus(LottoStatus lottoStatus) {
         List<Integer> numbers = lottoStatus.getNumbers();
         System.out.println(numbers);
     }
 
-    private static void printStatisticsStartMessage() {
+    private void printStatisticsStartMessage() {
         System.out.println(STATISTICS_START_MESSAGE);
     }
 
-    private static void printLottoResult(HashMap<Rank, Integer> lottoResult) {
+    private void printLottoResult(HashMap<Rank, Integer> lottoResult) {
         Rank[] ranks = values();
         for (Rank rank : ranks) {
             if (rank == LOSE) {
@@ -76,7 +76,7 @@ public class OutputView {
         }
     }
 
-    private static void printEarningRate(double earningRate) {
+    private void printEarningRate(double earningRate) {
         BigDecimal bigEarningRate = new BigDecimal(earningRate);
         DecimalFormat df = new DecimalFormat(PATTERN);
         String result = df.format(bigEarningRate);
