@@ -132,3 +132,15 @@
 - PrizeType - 상금 내역을 enum 클래스로 관리
 
 - Application - 실행
+
+## **test**
+### **model**
+- BonusBallTest - 입력받은 보너스 번호가 의도한대로 예외 처리가 잘 되는지 테스트
+- CalculateResultTest - 당첨 번호와 로또 번호의 일치 내역과 상금이 올바르게 매칭되는지 테스트
+- LottoMachineTest - 로또 번호가 구매한 횟수만큼 정확히 생성되는지 테스트
+- LottoTest - 입력받은 당첨 번호가 의도한대로 예외 처리가 잘 되는지 테스트
+
+### **view**
+- LottoAmountTest - 금액을 입력받는 로직이 의도한대로 예외 처리가 잘 되는지 테스트
+
+- ApplicationTest - 예외 테스트
