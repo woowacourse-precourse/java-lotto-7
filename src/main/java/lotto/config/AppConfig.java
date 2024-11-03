@@ -3,12 +3,14 @@ package lotto.config;
 import lotto.controller.LottoController;
 import lotto.service.InputMessageService;
 import lotto.service.LottoService;
+import lotto.service.OutputMessageService;
 import lotto.validation.PurchaseAmountValidation;
 import lotto.view.InputMessageView;
+import lotto.view.OutputMessageView;
 
 public class AppConfig {
   public LottoController lottoController(){
-    return new LottoController(inputMessageService());
+    return new LottoController(inputMessageService(),outputMessageService(),outputMessageView());
   }
   public LottoService lottoService(){
     return new LottoService();
@@ -22,5 +24,11 @@ public class AppConfig {
 
   public PurchaseAmountValidation purchaseAmountValidation(){
     return new PurchaseAmountValidation();
+  }
+  public OutputMessageView outputMessageView(){
+    return new OutputMessageView();
+  }
+  public OutputMessageService outputMessageService(){
+    return new OutputMessageService();
   }
 }
