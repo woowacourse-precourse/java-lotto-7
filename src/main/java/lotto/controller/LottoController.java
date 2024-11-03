@@ -23,7 +23,7 @@ public class LottoController {
         Lottos lottos = buyLottos(money);
         WinningLotto winningLotto = createWinningLottoFromLottoAndBonusNumber();
 
-        Result result = getResults(lottos, winningLotto);
+        Result result = getLottoResults(lottos, winningLotto);
         getProfitRate(money, result);
     }
 
@@ -52,7 +52,7 @@ public class LottoController {
         return WinningLotto.of(lotto, bonusNumber);
     }
 
-    private Result getResults(final Lottos lottos, final WinningLotto winningLotto) {
+    private Result getLottoResults(final Lottos lottos, final WinningLotto winningLotto) {
         Result result = Result.of(lottos, winningLotto);
         view.outputResult(result.getResults());
 
