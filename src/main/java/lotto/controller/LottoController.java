@@ -20,6 +20,7 @@ public class LottoController {
     private final LottoService lottoService;
 
     private Lotto lottoWinningNumbers;
+    private Integer lottoBonusNumber;
 
     public LottoController(Output output, Input input, Validator validator, LottoService lottoService) {
         this.output = output;
@@ -33,7 +34,7 @@ public class LottoController {
         int count = handleLottoCount(purchasePrice);
         handleCreatedLottos(count);
         lottoWinningNumbers = handleWinningNumbers();
-        handleBonusNumber();
+        lottoBonusNumber = handleBonusNumber();
     }
 
     private int handlePurchasePrice() {
@@ -111,11 +112,13 @@ public class LottoController {
         }
     }
 
-    private void handleBonusNumber() {
+    private Integer handleBonusNumber() {
         output.printBonusNumberInputPrompt();
         String bonusNumber = input.inputString();
 
         validateBonusNumber(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
     }
 
     private void validateBonusNumber(String input) {
