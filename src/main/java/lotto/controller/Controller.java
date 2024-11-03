@@ -40,4 +40,15 @@ public class Controller {
         List<Lotto> lottos = utils.generateRandomLottoNumbers(price);
         return utils.sortLottos(lottos);
     }
+
+    public Lotto setWinningNumbers() {
+        while (true) {
+            try {
+                String inputNumbers = inputView.winLottoNumber();
+                return new Lotto(utils.convertToIntegerList(inputNumbers));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
