@@ -9,8 +9,6 @@ public class LottoController {
         readUserBudget();
     }
 
-
-
     public int readUserBudget(){
         OutputView.printBudgetInputDescription();
         return InputView.inputBudget();
