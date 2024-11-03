@@ -3,10 +3,10 @@ package lotto.ui;
 import java.util.List;
 
 public class WinningNumberSettings {
-    private final int bonusNumber;
     private final List<Integer> winningNumber;
+    private final int bonusNumber;
 
-    public WinningNumberSettings(int bonusNumber, List<Integer> winningNumber) {
+    public WinningNumberSettings(List<Integer> winningNumber, int bonusNumber) {
         this.bonusNumber = bonusNumber;
         this.winningNumber = winningNumber;
     }

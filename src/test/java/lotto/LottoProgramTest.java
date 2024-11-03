@@ -5,6 +5,7 @@ import lotto.store.LottoStoreStub;
 import lotto.store.lotto.LottoRank;
 import lotto.ui.LottoResult;
 import lotto.store.lotto.TestWinningNumbers;
+import lotto.ui.UserSettingReaderStub;
 import lotto.ui.WinningNumberSettings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,27 +19,31 @@ class LottoProgramTest {
 
     private LottoProgram lottoProgram;
     private LottoStoreStub lottoStoreStub;
-    private final WinningNumberSettings testSettings = new WinningNumberSettings(
-            TestWinningNumbers.testBonusInt,
-            TestWinningNumbers.testLottoInts
-    );
-
+    private UserSettingReaderStub settingReaderStub;
     @BeforeEach
     void beforeEach() {
         lottoStoreStub = new LottoStoreStub();
-        lottoProgram = new LottoProgram(lottoStoreStub);
+        settingReaderStub = new UserSettingReaderStub();
+        lottoProgram = new LottoProgram(lottoStoreStub, settingReaderStub);
     }
 
     @DisplayName("사용자 입력으로 구매한 로또의 결과를 반환함")
     @Test
     void test1() {
+        settingReaderStub.setTestNumberSettings(
+                new WinningNumberSettings(
+                        TestWinningNumbers.testLottoInts,
+                        TestWinningNumbers.testBonusInt
+                )
+        );
+        settingReaderStub.setTestSeedMoney(1);
         lottoStoreStub.setSoldLottos(List.of(
                 TestWinningNumbers.FIFTH_LOTTO,
                 TestWinningNumbers.FOURTH_LOTTO
         ));
-        int money = 1;
 
-        LottoResult result = lottoProgram.start(new Money(money), testSettings);
+        LottoResult result = lottoProgram.start();
+
 
         assertThat(result.getBuyerLottoRanks()).contains(LottoRank.FIFTH, LottoRank.FOURTH);
         assertThat(result.getRateOfReturn()).isEqualTo(5000 + 50_000);

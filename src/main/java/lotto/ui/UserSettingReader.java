@@ -22,12 +22,19 @@ public class UserSettingReader {
         this.printer = printer;
     }
 
-    public int readBuyerSeedMoneyAmount() {
+    public int readSeedMoney() {
         printer.print(BUYER_SEEDMONEY_PROMPT);
         return Integer.parseInt(reader.readLine());
     }
 
-    public List<Integer> readWinningNumbers() {
+    public WinningNumberSettings readWinningNumbers() {
+        return new WinningNumberSettings(
+                readWinningNumbersElements(),
+                readBonusNumber()
+        );
+    }
+
+    private List<Integer> readWinningNumbersElements() {
         printer.print(WINNING_NUMBERS_PROMPT);
         return Arrays.stream(reader.readLine().split(NUMBERS_DELIMITER_REGEX))
                 .mapToInt(Integer::valueOf)
@@ -35,7 +42,7 @@ public class UserSettingReader {
                 .toList();
     }
 
-    public int readBonusNumber() {
+    private int readBonusNumber() {
         printer.print(BONUS_NUMBER_PROMPT);
         return Integer.parseInt(reader.readLine());
     }
