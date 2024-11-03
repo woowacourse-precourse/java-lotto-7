@@ -1,10 +1,14 @@
 package lotto;
 
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 import lotto.constant.Ranking;
 import lotto.domain.WinningLotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final String SCREEN_START = "[";
@@ -17,8 +21,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> notDuplicates = new HashSet<>(numbers);
+        if (notDuplicates.size() != LottoConstant.LOTTO_COUNT.getValue()) {
+            ExceptionMessage message = ExceptionMessage.DUPLICATE_NUMBER;
+            throw new IllegalArgumentException(message.getMessage());
         }
     }
 
