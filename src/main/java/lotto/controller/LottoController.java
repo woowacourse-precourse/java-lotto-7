@@ -34,6 +34,7 @@ public class LottoController {
         printPrize(prizeCount);
 
         double rateOfReturn = getRateOfReturn(prizeCount, purchaseAmount);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 
     private double getRateOfReturn(Map<LottoWinnerPrize, Integer> prizeCount, int purchaseAmount) {
