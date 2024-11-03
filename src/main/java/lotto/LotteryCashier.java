@@ -1,8 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -27,8 +29,13 @@ public class LotteryCashier {
     private List<Lotto> purchaseLottos(int amount) {
         return IntStream.range(0, amount)
                 .mapToObj(ignored -> Randoms.pickUniqueNumbersInRange(MIN_INCLUSIVE, END_INCLUSIVE, NUMBER_SIZE))
+                .map(this::convertMutable)
                 .peek(Collections::sort)
                 .map(Lotto::new)
-                .toList();
+                .collect(Collectors.toList());
+    }
+
+    private <T> List<T> convertMutable(List<T> collection) {
+        return new ArrayList<>(collection);
     }
 }
