@@ -1,10 +1,15 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LotteryMachine;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResultChecker;
 import lotto.domain.Money;
+import lotto.domain.Rank;
 
 public class OutputView {
 
@@ -19,6 +24,19 @@ public class OutputView {
         for(List<Integer> lotto : purchaseLotto){
             Collections.sort(lotto);
             System.out.println(lotto);
+        }
+    }
+
+    public static void printLottoResult(LottoResultChecker lottoResultChecker) {
+        Map<Rank, Integer> rankCount = lottoResultChecker.getRankCount();
+        List<Rank> reverseRank = Arrays.stream(Rank.values())
+                .sorted(Comparator.reverseOrder())
+                .toList();
+
+        for (Rank rank : reverseRank) {
+            Integer matchCount = rankCount.get(rank);
+            if (rank.equals(Rank.NONE)) continue;
+            System.out.printf("%s - %d개\n", rank.getMessage(), matchCount);
         }
     }
 
