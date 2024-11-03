@@ -16,7 +16,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
         try {
             for (int i = 0; i < moneyDTO.getTicketNumber(); i++) {
-                List<Integer> lottoNumber = getRandomNumber();
+                List<Integer> lottoNumber = new ArrayList<>(getRandomNumber());
                 lottoNumber.sort(Integer::compareTo);
                 Lotto lotto = new Lotto(lottoNumber);
                 lottos.add(lotto);
@@ -37,7 +37,7 @@ public class LottoService {
         LottoRank.resetCounts();
         for (Lotto lotto : lottoDTO.getLottos()) {
             Set<Integer> madeSet = new HashSet<>(lotto.getLotto());
-            
+
             //일치하는 개수 구하기
             Set<Integer> tempCorrectSet = new HashSet<>(correctSet);
             tempCorrectSet.retainAll(madeSet);

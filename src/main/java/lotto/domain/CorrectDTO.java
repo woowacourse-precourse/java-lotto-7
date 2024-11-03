@@ -23,8 +23,20 @@ public class CorrectDTO {
     }
 
     public void setBonus(int bonus) {
+        checkForUpperBound(bonus);
+        checkForDuplicate(corrects, bonus);
         this.bonus = bonus;
     }
 
-    //여기에 validate를 추가해서 넣어줘야 한다.
+    private void checkForUpperBound(int bonus) {
+        if (bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 45이하의 숫자여야 합니다.");
+        }
+    }
+
+    private void checkForDuplicate(Lotto corrects, int bonus) {
+        if (corrects.getLotto().contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되어서는 안됩니다.");
+        }
+    }
 }

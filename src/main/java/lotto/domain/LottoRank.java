@@ -47,7 +47,7 @@ public enum LottoRank {
         if(this == FIVE_BONUS){
             return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", matchCount, formatCurrency(prize), count);
         }
-        return String.format("%d개 일치, (%s원) - %d개", matchCount, formatCurrency(prize), count);
+        return String.format("%d개 일치 (%s원) - %d개", matchCount, formatCurrency(prize), count);
     }
 
     //금액에 ,를 붙혀서 나누는 기능
