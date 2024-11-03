@@ -105,6 +105,7 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankCount[1] + "개");
+        calculateYield(rankCount, purchasedLottos.size()*1000);
     }
 
     private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
@@ -115,6 +116,17 @@ public class Application {
             }
         }
         return matchCount;
+    }
+
+    private static void calculateYield(int[] rankCount, int amount) {
+        int[] prizeMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
+        int totalPrize = 0;
+
+        for (int i = 0; i < 5; i++) {
+            totalPrize += rankCount[i] * prizeMoney[i];
+        }
+        double profit = ((double) totalPrize / amount) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profit);
     }
 
 }
