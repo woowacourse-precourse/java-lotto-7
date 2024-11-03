@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Bonus;
+import lotto.model.EarningRate;
 import lotto.model.Lotto;
 import lotto.model.Amount;
 import lotto.model.LottoMatchEvaluator;
@@ -33,7 +34,10 @@ public class LottoController {
         outputView.printPublishedLotto(publishedLotto);
         int validBonusNumber = handleBonusInputError();
         LottoMatchEvaluator lottoMatchEvaluator = new LottoMatchEvaluator(validLottoNumbers,validBonusNumber,lottoPublisher);
-        outputView.printOrderdLottoResult(lottoMatchEvaluator.getLottoWinningCounts());
+
+        List<Integer> lottoWinningCounts = lottoMatchEvaluator.getLottoWinningCounts();
+        outputView.printOrderdLottoResult(lottoWinningCounts);
+        EarningRate earningRate = new EarningRate(lottoWinningCounts,validAmount);
 
     }
 
