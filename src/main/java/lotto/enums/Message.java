@@ -8,7 +8,7 @@ public enum Message {
     WINNING_STATISTICS_HEADER("\n당첨 통계\n---"),
     MATCH_RESULT("%d개 일치 (%,d원) - %d개\n"),
     MATCH_WITH_BONUS_RESULT("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
-    PROFIT_RATE("총 수익률은 %.1f%%입니다."),
+    PROFIT_RATE("총 수익률은 %,.1f%%입니다."),
     ERROR_PREFIX("[ERROR] ");
 
     private final String message;
