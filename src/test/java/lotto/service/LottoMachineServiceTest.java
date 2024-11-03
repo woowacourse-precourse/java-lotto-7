@@ -2,6 +2,7 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -85,7 +86,20 @@ class LottoMachineServiceTest {
         lottoMachineService.inputWinningNumbers(winningNumbers);
 
         // then
-        assertEquals(3, lottoMachineService.correctNumber(issuedNumbers));
+        assertEquals(3, lottoMachineService.correctLottoNumber(issuedNumbers));
+    }
+
+    @Test
+    void 보너스번호가_일치하는지_확인한다() {
+        // given
+        String bonusNumber = "10";
+        Lotto issuedNumbers = new Lotto(List.of(1, 3, 5, 12, 10, 15));
+
+        // when
+        lottoMachineService.inputBonusNumber(bonusNumber);
+
+        // then
+        assertTrue(lottoMachineService.correctBonusNumber(issuedNumbers));
     }
 
     // EXCEPTION
