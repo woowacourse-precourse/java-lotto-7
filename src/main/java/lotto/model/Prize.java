@@ -1,7 +1,10 @@
-package lotto.constant.prize;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;
+import lotto.constant.prize.Condition;
+import lotto.constant.prize.PrizeMoney;
+import lotto.constant.prize.ResultMessage;
 
 public enum Prize {
     FIFTH(Condition.FIFTH_PRIZE, PrizeMoney.FIFTH_PRIZE, ResultMessage.FIFTH_PRIZE),

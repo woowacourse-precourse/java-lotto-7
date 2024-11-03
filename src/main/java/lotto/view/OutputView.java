@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumbers;
-import lotto.constant.prize.Prize;
+import lotto.model.Prize;
 
 public class OutputView {
     public void displayPurchasePriceRequest() {

@@ -1,6 +1,6 @@
 package lotto.constant.prize;
 
-class PrizeMoney {
+public class PrizeMoney {
     public static final Integer FIFTH_PRIZE = 5_000;
     public static final Integer FOURTH_PRIZE = 50_000;
     public static final Integer THIRD_PRIZE = 1_500_000;

@@ -1,6 +1,6 @@
 package lotto.constant.prize;
 
-class ResultMessage {
+public class ResultMessage {
     public static final String FIFTH_PRIZE = "3개 일치 (5,000원) - %d개";
     public static final String FOURTH_PRIZE = "4개 일치 (50,000원) - %d개";
     public static final String THIRD_PRIZE = "5개 일치 (1,500,000원) - %d개";

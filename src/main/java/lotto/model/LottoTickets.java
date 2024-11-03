@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constant.prize.Prize;
 
 public record LottoTickets(List<Lotto> tickets) {
     public Map<Prize, Integer> aggregateWinningResult(final WinningNumbers winningNumbers) {
