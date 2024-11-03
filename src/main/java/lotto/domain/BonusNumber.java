@@ -7,13 +7,13 @@ public class BonusNumber {
 
     private final Number bonusNumber;
 
-    private BonusNumber(WinningNumbers winningNumbers, Number number) {
-        Validator.validate(winningNumbers, number);
+    private BonusNumber(WinningLotto winningLotto, Number number) {
+        Validator.validate(winningLotto, number);
         this.bonusNumber = number;
     }
 
-    public static BonusNumber valueOf(WinningNumbers winningNumbers, Number number) {
-        return new BonusNumber(winningNumbers, number);
+    public static BonusNumber valueOf(WinningLotto winningLotto, Number number) {
+        return new BonusNumber(winningLotto, number);
     }
 
     public Number getBonusNumber() {
@@ -21,15 +21,15 @@ public class BonusNumber {
     }
 
     private static class Validator {
-        private static void validate(WinningNumbers winningNumbers, Number number) {
-            if (isBonusNumberInWinningNumbers(winningNumbers, number)) {
+        private static void validate(WinningLotto winningLotto, Number number) {
+            if (isBonusNumberInWinningNumbers(winningLotto, number)) {
                 throw new LottoException(ErrorMessage.INVALID_BONUS_NUMBER);
             }
         }
 
-        private static boolean isBonusNumberInWinningNumbers(WinningNumbers winningNumbers,
+        private static boolean isBonusNumberInWinningNumbers(WinningLotto winningLotto,
                                                              Number number) {
-            return winningNumbers.contains(number);
+            return winningLotto.contains(number);
         }
     }
 }

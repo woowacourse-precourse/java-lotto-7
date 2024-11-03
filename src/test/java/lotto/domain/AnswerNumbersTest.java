@@ -18,16 +18,16 @@ class AnswerNumbersTest {
 
     @BeforeEach
     void setUp() {
-        WinningNumbers winningNumbers = WinningNumbers.of(
+        WinningLotto winningLotto = WinningLotto.of(
                 List.of(1, 2, 3, 4, 5, 6)
         );
 
         BonusNumber bonusNumber = BonusNumber.valueOf(
-                winningNumbers, Number.of(7)
+                winningLotto, Number.of(7)
         );
 
         answerNumbers = AnswerNumbers.from(
-                winningNumbers, bonusNumber);
+                winningLotto, bonusNumber);
     }
 
     @DisplayName("객체 생성 테스트")

@@ -5,7 +5,7 @@ import lotto.domain.AnswerNumbers;
 import lotto.domain.BonusNumber;
 import lotto.domain.Payment;
 import lotto.domain.Result;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
 import lotto.domain.lotto.Lottos;
 import lotto.global.contents.LottoDetail;
 import lotto.global.util.LottoMachine;
@@ -39,9 +39,9 @@ public class LottoController {
     }
 
     private AnswerNumbers create() {
-        WinningNumbers winningNumbers = retry(inputView::readWinningNumbers);
-        BonusNumber bonusNumber = retry(() -> inputView.readBonusNumber(winningNumbers));
-        return AnswerNumbers.from(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = retry(inputView::readWinningNumbers);
+        BonusNumber bonusNumber = retry(() -> inputView.readBonusNumber(winningLotto));
+        return AnswerNumbers.from(winningLotto, bonusNumber);
     }
 
     private void result(Lottos lottos, AnswerNumbers answerNumbers, Payment payment) {

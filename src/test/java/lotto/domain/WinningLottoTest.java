@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinningNumbersTest {
+class WinningLottoTest {
 
     private static final String ERROR_PREFIX = "[ERROR]";
 
@@ -18,9 +18,9 @@ class WinningNumbersTest {
     void 객체생성_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
-        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        assertThat(winningNumbers).isNotNull();
+        assertThat(winningLotto).isNotNull();
     }
 
     @DisplayName("중복 번호 존재 시 예외")
@@ -28,7 +28,7 @@ class WinningNumbersTest {
     void 중복_번호_예외_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
 
-        assertThatThrownBy(() -> WinningNumbers.of(numbers))
+        assertThatThrownBy(() -> WinningLotto.of(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }
@@ -38,7 +38,7 @@ class WinningNumbersTest {
     void 범위_벗어난_예외_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 90);
 
-        assertThatThrownBy(() -> WinningNumbers.of(numbers))
+        assertThatThrownBy(() -> WinningLotto.of(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }
@@ -48,7 +48,7 @@ class WinningNumbersTest {
     void 음수_값_예외_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, -1);
 
-        assertThatThrownBy(() -> WinningNumbers.of(numbers))
+        assertThatThrownBy(() -> WinningLotto.of(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }
@@ -58,7 +58,7 @@ class WinningNumbersTest {
     void 여섯_자리_숫자_아닐_경우_예외_테스트() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5);
 
-        assertThatThrownBy(() -> WinningNumbers.of(numbers))
+        assertThatThrownBy(() -> WinningLotto.of(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }
@@ -69,9 +69,9 @@ class WinningNumbersTest {
     void 포함_테스트(int number) {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
-        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        assertThat(winningNumbers.contains(Number.of(number))).isTrue();
+        assertThat(winningLotto.contains(Number.of(number))).isTrue();
     }
 
     @DisplayName("당첨 번호에 번호가 미포함")
@@ -80,8 +80,8 @@ class WinningNumbersTest {
     void 미포함_테스트(int number) {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
-        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        assertThat(winningNumbers.contains(Number.of(number))).isFalse();
+        assertThat(winningLotto.contains(Number.of(number))).isFalse();
     }
 }

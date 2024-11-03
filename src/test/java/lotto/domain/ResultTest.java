@@ -38,12 +38,12 @@ class ResultTest {
     }
 
     private AnswerNumbers generateAnswerNumbers() {
-        WinningNumbers winningNumbers = WinningNumbers.of(
+        WinningLotto winningLotto = WinningLotto.of(
                 List.of(1, 2, 3, 4, 5, 6));
 
         return AnswerNumbers.from(
-                winningNumbers,
-                BonusNumber.valueOf(winningNumbers, Number.of(7))
+                winningLotto,
+                BonusNumber.valueOf(winningLotto, Number.of(7))
         );
     }
 

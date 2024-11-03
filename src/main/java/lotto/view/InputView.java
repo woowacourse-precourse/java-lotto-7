@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Number;
 import lotto.domain.Payment;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
 import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
@@ -27,16 +27,16 @@ public class InputView {
         );
     }
 
-    public WinningNumbers readWinningNumbers() {
+    public WinningLotto readWinningNumbers() {
         Writer.println(QUESTION_WINNING_NUMBERS);
         String winningNumbers = Validator.validateSeparator(Reader.read());
-        return WinningNumbers.of(convert(winningNumbers));
+        return WinningLotto.of(convert(winningNumbers));
     }
 
-    public BonusNumber readBonusNumber(WinningNumbers winningNumbers) {
+    public BonusNumber readBonusNumber(WinningLotto winningLotto) {
         Writer.println(QUESTION_BONUS_NUMBER);
         int bonusNumber = Validator.validateNumber(Reader.read());
-        return BonusNumber.valueOf(winningNumbers, Number.of(bonusNumber));
+        return BonusNumber.valueOf(winningLotto, Number.of(bonusNumber));
     }
 
     private List<Integer> convert(String input) {

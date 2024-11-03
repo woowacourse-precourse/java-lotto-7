@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Number;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,9 +51,9 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideLottoInfoForMatchCount")
     void 해당_로또_번호에_당첨_번호가_포함된_개수_테스트(Lotto lotto, int expected) {
-        WinningNumbers winningNumbers = createWinningNumbers();
+        WinningLotto winningLotto = createWinningNumbers();
 
-        assertThat(lotto.countMatchingNumbers(winningNumbers))
+        assertThat(lotto.countMatchingNumbers(winningLotto))
                 .isEqualTo(expected);
     }
 
@@ -87,8 +87,8 @@ class LottoTest {
         );
     }
 
-    private WinningNumbers createWinningNumbers() {
-        return WinningNumbers.of(
+    private WinningLotto createWinningNumbers() {
+        return WinningLotto.of(
                 List.of(1, 2, 3, 4, 5, 6));
     }
 

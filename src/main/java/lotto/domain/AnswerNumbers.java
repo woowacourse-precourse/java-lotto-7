@@ -4,27 +4,27 @@ import lotto.domain.lotto.Lotto;
 
 public class AnswerNumbers {
 
-    private final WinningNumbers winningNumbers;
+    private final WinningLotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    private AnswerNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
+    private AnswerNumbers(WinningLotto winningLotto, BonusNumber bonusNumber) {
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static AnswerNumbers from(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return new AnswerNumbers(winningNumbers, bonusNumber);
+    public static AnswerNumbers from(WinningLotto winningLotto, BonusNumber bonusNumber) {
+        return new AnswerNumbers(winningLotto, bonusNumber);
     }
 
     public Rank compare(Lotto lotto) {
         return Rank.find(
-                lotto.countMatchingNumbers(winningNumbers),
+                lotto.countMatchingNumbers(winningLotto),
                 lotto.hasBonusNumbers(bonusNumber.getBonusNumber())
         );
     }
 
-    public WinningNumbers getWinningNumbers() {
-        return winningNumbers;
+    public WinningLotto getWinningNumbers() {
+        return winningLotto;
     }
 
     public BonusNumber getBonusNumber() {

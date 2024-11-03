@@ -22,9 +22,9 @@ class BonusNumberTest {
     @Test
     void 객체생성_테스트() {
         Number number = Number.of(9);
-        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        BonusNumber bonusNumber = BonusNumber.valueOf(winningNumbers, number);
+        BonusNumber bonusNumber = BonusNumber.valueOf(winningLotto, number);
 
         assertThat(bonusNumber).isNotNull();
         assertThat(bonusNumber.getBonusNumber()).isEqualTo(number);
@@ -34,9 +34,9 @@ class BonusNumberTest {
     @Test
     void 중복_숫자_입력_예외() {
         Number number = Number.of(1);
-        WinningNumbers winningNumbers = WinningNumbers.of(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        assertThatThrownBy(() -> BonusNumber.valueOf(winningNumbers, number))
+        assertThatThrownBy(() -> BonusNumber.valueOf(winningLotto, number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }
