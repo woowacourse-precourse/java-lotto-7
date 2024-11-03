@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.exception.ErrorMessage;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -119,11 +121,29 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 입력된_문자열이_null_이면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> runException(null))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.NULL_INPUT_ERROR.getMessage());
+        });
+    }
+
+    @Test
+    void 입력된_문자열이_빈_문자열이면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> runException(""))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.EMPTY_INPUT_ERROR.getMessage());
+        });
+    }
+
+    @Test
     void 입력된_로또_구입_금액에_숫자가_아닌_문자열이_포홤되면_예외가_발생한다() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("1200$"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 구매금액은 숫자여야 합니다.");
+                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_NUMBER.getMessage());
         });
     }
 
@@ -133,7 +153,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("900"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 구매금액은 1,000원 이상이어야 합니다.");
+                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_AT_LEAST_1000.getMessage());
         });
     }
 
@@ -143,7 +163,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("1200"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 구매금액은 1,000원 단위여야 합니다.");
+                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000.getMessage());
         });
     }
 
@@ -151,7 +171,7 @@ class ApplicationTest extends NsTest {
     void 입력된_로또_구입_금액이_int의_범위가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, Integer.MAX_VALUE + 1)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 구입 금액이 너무 큽니다.");
+                .hasMessage(ErrorMessage.PURCHASE_AMOUNT_TOO_LARGE.getMessage());
     }
 
     @DisplayName("입력된 보너스 번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
@@ -160,7 +180,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", "46"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                    .hasMessage(ErrorMessage.BONUS_NUMBER_MUST_BE_BETWEEN_1_AND_45.getMessage());
         });
     }
 
@@ -169,7 +189,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", "6"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                    .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATES_WITH_WINNING_NUMBERS.getMessage());
         });
     }
 
