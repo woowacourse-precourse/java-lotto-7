@@ -26,10 +26,8 @@ public class LottoController {
     public void run() {
         String cost = inputView.PrintStartMsg();
         //여기에 유효성 검증
-
-        long calcCost = Long.parseLong(cost);
-        outputView.howManyBuy(calcCost/1000);
-        lottoMainService.buyLotto(calcCost);
+        outputView.howManyBuy(cost);
+        lottoMainService.buyLotto(cost);
 
         List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO();
         for (LottoDTO dto : allLottosAsDTO) {
@@ -49,11 +47,8 @@ public class LottoController {
         StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
         outputView.statisticStart(stats);
 
-        long sumPrize = lottoMainService.sumPrize(stats);
-        double profit = sumPrize / calcCost;
+        double profit = lottoMainService.sumPrize(stats,cost);
         outputView.profitMessage(profit);
-
-
     }
 
 }

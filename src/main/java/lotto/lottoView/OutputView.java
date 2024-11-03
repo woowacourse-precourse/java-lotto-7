@@ -14,7 +14,7 @@ public class OutputView {
 
 
 
-    public void howManyBuy(Long numberOfBuy) {
+    public void howManyBuy(String numberOfBuy) {
         System.out.printf(HOW_MANY_BUY, numberOfBuy);
         System.out.println();
     }
