@@ -16,6 +16,7 @@ import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LottoController {
 
@@ -25,10 +26,13 @@ public class LottoController {
     private final RandomNumberGenerator randomNumberGenerator = new DefaultRandomNumberGenerator();
     private final LottoShop lottoShop = new LottoShop();
 
-    private int purchaseMoney;
-
     public void run() {
-        Lottos lottos = Retryer.retryOnCustomException(this::purchaseLotto);
+        AtomicInteger purchaseMoney = new AtomicInteger();
+
+        Lottos lottos = Retryer.retryOnCustomException(() -> {
+            purchaseMoney.set(inputView.inputPurchaseMoney());
+            return lottoShop.purchaseRandomLottos(purchaseMoney.get(), randomNumberGenerator);
+        });
 
         outputView.printPurchasedLottos(PurchaseLottoResponse.from(lottos));
 
@@ -37,12 +41,7 @@ public class LottoController {
         List<Score> scores = lottos.calculateScore(winningLotto);
 
         outputView.printScores(LottoScoreResponses.from(Score.aggregate(scores)));
-        outputView.printProfitRate(LottoProfitResponse.of(scores, purchaseMoney));
-    }
-
-    private Lottos purchaseLotto() {
-        purchaseMoney = inputView.inputPurchaseMoney();
-        return lottoShop.purchaseRandomLottos(purchaseMoney, randomNumberGenerator);
+        outputView.printProfitRate(LottoProfitResponse.of(scores, purchaseMoney.get()));
     }
 
     private WinningLotto createWinningLotto() {
