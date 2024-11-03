@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENTAGE_FACTOR = 100;
     private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
@@ -25,7 +26,7 @@ public class LottoManager {
                 .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
         Output.printWinningStatistics(winningRecord);
-        int totalWinningAmount = calculateTotalWinningAmount();
+        double returnRate = (double) calculateTotalWinningAmount() / purchaseAmount * PERCENTAGE_FACTOR;
     }
 
     private void saveRankOnRecord(final Rank rank) {
