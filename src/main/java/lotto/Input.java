@@ -27,4 +27,11 @@ public class Input {
 			throw new IllegalArgumentException("[ERROR] 당첨번호는 6개 입력해야 합니다.");
 		}
 	}
+
+	public void validateLuckyNumberInteger(String input) {
+		if (Arrays.stream(input.split(","))
+			.anyMatch(s -> !Character.isDigit(s.charAt(0)))) {
+			throw new IllegalArgumentException("[ERROR] 당첨번호 입력은 숫자만 가능합니다.");
+		}
+	}
 }
