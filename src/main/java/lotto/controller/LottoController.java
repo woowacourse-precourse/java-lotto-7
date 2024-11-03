@@ -80,14 +80,6 @@ public class LottoController {
             int userInputMoney = numberInputConverter.toInt(reader.read());
             return new UserMoney(LottoMoney.of(userInputMoney));
         });
-//        try{
-//            view.getInputView().showMoneyInputExplanation();
-//            int userInputMoney = numberInputConverter.toInt(reader.read());
-//            return new UserMoney(LottoMoney.of(userInputMoney));
-//        } catch (IllegalArgumentException e){
-//            System.out.print(e.getMessage());
-//        }
-//        return new UserMoney(1000);
     }
 
     private LottosDto toLottosDto(List<Lotto> lottos) {
