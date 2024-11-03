@@ -1,15 +1,17 @@
 package lotto.view.input;
 
-import lotto.buyer.domain.InsertMoneyService;
+import lotto.buyer.service.InsertMoneyService;
 import lotto.lotto.domain.*;
+import lotto.lotto.service.LottoGenerator;
+import lotto.lotto.domain.LottoMachine;
 import lotto.money.domain.Money;
-import lotto.buyer.infrastructure.InsertPurchaseMoney;
-import lotto.calculator.infrastructure.DivideThousandCalculator;
+import lotto.buyer.infrastructure.UserInputInsertMoney;
+import lotto.money.infrastructure.DivideThousandCalculator;
 import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.WinningLotto;
-import lotto.view.input.domain.InputService;
+import lotto.view.input.service.InputService;
 import lotto.view.input.hanlder.infrastructure.MoneyHandler;
-import lotto.view.output.domain.PurchaseCountViewService;
+import lotto.view.output.service.PurchaseCountViewService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,9 +27,9 @@ public class InputViewTest {
 
     @BeforeEach
     void init() {
-        InsertMoneyService insertMoneyService = new InsertPurchaseMoney(new MoneyHandler(new MoneyInputTest()));
+        InsertMoneyService insertMoneyService = new UserInputInsertMoney(new MoneyHandler(new MoneyInputTest()));
         money = insertMoneyService.insert();
-        lottoMachine = new LottoMachine(new DivideThousandCalculator(), new LottoCreatorTest(), new PurchaseOutputViewTest());
+        lottoMachine = new LottoMachine(new DivideThousandCalculator(), new LottoGeneratorTest(), new PurchaseOutputViewTest());
     }
 
     @Test
@@ -84,9 +86,9 @@ class PurchaseOutputViewTest implements PurchaseCountViewService {
     }
 }
 
-class LottoCreatorTest implements LottoCreatorService {
+class LottoGeneratorTest implements LottoGenerator {
     @Override
-    public LottoTickets createLottoTickets(int count) {
+    public LottoTickets lottoTickets(int count) {
         return LottoTickets.of(List.of(
                 new Lotto(List.of(45, 44, 43, 42, 41, 40)),
                 new Lotto(List.of(39, 38, 37, 36, 35, 34)),
@@ -100,12 +102,12 @@ class LottoCreatorTest implements LottoCreatorService {
     }
 
     @Override
-    public BonusNumber createBonusNumber(WinningLotto winningLotto) {
+    public BonusNumber bonusNumber(WinningLotto winningLotto) {
         return BonusNumber.of("7");
     }
 
     @Override
-    public WinningLotto createWinningLotto() {
+    public WinningLotto winningLotto() {
         return WinningLotto.of("1,2,3,4,5,6");
     }
 }

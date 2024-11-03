@@ -1,14 +1,10 @@
 package lotto.lotto.domain;
 
-import lotto.lotto.domain.BonusNumber;
-import lotto.lotto.domain.WinningLotto;
 import lotto.money.domain.Benefit;
-import lotto.money.domain.BenefitCreatorService;
+import lotto.money.service.BenefitCalculator;
 import lotto.money.domain.Money;
-import lotto.money.infrastructure.BenefitCreator;
+import lotto.money.infrastructure.WinningBenefitCalculator;
 import lotto.money.infrastructure.PurchaseAmount;
-import lotto.lotto.domain.Lotto;
-import lotto.lotto.domain.LottoTickets;
 import lotto.money.infrastructure.WinningAmountCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,14 +16,14 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RateOfReturnTest {
     private static Money insertMoney;
-    private BenefitCreatorService benefitCreator;
+    private BenefitCalculator benefitCalculator;
     private LottoTickets lottoTickets;
     private Lotto lotto;
 
     @BeforeEach
     void init() {
         insertMoney = PurchaseAmount.of("1000");
-        benefitCreator = new BenefitCreator(new WinningAmountCalculator());
+        benefitCalculator = new WinningBenefitCalculator(new WinningAmountCalculator());
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }
@@ -79,14 +75,14 @@ public class RateOfReturnTest {
     private void verifyRateOfReturn(String winningNumber, String bonusNumber, String expectedRateOrReturn) {
         WinningLotto winningLotto = WinningLotto.of(winningNumber);
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCalculator.execute(lottoTickets, winningLotto, bonus);
         String rateOfReturn = benefit.getDecimalFormatByRateOfReturn(insertMoney);
         assertThat(rateOfReturn).isEqualTo(expectedRateOrReturn);
     }
 
     private void verifyRateOfReturn(WinningLotto winningLotto, String bonusNumber, String expectedRateOrReturn) {
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCalculator.execute(lottoTickets, winningLotto, bonus);
         String rateOfReturn = benefit.getDecimalFormatByRateOfReturn(insertMoney);
         assertThat(rateOfReturn).isEqualTo(expectedRateOrReturn);
     }

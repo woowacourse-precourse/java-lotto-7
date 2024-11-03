@@ -1,12 +1,8 @@
 package lotto.lotto.domain;
 
-import lotto.lotto.domain.BonusNumber;
-import lotto.lotto.domain.Lotto;
-import lotto.lotto.domain.LottoTickets;
-import lotto.lotto.domain.WinningLotto;
 import lotto.money.domain.Benefit;
-import lotto.money.domain.BenefitCreatorService;
-import lotto.money.infrastructure.BenefitCreator;
+import lotto.money.service.BenefitCalculator;
+import lotto.money.infrastructure.WinningBenefitCalculator;
 import lotto.money.infrastructure.WinningAmountCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,13 +13,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningCalculatorTest {
-    private BenefitCreatorService benefitCreator;
+    private BenefitCalculator benefitCalculator;
     private LottoTickets lottoTickets;
     private Lotto lotto;
 
     @BeforeEach
     void init() {
-        benefitCreator = new BenefitCreator(new WinningAmountCalculator());
+        benefitCalculator = new WinningBenefitCalculator(new WinningAmountCalculator());
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }
@@ -72,13 +68,13 @@ public class WinningCalculatorTest {
     private void verifyBenefit(String winningNumbers, String bonusNumber, String expectedBenefit) {
         WinningLotto winningLotto = WinningLotto.of(winningNumbers);
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCalculator.execute(lottoTickets, winningLotto, bonus);
         assertThat(benefit.toString()).isEqualTo(expectedBenefit);
     }
 
     private void verifyBenefit(WinningLotto winningLotto, String bonusNumber, String expectedBenefit) {
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCalculator.execute(lottoTickets, winningLotto, bonus);
         assertThat(benefit.toString()).isEqualTo(expectedBenefit);
     }
 }

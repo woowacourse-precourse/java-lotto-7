@@ -1,7 +1,6 @@
 package lotto.lotto.validator;
 
 import lotto.constant.ErrorMessage;
-import lotto.lotto.validator.LottoValidator;
 import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.WinningLotto;
 import lotto.util.ValidationProcess;
