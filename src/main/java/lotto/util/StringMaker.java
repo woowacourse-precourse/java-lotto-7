@@ -24,11 +24,11 @@ public class StringMaker {
         StringBuilder result = new StringBuilder();
 
         result.append("\n당첨 통계\n---\n")
-                .append("3개 일치 (5,000원) - ").append(countPerWinningRank[5]).append("\n")
-                .append("4개 일치 (50,000원) - ").append(countPerWinningRank[4]).append("\n")
-                .append("5개 일치 (1,500,000원) - ").append(countPerWinningRank[3]).append("\n")
-                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(countPerWinningRank[2]).append("\n")
-                .append("6개 일치 (2,000,000,000원) - ").append(countPerWinningRank[1]).append("\n")
+                .append("3개 일치 (5,000원) - ").append(countPerWinningRank[5]).append("개\n")
+                .append("4개 일치 (50,000원) - ").append(countPerWinningRank[4]).append("개\n")
+                .append("5개 일치 (1,500,000원) - ").append(countPerWinningRank[3]).append("개\n")
+                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(countPerWinningRank[2]).append("개\n")
+                .append("6개 일치 (2,000,000,000원) - ").append(countPerWinningRank[1]).append("개\n")
                 .append("총 수익률은 ").append(earningRate).append("%입니다.");
 
         return result.toString();

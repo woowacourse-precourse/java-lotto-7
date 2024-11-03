@@ -8,6 +8,7 @@ public class Application {
         LottoGame lottoGame = LottoGameSetter.set();
 
         LottoNumberMatcher lottoMatcher = LottoNumberMatcher.from(lottoGame);
+
         lottoMatcher.match();
     }
 }
