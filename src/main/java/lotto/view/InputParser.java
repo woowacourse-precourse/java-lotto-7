@@ -23,7 +23,7 @@ public class InputParser {
         return trimNumbers.stream().map(Integer::parseInt).toList();
     }
 
-    public static int parseBonusNumber(String input) {
+    public static int parseNumber(String input) {
         String trimNumber = input.trim();
         InputValidator.isInputNumber(trimNumber);
         return Integer.parseInt(trimNumber);

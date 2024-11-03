@@ -44,9 +44,9 @@ class InputParserTest {
 
     @Test
     @DisplayName("보너스 번호 파싱 테스트")
-    void testParseBonusNumber() {
+    void testParseNumber() {
         //given,when
-        int result = InputParser.parseBonusNumber(BONUS_NUMBER);
+        int result = InputParser.parseNumber(BONUS_NUMBER);
         //then
         assertEquals(result, EXPECTED_BONUS_NUMBER);
     }
@@ -62,6 +62,6 @@ class InputParserTest {
     @DisplayName("알파벳과 특수문자가 들어간 보너스 번호 예외 처리 테스트 ")
     @ValueSource(strings = {ALPHABET, SPECIAL_CHARACTER})
     void testNonNumericBonusNumber(String input) {
-        assertThrows(IllegalArgumentException.class, () -> InputParser.parseBonusNumber(input));
+        assertThrows(IllegalArgumentException.class, () -> InputParser.parseNumber(input));
     }
 }
