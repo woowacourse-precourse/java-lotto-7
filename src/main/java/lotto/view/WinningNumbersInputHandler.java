@@ -11,8 +11,13 @@ public class WinningNumbersInputHandler {
     public static List<Integer> promptGetWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String input = Console.readLine();
-        List<Integer> winningNumbers = validateWinningNumbers(input);
-        return winningNumbers;
+        while (true) {
+            try {
+                return validateWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static List<Integer> validateWinningNumbers(String input) {
