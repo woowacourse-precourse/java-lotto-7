@@ -15,8 +15,11 @@ public class Application {
     private static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+
         int purchaseAmount = parsePurchaseAmount(input);
         validatePurchaseAmount(purchaseAmount);
+
+        System.out.println();
         return purchaseAmount;
     }
 
@@ -42,6 +45,8 @@ public class Application {
     }
 
     private static int getLottoCount(int input) {
-        return input / 1000;
+        int lottoCount = input / 1000;
+        System.out.println(lottoCount + "개를 구매했습니다.\n");
+        return lottoCount;
     }
 }
