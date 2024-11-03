@@ -38,18 +38,22 @@ public class LottoController {
 
         // 당첨 번호 입력 받기
         List<Integer> winningNumbers = executeWithRetry(this::inputWinningNumbers);
-        System.out.println(winningNumbers);
+
         // 보너스 번호 입력 받기
         int bonusNumber = executeWithRetry(this::inputBonusNumber, winningNumbers);
 
         // 구매한 로또와 당첨 번호 비교
-        HashMap<Price, Integer> price = new HashMap<>();
+        HashMap<Price, Integer> prices = new HashMap<>();
         for (Lotto lotto : lottos) {
             Price p = lotto.compareWithWinningNumber(winningNumbers, bonusNumber);
-            price.put(p, price.getOrDefault(p, 0) + 1);
+            prices.put(p, prices.getOrDefault(p, 0) + 1);
         }
 
         // 당첨 내역 출력
+        System.out.println("\n당첨 통계\n---");
+        for (Price price : Price.getValues()) {
+            price.print(prices.getOrDefault(price, 0));
+        }
 
         // 수익률 출력
     }
