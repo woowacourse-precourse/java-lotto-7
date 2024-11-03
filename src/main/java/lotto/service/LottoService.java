@@ -43,14 +43,11 @@ public class LottoService {
     }
 
     private Lotto generateRandomLotto() {
-        Lotto lotto = new Lotto(
-                Randoms.pickUniqueNumbersInRange(
-                        START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_COUNT
-                )
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_COUNT
         );
-        lotto.sortNumbers();
 
-        return lotto;
+        return new Lotto(numbers);
     }
 
     public Lotto setWinningLotto(String inputValue) {

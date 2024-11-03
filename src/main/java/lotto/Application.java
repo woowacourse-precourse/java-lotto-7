@@ -16,6 +16,7 @@ public class Application {
 
     public static void main(String[] args) {
         List<Lotto> lottos = setLottos();
+        printIssueLottos(lottos);
         setWinningLotto();
         setBonusNumber();
         int[] winningCount = lottoService.getWinningCount(lottos, winningLotto, bonusNumber);
@@ -36,6 +37,18 @@ public class Application {
             }
             throw exception;
         }
+    }
+
+    private static void printIssueLottos(List<Lotto> lottos) {
+        String separator = System.lineSeparator();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(lottos.size()).append("개를 구매했습니다.").append(separator);
+
+        for (Lotto lotto: lottos) {
+            stringBuilder.append(lotto.getNumbersString()).append(separator);
+        }
+
+        System.out.println(stringBuilder.toString());
     }
 
     private static void setWinningLotto() {
@@ -72,7 +85,7 @@ public class Application {
 
     private static void setResult(int[] winningCount, StringBuilder stringBuilder) {
         List<LottoRank> lottoRanks = setPrintLottoRanks();
-        String[] resultStrings = {"3개 일치", "4개 일치", "5개 일치, 보너스 볼 일치", "6개 일치"};
+        String[] resultStrings = {"3개 일치", "4개 일치", "5개 일치", "5개 일치, 보너스 볼 일치", "6개 일치"};
 
         for(int i = 1; i < lottoRanks.size(); i++) {
             LottoRank rank = lottoRanks.get(i);
@@ -108,8 +121,9 @@ public class Application {
     }
 
     private static void printIncomePercent(List<Lotto> lottos, int[] winningCount) {
+        int issueCost = lottos.size() * lottoService.getLottoCost();
         long income = lottoService.getWinningCost(winningCount);
-        double incomePercent = Math.round((double)income / lottos.size());
+        double incomePercent = Math.round((double)income / issueCost * 100 * 100) / 100.0;
 
         System.out.println("총 수익률은 " + incomePercent + "%입니다.");
     }
