@@ -28,7 +28,7 @@ class LottoResultTest {
         LottoResult lottoResult = LottoResult.from(prizeLotto, lottos);
 
         // then
-        Double expectedEarningRate = (double) (((2_000_000_000 + 30_000_000 + 1_500_000) / 3000) * 100);
+        Double expectedEarningRate = (double) 2_031_500_000 / 3000 * 100;
         Assertions.assertThat(lottoResult.getLottoRanks())
                 .hasSize(3)
                 .containsExactly(FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE);
