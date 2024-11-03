@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import lotto.validator.WinningNumbersValidationMessage;
@@ -22,6 +23,21 @@ public class MainWinningNumbers {
 
 	public static MainWinningNumbers from(List<Integer> mainWinningNumbers) {
 		return new MainWinningNumbers(mainWinningNumbers);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		MainWinningNumbers that = (MainWinningNumbers)o;
+		return Objects.equals(mainWinningNumbers, that.mainWinningNumbers);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(mainWinningNumbers);
 	}
 
 	public List<Integer> getMainWinningNumbers() {

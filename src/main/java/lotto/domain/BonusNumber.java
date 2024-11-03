@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 import lotto.validator.WinningNumbersValidationMessage;
 
 public class BonusNumber {
@@ -15,6 +17,21 @@ public class BonusNumber {
 
 	public static BonusNumber from(int bonusNumber) {
 		return new BonusNumber(bonusNumber);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		BonusNumber that = (BonusNumber)o;
+		return bonusNumber == that.bonusNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(bonusNumber);
 	}
 
 	public int getBonusNumber() {
