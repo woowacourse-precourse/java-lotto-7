@@ -7,7 +7,7 @@ public class BonusNumberInputProcessor implements InputProcessor<Integer> {
 
     private final BonusNumberValidator bonusNumberValidator;
 
-    BonusNumberInputProcessor(BonusNumberValidator bonusNumberValidator) {
+    public BonusNumberInputProcessor(BonusNumberValidator bonusNumberValidator) {
         this.bonusNumberValidator = bonusNumberValidator;
     }
 
