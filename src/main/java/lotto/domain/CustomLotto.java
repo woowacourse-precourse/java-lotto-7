@@ -1,16 +1,14 @@
 package lotto.domain;
 
-import lotto.constants.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constants.ErrorMessage.*;
 
-public class InputLotto extends Lotto{
+public class CustomLotto extends Lotto{
     private Integer bonus;
 
-    public InputLotto(List<Integer> numbers, Integer bonus) {
+    public CustomLotto(List<Integer> numbers, Integer bonus) {
         super(numbers);
         this.bonus= bonus;
         isDuplicateLottoAndBonus();
