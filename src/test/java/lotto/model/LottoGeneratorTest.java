@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +27,8 @@ class LottoGeneratorTest {
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         LottoGenerator lottoGenerator = new LottoGenerator(numberGenerator);
         // when
-        Lotto lotto = lottoGenerator.generate();
+        List<Lotto> lottos = lottoGenerator.generate(1);
         // then
-        Assertions.assertThat(lotto).isNotNull();
+        Assertions.assertThat(lottos.size()).isEqualTo(1);
     }
 }

@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 
 public enum WinningType {
-    FIRST(6, true, 2000000000),
+    FIRST(6, false, 2000000000),
     SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
     FOURTH(4, false, 50000),

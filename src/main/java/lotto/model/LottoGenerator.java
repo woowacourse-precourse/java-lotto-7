@@ -10,7 +10,11 @@ public class LottoGenerator {
         this.numberGenerator = numberGenerator;
     }
 
-    public Lotto generate() {
-        return new Lotto(numberGenerator.generate());
+    public List<Lotto> generate(int numberOfLotto) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLotto; i++) {
+            lottos.add(new Lotto(numberGenerator.generate()));
+        }
+        return lottos;
     }
 }

@@ -33,13 +33,17 @@ public class Customer {
         return (float)totalWinningMoney.getValue() / budget.getValue();
     }
 
+    public long getBudget() {
+        return budget.getValue();
+    }
+
     private void checkMyLotto(AnswerNumbers answerNumbers, BonusNumber bonusNumber) {
         myLotto.checkWinningLotto(answerNumbers, bonusNumber)
                 .forEach(this::addWinningHistory);
-        calculateTotalWinningMoeny();
+        calculateTotalWinningMoney();
     }
 
-    private void calculateTotalWinningMoeny() {
+    private void calculateTotalWinningMoney() {
         winningHistory.forEach((type, count) ->
                 totalWinningMoney = totalWinningMoney.add(
                         getTotalValueOfType(type, count))
