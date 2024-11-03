@@ -23,4 +23,17 @@ class LottoControllerTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("입력한 구입금액이 숫자가 아니면 예외를 반환한다.")
+    @Test
+    void 입력한_구입금액이_숫자가_아니면_예외를_반환한다(){
+        LottoController lottoController = new LottoController();
+        String input = "error";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThatThrownBy(() -> lottoController.run())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
 }

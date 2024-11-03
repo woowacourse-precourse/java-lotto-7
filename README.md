@@ -16,7 +16,7 @@ outputView
 
 LottoController
 - [x] 구입 금액 단위 검증
-- [ ] 사용자 입력 구입 금액 숫자 검증
+- [x] 사용자 입력 구입 금액 숫자 검증
 - [ ] 로또 번호 생성 후 Lotto 객체 생성
 
 

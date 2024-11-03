@@ -5,6 +5,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private static final String INPUT_NUMBER_ERROR_MESSAGE = "[ERROR] 구입 금액은 숫자여야 합니다.";
     private static final String PURCHASE_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입 금액은 %d원 단위여야 합니다.";
     private static final Integer LOTTO_PURCHASE_COST = 1000;
 
@@ -27,7 +28,11 @@ public class LottoController {
 
     private Integer getUserPurchaseCost() {
         OutputView.getInstance().printPurchaseInput();
-        return Integer.parseInt(InputView.getInstance().readUserInput());
+        try{
+            return Integer.parseInt(InputView.getInstance().readUserInput());
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(INPUT_NUMBER_ERROR_MESSAGE);
+        }
     }
 
 
