@@ -26,7 +26,7 @@ public class LottoGameSetter {
         return LottoGame.of(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
-    private static Integer setBonusNumber(Set<Integer> winningNumbers) {
+    private Integer setBonusNumber(Set<Integer> winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumberInput = readLine();
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
@@ -39,7 +39,7 @@ public class LottoGameSetter {
         return bonusNumber;
     }
 
-    private static Set<Integer> setWinningNumbers() {
+    private Set<Integer> setWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine();
         String[] inputNumbers = input.split(",");
@@ -61,7 +61,7 @@ public class LottoGameSetter {
         return winningNumbers;
     }
 
-    private static void printDrawingResult(List<Lotto> lottos) {
+    private void printDrawingResult(List<Lotto> lottos) {
         StringBuilder lottoPurchaseResult = new StringBuilder();
         lottoPurchaseResult.append("\n").append(lottos.size()).append("개를 구매했습니다.\n");
         lottos.stream()
@@ -74,7 +74,7 @@ public class LottoGameSetter {
         System.out.println(lottoPurchaseResult);
     }
 
-    private static List<Lotto> drawLottery(Integer totalLottoCount) {
+    private List<Lotto> drawLottery(Integer totalLottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < totalLottoCount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -84,12 +84,12 @@ public class LottoGameSetter {
         return lottos;
     }
 
-    private static Integer setTotalLottoCount(Integer totalPrice) {
+    private Integer setTotalLottoCount(Integer totalPrice) {
         Integer totalLottoCount = totalPrice / 1000;
         return totalLottoCount;
     }
 
-    private static Integer setTotalPrice() {
+    private Integer setTotalPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         Integer totalPrice = Integer.parseInt(readLine());
         if(totalPrice % 1000 != 0) {
