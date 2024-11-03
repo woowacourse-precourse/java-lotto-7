@@ -9,7 +9,7 @@ import lotto.utils.randomNumberMaker.LottoNumberMaker;
 public class LottoOutlet {
 
     public static LottoTicket purchaseLottoTickets(int lottoAmount) {
-        int ticketCount = LottoOutlet.buyTicketsByAmount(lottoAmount);
+        int ticketCount = buyTicketsByAmount(lottoAmount);
         return generateLottoNumbersTicket(ticketCount);
     }
 
