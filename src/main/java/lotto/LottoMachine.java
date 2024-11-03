@@ -1,12 +1,9 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.GenerateRandomNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static lotto.constant.LottoRange.*;
 
 public class LottoMachine {
 
