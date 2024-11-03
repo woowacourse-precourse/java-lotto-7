@@ -11,6 +11,17 @@ import lotto.domain.lotto.dto.response.LottoGameRes;
 
 public class LottoServiceImpl implements LottoService {
 
+    private static LottoServiceImpl instance;
+
+    private LottoServiceImpl() {}
+
+    public static LottoServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new LottoServiceImpl();
+        }
+        return instance;
+    }
+
     private LottoGame lottoGame;
 
     @Override

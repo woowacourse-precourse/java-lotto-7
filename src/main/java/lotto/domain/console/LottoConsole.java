@@ -17,11 +17,7 @@ public class LottoConsole {
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String PROFIT_RATE_MESSAGE = "\n총 수익률은 %.1f%%입니다.";
 
-    private final LottoController controller;
-
-    public LottoConsole(LottoService lottoService) {
-        this.controller = new LottoController(lottoService);
-    }
+    private final LottoController controller = LottoController.getInstance(LottoService.getInstance());
 
     public void run() {
         // 구매 금액 입력 및 로또 구매

@@ -6,10 +6,19 @@ import lotto.domain.lotto.dto.response.LottoGameRes;
 import lotto.domain.lotto.service.LottoService;
 
 public class LottoController {
+
+    private static LottoController instance;
     private final LottoService lottoService;
 
-    public LottoController(LottoService lottoService) {
+    private LottoController(LottoService lottoService) {
         this.lottoService = lottoService;
+    }
+
+    public static LottoController getInstance(LottoService lottoService) {
+        if (instance == null) {
+            instance = new LottoController(lottoService);
+        }
+        return instance;
     }
 
     public List<List<Integer>> purchaseLottos(int amount) {
