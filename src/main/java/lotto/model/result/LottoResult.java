@@ -21,7 +21,7 @@ public class LottoResult {
         return Collections.unmodifiableMap(result);
     }
 
-    protected long calculateWinningMoney() {
+    long calculateWinningMoney() {
         return result.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();

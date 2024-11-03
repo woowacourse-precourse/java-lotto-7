@@ -25,7 +25,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    protected boolean isContain(final int number) {
+    boolean isContain(final int number) {
         return numbers.contains(number);
     }
 

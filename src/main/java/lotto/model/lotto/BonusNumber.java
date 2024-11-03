@@ -27,7 +27,7 @@ public class BonusNumber {
         }
     }
 
-    protected int getBonus() {
+    int getBonus() {
         return bonus;
     }
 }

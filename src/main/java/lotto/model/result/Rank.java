@@ -34,7 +34,7 @@ public enum Rank {
         return this.countOfMatch == countOfMatch;
     }
 
-    public int getWinningMoney() {
+    int getWinningMoney() {
         return winningMoney;
     }
 
