@@ -1,4 +1,4 @@
-package lotto;
+package lotto.application;
 
 public interface PurchaseLottoUseCase {
 

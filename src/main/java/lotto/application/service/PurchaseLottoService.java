@@ -1,6 +1,10 @@
-package lotto;
+package lotto.application.service;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoFactory;
+import lotto.application.PurchaseLottoUseCase;
+import lotto.domain.repository.LottoRepository;
 
 public class PurchaseLottoService implements PurchaseLottoUseCase {
 

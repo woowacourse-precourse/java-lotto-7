@@ -1,4 +1,18 @@
-package lotto;
+package lotto.common;
+
+import lotto.LottoApplication;
+import lotto.application.PurchaseLottoUseCase;
+import lotto.application.RetrieveLottoUseCase;
+import lotto.application.service.PurchaseLottoService;
+import lotto.application.service.RetrieveLottoService;
+import lotto.domain.Lotto;
+import lotto.domain.LottoFactory;
+import lotto.domain.repository.InMemoryLottoRepository;
+import lotto.domain.repository.LottoRepository;
+import lotto.view.ApplicationConsoleView;
+import lotto.view.ApplicationView;
+import lotto.view.converter.LottoMessageConverter;
+import lotto.view.converter.MessageConverter;
 
 public final class LottoConfig {
 

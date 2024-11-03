@@ -1,6 +1,9 @@
-package lotto;
+package lotto.application.service;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.application.RetrieveLottoUseCase;
+import lotto.domain.repository.LottoRepository;
 
 public class RetrieveLottoService implements RetrieveLottoUseCase {
 

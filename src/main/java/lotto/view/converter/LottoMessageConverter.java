@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view.converter;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoMessageConverter implements MessageConverter<Lotto> {
 

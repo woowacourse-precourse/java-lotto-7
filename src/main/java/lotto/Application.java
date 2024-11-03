@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.common.LottoConfig;
+
 public class Application {
 
     public static void main(String[] args) {
