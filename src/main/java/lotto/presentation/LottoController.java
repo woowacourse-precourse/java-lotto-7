@@ -3,6 +3,7 @@ package lotto.presentation;
 import java.util.List;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoGenerateStrategy;
+import lotto.domain.LottoTicketBundle;
 import lotto.domain.Prize;
 import lotto.domain.ProfitCalculator;
 import lotto.domain.WinningTicket;
@@ -17,13 +18,19 @@ public class LottoController {
     public void run() {
         int money = InputView.getMoney();
         ProfitCalculator profitCalculator = new ProfitCalculator(money);
+        LottoTicketBundle ticketBundle = purchaseTickets(profitCalculator.getTicketCount());
         WinningTicket winningTicket = getWinningTicketFromInput();
-        LottoGame lottoGame = new LottoGame(profitCalculator, lottoGenerateStrategy, winningTicket);
+        LottoGame lottoGame = new LottoGame(profitCalculator, ticketBundle, winningTicket);
         displayGameResults(lottoGame);
     }
 
+    private LottoTicketBundle purchaseTickets(int ticketCount) {
+        LottoTicketBundle ticketBundle = LottoTicketBundle.from(lottoGenerateStrategy, ticketCount);
+        displayPurchaseInfo(ticketBundle);
+        return ticketBundle;
+    }
+
     private void displayGameResults(LottoGame lottoGame) {
-        displayPurchaseInfo(lottoGame);
         displayPrizeResults(lottoGame);
         displayEarningRate(lottoGame);
     }
@@ -34,9 +41,9 @@ public class LottoController {
         return new WinningTicket(winningNumbers, bonusNumber);
     }
 
-    private void displayPurchaseInfo(LottoGame lottoGame) {
-        OutputView.printPurchaseAmount(lottoGame.getPurchasedTicketsCount());
-        OutputView.printPurchasedLottos(lottoGame.getPurchasedTickets());
+    private void displayPurchaseInfo(LottoTicketBundle ticketBundle) {
+        OutputView.printPurchaseAmount(ticketBundle.size());
+        OutputView.printPurchasedLottos(ticketBundle.toString());
     }
 
     private void displayPrizeResults(LottoGame lottoGame) {

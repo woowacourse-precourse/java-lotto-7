@@ -7,9 +7,9 @@ public class LottoGame {
     private final WinningTicket winningTicket;
     private final ProfitCalculator profitCalculator;
 
-    public LottoGame(ProfitCalculator profitCalculator, LottoGenerateStrategy strategy, WinningTicket winningTicket) {
+    public LottoGame(ProfitCalculator profitCalculator, LottoTicketBundle lottoTicketBundle, WinningTicket winningTicket) {
         this.profitCalculator = profitCalculator;
-        this.lottoTicketBundle = LottoTicketBundle.from(strategy, profitCalculator.getTicketCount());
+        this.lottoTicketBundle = lottoTicketBundle;
         this.winningTicket = winningTicket;
     }
 

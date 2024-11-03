@@ -37,4 +37,8 @@ public class LottoTicketBundle {
                 .map(Lotto::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public int size() {
+        return tickets.size();
+    }
 }

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoGameTest {
 
+    private LottoTicketBundle lottoTicketBundle;
     private LottoGenerateStrategy strategy;
     private WinningTicket winningTicket;
     private ProfitCalculator profitCalculator;
@@ -20,19 +21,20 @@ class LottoGameTest {
         winningTicket = new WinningTicket(winningNumbers, bonusNumber);
         int money = 5000;
         profitCalculator = new ProfitCalculator(money);
+        lottoTicketBundle = LottoTicketBundle.from(strategy, profitCalculator.getTicketCount());
     }
 
     @DisplayName("구매한 티켓 개수를 반환한다")
     @Test
     void getPurchasedTicketsCount_returnsCorrectTicketCount() {
-        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        LottoGame lottoGame = new LottoGame(profitCalculator, lottoTicketBundle, winningTicket);
         assertThat(lottoGame.getPurchasedTicketsCount()).isEqualTo(5);
     }
 
     @DisplayName("구매한 티켓 목록을 반환한다")
     @Test
     void getPurchasedTickets_returnsCorrectTicketList() {
-        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        LottoGame lottoGame = new LottoGame(profitCalculator, lottoTicketBundle, winningTicket);
         String expectedTickets = "[1, 2, 3, 4, 5, 6]\n".repeat(5).trim();
         assertThat(lottoGame.getPurchasedTickets()).isEqualTo(expectedTickets);
     }
@@ -40,7 +42,7 @@ class LottoGameTest {
     @DisplayName("당첨 결과를 올바르게 계산하여 반환한다")
     @Test
     void getPrizes_returnsCorrectPrizeList() {
-        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        LottoGame lottoGame = new LottoGame(profitCalculator, lottoTicketBundle, winningTicket);
         List<Prize> prizes = lottoGame.getPrizes();
         assertThat(prizes).containsOnly(Prize.FIVE);  // 각 티켓이 5개 일치
     }
@@ -48,7 +50,7 @@ class LottoGameTest {
     @DisplayName("수익률을 올바르게 계산한다")
     @Test
     void calculateEarningRate_returnsCorrectEarningRate() {
-        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        LottoGame lottoGame = new LottoGame(profitCalculator, lottoTicketBundle, winningTicket);
         float earningRate = lottoGame.calculateEarningRate();
         assertThat(earningRate).isEqualTo(150000.0f);
     }
