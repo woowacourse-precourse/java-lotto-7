@@ -12,7 +12,14 @@ import lotto.domain.Ranking;
 
 public class OutputView {
 
-    public static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
+    private static final String PURCHASE_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.%n";
+    private static final String LOTTO_NUMBER_DELIMITER = ", ";
+    private static final String LOTTO_NUMBER_MESSAGE_FORMAT = "[%s]%n";
+    private static final String LOTTO_RESULT_NOTICE_MESSAGE = "당첨 통계\n---";
+    private static final String LOTTO_INFO_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
+    private static final String LOTTO_INFO_FORMAT = "%d개 일치 (%,d원) - %d개\n";
+    private static final String LOTTO_REVENUE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
 
     public void printPurchaseLottos(List<Lotto> lottos) {
         printEmptyLine();
@@ -22,20 +29,22 @@ public class OutputView {
     }
 
     private void printPurchaseCount(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, lottoCount);
     }
 
     private void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         Collections.sort(numbers);
-
-        String outputNumbers = numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "));
-        System.out.printf("[%s]\n", outputNumbers);
+        System.out.printf(LOTTO_NUMBER_MESSAGE_FORMAT, createOutputNumbers(numbers));
     }
 
-    public void printEmptyLine() {
+    private String createOutputNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER));
+    }
+
+    private void printEmptyLine() {
         System.out.println();
     }
 
@@ -47,28 +56,32 @@ public class OutputView {
     }
 
     private void printLottoResultsNoticeMessage() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(LOTTO_RESULT_NOTICE_MESSAGE);
     }
 
     private void printLottoResult(LottoResult lottoResult) {
         Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking != Ranking.MISS)
-                .sorted(Comparator.comparingInt(Ranking::getMatchCount))
+                .sorted(Comparator.comparingInt(Ranking::getGrade).reversed())
                 .forEach(ranking -> printLottoResult(lottoResult.getResults(), ranking));
     }
 
     public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
         int count = lottoResults.getOrDefault(ranking, 0);
+        printLottoResultInfo(ranking, count);
+    }
+
+    private static void printLottoResultInfo(Ranking ranking, int count) {
         if (ranking.isRequireMatchBonus()) {
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", ranking.getMatchCount(), ranking.getPrize(), count);
-        } else {
-            System.out.printf("%d개 일치 (%,d원) - %d개\n", ranking.getMatchCount(), ranking.getPrize(), count);
+            System.out.printf(LOTTO_INFO_WITH_BONUS_FORMAT, ranking.getMatchCount(), ranking.getPrize(), count);
+            return;
         }
+
+        System.out.printf(LOTTO_INFO_FORMAT, ranking.getMatchCount(), ranking.getPrize(), count);
     }
 
     private void printRevenue(LottoResult lottoResult) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoResult.getRevenue());
+        System.out.printf(LOTTO_REVENUE_FORMAT, lottoResult.getRevenue());
     }
 
     public void printErrorMessage(Exception exception) {

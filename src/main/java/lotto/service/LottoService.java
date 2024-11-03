@@ -12,8 +12,13 @@ import lotto.domain.strategy.NumberGenerationStrategy;
 
 public class LottoService {
 
-    public Lottos purchaseLottos(Money lottoPurchaseMoney,
-                                 NumberGenerationStrategy numberGenerationStrategy) {
+    private final NumberGenerationStrategy numberGenerationStrategy;
+
+    public LottoService(NumberGenerationStrategy numberGenerationStrategy) {
+        this.numberGenerationStrategy = numberGenerationStrategy;
+    }
+
+    public Lottos purchaseLottos(Money lottoPurchaseMoney) {
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
         return lottoSeller.sellUntilNoMoney(lottoPurchaseMoney, numberGenerationStrategy);
     }

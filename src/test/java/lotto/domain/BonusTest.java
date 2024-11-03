@@ -12,6 +12,6 @@ class BonusTest {
     void 번호가_1이상_45이하가_아니라면_예외가_빌생한다(int number) {
         assertThatThrownBy(() -> new Bonus(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 1이상 45이하여야 합니다.");
+                .hasMessage("보너스 번호는 1이상 45이하여야 합니다.");
     }
 }

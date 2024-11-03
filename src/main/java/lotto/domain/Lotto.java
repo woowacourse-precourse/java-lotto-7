@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    public final static int MIN_NUMBER = 1;
-    public final static int MAX_NUMBER = 45;
-    public final static int LOTTO_SIZE = 6;
-    public final static Money LOTTO_PRICE = Money.from(1000L);
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_SIZE = 6;
+    public static final Money LOTTO_PRICE = Money.from(1000L);
+    private static final String NUMBER_SIZE_ERROR_MESSAGE = String.format("로또 번호는 %d개여야 합니다.", LOTTO_SIZE);
+    private static final String NUMBER_RANGE_ERROR_MESSAGE =
+            String.format("보너스 번호는 %d이상 %d이하여야 합니다.", MIN_NUMBER, MAX_NUMBER);
+    private static final String DUPLICATED_NUMBER_ERROR_MESSAGE = "중복된 로또 번호가 존재합니다.";
 
     private final List<Integer> numbers;
 
@@ -24,14 +28,14 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR_MESSAGE);
         }
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하여야 합니다.");
+                throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
     }
@@ -41,7 +45,7 @@ public class Lotto {
                 .distinct()
                 .toList();
         if (numbers.size() != nonDuplicatedNumber.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE);
         }
     }
 

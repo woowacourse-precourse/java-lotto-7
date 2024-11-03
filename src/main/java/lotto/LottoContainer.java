@@ -1,10 +1,11 @@
 package lotto;
 
-import lotto.controller.InputHandler;
 import lotto.controller.InputTemplate;
+import lotto.controller.InputValidator;
+import lotto.controller.IteratorInputHandler;
 import lotto.controller.LottoController;
+import lotto.domain.strategy.RandomNumberGenerationStrategy;
 import lotto.service.LottoService;
-import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,7 +16,7 @@ public class LottoContainer {
     private InputValidator inputValidator;
     private InputTemplate inputTemplate;
     private LottoService lottoService;
-    private InputHandler inputHandler;
+    private IteratorInputHandler iteratorInputHandler;
     private LottoController lottoController;
 
     public InputView inputView() {
@@ -46,23 +47,23 @@ public class LottoContainer {
         return inputTemplate;
     }
 
-    public InputHandler inputHandler() {
-        if (inputHandler == null) {
-            return new InputHandler(inputView(), inputValidator(), inputTemplate());
+    public IteratorInputHandler iteratorInputHandler() {
+        if (iteratorInputHandler == null) {
+            return new IteratorInputHandler(inputView(), inputValidator(), inputTemplate());
         }
-        return inputHandler;
+        return iteratorInputHandler;
     }
 
     public LottoService lottoService() {
         if (lottoService == null) {
-            return new LottoService();
+            return new LottoService(new RandomNumberGenerationStrategy());
         }
         return lottoService;
     }
 
     public LottoController lottoController() {
         if (lottoController == null) {
-            return new LottoController(outputView(), lottoService(), inputHandler());
+            return new LottoController(iteratorInputHandler(), outputView(), lottoService());
         }
         return lottoController;
     }

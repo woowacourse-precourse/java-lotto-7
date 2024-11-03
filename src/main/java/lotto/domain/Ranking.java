@@ -3,29 +3,46 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Ranking {
-    FIRST(2_000_000_000, 6, false),
-    SECOND(30_000_000, 5, true),
-    THIRD(1_500_000, 5, false),
-    FOURTH(50_000, 4, false),
-    FIFTH(5_000, 3, false),
-    MISS(0, 0, false);
+    FIRST(1, 2_000_000_000, 6, false),
+    SECOND(2, 30_000_000, 5, true),
+    THIRD(3, 1_500_000, 5, false),
+    FOURTH(4, 50_000, 4, false),
+    FIFTH(5, 5_000, 3, false),
+    MISS(6, 0, 0, false);
 
+    private final int grade;
     private final long prize;
     private final int matchCount;
     private final boolean isRequireMatchBonus;
 
-    Ranking(int prize, int matchCount, boolean isRequireMatchBonus) {
+    Ranking(int grade, int prize, int matchCount, boolean isRequireMatchBonus) {
+        this.grade = grade;
         this.prize = prize;
         this.matchCount = matchCount;
         this.isRequireMatchBonus = isRequireMatchBonus;
     }
 
+    private boolean match(int matchCount, boolean isMatchBonus) {
+        if (this.matchCount != matchCount) {
+            return false;
+        }
+
+        if (isRequireMatchBonus) {
+            return isMatchBonus;
+        }
+
+        return true;
+    }
+
     public static Ranking findBy(int matchCount, boolean isMatchBonus) {
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.matchCount == matchCount &&
-                        (!ranking.isRequireMatchBonus || isMatchBonus))
-                .findFirst()
+                .filter(ranking -> ranking.match(matchCount, isMatchBonus))
+                .min((r1, r2) -> Integer.compare(r1.grade, r2.grade))
                 .orElse(MISS);
+    }
+
+    public int getGrade() {
+        return grade;
     }
 
     public long getPrize() {

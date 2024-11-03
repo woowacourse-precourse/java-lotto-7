@@ -1,6 +1,8 @@
 package lotto.domain;
 
 public class WinningLotto {
+    private static final String DUPLICATED_NUMBER_ERROR_MESSAGE = "중복된 번호가 존재합니다.";
+    
     private final Lotto lotto;
     private final Bonus bonus;
 
@@ -12,7 +14,7 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, Bonus bonus) {
         if (lotto.contains(bonus.number())) {
-            throw new IllegalArgumentException("중복된 번호가 존재합니다.");
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE);
         }
     }
 

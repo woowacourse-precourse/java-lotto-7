@@ -7,16 +7,15 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
-import lotto.view.InputValidator;
 import lotto.view.InputView;
 
-public class InputHandler {
+public class IteratorInputHandler {
 
     private final InputView inputView;
     private final InputValidator inputValidator;
     private final InputTemplate inputTemplate;
 
-    public InputHandler(InputView inputView, InputValidator inputValidator, InputTemplate inputTemplate) {
+    public IteratorInputHandler(InputView inputView, InputValidator inputValidator, InputTemplate inputTemplate) {
         this.inputView = inputView;
         this.inputValidator = inputValidator;
         this.inputTemplate = inputTemplate;
@@ -27,7 +26,7 @@ public class InputHandler {
                 inputView::inputLottoPurchaseAmount,
                 lottoPurchaseAmount -> {
                     inputValidator.validatePurchaseAmount(lottoPurchaseAmount);
-                    return Money.from(lottoPurchaseAmount);
+                    return Money.from(Long.parseLong(lottoPurchaseAmount));
                 }
         );
     }

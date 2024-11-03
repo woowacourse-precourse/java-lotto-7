@@ -1,18 +1,11 @@
 package lotto.domain;
 
 public class Money {
+
     private final long amount;
 
     private Money(long amount) {
         this.amount = amount;
-    }
-
-    public static Money from(String amount) {
-        try {
-            return new Money(Long.parseLong(amount));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아니거나, long의 범위를 벗어났습니다.", e);
-        }
     }
 
     public static Money from(long amount) {
