@@ -38,5 +38,9 @@ public class ManageNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
+    public BonusNumber geterateBonusNumber(String number) {
+
+        return new BonusNumber(number);
+    }
 
 }

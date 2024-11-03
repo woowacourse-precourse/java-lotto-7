@@ -51,4 +51,11 @@ public class Validate {
             throw new IllegalArgumentException(ErrorMessage.CANNOT_BUY_LOTTO.getErrorMessage());
         }
     }
+
+    public void validateIsBonusNumberInRange(int number) {
+
+        if(number < MIN_NUM || number > MAX_NUM) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getErrorMessage());
+        }
+    }
 }

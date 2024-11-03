@@ -32,4 +32,17 @@ public class Input {
 
         return winningNumbers;
     }
+
+    public String inputBonusNumber() {
+
+        System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
+
+        String bonusNumber = Console.readLine();
+        if(bonusNumber.isEmpty()){
+            throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getErrorMessage());
+        }
+        System.out.println();
+
+        return bonusNumber;
+    }
 }

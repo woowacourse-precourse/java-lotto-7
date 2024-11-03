@@ -1,9 +1,6 @@
 package controller;
 
-import domain.Lotto;
-import domain.ManageNumbers;
-import domain.PlayerBuyLotto;
-import domain.WinningNumbers;
+import domain.*;
 import view.Input;
 import view.Output;
 
@@ -22,9 +19,11 @@ public class RunApplication {
             try {
                 String purchaseAmount = input.inputPurchaseAmount();
                 int lottoPurchased = playerBuyLotto.purchasedLottoNums(purchaseAmount);
-                List<Lotto> Lottos = output.printPurchasedLotto(lottoPurchased);
+                List<Lotto> LottosObject = output.printPurchasedLotto(lottoPurchased);
                 String winningNumbers = input.inputWinningNumbers();
-                WinningNumbers winningNumbers1 = manageNumbers.generateWinningNumbers(winningNumbers);
+                WinningNumbers winningNumObject = manageNumbers.generateWinningNumbers(winningNumbers);
+                String bonusNumber = input.inputBonusNumber();
+                BonusNumber bonusNumObject = manageNumbers.geterateBonusNumber(bonusNumber);
                 break;
 
             } catch (IllegalArgumentException e) {
