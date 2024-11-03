@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.Comparator;
+import java.util.List;
 import lotto.message.NotifyMessage;
 import lotto.message.ResultMessage;
 
@@ -16,6 +18,12 @@ public class OutputView {
 
     public static void notifyAmount(int amount) {
         System.out.printf(NotifyMessage.NOTIFY_AMOUNT_MESSAGE.getMessage(), amount);
+    }
+
+    public static void printLottoNumbers(List<Integer> lottoNumbers) {
+        List<Integer> sortedLottoNumbers = lottoNumbers;
+        sortedLottoNumbers.sort(Comparator.naturalOrder());
+        System.out.println(sortedLottoNumbers);
     }
 
     public static void notifyEnterWinningMoney() {
