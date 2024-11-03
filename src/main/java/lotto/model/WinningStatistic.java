@@ -1,7 +1,9 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class WinningStatistic {
     private static Map<NumberMatchType, Integer> matchCounts;
@@ -23,13 +25,8 @@ public final class WinningStatistic {
     }
 
     public static String getWinningStatistics() {
-        StringBuilder result = new StringBuilder();
-        for (NumberMatchType type : NumberMatchType.values()) {
-            result.append(type.getMessage())
-                    .append(matchCounts.get(type))
-                    .append("개")
-                    .append(System.lineSeparator());
-        }
-        return result.toString();
+        return Arrays.stream(NumberMatchType.values())
+                .map(type -> type.getMessage() + matchCounts.get(type) + "개")
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
