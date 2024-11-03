@@ -188,7 +188,7 @@ public class Application {
 
     private static int getBonusNumber(ArrayList<Integer> winningNumbers) {
         while (true) {
-            String bonusNumberInput = getInputString("보너스 번호를 입력해 주세요.");
+            String bonusNumberInput = getInputString(INPUT_REQUEST_BONUS_NUMBER.getMessage());
             try {
                 return getValidatedBonusNumber(winningNumbers, bonusNumberInput);
             } catch (IllegalArgumentException e) {
