@@ -1,12 +1,9 @@
 package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-import lotto.Lotto;
+import lotto.domain.LottoTickets;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -19,9 +16,9 @@ class LottoGeneratorTest {
     @DisplayName("생성된 로또 갯수 일치 여부 테스트")
     void testGenerateLottosSize(int lottoAmount) {
         // Given & When
-        List<Lotto> lottos = LottoGenerator.generateLottos(lottoAmount);
+        LottoTickets lottos = LottoGenerator.generateLottoTickets(lottoAmount);
 
         // Then
-        assertThat(lottos).hasSize(lottoAmount);
+        assertThat(lottos.getLottoCount()).isEqualTo(lottoAmount);
     }
 }
