@@ -14,4 +14,12 @@ public class LottoResult {
         return results.getOrDefault(ranking, 0);
     }
 
+    public int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (LottoRanking ranking : LottoRanking.values()) {
+            totalPrize += results.getOrDefault(ranking,0) * ranking.getPrize();
+        }
+        return totalPrize;
+    }
+
 }
