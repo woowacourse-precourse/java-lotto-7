@@ -7,6 +7,7 @@ import lotto.winner.LottoRank;
 import lotto.winner.WinningNumbers;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoBuyer {
     private final Money seedMoney;
@@ -24,5 +25,15 @@ public class LottoBuyer {
         return myLotto.stream()
                 .map(winningNumbers::rank)
                 .toList();
+    }
+
+    public double rateOfReturn(WinningNumbers winningNumbers) {
+        Stream<Money> winningsPrices = result(winningNumbers).stream().map(LottoRank::price);
+        return (double) sum(winningsPrices) / seedMoney.amount;
+    }
+
+    private int sum(Stream<Money> winnings) {
+        return winnings.map(p -> p.amount)
+                .mapToInt(Integer::intValue).sum();
     }
 }
