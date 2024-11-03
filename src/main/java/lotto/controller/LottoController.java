@@ -84,7 +84,7 @@ public class LottoController {
         }
     }
 
-    private void displayResult(Map<Prize, Integer> prizeCounts, double earnRate) {
+    private void displayResult(Map<Prize, Long> prizeCounts, double earnRate) {
         outView.printLottoResult(prizeCounts);
         outView.printEarnRate(earnRate);
     }

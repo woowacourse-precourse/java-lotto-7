@@ -24,7 +24,7 @@ public class NumberMatchCounterTest {
         BonusNumber bonusNumber = new BonusNumber(7, winningNumber.getNumberList());
         //when
         NumberMatchCounter numberMatchCounter = new NumberMatchCounter(lottoArchive, winningNumber, bonusNumber);
-        Map<Prize, Integer> map = numberMatchCounter.getPrizeCounts();
+        Map<Prize, Long> map = numberMatchCounter.getPrizeCounts();
 
         //then
         for (Prize prize : Prize.values()) {
@@ -42,7 +42,7 @@ public class NumberMatchCounterTest {
         BonusNumber bonusNumber = new BonusNumber(7, winningNumber.getNumberList());
         //when
         NumberMatchCounter numberMatchCounter = new NumberMatchCounter(lottoArchive, winningNumber, bonusNumber);
-        Map<Prize, Integer> map = numberMatchCounter.getPrizeCounts();
+        Map<Prize, Long> map = numberMatchCounter.getPrizeCounts();
 
         //then
         assertThat(map.get(Prize.FIRST)).isEqualTo(1);

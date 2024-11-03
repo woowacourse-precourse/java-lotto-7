@@ -6,7 +6,7 @@ import java.util.Map;
 import lotto.enums.Prize;
 
 public class NumberMatchCounter {
-    private final Map<Prize, Integer> prizeCountMap;
+    private final Map<Prize, Long> prizeCountMap;
     private final LottoArchive lottoArchive;
     private final WinningNumber winningNumber;
     private final BonusNumber bonusNumber;
@@ -23,7 +23,7 @@ public class NumberMatchCounter {
 
     private void initializePrizeCountMap() {
         for (Prize prize : Prize.values()) {
-            prizeCountMap.put(prize, 0);
+            prizeCountMap.put(prize, 0L);
         }
     }
 
@@ -48,7 +48,7 @@ public class NumberMatchCounter {
         return null;
     }
 
-    public Map<Prize, Integer> getPrizeCounts() {
+    public Map<Prize, Long> getPrizeCounts() {
         return prizeCountMap;
     }
 }

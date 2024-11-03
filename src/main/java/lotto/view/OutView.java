@@ -46,7 +46,7 @@ public class OutView {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
     }
 
-    public void printLottoResult(Map<Prize, Integer> lottoResult) {
+    public void printLottoResult(Map<Prize, Long> lottoResult) {
         System.out.println();
         System.out.printf(PRIZE_COUNT_MESSAGE);
         System.out.printf(FIFTH_PRIZE_FORMAT, lottoResult.get(Prize.FIFTH));

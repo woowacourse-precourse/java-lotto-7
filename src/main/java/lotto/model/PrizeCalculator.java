@@ -7,18 +7,18 @@ import lotto.enums.Prize;
 
 public class PrizeCalculator {
     private static final String OVER_FLOW_ERROR_MESSAGE = "오버플로우가 발생했습니다.";
-    private final Map<Prize, Integer> prizeIntegerMap;
+    private final Map<Prize, Long> prizeIntegerMap;
     long totalPrize = 0L;
     long money;
 
-    public PrizeCalculator(Map<Prize, Integer> prizeIntegerMap, Long money) {
+    public PrizeCalculator(Map<Prize, Long> prizeIntegerMap, Long money) {
         this.prizeIntegerMap = prizeIntegerMap;
         this.money = money;
         calculateAllPrize();
     }
 
     private Long calculateAllPrize() {
-        for (Map.Entry<Prize, Integer> entry : prizeIntegerMap.entrySet()) {
+        for (Map.Entry<Prize, Long> entry : prizeIntegerMap.entrySet()) {
             totalPrize += entry.getKey().getPrize() * entry.getValue();
         }
         validateOverflow(totalPrize);
@@ -39,5 +39,9 @@ public class PrizeCalculator {
         BigDecimal decimal = BigDecimal.valueOf(rate);
         decimal = decimal.setScale(1, RoundingMode.HALF_UP);
         return decimal.doubleValue();
+    }
+
+    public long getTotalPrize() {
+        return totalPrize;
     }
 }
