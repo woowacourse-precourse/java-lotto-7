@@ -1,6 +1,11 @@
 package lotto.view;
 
-import static lotto.constant.MessageConstant.*;
+import static lotto.constant.MessageConstant.NEWLINE;
+import static lotto.constant.MessageConstant.OUTPUT_PROFIT_RATE;
+import static lotto.constant.MessageConstant.OUTPUT_PURCHASE_TICKET;
+import static lotto.constant.MessageConstant.OUTPUT_PURCHASE_TICKET_INFO;
+import static lotto.constant.MessageConstant.OUTPUT_WINNING_STATISTICS_HEADER;
+import static lotto.constant.MessageConstant.OUTPUT_WINNING_STATISTICS_SEPARATOR;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -10,15 +15,15 @@ public class OutputView {
     private static final String PROFIT_RATE_FORMAT = "#,##0.0";
 
     public void printTicketCount(int count) {
-        System.out.println();
+        System.out.printf(NEWLINE.getMessage());
         System.out.printf(OUTPUT_PURCHASE_TICKET.getMessage(), count);
-        System.out.println();
+        System.out.printf(NEWLINE.getMessage());
     }
 
     public void printTicketNumbers(List<String> tickets) {
         tickets.forEach(ticket -> {
             System.out.printf(OUTPUT_PURCHASE_TICKET_INFO.getMessage(), ticket);
-            System.out.println();
+            System.out.printf(NEWLINE.getMessage());
         });
     }
 
