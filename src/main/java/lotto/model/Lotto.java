@@ -7,18 +7,21 @@ import lotto.exception.InputException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static lotto.validate.Validator.validateWinning;
 
 public class Lotto {
-    private List<Number> numbers;
+    private final List<Number> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        this.numbers = new ArrayList<>();
-        for (Integer number : numbers) {
-            this.numbers.add(new Number(number));
-        }
-        Validator.validate(this.numbers);
+    public Lotto(List<Integer> integers) {
+        numbers = integers.stream()
+                .map(Number::new)
+                .collect(Collectors.toList());
+        Validator.validate(numbers);
+    }
+
+    public boolean contains(Number o){
+        return numbers.contains(o);
     }
 
 
