@@ -41,9 +41,9 @@ public class Result {
 
     private long getTotalProfit() {
         return results.keySet().stream()
-                .mapToLong(
-                        rank -> rank.calculatePrize(results.get(rank))
-                )
+                .mapToLong(rank -> rank.calculatePrize(
+                        results.get(rank)
+                ))
                 .sum();
     }
 

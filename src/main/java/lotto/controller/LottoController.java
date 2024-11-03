@@ -40,14 +40,20 @@ public class LottoController {
 
     private AnswerNumbers create() {
         WinningLotto winningLotto = retry(inputView::readWinningNumbers);
-        BonusNumber bonusNumber = retry(() -> inputView.readBonusNumber(winningLotto));
+        BonusNumber bonusNumber = retry(() ->
+                inputView.readBonusNumber(winningLotto)
+        );
         return AnswerNumbers.from(winningLotto, bonusNumber);
     }
 
-    private void result(Lottos lottos, AnswerNumbers answerNumbers, Payment payment) {
+    private void result(Lottos lottos,
+                        AnswerNumbers answerNumbers,
+                        Payment payment) {
         Result result = Result.of(lottos, answerNumbers);
         outputView.printResult(result);
-        outputView.printTotalProfitRate(result.calculateProfitRate(payment));
+        outputView.printTotalProfitRate(
+                result.calculateProfitRate(payment)
+        );
     }
 
     private <T> T retry(Supplier<T> supplier) {

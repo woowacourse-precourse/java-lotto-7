@@ -47,13 +47,15 @@ public class Lotto {
             validateDuplicate(numbers);
         }
 
-        private static void validateSize(List<Integer> numbers, LottoDetail threshold) {
+        private static void validateSize(List<Integer> numbers,
+                                         LottoDetail threshold) {
             if (isNotCorrectSize(numbers, threshold)) {
                 throw new LottoException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE);
             }
         }
 
-        private static boolean isNotCorrectSize(List<Integer> numbers, LottoDetail threshold) {
+        private static boolean isNotCorrectSize(List<Integer> numbers,
+                                                LottoDetail threshold) {
             return numbers.size() != threshold.getValue();
         }
 

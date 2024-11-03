@@ -25,7 +25,9 @@ public class OutputView {
     }
 
     public void printLottos(Lottos lottos) {
-        Writer.println(String.format(PURCHASE_LOTTO_COUNT, lottos.getLottos().size()));
+        Writer.println(
+                String.format(PURCHASE_LOTTO_COUNT, lottos.getLottos().size())
+        );
         for (Lotto lotto : lottos.getLottos()) {
             printLottoInfo(lotto);
         }
@@ -79,7 +81,9 @@ public class OutputView {
 
     private List<String> convert(List<Number> numbers) {
         return numbers.stream()
-                .map(number -> Integer.toString(number.getValue()))
+                .map(number -> Integer.toString(
+                        number.getValue()
+                ))
                 .toList();
     }
 }

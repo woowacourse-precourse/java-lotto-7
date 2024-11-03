@@ -45,13 +45,15 @@ public class Payment {
             return payment == 0;
         }
 
-        private static void validateDivisibleByPrice(int payment, LottoDetail price) {
+        private static void validateDivisibleByPrice(int payment,
+                                                     LottoDetail price) {
             if (isNotDivisibleByPrice(payment, price)) {
                 throw new LottoException(ErrorMessage.INVALID_PAYMENT_FORMAT);
             }
         }
 
-        private static boolean isNotDivisibleByPrice(int payment, LottoDetail price) {
+        private static boolean isNotDivisibleByPrice(int payment,
+                                                     LottoDetail price) {
             return payment % price.getValue() != 0;
         }
     }
