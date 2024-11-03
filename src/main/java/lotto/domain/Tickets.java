@@ -24,6 +24,10 @@ public class Tickets {
         return lottos.size();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private List<Lotto> generateLottoTickets(TicketCount count) {
         Set<Lotto> uniqueLottos = new HashSet<>();
 
