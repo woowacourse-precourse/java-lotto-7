@@ -13,7 +13,7 @@ public final class LottoConfig {
     }
 
     public LottoApplication lottoApplication() {
-        return new LottoApplication(applicationView(), purchaseLottoUseCase());
+        return new LottoApplication(applicationView(), messageConverter(), purchaseLottoUseCase(), retrieveLottoUseCase());
     }
 
     private ApplicationView applicationView() {
@@ -26,6 +26,10 @@ public final class LottoConfig {
 
     private PurchaseLottoUseCase purchaseLottoUseCase() {
         return new PurchaseLottoService(new LottoFactory(), lottoUserRepository());
+    }
+
+    private RetrieveLottoUseCase retrieveLottoUseCase() {
+        return new RetrieveLottoService(lottoUserRepository());
     }
 
     private LottoRepository lottoUserRepository() {

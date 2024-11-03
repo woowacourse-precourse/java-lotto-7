@@ -10,6 +10,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static Lotto create(List<Integer> numbers) {
         return new Lotto(numbers);
     }
