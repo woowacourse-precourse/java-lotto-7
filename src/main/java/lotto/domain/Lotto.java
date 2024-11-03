@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -9,6 +10,7 @@ public class Lotto {
         validate(numbers);
         validateNumberRange(numbers);
         validateUniqueNumbers(numbers);
+        sortList(numbers);
         this.numbers = numbers;
     }
 
@@ -20,6 +22,9 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public void sortList(List<Integer> numbers) {
+        Collections.sort(numbers);
+    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
