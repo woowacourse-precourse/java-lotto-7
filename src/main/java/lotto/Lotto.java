@@ -27,6 +27,12 @@ public class Lotto {
         return lottos;
     }
 
+    public static void printLottos(Lotto[] lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

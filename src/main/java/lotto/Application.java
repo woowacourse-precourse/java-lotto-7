@@ -9,6 +9,8 @@ public class Application {
         // TODO: 프로그램 구현
         int purchaseAmount = inputPurchaseAmount();
         int lottoCount = getLottoCount(purchaseAmount);
+        Lotto[] lottos = Lotto.generateLottos(lottoCount);
+        Lotto.printLottos(lottos);
     }
 
 
@@ -46,7 +48,7 @@ public class Application {
 
     private static int getLottoCount(int input) {
         int lottoCount = input / 1000;
-        System.out.println(lottoCount + "개를 구매했습니다.\n");
+        System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;
     }
 }
