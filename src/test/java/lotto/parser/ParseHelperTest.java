@@ -1,6 +1,7 @@
 package lotto.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -14,6 +15,17 @@ class ParseHelperTest {
 
     ParseHelperTest() {
         this.parseHelper = new ParseHelper();
+    }
+
+    @Test
+    @DisplayName("parseInt는 유효한 input의 경우 예외를 던지지 않는다.")
+    void parseInt_WithValidString_DoesNotThrowAnyException() {
+        // given
+        String validInput = "123";
+
+        assertThatCode(
+                () -> parseHelper.parseInt(validInput)
+        ).doesNotThrowAnyException();
     }
 
     @Test
