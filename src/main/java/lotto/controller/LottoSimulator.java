@@ -20,7 +20,7 @@ public class LottoSimulator {
     
     private void purchaseLottoTickets() {
         String inputMoney = InputView.receiveLottoPayment();
-        System.out.println(inputMoney);
+        lottoDispenser.executeTransactionAndDispense(inputMoney);
     }
     
     private void verifyLottoWins() {
