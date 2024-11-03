@@ -28,4 +28,13 @@ public enum LottoPrizeMoney {
     public int getMatchNumber() {
         return matchNumber;
     }
+
+    public static LottoPrizeMoney fromRank(int i) {
+        for (LottoPrizeMoney prize : LottoPrizeMoney.values()) {
+            if (prize.getRank() == i) {
+                return prize;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 순위: " + i);
+    }
 }
