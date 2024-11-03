@@ -30,7 +30,6 @@ public class LottoService {
         for (int rank = NUMBER_OF_RANKS; rank >= FIRST_RANK; rank--) {
             initialCount.put(rank, INITIAL_WINNING_COUNT);
         }
-
         return initialCount;
     }
 
@@ -67,9 +66,9 @@ public class LottoService {
 
     private int determineRank(int matchCount, Lotto ticket) {
         if (isSecondRankWinner(matchCount, ticket)) {
-            return 2;
+            return SECOND_RANK;
         }
-        return RANK_BY_MATCH_COUNT.getOrDefault(matchCount, 0);
+        return RANK_BY_MATCH_COUNT.get(matchCount);
     }
 
     // 테스트용 함수
@@ -80,6 +79,7 @@ public class LottoService {
     public void calculateEarningsRate() {
         BigDecimal purchaseAmount = BigDecimal.valueOf(lottoTickets.size() * LOTTO_PRICE);
         BigDecimal winningAmountMultiplyPercent = winningAmount.multiply(BigDecimal.valueOf(PERCENT));
+
         this.earningsRate = winningAmountMultiplyPercent.divide(purchaseAmount, PLACE_TO_ROUND_TO, RoundingMode.HALF_UP);
     }
 
