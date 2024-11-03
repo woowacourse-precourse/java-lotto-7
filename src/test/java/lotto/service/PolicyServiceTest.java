@@ -72,7 +72,7 @@ class PolicyServiceTest {
         //then
         PrizeMoneyPolicy result = policyService.getRankAndPrizeMoney(number, bonusMatch);
         //when
-        assertThat(number).isEqualTo(result.getMatchedNumberCount());
+        assertThat(number).isEqualTo(result.getMatchedCount());
         assertThat(money).isEqualTo(result.getPriceMoney());
     }
 

@@ -3,13 +3,13 @@ package lotto.policy;
 public enum LottoPricePolicy {
     LOTTO_TICKET_PRICE(1_000);
 
-    private final int lottoTicketPrice;
+    private final int lottoPrice;
 
     LottoPricePolicy(int price) {
-        this.lottoTicketPrice = price;
+        this.lottoPrice = price;
     }
 
-    public int getLottoTicketPrice() {
-        return lottoTicketPrice;
+    public int price() {
+        return lottoPrice;
     }
 }

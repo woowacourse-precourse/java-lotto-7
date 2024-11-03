@@ -13,11 +13,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoMatchingMachineTest {
 
-    LottoMatchingMachine lottoMatchingMachine;
+    Winning winning;
 
     @BeforeEach
     void setUp() {
-        this.lottoMatchingMachine = new LottoMatchingMachine
+        this.winning = new Winning
                 (new Lotto(List.of(1,2,3,4,5,6)), new Bonus(7));
     }
 
@@ -26,7 +26,7 @@ class LottoMatchingMachineTest {
     @MethodSource("lottoInstance")
     void 숫자_매치(Lotto purchasedLotto, int matched){
         //when
-        int matchedNumber = lottoMatchingMachine.match(purchasedLotto);
+        int matchedNumber = winning.match(purchasedLotto);
         //then
         assertThat(matched).isEqualTo(matchedNumber);
     }
@@ -50,6 +50,6 @@ class LottoMatchingMachineTest {
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
         //when, then
-        assertThat(lottoMatchingMachine.isBonusMatch(lotto)).isTrue();
+        assertThat(winning.isBonusMatch(lotto)).isTrue();
     }
 }

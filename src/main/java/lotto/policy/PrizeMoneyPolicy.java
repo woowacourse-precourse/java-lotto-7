@@ -1,6 +1,5 @@
 package lotto.policy;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 public enum PrizeMoneyPolicy {
@@ -11,28 +10,37 @@ public enum PrizeMoneyPolicy {
     FIFTH(3, 5_000),
     NOTHING(0,0);
 
-    private final int matchedNumberCount;
+    private final int matchedCount;
     private final long priceMoney;
 
-    PrizeMoneyPolicy(int matchedNumberCount, long priceMoney){
-        this.matchedNumberCount = matchedNumberCount;
+    PrizeMoneyPolicy(int matchedCount, long priceMoney){
+        this.matchedCount = matchedCount;
         this.priceMoney = priceMoney;
     }
 
-    public static List<PrizeMoneyPolicy> getPrizeMoney(int matchedNumberCount){
-        if(matchedNumberCount == 5){
-            return List.of(SECOND, THIRD);
+    public static PrizeMoneyPolicy getRank(int matchedCount, boolean bonusCount){
+        if(matchedCount == 5){
+            return secondOrThird(bonusCount);
         }
-        if(matchedNumberCount == 0){
-            return List.of(NOTHING);
+
+        if(matchedCount < 3){
+            return NOTHING;
         }
+
         return Stream.of(FIRST, FOURTH, FIFTH)
-                .filter(rank -> rank.matchedNumberCount == matchedNumberCount)
-                .toList();
+                .filter(rank -> rank.matchedCount == matchedCount)
+                .toList().getFirst();
     }
 
-    public int getMatchedNumberCount() {
-        return matchedNumberCount;
+    private static PrizeMoneyPolicy secondOrThird(boolean bonusCount){
+        if(bonusCount){
+            return SECOND;
+        }
+        return THIRD;
+    }
+
+    public int getMatchedCount() {
+        return matchedCount;
     }
 
     public long getPriceMoney() {

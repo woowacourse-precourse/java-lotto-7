@@ -21,4 +21,8 @@ public class Bonus {
             throw new IllegalArgumentException("[ERROR] 입력 가능한 보너스 번호의 범위는 1 ~ 45 입니다.");
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

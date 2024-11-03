@@ -18,7 +18,7 @@ public class InputView {
         }
     }
 
-    public static List<Integer> winningNumber(){
+    public static List<Integer> winningNumbers(){
         return stringToIntegerList(Console.readLine());
     }
 
@@ -28,7 +28,7 @@ public class InputView {
                 .toList();
     }
 
-    public static Integer bonusNumber(){
+    public static int bonusNumber(){
         return Integer.parseInt(Console.readLine());
     }
 }

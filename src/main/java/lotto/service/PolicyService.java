@@ -7,18 +7,18 @@ import lotto.policy.PrizeMoneyPolicy;
 
 public class PolicyService {
 
-    public PrizeMoneyPolicy getRankAndPrizeMoney(int matchedNumberCount, boolean bonusMatched){
-        List<PrizeMoneyPolicy> rankAndMoney = getPrizeMoney(matchedNumberCount);
+//    public PrizeMoneyPolicy getRankAndPrizeMoney(int matchedNumberCount, boolean bonusMatched){
+////        List<PrizeMoneyPolicy> rankAndMoney = getPrizeMoney(matchedNumberCount);
+//
+//        if(isFiveNumberMatched(rankAndMoney)){
+//            return secondOrThirdRank(rankAndMoney, bonusMatched);
+//        }
+//        return rankAndMoney.getFirst();
+//    }
 
-        if(isFiveNumberMatched(rankAndMoney)){
-            return secondOrThirdRank(rankAndMoney, bonusMatched);
-        }
-        return rankAndMoney.getFirst();
-    }
-
-    private List<PrizeMoneyPolicy> getPrizeMoney(int matchedNumberCount){
-        return PrizeMoneyPolicy.getPrizeMoney(matchedNumberCount);
-    }
+//    private List<PrizeMoneyPolicy> getPrizeMoney(int matchedNumberCount){
+//        return PrizeMoneyPolicy.getPrizeMoney(matchedNumberCount);
+//    }
 
     private boolean isFiveNumberMatched(List<PrizeMoneyPolicy> rankAndMoney){
         return rankAndMoney.size() == 2;
@@ -44,6 +44,6 @@ public class PolicyService {
     }
 
     public int getLottoTicketPrice(){
-        return LottoPricePolicy.LOTTO_TICKET_PRICE.getLottoTicketPrice();
+        return LottoPricePolicy.LOTTO_TICKET_PRICE.price();
     }
 }

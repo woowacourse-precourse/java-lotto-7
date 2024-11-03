@@ -1,13 +1,24 @@
 package lotto.model;
 
-public class Revenue {
-    private final int initialCapital;
+import java.util.List;
+import lotto.policy.PrizeMoneyPolicy;
 
-    public Revenue(int initialCapital) {
-        this.initialCapital = initialCapital;
+public class Revenue {
+    private final int budget;
+
+    public Revenue(int budget) {
+        this.budget = budget;
     }
 
-    public int getInitialCapital() {
-        return initialCapital;
+    public int getBudget() {
+        return budget;
+    }
+
+    public double rateOfReturn(List<PrizeMoneyPolicy> ranks) {
+        long totalPrizeMoney = ranks.stream()
+                .map(PrizeMoneyPolicy::getPriceMoney)
+                .reduce(0L, Long::sum);
+
+        return Math.round(((double)totalPrizeMoney / budget) * 100);
     }
 }
