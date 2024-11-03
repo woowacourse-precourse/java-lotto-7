@@ -10,16 +10,17 @@ public class Application {
         int amount = getAmount();
         int lottoCount = calculateLottoCount(amount);
         List<Lotto> purchasedLottos = purchaseLottos(lottoCount);
-
-        System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto winningLotto = new Lotto();
-        System.out.println();
-
+        Lotto winningLotto = getWinningLotto();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber(winningLotto.getNumbers());
         System.out.println();
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
         showResult(purchasedLottos, winningLotto, bonusNumber);
+    }
+
+    private static Lotto getWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return new Lotto();
     }
 
     private static List<Lotto> purchaseLottos(int lottoCount) {
