@@ -45,14 +45,14 @@ public class ResultTest {
     @DisplayName("매핑되어 있는 Result 객체를 올바르게 반환하는지 테스트")
     @ParameterizedTest
     @CsvSource({
-            "0, false, ZERO",
-            "1, false, ONE",
-            "2, false, TWO",
-            "3, false, THREE",
-            "4, false, FOUR",
-            "5, false, FIVE",
-            "5, true, FIVE_WITH_BONUS",
-            "6, false, SIX",
+            "0, false, NO_PROFIT",
+            "1, false, NO_PROFIT",
+            "2, false, NO_PROFIT",
+            "3, false, THREE_RESULT",
+            "4, false, FOUR_RESULT",
+            "5, false, FIVE_RESULT",
+            "5, true, FIVE_WITH_BONUS_RESULT",
+            "6, false, SIX_RESULT",
     })
     void matchingSuccessTest(int matchingNumber, boolean bonus, Result expected) {
         // when
