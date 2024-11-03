@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.constants.Error_Messages.DUPLICATE_ERROR;
 import static lotto.view.input.readBonusNumber;
 import static lotto.view.input.readTotalAmount;
 import static lotto.view.input.readWinningNumbers;
@@ -23,7 +22,7 @@ public class lottoController {
         } else if (totalAmount % 1000 == 0) {
             return totalAmount / 1000;
         } else {
-            throw new IllegalArgumentException(Error_Messages.INPUT_ERROR);
+            throw new IllegalArgumentException(Error_Messages.INPUT_TOTAL_AMOUNT_ERROR);
         }
     }
 
@@ -31,7 +30,7 @@ public class lottoController {
         int totalCount = readTotalAmount();
         try{
             checkTotalAmountIfValid(totalCount);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             totalCount();
         }
@@ -55,7 +54,7 @@ public class lottoController {
     public static void checkNoDuplicate(List<String> number){
         Set<String> set = new HashSet<>(number);
         if (set.size() != number.size()){
-            throw new IllegalArgumentException(DUPLICATE_ERROR);
+            throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
     }
 
@@ -72,7 +71,7 @@ public class lottoController {
 
     private static void checkBonusNumber(WinningLotto winningLotto, int number){
         if (winningLotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR);
+            throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
     }
 
