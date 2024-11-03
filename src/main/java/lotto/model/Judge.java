@@ -1,16 +1,15 @@
-package lotto.controller;
+package lotto.model;
 
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.model.Lotto;
 import lotto.util.Grade;
 
-public class JudgeController {
+public class Judge {
     private final List<Lotto> lottos;
     private final Lotto winning;
     private final int bonus;
 
-    public JudgeController(List<Lotto> lottos, Lotto winning, int bonus) {
+    public Judge(List<Lotto> lottos, Lotto winning, int bonus) {
         this.lottos = lottos;
         this.winning = winning;
         this.bonus = bonus;
