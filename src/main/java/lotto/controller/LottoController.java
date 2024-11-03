@@ -22,8 +22,20 @@ public class LottoController {
 
     private void getWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         OutputView.printMessage(WINNING_STATISTICS.getText());
-        List<LottoRankType> lottoRankTypes = LottoResult.of(lottos, winningNumbers, bonusNumber).getLottoRankTypes();
-        String profitRate = LottoProfitCalculator.from(lottoRankTypes, purchaseAmount).getLottoProfitRate();
+        List<LottoRankType> lottoRankTypes = calculateLottoResults(lottos, winningNumbers, bonusNumber);
+        String profitRate = calculateProfitRate(lottoRankTypes, purchaseAmount);
+        displayStatistics(lottoRankTypes, profitRate);
+    }
+
+    private List<LottoRankType> calculateLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        return LottoResult.of(lottos, winningNumbers, bonusNumber).getLottoRankTypes();
+    }
+
+    private String calculateProfitRate(List<LottoRankType> lottoRankTypes, int purchaseAmount) {
+        return LottoProfitCalculator.from(lottoRankTypes, purchaseAmount).getLottoProfitRate();
+    }
+
+    private void displayStatistics(List<LottoRankType> lottoRankTypes, String profitRate) {
         OutputView.printLottoResultPrompt(lottoRankTypes);
         OutputView.printLottoProfitRate(profitRate);
     }
