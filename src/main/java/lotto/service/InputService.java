@@ -30,15 +30,15 @@ public class InputService {
             break;
         }
 
-        int lottoPurchaseAmount = getLottoPurchaseAmount(user);
-        setLottoPurchaseAmount(lottoPurchaseAmount, user);
+        setLottoPurchaseAmount(user);
     }
 
     public static int getLottoPurchaseAmount(User user) {
+        setLottoPurchaseAmount(user);
         return user.getNumOfLottos();
     }
 
-    public void setLottoPurchaseAmount(int purchaseAmount, User user) {
-        user.setNumOfLottos(purchaseAmount);
+    public static void setLottoPurchaseAmount(User user) {
+        user.setNumOfLottos();
     }
 }

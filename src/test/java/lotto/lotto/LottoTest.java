@@ -1,9 +1,7 @@
 package lotto.lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
@@ -11,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.domain.Lottos;
 import lotto.domain.User;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,9 +22,10 @@ public class LottoTest {
         User user = new User();
         Lottos lottos = new Lottos();
         user.setMoney("10000");
+        user.setNumOfLottos();
 
         // when
-        lottos.makeLottos(user);
+        LottoService.makeLottoNumber(user, lottos);
         int lottoCount = lottos.getLottosSize();
 
         // then

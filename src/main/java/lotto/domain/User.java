@@ -21,8 +21,8 @@ public class User {
         this.money = money;
     }
 
-    public void setNumOfLottos(int numOfLottos) {
-        this.numOfLottos = numOfLottos;
+    public void setNumOfLottos() {
+        this.numOfLottos = getMoney() / 1000;
     }
 
     public int getMoney() {
@@ -30,6 +30,6 @@ public class User {
     }
 
     public int getNumOfLottos() {
-        return getMoney() / 1000;
+        return this.numOfLottos;
     }
 }
