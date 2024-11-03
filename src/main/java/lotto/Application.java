@@ -19,8 +19,8 @@ public class Application {
         int bonus = input.getBonus();
 
         ResultManager resultManager = new ResultManager(winningNumbers, bonus);
-        resultManager.analyzeResult(lottos);
+        double profit = resultManager.analyzeResult(lottos);
 
-        Stats.printStats(money, resultManager);
+        Stats.printStats(money, profit);
     }
 }

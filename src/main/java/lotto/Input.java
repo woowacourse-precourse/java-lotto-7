@@ -13,7 +13,7 @@ public class Input {
             String input = Console.readLine();
             try {
                 if (!input.matches("\\d+")) {
-                    throw new IllegalArgumentException("[ERROR] 금액은 숫자여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
                 }
                 int money = Integer.parseInt(input);
                 validator.validateMoney(money);
@@ -38,6 +38,7 @@ public class Input {
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
+            System.out.println();
             try {
                 validator.validateBonus(input);
                 int bonus = Integer.parseInt(input);

@@ -10,7 +10,7 @@ public class ResultManager {
         this.winningNumbers = winningNumbers;
         this.bonus = bonus;
     }
-    public void analyzeResult(List<Lotto> lottos) {
+    public double analyzeResult(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             int collect = lotto.countCollect(winningNumbers);
             Result result = getResult(collect, lotto);
@@ -19,8 +19,9 @@ public class ResultManager {
                 profit += result.getPrice();
             }
         }
+        return profit;
     }
-    private Result getResult(int collect, Lotto lotto) {
+    public Result getResult(int collect, Lotto lotto) {
         if (collect == 3) {
             return Result.Three;
         }
@@ -39,8 +40,5 @@ public class ResultManager {
             return Result.Six;
         }
         return null;
-    }
-    public double getProfit() {
-        return profit;
     }
 }

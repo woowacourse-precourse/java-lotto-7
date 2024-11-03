@@ -45,15 +45,70 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-
     @Test
-    void 예외_테스트() {
+    void 구입금액이_숫자가_아닌_경우_예외() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("구입금액은 숫자");
         });
     }
-
+    @Test
+    void 구입금액이_1000_단위가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("구입금액은 1000원 단위");
+        });
+    }
+    @Test
+    void 당첨번호가_숫자가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,%,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("당첨 번호는 숫자");
+        });
+    }
+    @Test
+    void 당첨번호가_1_이상_45_이하의_숫자가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("당첨 번호는 1부터 45 사이");
+        });
+    }
+    @Test
+    void 당첨번호가_6개가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("당첨 번호는 6개");
+        });
+    }
+    @Test
+    void 당첨번호가_중복인_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("당첨 번호에는 중복");
+        });
+    }
+    @Test
+    void 보너스_번호가_1_이상_45_이하의_숫자가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("보너스 번호는 1부터 45 사이");
+        });
+    }
+    @Test
+    void 보너스_번호가_숫자가_아닌_경우_예외() {
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains("보너스 번호는 숫자");
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});
