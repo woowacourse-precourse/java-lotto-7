@@ -32,7 +32,8 @@ public class GameController {
     }
     public static GameController initialize() {
         SystemConfig config = SystemConfig.getInstance();
-        return new GameController(new InputController(),new OutputView(config.getOutputMessageQueue()),config);
+        OutputView outPutView  = new OutputView(config.getOutputMessageQueue());
+        return new GameController(new InputController(outPutView),outPutView,config);
     }
 
     public void run() {

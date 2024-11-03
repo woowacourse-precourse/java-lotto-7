@@ -8,6 +8,11 @@ import lotto.core.view.OutputView;
 
 
 public class InputController {
+    private final OutputView outputView;
+
+    public InputController(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     private String readUserInput() {
         return Console.readLine();
@@ -20,7 +25,7 @@ public class InputController {
             Money.checkMoney(givenMoney);
             return givenMoney;
         } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e.getMessage());
+            outputView.showErrorMessage(e);
             return getMoney();
         }
     }
@@ -32,7 +37,7 @@ public class InputController {
             lottoNumberRangeCheck(arr);
             return arr;
         } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e.getMessage());
+            outputView.showErrorMessage(e);
             return getLottoNumber();
         }
     }
@@ -44,7 +49,7 @@ public class InputController {
             lottoNumberRangeCheck(bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e.getMessage());
+            outputView.showErrorMessage(e);
             return getBonusNumber();
         }
     }
@@ -53,7 +58,7 @@ public class InputController {
         try {
             return Integer.parseInt(number);
         } catch (IllegalArgumentException e) {
-            OutputView.showErrorMessage(e.getMessage());
+            outputView.showErrorMessage(e);
             throw new IllegalArgumentException();
         }
     }

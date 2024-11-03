@@ -18,8 +18,9 @@ public class OutputView {
         this.outputMessageQueue = outputMessageQueue;
     }
 
-    public static void showErrorMessage(String e){
-        System.out.println("[ERROR]" + e);
+    public void showErrorMessage(Exception e) {
+        e.printStackTrace();
+        if(e.getMessage() != null) sendMessage("[ERROR] : " + e.getMessage());
     }
     public void showInputMoneyMessage() {
         sendMessage("구입금액을 입력해 주세요.");
@@ -31,10 +32,10 @@ public class OutputView {
 
     public void showUserLottoMessage(Lottos userLottos) {
         StringBuilder sb  = new StringBuilder();
-        for(Lotto lotto : userLottos.getLottosForMessage()){
+        for(Lotto lotto : userLottos.getLottosForMessage()) {
             List<Integer> result = new ArrayList<>(lotto.getNumbersForMessage());
             result.sort((a,b)->a-b);
-            sb.append(result+"\n");
+            sb.append(result).append("\n");
         }
         sendMessage(sb);
     }
