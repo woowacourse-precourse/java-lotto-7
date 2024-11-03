@@ -1,18 +1,17 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Lotto;
 
 public class User {
     private String money;
     private int numOfLottos;
-    private List<Lotto> lottos;
+    private List<Lottos> lottos;
 
     public User() {
 
     }
 
-    public User(String money, int numOfLottos, List<Lotto> lottos) {
+    public User(String money, int numOfLottos, List<Lottos> lottos) {
         this.money = money;
         this.numOfLottos = numOfLottos;
         this.lottos = lottos;
