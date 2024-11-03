@@ -23,11 +23,11 @@ public class InputView {
         return getInput(PURCHASE_AMOUNT_PROMPT);
     }
 
-    public String getWinningNumberInput() {
+    public String getWinningNumber() {
         return getInput(WINNING_NUMBER_PROMPT);
     }
 
-    public String getBonusNumberInput() {
+    public String getBonusNumber() {
         return getInput(BONUS_NUMBER_PROMPT);
     }
 }

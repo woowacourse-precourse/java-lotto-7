@@ -1,14 +1,19 @@
 package lotto.view;
 
+import lotto.domain.*;
+
 public class OutputView {
     public void printLottoCount(int lottoCount) {
         System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", lottoCount);
     }
 
-    public static void printLottoNumbers() {
-
+    public void printLottoNumbers(Lottos lottos) {
+        lottos.getLottos().stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
+
 
     public static void printWinningDetails() {
 
