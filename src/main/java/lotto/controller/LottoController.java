@@ -3,8 +3,10 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
 import lotto.domain.Money;
+import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,6 +26,10 @@ public class LottoController {
         final Integer bonusNumber = inputView.enterBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(convertToLottoFormat(originWinningNumber), bonusNumber);
+        PrizeResult prizeResult = new PrizeResult();
+        lottoResult(prizeResult, winningLotto, lottoTicket);
+
+        outputView.winningDetails(prizeResult, money);
 
 
     }
@@ -32,5 +38,9 @@ public class LottoController {
         return Arrays.stream(inputValue.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private void lottoResult(PrizeResult prizeResult, WinningLotto winningLotto, LottoTicket lottoTicket) {
+        prizeResult.calculate(winningLotto, lottoTicket);
     }
 }
