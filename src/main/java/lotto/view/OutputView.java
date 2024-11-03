@@ -20,9 +20,7 @@ public class OutputView {
             "5개 일치, 보너스 볼 일치 (30,000,000원)",
             "6개 일치 (2,000,000,000원)"
     };
-
-
-
+    private static final String rateOfReturnMessage = "총 수익률은 %s%%입니다.\n";
 
     private OutputView() {
     }
@@ -54,5 +52,9 @@ public class OutputView {
         for (int i = 0; i < matchNumbers.length; i++) {
             System.out.printf("%s - %d개%n", matchPrefixMessage[i], matchCounts.get(matchNumbers[i]));
         }
+    }
+
+    public static void printRateOfReturn(String rateOfReturn) {
+        System.out.printf(rateOfReturnMessage, rateOfReturn);
     }
 }

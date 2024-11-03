@@ -38,9 +38,7 @@ public class LottoController {
 
         long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts);
         String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseAmount);
-
-
-
+        OutputView.printRateOfReturn(rateOfReturn);
 
     }
 }

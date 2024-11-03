@@ -78,8 +78,8 @@ public class LottoService {
     }
 
     public String getRateOfReturn(long totalPrizeMoney, int purchaseAmount) {
-        double rateOfReturn = ((double) totalPrizeMoney - purchaseAmount) / purchaseAmount * 100;
-        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
-        return String.format("%.2f", rateOfReturn);
+        double rateOfReturn = (double) totalPrizeMoney / purchaseAmount * 100;
+        rateOfReturn = Math.round(rateOfReturn * 10.0) / 10.0;
+        return String.format("%.1f", rateOfReturn);
     }
 }
