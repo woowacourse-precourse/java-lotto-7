@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import static lotto.utils.UnitConverter.convertUnit;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import lotto.constants.Prizes;
 import lotto.domain.Lotties;
 import lotto.domain.Lotto;
@@ -14,6 +17,7 @@ import lotto.dto.UserSixNumberDTO;
 import lotto.service.LottoBowl;
 import lotto.service.LottoComparator;
 import lotto.service.MarginCalculator;
+import lotto.utils.NumberValidator;
 import lotto.utils.StringSplitter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,7 +35,7 @@ public class LottoGameController {
         OutputView.printLottoCount(ticket.getTicket());
         OutputView.printEnter();
         for (Lotto lotto : RandomLotties.getLotties()) {
-            OutputView.printSortedLotto(lotto.getLotto());
+            OutputView.printLotto(lotto.getLotto());
         }
         OutputView.printEnter();
         // -------------------------------------------------------- 위까지 출력부분
@@ -57,11 +61,14 @@ public class LottoGameController {
         OutputView.printDiviner();
 
         for (Prizes prize : Arrays.stream(Prizes.values()).toList()) {
-            OutputView.printWinningResult(prize.getCount(), prize.getMoney(), lottoResult.getResult().get(prize.name()),
+            OutputView.printWinningResult(
+                    prize.getCount(),
+                    convertUnit(prize.getMoney()),
+                    lottoResult.getResult().get(prize.name()),
                     prize.getComment());
         }
 
-        OutputView.printTotalProfit(margin);
+        OutputView.printTotalProfit(convertUnit(margin));
     }
 
     private UserMoneyTicketDTO userMoneyController() {
@@ -86,8 +93,11 @@ public class LottoGameController {
                 OutputView.printInsertUserLotto();
                 String rawUserLotto = InputView.getUserLotto();
                 OutputView.printEnter();
+                List<String> splittedRawInput = StringSplitter.splitByDelimiter(rawUserLotto, ",");
 
-                Lotto userSixNumber = new Lotto(StringSplitter.splitByDelimiter(rawUserLotto, ",")
+                splittedRawInput.forEach(NumberValidator::validateInt);
+
+                Lotto userSixNumber = new Lotto(splittedRawInput
                         .stream()
                         .map(Integer::parseInt)
                         .toList());
@@ -114,6 +124,4 @@ public class LottoGameController {
             }
         }
     }
-
-
 }
