@@ -28,11 +28,23 @@ public class InputView {
         return numbers;
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winningNumber) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateEmpty(input);
-        return Utils.convertNumber(input);
+        int number = Utils.convertNumber(input);
+        validateBonusNumber(number, winningNumber);
+        return number;
+    }
+
+    private static void validateBonusNumber(int number, List<Integer> winningNumber) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해주세요.");
+        }
+
+        if (winningNumber.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되었습니다.");
+        }
     }
 
     private static void validateEmpty(String input) {
