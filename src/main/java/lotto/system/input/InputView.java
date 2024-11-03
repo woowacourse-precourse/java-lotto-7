@@ -12,20 +12,9 @@ public class InputView {
         this.outputMessageQueue = outputMessageQueue;
     }
 
-    public String showInputMoneyMessage() throws InterruptedException {
-        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,"구입금액을 입력해 주세요."));
+    public String showInputMessage() throws InterruptedException {
+        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,"입력해 주세요."));
         return inputMessageQueue.take().getContent();
     }
 
-    public String showInputLottoNumberMessage() throws InterruptedException {
-        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,""));
-        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,"당첨 번호를 입력해 주세요."));
-        return inputMessageQueue.take().getContent();
-    }
-
-    public String showInputBonusNumberMessage() throws InterruptedException  {
-        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,""));
-        outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,"보너스 번호를 입력해 주세요."));
-        return inputMessageQueue.take().getContent();
-    }
 }
