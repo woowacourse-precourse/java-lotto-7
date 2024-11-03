@@ -23,9 +23,9 @@ public enum LottoRank {
         return prize;
     }
 
-    public static LottoRank getLottoRank(int matchCount, int matchBonus) {
+    public static LottoRank getLottoRank(int matchCount, boolean matchBonus) {
         if (matchCount == FIRST.matchCount) return FIRST;
-        if (matchCount == SECOND.matchCount && matchBonus == 1) return SECOND;
+        if (matchCount == SECOND.matchCount && matchBonus) return SECOND;
         if (matchCount == THIRD.matchCount) return THIRD;
         if (matchCount == FOURTH.matchCount) return FOURTH;
         if (matchCount == FIFTH.matchCount) return FIFTH;

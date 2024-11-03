@@ -10,7 +10,7 @@ public class LottoResult {
 
         for (Lotto lotto : lottos) {
             int matchCnt = lotto.checkNumbers(winningLotto);
-            int matchBonus = lotto.checkBonus(bonusNumber);
+            boolean matchBonus = lotto.checkBonus(bonusNumber);
             LottoRank rank = LottoRank.getLottoRank(matchCnt, matchBonus);
 
             if (rank != null) resultCnt[rank.ordinal()]++; // 랭크 인덱스에 위치한 배열 값 증가

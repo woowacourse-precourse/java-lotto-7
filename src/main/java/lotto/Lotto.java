@@ -46,8 +46,7 @@ public class Lotto {
         return correctCnt;
     }
 
-    public int checkBonus(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) return 1;
-        return 0;
+    public boolean checkBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
