@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoRule;
 import lotto.util.NumberValidator;
 
 public class BonusNumber {
@@ -22,6 +23,6 @@ public class BonusNumber {
 
     private void validate(final int value) {
         final NumberValidator numberValidator = NumberValidator.getInstance();
-        numberValidator.validateRange(value, 1, 45);
+        numberValidator.validateRange(value, LottoRule.MIN_NUMBER,  LottoRule.MAX_NUMBER);
     }
 }
