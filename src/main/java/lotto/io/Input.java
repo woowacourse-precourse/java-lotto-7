@@ -1,6 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.ErrorCode;
 
 import java.util.regex.Pattern;
 
@@ -67,25 +68,25 @@ public class Input {
         try {
             Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 금액은 자연수여야 합니다.");
+            throw new NumberFormatException(ErrorCode.PRICE_POSITIVE_INTEGER.getErrorMessage());
         }
     }
 
     private static void validatePriceDivisible(Integer price) {
         if (price % 1000 != 0) {
-            throw new NumberFormatException("[ERROR] 금액은 1000원 단위로만 가능합니다.");
+            throw new NumberFormatException(ErrorCode.PRICE_DIVIDABLE_BY_UNIT.getErrorMessage());
         }
     }
 
     private static void isWinningNumberFormat(String input) {
         if (!isWinningNumberPattern.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 올바른 형식이여야 합니다.(6개의 1-45 사이의 자연수를 겹치지 않게 , 기준으로 입력)");
+            throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_PROPER.getErrorMessage());
         }
     }
 
     private static void validateBonusNumberInRange(Integer bonusNumber) {
         if (!(bonusNumber > 0 && bonusNumber < 46)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이에 하나의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_IN_RANGE.getErrorMessage());
         }
     }
 
