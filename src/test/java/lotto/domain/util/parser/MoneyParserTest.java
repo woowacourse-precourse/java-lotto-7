@@ -1,9 +1,8 @@
-package lotto.domain.util;
+package lotto.domain.util.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.Lotto;
-import lotto.domain.util.parser.MoneyParser;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;

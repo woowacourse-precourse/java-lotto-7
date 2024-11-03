@@ -1,10 +1,8 @@
-package lotto.domain.util;
+package lotto.domain.util.parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 import java.util.List;
-import lotto.domain.util.parser.DelimitedNumberParser;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Nested;
