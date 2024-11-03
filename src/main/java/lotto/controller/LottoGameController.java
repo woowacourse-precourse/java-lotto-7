@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import static lotto.view.output.OutputView.printPurchasedLottoery;
+import static lotto.view.output.OutputView.printPurchasedLottery;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoShop;
 import lotto.validation.BonusNumberValidator;
 import lotto.view.input.InputView;
@@ -14,15 +15,13 @@ public class LottoGameController {
     private LottoShop lottoShop;
     private Lotto winningLotto;
     private int bonusNumber;
+    private LottoResult lottoResult;
 
     public void run() {
-        prepareMoney(); // 금액 입력받고, 금액만큼 로또 숫자 뽑는거
+        prepareMoney();
         purchaseLotteries(lottoCount);
         prepareWinningLotto();
         drawLottery();
-//        int lottoPurchase = InputView.inputLottoPurchase();
-//        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-//        int bonusNumber = InputView.inputBonusNumber();
     }
 
     private void prepareMoney() {
@@ -37,7 +36,7 @@ public class LottoGameController {
     }
 
     private void showLotteries() {
-        printPurchasedLottoery(lottoShop);
+        printPurchasedLottery(lottoShop);
     }
 
     private void prepareWinningLotto() {
@@ -66,11 +65,12 @@ public class LottoGameController {
             OutputView.printError(e);
             drawBonusNumber();
         }
-
     }
 
     private void drawLottery() {
+        OutputView.printWinningStatics();
 
+        lottoResult = LottoResult.calculateResult(lottoShop, winningLotto, bonusNumber);
     }
 
 }
