@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class Application {
@@ -36,6 +34,11 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = getValidBonus(winningNumber);
 
+        // 5 . 당첨 통계 초기화
+        Map<LottoRank, Integer> winningStatistics = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            winningStatistics.put(rank, 0);
+        }
     }
 
     private static int getValidBonus(List<Integer> winningNumber) {
