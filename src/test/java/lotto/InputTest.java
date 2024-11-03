@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.parser.WinningNumberParser;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PriceValidator;
 import lotto.validator.Validator;
@@ -112,7 +111,7 @@ public class InputTest {
                 validator.validate(input);
             });
         }
-        
+
         @DisplayName("6개 미만의 당첨 번호")
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,4,5", "", " ", "1", "1,2,3"})

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+
 import static lotto.constant.ViewConstants.BOUGHT_LOTTO_MESSAGE;
 import static lotto.constant.ViewConstants.WIN_RATE_MESSAGE;
 import static lotto.constant.ViewConstants.SEPARATE_LINE;
@@ -10,23 +11,27 @@ import static lotto.constant.ViewConstants.THIRD_HIT_MESSAGE;
 import static lotto.constant.ViewConstants.SECOND_HIT_MESSAGE;
 import static lotto.constant.ViewConstants.FIRST_HIT_MESSAGE;
 import static lotto.constant.ViewConstants.PROFIT_RATE_MESSAGE;
+import static lotto.constant.ViewConstants.END_LINE;
 import static lotto.constant.UtilConstants.ZERO;
 import static lotto.constant.UtilConstants.ONE;
 import static lotto.constant.UtilConstants.TWO;
 import static lotto.constant.UtilConstants.THREE;
 import static lotto.constant.UtilConstants.FOUR;
+
 public class OutputView {
-    public static void printPurchaseCount(int count){
+    public static void printPurchaseCount(int count) {
+        System.out.println();
         System.out.println(count + BOUGHT_LOTTO_MESSAGE.getMessage());
     }
 
-    public static void printLottoNumbers(List<String> lottos){
-        for(String lotto: lottos){
+    public static void printLottoNumbers(List<String> lottos) {
+        for (String lotto : lottos) {
             System.out.println(lotto);
         }
     }
 
-    public static void printStatisticOutput(){
+    public static void printStatisticOutput() {
+        System.out.println();
         System.out.println(WIN_RATE_MESSAGE.getMessage());
         System.out.println(SEPARATE_LINE.getMessage());
     }

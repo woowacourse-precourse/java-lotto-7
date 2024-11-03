@@ -1,4 +1,5 @@
 package lotto.controller;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoRepository;
@@ -11,8 +12,8 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
+import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
 public class LottoController {
 
@@ -20,13 +21,12 @@ public class LottoController {
     private final LottoGame lottoGame;
     private int purchasePrice;
 
-
-    public LottoController(LottoRepository lottoRepository, LottoGame lottoGame){
+    public LottoController(LottoRepository lottoRepository, LottoGame lottoGame) {
         this.lottoRepository = lottoRepository;
         this.lottoGame = lottoGame;
     }
 
-    public void run(){
+    public void run() {
         runPricePart();
         generateLottoNumbers();
         runWinningNumbers();
@@ -35,68 +35,69 @@ public class LottoController {
         runStatisticOutput();
     }
 
-    private void runPricePart(){
+    private void runPricePart() {
         String purchaseAmount = InputView.getPurchaseAmount();
         PriceValidator priceValidator = new PriceValidator();
 
-        try{
+        try {
             priceValidator.validate(purchaseAmount);
             purchasePrice = Integer.parseInt(purchaseAmount);
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             runPricePart();
         }
     }
 
-    private void generateLottoNumbers(){
+    private void generateLottoNumbers() {
         lottoGame.setLottoCount(purchasePrice);
         lottoGame.generateLotto();
 
         List<String> lottoNumbers = generateOutputString();
-        OutputView.printPurchaseCount(purchasePrice/MINIMUM_PRICE);
+        OutputView.printPurchaseCount(purchasePrice / MINIMUM_PRICE);
         OutputView.printLottoNumbers(lottoNumbers);
     }
 
-    private List<String> generateOutputString(){
+    private List<String> generateOutputString() {
         List<String> generatedString = new ArrayList<>();
 
         List<Lotto> lottos = lottoRepository.getLottos();
-        for(Lotto lotto: lottos){
+        for (Lotto lotto : lottos) {
             String singleGeneration = generateString(lotto.getNumbers());
             generatedString.add(singleGeneration);
         }
         return generatedString;
     }
 
-    private void runWinningNumbers(){
+    private void runWinningNumbers() {
         String winningNumbers = InputView.getWinningNumbers();
         WinningNumberValidator validator = new WinningNumberValidator();
-        try{
+
+        try {
             validator.validate(winningNumbers);
             lottoRepository.createWinningLotto(winningNumbers);
-            return;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             runWinningNumbers();
         }
     }
 
-    private String generateString(List<Integer> numbers){
+    private String generateString(List<Integer> numbers) {
         return numbers.toString();
     }
 
-    private void runBonusNumberInput(){
+    private void runBonusNumberInput() {
         String bonusNumber = InputView.getBonusNumber();
         Validator validator = new BonusNumberValidator();
-        try{
+        try {
             validator.validate(bonusNumber);
             lottoRepository.setBonusNumber(bonusNumber);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             runBonusNumberInput();
         }
     }
-    private void runStatisticOutput(){
+
+    private void runStatisticOutput() {
         lottoGame.calculateMatchingNumbers();
         List<Integer> placeCounts = lottoRepository.getLottoPlaceCount();
         float profitRate = lottoRepository.getProfitRate();

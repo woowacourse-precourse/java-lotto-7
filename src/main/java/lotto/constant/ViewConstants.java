@@ -13,7 +13,7 @@ public enum ViewConstants {
     THIRD_HIT_MESSAGE("5개 일치 (1,500,000원) - %d개"),
     SECOND_HIT_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     FIRST_HIT_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
-//    COUNT_MESSAGE("개"),
+    END_LINE("\n"),
     PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
