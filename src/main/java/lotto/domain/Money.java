@@ -10,13 +10,13 @@ public class Money {
         this.amount = amount;
     }
 
-    public int getLottoPurchasableCount(){
+    public int getPurchasableLottoCount(){
         return amount / LottoOption.PUCHASE_MONEY_UNIT;
     }
 
     private void validateMoneyUnit(int amount) {
         if (amount % LottoOption.PUCHASE_MONEY_UNIT != 0){
-            throw new IllegalArgumentException(ExceptionMessage.INVALIDATE_PURCHASE_MONEY_UNIT);
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_MONEY_UNIT);
         }
     }
 
