@@ -30,11 +30,13 @@ public class LottoController {
         outputView.printResult(dtoList);
     }
 
-    public void purchaseAll() {
-        PositiveNumber amount = getAmount();
+    public PositiveNumber purchaseAll() {
+        PositiveNumber price = getPrice();
+        PositiveNumber amount = price.divide(1000L);
         List<Lotto> lottoList = lottoService.purchaseAll(amount);
 
         outputView.printLotties(lottoList);
+        return price;
     }
 
     public void getInvestment(Integer inputPrice, Map<LottoPrize, Integer> prizeIntegerMap) {
@@ -43,10 +45,10 @@ public class LottoController {
         outputView.printInvestment(investment);
     }
 
-    private PositiveNumber getAmount() {
+    private PositiveNumber getPrice() {
         while (true) {
             try {
-                return inputView.getAmount();
+                return inputView.getPrice();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

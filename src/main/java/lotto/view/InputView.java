@@ -14,11 +14,11 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public PositiveNumber getAmount() {
+    public PositiveNumber getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         long price = Long.parseLong(Console.readLine());
         inputValidator.isDivisibleByThousand(price);
-        return new PositiveNumber(price).divide(1000L);
+        return new PositiveNumber(price);
     }
 
     public WinningNumberRequestDto getEntireNumber() {

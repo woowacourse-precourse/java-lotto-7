@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.PositiveNumber;
 import lotto.ui.LottoController;
 
 public class LottoApp {
@@ -11,6 +12,7 @@ public class LottoApp {
     }
 
     public void run() {
-        lottoController.purchaseAll();
+        PositiveNumber purchasePrice = lottoController.purchaseAll();
+
     }
 }
