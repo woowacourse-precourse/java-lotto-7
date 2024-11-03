@@ -9,7 +9,7 @@ import lotto.dto.BonusNumberRequestDTO;
 import lotto.dto.WinningNumberRequestDTO;
 import lotto.model.BonusNumber;
 import lotto.model.LottoDraw;
-import lotto.model.LottoRank;
+import lotto.model.constant.LottoRank;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;

@@ -1,12 +1,12 @@
 package lotto;
 
-import static lotto.model.LottoRule.MAX_NUMBER;
-import static lotto.model.LottoRule.MIN_NUMBER;
-import static lotto.model.LottoRule.NUMBER_COUNT;
+import static lotto.model.constant.LottoRule.MAX_NUMBER;
+import static lotto.model.constant.LottoRule.MIN_NUMBER;
+import static lotto.model.constant.LottoRule.NUMBER_COUNT;
 
 import java.util.List;
 import lotto.model.BonusNumber;
-import lotto.model.LottoRank;
+import lotto.model.constant.LottoRank;
 import lotto.model.WinningNumbers;
 
 public class Lotto {

@@ -7,7 +7,7 @@ import lotto.dto.PurchaseResultDTO;
 import lotto.dto.WinningNumberRequestDTO;
 import lotto.model.BonusNumber;
 import lotto.model.LottoDraw;
-import lotto.model.LottoRank;
+import lotto.model.constant.LottoRank;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;

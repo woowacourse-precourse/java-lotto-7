@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.constant;
 
 public enum LottoRule {
     PRICE(1000),

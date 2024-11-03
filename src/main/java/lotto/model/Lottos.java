@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
+import lotto.model.constant.LottoRank;
 
 public class Lottos {
     private final List<Lotto> lottos;

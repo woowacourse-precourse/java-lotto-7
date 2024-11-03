@@ -1,8 +1,8 @@
 package lotto.generator;
 
-import static lotto.model.LottoRule.MAX_NUMBER;
-import static lotto.model.LottoRule.MIN_NUMBER;
-import static lotto.model.LottoRule.NUMBER_COUNT;
+import static lotto.model.constant.LottoRule.MAX_NUMBER;
+import static lotto.model.constant.LottoRule.MIN_NUMBER;
+import static lotto.model.constant.LottoRule.NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

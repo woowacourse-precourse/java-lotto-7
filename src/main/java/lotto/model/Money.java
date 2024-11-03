@@ -1,10 +1,11 @@
 package lotto.model;
 
-import static lotto.model.LottoRule.MAX_PURCHASE_COUNT;
-import static lotto.model.LottoRule.PRICE;
+import static lotto.model.constant.LottoRule.MAX_PURCHASE_COUNT;
+import static lotto.model.constant.LottoRule.PRICE;
 
 import java.util.List;
 import lotto.dto.PurchaseMoneyRequestDTO;
+import lotto.model.constant.LottoRank;
 
 public class Money {
     private static final String INVALID_PURCHASE_AMOUNT_MESSAGE = "[ERROR] 구입금액은 1,000원 단위이어야 합니다.";

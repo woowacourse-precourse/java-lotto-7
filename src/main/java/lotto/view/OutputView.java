@@ -1,16 +1,16 @@
 package lotto.view;
 
-import static lotto.model.LottoRank.FIFTH;
-import static lotto.model.LottoRank.FIRST;
-import static lotto.model.LottoRank.FOURTH;
-import static lotto.model.LottoRank.SECOND;
-import static lotto.model.LottoRank.THIRD;
-import static lotto.model.LottoRule.PRICE;
+import static lotto.model.constant.LottoRank.FIFTH;
+import static lotto.model.constant.LottoRank.FIRST;
+import static lotto.model.constant.LottoRank.FOURTH;
+import static lotto.model.constant.LottoRank.SECOND;
+import static lotto.model.constant.LottoRank.THIRD;
+import static lotto.model.constant.LottoRule.PRICE;
 
 import java.util.Map;
 import lotto.dto.LottoResponseDTO;
 import lotto.dto.PurchaseResultDTO;
-import lotto.model.LottoRank;
+import lotto.model.constant.LottoRank;
 
 public class OutputView {
 

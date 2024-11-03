@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.model.LottoRule.MAX_NUMBER;
-import static lotto.model.LottoRule.MIN_NUMBER;
+import static lotto.model.constant.LottoRule.MAX_NUMBER;
+import static lotto.model.constant.LottoRule.MIN_NUMBER;
 
 import lotto.dto.BonusNumberRequestDTO;
 
