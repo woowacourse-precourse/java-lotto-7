@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    @DisplayName("inputMoney 단위 테스트")
+    @DisplayName("buyLotto 단위 테스트")
     @Test
     void buyLotto_기능_테스트() {
         assertThat(Application.buyLotto("7000")).isEqualTo(7);
