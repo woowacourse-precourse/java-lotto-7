@@ -60,4 +60,17 @@ public class LottoResultTest {
 
         assertThat(lottoResult.getCountByRank(Rank.FOURTH)).isEqualTo(1);
     }
+
+    @DisplayName("5등에 당첨된다.")
+    @Test
+    void 오등에_당첨된다() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 10, 9, 8));  // 5등
+
+        LottoResult lottoResult = new LottoResult(List.of(lotto), winningLotto);
+
+        assertThat(lottoResult.getCountByRank(Rank.FIFTH)).isEqualTo(1);
+    }
 }
