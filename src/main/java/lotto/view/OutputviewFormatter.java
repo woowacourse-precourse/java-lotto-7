@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.Collections;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
@@ -9,7 +11,9 @@ public class OutputviewFormatter {
         StringBuilder sb = new StringBuilder();
 
         for (Lotto lotto : lottos.getLottos()) {
-            sb.append(lotto.getLottoNumbers()).append("\n");
+            List<Integer> lottoNumbers = lotto.getLottoNumbers();
+            Collections.sort(lottoNumbers);
+            sb.append(lottoNumbers).append("\n");
         }
 
         return sb.toString().trim();

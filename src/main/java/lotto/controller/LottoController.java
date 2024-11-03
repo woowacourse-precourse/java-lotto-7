@@ -2,22 +2,39 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
+import lotto.util.converter.StringToIntegerListConverter;
+import lotto.util.validator.StringValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.OutputviewFormatter;
 
 public class LottoController {
     public static void run() {
-        LottoService lottoService = new LottoService();
+        final LottoService lottoService = new LottoService();
         final Money money = requestPurchaseMoneyAmount();
 
-        Lottos lottos = lottoService.generateLottos(money.getPurchasableLottoCount());
-        OutputView.printPurchasedLottos(money.getPurchasableLottoCount(), OutputviewFormatter.formatLottoNumbers(lottos));
+        final Lottos lottos = lottoService.generateLottos(money.getPurchasableLottoCount());
+        OutputView.printPurchasedLottos(money.getPurchasableLottoCount(),
+                OutputviewFormatter.formatLottoNumbers(lottos));
 
-        OutputView.printRequestWinningLottoNumbers();
+        final WinningLotto winningLotto = requestWinningLottoNumbers();
+    }
+
+    private static WinningLotto requestWinningLottoNumbers() {
+        try {
+            OutputView.printRequestWinningLottoNumbers();
+            String winningNumbers = InputView.readNumbers();
+            StringValidator.valiateNumbersFormat(winningNumbers);
+            return new WinningLotto(new Lotto(StringToIntegerListConverter.convert(winningNumbers)));
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return requestWinningLottoNumbers();
+        }
     }
 
     private static Money requestPurchaseMoneyAmount() {

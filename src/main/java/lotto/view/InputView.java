@@ -12,8 +12,14 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public static String readNumbers() {
+        String input = Console.readLine();
+        validateEmpty(input);
+        return input;
+    }
+
     private static void validateEmpty(String input) {
-        if (input.isBlank() || input == null) {
+        if (input.isBlank() || input.isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY);
         }
     }
