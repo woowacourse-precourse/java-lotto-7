@@ -17,7 +17,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     int getWinningNumber(List<Integer> winnings, int bonus) {
         int count = (int) numbers.stream().filter(winnings::contains).count();
 
@@ -27,7 +26,6 @@ public class Lotto {
 
         return 7 - (count - 1);
     }
-
 
     void printNumber() {
         System.out.println("[" + numbers.stream().sorted().map(String::valueOf).collect(Collectors.joining(", ")) + "]");
