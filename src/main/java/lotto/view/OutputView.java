@@ -9,7 +9,7 @@ import lotto.LottoRate;
 public class OutputView {
 
     public void printLottoNumber(int count){
-        System.out.println(count + "개를 구매하였습니다.");
+        System.out.println(count + "개를 구매했습니다.");
     }
 
     public void printLotto(List<Lotto> lottos) {
@@ -39,12 +39,12 @@ public class OutputView {
     }
 
     private static void catchGeneral(LottoRate rate, int count) {
-        System.out.printf("%d개 일치 (%d원) - %d개%n",
+        System.out.printf("%d개 일치 (%,d원) - %d개%n",
                             rate.getMatchCount(), rate.getPrize(), count);
     }
 
     private static void cathBonus(LottoRate rate, int count) {
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n",
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
                 rate.getMatchCount(), rate.getPrize(), count);
     }
 }
