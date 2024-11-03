@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -10,11 +11,13 @@ public class Lotto {
 
     public Lotto() {
         this.numbers = getNumbersFromUser();
+        Collections.sort(this.numbers);
     }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = new ArrayList<>(numbers); //내부데이터의 무결성을 유지하기 위함
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -60,5 +63,4 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    // TODO: 추가 기능 구현
 }
