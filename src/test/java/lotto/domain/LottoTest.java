@@ -1,34 +1,33 @@
-package lotto.domain;
+package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Arrays;
 import java.util.List;
 
-public class LottoTest {
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+class LottoTest {
     @Test
-    @DisplayName("로또 번호가 6개가 아닐 때 예외 발생")
-    void shouldThrowExceptionWhenLottoNumberCountIsNotSix() {
-        List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5);
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(invalidNumbers));
+    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    @DisplayName("로또 번호가 1~45 범위를 벗어날 때 예외 발생")
-    void shouldThrowExceptionWhenNumberIsOutOfRange() {
-        List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
-        assertThrows(IllegalArgumentException.class, () -> new Lotto(invalidNumbers));
+    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
-    @DisplayName("올바른 로또 번호가 주어졌을 때 로또 생성 성공")
-    void shouldCreateLottoWhenNumbersAreValid() {
-        List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Lotto lotto = new Lotto(validNumbers);
-        assertEquals(validNumbers, lotto.getNumbers());
+    void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
