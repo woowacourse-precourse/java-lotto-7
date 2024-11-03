@@ -177,4 +177,33 @@ class MoneyTest {
             assertThat(money).isEqualTo(money);
         }
     }
+
+    @Nested
+    class 금액_크거나_같음_비교_테스트 {
+        @ParameterizedTest
+        @MethodSource("provideGreaterThanOrEqualTestCases")
+        void 금액이_크거나_같은지_확인한다(Money money1, Money money2, boolean expected) {
+            // when
+            boolean result = money1.isGreaterThanOrEqual(money2);
+
+            // then
+            assertThat(result).isEqualTo(expected);
+        }
+
+        private static Stream<Arguments> provideGreaterThanOrEqualTestCases() {
+            return Stream.of(
+                    // 더 큰 경우
+                    Arguments.of(Money.from(2000), Money.from(1000), true),
+                    Arguments.of(Money.from(1000), Money.from(0), true),
+
+                    // 같은 경우
+                    Arguments.of(Money.from(1000), Money.from(1000), true),
+                    Arguments.of(Money.from(0), Money.from(0), true),
+
+                    // 더 작은 경우
+                    Arguments.of(Money.from(1000), Money.from(2000), false),
+                    Arguments.of(Money.from(0), Money.from(1000), false)
+            );
+        }
+    }
 }
