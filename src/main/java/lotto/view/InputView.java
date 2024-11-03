@@ -15,11 +15,11 @@ public class InputView {
     public List<String> readNumbers() {
         List<String> numbers = new ArrayList<>();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String rawNumbers = readLine();
         numbers.add(rawNumbers);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = readLine();
         numbers.add(bonusNumber);
 
