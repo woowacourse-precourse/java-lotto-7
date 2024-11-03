@@ -26,5 +26,6 @@ public class LottoController {
                 numberGenerator.generatingNumbers(numberOfTickets));
 
         outputView.printNumberOfTickets(numberOfTickets);
+        outputView.printGeneratedNumbersPair(generatedNumbers);
     }
 }
