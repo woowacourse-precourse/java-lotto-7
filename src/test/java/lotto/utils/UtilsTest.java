@@ -94,4 +94,14 @@ public class UtilsTest {
         assertTrue(Utils.areAllNumbersValidRange(1, 45, lotto));
     }
 
+    @DisplayName("중복된 숫자가 있는지 확인한다.")
+    @Test
+    void isDuplicateNumber() {
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            numbers.add(i);
+        }
+
+        assertTrue(Utils.isDuplicateNumber(numbers));
+    }
 }
