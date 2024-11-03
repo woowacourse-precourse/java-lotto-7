@@ -36,31 +36,39 @@ public class LottoController {
         LottoCollection lottoCollection = null;
 
         purchaseAmount = getAmount();
-        lottoCollection = getLottoCollection1(purchaseAmount);
-        winningNumber = getNumber();
-        winningLotto = getLotto(winningNumber);
+        lottoCollection = getLottoCollection(purchaseAmount);
+        winningNumber = getWinningNumber();
+        winningLotto = getWinningLotto(winningNumber);
         lottoService = new LottoService(lottoCollection, winningLotto);
         judgeLotto();
         printWinningResult();
     }
 
-    private WinningLotto getLotto(WinningNumber winningNumber) {
-        WinningLotto winningLotto;
+    private WinningLotto getWinningLotto(WinningNumber winningNumber) {
+        WinningLotto winningLotto = null;
+        Bonus bonus = null;
         do {
-            winningLotto = getWinningLotto(winningNumber);
+            do {
+                bonus = readBouns();
+            }while (bonus == null);
+            try {
+                winningLotto = getWinningLotto(winningNumber, bonus);
+            }catch (Exception e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
         }while (winningLotto == null);
         return winningLotto;
     }
 
-    private WinningNumber getNumber() {
+    private WinningNumber getWinningNumber() {
         WinningNumber winningNumber;
         do {
-            winningNumber = getWinningNumber();
+            winningNumber = readWinningNumber();
         }while (winningNumber == null);
         return winningNumber;
     }
 
-    private LottoCollection getLottoCollection1(PurchaseAmount purchaseAmount) {
+    private LottoCollection getLottoCollection(PurchaseAmount purchaseAmount) {
         LottoCollection lottoCollection;
         lottoCollection = getCollection(purchaseAmount);
         printCollectionState(lottoCollection);
@@ -83,7 +91,8 @@ public class LottoController {
     private LottoCollection getCollection(PurchaseAmount purchaseAmount) {
         LottoCollection lottoCollection;
         printNumberOfLottoPurchases(purchaseAmount);
-        lottoCollection = getLottoCollection(purchaseAmount);
+        int numberOfLotto = purchaseAmount.getNumberOfLotto();
+        lottoCollection = new LottoCollection(numberOfLotto);
         return lottoCollection;
     }
 
@@ -96,27 +105,6 @@ public class LottoController {
         if (numberOfLotto != Constant.ZERO) {
             outputView.printPurchaseAmount(numberOfLotto);
         }
-    }
-
-    private WinningLotto getWinningLotto(WinningNumber winningNumber) {
-        WinningLotto winningLotto = null;
-        Bonus bonus = null;
-        do {
-            bonus = readBouns();
-        }while (bonus == null);
-        try {
-            winningLotto = getWinningLotto(winningNumber, bonus);
-        }catch (Exception e) {
-            outputView.printExceptionMessage(e.getMessage());
-            bonus = null;
-        }
-        return winningLotto;
-    }
-
-    private WinningNumber getWinningNumber() {
-        WinningNumber winningNumber;
-        winningNumber = readWinningNumber();
-        return winningNumber;
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -143,11 +131,6 @@ public class LottoController {
         }
     }
 
-    private LottoCollection getLottoCollection(PurchaseAmount purchaseAmount) {
-        int numberOfLotto = purchaseAmount.getNumberOfLotto();
-        return lottoIssuance(numberOfLotto);
-    }
-
     private void printWinningResult() {
         int[] winningResult = lottoService.getWinningResult();
         outputView.printWinningResult(winningResult);
@@ -157,10 +140,6 @@ public class LottoController {
 
     private void judgeLotto() {
         lottoService.judgeLotto();
-    }
-
-    private LottoCollection lottoIssuance(int numberOfLotto) {
-        return new LottoCollection(numberOfLotto);
     }
 
     private Bonus readBouns() {
