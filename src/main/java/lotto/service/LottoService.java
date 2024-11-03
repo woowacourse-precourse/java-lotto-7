@@ -4,6 +4,7 @@ import lotto.Lotto;
 import lotto.util.ParseUtil;
 import lotto.util.RandomUtil;
 import lotto.validator.LottoNumberValidator;
+import lotto.validator.PurchaseMoneyValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,12 +24,12 @@ public class LottoService {
     }
 
     public int getPurchaseMoney(String money) {
-
+        PurchaseMoneyValidator.validateInteger(money);
         return Integer.parseInt(money);
     }
 
     public int getLottoCount(int purchaseMoney) {
-
+        PurchaseMoneyValidator.validateDivisibleByThousand(purchaseMoney);
         return purchaseMoney / 1000;
     }
 
