@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResultStatistics {
-    private int totalEarnings = 0;
-    private int totalExpense = 0;
-    private Map<LottoResult, Integer> resultCount = new HashMap<>();
+    public int totalEarnings = 0;
+    public int totalExpense = 0;
+    public Map<LottoResult, Integer> resultCount = new HashMap<>();
 
     public LottoResultStatistics() {
         for (LottoResult result : LottoResult.values()) {
@@ -24,7 +24,7 @@ public class LottoResultStatistics {
         }
     }
 
-    private LottoResult determineResult(int matchCount, boolean bonusMatch) {
+    public LottoResult determineResult(int matchCount, boolean bonusMatch) {
         if (matchCount == LottoResult.SIX_NUMBER_MATCH.lottoMatchCount()) return LottoResult.SIX_NUMBER_MATCH;
         if (LottoResult.isBonusMatch(matchCount, bonusMatch)) return LottoResult.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
         if (matchCount == LottoResult.FIVE_NUMBER_MATCH.lottoMatchCount()) return LottoResult.FIVE_NUMBER_MATCH;
@@ -44,7 +44,7 @@ public class LottoResultStatistics {
         }
     }
 
-    private void updateStatistics(LottoResult result) {
+    public void updateStatistics(LottoResult result) {
         if (result != null) {
             resultCount.put(result, resultCount.get(result) + 1);
         }
