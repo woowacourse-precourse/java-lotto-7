@@ -7,4 +7,8 @@ public class Bonus {
     public Bonus(Integer number) {
         this.number = number;
     }
+
+    public boolean isContainsBonusBall(Lotto lotto) {
+        return lotto.getNumbers().contains(number);
+    }
 }
