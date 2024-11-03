@@ -3,6 +3,7 @@ package lotto;
 import lotto.model.Cash;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CashTest {
@@ -14,6 +15,7 @@ public class CashTest {
         });
     }
     @ParameterizedTest
+    @NullAndEmptySource
     @ValueSource(strings = {"0","-1","-1000",""," "})
     public void 로또_구입_금액이_자연수가_아니면_실패한다(String input){
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
