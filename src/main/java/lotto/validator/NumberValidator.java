@@ -26,14 +26,29 @@ public class NumberValidator {
         return true;
     }
 
+    public static boolean checkValidBonusNumber(String bonusNumber) throws IllegalArgumentException {
+        try {
+            numberIsNumeric(bonusNumber);
+            numberIsInRange(bonusNumber);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     private static void numberIsNumeric(String inputNumber) throws IllegalArgumentException {
         if (!inputNumber.matches("^[0-9]+$")) {
             throw new IllegalArgumentException(NUMBER_NOT_NUMERIC_MESSAGE);
         }
     }
 
-    private static void numberIsInRange(int inputNumber) throws IllegalArgumentException {
-        if (inputNumber < 1 || inputNumber > 45) {
+    private static void numberIsInRange(String inputNumber) throws IllegalArgumentException {
+        if (inputNumber.length() > 7) {
+            throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE);
+        }
+        int number = Integer.parseInt(inputNumber);
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE);
         }
     }
@@ -65,8 +80,7 @@ public class NumberValidator {
     private static void winningNumbersAreInRange(String winningNumbers) throws IllegalArgumentException {
         String[] splitWinningNumbers = winningNumbers.split(",");
         for (String winningNumber : splitWinningNumbers) {
-            int number = Integer.parseInt(winningNumber);
-            numberIsInRange(number);
+            numberIsInRange(winningNumber);
         }
     }
 

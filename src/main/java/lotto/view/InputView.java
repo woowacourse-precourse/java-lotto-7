@@ -11,7 +11,7 @@ public class InputView {
     private static final String WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
 
-    public static long inputLottoPurchaseAmount() {
+    public static long inputPurchaseAmount() {
         String inputAmount;
         do {
             System.out.println(PURCHASE_AMOUNT_PROMPT);
@@ -29,7 +29,12 @@ public class InputView {
         return Arrays.stream(inputWinningNumbers.split(",")).mapToInt(Integer::valueOf).toArray();
     }
 
-    public static void inputBonusNumber() {
-        System.out.println(BONUS_NUMBER_PROMPT);
+    public static int inputBonusNumber() {
+        String inputBonusNumber;
+        do {
+            System.out.println(BONUS_NUMBER_PROMPT);
+            inputBonusNumber = Console.readLine().trim();
+        } while (!NumberValidator.checkValidBonusNumber(inputBonusNumber));
+        return Integer.parseInt(inputBonusNumber);
     }
 }

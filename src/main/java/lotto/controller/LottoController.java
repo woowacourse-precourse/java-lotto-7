@@ -5,7 +5,8 @@ import lotto.view.InputView;
 public class LottoController {
 
     public void run() {
-//        InputView.inputLottoPurchaseAmount();
-        InputView.inputWinningNumbers();
+//        long purchaseAmount = InputView.inputPurchaseAmount();
+//        int[] winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber();
     }
 }
