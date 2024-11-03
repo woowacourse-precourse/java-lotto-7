@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,6 +25,7 @@ public class LottoController {
         Lotto winningNumbers = makeWinningNumbersRecursion();
         WinningLotto winningLotto = addBonusNumbersToWinningNumbersRecursion(winningNumbers);
 
+        WinningResult winningResult = makeLottoWinningResult(autoLottos, winningLotto);
     }
 
     private int makeLottoPurchaseAmountRecursion() {
@@ -77,5 +80,19 @@ public class LottoController {
                 .collect(Collectors.toList());
 
         return new Lotto(numbers);
+    }
+
+    private WinningResult makeLottoWinningResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        WinningResult winningResult = new WinningResult();
+
+        for (Lotto lotto : lottos) {
+            int matchCount = winningLotto.calculateMatchCount(lotto);
+            boolean isbonusMatch = winningLotto.isBonusMatch(lotto);
+            LottoRank lottoRank = LottoRank.findRank(matchCount, isbonusMatch);
+
+            winningResult.increaseRankScore(lottoRank);
+        }
+
+        return winningResult;
     }
 }

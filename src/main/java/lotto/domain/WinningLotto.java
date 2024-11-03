@@ -21,6 +21,28 @@ public class WinningLotto {
         return bonusNumber;
     }
 
+    public int calculateMatchCount(Lotto lotto) {
+        int matchingCount = 0;
+
+        for (Integer number : lotto.getNumbers()) {
+            if (winningNumbers.getNumbers().contains(number)) {
+                matchingCount++;
+            }
+        }
+
+        return matchingCount;
+    }
+
+    public boolean isBonusMatch(Lotto lotto) {
+        int matchCount = calculateMatchCount(lotto);
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
     public void validateBonusNumberDuplicated(Lotto lotto, Integer bounsNumber) {
         List<Integer> winningNumbers = lotto.getNumbers();
         if (winningNumbers.contains(bounsNumber)) {
