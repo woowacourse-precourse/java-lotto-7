@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class LottoResult {
 
+    private static final int PERCENTAGE = 100;
     private static final int DEFAULT = 0;
     private static final int INCREASE_SIZE = 1;
     private final Map<Ranking, Integer> elements;
@@ -34,6 +35,7 @@ public class LottoResult {
                     appendWinningNumber(key, sb);
                     sb.append(OutputMessage.NEW_LINE.getMessage());
                 });
+        sb.append(String.format(OutputMessage.RETURN_OF_RATE.getMessage(), getRateOrReturn()));
         return sb.toString();
     }
 
@@ -64,7 +66,7 @@ public class LottoResult {
     public double getRateOrReturn() {
         int purchaseAmount = calculatePurchaseAmount();
         int prize = calculatePrize();
-        return (double) prize / purchaseAmount;
+        return ((double)prize / purchaseAmount) * PERCENTAGE;
     }
 
     private int calculatePurchaseAmount() {

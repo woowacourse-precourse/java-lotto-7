@@ -13,7 +13,8 @@ public enum OutputMessage {
     MATCH_BONUS(", 보너스 볼 일치"),
     RANKING_COUNT(" - %d개"),
     RESULT_GUIDE("당첨 통계"),
-    LINE("---");
+    LINE("---"),
+    RETURN_OF_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
