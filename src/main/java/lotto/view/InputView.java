@@ -44,10 +44,18 @@ public class InputView {
     }
 
     public String inputBonusNumber(List<Integer> parsedInputNumbers) {
+        String inputBonusNumber;
         System.out.println();
-        System.out.println(IOMessageConstants.INPUT_BONUS_NUMBER);
-        String inputBonusNumber = Console.readLine();
-        inputViewException.validateInputBonusNumber(inputBonusNumber, parsedInputNumbers);
+        while(true){
+            try{
+                System.out.println(IOMessageConstants.INPUT_BONUS_NUMBER);
+                inputBonusNumber = Console.readLine();
+                inputViewException.validateInputBonusNumber(inputBonusNumber, parsedInputNumbers);
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
         return inputBonusNumber;
     }
