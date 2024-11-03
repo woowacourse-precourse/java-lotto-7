@@ -16,6 +16,10 @@ public class Winning {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public HashSet<Integer> getWinningSet() {
         return winningSet;
     }

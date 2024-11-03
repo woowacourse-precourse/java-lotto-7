@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Iterator;
+import javax.print.attribute.IntegerSyntax;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
@@ -29,6 +30,15 @@ public class WinningService {
     public void findWinningNumber(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             containsWinningNumber(lotto);
+            containsBonusNumber(lotto);
+        }
+    }
+
+    public static void containsBonusNumber(Lotto lotto) {
+        HashSet<Integer> lottoSet = lotto.getLottoSet();
+
+        if (lottoSet.contains(winning.getBonusNumber())) {
+            lotto.checkBonusNumber();
         }
     }
 
