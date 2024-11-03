@@ -18,7 +18,9 @@ public class WinningLottoTest {
     @ValueSource(ints = {0, -1, 46})
     void 보너스_번호_예외_발생_테스트(int input) {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertThatThrownBy(() -> new WinningLotto(lotto, input))
+        WinningLotto winningLotto = new WinningLotto(lotto);
+
+        assertThatThrownBy(() -> winningLotto.setBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -27,7 +29,7 @@ public class WinningLottoTest {
     @DisplayName("당첨 번호 입력 범위 초과 예외 발생 테스트")
     @MethodSource("inputs")
     void 당첨_번호_입력_범위_초과_예외_발생_테스트(Lotto input) {
-        assertThatThrownBy(() -> new WinningLotto(input, 6))
+        assertThatThrownBy(() -> new WinningLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
