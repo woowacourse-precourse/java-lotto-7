@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.SystemMessage;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -12,10 +13,13 @@ public class LottoController {
 
     public LottoController() {
         numberOfLottery = InputView.getInstance().enterPaymentForLottery();
+        System.out.println(numberOfLottery + SystemMessage.NUMBER_OF_LOTTERY);
+        lottoService = new LottoService(numberOfLottery);
+        lottoService.getLotteries().forEach(System.out::println);
+
         winningLottery = InputView.getInstance().enterWinningLottery();
         bonusLottery = InputView.getInstance().enterBonusLottery();
 
-        lottoService = new LottoService(numberOfLottery);
     }
 
     public void start() {
