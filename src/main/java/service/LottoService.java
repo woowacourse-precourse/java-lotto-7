@@ -16,9 +16,15 @@ public class LottoService {
         }
         return tickets;
     }
+
     public LottoResult checkWin(Lotto ticket, List<Integer> winningNumbers, int bonusNumber) {
         long matchCount = ticket.getNumbers().stream().filter(winningNumbers::contains).count();
         boolean bonusMatch = ticket.getNumbers().contains(bonusNumber);
         return LottoResult.getResultForMatchAndBonus((int) matchCount, bonusMatch);
+    }
+
+    public double calculateProfitRate(List<LottoResult> results, int totalCost) {
+        int totalPrize = results.stream().mapToInt(LottoResult::getPrize).sum();
+        return ((double) totalPrize / totalCost) * 100;
     }
 }
