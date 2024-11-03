@@ -21,16 +21,16 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     }
 
     public List<Integer> inputPrizeNumbers() {      // 사용자가 당첨 번호를 입력
-        System.out.println("당첨 번호를 입력해 주세요");
-        String input = Console.readLine();
-        String[] InputedNumber = input.split(",");
+        while (true) {
+            try {
+                List<Integer> numbers = inputPrizeNumbersRead();
+                validateInputPrizeNumbers(numbers);
 
-        List<Integer> numbers = new ArrayList<>();
-        for (String number : InputedNumber) {
-            numbers.add(Integer.parseInt(number));
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
         }
-
-        return numbers;
     }
 
     public int inputBounsNumber() {   // 사용자가 보너스 번호 입력
