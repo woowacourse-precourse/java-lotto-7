@@ -52,11 +52,11 @@ public class MatchResults {
     private ProfitDto buildProfitDto(HashMap<Integer, Integer> rankResults) {
         long totalProfit = 0;
         for (LottoRankPrize rank: LottoRankPrize.values()) {
-            long rankCount = rankResults.getOrDefault(rank, 0);
+            long rankCount = rankResults.getOrDefault(rank.getRank(), 0);
             totalProfit += rankCount * rank.getPrize();
         }
 
-        double profitRate = (double) (totalProfit / matchResults.size() * LOTTO_PRICE.getValue());
+        double profitRate = ((double) totalProfit) / (double)( matchResults.size() * LOTTO_PRICE.getValue()) * 100.0f;
 
         return new ProfitDto(totalProfit, profitRate);
 

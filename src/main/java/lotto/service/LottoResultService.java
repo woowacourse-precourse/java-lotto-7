@@ -1,12 +1,12 @@
 package lotto.service;
 
-import lotto.dto.RankResultsDto;
+import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;
 
 public interface LottoResultService {
     void receiveWinningLottoNumbers(String rawWinningNumbers);
     void receiveBonusNumber(String rawBonusNumbers);
-    RankResultsDto getRankResultsDto(LottosDto lottosDto);
+    FinalResultsDto getFinalResultsDto(LottosDto lottosDto);
 
 
 }

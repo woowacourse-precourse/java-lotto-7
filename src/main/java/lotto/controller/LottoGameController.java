@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoResultService;
@@ -31,6 +32,9 @@ public class LottoGameController {
 
         handleWinningNumbersInput();
         handleBonusNumberInput();
+
+        FinalResultsDto finalResultsDto=  lottoResultServiceImpl.getFinalResultsDto(lottosDto);
+        consoleOutputView.outputFinalResult(finalResultsDto);
 
 
 

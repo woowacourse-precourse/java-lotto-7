@@ -1,5 +1,6 @@
 package lotto.view.output;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,9 +13,11 @@ import lotto.dto.ProfitDto;
 import lotto.dto.RankResultsDto;
 
 public class ConsoleOutputView implements OutputView {
-    String RESPONSE_RANK = "d%개 일치 (d원) - d%개";
-    String RESPONSE_RANK_FOR_BONUS = "d%개 일치, 보너스 볼 일치 (d원) - d%개";
+    String RESPONSE_RANK = "\n%d개 일치 (%s원) - %d개";
+    String RESPONSE_RANK_FOR_BONUS = "\n%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     String PURCHASE_NOTICE = "\n%d개를 구매했습니다%n";
+    DecimalFormat moneyFormat = new DecimalFormat("###,###");
+
     @Override
     public void outputPurchaseLottoList(LottosDto lottosDto) {
         int lottoCount = lottosDto.lottoDtos().size();
@@ -45,7 +48,7 @@ public class ConsoleOutputView implements OutputView {
 
     private void outputRankResults(RankResultsDto rankResultsDto) {
         HashMap<Integer, Integer> rankedResults = rankResultsDto.rankResults();
-        for (int rank: rankedResults.keySet()) {
+        for (int rank = 5; rank > 0; rank--) {
             outputRankResult(rank, rankedResults.getOrDefault(rank,0));
         }
 
@@ -56,12 +59,13 @@ public class ConsoleOutputView implements OutputView {
 
         int numberMatchCount = rankPrize.getMatchCount();
         int prize = rankPrize.getPrize();
+        String formedPrize = moneyFormat.format(prize);
 
-        if (rank == 2) {
-            System.out.printf(RESPONSE_RANK + "%n", winCount, prize, numberMatchCount);
-        }
         if (rank != 2) {
-            System.out.printf(RESPONSE_RANK_FOR_BONUS + "%n", winCount, prize, numberMatchCount);
+            System.out.printf(RESPONSE_RANK, numberMatchCount, formedPrize, winCount);
+        }
+        if (rank == 2) {
+            System.out.printf(RESPONSE_RANK_FOR_BONUS, numberMatchCount, formedPrize, winCount);
         }
     }
 
