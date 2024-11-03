@@ -7,17 +7,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest extends NsTest {
-
-    @BeforeEach
-    @DisplayName("각 테스트를 시작하기 전 당첨 티켓의 개수를 모두 초기화")
-    void setUp() {
-        WinningInfo.resetWinningTicketCount();
-    }
 
     @Test
     void 당첨결과를_정확하게_확인하는지_기능_테스트() {
@@ -57,7 +49,6 @@ class WinningStatisticsTest extends NsTest {
     }
 
     @Override
-
     protected void runMain() {
     }
 }

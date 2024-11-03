@@ -5,6 +5,7 @@ import java.util.List;
 public class WinningStatistics {
 
     public static void checkWinningResult(Purchaser purchaser, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        WinningInfo.resetWinningTicketCount();
         List<Lotto> purchasedLotto = purchaser.getPurchasedLotto();
         for (Lotto lotto : purchasedLotto) {
             int place = lotto.findPlace(winningNumbers, bonusNumber);
