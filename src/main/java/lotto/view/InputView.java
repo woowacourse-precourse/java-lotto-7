@@ -37,19 +37,19 @@ public class InputView {
 
     private void validateStringFormat(String str) {
         if (isEmptyOrBlank(str)) {
-            throw CustomException.of(ErrorMessage.BLANK_INPUT_ERROR);
+            throw CustomException.of(ErrorMessage.BLANK_INPUT);
         }
     }
 
     private void validateNumberFormat(String str) {
         if (isNotPositiveInteger(str)) {
-            throw CustomException.of(ErrorMessage.INVALID_INPUT_NUMBER_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_INPUT_NUMBER);
         }
     }
 
     private void validateNumbersFormat(String str) {
         if (isNotNumberWithDelimiter(str)) {
-            throw CustomException.of(ErrorMessage.INVALID_WINNING_NUMBER_STRING_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_WINNING_NUMBER_STRING);
         }
     }
 

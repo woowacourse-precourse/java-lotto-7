@@ -45,13 +45,13 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw CustomException.of(ErrorMessage.INVALID_LOTTO_COUNT_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_LOTTO_COUNT);
         }
     }
 
     private void validateUniqueNumbers(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw CustomException.of(ErrorMessage.DUPLICATE_LOTTO_NUMBER_ERROR);
+            throw CustomException.of(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
 
@@ -61,13 +61,13 @@ public class Lotto {
 
     private void validateUniqueNumber(int number) {
         if (numbers.contains(number)) {
-            throw CustomException.of(ErrorMessage.DUPLICATE_BONUS_NUMBER_WITH_WINNING_NUMBER_ERROR);
+            throw CustomException.of(ErrorMessage.DUPLICATE_BONUS_NUMBER_WITH_WINNING_NUMBER);
         }
     }
 
     private void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw CustomException.of(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
