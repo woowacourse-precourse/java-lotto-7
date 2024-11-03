@@ -39,6 +39,6 @@ public class RankCalculator {
                     return entry.getKey().getPrize() * entry.getValue();
                 })
                 .sum();
-        return ((double) totalPrize * 100 / cost) / 100.0;
+        return ((double) totalPrize * 100.0 / cost);
     }
 }
