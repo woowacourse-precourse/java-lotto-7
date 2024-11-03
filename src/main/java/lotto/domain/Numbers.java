@@ -45,4 +45,11 @@ public class Numbers {
     public boolean contains(Number number) {
         return values.contains(number);
     }
+
+    public List<Integer> getNumbers() {
+        return values.stream()
+                .map(Number::getValue)
+                .sorted()
+                .toList();
+    }
 }

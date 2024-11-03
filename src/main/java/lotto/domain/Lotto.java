@@ -13,4 +13,8 @@ public class Lotto {
     public Numbers getNumbers() {
         return numbers;
     }
+
+    public List<Integer> getLottoNumbers() {
+        return numbers.getNumbers();
+    }
 }

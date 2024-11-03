@@ -40,4 +40,10 @@ public class Lotties {
     public long getTotalLottoPrice() {
         return (long) values.size() * LOTTO_PRICE;
     }
+
+    public List<List<Integer>> getLottiesNumbers() {
+        return values.stream()
+                .map(Lotto::getLottoNumbers)
+                .toList();
+    }
 }
