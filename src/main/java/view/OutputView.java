@@ -22,14 +22,14 @@ public class OutputView {
         printPrizeLine(Prize.FOURTH, prizeResult.getFourthCount());
         printPrizeLine(Prize.THIRD, prizeResult.getThirdCount());
         printPrizeLine(Prize.SECOND, prizeResult.getSecondCount());
-        printPrizeLine(FIRST, prizeResult.getFirstCount());
+        printPrizeLine(Prize.FIRST, prizeResult.getFirstCount());
 
         double profitRate = calculateProfitRate(prizeResult, purchaseAmount);
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
     private static void printPrizeLine(Prize prize, int count) {
-        String prizeDescription = null;
+        String prizeDescription;
         switch (prize) {
             case FIRST:
                 prizeDescription = "6개 일치 (2,000,000,000원) - ";
@@ -45,8 +45,6 @@ public class OutputView {
                 break;
             case FIFTH:
                 prizeDescription = "3개 일치 (5,000원) - ";
-                break;
-            case NONE:
                 break;
             default:
                 prizeDescription = "";

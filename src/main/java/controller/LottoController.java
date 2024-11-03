@@ -46,9 +46,4 @@ public class LottoController {
             purchasedLottos.add(LottoGenerator.generate());
         }
     }
-
-    private void calculatePrize() {
-        PrizeResult prizeResult = prizeCalculator.calculate(purchasedLottos, winningLotto);
-        // prizeResult는 이미 PrizeCalculator 내에 저장되어 있음
-    }
 }
