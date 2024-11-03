@@ -1,15 +1,16 @@
-package lotto.domain;
+package lotto.utils;
 
 import java.util.Map;
+import lotto.domain.WinningPrice;
 
-public class Profit {
+public class ProfitCalculator {
 
     private static final String FORMAT_LENGTH = "%.1f";
 
-    private Profit() {
+    private ProfitCalculator() {
     }
 
-    public static String calculate(Map<WinningPrice, Integer> winningPrice, int purchaseAmount) {
+    public static String rate(Map<WinningPrice, Integer> winningPrice, int purchaseAmount) {
         double totalPrice = 0;
         for (WinningPrice price : winningPrice.keySet()) {
             totalPrice += (price.getPrice() * winningPrice.get(price));

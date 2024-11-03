@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.Profit;
+import lotto.utils.ProfitCalculator;
 import lotto.domain.Ticket;
 import lotto.domain.WinningPrice;
 import java.util.List;
@@ -45,7 +45,7 @@ public class WinningService {
     }
 
     public String getProfit() {
-        return Profit.calculate(lottoResult.getResult(), ticket.getPurchaseAmount());
+        return ProfitCalculator.rate(lottoResult.getResult(), ticket.getPurchaseAmount());
     }
 
     private void calculatePrizeForLotto(List<Integer> winningNumbers, int bonusNumber,
