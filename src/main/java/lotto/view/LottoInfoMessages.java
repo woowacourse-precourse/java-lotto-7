@@ -42,17 +42,6 @@ public class LottoView {
         System.out.println(INSERT_MANUAL_AMOUNT_START + amount + INSERT_MANUAL_AMOUNT_END);
     }
 
-    public int validatePayInput(String error) {
-        int pay = 0;
-        try {
-            pay = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            printInsertPay();
-            validatePayInput(error);
-        }
-        return pay;
-    }
-
     private LottoView() {
 
     }

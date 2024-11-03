@@ -1,17 +1,16 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.LottoException;
+import lotto.exception.LottoErrorMessages;
 import lotto.service.LottoService;
-import lotto.view.ErrorView;
-import lotto.view.LottoView;
+import lotto.service.ValidationService;
+import lotto.view.LottoInfoMessages;
 import lotto.view.StatisticsView;
 
 public class LottoController {
-    LottoView lottoView = LottoView.createLottoView();
-    ErrorView errorView = ErrorView.createErrorview();
+    LottoInfoMessages lottoInfoMessages;
     StatisticsView statisticsView = StatisticsView.createStatisticsView();
     LottoService lottoService = LottoService.createLottoService();
+    ValidationService validationService = ValidationService.createValidationService();
 
     private int pay;
     private int amount;
@@ -19,16 +18,15 @@ public class LottoController {
 
     public void runLottoProgram() {
         // 구입 금액 입력
-        lottoView.printInsertPay();
-        pay = lottoView.validatePayInput(LottoException.PAY_INPUT_ERROR.getText());
+        pay = validationService.validatePayInput();
         amount = lottoService.calculateAmount(pay);
         change = lottoService.calculateChange(pay);
-        lottoView.printNoticeBuyAmount(amount, change);
+        lottoService.printNoticeBuyAmount(amount, change);
         // 수동 구매 갯수 입력
-        
+//        lottoView.printInsertManualAmount(amount);
     }
 
-    private void purchaseLotto(){
+    private void purchaseLotto() {
 
     }
 

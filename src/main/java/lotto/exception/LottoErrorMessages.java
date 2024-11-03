@@ -15,7 +15,7 @@ public enum LottoException {
         this.text = text;
     }
 
-    public String getText() {
+    public String text() {
         return ERROR_UNIT.text + this.text;
     }
 }
