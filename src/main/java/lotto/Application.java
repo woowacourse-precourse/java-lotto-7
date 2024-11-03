@@ -28,10 +28,15 @@ public class Application {
             validateWinningNumbersCount(winningNumbersInputSplits);
             // 3.4 당첨 번호 중에 정수로 변환할 수 없는 문자열이 있는 경우 예외 처리하는 기능
             validateNumericStrings(winningNumbersInputSplits);
+            // 3.5 범위(1~45)에 맞지 않는 당첨 번호가 포함된 경우 예외 처리하는 기능
+            ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
+            validateLottoNumbersInRange(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
 
     private static String getInputString(String message) {
         System.out.println("\n" + message);
@@ -114,5 +119,29 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 정수로 변환할 수 없는 문자열이 포함되어 있습니다.");
             }
         }
+    }
+
+    private static void validateLottoNumberInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자의 범위를 벗어나는 값입니다.");
+        }
+    }
+
+    private static void validateLottoNumbersInRange(ArrayList<Integer> numbers) {
+        for (int number : numbers) {
+            try {
+                validateLottoNumberInRange(number);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] 로또 숫자의 범위를 벗어나는 값이 포함되어 있습니다.");
+            }
+        }
+    }
+
+    private static ArrayList<Integer> parseIntWinningNumbers(String[] winningNumbersInputSplits) {
+        ArrayList<Integer> winningNumbers = new ArrayList<>();
+        for (String winningNumbersInputSplit : winningNumbersInputSplits) {
+            winningNumbers.add(Integer.parseInt(winningNumbersInputSplit));
+        }
+        return winningNumbers;
     }
 }
