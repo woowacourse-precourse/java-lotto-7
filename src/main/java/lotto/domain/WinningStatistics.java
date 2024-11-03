@@ -40,7 +40,7 @@ public enum WinningStatistics {
                 return;
             }
 
-            if (statistics.match == value && !bonusNumber) {
+            if (statistics.price != WinningStatistics.SECOND.price && statistics.match == value && !bonusNumber) {
                 statistics.count++;
             }
         }
