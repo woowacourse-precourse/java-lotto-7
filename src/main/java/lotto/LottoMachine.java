@@ -11,7 +11,13 @@ public class LottoMachine {
     public List<Lotto> buyLottos(int inputPrice){
         if(inputPrice < 0) throw new IllegalArgumentException("유효한 금액이 아닙니다");
 
-        return createLottos(inputPrice / Lotto.PRICE);
+        int size = inputPrice / Lotto.PRICE;
+        List<Lotto> lottos = createLottos(size);
+
+        System.out.println(size+"개를 구매했습니다.");
+        for(Lotto lotto : lottos) System.out.println(lotto.toString());
+
+        return lottos;
     }
 
     private Lotto createRandomLotto(){

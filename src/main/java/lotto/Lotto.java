@@ -35,6 +35,11 @@ public class Lotto {
         }
     }
 
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
+
     public boolean hasValue(int num){
         return numbers.contains(num);
     }

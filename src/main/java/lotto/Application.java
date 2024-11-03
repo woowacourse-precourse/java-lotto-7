@@ -31,7 +31,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         while(true){
             try{
-                return machine.buyLottos(parseInt(Console.readLine()));
+                return machine.buyLottos(Integer.parseInt(Console.readLine()));
             }catch (IllegalArgumentException e){
                 System.out.println("[ERROR] "+e.getMessage());
             }
