@@ -18,6 +18,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(int[] rankCounts, double earningRate) {
+        System.out.println("");
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + rankCounts[LottoRank.ranks.indexOf(LottoRank.FIFTH)] + "개");

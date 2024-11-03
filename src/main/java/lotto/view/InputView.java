@@ -14,6 +14,7 @@ public class InputView {
     public static List<Integer> WinNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String input = Console.readLine();
+        System.out.println("");
         return validateWinNumber(input);
     }
 
