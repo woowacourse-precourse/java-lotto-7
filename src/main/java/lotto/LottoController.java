@@ -16,42 +16,41 @@ public class LottoController {
     final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
     final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
     final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
-    private int lottoCount;
+
+    private LottoCount lottoCount;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
 
     public void start() {
-        int lottoCount = purchaseLottos();
-        createLottos(lottoCount);
+        purchaseLottos();
+        createLottos();
         makeWinningNumbers();
-        makeBonusNumber(winningNumbers.get());
-        calculateResults(lottoCount * LOTTO_PRICE);
+        makeBonusNumber();
+        calculateResults();
         displayResults();
     }
 
-    private int purchaseLottos() {
-        lottoCount = 0;
+    private void purchaseLottos() {
         while (true) {
             outputView.printPurchaseGuide();
-            String price = inputView.getPurchasePrice();
-            String checkPrice = lottoPriceValidator.validate(price);
-            if (!isInputError(price, checkPrice)) {
-                lottoCount = Integer.parseInt(price) / LOTTO_PRICE;
+            String inputPrice = inputView.getPurchasePrice();
+            String checkPrice = lottoPriceValidator.validate(inputPrice);
+            if (!isInputError(inputPrice, checkPrice)) {
+                lottoCount = new LottoCount(inputPrice);
                 break;
             }
             outputView.printErrorMessage(checkPrice);
             outputView.printRetryGuide();
         }
-        outputView.printLottoCount(lottoCount);
-        return lottoCount;
+        outputView.printLottoCount(lottoCount.get());
     }
 
     private static boolean isInputError(String input, String checkInput) {
         return input != checkInput;
     }
 
-    private void createLottos(int lottoCount) {
-        lottos.createLottos(lottoCount);
+    private void createLottos() {
+        lottos.createLottos(lottoCount.get());
         outputView.printLottos(lottos.get());
     }
 
@@ -69,11 +68,11 @@ public class LottoController {
         }
     }
 
-    private void makeBonusNumber(List<Integer> winnerNumbers) {
+    private void makeBonusNumber() {
         while (true) {
             outputView.printBonusNumberGuide();
             String inputBonusNumber = inputView.getBonusNumber();
-            String checkBonusNumber = bonusNumberValidator.validate(inputBonusNumber, winnerNumbers);
+            String checkBonusNumber = bonusNumberValidator.validate(inputBonusNumber, winningNumbers.get());
             if (!isInputError(inputBonusNumber, checkBonusNumber)) {
                 bonusNumber = new BonusNumber(inputBonusNumber);
                 break;
@@ -83,8 +82,9 @@ public class LottoController {
         }
     }
 
-    private void calculateResults(int price) {
+    private void calculateResults() {
         lottoResultCalculator.calculate(winningNumbers.get(), bonusNumber.get(), lottos.get());
+        int price = lottoCount.get() * LOTTO_PRICE;
         lottoRateCalculator.calculate(price, lottoResultCalculator.getResult());
     }
 
