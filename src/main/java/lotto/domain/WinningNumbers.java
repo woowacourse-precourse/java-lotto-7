@@ -7,6 +7,7 @@ public class WinningNumbers {
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumbersSize(winningNumbers);
         this.winningLotto = new Lotto(winningNumbers);
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -26,6 +27,12 @@ public class WinningNumbers {
         }
         if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateWinningNumbersSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 }

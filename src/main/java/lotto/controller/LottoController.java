@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.LottoConstants;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
@@ -41,24 +42,29 @@ public class LottoController {
     private int inputPurchaseAmount() {
         while (true) {
             try {
-                return InputView.inputPurchaseAmount();
+                int amount = InputView.inputPurchaseAmount();
+                validatePurchaseAmount(amount);
+                return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private WinningNumbers inputWinningNumbers() {
-        List<Integer> winningNumbers = inputWinningNumberList();
-        System.out.println();
+    private void validatePurchaseAmount(int amount) {
+        if (amount % LottoConstants.LOTTO_PRICE != 0 || amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
+        }
+    }
 
-        int bonusNumber = inputBonusNumber();
+    private WinningNumbers inputWinningNumbers() {
         while (true) {
             try {
+                List<Integer> winningNumbers = inputWinningNumberList();
+                int bonusNumber = inputBonusNumber();
                 return new WinningNumbers(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                bonusNumber = inputBonusNumber();
             }
         }
     }
