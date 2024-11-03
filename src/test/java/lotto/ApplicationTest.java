@@ -61,8 +61,8 @@ class ApplicationTest extends NsTest {
                 ()
                         ->
                 {
-                    run("10000");
-                    assertThat(output()).contains("price: 10000");
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("price: 8000");
                 }
         );
     }
@@ -115,7 +115,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호테스트(){
         assertSimpleTest(
                 () -> {
-                    run("8000", "1,2,3,4,5,6");
+                    run("8000", "1,2,3,4,5,6","7");
                     assertThat(output()).contains(
                             "golden Numbers: [1, 2, 3, 4, 5, 6]"
                     );
@@ -175,7 +175,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_이상한값(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "1,2,3,4,50,java");
+                    runException("8000", "1,2,3,4,50,java","7");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );

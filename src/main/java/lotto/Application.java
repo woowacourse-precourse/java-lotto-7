@@ -11,7 +11,7 @@ public class Application {
         // TODO: 프로그램 구현
         int price=0;
         while(price<=0) {
-            System.out.println("구입 금액을 입력해주세요.");
+            System.out.println("구입 금액을 입력해 주세요.");
             String priceInput = Console.readLine();
 
             try {
@@ -21,9 +21,10 @@ public class Application {
             }
 
         }
+        System.out.println();
 
         //가격 정상 입력 테스트용
-        System.out.println("price: "+price);
+       // System.out.println("price: "+price);
 
         int amount=price/1000;
         ArrayList<Lotto> lottos=new ArrayList<>();
@@ -41,11 +42,12 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
 
         Lotto goldenNumbers=null;
         while (goldenNumbers==null) {
 
-            System.out.println("당첨 번호를 입력해주세요.");
+            System.out.println("당첨 번호를 입력해 주세요.");
             String numbersInput = Console.readLine();
 
             List<Integer> numbers = null;
@@ -62,9 +64,10 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
 
         //당첨번호 테스트용 코드
-        System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
+        //System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
 
         int bonus=0;
         while (bonus<1 || bonus>46) {
@@ -79,7 +82,7 @@ public class Application {
         }
 
         //보너스 테스트용 코드
-        System.out.println("bonus: "+bonus);
+        //System.out.println("bonus: "+bonus);
 
         Level[] levels=Level.values();
         for (Lotto lotto:lottos) {
