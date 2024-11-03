@@ -8,7 +8,8 @@ import lotto.model.LottoPrize;
 public class OutputView {
 
     private static final String PURCHASED_LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.\n";
-    private static final String REPORT_FORMAT = "%d개 일치 (%d원) - %d개\n";
+    private static final String REPORT_FORMAT = "%d개 일치 (%,d원) - %d개\n";
+    private static final String BONUS_REPORT_FORMAT = "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String YIELD_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
     public void printErrorMessage(String message) {
@@ -27,6 +28,11 @@ public class OutputView {
 
     public void printReport(Map<LottoPrize, Integer> matchCountMap) {
         for (LottoPrize prize : LottoPrize.values()) {
+            if (prize == LottoPrize.MATCH_COUNT_5_WITH_BONUS) {
+                System.out.printf(BONUS_REPORT_FORMAT, prize.getPrize(), matchCountMap.get(prize));
+                continue;
+            }
+
             System.out.printf(REPORT_FORMAT, prize.getMatchCount(), prize.getPrize(), matchCountMap.get(prize));
         }
     }
