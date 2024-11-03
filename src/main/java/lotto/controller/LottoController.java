@@ -22,5 +22,9 @@ public class LottoController {
     public List<Lotto> getLottos() {
         return lottoList.getLottoList();
     }
+    public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        lottoList.setWinningNumber(new Lotto(winningNumbers), bonusNumber);
+    }
+
 
 }
