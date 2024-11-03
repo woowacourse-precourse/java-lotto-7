@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.util.RandomLottoNumberGenerator;
+import lotto.util.UserInputValidator;
+import lotto.view.PrintOutputView;
+import lotto.view.ReadUserInputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        new LottoController(new ReadUserInputView(new UserInputValidator()), new PrintOutputView(),
+                new LottoService(new RandomLottoNumberGenerator(), new LottoRepository())).startLotto();
     }
 }
