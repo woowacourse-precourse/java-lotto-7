@@ -93,28 +93,28 @@
 - `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
 
 #### 로또 구입 금액 입력
-- [ ] 1,000원 단위가 아닌 경우 예외 처리
+- [x] 1,000원 단위가 아닌 경우 예외 처리
   - `IllegalArgumentException`
-- [ ] 문자가 입력된 경우 예외 처리
+- [x] 문자가 입력된 경우 예외 처리
   - `NumberFormatException`
 
 #### 당첨 번호 입력
-- [ ] 입력된 숫자가 6개가 아닐 경우 예외 처리
+- [x] 입력된 숫자가 6개가 아닐 경우 예외 처리
     - `IllegalArgumentException`
-- [ ] 입력된 숫자 중 0 혹은 음수가 포함된 경우 예외 처리
+- [x] 입력된 숫자 중 0 혹은 음수가 포함된 경우 예외 처리
     - `IllegalArgumentException`
-- [ ] 문자가 입력된 경우 예외 처리
+- [x] 문자가 입력된 경우 예외 처리
     - `NumberFormatException`
-- [ ] 1 ~ 45 사이의 숫자가 아닌 경우 예외 처리
-    - 커스텀 `LottoNumberOutOfRangeException`
+- [x] 1 ~ 45 사이의 숫자가 아닌 경우 예외 처리
+    - `IllegalArgumentException`
 
 #### 보너스 번호 입력
-- [ ] 입력된 숫자 중 0 혹은 음수가 포함된 경우 예외 처리
+- [x] 입력된 숫자 중 0 혹은 음수가 포함된 경우 예외 처리
   - `IllegalArgumentException`
-- [ ] 문자가 입력된 경우 예외 처리
+- [x] 문자가 입력된 경우 예외 처리
   - `NumberFormatException`
-- [ ] 1 ~ 45 사이의 숫자가 아닌 경우 예외 처리
-  - 커스텀 `LottoNumberOutOfRangeException`
+- [x] 1 ~ 45 사이의 숫자가 아닌 경우 예외 처리
+  - `IllegalArgumentException`
 
 
 ---
