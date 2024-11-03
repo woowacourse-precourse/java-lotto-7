@@ -37,10 +37,10 @@ public class OutputView {
     }
 
     public static void outputEarningRate(Double earningRate) {
-        System.out.println("총 수익률은 " + roundEarningRate(earningRate) + "%입니다.");
+        System.out.println("총 수익률은 " + refineEarningRateFormat(earningRate) + "%입니다.");
     }
 
-    private static String roundEarningRate(Double earningRate) {
+    private static String refineEarningRateFormat(Double earningRate) {
         return df.format(earningRate);
     }
 }
