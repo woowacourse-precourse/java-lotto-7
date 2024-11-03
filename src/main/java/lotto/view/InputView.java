@@ -6,6 +6,10 @@ import lotto.domain.MonetaryUnit;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.view.ErrorMessages.NOT_DIVISIBLE_BY_THOUSAND;
+import static lotto.view.ErrorMessages.NOT_NUMBER_FORMAT;
+import static lotto.view.LottoMessageFormats.*;
+
 public class InputView {
     private static final String WINNING_LOTTO_DELIMITER = ",";
 
@@ -13,7 +17,7 @@ public class InputView {
     }
 
     public static int readUserMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_AMOUNT_PROMPT_MESSAGE.getMessage());
         String userInput = Console.readLine();
         int userMoney = validateNumberFormatOfUserMoney(userInput);
         validateDivisibilityByThousand(userMoney);
@@ -26,7 +30,7 @@ public class InputView {
         try {
             userMoney = Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
         }
 
         return userMoney;
@@ -34,12 +38,12 @@ public class InputView {
 
     private static void validateDivisibilityByThousand(int userMoney) {
         if (userMoney % MonetaryUnit.USER_MONEY_PRICE.getUnit() != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000단위로 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }
 
     public static List<Integer> readWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_NUMBERS_PROMPT_MESSAGE.getMessage());
 
         return Arrays.stream(Console.readLine().split(WINNING_LOTTO_DELIMITER))
                 .map(Integer::parseInt)
@@ -47,7 +51,7 @@ public class InputView {
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_PROMPT_MESSAGE.getMessage());
 
         return Integer.parseInt(Console.readLine());
     }

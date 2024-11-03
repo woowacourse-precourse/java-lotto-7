@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.view.LottoMessageFormats.*;
+
 public class OutputView {
     private OutputView() {
     }
 
     public static void printLottoTickets(LottoTicketsDto lottoTicketsDto) {
         List<LottoDto> lottoTickets = lottoTicketsDto.getLottoTickets();
-        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+        System.out.printf((OUTPUT_PURCHASED_COUNT_MESSAGE.getMessage()) + "%n", lottoTickets.size());
         for (LottoDto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket.getLotto()
                     .stream()
@@ -25,22 +27,22 @@ public class OutputView {
     }
 
     public static void printUserRanks(List<Rank> userRanks) {
-        System.out.println("당첨 통계");
+        System.out.println(OUTPUT_WINNING_STATISTICS_HEADER.getMessage());
         List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values())).reversed();
         for (Rank rank : ranks) {
             if (rank.equals(Rank.NONE)) {
                 continue;
             }
             if (rank.equals(Rank.SECOND)) {
-                System.out.println(rank.getBasicCount() + "개 일치, 보너스 볼 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
+                System.out.printf((OUTPUT_BONUS_RESULT_FORMAT.getMessage()) + "%n", rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
                 continue;
             }
-            System.out.println(rank.getBasicCount() + "개 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
+            System.out.printf((OUTPUT_MATCH_RESULT_FORMAT.getMessage()) + "%n", rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
         }
     }
 
     private static String formatRankPrize(int rankPrize) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat(OUTPUT_PRIZE_FORMAT.getMessage());
 
         return decimalFormat.format(rankPrize);
     }
@@ -52,6 +54,6 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(Double returnOfRate) {
-        System.out.println("총 수익률은 " + returnOfRate + "%입니다.");
+        System.out.printf((OUTPUT_RETURN_RATE_MESSAGE_FORMAT.getMessage()) + "%n", returnOfRate);
     }
 }

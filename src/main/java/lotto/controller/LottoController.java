@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.application.LottoTicketsDto;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
-        int userMoney = readUserMoney();
+        int userMoney = readUserMoneyWithValidation();
         LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(userMoney);
         printLottoTickets(lottoTicketsDto);
 
@@ -42,11 +41,11 @@ public class LottoController {
         return userRanks;
     }
 
-    private int readUserMoney() {
+    private int readUserMoneyWithValidation() {
         int userMoney;
         while (true) {
             try {
-                userMoney = InputView.readUserMoney();
+                userMoney = readUserMoney();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
