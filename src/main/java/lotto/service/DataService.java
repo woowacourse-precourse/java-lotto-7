@@ -1,14 +1,14 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoWinningNumber;
 import lotto.service.lottoImpl.DataServiceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataService implements DataServiceImpl {
+    private RandomNumberService randomNumberService;
+
     @Override
     public LottoWinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
         return new LottoWinningNumber(winningNumbers, bonusNumber);
@@ -16,14 +16,7 @@ public class DataService implements DataServiceImpl {
 
     @Override
     public List<Lotto> createLottos(int tickets) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < tickets; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(numbers));
-        }
-
-        return lottos;
+        return randomNumberService.createRandomNumber(tickets);
     }
 
     @Override
