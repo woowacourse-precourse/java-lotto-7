@@ -3,12 +3,12 @@ package lotto.model;
 import java.util.List;
 
 public enum Ranking {
-    FIRST_PLACE(2_000_000_000, 6),
-    SECOND_PLACE(30_000_000, 5),
-    THIRD_PLACE(1_500_000, 5),
-    FOURTH_PLACE(50_000, 4),
-    FIFTH_PLACE(5_000, 3),
-    LOSE(0, 0);
+    FIRST_PLACE(2_000_000_000, 6, false),
+    SECOND_PLACE(30_000_000, 5, true),
+    THIRD_PLACE(1_500_000, 5, false),
+    FOURTH_PLACE(50_000, 4, false),
+    FIFTH_PLACE(5_000, 3, false),
+    LOSE(0, 0, false);
 
     private static final int FIRST_PLACE_COUNT = 6;
     private static final int SECOND_OR_THIRD_PLACE_COUNT = 5;
@@ -17,10 +17,12 @@ public enum Ranking {
 
     private final int price;
     private final int matchingCount;
+    private final boolean isBonusNumberMatching;
 
-    Ranking(int price, int matchingCount) {
+    Ranking(int price, int matchingCount, boolean isBonusNumberMatching) {
         this.price = price;
         this.matchingCount = matchingCount;
+        this.isBonusNumberMatching = isBonusNumberMatching;
     }
 
     public static Ranking of(int matchingCount, boolean isBonusNumberMatching) {
@@ -42,7 +44,7 @@ public enum Ranking {
         return LOSE;
     }
 
-    public static List<Ranking> valuesOrderByRankDesc() {
+    public static List<Ranking> winnerValuesOrderByRankDesc() {
         return List.of(
                 FIFTH_PLACE, FOURTH_PLACE, THIRD_PLACE, SECOND_PLACE, FIRST_PLACE
         );
@@ -54,5 +56,9 @@ public enum Ranking {
 
     public int getMatchingCount() {
         return matchingCount;
+    }
+
+    public boolean isBonusNumberMatching() {
+        return isBonusNumberMatching;
     }
 }
