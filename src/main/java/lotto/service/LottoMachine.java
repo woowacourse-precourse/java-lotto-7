@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.view.OutputView.printMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
@@ -40,7 +42,7 @@ public class LottoMachine {
             try {
                 return new Budget(InputView.readBudget());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printMessage(e.getMessage());
             }
         }
     }
@@ -57,7 +59,7 @@ public class LottoMachine {
             try {
                 return new WinningNumbers(InputView.readWinningNumbers());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printMessage(e.getMessage());
             }
         }
     }
@@ -67,7 +69,7 @@ public class LottoMachine {
             try {
                 return new BonusNumber(InputView.readBonusNumber(), numbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                printMessage(e.getMessage());
             }
         }
     }

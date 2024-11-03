@@ -22,22 +22,26 @@ public class OutputView {
     }
 
     private static void displayPurchaseQuantity(int lottoQuantity) {
-        System.out.println(OUTPUT_PURCHASE_QUANTITY.format(lottoQuantity));
+        printMessage(OUTPUT_PURCHASE_QUANTITY.format(lottoQuantity));
     }
 
     public static void displayWinningStatistics(double earningRate) {
-        System.out.println(WINNING_STATISTICS_TITLE);
-        System.out.println(DIVIDING_LINE);
+        printMessage(WINNING_STATISTICS_TITLE);
+        printMessage(DIVIDING_LINE);
         for (WinningInfo info : WinningInfo.values()) {
             if (info != WinningInfo.SECOND) {
-                System.out.println(
+                printMessage(
                         OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
                                 info.getWinningTicketCount()));
                 continue;
             }
-            System.out.println(OUTPUT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
+            printMessage(OUTPUT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
                     info.getWinningTicketCount()));
         }
-        System.out.println(OUTPUT_EARNING_RATE.format(earningRate));
+        printMessage(OUTPUT_EARNING_RATE.format(earningRate));
+    }
+
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 }
