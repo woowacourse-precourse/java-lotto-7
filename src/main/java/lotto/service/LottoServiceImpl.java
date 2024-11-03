@@ -1,19 +1,24 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.domain.Bonus;
+import lotto.domain.History;
 import lotto.domain.Lotto;
 import lotto.domain.LottoOffice;
 import lotto.domain.Player;
+import lotto.domain.Winning;
 import lotto.domain.dto.LottoDetail;
 import lotto.service.dto.SellLotto;
 
 public class LottoServiceImpl implements LottoService {
 
     private Player player;
+    private Winning winning;
+    private Bonus bonus;
+    private LottoOffice lottoOffice = new LottoOffice();
 
     @Override
     public SellLotto sellLotto(int money) {
-        LottoOffice lottoOffice = new LottoOffice();
         List<Lotto> lottos = lottoOffice.sellTo(money);
 
         player = Player.create(lottos);
@@ -24,16 +29,19 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public void createWinningNumber(List<Integer> winningNumbers) {
-
+        winning = Winning.create(winningNumbers);
     }
 
     @Override
     public void createBonusNumber(int bonusNumber) {
-
+        winning.existByBonusNumber(bonusNumber);
+        bonus = Bonus.create(bonusNumber);
     }
 
     @Override
     public List<String> compareWinningNumbers() {
-        return List.of();
+        History history = player.compareToWinning(winning, bonus);
+
+        return history.extractHistory();
     }
 }

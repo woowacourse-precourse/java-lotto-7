@@ -21,5 +21,13 @@ public class Lotto {
     public LottoDetail toDTO() {
         return new LottoDetail(numbers);
     }
+
+    public long getHitCount(Winning winning) {
+       return numbers.stream().filter(winning::compareTo).count();
+    }
+
+    public long getBonusHitCount(Bonus bonus) {
+        return numbers.stream().filter(bonus::compareTo).count();
+    }
     // TODO: 추가 기능 구현
 }

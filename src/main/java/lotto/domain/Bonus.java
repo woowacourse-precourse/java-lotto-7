@@ -10,4 +10,8 @@ public class Bonus {
     public static Bonus create(int bonusNumber) {
         return new Bonus(bonusNumber);
     }
+
+    public boolean compareTo(Integer integer) {
+        return bonusNumber == integer;
+    }
 }

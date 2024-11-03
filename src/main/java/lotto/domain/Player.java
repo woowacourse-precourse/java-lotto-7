@@ -13,4 +13,15 @@ public class Player {
     private Player(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public History compareToWinning(Winning winning, Bonus bonus) {
+        History history = new History();
+        for (Lotto lotto : lottos) {
+            long hitCount = lotto.getHitCount(winning);
+            long bonusCount = lotto.getBonusHitCount(bonus);
+            history.addHistory(hitCount, bonusCount);
+        }
+
+        return history;
+    }
 }

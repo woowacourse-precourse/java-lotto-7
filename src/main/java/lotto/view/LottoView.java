@@ -11,33 +11,65 @@ import lotto.view.dto.WinningNumberDTO;
 
 public class LottoView {
 
-    public LottoBuyDTO lottoBuyView(){
-        Output.priceInputMessage();
-        int money = Input.readMoney();
+    public LottoBuyDTO lottoBuyView() {
+        int money;
+        while (true) {
+            try {
+                Output.priceInputMessage();
+                money = Input.readMoney();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return new LottoBuyDTO(money);
     }
 
-    public WinningNumberDTO winningNumberView(){
-        Output.winningNumberInputMessage();
-        List<Integer> winningNumbers = Input.readWinningNumber();
+    public WinningNumberDTO winningNumberView() {
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                Output.winningNumberInputMessage();
+                winningNumbers = Input.readWinningNumber();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return new WinningNumberDTO(winningNumbers);
     }
 
-    public BonusNumberDTO bonusNumberView(){
-        Output.bonusNumberInputMessage();
-        int bonusNumber = Input.readBonusNumber();
+    public BonusNumberDTO bonusNumberView() {
+        int bonusNumber;
+
+        while (true) {
+            try {
+                Output.bonusNumberInputMessage();
+                bonusNumber = Input.readBonusNumber();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return new BonusNumberDTO(bonusNumber);
     }
 
 
     public void printSellLottos(List<LottoDetail> lottoDetails) {
+        System.out.println(String.format("%d개를 구매했습니다.", lottoDetails.size()));
         lottoDetails.forEach(
-            lottoDetail -> {
-                System.out.println(lottoDetail.lottoNumbers().toString());
-            }
+                lottoDetail -> {
+                    System.out.println(lottoDetail.lottoNumbers().toString());
+                }
         );
+    }
+
+    public void printLottoResults(List<String> lottoResults) {
+        System.out.println("당첨통계");
+        System.out.println("---");
+        lottoResults.forEach(System.out::println);
     }
 }
