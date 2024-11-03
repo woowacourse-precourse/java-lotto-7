@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
 import lotto.model.lotto.LottoTickets;
@@ -21,6 +22,9 @@ public class LottoController {
             outputView.printTicketNumber(ticketCount);
             LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
             outputView.printLottoTickets(lottoTickets);
+
+            Lotto winningNumber = new Lotto(inputView.readWinningNumber());
+
         } catch (IllegalArgumentException | IllegalStateException exception) {
             outputView.printExceptionMessage(exception);
         }
