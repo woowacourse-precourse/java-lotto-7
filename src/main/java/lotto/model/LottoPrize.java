@@ -6,8 +6,7 @@ public enum LottoPrize {
     FORTH_PRIZE(4, 0, "4개 일치 (50,000원)", 50000),
     THIRD_PRIZE(5, 0, "5개 일치 (1,500,000원)", 1500000),
     SECOND_PRIZE(5, 1, "5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
-    FIRST_PRIZE(6, 0, "6개 일치 (2,000,000,000원)", 2000000000)
-    ;
+    FIRST_PRIZE(6, 0, "6개 일치 (2,000,000,000원)", 2000000000);
 
     private final String PRIZE_SEPARATOR = " - ";
     private final String UNIT_COUNT = "개";

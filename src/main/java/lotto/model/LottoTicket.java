@@ -12,9 +12,9 @@ public class LottoTicket {
         this.lottoTicket = lottoTicket;
     }
 
-    public LottoBundle getLottoBundle(){
+    public LottoBundle getLottoBundle() {
         List<LottoNumbers> lottoNumbers = new ArrayList<>();
-        for(Lotto lotto : lottoTicket) {
+        for (Lotto lotto : lottoTicket) {
             lottoNumbers.add(lotto.getLottoNumbers());
         }
         return new LottoBundle(lottoNumbers);

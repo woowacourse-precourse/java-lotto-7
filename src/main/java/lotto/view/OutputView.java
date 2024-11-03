@@ -63,8 +63,9 @@ public class OutputView {
         LottoPrize[] prizes = LottoPrize.values();
 
         for (LottoPrize prize : prizes) {
-            if (LottoPrize.FAIL == prize)
+            if (LottoPrize.FAIL == prize) {
                 continue;
+            }
             int prizeCount = prizeStatus.get(prize);
             System.out.println(prize.getPrizeStatusMessage(prizeCount));
         }

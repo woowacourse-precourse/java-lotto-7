@@ -10,15 +10,15 @@ public class AmountsValidator {
     }
 
     private static void checkEmptyAmounts(String amounts) {
-        if (amounts.isBlank()){
+        if (amounts.isBlank()) {
             throw new IllegalArgumentException(EMPTY_AMOUNT.getMessage());
         }
     }
 
     private static void checkNonNumeric(String amounts) {
-        try{
+        try {
             Integer.parseInt(amounts);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NON_NUMERIC.getMessage());
         }
     }

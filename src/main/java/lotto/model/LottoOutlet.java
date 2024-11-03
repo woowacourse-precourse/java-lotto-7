@@ -13,14 +13,14 @@ public class LottoOutlet {
         return generateLottoNumbersTicket(ticketCount);
     }
 
-    private static int buyTicketsByAmount(int lottoAmounts){
+    private static int buyTicketsByAmount(int lottoAmounts) {
         return lottoAmounts / WON_1000;
     }
 
     private static LottoTicket generateLottoNumbersTicket(int totalTickets) {
         List<Lotto> lottoNumbersTicket = new ArrayList<>();
 
-        for (int i = 0; i < totalTickets; i++){
+        for (int i = 0; i < totalTickets; i++) {
             lottoNumbersTicket.add(LottoNumberMaker.makeRandomNumbers());
         }
 

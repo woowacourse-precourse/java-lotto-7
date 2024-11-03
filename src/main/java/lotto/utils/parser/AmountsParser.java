@@ -19,13 +19,13 @@ public class AmountsParser {
     }
 
     private static void checkMinAmounts(int lottoAmounts) {
-        if (lottoAmounts < WON_1000){
+        if (lottoAmounts < WON_1000) {
             throw new IllegalArgumentException(UNDER_MIN_AMOUNTS.getMessage());
         }
     }
 
     private static void checkMaxAmounts(int lottoAmounts) {
-        if (lottoAmounts > PURCHASABLE_MAX_AMOUNTS){
+        if (lottoAmounts > PURCHASABLE_MAX_AMOUNTS) {
             throw new IllegalArgumentException(OVER_MAX_AMOUNTS.getMessage());
         }
     }

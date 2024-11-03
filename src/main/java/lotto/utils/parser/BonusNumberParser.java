@@ -27,7 +27,7 @@ public class BonusNumberParser {
     }
 
     private static void checkBonusNumberRange(int bonusNumber) {
-        if (!(bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER)){
+        if (!(bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(INPUT_BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

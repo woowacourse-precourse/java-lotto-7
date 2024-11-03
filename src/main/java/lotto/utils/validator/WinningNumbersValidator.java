@@ -32,8 +32,8 @@ public class WinningNumbersValidator {
     }
 
     private static void hasInvalidNumberCommaFormat(String winningNumbers) {
-        for (int i = 0; i < winningNumbers.length(); i++){
-            if (!Character.isDigit(winningNumbers.charAt(i)) && !isComma(winningNumbers.charAt(i))){
+        for (int i = 0; i < winningNumbers.length(); i++) {
+            if (!Character.isDigit(winningNumbers.charAt(i)) && !isComma(winningNumbers.charAt(i))) {
                 throw new IllegalArgumentException(ONLY_DIGITS_AND_COMMAS_ALLOWED.getMessage());
             }
         }

@@ -20,7 +20,7 @@ public class LottoEvaluator {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoEvaluatedStatus getEvaluatedStatus(){
+    public LottoEvaluatedStatus getEvaluatedStatus() {
         HashMap<LottoPrize, Integer> prize = getPrize();
 
         LottoBundle lottoBundle = lottoTicket.getLottoBundle();
@@ -105,6 +105,6 @@ public class LottoEvaluator {
         }
 
         double returnOnInvestment = (double) totalPrize / lottoAmount * 100;
-        return  (double) Math.round(returnOnInvestment * 10) / 10.0;
+        return (double) Math.round(returnOnInvestment * 10) / 10.0;
     }
 }
