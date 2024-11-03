@@ -15,7 +15,7 @@ public class TicketOutputView {
 
     public void show(TicketResponse ticketResponse) {
         appendPurchaseCount(ticketResponse.lottosSize());
-        appendLottoNumbers(ticketResponse.lottos());
+        appendLottoNumbers(ticketResponse.getLottosValue());
         printer.execute();
     }
 

@@ -20,13 +20,10 @@ public class Ticket {
         return id;
     }
 
-    public Lottos getLottos() {
-        return lottos;
+    public List<Lotto> getLottosValue() {
+        return lottos.getLottos();
     }
 
-    public List<List<Integer>> getLottosValue() {
-        return lottos.getValue();
-    }
 
     public int getLottosSize() {
         return lottos.getLottosSize();
@@ -49,4 +46,7 @@ public class Ticket {
         }
     }
 
+    public Lottos getLottos() {
+        return lottos;
+    }
 }
