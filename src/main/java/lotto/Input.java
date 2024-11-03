@@ -57,7 +57,8 @@ public class Input {
         }
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber > LottoInfo.endNumber || bonusNumber < LottoInfo.startNumber){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+            throw new IllegalArgumentException(
+                    "[ERROR] 로또 번호는 " + LottoInfo.startNumber + "~" + LottoInfo.endNumber + " 사이여야 합니다.");
         }
 
         return bonusNumber;
