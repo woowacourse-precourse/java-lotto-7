@@ -26,7 +26,7 @@ public class LottoMachineService {
 
     public void inputBonusNumber(String bonusNumber) {
         int validBonusNumber = LottoValidator.validNumber(bonusNumber);
-        LottoValidator.validateDuplicateNumber(lottoMachine.getWinningLotto(), validBonusNumber);
+        LottoValidator.validateDuplicateBonusNumber(lottoMachine.getWinningLotto(), validBonusNumber);
         lottoMachine.saveBonusNumber(validBonusNumber);
     }
 
