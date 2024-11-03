@@ -44,20 +44,22 @@ class PrintTest {
   @Test
   public void printGeneratedTest() throws Exception{
     // 출력값 예시
-    String gievn = "8개를 구매했습니다.";
+    String given = "8개를 구매했습니다.";
     // 사용자 입력을 읽으면
     int amount = input.readAmount();
     int lottoCounts = input.getLottoCounts(amount);
     // 입력 값에 기반하여 요청을 전달하고
     List<Integer> generated = handler.generateLotto(lottoCounts);
     // 요청받은만큼 로또를 발행한다
-    Lotto<Integer> lotto = new Lotto(generated);
+    Lotto lotto = new Lotto(generated);
     // 로또 발행 결과를 전달함으로써 요청값에 응답한다
     handler.getWinning();
     handler.getBonus();
     // 응답 내용을 출력한다
+    String actualOutput = String.format("%d개를 구매했습니다.", lottoCounts);
     // 실제 출력값
     // 예시와 실제값 검증
+    assertEquals(given, actualOutput);
   }
 
   // 이 테스트는 쪼개야 하는건가 아니면 함께 출력하기 위해 통합해야 하는건가..???
