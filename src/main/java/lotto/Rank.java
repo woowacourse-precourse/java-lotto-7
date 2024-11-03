@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+
 public enum Rank {
     THREE(3, false, 5_000, "3개 일치 (5,000원)"),
     FOUR(4, false, 50_000, "4개 일치 (50,000원)"),
@@ -19,5 +21,17 @@ public enum Rank {
         this.isBonusMatched = isBonusMatched;
         this.prizeAmount = prizeAmount;
         this.printMessage = printMessage;
+    }
+
+    public static Rank getRank(int matchingCount, boolean isBonusMatched) {
+        return Arrays.stream(Rank.values())
+                .filter(type -> type.isMatched(matchingCount, isBonusMatched))
+                .findFirst()
+                .orElse(ETC);
+    }
+
+    private boolean isMatched(int matchingCount, boolean isBonusMatched) {
+        return this.matchingCount == matchingCount &&
+            this.isBonusMatched == isBonusMatched;
     }
 }

@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -16,6 +18,18 @@ public class Lottos {
             lottos.add(Lotto.generateLottoTicket());
         }
         return new Lottos(lottos);
+    }
+
+    public WinningStatisticsDto calculateWinningResults(WinningLotto winningLotto) {
+        Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottos) {
+            int matchCount = (int) lotto.getMatchCount(winningLotto);
+            boolean isBonusMatched = lotto.isBonusNumberMatched(winningLotto);
+
+            Rank rank = Rank.getRank(matchCount, isBonusMatched);
+            winningStatistics.put(rank, winningStatistics.getOrDefault(rank, 0) + 1);
+        }
+        return new WinningStatisticsDto(winningStatistics);
     }
 
     public List<Lotto> getLottos() {
