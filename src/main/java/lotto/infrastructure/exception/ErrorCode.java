@@ -8,7 +8,8 @@ public enum ErrorCode {
     INVALID_LOTTO_CONSECUTIVE_DELIMITERS("로또 번호에 연속적인 구분자가 포함될 수 없습니다."),
     INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1 이상 45 이하의 숫자입니다."),
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
-    INVALID_LOTTO_DUPLICATED_NUMBER("중복된 로또 번호가 포함될 수 없습니다.");
+    INVALID_LOTTO_DUPLICATED_NUMBER("중복된 로또 번호가 포함될 수 없습니다."),
+    INVALID_LOTTO_DUPLICATED_BONUS_NUMBER("보너스 번호와 로또 번호는 중복될 수 없습니다.");
 
     private final String ERROR_PREFIX = "[ERROR] ";
     private final String message;

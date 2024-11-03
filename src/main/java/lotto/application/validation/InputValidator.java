@@ -1,4 +1,4 @@
-package lotto;
+package lotto.application.validation;
 
 import static lotto.infrastructure.exception.ErrorCode.*;
 
@@ -10,13 +10,21 @@ public class InputValidator {
     private final int DOUBLE = 2;
 
     public void validateAmount(String purchaseAmount) {
-        validateIsNumber(purchaseAmount, INVALID_NUMBER_FORMAT);
+        validateNumber(purchaseAmount, INVALID_NUMBER_FORMAT);
     }
 
     public void validateLotto(String lottoNumbers) {
         validateNoConsecutiveDelimiters(lottoNumbers);
         validateProperDelimiterPosition(lottoNumbers);
         validateOnlyNumbers(lottoNumbers);
+    }
+
+    public void validateNumber(String input, ErrorCode errorCode) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorCode.getMessage());
+        }
     }
 
     private void validateNoConsecutiveDelimiters(String lottoNumbers) {
@@ -34,15 +42,7 @@ public class InputValidator {
 
     private void validateOnlyNumbers(String lottoNumbers) {
         for (String number : lottoNumbers.split(DELIMITER)) {
-            validateIsNumber(number, INVALID_LOTTO_NUMBER);
-        }
-    }
-
-    private void validateIsNumber(String input, ErrorCode errorCode) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorCode.getMessage());
+            validateNumber(number, INVALID_LOTTO_NUMBER);
         }
     }
 }

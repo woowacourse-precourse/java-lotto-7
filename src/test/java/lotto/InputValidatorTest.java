@@ -3,6 +3,7 @@ package lotto;
 import static lotto.infrastructure.exception.ErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.application.validation.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
