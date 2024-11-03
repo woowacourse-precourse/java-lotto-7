@@ -23,7 +23,7 @@ public class WinningLotto {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ExceptionMessages.EXTEND_NUMBERS_BOUNDARY.getMessage());
         }
-        if (numbers.contains(bonusNumber)) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessages.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
