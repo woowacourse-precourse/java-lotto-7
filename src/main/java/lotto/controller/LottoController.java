@@ -27,8 +27,10 @@ public class LottoController {
         lottoGenerator.printLottoCount(lottos);
         lottoGenerator.printLottos(lottos);
 
-        lottoResultManager.getWinningNumbers();
-        lottoResultManager.getBonusNumbers();
+        List<Integer> winningNumbers = lottoResultManager.getWinningNumbers();
+        int bonusNumber = lottoResultManager.getBonusNumbers();
+
+        lottoResultManager.printResult(lottos, winningNumbers, bonusNumber);
     }
 
 }
