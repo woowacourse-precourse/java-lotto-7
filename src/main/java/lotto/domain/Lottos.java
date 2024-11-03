@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.util.StringMaker;
-
 import java.util.List;
+
+import static lotto.enums.Error.INVALID_LOTTOS;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -22,7 +22,7 @@ public class Lottos {
 
     private static void isNotEmpty(List<Lotto> lottos) {
         if(lottos.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTOS.getMessage());
         }
     }
 
