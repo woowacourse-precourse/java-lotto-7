@@ -11,18 +11,36 @@ import static lotto.Constants.*;
 public class InputView {
 
     public static int inputBuyAmount(){
-        print(INPUT_BUY_AMOUNT.getMessage());
-        return Utils.stringToInteger(readLine());
+        while (true){
+            try{
+                print(INPUT_BUY_AMOUNT.getMessage());
+                return Utils.stringToInteger(readLine());
+            }catch (IllegalArgumentException e){
+                print(e.getMessage());
+            }
+        }
     }
 
     public static List<Integer> inputWinningNumbers(){
-        print(NEW_LINE + INPUT_WINNING_NUMBERS.getMessage());
-        return Utils.parseAndconvertToIntegerList(readLine(), DELIMITER);
+        while(true){
+            try{
+                print(NEW_LINE + INPUT_WINNING_NUMBERS.getMessage());
+                return Utils.parseAndconvertToIntegerList(readLine(), DELIMITER);
+            }catch (IllegalArgumentException e){
+                print(e.getMessage());
+            }
+        }
     }
 
     public static int inputBonusNumber(){
-        print(NEW_LINE + INPUT_BONUS_NUMBER.getMessage());
-        return Utils.stringToInteger(readLine());
+        while(true){
+            try{
+                print(NEW_LINE + INPUT_BONUS_NUMBER.getMessage());
+                return Utils.stringToInteger(readLine());
+            }catch (IllegalArgumentException e){
+                print(e.getMessage());
+            }
+        }
     }
 
 }
