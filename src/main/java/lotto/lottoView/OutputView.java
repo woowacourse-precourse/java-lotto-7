@@ -5,7 +5,7 @@ import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.StatisticsLottoDTO;
 
 public class OutputView {
-    private static final String HOW_MANY_BUY = "%d개를 구매했습니다.";
+    private static final String HOW_MANY_BUY = "%s개를 구매했습니다.";
     private static final String STATISTIC_START = "당첨 통계\n---";
     private static final String VALUE_MATCH_START = "%d개 일치";
     private static final String VALUE_MATCH_END = " (%,d원) - %d개";
