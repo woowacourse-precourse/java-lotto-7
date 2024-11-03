@@ -43,5 +43,7 @@ public class Application {
 
         Map<Rank,Integer> result = rankCalculatorController.calculateResult(lottos);
 
+        rankCalculatorController.printResult(result);
+
     }
 }

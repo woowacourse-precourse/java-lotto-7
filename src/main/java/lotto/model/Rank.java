@@ -16,6 +16,14 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
     public static Rank valueOf(int matchCount, boolean isBonusMatch) {
         if (matchCount == 6) {
             return FIRST;
