@@ -5,6 +5,7 @@ import lotto.prize.Prize;
 import java.util.List;
 import java.util.Map;
 import lotto.model.CalculatePrize;
+import java.util.Collections;
 
 public class OutputView{
     public static void buyMessage(int quantity){
