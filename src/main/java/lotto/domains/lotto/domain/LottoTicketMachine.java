@@ -1,7 +1,5 @@
 package lotto.domains.lotto.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,13 +25,22 @@ public class LottoTicketMachine {
 			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
 
-	public List<Map<LottoPrize,Integer>> generateLottoResult(List<Map<Integer,Boolean>> winningStatus) {
-		Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
-
-		List<Map<LottoPrize, Integer>> result = new ArrayList<>();
-		result.add(prizeCountMap);
-		return result;
+	public void generateLottoResult(Map<LottoPrize, Integer> winningStatus, List<Map<Integer, Boolean>> lottoResults) {
+		lottoResults.forEach(lottoResult-> {
+			for (Map.Entry<Integer, Boolean> entry : lottoResult.entrySet()) {
+				int matchCount = entry.getKey();
+				boolean hasBonusNumber = entry.getValue();
+				updateWinningStatus(winningStatus, matchCount, hasBonusNumber);
+			}
+		});
 	}
 
+	private static void updateWinningStatus(Map<LottoPrize, Integer> winningStatus, int matchCount, boolean hasBonusNumber) {
+		for (LottoPrize prize : LottoPrize.values()) {
+			if (prize.getMatchCount() == matchCount && prize.getHasBonusNumber() == hasBonusNumber) {
+				winningStatus.put(prize, winningStatus.getOrDefault(prize, 0) + 1);
+			}
+		}
+	}
 
 }

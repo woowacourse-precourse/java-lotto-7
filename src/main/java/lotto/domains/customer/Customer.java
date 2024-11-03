@@ -28,17 +28,21 @@ public class Customer {
 		return money / LOTTO_COST;
 	}
 
-	public Map<Integer, Boolean> checkWinningStatus(LottoTicket lottoTickets,
+	public List<Map<Integer, Boolean>> checkWinningStatus(LottoTicket lottoTickets,
 		LottoPrizeNumbers lottoPrizeNumbers) {
-		Map<Integer, Boolean> matchingCount = new HashMap<>();
+		List<Map<Integer, Boolean>> matchingCount = new ArrayList<>();
 		lottoTickets.getTickets().forEach(ticket -> {
 			int count = (int)ticket.getNumbers().stream()
 				.filter(lottoPrizeNumbers.getWinningNumbers()::contains).count();
+
+			Map<Integer, Boolean> countAndHasBonus = new HashMap<>();
 			if (count == FOUR_MATCH && ticket.getNumbers().contains(lottoPrizeNumbers.getBonusNumber())) {
-				matchingCount.put(count + BONUS_COUNT, true);
+				countAndHasBonus.put(count + BONUS_COUNT, true);
+				matchingCount.add(countAndHasBonus);
 				return;
 			}
-			matchingCount.put(count, false);
+			countAndHasBonus.put(count, false);
+			matchingCount.add(countAndHasBonus);
 		});
 		return matchingCount;
 	}

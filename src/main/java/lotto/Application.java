@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import lotto.domains.customer.Customer;
-import lotto.domains.lotto.LottoPrizeNumbers;
-import lotto.domains.lotto.LottoTicket;
-import lotto.domains.lotto.LottoTicketMachine;
+import lotto.domains.lotto.domain.LottoPrizeNumbers;
+import lotto.domains.lotto.domain.LottoTicket;
+import lotto.domains.lotto.domain.LottoTicketMachine;
+import lotto.domains.lotto.type.LottoPrize;
+import lotto.service.LottoResultFactory;
 import lotto.service.LottoService;
 import lotto.util.TypeConverter;
 import lotto.view.InputInterface;
@@ -16,6 +18,7 @@ public class Application {
 	public static void main(String[] args) {
 		InputInterface inputInterface = new InputInterface();
 		LottoService lottoService = new LottoService();
+		LottoResultFactory lottoResultFactory = new LottoResultFactory();
 
 		Customer customer = purchaseLottoTickets(inputInterface);
 		int ticketAmount = customer.calculateAmount();
@@ -36,9 +39,14 @@ public class Application {
 		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
 
 		OutputInterface.printMessage(OutputInterface.WINNING_STATISTICS_INFORMATION);
+
+		Map<LottoPrize,Integer> lottoResult = lottoResultFactory.generateLottoResult();
+
 		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
-		// winningStatus를 티켓머신에 가져가서 결과 받기 List<Map<LottoPrize, Integer>>
-		// 수익 계산하기
+
+		lottoTicketMachine.generateLottoResult(lottoResult, winningStatus);
+
+
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
