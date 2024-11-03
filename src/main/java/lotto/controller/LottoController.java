@@ -10,6 +10,8 @@ import lotto.util.validator.BonusNumbersValidator;
 import lotto.util.validator.PurchaseMoneyValidator;
 import lotto.util.validator.WinnerNumbersValidator;
 import lotto.view.InputView;
+import lotto.view.OutputPrompt;
+import lotto.view.OutputResult;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class LottoController {
         String purchaseMoneyInput = "";
         while(validInput){
             try {
-                OutputView.printPurchaseAmountPrompt();
+                OutputPrompt.printPurchaseAmountPrompt();
                 purchaseMoneyInput = InputView.getUserInput();
                 PurchaseMoneyValidator.validatePurchaseMoney(purchaseMoneyInput);
                 validInput = false;
@@ -54,7 +56,7 @@ public class LottoController {
     private static void generateAndDisplayLottoNumbers(LottoCollection lotto) {
         ArrayList<Lotto> newLotto = LottoService.generateNewLottoNumbers(lotto.getNumOfLotto());
         lotto.setLotto(newLotto);
-        OutputView.printNewLotto(lotto.getLotto());
+        OutputResult.printNewLotto(lotto.getLotto());
     }
 
     // 3. 당첨 번호 및 보너스 번호 설정
@@ -70,7 +72,7 @@ public class LottoController {
         Lotto winnerLotto = null;
         while (validInput) {
             try {
-                OutputView.printWinnerNumbersPrompt();
+                OutputPrompt.printWinnerNumbersPrompt();
                 String winnerLottoInput = InputView.getUserInput();
                 WinnerNumbersValidator.validateWinnerNumber(winnerLottoInput);
                 winnerLotto = new Lotto(LottoService.generateWinnerLotto(winnerLottoInput));
@@ -88,7 +90,7 @@ public class LottoController {
         int bonusNumber = 0;
         while (validInput) {
             try {
-                OutputView.printBonusNumbersPrompt();
+                OutputPrompt.printBonusNumbersPrompt();
                 String bonusNumberInput = InputView.getUserInput();
                 BonusNumbersValidator.validateBonusNumber(bonusNumberInput, winnerNumbers);
                 bonusNumber = Integer.parseInt(bonusNumberInput);
@@ -105,10 +107,10 @@ public class LottoController {
         LottoResult lottoResult = new LottoResult();
 
         LottoPrizeService.checkPrizeOfLotto(lotto, lottoResult);
-        OutputView.printWinningStatus(lottoResult);
+        OutputResult.printWinningStatus(lottoResult);
 
         LottoPrizeService.calculateProfit(lotto.getPurchaseMoney(), lottoResult);
-        OutputView.printTotalProfit(LottoResult.getProfit());
+        OutputResult.printTotalProfit(LottoResult.getProfit());
     }
 
 }
