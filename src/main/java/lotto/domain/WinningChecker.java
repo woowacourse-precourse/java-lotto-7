@@ -1,27 +1,33 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Map;
-import lotto.repository.LottoRepository;
 
 public class WinningChecker {
-    private LottoRepository lottoRepository;
-    private List<int[]> matchingResult = new ArrayList<>();
+    public Map<String, Integer> checkWinning(Bonus bonus, Lotto lotto, List<List<Integer>> userLottos) {
+        Map<String, Integer> lottoRankCount = LottoRank.LottoRankCollector();
 
-    public Map<String, Integer> checkWinning() {
-        Bonus bonus = lottoRepository.getBonusNumber();
-        Lotto lotto = lottoRepository.getWinningNumbers();
-
-        for (List<Integer> userLotto : lottoRepository.getLottoNumbers()) {
-            matchingResult.add(lotto.matching(userLotto, bonus));
+        for (List<Integer> userLotto : userLottos) {
+            int matchCount = lotto.matching(userLotto);
+            boolean matchBonus = bonus.matching(userLotto);
+            String rank = LottoRank.valueOf(matchCount, matchBonus);
+            if (rank == "NONE") {
+                continue;
+            }
+            lottoRankCount.put(rank, lottoRankCount.get(rank) + 1);
         }
-        return new LottoRankCounter().countRanks(matchingResult);
+        return lottoRankCount;
     }
 
-    public WinningChecker(LottoRepository lottoRepository) {
-        this.lottoRepository = lottoRepository;
-
+    public static double calculateReturn(Map<String, Integer> matchingResult, int ticketNumbers) {
+        double sum = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            sum += rank.getPrize() * matchingResult.get(rank.name());
+        }
+        double result = sum / (ticketNumbers * LOTTO_PRICE) * 100;
+        return result;
     }
 
 }
