@@ -12,6 +12,7 @@ import lotto.model.Prize;
 public class OutputView {
     public static final OutputView INSTANCE = new OutputView();
     public static final String OUTPUT_LOTTO_MESSAGE = "개를 구매했습니다.";
+    public static final String OUTPUT_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printLotto(int quantity) {
         System.out.println(quantity + OUTPUT_LOTTO_MESSAGE);
@@ -48,6 +49,6 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+        System.out.printf(OUTPUT_PROFIT_MESSAGE, profitRate);
     }
 }
