@@ -9,17 +9,15 @@ public class PaymentController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final Payment payment;
 
     public PaymentController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.payment = payMoney();
     }
 
-    private Payment payMoney() {
+    public Payment pay() {
         while (true) {
-            Payment newPayment = pay();
+            Payment newPayment = payMoney();
             outputView.printlnMessage(PrintMessage.LINE_SPACE);
             if (newPayment != null) {
                 return newPayment;
@@ -27,7 +25,7 @@ public class PaymentController {
         }
     }
 
-    private Payment pay() {
+    private Payment payMoney() {
         try {
             outputView.printlnMessage(PrintMessage.INPUT_LOTTO_PURCHASE_AMOUNT);
             String money = inputView.inputUser();
@@ -36,9 +34,5 @@ public class PaymentController {
             System.out.println("ERROR");
         }
         return null;
-    }
-
-    public Payment getPayment() {
-        return payment;
     }
 }

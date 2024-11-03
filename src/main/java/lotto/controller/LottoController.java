@@ -29,7 +29,7 @@ public class LottoController {
         outputView.printlnMessage(PrintMessage.LINE_SPACE);
     }
 
-    public List<Lotto> getLottoTicket() {
+    public List<Lotto> getTicket() {
         return lottoTicket;
     }
 }

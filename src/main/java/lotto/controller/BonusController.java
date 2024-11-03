@@ -10,15 +10,13 @@ public class BonusController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final BonusGenerator bonusGenerator;
 
-    public BonusController(InputView inputView, OutputView outputView, Lotto winnings) {
+    public BonusController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.bonusGenerator = inputBonus(winnings);
     }
 
-    private BonusGenerator inputBonus(Lotto winning) {
+    public BonusGenerator inputBonus(Lotto winning) {
         while (true) {
             BonusGenerator newBonusGenerator = inputLottoBonus(winning);
             outputView.printlnMessage(PrintMessage.LINE_SPACE);
@@ -37,9 +35,5 @@ public class BonusController {
             System.out.println("ERROR");
         }
         return null;
-    }
-
-    public BonusGenerator getBonusGenerator() {
-        return bonusGenerator;
     }
 }

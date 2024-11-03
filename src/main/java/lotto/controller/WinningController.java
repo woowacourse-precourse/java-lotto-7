@@ -9,15 +9,13 @@ public class WinningController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final WinningGenerator winningGenerator;
 
     public WinningController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.winningGenerator = inputWinning();
     }
 
-    private WinningGenerator inputWinning() {
+    public WinningGenerator inputWinning() {
         while (true) {
             WinningGenerator newWinningGenerator = inputLottoWinning();
             outputView.printlnMessage(PrintMessage.LINE_SPACE);
@@ -36,9 +34,5 @@ public class WinningController {
             System.out.println("ERROR");
         }
         return null;
-    }
-
-    public WinningGenerator getWinningGenerator() {
-        return winningGenerator;
     }
 }
