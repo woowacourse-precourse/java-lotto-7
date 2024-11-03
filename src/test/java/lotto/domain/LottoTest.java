@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.LottoManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -40,5 +43,25 @@ class LottoTest {
         Assertions.assertEquals(lottoList, lotto.getNumbers());
     }
 
+    @Test
+    void 로또의_크기에_맞게_로또를_만들어야_한다() {
+        Lotto lotto = Lotto.makeRandomLotto();
+        int expected = 6;
+        Assertions.assertEquals(expected,lotto.getNumbers().size());
+    }
 
+    @Test
+    void 기대하는_로또_번호_목록이_알맞게_생성되야_한다() {
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    Lotto lotto = Lotto.makeRandomLotto();
+                    Assertions.assertEquals(
+                            expected,
+                            lotto.getNumbers()
+                    );
+                },
+                expected
+        );
+    }
 }
