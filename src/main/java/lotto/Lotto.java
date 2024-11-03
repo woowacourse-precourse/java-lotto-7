@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +18,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }
