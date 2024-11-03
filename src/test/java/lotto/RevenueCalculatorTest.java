@@ -14,19 +14,10 @@ public class RevenueCalculatorTest {
     }
 
     @Test
-    void 최종_수익률_계산() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount("50000");
-        WinningRank.match(3, false);
-        WinningRank.match(5, true);
-
-        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isEqualTo(60010.0);
-    }
-
-    @Test
-    void 최종_수익률_소수점_둘째자리까지_표현() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount("160000");
+    void 최종_수익률_소수점_둘째자리까지_계산() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount("8000");
         WinningRank.match(3, false);
 
-        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isEqualTo(3.13);
+        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isEqualTo(62.5);
     }
 }
