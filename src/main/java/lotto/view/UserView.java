@@ -8,7 +8,9 @@ import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoArgumentException;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static lotto.validation.LottoNumbersValidation.*;
+import static lotto.validation.MoneyValidation.isValidateAmount;
 
 public class UserView {
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -18,12 +20,6 @@ public class UserView {
     private static final String PRINT_LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String PRINT_RESULT_SUFFIX = "개";
     private static final String PRINT_TOTAL_PRIZE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-
-    private static final int MINIMUM_NUMBER = 1;
-    private static final int MAXIMUM_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
-    private static final int MINIMUM_BUY = 1_000;
-    private static final int LOTTO_UNIT = 1_000;
 
     public static int printAndGetAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
@@ -40,9 +36,7 @@ public class UserView {
     }
 
     private static int checkAmount(String inputAmount) {
-        if (inputAmount == null || inputAmount.equals("\n") || inputAmount.isBlank()) {
-            throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
-        }
+        isValidateInput(inputAmount);
 
         try {
             int amount = Integer.parseInt(inputAmount);
@@ -50,16 +44,6 @@ public class UserView {
             return amount;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
-        }
-    }
-
-    private static void isValidateAmount(int amount) {
-        if (amount < MINIMUM_BUY) {
-            throw new LottoArgumentException(LottoErrorMessage.LESS_MIN_AMOUNT_ERROR);
-        }
-
-        if (amount % LOTTO_UNIT != 0) {
-            throw new LottoArgumentException(LottoErrorMessage.DIV_1_000_AMOUNT_ERROR);
         }
     }
 
@@ -89,43 +73,18 @@ public class UserView {
     }
 
     private static List<Integer> checkWinNumbers(String inputWinNumbers) {
-        if (inputWinNumbers == null || inputWinNumbers.equals("\n") || inputWinNumbers.isBlank()) {
-            throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
-        }
+        isValidateInput(inputWinNumbers);
 
         try {
             List<Integer> winNumbers = Arrays
                     .stream(inputWinNumbers.split(","))
                     .map(String::strip).map(Integer::parseInt)
                     .toList();
-            isValidateWinNumbers(winNumbers);
+            isValidateLottoNumbers(winNumbers);
             return winNumbers;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_CONTAINS_LETTER_ERROR);
         }
-    }
-
-    private static void isValidateWinNumbers(List<Integer> winNumbers) {
-        if (winNumbers.size() != LOTTO_SIZE) {
-            throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_COUNT_ERROR);
-        }
-
-        if (!checkValidRangeNumbers(winNumbers)) {
-            throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
-        }
-
-        if (checkDuplicateNumbers(winNumbers)) {
-            throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_DUPLICATE_ERROR);
-        }
-    }
-
-    private static boolean checkValidRangeNumbers(List<Integer> winNumbers) {
-        return winNumbers.stream().allMatch(number -> MINIMUM_NUMBER <= number && number <= MAXIMUM_NUMBER);
-    }
-
-    private static boolean checkDuplicateNumbers(List<Integer> winNumbers) {
-        Set<Integer> duplicateNumbers = new HashSet<>();
-        return winNumbers.stream().anyMatch(number -> !duplicateNumbers.add(number));
     }
 
     public static int printAndGetBonusNumber(List<Integer> winNumbers) {
@@ -143,9 +102,7 @@ public class UserView {
     }
 
     private static int checkBonusNumbers(String inputBonusNumber, List<Integer> winNumbers) {
-        if (inputBonusNumber == null || inputBonusNumber.equals("\n") || inputBonusNumber.isBlank()) {
-            throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
-        }
+        isValidateInput(inputBonusNumber);
 
         try {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
@@ -154,20 +111,6 @@ public class UserView {
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
         }
-    }
-
-    private static void isValidateBonusNumber(int bonusNumber, List<Integer> winNumbers) {
-        if (bonusNumber < MINIMUM_NUMBER || MAXIMUM_NUMBER < bonusNumber) {
-            throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
-        }
-
-        if (checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
-            throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_WIN_BONUS_NUMBER_ERROR);
-        }
-    }
-
-    private static boolean checkDuplicateWinNumbersAndBonusNumber(int bonusNumber, List<Integer> winNumbers) {
-        return winNumbers.stream().anyMatch(number -> number == bonusNumber);
     }
 
     public static void printLottoResult(Result result, int amount) {
@@ -183,5 +126,11 @@ public class UserView {
     private static void printWinPrizeRate(Result result, int amount) {
         double winPrizeRate = result.getWinPrize() / (double) amount * 100;
         System.out.printf(PRINT_TOTAL_PRIZE_RATE_MESSAGE + "%n", Math.round(winPrizeRate * 10) / 10.0);
+    }
+
+    private static void isValidateInput(String input) {
+        if(input == null || input.equals("\n") || input.isBlank()) {
+            throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
+        }
     }
 }

@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.validation.LottoNumbersValidation.isValidateLottoNumbers;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -16,21 +18,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-
-        if (checkDuplicateNumbers(numbers)) {
-            throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBERS_ERROR);
-        }
+        isValidateLottoNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현
-    private static boolean checkDuplicateNumbers(List<Integer> winNumbers) {
-        Set<Integer> duplicateNumbers = new HashSet<>();
-        return winNumbers.stream().anyMatch(number -> !duplicateNumbers.add(number));
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }
