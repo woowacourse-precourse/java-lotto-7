@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import lotto.model.CheckLotto;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
 import lotto.view.InputView;
@@ -13,6 +13,7 @@ public class LottoController {
     private final InputView inputView;
     private Lotto lotto;
     private LottoNumbers lottoNumbers;
+    private CheckLotto checkLotto;
     private int cost;
     private int bonusNumber;
 
@@ -52,52 +53,15 @@ public class LottoController {
 
         outputView.showWinningStatistics();
 
-        int threeMatched = 0;
-        int fourMatched = 0;
-        int fiveMatched = 0;
-        int bonusMatched = 0;
-        int allMatched = 0;
+        checkLotto = CheckLotto.create();
 
-        for (List<Integer> lottoNumber : lottoNumbers.getLottoNumbers()) {
-            int lottoCount = 0;
-            boolean isBonusMatched = lottoNumber.contains(bonusNumber);
+        checkLotto.checkLottoNumbers(lottoNumbers, lotto, bonusNumber);
 
-            for (int number : lotto.getNumbers()) {
-                if (lottoNumber.contains(number)) {
-                    lottoCount++;
-                }
-            }
+        outputView.showWinningResult(checkLotto.getThreeMatched(), checkLotto.getFourMatched(),
+                checkLotto.getFiveMatched(), checkLotto.getBonusMatched(), checkLotto.getAllMatched());
 
-            if (lottoCount == 6) {
-                allMatched++;
-                continue;
-            }
-            if (lottoCount == 5 && isBonusMatched) {
-                bonusMatched++;
-                continue;
-            }
-            if (lottoCount == 5) {
-                fiveMatched++;
-                continue;
-            }
-            if (lottoCount == 4) {
-                fourMatched++;
-                continue;
-            }
-            if (lottoCount == 3) {
-                threeMatched++;
-            }
-        }
-
-        outputView.showWinningResult(threeMatched, fourMatched, fiveMatched, bonusMatched, allMatched);
-
-        int totalWinnings = (5000 * threeMatched) + (50000 * fourMatched) +
-                (1500000 * fiveMatched) + (30000000 * bonusMatched) +
-                (2000000000 * allMatched);
-
-        double earningRatio = ((double) totalWinnings / cost) * 100;
-        String formatEarningRatio = String.format("%,.1f", earningRatio);
-        outputView.showTotalEarningRatio(formatEarningRatio);
+        String earningRatio = checkLotto.getEarningRatio(cost);
+        outputView.showTotalEarningRatio(earningRatio);
 
     }
 
