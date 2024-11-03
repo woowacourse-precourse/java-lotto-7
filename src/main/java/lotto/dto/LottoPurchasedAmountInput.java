@@ -3,7 +3,7 @@ package lotto.dto;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
-public record LottoPurchasedAmountInput(String RawAmount) {
+public record LottoPurchasedAmountInput(String rawAmount) {
 
     private static void validateLottoPurchasedAmountNotNull(String RawAmount) {
         if (RawAmount == null) {
