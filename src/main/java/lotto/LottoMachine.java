@@ -26,4 +26,11 @@ public class LottoMachine {
             .toList();
     }
 
+    public int currentLottoTicketCount() {
+        return lottoTickets.getTicketCount();
+    }
+
+    public String currentLottoTicketNumbers() {
+        return lottoTickets.toString();
+    }
 }
