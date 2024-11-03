@@ -1,18 +1,27 @@
 package lotto;
 
+import static lotto.ErrorCode.INVALID_LOTTO_NUMBER;
 import static lotto.ErrorCode.INVALID_NUMBER_FORMAT;
 
 public class InputValidator {
 
+    private final String DELIMITER = ",";
+
     public void validateAmount(String purchaseAmount) {
-        validateIsNumber(purchaseAmount);
+        validateIsNumber(purchaseAmount, INVALID_NUMBER_FORMAT);
     }
 
-    private void validateIsNumber(String purchaseAmount) {
+    public void validateLotto(String lottoNumbers) {
+        for (String number : lottoNumbers.split(DELIMITER)) {
+            validateIsNumber(number, INVALID_LOTTO_NUMBER);
+        }
+    }
+
+    private void validateIsNumber(String input, ErrorCode errorCode) {
         try {
-            Integer.parseInt(purchaseAmount);
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
+            throw new IllegalArgumentException(errorCode.getMessage());
         }
     }
 }
