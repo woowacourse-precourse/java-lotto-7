@@ -59,4 +59,12 @@ public class LottoResult {
         return Rank.NOT_MATCH;
     }
 
+    public long calculateWinningPrize() {
+        long result = 0;
+        for (Rank rank : matchNumber.keySet()) {
+            int matchCount = getMatchNumber().getOrDefault(rank, 0);
+            result += (long) rank.prize * matchCount;
+        }
+        return result;
+    }
 }
