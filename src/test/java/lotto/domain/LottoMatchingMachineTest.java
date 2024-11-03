@@ -29,6 +29,7 @@ class LottoMatchingMachineTest {
 			.isEqualTo(winningNumbers);
 	}
 
+	@DisplayName("당첨 등수를 조회할 수 있다.")
 	@Test
 	void matchAll() {
 
