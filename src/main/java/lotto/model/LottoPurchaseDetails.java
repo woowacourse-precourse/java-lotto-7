@@ -11,6 +11,8 @@ public class LottoPurchaseDetails {
     private static final int START = 1;
     private static final int END = 45;
     private static final int COUNT = 6;
+    private static final String PURCHASED_NUM_LOTTO_MESSAGE = "%d개를 구매했습니다.";
+    private static final String NEW_LINE = "\n";
 
     private final long numLottto;
     private final List<Lotto> lottoGroup;
@@ -24,8 +26,15 @@ public class LottoPurchaseDetails {
         return lottoGroup;
     }
 
-    public long getNumLottto() {
-        return numLottto;
+    public String getPurchaseDetailsMessage() {
+        StringBuilder purchaseDetailsMessage = new StringBuilder();
+
+        purchaseDetailsMessage.append(String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLottto)).append(NEW_LINE);
+        for (Lotto lotto : lottoGroup) {
+            purchaseDetailsMessage.append(lotto.getNumbers()).append(NEW_LINE);
+        }
+
+        return purchaseDetailsMessage.toString();
     }
 
     private List<Lotto> generateLottoGroup(long numLotto) {
@@ -60,6 +69,4 @@ public class LottoPurchaseDetails {
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
-
-
 }
