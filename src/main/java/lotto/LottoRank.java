@@ -44,9 +44,7 @@ public enum LottoRank {
     public static LottoRank checkWinningRank(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
         int matchCount = 0;
 
-        for (int index = 0; index < userLotto.size(); index++) {
-            int number = userLotto.get(index);
-
+        for (int number : userLotto) {
             if (winningLotto.contains(number)) {
                 matchCount++;
             }

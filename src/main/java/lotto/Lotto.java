@@ -3,10 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
+public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,6 +23,19 @@ public class Lotto {
     @Override
     public String toString() {
         return "" + numbers;
+    }
+
+    @Override
+    public Iterator<Integer> iterator() {
+        return numbers.iterator();
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {

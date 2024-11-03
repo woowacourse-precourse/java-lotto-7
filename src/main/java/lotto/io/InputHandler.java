@@ -61,9 +61,7 @@ public class InputHandler {
     }
 
     private void checkBounsNumberForDuplicates(Lotto winningLotto, int bonusNumber) {
-        for (int index = 0; index < winningLotto.size(); index++) {
-            int number = winningLotto.get(index);
-
+        for (int number : winningLotto) {
             if (number == bonusNumber) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
             }
