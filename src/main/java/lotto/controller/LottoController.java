@@ -12,22 +12,37 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public void run() {
-        try {
-
-            PurchasedPrice purchasedPrice = new PurchasedPrice(InputView.readPurchasedPrice());
-
-            Lottos purchasedLottos = generate(purchasedPrice);
-            OutputView.printPurchasedLottos(purchasedLottos);
-
-            Lotto winningNumbers = new Lotto(InputView.readWinningNumbers());
-            BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
-
-            printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
-
-
-        } catch(IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        PurchasedPrice purchasedPrice = null;
+        while (purchasedPrice == null) {
+            try {
+                purchasedPrice = new PurchasedPrice(InputView.readPurchasedPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
+        Lottos purchasedLottos = generate(purchasedPrice);
+        OutputView.printPurchasedLottos(purchasedLottos);
+
+        Lotto winningNumbers = null;
+        while (winningNumbers == null) {
+            try {
+                winningNumbers = new Lotto(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        BonusNumber bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                bonusNumber = new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
     }
 
     private Lottos generate(PurchasedPrice purchasedPrice) {
