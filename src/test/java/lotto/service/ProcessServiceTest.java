@@ -2,17 +2,21 @@ package lotto.service;
 
 import lotto.enumValue.CommonMessage;
 import lotto.enumValue.Number;
+import lotto.enumValue.ResultMessage;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoWinningNumber;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProcessServiceTest {
+    private final int ONE = 1;
     private final int TICKETS = 3;
     private final int BONUS_NUMBER = 7;
     private final String ANSWER = "1050166.7";
@@ -40,11 +44,13 @@ public class ProcessServiceTest {
 
         LottoResult result = processService.matchNumber(lottos, winningNumber);
 
-        assertTrue(result.toString().contains("3개 일치 (5,000원) - 0개" + CommonMessage.NEW_LINE.getMessange() +
-                "4개 일치 (50,000원) - 1개" + CommonMessage.NEW_LINE.getMessange() +
-                "5개 일치 (1,500,000원) - 0개" + CommonMessage.NEW_LINE.getMessange() +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개" + CommonMessage.NEW_LINE.getMessange() +
-                "6개 일치 (2,000,000,000원) - 0개"), CommonMessage.FAIL.getMessange());
+        List<String> answer = Arrays.asList(ResultMessage.FIFTH.getDescription()+Number.ZERO.getValue(),
+                ResultMessage.THIRD.getDescription()+Number.ZERO.getValue(),
+                ResultMessage.FIRST.getDescription()+Number.ZERO.getValue(),
+                ResultMessage.FOURTH.getDescription()+ONE,
+                ResultMessage.SECOND.getDescription()+ONE);
+
+        assertThat(result.toString()).contains(answer);
     }
 
 }
