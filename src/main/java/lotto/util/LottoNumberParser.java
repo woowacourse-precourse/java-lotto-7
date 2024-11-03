@@ -7,6 +7,7 @@ public class LottoNumberParser {
     private LottoNumberParser() {
     }
 
+
     public static List<Integer> parseLottoNumbers(String inputLottoNumbers) {
         try {
             return Arrays.stream(inputLottoNumbers.split(","))

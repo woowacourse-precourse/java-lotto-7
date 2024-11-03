@@ -13,15 +13,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoApplication {
-    final InputView inputView;
-    final OutputView outputView;
-    final ErrorView errorView;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final ErrorView errorView;
 
     public LottoApplication(InputView inputView, OutputView outputView, ErrorView errorView) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.errorView = errorView;
     }
+
 
     public void run() {
         Budget budget = getValidatedBudget();

@@ -16,6 +16,7 @@ public class Lotto {
         this.numbers = lottoNumbers;
     }
 
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

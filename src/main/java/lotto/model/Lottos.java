@@ -12,6 +12,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+
     public int size() {
         return lottos.size();
     }

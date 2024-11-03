@@ -4,6 +4,7 @@ public class BudgetValidator {
     private BudgetValidator() {
     }
 
+
     public static void validateInputBudget(String inputBudget) {
         validateNotEmpty(inputBudget);
         validateNumberFormat(inputBudget);

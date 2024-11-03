@@ -12,6 +12,7 @@ public class LottoResult {
         this.earningRate = earningRate;
     }
 
+
     public List<LottoRank> getLottoRanks() {
         return LottoRanks;
     }
