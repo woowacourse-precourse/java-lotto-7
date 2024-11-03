@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.*;
 
 public class LottoMachine {
@@ -23,6 +25,6 @@ public class LottoMachine {
     }
 
     private Lotto generateLotto() {
-        return null;
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }
