@@ -27,19 +27,19 @@ public class GameController {
         calculateAndViewResult();
     }
 
-    public void purchaseAndViewLottoTicket() {
+    private void purchaseAndViewLottoTicket() {
         int money = InputHandler.inputMoney();
         lottoTicket = lottoMachine.purchaseTicket(money);
         OutputView.outputLottoNumbers(lottoTicket);
     }
 
-    public void generateWinningLotto() {
+    private void generateWinningLotto() {
         Lotto winLotto = InputHandler.inputLottoNumbers();
         Bonus bonusNumber = InputHandler.inputBonusNumber(winLotto.getNumbers());
         winningLotto = new WinningLotto(winLotto, bonusNumber);
     }
 
-    public void calculateAndViewResult() {
+    private void calculateAndViewResult() {
         lottoResult = new LottoResult(lottoTicket.getPrice());
         lottoTicket.getLottos().stream()
                         .forEach(lotto -> lottoResult.recordResult(winningLotto, lotto));
