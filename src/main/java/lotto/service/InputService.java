@@ -33,6 +33,15 @@ public class InputService {
     }
 
     public BigInteger getBonusNumber() {
-        return BigInteger.ZERO;
+        InputView inputView = new InputView();
+        Validator validator = new Validator();
+
+        while (true) {
+            try {
+                return validator.validBonusNumber(inputView.readBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
