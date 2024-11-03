@@ -3,6 +3,8 @@ package lotto.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domains.Lotto;
 import lotto.enums.LottoRank;
 import org.junit.jupiter.api.BeforeAll;
@@ -62,6 +64,15 @@ public class LottoServiceTest {
             cost += (long)counts[rank.ordinal()] * rank.getGetPrize();
         }
         assertEquals(cost, lottoService.getWinningCost(counts));
+    }
+
+    @Test
+    void 로또_당첨_테스트() {
+        Lotto issueLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        assertEquals(LottoRank.SECOND, lottoService.getLottoRank(issueLotto, winningLotto, bonusNumber));
     }
 
     @BeforeAll
