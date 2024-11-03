@@ -42,23 +42,25 @@ public class LottoService {
     private static void updateMatchStatistics(LottoDto lottoDto, Lotto lotto, int matchedCount,
                                               List<Integer> matchStatistics) {
         if (isBonusMatch(lottoDto, lotto, matchedCount)) {
-            matchStatistics.set(FIVE_AND_BONUS.winningCount, matchStatistics.get(FIVE_AND_BONUS.winningCount) + 1);
+            matchStatistics.set(FIVE_AND_BONUS.index, matchStatistics.get(FIVE_AND_BONUS.index) + 1);
             return;
         }
 
         if (isValidMatchCount(matchedCount, matchStatistics)) {
-            if (matchedCount == 6) {
-                matchStatistics.set(SIX.winningCount, matchStatistics.get(SIX.winningCount) + 1);
-                return;
-            }
             matchStatistics.set(matchedCount, matchStatistics.get(matchedCount) + 1);
         }
     }
 
     private int countMatchedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        return (int) winningNumbers.stream()
+        long matchedCount = winningNumbers.stream()
                 .filter(lottoNumbers::contains)
                 .count();
+
+        if (matchedCount == 6) {
+            return 7;
+        }
+
+        return (int) matchedCount;
     }
 
     private static boolean isValidMatchCount(int matchedCount, List<Integer> matchStatistics) {
