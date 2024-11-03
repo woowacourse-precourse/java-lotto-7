@@ -1,17 +1,21 @@
 package lotto.domain.money;
 
-import lotto.exception.LottoApplicationException;
-
 public record Money(int amount) {
+
+    private static final int MIN_AMOUNT = 0;
 
     public Money {
         validate(amount);
     }
 
     private void validate(int amount) {
-        if (amount < 0) {
-            throw new LottoApplicationException("금액은 0보다 작을 수 없습니다.");
+        if (isOutOfRange(amount)) {
+            throw new IllegalArgumentException(String.format("금액은 %,d보다 작을 수 없습니다.", MIN_AMOUNT));
         }
+    }
+
+    private boolean isOutOfRange(int amount) {
+        return amount < MIN_AMOUNT;
     }
 
     public boolean isEnoughToBuy(int price) {

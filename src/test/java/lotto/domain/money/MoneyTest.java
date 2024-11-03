@@ -15,8 +15,8 @@ class MoneyTest {
     void _0보다_작은_금액은_생성할_수_없다() {
         // when & then
         assertThatThrownBy(() -> new Money(-1))
-                .isInstanceOf(LottoApplicationException.class)
-                .hasMessage("[ERROR] 금액은 0보다 작을 수 없습니다.");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("금액은 0보다 작을 수 없습니다.");
     }
 
     @CsvSource(textBlock = """
