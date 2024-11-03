@@ -12,6 +12,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class LottoController {
@@ -25,11 +26,11 @@ public class LottoController {
         String purchaseAmount = inputView.getPurchaseAmount();
         PurchaseAmountValidator.validate(purchaseAmount);
         int userAmount = Integer.parseInt(purchaseAmount) / 1000;
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < userAmount; i++) {
-            lottos.add(LottoService.createLotto());
+            userLottos.add(LottoService.createLotto());
         }
-        OutputView.printUserLottos(lottos, userAmount);
+        OutputView.printUserLottos(userLottos, userAmount);
 
         String lottoNumbers = inputView.getLottoNumbers();
         String bonusNumber = inputView.getBonusNumber();
@@ -40,5 +41,8 @@ public class LottoController {
         LottoService lottoService = new LottoService(
                 LottoConverter.parseLottoNumbers(lottoRequestDto.getLottoNumbers()),
                 LottoConverter.parseBonusNumber(lottoRequestDto.getBonusNumber()));
+
+        Map<String, Integer> userLottoStatistics = lottoService.calculateUserLottoStatistics(userLottos);
+        OutputView.printUserLottoStatistics(userLottoStatistics);
     }
 }
