@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,20 @@ public class Lotto {
         return numbers;
     }
 
+    public int countMatch(List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count; // 일치하는 번호 수 반환
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number); // 특정 번호가 포함되어 있는지 확인
+    }
+
     public void sortNumbers() {
         Collections.sort(numbers);
     }
@@ -38,5 +53,17 @@ public class Lotto {
                 .collect(Collectors.joining(","))
                 + "]";
         return lottoNumber;
+    }
+
+    public int getResult(WinningNumbers winningNumbers) {
+        int match = winningNumbers.countMatch(numbers);
+        if (match < WinningMatch.valueOfMinMatch().getMatch()) {
+            return WinningMatch.valueOfMinMatch().getRank() + 1;
+        }
+        int rank = WinningMatch.valueOfMatch(match).getRank();
+        if (rank == WinningMatch.THIRD.getRank() /*&& bonus.matchBonus(numbers)*/) {
+            return WinningMatch.SECOND.getRank();
+        }
+        return rank;
     }
 }

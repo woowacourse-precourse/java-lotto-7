@@ -1,9 +1,12 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.WinningMatch;
 
 public class OutputView {
+    public static final NumberFormat THOUSAND_SEPARATOR = NumberFormat.getInstance();
 
     // 메서드 명 길이에 대해 고민해보기
     // 메서드 명
@@ -29,21 +32,19 @@ public class OutputView {
     }
 
     public void WinningStatistics() {
-        System.out.println("당첨 통계");
+        System.out.print("당첨 통계");
+        System.out.print("---");
+        System.out.println();
+    }
+    
+    public void matchWinningCount(List<Integer> winningCounts) {
+        for (int rank = winningCounts.size(); rank > 0; rank--) {
+            int winningCount = winningCounts.get(rank-1);
+            System.out.println(WinningMatch.valueOfRank(rank).getMatchAmount() + "(" + THOUSAND_SEPARATOR.format(WinningMatch.valueOfRank(rank).getPriceAmount()) + "원) - " + winningCount + "개");
+        }
     }
 
-    public void matchWinningNumber(int matchCount) {
-        System.out.print(matchCount + "개 일치" + "(---원)");
-    }
-    public void matchWinningCount(int count) {
-        System.out.println(" - " + count + "개");
-    }
-
-    public void promptTotalReturnRate(String totalReturnRate) {
+        public void promptTotalReturnRate(String totalReturnRate) {
         System.out.println("총 수익률은 " + "totalReturnRate" + "%입니다.");
     }
-
-    public void showLottoNumber(List<Lotto> lottoNumbers) { }
-
-
 }
