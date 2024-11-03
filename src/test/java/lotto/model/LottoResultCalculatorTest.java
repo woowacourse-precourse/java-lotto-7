@@ -16,9 +16,7 @@ class LottoResultCalculatorTest {
 
     @BeforeEach
     void setUp() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        resultCalculator = new LottoResultCalculator(winningNumbers, bonusNumber);
+        resultCalculator = new LottoResultCalculator(List.of(1, 2, 3, 4, 5, 6), 7);
     }
 
     @Test
