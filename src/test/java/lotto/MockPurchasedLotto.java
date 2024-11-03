@@ -3,11 +3,11 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpyPurchasedLotto extends PurchasedLotto {
+public class MockPurchasedLotto extends PurchasedLotto {
 
     private final List<Lotto> lottos;
 
-    public SpyPurchasedLotto(Payment payment) {
+    public MockPurchasedLotto(Payment payment) {
         super(new ArrayList<>());
         lottos = new ArrayList<>(payment.get() / 1000);
     }

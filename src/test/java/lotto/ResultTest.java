@@ -12,13 +12,13 @@ class ResultTest {
     private Result result;
     private Winning winning;
     private Bonus bonus;
-    private SpyPurchasedLotto purchasedLotto;
+    private MockPurchasedLotto purchasedLotto;
 
     @BeforeEach
     void setUp() {
         winning = Winning.from("1,2,3,4,5,6");
         bonus = Bonus.from("7");
-        purchasedLotto = new SpyPurchasedLotto(Payment.from("1000"));
+        purchasedLotto = new MockPurchasedLotto(Payment.from("1000"));
     }
 
     @DisplayName("당첨 번호와 로또 번호가 6개 일치할 경우 1등에 당첨된다.")
@@ -219,7 +219,7 @@ class ResultTest {
     @DisplayName("여러 등수에 동시에 당첨될 수 있다.")
     @Test
     void 여러_등수에_동시에_당첨될_수_있다() {
-        purchasedLotto = new SpyPurchasedLotto(Payment.from("14000"));
+        purchasedLotto = new MockPurchasedLotto(Payment.from("14000"));
 
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         purchasedLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
