@@ -6,12 +6,16 @@ public class Application {
         // TODO: 프로그램 구현
         LottoMachine lottoMachine = new LottoMachine();
 
-        System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        lottoMachine.purchaseLottos(amount);
-        lottoMachine.inputWinningNumbers();
-        lottoMachine.inputBonusNumber();
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            int amount = Integer.parseInt(Console.readLine());
+            lottoMachine.purchaseLottos(amount);
+            lottoMachine.inputWinningNumbers();
+            lottoMachine.inputBonusNumber();
 
-        lottoMachine.calculateResult(amount);
+            lottoMachine.calculateResult(amount);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

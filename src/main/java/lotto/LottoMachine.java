@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
+import java.util.HashSet;
 import lotto.Lotto;
 
 public class LottoMachine {
@@ -14,6 +15,9 @@ public class LottoMachine {
     private int bonusNumber;
 
     public void purchaseLottos(int amount) {
+        if (amount % LOTTO_PRICE != 0){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여아 합니다.");
+        }
         int count = amount / LOTTO_PRICE;
         System.out.printf("%d개를 구매했습니다.%n", count);
         for (int i = 0; i < count; i++) {
@@ -27,15 +31,27 @@ public class LottoMachine {
     public void inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
+        if (input.length != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
+        }
         winningNumbers = new ArrayList<>();
         for (String s : input) {
-            winningNumbers.add(Integer.parseInt(s.trim()));
+            int number = Integer.parseInt(s.trim());
+            validateNumberRange(number);
+            winningNumbers.add(number);
+        }
+        if (new HashSet<>(winningNumbers).size() != 6){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
         }
     }
 
     public void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
+        validateNumberRange(bonusNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
     }
 
     public List<Integer> getWinningNumbers() {
@@ -96,6 +112,10 @@ public class LottoMachine {
         DecimalFormat df = new DecimalFormat("#, ##0.0");
         System.out.printf("총 수익률은 %s%%입니다.%n", df.format(yield));
     }
-
+    private void validateNumberRange(int number){
+        if (number < 1 ||number > 45){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 
 }
