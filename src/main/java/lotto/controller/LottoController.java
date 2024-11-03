@@ -26,20 +26,29 @@ public class LottoController {
     }
 
     public void start() {
-        int purchaseAmount = Integer.parseInt(RetryUtil.retryReadPurchaseAmount(inputView::readPurchaseAmount));
+        int purchaseAmount = readPurchaseAmount();
         AttemptCount attemptCount = new AttemptCount(purchaseAmount);
-        Lottos lottos = new Lottos(attemptCount.getCount(), generateNumbers);
+        Lottos lottos = generateLottos(attemptCount);
 
-        LottosDTO lottosDTO = LottosDTO.from(lottos.getLottos());
-        outputView.printLottos(lottosDTO);
+        displayLottos(lottos);
 
         WinningNumbers winningNumbers = createWinningNumbersFromInput();
         BonusNumber bonusNumber = createBonusNumberFromInput(winningNumbers);
 
-        LottoManager lottoManager = new LottoManager(lottos, winningNumbers, bonusNumber);
-        LottoResultDTO lottoResultDTO = LottoResultDTO.of(lottoManager.getResults(),
-                lottoManager.calculateRateOfReturn(purchaseAmount));
-        outputView.printResults(lottoResultDTO);
+        displayResults(purchaseAmount, lottos, winningNumbers, bonusNumber);
+    }
+
+    private int readPurchaseAmount() {
+        return Integer.parseInt(RetryUtil.retryReadPurchaseAmount(inputView::readPurchaseAmount));
+    }
+
+    private Lottos generateLottos(AttemptCount attemptCount) {
+        return new Lottos(attemptCount.getCount(), generateNumbers);
+    }
+
+    private void displayLottos(Lottos lottos) {
+        LottosDTO lottosDTO = LottosDTO.from(lottos.getLottos());
+        outputView.printLottos(lottosDTO);
     }
 
     private WinningNumbers createWinningNumbersFromInput() {
@@ -51,11 +60,17 @@ public class LottoController {
         return new WinningNumbers(winningNumbers);
     }
 
-
     private BonusNumber createBonusNumberFromInput(WinningNumbers winningNumbers) {
         int bonusNumber = Integer.parseInt(
                 RetryUtil.retryReadBonusNumber(inputView::readBonusNumber, winningNumbers.winningNumbers()));
 
         return new BonusNumber(bonusNumber, winningNumbers.winningNumbers());
+    }
+
+    private void displayResults(int purchaseAmount, Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        LottoManager lottoManager = new LottoManager(lottos, winningNumbers, bonusNumber);
+        LottoResultDTO lottoResultDTO = LottoResultDTO.of(lottoManager.getResults(),
+                lottoManager.calculateRateOfReturn(purchaseAmount));
+        outputView.printResults(lottoResultDTO);
     }
 }
