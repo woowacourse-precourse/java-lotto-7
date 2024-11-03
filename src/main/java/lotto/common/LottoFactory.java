@@ -1,5 +1,6 @@
 package lotto.common;
 
+import lotto.view.OutputPublishedTicketsView;
 import lotto.view.OutputPurchasingView;
 import lotto.winningLotto.WinningController;
 import lotto.publishingLotto.PublishingController;
@@ -13,17 +14,19 @@ public class LottoFactory {
     private final InputPaymentView inputPaymentView;
     private final PaymentValidator paymentValidator;
     private final OutputPurchasingView outputPurchasingView;
+    private final OutputPublishedTicketsView outputPublishedTicketsView;
 
     public LottoFactory() {
         this.inputPaymentView = new InputPaymentView();
         this.paymentValidator = new PaymentValidator();
         this.outputPurchasingView = new OutputPurchasingView();
+        this.outputPublishedTicketsView = new OutputPublishedTicketsView();
     }
 
     public void create() {
         PurchasingController purchasingController = new PurchasingController(inputPaymentView, paymentValidator, outputPurchasingView);
         purchasingController.purchaseLottoTickets();
-        PublishingController publishingController = new PublishingController();
+        PublishingController publishingController = new PublishingController(outputPublishedTicketsView);
         WinningController winningController = new WinningController();
     }
 }
