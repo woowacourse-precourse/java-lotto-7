@@ -8,17 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private final LottoTicket ticket;
-    private final List<Lotto> lottos;
-    LottoMachine(LottoTicket ticket){
-        this.ticket = ticket;
-        lottos = issueLottoTickets();
-    }
-    public List<Lotto> getLottos(){
-        return lottos;
-    }
 
-    private List<Lotto> issueLottoTickets(){
+    public List<Lotto> issueLottoTickets(LottoTicket ticket){
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i<ticket.getCount();i++){
             lottos.add(randomLotto());
