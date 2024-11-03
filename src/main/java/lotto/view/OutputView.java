@@ -30,10 +30,13 @@ public class OutputView {
         System.out.println(DIVIDING_LINE);
         for (WinningInfo info : WinningInfo.values()) {
             if (info != WinningInfo.SECOND) {
-                System.out.println(OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(), info.getWinningTicketCount()));
+                System.out.println(
+                        OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
+                                info.getWinningTicketCount()));
                 continue;
             }
-            System.out.println(OUTPUT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(), info.getWinningTicketCount()));
+            System.out.println(OUTPUT_SECOND_PLACE_RESULT.format(info.getMatchingNumberCount(), info.getPrizeMoney(),
+                    info.getWinningTicketCount()));
         }
         System.out.println(OUTPUT_EARNING_RATE.format(earningRate));
     }

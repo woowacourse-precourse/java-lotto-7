@@ -12,7 +12,8 @@ import java.util.List;
 public class LottoNumbersGenerator {
 
     public static List<Integer> generate() {
-        List<Integer> mutableNumbers = new ArrayList<>( Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, PICK_COUNT));
+        List<Integer> mutableNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, PICK_COUNT));
         mutableNumbers.sort(Comparator.naturalOrder());
         return mutableNumbers;
     }

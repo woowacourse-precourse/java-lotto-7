@@ -42,7 +42,7 @@ class LottoTest {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
         BonusNumber bonusNumber = new BonusNumber("8", winningNumbers);
 
-        assertThat(testLotto.findPlace(winningNumbers,bonusNumber))
+        assertThat(testLotto.findPlace(winningNumbers, bonusNumber))
                 .isEqualTo(THIRD.getPlace());
     }
 }

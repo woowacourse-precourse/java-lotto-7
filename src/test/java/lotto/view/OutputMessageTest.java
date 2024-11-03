@@ -24,7 +24,8 @@ class OutputMessageTest {
         int prizeMoney = THIRD.getPrizeMoney();
         int winningTicketCount = THIRD.getWinningTicketCount();
 
-        assertThat(OutputMessage.OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(matchingNumberCount, prizeMoney, winningTicketCount))
+        assertThat(OutputMessage.OUTPUT_EXCEPT_SECOND_PLACE_RESULT.format(matchingNumberCount, prizeMoney,
+                winningTicketCount))
                 .isEqualTo(String.format("%d개 일치 (%,d원) - %d개", matchingNumberCount, prizeMoney, winningTicketCount));
     }
 
@@ -36,7 +37,8 @@ class OutputMessageTest {
         int winningTicketCount = SECOND.getWinningTicketCount();
 
         assertThat(OutputMessage.OUTPUT_SECOND_PLACE_RESULT.format(matchingNumberCount, prizeMoney, winningTicketCount))
-                .isEqualTo(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", matchingNumberCount, prizeMoney, winningTicketCount));
+                .isEqualTo(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", matchingNumberCount, prizeMoney,
+                        winningTicketCount));
     }
 
     @Test

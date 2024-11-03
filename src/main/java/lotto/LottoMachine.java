@@ -80,7 +80,7 @@ public class LottoMachine {
         }
     }
 
-    private void updateWinningTicketCount (int place) {
+    private void updateWinningTicketCount(int place) {
         for (WinningInfo info : WinningInfo.values()) {
             if (place == info.getPlace()) {
                 info.win();
