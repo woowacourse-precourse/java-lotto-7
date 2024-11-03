@@ -2,12 +2,14 @@ package lotto.model;
 
 import java.util.List;
 import lotto.utils.Converter;
+import lotto.utils.WinningNumbersValidator;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
     private WinningNumbers(String winningNumbers) {
         List<String> winningNumberStrings = splitInput(winningNumbers);
+        WinningNumbersValidator.validateWinningNumbers(winningNumberStrings);
         this.winningNumbers = Converter.parseToIntegerList(winningNumberStrings);
     }
 
