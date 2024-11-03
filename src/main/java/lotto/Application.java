@@ -10,18 +10,11 @@ public class Application {
         // 1 . 구매 금액 입력 및 로또 수량 계산
         System.out.println("구입금액을 입력해 주세요.");
         int purchasePrice = LottoInput.getValidPurchasePrice();
-        int lottoQuantity = purchasePrice / 1000;
 
-        // 2 . 로또 번호 생성 및 저장
-        List<Lotto> lottoRepository = new ArrayList<>();
-        for (int i = 0; i < lottoQuantity; i++) {
-            List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(lotto);
-            lottoRepository.add(new Lotto(lotto));
-        }
+        LottoManager manager = new LottoManager(purchasePrice);
 
         // 3 . 로또 번호 출력
-        LottoPrint.purchaseNumber(lottoQuantity, lottoRepository);
+        LottoPrint.purchaseNumber(manager.getLottoRepository().size(), manager.getLottoRepository());
 
         // 4 . 당첨 & 보너스 번호 입력
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -37,11 +30,11 @@ public class Application {
         }
 
         // 6 . 당첨&보너스 번호 통계 비교 작업
-        for (Lotto lotto : lottoRepository) {
+        for (Lotto lotto : manager.getLottoRepository()) {
             List<Integer> intersection = new ArrayList<>(winningNumber);
-            intersection.retainAll(lotto.getNumbers());
-            int count = intersection.size();
-            boolean bonus = lotto.getNumbers().contains(bonusNumber);
+            intersection.retainAll(lotto.getNumbers()); //교집합 갯수 구하는 기능
+            int count = intersection.size(); // 해당 교집합 사이즈
+            boolean bonus = lotto.getNumbers().contains(bonusNumber); //보너스 번호 보함 여부
             LottoRank rank = LottoRank.getLottoRank(count, bonus);
             if (rank != null) {
                 winningStatistics.put(rank, winningStatistics.get(rank) + 1);
