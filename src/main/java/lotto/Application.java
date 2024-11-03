@@ -24,7 +24,7 @@ public class Application {
 
         WinningContext context = getWinningContext();
 
-        WinningResult result = lottoService.checkResult(lottos, context);
+        WinningResult result = lottoService.result(lottos, context);
         OutputView.printWinningStatistics(result);
         OutputView.printEarningsRate(lottoService.calculateEarningsRate(result.getTotalPrize(), amount));
     }

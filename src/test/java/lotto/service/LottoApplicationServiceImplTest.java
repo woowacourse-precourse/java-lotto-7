@@ -151,7 +151,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.FIRST)).isEqualTo(1);
@@ -167,7 +167,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.SECOND)).isEqualTo(1);
@@ -183,7 +183,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.THIRD)).isEqualTo(1);
@@ -199,7 +199,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.FOURTH)).isEqualTo(1);
@@ -215,7 +215,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.FIFTH)).isEqualTo(1);
@@ -231,7 +231,7 @@ public class LottoApplicationServiceImplTest {
         WinningContext context = new WinningContext(winningNumbers, bonusNumber);
 
         // when
-        WinningResult result = lottoService.checkResult(List.of(lotto), context);
+        WinningResult result = lottoService.result(List.of(lotto), context);
 
         // then
         assertThat(result.getRankCounts().get(Rank.NO_WIN)).isEqualTo(1);

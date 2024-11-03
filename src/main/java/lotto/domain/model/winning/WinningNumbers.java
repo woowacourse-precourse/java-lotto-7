@@ -22,8 +22,8 @@ public class WinningNumbers {
     }
 
     private List<Integer> parseAndValidate(String input) {
-        checkEmptyOrNull(input);
-        checkWhitespaceOrTrailingComma(input);
+        checkNotEmpty(input);
+        checkNotWhitespaceOrTrailingComma(input);
         checkInvalidCharacters(input);
 
         List<Integer> parsedNumbers = parseNumbers(input);
@@ -40,17 +40,17 @@ public class WinningNumbers {
 
     private void validateNumbers(List<Integer> numbers) {
         checkSize(numbers);
-        checkDuplicates(numbers);
+        checkNotDuplicate(numbers);
         checkRange(numbers);
     }
 
-    private void checkEmptyOrNull(String input) {
+    private void checkNotEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
         }
     }
 
-    private void checkWhitespaceOrTrailingComma(String input) {
+    private void checkNotWhitespaceOrTrailingComma(String input) {
         if (input.matches(WHITESPACE_OR_TRAILING_COMMA_REGEX)) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_WHITESPACE.getMessage());
         }
@@ -68,7 +68,7 @@ public class WinningNumbers {
         }
     }
 
-    private void checkDuplicates(List<Integer> numbers) {
+    private void checkNotDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.DUPLICATE_NUMBER.getMessage());

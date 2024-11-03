@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LottoApplicationService {
     boolean validateAmount(String input);
-    WinningResult checkResult(List<Lotto> lottos, WinningContext context);
+    WinningResult result(List<Lotto> lottos, WinningContext context);
     double calculateEarningsRate(int totalPrize, int amount);
     List<Lotto> generateLottos(int amount);
 }

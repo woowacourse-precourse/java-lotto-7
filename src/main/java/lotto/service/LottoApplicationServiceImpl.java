@@ -24,21 +24,21 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
 
     @Override
     public boolean validateAmount(String input) {
-        validateNotBlank(input);
-        validateNumeric(input);
+        checkNotBlank(input);
+        checkNumeric(input);
         int amount = parseAmount(input);
-        validatePositiveAmount(amount);
-        validateDivisibleByLottoPrice(amount);
+        checkPositiveAmount(amount);
+        checkDivisibleByLottoPrice(amount);
         return true;
     }
 
-    private void validateNotBlank(String input) {
+    private void checkNotBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
         }
     }
 
-    private void validateNumeric(String input) {
+    private void checkNumeric(String input) {
         if (!input.matches(NUMERIC_REGEX)) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
         }
@@ -48,20 +48,20 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
         return Integer.parseInt(input);
     }
 
-    private void validatePositiveAmount(int amount) {
+    private void checkPositiveAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
         }
     }
 
-    private void validateDivisibleByLottoPrice(int amount) {
+    private void checkDivisibleByLottoPrice(int amount) {
         if (amount % GlobalConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
         }
     }
 
     @Override
-    public WinningResult checkResult(List<Lotto> lottos, WinningContext context) {
+    public WinningResult result(List<Lotto> lottos, WinningContext context) {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
             Rank rank = determineRank(lotto, context);
