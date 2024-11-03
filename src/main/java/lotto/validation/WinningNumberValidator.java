@@ -32,6 +32,11 @@ public class WinningNumberValidator {
         validateWinningNumberDuplicate(winningNumbers);
     }
 
+    public static void validateBonusNumberInput(String bonusNumberInput) {
+        ValidationUtils.validateNotBlank(bonusNumberInput, ErrorMessageConstants.EMPTY_BONUS_NUMBER);
+        ValidationUtils.validateIsNumber(bonusNumberInput, ErrorMessageConstants.INVALID_BONUS_NUMBER_FORMAT);
+    }
+
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
         validateBonusNumberDuplicate(winningNumbers, bonusNumber);
