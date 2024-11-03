@@ -31,7 +31,8 @@ public class OutputView {
         System.out.println("\n당첨 통계\n---");
     }
 
-    public static void printResult(String description, int count) {
-        System.out.println(description + " - " + count + "개");
+    public static void printResult(String description, int prize, int count) {
+        String formattedPrize = String.format("%,d", prize);
+        System.out.println(description + " (" + formattedPrize + "원) - " + count + "개");
     }
 }
