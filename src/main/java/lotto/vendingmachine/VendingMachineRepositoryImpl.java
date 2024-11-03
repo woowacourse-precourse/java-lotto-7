@@ -5,15 +5,15 @@ import java.util.List;
 
 public class VendingMachineRepositoryImpl implements VendingMachineRepository {
 
-    private static List<Lotto> storage = new ArrayList<>();
+    private static List<Lotto> lottoStorage = new ArrayList<>();
 
     @Override
     public void save(List<Lotto> lottos) {
-        storage.addAll(lottos);
+        lottoStorage.addAll(lottos);
     }
 
     @Override
     public List<Lotto> getStoredLottoTickets() {
-        return storage;
+        return lottoStorage;
     }
 }
