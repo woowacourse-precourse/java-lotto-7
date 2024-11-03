@@ -1,7 +1,6 @@
 package lotto.lottos;
 
-import lotto.NumberGenerator.LottoNumbersGenerator;
-import lotto.lottos.Lotto;
+import lotto.lottos.NumberGenerator.LottoNumbersGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Lottos {
 
     public void createLottos(int lottoCount) {
         LottoNumbersGenerator lottoNumberGenerator = new LottoNumbersGenerator();
-        IntStream.range(0, lottoCount).mapToObj(i -> new Lotto(lottoNumberGenerator.generate())).forEach(lottos::add);
+        IntStream.range(0, lottoCount).mapToObj(count -> new Lotto(lottoNumberGenerator.generate())).forEach(lottos::add);
     }
 
     public List<Lotto> get() {

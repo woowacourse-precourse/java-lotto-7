@@ -1,4 +1,4 @@
-package lotto.NumberGenerator;
+package lotto.lottos.NumberGenerator;
 
 import java.util.List;
 

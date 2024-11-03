@@ -9,7 +9,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public static final int LOTTO_PRICE = 1000;
+
     final InputView inputView = new InputView();
     final OutputView outputView = new OutputView();
     final Lottos lottos = new Lottos();
@@ -19,7 +19,7 @@ public class LottoController {
     final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
     final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
 
-    private LottoCount lottoCount;
+    private LottoPrice lottoPrice;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
 
@@ -38,13 +38,13 @@ public class LottoController {
             String inputPrice = inputView.getPurchasePrice();
             String checkPrice = lottoPriceValidator.validate(inputPrice);
             if (!isInputError(inputPrice, checkPrice)) {
-                lottoCount = new LottoCount(inputPrice);
+                lottoPrice = new LottoPrice(inputPrice);
                 break;
             }
             outputView.printErrorMessage(checkPrice);
             outputView.printRetryGuide();
         }
-        outputView.printLottoCount(lottoCount.get());
+        outputView.printLottoCount(lottoPrice.getLottoCount());
     }
 
     private static boolean isInputError(String input, String checkInput) {
@@ -52,7 +52,7 @@ public class LottoController {
     }
 
     private void createLottos() {
-        lottos.createLottos(lottoCount.get());
+        lottos.createLottos(lottoPrice.getLottoCount());
         outputView.printLottos(lottos.get());
     }
 
@@ -86,8 +86,7 @@ public class LottoController {
 
     private void calculateResults() {
         lottoResultCalculator.calculate(winningNumbers.get(), bonusNumber.get(), lottos.get());
-        int price = lottoCount.get() * LOTTO_PRICE;
-        lottoRateCalculator.calculate(price, lottoResultCalculator.getResult());
+        lottoRateCalculator.calculate(lottoPrice.get(), lottoResultCalculator.getResult());
     }
 
     private void displayResults() {

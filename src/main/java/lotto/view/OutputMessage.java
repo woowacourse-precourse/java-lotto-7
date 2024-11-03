@@ -7,7 +7,7 @@ public enum OutputMessage {
     FIVE_MATCH("5개 일치 (1,500,000원) - %d개"),
     FOUR_MATCH("4개 일치 (50,000원) - %d개"),
     THREE_MATCH("3개 일치 (5,000원) - %d개"),
-    LOTTO_RATE_MESSAGE("총 수익률은 %.2f%%입니다."),
+    LOTTO_RATE_MESSAGE("총 수익률은 %.1f%%입니다."),
     PURCHASE_GUIDE("로또를 구입할 금액을 입력하세요."),
     WINNING_NUMBERS_GUIDE("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_GUIDE("보너스 번호를 입력해 주세요."),
