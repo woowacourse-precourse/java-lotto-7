@@ -14,24 +14,18 @@
   - [x] 매직넘버 상수화: 6
   - [x] 중복이 있는 경우 예외 처리
 
-- [ ] WinningNumbers 클래스 구현
-  - [ ] 멤버변수: List<Integer> numbers
-  - [ ] 중복이 있는 경우 예외 처리
+- [x] WinningNumbers 클래스 구현
+  - [x] 멤버변수: Lotto lotto, LottoNumber bonusNumber
+  - [x] 중복이 있는 경우 예외 처리
 
-- [ ] Prize enum 클래스 구현
-  - [ ] String 설명, int 금액 구조로 구현
-  - [ ] First ~ Fifth 까지
-  - [ ] Lotto와 WinningNumbers를 인자로 받아 당첨 결과를 반환하는 메서드
-
-- [ ] WinningResult 클래스 구현
-  - [ ] 멤버변수: int winningCounts[5], Money prizeAmount
-  - [ ] getter 구현
-  - [ ] 뽑은 번호와 당첨 번호를 인자로 받아 결과를 업데이트하는 메서드
+- [x] Prize enum 클래스 구현
+  - [x] First ~ Fifth, MISS
 
 - [ ] LottoMachine 클래스 구현
-  - [ ] 멤버변수: Money purchaseAmount, WinningNumbers winningNumbers, WinningResult winningResult
-  - [ ] 랜덤한 로또 번호를 뽑는 메서드
-  - [ ] 뽑은 번호를 가지고 winningResult를 업데이트 하는 메서드
+  - [x] 멤버변수: List<Prize> prizes
+  - [ ] run 메서드. 사용자 입력 받고 결과 출력
+  - [x] 랜덤한 로또 번호를 뽑는 메서드
+  - [ ] 뽑은 번호를 가지고 prizes를 업데이트 하는 메서드
 
 - [ ] InputView 클래스 구현
   - [ ] readPurchaseAmount() 구현
