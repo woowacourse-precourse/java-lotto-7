@@ -110,17 +110,16 @@ public class LottoGameRunner {
     }
 
     private List<Integer> matchLottoNumbers() {
-        List<Integer> winningHistoty = lottoGame.getLottos().stream()
+        return lottoGame.getLottos().stream()
                 .map(this::countMatchedNumbers)
                 .toList();
-        return winningHistoty;
     }
 
     private int countMatchedNumbers(Lotto lotto) {
         int correctCount = 0;
 
         for(Integer value : lotto.getNumbers()) {
-            if(lottoGame.getWinningNumbers().contains(value)) {
+            if(lottoGame.getWinningNumbers().contains(LottoNumber.valueOf(value))) {
                 correctCount++;
             }
         }
