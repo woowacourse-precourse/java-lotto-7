@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(formatWinningResult);
     }
 
-    public void printRateOrReturn(double rateOfReturn) {
+    public void printRateOfReturn(double rateOfReturn) {
         String formatRateOfReturn = OutputFormatter.formatingRateOfReturn(rateOfReturn);
         System.out.println(formatRateOfReturn);
     }

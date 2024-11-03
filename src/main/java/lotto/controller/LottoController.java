@@ -73,7 +73,7 @@ public class LottoController {
     }
 
     private void displayRateOfReturn(double rateOfReturn) {
-        outputView.printRateOrReturn(rateOfReturn);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     private LottoWinningResult calculateWinningByLotto(Lottos lottos, WinningNumbers winningNumbers) {
