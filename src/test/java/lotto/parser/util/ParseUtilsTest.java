@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.parser;
 
 import lotto.parser.util.ParseUtils;
 import org.assertj.core.api.Assertions;
