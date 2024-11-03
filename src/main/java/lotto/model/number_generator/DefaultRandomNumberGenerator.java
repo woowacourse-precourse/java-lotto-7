@@ -8,6 +8,6 @@ public class DefaultRandomNumberGenerator implements RandomNumberGenerator {
 
     @Override
     public List<Integer> pickUniqueNumbersInRange(int startInclusive, int endInclusive, int count) {
-        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count).stream().sorted().toList();
+        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
 }
