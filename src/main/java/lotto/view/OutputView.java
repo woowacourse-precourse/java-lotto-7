@@ -1,21 +1,40 @@
 package lotto.view;
 
+import static lotto.model.PrizeTable.FIVE_BONUS_MATCHES;
+
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.PrizeTable;
+
 public class OutputView {
 
-    public void printPurchaseQuantity(int purchaseQuantity) {
-        System.out.printf("%d개를 구매했습니다.\n", purchaseQuantity);
+    public void printPurchaseQuantity(int purchaseMoney) {
+        System.out.printf("%d개를 구매했습니다.\n", purchaseMoney / 1000);
+    }
+
+    public void printAllLottoNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            lotto.getNumbers();
+        }
     }
 
     public void printWinningResult() {
         System.out.println("당첨 통계\n---");
     }
 
-    public void printDetailResult(int matchNumberCount, int prizeMoney, int winningQuantity, boolean isBonusNumber) {
-        if (!isBonusNumber) {
-            System.out.printf("%d개 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
-        }
-        if (isBonusNumber) {
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+    public void printDetailResult() {
+        for (PrizeTable prizeTable : PrizeTable.values()) {
+
+            int matchNumberCount = prizeTable.getMatchNumbers();
+            int prizeMoney = prizeTable.getPrizeMoney();
+            int winningQuantity = prizeTable.getWinningCount();
+
+            if (!prizeTable.equals(FIVE_BONUS_MATCHES)) {
+                System.out.printf("%d개 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+            }
+            if (prizeTable.equals(FIVE_BONUS_MATCHES)) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+            }
         }
     }
 
@@ -23,5 +42,4 @@ public class OutputView {
         double rateOfReturn = (double) (totalPrizeMoney / purchaseMoney) * 100;
         System.out.printf("총 수익률은 %.1f%% 입니다.", rateOfReturn);
     }
-
 }
