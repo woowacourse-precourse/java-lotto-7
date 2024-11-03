@@ -33,4 +33,11 @@ public class LottoCheck {   // 로또 당첨 및 등수확인
 
         return match;
     }
+
+    public int checkRank(Lotto userPurchasedLotto, List<Integer> winningNumber, int bonus) {    // 당첨 번호와 구매번호 비교해서 당첨 등수 확인
+        int match = countMatches(userPurchasedLotto.getNumbers(), winningNumber);
+        boolean bonusMatch = userPurchasedLotto.getNumbers().contains(bonus);
+
+        return lottoRankResult(match, bonusMatch);
+    }
 }
