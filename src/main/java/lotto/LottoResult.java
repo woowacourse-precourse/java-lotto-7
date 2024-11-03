@@ -29,6 +29,19 @@ public class LottoResult {
         }
     }
 
+    public List<Lotto> setLottos(final int inputPurchasePrice) {
+        int purchaseQuantity = inputPurchasePrice / PRICE_PER_LOTTO;
+        System.out.println("\n" + purchaseQuantity + Message.PURCHASE_QUANTITY.getMessage());
+
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for (int i = 0; i < purchaseQuantity; i++) {
+            Lotto lotto = new Lotto(Lotto.create());
+            System.out.println(lotto.getNumbers());
+            purchasedLottos.add(lotto);
+        }
+        return purchasedLottos;
+    }
+
     private int countMatches(final Lotto purchasedLotto, final Lotto userLotto) {
         return (int) purchasedLotto.getNumbers().stream()
                 .filter(userLotto.getNumbers()::contains)
