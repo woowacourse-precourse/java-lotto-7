@@ -62,4 +62,9 @@ public class ViewControllerImpl implements ViewController {
         validateNumberSize(winningNumbers);
         return winningNumbers;
     }
+
+    public Integer getBonus(){
+        outputView.printBonus();
+        return Integer.parseInt(inputView.readLine());
+    }
 }

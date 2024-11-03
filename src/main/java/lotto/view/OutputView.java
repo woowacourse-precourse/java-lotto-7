@@ -30,4 +30,9 @@ public class OutputView {
         System.out.println();
         System.out.println(Utils.WINNING_NUMBER);
     }
+
+    public void printBonus(){
+        System.out.println();
+        System.out.println(Utils.PRINT_BONUS);
+    }
 }
