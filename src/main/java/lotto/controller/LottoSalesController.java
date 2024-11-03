@@ -1,7 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.model.InputAmount;
+import lotto.model.PurchasedLottos;
+import lotto.model.TicketCount;
+import lotto.service.PickLottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,40 +12,38 @@ public class LottoSalesController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoSalesController(InputView inputView, OutputView outputView){
+    public LottoSalesController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
         InputAmount inputAmount = repeatGetAmountUntilValid();
-
-        // 구입 개수 구하기 & 출력
-        // 로또 자동 발행
+        PurchasedLottos purchasedLottos = purchaseLotto(inputAmount);
 
         // 당첨 번호 입력받기
         // 보너스 번호 입력받기
 
-
-        Console.close();
+        // 수익률 구하기
     }
 
     private InputAmount repeatGetAmountUntilValid() {
-        InputAmount inputAmount = null;
-        while(inputAmount == null) {
-            inputAmount = tryGetAmount();
+        while (true) {
+            try {
+                outputView.printInputAmount();
+                return new InputAmount(inputView.getAmount());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return inputAmount;
     }
 
-    private InputAmount tryGetAmount() {
-        try {
-            outputView.printInputAmount();
-            return new InputAmount(inputView.getAmount());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
+    private PurchasedLottos purchaseLotto(InputAmount inputAmount) {
+        TicketCount ticketCount = new TicketCount(inputAmount);
+        PickLottoService pickLottoService = new PickLottoService();
+        PurchasedLottos purchasedLottos = pickLottoService.auto(ticketCount);
 
+        outputView.printPurchasedLottos(ticketCount, purchasedLottos);
+        return purchasedLottos;
+    }
 }
