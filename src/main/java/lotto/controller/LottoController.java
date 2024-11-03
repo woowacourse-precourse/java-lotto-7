@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.domain.BonusNumber;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoPrize;
 import lotto.model.domain.LottoWinningNumbers;
 import lotto.model.domain.Pocket;
-import lotto.model.domain.UserStatus;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,18 +12,23 @@ import lotto.view.OutputView;
 public class LottoController {
 
     private final LottoService lottoService;
+    private final LottoPrize lottoPrize;
 
     public LottoController() {
         this.lottoService = new LottoService();
+        this.lottoPrize = new LottoPrize();
     }
 
     public void run() {
-        List<Integer> winningLottoNumbers;
+        int money;
+        Pocket pocket;
+        Lotto winningLottoNumbers;
         BonusNumber bonusNumber;
+        LottoWinningNumbers lottoWinningNumbers;
 
         while (true) {
             try {
-                buyLottoWithMoney();
+                pocket = buyLottoWithMoney();
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
@@ -42,24 +47,30 @@ public class LottoController {
         while (true) {
             try {
                 bonusNumber = setWinningBonusNumber();
+                lottoWinningNumbers = new LottoWinningNumbers(winningLottoNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
 
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLottoNumbers, bonusNumber);
 
+        lottoService.calculateReward(lottoWinningNumbers, pocket, lottoPrize);
+
+        OutputView.printRewardStatistic(lottoPrize.getRewardRankResult());
+
+        OutputView.printProfitAtSecondDecimals(lottoPrize.getRewardPrizeResult(), pocket.getMoney());
     }
 
-    private void buyLottoWithMoney() {
+    private Pocket buyLottoWithMoney() {
         String inputMoney = InputView.requestMoney();
         int money = lottoService.moneyValidator(inputMoney);
-        Pocket pocket = new Pocket(lottoService.activateLottoMachine(money));
+        Pocket pocket = new Pocket(lottoService.activateLottoMachine(money),money);
         OutputView.printPurchasedLottoCount(pocket);
+        return pocket;
     }
 
-    private List<Integer> setWinningNumbers() {
+    private Lotto setWinningNumbers() {
         String inputWinningNumbers = InputView.requestLottoWinningNumbers();
         return lottoService.winningNumbersGenerator(inputWinningNumbers);
     }
