@@ -18,7 +18,8 @@ public class WinningStatisticsFormatter {
             String formattedWinning = WinningEntryFormatter.formatWinnings(prizeType.getCode(), count);
             sb.append(formattedWinning).append("\n");
         }
-        double profitRate = ProfitRateCalculator.calculate(statistics, totalPurchaseAmount);
+        ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator(statistics, totalPurchaseAmount);
+        double profitRate = profitRateCalculator.calculator();
         sb.append(ProfitRateFormatter.formatAsMessage(profitRate));
         return sb.toString();
     }
