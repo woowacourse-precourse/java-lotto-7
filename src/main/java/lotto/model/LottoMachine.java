@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static lotto.model.LottoConstants.LOTTO_PRICE;
+
 public class LottoMachine {
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_LAST_NUMBER = 45;
-    private static final int LOTTO_PRICE = 1_000;
 
     private int calculateNumberOfLotteries(int payAmount) {
         return payAmount/LOTTO_PRICE;
