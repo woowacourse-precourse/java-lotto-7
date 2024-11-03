@@ -29,6 +29,7 @@ public class WinningNumbersExtractor implements Extractor<List<Integer>> {
         checkBlank(input);
         splitString(input);
         checkNotNumber();
+        checkDuplicateNumber();
     }
 
     private void checkNotNumber() {
@@ -36,6 +37,13 @@ public class WinningNumbersExtractor implements Extractor<List<Integer>> {
             if (!rawNumber.matches(NUMBER_REGULAR_EXPRESSION)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자만 가능합니다.");
             }
+        }
+    }
+
+    private void checkDuplicateNumber() {
+        long distinctCount = rawNumbers.stream().distinct().count();
+        if (distinctCount < rawNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 

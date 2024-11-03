@@ -38,4 +38,12 @@ class WinningNumbersExtractorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 숫자만 가능합니다.");
     }
+
+    @DisplayName("당첨 번호에 중복된 값이 입력되면 예외가 발생한다.")
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenDuplicateInputWinningNumbers() {
+        assertThatThrownBy(() -> new WinningNumbersExtractor().validateInput("10,10,34"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    }
 }
