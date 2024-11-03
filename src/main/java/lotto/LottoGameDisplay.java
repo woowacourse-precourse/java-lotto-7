@@ -106,6 +106,6 @@ public class LottoGameDisplay {
     private void printRateOfResult(double rateOfResult) {
         // 둘째자리에서 반올림하여 출력
         double result = Math.round(rateOfResult * 100) / 100.0;
-        System.out.printf("총 수익률은 %.1f%%입니다.", result);
+        System.out.printf("총 수익률은 %,.1f%%입니다.", result);
     }
 }
