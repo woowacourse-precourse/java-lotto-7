@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import java.util.InputMismatchException;
 import lotto.domain.Lotto;
 
 public class Validators {
@@ -14,7 +13,7 @@ public class Validators {
     public void validateNumericInput(String number) {
         try {
             Integer.parseInt(number);
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
     }
@@ -25,7 +24,7 @@ public class Validators {
             for (String part : parts) {
                 Integer.parseInt(part);
             }
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
     }

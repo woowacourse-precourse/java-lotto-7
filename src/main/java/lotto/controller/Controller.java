@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -41,7 +40,7 @@ public class Controller {
                 int price = utils.parseStringToInt(inputPrice);
                 validators.validatePurchaseAmountUnit(price);
                 return price;
-            } catch (IllegalArgumentException | InputMismatchException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -61,7 +60,7 @@ public class Controller {
                 String inputNumbers = inputView.winLottoNumber();
                 validators.validateSplitNumericInput(inputNumbers);
                 return new Lotto(utils.convertToIntegerList(inputNumbers));
-            } catch (IllegalArgumentException | InputMismatchException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -76,7 +75,7 @@ public class Controller {
                 validators.validateNumberRange(bonusNumber);
                 validators.validateBonusNotInWinningNumbers(winningNumbers, bonusNumber);
                 return bonusNumber;
-            } catch (IllegalArgumentException | InputMismatchException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
