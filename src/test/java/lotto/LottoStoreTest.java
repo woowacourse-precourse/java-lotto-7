@@ -11,6 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoStoreTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("구매 금액이 숫자가 아닐 때 예외가 발생한다.")
+    @Test
+    void 구매_금액이_숫자가_아닐_때_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("?");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @DisplayName("구매 금액이 1000원 미만이면 예외가 발생한다.")
     @Test
     void 구매_금액이_1000원_미만이면_예외가_발생한다() {
