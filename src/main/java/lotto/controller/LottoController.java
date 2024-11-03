@@ -2,10 +2,10 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import lotto.handler.InputHandler;
-import lotto.model.customer.Customer;
 import lotto.dto.LottoDto;
 import lotto.dto.ResultDto;
+import lotto.handler.InputHandler;
+import lotto.model.customer.Customer;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
 import lotto.service.LottoResultService;

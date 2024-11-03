@@ -22,6 +22,7 @@ public class LottoResultService {
 
     public ResultDto getResult(Customer customer) {
         List<LottoTicket> lottoTickets = customer.getLottoTickets();
+
         return ResultDto.from(RankCounter.countRanks(lottoTickets)
                 , ProfitCalculator.calculateProfitRate(lottoTickets, customer.getPaidAmount()));
     }
