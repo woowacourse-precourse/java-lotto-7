@@ -10,8 +10,12 @@ import java.util.TreeSet;
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     public static void main(String[] args) {
-        int purchaseAmount = inputAmount();
         // TODO: 프로그램 구현
+        int purchaseAmount = inputAmount();
+        int ticketCount = calculateTicketCount(purchaseAmount);
+        System.out.println(ticketCount + "개를 구매했습니다.");
+        List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
+        printLottoTickets(lottoTickets);
     }
     private static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -48,6 +52,9 @@ public class Application {
         return lottoTickets;
     }
 
-
-
+    private static void printLottoTickets(List<Lotto> lottoTickets) {
+        for (Lotto ticket : lottoTickets) {
+            System.out.println(ticket.getNumbers());
+        }
+    }
 }
