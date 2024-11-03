@@ -8,12 +8,12 @@ import lotto.constant.Rank;
 
 public class RankCounts {
 
-    private static final int INITIAL_RANK_COUNT = 1;
+    private static final int COUNT_INCREASE_UNIT = 1;
 
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
     public void add(Rank rank) {
-        rankCounts.merge(rank, INITIAL_RANK_COUNT, Integer::sum);
+        rankCounts.merge(rank, COUNT_INCREASE_UNIT, Integer::sum);
     }
 
     public long totalPrice() {
