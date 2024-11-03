@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
