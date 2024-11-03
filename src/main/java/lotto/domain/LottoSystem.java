@@ -1,10 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.LottoProfitRate;
-import lotto.domain.LottoResultDetails;
-import lotto.domain.Lottos;
-import lotto.domain.PurchasePrice;
-import lotto.domain.WinningLottoNumber;
 public class LottoSystem {
 
     public Lottos generateLottos(PurchasePrice purchasePrice) {
@@ -16,5 +11,4 @@ public class LottoSystem {
         LottoResultDetails.count(lottos, winningLottoNumber);
         return LottoProfitRate.of(purchasePrice);
     }
-
 }
