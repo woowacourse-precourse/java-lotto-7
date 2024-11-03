@@ -1,6 +1,5 @@
 package lotto.io;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,19 +29,15 @@ public class IoHandler {
 	}
 
 	public int getPurchaseAmountFromUser() {
-		boolean isValidAmount = false;
-		int purchaseAmount = 0;
-		while (!isValidAmount) {
+		while (true) {
 			outputHandler.showPurchaseAmountPrompt();
 			String input = inputHandler.readLine();
 			try {
-				purchaseAmount = validatingParser.validatePurchaseAmount(input);
-				isValidAmount = true;
+				return validatingParser.validatePurchaseAmount(input);
 			} catch (IllegalArgumentException invalidAmountException) {
 				outputHandler.showExceptionMessage(invalidAmountException.getMessage());
 			}
 		}
-		return purchaseAmount;
 	}
 
 	public void showExceptionMessage(String message) {
@@ -54,35 +49,27 @@ public class IoHandler {
 	}
 
 	public List<Integer> getWinningNumbersFromUser() {
-		boolean isValidWinningNumbers = false;
-		List<Integer> purchaseAmount = new ArrayList<>();
-		while (!isValidWinningNumbers) {
+		while (true) {
 			outputHandler.showWinningNumbersPrompt();
 			String input = inputHandler.readLine();
 			try {
-				purchaseAmount = validatingParser.validateWinningNumbers(input);
-				isValidWinningNumbers = true;
+				return validatingParser.validateWinningNumbers(input);
 			} catch (IllegalArgumentException invalidWinningNumbersException) {
 				outputHandler.showExceptionMessage(invalidWinningNumbersException.getMessage());
 			}
 		}
-		return purchaseAmount;
 	}
 
 	public int getBonusNumberFromUser() {
-		boolean isValidBonusNumber = false;
-		int bonusNumber = 0;
-		while (!isValidBonusNumber) {
+		while (true) {
 			outputHandler.showBonusNumberPrompt();
 			String input = inputHandler.readLine();
 			try {
-				bonusNumber = validatingParser.validateBonusNumber(input);
-				isValidBonusNumber = true;
+				return validatingParser.validateBonusNumber(input);
 			} catch (IllegalArgumentException invalidBonusNumberException) {
 				outputHandler.showExceptionMessage(invalidBonusNumberException.getMessage());
 			}
 		}
-		return bonusNumber;
 	}
 
 	public void showLottoResult(LottoResult lottoResult) {
