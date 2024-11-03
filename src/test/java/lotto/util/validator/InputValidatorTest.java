@@ -1,5 +1,6 @@
 package lotto.util.validator;
 
+import lotto.util.parser.InputParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,10 +26,10 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 입력값이_유효할_때_예외발생하지않음() {
-        InputValidator.validateInputValue("1000");
-        InputValidator.validateInputValue("10000");
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "10000"})
+    void 입력값이_유효할_때_예외발생하지않음(String input) {
+        assertDoesNotThrow(() -> InputValidator.validateInputValue(input));
     }
 
     @ParameterizedTest
