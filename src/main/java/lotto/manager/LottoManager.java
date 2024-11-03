@@ -48,7 +48,7 @@ public class LottoManager {
 
     public float calculateTotalPrizeRate(UserLotto userLotto, int purchaseAmount) {
         int totalPrize = calculateTotalPrize(userLotto);
-        return (float) totalPrize / purchaseAmount;
+        return (float) totalPrize / purchaseAmount * 100;
     }
 
     private int calculateTotalPrize(UserLotto userLotto) {

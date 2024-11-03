@@ -54,7 +54,7 @@ class LottoManagerTest {
 
         // then
         int expectedTotalPrize = firstPrize + thirdPrize + fifthPrize*2;
-        float expectedTotalPrizeRate = (float) expectedTotalPrize / purchaseAmount;
+        float expectedTotalPrizeRate = (float) expectedTotalPrize / purchaseAmount * 100;
         Assertions.assertThat(result).isEqualTo(expectedTotalPrizeRate);
     }
 }
