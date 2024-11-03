@@ -11,6 +11,10 @@ java {
     }
 }
 
+//test {
+//    jvmArgs += "-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('byte-buddy-agent') }}"
+//}
+
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
