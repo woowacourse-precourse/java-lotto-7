@@ -55,7 +55,9 @@ public class LottoController {
             try {
                 String rawPurchasePrice = inputView.inputContent();
                 inputValidationService.validatePurchasePrice(rawPurchasePrice);
-                return inputParsingService.parsePurchasePrice(rawPurchasePrice);
+                PurchasePrice purchasePrice = inputParsingService.parsePurchasePrice(rawPurchasePrice);
+                outputView.printEmptyLine();
+                return purchasePrice;
             } catch (IllegalArgumentException exception) {
                 outputView.printInputExceptionMessage(exception.getMessage());
             }
@@ -65,6 +67,7 @@ public class LottoController {
     private void printIssuedLotto(List<Lotto> issuedLotto) {
         outputView.printIssuedLottoCount(issuedLotto.size());
         outputView.printIssuedLotto(issuedLotto);
+        outputView.printEmptyLine();
     }
 
     private WinningCriteria inputWinningCriteria() {
@@ -79,7 +82,9 @@ public class LottoController {
             try {
                 String rawWinningNumber = inputView.inputContent();
                 inputValidationService.validateWinningNumber(rawWinningNumber);
-                return inputParsingService.parseWinningLotto(rawWinningNumber);
+                Lotto winningLotto = inputParsingService.parseWinningLotto(rawWinningNumber);
+                outputView.printEmptyLine();
+                return winningLotto;
             } catch (IllegalArgumentException exception) {
                 outputView.printInputExceptionMessage(exception.getMessage());
             }
@@ -92,7 +97,9 @@ public class LottoController {
             try {
                 String rawBonusNumber = inputView.inputContent();
                 inputValidationService.validateBonusNumber(rawBonusNumber);
-                return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
+                BonusNumber bonusNumber = inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
+                outputView.printEmptyLine();
+                return bonusNumber;
             } catch (IllegalArgumentException exception) {
                 outputView.printInputExceptionMessage(exception.getMessage());
             }

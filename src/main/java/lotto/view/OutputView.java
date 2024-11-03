@@ -20,6 +20,10 @@ public class OutputView {
     public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.2f%%입니다.";
     public static final String INPUT_EXCEPTION_MESSAGE = "[ERROR] %s";
 
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
     public void printPurchasePriceInputMessage() {
         System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
     }
