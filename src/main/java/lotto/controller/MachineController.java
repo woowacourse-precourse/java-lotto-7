@@ -15,6 +15,8 @@ public class MachineController {
         OutputView.printBlankLine();
 
         Computer computer = createComputer();
+
+        computer.compareLotto(user.getLotto());
     }
 
     private User createUser() {

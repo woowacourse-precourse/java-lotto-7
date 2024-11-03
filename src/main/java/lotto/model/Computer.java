@@ -21,4 +21,25 @@ public class Computer {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public void compareLotto(List<Lotto> lotto) {
+        for (Lotto oneOfLotto : lotto) {
+            int correctCount = getCorrectCount(oneOfLotto);
+            boolean hasBonus = hasBonus(oneOfLotto);
+        }
+    }
+
+    public int getCorrectCount(Lotto lotto) {
+        int correctCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningLotto.getNumbers().contains(number)) {
+                correctCount += 1;
+            }
+        }
+        return correctCount;
+    }
+
+    public boolean hasBonus(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 }
