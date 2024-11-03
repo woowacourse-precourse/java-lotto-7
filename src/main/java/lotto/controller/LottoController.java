@@ -9,31 +9,48 @@ import java.util.List;
 
 public class LottoController {
 
-    public LottoController(LottoService lottoService, NumberOfLottoOutputHandler numberOfLottoOutputHandler, LottoStaticsOutputHandler lottoStaticsOutputHandler) {
+    private final LottoService lottoService;
+    private final NumberOfLottoOutputHandler numberOfLottoOutputHandler;
+    private final LottoStaticsOutputHandler lottoStaticsOutputHandler;
+
+    public LottoController(LottoService lottoService,
+                           NumberOfLottoOutputHandler numberOfLottoOutputHandler,
+                           LottoStaticsOutputHandler lottoStaticsOutputHandler) {
         this.lottoService = lottoService;
         this.numberOfLottoOutputHandler = numberOfLottoOutputHandler;
         this.lottoStaticsOutputHandler = lottoStaticsOutputHandler;
     }
 
-    LottoService lottoService = new LottoService();
-    NumberOfLottoOutputHandler numberOfLottoOutputHandler = new NumberOfLottoOutputHandler(lottoService);
-    LottoStaticsOutputHandler lottoStaticsOutputHandler = new LottoStaticsOutputHandler(lottoService);
-
     public void run() {
-        int purchaseAmount = PurchaseAmountInputHandler.promptPurchaseAmount();
+        int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottos = issueLottos(purchaseAmount);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
 
+        List<Rank> ranks = lottoService.getRanks(lottos, winningNumbers, bonusNumber);
+
+        displayResults(ranks, purchaseAmount);
+    }
+
+    private int getPurchaseAmount() {
+        return PurchaseAmountInputHandler.promptPurchaseAmount();
+    }
+
+    private List<Lotto> issueLottos(int purchaseAmount) {
         numberOfLottoOutputHandler.displayNumberOfLottos(purchaseAmount);
+        return lottoService.issueLottos(purchaseAmount);
+    }
 
-        List<Lotto> lottos = lottoService.issueLottos(purchaseAmount);
+    private List<Integer> getWinningNumbers() {
+        return WinningNumbersInputHandler.promptGetWinningNumbers();
+    }
 
-        List<Integer> winningNumbers = WinningNumbersInputHandler.promptGetWinningNumbers();
+    private int getBonusNumber() {
+        return BonusNumberInputHandler.promptGetBonusNumber();
+    }
 
-        int bonusNubmer = BonusNumberInputHandler.promptGetBonusNumber();
-
-        List<Rank> ranks = lottoService.getRanks(lottos, winningNumbers, bonusNubmer);
-
+    private void displayResults(List<Rank> ranks, int purchaseAmount) {
         lottoStaticsOutputHandler.displayLottoStatics(ranks);
-
         lottoStaticsOutputHandler.printReturn(ranks, purchaseAmount);
     }
 }
