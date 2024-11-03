@@ -51,7 +51,8 @@ public class WinningNumbers {
         }
     }
 
-    private static void validateNumbers(List<Integer> numbers) {
+    public Lotto getNumbers() {
+        return numbers;
     }
 
 }

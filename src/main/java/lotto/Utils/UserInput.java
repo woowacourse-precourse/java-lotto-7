@@ -15,4 +15,9 @@ public class UserInput {
         return InputView.readLine();
     }
 
+    public String bonusNumber() {
+        OutputView.printMessage(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
+        return InputView.readLine();
+    }
+
 }

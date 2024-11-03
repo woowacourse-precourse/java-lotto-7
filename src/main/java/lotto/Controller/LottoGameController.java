@@ -5,6 +5,7 @@ import lotto.Domain.LottoGame;
 import lotto.Domain.LottoMachine;
 import lotto.Domain.Lottos;
 import lotto.Domain.PurchaseAmount;
+import lotto.Domain.WinningNumbers;
 import lotto.Utils.Formatter;
 import lotto.Utils.UserInput;
 import lotto.View.OutputView;
@@ -19,6 +20,7 @@ public class LottoGameController {
 
     public void run() {
         ready();
+        draw();
     }
 
     private void ready() {
@@ -32,7 +34,7 @@ public class LottoGameController {
                 issuedLottos = machine.buyLottos(amount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printMessage(e.getMessage());
             }
         }
         game.setIssuedLottos(issuedLottos);
@@ -47,7 +49,19 @@ public class LottoGameController {
     }
 
     private void draw() {
-        String winningNumbersInput = userInput.winningNumbers();
+        while (true) {
+            try {
+                String winningNumbersInput = userInput.winningNumbers();
+                WinningNumbers winningNumbers = WinningNumbers.from(winningNumbersInput);
+                game.setWinningLotto(winningNumbers.getNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
+
+        String bonusNumberInput = userInput.bonusNumber();
+
     }
 
 }
