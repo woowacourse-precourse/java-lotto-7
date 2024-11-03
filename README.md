@@ -25,7 +25,11 @@
 ## ㅁ 구매 조건
 
 - 로또 구입 금액을 입력하면 <U>구입 금액에 해당하는 만큼</U> 로또를 발행해야 한다.  
-- 로또 <span style="color:red">1장의 가격은 1,000원</span>이다.  
+- 로또 <span style="color:red">1장의 가격은 1,000원</span>이다. 
+
+---
+
+## ㅁ 당첨 번호 입력
 - <U>당첨 번호와 보너스 번호를 입력</U>받는다.  
   ㄴ> <span style="color:red">쉼표(,)를 기준</span>으로 구분
 - 사용자가 구매한 로또 번호와 당첨 번호를 <span style="color:red">1) 비교</span>하여 <span style="color:red">당첨 내역 및 수익률을 2) 출력</span>하고 로또 게임을 <span style="color:red">3) 종료</span>한다.  
