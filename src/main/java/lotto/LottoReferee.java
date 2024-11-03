@@ -12,5 +12,8 @@ public class LottoReferee {
 
     public void judgeWinning() {
         final List<WinningStatus> winningStatuses = lottoManager.compareWinningLotto();
+        final List<WinningRank> winningRanks = winningStatuses.stream()
+                .map(WinningStatus::getWinningRank)
+                .toList();
     }
 }
