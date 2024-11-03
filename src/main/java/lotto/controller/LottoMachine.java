@@ -24,8 +24,7 @@ public class LottoMachine {
 
     public void run() {
         Budget budget = inputBudget();
-        int lottoQuantity = budget.getAmount() / LottoInfo.PRICE;
-        purchaseLotto(lottoQuantity);
+        purchaseLotto(budget);
         OutputView.displayPurchasedLottoNumbers(purchasedLotto);
 
         WinningNumbers winningNumbers = inputWinningNumbers();
@@ -33,7 +32,6 @@ public class LottoMachine {
 
         checkWinningResult(winningNumbers, bonusNumber);
         double earningRate = calculateEarningRate(budget);
-
         OutputView.displayWinningStatistics(earningRate);
     }
 
@@ -47,7 +45,8 @@ public class LottoMachine {
         }
     }
 
-    private void purchaseLotto(int lottoQuantity) {
+    private void purchaseLotto(Budget budget) {
+        int lottoQuantity = budget.getAmount() / LottoInfo.PRICE;
         for (int i = 0; i < lottoQuantity; i++) {
             List<Integer> numbers = LottoNumbersGenerator.generate();
             purchasedLotto.add(new Lotto(numbers));
