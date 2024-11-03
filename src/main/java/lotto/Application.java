@@ -7,21 +7,27 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        System.out.println("구입금액을 입력해 주세요.");
         int amount = getAmount();
         int lottoCount = amount /1000;
+        System.out.println();
 
-        Lotto winningLotto = new Lotto();
-        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
-
-
-        System.out.println(lottoCount + " 개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(generateRandomLottoNumbers());
             purchasedLottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto winningLotto = new Lotto();
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
+        System.out.println();
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
         showResult(purchasedLottos, winningLotto, bonusNumber);
     }
@@ -42,7 +48,7 @@ public class Application {
             }
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바르지 않은 타입입니다.");
+            throw new IllegalArgumentException("[ERROR]");
         }
 
     }
@@ -100,7 +106,7 @@ public class Application {
         }
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5000원) -" + rankCount[5] + "개");
+        System.out.println("3개 일치 (5,000원) - " + rankCount[5] + "개");
         System.out.println("4개 일치 (50,000원) - " + rankCount[4] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
@@ -122,7 +128,7 @@ public class Application {
         int[] prizeMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
         int totalPrize = 0;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <= 5; i++) {
             totalPrize += rankCount[i] * prizeMoney[i];
         }
         double profit = ((double) totalPrize / amount) * 100;
