@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
+
 public enum Prize {
     FIRST(6, false, 2000000000),
     SECOND(5, true, 30000000),
@@ -21,11 +23,17 @@ public enum Prize {
         return count;
     }
 
-    public boolean isBonusNumber() {
-        return bonusNumber;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat formatter = new DecimalFormat("###,###,###,###");
+
+        if (bonusNumber) {
+            return count + "개 일치, 보너스 볼 일치 (" + formatter.format(prizeMoney) + "원) - ";
+        }
+        return count + "개 일치 (" + formatter.format(prizeMoney) + "원) - ";
     }
 }
