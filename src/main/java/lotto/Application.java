@@ -44,6 +44,9 @@ public class Application {
         Map<Rank,Integer> result = rankCalculatorController.calculateResult(lottos);
 
         rankCalculatorController.printResult(result);
+        float profit = rankCalculatorController.calculateProfit(result, ticketService.getTicketCount());
+
+        new OutputView(new CommonIo()).printProfit(profit);
 
     }
 }
