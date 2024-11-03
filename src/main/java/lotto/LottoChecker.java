@@ -26,6 +26,9 @@ public class LottoChecker {
     public void convertToWinningNums(String input) {
         input = input.trim();
         String[] inputNums = input.split(",");
+
+        validateWinningNums(inputNums);
+
         try {
             for (int i = 0; i < inputNums.length; i++) {
                 int number = Integer.parseInt(inputNums[i]);
@@ -41,6 +44,12 @@ public class LottoChecker {
             bonusNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
+        }
+    }
+
+    public void validateWinningNums(String[] winningNums) {
+        if (winningNums.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 입력된 당첨 번호가 6개가 아닙니다.");
         }
     }
 
