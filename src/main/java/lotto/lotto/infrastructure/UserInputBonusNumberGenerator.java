@@ -1,7 +1,7 @@
 package lotto.lotto.infrastructure;
 
 import lotto.lotto.domain.BonusNumber;
-import lotto.lotto.domain.BonusNumberCreatorService;
+import lotto.lotto.service.BonusNumberCreatorService;
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.validator.LottoValidator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
