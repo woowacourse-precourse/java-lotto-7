@@ -34,18 +34,17 @@ public class Lotto {
                 rank = WinningNums.FIVE_BONUS;
             }
 
-            statistics.put(rank, statistics.get(rank) + 1); // 해당 등수의 개수 증가
+            statistics.put(rank, statistics.get(rank) + 1);
         }
 
         printStatistics(statistics);
         printRate(statistics, buyLottoAmount);
     }
 
-    // 통계 결과를 출력하는 메서드
+    // 통계 결과를 출력
     private void printStatistics(Map<WinningNums, Integer> statistics) {
         System.out.println("\n당첨 통계\n---");
 
-        // WinningNums 값을 역순으로 반복
         WinningNums[] ranks = WinningNums.values();
         for (int i = ranks.length - 1; i >= 0; i--) {
             WinningNums rank = ranks[i];
