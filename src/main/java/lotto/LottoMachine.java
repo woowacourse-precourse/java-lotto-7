@@ -21,11 +21,11 @@ public class LottoMachine {
     public List<String> getWinningStatistics(Map<LottoRank, Integer> rankCounts){
         List<String> winningStatistics = new ArrayList<>();
         for (LottoRank rank : sortLottoRanks(rankCounts.keySet())){
-            StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%d개 일치", rank.getMatchCount()));
-            if (rank == LottoRank.SECOND) sb.append(", 보너스 볼 일치");
-            sb.append(String.format(" (%,d원) - %d개",rank.getWinnings(), rankCounts.get(rank)));
-            winningStatistics.add(sb.toString());
+            StringBuilder statistic = new StringBuilder();
+            statistic.append(String.format("%d개 일치", rank.getMatchCount()));
+            if (rank == LottoRank.SECOND) statistic.append(", 보너스 볼 일치");
+            statistic.append(String.format(" (%,d원) - %d개",rank.getWinnings(), rankCounts.get(rank)));
+            winningStatistics.add(statistic.toString());
         }
         return winningStatistics;
     }
