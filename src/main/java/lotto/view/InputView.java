@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -11,5 +14,11 @@ public class InputView {
 		} catch (NumberFormatException exception) {
 			throw new IllegalArgumentException("[ERROR] 구입금액은 숫자이어야 합니다.");
 		}
+	}
+
+	private List<Integer> parseToNumbers(String input) {
+		return Arrays.stream(input.split(","))
+				.map(Integer::parseInt)
+				.toList();
 	}
 }
