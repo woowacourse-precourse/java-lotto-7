@@ -24,7 +24,27 @@ public class Statistics {
     }
 
     public Map<LottoResult, Integer> getResult(List<Lotto> issuedLottos) {
-        Map<LottoResult, Integer> results = Stream.of(new Object[][]{
+        Map<LottoResult, Integer> lottoResults = initiateLottoResults();
+        for (Lotto lotto : issuedLottos) {
+            List<Integer> lottoNumbers = lotto.getLottoNumbers();
+            List<Integer> numbersOverlapped = findNumberOverlapped(lottoNumbers);
+
+            boolean hasBonus = lottoNumbers.contains(bonusNumber);
+            LottoResult lottoResult = lotto.getResult(numbersOverlapped.size(), hasBonus);
+
+            lottoResults.put(lottoResult, lottoResults.get(lottoResult) + 1);
+        }
+        return lottoResults;
+    }
+
+    private List<Integer> findNumberOverlapped(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .filter(lottoNumber -> winningNumbers.stream().anyMatch(Predicate.isEqual(lottoNumber)))
+                .toList();
+    }
+
+    private Map<LottoResult, Integer> initiateLottoResults() {
+        return Stream.of(new Object[][]{
                 {LottoResult.FIRST, 0},
                 {LottoResult.SECOND, 0},
                 {LottoResult.THIRD, 0},
@@ -32,18 +52,5 @@ public class Statistics {
                 {LottoResult.FIFTH, 0},
                 {LottoResult.NONE, 0}
         }).collect(toMap(data -> (LottoResult) data[0], data -> (Integer) data[1]));
-        for (Lotto lotto : issuedLottos) {
-            List<Integer> lottoNumbers = lotto.getLottoNumbers();
-            List<Integer> numbersOverlapped = lottoNumbers.stream()
-                    .filter(lottoNumber ->
-                            winningNumbers.stream().anyMatch(
-                    Predicate.isEqual(lottoNumber)))
-                    .toList();
-
-            boolean hasBonus = lottoNumbers.contains(bonusNumber);
-            LottoResult lottoResult = lotto.getResult(numbersOverlapped.size(), hasBonus);
-            results.put(lottoResult, results.get(lottoResult) + 1);
-        }
-        return results;
     }
 }
