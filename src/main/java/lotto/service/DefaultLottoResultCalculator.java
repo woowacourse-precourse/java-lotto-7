@@ -1,7 +1,9 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
+import lotto.util.PrizeCalculator;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -12,10 +14,16 @@ public class DefaultLottoResultCalculator implements LottoResultCalculator {
     private static final int MIN_MATCH_COUNT = 3;
 
     @Override
-    public Map<WinningResult, Integer> checkLottoResult(final List<Lotto> purchasedLottos, final WinningLotto winningLotto) {
+    public LottoResult calculateResult(final List<Lotto> purchasedLottos, final WinningLotto winningLotto) {
+        Map<WinningResult, Integer> results = calcPurchasedAndWinning(purchasedLottos, winningLotto);
+        int totalAmount = PrizeCalculator.calcTotalPrizeAmount(results);
+        return new LottoResult(results, totalAmount);
+    }
+
+    private Map<WinningResult, Integer> calcPurchasedAndWinning(final List<Lotto> purchased, final WinningLotto winning) {
         Map<WinningResult, Integer> results = initializeResults();
-        for (Lotto lotto : purchasedLottos) {
-            updateLottoResult(results, lotto, winningLotto);
+        for (Lotto lotto : purchased) {
+            updateLottoResult(results, lotto, winning);
         }
         return results;
     }

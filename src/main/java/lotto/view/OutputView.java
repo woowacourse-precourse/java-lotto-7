@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.dto.LottoDto;
 import lotto.service.WinningResult;
 
@@ -27,12 +28,12 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public void printLottoResults(final Map<WinningResult, Integer> results) {
+    public void printLottoResults(final LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
         sb.append(WINNING_RESULT);
 
-        for (WinningResult winningResult : results.keySet()) {
-            String s = winningResult.makeSentence(results.get(winningResult));
+        for (Map.Entry<WinningResult, Integer> entry : lottoResult.getResults().entrySet()) {
+            String s = entry.getKey().makeSentence(entry.getValue());
             sb.append(s).append('\n');
         }
         System.out.print(sb);

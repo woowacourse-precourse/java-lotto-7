@@ -24,7 +24,7 @@ public class LottoService {
     }
 
     public LottoResult checkLottoResult(final List<Lotto> purchasedLotto, final WinningLotto winningLotto) {
-        return new LottoResult(lottoResultCalculator, purchasedLotto, winningLotto);
+        return lottoResultCalculator.calculateResult(purchasedLotto, winningLotto);
     }
 
     public double calcRate(final int purchasePrice, final LottoResult lottoResult) {

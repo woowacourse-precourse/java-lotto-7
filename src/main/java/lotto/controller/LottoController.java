@@ -40,7 +40,7 @@ public class LottoController {
     }
 
     private void printResult(final LottoResult lottoResult, final double rate) {
-        outputView.printLottoResults(lottoResult.getResults());
+        outputView.printLottoResults(lottoResult);
         outputView.printTotalRate(rate);
     }
 
