@@ -20,6 +20,10 @@ public class LottoPurchasePrice {
 
     private void validate(int purchasePrice, LottoConfig lottoConfig) {
         validateDivisibleByLottoPrice(purchasePrice, lottoConfig);
+        validateNumberRange(purchasePrice, lottoConfig);
+    }
+
+    private void validateNumberRange(int purchasePrice, LottoConfig lottoConfig) {
         validateLessThanMaxLottoPurchasePrice(purchasePrice, lottoConfig);
         validateMoreThanMinLottoPurchasePrice(purchasePrice, lottoConfig);
     }

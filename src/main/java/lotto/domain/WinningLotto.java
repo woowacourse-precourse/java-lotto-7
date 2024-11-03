@@ -21,16 +21,18 @@ public class WinningLotto {
         validateDuplicationNumbers(numbers);
         validateLottoNumberCount(numbers.size(), lottoConfig);
 
-        numbers.stream().forEach(number -> {
-            validateMoreThanLottoNumberMin(number, lottoConfig);
-            validateLessThanLottoNumberMax(number, lottoConfig);
-        });
+        numbers.forEach(number -> validateNumberRange(number, lottoConfig));
     }
 
     private void validateDuplicationNumbers(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(LottoError.LOTTO_NUMBERS_DUPLICATION.getMessage());
         }
+    }
+
+    private void validateNumberRange(int number, LottoConfig lottoConfig) {
+        validateMoreThanLottoNumberMin(number, lottoConfig);
+        validateLessThanLottoNumberMax(number, lottoConfig);
     }
 
     private void validateMoreThanLottoNumberMin(int number, LottoConfig lottoConfig) {
