@@ -1,73 +1,98 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.factory.LottoFactory;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoWinningNumbers;
 import lotto.model.User;
 
 public class LottoService {
-    private final LottoNumberGenerator numberGenerator;
+    private LottoWinningNumbers winningNumbers;
+    private final LottoFactory factory = LottoFactory.getInstance();
     private final List<Lotto> issuedTickets = new ArrayList<>();
+    private static final int TICKET_PRICE = 1000;
 
-    public LottoService(LottoNumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
-
-
+    public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = new LottoWinningNumbers(winningNumbers, bonusNumber);
     }
 
-    // 로또 번호 설정
-    public void setExtra(List<Integer> winningNumbers, int bonusNumber) {
-        numberGenerator.setWinningNumbers(winningNumbers);
-        numberGenerator.setBonusNumber(bonusNumber);
+    public int calculateTotalSpent(User user) {
+        return user.getLottoTickets().size() * TICKET_PRICE; // 티켓 수에 따른 총 비용 계산
     }
 
-    // 새로운 로또 티켓 생성 및 발행
-    public Lotto createLottoTicket() {
-        Lotto newTicket = new Lotto(numberGenerator.generateNumbers());
-        issuedTickets.add(newTicket);  // 전체 발행 목록에 추가
-        return newTicket;
+    public int convertMoneyToTickets(int money) {
+        return money / TICKET_PRICE;
     }
 
 
-    // 유저에게 로또 티켓을 제공하고 저장
+    // 유저에게 로또 티켓을 제공하는 메서드
     public void provideLottoTickets(User user, int ticketCount) {
+        List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
+        issuedTickets.addAll(lottoTickets); // 발행된 티켓 목록에 추가
+        user.addLottoTickets(Collections.unmodifiableList(lottoTickets)); // 유저에게 반환할 때는 불변 리스트로 반환
+    }
+
+
+    // 로또 티켓을 생성하는 메서드
+    private List<Lotto> generateLottoTickets(int ticketCount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            Lotto newTicket = createLottoTicket();
-            user.addLottoTicket(newTicket);  // 유저의 티켓 목록에 추가
+            Lotto newTicket = factory.createLotto(); // 로또 생성
+            lottoTickets.add(newTicket);
         }
+        return lottoTickets; // 생성된 티켓 목록 반환
+    }
+
+    public LottoWinningNumbers getWinningNumbers() {
+        return winningNumbers;
     }
 
 
-    public Map<Lotto, Map<String, Object>> checkMatches(List<Integer> winningNumbers, int bonusNumber) {
-        Map<Lotto, Map<String, Object>> matchResults = new HashMap<>();
-        for (Lotto ticket : issuedTickets) {  // 로또서비스가 가진 모든 로또 티켓 가져오기
-            int matchCount = Lotto.checkMatch(ticket, winningNumbers);
-            boolean bonusMatch = Lotto.isBonusMatch(ticket, bonusNumber);
-            matchResults.put(ticket, createMatchResult(matchCount, bonusMatch));  // 티켓과 결과 매핑
+    // 매칭 결과를 누적하여 통계를 바로 계산하는 방식
+    public Map<LottoRank, Integer> calculateResults() {
+        Map<LottoRank, Integer> results = LottoRank.initRankMap();
+
+        for (Lotto ticket : issuedTickets) {
+            int matchCount = calculateMatchCount(ticket);
+            boolean bonusMatch = checkBonusMatch(ticket);
+            LottoRank rank = calculateRank(matchCount, bonusMatch);
+            updateResults(results, rank);
         }
-        return matchResults;
+
+        return Collections.unmodifiableMap(results);
     }
 
-    private Map<String, Object> createMatchResult(int matchCount, boolean bonusMatch) {
-        Map<String, Object> result = new HashMap<>();
-        result.put("matchCount", matchCount);
-        result.put("bonusMatch", bonusMatch);
-        return result;
+    private int calculateMatchCount(Lotto ticket) {
+        return ticket.checkMatch(winningNumbers.getWinningNumbers());
     }
 
-    public List<Integer> getLottoNumbers() { // 가장 마지막에 생성된 로또번호
-        return numberGenerator.getLottoNumbers();
+    private boolean checkBonusMatch(Lotto ticket) {
+        return ticket.isBonusMatch(winningNumbers.getBonusNumber());
     }
 
-    public List<Integer> getWinningNumbers() {
-        return numberGenerator.getWinningNumbers();
+    private LottoRank calculateRank(int matchCount, boolean bonusMatch) {
+        return LottoRank.getRank(matchCount, bonusMatch);
     }
 
-    public int getBonusNumbers() {
-        return numberGenerator.getBonusNumbers();
+    private void updateResults(Map<LottoRank, Integer> results, LottoRank rank) {
+        results.put(rank, results.get(rank) + 1);
     }
 
+    public double calculateProfitRate(Map<LottoRank, Integer> results, int totalSpent) {
+        int totalEarnings = 0;
 
+        // 각 등급의 당첨금을 계산하여 totalEarnings에 합산
+        for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+            totalEarnings += rank.getPrize() * count;
+        }
+
+        // 수익률 계산: (총 당첨금 / 총 지출금) * 100
+        return ((double) totalEarnings / totalSpent) * 100;
+    }
 }

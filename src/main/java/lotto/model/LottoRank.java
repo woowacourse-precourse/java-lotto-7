@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public enum LottoRank {
     THREE_MATCH(3, false, 5000),
     FOUR_MATCH(4, false, 50000),
@@ -18,11 +21,46 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
-        for (LottoRank rank : values()) {
-            if (rank.matchCount == matchCount && rank.bonusMatch == bonusMatch) {
-                return rank;
-            }
+    public static Map<LottoRank, Integer> initRankMap() {
+        Map<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            results.put(rank, 0);
+        }
+        return results;
+    }
+
+    public static LottoRank getRank(int matchCount, boolean bonusMatch) {
+        if (isSixMatch(matchCount)) {
+            return SIX_MATCH;
+        }
+        if (isFiveMatchWithBonus(matchCount, bonusMatch)) {
+            return FIVE_MATCH_BONUS;
+        }
+        if (isFiveMatch(matchCount, bonusMatch)) {
+            return FIVE_MATCH;
+        }
+        return getBasicRank(matchCount);
+    }
+
+    private static boolean isSixMatch(int matchCount) {
+        return matchCount == 6;
+    }
+
+    private static boolean isFiveMatch(int matchCount, boolean bonusMatch) {
+        return matchCount == 5 && !bonusMatch;
+    }
+
+    private static boolean isFiveMatchWithBonus(int matchCount, boolean bonusMatch) {
+        return matchCount == 5 && bonusMatch;
+    }
+
+
+    private static LottoRank getBasicRank(int matchCount) {
+        if (matchCount == 4) {
+            return FOUR_MATCH;
+        }
+        if (matchCount == 3) {
+            return THREE_MATCH;
         }
         return NO_MATCH;
     }
@@ -31,7 +69,7 @@ public enum LottoRank {
         return prize;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
+    //public int getMatchCount() {
+    //    return matchCount;
+    //}
 }
