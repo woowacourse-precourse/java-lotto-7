@@ -22,4 +22,12 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호는 1부터 45 사이여야 한다.")
+    @Test
+    void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 46, 1, 2, 3, 4)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+    }
+
 }
