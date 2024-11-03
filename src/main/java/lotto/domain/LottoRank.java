@@ -7,18 +7,18 @@ public enum LottoRank {
     FOURTH(4, 50_000, "4개 일치 (50,000원)"),
     FIFTH(3, 5_000, "3개 일치 (5,000원)");
 
-    private final int matchingNumbers;
+    private final int matchCount;
     private final int prizeAmount;
     private final String description;
 
-    LottoRank(int matchingNumbers, int prizeAmount, String description) {
-        this.matchingNumbers = matchingNumbers;
+    LottoRank(int matchCount, int prizeAmount, String description) {
+        this.matchCount = matchCount;
         this.prizeAmount = prizeAmount;
         this.description = description;
     }
 
-    public int getMatchingNumbers() {
-        return matchingNumbers;
+    public int getMatchCount() {
+        return matchCount;
     }
 
     public int getPrizeAmount() {
