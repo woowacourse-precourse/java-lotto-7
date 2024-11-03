@@ -1,6 +1,7 @@
 package lotto.Utility;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberGenerator {
@@ -9,7 +10,10 @@ public class LottoNumberGenerator {
     private static final int LIST_NUMBER = 6;
 
     public static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LIST_NUMBER);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LIST_NUMBER);
+        Collections.sort(randomNumbers);
+        return randomNumbers;
+
     }
 
 }
