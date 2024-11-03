@@ -76,7 +76,7 @@ public class LottoController {
         while (true) {
             try {
                 return supplier.get();
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
