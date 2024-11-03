@@ -134,4 +134,12 @@ public class LottoManagementService {
         return winningLottos;
     }
 
+    // 등수별 당첨 개수에 따른 총 상금 합산
+    public long calculateTotalPrize(Map<WinningRank, Long> statistics) {
+        return statistics.entrySet().stream()
+                .filter(entry -> entry.getKey() != WinningRank.NONE) // NONE 등수는 제외
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue()) // 당첨금 * 당첨로또 수
+                .sum();
+    }
+    
 }
