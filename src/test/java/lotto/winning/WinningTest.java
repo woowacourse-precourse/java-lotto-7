@@ -75,4 +75,20 @@ public class WinningTest {
 
         assertNotEquals(compareSet, winningSet);
     }
+
+    @Test
+    @DisplayName("숫자면 보너스 문자가 가능하다.")
+    public void testIsNumericBonusString() {
+        String bonusString = "10";
+
+        assertTrue(WinningValidate.isNumeric(bonusString));
+    }
+
+    @Test
+    @DisplayName("숫자가 아니면 보너스 문자가 불가능하다.")
+    public void testIsNotNumericBonusString() {
+        String bonusString = "bonus";
+
+        assertFalse(WinningValidate.isNumeric(bonusString));
+    }
 }
