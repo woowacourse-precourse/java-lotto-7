@@ -13,4 +13,12 @@ public class InputParser {
 
         return lottoNumber;
     }
+
+    public int parsePrice(String inputValue){
+        return Integer.parseInt(inputValue);
+    }
+
+    public int parseBonusNumber(String inputValue){
+        return Integer.parseInt(inputValue);
+    }
 }
