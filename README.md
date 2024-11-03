@@ -198,5 +198,6 @@ _Implementing functionality in a bottom-up approach_
     - [x] KEY_nTH 당첨 등급 상수 구현
     - [x] PRIZES 등급별 상금 상수 구현
     
-12.[ ] 당첨 통계 서비스 구현 
+12.[x] 당첨 통계 서비스 구현
+    - [x] 수익률 계산 기능 구현 
 
