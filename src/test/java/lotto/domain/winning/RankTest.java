@@ -27,10 +27,10 @@ class RankTest {
         );
     }
 
-    @DisplayName("test")
+    @DisplayName("Rank에 따라 적절한 상금을 반환한다.")
     @MethodSource("provideRankTestCases")
     @ParameterizedTest(name = "입력값: \"{0}\", 상금: \"{1}\"")
-    void s(Rank rank, int prize) {
+    void Rank에_따라_적절한_상금을_반환한다(Rank rank, int prize) {
         Assertions.assertThat(rank.getPrize())
                 .isEqualTo(prize);
     }
