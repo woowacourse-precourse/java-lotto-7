@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrice;
-import lotto.domain.LottoPrizesRecord;
+import lotto.dto.LottoPrizesRecord;
 import lotto.domain.LottoTickets;
 import lotto.domain.Number;
 import lotto.domain.WinningLotto;

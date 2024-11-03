@@ -8,7 +8,7 @@ import static lotto.constant.view.OutputViewConstant.LOTTO_TICKETS_COUNT_FORMAT;
 import java.util.Comparator;
 import lotto.domain.LottoPrice;
 import lotto.domain.LottoPrize;
-import lotto.domain.LottoPrizesRecord;
+import lotto.dto.LottoPrizesRecord;
 import lotto.domain.LottoTickets;
 
 public class OutputView {
@@ -31,7 +31,7 @@ public class OutputView {
     }
 
     public static void printLottoPrizes(LottoPrizesRecord prizes, LottoPrice lottoPurchaseAmount) {
-        prizes.getLottoPrizesMap().entrySet().stream()
+        prizes.lottoPrizesMap().entrySet().stream()
                 .filter(entry -> entry.getKey() != LottoPrize.NO_PRIZE)
                 .sorted(Comparator.comparingLong(value -> value.getKey().getPrizeMoney()))
                 .forEach(entry -> System.out.println(entry.getKey() + " - " + entry.getValue() + "개"));
