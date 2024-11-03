@@ -33,10 +33,10 @@ public class Lotto {
         }
     }
 
-    public Integer howManyMatches(Lotto lotto) {
+    public Integer howManyMatches(WinningNumber winningNumber) {
         Integer count = 0;
         for (Integer number : numbers) {
-            if (lotto.contains(number)) {
+            if (winningNumber.contains(number)) {
                 count++;
             }
         }
@@ -45,14 +45,6 @@ public class Lotto {
 
     public boolean contains(Integer number) {
         return numbers.contains(number);
-    }
-
-    public static Lotto generateWinningNumber(String input, String delimiter) {
-         List<Integer> numbers = Arrays.stream(input.split(delimiter))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
-         return new Lotto(numbers);
     }
 
     @Override

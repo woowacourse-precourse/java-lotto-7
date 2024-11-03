@@ -1,5 +1,7 @@
 package lotto.config;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumber;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
 import lotto.domain.LottoResult;
@@ -21,12 +23,25 @@ public class LottoConfig {
             return new ProfitCalculator(result);
         });
 
+        Container.register(WinningNumber.class,
+                retryOnFail(() -> new WinningNumber(Input.inputWinningNumber())));
+
+        Container.register(BonusNumber.class,
+                retryOnFail(()->
+                        new BonusNumber(
+                                Input.inputBonusNumber(),
+                                Container.getInstance(WinningNumber.class))
+                ));
+
         Container.register(WinningChecker.class,
                 retryOnFail(() -> {
                     LottoResult result = Container.getInstance(LottoResult.class);
+                    WinningNumber winningNumber = Container.getInstance(WinningNumber.class);
+                    BonusNumber bonusNumber = Container.getInstance(BonusNumber.class);
+
                     return new WinningChecker(
-                            Input.inputWinningNumber(),
-                            Input.inputBonusNumber(),
+                            winningNumber,
+                            bonusNumber,
                             result
                     );
                 }));
