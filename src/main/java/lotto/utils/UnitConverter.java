@@ -1,15 +1,19 @@
 package lotto.utils;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class UnitConverter {
-    private static final NumberFormat nf = NumberFormat.getInstance();
+    private static final NumberFormat numberFormatter = NumberFormat.getInstance();
+    private static final NumberFormat decimalFormatter = new DecimalFormat("#,##0.0");
+
 
     public static String convertUnit(int money) {
-        return nf.format(money);
+        return numberFormatter.format(money);
     }
 
-    public static String convertUnit(double profit) {
-        return nf.format(profit);
+    public static String convertUnit(BigDecimal profit) {
+        return decimalFormatter.format(profit);
     }
 }
