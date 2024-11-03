@@ -3,6 +3,7 @@ package lotto.shop.bandingmachine;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.MessageCenter;
 
 public class DrawSystem {
 
@@ -18,6 +19,7 @@ public class DrawSystem {
     }
 
     List<DrawnNumbers> runDraws(Integer totalCount) {
+        validateTotalCount(totalCount);
         for (int currentCount = 0; currentCount < totalCount; currentCount++) {
             drawnNumbers = DrawnNumbers.create();
             runDraw();
@@ -63,5 +65,22 @@ public class DrawSystem {
 
     private boolean isBonusNumberAlready(List<Integer> mainNumbers, Integer bonusNumber) {
         return mainNumbers.contains(bonusNumber);
+    }
+
+    private void validateTotalCount(Integer totalCount) {
+        validatePositive(totalCount);
+        validateNull(totalCount);
+    }
+
+    private void validatePositive(Integer totalCount) {
+        if (totalCount <= 0) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_COUNT.get());
+        }
+    }
+
+    private void validateNull(Integer totalCount) {
+        if (totalCount == null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_COUNT.get());
+        }
     }
 }
