@@ -13,8 +13,8 @@ public enum Ranks {
     private final BonusCondition bonusCondition;
     private final int prize;
 
-    Ranks(int place, int matchCount, BonusCondition bonusCondition, int prize) {
-        this.number = place;
+    Ranks(int number, int matchCount, BonusCondition bonusCondition, int prize) {
+        this.number = number;
         this.matchCount = matchCount;
         this.bonusCondition = bonusCondition;
         this.prize = prize;
