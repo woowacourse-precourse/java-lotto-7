@@ -164,8 +164,8 @@ public class Application {
     }
 
     private static void profitRateResult(double money, double winningPrize) {
-        double profitRate = ((winningPrize / money) * 100);
-        profitRate = Math.round(profitRate * 100) / 100;
+        double profitRate = (winningPrize / money) * 100;
+        profitRate = Math.round(profitRate * 100) / 100.0;
 
         if (profitRate % 1 == 0) {
             System.out.println("총 수익률은 " + (int) profitRate + "%입니다.");
