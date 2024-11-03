@@ -4,7 +4,10 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.Arrays;
 
 public class Application {
 
@@ -51,7 +54,35 @@ public class Application {
         outputLottoNumbers();
     }
 
+    public static void checkSetVaild(Set<String> uniqueNumbers) {
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
+        }
+        List<Integer> numbers = new ArrayList<Integer>();
+        for (String e : uniqueNumbers) {
+            numbers.add(stringToNum(e));
+        }
+    }
+
+    public static void makeWinningLotto() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = readLine();
+                Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(input.split(",")));
+                checkSetVaild(uniqueNumbers);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void inputWinningLotto() {
+        makeWinningLotto();
+    }
+
     public static void main(String[] args) {
         buyLotto();
+        inputWinningLotto();
     }
 }
