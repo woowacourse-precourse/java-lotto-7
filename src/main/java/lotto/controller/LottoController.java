@@ -54,7 +54,7 @@ public class LottoController {
             try {
                 return function.get();
             } catch (IllegalArgumentException errorMessage) {
-                outputView.print(String.valueOf(errorMessage));
+                outputView.print(errorMessage.getMessage());
             }
         }
     }
