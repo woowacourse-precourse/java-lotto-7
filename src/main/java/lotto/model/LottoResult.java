@@ -21,4 +21,11 @@ public class LottoResult {
         result.remove(WinningStatus.NO_WIN);
         return result;
     }
+
+    public double calculateProfit(int purchaseAmount) {
+        int totalPrize = result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return Math.round(((double) totalPrize / purchaseAmount) * 1000) / 10.0;
+    }
 }

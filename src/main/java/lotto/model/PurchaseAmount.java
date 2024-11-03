@@ -24,4 +24,8 @@ public class PurchaseAmount {
     public int getLottoQuantity() {
         return purchaseAmount / 1000;
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

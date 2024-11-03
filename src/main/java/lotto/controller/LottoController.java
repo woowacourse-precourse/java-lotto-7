@@ -5,10 +5,10 @@ import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoResult;
 import lotto.model.LottoResultCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
-import lotto.model.WinningStatus;
 import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,7 +31,7 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
 
-        outputView.printResult(getLottoResult(winningLotto, lottos));
+        printResult(winningLotto, lottos, purchaseAmount);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -58,8 +58,10 @@ public class LottoController {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    private Map<WinningStatus, Integer> getLottoResult(WinningLotto winningLotto, List<Lotto> lottos) {
+    private void printResult(WinningLotto winningLotto, List<Lotto> lottos, PurchaseAmount purchaseAmount) {
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
-        return lottoResultCalculator.calculateLottoResult(winningLotto, lottos).getResult();
+        LottoResult lottoResult = lottoResultCalculator.calculateLottoResult(winningLotto, lottos);
+        outputView.printResult(lottoResult.getResult());
+        outputView.printProfit(lottoResult.calculateProfit(purchaseAmount.getPurchaseAmount()));
     }
 }

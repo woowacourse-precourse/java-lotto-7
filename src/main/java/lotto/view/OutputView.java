@@ -10,6 +10,8 @@ public class OutputView {
     public static final String STATISTICS_LINE_DELIMITER = "---";
     public static final String COUNT_UNIT_MESSAGE = "개";
     public static final String WINNINGSTATUS_COUNT_DELIMITER = " - ";
+    private static final String LOTTO_PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
+    public static final String DECIMAL_FORMAT = "#,##0.0";
 
     public void printPurchaseAmount(int lottoQuantity) {
         System.out.println();
@@ -31,5 +33,10 @@ public class OutputView {
         for (WinningStatus status : result.keySet()) {
             System.out.println(status.getDescription() + WINNINGSTATUS_COUNT_DELIMITER + result.get(status) + COUNT_UNIT_MESSAGE);
         }
+    }
+
+    public void printProfit(double profit) {
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        System.out.printf(LOTTO_PROFIT_MESSAGE, decimalFormat.format(profit));
     }
 }
