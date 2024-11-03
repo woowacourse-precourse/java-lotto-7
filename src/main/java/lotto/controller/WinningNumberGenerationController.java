@@ -6,13 +6,15 @@ import lotto.model.WinningNumberGenerator;
 import lotto.util.CommonIo;
 import lotto.view.InputView;
 
+import java.util.function.Supplier;
+
 public class WinningNumberGenerationController {
     private final WinningNumberGenerator winningNumberGenerator;
     private final InputView inputView;
     private final IoController ioController;
+    private final CommonIo commonIo = new CommonIo();
 
     public WinningNumberGenerationController(WinningNumberGenerator winningNumberGenerator) {
-        CommonIo commonIo = new CommonIo();
         this.inputView = new InputView(commonIo);
         this.ioController = new IoController(commonIo);
         this.winningNumberGenerator = winningNumberGenerator;
@@ -20,7 +22,16 @@ public class WinningNumberGenerationController {
 
     public Lotto createWinningNumber(){
         inputView.printRequestWinningNumbers();
-        String rawWinningNumbers = ioController.inputWinningNumbers();
+        String rawWinningNumbers = repeatUntilValid(ioController::inputWinningNumbers);
         return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
+    }
+
+    private <T> T repeatUntilValid(Supplier<T> function) {
+        try {
+            return function.get();
+        } catch (IllegalArgumentException illegalArgumentException) {
+            commonIo.printMessage(illegalArgumentException.getMessage());
+            return repeatUntilValid(function);
+        }
     }
 }
