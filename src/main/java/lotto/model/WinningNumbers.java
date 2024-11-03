@@ -8,6 +8,7 @@ public class WinningNumbers {
     private List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
+        validateLength(winningNumbers);
         validateDuplicates(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
@@ -16,6 +17,12 @@ public class WinningNumbers {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수는 입력하실 수 없습니다.");
+        }
+    }
+
+    private static void validateLength(List<Integer> parsedNumbers) {
+        if (parsedNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 

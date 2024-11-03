@@ -14,13 +14,6 @@ public class WinningNumberParser {
                 })
                 .collect(Collectors.toList());
 
-        validateLength(parsedNumbers);
         return parsedNumbers;
-    }
-
-    private static void validateLength(List<Integer> parsedNumbers) {
-        if (parsedNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-        }
     }
 }
