@@ -47,6 +47,6 @@ public class OutputView {
             totalPrizeMoney += (long) ranking.getPrice() * rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO);
         }
 
-        System.out.printf(PRINT_FORMAT_RATE_OF_RETURN_MESSAGE, ((double)totalPrizeMoney * 100) / purchaseAmount);
+        System.out.printf(PRINT_FORMAT_RATE_OF_RETURN_MESSAGE, ((double) totalPrizeMoney * 100) / purchaseAmount);
     }
 }

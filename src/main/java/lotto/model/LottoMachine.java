@@ -8,12 +8,12 @@ public class LottoMachine {
 
     private static final int PURCHASE_AMOUNT_UNITS = 1000;
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public List<Lotto> purchaseLottos(int purchaseAmount) {
         int count = purchaseAmount / PURCHASE_AMOUNT_UNITS;
 
-        for (int i = 0; i < count; i ++) {
+        for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(LottoNumberGenerator.generate());
             lottos.add(lotto);
         }

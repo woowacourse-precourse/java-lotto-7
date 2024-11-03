@@ -15,20 +15,12 @@ public enum Ranking {
     private static final int FOURTH_PLACE_COUNT = 4;
     private static final int FIFTH_PLACE_COUNT = 3;
 
-    private int price;
-    private int matchingCount;
+    private final int price;
+    private final int matchingCount;
 
     Ranking(int price, int matchingCount) {
         this.price = price;
         this.matchingCount = matchingCount;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getMatchingCount() {
-        return matchingCount;
     }
 
     public static Ranking of(int matchingCount, boolean isBonusNumberMatching) {
@@ -54,5 +46,13 @@ public enum Ranking {
         return List.of(
                 FIFTH_PLACE, FOURTH_PLACE, THIRD_PLACE, SECOND_PLACE, FIRST_PLACE
         );
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
     }
 }
