@@ -1,6 +1,7 @@
-package lotto.utils.validator;
+package lotto.utils.inputValidator.comparison;
 
 import java.util.List;
+import lotto.utils.inputValidator.InputValidator;
 
 import static lotto.exception.ErrorMessages.BONUS_NUMBER_DUPLICATION;
 

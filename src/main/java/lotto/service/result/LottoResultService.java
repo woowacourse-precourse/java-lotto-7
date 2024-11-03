@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.result;
 
 import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;

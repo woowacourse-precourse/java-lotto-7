@@ -1,4 +1,4 @@
-package lotto.utils.validator;
+package lotto.utils.inputValidator;
 
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;

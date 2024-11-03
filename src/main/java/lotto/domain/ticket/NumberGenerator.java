@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import java.util.List;
 
 public interface NumberGenerator {
-    List<Integer> generateNumbers();
+    List<Integer> generate();
 }

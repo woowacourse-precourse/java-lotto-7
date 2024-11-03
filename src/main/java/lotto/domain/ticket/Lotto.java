@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
-import static lotto.constants.LottoConstants.LOWER_BOUND;
-import static lotto.constants.LottoConstants.NUMBERS_PER_LOTTO;
-import static lotto.constants.LottoConstants.UPPER_BOUND;
+import static lotto.constants.LottoTicket.LOWER_BOUND;
+import static lotto.constants.LottoTicket.NUMBERS_PER_LOTTO;
+import static lotto.constants.LottoTicket.UPPER_BOUND;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
 import static lotto.exception.ErrorMessages.NUMBER_DUPLICATION;
 import static lotto.exception.ErrorMessages.OUT_OF_RANGE;
@@ -29,7 +29,7 @@ public class Lotto {
         validateNoDuplication(numbers);
     }
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6 ){
+        if (numbers.size() != NUMBERS_PER_LOTTO.getValue() ){
             throw new IllegalArgumentException(String.format(NUMBER_COUNT_MISMATCH.getMessage(),NUMBERS_PER_LOTTO.getValue()));
         }
     }

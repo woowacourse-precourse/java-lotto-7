@@ -1,13 +1,13 @@
-package lotto.service;
+package lotto.service.result;
 
 import java.util.List;
-import lotto.domain.MatchResults;
-import lotto.domain.WinningLotto;
+import lotto.domain.result.MatchResults;
+import lotto.domain.result.WinningLotto;
 import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;
 import lotto.utils.parser.Parser;
-import lotto.utils.validator.ComparisonValidator;
-import lotto.utils.validator.InputValidator;
+import lotto.utils.inputValidator.comparison.ComparisonValidator;
+import lotto.utils.inputValidator.InputValidator;
 
 public class LottoResultServiceImpl implements LottoResultService {
     private final InputValidator<String> winningNumbersValidator;

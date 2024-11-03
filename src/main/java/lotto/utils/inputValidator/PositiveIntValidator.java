@@ -1,4 +1,4 @@
-package lotto.utils.validator;
+package lotto.utils.inputValidator;
 
 
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
@@ -19,7 +19,7 @@ public class PositiveIntValidator implements InputValidator<String> {
     }
 
     private static void validateNotEmpty(String rawPurchasePrice) {
-        if (rawPurchasePrice.isBlank()) { //strip().isEmpty() 대체.
+        if (rawPurchasePrice.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }

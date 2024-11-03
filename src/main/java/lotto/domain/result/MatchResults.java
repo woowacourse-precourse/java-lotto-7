@@ -1,16 +1,16 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import lotto.constants.LottoRankPrize;
+import lotto.constants.LottoRank;
 import lotto.dto.FinalResultsDto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ProfitDto;
 import lotto.dto.RankResultsDto;
 
-import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoTicket.LOTTO_PRICE;
 
 public class MatchResults {
     private final List<MatchResult> matchResults;
@@ -51,7 +51,7 @@ public class MatchResults {
 
     private ProfitDto buildProfitDto(HashMap<Integer, Integer> rankResults) {
         long totalProfit = 0;
-        for (LottoRankPrize rank: LottoRankPrize.values()) {
+        for (LottoRank rank: LottoRank.values()) {
             long rankCount = rankResults.getOrDefault(rank.getRank(), 0);
             totalProfit += rankCount * rank.getPrize();
         }

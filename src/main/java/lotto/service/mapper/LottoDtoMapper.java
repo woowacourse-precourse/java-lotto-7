@@ -1,7 +1,7 @@
-package lotto.service;
+package lotto.service.mapper;
 
 import java.util.HashSet;
-import lotto.domain.Lotto;
+import lotto.domain.ticket.Lotto;
 import lotto.dto.LottoDto;
 
 public class LottoDtoMapper implements DtoMapper<Lotto,LottoDto>{

@@ -1,9 +1,9 @@
-package lotto.service;
+package lotto.service.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.Lottos;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 

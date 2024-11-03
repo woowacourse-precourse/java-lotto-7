@@ -1,12 +1,12 @@
 package lotto.config;
 
-import lotto.utils.validator.BonusNumberValidator;
-import lotto.utils.validator.ComparisonValidator;
-import lotto.utils.validator.LottoNumberValidator;
-import lotto.utils.validator.PositiveIntValidator;
-import lotto.utils.validator.PurchaseAmountValidator;
-import lotto.utils.validator.InputValidator;
-import lotto.utils.validator.WinningNumbersValidator;
+import lotto.utils.inputValidator.comparison.BonusNumberValidator;
+import lotto.utils.inputValidator.comparison.ComparisonValidator;
+import lotto.utils.inputValidator.LottoNumberValidator;
+import lotto.utils.inputValidator.PositiveIntValidator;
+import lotto.utils.inputValidator.PurchaseAmountValidator;
+import lotto.utils.inputValidator.InputValidator;
+import lotto.utils.inputValidator.WinningNumbersValidator;
 
 public class ValidatorConfig {
 

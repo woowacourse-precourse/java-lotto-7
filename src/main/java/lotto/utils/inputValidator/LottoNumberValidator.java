@@ -1,8 +1,8 @@
-package lotto.utils.validator;
+package lotto.utils.inputValidator;
 
 import static lotto.exception.ErrorMessages.OUT_OF_RANGE;
-import static lotto.constants.LottoConstants.LOWER_BOUND;
-import static lotto.constants.LottoConstants.UPPER_BOUND;
+import static lotto.constants.LottoTicket.LOWER_BOUND;
+import static lotto.constants.LottoTicket.UPPER_BOUND;
 
 public class LottoNumberValidator implements InputValidator<Integer> {
 

@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.mapper;
 
 public class FinalResultDtoMapper implements DtoMapper {
     @Override

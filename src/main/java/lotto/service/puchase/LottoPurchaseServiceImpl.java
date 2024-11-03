@@ -1,12 +1,13 @@
-package lotto.service;
+package lotto.service.puchase;
 
-import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoTicket.LOTTO_PRICE;
 
-import lotto.domain.LottoFactory;
-import lotto.domain.Lottos;
+import lotto.domain.ticket.LottoFactory;
+import lotto.domain.ticket.Lottos;
 import lotto.dto.LottosDto;
+import lotto.service.mapper.DtoMapper;
 import lotto.utils.parser.Parser;
-import lotto.utils.validator.InputValidator;
+import lotto.utils.inputValidator.InputValidator;
 
 public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     private final DtoMapper<Lottos, LottosDto> lottosDtoMapper;

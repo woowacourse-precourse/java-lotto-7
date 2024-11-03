@@ -1,12 +1,12 @@
 package lotto.config;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.Lottos;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
-import lotto.service.DtoMapper;
-import lotto.service.LottoDtoMapper;
-import lotto.service.LottosDtoMapper;
+import lotto.service.mapper.DtoMapper;
+import lotto.service.mapper.LottoDtoMapper;
+import lotto.service.mapper.LottosDtoMapper;
 
 public class DtoMapperConfig {
     public DtoMapper<Lottos, LottosDto> lottosDtoMapper(){

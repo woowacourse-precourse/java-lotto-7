@@ -2,8 +2,8 @@ package lotto.controller;
 
 import lotto.dto.FinalResultsDto;
 import lotto.dto.LottosDto;
-import lotto.service.LottoPurchaseService;
-import lotto.service.LottoResultService;
+import lotto.service.puchase.LottoPurchaseService;
+import lotto.service.result.LottoResultService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -33,11 +33,8 @@ public class LottoGameController {
         handleWinningNumbersInput();
         handleBonusNumberInput();
 
-        FinalResultsDto finalResultsDto=  lottoResultServiceImpl.getFinalResultsDto(lottosDto);
+        FinalResultsDto finalResultsDto =  lottoResultServiceImpl.getFinalResultsDto(lottosDto);
         consoleOutputView.outputFinalResult(finalResultsDto);
-
-
-
 
     }
 

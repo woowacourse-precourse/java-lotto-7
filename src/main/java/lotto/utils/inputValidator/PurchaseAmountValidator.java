@@ -1,9 +1,9 @@
-package lotto.utils.validator;
+package lotto.utils.inputValidator;
 
 import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
 import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
-import static lotto.constants.LottoConstants.LOTTO_PRICE;
-import static lotto.constants.LottoConstants.PURCHASE_LIMIT;
+import static lotto.constants.LottoTicket.LOTTO_PRICE;
+import static lotto.constants.LottoTicket.PURCHASE_LIMIT;
 
 public class PurchaseAmountValidator implements InputValidator<String> {
 

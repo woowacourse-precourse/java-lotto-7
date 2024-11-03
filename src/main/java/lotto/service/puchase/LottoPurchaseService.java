@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.puchase;
 
 import lotto.dto.LottosDto;
 

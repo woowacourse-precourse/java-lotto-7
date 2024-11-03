@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class DefaultLottoFactory implements LottoFactory{
 
     @Override
     public Lotto createLotto( ) {
-        List<Integer> lottoNumbers = lottoNumbersGenerator.generateNumbers();
+        List<Integer> lottoNumbers = lottoNumbersGenerator.generate();
         return new Lotto(lottoNumbers);
     }
 }

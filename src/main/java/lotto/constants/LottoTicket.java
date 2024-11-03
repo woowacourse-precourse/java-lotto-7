@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum LottoConstants {
+public enum LottoTicket {
     LOWER_BOUND(1)
     ,UPPER_BOUND(45)
     ,NUMBERS_PER_LOTTO(6)
@@ -10,7 +10,7 @@ public enum LottoConstants {
 
     private final int value;
 
-    LottoConstants(int value) {
+    LottoTicket(int value) {
         this.value = value;
     }
 
