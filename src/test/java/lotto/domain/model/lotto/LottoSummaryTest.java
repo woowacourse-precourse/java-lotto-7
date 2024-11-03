@@ -1,5 +1,7 @@
 package lotto.domain.model.lotto;
 
+import lotto.domain.model.lotto.result.LottoSummary;
+import lotto.domain.model.user.LottoRank;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.DisplayName;
