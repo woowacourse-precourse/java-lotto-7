@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoCreator;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,20 +15,24 @@ public class Controller {
     private int chooseNumberOfLottoContinuously(){
         LottoCreator lottoCreator = new LottoCreator();
         int numberOfLotto;
+        int purchasePrice;
         while (true) {
-            int purchasePrice = inputView.inputPurchasePrice();
+            purchasePrice = inputView.inputPurchasePrice();
             numberOfLotto = lottoCreator.chooseNumberOfLotto(purchasePrice);
             if (numberOfLotto != LottoCreator.INITIAL_NUMBER_OF_LOTTO) break;
         }
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        profitCalculator.settingPurchasePrice(purchasePrice);
         return numberOfLotto;
     }
 
-    public void purchaseLottos() {
+    private List<Lotto> purchaseLottos() {
         int numberOfLotto = chooseNumberOfLottoContinuously();
         Lottos lottos = new Lottos(numberOfLotto);
         outputView.outputNumberOfLotto(numberOfLotto);
         List<Lotto> lottoTickets = lottos.getLottoTickets();
         outputView.outputLottos(lottoTickets);
+        return lottoTickets;
     }
 
     private static List<Integer> convertToIntegerList(String winningNumber) {
@@ -41,11 +42,21 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    public void createWinningLotto(){
+    private WinningLotto createWinningLotto(){
         String winningNumbersBeforeConvert = inputView.inputWinningNumbers();
         List<Integer> winningNumbers = convertToIntegerList(winningNumbersBeforeConvert);
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
         int bonusNumber = inputView.inputBonusNumber();
         winningLotto.settingBonusNumber(bonusNumber);
+        return winningLotto;
+    }
+
+    public void printStatistics(){
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        List<Lotto> lottoTickets = purchaseLottos();
+        List<Integer> winningNumbers = createWinningLotto().getWinningNumbers();
+        int bonusBallNumber = createWinningLotto().getBonusNumber();
+        profitCalculator.calculateRankCount(lottoTickets, winningNumbers, bonusBallNumber);
+        profitCalculator.calculateProfit();
     }
 }
