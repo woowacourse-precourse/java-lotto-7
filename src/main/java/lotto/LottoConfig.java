@@ -20,6 +20,10 @@ public final class LottoConfig {
         return new ApplicationConsoleView();
     }
 
+    private MessageConverter<Lotto> messageConverter() {
+        return new LottoMessageConverter();
+    }
+
     private PurchaseLottoUseCase purchaseLottoUseCase() {
         return new PurchaseLottoService(new LottoFactory(), lottoUserRepository());
     }
