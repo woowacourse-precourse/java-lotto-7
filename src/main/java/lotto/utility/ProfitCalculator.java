@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class ProfitCalculator {
     public static double calculate(int purchaseCost, Map<String, Integer> matchedCount) {
-        int revenue = matchedCount.get("threeMatched") * 5000
-                + matchedCount.get("fourMatched") * 50000
-                + matchedCount.get("fiveMatched") * 1500000
-                + matchedCount.get("fiveWithBonusMatched") * 30000000
-                + matchedCount.get("sixMatched") * 2000000000;
+        int revenue = matchedCount.get("threeMatched") * LottoPrizeEnum.THREE_MATCHED_PRIZE.getAmount()
+                + matchedCount.get("fourMatched") * LottoPrizeEnum.FOUR_MATCHED_PRIZE.getAmount()
+                + matchedCount.get("fiveMatched") * LottoPrizeEnum.FIVE_MATCHED_PRIZE.getAmount()
+                + matchedCount.get("fiveWithBonusMatched") * LottoPrizeEnum.FIVE_WITH_BONUS_MATCHED_PRIZE.getAmount()
+                + matchedCount.get("sixMatched") * LottoPrizeEnum.SIX_MATCHED_PRIZE.getAmount();
 
         double profit = (revenue / (double)purchaseCost) * 100;
         return Math.round(profit * 10.0) / 10.0;
