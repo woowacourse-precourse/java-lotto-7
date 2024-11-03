@@ -68,7 +68,7 @@ public class InputHandler {
         }
     }
 
-    private  <T> T receiveValidatedInput(
+    private <T> T receiveValidatedInput(
             Supplier<String> supplier,
             Consumer<String> validator,
             Function<String, T> converter
