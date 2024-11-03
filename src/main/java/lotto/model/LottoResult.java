@@ -25,19 +25,38 @@ public class LottoResult {
     }
 
     public void recordResult(int matchCount, boolean bonusMatch) {
-
+        if (matchCount == 5 && bonusMatch) {
+            result.put(5 + 10, result.get(5 + 10) + 1);
+            addRevenue(bonusMatchPrize);
+        } else if (matchCount >= 3) {
+            result.put(matchCount, result.get(matchCount) + 1);
+            addRevenue(prizeSheet.get(matchCount));
+        }
     }
 
     public void printResults() {
-
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result.get(3) + "개");
+        System.out.println("4개 일치 (50,000원) - " + result.get(4) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.get(5) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(5 + 10) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(6) + "개");
     }
 
     public void addRevenue(Integer addRevenue) {
-
+        revenue += addRevenue;
     }
 
     public void computeProfitRate(int lottoAmount) {
-
+        System.out.println(revenue);
+        if (revenue == 0) {
+            System.out.println("총 수익률은 0% 입니다.");
+        } else {
+            double percent = (double) revenue / (lottoAmount *1000) * 100 ;
+            System.out.println("총 수익률은 " + String.format("%.1f", percent) + "%입니다.");
+        }
     }
 }
 
