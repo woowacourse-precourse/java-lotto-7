@@ -1,5 +1,5 @@
 package lotto.app.dto;
 
-public record LottoResultResponseDto(int correctNumber, int prize, int amount) {
+public record LottoResultResponseDto(int correctNumber, Long prize, int amount) {
 
 }

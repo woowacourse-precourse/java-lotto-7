@@ -11,9 +11,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        ArrayList<Integer> sortedList = new ArrayList<>(numbers);
+        validate(sortedList);
+        Collections.sort(sortedList);
+        this.numbers = sortedList;
     }
 
     private void validate(List<Integer> numbers) {
