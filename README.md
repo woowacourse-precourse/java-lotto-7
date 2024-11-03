@@ -167,7 +167,7 @@
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
             <td>✅컴포넌트 의존성 주입</td> 
-                <td rowspan="1"></tr><tr> 
+                <td rowspan="1">dev/dependency</tr><tr> 
     <td rowspan="6">출력 포맷 리팩토링</td>
         <td rowspan="3">ValidateCommand</td>
             <td>✅개행문자 추가</td> 
