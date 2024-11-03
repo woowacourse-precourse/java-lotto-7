@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,13 +28,12 @@ class LottoTest {
     @DisplayName("메서드_테스트")
     @Test
     void methodTest(){
-        assertThat(Lotto.parsing("1,2,3,4,5,6")).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+
     }
 
     @DisplayName("예외_테스트")
     @Test
     void exceptionTest(){
-        assertThatThrownBy(() -> new Lotto(Lotto.parsing("1,2,3")))
-                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }

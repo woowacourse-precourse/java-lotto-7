@@ -37,11 +37,38 @@ public class Lotto {
         outputRandomLottos(lottos);
         seperateParagraph();
 
-
-
         System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNums = new ArrayList<>();
+        setWinningNums(winningNums);
+        seperateParagraph();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNum = Integer.parseInt(Console.readLine());
+        seperateParagraph();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
 
         //출력
+    }
+
+
+    public static void setWinningNums(List<Integer> winningNums) {
+        String nums = Console.readLine();
+        winningNums = parseNum(nums);
+        Console.close();
+    }
+
+    private static List<Integer> parseNum(String nums) {
+        List<String> strNum = new ArrayList<>();
+        strNum = List.of(nums.split(","));
+
+        List<Integer> winningNums = new ArrayList<>();
+        for(String num : strNum) {
+            winningNums.add(Integer.parseInt(num));
+        }
+
+        return winningNums;
     }
 
     private static void outputRandomLottos(final List<Lotto> lottos) {
