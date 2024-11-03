@@ -3,8 +3,8 @@ package lotto.model;
 public class Money {
     private final int value;
 
-    public Money(final int value) {
-        this.value = value;
+    public Money(final String value) {
+        this.value = Integer.parseInt(value);
     }
 
     @Override
