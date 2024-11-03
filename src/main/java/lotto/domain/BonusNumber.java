@@ -24,10 +24,9 @@ public class BonusNumber {
         try {
             Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ErrorCode.PRICE_POSITIVE_INTEGER.getErrorMessage());
+            throw new NumberFormatException(ErrorCode.INPUT_POSITIVE_INTEGER.getErrorMessage());
         }
     }
-
 
     private void validateBonusNumberInRange(String input) {
         int bonusNumber = Integer.parseInt(input);

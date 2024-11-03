@@ -1,6 +1,8 @@
 package lotto.config;
 
+import lotto.ErrorCode;
 import lotto.domain.BonusNumber;
+import lotto.domain.Money;
 import lotto.domain.WinningNumber;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
@@ -9,19 +11,16 @@ import lotto.service.ProfitCalculator;
 import lotto.service.WinningChecker;
 import lotto.io.Input;
 
+import java.util.NoSuchElementException;
 import java.util.function.Supplier;
 
 public class LottoConfig {
+    private static final Integer MAX_RETRIES = 100;
+
     public static void configure() {
-        Container.register(LottoGenerator.class,
-                retryOnFail(() -> new LottoGenerator(Input.inputPrice())));
 
-        Container.register(LottoResult.class, LottoResult::new);
-
-        Container.register(ProfitCalculator.class, () -> {
-            LottoResult result = Container.getInstance(LottoResult.class);
-            return new ProfitCalculator(result);
-        });
+        Container.register(Money.class,
+                retryOnFail(() -> new Money(Input.inputPrice())));
 
         Container.register(WinningNumber.class,
                 retryOnFail(() -> new WinningNumber(Input.inputWinningNumber())));
@@ -33,29 +32,33 @@ public class LottoConfig {
                                 Container.getInstance(WinningNumber.class))
                 ));
 
-        Container.register(WinningChecker.class,
-                retryOnFail(() -> {
-                    LottoResult result = Container.getInstance(LottoResult.class);
-                    WinningNumber winningNumber = Container.getInstance(WinningNumber.class);
-                    BonusNumber bonusNumber = Container.getInstance(BonusNumber.class);
+        Container.register(LottoGenerator.class, retryOnFail(LottoGenerator::new));
 
-                    return new WinningChecker(
-                            winningNumber,
-                            bonusNumber,
-                            result
-                    );
-                }));
+        Container.register(LottoResult.class, LottoResult::new);
+
+        Container.register(ProfitCalculator.class, () -> {
+            LottoResult result = Container.getInstance(LottoResult.class);
+            return new ProfitCalculator(result);
+        });
+
+        Container.register(WinningChecker.class, () -> {
+                    LottoResult result = Container.getInstance(LottoResult.class);
+                    return new WinningChecker(result);
+                });
     }
 
     private static <T> Supplier<T> retryOnFail(Supplier<T> supplier) {
         return () -> {
-            while (true) {
+            int retries = 0;
+            while (retries < MAX_RETRIES) {
                 try {
                     return supplier.get();
                 } catch (Exception e) {
                     View.showError(e.getMessage());
+                    retries++;
                 }
             }
+            throw new NoSuchElementException(ErrorCode.MAX_RETRIES_REACHED.getErrorMessage());
         };
     }
 }

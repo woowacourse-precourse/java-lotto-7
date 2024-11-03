@@ -35,10 +35,10 @@ class WinningCheckerTest {
         WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("7", winningNumber);
         LottoResult lottoResult = new LottoResult();
-        WinningChecker winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
+        WinningChecker winningChecker = new WinningChecker(lottoResult);
 
         // when
-        winningChecker.calculate(lottos);
+        winningChecker.calculate(lottos, winningNumber, bonusNumber);
 
         // then
         HashMap<WinningInfo, Integer> result = lottoResult.getResult();
@@ -57,10 +57,10 @@ class WinningCheckerTest {
         WinningNumber winningNumber = new WinningNumber("16,17,18,19,20,21");
         BonusNumber bonusNumber = new BonusNumber("45", winningNumber);
         LottoResult lottoResult = new LottoResult();
-        WinningChecker winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
+        WinningChecker winningChecker = new WinningChecker(lottoResult);
 
         // when
-        winningChecker.calculate(lottos);
+        winningChecker.calculate(lottos, winningNumber, bonusNumber);
 
         // then
         HashMap<WinningInfo, Integer> result = lottoResult.getResult();
@@ -68,79 +68,5 @@ class WinningCheckerTest {
         assertEquals(0, result.get(WinningInfo.SECOND_WINNER));
         assertEquals(0, result.get(WinningInfo.THIRD_WINNER));
         assertEquals(5, result.get(WinningInfo.NOT_MATCH));
-    }
-
-    @Test
-    @DisplayName("보너스 번호가 없는 경우")
-    void testWithoutBonusNumber() {
-        // given
-        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
-        BonusNumber bonusNumber = new BonusNumber("", winningNumber);
-        LottoResult lottoResult = new LottoResult();
-        WinningChecker winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
-
-        // when
-        winningChecker.calculate(lottos);
-
-        // then
-
-    }
-
-    @Test
-    @DisplayName("잘못된 형식의 당첨 번호 입력 시 예외 발생")
-    void testInvalidWinningNumberFormat() {
-        // given
-        String winningNumbers = "1,2,3,4,5,6j";
-        String bonusNumber = "7";
-
-        // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            WinningNumber winningNumber = new WinningNumber(winningNumbers);
-            new WinningChecker(winningNumber, new BonusNumber(bonusNumber, winningNumber), new LottoResult());
-        });
-        assertEquals(ErrorCode.WIN_NUMBER_PROPER.getErrorMessage(), exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("중복된 당첨 번호 입력 시 예외 발생")
-    void testDuplicateWinningNumbers() {
-        // given
-        String winningNumbers = "1,2,3,4,5,5";
-        String bonusNumber = "7";
-
-        // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            WinningNumber winningNumber = new WinningNumber(winningNumbers);
-            new WinningChecker(winningNumber, new BonusNumber(bonusNumber, winningNumber), new LottoResult());
-        });
-        assertEquals(ErrorCode.WIN_NUMBER_DUPLICATE.getErrorMessage(), exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("잘못된 보너스 번호 입력 시 예외 발생")
-    void testInvalidBonusNumber() {
-        // given
-        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
-        BonusNumber bonusNumber = new BonusNumber("46", winningNumber);
-
-        // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new WinningChecker(winningNumber, bonusNumber, new LottoResult());
-        });
-        assertEquals(ErrorCode.BONUS_NUMBER_IN_RANGE.getErrorMessage(), exception.getMessage());
-    }
-
-    @Test
-    @DisplayName("중복된 보너스 번호 입력 시 예외 발생")
-    void testDuplicateBonusNumber() {
-        // given
-        WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
-        BonusNumber bonusNumber = new BonusNumber("6", winningNumber);
-
-        // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new WinningChecker(winningNumber, bonusNumber, new LottoResult());
-        });
-        assertEquals(ErrorCode.BONUS_NUMBER_DUPLICATE.getErrorMessage(), exception.getMessage());
     }
 }

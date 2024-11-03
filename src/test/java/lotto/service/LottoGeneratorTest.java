@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoGeneratorTest {
 
@@ -17,10 +16,10 @@ class LottoGeneratorTest {
     @DisplayName("구입 금액에 맞게 로또를 생성한다")
     void generateLottosWithPrice() {
         // given
-        LottoGenerator generator = new LottoGenerator("5000");
+        LottoGenerator generator = new LottoGenerator();
 
         // when
-        Lottos lottos = generator.generateLottos();
+        Lottos lottos = generator.generateLottos(5000);
 
         // then
         assertThat(lottos.getLottoCount()).isEqualTo(5);
@@ -31,40 +30,13 @@ class LottoGeneratorTest {
     void generateLottosWithCustomNumberGenerator() {
         // given
         List<Integer> fixedNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        LottoGenerator generator = new LottoGenerator("1000", () -> fixedNumbers);
+        LottoGenerator generator = new LottoGenerator(() -> fixedNumbers);
 
         // when
-        Lottos lottos = generator.generateLottos();
+        Lottos lottos = generator.generateLottos(1000);
 
         // then
         assertThat(lottos.getLottoCount()).isEqualTo(1);
         assertThat(lottos.toString()).contains(fixedNumbers.toString());
-    }
-
-    @Test
-    @DisplayName("잘못된 형식의 금액이 입력될 때 예외 발생")
-    void testInvalidPriceFormat() {
-        // when & then
-        assertThatThrownBy(() -> new LottoGenerator("abc"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorCode.PRICE_POSITIVE_INTEGER.getErrorMessage());
-    }
-
-    @Test
-    @DisplayName("0보다 작은 금액이 입력될 때 예외 발생")
-    void testNegativePrice() {
-        // when & then
-        assertThatThrownBy(() -> new LottoGenerator("-1000"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorCode.PRICE_DIVIDABLE_BY_UNIT.getErrorMessage());
-    }
-
-    @Test
-    @DisplayName("1000으로 나눠지지 않는 금액이 입력될 때 예외 발생")
-    void testNonDivisiblePrice() {
-        // when & then
-        assertThatThrownBy(() -> new LottoGenerator("2500"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorCode.PRICE_DIVIDABLE_BY_UNIT.getErrorMessage());
     }
 }

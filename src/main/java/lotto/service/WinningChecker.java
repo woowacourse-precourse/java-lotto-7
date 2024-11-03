@@ -6,28 +6,24 @@ import lotto.domain.*;
 
 public class WinningChecker {
 
-    private final WinningNumber winningNumber;
-    private final BonusNumber bonusNumber;
     private final LottoResult result;
 
-    public WinningChecker(WinningNumber winningNumber, BonusNumber bonusNumber, LottoResult result) {
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    public WinningChecker(LottoResult result) {
         this.result = result;
     }
 
-    public void calculate(Lottos lottos) {
+    public void calculate(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
             Integer count = lotto.howManyMatches(winningNumber);
             WinningInfo winningInfo = WinningInfo.getWinningInfo(count);
             if (winningInfo.equals(WinningInfo.UNDEFINED)) {
-                winningInfo = checkBonusNumber(lotto);
+                winningInfo = checkBonusNumber(lotto, bonusNumber);
             }
             result.updateResult(winningInfo);
         }
     }
 
-    private WinningInfo checkBonusNumber(Lotto lotto) {
+    private WinningInfo checkBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.contains(bonusNumber.getBonusNumber())) {
             return WinningInfo.SECOND_WINNER;
         }
