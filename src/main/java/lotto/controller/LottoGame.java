@@ -44,7 +44,7 @@ public class LottoGame {
                 outputView.printLottoCount(lottoCount);
                 makeLottos(lottoCount);
                 break;
-            } catch (Exception e) {
+            } catch (NullPointerException | IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
@@ -75,7 +75,7 @@ public class LottoGame {
                 int bonusNumber = inputView.getBonusNumber();
                 winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
@@ -87,7 +87,7 @@ public class LottoGame {
             try {
                 winningLottoNumbers = inputView.getWinningLottoNumber();
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }

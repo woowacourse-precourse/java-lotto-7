@@ -18,14 +18,14 @@ public class InputView {
     }
 
     public List<Integer> getWinningLottoNumber() {
-        System.out.println(NEW_LINE+ INPUT_WINNING_LOTTO_NUMBER);
+        System.out.println(NEW_LINE + INPUT_WINNING_LOTTO_NUMBER);
         String lottoNumber = Console.readLine();
         InputValidator.validateLottoNumber(lottoNumber);
         return InputValidator.makeLottoNumber(lottoNumber);
     }
 
     public int getBonusNumber() {
-        System.out.println(NEW_LINE+ INPUT_BONUS_NUMBER);
+        System.out.println(NEW_LINE + INPUT_BONUS_NUMBER);
         String bonusNumber = Console.readLine();
         InputValidator.validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
