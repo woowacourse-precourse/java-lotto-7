@@ -1,4 +1,4 @@
-package lotto;
+package ticket;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ticket.lotto.Lotto;
 
 class LottoTest {
 
@@ -14,7 +15,8 @@ class LottoTest {
     void createLottoInstanceWithUnique6Numbers() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
-        assertThat(lotto.getNumbers()).isEqualTo(numbers);
+        assertThat(lotto.getTicketInfo()).isEqualTo(String.valueOf(numbers));
+        System.out.println(lotto.getTicketInfo());
     }
 
     @Test

@@ -1,10 +1,12 @@
-package lotto;
+package ticket.lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import ticket.Ticket;
 
-public class Lotto {
+public class Lotto implements Ticket {
+    public static final int LOTTO_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -38,7 +40,9 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    @Override
+    public String getTicketInfo() {
+        return String.valueOf(numbers);
     }
+
 }
