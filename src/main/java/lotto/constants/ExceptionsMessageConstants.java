@@ -9,6 +9,7 @@ public final class ExceptionsMessageConstants {
     public static final String INPUT_CONTAINS_WHITE_SPACE = "입력값에 공백이 존재합니다.";
     public static final String INPUT_CANNOT_BE_EMPTY_OR_NULL = "빈 문자열이나 null값이면 안됩니다.";
     public static final String INPUT_CONTAINS_NUMBER_AND_COMMA_ONLY = "입력값은 숫자와 콤마(,)만 포함해야 합니다.";
+    public static final String INPUT_NUMBERS_COUNT_MUST_BE_SIX = "숫자는 6개를 입력해주세요.";
 
     private ExceptionsMessageConstants() {}
 }
