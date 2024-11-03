@@ -25,7 +25,24 @@ public class StatsService {
         }
     }
 
-    public Stats statsForLotto(Lotto lotto, Player player) {
+    public double calculateProfitRate(int purchaseAmount) {
+        int totalWinningsprize = calculateTotalPrize();
+        double profitRate = (double) totalWinningsprize / purchaseAmount * 100;
+
+        return Math.round(profitRate * 100) / 100.0;
+    }
+
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+
+        for (Stats stat : Stats.values()) {
+            int count = statsCount.getOrDefault(stat, 0);
+            totalPrize += stat.getPrize() * count;
+        }
+        return totalPrize;
+    }
+
+    private Stats statsForLotto(Lotto lotto, Player player) {
         Lotto winningLotto = player.getWinningLotto();
         int bonusNumber = player.getBonusNumber();
 

@@ -30,7 +30,8 @@ public class LottoController {
 
         Player player = new Player(winningLotto, bonusNumber);
         statsService.calculateStats(lottos, player);
+        OutputView.stats(statsService.getStatsCount());
 
-        OutputView.Stats(statsService.getStatsCount());
+        double profitRate = statsService.calculateProfitRate(purchaseAmount);
     }
 }
