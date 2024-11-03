@@ -44,7 +44,7 @@ public class LottoController {
         while (true) {
             try {
                 String InputBonus = Input.GetBonus();
-                bonus = BonusValodation(Numbers, InputBonus);
+                bonus = BonusValidation(Numbers, InputBonus);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -53,7 +53,7 @@ public class LottoController {
         return bonus;
     }
 
-    public int BonusValodation(List<Integer> Numbers, String BonusInput) {
+    public int BonusValidation(List<Integer> Numbers, String BonusInput) {
         BonusValidation.BonusInputNotNull(BonusInput);
         BonusValidation.BonusIsNumeric(BonusInput);
 

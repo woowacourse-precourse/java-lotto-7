@@ -26,7 +26,7 @@ public class BonusValidation {
     public static void BonusNotDuplicate(List<Integer> Numbers, int bonus) {
         for (Integer number : Numbers) {
             if (number == bonus) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복되지 않아야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복되지 않아야 합니다.");
             }
         }
     }
