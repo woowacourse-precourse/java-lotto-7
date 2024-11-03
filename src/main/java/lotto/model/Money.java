@@ -19,11 +19,18 @@ public class Money {
 
     private void validate(int amount){
         validateRange(amount);
+        validateDividableUnitPrice(amount);
     }
 
     private void validateRange(int amount){
         if(amount < 1000 || amount > 100000){
             throw new IllegalArgumentException("[ERROR] 로또 구입 최소 금액은 1000원 최대 금액은 100000원 입니다.");
+        }
+    }
+
+    private void validateDividableUnitPrice(int amount){
+        if (amount % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 로또 구입은 1000원 단위로 가능합니다.");
         }
     }
 }

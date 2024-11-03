@@ -4,7 +4,6 @@ import lotto.model.Lotto;
 import lotto.util.CommonIo;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public class IoController {
     private final CommonIo io;
@@ -21,7 +20,7 @@ public class IoController {
         try {
             return io.convertStringToInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.", e);
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자만 입력 가능합니다.", e);
         }
     }
 
