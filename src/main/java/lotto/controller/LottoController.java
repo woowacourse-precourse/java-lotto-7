@@ -14,7 +14,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public void run() {
-        LottoPurchaseMoney invested = getMoney();
+        LottoPurchaseMoney invested = getPurchaseMoney();
         Lottos issued = new Lottos(invested.toLottoCount());
         OutputView.printLottos(issued);
 
@@ -23,7 +23,7 @@ public class LottoController {
         OutputView.printPrizeStats(lottoMatcher, invested);
     }
 
-    private LottoPurchaseMoney getMoney() {
+    private LottoPurchaseMoney getPurchaseMoney() {
         while (true) {
             try {
                 OutputView.println(MONEY_PROMPT.getMessage());
