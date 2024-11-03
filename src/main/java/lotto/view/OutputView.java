@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoResultDto dto : dtos) {
-            System.out.printf("%d개 일치 (%d원) - %d개%n",
+            System.out.printf("%d개 일치 (%,d원) - %d개%n",
                 dto.correctNumber(),
                 dto.prize(),
                 dto.amount());
