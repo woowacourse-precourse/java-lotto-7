@@ -14,4 +14,12 @@ class NumberParserTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
     }
+
+    @Test
+    void parseNotIntegerTest() {
+        String notInteger = "1000j";
+        assertThatThrownBy(() -> NumberParser.parseInteger(notInteger))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
 }
