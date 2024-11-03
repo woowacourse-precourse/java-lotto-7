@@ -1,5 +1,6 @@
 package view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
@@ -47,5 +48,9 @@ public class OutputView {
             System.out.print(", 보너스 볼 일치");
         }
         System.out.printf(" (%s원) - %d개\n", formattedPrize, matchCount);
+    }
+
+    public void printReturnOnInvestment(BigDecimal returnOnInvestment) {
+        System.out.printf("총 수익률은 %,.1f%%입니다.%n", returnOnInvestment);
     }
 }
