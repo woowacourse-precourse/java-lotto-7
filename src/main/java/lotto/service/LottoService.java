@@ -28,10 +28,10 @@ public class LottoService {
         WinningCount winningCount = new WinningCount();
         for (Lotto issuedLotto : issuedLottos.getLottos()) {
             boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
-            List<Integer> issuedLottoNumbers = issuedLotto.getNumbers();
-            List<Integer> winningLottoNumbers = winningLotto.getNumbers();
-            issuedLottoNumbers.retainAll(winningLottoNumbers);
-            calculateWinningCount(winningCount, issuedLottoNumbers, isBonusMatch);
+            int matchCount = (int) issuedLotto.getNumbers().stream()
+                    .filter(winningLotto.getNumbers()::contains)
+                    .count();
+            calculateWinningCount(winningCount, matchCount, isBonusMatch);
         }
         return winningCount;
     }
@@ -57,27 +57,27 @@ public class LottoService {
         return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
-    private void calculateWinningCount(WinningCount winningCount, List<Integer> issuedLotto, boolean isBonusMatch) {
-        if (issuedLotto.size() < 3) {
+    private void calculateWinningCount(WinningCount winningCount, int matchCount, boolean isBonusMatch) {
+        if (matchCount < 3) {
             return;
         }
-        if (issuedLotto.size() == 6) {
+        if (matchCount == 6) {
             winningCount.increaseCount(Profit.SIX_MATCHES.name());
             return;
         }
-        if (issuedLotto.size() == 5 && isBonusMatch) {
+        if (matchCount == 5 && isBonusMatch) {
             winningCount.increaseCount(Profit.FIVE_MATCHES_BONUS_MATCH.name());
             return;
         }
-        if (issuedLotto.size() == 5) {
+        if (matchCount == 5) {
             winningCount.increaseCount(Profit.FIVE_MATCHES.name());
             return;
         }
-        if (issuedLotto.size() == 4) {
+        if (matchCount == 4) {
             winningCount.increaseCount(Profit.FOUR_MATCHES.name());
             return;
         }
-        if (issuedLotto.size() == 3) {
+        if (matchCount == 3) {
             winningCount.increaseCount(Profit.THREE_MATCHES.name());
         }
     }
