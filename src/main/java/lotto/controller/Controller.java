@@ -20,15 +20,23 @@ public class Controller {
         outputView.printUnitCount(thousandUnitCount);
 
         Lottos lottos = new Lottos();
+        purchaseLottos(thousandUnitCount, lottos);
 
+        Lotto winningNumber = inputView.readWinningNumbers();
+        printLottoResult(winningNumber, lottos, thousandUnitCount);
+    }
+
+    private void purchaseLottos(int thousandUnitCount, Lottos lottos) {
         for (int count = 0; count < thousandUnitCount; count++) {
             Lotto lotto = new Lotto(RandomNumberUtils.getRandomNumbers());
             lottos.addLotto(lotto);
             outputView.printPurchaseLottos(lotto);
         }
-        inputView.readWinningNumbers();
-        inputView.readBonusNumber();
-        outputView.printLottoResult(lottos);
+    }
+
+    private void printLottoResult(Lotto winningNumber, Lottos lottos, int thousandUnitCount) {
+        int bonusNumber = inputView.readBonusNumber(winningNumber);
+        outputView.printLottoResult(winningNumber, bonusNumber, lottos);
         outputView.printRateOfReturn(thousandUnitCount);
     }
 }
