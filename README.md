@@ -36,3 +36,29 @@
 - **예외 문구 출력**
     - [ ] 예외 상황 시 에러 문구를 출력한다.
     - [ ] 에러 문구는 "[ERROR]" 로 시작한다.
+
+## 예외 목록
+
+1. **입력 값 예외**
+
+- [ ] 입력이 null이거나 빈 문자열일 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 구분자가 잘못 되었을 경우 `IllegalArgumentException`을 발생시킨다.
+
+2. **구입 금액 예외**
+
+- [ ] 금액이 int 범위를 벗어났거나, 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 금액이 0보다 작은 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 금액이 1,000원 단위로 나누어떨어지지 않는 경우 `IllegalArgumentException`을 발생시킨다.
+
+3. **당첨 번호 예외**
+
+- [ ] 당첨 번호가 int 범위를 벗어났거나, 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 당첨 번호 개수가 6개가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 당첨 번호가 1~45 범위를 벗어나는 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 당첨 번호에 중복된 숫자가 있는 경우 `IllegalArgumentException`을 발생시킨다.
+
+4. **보너스 번호 예외**
+
+- [ ] 보너스 번호가 int 범위를 벗어났거나, 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 보너스 번호가 1~45 범위를 벗어나는 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 보너스 번호가 당첨 번호와 중복되는 경우 `IllegalArgumentException`을 발생시킨다.
