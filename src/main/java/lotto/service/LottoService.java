@@ -8,6 +8,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningNumbers;
+import lotto.util.NumberValidator;
 
 public class LottoService {
     public LottoTickets generateLottoTickets(final PurchasePrice purchasePrice) {
@@ -28,11 +29,15 @@ public class LottoService {
 
     private List<Integer> parseNumbers(final String input) {
         List<String> numbers = List.of(input.split(","));
-        // validateNumberFormat
-        // validateIntegerRange
+        numbers.forEach(this::validateNumber);
         return numbers.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void validateNumber(final String input) {
+        NumberValidator.validateNumberFormat(input);
+        NumberValidator.validateIntegerRange(input);
     }
 
     public double calculateRateOfReturn(final Map<Prize, Integer> result, final PurchasePrice purchasePrice) {
