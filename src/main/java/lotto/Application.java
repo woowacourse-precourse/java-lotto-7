@@ -8,9 +8,11 @@ import lotto.service.LottoService;
 public class Application {
 
     private static LottoService lottoService = new LottoService();
+    private static Lotto winningLotto;
 
     public static void main(String[] args) {
         List<Lotto> lottos = setLottos();
+        setWinningLotto();
     }
 
     private static List<Lotto> setLottos() {
@@ -26,5 +28,10 @@ public class Application {
             }
             throw exception;
         }
+    }
+
+    private static void setWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        winningLotto = lottoService.setWinningLotto(Console.readLine());
     }
 }
