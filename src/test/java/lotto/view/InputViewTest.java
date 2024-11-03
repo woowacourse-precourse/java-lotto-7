@@ -23,7 +23,7 @@ public class InputViewTest {
     }
 
     @Test
-    void 구입_금액이_0보다_작으면_예외가_발생한다() {
+    void 구입_금액이_0_이하면_예외가_발생한다() {
         assertThatThrownBy(() -> utils.convertInputToCash("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
