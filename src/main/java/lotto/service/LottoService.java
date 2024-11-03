@@ -1,12 +1,10 @@
-package lotto;
+package lotto.service;
 
 import lotto.enums.OutputMessage;
 import lotto.enums.WinningStatistics;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;

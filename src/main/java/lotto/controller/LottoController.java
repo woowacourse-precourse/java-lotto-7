@@ -1,5 +1,6 @@
-package lotto;
+package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.view.InputView;
@@ -8,7 +9,7 @@ public class LottoController {
     private final InputView inputView;
     private final LottoService lottoService;
 
-    LottoController() {
+    public LottoController() {
         this.inputView = new InputView();
         this.lottoService = new LottoService();
     }
