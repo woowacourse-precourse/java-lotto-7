@@ -36,23 +36,24 @@
   - [x] `getProfitRate` : 수익률을 계산하여 반환한다.
 ###### getter 는 생략
 ### View
-- [ ] `InputView`
-  - [ ] `getPrice` : 구매 가격을 입력 받는다.
-  - [ ] `getLottoNum` : 로또 번호를 입력 받는다.
-  - [ ] `getBonusNum` : 보너스 번호를 입력 받는다.
-- [ ] `OutputView`
-  - [ ] `printLottos` : 구매한 로또 번호를 출력한다.
-  - [ ] `printResult` : 결과를 양식에 맞게 출력한다.
+- [x] `InputView`
+  - [x] `getPrice` : 구매 가격을 입력 받는다.
+  - [x] `getLottoNum` : 로또 번호를 입력 받는다.
+  - [x] `getBonusNum` : 보너스 번호를 입력 받는다.
+- [x] `OutputView`
+  - [x] `printLottos` : 구매한 로또 번호를 출력한다.
+  - [x] `printResult` : 결과를 양식에 맞게 출력한다.
+  - [x] `printErrorMessage` : 에러에 따라 에러메세지를 출력한다.
 ### Controller
-- [ ] `LottoController`
-  - [ ] `run` : 로또 당첨 시작
+- [x] `LottoController`
+  - [x] `run` : 로또 당첨 시작
 - - -
-- [ ] 처리해야할 예외는 `IllegalArgumentException` 이고, 그 외 예외는 종료.
+- [x] 처리해야할 예외는 `IllegalArgumentException` 이고, 그 외 예외는 종료.
 - - - 
 ### 추가된 코드 컨벤션 지키기
-- [ ] else 예약어 사용 금지한다.
+- [x] else 예약어 사용 금지한다.
 ### 공통 피드백에서 평소 잘 지키지 않는 것
-- [ ] 변수명에 자료명 사용 금지한다.
-- [ ] 값을 하드코딩 하지 않는다.
+- [x] 변수명에 자료명 사용 금지한다.
+- [x] 값을 하드코딩 하지 않는다.
 #### 문서 작성 참고 링크
 <https://gist.github.com/ihoneymon/652be052a0727ad59601>
