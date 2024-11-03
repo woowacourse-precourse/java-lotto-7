@@ -14,10 +14,15 @@ public class LottoServiceImpl implements LottoService{
     private LottoGame lottoGame;
 
     @Override
+    public List<List<Integer>> purchaseLottos(int amount) {
+        validatePurchaseAmount(amount);
+        return createPurchasedLottos(amount);
+    }
+
+    @Override
     public void createAndPlayGame(LottoGameReq request) {
-        List<List<Integer>> purchasedLottos = createPurchasedLottos(request);
         this.lottoGame = LottoGame.of(
-                purchasedLottos,
+                request.getPurchasedNumbers(),
                 request.getWinningNumbers(),
                 request.getBonusNumber(),
                 request.getCost()
