@@ -33,7 +33,7 @@ public class Application {
         return lottoWinningNumbers;
     }
 
-    public static int checkAmount(int buyLottoAmount) {
+    public static int checkAmount(int buyLottoAmount) { //금액 체크
         if (buyLottoAmount % 1000 != 0) throw new IllegalArgumentException("");
         return buyLottoAmount / 1000;
     }
