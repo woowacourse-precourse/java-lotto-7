@@ -11,9 +11,7 @@ public class InputValidator {
         return input == null || input.isBlank();
     }
     public static boolean isThousandUnit(int input){
-        if(input % 1000 == 0){
-            return true;
-        }return false;
+        return input % 1000 == 0;
     }
     public static boolean isValidFormatForMoney(String input){
         return input.matches("^\\d{4,}$");
@@ -23,25 +21,18 @@ public class InputValidator {
         return input.matches("^[0-9,]+$");
     }
     public static boolean isCountSix(String[] input){
-        if(input.length != 6){
-            return false;
-        }
-        return true;
+        return input.length == 6;
     }
 
     public static boolean isUniqueNumbers(String[] numbers){
         Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(numbers));
-        if(uniqueNumbers.size() != numbers.length){
-            return false;
-        }return true;
+
+        return uniqueNumbers.size() == numbers.length;
     }
 
     public static boolean isInRange(String[] numbers){
         for(String number : numbers){
-
-            int num = Integer.parseInt(number);
-
-            if(num < 0 || num > 45 ){
+            if(!isValidNumber(number)){
                 return false;
             }
         }return true;
@@ -49,9 +40,17 @@ public class InputValidator {
 
 
     public static boolean isInRange(String number) {
-        int num = Integer.parseInt(number);
+        return isValidNumber(number);
+    }
 
-        return num >= 0 && num <= 45;
+    private static boolean isValidNumber(String number){
+        try{
+            int num = Integer.parseInt(number);
+            return num > 0 && num <= 45;
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
     }
     public static boolean isNumeric(String number){
         return number.matches("\\d+");
