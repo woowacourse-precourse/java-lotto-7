@@ -20,6 +20,10 @@ public class Ticket {
         this.result = makeResult();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public EnumMap<Prize, Integer> getResult() {
         return this.result;
     }
@@ -44,7 +48,7 @@ public class Ticket {
             }
         }
 
-        if (bonusNumber < 0 || bonusNumber > 100) {
+        if (bonusNumber < 0 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45숫자만 가능합니다.");
         }
 

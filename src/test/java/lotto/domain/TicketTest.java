@@ -26,7 +26,7 @@ class TicketTest {
     @DisplayName("보너스 번호가 1이상 45이하가 아니면 예외가 발생한다.")
     @Test
     void 보너스_번호가_1이상_45이하가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Ticket(getLottos(), 1001, List.of(1, 2, 3, 4, 5, 55), 7))
+        assertThatThrownBy(() -> new Ticket(getLottos(), 1001, List.of(1, 2, 3, 4, 5, 6), 50))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
