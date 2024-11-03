@@ -11,9 +11,7 @@ public class Application {
         int lottoCount = calculateLottoCount(amount);
         List<Lotto> purchasedLottos = purchaseLottos(lottoCount);
         Lotto winningLotto = getWinningLotto();
-        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber(winningLotto.getNumbers());
-        System.out.println();
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
         showResult(purchasedLottos, winningLotto, bonusNumber);
     }
@@ -72,8 +70,15 @@ public class Application {
     }
 
     private static int getBonusNumber(List<Integer> winningNumbers) {
-        String inputBonus = Console.readLine();
-        return validateBonusNumber(inputBonus, winningNumbers);
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonus = Console.readLine();
+                return validateBonusNumber(inputBonus, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int validateBonusNumber(String inputBonus, List<Integer> winningNumbers) {
