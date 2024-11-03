@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstant.MATCH_COUNT_FIVE;
+
 public class LottoResultDetails {
 
     public static void count(Lottos lottos, WinningLottoNumber winningLottoNumber){
@@ -8,7 +10,7 @@ public class LottoResultDetails {
         for(Lotto lotto:lottos.getLottos()){
             boolean checkBonus = false;
             matchingCount = checkMatchingCount(lotto, winningLottoNumber);
-            if(matchingCount == 5){
+            if(matchingCount == MATCH_COUNT_FIVE){
                 checkBonus = checkBonusInWinningLottoNumber(lotto,winningLottoNumber);
             }
             Rank.of(matchingCount,checkBonus);
