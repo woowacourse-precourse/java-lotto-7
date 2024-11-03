@@ -11,6 +11,7 @@ public class ScoreBoard {
     private final List<Lotto> lottos;
     private final Winning winning;
     private final Map<LottoRank, Integer> rankCounts;
+    private final int LOTTO_PRICE = 1000;
 
     public ScoreBoard(List<Lotto> lottos, Winning winning) {
         this.lottos = lottos;
@@ -49,6 +50,15 @@ public class ScoreBoard {
 
     private boolean isValidRank(Map.Entry<LottoRank, Integer> entry) {
         return entry.getKey() != LottoRank.NONE;
+    }
+
+    private double calculateRate() {
+        int totalPrize = rankCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        int totalSpent = lottos.size() * LOTTO_PRICE;
+        return (double) totalPrize / totalSpent * 100;
     }
 
 }
