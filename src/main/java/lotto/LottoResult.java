@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -17,6 +18,14 @@ public class LottoResult {
 
     public void addRankCount(LottoRank rank) {
         rankCounts.put(rank, rankCounts.get(rank) + 1);
+    }
+
+    public BigDecimal calculateTotalPrize() {
+        return rankCounts.entrySet()
+                         .stream()
+                         .map(entry -> entry.getKey()
+                                            .calculatePrizeByRankCount(entry.getValue()))
+                         .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Map<LottoRank, Integer> getRankCounts() {
