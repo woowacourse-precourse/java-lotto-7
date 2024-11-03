@@ -1,5 +1,7 @@
 package lotto.domain.service;
 
+import java.util.HashSet;
+import java.util.Set;
 import lotto.domain.model.ErrorMessages;
 import java.util.List;
 
@@ -32,13 +34,15 @@ public class ValidationService {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
-        if (numbers.stream().distinct().count() != numbers.size()) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER_ERROR.getMessage());
         }
         if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_RANGE.getMessage());
         }
     }
+
 
     public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
         int bonusNumber;
