@@ -14,4 +14,15 @@ public class LottoGameValidator {
 
         return true;
     }
+
+    public static boolean checkMoneyValid(int money) {
+        if (money < 0) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_CAN_NOT_MINUS.getMessage());
+        }
+        if (!Validator.isDivided(money, Lotto.LOTTO_PRICE)) {
+            throw new IllegalArgumentException(ErrorMessage.INSERT_MONEY_NOT_DIVIDED_1000.getMessage());
+        }
+
+        return true;
+    }
 }
