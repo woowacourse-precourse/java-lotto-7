@@ -16,7 +16,5 @@ public class LottoMachine {
         return numberGenerator.generate();
     }
 
-    public Lotto publishLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
     }
 }
