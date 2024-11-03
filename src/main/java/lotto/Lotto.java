@@ -14,7 +14,31 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public Grade compare(Lotto winningLotto, int bonusNumber) {
+        int count = 0;
+        boolean bonusCount = false;
+
+        for (int number : numbers) {
+            if (winningLotto.contains(number)) {
+                count++;
+            }
+            if (number == bonusNumber) {
+                bonusCount = true;
+            }
+        }
+        return Grade.valueOf(count, bonusCount);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
