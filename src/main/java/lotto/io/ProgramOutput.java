@@ -3,6 +3,7 @@ package lotto.io;
 import lotto.Lotto;
 import lotto.LottoDrawingMachine;
 import lotto.WinningStatics;
+import lotto.utils.FormattingUtils;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ProgramOutput {
     private static final String SIX_NUMBER_MATCH_MESSAGE = "6개 일치 (";
     private static final String CURRENCY_UNIT = "원) - ";
     private static final String EA = "개";
-    private static final String RATE_OF_RETURN_INFORMATION_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String RATE_OF_RETURN_INFORMATION_MESSAGE = "총 수익률은 ";
 
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
@@ -48,23 +49,24 @@ public class ProgramOutput {
         WinningStatics statics = lottoDrawingMachine.matchWinningLotto(purChasedLotto);
         printStatistics(statics);
         printRateOfReturn(statics, purChasedLotto.size());
-        printNewLine();
     }
 
     private void printRateOfReturn(WinningStatics statics, int count) {
-        System.out.printf(RATE_OF_RETURN_INFORMATION_MESSAGE, statics.getRateOfReturn(count));
+        System.out.println(RATE_OF_RETURN_INFORMATION_MESSAGE
+                + FormattingUtils.formatRateOfReturnMessage(statics.getRateOfReturn(count)));
     }
 
     private void printStatistics(WinningStatics statics) {
-        System.out.println(THREE_NUMBER_MATCH_MESSAGE + String.format("%,d", WinningStatics.FIFTH_PLACE_PRIZE)
+        System.out.println(THREE_NUMBER_MATCH_MESSAGE + FormattingUtils.formatCurrency(WinningStatics.FIFTH_PLACE_PRIZE)
                 + CURRENCY_UNIT + statics.getFifth() + EA);
-        System.out.println(FOUR_NUMBER_MATCH_MESSAGE + String.format("%,d", WinningStatics.FOURTH_PLACE_PRIZE)
+        System.out.println(FOUR_NUMBER_MATCH_MESSAGE + FormattingUtils.formatCurrency(WinningStatics.FOURTH_PLACE_PRIZE)
                 + CURRENCY_UNIT + statics.getFourth() + EA);
-        System.out.println(FIVE_NUMBER_MATCH_MESSAGE + String.format("%,d", WinningStatics.THIRD_PLACE_PRIZE)
+        System.out.println(FIVE_NUMBER_MATCH_MESSAGE + FormattingUtils.formatCurrency(WinningStatics.THIRD_PLACE_PRIZE)
                 + CURRENCY_UNIT + statics.getThird() + EA);
-        System.out.println(FIVE_NUMBER_AND_BONUS_MATCH_MESSAGE + String.format("%,d", WinningStatics.SECOND_PLACE_PRIZE)
+        System.out.println(FIVE_NUMBER_AND_BONUS_MATCH_MESSAGE
+                + FormattingUtils.formatCurrency(WinningStatics.SECOND_PLACE_PRIZE)
                 + CURRENCY_UNIT + statics.getSecond() + EA);
-        System.out.println(SIX_NUMBER_MATCH_MESSAGE + String.format("%,d", WinningStatics.FIRST_PLACE_PRIZE)
+        System.out.println(SIX_NUMBER_MATCH_MESSAGE + FormattingUtils.formatCurrency(WinningStatics.FIRST_PLACE_PRIZE)
                 + CURRENCY_UNIT + statics.getFirst() + EA);
     }
 
