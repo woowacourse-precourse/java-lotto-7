@@ -3,8 +3,8 @@ package lotto.model;
 import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
 import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
 
+import global.utils.Validator;
 import java.util.List;
-import lotto.utils.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +22,7 @@ public class Lotto {
         }
 
         //FIXME: 여기 이렇게 있는게 맞을까?
-        LottoValidator.numbersDuplicateValidate(numbers);
+        Validator.numbersDuplicateValidate(numbers);
     }
 
     // TODO: 추가 기능 구현

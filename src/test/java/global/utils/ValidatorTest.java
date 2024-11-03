@@ -1,19 +1,17 @@
-package lotto.utils;
+package global.utils;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Application;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoValidatorTest extends NsTest {
+class ValidatorTest {
 
     private static final String ERROR_PREFIX = "[ERROR]";
 
-    private final LottoValidator validator = new LottoValidator();
+    private final Validator validator = new Validator();
 
     @ParameterizedTest
     @ValueSource(strings = {"1.123", "1.0", "1.000"})
@@ -111,8 +109,4 @@ class LottoValidatorTest extends NsTest {
         );
     }
 
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
-    }
 }

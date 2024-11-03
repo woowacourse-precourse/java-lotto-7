@@ -1,14 +1,12 @@
 package lotto.controller;
 
+import global.utils.Validator;
 import java.math.BigInteger;
 import lotto.service.LottoService;
-import lotto.utils.LottoValidator;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
-
-    private static final LottoValidator lottoValidator = new LottoValidator();
 
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
@@ -33,7 +31,7 @@ public class LottoController {
         String input = lottoInputView.inputPurchaseAmount();
 
         try {
-            lottoValidator.validatePurchaseAmount(input);
+            Validator.validatePurchaseAmount(input);
         } catch (Exception e) {
             return paying();
         }
@@ -44,5 +42,4 @@ public class LottoController {
     private void generateLotto(BigInteger purchaseAmount) {
         lottoService.generateByPurchaseAmount(purchaseAmount);
     }
-
 }
