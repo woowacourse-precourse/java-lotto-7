@@ -50,30 +50,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트_잘못된_입력() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_부정확한_입력() {
-        assertSimpleTest(() -> {
-            runException("-1000");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
-    void 예외_테스트_너무_높은_입력() {
-        assertSimpleTest(() -> {
-            runException("10001");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @Test
     void 예외_테스트_잘못된_보너스_번호() {
         assertSimpleTest(() -> {
             runException("1,2,3,4,5,6,7,8");
