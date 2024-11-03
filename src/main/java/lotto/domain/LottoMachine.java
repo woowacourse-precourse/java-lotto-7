@@ -8,6 +8,8 @@ import static lotto.config.ErrorMessageConstant.INVALID_RANGE_NUMBER_MESSAGE;
 import static lotto.config.GameConstant.LOWER_BOUND_WINNING_NUMBER;
 import static lotto.config.GameConstant.NUMBER_OF_WINNING_NUMBER;
 import static lotto.config.GameConstant.UPPER_BOUND_WINNING_NUMBER;
+import static lotto.util.Parser.parseToInteger;
+import static lotto.util.Parser.parseToIntegerList;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,17 +23,23 @@ public class LottoMachine {
         winningNumbers = new ArrayList<>();
     }
 
-    public void assignWinningNumbers(List<Integer> winningNumbers) {
+    public LottoMachine assignWinningNumbers(List<String> winningNumbers) {
         validateWinningNumbers(winningNumbers);
-        this.winningNumbers = winningNumbers;
+
+        this.winningNumbers = parseToIntegerList(winningNumbers);
+        return this;
     }
 
-    public void assignBonusNumber(int bonusNumber) {
+    public LottoMachine assignBonusNumber(String bonusNumber) {
         validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+
+        this.bonusNumber = parseToInteger(bonusNumber);
+        return this;
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
+    private void validateWinningNumbers(List<String> winningNumbers) {
+        List<Integer> parsedWinningNumbers = parseToIntegerList(winningNumbers);
+
         if (winningNumbers.size() != NUMBER_OF_WINNING_NUMBER) {
             throw new IllegalArgumentException(INSUFFICIENT_WINNING_NUMBERS_MESSAGE);
         }
@@ -40,24 +48,28 @@ public class LottoMachine {
             throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER_MESSAGE);
         }
 
-        for (int winningNumber : winningNumbers) {
-            if (winningNumber < LOWER_BOUND_WINNING_NUMBER || winningNumber > UPPER_BOUND_WINNING_NUMBER) {
-                throw new IllegalArgumentException(INVALID_RANGE_NUMBER_MESSAGE);
-            }
+        for (int winningNumber : parsedWinningNumbers) {
+            validateRangeNumber(winningNumber);
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(String bonusNumber) {
+        int parsedBonusNumber = parseToInteger(bonusNumber);
+
         if (winningNumbers.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_WINNGING_NUMBER_MESSAGE);
         }
 
-        if (bonusNumber < LOWER_BOUND_WINNING_NUMBER || bonusNumber > UPPER_BOUND_WINNING_NUMBER) {
-            throw new IllegalArgumentException(INVALID_RANGE_NUMBER_MESSAGE);
-        }
+        validateRangeNumber(parsedBonusNumber);
 
-        if (winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(parsedBonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER_MESSAGE);
+        }
+    }
+
+    private void validateRangeNumber(int number) {
+        if (number < LOWER_BOUND_WINNING_NUMBER || number > UPPER_BOUND_WINNING_NUMBER) {
+            throw new IllegalArgumentException(INVALID_RANGE_NUMBER_MESSAGE);
         }
     }
 }

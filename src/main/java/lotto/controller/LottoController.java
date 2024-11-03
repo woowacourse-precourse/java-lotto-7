@@ -1,17 +1,23 @@
 package lotto.controller;
 
-import static lotto.view.InputView.getBonusNumber;
-import static lotto.view.InputView.getPurchase;
-import static lotto.view.InputView.getWinningNumbers;
+import static lotto.handler.Handler.repeatInputUntilValid;
+import static lotto.view.InputView.getUserInput;
+import static lotto.view.InputView.getUserInputByList;
 
-import java.util.List;
+import lotto.domain.LottoMachine;
+import lotto.domain.Money;
 
 public class LottoController {
+    private LottoMachine lottoMachine;
+
+    public LottoController() {
+        lottoMachine = new LottoMachine();
+    }
+
     public void start() {
-        int purchase = getPurchase();
+        Money purchase = repeatInputUntilValid(() -> new Money(getUserInput()));
 
-        List<Integer> winningNumbers = getWinningNumbers();
-
-        int bonusNumber = getBonusNumber();
+        repeatInputUntilValid(() -> lottoMachine.assignWinningNumbers(getUserInputByList()));
+        repeatInputUntilValid(() -> lottoMachine.assignBonusNumber(getUserInput()));
     }
 }
