@@ -11,7 +11,6 @@ import static lotto.view.OutputMessage.SHOW_TOTAL_PROFIT;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.domain.Money;
 import lotto.domain.Profit;
 import lotto.exception.InputException;
 
@@ -28,8 +27,8 @@ public class OutputView {
         System.out.println(ASK_BONUS_NUMBER.getMessage());
     }
 
-    public static void printPurchasedResult(Money money, List<Lotto> lottos) {
-        printPurchasedCount(money.calculateTicketCount());
+    public static void printPurchasedResult(int ticketCount, List<Lotto> lottos) {
+        printPurchasedCount(ticketCount);
         printNewLine();
         lottos.forEach(OutputView::printLottoNumbers);
     }
