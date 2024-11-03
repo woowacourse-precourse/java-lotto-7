@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.validation.LottosValidation;
 
 public class LottosService {
 
@@ -19,7 +18,6 @@ public class LottosService {
         for (; count < purchaseTickets; count++) {
             lottos.add(new Lotto(generateNumbers()));
         }
-        LottosValidation.lottosValidation(purchaseTickets, lottos);
         return lottos;
     }
 
