@@ -1,9 +1,7 @@
 package lotto.service;
 
 import lotto.constants.LottoConstants;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.generator.RandomLottoNumberGenerator;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.PurchaseAmountValidator;
@@ -28,6 +26,17 @@ public class LottoServiceImpl implements LottoService {
         BonusNumberValidator.validateBonusNumber(winningNumbers, bonusNumber);
 
         return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+    }
+
+    @Override
+    public LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+        lottoTicket.getLottos().forEach(lotto -> {
+           Rank rank = calculateRank(lotto, winningLotto);
+           lottoResult.addResult(rank);
+        });
+
+        return lottoResult;
     }
 
     private int calculateLottoCount(String purchaseAmountInput) {
@@ -56,5 +65,14 @@ public class LottoServiceImpl implements LottoService {
     }
     private int parseBonusNumber(String bonusNumberInput) {
         return Integer.parseInt(bonusNumberInput.trim());
+    }
+
+    private Rank calculateRank(Lotto lotto, WinningLotto winningLotto) {
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getWinningNumbers().getNumbers()::contains)
+                .count();
+        boolean isBonusMatched = lotto.getNumbers().contains(winningLotto.getBonusNumber());
+
+        return Rank.valueOf(matchCount, isBonusMatched);
     }
 }
