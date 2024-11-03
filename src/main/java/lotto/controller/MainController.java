@@ -8,5 +8,6 @@ public class MainController {
         OutputController.purchasePrint();
         InputController.purchaseInput();
         OutputController.lottoAmountPrint();
+        LottoController.lottoNums();
     }
 }

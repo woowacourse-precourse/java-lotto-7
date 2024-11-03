@@ -1,5 +1,9 @@
 package lotto.controller;
 
-public class LottoController {
+import lotto.service.LottoService;
 
+public class LottoController {
+    public static void lottoNums() {
+        LottoService.getLottoNums();
+    }
 }
