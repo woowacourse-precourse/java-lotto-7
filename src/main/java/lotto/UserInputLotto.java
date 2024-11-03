@@ -33,11 +33,17 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         }
     }
 
-    public int inputBounsNumber() {   // 사용자가 보너스 번호 입력
-        System.out.println("보너스 번호를 입력하세요");
-        int bonus = Integer.parseInt(Console.readLine());
+    public int inputBonusNumber(List<Integer> prizeNumbers) {   // 사용자가 보너스 번호 입력
+        while (true) {
+            try {
+                int bonusNumber = inputBonusNumberRead();
+                validateInputBonusNumber(prizeNumbers, bonusNumber);
 
-        return bonus;
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private int purchaseAmountRead() {
