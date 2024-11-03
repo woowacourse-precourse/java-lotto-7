@@ -19,6 +19,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        if(numbers == null){
+            throw new LottoInputException(LottoErrorMessage.INVALID_NUMBER);
+        }
         if(NumberUtility.isDuplicateNumberExists(numbers)){
             throw new LottoInputException(LottoErrorMessage.DUPLICATE_NUMBERS);
         }
