@@ -1,5 +1,6 @@
 package lotto.model.domain;
 
+import static lotto.message.ErrorMessage.INVALID_BONUS_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -9,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoManagerTest {
 
@@ -45,24 +48,13 @@ class LottoManagerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 보너스번호_범위_검증_1미만인_경우_예외_테스트() {
-        // given
-        LottoManager lottoManager = new LottoManager();
-
+    @ParameterizedTest
+    @ValueSource(ints = { 0, 46 })
+    void 보너스번호_범위_검증_예외_테스트(int invalidBonusNumber) {
         // when / then
-        assertThatThrownBy(() -> lottoManager.saveBonusNumber(0))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 보너스번호_범위_검증_45초과인_경우_예외_테스트_46() {
-        // given
-        LottoManager lottoManager = new LottoManager();
-
-        // when / then
-        assertThatThrownBy(() -> lottoManager.saveBonusNumber(46))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> lottoManager.saveBonusNumber(invalidBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_BONUS_NUMBER_RANGE.getMessage());
     }
 
     @Test
