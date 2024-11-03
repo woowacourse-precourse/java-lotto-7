@@ -24,7 +24,7 @@ public enum PrintMessage {
         return message;
     }
 
-    public String format(Object... args){
+    public String format(Object... args) {
         return message.formatted(args);
     }
 }

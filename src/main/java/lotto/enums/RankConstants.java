@@ -19,5 +19,6 @@ public final class RankConstants {
     public static final int FOURTH_PRIZE_WINNING_COUNT = 4;
     public static final int FIFTH_PRIZE_WINNING_COUNT = 3;
 
-    private RankConstants(){}
+    private RankConstants() {
+    }
 }

@@ -17,15 +17,16 @@ public enum ErrorMessage {
     DUPLICATED_WITH_WINNING_NUMBERS("당첨 번호와 중복되지 않은 숫자를 입력해야 합니다.");
 
     private final String message;
-    ErrorMessage(String message){
+
+    ErrorMessage(String message) {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 
-    public String format(){
+    public String format() {
         return ERROR_MESSAGE_PREFIX.getMessage() + message;
     }
 }

@@ -7,11 +7,11 @@ public enum LottoNumberConstants {
 
     private final int value;
 
-    LottoNumberConstants(int value){
+    LottoNumberConstants(int value) {
         this.value = value;
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }

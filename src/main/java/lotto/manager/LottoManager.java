@@ -15,11 +15,16 @@ public class LottoManager {
     private final List<LottoRank> ranks = new ArrayList<>();
 
     public LottoManager() {
-        ranks.add(new LottoRank(RankConstants.FIRST_PRIZE, RankConstants.FIRST_PRIZE_AMOUNT, RankConstants.FIRST_PRIZE_WINNING_COUNT, false));
-        ranks.add(new LottoRank(RankConstants.SECOND_PRIZE, RankConstants.SECOND_PRIZE_AMOUNT, RankConstants.SECOND_PRIZE_WINNING_COUNT, true));
-        ranks.add(new LottoRank(RankConstants.THIRD_PRIZE, RankConstants.THIRD_PRIZE_AMOUNT, RankConstants.THIRD_PRIZE_WINNING_COUNT, false));
-        ranks.add(new LottoRank(RankConstants.FOURTH_PRIZE, RankConstants.FOURTH_PRIZE_AMOUNT, RankConstants.FOURTH_PRIZE_WINNING_COUNT, false));
-        ranks.add(new LottoRank(RankConstants.FIFTH_PRIZE, RankConstants.FIFTH_PRIZE_AMOUNT, RankConstants.FIFTH_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.FIRST_PRIZE, RankConstants.FIRST_PRIZE_AMOUNT,
+                RankConstants.FIRST_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.SECOND_PRIZE, RankConstants.SECOND_PRIZE_AMOUNT,
+                RankConstants.SECOND_PRIZE_WINNING_COUNT, true));
+        ranks.add(new LottoRank(RankConstants.THIRD_PRIZE, RankConstants.THIRD_PRIZE_AMOUNT,
+                RankConstants.THIRD_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.FOURTH_PRIZE, RankConstants.FOURTH_PRIZE_AMOUNT,
+                RankConstants.FOURTH_PRIZE_WINNING_COUNT, false));
+        ranks.add(new LottoRank(RankConstants.FIFTH_PRIZE, RankConstants.FIFTH_PRIZE_AMOUNT,
+                RankConstants.FIFTH_PRIZE_WINNING_COUNT, false));
     }
 
     public List<Lotto> generateLotteries(int purchaseAmount) {
@@ -76,7 +81,8 @@ public class LottoManager {
     }
 
     private List<Integer> generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumberConstants.MIN_VALUE.getValue(), LottoNumberConstants.MAX_VALUE.getValue(), LottoNumberConstants.NUMBER_COUNT.getValue());
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumberConstants.MIN_VALUE.getValue(),
+                LottoNumberConstants.MAX_VALUE.getValue(), LottoNumberConstants.NUMBER_COUNT.getValue());
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }

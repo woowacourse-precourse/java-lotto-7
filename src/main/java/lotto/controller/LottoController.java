@@ -15,7 +15,7 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
     private final LottoManager lottoManager = new LottoManager();
 
-    public void run(){
+    public void run() {
         int purchaseAmount = Integer.parseInt(getPurchaseAmountAsString());
 
         UserLotto userLotto = new UserLotto(lottoManager.generateLotteries(purchaseAmount));
@@ -25,8 +25,8 @@ public class LottoController {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = Integer.parseInt(getBonusNumberAsString(winningNumbers));
 
-        lottoManager.executeWinningProcess(userLotto,winningNumbers,bonusNumber);
-        float totalPrizeRate = lottoManager.calculateTotalPrizeRate(userLotto,purchaseAmount);
+        lottoManager.executeWinningProcess(userLotto, winningNumbers, bonusNumber);
+        float totalPrizeRate = lottoManager.calculateTotalPrizeRate(userLotto, purchaseAmount);
 
         outputView.printLottoWinningResult(userLotto, totalPrizeRate);
     }
@@ -38,34 +38,34 @@ public class LottoController {
                 .toList();
     }
 
-    private String getPurchaseAmountAsString(){
-        try{
+    private String getPurchaseAmountAsString() {
+        try {
             String input = inputView.enterPurchaseAmount();
             PriceValidator.validate(input);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPurchaseAmountAsString();
         }
     }
 
-    private String getWinningNumbersAsString(){
-        try{
+    private String getWinningNumbersAsString() {
+        try {
             String input = inputView.enterWinningNumbers();
             LottoValidator.validateNumbers(input);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumbersAsString();
         }
     }
 
-    private String getBonusNumberAsString(List<Integer> winningNumbers){
-        try{
+    private String getBonusNumberAsString(List<Integer> winningNumbers) {
+        try {
             String input = inputView.enterBonusNumber();
-            LottoValidator.validateBonusNumber(input,winningNumbers);
+            LottoValidator.validateBonusNumber(input, winningNumbers);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getBonusNumberAsString(winningNumbers);
         }
