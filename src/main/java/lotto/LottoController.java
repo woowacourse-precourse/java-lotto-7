@@ -5,18 +5,18 @@ public class LottoController {
     private static final LottoProcessor LOTTO_PROCESSOR = new LottoProcessor();
 
     public void play() {
-        int purchaseAmount = getAmount();
+        int purchaseAmount = inputAmount();
         int lottoCount = purchaseAmount / 1000;
 
         System.out.println(lottoCount + "개를 구매했습니다.");
         LOTTO_PROCESSOR.createLotto(lottoCount);
-        getWinningNumbers();
-        getBonusNumber();
+        inputWinningNumbers();
+        inputBonusNumber();
         LOTTO_PROCESSOR.result(purchaseAmount);
     }
 
     // 구입 금액 검증 후 옳바른 구입 금액까지 루프
-    private static int getAmount() {
+    private static int inputAmount() {
         while (true) {
             try {
                 return validatePurchaseAmount(LOTTO_INPUT.getPurchaseAmount());
@@ -37,7 +37,7 @@ public class LottoController {
     }
 
     // 당첨 번호 검증 후 올바른 당첨 번호까지 루프
-    private static void getWinningNumbers() {
+    private static void inputWinningNumbers() {
         while (true) {
             try {
                 LOTTO_PROCESSOR.setWinningNumbers(LOTTO_INPUT.getWinningNumbers().split(","));
@@ -49,7 +49,7 @@ public class LottoController {
     }
 
     // 보너스 번호 검증 후 올바른 번호까지 루프
-    private static void getBonusNumber() {
+    private static void inputBonusNumber() {
         while (true) {
             try {
                 LOTTO_PROCESSOR.setBonusNumber(Integer.parseInt(LOTTO_INPUT.getBonusNumber()));
