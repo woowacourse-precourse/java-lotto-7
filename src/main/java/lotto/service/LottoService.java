@@ -28,8 +28,8 @@ public class LottoService {
     }
 
     public int getLottoCount(int purchaseMoney) {
-        
-        return purchaseMoney / 100;
+
+        return purchaseMoney / 1000;
     }
 
     public List<Lotto> generateLottos(int size) {
