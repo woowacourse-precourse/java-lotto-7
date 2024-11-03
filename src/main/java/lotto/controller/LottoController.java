@@ -23,7 +23,7 @@ public class LottoController {
         }
     }
 
-    private List<Integer> validateWinningNumbers(String winningInput) {
+    public List<Integer> validateWinningNumbers(String winningInput) {
         String[] parsedWinningNumbers= winningInput.split(",");
         NumberValidator.validateWinningNumbersAreNumeric(parsedWinningNumbers);
 
@@ -53,7 +53,7 @@ public class LottoController {
         return bonus;
     }
 
-    private int validateBonusNumber(List<Integer> winningNumbers, String bonusInput) {
+    public int validateBonusNumber(List<Integer> winningNumbers, String bonusInput) {
         BonusValidator.validateBonusIsNumeric(bonusInput);
 
         bonus = Integer.parseInt(bonusInput.trim());

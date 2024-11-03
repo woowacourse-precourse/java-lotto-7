@@ -21,7 +21,7 @@ public class MoneyController {
         return money;
     }
 
-    private void validateMoneyInput(String inputMoney) {
+    public void validateMoneyInput(String inputMoney) {
         MoneyValidator.validateMoneyInputNotNull(inputMoney);
         MoneyValidator.validateMoneyIsNumeric(inputMoney);
 
