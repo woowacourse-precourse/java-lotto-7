@@ -35,6 +35,30 @@ public class NumberValidator implements Validator {
         bonusNumberValidate(input);
     }
 
+    private boolean isWinningNumbers(String input) {
+        return input.contains(DELIMITER);
+    }
+
+    private boolean isDuplication(String[] values) {
+        winningNumbers = new HashSet<>();
+        Collections.addAll(winningNumbers, values);
+        return winningNumbers.size() != values.length;
+    }
+
+    private int isNumber(String input) {
+        try{
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR + "양수만 입력가능합니다.");
+        }
+    }
+
+    private void isOneBetweenFortyFive(int number) {
+        if (number < WINNING_NUMBER_RANGE_MIN || number > WINNING_NUMBER_RANGE_MAX) {
+            throw new IllegalArgumentException(ERROR + "1 ~ 45 사이의 숫자만 입력 가능합니다.");
+        }
+    }
+
     private void bonusNumberValidate(String input) {
         isNumber(input);
         isOneBetweenFortyFive(Integer.parseInt(input));
@@ -47,30 +71,4 @@ public class NumberValidator implements Validator {
             throw new IllegalArgumentException(ERROR + "당첨 번호와 중복되면 안됩니다.");
         }
     }
-
-    private void isOneBetweenFortyFive(int number) {
-        if (number < WINNING_NUMBER_RANGE_MIN || number > WINNING_NUMBER_RANGE_MAX) {
-            throw new IllegalArgumentException(ERROR + "1 ~ 45 사이의 숫자만 입력 가능합니다.");
-        }
-    }
-
-    private boolean isWinningNumbers(String input) {
-        return input.contains(DELIMITER);
-    }
-
-    private int isNumber(String input) {
-        try{
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR + "양수만 입력가능합니다.");
-        }
-    }
-
-    private boolean isDuplication(String[] values) {
-        winningNumbers = new HashSet<>();
-        Collections.addAll(winningNumbers, values);
-        return winningNumbers.size() != values.length;
-    }
-
-
 }
