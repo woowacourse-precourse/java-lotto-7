@@ -4,10 +4,10 @@ import java.util.*;
 
 public class LottoResult {
 
-    public void calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-
+    public int[] calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        return null;
     }
-    public int calculatePrize() {
-        return 0;
+    public double calculateProfitRate(int[] resultCnt, int purchaseAmount) {
+        return 0.0;
     }
 }
