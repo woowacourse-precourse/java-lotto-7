@@ -5,11 +5,11 @@ import java.util.List;
 import lotto.generator.LottoNumberGenerator;
 
 public class LottoTicket {
-    private final List<Lotto> tickets;
+    private final List<Lotto> ticket;
 
     public LottoTicket(Money money) {
         int count = money.calculateLottoTickets();
-        this.tickets = generateTicket(count);
+        this.ticket = generateTicket(count);
     }
 
     private List<Lotto> generateTicket(int count) {
@@ -20,5 +20,9 @@ public class LottoTicket {
             tickets.add(new Lotto(lottoNumberGenerator.generate()));
         }
         return tickets;
+    }
+
+    public List<Lotto> getLottos() {
+        return ticket;
     }
 }
