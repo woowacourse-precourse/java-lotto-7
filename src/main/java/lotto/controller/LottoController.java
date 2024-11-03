@@ -29,7 +29,7 @@ public class LottoController {
         lottoOutputView.printBonusNumberNotification();
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
 
-        lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto);
+        lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto,cash);
     }
 
     private Cash requestCashInput() {

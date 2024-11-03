@@ -10,7 +10,7 @@ public class Cash {
     }
 
     public int getPurchasableLottoCount() {
-        return totalAmount / 1000;
+        return totalAmount / CASH_UNIT;
     }
 
     private void validateAmountInUnits() {
