@@ -28,10 +28,11 @@ public class WinningService {
             break;
         }
 
-        addWinningNumber(winningString);
+        HashSet<Integer> winningNumberSet = addWinningNumber(winningString);
+        winning.setHashSet(winningNumberSet);
     }
 
-    public void addWinningNumber(String winningString) {
+    public static HashSet<Integer> addWinningNumber(String winningString) {
         String[] winningNumber = winningString.split(",");
 
         HashSet<Integer> winningNumberSet = new HashSet<>();
@@ -39,6 +40,6 @@ public class WinningService {
             winningNumberSet.add(Integer.parseInt(number));
         }
 
-        winning.setHashSet(winningNumberSet);
+        return winningNumberSet;
     }
 }
