@@ -1,17 +1,18 @@
-package lotto.view;
+package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.PurchaseAmountFormatException;
 import lotto.exception.PurchaseAmountTypeException;
 import lotto.exception.PurchaseAmountZeroException;
 
-public class InputPurchaseAmoutVIew {
+public class InputPurchaseAmountVIew {
     public static int purchaseAmountInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         int purchaseAmount = validate(input);
 
-        return purchaseAmount;
+        return purchaseAmount / 1000;
     }
 
     private static int validate(String input) {

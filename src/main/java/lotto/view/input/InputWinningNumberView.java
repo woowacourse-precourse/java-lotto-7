@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
@@ -12,6 +12,8 @@ public class InputWinningNumberView {
     public static Set<Integer> WinningNumbersInput() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
+        System.out.println();
+
         Set<Integer> winningNumbers = new HashSet<>();
 
         if (input.length != 6) {
