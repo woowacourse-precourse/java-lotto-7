@@ -13,6 +13,7 @@ public class LottoCreateController {
 
 	private final InputView inputView;
 	private final OutputView outputView;
+	private final LottoCreator lottoCreator;
 
 	public LottoCreateController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
