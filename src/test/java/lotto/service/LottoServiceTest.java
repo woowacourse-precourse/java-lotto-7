@@ -102,7 +102,8 @@ public class LottoServiceTest {
         );
 
         // when
-        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos, bonusNumber);
+        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos,
+                bonusNumber);
 
         // then
         assertThat(lottoResult.get(WinningPrice.FIFTH_PLACE)).isEqualTo(1);
@@ -120,7 +121,8 @@ public class LottoServiceTest {
         );
 
         // when
-        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos, bonusNumber);
+        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos,
+                bonusNumber);
 
         // then
         assertThat(lottoResult.get(WinningPrice.FOURTH_PLACE)).isEqualTo(1);
@@ -138,7 +140,8 @@ public class LottoServiceTest {
         );
 
         // when
-        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos, bonusNumber);
+        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos,
+                bonusNumber);
 
         // then
         assertThat(lottoResult.get(WinningPrice.THIRD_PLACE)).isEqualTo(1);
@@ -156,7 +159,8 @@ public class LottoServiceTest {
         );
 
         // when
-        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos, bonusNumber);
+        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos,
+                bonusNumber);
 
         // then
         assertThat(lottoResult.get(WinningPrice.SECOND_PLACE)).isEqualTo(1);
@@ -174,13 +178,15 @@ public class LottoServiceTest {
         );
 
         // when
-        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos, bonusNumber);
+        Map<WinningPrice, Integer> lottoResult = calculateLottoResult(winningNumbers, lottos,
+                bonusNumber);
 
         // then
         assertThat(lottoResult.get(WinningPrice.FIRST_PLACE)).isEqualTo(1);
     }
 
-    private Map<WinningPrice, Integer> calculateLottoResult(List<Integer> winningNumbers, List<List<Integer>> lottos, int bonusNumber) {
+    private Map<WinningPrice, Integer> calculateLottoResult(List<Integer> winningNumbers,
+            List<List<Integer>> lottos, int bonusNumber) {
         lottoService.calculateWinningStatistics(winningNumbers, lottos, bonusNumber);
         return lottoService.getLottoResult();
     }

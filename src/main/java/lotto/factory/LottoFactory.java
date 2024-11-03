@@ -6,7 +6,7 @@ import lotto.service.LottoService;
 
 public class LottoFactory {
 
-    private LottoFactory(){
+    private LottoFactory() {
     }
 
     public static LottoService WinningServiceCreate() {

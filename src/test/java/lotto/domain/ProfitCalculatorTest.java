@@ -35,7 +35,7 @@ public class ProfitCalculatorTest {
     @Test
     void fifth_place_3_time_test() {
         //given
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             lottoResult.increaseWinningCount(WinningPrice.FIFTH_PLACE);
         }
         Map<WinningPrice, Integer> result = lottoResult.getResult();
