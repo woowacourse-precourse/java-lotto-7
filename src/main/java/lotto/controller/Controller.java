@@ -16,7 +16,7 @@ public class Controller {
 
     public void start() {
         purchaseProcess();
-        getWinningNumbersProcess();
+        setWinningNumbersProcess();
         winningResultProcess();
     }
 
@@ -25,13 +25,13 @@ public class Controller {
             int amount = inputView.getPurchaseAmount();
             lottos = lottoManager.purchaseLotto(amount);
             outputView.printLottoInfo(lottos);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             purchaseProcess();
         }
     }
 
-    public void getWinningNumbersProcess() {
+    public void setWinningNumbersProcess() {
         try {
             String input = inputView.getWinningNumbers();
             Saparater saparater = new Saparater(",");
@@ -41,9 +41,12 @@ public class Controller {
             }
             int bonusNumber = inputView.getBonusNumber();
             lottoManager.setWinningLotto(numbers, bonusNumber);
-        }catch(IllegalArgumentException e){
+        } catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            setWinningNumbersProcess();
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            getWinningNumbersProcess();
+            setWinningNumbersProcess();
         }
     }
 

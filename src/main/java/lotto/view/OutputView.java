@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println("---");
         StringBuilder sb = new StringBuilder();
         for (LottoRank lottoRank : LottoRank.values()) {
-            sb.append(lottoRank.toString() + winningResult.get(lottoRank) + "개\n");
+            sb.append(lottoRank.toString() + winningResult.getOrDefault(lottoRank,0) + "개\n");
         }
         System.out.println(sb);
     }

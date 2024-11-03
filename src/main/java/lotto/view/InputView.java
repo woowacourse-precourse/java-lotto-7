@@ -8,7 +8,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             return Integer.parseInt(Console.readLine());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력하세요.");
             return getPurchaseAmount();
         }
@@ -23,7 +23,7 @@ public class InputView {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             return Integer.parseInt(Console.readLine());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력하세요.");
             return getBonusNumber();
         }
