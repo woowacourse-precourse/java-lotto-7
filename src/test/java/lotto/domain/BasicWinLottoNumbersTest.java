@@ -13,7 +13,7 @@ public class BasicWinLottoNumbersTest {
 
     @Test
     @DisplayName("예외 메시지 : 입력 없음")
-    void exception_message_test_empty_input() {
+    void exceptionMessageTestEmptyInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BasicWinLottoNumbers(""));
         assertEquals(ExceptionMessage.EMPTY_INPUT.toString(),
@@ -22,7 +22,7 @@ public class BasicWinLottoNumbersTest {
 
     @Test
     @DisplayName("예외 메시지 : 공백 입력")
-    void exception_message_test_blank_input() {
+    void exceptionMessageTestBlankInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BasicWinLottoNumbers(" 10000"));
         assertEquals(ExceptionMessage.BLANK_INPUT.toString(),
@@ -31,7 +31,7 @@ public class BasicWinLottoNumbersTest {
 
     @Test
     @DisplayName("예외 메시지 : 로또 숫자 개수 오류")
-    void exception_message_test_count_number_lotto() {
+    void exceptionMessageTestCountNumberLotto() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BasicWinLottoNumbers("1,2,3,4,5"));
         assertEquals(Constants.EXCEPTION_MESSAGE_PREFIX +
@@ -41,7 +41,7 @@ public class BasicWinLottoNumbersTest {
 
     @Test
     @DisplayName("예외 메시지 : 로또 숫자 범위 밖 입력")
-    void exception_message_test__input() {
+    void exceptionMessageTestOutRangeInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BasicWinLottoNumbers("10000,1,2,3,4,5"));
         assertEquals(ExceptionMessage.OUT_OF_LOTTO_NUMBER_RANGE.toString(),

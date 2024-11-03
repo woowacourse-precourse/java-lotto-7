@@ -15,7 +15,7 @@ public class SpendingMoneyTest {
 
     @Test
     @DisplayName("예외 메시지 : 입력 없음")
-    void exception_message_test_empty_input() {
+    void exceptionMessageTestEmptyInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new SpendingMoney(""));
         assertEquals(ExceptionMessage.EMPTY_INPUT.toString(),
@@ -24,7 +24,7 @@ public class SpendingMoneyTest {
 
     @Test
     @DisplayName("예외 메시지 : 공백 입력")
-    void exception_message_test_blank_input() {
+    void exceptionMessageTestContainsBlankInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new SpendingMoney(" 10000"));
         assertEquals(ExceptionMessage.BLANK_INPUT.toString(),
@@ -34,7 +34,7 @@ public class SpendingMoneyTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "2000@"})
     @DisplayName("예외 메시지 : 숫자 아닌 문자 입력")
-    void exception_message_test_not_digit_input(String input) {
+    void exceptionMessageTestContainsNotDigitInput(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new SpendingMoney(input));
         assertEquals(ExceptionMessage.NO_DIGIT_INPUT.toString(),
@@ -43,7 +43,7 @@ public class SpendingMoneyTest {
 
     @Test
     @DisplayName("예외 메시지 : long 범위보다 큰 숫자")
-    void exception_message_test_out_bound_long_input() {
+    void exceptionMessageTestOutRangeLongInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new SpendingMoney("1000000000000000000000000000000"));
         assertEquals(Constants.EXCEPTION_MESSAGE_PREFIX +
@@ -53,7 +53,7 @@ public class SpendingMoneyTest {
 
     @Test
     @DisplayName("예외 메시지 : 티켓 가격 미만")
-    void exception_message_test_under_ticket_price_input() {
+    void exceptionMessageTestUnderTicketPriceInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new SpendingMoney("999"));
         assertEquals("[ERROR] 구매 금액은 " + Constants.LOTTO_TICKET_PRICE +

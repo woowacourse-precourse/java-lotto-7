@@ -19,7 +19,7 @@ public class BonusWinLottoNumberTest {
 
     @Test
     @DisplayName("예외 메시지 : 입력 없음")
-    void exception_message_test_empty_input() {
+    void exceptionMessageTestEmptyInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BonusWinLottoNumber("", basicNumbers));
         assertEquals(ExceptionMessage.EMPTY_INPUT.toString(),
@@ -28,7 +28,7 @@ public class BonusWinLottoNumberTest {
 
     @Test
     @DisplayName("예외 메시지 : 공백 입력")
-    void exception_message_test_blank_input() {
+    void exceptionMessageTestContainsBlankInput() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BonusWinLottoNumber(" 22", basicNumbers));
         assertEquals(ExceptionMessage.BLANK_INPUT.toString(),
@@ -38,7 +38,7 @@ public class BonusWinLottoNumberTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "2000@"})
     @DisplayName("예외 메시지 : 숫자 아닌 문자 입력")
-    void exception_message_test_not_digit_input(String input) {
+    void exceptionMessageTestContainsNotDigitInput(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BonusWinLottoNumber(input, basicNumbers));
         assertEquals(ExceptionMessage.NO_DIGIT_INPUT.toString(),
@@ -48,7 +48,7 @@ public class BonusWinLottoNumberTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "10000"})
     @DisplayName("예외 메시지 : 숫자 아닌 문자 입력")
-    void exception_message_test_out_of_lotto_number_range(String input) {
+    void exceptionMessageTestOutRangeLottoNumber(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BonusWinLottoNumber(input, basicNumbers));
         assertEquals(ExceptionMessage.OUT_OF_LOTTO_NUMBER_RANGE.toString(),
@@ -57,7 +57,7 @@ public class BonusWinLottoNumberTest {
 
     @Test
     @DisplayName("예외 메시지: 기본 당첨번호와 중복")
-    void exception_message_test_duplicate_number() {
+    void exceptionMessageTestDuplicateNumber() {
         Throwable exception = assertThrows(IllegalArgumentException.class,
                 () -> new BonusWinLottoNumber("1", basicNumbers));
         assertEquals(Constants.EXCEPTION_MESSAGE_PREFIX +
