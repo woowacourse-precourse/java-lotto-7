@@ -1,14 +1,15 @@
 package lotto.game;
 
+import lotto.dto.BuyingPrice;
 import lotto.dto.WinningNumbers;
 import lotto.io.OutputHandler;
 
 public class LottoGame {
-    private final int purchasePrice;
+    private final BuyingPrice buyingPrice;
     private final Lottos lottos;
 
-    public LottoGame(int purchasePrice, Lottos lottos) {
-        this.purchasePrice = purchasePrice;
+    public LottoGame(BuyingPrice buyingPrice, Lottos lottos) {
+        this.buyingPrice = buyingPrice;
         this.lottos = lottos;
     }
 
@@ -21,7 +22,7 @@ public class LottoGame {
     }
 
     private void computeYield(int totalWinningPrice) {
-        double yield = (double) totalWinningPrice / purchasePrice;
+        double yield = (double) totalWinningPrice / buyingPrice.getPrice();
         OutputHandler.printYield(yield);
     }
 }

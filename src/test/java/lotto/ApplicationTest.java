@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -32,7 +33,7 @@ class ApplicationTest extends NsTest {
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 62.5%입니다."
+                            "총 수익률은 0.63%입니다."
                     );
                 },
                 List.of(8, 21, 23, 41, 42, 43),
@@ -50,6 +51,51 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 가격이 음수이면 예외 발생")
+    @Test
+    void exception1() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 가격이 빈 값이면 예외 발생")
+    @Test
+    void exception2() {
+        assertSimpleTest(() -> {
+            runException("\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 가격이 공백이면 예외 발생")
+    @Test
+    void exception3() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 가격이 1000단위가 아니면 예외 발생")
+    @Test
+    void exception4() {
+        assertSimpleTest(() -> {
+            runException("300");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 가격이 숫자가 아니면 예외 발생")
+    @Test
+    void exception5() {
+        assertSimpleTest(() -> {
+            runException("somin");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
