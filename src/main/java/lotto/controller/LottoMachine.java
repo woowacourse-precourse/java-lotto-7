@@ -12,13 +12,13 @@ import java.util.List;
 
 import static lotto.common.Constants.*;
 
-public class LottoController {
+public class LottoMachine {
     private final InputView inputView;
     private final PurchaseService purchaseService;
     private final LottoService lottoService;
 
-    public LottoController(InputView inputView, PurchaseService purchaseService,
-                           LottoService lottoService) {
+    public LottoMachine(InputView inputView, PurchaseService purchaseService,
+                        LottoService lottoService) {
         this.inputView = inputView;
         this.purchaseService = purchaseService;
         this.lottoService = lottoService;

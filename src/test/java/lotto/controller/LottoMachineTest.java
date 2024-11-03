@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import static lotto.TestConstants.TICKET_COUNT;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LottoControllerTest {
-    private final LottoController lottoController = new LottoController(
+class LottoMachineTest {
+    private final LottoMachine lottoMachine = new LottoMachine(
             new InputView(), new PurchaseService(), new LottoService()
     );
 
@@ -22,7 +22,7 @@ class LottoControllerTest {
         Integer lottoTicketCount = TICKET_COUNT;
 
         // when
-        Lottos lottos = lottoController.generateLottos(lottoTicketCount);
+        Lottos lottos = lottoMachine.generateLottos(lottoTicketCount);
 
         // then
         assertEquals(lottos.size(), lottoTicketCount);
