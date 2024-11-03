@@ -67,7 +67,13 @@ public class WinningStatistics {
         return ((double) getTotalPrize() / money.getMoney()) * PERCENTAGE_MULTIPLIER;
     }
 
-    public Map<Rank, Integer> getWinningStatistics() {
-        return winningStatistics;
+    public Integer[] getWinningCount() {
+        Integer[] winningCount = new Integer[winningStatistics.size()];
+        int i = 0;
+        for (Map.Entry<Rank, Integer> entryRank : winningStatistics.entrySet()) {
+            winningCount[i] = entryRank.getValue();
+            i++;
+        }
+        return winningCount;
     }
 }
