@@ -5,9 +5,16 @@ public class PurchaseAmount {
     private static final int ONE_LOTTO= 1000;
 
     public PurchaseAmount(String amount) {
+        emptyValidate(amount);
         numberValidate(amount);
         rangeValidate(amount);
         unitValidate(amount);
+    }
+
+    private void emptyValidate(String amount) {
+        if (amount.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액이 비어있습니다.");
+        }
     }
 
     private void numberValidate(String amount) {
@@ -27,5 +34,4 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력 가능합니다.");
         }
     }
-
 }

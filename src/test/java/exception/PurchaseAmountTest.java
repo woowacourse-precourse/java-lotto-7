@@ -26,4 +26,11 @@ class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount("1500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구매 금액이 비어있으면 예외가 발생한다.")
+    @Test
+    void 구매_금액이_비어있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new PurchaseAmount(" "))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -2,6 +2,7 @@ package service;
 
 import exception.Lotto;
 import exception.PurchaseAmount;
+import exception.BonusNumber;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,11 +34,13 @@ public class LottoMaker {
     }
 
     public void setWinningNumbers(String input) {
+        new Lotto(input);
         lottoTransform.inputToWinningNumbers(input);
         new Lotto(winningNumbers);
     }
 
-    public void setBonusNumber(String input) { //model에서 값 변환 전 예외처리 위한 래핑
+    public void setBonusNumber(String input) {
+        new BonusNumber(input);
         bonusNumber = lottoTransform.inputToBonusNumber(input);
     }
 
