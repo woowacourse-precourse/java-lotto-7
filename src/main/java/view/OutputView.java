@@ -1,6 +1,7 @@
 package view;
 
 import domain.WinningPrice;
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -21,6 +22,12 @@ public class OutputView {
         printBlank();
         System.out.printf(TICKET_QUANTITY_MESSAGE, ticketQuantity);
         printBlank();
+    }
+
+    public static void printLottos(List<List<Integer>> lottos) {
+        for (List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     public static void printResult(Map<WinningPrice, Integer> lottoResult) {

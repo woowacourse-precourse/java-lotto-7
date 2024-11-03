@@ -8,6 +8,7 @@ import domain.Profit;
 import domain.Ticket;
 import domain.Winning;
 import domain.WinningPrice;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import utils.RandomNumber;
@@ -25,12 +26,14 @@ public class WinningService {
         return ticket.getQuantity();
     }
 
-    public Lottos generateLottoNumber(int ticketQuantity) {
+    public List<List<Integer>> generateLottoNumber(int ticketQuantity) {
+        List<List<Integer>> tmpLottos = new ArrayList<>();
         for(int i=0; i<ticketQuantity; i++) {
             Lotto lotto = new Lotto(RandomNumber.create());
             lottos.addLotto(lotto);
+            tmpLottos.add(lotto.getNumbers());
         }
-        return lottos;
+        return tmpLottos;
     }
 
     public int getTicketQuantity() {
