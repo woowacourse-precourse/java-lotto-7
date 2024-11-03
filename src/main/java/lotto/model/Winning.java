@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Winning {
 	NONE(0, 0, false),
 	FIFTH(3, 5000, false),
@@ -16,5 +18,13 @@ public enum Winning {
 		this.count = count;
 		this.prize = prize;
 		this.hasBonusNumber = hasBonusNumber;
+	}
+
+	public static Winning getWinningResult(int count, boolean hasBonusNumber) {
+		Winning result = Arrays.stream(Winning.values())
+				.filter(winning -> winning.count == count)
+				.findFirst()
+				.orElse(NONE);
+		return result;
 	}
 }
