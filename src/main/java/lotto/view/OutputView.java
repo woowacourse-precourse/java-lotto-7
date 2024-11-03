@@ -5,6 +5,7 @@ import lotto.constants.ResultMessage;
 import lotto.domain.LottoWinningTierManager;
 
 import static lotto.constants.LottoConstants.EMPTY;
+import static lotto.constants.LottoConstants.ZERO;
 
 public class OutputView {
     public void printMessage (String message) {
@@ -41,7 +42,7 @@ public class OutputView {
     }
     public void printLottoPlace (LottoWinningTierManager lottoWinningTierManager) {
         lottoWinningTierManager.getLottoWinningTiers().forEach(((tier, value) -> {
-            if (tier.getMatchCount() != 0 && tier.getCountMessage(lottoWinningTierManager.getWinningTierCount(tier)) != null) {
+            if (tier.getMatchCount() != ZERO && tier.getCountMessage(lottoWinningTierManager.getWinningTierCount(tier)) != null) {
                 printMessage(tier.getCountMessage(lottoWinningTierManager.getLottoWinningTiers().get(tier)));
             }
         }));
