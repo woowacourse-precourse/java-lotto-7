@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.common.AppErrorType.NOT_EXIST_MATCHED_WITHOUT_BONUS_RANK_ERROR;
+import static lotto.common.AppErrorType.NOT_EXIST_MATCHED_WITH_BONUS_RANK_ERROR;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -44,9 +47,9 @@ public enum LottoRank {
 
     private static void throwNotExistRankException(int matchCount, boolean matchBonus) {
         if (matchBonus) {
-            throw new IllegalStateException(matchCount + "개와 보너스번호가 일치하는 등수는 존재하지 않습니다.");
+            throw new IllegalStateException(NOT_EXIST_MATCHED_WITH_BONUS_RANK_ERROR.getMessage(matchCount));
         }
 
-        throw new IllegalStateException(matchCount + "개가 일치하고 보너스 번호가 일치하지 않는 등수는 존재하지 않습니다.");
+        throw new IllegalStateException(NOT_EXIST_MATCHED_WITHOUT_BONUS_RANK_ERROR.getMessage(matchCount));
     }
 }

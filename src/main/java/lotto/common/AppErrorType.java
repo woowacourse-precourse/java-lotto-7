@@ -12,7 +12,10 @@ public enum AppErrorType {
     DIVIDED_BY_PRICE_ERROR(LOTTO_UNIT_PRICE + "원 단위의 값을 입력해주세요."),
     NUMBER_SIZE_ERROR("로또 번호는 "+ LOTTO_NUMBER_COUNT + "개여야 합니다."),
     NUMBER_RANGE_ERROR(LOTTO_START_RANGE + "에서 " + LOTTO_END_RANGE + "사이의 값을 입력해주세요."),
-    NUMBER_DUPLICATE_ERROR("중복되지 않은 값을 입력해주세요");
+    NUMBER_DUPLICATE_ERROR("중복되지 않은 값을 입력해주세요"),
+
+    NOT_EXIST_MATCHED_WITH_BONUS_RANK_ERROR("%d개와 보너스번호가 일치하는 등수는 존재하지 않습니다."),
+    NOT_EXIST_MATCHED_WITHOUT_BONUS_RANK_ERROR("%d개가 일치하고 보너스 번호가 일치하지 않는 등수는 존재하지 않습니다.");
 
     private final String message;
 
@@ -24,5 +27,11 @@ public enum AppErrorType {
         String errorPrefix = "[ERROR] ";
 
         return errorPrefix + message;
+    }
+
+    public String getMessage(Object... args) {
+        String errorPrefix = "[ERROR] ";
+
+        return errorPrefix + String.format(message, args);
     }
 }
