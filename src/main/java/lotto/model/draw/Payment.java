@@ -1,7 +1,7 @@
 package lotto.model.draw;
 
+import static lotto.constant.ErrorMessage.INVALID_PAYMENT_POSITIVE_INTEGER;
 import static lotto.constant.ErrorMessage.INVALID_PAYMENT_UNIT;
-import static lotto.constant.ErrorMessage.INVALID_POSITIVE_INTEGER;
 import static lotto.constant.LottoConstant.PRICE;
 
 public class Payment {
@@ -15,13 +15,13 @@ public class Payment {
 
     private void validatePositiveInteger(final String payment) {
         if (!payment.matches("\\d+")) {
-            throw new IllegalArgumentException(INVALID_POSITIVE_INTEGER.getMessage());
+            throw new IllegalArgumentException(INVALID_PAYMENT_POSITIVE_INTEGER.getFormatMessage());
         }
     }
 
     private void validateDivideByePrice() {
         if (payment % PRICE != 0 || payment == 0) {
-            throw new IllegalArgumentException(INVALID_PAYMENT_UNIT.getMessage());
+            throw new IllegalArgumentException(INVALID_PAYMENT_UNIT.getFormatMessage());
         }
     }
 

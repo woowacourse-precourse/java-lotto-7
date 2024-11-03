@@ -1,8 +1,36 @@
 package lotto.constant;
 
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.PRICE;
+
 public enum ErrorMessage {
-    INVALID_POSITIVE_INTEGER("%s 구입금액은 양수로 입력해주세요."),
-    INVALID_PAYMENT_UNIT("%s 구입 금액은 1,000원 단위로 입력할 수 있습니다.");
+    INVALID_PAYMENT_POSITIVE_INTEGER("%s 구입 금액은 양수로 입력해주세요.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER);
+        }
+    },
+    INVALID_PAYMENT_UNIT("%s 구입 금액은 %,d원 단위로 입력할 수 있습니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER, PRICE);
+        }
+    },
+    INVALID_DRAW_NUMBER_COUNT("%s 당첨 번호는 쉼표로 구분된 %d개의 숫자로 입력해야 합니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER, LOTTO_NUMBER_COUNT);
+        }
+    },
+    INVALID_DRAW_NUMBER_FORMAT("%s 당첨 번호는 %d ~ %d 사이의 양수만 입력 가능합니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        }
+    },
+    INVALID_DUPLICATE("%s 당첨 번호는 중복되지 않은 %d개의 숫자를 입력해야 합니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER, LOTTO_NUMBER_COUNT);
+        }
+    };
 
     private static final String ERROR_HEADER = "[ERROR]";
     private final String message;
@@ -12,6 +40,8 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return String.format(message, ERROR_HEADER);
+        return message;
     }
+
+    public abstract String getFormatMessage();
 }

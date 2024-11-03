@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.model.draw.DrawNumber;
-import lotto.model.draw.LottoNumbers;
+import lotto.model.draw.Draw;
+import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Purchase;
 import lotto.model.result.LottoResult;
 import lotto.view.LottoDrawView;
@@ -10,7 +10,7 @@ import lotto.view.PurchaseView;
 
 public class LottoController {
     private Purchase purchase;
-    private DrawNumber drawNumber;
+    private Draw draw;
 
     public void purchaseLotto() {
         PurchaseView purchaseView = new PurchaseView();
@@ -28,15 +28,23 @@ public class LottoController {
 
     public void drawLotto() {
         LottoDrawView lottoDrawView = new LottoDrawView();
-        String drawNumbersInput = lottoDrawView.readDrawNumber();
-        LottoNumbers drawNumbers = new LottoNumbers(drawNumbersInput);
+        DrawNumbers drawNumbers;
+        while (true) {
+            try {
+                String drawNumbersInput = lottoDrawView.readDrawNumber();
+                drawNumbers = new DrawNumbers(drawNumbersInput);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         String bonusNumberInput = lottoDrawView.readBonusNumber();
-        drawNumber = new DrawNumber(drawNumbers, bonusNumberInput);
+        draw = new Draw(drawNumbers, bonusNumberInput);
     }
 
     public void lottoResult() {
         LottoResultView lottoResultView = new LottoResultView();
-        LottoResult lottoResult = new LottoResult(drawNumber, purchase.getPurchasedLottoTickets(),
+        LottoResult lottoResult = new LottoResult(draw, purchase.getPurchasedLottoTickets(),
                 purchase.getPayment());
         lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
         lottoResultView.displayProfit(lottoResult.getLottoProfit());

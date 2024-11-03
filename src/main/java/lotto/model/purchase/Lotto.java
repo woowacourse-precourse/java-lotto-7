@@ -1,7 +1,7 @@
 package lotto.model.purchase;
 
 import java.util.List;
-import lotto.model.draw.LottoNumbers;
+import lotto.model.draw.DrawNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +11,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Integer getNumberMatchCount(final LottoNumbers drawNumbers) {
-        return (int) drawNumbers.getLottoNumbers().stream()
+    public Integer getNumberMatchCount(final DrawNumbers drawNumbers) {
+        return (int) drawNumbers.getDrawNumbers().stream()
                 .filter(numbers::contains)
                 .count();
     }

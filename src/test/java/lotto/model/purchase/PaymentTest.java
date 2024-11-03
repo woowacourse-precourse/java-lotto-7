@@ -1,7 +1,7 @@
 package lotto.model.purchase;
 
+import static lotto.constant.ErrorMessage.INVALID_PAYMENT_POSITIVE_INTEGER;
 import static lotto.constant.ErrorMessage.INVALID_PAYMENT_UNIT;
-import static lotto.constant.ErrorMessage.INVALID_POSITIVE_INTEGER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -26,7 +26,7 @@ class PaymentTest {
     void 양수가아닌입력_예외테스트(String paymentInput) {
         assertThatThrownBy(() -> new Payment(paymentInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_POSITIVE_INTEGER.getMessage());
+                .hasMessage(INVALID_PAYMENT_POSITIVE_INTEGER.getFormatMessage());
     }
 
     @ParameterizedTest
@@ -34,6 +34,6 @@ class PaymentTest {
     void 로또가격으로_나누어지지않는입력_예외테스트(String paymentInput) {
         assertThatThrownBy(() -> new Payment(paymentInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_PAYMENT_UNIT.getMessage());
+                .hasMessage(INVALID_PAYMENT_UNIT.getFormatMessage());
     }
 }

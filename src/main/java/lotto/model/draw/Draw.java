@@ -1,10 +1,10 @@
 package lotto.model.draw;
 
-public class DrawNumber {
-    private final LottoNumbers drawNumbers;
+public class Draw {
+    private final DrawNumbers drawNumbers;
     private final Integer bonusNumber;
 
-    public DrawNumber(final LottoNumbers drawNumbers, final String bonusNumber) {
+    public Draw(final DrawNumbers drawNumbers, final String bonusNumber) {
         this.drawNumbers = drawNumbers;
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
@@ -13,7 +13,7 @@ public class DrawNumber {
         return bonusNumber;
     }
 
-    public LottoNumbers getDrawNumbers() {
+    public DrawNumbers getDrawNumbers() {
         return drawNumbers;
     }
 }

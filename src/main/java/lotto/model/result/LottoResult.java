@@ -3,8 +3,8 @@ package lotto.model.result;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.LottoWinInfo;
-import lotto.model.draw.DrawNumber;
-import lotto.model.draw.LottoNumbers;
+import lotto.model.draw.Draw;
+import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Lotto;
 
 public class LottoResult {
@@ -17,12 +17,12 @@ public class LottoResult {
         }
     }
 
-    public LottoResult(final DrawNumber drawNumber, final List<Lotto> lottoTickets, final Integer payment) {
-        countWinningLottoTickets(drawNumber.getDrawNumbers(), drawNumber.getBonusNumber(), lottoTickets);
+    public LottoResult(final Draw draw, final List<Lotto> lottoTickets, final Integer payment) {
+        countWinningLottoTickets(draw.getDrawNumbers(), draw.getBonusNumber(), lottoTickets);
         lottoProfit = new Profit(lottoWinCount, payment);
     }
 
-    private void countWinningLottoTickets(final LottoNumbers drawNumbers, final Integer bonusNumber,
+    private void countWinningLottoTickets(final DrawNumbers drawNumbers, final Integer bonusNumber,
                                           final List<Lotto> lottoTickets) {
         for (Lotto lotto : lottoTickets) {
             LottoWinInfo lottoWinInfo = getLottoWinInfo(drawNumbers, bonusNumber, lotto);
@@ -32,7 +32,7 @@ public class LottoResult {
         }
     }
 
-    private LottoWinInfo getLottoWinInfo(final LottoNumbers drawNumbers, final Integer bonusNumber, final Lotto lotto) {
+    private LottoWinInfo getLottoWinInfo(final DrawNumbers drawNumbers, final Integer bonusNumber, final Lotto lotto) {
         int numberMatchCount = lotto.getNumberMatchCount(drawNumbers);
         boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
         return LottoWinInfo.getLottoWinInfo(numberMatchCount, hasBonusNumber).orElse(null);
