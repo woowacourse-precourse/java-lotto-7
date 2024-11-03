@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ class LottoServiceTest {
     private static final String VALID_BONUS_NUMBER = "7";
     private static final int EXPECTED_LOTTO_COUNT = 5;
     private static final int EXPECTED_BONUS_NUMBER = 7;
-    private static final List<Integer> EXPECTED_WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
+    private static final List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
 
     private LottoService lottoService;
 
@@ -36,7 +37,17 @@ class LottoServiceTest {
     @Test
     void 당첨_보너스_번호_관리_객체_생성_테스트() {
         WinningLotto winningLotto = lottoService.createWinningLotto(VALID_WINNING_NUMBERS_INPUT, VALID_BONUS_NUMBER);
-        assertThat(winningLotto.getWinningNumbers().getNumbers()).isEqualTo(EXPECTED_WINNING_NUMBERS);
+        assertThat(winningLotto.getWinningNumbers().getNumbers()).isEqualTo(WINNING_NUMBERS);
         assertThat(winningLotto.getBonusNumber()).isEqualTo(EXPECTED_BONUS_NUMBER);
+    }
+
+    @DisplayName("구매한 로또 티켓과 당첨 번호를 비교하여 LottoResult 생성 테스트")
+    @Test
+    void 로또_결과_객체_생성_테스트() {
+        LottoTicket lottoTicket = lottoService.generateLottoTicket(VALID_PURCHASE_AMOUNT);
+        WinningLotto winningLotto = lottoService.createWinningLotto(VALID_WINNING_NUMBERS_INPUT, VALID_BONUS_NUMBER);
+        LottoResult lottoResult = lottoService.createLottoResult(lottoTicket, winningLotto);
+
+        assertThat(lottoResult).isNotNull();
     }
 }
