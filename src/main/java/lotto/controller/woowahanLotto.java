@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.utils.Converter.StringToPrice;
 import static lotto.utils.Converter.priceToLottoCount;
+import static lotto.utils.Validator.checkDuplicateForBonus;
 import static lotto.view.OutputView.printErrorMessage;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class woowahanLotto implements LottoController {
         OutputView.printLottos(lottos);
 
         List<Integer> winningNumbers = getWinningNum();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
         WinningLottos winningLottos = getWinningLottos(lottos.getWinningLottos(winningNumbers, bonusNumber), price);
         OutputView.printResult(winningLottos);
@@ -38,6 +39,7 @@ public class woowahanLotto implements LottoController {
         try {
             String input = InputView.getPrice();
             Validator.priceValidator(input);
+
             return input;
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
@@ -57,21 +59,28 @@ public class woowahanLotto implements LottoController {
         try {
             String input = InputView.getWinningNumber();
             Validator.winningNumValidator(input);
+
             return Converter.StringToLottoNumbers(input);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
+
             return getWinningNum();
         }
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumbers) {
         try {
             String input = InputView.getBonusNumber();
             Validator.lottoNumValidator(input);
-            return Converter.StringToBonusNumber(input);
+
+            int bonusNumber = Converter.StringToBonusNumber(input);
+            checkDuplicateForBonus(winningNumbers, bonusNumber);
+
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
-            return getBonusNumber();
+
+            return getBonusNumber(winningNumbers);
         }
     }
 
