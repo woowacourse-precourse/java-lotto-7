@@ -25,11 +25,16 @@ public class LottoController {
         List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
         lottoView.showPurchasedLottos(purchasedLottos);
 
+        getWinningLotto();
         Lotto winningLotto = Lotto.of(List.of(1,2,3,4,5,6));
         LottoNumber bonusNumber = new LottoNumber(7);
 
         Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, purchasedLottos);
         lottoView.showWinningResult(ranks);
+    }
+
+    private void getWinningLotto() {
+        Lotto lotto = lottoView.getWinningNumberFromUser();
     }
 
     private Money getMoneyFromUser() {
