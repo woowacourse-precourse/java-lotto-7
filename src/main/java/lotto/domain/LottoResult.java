@@ -22,11 +22,12 @@ public class LottoResult {
         return new LottoResult(rankingMap);
     }
 
-    public double calculateProfit(int money){
+    public double calculateProfit(int money) {
         long totalReward = rankingMap.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
-        return (double) totalReward / money * PERCENTAGE_UNIT;
+        double profit = (double) totalReward / money * PERCENTAGE_UNIT;
+        return Math.round(profit * PERCENTAGE_UNIT) / PERCENTAGE_UNIT;
     }
 
     public Map<Ranking, Integer> getRankingMap() {
