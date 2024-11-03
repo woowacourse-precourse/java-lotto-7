@@ -164,6 +164,8 @@
   - 보너스 번호가 있는지 확인한다.
 - calculateProfitability
   - 로또 수익률을 계산한다.
+- displayLottoResultTitle
+  - 로또 결과 제목을 출력한다.
 
 ## 로직
 
