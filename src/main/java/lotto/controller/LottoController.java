@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.model.LottoInfo;
-import lotto.model.PriceDataImpl;
-import lotto.model.StandardLottoPrice;
+import lotto.model.lottoInfo.LottoInfo;
+import lotto.model.lottoInfo.PriceDataImpl;
+import lotto.model.lottoInfo.StandardLottoPrice;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 

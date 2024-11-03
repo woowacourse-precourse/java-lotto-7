@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.enums;
 
 public enum Price {
     FIRST_PRICE("2,000,000,000원"),

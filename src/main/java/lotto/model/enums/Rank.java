@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.enums;
 
 public enum Rank {
     FIRST("6개 일치"),

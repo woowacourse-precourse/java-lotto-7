@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lottoInfo;
 
 public class LottoInfo {
     private WinningNumber winningNumbers;

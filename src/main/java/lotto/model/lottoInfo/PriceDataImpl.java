@@ -1,4 +1,7 @@
-package lotto.model;
+package lotto.model.lottoInfo;
+
+import lotto.model.enums.Price;
+import lotto.model.enums.Rank;
 
 public class PriceDataImpl extends PriceData {
     @Override

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lottoInfo;
 
 public abstract class LottoPrice {
     protected Integer price;
