@@ -8,7 +8,8 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBER_STRING_ERROR("올바른 형식의 숫자 문자열이 아닙니다."),
     INVALID_LOTTO_COUNT_ERROR("로또 번호는 6개여야 합니다."),
     DUPLICATE_LOTTO_NUMBER_ERROR("로또 번호는 중복되지 않아야 합니다."),
-    INVALID_LOTTO_NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    INVALID_LOTTO_NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    DUPLICATE_BONUS_NUMBER_WITH_WINNING_NUMBER_ERROR("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
 
     private final static String PREFIX = "[ERROR]";
     private final String message;

@@ -18,7 +18,7 @@ public class LottoController {
         Amount inputAmount = requestAmount();
         Lottos purchasedLottos = createLottos(inputAmount);
         Lotto winningNumbers = requestWinningNumbers();
-        int bonusNumber = requestBonusNumber();
+        int bonusNumber = requestBonusNumber(winningNumbers);
     }
 
     private Amount requestAmount() {
@@ -49,14 +49,15 @@ public class LottoController {
         }
     }
 
-    private int requestBonusNumber() {
+    private int requestBonusNumber(Lotto winningNumbers) {
         try {
             int number = inputView.enterBonusNumber();
+            winningNumbers.validateNumber(number);
             ConsoleWriter.printEmptyLine();
             return number;
         } catch (CustomException e) {
             ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
-            return requestBonusNumber();
+            return requestBonusNumber(winningNumbers);
         }
     }
 }
