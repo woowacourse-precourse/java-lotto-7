@@ -1,21 +1,20 @@
 package lotto.io;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import java.util.List;
 import lotto.util.InitMessages;
 
 public class PurchasePrintHandler {
     public void printPurchaseMessage() {
-        System.out.println(InitMessages.INPUT_PURCHASE_AMOUNTS.getMessage());
+        System.out.println(InitMessages.INPUT_BUDGETS.getMessage());
     }
 
     public void printPurchaseAmounts(int amounts) {
         System.out.println(InitMessages.PURCHASE_AMOUNTS.getMessage(amounts));
     }
 
-    public void printPurchaseResult(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottoList) {
-            System.out.println(lotto.getNumbers);
+    public void printPurchaseResult(List<String> purchaseLotto) {
+        for (String lotto : purchaseLotto) {
+            System.out.println(lotto);
         }
     }
 
