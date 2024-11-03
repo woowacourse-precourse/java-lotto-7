@@ -14,7 +14,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-
         this.numbers = numbers;
     }
 

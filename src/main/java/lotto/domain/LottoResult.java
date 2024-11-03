@@ -29,8 +29,8 @@ public class LottoResult {
         }
     }
     private void addValidResult(WinningPrize winningPrize) {
-        if (winningPrize != WinningPrize.NONE_PRIZE) {
-            addResult(winningPrize);
+        if (isWinningPrize(winningPrize)) {
+            updateWinningResult(winningPrize);
         }
     }
     private WinningPrize calculateWinningPrize(Lotto lotto, WinningNumbers winningNumbers) {
@@ -38,8 +38,11 @@ public class LottoResult {
         boolean matchBonus = winningNumbers.matchBonus(lotto);
         return WinningPrize.valueOf(matchCount, matchBonus);
     }
+    private boolean isWinningPrize(WinningPrize winningPrize) {
+        return winningPrize != WinningPrize.NONE_PRIZE;
+    }
 
-    private void addResult(WinningPrize winningPrize) {
+    private void updateWinningResult(WinningPrize winningPrize) {
         results.put(winningPrize, results.get(winningPrize) + 1);
     }
     public double calculateReturnRate(long purchaseAmount) {
