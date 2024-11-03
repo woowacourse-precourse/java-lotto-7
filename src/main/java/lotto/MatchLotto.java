@@ -66,4 +66,14 @@ public class MatchLotto {
         }
     }
 
+    public void printTotalResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Map.Entry<Rank, Integer> entry : getTotalResult().entrySet()) {
+            Rank rank = entry.getKey();
+            Integer count = entry.getValue();
+            printRankResult(rank, count);
+        }
+        System.out.println("총 수익률은 " + getProfitRate() + "%입니다.");
+    }
 }
