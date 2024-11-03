@@ -29,4 +29,12 @@ public final class WinningStatistic {
                 .map(type -> type.getMessage() + matchCounts.get(type) + "개")
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public static double getRate(int purchaseLottoSize) {
+        double totalRevenue = 0.0;
+        for (NumberMatchType type : NumberMatchType.values()) {
+            totalRevenue += matchCounts.get(type) * type.getPrice();
+        }
+        return (totalRevenue / (purchaseLottoSize * 1000)) * 100;
+    }
 }

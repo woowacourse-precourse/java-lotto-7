@@ -12,6 +12,7 @@ public final class WinningStatisticView {
         Output.printlnMessage(IOMessage.OUTPUT_WINNING_STATISTIC.getMessage());
         getWinningStatistic(lottoMatchDTO);
         Output.printlnMessage(WinningStatistic.getWinningStatistics());
+        double revenueRate = WinningStatistic.getRate(lottoMatchDTO.purchaseLottos().lottos.size());
     }
 
     private static void getWinningStatistic(LottoMatchDTO lottoMatchDTO) {
