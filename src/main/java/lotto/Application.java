@@ -33,7 +33,24 @@ public class Application {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumber = getValidWinningNo();
 
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = getValidBonus(winningNumber);
 
+    }
+
+    private static int getValidBonus(List<Integer> winningNumber) {
+        while (true) {
+            try {
+                int bonus = getParseInt(Console.readLine());
+                if (winningNumber.contains(bonus)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될수 없습니다.");
+                }
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+            }
+        }
     }
 
     private static List<Integer> getValidWinningNo() {
