@@ -1,8 +1,8 @@
 package lotto.model;
 
 public class LottoResult {
-    private final int totalSpent; // 총 구매 금액
-    private final int[] rankCounts; // 각 등수별 통계
+    private final int totalSpent;
+    private final int[] rankCounts;
 
     public LottoResult(int totalSpent, int[] rankCounts) {
         this.totalSpent = totalSpent;
@@ -15,11 +15,11 @@ public class LottoResult {
 
     public int getCount(Rank rank) {
         switch (rank) {
-            case FIFTH: return rankCounts[0]; // 3개 일치
-            case FOURTH: return rankCounts[1]; // 4개 일치
-            case THIRD: return rankCounts[2]; // 5개 일치
-            case SECOND: return rankCounts[3]; // 5개 + 보너스
-            case FIRST: return rankCounts[4]; // 6개 일치
+            case FIFTH: return rankCounts[0];
+            case FOURTH: return rankCounts[1];
+            case THIRD: return rankCounts[2];
+            case SECOND: return rankCounts[3];
+            case FIRST: return rankCounts[4];
             default: return 0;
         }
     }
@@ -29,6 +29,6 @@ public class LottoResult {
         for (Rank rank : Rank.values()) {
             totalPrize += getCount(rank) * rank.getPrize();
         }
-        return (double) totalPrize / totalSpent * 100; // 수익률 계산
+        return (double) totalPrize / totalSpent * 100;
     }
 }

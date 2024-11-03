@@ -3,13 +3,12 @@ package lotto.service;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.PurchaseAmount;
-import lotto.model.Rank;
 
 import java.util.List;
 
 public class LottoResultCalculator {
     public LottoResult calculateResults(List<Lotto> lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
-        int[] rankCounts = new int[6]; // 0: 3개 일치, 1: 4개 일치, 2: 5개 일치, 3: 5개 + 보너스 일치, 4: 6개 일치
+        int[] rankCounts = new int[6];
 
         for (Lotto lotto : lottos) {
             int matchingCount = getMatchingCount(lotto.getNumbers(), winningNumber.getNumbers());
@@ -28,7 +27,7 @@ public class LottoResultCalculator {
             }
         }
 
-        int totalSpent = lottos.size() * PurchaseAmount.LOTTE_PRICE; // 총 구매 금액
+        int totalSpent = lottos.size() * PurchaseAmount.LOTTE_PRICE;
         return new LottoResult(totalSpent, rankCounts);
     }
 
