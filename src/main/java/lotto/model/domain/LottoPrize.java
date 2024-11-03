@@ -1,10 +1,14 @@
 package lotto.model.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoPrize {
-    private Map<Integer, Integer> rewardRankResult;
+    private final Map<Integer, Integer> rewardRankResult;
     private long rewardPrizeResult;
 
     public LottoPrize() {
@@ -23,10 +27,15 @@ public class LottoPrize {
         return rewardPrizeResult;
     }
 
-    public void updateReward(int matchNumberCount, boolean matchBonusCount) {
+    public void updateReward(int matchNumberCount, boolean isMatchBonus) {
         int rewardRank = 0;
-        for (LottoRank lottoRank : LottoRank.values()) {
-            rewardRank = checkRank(lottoRank, matchNumberCount, matchBonusCount);
+        
+        // LottoRank 열거형의 초기화 된 순서로 인해 reverse 작업 진행
+        List<LottoRank> ranks = new ArrayList<>(Arrays.asList(LottoRank.values()));
+        Collections.reverse(ranks);
+
+        for (LottoRank lottoRank : ranks) {
+            rewardRank = checkRank(lottoRank, matchNumberCount, isMatchBonus);
             if(rewardRank != 0) {
                 break;
             }
@@ -44,9 +53,9 @@ public class LottoPrize {
         rewardRankResult.put(rewardRank, plusOneRewardRankResult);
     }
 
-    private int checkRank(LottoRank lottoRank, int matchNumberCount, boolean matchBonusCount) {
+    private int checkRank(LottoRank lottoRank, int matchNumberCount, boolean isMatchBonus) {
         if (lottoRank.getMatchCount() == matchNumberCount) {
-            if (lottoRank.isConfirmBonus() && lottoRank.isRequiredBonus()== matchBonusCount) {
+            if (lottoRank.isConfirmBonus() && lottoRank.isRequiredBonus()== isMatchBonus) {
                 return lottoRank.getRank();
             }
             return lottoRank.getRank();
