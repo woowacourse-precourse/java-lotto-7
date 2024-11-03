@@ -66,6 +66,7 @@ public class LottoMachine {
     private List<String> handleWinningNumbers() {
         String initialInput = inputView.askWinningNumbers();
         List<String> dividedInput = Arrays.asList(initialInput.split(","));
+        Collections.sort(dividedInput);
         return dividedInput;
     }
 
