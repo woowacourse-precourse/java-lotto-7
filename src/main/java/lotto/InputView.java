@@ -26,5 +26,9 @@ public class InputView {
         }
     }
 
-
+    private static void validateNumberModulo(String inputPurchasePrice) {
+        if (Integer.parseInt(inputPurchasePrice) % NUMBER_CHECK != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
