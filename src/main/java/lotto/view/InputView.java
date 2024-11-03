@@ -1,6 +1,8 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.utils.Validator.EMPTY_STRING;
+import static lotto.utils.Validator.WHITESPACE_PATTERN;
 
 public class InputView {
 
@@ -15,11 +17,11 @@ public class InputView {
 
     public static String getWinningNumber() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
-        return readLine();
+        return readLine().replaceAll(WHITESPACE_PATTERN, EMPTY_STRING);
     }
 
     public static String getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
-        return readLine();
+        return readLine().replaceAll(WHITESPACE_PATTERN, EMPTY_STRING);
     }
 }

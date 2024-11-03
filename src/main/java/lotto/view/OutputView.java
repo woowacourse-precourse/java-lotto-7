@@ -14,7 +14,7 @@ public class OutputView {
 
     public static final String LOTTO_PRINT_FORMAT = "\n%d개를 구매했습니다.\n";
     public static final String LOTTO_DISPLAY_FORMAT = "[%s]\n";
-    public static final String RESULT_DISPLAY_FORMAT = " - [%s]개\n";
+    public static final String RESULT_DISPLAY_FORMAT = " - %s개\n";
     public static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
     public static void printLottos(Lottos lottos) {
@@ -26,8 +26,9 @@ public class OutputView {
     public static void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         String result = numbers.stream()
+                .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER));
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER + " "));
 
         System.out.printf(LOTTO_DISPLAY_FORMAT,result);
     }
