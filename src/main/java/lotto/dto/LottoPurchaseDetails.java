@@ -19,11 +19,15 @@ public class LottoPurchaseDetails {
     public String getPurchaseDetailsMessage() {
         StringBuilder purchaseDetailsMessage = new StringBuilder();
 
-        purchaseDetailsMessage.append(String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLotto)).append(NEW_LINE);
+        purchaseDetailsMessage.append(formatPurchasedNumLottoMessage()).append(NEW_LINE);
         for (Lotto lotto : lottos) {
             purchaseDetailsMessage.append(lotto.getNumbers()).append(NEW_LINE);
         }
 
         return purchaseDetailsMessage.toString();
+    }
+
+    private String formatPurchasedNumLottoMessage() {
+        return String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLotto);
     }
 }
