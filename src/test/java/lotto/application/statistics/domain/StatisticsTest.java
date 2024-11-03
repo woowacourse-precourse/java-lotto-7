@@ -61,4 +61,23 @@ class StatisticsTest {
         assertThat(result.getCount(FIRST)).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("2등 당첨 집계")
+    void 이등_당첨_집계() {
+        // given
+        List<Lotto> lottos = List.of(
+                createLotto(List.of(1, 2, 3, 4, 5, 7))
+        );
+        PrizeNumber prizeNumber = createPrizeNumber(
+                List.of(1, 2, 3, 4, 5, 6), 7
+        );
+        Statistics statistics = Statistics.of(lottos, prizeNumber);
+
+        // when
+        StatisticsResult result = statistics.compile();
+
+        // then
+        assertThat(result.getCount(Rank.SECOND)).isEqualTo(1);
+    }
+
 }
