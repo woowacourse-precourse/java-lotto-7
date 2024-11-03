@@ -4,8 +4,7 @@ import java.util.Map;
 import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
 import lotto.service.BonusNumberManager;
-import lotto.service.DecideQuantityOfLotto;
-import lotto.service.GenerateLottoNumberManager;
+import lotto.service.LottoTicketService;
 import lotto.service.WininngNumberManager;
 import lotto.service.WinningManager;
 import lotto.view.OutputView;
@@ -15,10 +14,10 @@ public class LottoController {
     LottoRepository lottoRepository = new InMemoryLottoRepository();
 
     public void createLottoNumber(int price) {
-        int num = new DecideQuantityOfLotto().purchaseLottoTickets(price);
-        GenerateLottoNumberManager generate = new GenerateLottoNumberManager(lottoRepository);
-        generate.getRandomLottoNumbers();
-        outputView.result(generate.getRandomLottoNumbers());
+        LottoTicketService lottoTicketService = new LottoTicketService();
+        int numberOfLotto = lottoTicketService.purchaseLottoTickets(price);
+        lottoTicketService.generateLottoNumbers(numberOfLotto, lottoRepository);
+        outputView.result(lottoTicketService.getRandomLottoNumbers(lottoRepository));
     }
 
     public void createWinningNumber(String s) {
@@ -26,8 +25,8 @@ public class LottoController {
         wininngNumberManager.createWinningNumber();
     }
 
-    public void createBonusNumber(String s) {
-        new BonusNumberManager().createBonusNumber(s, lottoRepository);
+    public void createBonusNumber(int bonusNumber) {
+        new BonusNumberManager().createBonusNumber(bonusNumber, lottoRepository);
 
     }
 
