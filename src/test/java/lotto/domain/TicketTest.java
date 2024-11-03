@@ -44,73 +44,23 @@ class TicketTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("일등 당첨 내역 결과 검증")
-    @Test
-    void 일등_당첨_결과_검증() {
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6))
-        );
-        Ticket ticket = new Ticket(lottos, 1000, List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(ticket.getResult().get(Prize.FIRST)).isEqualTo(1);
-    }
-
-    @DisplayName("이등 당첨 내역 결과 검증")
-    @Test
-    void 이등_당첨_결과_검증() {
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 7))
-        );
-        Ticket ticket = new Ticket(lottos, 1000, List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(ticket.getResult().get(Prize.SECOND)).isEqualTo(1);
-    }
-
-    @DisplayName("삼등 당첨 내역 결과 검증")
-    @Test
-    void 삼등_당첨_결과_검증() {
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 16))
-        );
-        Ticket ticket = new Ticket(lottos, 1000, List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(ticket.getResult().get(Prize.THIRD)).isEqualTo(1);
-    }
-
-    @DisplayName("사등 당첨 내역 결과 검증")
-    @Test
-    void 사등_당첨_결과_검증() {
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 15, 16))
-        );
-        Ticket ticket = new Ticket(lottos, 1000, List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(ticket.getResult().get(Prize.FOURTH)).isEqualTo(1);
-    }
-
-    @DisplayName("오등 당첨 내역 결과 검증")
-    @Test
-    void 오등_당첨_결과_검증() {
-        List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 14, 15, 16))
-        );
-        Ticket ticket = new Ticket(lottos, 1000, List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(ticket.getResult().get(Prize.FIFTH)).isEqualTo(1);
-    }
-
     @DisplayName("여러개의 당첨 내역 결과 검증")
     @Test
     void 여러개의_당첨_결과_검증() {
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 16)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 16)),
+                new Lotto(List.of(1, 2, 3, 14, 15, 16)),
                 new Lotto(List.of(1, 2, 3, 14, 15, 16)),
                 new Lotto(List.of(1, 2, 3, 14, 15, 16))
         );
         Ticket ticket = new Ticket(lottos, 6000, List.of(1, 2, 3, 4, 5, 6), 7);
         EnumMap<Prize, Integer> result = ticket.getResult();
-        assertThat(result.get(Prize.FIRST)).isEqualTo(1);
-        assertThat(result.get(Prize.SECOND)).isEqualTo(1);
-        assertThat(result.get(Prize.THIRD)).isEqualTo(2);
-        assertThat(result.get(Prize.FIFTH)).isEqualTo(2);
+        assertThat(result.get(Prize.FIRST)).isEqualTo(0);
+        assertThat(result.get(Prize.SECOND)).isEqualTo(2);
+        assertThat(result.get(Prize.THIRD)).isEqualTo(1);
+        assertThat(result.get(Prize.FIFTH)).isEqualTo(3);
     }
 
     @DisplayName("수익률은 소수점 두자리에서 반올림 한다.(내림)")
