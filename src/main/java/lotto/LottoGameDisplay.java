@@ -15,10 +15,12 @@ public class LottoGameDisplay {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String rawMoney = Console.readLine();
-
                 LottoGameValidator.checkIsNumeric(rawMoney);
 
-                return Integer.parseInt(rawMoney);
+                int money = Integer.parseInt(rawMoney);
+                LottoGameValidator.checkMoneyValid(money);
+
+                return money;
             } catch (Exception e) {
                 printErrorMessage(e);
             }
