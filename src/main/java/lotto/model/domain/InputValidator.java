@@ -5,28 +5,41 @@ import lotto.message.ExceptionMessage;
 
 public class InputValidator {
 
-    private static final String AMOUNT_PATTERN_REGEX = "^[0-9]+$";
+    private static final String JUST_NUMBER_PATTERN_REGEX = "^[0-9]+$";
     private static final String WINNING_NUMBER_PATTERN_REGEX = "^[0-9,]+$";
     private static final String SEPARATOR = ",";
     private static final String INVALID_SEPARATOR_PATTERN = ",,";
 
     public void validateInputAmount(String input) {
         validateEmptyOf(input);
-        validateInvalidCharacterOf(input);
+        validateInvalidCharacterOf(input, ExceptionMessage.INVALID_AMOUNT_CHARACTER_INPUT_EXCEPTION);
         int amount = validateExceedMaxAreaOf(input);
         validateMinAmountOf(amount);
         validateAmountUnitOf(amount);
     }
 
+    public void validateInputWinningNumber(String input) {
+        validateEmptyOf(input);
+        validateWinningNumberCharacterOf(input);
+        validateFormatOf(input);
+        validateSeparatedNumberOf(input);
+    }
+
+    public void validateInputBonusNumber(String input) {
+        validateEmptyOf(input);
+        validateInvalidCharacterOf(input, ExceptionMessage.INVALID_BONUS_NUMBER_CHARACTER_INPUT_EXCEPTION);
+    }
+
     private void validateEmptyOf(String input) {
-        if (input == null || input.isEmpty()) {
+        boolean isEmpty = input == null || input.isEmpty();
+        if (isEmpty) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT_EXCEPTION);
         }
     }
 
-    private void validateInvalidCharacterOf(String input) {
-        if (!Pattern.matches(AMOUNT_PATTERN_REGEX, input)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_CHARACTER_INPUT_EXCEPTION);
+    private void validateInvalidCharacterOf(String input, String message) {
+        if (!Pattern.matches(JUST_NUMBER_PATTERN_REGEX, input)) {
+            throw new IllegalArgumentException(message);
         }
     }
 
@@ -48,13 +61,6 @@ public class InputValidator {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_UNIT_EXCEPTION);
         }
-    }
-
-    public void validateInputWinningNumber(String input) {
-        validateEmptyOf(input);
-        validateWinningNumberCharacterOf(input);
-        validateFormatOf(input);
-        validateSeparatedNumberOf(input);
     }
 
     private void validateWinningNumberCharacterOf(String input) {

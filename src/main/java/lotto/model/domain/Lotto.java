@@ -3,6 +3,7 @@ package lotto.model.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.dto.WinningLottoDto;
 import lotto.message.ExceptionMessage;
 
 public class Lotto {
@@ -22,8 +23,9 @@ public class Lotto {
         validateNumbersLength(numbers);
         Set<Integer> forValidateDuplication = new HashSet<>();
         for (int number : numbers) {
-            validateNumberAreaOf(number);
-            validateNumberDuplication(forValidateDuplication, number);
+            validateNumberAreaOf(number, ExceptionMessage.WINNING_NUMBER_AREA_EXCEPTION);
+            validateNumberDuplication(forValidateDuplication, number,
+                    ExceptionMessage.WINNING_NUMBER_DUPLICATION_EXCEPTION);
         }
     }
 
@@ -33,17 +35,30 @@ public class Lotto {
         }
     }
 
-    private void validateNumberAreaOf(int number) {
+    private void validateNumberAreaOf(int number, String message) {
         boolean isInvalidNumberArea = number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
         if (isInvalidNumberArea) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_AREA_EXCEPTION);
+            throw new IllegalArgumentException(message);
         }
     }
 
-    private void validateNumberDuplication(Set<Integer> forValidateDuplication, int number) {
+    private void validateNumberDuplication(Set<Integer> forValidateDuplication, int number, String message) {
         boolean isDuplicated = !forValidateDuplication.add(number);
         if (isDuplicated) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATION_EXCEPTION);
+            throw new IllegalArgumentException(message);
         }
+    }
+
+    public WinningLottoDto generateWinningLotto(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        return new WinningLottoDto(numbers, bonusNumber);
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        validateNumberAreaOf(bonusNumber, ExceptionMessage.BONUS_NUMBER_AREA_EXCEPTION);
+        Set<Integer> forValidateDuplication = new HashSet<>();
+        forValidateDuplication.addAll(numbers);
+        validateNumberDuplication(forValidateDuplication, bonusNumber,
+                ExceptionMessage.BONUS_NUMBER_DUPLICATION_EXCEPTION);
     }
 }

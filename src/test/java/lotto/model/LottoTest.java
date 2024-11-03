@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -60,4 +61,48 @@ class LottoTest {
                 Arguments.of(List.of(10, 11, 23, 24, 26, 27))
         );
     }
+
+    @DisplayName("보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateDuplicationCaseOfBonusNumbers")
+    void validateBonusNumberDuplicationTest(Lotto lotto, int bonusNumber) {
+        assertThatThrownBy(() -> lotto.validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.BONUS_NUMBER_DUPLICATION_EXCEPTION);
+    }
+
+    static Stream<Arguments> generateDuplicationCaseOfBonusNumbers() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6)
+        );
+    }
+
+    @DisplayName("보너스 번호가 번호 범위를 넘길 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateInvalidAreaCaseOfBonusNumbers")
+    void validateBonusNumberAreaTest(Lotto lotto, int bonusNumber) {
+        assertThatThrownBy(() -> lotto.validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.BONUS_NUMBER_AREA_EXCEPTION);
+    }
+
+    static Stream<Arguments> generateInvalidAreaCaseOfBonusNumbers() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 46)
+        );
+    }
+
+    @DisplayName("당첨 로또 생성 테스트")
+    @ParameterizedTest
+    @MethodSource("generateWinningLotto")
+    void generateWinningLottoTest(Lotto lotto, int bonusNumber) {
+        assertThat(lotto.generateWinningLotto(bonusNumber)).isNotNull();
+    }
+
+    static Stream<Arguments> generateWinningLotto() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7)
+        );
+    }
+
 }

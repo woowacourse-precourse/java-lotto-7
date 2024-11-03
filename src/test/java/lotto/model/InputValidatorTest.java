@@ -29,7 +29,7 @@ class InputValidatorTest {
     void invalidCharacterTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_CHARACTER_INPUT_EXCEPTION);
+                .hasMessage(ExceptionMessage.INVALID_AMOUNT_CHARACTER_INPUT_EXCEPTION);
     }
 
     @DisplayName("최대 범위 초과 입력 테스트(구입 금액)")
@@ -102,5 +102,22 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_FORMAT_EXCEPTION);
+    }
+
+    @DisplayName("정상 보너스 번호 입력 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"8"})
+    void validBonusNumberTest(String input) {
+        assertThatCode(() -> inputValidator.validateInputBonusNumber(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("보너스 번호 입력으로 숫자 외 문자를 입력받으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"팔", "8,", " 8", "abc", "$", "-20"})
+    void invalidBonusNumberCharacterTest(String input) {
+        assertThatThrownBy(() -> inputValidator.validateInputBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.INVALID_BONUS_NUMBER_CHARACTER_INPUT_EXCEPTION);
     }
 }
