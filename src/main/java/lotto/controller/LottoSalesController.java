@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.InputAmount;
+import lotto.model.InputWinningNumbers;
 import lotto.model.PurchasedLottos;
 import lotto.model.TicketCount;
 import lotto.service.PickLottoService;
@@ -21,7 +22,7 @@ public class LottoSalesController {
         InputAmount inputAmount = repeatGetAmountUntilValid();
         PurchasedLottos purchasedLottos = purchaseLotto(inputAmount);
 
-        // 당첨 번호 입력받기
+        InputWinningNumbers inputWinningNumbers = repeatGetWinningNumbersUntilValid();
         // 보너스 번호 입력받기
 
         // 수익률 구하기
@@ -45,5 +46,16 @@ public class LottoSalesController {
 
         outputView.printPurchasedLottos(ticketCount, purchasedLottos);
         return purchasedLottos;
+    }
+
+    private InputWinningNumbers repeatGetWinningNumbersUntilValid() {
+        while (true) {
+            try {
+                outputView.printInputWinningNumbers();
+                return new InputWinningNumbers(inputView.getWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
