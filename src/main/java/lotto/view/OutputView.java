@@ -18,4 +18,8 @@ public class OutputView {
     public static void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public static void printLottoNumbersGuide() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
 }

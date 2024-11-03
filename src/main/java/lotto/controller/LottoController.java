@@ -13,6 +13,7 @@ public class LottoController {
     public void run() {
         insertMoney();
         buyLotto();
+        setLottoNumbers();
     }
 
     public void insertMoney() {
@@ -34,5 +35,9 @@ public class LottoController {
             user.addLotto(LottoService.createLottoNumbers());
             OutputView.printLottoNumbers(user.getLottos().get(i));
         }
+    }
+
+    public void setLottoNumbers() {
+        OutputView.printLottoNumbersGuide();
     }
 }
