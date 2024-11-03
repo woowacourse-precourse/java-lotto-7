@@ -1,13 +1,13 @@
 package lotto.validation;
 
+import static lotto.util.LottoConstants.DEFAULT;
 import static lotto.util.LottoConstants.LOTTO_PRICE;
+import static lotto.util.LottoConstants.ZERO_THRESHOLD;
 
 import lotto.view.input.InputErrorMessage;
 import lotto.view.input.InvalidInputException;
 
 public class LottoPurchaseValidator {
-    private final static int ZERO_THRESHOLD = 0;
-
     public static void validate(String input) {
         validateNotNullOrEmpty(input);
         validateIsInteger(input);
@@ -30,13 +30,13 @@ public class LottoPurchaseValidator {
     }
 
     private static void validatePositiveNumber(String input) {
-        if (Integer.parseInt(input) < ZERO_THRESHOLD) {
+        if (Integer.parseInt(input) < ZERO_THRESHOLD.getValue()) {
             throw new InvalidInputException(InputErrorMessage.POSITIVE_NUMBER_REQUIRED);
         }
     }
 
     private static void validatePurchaseUnit(String input) {
-        if (Integer.parseInt(input) % LOTTO_PRICE.getValue() != ZERO_THRESHOLD) {
+        if (Integer.parseInt(input) % LOTTO_PRICE.getValue() != DEFAULT.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_PURCHASE_MUST_BE_MULTIPLE_OF_THOUSAND);
         }
     }

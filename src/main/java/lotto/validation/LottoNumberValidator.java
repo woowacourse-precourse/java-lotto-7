@@ -1,12 +1,13 @@
 package lotto.validation;
 
+import static lotto.util.LottoConstants.ZERO_THRESHOLD;
+
 import java.util.Arrays;
 import lotto.view.input.InputErrorMessage;
 import lotto.view.input.InvalidInputException;
 
 public class LottoNumberValidator {
     private final static String COMMA = ",";
-    private final static int ZERO_THRESHOLD = 0;
 
     public static void validateWinningNumbers(String input) {
         validateNotNullOrEmpty(input);
@@ -35,7 +36,7 @@ public class LottoNumberValidator {
     private static void validateCommaSeparator(String input) {
         String[] inputs = input.split(COMMA);
         long count = Arrays.stream(inputs).filter(String::isEmpty).count();
-        if (count > ZERO_THRESHOLD) {
+        if (count > ZERO_THRESHOLD.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
     }
@@ -59,7 +60,7 @@ public class LottoNumberValidator {
     private static void validatePositiveNumber(String[] inputs) {
         boolean allPositive = Arrays.stream(inputs)
                 .map(Integer::parseInt)
-                .allMatch(number -> number > ZERO_THRESHOLD);
+                .allMatch(number -> number > ZERO_THRESHOLD.getValue());
         if (!allPositive) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
