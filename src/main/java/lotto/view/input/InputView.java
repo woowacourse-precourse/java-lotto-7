@@ -1,4 +1,12 @@
 package lotto.view.input;
 
-public class InputView {
+import camp.nextstep.edu.missionutils.Console;
+
+public abstract class InputView {
+    public abstract String readInput();
+
+    protected String prompt(String message) {
+        System.out.println(message);
+        return Console.readLine();
+    }
 }
