@@ -21,9 +21,12 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            Lotto lotto = generateLotto();
-            lottoRepository.save(lotto);
+            lottos.add(generateLotto());
         }
+
+        return lottos.stream()
+                .map(LottoResponse::new)
+                .toList();
     }
 
     private Lotto generateLotto() {
