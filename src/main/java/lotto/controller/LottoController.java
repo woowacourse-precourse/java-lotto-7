@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Balance;
+import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -8,6 +9,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private Balance balance;
+    private Lotto lotto;
     private User user = new User();
 
     public void run() {
@@ -39,6 +41,6 @@ public class LottoController {
 
     public void setLottoNumbers() {
         OutputView.printLottoNumbersGuide();
-        InputView.inputLottoNumbers();
+        lotto = new Lotto(LottoService.splitLottoNumbers(InputView.inputLottoNumbers()));
     }
 }
