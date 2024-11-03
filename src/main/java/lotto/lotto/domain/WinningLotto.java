@@ -1,6 +1,6 @@
 package lotto.lotto.domain;
 
-import lotto.constant.Separator;
+import lotto.util.constant.Separator;
 import lotto.util.Convertor;
 
 import java.util.List;
