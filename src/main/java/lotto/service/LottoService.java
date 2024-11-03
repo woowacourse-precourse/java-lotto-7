@@ -16,14 +16,10 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
 
 public class LottoService {
-    private final LottoRetailer lottoRetailer;
+    private final LottoSeller lottoSeller;
 
     public LottoService() {
-        this.lottoRetailer = createLottoRetailer();
-    }
-
-    private LottoRetailer createLottoRetailer() {
-        return new LottoRetailer(createLottoSeller());
+        this.lottoSeller = createLottoSeller();
     }
 
     private LottoSeller createLottoSeller() {
@@ -39,11 +35,11 @@ public class LottoService {
     }
 
     public LottoBuyer createLottoBuyer(BigInteger amount) {
-        return lottoRetailer.sellAsMuchAs(amount);
+        return lottoSeller.sellAsMuchAs(amount);
     }
 
     public WinningLotto createWinningLotto(List<Integer> numbers) {
-        return lottoRetailer.createWinningLotto(numbers);
+        return lottoSeller.createWinningLotto(numbers);
     }
 
     public WinningReport createWinningReport(LottoBuyer lottoBuyer, WinningLotto winningLotto) {
