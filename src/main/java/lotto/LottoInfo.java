@@ -14,12 +14,12 @@ public class LottoInfo {
         showLottoNumbers();
     }
 
-    public void showTheNumberOfLotto() {
+    private void showTheNumberOfLotto() {
         setTheNumberOfLotto();
         System.out.println("\n" + theNumberOfLotto + "개를 구매했습니다.");
     }
 
-    public void setTheNumberOfLotto() {
+    private void setTheNumberOfLotto() {
         PayForLotto pay = new PayForLotto();
         int lottoPayout = pay.lottoPayout;
         int LOTTO_PRICE = 1000;
@@ -27,14 +27,14 @@ public class LottoInfo {
         theNumberOfLotto = (lottoPayout / LOTTO_PRICE);
     }
 
-    public void showLottoNumbers() {
+    private void showLottoNumbers() {
         for (int i = 0; i < theNumberOfLotto; i++) {
             setRandomNumbers();
         }
         System.out.println(lottoNumbers);
     }
 
-    public void setRandomNumbers() {
+    private void setRandomNumbers() {
         lotteryNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lotteryNumbers);
         lottoNumbers = lottoNumbers + lotteryNumbers.toString() + "\n";
