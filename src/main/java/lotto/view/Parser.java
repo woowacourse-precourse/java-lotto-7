@@ -24,16 +24,16 @@ public class Parser {
     }
 
     public static List<Integer> parseWinningNumber(String input) {
-        List<Integer> winningNumbers;
+        List<Integer> winningNumber;
         try {
-            winningNumbers = Arrays.stream(input.split(DELIMITER_COMMA))
+            winningNumber = Arrays.stream(input.split(DELIMITER_COMMA))
                     .mapToInt(Integer::parseInt).boxed().toList();
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ERROR_NON_NUMERIC_WINNING_NUMBER_MESSAGE);
         }
         Validator.validateWinningNumber(winningNumbers);
 
-        return winningNumbers.stream().toList();
+        return winningNumber.stream().toList();
     }
 
     public static Integer parseBonusNumber(String input) {
