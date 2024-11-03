@@ -24,24 +24,18 @@ public class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호 범위를 넘어간 경우, 예외를 발생시킨다.")
-    public void lottoRange() {
-        // GIVEN
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
-
-        // WHEN - THEN
-        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(IllegalArgumentException.class);
+    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    @DisplayName("로또가 중복된 숫자를 가진 경우, 예외를 발생시킨다.")
-    public void lottoDuplicate() {
-        // GIVEN
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
-
-        // WHEN - THEN
-        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(IllegalArgumentException.class);
+    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
+
 
     @Test
     @DisplayName("로또 번호 개수가 6개가 아닌 경우, 예외를 발생시킨다.")
