@@ -11,17 +11,34 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final String DELIMITER = ",";
 
-    public static Integer readPurchaseAmount() {
-        int purchasePrice = 0;
-        try {
-            String rawPurchasePrice = Console.readLine();
-            purchasePrice = parseInt(rawPurchasePrice);
-            checkPurchaseRange(purchasePrice);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
+//    public static Integer readPurchaseAmount() {
+//        int purchasePrice = 0;
+//        try {
+//            String rawPurchasePrice = Console.readLine();
+//            purchasePrice = parseInt(rawPurchasePrice);
+//            checkPurchaseRange(purchasePrice);
+//        } catch (NumberFormatException e) {
+//            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
+//        }
+//        return purchasePrice;
+//    }
+        public static Integer readPurchaseAmount() {
+            while (true) {
+                try {
+                    String rawPurchasePrice = Console.readLine();
+                    int purchasePrice = parseInt(rawPurchasePrice);
+                    checkPurchaseRange(purchasePrice);
+                    return purchasePrice; // 입력이 올바르면 반환
+                } catch (NumberFormatException e) {
+                    System.out.println("[ERROR] " + ErrorMessage.ONLY_NUMBER.getError());
+                    throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
+                } catch (IllegalArgumentException e) {
+                    System.out.println(ErrorMessage.NOT_DIV.getError());
+                    throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
+                }
+            }
         }
-        return purchasePrice;
-    }
+
 
     public static Lotto readWinningNum() {
         String rawWinningInput = Console.readLine();

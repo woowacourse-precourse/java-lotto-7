@@ -33,22 +33,29 @@ public class LottoController {
         OutputView.printReturn(myInfo.getMyReturn());
     }
 
-    public void gainPurchaseAmount() {
-        int purchasePrice = 0;
-        try {
+//    public void gainPurchaseAmount() {
+//        int purchasePrice = 0;
+//        try {
+//            OutputView.printPurchaseAmount();
+//            purchasePrice = InputView.readPurchaseAmount();
+//        } catch (IllegalArgumentException e) {
+//            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
+//                OutputView.printError(ErrorMessage.NOT_DIV.getError());
+//                gainPurchaseAmount(); return;
+//            }
+//            OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
+//            gainPurchaseAmount(); return;
+//        }
+//        this.countLotto(purchasePrice);
+//        this.myInfo.setPurchasePrice(purchasePrice);
+//    }
+        public void gainPurchaseAmount() {
             OutputView.printPurchaseAmount();
-            purchasePrice = InputView.readPurchaseAmount();
-        } catch (IllegalArgumentException e) {
-            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
-                OutputView.printError(ErrorMessage.NOT_DIV.getError());
-                gainPurchaseAmount(); return;
-            }
-            OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-            gainPurchaseAmount(); return;
+            int purchasePrice = InputView.readPurchaseAmount();
+            this.countLotto(purchasePrice);
+            this.myInfo.setPurchasePrice(purchasePrice);
         }
-        this.countLotto(purchasePrice);
-        this.myInfo.setPurchasePrice(purchasePrice);
-    }
+
 
     public void countLotto(Integer purchasePrice) {
         int lottoCount = purchasePrice / 1000;
