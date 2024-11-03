@@ -7,12 +7,16 @@ public class LottoMachineService {
     private final LottoMachine lottoMachine = LottoMachine.getInstance();
 
     public void inputLottoPurchaseAmount(String purchaseAmount) {
-        int price = LottoValidator.validNumber(purchaseAmount);
-        LottoValidator.validatePriceUnit(price);
-        lottoMachine.savePurchaseAmount(price);
+        int validPrice = LottoValidator.validNumber(purchaseAmount);
+        LottoValidator.validatePriceUnit(validPrice);
+        lottoMachine.savePurchaseAmount(validPrice);
     }
 
     // TODO: 보너스 번호를 입력받는다.
+    public void inputBonusNumber(String bonusNumber) {
+        int validBonusNumber = LottoValidator.validNumber(bonusNumber);
+        lottoMachine.saveBonusNumber(validBonusNumber);
+    }
 
     // TODO: 로또 번호들을 발급한다.
 
