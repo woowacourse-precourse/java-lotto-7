@@ -13,13 +13,29 @@ public class InputHandler {
 
         System.out.println("구입금액을 입력해 주세요.");
 
-        return new PurchaseAmount(Console.readLine());
+        while(true){
+            try{
+                PurchaseAmount purchaseAmount = new PurchaseAmount(Console.readLine());
+                return purchaseAmount;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public Lotto  inputWinningLottoNumber(){
+    public Lotto inputWinningLottoNumber(){
+
         System.out.println("당첨 번호를 입력해 주세요.");
 
-        return Lotto.createWinningLotto(Console.readLine());
+        while(true){
+            try{
+                Lotto winningLotto = Lotto.createWinningLotto(Console.readLine());
+                return winningLotto;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public SpecialNumber inputSpecialNumber(){

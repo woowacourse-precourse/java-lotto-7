@@ -18,18 +18,18 @@ public class PurchaseAmount {
 
         try {
             int parsedMoney = Integer.parseInt(money);
-
             checkMoneyOverZero(parsedMoney);
             checkMoneyDivideBy1000(parsedMoney);
+
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid purchase amount format. Please provide a valid integer.", e);
+            throw new IllegalArgumentException(ErrorCode.CANT_CONVERT_TO_INTEGER.getMessage());
         }
 
     }
 
     private void checkMoneyOverZero(final int parsedMoney){
 
-        if (parsedMoney < 0) {
+        if (parsedMoney <= 0) {
             throw new IllegalArgumentException(ErrorCode.PURCHASE_AMOUNT_MUST_BE_OVER_ZERO.getMessage());
         }
     }

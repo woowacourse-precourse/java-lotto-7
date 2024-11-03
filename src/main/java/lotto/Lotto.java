@@ -31,7 +31,7 @@ public class Lotto {
         }
 
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("Numbers must not contain duplicates.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_MUST_NOT_DUPLICATE.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class Lotto {
 
             return new Lotto(winningNumber);
 
-        }catch (Exception e){
+        }catch (NumberFormatException e){
             throw new IllegalArgumentException(ErrorCode.CANT_CONVERT_TO_INTEGER.getMessage());
         }
     }
