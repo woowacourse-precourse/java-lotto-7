@@ -25,4 +25,11 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
 
         return numbers;
     }
+
+    public int inputBounsNumber() {   // 사용자가 보너스 번호 입력
+        System.out.println("보너스 번호를 입력하세요");
+        int bonus = Integer.parseInt(Console.readLine());
+
+        return bonus;
+    }
 }
