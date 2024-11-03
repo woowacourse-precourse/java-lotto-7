@@ -21,6 +21,10 @@ public class InputValidator {
         checkDuplicates(winningNumbers);
     }
 
+    public void validateBonusNumber(String number) {
+        parseInt(number);
+    }
+
     private boolean isValidThousandUnit(int amount) {
         return (amount < 1000) || (amount % 1000 != 0);
     }
