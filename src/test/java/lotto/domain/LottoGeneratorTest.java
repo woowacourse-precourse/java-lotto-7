@@ -1,8 +1,6 @@
-package lotto.util;
+package lotto.domain;
 
 import lotto.constants.LottoConstants;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
