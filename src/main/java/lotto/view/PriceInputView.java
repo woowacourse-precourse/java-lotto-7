@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.messages.InputMessage;
+import lotto.validator.PriceValidator;
 
 public class PriceInputView extends InputView{
     @Override
@@ -9,7 +10,12 @@ public class PriceInputView extends InputView{
     }
 
     @Override
-    protected void validate(String input) {
+    public void initializeValidator(){
+        validator = new PriceValidator(inputValue);
+    }
 
+    @Override
+    protected void validate() {
+        validator.validate();
     }
 }
