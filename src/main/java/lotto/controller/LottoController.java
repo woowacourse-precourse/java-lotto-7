@@ -19,7 +19,8 @@ public class LottoController {
 
     public void run() {
 
-        int numberOfPurchasedLotto = inputView.inputPrice() / 1000;
+        int inputPrice = inputView.inputPrice();
+        int numberOfPurchasedLotto = inputPrice / 1000;
 
         List<Lotto> generatedLottos = LottoService.generateLotto(numberOfPurchasedLotto);
 
@@ -31,7 +32,10 @@ public class LottoController {
 
         int[] result = LottoService.matchLotto(winningNumbers, bonusNumber, generatedLottos, numberOfPurchasedLotto);
 
-        outputView.printResult(result);
+        double profitRate = LottoService.calculateProfitRate(result, inputPrice);
+
+        outputView.printResult(result, profitRate);
+
     }
 }
 

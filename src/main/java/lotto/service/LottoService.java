@@ -60,4 +60,16 @@ public class LottoService {
         }
         return matchResult;
     }
+
+    public static double calculateProfitRate(int[] result, int inputPrice) {
+        int profit = 0;
+
+        profit += 2000000000 * result[0];
+        profit += 30000000 * result[1];
+        profit += 1500000 * result[2];
+        profit += 50000 * result[3];
+        profit += 5000 * result[4];
+
+        return ((double) profit / inputPrice) * 100;
+    }
 }

@@ -14,12 +14,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(int[] result) {
+    public void printResult(int[] result, double profitRate) {
         System.out.println(SystemMessage.RESULT_HEADER.getMessage());
         System.out.printf(SystemMessage.MATCH_THREE.getMessage() + "\n", result[4]);
         System.out.printf(SystemMessage.MATCH_FOUR.getMessage() + "\n", result[3]);
         System.out.printf(SystemMessage.MATCH_FIVE.getMessage() + "\n", result[2]);
         System.out.printf(SystemMessage.MATCH_FIVE_BONUS.getMessage() + "\n", result[1]);
         System.out.printf(SystemMessage.MATCH_SIX.getMessage() + "\n", result[0]);
+        System.out.printf(SystemMessage.PROFIT_RATE.getMessage(), profitRate);
+
     }
 }
