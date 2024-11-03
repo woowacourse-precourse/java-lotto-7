@@ -1,4 +1,10 @@
 package lotto.view.input;
 
-public class InputMoneyView {
+import static lotto.handler.InputHandler.INPUT_MONEY;
+
+public class InputMoneyView extends InputView {
+    @Override
+    public String readInput() {
+        return prompt(INPUT_MONEY);
+    }
 }
