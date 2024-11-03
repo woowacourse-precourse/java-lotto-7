@@ -12,6 +12,8 @@ import java.util.Arrays;
 public class Application {
 
     public static List<Lotto> lottos = new ArrayList<>();
+    public static Lotto winningLotto;
+    public static int bonus;
 
     public static int stringToNum(String input) {
         try {
@@ -62,6 +64,7 @@ public class Application {
         for (String e : uniqueNumbers) {
             numbers.add(stringToNum(e));
         }
+        winningLotto = new Lotto(numbers);
     }
 
     public static void makeWinningLotto() {
