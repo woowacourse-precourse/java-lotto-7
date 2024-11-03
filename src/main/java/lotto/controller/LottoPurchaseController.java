@@ -31,8 +31,7 @@ public class LottoPurchaseController {
 	}
 
 	public int getValidatedPurchasePrice(String purchasePriceInput) {
-		InputValidator.validateInteger(purchasePriceInput);
-		int parsedPrice = Integer.parseInt(purchasePriceInput);
+		int parsedPrice = InputValidator.validateInteger(purchasePriceInput);
 		LottoTicketValidator.validatePurchasePrice(parsedPrice);
 		return parsedPrice;
 	}
