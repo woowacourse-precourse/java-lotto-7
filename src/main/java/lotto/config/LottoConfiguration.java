@@ -51,6 +51,7 @@ public class LottoConfiguration {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = (Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(lottoNumbers);
             showLottoNumbers(lottoNumbers);
             generatedLottos.add(new Lotto(lottoNumbers));
         }
