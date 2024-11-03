@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.SystemMessage;
 
 public class InputView {
@@ -10,13 +12,13 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public int[] inputWinningNumbers() {
+    public List<Integer> inputWinningNumbers() {
         System.out.println(SystemMessage.Input_WinningNumbers.getMessage());
         String winningNumbers = Console.readLine();
 
         return Arrays.stream(winningNumbers.split(","))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public int inputBonusNumber() {

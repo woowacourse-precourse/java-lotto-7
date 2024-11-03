@@ -16,5 +16,13 @@ public class LottoService {
         return lottoList;
     }
 
-    
+    public static int[] matchLotto(int[] winningNumbers, int bonusNumber, List<Lotto> lottolist, int number) {
+        int[] matchResult = new int[5];
+
+        for (Lotto lotto : lottolist) {
+           
+        }
+
+        return matchResult;
+    }
 }

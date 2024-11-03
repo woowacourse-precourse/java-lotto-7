@@ -16,6 +16,7 @@ public class LottoController {
 
     }
 
+
     public void run() {
 
         int numberOfPurchasedLotto = inputView.inputPrice() / 1000;
@@ -24,8 +25,10 @@ public class LottoController {
 
         outputView.printGeneratedLottos(numberOfPurchasedLotto, generatedLottos);
 
-        int[] winningNumbers = inputView.inputWinningNumbers();
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        
         int bonusNumber = inputView.inputBonusNumber();
+
 
     }
 }
