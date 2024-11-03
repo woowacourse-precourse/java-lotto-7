@@ -18,8 +18,8 @@ public class OutputView {
         Map<LottoRank, Integer> rankCount = result.getRankCount();
         rankCount.forEach((rank, count) -> {
             if (rank != LottoRank.NONE){
-                System.out.printf("%d개 일치 (%d)원 - %d개%n",
-                        rank.getMatchCount(), rank.getPrize(), count);
+                System.out.printf("%s %d개%n",
+                        rank.getPrizeStr(), count);
             }
         });
         double profitRate = calculateProfitRate(result.getTotalPrize(), purchaseAmount);
