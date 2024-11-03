@@ -17,7 +17,11 @@ public class Controller {
         Lottos lottos = purchaseLottos(money);
         OutputView.printLottoNumbers(lottos);
 
+        // 당첨 번호 입력
         System.out.println(getWinningNumbers());
+
+        // 보너스 번호 입력
+        System.out.println(getBonusNumber());
     }
 
     private Lottos purchaseLottos(Money money) {
@@ -33,5 +37,9 @@ public class Controller {
 
     private String getWinningNumbers() {
         return NumberInputView.getWinningNumbers();
+    }
+
+    private String getBonusNumber() {
+        return NumberInputView.getBonusNumber();
     }
 }
