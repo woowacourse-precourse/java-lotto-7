@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 public class LottoController {
     public void run() {
-        int lottoCount = repeatUntilSuccess(this::getLottoCount);
+        int lottoCount = repeatUntilSuccess(this::getLottoPurchaseAmount);
         List<Lotto> lottoList = repeatUntilSuccess(() -> Lotto.issueLottoList(lottoCount));
         printLottoList(lottoList);
         List<Integer> winningNumbers = repeatUntilSuccess(this::getWinningNumbers);
@@ -50,16 +50,13 @@ public class LottoController {
         System.out.println();
     }
 
-    private int getLottoCount() {
+    private int getLottoPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int purchaseAmount = parseInt(input);
-        try {
-            if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 입력된 금액이 1,000원으로 나누어 떨어지지 않습니다.");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getLocalizedMessage());
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 입력된 금액이 1,000원으로 나누어 떨어지지 않습니다.");
+
         }
 
         return purchaseAmount / 1000;
@@ -91,8 +88,6 @@ public class LottoController {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
-        } catch (NullPointerException e) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
         }
     }
 

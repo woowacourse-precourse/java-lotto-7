@@ -27,15 +27,15 @@ public class LottoService {
 
     private int getPrize(int rank) {
         if (rank == 1) {
-            return 2000000;
+            return Rank.FIFTH.getPrize();
         } else if (rank == 2) {
-            return 30000;
+            return Rank.SECOND.getPrize();
         } else if (rank == 3) {
-            return 1500;
+            return Rank.THIRD.getPrize();
         } else if (rank == 4) {
-            return 50;
+            return Rank.FOURTH.getPrize();
         } else if (rank == 5) {
-            return 5;
+            return Rank.FIFTH.getPrize();
         }
         return 0;
     }
