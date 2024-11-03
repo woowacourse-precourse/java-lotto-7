@@ -23,8 +23,8 @@ public class Controller {
         winningNum = input.getWinningNum();
         bonusNum = input.getBonusNum();
         winningScore = service.checkWinning(lottos, winningNum);
-        service.countWinning(winningScore);
+        int[] resultWinning = service.countWinning(winningScore);
+        output.printWinning(resultWinning);
     }
-    // TODO: 당첨 여부 확인 및 금액 계산
     // TODO: 총 이익률 계산
 }

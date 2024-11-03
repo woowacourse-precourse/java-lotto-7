@@ -15,7 +15,7 @@ public class Service {
         }
         return lottos;
     }
-    // TODO: 당첨 여부 및 등수 확인
+
     ArrayList<Integer> checkWinning(List<List<Integer>> lottos, int[] winningNum){
         ArrayList<Integer> score = new ArrayList<Integer>();
         for(List<Integer> lotto : lottos){
@@ -37,7 +37,7 @@ public class Service {
         int BonusScore = (lotto.contains(bonusNum)) ? 1 : 0;
     }
 
-    void countWinning(ArrayList<Integer> score){
+    int[] countWinning(ArrayList<Integer> score){
         int[] resultWinning = new int[8];
         for (int i=0;i<score.size();i++) {
 
@@ -59,5 +59,6 @@ public class Service {
                 resultWinning[7] += 1;
             }
         }
+    return resultWinning;
     }
 }
