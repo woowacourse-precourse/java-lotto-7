@@ -17,7 +17,7 @@ public class OutputView {
 
     public static void printLottoTickets(LottoTicketsDto lottoTicketsDto) {
         List<LottoDto> lottoTickets = lottoTicketsDto.getLottoTickets();
-        System.out.printf((OUTPUT_PURCHASED_COUNT_MESSAGE.getMessage()) + "%n", lottoTickets.size());
+        System.out.printf((OUTPUT_PURCHASED_COUNT_MESSAGE.getMessage()), lottoTickets.size());
         for (LottoDto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket.getLotto()
                     .stream()
@@ -34,10 +34,10 @@ public class OutputView {
                 continue;
             }
             if (rank.equals(Rank.SECOND)) {
-                System.out.printf((OUTPUT_BONUS_RESULT_FORMAT.getMessage()) + "%n", rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
+                System.out.printf((OUTPUT_BONUS_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
                 continue;
             }
-            System.out.printf((OUTPUT_MATCH_RESULT_FORMAT.getMessage()) + "%n", rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
+            System.out.printf((OUTPUT_MATCH_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
         }
     }
 
@@ -54,6 +54,6 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(Double returnOfRate) {
-        System.out.printf((OUTPUT_RETURN_RATE_MESSAGE_FORMAT.getMessage()) + "%n", returnOfRate);
+        System.out.printf((OUTPUT_RETURN_RATE_MESSAGE_FORMAT.getMessage()), returnOfRate);
     }
 }
