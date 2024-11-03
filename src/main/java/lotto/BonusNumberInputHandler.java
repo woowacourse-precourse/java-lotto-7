@@ -21,6 +21,10 @@ public class BonusNumberInputHandler extends InputHandler{
         }
     }
 
+    public int getBonusNumber() {
+        return Integer.parseInt(bonusNumber);
+    }
+
     @Override
     public void validateInput() {}
 
