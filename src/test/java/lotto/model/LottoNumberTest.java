@@ -66,4 +66,15 @@ class LottoNumberTest {
         Assertions.assertThat(lottoNumber).isNotNull();
     }
 
+    @Test
+    @DisplayName("값을 반환한다.")
+    void should_ReturnValue() {
+        //given
+        String number = "1";
+        //when
+        LottoNumber lottoNumber = new LottoNumber(number);
+        //then
+        Assertions.assertThat(lottoNumber.getNumber()).isEqualTo(1);
+    }
+
 }
