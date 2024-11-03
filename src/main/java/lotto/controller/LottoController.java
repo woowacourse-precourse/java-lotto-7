@@ -19,5 +19,6 @@ public class LottoController {
 
         CalculateRateOfReturn calculateRateOfReturn
                 = new CalculateRateOfReturn(purchaseAmount, lottoWinning, lottoPrizeMap);
+        OutputView.outputRateOfReturn(calculateRateOfReturn);
     }
 }

@@ -4,7 +4,7 @@ public enum OutputMessage {
     NUMBER_OF_PURCHASE_OUTPUT("%d개를 구매했습니다."),
     STRING_WINNING_STATISTIC_OUTPUT("당첨 통계\n---"),
     WINNING_STATISTICS_OUTPUT("%s (%,d)원 - %d개"),
-    TOTAL_RETURN_OUTPUT("총 수익률은 %.1f%%입니다.");
+    RATE_OF_RETURN_OUTPUT("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

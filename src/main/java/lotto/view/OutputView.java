@@ -35,4 +35,11 @@ public class OutputView {
                 winningResult.getValue()
         );
     }
+
+    public static void outputRateOfReturn(CalculateRateOfReturn calculateRateOfReturn) {
+        System.out.println(String.format(
+                OutputMessage.RATE_OF_RETURN_OUTPUT.getMessage(),
+                calculateRateOfReturn.calculateRateOfReturn()
+        ));
+    }
 }
