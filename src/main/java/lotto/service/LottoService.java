@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 
 public class LottoService {
-    static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
     private static Map<String, Integer> matchCountPrizeMap;
     private static final String[] matchNumbers = {"0", "1", "2", "3", "4", "5", "5.5", "6"};
     private static final int[] prizes = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
