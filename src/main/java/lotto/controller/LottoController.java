@@ -16,7 +16,7 @@ public class LottoController {
     }
 
     public void playLotto() {
-        int purchasePrise = handlePurchasePrice();
+        int purchasePrice = handlePurchasePrice();
     }
 
     private int handlePurchasePrice() {
