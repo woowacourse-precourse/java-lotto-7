@@ -11,6 +11,8 @@ public class OutputView {
     public void printNewLine() {
         printMessage(EMPTY);
     }
+
+    // 요정 관련 출력
     public void printRequestPurchaseAmount () {
         printMessage(RequestMessage.ENTER_PURCHASE_AMOUNT.getMessage());
     }
@@ -23,6 +25,7 @@ public class OutputView {
         printMessage(RequestMessage.ENTER_BONUS_NUMBER.getMessage());
     }
 
+    // 결과 관련 출력
     public void printPurchasedLottoCount (int lottoCount) {
         printNewLine();
         printMessage(ResultMessage.PURCHASED_LOTTO.getIntMessage(lottoCount));

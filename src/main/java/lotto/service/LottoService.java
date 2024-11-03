@@ -14,6 +14,7 @@ import static lotto.constants.LottoConstants.RATE_COUNT;
 import static lotto.constants.LottoConstants.ZERO;
 
 public class LottoService {
+    // 로또 구매
     public List<Lotto> purchaseLotto (int lottoPurchaseCount) {
         List<Lotto> purchaseLottoNumbers = new ArrayList<>();
         for (int i = ZERO; i < lottoPurchaseCount; i++) {
@@ -23,6 +24,7 @@ public class LottoService {
         return purchaseLottoNumbers;
     }
 
+    // 로또 당첨 확인
     public void updateWinningStatus(LottoWinningTierManager lottoWinningTierManager, List<Lotto> purchaseLottoNumbers, LottoWinningNumbers winningNumbers) {
         for (Lotto lotto : purchaseLottoNumbers) {
             lottoWinningTierManager.increaseLottoWinningTier(
@@ -43,6 +45,7 @@ public class LottoService {
         return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
     }
 
+    // 수익률 계산
     public double calculateTotalProfitRate (LottoWinningTierManager lottoWinningTierManager, int purchaseAmount) {
         return ((double) lottoWinningTierManager.calculateTotalPrize() / purchaseAmount) * RATE_COUNT;
     }

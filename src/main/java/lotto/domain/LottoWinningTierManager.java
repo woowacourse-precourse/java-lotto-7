@@ -32,6 +32,7 @@ public class LottoWinningTierManager {
                 .sum();
     }
 
+    // 당첨된 로또 개수 증가
     public void increaseLottoWinningTier(int matchCount, boolean isBonusNumber) {
         if (matchCount == MATCH_FIVE_COUNT && isBonusNumber) {
             checkLottoWinningTier(matchCount, true);

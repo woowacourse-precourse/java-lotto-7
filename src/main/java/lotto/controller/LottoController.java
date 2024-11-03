@@ -20,6 +20,7 @@ public class LottoController {
     private LottoWinningNumbers lottoWinningNumbers;
     private LottoWinningTierManager lottoWinningTierManager;
 
+    // 구매한 로또 번호 설정
     public void setPurchaseLottoNumbers () {
         while (true) {
             try {
@@ -39,6 +40,7 @@ public class LottoController {
         }
     }
 
+    // 당첨 번호 설정
     public void setWinningNumbers () {
         List<Integer> winningNumbers = initializeWinningNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(
@@ -66,11 +68,13 @@ public class LottoController {
         }
     }
 
+    // 로또 결과 확인
     public void verifyLottoResults() {
         lottoWinningTierManager = new LottoWinningTierManager();
         lottoService.updateWinningStatus(lottoWinningTierManager, purchaseLottoNumbers, lottoWinningNumbers);
     }
 
+    // 로또 결과 출력
     public void printResult () {
         outputView.printStartWinResult();
         outputView.printLottoPlace(lottoWinningTierManager);
