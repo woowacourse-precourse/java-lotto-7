@@ -20,7 +20,7 @@ public class LottoBundle {
 	}
 
 	public int getCount() {
-		return count;
+		return price.getPrice() / SINGLE_LOTTO_PRICE;
 	}
 
 	private int calculateCount(int price) {
