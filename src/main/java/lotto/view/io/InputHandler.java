@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.money.PurchaseAmount;
 import lotto.exception.LottoApplicationException;
 
 public class InputHandler {

@@ -1,7 +1,7 @@
 package lotto.view.io.message;
 
-import lotto.domain.LottoRank;
-import lotto.domain.LottoRank.BonusCondition;
+import lotto.domain.rank.LottoRank;
+import lotto.domain.rank.LottoRank.BonusCondition;
 
 public class RankMessageGenerator {
 

@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.domain.rank;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.domain.money.Money;
 
 public class LottoRanks {
 

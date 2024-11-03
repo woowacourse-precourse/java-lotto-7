@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
-import lotto.domain.LottoRank;
-import lotto.domain.LottoRanks;
+import lotto.domain.rank.LottoRank;
+import lotto.domain.rank.LottoRanks;
 import lotto.domain.MatchResult;
-import lotto.domain.Money;
+import lotto.domain.money.Money;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
