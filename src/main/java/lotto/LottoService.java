@@ -29,18 +29,37 @@ public class LottoService {
 
     private LottoResult determineResult(int matchCount, Lotto lotto, Integer bonusNumber) {
         if (matchCount == 3) {
-            return LottoResult.THREE_MATCH;
+            return handleThreeMatches();
         }
         if (matchCount == 4) {
-            return LottoResult.FOUR_MATCH;
+            return handleFourMatches();
         }
         if (matchCount == 5) {
-            return lotto.getNumbers().contains(bonusNumber) ? LottoResult.FIVE_BONUS_MATCH : LottoResult.FIVE_MATCH;
+            return handleFiveMatches(lotto, bonusNumber);
         }
         if (matchCount == 6) {
-            return LottoResult.SIX_MATCH;
+            return handleSixMatches();
         }
         return null;
+    }
+
+    private LottoResult handleThreeMatches() {
+        return LottoResult.THREE_MATCH;
+    }
+
+    private LottoResult handleFourMatches() {
+        return LottoResult.FOUR_MATCH;
+    }
+
+    private LottoResult handleFiveMatches(Lotto lotto, Integer bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            return LottoResult.FIVE_BONUS_MATCH;
+        }
+        return LottoResult.FIVE_MATCH;
+    }
+
+    private LottoResult handleSixMatches() {
+        return LottoResult.SIX_MATCH;
     }
 
 
