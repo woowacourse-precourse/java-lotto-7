@@ -21,29 +21,29 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numberList) {
-        validateNumberCount(numberList);
-        validateNumberRange(numberList);
-        validateDuplicateNumber(numberList);
+    private void validate(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateNumberRange(numbers);
+        validateDuplicateNumber(numbers);
     }
 
-    private void validateNumberCount(List<Integer> numberList) {
-        if (numberList.size() != LOTTO_NUMBER_COUNT) {
+    private void validateNumberCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT_ERROR_MESSAGE);
         }
     }
 
-    private void validateNumberRange(List<Integer> numberList) {
-        for (int number : numberList) {
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
     }
 
-    private void validateDuplicateNumber(List<Integer> numberList) {
-        HashSet<Integer> hashSet = new HashSet<>(numberList);
-        if (hashSet.size() != LOTTO_NUMBER_COUNT) {
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        HashSet<Integer> duplicateChecker = new HashSet<>(numbers);
+        if (duplicateChecker.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
 

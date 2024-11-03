@@ -21,13 +21,12 @@ public class LottoController {
     OutView outView = new OutView();
 
     public void start() {
-
-        Money money = userMoneyInput();
+        Money money = getMoney();
         LottoArchive lottoArchive = buyLotto(money.getTickets());
-        displayLottoList(lottoArchive.getLottoList());
+        displayLottos(lottoArchive.getLottos());
 
         WinningNumber winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber(winningNumber.getNumberList());
+        BonusNumber bonusNumber = getBonusNumber(winningNumber.getNumbers());
 
         NumberMatchCounter numberMatchCounter = new NumberMatchCounter(lottoArchive, winningNumber, bonusNumber);
         PrizeCalculator prizeCalculator = new PrizeCalculator(numberMatchCounter.getPrizeCounts(), money.getMoney());
@@ -35,7 +34,7 @@ public class LottoController {
         displayResult(numberMatchCounter.getPrizeCounts(), prizeCalculator.calculatePrizeRate());
     }
 
-    public Money userMoneyInput() {
+    public Money getMoney() {
         outView.printMoneyInputMessage();
 
         while (true) {
@@ -53,7 +52,7 @@ public class LottoController {
         return new LottoArchive(lottoList);
     }
 
-    public void displayLottoList(List<Lotto> lottoList) {
+    public void displayLottos(List<Lotto> lottoList) {
         outView.printLottoCount(lottoList.size());
         for (Lotto lotto : lottoList) {
             outView.printLottoNumbers(lotto.getNumbers());
@@ -64,8 +63,8 @@ public class LottoController {
         outView.printWinningNumberInputMessage();
         while (true) {
             try {
-                List<Integer> number = WinningNumberInputView.getWinningNumber();
-                return new WinningNumber(number);
+                List<Integer> winningNumber = WinningNumberInputView.getWinningNumber();
+                return new WinningNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 outView.printErrorMessage(e.getMessage());
             }

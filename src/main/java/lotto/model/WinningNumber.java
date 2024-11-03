@@ -13,11 +13,11 @@ import java.util.List;
 
 public class WinningNumber {
 
-    List<Integer> numberList;
+    List<Integer> numbers;
 
-    public WinningNumber(List<Integer> numberList) {
-        validate(numberList);
-        this.numberList = numberList;
+    public WinningNumber(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numberList) {
@@ -50,11 +50,11 @@ public class WinningNumber {
 
     public int checkSameCount(List<Integer> numbers) {
         List<Integer> copyOfNumbers = new ArrayList<>(numbers);
-        copyOfNumbers.retainAll(numberList);
+        copyOfNumbers.retainAll(this.numbers);
         return copyOfNumbers.size();
     }
 
-    public List<Integer> getNumberList() {
-        return numberList;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.enums.Prize;
 
 public class NumberMatchCounter {
+    private static final int COUNT_FOR_BONUS = 5;
     private final Map<Prize, Long> prizeCountMap;
     private final LottoArchive lottoArchive;
     private final WinningNumber winningNumber;
@@ -17,18 +18,18 @@ public class NumberMatchCounter {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
         this.prizeCountMap = new EnumMap<>(Prize.class);
-        initializePrizeCountMap();
+        initializePrizeCount();
         countPrize();
     }
 
-    private void initializePrizeCountMap() {
+    private void initializePrizeCount() {
         for (Prize prize : Prize.values()) {
             prizeCountMap.put(prize, 0L);
         }
     }
 
     private void countPrize() {
-        for (Lotto lotto : lottoArchive.getLottoList()) {
+        for (Lotto lotto : lottoArchive.getLottos()) {
             Prize prize = checkLotto(lotto.getNumbers());
             if (prize != null) {
                 prizeCountMap.put(prize, prizeCountMap.get(prize) + 1);
@@ -38,7 +39,7 @@ public class NumberMatchCounter {
 
     private Prize checkLotto(List<Integer> numbers) {
         int commonNumberCount = winningNumber.checkSameCount(numbers);
-        boolean isBonus = (commonNumberCount == 5) && (bonusNumber.checkBonusNumber(numbers));
+        boolean isBonus = (commonNumberCount == COUNT_FOR_BONUS) && (bonusNumber.checkBonusNumber(numbers));
 
         for (Prize prize : Prize.values()) {
             if (prize.matches(commonNumberCount, isBonus)) {

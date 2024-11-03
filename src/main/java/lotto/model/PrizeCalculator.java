@@ -6,7 +6,9 @@ import java.util.Map;
 import lotto.enums.Prize;
 
 public class PrizeCalculator {
-    private static final String OVER_FLOW_ERROR_MESSAGE = "오버플로우가 발생했습니다.";
+    private static final String OVER_FLOW_ERROR_MESSAGE = "오버플로우가 발생했습니다. 너무 운이 좋네요!";
+    private static final double PERCENTAGE_MULTIPLIER = 100.0;
+    private static final int DECIMAL_SCALE = 1;
     private final Map<Prize, Long> prizeIntegerMap;
     long totalPrize = 0L;
     long money;
@@ -32,12 +34,12 @@ public class PrizeCalculator {
     }
 
     public double calculatePrizeRate() {
-        return round(100.0 * (totalPrize) / money);
+        return round(PERCENTAGE_MULTIPLIER * (totalPrize) / money);
     }
 
     private double round(double rate) {
         BigDecimal decimal = BigDecimal.valueOf(rate);
-        decimal = decimal.setScale(1, RoundingMode.HALF_UP);
+        decimal = decimal.setScale(DECIMAL_SCALE, RoundingMode.HALF_UP);
         return decimal.doubleValue();
     }
 
