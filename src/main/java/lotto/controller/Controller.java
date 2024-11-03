@@ -17,7 +17,8 @@ public class Controller {
         Lottos lottos = purchaseLottos(money);
         OutputView.printLottoNumbers(lottos);
 
-        createWinningLotto();
+        WinningLotto winningLotto = createWinningLotto();
+        Result result = lottos.matchWinningLotto(winningLotto);
     }
 
     private Lottos purchaseLottos(Money money) {

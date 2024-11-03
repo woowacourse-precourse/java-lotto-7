@@ -17,4 +17,9 @@ public class Result {
             result.put(rank, 0);
         }
     }
+
+    public void updateResult(Rank rank) {
+        int current = result.get(rank);
+        result.put(rank, current + 1);
+    }
 }

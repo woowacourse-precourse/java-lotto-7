@@ -23,4 +23,15 @@ public class Lottos {
 
         return lottoNumbers.toString();
     }
+
+    public Result matchWinningLotto(WinningLotto winningLotto) {
+        Result result = new Result();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = winningLotto.compareLotto(lotto);
+            result.updateResult(rank);
+        }
+
+        return result;
+    }
 }
