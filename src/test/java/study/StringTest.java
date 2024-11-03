@@ -11,6 +11,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * 많은 테스트 작성의 장점 중 특히 공감할 수 있는 이유로는, 클래스의 역할에 대해 다시 한번 생각할 수 있다는 점입니다. 단위 테스트를 작성하는 과정에서 클래스가 다른 클래스와 어떻게 의존하고 있는지 명확히
+ * 드러나며, 이를 통해 각 클래스가 담당하는 역할과 책임을 다시 한번 점검할 수 있습니다. 만약 테스트를 작성하는 도중 특정 클래스가 지나치게 많은 역할을 맡고 있거나 다른 클래스와 강하게 결합되어 있다는 사실을
+ * 발견한다면, 이는 설계를 개선할 기회가 됩니다. 이렇게 테스트를 통해 클래스의 책임을 명확히 하다 보면, 자연스럽게 코드가 더 읽기 쉽고 유지보수하기 쉬운 구조로 개선됩니다.
+ */
 public class StringTest {
 
     @Test
