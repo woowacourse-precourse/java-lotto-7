@@ -3,4 +3,5 @@ package lotto.constants;
 public class CommonConstants {
     public static final long UNIT_PURCHASE_AMOUNT = 1000L;
     public static final long MAX_PURCHASE_AMOUNT = 1_000_000L;  // 실제 1인당 로또 구매가능 금액
+    public static final int LOTTO_SIZE = 6;
 }

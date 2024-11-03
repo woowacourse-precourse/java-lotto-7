@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoGroup;
 import lotto.util.NumLottoCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,15 +17,16 @@ public class LottoMachineController {
     public void run() {
         try {
             long purchaseAmount = requestPurchaseAmount();
-            printNumLotto(purchaseAmount);
+            long numLotto = calcNumLotto(purchaseAmount);
+            outputView.printNumLotto(numLotto);
+            LottoGroup lottoGroup = new LottoGroup(numLotto);
         } catch (IllegalStateException e) {
             outputView.printExitMessage(e.getMessage());
         }
     }
 
-    private void printNumLotto(long purchaseAmount) {
-        long numLotto = NumLottoCalculator.calculate(purchaseAmount);
-        outputView.printNumLotto(numLotto);
+    private long calcNumLotto(long purchaseAmount) {
+        return NumLottoCalculator.calculate(purchaseAmount);
     }
 
     private long requestPurchaseAmount() {
