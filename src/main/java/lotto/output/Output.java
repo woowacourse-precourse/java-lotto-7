@@ -2,6 +2,7 @@ package lotto.output;
 
 import lotto.LottoPrize;
 
+import java.util.List;
 import java.util.Map;
 
 public class Output {
@@ -44,5 +45,11 @@ public class Output {
                 lottoPrize.getMatchCount(),
                 lottoPrize.getPrize(),
                 result);
+    }
+
+    public void writeLottoList(List<List<Integer>> lottoList) {
+        lottoList.forEach(
+                lotto ->  write("[%d, %d, %d, %d, %d, %d]", lotto.toArray())
+        );
     }
 }
