@@ -20,6 +20,9 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 public class LottoService {
+    private static final int LOTTO_NUMBER_SIX = 6;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
     private static final int LOTTO_MATCH_FIVE = 5;
     private static final int PROFIT_PERCENTAGE_CALCULATE = 100;
     private static final int SPLIT_ALL_TOKEN = -1;
@@ -48,7 +51,8 @@ public class LottoService {
     }
 
     public Lotto pickLottoNumber() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIX));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
@@ -87,8 +91,8 @@ public class LottoService {
         }
     }
 
-    public EnumMap<WinAmount, Integer> comPareMyLotto_WinLotto(Lotto[] lottos, List<Integer> winNumbers,
-                                                               int bonusNumber) {
+    public EnumMap<WinAmount, Integer> comPare_My_Win(Lotto[] lottos, List<Integer> winNumbers,
+                                                      int bonusNumber) {
         Set<Integer> winNumber = new HashSet<>(winNumbers);
         for (Lotto lotto : lottos) {
             Set<Integer> myLotto = new HashSet<>(lotto.getNumbers());
