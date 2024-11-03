@@ -3,6 +3,7 @@ package lotto;
 import static lotto.utils.Constants.LOTTO_NUMBERS_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.LottoBundle;
 import org.junit.jupiter.api.Test;
 
 class LottoBundleTest {

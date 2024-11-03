@@ -3,6 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigInteger;
+import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

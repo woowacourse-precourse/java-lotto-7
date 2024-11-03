@@ -4,6 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoEvaluator;
+import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,6 +65,6 @@ class LottoEvaluatorTest {
         BigDecimal yield = evaluator.calculateYield(results, purchaseAmount);
 
         // then
-        assertThat(yield.compareTo(expectedYield)).isEqualTo(0);
+        assertThat(yield).isEqualByComparingTo(expectedYield);
     }
 }

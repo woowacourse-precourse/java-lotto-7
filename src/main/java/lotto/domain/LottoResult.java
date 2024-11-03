@@ -1,12 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class LottoResult {
-    private final Map<LottoRank, Integer> rankCount = new HashMap<>();
+    private final HashMap<LottoRank, Integer> rankCount = new HashMap<>();
 
     public LottoResult() {
         Arrays.stream(LottoRank.values())
@@ -24,7 +23,8 @@ public class LottoResult {
     public BigInteger calculateTotalWinnings() {
         return rankCount.entrySet()
                 .stream()
-                .map(entry -> BigInteger.valueOf(entry.getKey().getPrize()).multiply(BigInteger.valueOf(entry.getValue())))
+                .map(entry -> BigInteger.valueOf(entry.getKey().getPrize())
+                        .multiply(BigInteger.valueOf(entry.getValue())))
                 .reduce(BigInteger.ZERO, BigInteger::add);
     }
 }

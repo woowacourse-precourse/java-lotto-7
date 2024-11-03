@@ -1,19 +1,19 @@
-package lotto;
+package lotto.service;
 
 import static lotto.exception.Exception.LOTTO_AMOUNT_NOT_DIVISIBLE;
 import static lotto.exception.Exception.MINIMUM_LOTTO_COUNT_REQUIRED;
 
-public class LottoSeller {
+import lotto.domain.Lotto;
+import lotto.domain.LottoBundle;
+import lotto.dto.LottoPurchaseResponseDto;
 
-    private static final int LOTTO_PRICE = 1000;
+public class LottoSellingService {
 
-    private LottoSeller() {
-    }
-
-    public static LottoBundle sell(int amount) {
+    public LottoPurchaseResponseDto sell(int amount) {
         validate(amount);
-        int lottoCount = amount / LOTTO_PRICE;
-        return LottoBundle.of(lottoCount);
+        int lottoCount = amount / Lotto.LOTTO_PRICE;
+        LottoBundle lottoBundle = LottoBundle.of(lottoCount);
+        return new LottoPurchaseResponseDto(lottoCount, lottoBundle);
     }
 
     private static void validate(int amount) {
@@ -22,13 +22,13 @@ public class LottoSeller {
     }
 
     private static void validateAtLeastOneLotto(int amount) {
-        if (amount < LOTTO_PRICE) {
+        if (amount < Lotto.LOTTO_PRICE) {
             throw new IllegalArgumentException(MINIMUM_LOTTO_COUNT_REQUIRED.getMessage());
         }
     }
 
     private static void validateAmountDivisibility(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % Lotto.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LOTTO_AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.exception.Exception.DUPLICATED_BONUS_NUMBERS;
 import static lotto.exception.Exception.LOTTO_NUMBERS_OUT_OF_RANGE;

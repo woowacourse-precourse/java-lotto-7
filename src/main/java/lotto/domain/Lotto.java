@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.exception.Exception.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.exception.Exception.INVALID_LOTTO_NUMBERS_COUNT;
@@ -9,6 +9,8 @@ import java.util.List;
 import lotto.utils.LottoNumberValidator;
 
 public class Lotto {
+
+    public static final int LOTTO_PRICE = 1000;
 
     private final List<Integer> numbers;
 
