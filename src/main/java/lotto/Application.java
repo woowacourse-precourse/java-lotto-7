@@ -2,6 +2,11 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        IOController ioController = new IOController();
+        Validator validator = new Validator();
+        Parser parser = new Parser();
+
+        Executor executor = new Executor(ioController, validator, parser);
     }
 }
