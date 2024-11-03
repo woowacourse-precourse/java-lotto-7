@@ -29,11 +29,15 @@ public class GameController {
     }
 
     public void run() {
-        BigInteger numberOfLotto = new Budget(readValidBudget()).numberOfLotto();
+        BigInteger numberOfLotto = readValidBudget().numberOfLotto();
         outputView.printNumberOfLotto(numberOfLotto);
+
         List<List<Integer>> lottoNumbers = generateNumbers(numberOfLotto);
         outputView.printNumbersCollections(lottoNumbers);
-        LotteryVendor vendor = new LotteryVendor(lottoNumbers, readWinningNumbers(), readBonusNumber());
+
+        List<Integer> winningNumbers = readValidWinningNumbers();
+        LotteryVendor vendor = createLotteryVendor(lottoNumbers, winningNumbers, readValidBonusNumber(winningNumbers));
+
         Result result = vendor.calculateResult();
         outputView.printResult(result.returnCounts(), result.returnRate());
     }
@@ -44,7 +48,16 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    private BigInteger readValidBudget() {
+    private LotteryVendor createLotteryVendor(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers, Integer bonusNumber) {
+        try {
+            return new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+        }
+    }
+
+    private Budget readValidBudget() {
         String budgetInput = inputView.readBudget();
         try {
             InputValidator.validateBudgetInput(budgetInput);
@@ -52,27 +65,27 @@ public class GameController {
             outputView.printErrorMessage(e);
             return readValidBudget();
         }
-        return new BigInteger(budgetInput);
+        return new Budget(new BigInteger(budgetInput.strip()));
     }
 
-    private List<Integer> readWinningNumbers() {
+    private List<Integer> readValidWinningNumbers() {
         String numbersInput = inputView.readWinningNumbers();
         try {
             InputValidator.validateWinningNumbers(numbersInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return readWinningNumbers();
+            return readValidWinningNumbers();
         }
-        return Arrays.stream(numbersInput.split(SPLITTER)).map(Integer::parseInt).toList();
+        return Arrays.stream(numbersInput.split(SPLITTER)).map(String::strip).map(Integer::parseInt).toList();
     }
 
-    private Integer readBonusNumber() {
+    private Integer readValidBonusNumber(List<Integer> winningNumbers) {
         String bonusInput = inputView.readBonusNumber();
         try {
-            InputValidator.validateNumberInput(bonusInput);
+            InputValidator.validateNumberInput(bonusInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return readBonusNumber();
+            return readValidBonusNumber(winningNumbers);
         }
         return Integer.parseInt(bonusInput);
     }

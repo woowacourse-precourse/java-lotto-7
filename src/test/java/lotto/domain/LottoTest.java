@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.exception.ExceptionCode.NUMBER_SIZE_NOT_MATCHED;
+import static lotto.exception.ExceptionCode.INCORRECT_NUMBER_COUNTS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,7 +30,7 @@ class LottoTest {
     void countMatchesPositive() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 21, 22);
-        assertThat(lotto.countRank(winningNumbers, 15)).isEqualTo(Rank.FOURTH);
+        assertThat(lotto.countRank(new Lotto(winningNumbers), 15)).isEqualTo(Rank.FOURTH);
     }
 
     @DisplayName("인자 리스트의 사이즈와 로또 번호의 개수가 다르면 예외가 발생한다.")
@@ -38,9 +38,9 @@ class LottoTest {
     void countMatchesLengthException() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 20);
-        assertThatThrownBy(() -> lotto.countRank(winningNumbers, 15))
+        assertThatThrownBy(() -> lotto.countRank(new Lotto(winningNumbers), 15))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NUMBER_SIZE_NOT_MATCHED.message());
+                .hasMessageContaining(INCORRECT_NUMBER_COUNTS.message());
     }
 
 }

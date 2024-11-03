@@ -9,7 +9,7 @@ public enum ExceptionCode {
     IS_NOT_NUMBER("입력이 수가 아닙니다."),
     DUPLICATED_NUMBER("로또 번호는 중복되지 않아야 합니다."),
     INCORRECT_NUMBER_COUNTS("로또 번호는 %d개여야 합니다.".formatted(NUMBER_COUNT)),
-    NUMBER_SIZE_NOT_MATCHED("당첨 번호의 개수가 로또 번호의 개수와 다릅니다.");
+    NUMBER_OUT_OF_RANGE("입력된 수가 가능한 범위를 초과하였습니다.");
 
     final String message;
 

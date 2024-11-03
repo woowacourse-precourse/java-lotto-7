@@ -24,11 +24,8 @@ public class Lotto {
     }
 
     // todo: 함수 분리하기
-    public Rank countRank(List<Integer> numbers, Integer bonus) {
-        if (this.numbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(NUMBER_SIZE_NOT_MATCHED.message());
-        }
-        long count = this.numbers.stream().filter(numbers::contains).count();
+    public Rank countRank(Lotto lotto, Integer bonus) {
+        long count = this.numbers.stream().filter(lotto.numbers::contains).count();
         if (count == 6) {
             return Rank.FIRST;
         } else if (count == 5) {
