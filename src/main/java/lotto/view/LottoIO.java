@@ -1,12 +1,12 @@
 package lotto.view;
 
 import lotto.constant.LottoGuideMessage;
-import lotto.dto.LottoIssueCount;
+import lotto.dto.LottoIssueCountDTO;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.InvalidPriceException;
 
 public class LottoIO {
-    public static LottoIssueCount getIssueCount() {
+    public static LottoIssueCountDTO getIssueCount() {
         System.out.println(LottoGuideMessage.GUIDE_MESSAGE_A);
         String userInput = Console.readLine();
         int price = Integer.parseInt(userInput);
@@ -18,7 +18,7 @@ public class LottoIO {
             return getIssueCount();
         }
 
-        return new LottoIssueCount(price);
+        return new LottoIssueCountDTO(price);
     }
 
     private static boolean validatePrice(int price) throws IllegalArgumentException {

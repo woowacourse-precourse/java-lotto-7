@@ -1,5 +1,5 @@
 package lotto.dto;
 
-public record LottoIssueCount(
+public record LottoIssueCountDTO(
         Integer price
 ) {}
