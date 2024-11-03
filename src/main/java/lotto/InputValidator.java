@@ -60,7 +60,9 @@ public class InputValidator {
             for (Integer winningNumber : winningNumbers) {
                 rangeValidator(winningNumber, LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END);
             }
-            Utils.hasDuplicate(winningNumbers);
+            if (Utils.hasDuplicate(winningNumbers)) {
+                throw new IllegalArgumentException();
+            }
         } catch (IllegalArgumentException exception) {
             System.out.println(ERROR_PREFIX + WINNING_NUMBER);
             return false;
