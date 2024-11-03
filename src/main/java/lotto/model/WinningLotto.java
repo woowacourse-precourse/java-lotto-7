@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,16 +15,15 @@ public class WinningLotto {
     }
 
     public Map<Rank, Integer> calculateResult(List<Lotto> lottos) {
-        Map <Rank, Integer> lottoResult = new HashMap<>();
+        Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
 
         for (Lotto lotto : lottos) {
             int matchCount = countMatchingNumbers(lotto);
             boolean containsBonusNumber = lotto.getNumbers().contains(bonusNumber);
-
             Rank rank = Rank.valueOf(matchCount, containsBonusNumber);
-            lottoResult.put(rank, lottoResult.getOrDefault(rank.getRank(), 0) + 1);
-        }
 
+            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+        }
         return lottoResult;
     }
 
