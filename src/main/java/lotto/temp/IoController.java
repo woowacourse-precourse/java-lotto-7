@@ -17,7 +17,13 @@ public class IoController {
     }
 
     public int convertInputToInt(String input) {
-        return io.convertStringToInt(input);
+        try {
+            return io.convertStringToInt(input);
+        } catch (NumberFormatException e) {
+            String message = "[ERROR] 숫자만 입력 가능합니다.";
+            io.printMessage(message);
+            return -1;
+        }
     }
 
     public void printPurchaseLottoNumbers(List<Lotto> lottos){
@@ -31,4 +37,5 @@ public class IoController {
     public String inputBonusNumber() {
         return io.receiveInput();
     }
+
 }
