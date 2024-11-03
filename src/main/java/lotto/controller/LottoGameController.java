@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.view.output.OutputView.printMatchNumber;
 import static lotto.view.output.OutputView.printPurchasedLottery;
 
 import lotto.domain.Lotto;
@@ -22,6 +23,7 @@ public class LottoGameController {
         purchaseLotteries(lottoCount);
         prepareWinningLotto();
         drawLottery();
+
     }
 
     private void prepareMoney() {
@@ -69,8 +71,8 @@ public class LottoGameController {
 
     private void drawLottery() {
         OutputView.printWinningStatics();
-
-        lottoResult = LottoResult.calculateResult(lottoShop, winningLotto, bonusNumber);
+        lottoResult = new LottoResult(lottoShop, winningLotto);
+        printMatchNumber(lottoResult);
     }
 
 }
