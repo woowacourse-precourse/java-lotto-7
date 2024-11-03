@@ -31,4 +31,17 @@ class LottoServiceTest {
 
         assertEquals(purchaseAmount / LottoConstants.LOTTO_PRICE.getValue(), lottos.getLottos().size());
     }
+
+    @Test
+    @DisplayName("로또 번호가 올바른 범위와 개수로 생성")
+    void generateLottosWithValidNumbers() {
+        int purchaseAmount = 1000; // 1000원 -> 로또 1개
+        Lottos lottos = lottoService.generateLottos(purchaseAmount);
+
+        Lotto lotto = lottos.getLottos().get(0);
+        assertEquals(LottoConstants.LOTTO_NUMBERS_COUNT.getValue(), lotto.getNumbers().size());
+        assertTrue(lotto.getNumbers().stream().allMatch(
+                number -> number >= LottoConstants.MIN_LOTTO_NUMBER.getValue() &&
+                        number <= LottoConstants.MAX_LOTTO_NUMBER.getValue()));
+    }
 }
