@@ -38,9 +38,9 @@ public final class Constants {
     public static final String PROMPT_PURCHASED_LOTTO_COUNT = "개를 구매했습니다.";
     public static final String PRIZE_STATISTICS_HEADER = "당첨 통계";
     public static final String PRIZE_STATISTICS_DIVIDER = "---";
-    public static final String SECOND_PRIZE_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    public static final String PRIZE_MESSAGE = "%d개 일치 (%s원) - %d개";
-    public static final String WINNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
+    public static final String SECOND_PRIZE_MESSAGE = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개";
+    public static final String PRIZE_MESSAGE = "{0}개 일치 ({1}원) - {2}개";
+    public static final String WINNING_RATE_MESSAGE = "총 수익률은 {0}%입니다.";
 
 
     private Constants() {

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.constant.Constants;
 import lotto.model.Prize;
 
+import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.util.*;
 
@@ -34,16 +35,17 @@ public class OutputHandler {
 
 
             if (prize.equals(Prize.SECOND)) {
-                System.out.println(String.format(Constants.SECOND_PRIZE_MESSAGE, prize.getRanking(), moneyWithComma, prizeCount.get(prize)));
+                System.out.println(MessageFormat.format(Constants.SECOND_PRIZE_MESSAGE, prize.getRanking(), moneyWithComma, prizeCount.get(prize)));
                 continue;
+
             }
-            System.out.println(String.format(Constants.PRIZE_MESSAGE, prize.getRanking(), moneyWithComma, prizeCount.get(prize)));
+            System.out.println(MessageFormat.format(Constants.PRIZE_MESSAGE, prize.getRanking(), moneyWithComma, prizeCount.get(prize)));
         }
     }
 
     public void displayWinningRate(double winningRate) {
         String formattedValue = String.format(Constants.DECIMAL_FORMAT_ONE_PLACE, winningRate);
-        System.out.println(String.format(Constants.WINNING_RATE_MESSAGE, formattedValue));
+        System.out.println(MessageFormat.format(Constants.WINNING_RATE_MESSAGE, formattedValue));
     }
 
     public void showLottos(List<Integer> lottoNumbers) {
