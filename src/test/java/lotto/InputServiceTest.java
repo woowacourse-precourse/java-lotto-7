@@ -1,12 +1,12 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import lotto.io.InputService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class InputServiceTest {
     @DisplayName("입력 받은 당첨 번호를 쉼표 기준으로 구분한다.")
@@ -20,6 +20,9 @@ public class InputServiceTest {
         List<String> splitNumbers = inputService.splitByComma(inputNumbers);
 
         // then
+        for (int i = 0; i < splitNumbers.size(); i++) {
+            assertThat(splitNumbers.get(i)).isEqualTo(String.valueOf(i + 1));
+        }
         assertThat(splitNumbers).isEqualTo(Arrays.asList("1", "2", "3", "4", "5", "6"));
     }
 

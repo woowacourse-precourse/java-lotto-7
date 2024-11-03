@@ -1,7 +1,10 @@
 package lotto;
 
-import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import lotto.lotto.Lotto;
+import lotto.lotto.LottoShop;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +18,15 @@ public class LottoShopTest {
         Long money = 8000L;
 
         // when
-        List<List<Integer>> buyLottos = lottoShop.buyLottos(money);
+        List<Lotto> lottos = lottoShop.buyLottos(money);
 
         // then
-        assertThat(buyLottos.size()).isEqualTo(8);
+        assertThat(lottos.size()).isEqualTo(8);
+    }
+
+    @DisplayName("입력한 금액이 1,000원 단위가 아니라면 예외가 발생한다")
+    @Test
+    void 입력한_금액이_1000원_단위가_아니라면_예외가_발생한다() {
+
     }
 }
