@@ -36,6 +36,7 @@ public class LottoController {
 
         String winningNumber = winningNumberInput.getNumber();
         Lotto parsedWinningNumbers = winningNumberSplitter.split(winningNumber);
+        String winningBonusNumber = winningNumberInput.getBonusNumber();
     }
 }
 

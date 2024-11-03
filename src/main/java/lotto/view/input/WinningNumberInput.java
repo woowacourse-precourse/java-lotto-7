@@ -14,4 +14,9 @@ public class WinningNumberInput {
         promptDisplayer.showLottoNumberPrompt();
         return Console.readLine();
     }
+
+    public String getBonusNumber() {
+        promptDisplayer.showBonusNumberPrompt();
+        return Console.readLine();
+    }
 }
