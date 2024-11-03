@@ -14,7 +14,22 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLottos();
+        handleLottoPurchase();
+    }
+
+    private <T> void executeWithRetry(Runnable action) {
+        while (true) {
+            try {
+                action.run();
+                return;
+            } catch (IllegalArgumentException e) {
+                view.displayException(e.getMessage());
+            }
+        }
+    }
+
+    private void handleLottoPurchase() {
+        executeWithRetry(this::purchaseLottos);
     }
 
     private void purchaseLottos() {
