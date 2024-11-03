@@ -1,9 +1,14 @@
 package lotto.model;
 
+import lotto.model.type.LottoRank;
+
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoList {
+    private static final int LOTTO_PRICE = 1000;
     private final List<Lotto> lottoList;
     private Lotto winningLotto;
     private int bonusNum;
@@ -28,5 +33,29 @@ public class LottoList {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
+    // 각 로또 당첨 등수 계산
+    public Map<LottoRank, Integer> calculateWinningStat()
+    {
+        Map<LottoRank, Integer> statistics = new EnumMap<>(LottoRank.class);
+        for(LottoRank rank : LottoRank.values()){
+            statistics.put(rank, 0);
+        }
+        for(Lotto lotto : lottoList){
+            LottoRank rank = calculateLottoRank(lotto);
+            statistics.put(rank, statistics.get(rank) + 1);
+        }
+        return statistics;
+    }
+    // 단일 로또의 당첨 등수 계산
+    private LottoRank calculateLottoRank(Lotto lotto) {
+        int matchCount = lotto.countMatchNumbers(winningLotto);
+        boolean hasBonusNumber = matchCount == 5 && lotto.checkBonus(bonusNum);
 
+        if (matchCount == 6) return LottoRank.FIRST;
+        if (matchCount == 5 && hasBonusNumber) return LottoRank.SECOND;
+        if (matchCount == 5) return LottoRank.THIRD;
+        if (matchCount == 4) return LottoRank.FOURTH;
+        if (matchCount == 3) return LottoRank.FIFTH;
+        return LottoRank.NONE;
+    }
 }
