@@ -27,7 +27,7 @@ public class StringParser {
     }
 
     private int validateAmount(int amount) {
-        if ((amount % UNIT_AMOUNT) != 0) {
+        if ((amount % UNIT_AMOUNT) == 0) {
             return amount / UNIT_AMOUNT;
         }
         throw new IllegalArgumentException(THOUSANDS_ERROR.getMessage());
