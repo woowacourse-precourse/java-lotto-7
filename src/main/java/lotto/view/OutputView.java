@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public int getQuantity(int amount) {
-        return amount / 100;
+        return amount / 1000;
     }
 
     public void askLottoNumbers() {
