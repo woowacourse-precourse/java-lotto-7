@@ -1,10 +1,12 @@
 package lotto.service;
 
 public class Validator {
-    public void handleEmptyInput() {
-        throw new IllegalArgumentException(
-            "[ERROR] 아무것도 입력하지 않았습니다. 다시 입력해주세요."
-        );
+    public void validateEmptyInput(String input) {
+        if(input.isEmpty()) {
+            throw new IllegalArgumentException(
+                "[ERROR] 아무것도 입력하지 않았습니다. 다시 입력해주세요."
+            );
+        }
     }
 
     public void validateNegativeInput(int input) {
@@ -15,16 +17,20 @@ public class Validator {
         }
     }
 
-    public void handleNonNumericInput() {
-        throw new IllegalArgumentException(
-            "[ERROR] 숫자 외 다른 문자가 입력되었습니다."
-        );
+    public int validateNumericInput(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch(NumberFormatException e) {
+            throw new IllegalArgumentException(
+                "[ERROR] 숫자 외 다른 문자가 입력되었습니다. 다시 입력해주세요."
+            );
+        }
     }
 
     public void validateThousandUnitInput(int money) {
         if(money % 1000 != 0) {
             throw new IllegalArgumentException(
-                "[ERROR] 지불 금액은 1000원 단위로 입력해주세요."
+                "[ERROR] 지불 금액은 1000원 단위로 입력할 수 있습니다. 다시 입력해주세요."
             );
         }
     }
