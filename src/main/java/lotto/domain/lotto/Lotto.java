@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.dto.GetLottoDto;
 import lotto.domain.lottoMachine.BonusNumber;
+import lotto.domain.lottoMachine.WinningLotto;
 import lotto.global.exception.Exception;
 import lotto.global.exception.ValidatorBuilder;
 
@@ -51,11 +52,19 @@ public class Lotto {
                 .anyMatch(bonusNumber::isDuplicate);
     }
 
+    public boolean isContains(int number) {
+        return numbers.contains(number);
+
+    }
+
     public GetLottoDto getLotto() {
         return new GetLottoDto(numbers);
     }
-    // TODO: 추가 기능 구현
 
-
+    public int getMatchCount(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContains)
+                .count();
+    }
 
 }

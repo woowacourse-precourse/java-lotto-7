@@ -5,6 +5,7 @@ import static lotto.global.exception.ExceptionHandler.getValidInput;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lottoMachine.BonusNumber;
+import lotto.domain.lottoMachine.Result;
 import lotto.domain.lottoMachine.WinningLotto;
 import lotto.domain.money.Money;
 import lotto.view.View;
@@ -18,13 +19,12 @@ public class LottoController {
 
     public void start() {
         Money money = createMoneyFromUserInput();
-        buyLottos(money);
 
+        Lottos lottos = buyLottos(money);
         WinningLotto winningLotto = createWinningLottoFromLottoAndBonusNumber();
-//
-//        getResults(lottos, winningLotto, bonusNumber);
-//        view.outputResult(lottos.match(winningLotto, bonusNumber));
-//
+
+        getResults(lottos, winningLotto);
+
 //        getProfitRate(money, lottos, winningLotto, bonusNumber);
 //        view.outputProfitRate(money, lottos.match(winningLotto, bonusNumber));
     }
@@ -33,9 +33,11 @@ public class LottoController {
         return getValidInput(() -> Money.from(view.inputMoney()));
     }
 
-    private void buyLottos(Money money) {
+    private Lottos buyLottos(Money money) {
         Lottos lottos = money.buyLottos();
         view.outputLottos(lottos.getLottos());
+
+        return lottos;
     }
 
     private WinningLotto createWinningLottoFromLottoAndBonusNumber() {
@@ -50,6 +52,11 @@ public class LottoController {
     private WinningLotto createWinningLottoFromUserInput(Lotto lotto) {
         BonusNumber bonusNumber = BonusNumber.from(view.inputBonusNumber());
         return WinningLotto.of(lotto, bonusNumber);
+    }
+
+    private void getResults(Lottos lottos, WinningLotto winningLotto) {
+        Result result = Result.of(lottos, winningLotto);
+        view.outputResult(result.getResults());
     }
 
 }

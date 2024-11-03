@@ -3,6 +3,8 @@ package lotto.domain.lotto;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.lotto.dto.GetLottosDto;
+import lotto.domain.lottoMachine.Rank;
+import lotto.domain.lottoMachine.WinningLotto;
 import lotto.global.util.NumberGenerator;
 
 public class Lottos {
@@ -29,4 +31,11 @@ public class Lottos {
                 .map(Lotto::getLotto)
                 .toList());
     }
+
+    public List<Rank> getRanks(WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::getRank)
+                .toList();
+    }
+
 }

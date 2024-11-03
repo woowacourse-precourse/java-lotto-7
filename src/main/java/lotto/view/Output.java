@@ -9,8 +9,8 @@ public enum Output {
 
     OUTPUT_STATISTICS("당첨 통계"),
     OUTPUT_DELIMITER("---"),
-    OUTPUT_STATISTICS_RESULT("%d개 일치 (%d원) - %d개"),
-    OUTPUT_STATISTICS_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
+    OUTPUT_STATISTICS_RESULT("%d개 일치 (%,d원) - %d개"),
+    OUTPUT_STATISTICS_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
 
     OUTPUT_PROFIT("총 수익률은 %.1f%%입니다."),
 
