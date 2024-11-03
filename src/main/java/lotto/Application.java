@@ -1,7 +1,6 @@
 package lotto;
 import lotto.controller.LottoBonusNumber;
 import lotto.controller.LottoController;
-import lotto.controller.LottoIssuer;
 import lotto.controller.LottoProfitCalculator;
 import lotto.controller.LottoPurchase;
 import lotto.controller.LottoWinningNumber;

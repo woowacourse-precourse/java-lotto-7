@@ -1,9 +1,14 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Lotto;
+import lotto.view.Input;
 
 public class LottoWinningNumber {
-    public List<Integer> winningNumber() {
+    Input input = new Input();
+
+    public List<Lotto> input() {
+        input.number();
         return null;
     }
 }

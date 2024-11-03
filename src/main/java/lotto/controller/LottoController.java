@@ -1,4 +1,5 @@
 package lotto.controller;
+
 import java.util.List;
 import lotto.Lotto;
 
@@ -37,8 +38,15 @@ public class LottoController {
         List<Lotto> issuedLotto = lottoPurchase.issueLotto(purchaseAmount);
 
         // Step 3: 로또 당첨번호 입력
-        List<Integer> winningNumbers = lottoWinningNumber.winningNumber();
-
+        List<Lotto> winningNumbers;
+        while (true) {
+            try {
+                winningNumbers = lottoWinningNumber.input();
+                break; // 올바른 값이 입력되면 루프 종료
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 1~45까지의 정수 6개를 입력해주세요. ex) 1,2,3,4,5,6");
+            }
+        }
         // Step 4: 보너스 번호 입력
         int bonusNumber = lottoBonusNumber.inputBonusNumber();
 

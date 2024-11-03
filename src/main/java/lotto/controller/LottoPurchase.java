@@ -8,15 +8,16 @@ import lotto.validation.Validation;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import static lotto.domain.Constants.LOTTO_MAX;
+import static lotto.domain.Constants.LOTTO_MIN;
+import static lotto.domain.Constants.LOTTO_NUM_COUNT;
+import static lotto.domain.Constants.LOTTO_PRICE;
+
 public class LottoPurchase {
     Input input = new Input();
     Validation validation = new Validation();
     Lotto lotto;
     Output output = new Output();
-    private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_NUM_COUNT = 6;
-    private static final int LOTTO_MIN = 1;
-    private static final int LOTTO_MAX = 45;
 
     protected int purchaseAmount() {
         int amount = input.price();
