@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.util.Constants;
 
 public class Lotto {
@@ -42,7 +43,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        numbers.sort(Integer::compareTo);
-        return numbers.toString();
+        return numbers.stream()
+                .sorted()
+                .toList()
+                .toString();
     }
 }
