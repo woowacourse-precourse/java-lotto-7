@@ -17,4 +17,8 @@ public class LottoController {
         String purchaseAmount = lottoView.inputPurchaseAmount();
         return lottoService.getCount(purchaseAmount);
     }
+
+    private String printPurchasedLottoCount(PurchaseCount purchaseCount) {
+        return lottoView.printPurchasedLottoCountFromView(purchaseCount);
+    }
 }
