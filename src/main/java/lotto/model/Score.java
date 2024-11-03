@@ -30,7 +30,7 @@ public enum Score {
 
         return Arrays.stream(values())
                 .filter(score -> score.matchCount == matchCount)
-                .filter(score -> !score.containsBonus() || isBonusNumberMatches)
+                .filter(score -> !isBonusNumberMatches || score != FIFTH)
                 .findFirst()
                 .orElse(ZERO);
     }
