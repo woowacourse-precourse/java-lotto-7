@@ -39,14 +39,14 @@ public class LottoPurchaseController {
 		LottoTicketValidator.validatePurchasePrice(parsedPrice);
 		return parsedPrice;
 	}
-	
+
 	private List<List<Integer>> getSortedTicketNumbers(List<LottoTicket> tickets) {
-        List<List<Integer>> sortedTicketNumbers = new ArrayList<>();
-        for (LottoTicket ticket : tickets) {
-            List<Integer> sortedNumbers = new ArrayList<>(ticket.getNumbers());
-            Collections.sort(sortedNumbers);
-            sortedTicketNumbers.add(sortedNumbers);
-        }
-        return sortedTicketNumbers;
-    }
+		List<List<Integer>> sortedTicketNumbers = new ArrayList<>();
+		for (LottoTicket ticket : tickets) {
+			List<Integer> sortedNumbers = new ArrayList<>(ticket.getNumbers());
+			Collections.sort(sortedNumbers);
+			sortedTicketNumbers.add(sortedNumbers);
+		}
+		return sortedTicketNumbers;
+	}
 }

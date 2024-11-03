@@ -11,7 +11,7 @@ public class Lotto {
 		LottoValidator.validateLottoNumbers(numbers);
 		this.numbers = numbers;
 	}
-	
+
 	public List<Integer> getNumbers() {
 		return numbers;
 	}
