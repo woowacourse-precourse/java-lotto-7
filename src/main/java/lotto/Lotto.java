@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.constant.ErrorMessage.NOT_SIX_WINNING_NUMBER;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.DuplicateWinningNumberException;
@@ -12,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
     }
 
