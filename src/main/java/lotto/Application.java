@@ -13,6 +13,12 @@ public class Application {
         	System.out.println(numberOfLottos + "개를 구매했습니다.");
         	
         	
+        	List<Lotto> lottos = new ArrayList<>();
+            for (int i = 0; i < numberOfLottos; i++) {
+                lottos.add(LottoGenerator.generate());
+            }
+        	
+        	
         	List<Integer> winningNumbers = InputView.requestWinningNumbers();
             int bonusNumber = InputView.requestBonusNumber();
                 
