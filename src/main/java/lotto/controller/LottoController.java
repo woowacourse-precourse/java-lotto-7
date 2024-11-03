@@ -4,6 +4,7 @@ import lotto.Consumer;
 import lotto.Lotto;
 import lotto.WinningNumber;
 import lotto.constant.CompareInteger;
+import lotto.constant.LottoGuide;
 import lotto.constant.PriceRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
@@ -13,7 +14,6 @@ import lotto.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static lotto.constant.CompareInteger.PRICE_MAXIMUM;
 import static lotto.constant.CompareInteger.PRICE_MINIMUM;
@@ -83,6 +83,7 @@ public class LottoController {
             bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
             mainNumber.add(bonusNumber);
             WinningNumberValidator.validateDuplication(mainNumber);
+            mainNumber.remove(bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
