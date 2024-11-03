@@ -20,7 +20,7 @@ public class Lotto {
             String message = String.format("[ERROR] 로또 번호는 %d개여야 합니다.", NUMBER_LENGTH);
             throw new IllegalArgumentException(message);
         }
-        boolean[] check = new boolean[RANGE_HIGH];
+        boolean[] check = new boolean[RANGE_HIGH + 1];
         for (Integer number : numbers) {
             if (check[number])
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 있으면 안됩니다.");
