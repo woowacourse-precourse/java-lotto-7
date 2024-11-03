@@ -14,7 +14,7 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
     },
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)") {
@@ -26,7 +26,7 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
     },
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원)") {
@@ -38,7 +38,7 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
     },
     FOURTH(4, 50_000, "4개 일치 (50,000원)") {
@@ -50,7 +50,7 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
 
     },
@@ -63,7 +63,7 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
 
     },
@@ -76,17 +76,17 @@ public enum Rank implements RankProvider {
 
         @Override
         public Long totalPrize(WinningResult result) {
-            return (long) result.getWinningCount(this) * this.getPrize();
+            return result.getWinningCount(this) * this.getPrize();
         }
     };
 
     public static final String RANK_RESULT_NOTATION_FORM = "%s - %d개%n";
 
     private final int matchCount;
-    private final int prize;
+    private final long prize;
     private final String message;
 
-    Rank(int matchCount, int prize, String message) {
+    Rank(int matchCount, long prize, String message) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.message = message;
@@ -118,7 +118,7 @@ public enum Rank implements RankProvider {
             .collect(Collectors.joining());
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 
