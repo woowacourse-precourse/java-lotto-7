@@ -1,4 +1,4 @@
-package lotto.config;
+package lotto.config.message;
 
 public enum LottoErrorMessage {
     INPUT_MONEY_ERROR("숫자만 입력 가능합니다."),

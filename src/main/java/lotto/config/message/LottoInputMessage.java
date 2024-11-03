@@ -1,6 +1,6 @@
-package lotto.config;
+package lotto.config.message;
 
-public enum LottoMessage {
+public enum LottoInputMessage {
 
     INPUT_MONEY("구입금액을 입력해 주세요."),
     INPUT_WIN_NUMBER("당첨 번호를 입력해 주세요."),
@@ -8,8 +8,7 @@ public enum LottoMessage {
 
     private final String message;
 
-
-    LottoMessage(String message) {
+    LottoInputMessage(String message) {
         this.message = message;
     }
 
