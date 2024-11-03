@@ -9,7 +9,7 @@ public class Prize {
         this.prizeNumber = prizeNumber;
     }
 
-    public Prize of(Long id, PrizeNumber prizeNumber) {
+    public static Prize of(Long id, PrizeNumber prizeNumber) {
         return new Prize(id, prizeNumber);
     }
 

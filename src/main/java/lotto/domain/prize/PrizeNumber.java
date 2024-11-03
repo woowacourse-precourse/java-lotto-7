@@ -10,7 +10,7 @@ public class PrizeNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public PrizeNumber of(WinnerNumbers winnerNumbers, BonusNumber bonusNumber) {
+    public static PrizeNumber of(WinnerNumbers winnerNumbers, BonusNumber bonusNumber) {
         return new PrizeNumber(winnerNumbers, bonusNumber);
     }
 
