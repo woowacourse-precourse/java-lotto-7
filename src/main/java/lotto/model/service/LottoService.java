@@ -18,11 +18,11 @@ public class LottoService {
         LottoMachine lottoMachine = new LottoMachine(money);
         return lottoMachine.multipleLottoGenerator();
     }
+
     public List<Integer> winningNumbersGenerator(String inputWinningNumbers) {
         winningNumbersNotNullValidator(inputWinningNumbers);
         return winningNumbersParser(inputWinningNumbers);
     }
-
 
 
     public void bonusNumberValidator(String bonusNumber) {
@@ -33,36 +33,39 @@ public class LottoService {
 
     }
 
-    private static void moneyNotNullValidator(String inputMoney) {
+    private void moneyNotNullValidator(String inputMoney) {
         if (inputMoney.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또를 구매하려는 금액을 입력해 주세요.");
         }
     }
 
-    private static int moneyNumberValidator(String inputMoney) {
+    private int moneyNumberValidator(String inputMoney) {
         try {
             return Integer.parseInt(inputMoney);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또를 구매하려는 금액을 숫자로 입력해 주세요.");
         }
     }
+
     private void winningNumbersNotNullValidator(String inputWinningNumbers) {
         if (inputWinningNumbers.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 입력되지 않았습니다.");
         }
     }
+
     private List<Integer> winningNumbersParser(String inputWinningNumbers) {
-        List<String> splitLottoMainNumbers = Arrays.stream(inputWinningNumbers.split(",",-1)).toList();
+        List<String> splitLottoMainNumbers = Arrays.stream(inputWinningNumbers.split(",", -1)).toList();
         List<Integer> winningNumbers = new ArrayList<>();
-        for(String splitNumber : splitLottoMainNumbers) {
+        for (String splitNumber : splitLottoMainNumbers) {
             winningNumbers.add(winningNumbersNumericValidator(splitNumber));
         }
         return winningNumbers;
     }
+
     private int winningNumbersNumericValidator(String inputWinningNumbers) {
-        try{
+        try {
             return Integer.parseInt(inputWinningNumbers);
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야합니다.");
         }
     }
