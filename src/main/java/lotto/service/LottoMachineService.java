@@ -21,6 +21,7 @@ public class LottoMachineService {
         int validPrice = LottoValidator.validNumber(purchaseAmount);
         LottoValidator.validatePriceUnit(validPrice);
         lottoMachine.savePurchaseAmount(validPrice);
+        member.savePurchaseAmount(validPrice);
     }
 
     public void inputBonusNumber(String bonusNumber) {
@@ -55,7 +56,6 @@ public class LottoMachineService {
         return memberLotto.contains(lottoMachine.getBonusNumber());
     }
 
-    // TODO: 맞춘 개수와 금액을 사용자에게 전달한다.
     public void giveCorrectCountAndMoney(List<Lotto> issuedLottos) {
         for (Lotto lotto : issuedLottos) {
             int matchCount = correctLottoNumber(lotto);

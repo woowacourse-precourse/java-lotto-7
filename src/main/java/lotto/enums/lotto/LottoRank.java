@@ -38,4 +38,8 @@ public enum LottoRank {
 
         return FIFTH;
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }

@@ -1,10 +1,28 @@
 package lotto.service;
 
+import java.util.Map;
+import java.util.Map.Entry;
+import lotto.domain.Member;
+import lotto.enums.lotto.LottoRank;
+import lotto.util.LottoParser;
+
 public class MemberService {
 
-    // TODO: 발급받은 로또 번호를 저장한다.
+    private final Member member = Member.getInstance();
 
-    // TODO: 로또 기계를 통해 전달받은 결과값을 저장한다.
+    public void calculateReturnOfRate() {
+        Map<LottoRank, Integer> lottoResults = member.getLottoResults();
+        int purchaseAmount = member.getPurchaseAmount();
+        int totalPrize = calculateTotalPrize(lottoResults);
 
-    // TODO: 투자금액과 수익을 통해 수익율을 계산한다.
+        member.saveReturnOfRate(LottoParser.parsingRate(totalPrize, purchaseAmount));
+    }
+
+    private int calculateTotalPrize(Map<LottoRank, Integer> lottoResults) {
+        int totalPrize = 0;
+        for (Entry<LottoRank, Integer> entry : lottoResults.entrySet()) {
+            totalPrize += entry.getKey().getPrize() * entry.getValue();
+        }
+        return totalPrize;
+    }
 }
