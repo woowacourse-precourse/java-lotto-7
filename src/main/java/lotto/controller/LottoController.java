@@ -25,8 +25,15 @@ public class LottoController {
         List<LottoResponse> lottoResponses = generateLottos(purchaseAmount);
         outputView.printFormattedLottoNumbers(lottoResponses);
 
+        List<String> winningLottoNumbers = readWinningLottoNumbers();
+
         int bonusNumberInput = inputView.readBonusNumberInput();
         LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
+    }
+
+    private List<String> readWinningLottoNumbers() {
+        String lottoNumbersInput = inputView.readLottoNumbersInput();
+        return Arrays.stream(lottoNumbersInput.split(",")).toList();
     }
 
     private PurchaseAmount readPurchaseAmount() {
