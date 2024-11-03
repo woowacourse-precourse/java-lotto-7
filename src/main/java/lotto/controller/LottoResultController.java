@@ -10,10 +10,11 @@ public class LottoResultController {
     private LottoResultChecker resultChecker;
     private PrizeNumbers prizeNumbers;
     private BonusNumbers bonusNumbers;
-    private LottoResultView resultView = new LottoResultView();
-    private PrizeNumbersView prizeNumbersView = new PrizeNumbersView();
-    private List<Lotto> purchaseLottoList;
-    private Integer buyPrice;
+
+    private final LottoResultView resultView = new LottoResultView();
+    private final PrizeNumbersView prizeNumbersView = new PrizeNumbersView();
+    private final List<Lotto> purchaseLottoList;
+    private final Integer buyPrice;
 
     // 발급 로또 리스트, 당첨 번호, 보너스 번호, 구매 금액
     public LottoResultController(List<Lotto> purchaseLottoList, Integer buyPrice) {
@@ -65,8 +66,8 @@ public class LottoResultController {
     private void hasSameNumberCheckPrizeAndBonus() {
         List<Integer> prizeNumberList = prizeNumbers.getPrizeNumberList();
         Integer bonusNumber = bonusNumbers.getBonusPrizeNumber();
-        for (int i = 0; i < prizeNumberList.size(); i++) {
-            if (prizeNumberList.get(i).equals(bonusNumber)) {
+        for (Integer integer : prizeNumberList) {
+            if (integer.equals(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호 중 하나와 동일합니다.");
             }
         }
