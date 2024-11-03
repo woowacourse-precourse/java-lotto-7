@@ -23,4 +23,13 @@ public class Lotto {
         return numbers;
     }
 
+    public int matchWinningNumber(List<Integer> winningNumber) {
+        int count = 0;
+        for(int number:numbers) {
+            if(winningNumber.contains(number)){
+                count++;
+            }
+        }
+        return count;
+    }
 }
