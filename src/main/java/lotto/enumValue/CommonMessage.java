@@ -2,6 +2,7 @@ package lotto.enumValue;
 
 public enum CommonMessage {
     ERROR("[ERROR]"),
+    FAIL("FAIL"),
     NEW_LINE("\n"),
     NUMBER("개" + CommonMessage.NEW_LINE.getMessange()),
     INPUT_MONEY("구입금액을 입력해 주세요."),
