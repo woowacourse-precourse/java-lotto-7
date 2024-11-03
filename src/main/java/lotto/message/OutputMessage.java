@@ -6,7 +6,7 @@ public enum OutputMessage {
     OUTPUT_DIVIDER_LINE("---"),
     OUTPUT_WINNING_STATISTIC("%d개 일치 (%,d원) - %d개"),
     OUTPUT_WINNING_STATISTIC_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    OUTPUT_RETURN_RATE("총 수익률은 %.2f%%입니다.");
+    OUTPUT_RETURN_RATE("총 수익률은 %.1f%%입니다.");
     private String message;
 
     OutputMessage(String message) {

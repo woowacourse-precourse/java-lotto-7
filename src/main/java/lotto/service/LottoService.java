@@ -48,7 +48,7 @@ public class LottoService {
     }
 
     public double getReturnRate(User user, LottoResult lottoResult){
-        return (double) user.getBuyAmount() / getTotalPrize(lottoResult);
+        return ((double) getTotalPrize(lottoResult) / user.getBuyAmount())*100;
     }
 
     private int getTotalPrize(LottoResult lottoResult) {
