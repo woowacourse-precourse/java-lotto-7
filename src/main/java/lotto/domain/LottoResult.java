@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
 import lotto.constant.Ranking;
 
@@ -58,5 +59,33 @@ public class LottoResult {
         OutputMessage message = OutputMessage.RANKING_COUNT;
         int winningNumber = elements.get(ranking);
         sb.append(String.format(message.getMessage(), winningNumber));
+    }
+
+    public double getRateOrReturn() {
+        int purchaseAmount = calculatePurchaseAmount();
+        int prize = calculatePrize();
+        return (double) prize / purchaseAmount;
+    }
+
+    private int calculatePurchaseAmount() {
+        int totalPrice = 0;
+        for (Ranking ranking : elements.keySet()) {
+            int count = elements.get(ranking);
+            if (count > 0) {
+                totalPrice += count * LottoConstant.LOTTO_PRICE.getValue();
+            }
+        }
+        return totalPrice;
+    }
+
+    private int calculatePrize() {
+        int totalPrize = 0;
+        for (Ranking ranking : elements.keySet()) {
+            int count = elements.get(ranking);
+            if (count > 0) {
+                totalPrize += count * ranking.getPrize();
+            }
+        }
+        return totalPrize;
     }
 }

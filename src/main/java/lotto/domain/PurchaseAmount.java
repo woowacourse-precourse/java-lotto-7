@@ -1,10 +1,9 @@
 package lotto.domain;
 
 import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 
 public class PurchaseAmount {
-
-    private static final int DIGIT = 1_000;
 
     private final int amount;
 
@@ -14,13 +13,13 @@ public class PurchaseAmount {
     }
 
     private void validateMinimumAmount(int value) {
-        if (value < DIGIT) {
+        if (value < LottoConstant.LOTTO_PRICE.getValue()) {
             ExceptionMessage message = ExceptionMessage.MINIMUM_AMOUNT;
             throw new IllegalArgumentException(message.getMessage());
         }
     }
 
     public int getLottoCount() {
-        return this.amount / DIGIT;
+        return this.amount / LottoConstant.LOTTO_PRICE.getValue();
     }
 }
