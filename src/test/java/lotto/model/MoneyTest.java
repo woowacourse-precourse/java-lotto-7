@@ -22,4 +22,16 @@ class MoneyTest {
         Assertions.assertThat(actualUnitCount).isEqualTo(expectedUnitCount);
     }
 
+    @DisplayName("0원이 입력된 경우 예외발생")
+    @Test
+    void 구입금액이_0원인_경우_예외발생() {
+        // given
+        long zero = 0;
+
+        // when
+        Assertions.assertThatThrownBy(() -> money = new Money(zero))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또를 구매할 수 없습니다.");
+    }
+
 }
