@@ -1,5 +1,6 @@
 package lotto.manager;
 
+import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.Result;
 import lotto.io.Reader;
@@ -50,17 +51,51 @@ public class GameManager {
         return player;
     }
 
-    public void getWinningLotto() {
+    private void getWinningLotto() {
+        Lotto lotto = getLottoWithWinningNumbers();
+
         while (true) {
             try {
-                List<Integer> winningNumbers = Reader.readWinningNumbers();
-                int bonusNumber = Reader.readBonusNumber();
-                gameResultManager.changeWinningLotto(winningNumbers, bonusNumber);
+                int bonusNumber = getBonusNumer();
+                gameResultManager.changeWinningLotto(lotto, bonusNumber);
                 break;
             }
             catch (IllegalArgumentException e) {
                 Writer.writeMessage(e.getMessage());
             }
         }
+    }
+
+    private Lotto getLottoWithWinningNumbers() {
+        Lotto lotto;
+
+        while (true) {
+            try {
+                List<Integer> winningNumbers = Reader.readWinningNumbers();
+                lotto = new Lotto(winningNumbers);
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                Writer.writeMessage(e.getMessage());
+            }
+        }
+
+        return lotto;
+    }
+
+    private int getBonusNumer() {
+        int bonusNumber;
+
+        while (true) {
+            try {
+                bonusNumber = Reader.readBonusNumber();
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                Writer.writeMessage(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
     }
 }
