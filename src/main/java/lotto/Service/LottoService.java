@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import lotto.exception.InvalidInputException;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.UserNumber;
@@ -17,7 +18,7 @@ public class LottoService {
     private List<Integer> results;
 
 
-    public void generateUserNumbers(int purchaseAmount) {
+    public void generateUserNumbers(String purchaseAmount) {
         userNumbers = new UserNumbers(purchaseAmount);
     }
 
@@ -69,7 +70,6 @@ public class LottoService {
     }
 
     public double calculateRate() {
-        //System.out.println(getProfit() / (double) getInvestmentCost());
         return roundOff((getProfit() / (double) getInvestmentCost()) * 100);
     }
 

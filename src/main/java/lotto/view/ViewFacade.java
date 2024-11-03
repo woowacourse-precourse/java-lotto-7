@@ -14,7 +14,7 @@ public class ViewFacade {
         this.outputView = outputView;
     }
 
-    public int getPurchaseAmount() {
+    public String getPurchaseAmount() {
         return inputView.getPurchaseAmount();
     }
 
