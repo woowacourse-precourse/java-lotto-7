@@ -22,5 +22,9 @@ public class PurchaseAmount {
     public int countLottoQuantity() {
         return (int) purchaseAmount / LOTTO_PRICE;
     }
+
+    public long getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }
 
