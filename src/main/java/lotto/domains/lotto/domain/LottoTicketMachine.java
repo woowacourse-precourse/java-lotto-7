@@ -1,8 +1,13 @@
-package lotto.domains.lotto;
+package lotto.domains.lotto.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import lotto.domains.lotto.type.LottoPrize;
 import lotto.util.LottoNumberGenerator;
 
 public class LottoTicketMachine {
@@ -21,4 +26,14 @@ public class LottoTicketMachine {
 			.mapToObj(i -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
 			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
+
+	public List<Map<LottoPrize,Integer>> generateLottoResult(List<Map<Integer,Boolean>> winningStatus) {
+		Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
+
+		List<Map<LottoPrize, Integer>> result = new ArrayList<>();
+		result.add(prizeCountMap);
+		return result;
+	}
+
+
 }
