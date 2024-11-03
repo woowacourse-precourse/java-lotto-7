@@ -10,7 +10,7 @@ public enum WinningRank {
 
     private final int matchCount;
     private final int prize;
-    private final int bonusNumMatch; // 보너스 번호는 2등일 경우에만 유효,
+    private final int bonusNumMatch; // 보너스 번호는 2등일 경우에만 유효성이 있다.
     private final String resultMessage;
 
     WinningRank(int matchCount, int prize, int bonusMatch, String resultMessage) {
