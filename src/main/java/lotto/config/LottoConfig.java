@@ -14,8 +14,6 @@ import java.util.NoSuchElementException;
 import java.util.function.Supplier;
 
 public class LottoConfig {
-    private static final Integer MAX_RETRIES = 100;
-
     public static void registerCoreServices() {
         Container.register(LottoGenerator.class, retryOnFail(LottoGenerator::new));
         Container.register(LottoResult.class, LottoResult::new);
