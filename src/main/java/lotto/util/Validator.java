@@ -29,6 +29,8 @@ public class Validator {
 
         if (!isBetweenOneAndFourtyFive(winningNumberList))
             throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.INVALID_RANGE.getMessage());
+        if (!isSixNumber(winningNumberList.size()))
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
         return winningNumberList;
     }
 
@@ -50,5 +52,9 @@ public class Validator {
                 return false;
         }
         return true;
+    }
+
+    private boolean isSixNumber(int size) {
+        return size == 6;
     }
 }
