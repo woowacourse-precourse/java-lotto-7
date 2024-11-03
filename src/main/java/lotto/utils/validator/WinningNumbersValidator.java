@@ -6,6 +6,9 @@ import static lotto.constants.ErrorMessage.ONLY_DIGITS_AND_COMMAS_ALLOWED;
 
 public class WinningNumbersValidator {
 
+    public final static String CONSECUTIVE_COMMAS = ",,";
+    public final static char COMMA = ',';
+
     public static void validateNumbers(String winningNumbers) {
         checkEmptyNumbers(winningNumbers);
         checkUnCorrectForm(winningNumbers);
@@ -23,7 +26,7 @@ public class WinningNumbersValidator {
     }
 
     private static void hasConsecutiveComma(String winningNumbers) {
-        if (winningNumbers.contains(",,")) {
+        if (winningNumbers.contains(CONSECUTIVE_COMMAS)) {
             throw new IllegalArgumentException(HAS_CONSECUTIVE_COMMA.getMessage());
         }
     }
@@ -37,6 +40,6 @@ public class WinningNumbersValidator {
     }
 
     private static boolean isComma(char input) {
-        return input == ',';
+        return input == COMMA;
     }
 }
