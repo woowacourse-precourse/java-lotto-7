@@ -1,7 +1,8 @@
 package lotto.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
@@ -10,12 +11,12 @@ public class LottoResultCalculator {
     private final Lotto winningNumber;
     private final BonusNumber bonusNumber;
     private LottoTicket lottoTicket;
-    private List<LottoRank> winningLottos;
+    private Map<String, Integer> winningLottos;
 
     public LottoResultCalculator(Lotto winningNumber, BonusNumber bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
-        this.winningLottos = new ArrayList<>();
+        this.winningLottos = new HashMap<>();
     }
 
     public void inputLottoTicket(LottoTicket lottoTicket) {
@@ -27,7 +28,8 @@ public class LottoResultCalculator {
         for (Lotto lotto : lottos) {
             LottoRank lottoResult = checkWinning(lotto);
             if (lottoResult != null) {
-                this.winningLottos.add(lottoResult);
+                int count = this.winningLottos.getOrDefault(lottoResult.name(), 0);
+                this.winningLottos.put(lottoResult.name(), count+1);
             }
         }
     }
@@ -50,5 +52,9 @@ public class LottoResultCalculator {
 
     private boolean matchBonusNumber(Lotto lotto) {
         return lotto.contains(bonusNumber.getValue());
+    }
+
+    public Map<String, Integer> getWinningLottos() {
+        return winningLottos;
     }
 }

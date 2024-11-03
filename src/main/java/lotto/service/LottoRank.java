@@ -33,6 +33,10 @@ public enum LottoRank {
         return matchCount;
     }
 
+    public boolean isCheckBonus() {
+        return checkBonus;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }

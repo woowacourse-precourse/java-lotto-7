@@ -36,5 +36,8 @@ public class ApplicationService {
         LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, bonusNumber);
         lottoResultCalculator.inputLottoTicket(lottoTicket);
         lottoResultCalculator.run();
+        this.prompter.showBlankLine();
+
+        this.userOutputService.printWinningStatistics(lottoResultCalculator.getWinningLottos());
     }
 }
