@@ -17,9 +17,7 @@ public class Validator {
     }
 
     public static void validateWinningNumbers(List<Integer> drawNumbers) {
-        if (drawNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_ERROR.getValue());
-        }
+        validateNumberCount(drawNumbers);
         validateUniqueNumbers(drawNumbers);
         drawNumbers.forEach(Validator::validateNumberRange);
     }
@@ -42,6 +40,12 @@ public class Validator {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER_ERROR.getValue());
+        }
+    }
+
+    public static void validateNumberCount(List<Integer> numbers){
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_ERROR.getValue());
         }
     }
 }
