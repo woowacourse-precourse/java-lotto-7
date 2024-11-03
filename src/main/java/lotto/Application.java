@@ -18,7 +18,11 @@ public class Application {
         List<Lotto> lottoPurchaseList = purchaseRandomLottoTickets(lottoCount);
         printLottoPurchaseList(lottoPurchaseList);
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto lottoNumbers = inputWinningLottoNumbers();
+
     }
+
     public static int inputLottoPurchaseAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
@@ -51,6 +55,7 @@ public class Application {
         }
         return true;
     }
+
     public static List<Lotto> purchaseRandomLottoTickets(int count) {
         List<Lotto> lottoPurchaseList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -59,9 +64,27 @@ public class Application {
         }
         return lottoPurchaseList;
     }
+
     public static void printLottoPurchaseList(List<Lotto> LottoPurchaseList) {
         for (Lotto lotto : LottoPurchaseList) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+    public static Lotto inputWinningLottoNumbers() {
+        try {
+            String[] s = readLine().split(",");
+            List<Integer> w = new ArrayList<>();
+            for (String str : s) {
+                w.add(Integer.parseInt(str));
+            }
+            Lotto lotto = new Lotto(w);
+            return lotto;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요");
+            return inputWinningLottoNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningLottoNumbers();
         }
     }
 
