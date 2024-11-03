@@ -26,24 +26,19 @@ public class LottoController {
     }
 
     public void run() {
-        PurchasePrice purchasePrice = requestPurchasePrice();
+        PurchasePrice purchasePrice = requestWithRetry(this::requestPurchasePrice);
         respondPurchaseQuantity(purchasePrice);
 
         LottoTickets lottoTickets = lottoService.generateLottoTickets(purchasePrice);
         respondLottoTickets(lottoTickets);
 
-        WinningNumbers winningNumbers = requestWinningNumbers();
+        WinningNumbers winningNumbers = requestWithRetry(this::requestWinningNumbers);
         respondWinningResult(lottoTickets, winningNumbers, purchasePrice);
     }
 
     private PurchasePrice requestPurchasePrice() {
-        try {
-            outputView.displayPurchasePriceRequest();
-            return new PurchasePrice(inputView.getInteger());
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e.getMessage());
-            return requestPurchasePrice();
-        }
+        outputView.displayPurchasePriceRequest();
+        return new PurchasePrice(inputView.getInteger());
     }
 
     private void respondPurchaseQuantity(final PurchasePrice purchasePrice) {
@@ -64,25 +59,15 @@ public class LottoController {
     }
 
     private Lotto requestMainNumbers() {
-        try {
-            outputView.displayMainNumbersRequest();
-            String mainNumbers = inputView.getString();
-            return lottoService.createMainNumbers(mainNumbers);
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e.getMessage());
-            return requestMainNumbers();
-        }
+        outputView.displayMainNumbersRequest();
+        String mainNumbers = inputView.getString();
+        return lottoService.createMainNumbers(mainNumbers);
     }
 
     private BonusNumber requestBonusNumber(Lotto mainNumbers) {
-        try {
-            outputView.displayBonusNumberRequest();
-            int bonusNumber = inputView.getInteger();
-            return BonusNumber.of(bonusNumber, mainNumbers);
-        } catch (IllegalArgumentException e) {
-            outputView.displayErrorMessage(e.getMessage());
-            return requestBonusNumber(mainNumbers);
-        }
+        outputView.displayBonusNumberRequest();
+        int bonusNumber = inputView.getInteger();
+        return BonusNumber.of(bonusNumber, mainNumbers);
     }
 
     private void respondWinningResult(
@@ -93,5 +78,19 @@ public class LottoController {
         Map<Prize, Integer> result = lottoTickets.aggregateWinningResult(winningNumbers);
         double rateOfReturn = lottoService.calculateRateOfReturn(result, purchasePrice);
         outputView.displayWinningResult(result, rateOfReturn);
+    }
+
+    private <T> T requestWithRetry(SupplierWithException<T> request) {
+        try {
+            return request.get();
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return requestWithRetry(request);
+        }
+    }
+
+    @FunctionalInterface
+    private interface SupplierWithException<T> {
+        T get() throws IllegalArgumentException;
     }
 }
