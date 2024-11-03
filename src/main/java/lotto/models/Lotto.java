@@ -33,7 +33,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getLotto() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
