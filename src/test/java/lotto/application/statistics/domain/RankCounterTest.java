@@ -32,4 +32,22 @@ class RankCounterTest {
         );
     }
 
+    @DisplayName("등수 추가하면 해당 등수 카운터 증가")
+    @Test
+    void 등수_추가하면_해당등수_카운터_증가() {
+        // given
+        RankCounter counter = new RankCounter();
+
+        // when
+        counter.add(FIRST);
+        counter.add(FIRST);
+        counter.add(SECOND);
+
+        // then
+        assertAll(
+                () -> assertThat(counter.getCount(FIRST)).isEqualTo(2),
+                () -> assertThat(counter.getCount(SECOND)).isEqualTo(1)
+        );
+    }
+
 }
