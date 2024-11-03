@@ -17,6 +17,7 @@ public class InputView {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int amount = validatePurchaseAmount(input);
+                System.out.println();
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -34,6 +35,7 @@ public class InputView {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 InputValidator.validateWinningNumber(numbers);
+                System.out.println();
                 return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

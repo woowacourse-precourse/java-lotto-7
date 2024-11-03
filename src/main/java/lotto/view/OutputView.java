@@ -11,6 +11,7 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public static void printWinningStatistics(List<Integer> matchCounts, double profitRate) {
