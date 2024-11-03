@@ -9,19 +9,8 @@ public class LottoResult {
         this.rankCounts = rankCounts;
     }
 
-    public int getTotalSpent() {
-        return totalSpent;
-    }
-
     public int getCount(Rank rank) {
-        switch (rank) {
-            case FIFTH: return rankCounts[0];
-            case FOURTH: return rankCounts[1];
-            case THIRD: return rankCounts[2];
-            case SECOND: return rankCounts[3];
-            case FIRST: return rankCounts[4];
-            default: return 0;
-        }
+       return rankCounts[rank.getIndex()];
     }
 
     public double calculateYield() {
