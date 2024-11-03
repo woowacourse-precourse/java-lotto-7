@@ -17,7 +17,19 @@ public class Result {
         winningLottos.put(rank, winningLottos.get(rank) + 1);
     }
 
-    public int getWinningCount(Rank rank) {
+    public long getWinningCount(Rank rank) {
         return winningLottos.get(rank);
+    }
+
+    public long getTotalPrize() {
+        long totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : winningLottos.entrySet()) {
+            long prize = entry.getKey().getPrize();
+            int numberOfPrize = entry.getValue();
+
+            totalPrize += prize * numberOfPrize;
+        }
+
+        return totalPrize;
     }
 }

@@ -27,5 +27,7 @@ public class LottoController {
         repeatInputUntilValid(() -> lottoMachine.assignBonusNumber(getUserInput()));
 
         Result lottoResult = generateResult(lottoMachine, lottos);
+
+        long totalPrize = lottoResult.getTotalPrize();
     }
 }

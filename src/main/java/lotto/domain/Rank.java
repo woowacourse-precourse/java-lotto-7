@@ -9,7 +9,7 @@ public enum Rank {
     FIFTH_PRIZE(3, 5_000, "3개 일치 (5,000원)");
 
     private final int matchingCount;
-    private final int prize;
+    private final long prize;
     private final String description;
 
     Rank(int matchingCount, int prize, String description) {
@@ -18,7 +18,7 @@ public enum Rank {
         this.description = description;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 

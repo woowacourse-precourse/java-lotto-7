@@ -1,17 +1,15 @@
-package lotto.domain.factory;
+package lotto.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.Rank;
-import lotto.domain.Result;
+import lotto.domain.factory.ResultFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ResultFactoryTest {
+class ResultTest {
     LottoMachine lottoMachine;
     List<Lotto> lottos;
 
@@ -32,13 +30,16 @@ class ResultFactoryTest {
     }
 
     @Test
-    void 로또_당첨_조회() {
+    void 당청금_조회() {
         Result result = ResultFactory.generateResult(lottoMachine, lottos);
 
-        assertEquals(1, result.getWinningCount(Rank.FIRST_PRIZE));
-        assertEquals(1, result.getWinningCount(Rank.SECOND_PRIZE));
-        assertEquals(1, result.getWinningCount(Rank.THIRD_PRIZE));
-        assertEquals(1, result.getWinningCount(Rank.FOURTH_PRIZE));
-        assertEquals(1, result.getWinningCount(Rank.FIFTH_PRIZE));
+        long expectedPrize =
+                Rank.FIRST_PRIZE.getPrize()
+                        + Rank.SECOND_PRIZE.getPrize()
+                        + Rank.THIRD_PRIZE.getPrize()
+                        + Rank.FOURTH_PRIZE.getPrize()
+                        + Rank.FIFTH_PRIZE.getPrize();
+
+        assertThat(result.getTotalPrize()).isEqualTo(expectedPrize);
     }
 }
