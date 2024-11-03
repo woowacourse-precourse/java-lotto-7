@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
-class LottoGroupTest {
+class LottoPurchaseDetailsTest {
 
     @Test
     void 로또_그룹은_지정된_갯수만큼_로또를_생성한다() {
@@ -19,11 +19,11 @@ class LottoGroupTest {
         long numLotto = 5;
 
         // When
-        LottoGroup lottoGroup = new LottoGroup(numLotto);
-        List<Lotto> lottos = lottoGroup.getLottos();
+        LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails(numLotto);
+        List<Lotto> lottoGroup = lottoPurchaseDetails.getLottoGroup();
 
         // Then
-        assertEquals(numLotto, lottos.size());
+        assertEquals(numLotto, lottoGroup.size());
     }
 
     @Test
@@ -32,12 +32,12 @@ class LottoGroupTest {
         long numLotto = 100;
 
         // When
-        LottoGroup lottoGroup = new LottoGroup(numLotto);
-        List<Lotto> lottos = lottoGroup.getLottos();
+        LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails(numLotto);
+        List<Lotto> lottoGroup = lottoPurchaseDetails.getLottoGroup();
 
         // Then
         Set<Integer> uniqueIds = new HashSet<>();
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoGroup) {
             uniqueIds.add(lotto.getId());
         }
 
@@ -50,11 +50,11 @@ class LottoGroupTest {
         long numLotto = 10;
 
         // When
-        LottoGroup lottoGroup = new LottoGroup(numLotto);
-        List<Lotto> lottos = lottoGroup.getLottos();
+        LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails(numLotto);
+        List<Lotto> lottoGroup = lottoPurchaseDetails.getLottoGroup();
 
         // Then
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoGroup) {
             assertNotNull(lotto);
             assertEquals(LOTTO_SIZE, lotto.getNumbers().size());
             assertTrue(lotto.getNumbers().stream().allMatch(num -> num >= 1 && num <= 45));
