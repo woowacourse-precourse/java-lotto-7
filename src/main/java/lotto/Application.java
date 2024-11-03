@@ -18,6 +18,8 @@ public class Application {
 
         Lotto winningLotto = new Lotto();
 
+        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
+
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
     }
 
@@ -44,5 +46,25 @@ public class Application {
 
     private static List<Integer> generateRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
+
+    private static int getBonusNumber(List<Integer> winningNumbers) {
+        String inputBonus = Console.readLine();
+        return validateBonusNumber(inputBonus, winningNumbers);
+    }
+
+    private static int validateBonusNumber(String inputBonus, List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = Integer.parseInt(inputBonus.trim());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바르지 않은 타입입니다");
+        }
     }
 }
