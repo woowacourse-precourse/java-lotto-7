@@ -24,10 +24,6 @@ public class Lotto {
 
     }
 
-    public void checkDuplication () {
-
-    }
-
     public void printLottoNumber() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -39,8 +35,7 @@ public class Lotto {
         sb.append("]");
         System.out.println(sb);
     }
-
-    // TODO: 추가 기능 구현
+    
     public Rank read(List<Integer> winningNum, int bonus) {
         int matchCount = 0;
         for(int num : numbers) {
