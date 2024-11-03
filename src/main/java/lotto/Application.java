@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Constants.LottoRule;
@@ -17,6 +19,13 @@ public class Application {
     public static int checkAmount( int price ){
         if( price < 1000 || price % 1000 != 0 ) throw new IllegalArgumentException();
         return price / 1000;
+    }
+
+    public static List<Integer> setWinNumber( String input ){
+        StringTokenizer tokenizer = new StringTokenizer( input, "," );
+        List<Integer> winNumbers = new ArrayList<Integer>();
+        while( tokenizer.hasMoreTokens() )  winNumbers.add( Integer.parseInt( tokenizer.nextToken() ) );
+        return winNumbers;
     }
 
     public static void main(String[] args) {
