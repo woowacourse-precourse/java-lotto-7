@@ -13,11 +13,11 @@ public class WinningGenerator {
     private static final String WINNING_SEPARATOR = ",";
     private static final Integer SPLIT_LIMIT = -1;
 
-    private final Lotto winning;
+    private final List<Integer> winning;
 
     public WinningGenerator(String winning) {
         validate(winning);
-        this.winning = LottoFactory.create(changeType(winning));
+        this.winning = changeType(winning);
     }
 
     private boolean IsContainSeparator(String winning) {
@@ -41,6 +41,6 @@ public class WinningGenerator {
     }
 
     public Lotto getWinning() {
-        return winning;
+        return LottoFactory.create(winning);
     }
 }

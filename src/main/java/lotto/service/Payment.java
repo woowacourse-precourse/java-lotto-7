@@ -1,8 +1,6 @@
 package lotto.service;
 
 import lotto.domain.Wallet;
-import lotto.factory.WalletFactory;
-import lotto.util.ValidateNumber;
 
 public class Payment {
 
@@ -10,9 +8,8 @@ public class Payment {
 
     private final Wallet wallet;
 
-    public Payment(String money) {
-        Integer newMoney = ValidateNumber.change(money);
-        this.wallet = WalletFactory.create(newMoney);
+    public Payment(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     public Integer getLottoCount() {

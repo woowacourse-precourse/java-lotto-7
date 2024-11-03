@@ -9,12 +9,12 @@ import lotto.util.ValidateNumber;
 
 public class BonusGenerator {
 
-    private final Bonus bonus;
+    private final Integer bonus;
 
     public BonusGenerator(Lotto winning, String bonus) {
         Integer newBonus = ValidateNumber.change(bonus);
         validate(winning, newBonus);
-        this.bonus = BonusFactory.create(newBonus);
+        this.bonus = newBonus;
     }
 
     private boolean duplicateWinning(Lotto winning, Integer bonus) {
@@ -28,6 +28,6 @@ public class BonusGenerator {
     }
 
     public Bonus getBonus() {
-        return bonus;
+        return BonusFactory.create(bonus);
     }
 }
