@@ -6,6 +6,13 @@ import java.util.Set;
 
 public class WinningNumbersValidator {
 
+    public static void validateWinningNumbers(List<String> inputNumbers) {
+        validateAllNumeric(inputNumbers);
+        validateInRange(inputNumbers);
+        validateNoDuplicates(inputNumbers);
+        validateSize(inputNumbers);
+    }
+
     private static void validateAllNumeric(List<String> inputNumbers) {
         for (String number : inputNumbers) {
             try {
@@ -29,6 +36,12 @@ public class WinningNumbersValidator {
         Set<String> uniqueNumbers = new HashSet<>(inputNumbers);
         if (uniqueNumbers.size() != inputNumbers.size()) {
             throw new IllegalArgumentException(" 중복된 숫자가 포함되어 있습니다.");
+        }
+    }
+
+    private static void validateSize(List<String> inputNumbers) {
+        if (inputNumbers.size() > 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 
