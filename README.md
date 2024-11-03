@@ -19,3 +19,6 @@
 
 - provide interface for Lotto Data
    - [x] return stored Lotto data
+
+- manage Lotto Prize Tier
+   - [ ] return matched Prize Tier
