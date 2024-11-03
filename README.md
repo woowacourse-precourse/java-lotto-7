@@ -161,6 +161,8 @@
 
 - **메서드**
   - `determineWinningType(Lotto lotto, WinningNumbers winningNumbers)`: 로또와 당첨 번호로부터 당첨 유형 결정하기
+  - `getTopWinningType(int quantityOfSameNumbers, boolean bonusMatch)`: 상위 3등 당첨 결과 계산하기
+  - `getLowerWinningType(int quantityOfSameNumbers)`: 하위 2등 당첨 결과 계산하기
   - `getWinningStatistic()`: 당첨 결과 리스트 반환하기
 
 ---
@@ -301,6 +303,10 @@
   - `INVALID_LOTTO_NUMBER`
   - `INVALID_CALCULATE`
 
+  - **필드**
+  - `String ERROR_LOG_LEVEL`: 에러 오그 레벨
+  - `String message`: 에러 메세지
+
 - **메서드**
   - `getMessage()`: 에러 메시지 반환하기
 
@@ -323,6 +329,9 @@
   - `PRINT_TOTAL_RETURN_RATE`
   - `PRINT_NO_MONEY_EARNED`
 
+- **필드**
+  - `String message`: IO 메세지
+
 - **메서드**
   - `getMessage()`: 메시지 반환하기
 
@@ -338,6 +347,9 @@
 ---
 
 ### Random 👉 로또 번호를 생성하는 유틸리티 클래스
+- **상수**
+  - `int QUANTITY_OF_NUMBERS`: 한장 로또의 번호 개수
+
 - **메서드**
   - `lottoGenerator()`: 랜덤 로또 번호 생성하기
 
@@ -350,6 +362,9 @@
 ---
 
 ### Splitter 👉 문자열을 분리하는 유틸리티 클래스
+- **상수**
+  - `String DELIMITER`: 당첨 번호 구분자
+
 - **메서드**
   - `splitWinningNumbers(String winningNumbers)`: 당첨 번호 문자열을 분리하기
 
