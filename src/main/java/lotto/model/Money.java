@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import lotto.model.exception.DomainExceptionMessage;
 
 public class Money {
-    private static final Pattern numberPattern = Pattern.compile("^[0-9]+$");
+    private static final Pattern numberPattern = Pattern.compile("^-?[0-9]+$");
     private static final int MONEY_UNIT_VALUE = 1000;
     private static final int LOWER_LIMIT = 0;
 
@@ -46,6 +46,7 @@ public class Money {
 
     private void validate(final String money) {
         validateNumberPattern(money);
+        validateMinus(money);
         validateMoneyUnit(money);
     }
 
@@ -57,6 +58,14 @@ public class Money {
         }
     }
 
+    private void validateMinus(final String money) {
+        if (getParsedInt(money) < 0) {
+            throw new IllegalArgumentException(
+                    DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage()
+            );
+        }
+    }
+
     private void validateMoneyUnit(final String money) {
         if (getParsedInt(money) % MONEY_UNIT_VALUE != 0) {
             throw new IllegalArgumentException(
@@ -64,6 +73,7 @@ public class Money {
             );
         }
     }
+
 
     private int getParsedInt(String money) {
         return Integer.parseInt(money);

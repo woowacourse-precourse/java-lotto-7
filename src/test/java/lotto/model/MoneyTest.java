@@ -56,6 +56,16 @@ class MoneyTest {
     }
 
     @Test
+    @DisplayName("음수로 Money를 생성하면 예외가 발생한다.")
+    void should_ThrowException_When_GivenNegativeValue() {
+        // given
+        String value = "-1000";
+        // when, then
+        Assertions.assertThatThrownBy(() -> new Money(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage());
+    }
+    @Test
     @DisplayName("1000원 단위가 아닌 값으로 Money를 생성하면 예외가 발생한다.")
     void should_ThrowException_When_GivenInvalidValue() {
         // given
