@@ -59,7 +59,6 @@ public class InputView {
             }
         }
     }
-
     private static void validatePurchaseAmount(int amount) {
             if (amount <= 0) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_NON_POSITIVE_AMOUNT);
