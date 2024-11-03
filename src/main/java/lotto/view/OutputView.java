@@ -23,6 +23,7 @@ public class OutputView {
     }
 
     public void printDetailResult() {
+        StringBuilder result = new StringBuilder();
         for (PrizeTable prizeTable : PrizeTable.values()) {
 
             int matchNumberCount = prizeTable.getMatchNumbers();
@@ -30,12 +31,14 @@ public class OutputView {
             int winningQuantity = prizeTable.getWinningCount();
 
             if (!prizeTable.equals(FIVE_BONUS_MATCHES)) {
-                System.out.printf("%d개 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+                result.append(String.format("%d개 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney, winningQuantity));
             }
             if (prizeTable.equals(FIVE_BONUS_MATCHES)) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", matchNumberCount, prizeMoney, winningQuantity);
+                result.append(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney,
+                        winningQuantity));
             }
         }
+        System.out.println(result);
     }
 
     public void printRateOfReturn(int totalPrizeMoney, int purchaseMoney) {
