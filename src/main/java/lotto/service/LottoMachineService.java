@@ -40,13 +40,18 @@ public class LottoMachineService {
         }
     }
 
-    public int correctNumber(Lotto lotto) {
+    public int correctLottoNumber(Lotto lotto) {
         List<Integer> memberLotto = lotto.getNumbers();
         List<Integer> winningLotto = lottoMachine.getWinningLotto().getNumbers();
 
         return (int) memberLotto.stream()
                 .filter(winningLotto::contains)
                 .count();
+    }
+
+    public boolean correctBonusNumber(Lotto lotto) {
+        List<Integer> memberLotto = lotto.getNumbers();
+        return memberLotto.contains(lottoMachine.getBonusNumber());
     }
 
     // TODO: 맞춘 개수와 금액을 사용자에게 전달한다.
