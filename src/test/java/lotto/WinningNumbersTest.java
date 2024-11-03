@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class WinningNumbersTest {
+class WinningNumbersTest {
 
     @Test
     void 당첨_번호의_개수가_맞다면_예외가_발생하지_않는다() {
