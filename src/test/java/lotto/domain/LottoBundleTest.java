@@ -29,7 +29,7 @@ public class LottoBundleTest {
     }
 
 
-    @DisplayName("getLottos() 메서드 기능 테스트")
+    @DisplayName("주어진 로또들과 동일한 값을 반환해야 한다.")
     @Test
     void getLottos() {
         // given
@@ -52,7 +52,7 @@ public class LottoBundleTest {
     3. 로또 수익률을 계산한다.
     4. 로또 결과를 생성하여 반환한다.
      */
-    @DisplayName("makeLottoResult() 메서드 기능 테스트")
+    @DisplayName("정확하게 로또 당첨 카운트와 수익률을 계산해야 한다.")
     @Test
     void makeLottoResult() {
         // given
