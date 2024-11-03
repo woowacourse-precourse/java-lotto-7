@@ -2,11 +2,22 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 public class OutputView {
+
+    public void printPaymentRequestMessage() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public void printWinningNumbersRequestMessage() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void printBonusNumberRequestMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 
     // TODO: 출력 메시지 정리 & 에러 메시지 정리
     public void printLottoDetails(List<Lotto> lottos) {
