@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.view.InputView;
+import lotto.view.ResultView;
 
 public class LottoController {
     private static final int LOTTO_START_NUMBER = 1;
@@ -17,24 +18,32 @@ public class LottoController {
     }
     public void startLotto() {
         generatingRandomLottoNumbers();
-        printLottoNumbers();
+        generatingLottoSet();
     }
 
     public List<Integer> generatingRandomLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBERS, LOTTO_NUMBER_COUNT);
     }
 
-    public void printLottoNumbers(){
+    public void generatingLottoSet(){
         int lottoSetCount = calculateLottoSetCount();
+        printLottoSetCount(lottoSetCount);
         for (int i=0; i<lottoSetCount; i++){
             List<Integer> lottoNumber = generatingRandomLottoNumbers();
             Collections.sort(lottoNumber);
-            //TODO: 출력 메서드 분리하기
-            System.out.println(lottoNumber);
+            printLottoNumbers(lottoNumber);
         }
     }
 
     public int calculateLottoSetCount(){
         return lottoMoney / 1000;
+    }
+
+    public void printLottoSetCount(int lottoSetCount) {
+        ResultView.printLottoSetCount(lottoSetCount);
+    }
+
+    public void printLottoNumbers(List<Integer> lottoNumber){
+        ResultView.printLottoNumbers(lottoNumber);
     }
 }
