@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import lotto.model.Lotto;
 
 public record LottoDto(int count, List<String> lottos) {
-    public static final String DELIMITER = ", ";
+    private static final String DELIMITER = ", ";
 
     public LottoDto(List<Lotto> lottos) {
         this(lottos.size(), lottos.stream()
