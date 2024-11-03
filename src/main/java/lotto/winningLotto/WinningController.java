@@ -1,15 +1,12 @@
 package lotto.winningLotto;
 
-import lotto.view.InputPaymentView;
+import java.util.List;
+import lotto.publishingLotto.model.Lotto;
 
 public class WinningController {
-    private InputPaymentView inputPaymentView;
+    private final List<Lotto> LottoTickets;
 
-    public WinningController() {
-        this.create();
-    }
-
-    public void create() {
-
+    public WinningController(List<Lotto> lottoTickets) {
+        LottoTickets = lottoTickets;
     }
 }

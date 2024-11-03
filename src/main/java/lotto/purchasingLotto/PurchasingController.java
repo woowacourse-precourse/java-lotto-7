@@ -1,14 +1,14 @@
 package lotto.purchasingLotto;
 
-import lotto.view.InputPaymentView;
-import lotto.view.OutputPurchasingView;
+import lotto.view.Purchasing_InputView;
+import lotto.view.Purchasing_OutputView;
 
 public class PurchasingController {
-    private final InputPaymentView inputPaymentView;
+    private final Purchasing_InputView inputPaymentView;
     private final PaymentValidator paymentValidator;
-    private final OutputPurchasingView outputPurchasingView;
+    private final Purchasing_OutputView outputPurchasingView;
 
-    public PurchasingController(InputPaymentView inputPaymentView, PaymentValidator validator, OutputPurchasingView outputPurchasingView) {
+    public PurchasingController(Purchasing_InputView inputPaymentView, PaymentValidator validator, Purchasing_OutputView outputPurchasingView) {
         this.inputPaymentView = inputPaymentView;
         this.paymentValidator = validator;
         this.outputPurchasingView = outputPurchasingView;

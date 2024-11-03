@@ -2,13 +2,13 @@ package lotto.publishingLotto;
 
 import java.util.List;
 import lotto.publishingLotto.model.Lotto;
-import lotto.view.OutputPublishedTicketsView;
+import lotto.view.Publishing_OutputTicketsView;
 
 public class PublishingController {
-    private final OutputPublishedTicketsView outputPublishedTicketsView;
+    private final Publishing_OutputTicketsView outputPublishedTicketsView;
     private final int numberOfTickets;
 
-    public PublishingController(OutputPublishedTicketsView outputPublishedTicketsView, int numberOfTickets) {
+    public PublishingController(Publishing_OutputTicketsView outputPublishedTicketsView, int numberOfTickets) {
         this.outputPublishedTicketsView = outputPublishedTicketsView;
         this.numberOfTickets = numberOfTickets;
     }
