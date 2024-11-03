@@ -17,4 +17,14 @@ public class LottoService {
         return lottos;
     }
 
+    public void printLottoCount(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
 }
