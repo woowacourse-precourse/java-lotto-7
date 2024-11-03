@@ -16,7 +16,7 @@ public class InputHandler {
         this.inputView = inputView;
     }
 
-    public int getValidatedPurchaseAmount() {
+    public int getPurchaseAmount() {
         while (true) {
             try {
                 String input = inputView.readPurchaseAmount();
