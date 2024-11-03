@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinningLottoTicket {
-    private final List<WinningLotto> winningLottos;
+public class DrawingLottoTicket {
+    private final List<DrawingLotto> winningLottos;
 
-    public WinningLottoTicket(List<WinningLotto> winningLottos) {
+    public DrawingLottoTicket(List<DrawingLotto> winningLottos) {
         this.winningLottos = winningLottos;
     }
 
-    public List<WinningLotto> getWinningNumbers() {
+    public List<DrawingLotto> getWinningNumbers() {
         return this.winningLottos;
     }
 
@@ -19,7 +19,7 @@ public class WinningLottoTicket {
     public List<Double> determineWin(List<Integer> lottoNumber, int bonusNumber) {
         List<Double> matchCounts = new ArrayList<>();
 
-        for (WinningLotto winningLotto : winningLottos) {
+        for (DrawingLotto winningLotto : winningLottos) {
             double matchCount = winningLotto.getWinningNumbers().stream()
                     .filter(winningNumber -> lottoNumber.contains(
                             winningNumber))

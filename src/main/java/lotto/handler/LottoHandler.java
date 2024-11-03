@@ -3,12 +3,12 @@ package lotto.handler;
 import java.util.List;
 
 import lotto.domain.LottoTicket;
-import lotto.domain.WinningLottoTicket;
+import lotto.domain.DrawingLottoTicket;
 import lotto.util.WinningInfo;
 
 public class LottoHandler {
     // 입력된 당첨 번호와 발급받은 로또 번호를 대조하여 일치하는 번호의 갯수를 반환
-    public List<Double> compareNumbers(WinningLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
+    public List<Double> compareNumbers(DrawingLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
         return winningLottoTicket.determineWin(lottoTicket.getLottoNumbers(),
                 lottoTicket.getBonusNumber());
     }

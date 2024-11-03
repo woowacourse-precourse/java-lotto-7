@@ -6,14 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import lotto.domain.LottoTicket;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningLottoTicket;
+import lotto.domain.DrawingLotto;
+import lotto.domain.DrawingLottoTicket;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottohandlerTest {
-    private WinningLottoTicket winningLottoTicket;
+    private DrawingLottoTicket winningLottoTicket;
     private LottoTicket lottoTicket;
 
     private LottoHandler lottoHandler = new LottoHandler();
@@ -22,10 +22,10 @@ public class LottohandlerTest {
     void 테스트를_위한_객체_초기화() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    WinningLotto winningLotto1 = new WinningLotto();
-                    WinningLotto winningLotto2 = new WinningLotto();
-                    WinningLotto winningLotto3 = new WinningLotto();
-                    this.winningLottoTicket = new WinningLottoTicket(
+                    DrawingLotto winningLotto1 = new DrawingLotto();
+                    DrawingLotto winningLotto2 = new DrawingLotto();
+                    DrawingLotto winningLotto3 = new DrawingLotto();
+                    this.winningLottoTicket = new DrawingLottoTicket(
                             List.of(winningLotto1, winningLotto2, winningLotto3));
                     this.lottoTicket = new LottoTicket(List.of(3, 5, 7, 8, 11, 16), 32);
                 },

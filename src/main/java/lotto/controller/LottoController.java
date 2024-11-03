@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.LottoTicket;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningLottoTicket;
+import lotto.domain.DrawingLotto;
+import lotto.domain.DrawingLottoTicket;
 import lotto.handler.InputHandler;
 import lotto.handler.LottoHandler;
 import lotto.handler.OutputHandler;
@@ -24,7 +24,7 @@ public class LottoController {
 
     public void lottoStart() {
         int purchaseMoney;
-        WinningLottoTicket winningLottoTicket;
+        DrawingLottoTicket winningLottoTicket;
         LottoTicket lottoTicket;
 
         try {
@@ -45,14 +45,14 @@ public class LottoController {
     }
 
     // 입력된 구입금액 만큼 로또를 발행
-    private WinningLottoTicket makeWinningLottoTicket(int count) {
-        List<WinningLotto> winningNumbers = new ArrayList<>();
+    private DrawingLottoTicket makeWinningLottoTicket(int count) {
+        List<DrawingLotto> winningNumbers = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            winningNumbers.add(new WinningLotto());
+            winningNumbers.add(new DrawingLotto());
         }
 
-        return new WinningLottoTicket(winningNumbers);
+        return new DrawingLottoTicket(winningNumbers);
     }
 
     // 입력된 당첨 번호와 보너스 번호로 로또 정보를 발행

@@ -10,16 +10,16 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningLottoTicketTest {
-    private WinningLottoTicket winningLottoTicket;
+    private DrawingLottoTicket winningLottoTicket;
 
     @BeforeEach
     void 테스트를_위한_객체_초기화() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    WinningLotto winningLotto1 = new WinningLotto();
-                    WinningLotto winningLotto2 = new WinningLotto();
-                    WinningLotto winningLotto3 = new WinningLotto();
-                    this.winningLottoTicket = new WinningLottoTicket(
+                    DrawingLotto winningLotto1 = new DrawingLotto();
+                    DrawingLotto winningLotto2 = new DrawingLotto();
+                    DrawingLotto winningLotto3 = new DrawingLotto();
+                    this.winningLottoTicket = new DrawingLottoTicket(
                             List.of(winningLotto1, winningLotto2, winningLotto3));
                 },
                 List.of(8, 21, 23, 41, 42, 43),

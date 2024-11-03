@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 
-import lotto.domain.WinningLotto;
+import lotto.domain.DrawingLotto;
 import lotto.util.WinningInfo;
 import lotto.util.messages.OutputMessage;
 
@@ -11,8 +11,8 @@ public class OutputView {
         System.out.printf(OutputMessage.OUTPUT_NUMBER_OF_LOTTO.getMessage(), count);
     }
 
-    public void printNumbers(List<WinningLotto> winningLottos) {
-        for (WinningLotto winningLotto : winningLottos) {
+    public void printNumbers(List<DrawingLotto> winningLottos) {
+        for (DrawingLotto winningLotto : winningLottos) {
             System.out.println(winningLotto.getWinningNumbers());
         }
     }
