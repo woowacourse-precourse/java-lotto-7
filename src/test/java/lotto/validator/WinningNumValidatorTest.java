@@ -4,11 +4,11 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_CHAR;
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_DUPLICATE;
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_RANGE;
-import static lotto.constant.ExceptionMessage.INVALID_WINNING_CHAR;
-import static lotto.constant.ExceptionMessage.INVALID_WINNING_COUNT;
-import static lotto.constant.ExceptionMessage.INVALID_WINNING_DELIMITER;
-import static lotto.constant.ExceptionMessage.INVALID_WINNING_DUPLICATE;
-import static lotto.constant.ExceptionMessage.INVALID_WINNING_RANGE;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_CHAR;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_COUNT;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_DELIMITER;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_DUPLICATE;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -27,7 +27,7 @@ class WinningNumValidatorTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("8000", winning))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(INVALID_WINNING_CHAR.getMessage())
+                        .hasMessage(INVALID_LOTTO_CHAR.getMessage())
         );
     }
 
@@ -37,7 +37,7 @@ class WinningNumValidatorTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,,6"))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(INVALID_WINNING_DELIMITER.getMessage())
+                        .hasMessage(INVALID_LOTTO_DELIMITER.getMessage())
         );
     }
 
@@ -48,7 +48,7 @@ class WinningNumValidatorTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("8000", winning))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(INVALID_WINNING_COUNT.getMessage())
+                        .hasMessage(INVALID_LOTTO_COUNT.getMessage())
         );
     }
 
@@ -59,7 +59,7 @@ class WinningNumValidatorTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("8000", winning))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(INVALID_WINNING_RANGE.getMessage())
+                        .hasMessage(INVALID_LOTTO_RANGE.getMessage())
         );
     }
 
@@ -69,7 +69,7 @@ class WinningNumValidatorTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("8000", "1,2,3,3,4,5"))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(INVALID_WINNING_DUPLICATE.getMessage())
+                        .hasMessage(INVALID_LOTTO_DUPLICATE.getMessage())
         );
     }
 
