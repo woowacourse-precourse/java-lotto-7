@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,13 +15,14 @@ public class Lotto {
 
     /**
      * Lotto 생성자
-     * 생성된 로또 번호 리스트를 초기화하여 유효성을 검증
+     * 생성된 로또 번호 리스트를 초기화하여 유효성을 검증 후 오름차순으로 정렬하여 저장
      *
      * @param numbers 로또 번호 리스트 (중복되지 않는 6개의 번호)
      */
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     /**
@@ -65,9 +68,9 @@ public class Lotto {
     /**
      * 로또 번호 리스트를 반환
      *
-     * @return 로또 번호 리스트
+     * @return 오름차순으로 정렬된 로또 번호 리스트
      */
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }
