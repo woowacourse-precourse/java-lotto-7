@@ -5,9 +5,9 @@ import lotto.validate.Validator;
 public class Amount {
     private final int amount;
 
-    public Amount(String amount) {
+    public Amount(Integer amount) {
         Validator.validateAmount(amount);
-        this.amount = Integer.parseInt(amount);
+        this.amount = amount;
     }
     public int getAmount() {
         return amount;

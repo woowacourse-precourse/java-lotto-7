@@ -1,14 +1,14 @@
 package lotto.model;
 
-import lotto.exception.ExceptionMessage;
-import lotto.exception.InputException;
-
 import java.util.Objects;
+
+import static lotto.validate.Validator.validateNumber;
 
 public class Number {
     private final Integer value;
     public Number(Integer value) {
-        this.value = Validator.validate(value);
+        validateNumber(value);
+        this.value = value;
     }
 
     public int get() {
@@ -28,12 +28,4 @@ public class Number {
         return Objects.hash(value);
     }
 
-    private static class Validator{
-        static int validate(int value){
-            if(value < 1 || value > 45){
-                throw new InputException(ExceptionMessage.NUMBER_RANGE_ERROR);
-            }
-            return value;
-        }
-    }
 }
