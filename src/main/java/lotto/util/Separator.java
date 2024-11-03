@@ -5,8 +5,11 @@ import java.util.List;
 
 public class Separator {
     public static List<Integer> parseInputToList(String input) {
-        String[] numbers = input.split(",");
         List<Integer> result = new ArrayList<>();
+        if (input == null || input.trim().isEmpty()) {
+            return result;
+        }
+        String[] numbers = input.split(",");
         for (String num : numbers) {
             result.add(Integer.parseInt(num.trim()));
         }
