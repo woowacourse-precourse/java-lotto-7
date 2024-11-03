@@ -1,11 +1,13 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.model.Lotto;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +23,21 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호에 중복된 수 없이 6개가 존재하면 정상적으로 저장된다. ")
+    @Test
+    void 로또_번호에_중복된_수_없이_6개가_존재하면_정상처리된다() {
+        assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    }
+
+    @DisplayName("로또 번호에 수가 존재하면 True를 반환한다. ")
+    @Test
+    void 로또_번호에_수가_존재하면_True를_반환한다() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).hasNumber(1)).isTrue();
+    }
+
+    @DisplayName("로또 번호에 수가 존재하지 않으면 False를 반환한다. ")
+    @Test
+    void 로또_번호에_수가_존재하면_False를_반환한다() {
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).hasNumber(7)).isFalse();
+    }
 }
