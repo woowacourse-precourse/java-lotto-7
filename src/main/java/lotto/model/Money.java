@@ -8,23 +8,23 @@ public class Money {
     private static final int MONEY_UNIT_VALUE = 1000;
     private static final int LOWER_LIMIT = 0;
 
-    private final int value;
+    private final long value;
 
     public Money(final String value) {
         validate(value);
-        this.value = getParsedInt(value);
+        this.value = getParsedLong(value);
     }
 
-    private Money(final int value) {
+    private Money(final long value) {
         this.value = value;
     }
 
-    public Money add(int value) {
+    public Money add(long value) {
         return new Money(this.value + value);
     }
 
     public Money minus(int value) {
-        int calculatedValue = this.value - value;
+        long calculatedValue = this.value - value;
         if (calculatedValue < LOWER_LIMIT) {
             throw new IllegalStateException(
                     DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage()
@@ -59,7 +59,7 @@ public class Money {
     }
 
     private void validateMinus(final String money) {
-        if (getParsedInt(money) < 0) {
+        if (getParsedLong(money) < 0) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_MONEY_VALUE.getMessage()
             );
@@ -67,7 +67,7 @@ public class Money {
     }
 
     private void validateMoneyUnit(final String money) {
-        if (getParsedInt(money) % MONEY_UNIT_VALUE != 0) {
+        if (getParsedLong(money) % MONEY_UNIT_VALUE != 0) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_MONEY_UNIT.getMessage()
             );
@@ -75,7 +75,7 @@ public class Money {
     }
 
 
-    private int getParsedInt(String money) {
-        return Integer.parseInt(money);
+    private long getParsedLong(String money) {
+        return Long.parseLong(money);
     }
 }
