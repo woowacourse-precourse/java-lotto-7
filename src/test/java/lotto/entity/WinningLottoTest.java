@@ -1,43 +1,52 @@
 package lotto.entity;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class WinningLottoTest {
+class WinningLottoTest {
 
-    private WinningLotto winningLotto;
-
-    @BeforeEach
-    public void setUp() {
-        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    @Test
+    void 사용자가_6개_일치하여_1등() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2, 3, 4, 5, 6));
+        assertEquals(Rank.FIRST, rank);
     }
 
     @Test
-    public void 테스트_사용자_번호_일치_확인() {
-        Set<Integer> userNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertEquals(Rank.FIRST, winningLotto.getRank(userNumbers));
-
-        userNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 7));
-        assertEquals(Rank.SECOND, winningLotto.getRank(userNumbers));
-
-        userNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 8, 9));
-        assertEquals(Rank.FOURTH, winningLotto.getRank(userNumbers));
-
-        userNumbers = new HashSet<>(Arrays.asList(8, 9, 10, 11, 12, 13));
-        assertEquals(Rank.FIFTH, winningLotto.getRank(userNumbers));
+    void 사용자가_5개_일치하고_보너스일치하여_2등() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2, 3, 4, 5, 7));
+        assertEquals(Rank.SECOND, rank);
     }
 
     @Test
-    public void 테스트_당첨_통계_출력() {
-        int[] matchCounts = {0, 0, 1, 1, 1, 1};
-        winningLotto.printWinningStatistics(matchCounts); // This will print the winning statistics to the console
+    void 사용자가_5개_일치하여_3등() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2, 3, 4, 5));
+        assertEquals(Rank.THIRD, rank);
+    }
+
+    @Test
+    void 사용자가_4개_일치하여_4등() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2, 3, 4));
+        assertEquals(Rank.FOURTH, rank);
+    }
+
+    @Test
+    void 사용자가_3개_일치하여_5등() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2, 3));
+        assertEquals(Rank.FIFTH, rank);
+    }
+
+    @Test
+    void 사용자가_2개_일치하여_당첨없음() {
+        WinningLotto winningLotto = new WinningLotto(Set.of(1, 2, 3, 4, 5, 6), 7);
+        Rank rank = winningLotto.getRank(Set.of(1, 2));
+        assertEquals(Rank.NONE, rank);
     }
 }

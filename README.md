@@ -56,3 +56,81 @@
 8. **잘못된 값 입력 시 IllegalArgumentException 발생**:
     - "[ERROR]"로 시작하는 에러 메시지를 출력 후 해당 부분부터 **입력을 다시 받는다**.
     - **Exception이 아닌 명확한 예외 유형**인 `IllegalArgumentException`, `IllegalStateException` 등 처리.
+
+    
+
+
+## 클래스 개요
+
+### `Consumer` (엔티티)
+사용자 입력을 처리하고 구매 금액을 검증하며, 로또 티켓을 생성하고 정보를 제공합니다.
+
+- **필드**
+    - `totalLottoCost`: 사용자가 로또 티켓에 지불한 총 금액.
+    - `lottoCount`: 총 금액을 기준으로 구매한 티켓 수.
+    - `lottoTickets`: 생성된 로또 티켓 목록.
+
+- **메서드**
+    - `inputTotalLottoCost()`: 사용자에게 구매 금액을 입력받고 검증합니다.
+    - `calculateLottoCount(int)`: 총 금액을 기준으로 티켓 수를 계산합니다.
+    - `validateTotalLottoCost(int)`: 금액이 1,000원 단위인지 확인합니다.
+    - `generateLottoTickets()`: `lottoCount`만큼 로또 티켓을 생성합니다.
+    - `generateSingleTicket()`: 단일 로또 티켓(번호 6개)을 무작위로 생성합니다.
+    - `printLottoCount()`: 구매한 티켓 수를 출력합니다.
+    - `printLottoTickets()`: 구매한 티켓 번호를 출력합니다.
+
+### `LottoYieldCalculator` (엔티티)
+사용자가 투자한 금액과 당첨금액을 기준으로 수익률을 계산합니다.
+
+- **필드**
+    - `totalInvestment`: 사용자가 로또 구매에 투자한 총 금액.
+    - `totalPrize`: 누적된 당첨 금액.
+
+- **메서드**
+    - `addPrize(long)`: 당첨된 금액을 누적합니다.
+    - `calculateYield()`: 수익률을 계산하여 반환합니다.
+    - `printYield()`: 수익률을 소수점 첫째 자리까지 출력합니다.
+
+### `Rank` (열거형)
+로또 당첨 등급을 나타내며, 각 등급에 대한 일치 번호 개수, 보너스 필요 여부, 상금을 정의합니다.
+
+- **필드**
+    - `matchCount`: 해당 등급의 일치 번호 개수.
+    - `hasBonus`: 보너스 번호 필요 여부.
+    - `prize`: 해당 등급의 상금.
+    - `criteria`: 등급을 결정하는 조건을 정의하는 `BiPredicate`.
+
+- **메서드**
+    - `getRank(int, boolean)`: 일치 번호 개수와 보너스 일치 여부를 기준으로 등급을 반환합니다.
+    - `getPrize()`: 해당 등급의 상금을 반환합니다.
+
+### `WinningLotto` (엔티티)
+당첨 로또 번호와 보너스 번호를 저장하고, 사용자의 로또 번호와 비교하여 당첨 등급을 판정합니다.
+
+- **필드**
+    - `winningNumbers`: 당첨 번호 집합.
+    - `bonusNumber`: 보너스 번호.
+
+- **메서드**
+    - `getRank(Set<Integer>)`: 사용자의 번호와 비교하여 일치 개수를 계산하고, 보너스 번호 포함 여부에 따라 등급을 반환합니다.
+    - `printWinningStatistics(int[])`: 각 등급별 당첨 개수를 출력합니다.
+
+### `Lotto` (엔티티)
+로또 번호와 보너스 번호를 관리하고, 랜덤으로 번호를 생성합니다.
+
+- **필드**
+    - `numbers`: 로또 번호 목록.
+    - `bonusNumber`: 보너스 번호.
+
+- **메서드**
+    - `generateRandomLotto()`: 무작위로 로또 번호와 보너스 번호를 생성하여 반환합니다.
+    - `validate(List<Integer>, int)`: 로또 번호와 보너스 번호의 유효성을 검증합니다.
+    - `getWinningNumbers()`: 사용자로부터 당첨 번호를 입력받아 반환합니다.
+    - `getBonusNumberInput()`: 사용자로부터 보너스 번호를 입력받아 반환합니다.
+
+### `Application` (메인 클래스)
+프로그램의 실행 흐름을 관리합니다. 사용자의 티켓을 생성하고, 당첨 번호와 비교하여 당첨 통계를 출력하고 수익률을 계산합니다.
+
+- **메서드**
+    - `main(String[])`: 애플리케이션의 시작점으로, 각 클래스를 호출하여 로또 시뮬레이션을 진행합니다.
+    - `calculateMatchCounts(List<List<Integer>>, WinningLotto, LottoYieldCalculator)`: 각 티켓과 당첨 번호를 비교하여 일치 개수를 계산하고 등급별로 통계를 생성합니다.

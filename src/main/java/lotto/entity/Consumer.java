@@ -59,9 +59,9 @@ public class Consumer {
     }
 
     private List<Integer> sortTicket(List<Integer> ticket) {
-        List<Integer> mutableTicket = new ArrayList<>(ticket); // 가변 리스트로 복사
+        List<Integer> mutableTicket = new ArrayList<>(ticket);
         Collections.sort(mutableTicket);
-        return mutableTicket; // 정렬된 리스트 반환
+        return mutableTicket;
     }
 
     private void printLottoCount() {
