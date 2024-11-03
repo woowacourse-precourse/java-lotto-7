@@ -18,7 +18,8 @@ public class Application {
         System.out.println();
 
         Lotto winningNumbers = inputWinningNumbers();
-        System.out.println(winningNumbers);
+
+        int bonusNumber = inputBonusNumber();
     }
 
 
@@ -30,6 +31,7 @@ public class Application {
 
                 int purchaseAmount = parsePurchaseAmount(input);
                 validatePurchaseAmount(purchaseAmount);
+
                 System.out.println();
                 return purchaseAmount;
             } catch (IllegalArgumentException e) {
@@ -71,6 +73,8 @@ public class Application {
 
                 List<Integer> numbers = parseWinningNumbers(input);
                 Lotto winningNumbers = new Lotto(numbers);
+
+                System.out.println();
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -91,5 +95,22 @@ public class Application {
             }
         }
         return numbers;
+    }
+
+    private static int inputBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+
+                int bonusNumber = Integer.parseInt(input);
+
+                System.out.println();
+                return bonusNumber;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 }
