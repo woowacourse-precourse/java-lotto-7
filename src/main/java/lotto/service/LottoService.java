@@ -8,6 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
+    private static LottoService instance;
+    private LottoService() {
+    }
+    public static LottoService getInstance(){
+        if(instance == null){
+            instance = new LottoService();
+        }
+        return instance;
+    }
     public Lotto generateRandomLotto() {
         Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(
                 LottoConstants.MIN_RANGE_NUMBER,
