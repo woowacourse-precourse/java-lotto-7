@@ -11,6 +11,7 @@ public class InputView {
 
     public int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
+
         while (true) {
             try {
                 int moneyInput = Integer.parseInt(Console.readLine());
@@ -53,9 +54,7 @@ public class InputView {
 
         while (true) {
             try {
-                int bonusNumber = Integer.parseInt(Console.readLine());
-
-                return bonusNumber;
+                return Integer.parseInt(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 보너스 번호는 1부터 45 사이 숫자이며 당첨 번호와 중복되지 않는 숫자여야 합니다.");
             }
