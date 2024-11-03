@@ -5,13 +5,16 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoResultAnalysisService;
 import lotto.service.LottoSalesService;
+import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final OutputView outputView;
     private final LottoSalesService salesService;
     private LottoResultAnalysisService resultAnalysisService;
 
-    public LottoController() {
+    public LottoController(OutputView outputView) {
+        this.outputView = outputView;
         this.salesService = new LottoSalesService();
         this.resultAnalysisService = null;
     }
@@ -21,18 +24,23 @@ public class LottoController {
         int quantity = salesService.getAvailableLottoQuantity(payment);
         List<Lotto> lottos = salesService.createLottos(quantity);
 
+        outputView.printLottoDetails(lottos);
+
         List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6); // TODO: InputView
         int bonusNumber = 7; // TODO: InputView
 
         // TODO: 개선 요망
-        if(resultAnalysisService == null) {
-            resultAnalysisService = new LottoResultAnalysisService(winningLottoNumbers, bonusNumber);
-        }
+        setLottoResultAnalysisService(winningLottoNumbers, bonusNumber);
 
         List<Rank> winningResults = resultAnalysisService.generateWinningResults(lottos);
-        // TODO: 여기서 보너스 맞히지 못한 로또를 찾기
         String lottoProfitRate = resultAnalysisService.getLottoProfitRate(winningResults, payment);
 
         // TODO: OutputView
+    }
+
+    private void setLottoResultAnalysisService(List<Integer> winningLottoNumbers, int bonusNumber) {
+        if(resultAnalysisService == null) {
+            resultAnalysisService = new LottoResultAnalysisService(winningLottoNumbers, bonusNumber);
+        }
     }
 }
