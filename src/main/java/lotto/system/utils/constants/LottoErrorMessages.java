@@ -11,8 +11,6 @@ public enum LottoErrorMessages implements MessageConstants {
 
     INVALID_NUMBER_INPUT("올바른 숫자를 입력해 주세요.");
 
-
-
     private final String message;
     private final static String MESSAGE_FORMAT = "[ERROR] %s";
 
