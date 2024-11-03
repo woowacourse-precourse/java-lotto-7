@@ -7,9 +7,8 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
         int amount = getAmount();
-        int lottoCount = amount /1000;
+        int lottoCount = calculateLottoCount(amount);
         System.out.println();
 
         System.out.println(lottoCount + "개를 구매했습니다.");
@@ -32,9 +31,14 @@ public class Application {
         showResult(purchasedLottos, winningLotto, bonusNumber);
     }
 
+    private static int calculateLottoCount(int amount) {
+        return amount / 1000;
+    }
+
     public static int getAmount() {
         while (true) {
             try {
+                System.out.println("구입금액을 입력해 주세요.");
                 String inputAmount = Console.readLine();
                 return validateAmountValue(inputAmount);
             } catch (IllegalArgumentException e) {
