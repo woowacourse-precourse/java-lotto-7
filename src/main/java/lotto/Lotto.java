@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -10,8 +11,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers); // 새로운 리스트 생성 후 정렬
+        Collections.sort(this.numbers); // 정렬하여 저장
     }
 
     private void validate(List<Integer> numbers) {
