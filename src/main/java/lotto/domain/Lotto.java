@@ -7,6 +7,7 @@ import static lotto.constant.LottoConstants.MAXIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoConstants.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoConstants.NUMBERS_PER_TICKET;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,12 +24,13 @@ public class Lotto {
     }
 
     public static Lotto from(List<Integer> numbers) {
-        return new Lotto(List.copyOf(numbers));
+        numbers = new ArrayList<>(numbers);
+        return new Lotto(numbers);
     }
 
     private void validateSizeExact(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_PER_TICKET) {
-            throw new IllegalArgumentException(String.format(INVALID_SIZE.format(), NUMBERS_PER_TICKET));
+            throw new IllegalArgumentException(INVALID_SIZE.format(NUMBERS_PER_TICKET));
         }
     }
 
