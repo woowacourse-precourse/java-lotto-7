@@ -1,0 +1,21 @@
+package lotto.exception;
+
+public enum LottoException {
+    ERROR_UNIT("[ERROR] "),
+    PAY_INPUT_ERROR("숫자만 입력 가능합니다."),
+    NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    BONUS_NUMBER_ERROR("로또 번호로 입력한 번호는 보너스 번호로 등록할 수 없습니다."),
+    DUPLICATED_NUMBER_ERROR("중복된 번호가 있습니다."),
+    WINNING_NUMBER_ERROR("쉼표로 구분된 6개의 숫자만 입력할 수 있습니다."),
+    ;
+
+    private String text;
+
+    LottoException(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return ERROR_UNIT.text + this.text;
+    }
+}
