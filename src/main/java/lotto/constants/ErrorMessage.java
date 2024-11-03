@@ -1,7 +1,6 @@
 package lotto.constants;
 
 public enum ErrorMessage {
-    ERROR_MESSAGE("[ERROR]"),
     EMPTY_AMOUNT("로또 금액이 입력되지 않았습니다. 다시 입력해주세요."),
     NON_NUMERIC("숫자가 아닙니다. 다시 입력해주세요."),
     UNDER_MIN_AMOUNTS("로또는 1000원이상 구매가능합니다. 1000원 이상의 금액을 입력해주세요."),
@@ -29,6 +28,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage(){
-        return ERROR_MESSAGE + message;
+        return "[ERROR]" + message;
     }
 }
