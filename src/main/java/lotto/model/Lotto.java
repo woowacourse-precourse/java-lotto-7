@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBERS;
 import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBERS_SIZE;
 
 import java.util.HashSet;
@@ -11,15 +12,15 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateLottoSize(numbers);
         validateUniqueLottoNumbers(numbers);
+        validateLottoSize(numbers);
         this.numbers = numbers;
     }
 
     private void validateUniqueLottoNumbers(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
         if (numbers.size() != set.size()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS);
         }
     }
 

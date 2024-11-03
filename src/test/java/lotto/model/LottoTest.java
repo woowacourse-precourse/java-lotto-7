@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -25,5 +26,12 @@ class LottoTest {
     void 로또_번호의_개수가_6개보다_작으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("유니크한 로또 번호 6개를 받으면 로또가 생성된다.")
+    void testValidLottoTest() {
+        assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
     }
 }
