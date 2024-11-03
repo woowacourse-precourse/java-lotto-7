@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputParser {
-    private static final String NUMBER_REGEX = "-?\\d+";
+    private static final String NUMBER_REGEX = "^\\s*-?\\d+\\s*$";
     private static final String DEFAULT_DELIMITER = ",";
-    private static final String NUMBER_WITH_DELIMITER_REGEX_PREFIX = "^[-\\d";
-    private static final String NUMBER_WITH_DELIMITER_REGEX_SUFFIX = "]+$";
+    private static final String NUMBER_WITH_DELIMITER_REGEX_PREFIX = "^\\s*-?\\d+(\\s*";
+    private static final String NUMBER_WITH_DELIMITER_REGEX_SUFFIX = "\\s*-?\\d+)*\\s*$";
 
     public static int parseInt(String input) {
         emptyCheck(input);
@@ -29,6 +29,7 @@ public class InputParser {
 
         String[] inputs = input.split(delimiter);
         return Arrays.stream(inputs)
+                .map(String::strip)
                 .map(InputParser::parseInt)
                 .toList();
     }
