@@ -6,12 +6,14 @@ import lotto.domain.Lotto;
 import lotto.domain.enums.Stats;
 
 public class OutputView {
-    private static final String PURCHASED_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String PURCHASED_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String WINNING_STATS_MESSAGE = "당첨 통계\n---";
+    private static final String STAT_COUNT_MESSAGE = "%s%d개\n";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
 
     public static final void purchaseCount(int purchaseCount) {
         System.out.println();
-        System.out.println(purchaseCount + PURCHASED_COUNT_MESSAGE);
+        System.out.printf(PURCHASED_COUNT_MESSAGE, purchaseCount);
     }
 
     public static final void lottoNumbers(List<Lotto> lottos) {
@@ -20,13 +22,17 @@ public class OutputView {
         }
     }
 
-    public static final void Stats(Map<Stats, Integer> statsCount) {
+    public static final void stats(Map<Stats, Integer> statsCount) {
         System.out.println();
         System.out.println(WINNING_STATS_MESSAGE);
 
         for (Stats stat : Stats.values()) {
             int count = statsCount.getOrDefault(stat, 0);
-            System.out.println(stat.getDescription() + count + "개");
+            System.out.printf(STAT_COUNT_MESSAGE, stat.getDescription(), count);
         }
+    }
+
+    public static final void profitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
     }
 }

@@ -33,5 +33,6 @@ public class LottoController {
         OutputView.stats(statsService.getStatsCount());
 
         double profitRate = statsService.calculateProfitRate(purchaseAmount);
+        OutputView.profitRate(profitRate);
     }
 }
