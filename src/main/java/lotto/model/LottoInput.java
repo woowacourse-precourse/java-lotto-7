@@ -4,7 +4,11 @@ import lotto.errors.BonusNumberErrors;
 import lotto.errors.PurchaseAmountErrors;
 import lotto.errors.WinningNumbersErrors;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class LottoInput {
@@ -20,7 +24,7 @@ public class LottoInput {
         errorHandler.errorCheck(purchaseAmount);
 
         Integer lottoAmount = Integer.parseInt(purchaseAmount) / 1000;
-        System.out.println(lottoAmount+"개를 구매했습니다.");
+        System.out.println(lottoAmount + "개를 구매했습니다.");
 
         return lottoAmount;
     }
@@ -38,9 +42,7 @@ public class LottoInput {
     }
 
     public List<Integer> makeWinningNumberListAndValidate(String winningNumbersInput) {
-        List<Integer> winningNumbers = new ArrayList<>();
-
-        winningNumbers = Arrays.stream(winningNumbersInput.split(","))
+        List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -49,7 +51,6 @@ public class LottoInput {
         errorHandler.errorCheck(winningNumbers);
 
         Collections.sort(winningNumbers);
-
         return winningNumbers;
     }
 
@@ -63,5 +64,4 @@ public class LottoInput {
 
         return Integer.parseInt(bonusNumber);
     }
-
 }

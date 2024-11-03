@@ -7,7 +7,6 @@ public class PurchaseAmountErrors {
         Integer purchaseAmountInt = Integer.parseInt(purchaseAmount);
         validatePurchaseAmountInThousands(purchaseAmountInt);
         validateMinimumPurchaseAmount(purchaseAmountInt);
-
     }
 
     // 숫자 이외의 값을 입력했을 경우
@@ -20,7 +19,7 @@ public class PurchaseAmountErrors {
     }
 
     // 구입 금액이 1000원 단위가 아닌 경우
-    public void validatePurchaseAmountInThousands(int amount){
+    public void validatePurchaseAmountInThousands(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
         }

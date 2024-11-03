@@ -16,6 +16,7 @@ public class Lotto {
         }
     }
 
+    // 생성된 로또 번호 출력
     public void printLottoNumbers() {
         System.out.println(numbers);
     }

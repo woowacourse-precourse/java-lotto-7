@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
+
     public static void main(String[] args) {
         LottoInput lottoInput = new LottoInput();
         LottoChecker lottoChecker = new LottoChecker();
@@ -41,13 +42,10 @@ public class Application {
         for (Lotto lotto : allLottos) {
             lotto.printLottoNumbers();
         }
-
         System.out.println();
     }
 
     public static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-        return lottoNumbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

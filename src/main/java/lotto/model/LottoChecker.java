@@ -17,8 +17,8 @@ public class LottoChecker {
 
         // 결과를 Map에 저장
         Map<String, Object> result = new HashMap<>();
-        result.put("matchCount",matchCount);
-        result.put("isBonusMatched",isBonusMatched);
+        result.put("matchCount", matchCount);
+        result.put("isBonusMatched", isBonusMatched);
         return result;
     }
 

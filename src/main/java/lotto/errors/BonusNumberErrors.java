@@ -17,7 +17,7 @@ public class BonusNumberErrors {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력해야 합니다.");
-        }ㅂ
+        }
     }
 
     // 45초과의 값을 입력했을 경우
@@ -25,8 +25,8 @@ public class BonusNumberErrors {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-
     }
+
     // 당첨번호와 중복된 보너스 번호 입력했을 경우
     public void validateBonusNumberUniqueness(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
