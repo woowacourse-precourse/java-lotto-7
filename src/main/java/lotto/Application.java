@@ -17,13 +17,12 @@ public class Application {
     public static void main(String[] args) {
         LottoConfig.configure();
 
-        Input input = Container.getInstance(Input.class);
         LottoGenerator lottoGenerator = Container.getInstance(LottoGenerator.class);
         LottoResult lottoResult = Container.getInstance(LottoResult.class);
         ProfitCalculator profitCalculator = Container.getInstance(ProfitCalculator.class);
         WinningChecker winningChecker = Container.getInstance(WinningChecker.class);
 
-        Lottos lottos = lottoGenerator.generateLottos(input.getPrice());
+        Lottos lottos = lottoGenerator.generateLottos();
         winningChecker.calculate(lottos);
         Double profitRate = profitCalculator.getProfitRate(lottos);
 
