@@ -21,4 +21,18 @@ public class InputView {
         }
     }
 
+    public static WinningLotto inputWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = parseNumbers(Console.readLine());
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
 }
