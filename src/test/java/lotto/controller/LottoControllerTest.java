@@ -13,6 +13,39 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoControllerTest {
+    @DisplayName("구매 금액이 1000원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void testInvalidPurchaseAmount() {
+        int invalidPurchaseAmount = 1500;
+        assertThatThrownBy(() -> LottoController.validatePurchaseAmount(invalidPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.\n");
+    }
+
+    @DisplayName("구매 금액이 음수이면 예외가 발생한다.")
+    @Test
+    void testNegativePurchaseAmount() {
+        int negativePurchaseAmount = -1000;
+        assertThatThrownBy(() -> LottoController.validatePurchaseAmount(negativePurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.\n");
+    }
+
+    @DisplayName("구입 금액이 0이면 예외가 발생한다.")
+    @Test
+    void testZeroPurchaseAmount() {
+        int zeroPurchaseAmount = 0;
+        assertThatThrownBy(() -> LottoController.validatePurchaseAmount(zeroPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.\n");
+    }
+
+    @DisplayName("유효한 구매 금액이면 정상적으로 처리된다.")
+    @Test
+    void testValidPurchaseAmount() {
+        int validPurchaseAmount = 2000;
+        LottoController.validatePurchaseAmount(validPurchaseAmount); // 예외가 발생하지 않으면 성공
+    }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
@@ -60,7 +93,6 @@ class LottoControllerTest {
     @Test
     void testWinningNumberOutOfRange() {
         String inputWinningNumbers = "1, 2, 3, 4, 5, 50";
-        String inputBonusNumber = "10";
         assertThatThrownBy(() -> LottoController.convertWinningNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
@@ -70,7 +102,6 @@ class LottoControllerTest {
     @Test
     void testWinningNumberNotNumeric() {
         String inputWinningNumbers = "1, 2, 3, 4, abc, 6";
-        String inputBonusNumber = "10";
         assertThatThrownBy(() -> LottoController.convertWinningNumbers(inputWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력 가능합니다.");
@@ -93,6 +124,7 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자만 입력 가능합니다.");
     }
+
 
     @DisplayName("당첨 통계 계산을 테스트한다.")
     @Test

@@ -65,7 +65,7 @@ public class LottoController {
         }
     }
 
-    private static Integer getValidBonusNumber(List<Integer> winningNumbers) {
+    static Integer getValidBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 String inputBonusNumber = InputView.getBonusNumber();
@@ -151,7 +151,7 @@ public class LottoController {
         }
     }
 
-    private static void validatePurchaseAmount(int purchaseAmount) {
+    static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.\n");
         }
