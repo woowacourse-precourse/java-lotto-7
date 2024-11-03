@@ -33,7 +33,15 @@ public class LottoMachine {
         Lottos lottos = generateLottos(lottoTicketCount);
     }
 
-    public Lottos createLottos (Integer lottoTicketCount) {
+    public Lottos generateLottos (Integer lottoTicketCount) {
+        Lottos lottos = createLottos(lottoTicketCount);
+
+        outputView.printLottos(lottos);
+
+        return lottos;
+    }
+
+    private Lottos createLottos (Integer lottoTicketCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoTicketCount; i ++ ) {
@@ -45,13 +53,6 @@ public class LottoMachine {
         return lottoService.generateLottos(lottos);
     }
 
-    private Lottos generateLottos (Integer lottoTicketCount) {
-        Lottos lottos = createLottos(lottoTicketCount);
-
-        outputView.printLottos(lottos);
-
-        return lottos;
-    }
 
     private Integer lottoPurchase () {
         String rawPurchaseAmount = inputView.getPurchaseAmount();

@@ -4,6 +4,7 @@ import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoMachineTest {
     private final LottoMachine lottoMachine = new LottoMachine(
-            new InputView(), new PurchaseService(), new LottoService()
+            new InputView(),
+            new OutputView(),
+            new PurchaseService(),
+            new LottoService()
     );
 
     @Test
