@@ -42,7 +42,15 @@ public class LottoResult {
         System.out.println("---");
         for (PrizeSheet prize : PrizeSheet.values()) {
             String formattedPrize = NumberFormat.getInstance().format(prize.getPrize());
-            System.out.println(prize.getMatchCount() + "개 일치 (" + formattedPrize + "원) - " + result.get(prize) + "개");
+            String output = prize.getMatchCount() + "개 일치";
+
+            // Check if this prize requires bonus ball match information
+            if (prize.isMatchBonus()) {
+                output += ", 보너스 볼 일치";
+            }
+
+            output += " (" + formattedPrize + "원) - " + result.get(prize) + "개";
+            System.out.println(output);
         }
     }
 
