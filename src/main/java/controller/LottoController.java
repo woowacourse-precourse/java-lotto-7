@@ -16,8 +16,8 @@ import view.OutputView;
 
 public class LottoController {
 
-    LottoService lottoService;
-    RandomNumberGenerator randomNumberGenerator;
+    private final LottoService lottoService;
+    private final RandomNumberGenerator randomNumberGenerator;
 
     public LottoController(LottoService lottoService, RandomNumberGenerator randomNumberGenerator) {
         this.lottoService = lottoService;
@@ -27,13 +27,9 @@ public class LottoController {
     public void startLottoGame() {
         BigDecimal purchaseAmount = readPurchaseAmount();
         BigDecimal purchaseQuantity = calculateAndPrintPurchaseQuantity(purchaseAmount);
-
         Lottos lottos = generateAndPrintLottos(purchaseQuantity);
-
         LottoPurchaseInfo lottoPurchaseInfo = createLottoPurchaseInfo(purchaseAmount);
-
         LottoResult lottoResult = calculateAndPrintLottoResult(lottos, lottoPurchaseInfo);
-
         calculateAndPrintReturnOnInvestment(lottoPurchaseInfo, lottoResult);
     }
 
@@ -55,11 +51,19 @@ public class LottoController {
     }
 
     private LottoPurchaseInfo createLottoPurchaseInfo(BigDecimal purchaseAmount) {
-        OutputView.printLottoNumbersMessage();
-        List<Integer> lottoNumbers = InputView.readLottoNumbers();
-        OutputView.printBonusNumberMessage();
-        int bonusNumber = InputView.readBonusNumber();
+        List<Integer> lottoNumbers = readLottoNumbers();
+        int bonusNumber = readBonusNumber();
         return new LottoPurchaseInfo(purchaseAmount, lottoNumbers, bonusNumber);
+    }
+
+    private List<Integer> readLottoNumbers() {
+        OutputView.printLottoNumbersMessage();
+        return InputView.readLottoNumbers();
+    }
+
+    private int readBonusNumber() {
+        OutputView.printBonusNumberMessage();
+        return InputView.readBonusNumber();
     }
 
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {
@@ -71,11 +75,14 @@ public class LottoController {
 
     private void showLottoResults(LottoResult lottoResult) {
         Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
-        List<LottoRank> ranks = Arrays.stream(LottoRank.values())
-                                      .filter(rank -> rank != LottoRank.NONE)
-                                      .collect(Collectors.toList());
-
+        List<LottoRank> ranks = getRanksExcludingNone();
         OutputView.printLottoResult(ranks, rankCounts);
+    }
+
+    private List<LottoRank> getRanksExcludingNone() {
+        return Arrays.stream(LottoRank.values())
+                     .filter(rank -> rank != LottoRank.NONE)
+                     .collect(Collectors.toList());
     }
 
     private void calculateAndPrintReturnOnInvestment(LottoPurchaseInfo lottoPurchaseInfo, LottoResult lottoResult) {
@@ -83,4 +90,3 @@ public class LottoController {
         OutputView.printReturnOnInvestment(returnOnInvestment);
     }
 }
-
