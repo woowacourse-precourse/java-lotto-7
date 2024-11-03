@@ -28,10 +28,6 @@ public enum OutputMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return String.format(message);
-    }
-
     public String getMessage(List<Integer> lottoNumbers) {
         if (equals(LOTTO_NUMBERS)) {
             return String.format(message,
