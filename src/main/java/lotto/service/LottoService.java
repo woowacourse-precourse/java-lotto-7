@@ -45,22 +45,17 @@ public class LottoService {
         validateMatchNumbers(matchNumbers, isBonusNumber);
     }
 
-    //15라인 이하 유지 어떻게???
     private void validateMatchNumbers(int matchNumbers, boolean isBonusNumber) {
-        if (matchNumbers == 3) {
-            PrizeTable.THREE_MATCHES.addWinningCount();
-        }
-        if (matchNumbers == 4) {
-            PrizeTable.FOUR_MATCHES.addWinningCount();
-        }
-        if (matchNumbers == 5) {
-            PrizeTable.FIVE_MATCHES.addWinningCount();
-        }
         if (matchNumbers == 5 && isBonusNumber) {
             PrizeTable.FIVE_BONUS_MATCHES.addWinningCount();
+            return;
         }
-        if (matchNumbers == 6) {
-            PrizeTable.SIX_MATCHES.addWinningCount();
+
+        for (PrizeTable prizeTable : PrizeTable.values()) {
+            if (matchNumbers == prizeTable.getMatchNumbers()) {
+                prizeTable.addWinningCount();
+                break;
+            }
         }
     }
 
