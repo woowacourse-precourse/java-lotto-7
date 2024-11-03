@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,13 +29,15 @@ public class LottoView {
     }
 
     public void printResult(int[] resultCnt, double profitRate) {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(LottoRank.FIFTH.getMatchCount() + "개 일치 (" + LottoRank.FIFTH.getPrize() + "원) - " + resultCnt[4] + "개");
-        System.out.println(LottoRank.FOURTH.getMatchCount() + "개 일치 (" + LottoRank.FOURTH.getPrize() + "원) - " + resultCnt[3] + "개");
-        System.out.println(LottoRank.THIRD.getMatchCount() + "개 일치 (" + LottoRank.THIRD.getPrize() + "원) - " + resultCnt[2] + "개");
-        System.out.println(LottoRank.SECOND.getMatchCount() + "개 일치 (" + LottoRank.SECOND.getPrize() + "원) - " + resultCnt[1] + "개");
-        System.out.println(LottoRank.FIRST.getMatchCount() + "개 일치 (" + LottoRank.FIRST.getPrize() + "원) - " + resultCnt[0] + "개");
+        System.out.println(LottoRank.FIFTH.getMatchCount() + "개 일치 (" + numberFormat.format(LottoRank.FIFTH.getPrize()) + "원) - " + resultCnt[4] + "개");
+        System.out.println(LottoRank.FOURTH.getMatchCount() + "개 일치 (" + numberFormat.format(LottoRank.FOURTH.getPrize()) + "원) - " + resultCnt[3] + "개");
+        System.out.println(LottoRank.THIRD.getMatchCount() + "개 일치 (" + numberFormat.format(LottoRank.THIRD.getPrize()) + "원) - " + resultCnt[2] + "개");
+        System.out.println(LottoRank.SECOND.getMatchCount() + "개 일치, 보너스 볼 일치 (" + numberFormat.format(LottoRank.SECOND.getPrize()) + "원) - " + resultCnt[1] + "개");
+        System.out.println(LottoRank.FIRST.getMatchCount() + "개 일치 (" + numberFormat.format(LottoRank.FIRST.getPrize()) + "원) - " + resultCnt[0] + "개");
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
