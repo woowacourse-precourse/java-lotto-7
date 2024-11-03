@@ -8,7 +8,7 @@ public class Number implements Comparable<Number> {
 
     private final int value;
 
-    private Number(int value) {
+    protected Number(int value) {
         Validator.validate(value);
         this.value = value;
     }
