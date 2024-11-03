@@ -1,20 +1,18 @@
 package lotto;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class LottoManager {
 
     private final List<Lotto> lottos;
+    private final WinningLotto winningLotto;
 
-    public LottoManager(final int lottoAmount) {
-        this.lottos = createLottos(lottoAmount);
+    public LottoManager(final List<Lotto> lottos, final WinningLotto winningLotto) {
+        this.lottos = lottos;
+        this.winningLotto = winningLotto;
     }
 
-    private List<Lotto> createLottos(final int lottoAmount) {
-        System.out.println(lottoAmount + "개를 구매했습니다.");
-        return IntStream.range(0, lottoAmount)
-                .mapToObj(lotto -> LottoGenerator.generate())
-                .toList();
+    public List<WinningStatus> compareWinningLotto() {
+        return winningLotto.compareNumbersAndBonusNumber(lottos);
     }
 }
