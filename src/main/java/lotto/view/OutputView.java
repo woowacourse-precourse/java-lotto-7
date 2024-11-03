@@ -23,7 +23,6 @@ public class OutputView {
         System.out.println(Message.MATCH_5.getMessage() + winningCounts.get(2) + Message.PIECES.getMessage());
         System.out.println(Message.MATCH_5_BONUS.getMessage() + winningCounts.get(1) + Message.PIECES.getMessage());
         System.out.println(Message.MATCH_6.getMessage() + winningCounts.get(0) + Message.PIECES.getMessage());
-
         System.out.println(Message.TOTAL_PRIZE.getMessage() + resultDTO.getTotalPrize() + Message.WON.getMessage());
     }
 

@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.dto.LottoDTO;
 import lotto.dto.LottoResultDTO;
@@ -13,7 +15,9 @@ public class LottoService {
 
     public LottoResultDTO checkWinnings(Lottos userLottos, WinningLotto winningLotto) {
         List<LottoDTO> lottoDTOs = userLottos.toDtoList();
-        List<Integer> winningCounts = List.of(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE);
+
+        // 수정 가능한 리스트로 변경
+        List<Integer> winningCounts = new ArrayList<>(Arrays.asList(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE));
         int totalPrize = INITIAL_VALUE;
 
         for (LottoDTO lottoDTO : lottoDTOs) {

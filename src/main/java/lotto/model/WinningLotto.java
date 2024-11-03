@@ -10,9 +10,9 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers, bonusNumber);
         this.winningNumbers = Collections.unmodifiableList(winningNumbers);
         this.bonusNumber = bonusNumber;
+        validate(winningNumbers, bonusNumber);
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
