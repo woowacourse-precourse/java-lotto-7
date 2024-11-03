@@ -4,6 +4,7 @@ import lotto.exception.ErrorMessage;
 
 public class InputValidation {
 
+    private static final String BLANK_SPACE = " ";
     private static final String WINNING_NUMBERS_DELIMITER = "^-?\\d+(,-?\\d+)*$";
 
     private InputValidation() {
@@ -16,7 +17,7 @@ public class InputValidation {
     }
 
     public static void validateContainBlank(String input) {
-        if (input.contains(" ")) {
+        if (input.contains(BLANK_SPACE)) {
             throw new IllegalArgumentException(ErrorMessage.CONTAIN_BLANK.getErrorMessage());
         }
     }
