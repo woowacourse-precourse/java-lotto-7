@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
@@ -21,11 +22,23 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public double computeProfitRate(int purchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
-        lottoRepository.generateRandomLottos(purchaseAmount);
+    public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
+        int numericPurchaseAmount = parseNumeric(purchaseAmount);
+
+        lottoRepository.generateRandomLottos(numericPurchaseAmount);
         return (double) lottoRepository.findTotalPrizeByWinningNumbersAndBonusNumber(
-                winningNumbers,
-                bonusNumber
-        ) / purchaseAmount;
+                parseIntegerList(winningNumbers),
+                0
+        ) / numericPurchaseAmount;
+    }
+
+    private int parseNumeric(String stringInput) {
+        return Integer.parseInt(stringInput);
+    }
+
+    private List<Integer> parseIntegerList(String stringInput) {
+        return Arrays.stream(stringInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 }

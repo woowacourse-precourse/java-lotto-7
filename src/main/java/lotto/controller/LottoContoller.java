@@ -28,19 +28,9 @@ public class LottoContoller {
 
     public void run() {
         lottoService.computeProfitRate(
-                parseNumeric(inputView.inputPurchaseAmount()),
-                parseIntegerList(inputView.inputWinningNumbers()),
-                0
+                inputView.inputPurchaseAmount(),
+                inputView.inputWinningNumbers(),
+                ""
         );
-    }
-
-    private int parseNumeric(String stringInput) {
-        return Integer.parseInt(stringInput);
-    }
-
-    private List<Integer> parseIntegerList(String stringInput) {
-        return Arrays.stream(stringInput.split(","))
-                .map(Integer::parseInt)
-                .toList();
     }
 }
