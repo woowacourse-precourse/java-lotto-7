@@ -37,9 +37,18 @@ class LottoTest {
     @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
     @Test
     void 로또_번호_범위_미만_예외() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 47, 3, 4, 5, 7)))
+        assertThatThrownBy(() -> new Lotto(List.of(0, 45, 3, 4, 5, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_LOTTO_NUMBER_RANGE);
+    }
+
+    @DisplayName("로또 번호 변경하려고 하면 예외가 발생한다")
+    @Test
+    void 로또_번호_변경_예외() {
+        assertThatThrownBy(() -> {
+            Lotto lotto = new Lotto(List.of(1, 45, 3, 4, 5, 7));
+            lotto.getNumbers().add(2);
+        }).isInstanceOf(UnsupportedOperationException.class);
     }
 
 }
