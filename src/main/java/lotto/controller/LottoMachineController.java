@@ -1,13 +1,16 @@
 package lotto.controller;
 
-import lotto.model.LottoPurchaseDetails;
+import java.util.List;
+import lotto.dto.LottoPurchaseDetails;
+import lotto.model.LottoGroup;
+import lotto.model.WinningLotto;
 import lotto.util.NumLottoCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoMachineController {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoMachineController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -16,17 +19,33 @@ public class LottoMachineController {
 
     public void run() {
         try {
-            long purchaseAmount = requestPurchaseAmount();
-            LottoPurchaseDetails lottoPurchaseDetails = new LottoPurchaseDetails(calcNumLotto(purchaseAmount));
-            displayPurchaseDetails(lottoPurchaseDetails);
+            LottoGroup purchasedLottos = purchaseLotto();
+            WinningLotto winningLotto = requestWinningLotto();
         } catch (IllegalStateException e) {
             outputView.printExitMessage(e.getMessage());
         }
     }
 
-    private void displayPurchaseDetails(LottoPurchaseDetails lottoPurchaseDetails) {
-        String purchaseDetailsMessage = lottoPurchaseDetails.getPurchaseDetailsMessage();
-        outputView.printPurchaseDetailsMessage(purchaseDetailsMessage);
+    private LottoGroup purchaseLotto() {
+        long purchaseAmount = requestPurchaseAmount();
+        LottoGroup purchasedLottos = new LottoGroup(calcNumLotto(purchaseAmount));
+        displayPurchaseDetails(purchasedLottos);
+
+        return purchasedLottos;
+    }
+
+    private WinningLotto requestWinningLotto() {
+        outputView.printWinningNumbersRequestMessage();
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+        outputView.printBonusNumberRequestMessage();
+        int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private void displayPurchaseDetails(LottoGroup lottoGroup) {
+        outputView.printPurchaseDetailsMessage(new LottoPurchaseDetails(lottoGroup));
     }
 
     private long calcNumLotto(long purchaseAmount) {
