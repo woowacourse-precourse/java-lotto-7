@@ -3,7 +3,6 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.LottoNumbers;
-import lotto.model.Lotto;
 import lotto.constant.Prize;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;

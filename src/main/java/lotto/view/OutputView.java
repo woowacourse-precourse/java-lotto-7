@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumbers;
-import lotto.model.Lotto;
 import lotto.constant.Prize;
 
 public class OutputView {
