@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.controller.LottoPolicy;
 import lotto.exception.ExceptionMessage;
 
@@ -37,6 +35,12 @@ public class Lotto implements Lottery {
     @Override
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public Integer countMatchingWinningNumbers(List<Integer> winningNumbers) {
+        long count = numbers.stream().filter(winningNumbers::contains).count();
+        return Integer.parseInt(Long.toString(count));
     }
 
 }

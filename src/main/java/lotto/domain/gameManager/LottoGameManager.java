@@ -9,9 +9,10 @@ import lotto.controller.Policy;
 public class LottoGameManager implements GameManager{
 
     @Override
-    public Lotteries initLottery(Policy policy, int totalBuyCount) {
+    public Lotteries initLottery(Policy policy, int inputAmount) {
         List<Lottery> lotteries = new ArrayList<>();
-        for (int i = 0; i < totalBuyCount; i++) {
+        int calculateBuyCount = calculateBuyCount(policy.getAmountPolicy(), inputAmount);
+        for (int i = 0; i < calculateBuyCount; i++) {
             List<Integer> pickLottoNumber = Randoms.pickUniqueNumbersInRange(
                     policy.getMinNumberLimit(), policy.getMaxNumberLimit(),policy.getWinningNumberCount());
             Collections.sort(pickLottoNumber);
@@ -23,6 +24,7 @@ public class LottoGameManager implements GameManager{
 
     @Override
     public int calculateBuyCount(int lotteryAmount, int inputAmount) {
-        return lotteryAmount/inputAmount;
+        return inputAmount/lotteryAmount;
     }
+
 }
