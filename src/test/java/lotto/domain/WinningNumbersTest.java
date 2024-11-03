@@ -19,11 +19,9 @@ class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("유효하지 않은 형식의 당첨 번호 입력 시 예외 발생")
-    void invalidWinningNumbersFormat() {
-        String input = "1,2,3,4,5"; // 번호가 부족한 경우
-
-        assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from(input),
-                "유효하지 않은 형식의 당첨 번호 입력 시 예외가 발생해야 합니다.");
+    @DisplayName("당첨 번호가 6개가 아닌 경우 예외 발생")
+    void validateWinningNumbersSize() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5"));
+        assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
     }
 }
