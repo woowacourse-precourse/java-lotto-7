@@ -26,10 +26,6 @@ public class Status {
         return true;
     }
 
-    private static boolean isSameNumber(Integer number, Integer winningNumber) {
-        return number.equals(winningNumber);
-    }
-
     public Integer getLottoCount() {
         return (Integer) (initialMoney / LOTTO_COST);
     }
@@ -38,16 +34,30 @@ public class Status {
         return lottos;
     }
 
+    public Double getEarnRate() {
+        return earnMoney.doubleValue() * 100 / initialMoney;
+    }
+
     public void setLottos(List<Lotto> lottos) {
-        this.lottos = lottos;
+        if (this.lottos == null) {
+            this.lottos = lottos;
+        }
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+        if (this.winningNumbers == null) {
+            this.winningNumbers = winningNumbers;
+        }
     }
 
     public void setBonusNumber(Integer bonusNumber) {
-        this.bonusNumber = bonusNumber;
+        if (this.bonusNumber == null) {
+            this.bonusNumber = bonusNumber;
+        }
+    }
+
+    private static boolean isSameNumber(Integer number, Integer winningNumber) {
+        return number.equals(winningNumber);
     }
 
     public HashMap<LottoResult, Integer> calculationResult() {
@@ -69,9 +79,5 @@ public class Status {
 
     public void updateMoney(LottoResult result) {
         earnMoney += result.getReward();
-    }
-
-    public Double getEarnRate() {
-        return earnMoney.doubleValue() * 100 / initialMoney;
     }
 }

@@ -12,23 +12,25 @@ import view.OutputView;
 public class LottoController {
 
     public void setProgram() {
-        Status status = new Status(inputMoneyController());
+        Status status = new Status(initialMoneyController());
         status.setLottos(LottoFactory.generateLotto(status.getLottoCount()));
-        OutputView.printLottoPurchasing(status.getLottoCount(), status.getLottos());
+        OutputView.printPurchasingLottos(status.getLottoCount(), status.getLottos());
+
         status.setWinningNumbers(winningNumbersController());
         status.setBonusNumber(bonusWinningNumberController(status));
         OutputView.printLottoRankCount(status.calculationResult(), status.getEarnRate());
     }
 
-    private Integer inputMoneyController() {
+    private Integer initialMoneyController() {
         try {
-            String originalInput = InputView.inputPurchaseMoney();
-            Validator.validateMoney(originalInput);
-            return Integer.parseInt(originalInput);
+            String initialInput = InputView.inputInitialMoney();
+            Validator.validateInitialMoney(initialInput);
+            return Integer.parseInt(initialInput);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
-        return inputMoneyController();
+
+        return initialMoneyController();
     }
 
     private List<Integer> winningNumbersController() {
@@ -42,18 +44,20 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
+
         return winningNumbersController();
     }
 
 
     private Integer bonusWinningNumberController(Status status) {
         try {
-            String originalInput = InputView.inputBonusWinningNumber();
-            Validator.validateBonusNumber(originalInput, status);
-            return Integer.parseInt(originalInput);
+            String bonusInput = InputView.inputBonusWinningNumber();
+            Validator.validateBonusNumber(bonusInput, status);
+            return Integer.parseInt(bonusInput);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
+
         return bonusWinningNumberController(status);
     }
 }

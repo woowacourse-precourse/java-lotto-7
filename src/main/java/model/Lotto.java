@@ -12,6 +12,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -36,11 +40,11 @@ public class Lotto {
     }
 
     private int lottoMatch(List<Integer> winningNumbers) {
-        int correctResult = 0;
+        int mathResult = 0;
         for (Integer winningNumber : winningNumbers) {
-            correctResult += elementMatch(winningNumber);
+            mathResult += elementMatch(winningNumber);
         }
-        return correctResult;
+        return mathResult;
     }
 
     private int elementMatch(Integer targetNumber) {
@@ -55,9 +59,5 @@ public class Lotto {
             return LottoResult.SECOND;
         }
         return LottoResult.THIRD;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }
