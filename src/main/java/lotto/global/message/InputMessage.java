@@ -1,6 +1,6 @@
-package lotto.global;
+package lotto.global.message;
 
-public enum PrintMessage {
+public enum InputMessage {
 
     INPUT_AMOUNT("구입금액을 입력해 주세요."),
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
@@ -8,7 +8,7 @@ public enum PrintMessage {
 
     private String message;
 
-    PrintMessage(String message) {
+    InputMessage(String message) {
         this.message = message;
     }
 

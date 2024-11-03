@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.global.exception.CustomException;
-import lotto.global.exception.ErrorMessage;
+import lotto.global.message.ErrorMessage;
 
 public class Amount {
     private static final int MINIMUM_AMOUNT = 1000;

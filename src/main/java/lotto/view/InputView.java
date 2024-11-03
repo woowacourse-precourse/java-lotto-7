@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.global.exception.CustomException;
-import lotto.global.exception.ErrorMessage;
+import lotto.global.message.ErrorMessage;
 
 public class InputView {
     public int enterAmount() {

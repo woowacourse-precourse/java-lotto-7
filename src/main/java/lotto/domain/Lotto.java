@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.global.exception.CustomException;
-import lotto.global.exception.ErrorMessage;
+import lotto.global.message.ErrorMessage;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
