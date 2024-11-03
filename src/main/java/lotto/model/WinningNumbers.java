@@ -1,20 +1,21 @@
 package lotto.model;
 
-import static lotto.Constants.LOTTO_MAX_NUMBER;
-import static lotto.Constants.LOTTO_MIN_NUMBER;
+import static lotto.constant.ExceptionMessage.DUPLICATE_BONUS_BALL;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_BALL_RANGE;
+import static lotto.constant.LottoConstants.MAX_NUMBER;
+import static lotto.constant.LottoConstants.MIN_NUMBER;
 
 public record WinningNumbers(Lotto lotto, int bonusBall) {
-
     public WinningNumbers {
         validate(lotto, bonusBall);
     }
 
     private void validate(Lotto lotto, int bonusBall) {
         if (lotto.contains(bonusBall)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 볼은 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_BALL.getMessage());
         }
-        if (bonusBall < LOTTO_MIN_NUMBER || bonusBall > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 볼은 1부터 45까지의 숫자만 가능합니다.");
+        if (bonusBall < MIN_NUMBER.getValue() || bonusBall > MAX_NUMBER.getValue()) {
+            throw new IllegalArgumentException(INVALID_BONUS_BALL_RANGE.getMessage());
         }
     }
 }

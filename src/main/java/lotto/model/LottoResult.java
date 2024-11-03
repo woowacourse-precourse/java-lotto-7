@@ -1,11 +1,12 @@
 package lotto.model;
 
-import static lotto.Constants.LOTTO_PRICE;
+import static lotto.constant.LottoConstants.PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public record LottoResult(List<LottoPrize> prizes, double rateOfReturn) {
+    private static final int PERCENT_FACTOR = 100;
 
     public static LottoResult of(WinningNumbers winningNumbers, List<Lotto> lottos) {
         List<LottoPrize> prizes = new ArrayList<>();
@@ -16,14 +17,14 @@ public record LottoResult(List<LottoPrize> prizes, double rateOfReturn) {
 
             LottoPrize.of(matchCount, isBonusBallMatched).ifPresent(prizes::add);
         }
-        int purchaseAmount = lottos.size() * LOTTO_PRICE;
+        int purchaseAmount = lottos.size() * PRICE.getValue();
         double rateOfReturn = rateOfReturn(prizes, purchaseAmount);
 
         return new LottoResult(prizes, rateOfReturn);
     }
 
     private static double rateOfReturn(List<LottoPrize> prizes, int cost) {
-        return (revenue(prizes) / cost) * 100;
+        return (revenue(prizes) / cost) * PERCENT_FACTOR;
     }
 
     private static double revenue(List<LottoPrize> prizes) {

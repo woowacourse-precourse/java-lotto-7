@@ -1,8 +1,11 @@
 package lotto.model;
 
-import static lotto.Constants.LOTTO_MAX_NUMBER;
-import static lotto.Constants.LOTTO_MIN_NUMBER;
-import static lotto.Constants.LOTTO_SIZE;
+import static lotto.constant.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_RANGE;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_SIZE;
+import static lotto.constant.LottoConstants.MAX_NUMBER;
+import static lotto.constant.LottoConstants.MIN_NUMBER;
+import static lotto.constant.LottoConstants.VALID_SIZE;
 
 import java.util.List;
 import java.util.Set;
@@ -19,27 +22,27 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (hasInvalidSize(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
         if (hasInvalidRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
         }
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private static boolean hasInvalidSize(List<Integer> numbers) {
-        return numbers.size() != LOTTO_SIZE;
+        return numbers.size() != VALID_SIZE.getValue();
     }
 
     private static boolean hasInvalidRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(n -> n < LOTTO_MIN_NUMBER || n > LOTTO_MAX_NUMBER);
+                .anyMatch(n -> n < MIN_NUMBER.getValue() || n > MAX_NUMBER.getValue());
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
-        return Set.copyOf(numbers).size() != LOTTO_SIZE;
+        return Set.copyOf(numbers).size() != VALID_SIZE.getValue();
     }
 
     public List<Integer> getNumbers() {

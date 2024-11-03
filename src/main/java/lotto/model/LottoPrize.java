@@ -14,12 +14,6 @@ public enum LottoPrize {
     private final boolean isBonusBallMatched;
     private final int money;
 
-    public static Optional<LottoPrize> of(long matchCount, boolean isBonusBallMatched) {
-        return Arrays.stream(values())
-                .filter(prize -> prize.isMatched(matchCount, isBonusBallMatched))
-                .findAny();
-    }
-
     LottoPrize(int matchCount, int money) {
         this(matchCount, false, money);
     }
@@ -28,6 +22,16 @@ public enum LottoPrize {
         this.matchCount = matchCount;
         this.isBonusBallMatched = isBonusBallMatched;
         this.money = money;
+    }
+
+    public static Optional<LottoPrize> of(long matchCount, boolean isBonusBallMatched) {
+        return Arrays.stream(values())
+                .filter(prize -> prize.isMatched(matchCount, isBonusBallMatched))
+                .findAny();
+    }
+
+    public boolean isMatched(long matchCount, boolean isBonusBallMatched) {
+        return this.matchCount == matchCount && this.isBonusBallMatched == isBonusBallMatched;
     }
 
     public int getMatchCount() {
@@ -40,9 +44,5 @@ public enum LottoPrize {
 
     public int getMoney() {
         return money;
-    }
-
-    public boolean isMatched(long matchCount, boolean isBonusBallMatched) {
-        return this.matchCount == matchCount && this.isBonusBallMatched == isBonusBallMatched;
     }
 }

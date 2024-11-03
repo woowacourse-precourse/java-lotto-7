@@ -2,9 +2,9 @@ package lotto;
 
 import static lotto.Initializer.controller;
 import static lotto.Initializer.lottoMachine;
-import static lotto.view.Prompt.BONUS_BALL;
-import static lotto.view.Prompt.PURCHASE_AMOUNT;
-import static lotto.view.Prompt.WINNING_NUMBERS;
+import static lotto.view.input.Prompt.BONUS_BALL;
+import static lotto.view.input.Prompt.PURCHASE_AMOUNT;
+import static lotto.view.input.Prompt.WINNING_NUMBERS;
 
 import java.util.List;
 import lotto.controller.Controller;

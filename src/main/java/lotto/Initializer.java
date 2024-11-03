@@ -4,7 +4,6 @@ import lotto.controller.Controller;
 import lotto.model.LottoMachine;
 
 public final class Initializer {
-
     private Initializer() {
     }
 
