@@ -6,14 +6,12 @@ import static lotto.constant.WinningPrize.FOURTH_PRIZE;
 import static lotto.constant.WinningPrize.SECOND_PRIZE;
 import static lotto.constant.WinningPrize.THIRD_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.Lottos;
-import lotto.domain.Revenue;
 import lotto.dto.WinningStat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
