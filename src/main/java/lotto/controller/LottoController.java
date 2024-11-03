@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constant.WinningType;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningCriteria;
 import lotto.service.InputParsingService;
 import lotto.service.InputValidationService;
+import lotto.service.LottoCalculationService;
 import lotto.service.LottoIssueService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,19 +20,22 @@ public class LottoController {
     private final InputValidationService inputValidationService;
     private final InputParsingService inputParsingService;
     private final LottoIssueService lottoIssueService;
+    private final LottoCalculationService lottoCalculationService;
 
     public LottoController(
             InputView inputView,
             OutputView outputView,
             InputValidationService inputValidationService,
             InputParsingService inputParsingService,
-            LottoIssueService lottoIssueService
+            LottoIssueService lottoIssueService,
+            LottoCalculationService lottoCalculationService
     ) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.inputValidationService = inputValidationService;
         this.inputParsingService = inputParsingService;
         this.lottoIssueService = lottoIssueService;
+        this.lottoCalculationService = lottoCalculationService;
     }
 
     public void runLotto() {
@@ -38,6 +43,7 @@ public class LottoController {
         List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
         printIssuedLotto(issuedLotto);
         WinningCriteria winningCriteria = inputWinningCriteria();
+        List<WinningType> winningResult = calculateWinningResult(issuedLotto, winningCriteria);
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -70,5 +76,9 @@ public class LottoController {
         String rawBonusNumber = inputView.inputContent();
         inputValidationService.validateBonusNumber(rawBonusNumber);
         return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
+    }
+
+    private List<WinningType> calculateWinningResult(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
+        return lottoCalculationService.calculateWinning(issuedLotto, winningCriteria);
     }
 }
