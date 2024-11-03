@@ -33,4 +33,8 @@ public enum Rank {
         return matchNumber.equals(this.matchCount);
     }
 
+    public long computeRevenue(Long count){
+        return ((long) this.rankPrize * count);
+    }
+
 }

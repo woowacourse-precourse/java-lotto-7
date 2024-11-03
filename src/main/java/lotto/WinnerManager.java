@@ -1,5 +1,6 @@
 package lotto;
 
+import constant.OutputNotice;
 import constant.Rank;
 import input.BonusNumberInputProcessor;
 import input.LottoWinnerNumberInputProcessor;
@@ -75,6 +76,20 @@ public class WinnerManager {
             }
         }
         return Rank.UN_RANK;
+    }
+
+    public double computeRevenueRate() {
+        long totalRevenue = 0L;
+        int ticketCount = 0;
+        for (Map.Entry<Rank, Long> entry : rankStatistic.entrySet()) {
+            ticketCount++;
+            totalRevenue += entry.getKey().computeRevenue(entry.getValue());
+        }
+        return Math.round(((double) totalRevenue / ticketCount) * 100) / 100.0;
+    }
+
+    public void printRevenueRate() {
+        System.out.println(OutputNotice.TOTAL_REVENUE.show() + computeRevenueRate() + "입니다.");
     }
 
 }
