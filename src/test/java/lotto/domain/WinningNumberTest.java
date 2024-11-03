@@ -38,4 +38,13 @@ class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호는 1~45 사이의 숫자를 입력해야 합니다.");
     }
+
+    @DisplayName("당첨 번호가 6개가 아닐 경우 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,2,3", "1,2", "1"})
+    void checkWinningNumberCount(String inputWinningNumber) {
+        Assertions.assertThatThrownBy(() -> WinningNumber.from(inputWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("당첨 번호는 6개까지 입력 가능합니다.");
+    }
 }
