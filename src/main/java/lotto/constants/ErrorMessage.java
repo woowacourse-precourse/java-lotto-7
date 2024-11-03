@@ -10,6 +10,7 @@ public enum ErrorMessage {
     EMPTY_LOTTO_WINNING_NUMBERS("당첨 로또가 입력되지 않았습니다. 다시 입력해주세요."),
     HAS_CONSECUTIVE_COMMA("숫자 + , 의 형태로 입력해 주세요."),
     ONLY_DIGITS_AND_COMMAS_ALLOWED("숫자 쉼표 이외의 값이 들어가 있습니다. 다시 입력해주세요."),
+    WINNING_NUMBER_IS_ONLY_INTEGER_ALLOWED("당첨 로또 번호는 오직 정수 범위이내여야 합니다."),
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
     INPUT_LOTTO_NUMBER_OUT_OF_RANGE("당첨번호는 1부터 45사이의 번호여야 합니다."),
     DUPLICATE_NUMBER_MESSAGE("중복된 숫자가 있습니다. 다시 입력해주세요."),
