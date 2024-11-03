@@ -14,5 +14,6 @@ public final class LottoController {
         Lottos purchaseLottos = PurchaseLottosView.purchaseLottos(purchaseQuantity);
         WinningNumber winningNumber = WinningBonusNumberView.winningBonusNumber();
         LottoMatchDTO lottoMatchDTO = new LottoMatchDTO(purchaseLottos, winningNumber);
+        WinningStatisticView.winningStatistic(lottoMatchDTO);
     }
 }
