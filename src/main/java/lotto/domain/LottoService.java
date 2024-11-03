@@ -68,7 +68,7 @@ public class LottoService {
         if (isSecondRankWinner(matchCount, ticket)) {
             return SECOND_RANK;
         }
-        return RANK_BY_MATCH_COUNT.get(matchCount);
+        return RANK_BY_MATCH_COUNT.getOrDefault(matchCount, 0);
     }
 
     public void calculateEarningsRate() {
