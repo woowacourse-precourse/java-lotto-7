@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PriceTest {
 
-    @DisplayName("로또 구입 금액을 정상적으로 저장한다.")
+    @DisplayName("로또 구입 금액은 1,000 단위로 입력받는다.")
     @Test
-    void 로또_구입_금액을_정상적으로_저장한다() {
+    void 로또_구입_금액을_천_단위로_입력받는다() {
         String input = "1000";
 
         Price price = Price.from(input);
@@ -26,9 +26,9 @@ public class PriceTest {
                 .hasMessageStartingWith("[ERROR]");
     }
 
-    @DisplayName("로또 구입 금액에 문자가 포함될 경우 예외가 발생한다.")
+    @DisplayName("로또 구입 금액에 문자가 입력될 경우 예외가 발생한다.")
     @Test
-    void 로또_구입_금액에_문자가_포함될_경우_예외가_발생한다() {
+    void 로또_구입_금액에_문자가_입력될_경우_예외가_발생한다() {
         assertThatThrownBy(() -> Price.from("3000.14"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
@@ -48,6 +48,18 @@ public class PriceTest {
         assertThatThrownBy(() -> Price.from("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
+
+        assertThatThrownBy(() -> Price.from("500o"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
+    @DisplayName("로또 구입 금액에 아무것도 입력되지 않을 경우 예외가 발생한다.")
+    @Test
+    void 로또_구입_금액에_아무것도_입력되지_않을_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Price.from("500o"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
     }
 
     @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
@@ -65,7 +77,7 @@ public class PriceTest {
     @DisplayName("로또 구입 금액이 100,000원을 초과할 경우 예외가 발생한다.")
     @Test
     void 로또_구입_금액이_십만원을_초과할_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Price.from("2000001000"))
+        assertThatThrownBy(() -> Price.from("101000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
