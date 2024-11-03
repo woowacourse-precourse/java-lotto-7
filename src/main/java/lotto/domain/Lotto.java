@@ -64,6 +64,13 @@ final public class Lotto {
                 .count();
     }
 
+    public boolean contains(final Number number) {
+        ParamsValidator.validateParamsNotNull(Lotto.class, number);
+
+        return this.numbers.stream()
+                .anyMatch(number::equals);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
