@@ -1,5 +1,6 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 import lotto.validate.Validator;
@@ -8,15 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private final List<Lotto> lottos;
-    private final Lotto winner;
-    private final int bonus;
+    private final int MAX = 45;
+    private final int MIN = 1;
+    private final int COUNT = 6;
+    private final int MAX_PRICE = 100_000;
+    private final int PRICE = 1_000;
 
-    LottoMachine(List<Integer> winner, int bonus) {
+    private List<Lotto> lottos;
+    private Lotto winner;
+    private int bonus;
+
+    public LottoMachine() {
+        lottos = new ArrayList<>();
+    }
+
+    /**
+     * 당첨 번호와 보너스 번호 넣기
+     * @param winner 당첨 번호
+     * @param bonus 보너스 번호
+     */
+    public void init(List<Integer> winner, int bonus) {
         this.winner = new Lotto(winner);
-        this.lottos = new ArrayList<>();
         this.bonus = bonus;
-        validate(winner, bonus);
+        validateWinner(winner, bonus);
     }
 
     /**
@@ -24,7 +39,7 @@ public class LottoMachine {
      * @param winner 당첨 번호
      * @param bonus 보너스 번호
      */
-    private void validate(List<Integer> winner, int bonus) {
+    private void validateWinner(List<Integer> winner, int bonus) {
         if (!Validator.inRange(bonus)) {
             throw new LottoException(ErrorMessage.NOT_IN_RANGE);
         } else if (!Validator.isNotContain(bonus, winner)) {
@@ -32,11 +47,33 @@ public class LottoMachine {
         }
     }
 
+    public void buyLotto(int money) {
+        validatePrice(money);
+
+        int lottoCount = money/PRICE;
+
+        for (int i=0; i<lottoCount; i++) {
+            addLotto(generateNumber());
+        }
+    }
+
+    private void validatePrice(int money) {
+        if (Validator.isOver(money, MAX_PRICE)) {
+            throw new LottoException(ErrorMessage.ILLEGAL_GAMBLING);
+        } else if (!Validator.isMulti(money, PRICE)) {
+            throw new LottoException(ErrorMessage.UNDIVIDED_THOUSAND);
+        }
+    }
+
+    private List<Integer> generateNumber() {
+        return Randoms.pickUniqueNumbersInRange(MIN, MAX, COUNT);
+    }
+
     /**
      * 로또 추가
      * @param nums 추가시킬 로또 번호
      */
-    public void addLotto(List<Integer> nums) {
+    private void addLotto(List<Integer> nums) {
         lottos.add(new Lotto(nums));
     }
 

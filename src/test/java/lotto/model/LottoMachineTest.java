@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoMachineTest {
@@ -16,9 +17,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 10;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoMachine lottoMachine = assertDoesNotThrow(() -> new LottoMachine(nums, bonus));
+        assertDoesNotThrow(() -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(0, lottoMachine.getLottoNums().size());
@@ -30,9 +32,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 5);
         int bonus = 10;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> new LottoMachine(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(ErrorMessage.EXIST_NUM.getMessage(), e.getMessage());
@@ -44,9 +47,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 1;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> new LottoMachine(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(ErrorMessage.EXIST_NUM.getMessage(), e.getMessage());
@@ -58,9 +62,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5);
         int bonus = 1;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> new LottoMachine(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(ErrorMessage.NOT_SIX_NUM.getMessage(), e.getMessage());
@@ -72,9 +77,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 60);
         int bonus = 1;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> new LottoMachine(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(ErrorMessage.NOT_IN_RANGE.getMessage(), e.getMessage());
@@ -86,9 +92,10 @@ class LottoMachineTest {
         // given
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 100;
+        LottoMachine lottoMachine = new LottoMachine();
 
         // when
-        LottoException e = assertThrows(LottoException.class, () -> new LottoMachine(nums, bonus));
+        LottoException e = assertThrows(LottoException.class, () -> lottoMachine.init(nums, bonus));
 
         // then
         assertEquals(ErrorMessage.NOT_IN_RANGE.getMessage(), e.getMessage());
@@ -98,19 +105,14 @@ class LottoMachineTest {
     @DisplayName("로또가 5개인 경우")
     void 로또가_5개인_경우() {
         // given
-        LottoMachine lottoMachine = new LottoMachine(List.of(1, 2, 3, 4, 5, 6), 10);
-        List<List<Integer>> lottoNums = List.of(
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(1, 2, 3, 4, 5, 6)
-        );
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Integer> winnerNum = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 10;
+        int money = 5000;
 
         // when
-        for (List<Integer> lottoNum : lottoNums) {
-            lottoMachine.addLotto(lottoNum);
-        }
+        lottoMachine.init(winnerNum, bonus);
+        lottoMachine.buyLotto(money);
         int lottoCount = lottoMachine.getLottoNums().size();
 
         // then
@@ -119,9 +121,19 @@ class LottoMachineTest {
 
     @Test
     @DisplayName("로또 결과 받기")
-    void 로또_결과_받기() {// given
-        LottoMachine lottoMachine = new LottoMachine(List.of(1, 2, 3, 4, 5, 6), 10);
-        List<List<Integer>> lottoNums = List.of(
+    void 로또_결과_받기() {
+        // given
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Integer> winnerNum = List.of(1, 2, 3, 4, 5, 6);
+        int bonus = 10;
+        int money = 5000;
+
+        // when
+        lottoMachine.init(winnerNum, bonus);
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    lottoMachine.buyLotto(money);
+                },
                 List.of(1, 2, 3, 7, 8, 9),
                 List.of(1, 2, 3, 7, 8, 9),
                 List.of(1, 2, 3, 7, 8, 9),
@@ -129,10 +141,7 @@ class LottoMachineTest {
                 List.of(1, 2, 3, 7, 8, 9)
         );
 
-        // when
-        for (List<Integer> lottoNum : lottoNums) {
-            lottoMachine.addLotto(lottoNum);
-        }
+        List<List<Integer>> lottoNums = lottoMachine.getLottoNums();
         Result result = lottoMachine.getResult();
         String rate = result.getRate();
 
