@@ -1,5 +1,7 @@
 package lotto.model;
 
+import message.ErrorMessage;
+
 public class AttemptCount {
     private static final int LOTTO_PRICE = 1000;
 
@@ -16,7 +18,7 @@ public class AttemptCount {
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if (isInvalidPurchaseAmount(purchaseAmount)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT.message());
         }
     }
 

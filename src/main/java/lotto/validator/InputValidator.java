@@ -29,34 +29,34 @@ public class InputValidator {
 
     private static void validateNotEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.message());
         }
     }
 
     private static void validateIsNumeric(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC.message());
         }
     }
 
     private static void validatePositiveAmount(String input) {
         int amount = Integer.parseInt(input);
         if (amount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT);
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT.message());
         }
     }
 
     private static void validateThousandUnit(String input) {
         int amount = Integer.parseInt(input);
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT);
+            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT.message());
         }
     }
 
     private static void validateWinningNumberFormat(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != 6) {
-            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.message());
         }
     }
 
@@ -67,7 +67,7 @@ public class InputValidator {
             validateIsNumeric(number);
             int num = Integer.parseInt(number);
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE);
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.message());
             }
         }
     }
@@ -79,7 +79,7 @@ public class InputValidator {
         for (String number : numbers) {
             int num = Integer.parseInt(number);
             if (!numberSet.add(num)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS);
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS.message());
             }
         }
     }
@@ -87,14 +87,14 @@ public class InputValidator {
     private static void validateBonusNumberRange(String input) {
         int bonusNum = Integer.parseInt(input);
         if (bonusNum < 1 || bonusNum > 45) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.message());
         }
     }
 
     private static void validateBonusNumberNotInWinningNumbers(String input, List<Integer> winningNumbers) {
         int bonusNum = Integer.parseInt(input);
         if (winningNumbers.contains(bonusNum)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.message());
         }
     }
 

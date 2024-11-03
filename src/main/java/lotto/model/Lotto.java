@@ -1,10 +1,13 @@
 package lotto.model;
 
+import message.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,20 +27,19 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_COUNT.message());
         }
     }
 
     private void validateHasDuplicateNumber(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.message());
         }
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
-
         return numberSet.size() != numbers.size();
     }
 

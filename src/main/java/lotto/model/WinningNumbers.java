@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import message.ErrorMessage;
 
 public record WinningNumbers(List<Integer> winningNumbers) {
     public WinningNumbers {
@@ -10,7 +11,7 @@ public record WinningNumbers(List<Integer> winningNumbers) {
     private void validateWinningNumber(List<Integer> winningNumbers) {
         validateWinningNumbersCount(winningNumbers);
         validateWinningNumbersDuplicates(winningNumbers);
-        validateWinningNumbersRange(winningNumbers);
+        validateWinningNumbersAreInRange(winningNumbers);
     }
 
     @Override
@@ -20,19 +21,19 @@ public record WinningNumbers(List<Integer> winningNumbers) {
 
     private void validateWinningNumbersCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.message());
         }
     }
 
     private void validateWinningNumbersDuplicates(List<Integer> winningNumbers) {
         if (hasDuplicateNumbers(winningNumbers)) {
-            throw new IllegalArgumentException("당첨 번호에는 중복된 숫자가 있을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS.message());
         }
     }
 
-    private void validateWinningNumbersRange(List<Integer> winningNumbers) {
+    private void validateWinningNumbersAreInRange(List<Integer> winningNumbers) {
         if (areNumbersNotInRange(winningNumbers)) {
-            throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE.message());
         }
     }
 
