@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.validator.PurchaseAmountValidator;
 
 public class InputView {
     private static String readInput() {
@@ -10,7 +11,13 @@ public class InputView {
     }
 
     public static int readPurchaseAmount() {
-        return Integer.parseInt(readInput());
+        while (true) {
+            try {
+                return PurchaseAmountValidator.validate(readInput());
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     public static List<Integer> readWinningNumbers() {
