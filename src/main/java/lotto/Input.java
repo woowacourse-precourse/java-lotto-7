@@ -6,37 +6,71 @@ import java.util.List;
 
 public class Input {
 
-    public static String getPurchaseAmount() {
+    public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        String input = input();
+        validate(input);
+        return toInt(input);
     }
 
-    public static String getWinningNumber() {
+    public List<Integer> getWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String input = input();
+        validateNotEmpty(input);
+        String[] splitNumbers = split(input);
+        validateIsNumber(splitNumbers);
+        return toInts(splitNumbers);
     }
 
-    public static String getBonusNumber() {
+    public int getBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = input();
+        validate(input);
+        return toInt(input);
+    }
+
+    public void validate(String input) {
+        validateNotEmpty(input);
+        validateIsNumber(input);
+    }
+
+    private String input() {
         return Console.readLine();
     }
 
-    public static String[] split(String input) {
+    private void validateNotEmpty(String input) {
+        if (isEmpty(input)) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 비어 있습니다.");
+        }
+    }
+
+    private boolean isEmpty(String input) {
+        return input == null || input.trim().isEmpty();
+    }
+
+    private String[] split(String input) {
         return input.split(",");
     }
 
-    public static String[] validateIsNumber(String[] strings) {
+    private void validateIsNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
+        }
+    }
+
+    private void validateIsNumber(String[] strings) {
         try {
             for (String string : strings) {
-                Integer.parseInt(string);
+                validateIsNumber(string);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
         }
-        return strings;
     }
 
-    public static List<Integer> toInt(String[] strings) {
+    private List<Integer> toInts(String[] strings) {
         List<Integer> integers = new ArrayList<>();
         for (String string : strings) {
             integers.add(Integer.parseInt(string));
@@ -44,30 +78,7 @@ public class Input {
         return integers;
     }
 
-    public static String validateNotEmpty(String input) {
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어 있습니다.");
-        }
-        return input;
-    }
-
-    public static String validateIsNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
-        }
-        return input;
-    }
-
-    public static int validateDivisibleByThousand(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
-        }
-        return amount;
-    }
-
-    public static int toInt(String input) {
+    private int toInt(String input) {
         return Integer.parseInt(input);
     }
 }
