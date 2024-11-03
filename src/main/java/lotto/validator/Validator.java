@@ -5,57 +5,48 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.enums.Constants;
 import lotto.enums.ErrorMessage;
+import lotto.util.Util;
 
 public class Validator {
     public void validatePurchaseAmount(String price) {
-        int convertedPrice = parseInteger(price);
+        int convertedPrice = Util.checkValidInteger(price);
         if (convertedPrice <= 0 || convertedPrice % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT.getMessage());
         }
     }
 
-    public void validateLottoNumbers(String lottoNumbers) {
-        List<String> numbers = Arrays.asList(lottoNumbers.split(","));
+    public void validateWinningNumbers(String lottoNumbers) {
+        List<String> numbers = Arrays.asList(lottoNumbers.replaceAll(" ", "").split(","));
 
         if (numbers.size() != Constants.LOTTO_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
         }
 
         for (String number : numbers) {
-            if (!isValidRange(parseInteger(number))) {
+            if (!isValidRange(Util.checkValidInteger(number))) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
             }
         }
     }
 
     public void validateBonusNumber(String bonusNumber) {
-        if (!isValidRange(parseInteger(bonusNumber))) {
+        if (!isValidRange(Util.checkValidInteger(bonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
         }
     }
 
-    public void checkDuplicateLottoNumbers(String lottoNumbers, String bonusNumber) {
-        List<String> numbers = Arrays.asList(lottoNumbers.split(","));
+    public void checkDuplicateLottoNumbers(String winningNumbers, String bonusNumber) {
+        List<String> numbers = Arrays.asList(winningNumbers.split(","));
         List<Integer> allNumbers = new ArrayList<>();
-        allNumbers.add(parseInteger(bonusNumber));
+        allNumbers.add(Util.checkValidInteger(bonusNumber));
 
         for (String number : numbers) {
-            int convertedNumber = parseInteger(number);
+            int convertedNumber = Util.checkValidInteger(number);
             if (allNumbers.contains(convertedNumber)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBERS.getMessage());
             }
             allNumbers.add(convertedNumber);
         }
-    }
-
-    private int parseInteger(String number) {
-        int num;
-        try {
-            num = Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
-        }
-        return num;
     }
 
     private boolean isValidRange(int num) {
