@@ -11,7 +11,7 @@ public enum Rank {
     NO_MATCH(0, 0);
 
     private final int matchCount;
-    private final int winnings;
+    private final long winnings;
     private static final Map<String, Rank> rankMap = Map.of(
             "6", SIX_MATCH,
             "5-true", FIVE_MATCH_BONUS,
@@ -20,7 +20,7 @@ public enum Rank {
             "3", THREE_MATCH
     );
 
-    Rank(int matchCount, int winnings) {
+    Rank(int matchCount, long winnings) {
         this.matchCount = matchCount;
         this.winnings = winnings;
     }
@@ -35,7 +35,7 @@ public enum Rank {
         return matchCount;
     }
 
-    public int getWinnings() {
+    public long getWinnings() {
         return winnings;
     }
 }
