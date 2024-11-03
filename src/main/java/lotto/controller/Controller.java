@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import lotto.Lotto;
+import lotto.LottoPrize;
 import lotto.util.LottoManager;
 import lotto.util.Saparater;
 import lotto.view.InputView;
@@ -13,6 +15,9 @@ public class Controller {
     OutputView outputView = new OutputView();
     LottoManager lottoManager = new LottoManager();
     ArrayList<Lotto> lottos;
+    int purchaseAmount;
+    Lotto winningLotto;
+    HashMap<LottoPrize, Integer> winningResult;
 
     public void start() {
         purchaseProcess();
@@ -22,8 +27,8 @@ public class Controller {
 
     public void purchaseProcess() {
         try {
-            int amount = inputView.getPurchaseAmount();
-            lottos = lottoManager.purchaseLotto(amount);
+            purchaseAmount = inputView.getPurchaseAmount();
+            lottos = lottoManager.purchaseLotto(purchaseAmount);
             outputView.printLottoInfo(lottos);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -40,8 +45,8 @@ public class Controller {
                 numbers.add(Integer.parseInt(s));
             }
             int bonusNumber = inputView.getBonusNumber();
-            lottoManager.setWinningLotto(numbers, bonusNumber);
-        } catch (NumberFormatException e){
+            winningLotto = lottoManager.getWinningLotto(numbers, bonusNumber);
+        } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
             setWinningNumbersProcess();
         } catch (IllegalArgumentException e) {
@@ -51,7 +56,8 @@ public class Controller {
     }
 
     public void winningResultProcess() {
-        outputView.printWinningResult(lottoManager.getWinningResult(lottos));
-        outputView.printProfitRate(lottoManager.getProfitRate());
+        winningResult = lottoManager.getWinningResult(lottos, winningLotto);
+        outputView.printWinningResult(winningResult);
+        outputView.printProfitRate(lottoManager.getProfitRate(winningResult, purchaseAmount));
     }
 }

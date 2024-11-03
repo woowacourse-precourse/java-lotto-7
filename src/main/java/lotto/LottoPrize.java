@@ -1,6 +1,6 @@
-package lotto.util;
+package lotto;
 
-public enum LottoRank {
+public enum LottoPrize {
     FIFTH("3개 일치 (5,000원)", 5_000),
     FOURTH("4개 일치 (50,000원)", 50_000),
     THIRD("5개 일치 (1,500,000원)", 1_500_000),
@@ -10,7 +10,7 @@ public enum LottoRank {
     private final String description;
     private final int prize;
 
-    LottoRank(String rank, int prize) {
+    LottoPrize(String rank, int prize) {
         this.description = rank;
         this.prize = prize;
     }

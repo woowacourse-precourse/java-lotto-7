@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.HashMap;
 import lotto.Lotto;
-import lotto.util.LottoRank;
+import lotto.LottoPrize;
 
 public class OutputView {
 
@@ -15,12 +15,12 @@ public class OutputView {
         }
     }
 
-    public void printWinningResult(HashMap<LottoRank, Integer> winningResult) {
+    public void printWinningResult(HashMap<LottoPrize, Integer> winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
         StringBuilder sb = new StringBuilder();
-        for (LottoRank lottoRank : LottoRank.values()) {
-            sb.append(lottoRank.toString() + winningResult.getOrDefault(lottoRank,0) + "개\n");
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            sb.append(lottoPrize.toString() + winningResult.getOrDefault(lottoPrize,0) + "개\n");
         }
         System.out.println(sb);
     }
