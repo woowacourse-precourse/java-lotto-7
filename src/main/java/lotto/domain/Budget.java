@@ -29,4 +29,8 @@ public class Budget {
     public BigInteger numberOfLotto() {
         return this.numberOfLotto;
     }
+
+    public BigInteger value() {
+        return value;
+    }
 }

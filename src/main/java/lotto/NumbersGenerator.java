@@ -9,7 +9,7 @@ public class NumbersGenerator {
     public static final int MIN = 1;
     public static final int MAX = 45;
 
-    public List<Integer> generate(int number) {
+    public List<Integer> generateNumbers(int number) {
         return Randoms.pickUniqueNumbersInRange(MIN, MAX, number);
     }
 }

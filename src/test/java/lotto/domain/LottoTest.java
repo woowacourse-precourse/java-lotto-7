@@ -25,7 +25,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 번호와 일치하는 로또 번호의 개수를 리턴한다.")
+    @DisplayName("당첨 번호와 일치하는 로또 번호의 개수를 세서 등수를 리턴한다.")
     @Test
     void countMatchesPositive() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

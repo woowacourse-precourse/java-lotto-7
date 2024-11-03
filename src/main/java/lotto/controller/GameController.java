@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import lotto.NumbersGenerator;
-import lotto.domain.Budget;
-import lotto.domain.Lotto;
-import lotto.domain.Rank;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +9,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static lotto.controller.InputValidator.SPLITTER;
 import static lotto.domain.Lotto.NUMBER_COUNT;
@@ -33,16 +32,18 @@ public class GameController {
         Budget budget = new Budget(readValidBudget());
         BigInteger numberOfLotto = budget.numberOfLotto();
         outputView.printNumberOfLotto(numberOfLotto);
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-        for (BigInteger idx = BigInteger.ZERO; idx.compareTo(numberOfLotto) < 0; idx = idx.add(BigInteger.ONE)) {
-            lottoNumbers.add(numbersGenerator.generate(NUMBER_COUNT));
-        }
+        List<List<Integer>> lottoNumbers = Stream.iterate(BigInteger.ZERO, idx -> idx.compareTo(numberOfLotto) < 0, idx -> idx.add(BigInteger.ONE))
+                .map(idx -> numbersGenerator.generateNumbers(NUMBER_COUNT))
+                .collect(Collectors.toList());
         outputView.printNumbersCollections(lottoNumbers);
         WinningNumber winningNumber = new WinningNumber(getWinningNumbers(), getBonusNumber());
+        List<Rank> results = new ArrayList<>();
         for (List<Integer> numbers : lottoNumbers) {
             Lotto lotto = new Lotto(numbers);
-            Rank rank = lotto.countRank(winningNumber.getNumbers(), winningNumber.getBonusNumber());
+            results.add(lotto.countRank(winningNumber.getNumbers(), winningNumber.getBonusNumber()));
         }
+        Result result = new Result(results);
+        outputView.printResult(result.returnCounts(), result.returnRate(budget.value()));
     }
 
     private BigInteger readValidBudget() {
