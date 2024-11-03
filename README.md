@@ -13,6 +13,7 @@
 ## 패키지 구조
 
 - domain
+    - ErrorMessage
     - Lotto
     - Lottos
     - LottoConfig
