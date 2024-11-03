@@ -4,7 +4,7 @@ import lotto.message.Message;
 import java.math.BigInteger;
 
 public class OutputView {
-    public void printLottoAmount(BigInteger purchaseMoney) {
-        System.out.println(purchaseMoney.divide(BigInteger.valueOf(1000L)) + Message.PURCHASE_AMOUNT_MESSAGE.getMessage());
+    public void printLottoAmount(BigInteger purchaseAmount) {
+        System.out.println(purchaseAmount + Message.PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
 }

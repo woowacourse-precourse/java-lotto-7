@@ -1,11 +1,10 @@
 package lotto.controller;
 
 import lotto.dto.Purchase;
-import lotto.model.Lotto;
+import lotto.model.MyLotto;
 import lotto.model.Winning;
 import lotto.service.InputService;
 import lotto.service.LottoService;
-import java.util.List;
 
 public class LottoController {
     public void play() {
@@ -14,5 +13,6 @@ public class LottoController {
 
         Purchase purchase = new Purchase(inputService.getPurchaseMoney());
         Winning winning = new Winning(inputService.getWinningNumbers(), inputService.getBonusNumber());
+        MyLotto myLotto = lottoService.buyLottos(purchase);
     }
 }
