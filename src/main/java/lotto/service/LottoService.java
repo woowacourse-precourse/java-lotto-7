@@ -2,6 +2,7 @@ package lotto.service;
 import lotto.domain.AutoLotto;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.domain.rule.LottoRules;
 import lotto.domain.rule.WinningRules;
 import java.util.stream.Collectors;
 import java.util.*;
@@ -9,6 +10,7 @@ import java.util.*;
 import static lotto.domain.message.LottoErrorMessage.WINNING_NUMBER_FORMAT_ERROR;
 import static lotto.domain.rule.LottoRules.AUTO_LOTTO_PRICE;
 import static lotto.domain.message.LottoPriceErrorMessage.INVALID_LOTTO_PRICE_DIVISIBLE_OR_ZERO;
+import static lotto.domain.rule.ResultCalculateRules.*;
 import static lotto.utils.DefaultErrorMessage.INVALID_INTEGER_FORMAT;
 import static lotto.utils.DefaultErrorMessage.NULL_OR_EMPTY_INPUT;
 
@@ -62,12 +64,10 @@ public class LottoService {
                 totalPrize += rank.getPrize() * results.getOrDefault(rank, 0L);
             }
         }
-        double winningStatistics = ((double) totalPrize / (autoLottos.size() * 1000L)) * 100;
+        double winningStatistics = ((double) totalPrize / (autoLottos.size() * LottoRules.AUTO_LOTTO_PRICE.getValue())) * 100;
 
         return (float) Math.round(winningStatistics * 100) / 100.0f;
     }
-
-
 
     private WinningRules determineWinningRule(AutoLotto autoLotto, WinningLotto winningLotto) {
         int matchCount = countMatchingNumbers(autoLotto, winningLotto);

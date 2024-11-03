@@ -25,10 +25,10 @@ public class Lotto {
         return new AutoLotto(randomNumbers);
     }
 
-    public static WinningLotto createWinningLotto(List<Integer> winningLottoNumbers) {
-        List<Integer> winningLottoNumberList = new ArrayList<>(winningLottoNumbers);
-        winningLottoNumberList.sort(Integer::compareTo);
-        return new WinningLotto(winningLottoNumberList);
+    public static WinningLotto createWinningLotto(List<Integer> inputWinningLottoNumbers) {
+        List<Integer> winningLottoNumbers = new ArrayList<>(inputWinningLottoNumbers);
+        winningLottoNumbers.sort(Integer::compareTo);
+        return new WinningLotto(winningLottoNumbers);
     }
 
     public List<Integer> getNumbers() {
