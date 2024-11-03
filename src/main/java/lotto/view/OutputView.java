@@ -13,6 +13,7 @@ public class OutputView {
     private static final String PRINT_SEPARATOR_LINE = "---";
     private static final String PRINT_FORMAT_WINNING_STATISTICS_MESSAGE = "%s개 일치 (%s원) - %d개\n";
     private static final String FORMATTER_PATTERN = "###,###";
+    private static final String PRINT_FORMAT_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private static final int DEFAULT_COUNT_ZERO = 0;
 
@@ -38,5 +39,14 @@ public class OutputView {
                                 rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO)
                         )
         );
+    }
+
+    public static void printRateOfReturn(int purchaseAmount, HashMap<Ranking, Integer> rankingCountMap) {
+        long totalPrizeMoney = 0;
+        for (Ranking ranking : Ranking.valuesOrderByRankDesc()) {
+            totalPrizeMoney += (long) ranking.getPrice() * rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO);
+        }
+
+        System.out.printf(PRINT_FORMAT_RATE_OF_RETURN_MESSAGE, ((double)totalPrizeMoney * 100) / purchaseAmount);
     }
 }
