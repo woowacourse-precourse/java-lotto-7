@@ -6,7 +6,7 @@ import lotto.util.CommonIo;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.function.Supplier;
+import static lotto.util.RepeatInput.repeatUntilValid;
 
 public class PurchaseController {
     private final InputView inputView;
@@ -27,17 +27,9 @@ public class PurchaseController {
         int amount = repeatUntilValid(() -> {
             String rawAmount = ioController.inputPurchaseAmount();
             return ioController.convertInputToInt(rawAmount);
-        });
+        },commonIo);
         ticketService.createTicket(amount);
         outputView.printTicketCount(ticketService.getTicketCount());
     }
 
-    private <T> T repeatUntilValid(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            commonIo.printMessage(illegalArgumentException.getMessage());
-            return repeatUntilValid(function);
-        }
-    }
 }

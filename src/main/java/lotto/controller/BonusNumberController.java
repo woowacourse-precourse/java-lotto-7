@@ -5,7 +5,7 @@ import lotto.temp.IoController;
 import lotto.util.CommonIo;
 import lotto.view.InputView;
 
-import java.util.function.Supplier;
+import static lotto.util.RepeatInput.repeatUntilValid;
 
 public class BonusNumberController {
     private final InputView inputView;
@@ -23,18 +23,8 @@ public class BonusNumberController {
         int bonusNumber = repeatUntilValid(() -> {
             String rawBonusNumber = ioController.inputBonusNumber();
             return ioController.convertInputToInt(rawBonusNumber);
-        });
+        },commonIo);
 
         return new BonusNumber(bonusNumber);
     }
-
-    private <T> T repeatUntilValid(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            commonIo.printMessage(illegalArgumentException.getMessage());
-            return repeatUntilValid(function);
-        }
-    }
-
 }

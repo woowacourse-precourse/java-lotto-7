@@ -1,12 +1,12 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.temp.IoController;
 import lotto.model.WinningNumberGenerator;
+import lotto.temp.IoController;
 import lotto.util.CommonIo;
 import lotto.view.InputView;
 
-import java.util.function.Supplier;
+import static lotto.util.RepeatInput.repeatUntilValid;
 
 public class WinningNumberGenerationController {
     private final WinningNumberGenerator winningNumberGenerator;
@@ -25,15 +25,7 @@ public class WinningNumberGenerationController {
         return repeatUntilValid(() -> {
             String rawWinningNumbers = ioController.inputWinningNumbers();
             return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
-        });
+        },commonIo);
     }
 
-    private <T> T repeatUntilValid(Supplier<T> function) {
-        try {
-            return function.get();
-        } catch (IllegalArgumentException illegalArgumentException) {
-            commonIo.printMessage(illegalArgumentException.getMessage());
-            return repeatUntilValid(function);
-        }
-    }
 }
