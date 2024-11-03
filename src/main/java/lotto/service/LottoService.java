@@ -18,7 +18,7 @@ public class LottoService {
     private static final int[] prizes = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
 
     public LottoService() {
-        this.matchCountPrizeMap = IntStream.range(0, 8)
+        matchCountPrizeMap = IntStream.range(0, 8)
                 .boxed()
                 .collect(Collectors.toMap(i -> matchNumbers[i], i -> prizes[i]));
     }
