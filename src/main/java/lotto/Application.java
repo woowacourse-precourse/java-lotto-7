@@ -17,10 +17,14 @@ public class Application {
 
         List<Lotto> lottoes = new ArrayList<>();
 
+        int startNumber = 1;
+        int endNumber = 45;
+        int count = 6;
+
         System.out.println(N + "개를 구매했습니다.");
         for (int i = 0; i < N; i++) {
-            Lotto lotto = new Lotto();
-            lotto.printNumbers();
+            Lotto lotto = new Lotto(startNumber, endNumber, count);
+            lotto.printNumbers(count);
             lottoes.add(lotto);
         }
         System.out.println();
@@ -43,7 +47,7 @@ public class Application {
         winningPrice.put(5, 1500000);
         winningPrice.put(6, 2000000000);
         bonusWinningPrice.put(5, 30000000);
-        LottoChecker lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice);
+        LottoChecker lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice, 6);
 
         lottoChecker.result(winningLotto, lottoes, bonusNumber);
     }

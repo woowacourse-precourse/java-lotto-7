@@ -8,12 +8,14 @@ public class LottoChecker {
     public Map<Integer, Integer> prizeMoney = new HashMap<>();
     public Map<Integer, Integer> bonusPrizeMoney = new HashMap<>();
 
-    public int[] matchingCount = new int[7];
-    public int[] bonusMatchingCount = new int[7];
+    public int[] matchingCount;
+    public int[] bonusMatchingCount;
 
-    public LottoChecker(Map<Integer, Integer> prizeMoney, Map<Integer, Integer> bonusWinningPrizeMoney) {
+    public LottoChecker(Map<Integer, Integer> prizeMoney, Map<Integer, Integer> bonusWinningPrizeMoney, int maximumMatchingCount) {
         this.prizeMoney = prizeMoney;
         this.bonusPrizeMoney = bonusWinningPrizeMoney;
+        this.matchingCount = new int[maximumMatchingCount + 1];
+        this.bonusMatchingCount = new int[maximumMatchingCount];
     }
 
     public int numberMatch(List<Integer> winningNumbers, List<Integer> numbers) {
