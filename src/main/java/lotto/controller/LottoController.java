@@ -16,14 +16,17 @@ public class LottoController {
             int purchaseAmount = InputView.inputPurchaseAmount();
             LottoService lottoService = new LottoService();
             lottoService.purchaseLottos(purchaseAmount);
+            System.out.println();
             OutputView.printPurchasedLottos(lottoService.getPurchasedLottos());
 
+            System.out.println();
             WinningNumbers winningNumbers = inputWinningNumbers();
 
             Map<LottoRank, Integer> results = lottoService.calculateResults(winningNumbers);
             int totalPrize = lottoService.calculateTotalPrize(results);
             double yield = lottoService.calculateYield(purchaseAmount, totalPrize);
 
+            System.out.println();
             OutputView.printResults(results, yield);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -34,6 +37,7 @@ public class LottoController {
     private WinningNumbers inputWinningNumbers() {
         String winningNumbersInput = InputView.inputWinningNumbers();
         List<Integer> winningNumbers = parseWinningNumbers(winningNumbersInput);
+        System.out.println();
         int bonusNumber = InputView.inputBonusNumber();
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
