@@ -10,6 +10,10 @@ public class Validator {
         return str.matches(NUMERIC_REGEX);
     }
 
+    public static boolean isBlank(String str) {
+        return str == null || str.isBlank();
+    }
+
     public static boolean isDivided(int num, int divider) {
         return num % divider == 0;
     }

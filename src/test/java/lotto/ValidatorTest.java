@@ -34,6 +34,28 @@ public class ValidatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"", " ", "  ", "\n", "\t"})
+    void isBlankTrue(String str) {
+        // when
+        boolean result = Validator.isBlank(str);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"s", "sfe", " def23 ", "df\n", "bl5e\t"})
+    void isBlankFalse(String str) {
+        // when
+        boolean result = Validator.isBlank(str);
+
+        // then
+        assertThat(result)
+                .isFalse();
+    }
+
+    @ParameterizedTest
     @CsvSource(value = {"2000:1000", "0:1000"}, delimiter = ':')
     void isDividedTure(int num, int divider) {
         // when
