@@ -45,11 +45,15 @@ public class Application {
 
     private static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine().trim());
-        if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        try {
+            int purchaseAmount = Integer.parseInt(Console.readLine().trim());
+            if (purchaseAmount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            }
+            return purchaseAmount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
         }
-        return purchaseAmount;
     }
 
     private static List<Lotto> generateLottos(int count) {
@@ -62,9 +66,9 @@ public class Application {
     }
 
     private static List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END, LOTTO_NUMBERS_COUNT
-        );
+        ));
         Collections.sort(numbers);
         return numbers;
     }
