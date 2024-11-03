@@ -28,7 +28,7 @@ public class LottoController {
         Lotto winnerLotto = getWinnerNumbers();
         LottoMachine lottoMachine = createLottoMachine(winnerLotto);
         Map<LottoResult, Integer> lottoResult = lottoService.getLottoResult(lottoMachine, lottos);
-        printResult(lottoResult, lottos.getLottos().size() * 1000);
+        printResult(lottoResult, lottos.getPrice());
     }
 
     private Lottos buyLotto() {
