@@ -22,5 +22,6 @@ public class Application {
     }
 
     public void run() {
+        int purchaseAmount = inputHandler.getPurchaseAmount();
     }
 }
