@@ -16,11 +16,10 @@ public class Application {
        put(Rank.FOURTH, 0);
        put(Rank.FIFTH, 0);
     }};
-    static double lottoProfit;
 
     public static void generateLottoNumbers(int lottoAmount) {
         for (int i = 0; i < lottoAmount; i++) {
-            List<Integer> userLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> userLottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             userLottoNumber.sort(Comparator.naturalOrder());
             userLottoNumbers.add(userLottoNumber);
         }
@@ -69,6 +68,26 @@ public class Application {
     }
 
     public static void main(String[] args) {
-
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        // 로또 구입 금액 입력받기
+        outputView.printLottoAmountPrompt();
+        int lottoPurchasePrice = inputView.readLottoPurchasePrice();
+        int lottoAmount = lottoPurchasePrice / 1000;
+        // 발행한 로또 수량 및 번호 출력하기
+        outputView.printLottoAmount(lottoAmount);
+        generateLottoNumbers(lottoAmount);
+        outputView.printUserLottoNumber(userLottoNumbers);
+        // 당첨 번호와 보너스 번호 입력받기
+        outputView.printLottoWinningNumberPrompt();
+        List<Integer> lottoWinningNumber = inputView.readLottoWinningNumber();
+        outputView.printLottoBonusNumberPrompt();
+        int lottoBonusNumber = inputView.readLottoBonusNumber();
+        // 발행한 로또 번호와 당첨 번호, 보너스 번호를 비교하여 당첨 내역 출력하기
+        checkLottoMatch(lottoWinningNumber, lottoBonusNumber);
+        outputView.printLottoResult(lottoPrizeCount);
+        // 수익률 계산하여 출력하기
+        double lottoProfit = calculateLottoProfit(lottoPurchasePrice);
+        outputView.printLottoProfit(lottoProfit);
     }
 }
