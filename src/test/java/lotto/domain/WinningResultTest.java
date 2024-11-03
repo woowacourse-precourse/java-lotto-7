@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.Map;
@@ -24,12 +25,15 @@ class WinningResultTest {
         final Map<LottoRank, Integer> lottoRanks = winningResult.getLottoRanks();
 
         //then
-        assertThat(lottoRanks).containsAllEntriesOf(Map.of(
-                LottoRank.RANK_1, 1,
-                LottoRank.RANK_2, 1,
-                LottoRank.RANK_3, 1,
-                LottoRank.RANK_4, 0,
-                LottoRank.RANK_5, 0
-        ));
+        assertAll(
+                () -> assertThat(lottoRanks).isNotEmpty(),
+                () -> assertThat(lottoRanks).doesNotContainKey(LottoRank.RANK_NONE),
+                () -> assertThat(lottoRanks).containsAllEntriesOf(Map.of(
+                        LottoRank.RANK_1, 1,
+                        LottoRank.RANK_2, 1,
+                        LottoRank.RANK_3, 1,
+                        LottoRank.RANK_4, 0,
+                        LottoRank.RANK_5, 0
+                )));
     }
 }
