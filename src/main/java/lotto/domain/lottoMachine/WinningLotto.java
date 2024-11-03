@@ -6,11 +6,11 @@ import lotto.global.exception.ValidatorBuilder;
 
 public class WinningLotto {
 
-    private final Lotto winningLotto;
+    private final Lotto lotto;
     private final BonusNumber bonusNumber;
 
     private WinningLotto(final Lotto winningLotto, final BonusNumber bonusNumber) {
-        this.winningLotto = winningLotto;
+        this.lotto = winningLotto;
         this.bonusNumber = validateDuplicate(bonusNumber);
     }
 
@@ -20,7 +20,7 @@ public class WinningLotto {
 
     private BonusNumber validateDuplicate(BonusNumber bonusNumber) {
         return ValidatorBuilder.from(bonusNumber)
-                .validate(number -> winningLotto.isContains(bonusNumber), Exception.DUPLICATE_BONUS_NUMBER)
+                .validate(number -> lotto.isContains(bonusNumber), Exception.DUPLICATE_BONUS_NUMBER)
                 .get();
     }
 }

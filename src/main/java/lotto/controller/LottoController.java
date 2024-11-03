@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.global.exception.ExceptionHandler.getValidInput;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import lotto.domain.lottoMachine.BonusNumber;
 import lotto.domain.lottoMachine.WinningLotto;
 import lotto.domain.money.Money;
@@ -18,10 +19,9 @@ public class LottoController {
     public void start() {
         Money money = createMoneyFromUserInput();
 
-//        Lottos lottos = money.buyLottos();
-//        view.outputLottos(lottos);
-//
-        WinningLotto winningLotto = createWinningLottoFromUserInput();
+        buyLottos(money);
+
+        WinningLotto winningLotto = createWinningLottoFromLottoAndBonusNumber();
 //
 //        getResults(lottos, winningLotto, bonusNumber);
 //        view.outputResult(lottos.match(winningLotto, bonusNumber));
@@ -34,10 +34,22 @@ public class LottoController {
         return getValidInput(() -> Money.from(view.inputMoney()));
     }
 
-    private WinningLotto createWinningLottoFromUserInput() {
-        Lotto winningLotto = getValidInput(() -> Lotto.from(view.inputWinningLotto()));
-        BonusNumber bonusNumber = getValidInput(() -> BonusNumber.from(view.inputBonusNumber()));
+    private WinningLotto createWinningLottoFromLottoAndBonusNumber() {
+        Lotto lotto = getValidInput(this::createLottoFromUserInput);
+        return getValidInput(() -> createWinningLottoFromUserInput(lotto));
+    }
 
-        return WinningLotto.of(winningLotto, bonusNumber);
+    private WinningLotto createWinningLottoFromUserInput(Lotto lotto) {
+        BonusNumber bonusNumber = BonusNumber.from(view.inputBonusNumber());
+        return WinningLotto.of(lotto, bonusNumber);
+    }
+
+    private Lotto createLottoFromUserInput() {
+        return Lotto.from(view.inputWinningLotto());
+    }
+
+    private void buyLottos(Money money) {
+        Lottos lottos = money.buyLottos();
+        view.outputLottos(lottos.getLottos());
     }
 }
