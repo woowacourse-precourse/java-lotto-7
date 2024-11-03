@@ -15,6 +15,7 @@ public class LottoController {
     final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
     final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
     final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
     private int lottoCount;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
@@ -28,39 +29,16 @@ public class LottoController {
         displayResults();
     }
 
-    private void makeWinningNumbers() {
-        outputView.printWinningNumbersGuide();
-        winningNumbers = new WinningNumbers(inputView.getWinningNumbers());
-    }
-
-    private void makeBonusNumber(List<Integer> winnerNumbers) {
-        while (true) {
-            outputView.printBonusNumberGuide();
-            String inputBonusNumber = inputView.getBonusNumber();
-            String checkBonusNumber = bonusNumberValidator.validate(inputBonusNumber, winnerNumbers);
-
-            if (!isPriceInputError(inputBonusNumber, checkBonusNumber)) {
-                bonusNumber = new BonusNumber(inputBonusNumber);
-                break;
-            }
-
-            outputView.printErrorMessage(checkBonusNumber);
-            outputView.printRetryGuide();
-        }
-    }
-
     private int purchaseLottos() {
         lottoCount = 0;
         while (true) {
             outputView.printPurchaseGuide();
             String price = inputView.getPurchasePrice();
             String checkPrice = lottoPriceValidator.validate(price);
-
-            if (!isPriceInputError(price, checkPrice)) {
+            if (!isInputError(price, checkPrice)) {
                 lottoCount = Integer.parseInt(price) / LOTTO_PRICE;
                 break;
             }
-
             outputView.printErrorMessage(checkPrice);
             outputView.printRetryGuide();
         }
@@ -68,13 +46,41 @@ public class LottoController {
         return lottoCount;
     }
 
-    private static boolean isPriceInputError(String price, String checkPrice) {
-        return price != checkPrice;
+    private static boolean isInputError(String input, String checkInput) {
+        return input != checkInput;
     }
 
     private void createLottos(int lottoCount) {
         lottos.createLottos(lottoCount);
         outputView.printLottos(lottos.get());
+    }
+
+    private void makeWinningNumbers() {
+        while (true) {
+            outputView.printWinningNumbersGuide();
+            String inputWinningNumbers = inputView.getWinningNumbers();
+            String checkWinningNumbers = winningNumbersValidator.validate(inputWinningNumbers);
+            if (!isInputError(inputWinningNumbers, checkWinningNumbers)) {
+                winningNumbers = new WinningNumbers(inputWinningNumbers);
+                break;
+            }
+            outputView.printErrorMessage(checkWinningNumbers);
+            outputView.printRetryGuide();
+        }
+    }
+
+    private void makeBonusNumber(List<Integer> winnerNumbers) {
+        while (true) {
+            outputView.printBonusNumberGuide();
+            String inputBonusNumber = inputView.getBonusNumber();
+            String checkBonusNumber = bonusNumberValidator.validate(inputBonusNumber, winnerNumbers);
+            if (!isInputError(inputBonusNumber, checkBonusNumber)) {
+                bonusNumber = new BonusNumber(inputBonusNumber);
+                break;
+            }
+            outputView.printErrorMessage(checkBonusNumber);
+            outputView.printRetryGuide();
+        }
     }
 
     private void calculateResults(int price) {

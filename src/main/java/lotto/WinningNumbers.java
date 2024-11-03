@@ -10,44 +10,22 @@ public class WinningNumbers {
     private static final String INVALID_COUNT_ERROR = "[ERROR] 당첨 번호는 6개여야 합니다.";
     private static final String DUPLICATE_WINNING_NUMBERS_ERROR = "[ERROR] 당첨 번호에 중복이 있을 수 없습니다.";
     private static final String INVALID_WINNING_NUMBER_ERROR = "[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.";
-
     private static final int WINNING_NUMBER_COUNT = 6;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final String SEPARATOR = ",";
 
-    private final List<Integer> winningNumbers;
+    private List<Integer> winningNumbers;
 
     public WinningNumbers(String winningNumbersInput) {
         this.winningNumbers = parseWinningNumbers(winningNumbersInput);
-        validateWinningNumbers(this.winningNumbers);
     }
 
     private List<Integer> parseWinningNumbers(String winningNumbersInput) {
-        if (winningNumbersInput == null || winningNumbersInput.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
-        }
-
         return Arrays.stream(winningNumbersInput.split(SEPARATOR))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException(INVALID_COUNT_ERROR);
-        }
-
-        if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS_ERROR);
-        }
-
-        for (int number : winningNumbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_ERROR);
-            }
-        }
     }
 
     public List<Integer> get() {
