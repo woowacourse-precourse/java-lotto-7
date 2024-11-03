@@ -150,6 +150,11 @@
 - [x] Numbers 객체의 동등성을 비교하는 기능 (equals)
 - [x] Numbers 객체의 해시코드를 가져오는 기능 (hashCode)
 
+### Rank
+
+- [x] Rank 객체를 생성하는 기능 (of)
+- [x] 상금을 반환하는 기능 (getPrize)
+
 ---
 
 # 예외 목록
