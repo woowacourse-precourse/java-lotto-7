@@ -21,7 +21,6 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = parser.purchaseAmountParser(viewFacade.readPurchaseAmount());
-        lottoMachine.initMachine();
         Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
         viewFacade.printIssuedLottos(lottos);
 
