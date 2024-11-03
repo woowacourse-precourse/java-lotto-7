@@ -36,7 +36,6 @@ public class Lotto {
 
     public static List<Lotto> start(Integer money) {
         List<Lotto> lottos = generateLottos(money);
-        System.out.println(lottos.size() + "개를 구매했습니다.");
         Print.printLottos(lottos);
         return lottos;
     }
