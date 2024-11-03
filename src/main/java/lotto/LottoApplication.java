@@ -16,6 +16,7 @@ public class LottoApplication {
 
     private void purchaseLotto() {
         int money = applicationView.requestMoney();
-        purchaseLottoUseCase.purchase(money);
+        int purchaseCount = purchaseLottoUseCase.calculatePurchaseCount(money);
+        purchaseLottoUseCase.purchase(purchaseCount);
     }
 }

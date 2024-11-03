@@ -24,7 +24,7 @@ public final class LottoConfig {
         return new PurchaseLottoService(new LottoFactory(), lottoUserRepository());
     }
 
-    private LottoUserRepository lottoUserRepository() {
-        return InMemoryLottoUserRepository.getInstance();
+    private LottoRepository lottoUserRepository() {
+        return InMemoryLottoRepository.getInstance();
     }
 }

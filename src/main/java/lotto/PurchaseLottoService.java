@@ -7,17 +7,21 @@ public class PurchaseLottoService implements PurchaseLottoUseCase {
     private static final int UNIT_OF_MONEY = 1000;
 
     private final LottoFactory lottoFactory;
-    private final LottoUserRepository lottoUserRepository;
+    private final LottoRepository lottoRepository;
 
-    public PurchaseLottoService(LottoFactory lottoFactory, LottoUserRepository lottoUserRepository) {
+    public PurchaseLottoService(LottoFactory lottoFactory, LottoRepository lottoRepository) {
         this.lottoFactory = lottoFactory;
-        this.lottoUserRepository = lottoUserRepository;
+        this.lottoRepository = lottoRepository;
     }
 
     @Override
-    public void purchase(int money) {
-        int purchaseCount = money / UNIT_OF_MONEY;
-        List<Lotto> purchasedLottos = lottoFactory.createByCount(purchaseCount);
-        lottoUserRepository.save(LottoUser.create(money, purchasedLottos));
+    public void purchase(int count) {
+        List<Lotto> purchasedLottos = lottoFactory.createByCount(count);
+        lottoRepository.saveAll(purchasedLottos);
+    }
+
+    @Override
+    public int calculatePurchaseCount(int money) {
+        return money / UNIT_OF_MONEY;
     }
 }
