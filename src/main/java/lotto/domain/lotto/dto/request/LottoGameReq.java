@@ -23,9 +23,9 @@ public class LottoGameReq {
     public static LottoGameReq of(
             final List<List<Integer>> purchasedNumbers,
             final List<Integer> winningNumbers,
-            final int bonusNumber,
-            final int cost
+            final int bonusNumber
     ) {
+        final int cost = purchasedNumbers.size() * 1000;
         return new LottoGameReq(purchasedNumbers, winningNumbers, bonusNumber, cost);
     }
 

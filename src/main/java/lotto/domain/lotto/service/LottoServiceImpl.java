@@ -9,7 +9,7 @@ import lotto.domain.lotto.dto.request.LottoGameReq;
 import lotto.domain.lotto.domain.LottoResult;
 import lotto.domain.lotto.dto.response.LottoGameRes;
 
-public class LottoServiceImpl implements LottoService{
+public class LottoServiceImpl implements LottoService {
 
     private LottoGame lottoGame;
 
@@ -44,10 +44,8 @@ public class LottoServiceImpl implements LottoService{
      * 로또 구입
      */
 
-    private List<List<Integer>> createPurchasedLottos(LottoGameReq request) {
-        validatePurchaseAmount(request.getCost());
-
-        int lottoCount = request.getCost() / 1000;
+    private List<List<Integer>> createPurchasedLottos(int amount) {
+        int lottoCount = amount / 1000;
         List<List<Integer>> purchasedLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {

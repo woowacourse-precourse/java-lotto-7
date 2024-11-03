@@ -17,6 +17,7 @@ public class LottoController {
     }
 
     public void playGame(List<List<Integer>> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        int cost = purchasedLottos.size() * 1000;
         LottoGameReq request = LottoGameReq.of(purchasedLottos, winningNumbers, bonusNumber);
         lottoService.createAndPlayGame(request);
     }
