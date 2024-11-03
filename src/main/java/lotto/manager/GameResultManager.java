@@ -10,8 +10,8 @@ public class GameResultManager {
     private WinningLotto winningLotto;
 
     public void changeWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-
-        this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Lotto lotto = new Lotto(winningNumbers);
+        this.winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 
     public Result getResult(Player player) {
