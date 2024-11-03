@@ -29,4 +29,21 @@ public class WinningNumbersTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
     }
+
+    @Test
+    void 당첨_번호의_범위가_맞으면_예외가_발생하지_않는다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 45);
+
+        assertDoesNotThrow(() -> new WinningNumbers(numbers));
+    }
+
+    @Test
+    void 당첨_번호의_범위가_맞지_않으면_예외가_발생하지_않는다() {
+        List<Integer> numbers = List.of(0, 2, 3, 4, 5, 46);
+
+        assertThatThrownBy(() -> new WinningNumbers(numbers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
 }
