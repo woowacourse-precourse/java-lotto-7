@@ -13,17 +13,40 @@ import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    private static final Map<Integer, Integer> WINNING_PRIZES = Map.of(
+            6, 2_000_000_000,
+            5, 1_500_000,
+            4, 50_000,
+            3, 5_000
+    );
+    private static final int SECOND_PRIZE = 30_000_000;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int purchaseAmount = inputAmount();
-        int ticketCount = calculateTicketCount(purchaseAmount);
-        System.out.println(ticketCount + "개를 구매했습니다.");
-        List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
-        printLottoTickets(lottoTickets);
-        List<Integer> winningNumbers = inputWinningNumbers();
-        int bonusNumber = inputBonusNumber(winningNumbers);
-        Map<String, Integer> winningStatistics = calculateResults(lottoTickets, winningNumbers, bonusNumber);
-        printWinningStatistics(winningStatistics, purchaseAmount);
+        while(true){
+            try{
+                int purchaseAmount = inputAmount();
+                int ticketCount = calculateTicketCount(purchaseAmount);
+                System.out.println(ticketCount + "개를 구매했습니다.");
+
+                List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
+                printLottoTickets(lottoTickets);
+
+                List<Integer> winningNumbers = inputWinningNumbers();
+                int bonusNumber = inputBonusNumber(winningNumbers);
+
+                Map<String, Integer> winningStatistics = calculateResults(lottoTickets, winningNumbers, bonusNumber);
+                printWinningStatistics(winningStatistics, purchaseAmount);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+
+
+
+
+
     }
     private static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -120,14 +143,41 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        int totalPrize = 0;
         for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue() + "개");
+            totalPrize += calculatePrize(entry.getKey(), entry.getValue());
         }
 
+        double profitRate = calculateProfitRate(totalPrize, purchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
+    private static int calculatePrize(String prizeCategory, int count) {
+        int prize = 0;
 
+        switch (prizeCategory) {
+            case "6개 일치 (2,000,000,000원)":
+                prize = WINNING_PRIZES.get(6);
+                break;
+            case "5개 일치, 보너스 볼 일치 (30,000,000원)":
+                prize = SECOND_PRIZE;
+                break;
+            case "5개 일치 (1,500,000원)":
+                prize = WINNING_PRIZES.get(5);
+                break;
+            case "4개 일치 (50,000원)":
+                prize = WINNING_PRIZES.get(4);
+                break;
+            case "3개 일치 (5,000원)":
+                prize = WINNING_PRIZES.get(3);
+                break;
+        }
 
+        return prize * count;
+    }
 
-
+    private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }
