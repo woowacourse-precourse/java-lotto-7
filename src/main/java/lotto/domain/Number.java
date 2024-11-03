@@ -9,7 +9,7 @@ import lotto.exception.number.CreatedNumberDuplicatedException;
 import lotto.exception.number.NumberCreationCountExceedException;
 import lotto.exception.number.NumberOutOfRangeException;
 
-final public class Number {
+final public class Number implements Comparable<Number> {
 
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 45;
@@ -74,5 +74,10 @@ final public class Number {
     @Override
     public int hashCode() {
         return Objects.hashCode(value);
+    }
+
+    @Override
+    public int compareTo(Number o) {
+        return this.value - o.value;
     }
 }
