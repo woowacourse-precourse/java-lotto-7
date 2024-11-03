@@ -19,4 +19,13 @@ public class lottoView {
 
         return input;
     }
+
+    public static String bonusInput(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        System.out.println();
+
+        return input;
+    }
+
 }
