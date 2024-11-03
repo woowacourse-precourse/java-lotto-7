@@ -15,20 +15,38 @@
 
 ## 패키지
 ```commandline
-
+- src
+  - main
+    - java
+      - lotto
+        - Application.java
+        - controller
+          - LottoGameController.java
+        - domain
+          - Lotto.java
+          - WinningLotto.java
+          - LottoNumber.java
+        - service
+          - LottoService.java
+        - util
+          - LottoNumberGenerator.java
+          - LottoValidator.java
+        - view
+          - InputView.java
+          - OutputView.java
+  - test
+    -java
+      - lotto
+        - ApplicationTest.java
+        - domain
+          - LottoTest.java
+          - WinningLottoTest.java
+        - service
+          - LottoServiceTest.java
+        - util
+          - LottoValidatorTest.java
 ```
-### Model
 
-### View
-#### InputView
-- 입력 화면 
-#### OutputView
-- 출력 화면
-### Controller
-
-### Util
-
-### Service
 
 
 ## 과제 진행 요구 사항
