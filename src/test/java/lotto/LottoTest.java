@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +22,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 정상적으로 생성되는지 확인한다.")
+    @Test
+    void 로또_번호가_정상적으로_생성된다() {
+        List<Integer> numbers = Lotto.create();
+        assertThat(numbers).hasSize(6);
+        assertThat(numbers).allMatch(number -> number >= 1 && number <= 45);
+    }
 }
