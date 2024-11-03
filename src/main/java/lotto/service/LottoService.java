@@ -25,7 +25,6 @@ import lotto.validation.BuyLottoValidate;
 import lotto.view.Input;
 import lotto.view.Output;
 
-// util, 컬렉션 수정, 테스트, 리팩토링, 클린 코드
 public class LottoService {
     private final EnumMap<WinAmount, Integer> winLottoAmountHistory;
     private static boolean fiveAndBonus = false;
@@ -33,7 +32,7 @@ public class LottoService {
     public LottoService() {
         winLottoAmountHistory = new EnumMap<>(WinAmount.class);
         for (WinAmount winAmount : WinAmount.values()) {
-            winLottoAmountHistory.put(winAmount, 0);
+            winLottoAmountHistory.put(winAmount, USE_ZERO.getValue());
         }
     }
 
