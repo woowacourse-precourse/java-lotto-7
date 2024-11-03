@@ -1,8 +1,9 @@
 package lotto.validator;
 
+import static lotto.exception.ExceptionMessage.*;
+
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.ExceptionMessage;
 import lotto.model.Lotto;
 
 public class InputValidator {
@@ -31,7 +32,7 @@ public class InputValidator {
 
     private static void checkEmpty(String purchaseAmount) {
         if (purchaseAmount == null || purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.getMessage());
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 
@@ -39,7 +40,7 @@ public class InputValidator {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.getMessage());
+            throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }
 
@@ -47,7 +48,7 @@ public class InputValidator {
         int parsedAmount = Integer.parseInt(purchaseAmount);
 
         if (parsedAmount % 1000 != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
@@ -60,7 +61,7 @@ public class InputValidator {
                         checkRangeNumber(parsedNumber);
                         return parsedNumber;
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.getMessage());
+                        throw new IllegalArgumentException(INVALID_INPUT.getMessage());
                     }
                 })
                 .toList();
@@ -68,7 +69,7 @@ public class InputValidator {
 
     private static void checkRangeNumber(int parsedNumber) {
         if (parsedNumber < 1 || parsedNumber > 45) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -81,7 +82,7 @@ public class InputValidator {
 
     private static void checkBonusNumberDuplicate(List<Integer> parsedWinningNumbers, int parsedBonusNumber) {
         if (parsedWinningNumbers.contains(parsedBonusNumber)) {
-            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }
