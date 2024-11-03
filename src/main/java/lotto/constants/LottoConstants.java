@@ -83,5 +83,5 @@ public class LottoConstants {
     public static final String JOIN_DELIMITER = ", ";
     public static final String DESCRIPTION = "%d개 일치 (%s원) - %d개";
     public static final String SECOND_RANK_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    public static final String EARNING_RATE_TEXT = "총 수익률은 %s%%입니다.";
+    public static final String EARNINGS_RATE_TEXT = "총 수익률은 %s%%입니다.";
 }

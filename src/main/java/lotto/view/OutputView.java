@@ -70,7 +70,7 @@ public class OutputView {
         return NumberFormat.getInstance().format(prizeAmount);
     }
 
-    public static void printEarningRate(String earningRate) {
-        print(String.format(EARNING_RATE_TEXT, earningRate));
+    public static void printEarningsRate(String earningsRate) {
+        print(String.format(EARNINGS_RATE_TEXT, earningsRate));
     }
 }

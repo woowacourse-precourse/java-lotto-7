@@ -76,6 +76,6 @@ public class LottoController {
         lottoService.calculateEarningsRate();
         String earningRate = lottoService.getEarningsRate();
 
-        printEarningRate(earningRate);
+        printEarningsRate(earningRate);
     }
 }
