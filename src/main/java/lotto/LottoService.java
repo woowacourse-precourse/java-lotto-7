@@ -116,6 +116,6 @@ public class LottoService {
         for (int i = 0; i < result.length; i++) {
             System.out.println(result[i] + map.getOrDefault(result.length - i, 0) + "개");
         }
-        System.out.println("총 수익률은 " + String.format("%.2f", ratio) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", ratio) + "%입니다.");
     }
 }
