@@ -54,6 +54,94 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 구입금액이_1000원으로_나눠떨어지지않는경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("7700", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액으로_0원을_입력한경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액으로_음수를_입력한경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("-900", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액으로_1000으로_나눠떨어지는_음수를_입력한경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("-1000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호로_6개를_입력하지_않는경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7", "10");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 중복된_당첨번호_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,2,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호가_지정된_범위를_벗어난경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,99", "10");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호에_숫자가_아닌_값이_포함된경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,1,2,3,4,5", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_지정된_범위를_벗어난경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "99");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호에_숫자가_아닌_값이_포함된경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호가_당첨번호와_중복된_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
