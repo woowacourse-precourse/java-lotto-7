@@ -5,6 +5,7 @@ import static lotto.service.lotto.constant.LottoConstant.MATCH_SIX_PRIZE;
 import lotto.common.exception.ExceptionEnum;
 import lotto.dto.PurchaseAmountUserInput;
 import lotto.dto.UserInput;
+import lotto.service.lotto.constant.LottoConstant;
 import lotto.view.exception.InputException;
 
 /**
@@ -12,8 +13,7 @@ import lotto.view.exception.InputException;
  * @since : 24. 10. 31.
  */
 public class PurchaseAmountCommand implements ValidateCommand {
-  private static final int AMOUNT_UNIT = 1000;
-  private static final long AMOUNT_MAXIMUM = (Long.MAX_VALUE / MATCH_SIX_PRIZE) * AMOUNT_UNIT;
+  private static final long AMOUNT_MAXIMUM = (Long.MAX_VALUE / MATCH_SIX_PRIZE) * LottoConstant.AMOUNT_UNIT;
   private static final String ASK = "\n구입금액을 입력해 주세요.";
 
   @Override
@@ -30,7 +30,7 @@ public class PurchaseAmountCommand implements ValidateCommand {
     validateBlank(input);
     validateWhiteSpace(input);
     long value = validateLongRange(input,
-        AMOUNT_UNIT,
+        LottoConstant.AMOUNT_UNIT,
         AMOUNT_MAXIMUM);
     validateUnit(value);
     return PurchaseAmountUserInput.from(value);
@@ -42,9 +42,9 @@ public class PurchaseAmountCommand implements ValidateCommand {
   }
 
   private void validateUnit(long value) {
-    if (value % AMOUNT_UNIT > 0){
+    if (value % LottoConstant.AMOUNT_UNIT > 0){
       throw new InputException(ExceptionEnum.PURCHASE_AMOUNT_NOT_IN_UNIT,
-          String.valueOf(AMOUNT_UNIT));
+          String.valueOf(LottoConstant.AMOUNT_UNIT));
     }
   }
 }

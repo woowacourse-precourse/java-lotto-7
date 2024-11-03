@@ -1,7 +1,7 @@
 package lotto.command.validate;
 
-import static lotto.common.constant.Lotto.LOTTO_MAXIMUM_NUMBER;
-import static lotto.common.constant.Lotto.LOTTO_MINIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MAXIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MINIMUM_NUMBER;
 
 import lotto.dto.BonusUserInput;
 import lotto.dto.UserInput;

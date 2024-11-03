@@ -1,8 +1,8 @@
 package lotto.command.validate;
 
-import static lotto.common.constant.Lotto.LOTTO_MAXIMUM_NUMBER;
-import static lotto.common.constant.Lotto.LOTTO_MINIMUM_NUMBER;
-import static lotto.common.constant.Lotto.LOTTO_NUMBER_COUNT;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MAXIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_MINIMUM_NUMBER;
+import static lotto.service.lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class LottoCommand implements ValidateCommand {
     validateCount(lottoNumbers);
     return lottoNumbers;
   }
-  
+
   private List<Integer> validateLottoNumbers(String[] rawNumbers) {
     List<Integer> numbers = new ArrayList<>();
     for (String rawNumber : rawNumbers) {
