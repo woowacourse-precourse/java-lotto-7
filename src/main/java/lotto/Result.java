@@ -1,75 +1,68 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Result {
-    private final Map<WinningCondition, Integer> winningDetails = new LinkedHashMap<>();
+    private static final String WINNING_DETAIL_FORMAT = "%s %d개%n";
+
+    private final Map<Winning, Integer> winningDetails;
 
     public Result() {
-        for(WinningCondition winningCondition : WinningCondition.values()) {
-            winningDetails.put(winningCondition, 0);
+        this.winningDetails = new LinkedHashMap<>();
+        for (Winning winning : Winning.values()) {
+            winningDetails.put(winning, 0);
         }
     }
 
-    public Map<WinningCondition, Integer> getWinningDetails() {
+    public Map<Winning, Integer> getWinningDetails() {
         return Collections.unmodifiableMap(winningDetails);
     }
 
     public String getFormattedWinningDetails() {
-        StringBuilder result = new StringBuilder();
-        for(Map.Entry<WinningCondition, Integer> entry : winningDetails.entrySet()) {
-            result.append(entry.getKey().getPrintFormat());
-            result.append(entry.getValue() + "개");
-            result.append("\n");
-        }
-        return result.toString();
+        return winningDetails.entrySet().stream()
+                .map(entry -> getFormattedWinningDetail(entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining());
     }
 
-    public void calculate(WinningNumber winning, BonusNumber bonus, PurchasedLotto purchasedLotto) {
-        List<Integer> winningNumbers = winning.getNumbers();
-        int bonusNumber = bonus.get();
-        List<Lotto> purchasedLottos = purchasedLotto.get();
+    public void calculate(WinningNumber winningNumber, BonusNumber bonusNumber, PurchasedLotto purchasedLotto) {
+        for(Lotto lotto : purchasedLotto.get()) {
+            List<Integer> purchasedLottoNumber = new ArrayList<>(lotto.get());
+            boolean isBonusContained = purchasedLottoNumber.contains(bonusNumber.get());
 
-        for(Lotto lotto : purchasedLottos) {
-            List<Integer> lottoNumbers = new ArrayList<>(lotto.get());
-            boolean isBonusContained = lottoNumbers.contains(bonusNumber);
+            purchasedLottoNumber.retainAll(winningNumber.get());
+            int matchingCount = purchasedLottoNumber.size();
 
-            lottoNumbers.retainAll(winningNumbers);
-            int matchingCount = lottoNumbers.size();
-
-            WinningCondition satisfiedWinningCondition = getSatisfiedWinningCriteria(matchingCount, isBonusContained);
-            if(satisfiedWinningCondition != null) {
-                winningDetails.put(satisfiedWinningCondition, winningDetails.get(satisfiedWinningCondition) + 1);
+            Winning satisfiedWinning = getSatisfiedWinning(matchingCount, isBonusContained);
+            if(satisfiedWinning != null) {
+                winningDetails.put(satisfiedWinning, winningDetails.get(satisfiedWinning) + 1);
             }
         }
     }
 
     public long calculateTotalPrize() {
         return winningDetails.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().calculatePrize(entry.getValue()))
+                .mapToLong(entry -> entry.getKey()
+                        .calculatePrize(entry.getValue()))
                 .sum();
     }
 
-    private WinningCondition getSatisfiedWinningCriteria(int matchingCount, boolean isBonusContained) {
-        if (matchingCount == 6) {
-            return WinningCondition.FIRST;
-        }
-        if (matchingCount == 5 && isBonusContained) {
-            return WinningCondition.SECOND;
-        }
-        if (matchingCount == 5) {
-            return WinningCondition.THIRD;
-        }
-        if (matchingCount == 4) {
-            return WinningCondition.FOURTH;
-        }
-        if (matchingCount == 3) {
-            return WinningCondition.FIFTH;
-        }
+    private String getFormattedWinningDetail(Winning condition, Integer count) {
+        return String.format(WINNING_DETAIL_FORMAT, condition.getPrintFormat(), count);
+    }
+
+    private Winning getSatisfiedWinning(int matchingCount, boolean isBonusContained) {
+        if (matchingCount == FIRST_MATCHING_COUNT) return Winning.FIRST;
+        if (matchingCount == SECOND_MATCHING_COUNT && isBonusContained) return Winning.SECOND;
+        if (matchingCount == THIRD_MATCHING_COUNT) return Winning.THIRD;
+        if (matchingCount == FOURTH_MATCHING_COUNT) return Winning.FOURTH;
+        if (matchingCount == FIFTH_MATCHING_COUNT) return Winning.FIFTH;
         return null;
     }
 }

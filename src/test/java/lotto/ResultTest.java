@@ -29,12 +29,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 1);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 1);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 5개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 2등에 당첨된다.")
@@ -44,12 +44,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 1);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 1);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 5개 일치할 경우 3등에 당첨된다.")
@@ -59,12 +59,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 1);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 1);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 4개 일치할 경우 4등에 당첨된다.")
@@ -74,12 +74,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 1);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 1);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 4개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 4등에 당첨된다.")
@@ -89,12 +89,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 1);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 1);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 3개 일치할 경우 5등에 당첨된다.")
@@ -104,12 +104,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 1);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 1);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 3개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 5등에 당첨된다.")
@@ -119,12 +119,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 1);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 1);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 2개 일치할 경우 당첨되지 않는다.")
@@ -134,12 +134,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 2개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 당첨되지 않는다.")
@@ -149,12 +149,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 1개 일치할 경우 당첨되지 않는다.")
@@ -164,12 +164,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 1개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 당첨되지 않는다.")
@@ -179,12 +179,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 0개 일치할 경우 당첨되지 않는다.")
@@ -194,12 +194,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("당첨 번호와 로또 번호가 0개 일치하고 보너스 번호가 로또 번호에 포함되어 있을 경우 당첨되지 않는다.")
@@ -209,12 +209,12 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 0);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 0);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 0);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 0);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 0);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 0);
+        assertEquals(winningDetails.get(Winning.SECOND), 0);
+        assertEquals(winningDetails.get(Winning.THIRD), 0);
+        assertEquals(winningDetails.get(Winning.FOURTH), 0);
+        assertEquals(winningDetails.get(Winning.FIFTH), 0);
     }
 
     @DisplayName("여러 등수에 동시에 당첨될 수 있다.")
@@ -240,11 +240,11 @@ class ResultTest {
 
         result.calculate(winningNumber, bonusNumber, purchasedLotto);
 
-        Map<WinningCondition, Integer> winningDetails = result.getWinningDetails();
-        assertEquals(winningDetails.get(WinningCondition.FIRST), 2);
-        assertEquals(winningDetails.get(WinningCondition.SECOND), 1);
-        assertEquals(winningDetails.get(WinningCondition.THIRD), 1);
-        assertEquals(winningDetails.get(WinningCondition.FOURTH), 2);
-        assertEquals(winningDetails.get(WinningCondition.FIFTH), 2);
+        Map<Winning, Integer> winningDetails = result.getWinningDetails();
+        assertEquals(winningDetails.get(Winning.FIRST), 2);
+        assertEquals(winningDetails.get(Winning.SECOND), 1);
+        assertEquals(winningDetails.get(Winning.THIRD), 1);
+        assertEquals(winningDetails.get(Winning.FOURTH), 2);
+        assertEquals(winningDetails.get(Winning.FIFTH), 2);
     }
 }
