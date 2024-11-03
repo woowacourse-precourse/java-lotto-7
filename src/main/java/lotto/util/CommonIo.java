@@ -3,7 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Console;
 
 public class CommonIo {
-    public void printMessage(String message) {
+    public void printMessage(Object message) {
         System.out.println(message);
     }
 
