@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class ResultCalculator {
     public static void calculateResult(Data data) {
@@ -15,6 +16,16 @@ public class ResultCalculator {
                 data.getResultAt(rank).increaseWonCount();
             }
         }
+    }
+
+    public static double calculateRateOfReturn(Data data) {
+        double total = 0;
+        for (Result result : data.getResults()) {
+            total += result.getWonCount() * result.getRank().getPrize();
+        }
+        double rate = (total / data.getAmount()) * 100;
+        rate = Math.round(rate * 10.0) / 10.0;
+        return rate;
     }
 
     private static boolean checkMatchedBonus(UserPick userpick, Lotto ticket) {
@@ -35,19 +46,19 @@ public class ResultCalculator {
 
     private static int getRankByMatchedNumbers(int matchedCount, boolean matchedBonus) {
         if (matchedCount == 6) {
-            return 0;
+            return 4;
         }
         if (matchedCount == 5 && matchedBonus == true) {
-            return 1;
+            return 3;
         }
         if (matchedCount == 5) {
             return 2;
         }
         if (matchedCount == 4) {
-            return 3;
+            return 1;
         }
         if (matchedCount == 3) {
-            return 4;
+            return 0;
         }
         return -1;
     }

@@ -1,25 +1,20 @@
-// 순위에 맞게 당첨금 반환하는 메서드
-// 당첨된 로또 개수 저장
-//- FIFTH = 5,000
-//- FOURTH = 50,000
-//- THIRD = 1,500,500
-//- SECOND = 30,000,000
-//- FIRST = 2,000,000,000
-
 package lotto;
 
 public enum Rank {
-    FIFTH(5000),
-    FOURTH(50000),
-    THIRD(1500500),
-    SECOND(30000000),
-    FIRST(2000000000);
+    FIFTH(5000, 3),
+    FOURTH(50000, 4),
+    THIRD(1500000, 5),
+    SECOND(30000000, 5),
+    FIRST(2000000000, 6);
 
     private final int prize;
+    private final int matchCount;
 
-    Rank(int prize) {
+    Rank(int prize, int matchCount) {
         this.prize = prize;
+        this.matchCount = matchCount;
     }
 
     public int getPrize() { return prize; }
+    public int getMatchCount() { return matchCount; }
 }
