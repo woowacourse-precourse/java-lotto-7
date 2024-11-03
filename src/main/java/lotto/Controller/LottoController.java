@@ -41,8 +41,8 @@ public class LottoController {
             try {
                 OutputView.printPurchaseAmount();
                 purchasePrice = InputView.readPurchaseAmount();
-                isValid = true; // 입력이 유효할 경우 루프 종료
                 this.countLotto(purchasePrice);
+                isValid = true;
             } catch (IllegalArgumentException e) {
                 if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                     OutputView.printError(ErrorMessage.NOT_DIV.getError());
