@@ -10,7 +10,7 @@ import lotto.domain.LottoMachine;
 import lotto.domain.factory.NumberLottoFactory;
 import lotto.domain.score.Score;
 import lotto.view.InputViewImpl;
-import lotto.view.OutputView;
+import lotto.view.OutputViewImpl;
 
 public class Application {
     public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class Application {
         LottoController lottoController = new LottoController(
                 lottoInputManger,
                 lottoMachine,
-                OutputView.getInstance());
+                OutputViewImpl.getInstance());
 
         lottoController.play();
     }
