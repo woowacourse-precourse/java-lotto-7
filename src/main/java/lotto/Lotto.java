@@ -8,8 +8,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     public List<Integer> getNumbers() {
