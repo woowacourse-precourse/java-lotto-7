@@ -14,10 +14,8 @@ public class LottoGameDisplay {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                String rawMoney = Console.readLine();
-                LottoGameValidator.checkIsNumeric(rawMoney);
+                int money = inputNumber();
 
-                int money = Integer.parseInt(rawMoney);
                 LottoGameValidator.checkMoneyValid(money);
 
                 return money;
