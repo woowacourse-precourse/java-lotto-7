@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.Lotto.LOTTO_NUMBER_RANGE_REGEX;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +10,17 @@ public class Game {
     private static final int[] PRIZE_AMOUNTS = {5000, 50000, 1500000, 30000000, 2000000000};
 
     private final List<Lotto> lottos;
-    private List<Integer> winningNumbers;
+    private Lotto winningLotto;
     private int bonusNumber;
     private List<Lotto> winningLottos;
 
-    public Game(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public Game(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         validateLottoMaxCount(lottos);
+        validateRange(bonusNumber);
+        validateDuplicate(winningLotto, bonusNumber);
+
         this.lottos = lottos;
-        this.winningNumbers = winningNumbers;
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
         this.winningLottos = new ArrayList<>();
     }
@@ -26,12 +31,12 @@ public class Game {
     }
 
     // 당첨 결과 비교
-    public int[] compareNumbers(List<Integer> winningNumbers) {
+    public int[] compareNumbers(Lotto winningLotto) {
         int[] results = new int[5];
 
         for (Lotto lotto : lottos) {
             int correctCount = (int) lotto.getNumbers().stream()
-                    .filter(winningNumbers::contains)
+                    .filter(winningLotto.getNumbers()::contains)
                     .count();
 
             updateResults(results, correctCount, lotto);
@@ -69,11 +74,25 @@ public class Game {
         return (long) revenue * 100 / purchaseAmount;
     }
 
-
-    // 등록된 로또 최대 개수 검증
     private void validateLottoMaxCount(List<Lotto> lottos) {
         if (lottos.size() > LOTTO_MAX_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또는 최대 100개까지만 발행할 수 있습니다.");
+        }
+    }
+
+    public void validateRange(int bonusNumber) {
+        Integer parsedNumber = bonusNumber;
+        if (!parsedNumber.toString().matches(LOTTO_NUMBER_RANGE_REGEX)) {
+            throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45까지 입니다.");
+        }
+    }
+
+    public void validateDuplicate(Lotto winningLotto, int bonusNumber) {
+        boolean hasDuplicate = winningLotto.getNumbers().stream()
+                .anyMatch(number -> number == bonusNumber);
+
+        if (hasDuplicate) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
