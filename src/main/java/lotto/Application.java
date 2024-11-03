@@ -14,25 +14,28 @@ import static lotto.constant.*;
 
 public class Application {
     public static void main(String[] args) {
-        int lottoTickets = inputPayment();
-        List<Lotto> lottos = drawLottos(lottoTickets);
-        printLottos(lottoTickets, lottos);
-        List<Integer> winningNumbers =  setWinningNumbers();
-        int bonusNumber = setBonusNumber(winningNumbers);
-        Map<LottoRank, Integer> rankCounts = matchLottos(lottos, winningNumbers, bonusNumber);
-
-        for (LottoRank rank : LottoRank.values()) {
-            System.out.println(rank + " (" + rank.getPrize() + "원) - " + rankCounts.get(rank) + "개");
+        try {
+            int lottoTickets = inputPayment();
+            List<Lotto> lottos = drawLottos(lottoTickets);
+            printLottos(lottoTickets, lottos);
+            List<Integer> winningNumbers =  setWinningNumbers();
+            int bonusNumber = setBonusNumber(winningNumbers);
+            Map<LottoRank, Integer> rankCounts = matchLottos(lottos, winningNumbers, bonusNumber);
+            printResult(rankCounts, lottoTickets);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-
-
     }
 
     public static int inputPayment(){
         System.out.println(PAYMENT_MASSAGE);
-        int payment = Integer.parseInt(Console.readLine());
-        validatePayment(payment);
-        return payment/LOTTOPRICE;
+        try {
+            int payment = Integer.parseInt(Console.readLine());
+            validatePayment(payment);
+            return payment/LOTTOPRICE;
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(INTEGER_ERROR);
+        }
     }
 
     public static void validatePayment(int payment){
@@ -145,8 +148,43 @@ public class Application {
         return LottoRank.valueOf(matchCount, matchBonus);
     }
 
-    public static void printResult (List<LottoRank> lottoRanks) {
-        System.out.println("당첨 통계");
+    public static void printResult (Map<LottoRank, Integer> rankCount, int lottoTickets) {
+        String[] prizes = new String[LottoRank.values().length];
+        System.out.println(RESULT_STATISTICS);
+        System.out.println(LINE);
+        int totalPrize = calculateRank(rankCount, prizes);
+        printPrizes(prizes);
+        double profitRate = (double) totalPrize / (lottoTickets * LOTTOPRICE) * PERCENT;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
 
+    public static int calculateRank(Map<LottoRank, Integer> rankCount, String[] prizes) {
+        int i = 0;
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            int count = rankCount.get(rank);
+            totalPrize += getRankPrize(rank, count);
+            prizes[i] = formatPrize(rank, count);
+            i++;
+        }
+        return totalPrize;
+    }
+
+    public static int getRankPrize(LottoRank rank, int count) {
+        return count * rank.getPrize();
+    }
+
+    public static String formatPrize(LottoRank rank, int count) {
+        String formattedPrize = String.format("%,d", rank.getPrize());
+        if (rank.name().equals("SECOND")) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), formattedPrize, count);
+        }
+        return String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedPrize, count);
+    }
+
+    public static void printPrizes(String[] prizes) {
+        for (int i = prizes.length - 2; i >= 0; i-- ){
+            System.out.println(prizes[i]);
+        }
     }
 }
