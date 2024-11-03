@@ -16,14 +16,16 @@ public class LottoController {
     }
 
     public void playLotto() {
-        handlePurchasePrice();
+        int purchasePrise = handlePurchasePrice();
     }
 
-    private void handlePurchasePrice() {
+    private int handlePurchasePrice() {
         output.printPurchasePriceInputPrompt();
         String purchasePrice = input.inputString();
 
         validatePurchasePriceInput(purchasePrice);
+
+        return Integer.parseInt(purchasePrice);
     }
 
     private void validatePurchasePriceInput(String input) {
