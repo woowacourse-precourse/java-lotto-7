@@ -14,7 +14,7 @@ public class Application {
         Integer count = amount/1000;
         Lotto winNumberLotto = input.getWinNumberLotto();
         WinLotto winLotto = input.getBonusNumber(winNumberLotto);
-        LottoService lottoService = new LottoService(new LottoGenerator(new LottoStrategyRandom()));
+        LottoService lottoService = new LottoService(new LottoGenerator(new RandomStrategy()));
         Lottos lottos = lottoService.createLottos(count);
 
         System.out.println(count+"개를 구매했습니다.");

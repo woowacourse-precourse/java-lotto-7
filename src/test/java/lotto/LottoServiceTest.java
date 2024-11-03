@@ -2,7 +2,6 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,7 @@ class LottoServiceTest {
 
     @BeforeEach
     void setUp() {
-        LottoGenerator lottoGenerator = new LottoGenerator(new LottoStrategyRandom());
+        LottoGenerator lottoGenerator = new LottoGenerator(new RandomStrategy());
         lottoService = new LottoService(lottoGenerator);
     }
 
