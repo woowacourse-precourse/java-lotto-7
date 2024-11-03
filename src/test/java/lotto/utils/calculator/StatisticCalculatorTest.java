@@ -129,7 +129,7 @@ public class StatisticCalculatorTest {
     @Test
     @DisplayName("통계 계산 - 모든 번호 일치")
     void 통계_계산_모든번호일치() {
-        // given
+        //given
         int validMoney = 2000;
         List<Lotto> validLottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
@@ -141,17 +141,17 @@ public class StatisticCalculatorTest {
 
         WinningNumber winningNumber = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
 
-        // when
+        //when
         List<Integer> statistics = StatisticCalculator.calculateStatistics(user, winningNumber);
 
-        // Then
+        //then
         assertThat(statistics).containsExactly(0, 0, 0, 0, 1);
     }
 
     @Test
     @DisplayName("통계 계산 - 일치하는 번호가 없는 경우")
     void 통계_계산_번호불일치() {
-        // given
+        //given
         int validMoney = 2000;
         List<Lotto> validLottos = Arrays.asList(
                 new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)),
@@ -163,10 +163,10 @@ public class StatisticCalculatorTest {
 
         WinningNumber winningNumber = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new BonusNumber(7));
 
-        // when
+        //when
         List<Integer> statistics = StatisticCalculator.calculateStatistics(user, winningNumber);
 
-        // Then
+        //then
         assertThat(statistics).containsExactly(0, 0, 0, 0, 0);
     }
 }

@@ -40,6 +40,7 @@ public class WinningNumberTest {
             assertThat("[ERROR] 보너스 번호는 당첨 번호와 중복된 수 없이 입력하셔야 합니다.").isEqualTo(e.getMessage());
         }
 
+        //then
         assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber))
                 .isInstanceOf(LottoException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATE_WINNING_LOTTO.getErrorMessage());

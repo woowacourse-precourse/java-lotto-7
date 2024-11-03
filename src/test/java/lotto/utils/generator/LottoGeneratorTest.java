@@ -10,13 +10,13 @@ public class LottoGeneratorTest {
     @Test
     @DisplayName("요청한 개수 생성 검증")
     void 요청_개수_로또_생성_검증() {
-        // given
+        //given
         int count = 5;
 
-        // when
+        //when
         Lottos lottos = LottoGenerator.generateLottos(count);
 
-        // then
+        //then
         assertThat(lottos.getLottos().size()).isEqualTo(5);
     }
 }

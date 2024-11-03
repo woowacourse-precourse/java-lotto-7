@@ -12,13 +12,13 @@ public class PurchaseCalculatorTest {
     @Test
     @DisplayName("정상 금액 로또 수 계산 검증")
     void 정상_금액_로또_수_계산_검증() {
-        // given
+        //given
         Money money = new Money(5000);
 
-        // when
+        //when
         int lottoCount = PurchaseCalculator.calculateLottoCount(money);
 
-        // Then
+        //then
         assertThat(lottoCount).isEqualTo(5);
     }
 }

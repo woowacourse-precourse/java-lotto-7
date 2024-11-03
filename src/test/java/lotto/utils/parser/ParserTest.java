@@ -46,13 +46,13 @@ public class ParserTest {
     @Test
     @DisplayName("구매 금액 문자열을 정수로 변환")
     void 문자열_정수_변환_정상() {
-        // given
+        //given
         String purchaseAmount = "1000";
 
-        // when
+        //when
         int result = Parser.parsingPurchaseAmount(purchaseAmount);
 
-        // then
+        //then
         assertThat(result).isEqualTo(1000);
     }
 
