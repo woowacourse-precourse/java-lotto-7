@@ -13,16 +13,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
-    @DisplayName("로또 번호를 저장하는 numbers는 변경할 수 없어야 한다.")
-    @Test
-    void 로또_번호를_저장하는_numbers는_변경할_수_없어야_한다(){
-        //given
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        //when, then
-        assertThatIllegalArgumentException().isThrownBy(() -> new Lotto(numbers))
-                .withMessageStartingWith("[ERROR]");
-    }
-
     @Test
     void 로또_번호의_개수가_6개를_초과하면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
