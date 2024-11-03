@@ -1,4 +1,4 @@
-package lotto.domain.generator;
+package lotto.domain.utility.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

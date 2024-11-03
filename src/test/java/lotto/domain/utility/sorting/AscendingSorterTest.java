@@ -1,4 +1,4 @@
-package lotto.domain.sorting;
+package lotto.domain.utility.sorting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -2,8 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.generator.RandomNumberListGenerator;
-import lotto.domain.sorting.Sorter;
+import lotto.domain.utility.generator.RandomNumberListGenerator;
+import lotto.domain.utility.sorting.Sorter;
 
 public class LottoGenerator {
 

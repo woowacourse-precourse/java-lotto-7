@@ -1,9 +1,8 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigInteger;
-import lotto.domain.lotto.Investment;
 import org.junit.jupiter.api.Test;
 
 class InvestmentTest {

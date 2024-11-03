@@ -1,4 +1,4 @@
-package lotto.domain.converter;
+package lotto.domain.utility.converter;
 
 public class Converter {
 

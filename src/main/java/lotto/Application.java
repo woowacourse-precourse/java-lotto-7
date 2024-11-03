@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.domain.Splitter.CustomSplitter;
-import lotto.domain.converter.Converter;
+import lotto.domain.utility.Splitter.CustomSplitter;
+import lotto.domain.utility.converter.Converter;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.output.ConsoleOutputView;
 
