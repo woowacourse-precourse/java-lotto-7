@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputHandler {
-    public int priceInput() {
+    public int budgetInput() {
         while (true) {
             try {
                 int price = Integer.parseInt(Console.readLine());
-                priceInputValidator(price);
+                budgetInputValidator(price);
                 return price;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -18,7 +18,7 @@ public class InputHandler {
         }
     }
 
-    public void priceInputValidator(int price) {
+    public void budgetInputValidator(int price) {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 가능합니다.");
         }
