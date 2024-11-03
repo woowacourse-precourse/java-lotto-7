@@ -40,4 +40,8 @@ public class Lottos {
         return lottos;
     }
 
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
 }
