@@ -2,11 +2,11 @@ package lotto.model;
 
 import static lotto.util.validator.LottoNumberValidator.validateDuplicated;
 
-public class BonusNumber {
+public class LottoBonusNumber {
 
     private final Integer number;
 
-    public BonusNumber(Lotto lotto, Integer number) {
+    public LottoBonusNumber(Lotto lotto, Integer number) {
         validateDuplicated(lotto, number);
         this.number = number;
     }

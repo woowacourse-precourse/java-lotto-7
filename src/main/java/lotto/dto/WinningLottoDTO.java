@@ -1,15 +1,15 @@
 package lotto.dto;
 
 import java.util.List;
-import lotto.model.BonusNumber;
+import lotto.model.LottoBonusNumber;
 import lotto.model.Lotto;
 
 public class WinningLottoDTO {
 
     private final Lotto winningNumbers;
-    private final BonusNumber bonusNumber;
+    private final LottoBonusNumber bonusNumber;
 
-    public WinningLottoDTO(Lotto winningNumbers, BonusNumber bonusNumber) {
+    public WinningLottoDTO(Lotto winningNumbers, LottoBonusNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
