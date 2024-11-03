@@ -4,7 +4,7 @@
 
 ### 📌 사용자 입력 처리
 
-- [ ] 로또 구입 금액을 입력 받는다.
+- [x] 로또 구입 금액을 입력 받는다.
     - [ ] 구입 금액은 1,000원 단위로 입력 받는다.
     - [ ] 1,000원으로 떨어지지 않는 경우 예외처리한다.
 
@@ -31,7 +31,7 @@
 
 <br>
 
-- [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.   
+- [x] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.   
   <br>
 
 ---
