@@ -21,11 +21,12 @@ public class LottoController {
         int purchaseAmount = InputParser.parsePurchaseAmount(InputView.getLottoPurchaseAmount());
         List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
 
-        OutputView.printLottoNumbers(lottos); // 확인차 만든 메서드 - 삭제 예정
-
         List<Integer> winningNumbers = InputParser.parseWinningNumbers(InputView.getWinningNumbers());
         int bonusNumber = InputParser.parseBonusNumber(InputView.getBonusNumber());
 
         int[] winningCounts = lottoService.getWinningCount(lottos, winningNumbers, bonusNumber);
+        double profitRate = lottoService.calculateProfitRate(winningCounts, purchaseAmount);
+
+        OutputView.printLottoResult(winningCounts, profitRate);
     }
 }
