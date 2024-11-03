@@ -23,6 +23,29 @@ public class LotteryMachine {
         Lotto lotto = new Lotto(pickedNumbers);
         user.buyLotto(lotto);
     }
+    public void checkLottery(User user, Result result) {
+        Lotto winningLotto = result.getLotto();
+        int bonusNumber = result.getBonusNumber();
+        LottoResult lottoResult = user.getLottoResult();
+        user.getPurchasedLotto().forEach(lotto -> {
+            LottoRank lottoRank = findLottoRank(winningLotto, lotto, bonusNumber);
+            lottoResult.addRank(lottoRank);
+        });
+    }
+    private LottoRank findLottoRank(Lotto winningLotto, Lotto purchasedLotto, int bonusNumber) {
+        List<Integer> winningLottoNumbers = winningLotto.getNumbers();
+        List<Integer> purchasedLottoNumbers = purchasedLotto.getNumbers();
+        int sameNumberCount = (int) getSameNumberCount(winningLottoNumbers,purchasedLottoNumbers);
+        boolean haveBonusNumber = isContainBonusNumber(purchasedLottoNumbers,bonusNumber);
+        return LottoRank.fromSameNumberCount(sameNumberCount,haveBonusNumber);
+    }
+    private long getSameNumberCount(List<Integer> winningLottoNumbers,List<Integer> purchasedLottoNumbers) {
+        return purchasedLottoNumbers.stream().filter(purchasedLottoNumber -> winningLottoNumbers.stream().anyMatch(Predicate.isEqual(purchasedLottoNumber)))
+                .count();
+    }
+    private boolean isContainBonusNumber(List<Integer> purchasedLottoNumbers, int bonusNumber) {
+        return purchasedLottoNumbers.contains(bonusNumber);
+    }
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if(purchaseAmount%LOTTO_TICKET_PRICE!=0)

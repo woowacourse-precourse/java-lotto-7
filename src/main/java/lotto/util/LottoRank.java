@@ -2,10 +2,7 @@ package lotto.util;
 
 import lotto.dto.Lotto;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 
 public enum LottoRank {
@@ -27,6 +24,7 @@ public enum LottoRank {
         countToLottoRank.put(1,NONE);
         countToLottoRank.put(0,NONE);
     }
+    public static final LottoRank[] allLottoRank = new LottoRank[] {LottoRank.FIRST,LottoRank.SECOND,LottoRank.THIRD,LottoRank.FOURTH,LottoRank.FIFTH};
 
     private final int rank;
     private final int sameNumberCount;
@@ -39,12 +37,13 @@ public enum LottoRank {
     }
 
     public static LottoRank fromSameNumberCount(int sameNumberCount, boolean haveBonusNumber) {
-        LottoRank lottoRank = countToLottoRank.get(sameNumberCount);
-        if(lottoRank==LottoRank.THIRD && haveBonusNumber)
-            lottoRank = LottoRank.FIFTH;
-        return lottoRank;
+        if(sameNumberCount > 6)
+            throw new IllegalArgumentException("[ERROR] 로또는 최대 6자리 숫자까지 같을 수 있습니다.");
+        LottoRank rank = countToLottoRank.get(sameNumberCount);
+        if(rank==LottoRank.THIRD && haveBonusNumber)
+            rank = LottoRank.SECOND;
+        return rank;
     }
-
     public int getPrize() {
         return prize;
     }

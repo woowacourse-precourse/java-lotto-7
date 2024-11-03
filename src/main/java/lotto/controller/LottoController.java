@@ -34,7 +34,8 @@ public class LottoController {
             try{
                 Result result = new Result(InputView.inputWinningNumbers());
                 result.setBonusNumber(InputView.inputBonusNumber());
-
+                lotteryMachine.checkLottery(user,result);
+                outputView.printLottoResult(user.getLottoResult());
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
