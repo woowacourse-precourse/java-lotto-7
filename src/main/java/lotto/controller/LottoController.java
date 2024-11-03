@@ -20,7 +20,7 @@ public class LottoController {
 
         WinningLotto winningLotto = inputWinningLotto();
         LottoPrizesRecord lottoPrizesRecord = new LottoPrizesRecord(lottoTickets.getLottoPrizesMap(winningLotto));
-        OutputView.printLottoPrizes(lottoPrizesRecord, lottoPurchaseAmount);
+        OutputView.printLottoResultsWithStatistics(lottoPrizesRecord, lottoPurchaseAmount);
     }
 
     private LottoPrice getLottoPurchaseAmount() {

@@ -30,10 +30,10 @@ public class OutputView {
         System.out.println(INPUT_LOTTO_BONUS_NUMBER_PREFIX);
     }
 
-    public static void printLottoPrizes(LottoPrizesRecord prizes, LottoPrice lottoPurchaseAmount) {
+    public static void printLottoResultsWithStatistics(LottoPrizesRecord prizes, LottoPrice lottoPurchaseAmount) {
         prizes.lottoPrizesMap().entrySet().stream()
                 .filter(entry -> entry.getKey() != LottoPrize.NO_PRIZE)
-                .sorted(Comparator.comparingLong(value -> value.getKey().getPrizeMoney()))
+                .sorted(Comparator.comparingInt(value -> value.getKey().getPrizeMoney()))
                 .forEach(entry -> System.out.println(entry.getKey() + " - " + entry.getValue() + "개"));
         System.out.println("총 수익률은 " + prizes.getRateOfReturn(lottoPurchaseAmount) + "%입니다.");
     }
