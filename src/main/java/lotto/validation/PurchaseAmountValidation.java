@@ -5,6 +5,9 @@ import lotto.exception.InvalidPurchaseAmountException;
 public final class PurchaseAmountValidation {
     public static final int PRICE_UNIT = 1000;
 
+    private PurchaseAmountValidation() {
+    }
+
     public static int purchaseAmountValidationAndGetLottoQuantity(final String inputAmount)
             throws IllegalArgumentException {
         InputValidation.isNotBlank(inputAmount);

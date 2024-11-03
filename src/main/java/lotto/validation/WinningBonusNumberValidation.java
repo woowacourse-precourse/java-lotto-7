@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import lotto.model.Lotto;
 
 public final class WinningBonusNumberValidation {
+    private WinningBonusNumberValidation() {
+    }
+
     public static Lotto getValidatedWinningNumbers(String winningNumber) throws IllegalArgumentException {
         InputValidation.isNotBlank(winningNumber);
         List<Integer> winningLottoNumbers = Arrays.stream(winningNumber.split(","))
