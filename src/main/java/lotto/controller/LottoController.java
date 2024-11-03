@@ -32,48 +32,72 @@ public class LottoController {
 
 
     public void run() {
+        Investment investment = purchaseLotto();
+        LottoBundle lottoBundle = generateLottoBundle(investment.getQuantity());
+        WinningNumbers winningNumbers = getWinningNumbers();
+        LottoResult lottoResult = calculateResults(lottoBundle, winningNumbers);
+        printResults(lottoResult, investment);
+    }
 
+    private Investment purchaseLotto() {
         outputView.printPurchaseGuide();
-
         int cost = Integer.parseInt(inputView.readLine());
-
         outputView.printNewLine();
+        return new Investment(BigInteger.valueOf(cost));
+    }
 
-        Investment investment = new Investment(BigInteger.valueOf(cost));
-
-        int lottoQuantity = investment.getQuantity();
-
-        outputView.printPurchasedAmount(lottoQuantity);
-
-        LottoBundle lottoBundle = new LottoBundle(new ArrayList<>(), new RandomIntegerListGenerator(),
-                new AscendingSorter());
-
-        lottoBundle.generate(lottoQuantity);
-
+    private LottoBundle generateLottoBundle(int quantity) {
+        outputView.printPurchasedAmount(quantity);
+        LottoBundle lottoBundle = new LottoBundle(
+                new ArrayList<>(),
+                new RandomIntegerListGenerator(),
+                new AscendingSorter()
+        );
+        lottoBundle.generate(quantity);
         outputView.printLottoTicket(lottoBundle.getLottoBundle());
+        return lottoBundle;
+    }
 
+    private WinningNumbers getWinningNumbers() {
+        List<LottoNumber> winningNumbers = inputWinningNumbers();
+        LottoNumber bonusNumber = inputBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private List<LottoNumber> inputWinningNumbers() {
         outputView.printWinningNumbersGuide();
-
         String input = inputView.readLine();
         outputView.printNewLine();
-        String[] splitInput = splitter.splitFrom(input);
-        List<LottoNumber> preWinningNumbers = new ArrayList<>();
-        for (String splitNumber : splitInput) {
-            preWinningNumbers.add(new LottoNumber(Integer.parseInt(splitNumber)));
-        }
 
+        return convertToLottoNumbers(input);
+    }
+
+    private List<LottoNumber> convertToLottoNumbers(String input) {
+        String[] splitInput = splitter.splitFrom(input);
+        List<LottoNumber> numbers = new ArrayList<>();
+        for (String splitNumber : splitInput) {
+            numbers.add(new LottoNumber(Integer.parseInt(splitNumber)));
+        }
+        return numbers;
+    }
+
+    private LottoNumber inputBonusNumber() {
         outputView.printBonusNumberGuide();
         LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(inputView.readLine()));
         outputView.printNewLine();
-        WinningNumbers winningNumbers = new WinningNumbers(preWinningNumbers, bonusNumber);
+        return bonusNumber;
+    }
 
+    private LottoResult calculateResults(LottoBundle lottoBundle, WinningNumbers winningNumbers) {
         outputView.printWinningStatistics();
         LottoResult lottoResult = new LottoResult(new EnumMap<>(Rank.class), BigInteger.ZERO);
-
         lottoResult.calculate(lottoBundle, winningNumbers);
+        return lottoResult;
+    }
+
+    private void printResults(LottoResult lottoResult, Investment investment) {
         Map<Rank, Integer> rankCount = lottoResult.getRankCount();
         outputView.printWinningResult(rankCount);
-
         outputView.printProfitRate(lottoResult.calculateReturnRate(investment));
     }
 }
