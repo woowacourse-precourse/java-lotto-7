@@ -12,10 +12,10 @@ class ProfitRateTest {
     void getProfitRate() {
         //given
         double purchaseAmount = 10000.0;
-        double totalProfit = 1000.0;
+        double totalPrize = 1000.0;
 
         //when
-        ProfitRate profitRate = ProfitRate.of(purchaseAmount, totalProfit);
+        ProfitRate profitRate = ProfitRate.of(purchaseAmount, totalPrize);
 
         //then
         assertThat(profitRate.getProfitRate()).isEqualTo(10.0);

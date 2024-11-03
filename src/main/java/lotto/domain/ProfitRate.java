@@ -7,8 +7,8 @@ public class ProfitRate {
         this.profitRate = profitRate;
     }
 
-    public static ProfitRate of(double purchaseAmount, double totalProfit) {
-        return new ProfitRate(totalProfit / purchaseAmount * 100.0);
+    public static ProfitRate of(double purchaseAmount, double totalPrize) {
+        return new ProfitRate(totalPrize / purchaseAmount * 100.0);
     }
 
     public double getProfitRate() {

@@ -34,7 +34,7 @@ public class LottoService {
     }
 
     public ProfitRate getProfitRate(Amount amount, WinningCount winningCount) {
-        return ProfitRate.of(amount.getAmount(), getTotalProfit(winningCount.getWinningCount()));
+        return ProfitRate.of(amount.getAmount(), getTotalPrize(winningCount.getWinningCount()));
     }
 
     private int getIssuedCount(Amount amount) {
@@ -74,13 +74,13 @@ public class LottoService {
         return prizeName;
     }
 
-    private int getTotalProfit(Map<Prize, Integer> winningCount) {
-        int totalProfit = 0;
+    private int getTotalPrize(Map<Prize, Integer> winningCount) {
+        int totalPrize = 0;
         for (Entry<Prize, Integer> entry : winningCount.entrySet()) {
             Prize prize = entry.getKey();
             Integer count = entry.getValue();
-            totalProfit += prize.calculateProfit(count);
+            totalPrize += prize.calculate(count);
         }
-        return totalProfit;
+        return totalPrize;
     }
 }
