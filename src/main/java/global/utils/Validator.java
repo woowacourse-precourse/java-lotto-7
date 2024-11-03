@@ -1,6 +1,9 @@
 package global.utils;
 
 import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
+import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
+import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
+import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
 
 import java.math.BigInteger;
@@ -16,7 +19,7 @@ public class Validator {
         plusSignValidate(inputPurchaseAmount);
         blankValidate(inputPurchaseAmount);
         decimalValidate(inputPurchaseAmount);
-        //TODO: 0이 앞에 붙어있는지 검사하는 내용 추가
+        notStartWithZeroValidate(inputPurchaseAmount);
         purchaseAmount = parsingValidate(inputPurchaseAmount);
         greaterThanZeroValidate(purchaseAmount);
         purchaseAmountUnitValidate(purchaseAmount);
@@ -31,23 +34,30 @@ public class Validator {
         }
     }
 
-    public static void validateWeeklyNumbers(String inputWeeklyNumbers) {
+    public static void validateSplitWeeklyNumbers(List<String> splitWeeklyNumbers) {
 
-        /*
-        TODO: 입력된 당첨 번호에 대한 유효성 검사
-        +) 쉼표로 나누기
-        1. 쉼표로 나눈 결과가 총 6개인지 검사
-        2. 나눈 내용에 공백이나 무입력이 있을 수 없다
-        3. 나눈 내용이 소수일 수 없다
-        4. 나눈 내용이 0보다 작거나 같을 수 없다
-        5. 나눈 내용에 +기호가 붙어있을 수 없다
-        6. 0이 앞에 붙어있을 수 없다
-        7. 나눈 내용이 숫자로 변환 가능해야한다
-        +) 변환
-        8. 각 숫자가 중복되지 않는지 검사
-        9. 각 숫자가 1부터 45 사이의 값인지 검사
-         */
+        for (String input : splitWeeklyNumbers) {
+            blankValidate(input);
+            decimalValidate(input);
+            plusSignValidate(input);
+            notStartWithZeroValidate(input);
+        }
 
+        splitWeeklyNumbersCountValidate(splitWeeklyNumbers);
+    }
+
+    public static void validateParsedWeeklyNumbers(List<Integer> parsedWeeklyNumbers) {
+        numbersDuplicateValidate(parsedWeeklyNumbers);
+        for (int num : parsedWeeklyNumbers) {
+            greaterThanZeroValidate(BigInteger.valueOf(num));
+            lottoNumberRangeValidate(num);
+        }
+    }
+
+    private static void notStartWithZeroValidate(String input) {
+        if (input.startsWith("0") && input.length() > 1) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "0으로 시작하는 값은 입력할 수 없습니다." + input);
+        }
     }
 
     private static void plusSignValidate(String input) {
@@ -91,6 +101,19 @@ public class Validator {
         if (!purchaseAmount.remainder(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
             throw new IllegalArgumentException(ERROR_MSG_PREFIX
                     + "%d원 단위의 입력만 가능합니다.".formatted(PURCHASE_AMOUNT_UNIT));
+        }
+    }
+
+    private static void splitWeeklyNumbersCountValidate(List<String> splitWeeklyNumbers) {
+        if (splitWeeklyNumbers.size() != LOTTO_NUMBER_COUNTS) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "6개의 숫자가 입력되어야 합니다.");
+        }
+    }
+
+    private static void lottoNumberRangeValidate(int number) {
+        if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX
+                    + "%d와 %d 사이의 값이 입력되어야 합니다.".formatted(LOTTO_START_NUMBER, LOTTO_END_NUMBER));
         }
     }
 }

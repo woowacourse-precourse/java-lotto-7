@@ -1,9 +1,9 @@
 package lotto.service;
 
+import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
 import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
+import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
-import static lotto.constant.LottoStatic.RANDOM_END_NUMBER;
-import static lotto.constant.LottoStatic.RANDOM_START_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigInteger;
@@ -37,7 +37,7 @@ public class LottoService {
     }
 
     public List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(RANDOM_START_NUMBER, RANDOM_END_NUMBER, LOTTO_NUMBER_COUNTS);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNTS);
     }
 
     public List<Lotto> getAll() {
