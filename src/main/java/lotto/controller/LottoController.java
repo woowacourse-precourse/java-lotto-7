@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import java.util.List;
+import lotto.domain.LottoResult;
 import lotto.service.LottoService;
 import lotto.utils.Parser;
 import lotto.validator.Validator;
@@ -21,7 +22,7 @@ public class LottoController {
 
     public void run(){
         purchaseLotto();
-        setWinningLotto(); // todo.
+        setWinningLotto();
         getLottoResult(); // todo.
     }
 
@@ -37,5 +38,16 @@ public class LottoController {
             outputView.printLottoNumber(numbers);
         }
     }
+
+    private void setWinningLotto(){
+        List<Integer> winningNumbers = Parser.convertStringToList(inputView.readWinningNumber());
+        Integer bonusNumber = Parser.convertStringToInteger(inputView.readBonusNumber());
+
+        Validator.validateBonusNumber(bonusNumber);
+        Validator.validateBonusNumberInWinningNumber(winningNumbers, bonusNumber);
+
+        lottoService.setNumbers(winningNumbers, bonusNumber);
+    }
+
 
 }

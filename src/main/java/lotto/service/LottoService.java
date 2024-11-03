@@ -10,6 +10,9 @@ public class LottoService {
     private final static Integer LOTTO_RANGE_START = 1;
     private final static Integer LOTTO_RANGE_END = 45;
 
+    private List<Integer> winningNumbers;
+    private Integer bonusNumber;
+
     private List<Lotto> publishedLottos = new ArrayList<>();
 
 
@@ -18,6 +21,11 @@ public class LottoService {
         publishedLottos.add(newLotto);
 
         return newLotto.getSortedNumbers();
+    }
+
+    public void setNumbers(List<Integer> winningNumbers, Integer bonusNumber){
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
 }
