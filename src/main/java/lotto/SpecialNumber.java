@@ -26,4 +26,8 @@ public class SpecialNumber {
         }
 
     }
+
+    public int getSpecialNumber(){
+        return this.specialNumber;
+    }
 }
