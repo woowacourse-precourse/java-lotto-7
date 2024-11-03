@@ -10,6 +10,7 @@ import lotto.utils.TicketFormatter;
 import lotto.utils.TicketSorter;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -52,8 +53,20 @@ public class Application {
         int parsedBonusNumber = BonusNumberInputParser.parse(bonusNumberInput.input());
         Bonus bonus = new Bonus(parsedBonusNumber, lotto);
 
-        //당첨 통계 출력
+        //당첨 통계 헤더 출력
         outputView.printWinningStatisticsHeader();
 
+        // 당첨 결과 계산
+        MatchCounter matchCounter = new MatchCounter(lotto, bonus);
+        MatchResults matchResults = matchCounter.calculateMatchResults(sortedIssuedTickets);
+
+        // 등수별 당첨 개수 집계
+        RankCounter rankCounter = new RankCounter();
+        Map<Rank, Integer> rankCounts = rankCounter.countRanks(matchResults);
+
+        // 당첨 내역 출력
+        for (Rank rank : Rank.values()) {
+            outputView.printRankStatistics(rank, rankCounts.get(rank));
+        }
     }
 }

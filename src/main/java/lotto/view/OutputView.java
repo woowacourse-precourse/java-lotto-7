@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Rank;
 import lotto.dto.FormattedTickets;
 
 public class OutputView {
@@ -34,5 +35,13 @@ public class OutputView {
     public void printWinningStatisticsHeader() {
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(STATISTICS_DIVIDER);
+    }
+
+    public void printRankStatistics(Rank rank, int count) {
+        System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                rank.getMatchCount(),
+                rank.hasBonus() ? ", 보너스 볼 일치" : "",
+                rank.getPrize(),
+                count);
     }
 }
