@@ -1,5 +1,6 @@
-package lotto;
+package lotto.Model;
 
+import lotto.Validation.NumberValidation;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        NumberValidation.NumberNotDuplicate(numbers);
+        NumberValidation.NumberRange(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +20,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> GetNumbers() {
+        return numbers;
+    }
 }
