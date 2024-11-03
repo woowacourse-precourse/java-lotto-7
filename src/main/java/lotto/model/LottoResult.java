@@ -25,13 +25,17 @@ public class LottoResult {
                 .map(lotto -> LottoRank.from(prizeLotto, lotto))
                 .filter(Objects::nonNull)
                 .toList();
-        int inputMoney = lottos.size() * 1000;
+        int spendMoney = lottos.size() * 1000;
         long totalPrizeMoney = getTotalPrizeMoney(lottoRanks);
-        double earningRate = (double) (totalPrizeMoney / inputMoney) * 100;
+        double earningRate = calculateEarningRate(totalPrizeMoney, spendMoney);
         return new LottoResult(lottoRanks, earningRate);
     }
 
     private static long getTotalPrizeMoney(List<LottoRank> lottoRanks) {
         return lottoRanks.stream().mapToLong(LottoRank::getPrizeMoney).sum();
+    }
+
+    private static double calculateEarningRate(long totalPrizeMoney, int spendMoney) {
+        return ((double) totalPrizeMoney / (double) spendMoney) * 100;
     }
 }

@@ -29,6 +29,7 @@ public class LottoApplication {
         outputView.printLottos(lottos);
         PrizeLotto prizeLotto = getValidatedPrizeLotto();
         LottoResult lottoResult = LottoResult.from(prizeLotto, lottos);
+        outputView.printLottoResult(lottoResult);
     }
 
     private Budget getValidatedBudget() {
