@@ -25,8 +25,14 @@ public class LottoService {
     }
 
 
-    public void bonusNumberValidator(String bonusNumber) {
-
+    public BonusNumber bonusNumberGenerator(String bonusNumber) {
+        bonusNumbersNotNullValidator(bonusNumber);
+        return bonusNumberGenerator(bonusNumber);
+    }
+    private void bonusNumbersNotNullValidator(String bonusNumber) {
+        if (bonusNumber.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 입력되지 않았습니다.");
+        }
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers, BonusNumber bonusNumber) {
