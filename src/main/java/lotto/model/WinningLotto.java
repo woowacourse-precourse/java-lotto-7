@@ -16,4 +16,14 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.");
         }
     }
+
+    public int countMatchedLottoNumber(Lotto purchasedLotto) {
+        return (int) purchasedLotto.getNumbers().stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean isMatchBonusNumber(Lotto purchasedLotto) {
+        return purchasedLotto.getNumbers().contains(bonusNumber.getNumber());
+    }
 }
