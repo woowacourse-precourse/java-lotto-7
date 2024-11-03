@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.lotto_result.DrawNumbersBuilder;
+import lotto.model.lotto_result.DrawNumbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -111,10 +111,7 @@ public class DrawNumbersTest {
     }
 
     private static void buildLottoResult(String winningNumbers, String bonusNumber) {
-        new DrawNumbersBuilder()
-                .winningNumbers(winningNumbers)
-                .bonusNumber(bonusNumber)
-                .build();
+        DrawNumbers drawNumbers = new DrawNumbers(winningNumbers, bonusNumber);
     }
 
     private static Arguments makeArguments(String winningNumber, String bonusNumber) {
