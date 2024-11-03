@@ -23,7 +23,7 @@ public enum LottoResult {
         return prize;
     }
 
-    public static boolean isBonusMatch(int matchCount, boolean bonusMatch) {
+    public static boolean isBonusNumberMatched(int matchCount, boolean bonusMatch) {
         return matchCount == 5 && bonusMatch;
     }
 }

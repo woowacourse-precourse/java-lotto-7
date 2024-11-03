@@ -26,8 +26,8 @@ class LottoResultTest {
 
     @Test
     void 보너스_매치_확인_테스트() {
-        assertThat(LottoResult.isBonusMatch(5, true)).isTrue();
-        assertThat(LottoResult.isBonusMatch(5, false)).isFalse();
-        assertThat(LottoResult.isBonusMatch(4, true)).isFalse();
+        assertThat(LottoResult.isBonusNumberMatched(5, true)).isTrue();
+        assertThat(LottoResult.isBonusNumberMatched(5, false)).isFalse();
+        assertThat(LottoResult.isBonusNumberMatched(4, true)).isFalse();
     }
 }

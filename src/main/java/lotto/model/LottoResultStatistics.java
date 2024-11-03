@@ -26,7 +26,7 @@ public class LottoResultStatistics {
 
     public LottoResult determineResult(int matchCount, boolean bonusMatch) {
         if (matchCount == LottoResult.SIX_NUMBER_MATCH.lottoMatchCount()) return LottoResult.SIX_NUMBER_MATCH;
-        if (LottoResult.isBonusMatch(matchCount, bonusMatch)) return LottoResult.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
+        if (LottoResult.isBonusNumberMatched(matchCount, bonusMatch)) return LottoResult.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
         if (matchCount == LottoResult.FIVE_NUMBER_MATCH.lottoMatchCount()) return LottoResult.FIVE_NUMBER_MATCH;
         if (matchCount == LottoResult.FOUR_NUMBER_MATCH.lottoMatchCount()) return LottoResult.FOUR_NUMBER_MATCH;
         if (matchCount == LottoResult.THREE_NUMBER_MATCH.lottoMatchCount()) return LottoResult.THREE_NUMBER_MATCH;
