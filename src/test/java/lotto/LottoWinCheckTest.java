@@ -14,7 +14,7 @@ public class LottoWinCheckTest {
 
     @BeforeEach
     void setUp() {
-        lottoWinCheck = new LottoWinCheck(WIN_LOTTO, BONUS_NUMBER);
+        lottoWinCheck = new LottoWinCheck(new LottoWinNumbers(WIN_LOTTO, BONUS_NUMBER));
     }
 
     @Test

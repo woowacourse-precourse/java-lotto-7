@@ -10,9 +10,9 @@ public class LottoWinCheck {
     private final Set<Integer> winLotto;
     private final int bonusNumber;
 
-    public LottoWinCheck(Lotto winLotto, int bonusNumber) {
-        this.winLotto = new HashSet<>(winLotto.numbers());
-        this.bonusNumber = bonusNumber;
+    public LottoWinCheck(LottoWinNumbers winNumbers) {
+        this.winLotto = new HashSet<>(winNumbers.lotto().numbers());
+        this.bonusNumber = winNumbers.bonusNumber();
     }
 
     public Map<Integer, Integer> getWinResult(List<Lotto> lottos) {
