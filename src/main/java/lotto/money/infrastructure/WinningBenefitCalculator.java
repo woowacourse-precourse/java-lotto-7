@@ -13,7 +13,7 @@ public class WinningBenefitCalculator implements BenefitCalculator {
         this.winningAmountCalculator = winningAmountCalculator;
     }
     @Override
-    public Benefit create(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
+    public Benefit execute(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
         Money winningAmount = winningAmountCalculator.calculate(lottoTickets, winningLotto, bonusNumber);
         return new Benefit(winningAmount);
     }

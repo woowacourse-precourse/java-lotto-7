@@ -6,6 +6,6 @@ import lotto.lotto.domain.WinningLotto;
 import lotto.money.domain.Benefit;
 
 public interface BenefitCalculator {
-    Benefit create(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber);
+    Benefit execute(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber);
 
 }
