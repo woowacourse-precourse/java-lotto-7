@@ -14,7 +14,7 @@ public class Application {
         LottoNumberGenerator lottoNumberGenerator = new RandomLottoGenerator();
         LottoService lottoService = new LottoService(lottoNumberGenerator);
 
-        LottoController lottoController = new LottoController(inputView,outputView,lottoService);
+        LottoController lottoController = new LottoController(inputView, outputView, lottoService);
         lottoController.run();
     }
 }

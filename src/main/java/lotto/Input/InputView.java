@@ -13,10 +13,16 @@ public class InputView {
         this.validator = validator;
     }
 
-    public int readPurchaseAmount(){
-        System.out.println(PURCHASE_AMOUNT_MESAGE);
-        String input = readLine();
-        return validator.validateInput(input);
+    public int readPurchaseAmount() {
+        while (true) {
+            try {
+                System.out.println(PURCHASE_AMOUNT_MESAGE);
+                String input = readLine();
+                return validator.validateInput(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String readWinningNumbers() {

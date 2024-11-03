@@ -22,19 +22,19 @@ public class WinningLottoNumbers {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isInvalidRange)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
         }
     }
 

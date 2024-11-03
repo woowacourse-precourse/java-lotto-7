@@ -21,7 +21,7 @@ public class InputValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateInput("이천원"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자만 입력 가능합니다.");
+                .hasMessage("[ERROR] 숫자만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class InputValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateInput("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 0보다 커야 합니다.");
+                .hasMessage("[ERROR] 구입 금액은 0보다 커야 합니다.");
     }
 
     @ParameterizedTest
@@ -47,7 +47,7 @@ public class InputValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateInput("2500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 1,000원 단위여야 합니다.");
+                .hasMessage("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ public class InputValidatorTest {
 
         assertThatThrownBy(() -> validator.validateInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("입력값이 너무 큽니다.");
+                .hasMessage("[ERROR] 입력값이 너무 큽니다.");
     }
 
     @ParameterizedTest
