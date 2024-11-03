@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.number.Number;
 import lotto.domain.rank.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +24,7 @@ class AnswerNumbersTest {
         );
 
         BonusNumber bonusNumber = BonusNumber.valueOf(
-                winningLotto, Number.of(7)
+                winningLotto, 7
         );
 
         answerNumbers = AnswerNumbers.from(

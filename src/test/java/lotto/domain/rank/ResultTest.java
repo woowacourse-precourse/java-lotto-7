@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.domain.Payment;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.number.Number;
 import lotto.domain.winning.AnswerNumbers;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningLotto;
@@ -48,7 +47,7 @@ class ResultTest {
 
         return AnswerNumbers.from(
                 winningLotto,
-                BonusNumber.valueOf(winningLotto, Number.of(7))
+                BonusNumber.valueOf(winningLotto, 7)
         );
     }
 

@@ -3,7 +3,6 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Payment;
-import lotto.domain.number.Number;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningLotto;
 import lotto.global.contents.LottoDetail;
@@ -36,7 +35,7 @@ public class InputView {
     public BonusNumber readBonusNumber(WinningLotto winningLotto) {
         Writer.println(QUESTION_BONUS_NUMBER);
         int bonusNumber = Validator.validateNumber(Reader.read());
-        return BonusNumber.valueOf(winningLotto, Number.of(bonusNumber));
+        return BonusNumber.valueOf(winningLotto, bonusNumber);
     }
 
     private List<Integer> convert(String input) {
