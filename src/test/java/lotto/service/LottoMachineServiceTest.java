@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Member;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,6 +73,19 @@ class LottoMachineServiceTest {
 
         // then
         assertEquals(8, member.getIssuedLottos().size());
+    }
+
+    @Test
+    void 당첨번호와_발행된_로또번호와_일치하는지_확인한다() {
+        // given
+        String winningNumbers = "1,2,3,4,5,6";
+        Lotto issuedNumbers = new Lotto(List.of(1, 3, 5, 12, 13, 15));
+
+        // when
+        lottoMachineService.inputWinningNumbers(winningNumbers);
+
+        // then
+        assertEquals(3, lottoMachineService.correctNumber(issuedNumbers));
     }
 
     // EXCEPTION
