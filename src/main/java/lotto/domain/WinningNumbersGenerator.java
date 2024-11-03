@@ -8,16 +8,16 @@ import lotto.exception.CustomIllegalArgumentException;
 import java.util.HashSet;
 import java.util.List;
 
-public class WinningNumbersDivider {
+public class WinningNumbersGenerator {
 
     private static final int LOTTO_NUMBERS_COUNT = 6;
     private final List<Integer> winningNumbersPool;
 
-    public WinningNumbersDivider(List<Integer> winningNumbersPool) {
+    public WinningNumbersGenerator(List<Integer> winningNumbersPool) {
         this.winningNumbersPool = winningNumbersPool;
     }
 
-    public WinningNumbers divideWinningNumbers() {
+    public WinningNumbers generate() {
         List<Integer> lottoNumbers = winningNumbersPool.subList(0, LOTTO_NUMBERS_COUNT);
         int bonusNumber = winningNumbersPool.get(LOTTO_NUMBERS_COUNT);
         validateBonusNumberNotInLottoNumbers(lottoNumbers, bonusNumber);

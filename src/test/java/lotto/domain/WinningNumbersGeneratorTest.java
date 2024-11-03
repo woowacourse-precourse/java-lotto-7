@@ -13,19 +13,19 @@ import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class WinningNumbersDividerTest {
+class WinningNumbersGeneratorTest {
 
     @Nested
     @DisplayName("성공 케이스")
     class SuccessCases {
 
         @Test
-        @DisplayName("정상적인 경우 당첨 번호와 보너스 번호를 올바르게 구분한다.")
-        void 당첨_번호와_보너스_번호_구분_성공() {
+        @DisplayName("정상적인 경우 당첨 번호와 보너스 번호를 올바르게 생성한다.")
+        void 당첨_번호와_보너스_번호_생성_성공() {
             List<Integer> winningNumbersPool = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
-            WinningNumbersDivider divider = new WinningNumbersDivider(winningNumbersPool);
+            WinningNumbersGenerator generator = new WinningNumbersGenerator(winningNumbersPool);
 
-            WinningNumbers winningNumbers = divider.divideWinningNumbers();
+            WinningNumbers winningNumbers = generator.generate();
 
             assertThat(winningNumbers.lottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
             assertThat(winningNumbers.bonusNumber()).isEqualTo(7);
@@ -40,9 +40,9 @@ class WinningNumbersDividerTest {
         @DisplayName("보너스 번호가 당첨 번호에 포함될 경우 예외를 발생시킨다.")
         void 보너스_번호가_당첨_번호에_포함될_경우_예외() {
             List<Integer> winningNumbersPool = Arrays.asList(1, 2, 3, 4, 5, 7, 7);
-            WinningNumbersDivider divider = new WinningNumbersDivider(winningNumbersPool);
+            WinningNumbersGenerator generator = new WinningNumbersGenerator(winningNumbersPool);
 
-            assertThatThrownBy(divider::divideWinningNumbers)
+            assertThatThrownBy(generator::generate)
                     .isInstanceOf(CustomIllegalArgumentException.class)
                     .hasMessage(BONUS_NUMBER_DUPLICATE.getMessage());
         }
