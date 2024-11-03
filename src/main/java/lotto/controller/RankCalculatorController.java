@@ -34,7 +34,7 @@ public class RankCalculatorController {
 
         List<Rank> sortedRanks = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.MISS)
-                .sorted(Comparator.comparingInt(Rank::getCountOfMatch))
+                .sorted(Comparator.comparingInt(Rank::getPrize))
                 .toList();
 
         for (Rank rank : sortedRanks) {

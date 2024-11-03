@@ -25,7 +25,9 @@ public class OutputView {
         if(prize == 30000000){
             io.printMessage(matchCount +"개 일치, 보너스 볼 일치 (" + formattedPrize + "원) - " + rankCount + "개");
         }
-        io.printMessage(matchCount +"개 일치 (" + formattedPrize + "원) - " + rankCount + "개");
+        if(prize != 30000000){
+            io.printMessage(matchCount +"개 일치 (" + formattedPrize + "원) - " + rankCount + "개");
+        }
     }
 
     public void printProfit(float profit) {
