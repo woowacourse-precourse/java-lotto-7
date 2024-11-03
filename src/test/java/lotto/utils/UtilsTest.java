@@ -43,4 +43,12 @@ public class UtilsTest {
 
         assertEquals(origin, target);
     }
+
+    @DisplayName("숫자가 1000 으로 나누어 떨어지는지 확인한다")
+    @Test
+    void isDivisibleByThousand() {
+        assertTrue(Utils.isDivisibleByThousand(1000));
+        assertTrue(Utils.isDivisibleByThousand(10000));
+        assertTrue(Utils.isDivisibleByThousand(5000));
+    }
 }
