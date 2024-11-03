@@ -4,9 +4,7 @@ import static lotto.constants.OutputMessage.GET_TOTAL_LOTTO_COUNT_MESSAGE;
 import static lotto.constants.OutputMessage.GET_WINNING_STATISTICS_MESSAGE;
 import static lotto.constants.OutputMessage.LINE_SEPARATOR;
 import static lotto.constants.OutputMessage.PERCENT_IS;
-import static lotto.constants.OutputMessage.PRIZE_SEPARATOR;
 import static lotto.constants.OutputMessage.RETURN_ON_INVESTMENT_IS;
-import static lotto.constants.OutputMessage.UNIT_COUNT;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -25,10 +23,10 @@ public class OutputView {
     }
 
     public void printLottoTicketStatus(LottoTicket lottoTicket) {
-        LottoBundle lottoTicketStatus = lottoTicket.getLottoTicketStatus();
-        int size = lottoTicketStatus.getLottoNumbers().size();
+        LottoBundle lottoTicketStatus = lottoTicket.getLottoBundle();
+        int lottoCount = lottoTicketStatus.getLottoNumbers().size();
 
-        printTotalLottoCount(size);
+        printTotalLottoCount(lottoCount);
         printLottoTicketNumbers(lottoTicket);
     }
 
@@ -47,13 +45,12 @@ public class OutputView {
     }
 
     private void printLottoTicketNumbers(LottoTicket lottoTicket) {
-        LottoBundle lottoTicketStatus = lottoTicket.getLottoTicketStatus();
+        LottoBundle lottoTicketStatus = lottoTicket.getLottoBundle();
         List<LottoNumbers> lottoNumbers = lottoTicketStatus.getLottoNumbers();
 
         for (LottoNumbers lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber.getLottoNumbers());
         }
-
     }
 
     private void printResultMessage() {
@@ -68,9 +65,9 @@ public class OutputView {
         for (LottoPrize prize : prizes) {
             if (LottoPrize.FAIL == prize)
                 continue;
-            System.out.println(prize.getPrizeDetails() + PRIZE_SEPARATOR.getMessage() + prizeStatus.get(prize) + UNIT_COUNT.getMessage());
+            int prizeCount = prizeStatus.get(prize);
+            System.out.println(prize.getPrizeStatusMessage(prizeCount));
         }
-
     }
 
     private void printReturnOnInvestment(double returnOnInvestment) {
