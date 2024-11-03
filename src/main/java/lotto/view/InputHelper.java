@@ -68,7 +68,7 @@ public class InputHelper {
      * @param s 검사할 문자열
      */
     private void validateNumber(String s) {
-        if (Validator.isNum(s)) {
+        if (!Validator.isNum(s)) {
             throw new LottoException(ErrorMessage.NOT_NUM);
         }
     }
@@ -79,7 +79,7 @@ public class InputHelper {
      * @param n 검사할 정수
      */
     private void validateNatural(int n) {
-        if (Validator.isNaturalNum(n)) {
+        if (!Validator.isNaturalNum(n)) {
             throw new LottoException(ErrorMessage.NOT_NATURAL_NUM);
         }
     }
@@ -90,7 +90,7 @@ public class InputHelper {
      * @param s 검사할 문자열
      */
     private void validateFormat(String s) {
-        if (Validator.isList(s)) {
+        if (!Validator.isList(s)) {
             throw new LottoException(ErrorMessage.NOT_INPUT_FORMAT);
         }
     }
