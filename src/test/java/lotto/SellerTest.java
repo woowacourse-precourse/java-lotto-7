@@ -20,6 +20,6 @@ class SellerTest {
         seller.sellLottoTo(person);
 
         //then
-        assertThat(person.getLottos().getQuantity()).isSameAs(5L);
+        assertThat(person.getLottos().getQuantity()).isSameAs(5);
     }
 }
