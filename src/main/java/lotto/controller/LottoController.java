@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import java.util.function.Supplier;
+import lotto.model.Money;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,6 +16,11 @@ public class LottoController {
         this.lottoService = new LottoService();
         this.outputView = new OutputView();
         this.inputView = new InputView();
+    }
+
+    private Money setMoney() {
+        outputView.inputMoney();
+        return new Money(inputView.inputNumber());
     }
 
     private <T> T retryIfErrorOccur(Supplier<T> supplier) {
