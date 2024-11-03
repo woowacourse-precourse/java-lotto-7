@@ -68,7 +68,19 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         }
     };
 
+    private final String message;
 
+    ErrorMessage(String message) {
+        this.message = message;
+    }
 
+    public void validate(int amount) {}
+    public void validate(List<Integer> numbers) {}
+    public void validate(int number) {}
+    public void validate(String numbers) {}
+    public void validate(List<Integer> winningNumbers, int bonusNumber) {}
 
+    public String getMessage() {
+        return message;
+    }
 }
