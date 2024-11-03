@@ -29,4 +29,8 @@ public class Lotto {
         return numbers.stream()
                 .anyMatch(num -> num.equals(bonusNumber)); //int인데 Integer와 비교 가능?
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }
