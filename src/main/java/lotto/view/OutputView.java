@@ -6,8 +6,8 @@ import lotto.dto.LottoResults;
 
 public class OutputView {
 
-    public static final String PURCHASED_TICKET_MESSAGE = "%d개를 구매했습니다.\n";
-    public static final String WINNING_RESULT_MESSAGE = "당첨 통계\n---";
+    public static final String PURCHASED_TICKET_MESSAGE = "\n%d개를 구매했습니다.\n";
+    public static final String WINNING_RESULT_MESSAGE = "\n당첨 통계\n---";
     public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
     public static final String NUMBER_OF_MATCHED_MESSAGE = " - %d개\n";
 
