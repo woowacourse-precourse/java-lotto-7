@@ -31,7 +31,6 @@ public class LottoResultSummary {
 
     private String generatePrizeSummary(Prize prize) {
         StringBuilder stringBuilder = new StringBuilder();
-
         stringBuilder.append(String.format(MATCH_FORMAT, prize.getMatchCount()));
 
         if (prize == Prize.FIVE_BONUS) {
@@ -40,7 +39,6 @@ public class LottoResultSummary {
 
         stringBuilder.append(String.format(REWARD_FORMAT, String.format("%,d", prize.getReward())));
         stringBuilder.append(String.format(COUNT_FORMAT, prizes.get(prize)));
-
         return stringBuilder.toString();
     }
 }
