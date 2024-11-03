@@ -25,13 +25,13 @@ public class InputView {
         }
     }
 
-    private static void inputIsEmpty(String input) {
+    public static void inputIsEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 구입금액을 입력해주셔야 합니다.");
         }
     }
 
-    private static void moneyUnderZero(int moneyToBuyLotto) {
+    public static void moneyUnderZero(int moneyToBuyLotto) {
         if (moneyToBuyLotto <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 0원 초과이어야 합니다.");
         }
@@ -69,7 +69,7 @@ public class InputView {
         countWinningNumber(winningNumberCollection);
     }
 
-    private static void inputWinningNumberIsEmpty(String winningNumber) {
+    public static void inputWinningNumberIsEmpty(String winningNumber) {
         if (winningNumber.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 문자열이 입력되었습니다.");
         }
@@ -85,7 +85,7 @@ public class InputView {
         return numberList;
     }
 
-    private static void outOfRangeNumber(List<Integer> winningNumberCollection) {
+    public static void outOfRangeNumber(List<Integer> winningNumberCollection) {
         for (int number : winningNumberCollection) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자로 이루어져 있습니다.");
@@ -93,14 +93,14 @@ public class InputView {
         }
     }
 
-    private static void findSameNumber(List<Integer> winningNumberCollection) {
+    public static void findSameNumber(List<Integer> winningNumberCollection) {
         Set<Integer> numberSet = new HashSet<>(winningNumberCollection);
         if (numberSet.size() < winningNumberCollection.size()) {
             throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 입력되었습니다.");
         }
     }
 
-    private static void countWinningNumber(List<Integer> winningNumberCollection) {
+    public static void countWinningNumber(List<Integer> winningNumberCollection) {
         if (winningNumberCollection.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 숫자 6개가 입력되지 않았습니다.");
         }
@@ -111,16 +111,24 @@ public class InputView {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
-                inputIsEmpty(input);
-                inputIsNumeric(input);
-                int bonusNumber = Integer.parseInt(input);
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자로 이루어져야 합니다.");
-                }
-                return bonusNumber;
+                validateBonusNumber(input);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void validateBonusNumber(String input) {
+        inputIsEmpty(input);
+        inputIsNumeric(input);
+        int bonusNumber = Integer.parseInt(input);
+        checkBonusNumberRange(bonusNumber);
+    }
+
+    public static void checkBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자로 이루어져야 합니다.");
         }
     }
 }
