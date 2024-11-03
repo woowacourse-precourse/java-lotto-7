@@ -9,4 +9,8 @@ public class LottoCollection {
     public LottoCollection(List<Lotto> lottos) {
         this.lottos = new ArrayList<>(lottos);
     }
+    
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

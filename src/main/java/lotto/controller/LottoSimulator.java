@@ -4,6 +4,7 @@ import lotto.model.LottoCollection;
 import lotto.model.LottoDispenser;
 import lotto.model.LottoHolder;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoSimulator {
     
@@ -16,6 +17,7 @@ public class LottoSimulator {
     
     public void startSimulation() {
         purchaseLottoTickets();
+        showPurchasedLottos();
         verifyLottoWins();
         showLottoResults();
     }
@@ -24,6 +26,10 @@ public class LottoSimulator {
         String inputMoney = InputView.receiveLottoPayment();
         LottoCollection lottoCollection = lottoDispenser.executeTransactionAndDispense(inputMoney);
         lottoHolder = new LottoHolder(lottoCollection);
+    }
+    
+    private void showPurchasedLottos() {
+        OutputView.printPurchasedLottos(lottoHolder.getLottos());
     }
     
     private void verifyLottoWins() {
