@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.common.exception.InvalidLottoNumberRangeException;
+import lotto.common.exception.InvalidLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,6 +22,6 @@ class LottoNumberTest {
     @ValueSource(ints = {-1, 0, 46, 50, 100, 1000, 20000, Integer.MAX_VALUE})
     void InvalidLottoNumberRangeExceptionTest(int lottoNumber){
         assertThatThrownBy(() -> new LottoNumber(lottoNumber))
-                .isInstanceOf(InvalidLottoNumberRangeException.class);
+                .isInstanceOf(InvalidLottoNumberException.class);
     }
 }

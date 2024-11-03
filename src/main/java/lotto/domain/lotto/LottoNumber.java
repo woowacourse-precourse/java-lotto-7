@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Objects;
 import lotto.common.constant.Constants;
-import lotto.common.exception.InvalidLottoNumberRangeException;
+import lotto.common.exception.InvalidLottoNumberException;
 
 public class LottoNumber {
 
@@ -15,7 +15,7 @@ public class LottoNumber {
 
     private void validateLottoNumber(int lottoNumber) {
         if(lottoNumber < Constants.MIN_LOTTO_NUMBER || lottoNumber > Constants.MAX_LOTTO_NUMBER) {
-            throw new InvalidLottoNumberRangeException(lottoNumber);
+            throw new InvalidLottoNumberException(lottoNumber);
         }
     }
 
