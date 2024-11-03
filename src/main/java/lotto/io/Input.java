@@ -19,6 +19,7 @@ public abstract class Input {
             System.out.println(INPUT_PRICE_MESSAGE);
             String input = Console.readLine();
             validatePrice(input);
+            System.out.println();
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");

@@ -19,9 +19,11 @@ public abstract class Output {
     public static void result(Ticket ticket) {
         System.out.println("당첨 통계\n---");
         EnumMap<Prize, Integer> result = ticket.getResult();
-        result.forEach((prize, integer) ->
-                System.out.println(prize.getMatchCount() + "개 일치 (" + prize.getPrizeMoney() + "원) - " + integer + "개")
-        );
+        result.forEach((prize, integer) -> {
+            if (prize != Prize.NONE) {
+                System.out.println(prize.getMatchCount() + "개 일치 (" + prize.getPrizeMoney() + "원) - " + integer + "개");
+            }
+        });
         DecimalFormat formatter = new DecimalFormat("###,###.#");
         System.out.println("총 수익률은 " + formatter.format(ticket.getEarningRate()) + "%입니다.");
     }
