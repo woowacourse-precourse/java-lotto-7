@@ -17,4 +17,17 @@ class LottoStoreTest {
         assertEquals(0, lottoStore.calculateLottoCount(0));
     }
 
+    @Test
+    @DisplayName("로또 티켓 생성 시 지정된 수만큼의 티켓이 생성되는지 확인")
+    void generateLottoTickets() {
+        LottoTickets tickets = lottoStore.generateLottoTickets(5);
+        assertEquals(5, tickets.size());
+
+        for (Lotto lotto : tickets.getLottoTickets()) {
+            assertEquals(6, lotto.getNumbers().size());
+            assertTrue(lotto.getNumbers().stream().allMatch(num -> num >= 1 && num <= 45));
+        }
+    }
+
+
 }
