@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application {
+    private static final int LOTTO_PRICE = 1000;
+
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
         int ticketCount = calculateTicketCount(purchaseAmount);
@@ -28,7 +30,7 @@ public class Application {
     }
 
     private static int calculateTicketCount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private static void printTicketCount(int ticketCount) {
