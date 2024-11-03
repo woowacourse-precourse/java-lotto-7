@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class LottoPurchasePrice {
     int LOTTO_PRICE = 1000;
     private final int lottoPurchasePrice;
@@ -17,7 +15,7 @@ public class LottoPurchasePrice {
         }
     }
 
-    public int getLottoPurchaseCount() {
+    public int getPurchaseCount() {
         return lottoPurchasePrice/LOTTO_PRICE;
     }
 }
