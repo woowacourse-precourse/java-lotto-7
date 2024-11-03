@@ -16,11 +16,9 @@ public abstract class Controller {
 
     protected void handleError(Exception e) {
         String errorMessage;
-        if (e instanceof LottoException) {
-            errorMessage = "[ERROR] " + e.getMessage();
-        } else {
-            errorMessage = "[ERROR] 예기치 않은 오류가 발생했습니다: " + e.getMessage();
+        if (e instanceof IllegalArgumentException) {
+            errorMessage = e.getMessage();
+            outputView.displayMessage(errorMessage);
         }
-        outputView.displayMessage(errorMessage);
     }
 }

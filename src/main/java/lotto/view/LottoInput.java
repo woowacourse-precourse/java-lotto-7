@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ErrorMessages;
+import lotto.exception.InvalidInputException;
 import lotto.exception.LottoException;
 import lotto.exception.MaxRetryExceededException;
 import lotto.factory.WinningNumberPicker;
@@ -17,7 +18,11 @@ public class LottoInput {
     public Money getBuyAmount() {
         return retryOnError(() -> {
             System.out.println(INPUT_AMOUNT_MESSAGE);
-            return Money.of(Integer.parseInt(Console.readLine()));
+            try {
+                return Money.of(Integer.parseInt(Console.readLine()));
+            }catch (IllegalArgumentException error){
+                throw new InvalidInputException(ErrorMessages.INVALID_FORMAT);
+            }
         });
     }
 
@@ -43,7 +48,11 @@ public class LottoInput {
     private int getValidatedBonusNumber() {
         return retryOnError(() -> {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-            return Integer.parseInt(Console.readLine());
+            try {
+                return Integer.parseInt(Console.readLine());
+            }catch (IllegalArgumentException error){
+                throw new InvalidInputException(ErrorMessages.INVALID_FORMAT);
+            }
         });
     }
 
@@ -60,7 +69,7 @@ public class LottoInput {
             }
         }
 
-        throw new MaxRetryExceededException();
+        throw new MaxRetryExceededException(ErrorMessages.MAX_RETRY_EXCEEDED);
     }
 
     @FunctionalInterface

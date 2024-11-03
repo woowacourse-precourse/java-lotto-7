@@ -31,7 +31,7 @@ class LottoTicketTest {
 
         assertThatThrownBy(() -> new LottoTicket(null, price))
                 .isInstanceOf(LottoException.class)
-                .hasMessageContaining(ErrorMessages.LOTTO_NULL.getMessage());
+                .hasMessageContaining(ErrorMessages.LOTTO_TICKETS_NULL.getMessage());
     }
 
     @DisplayName("null Price를 입력할 경우 예외가 발생한다.")

@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.MoneyException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,7 @@ class MoneyTest {
     @Test
     void 음수금액으로_Money_생성_예외() {
         assertThatThrownBy(() -> Money.of(-1000))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(MoneyException.class)
                 .hasMessageContaining(ErrorMessages.AMOUNT_INVALID.getMessage());
     }
 
@@ -40,7 +41,7 @@ class MoneyTest {
     void 나누기_0_예외() {
         Money money = Money.of(1000);
         assertThatThrownBy(() -> money.divide(0))
-                .isInstanceOf(ArithmeticException.class)
+                .isInstanceOf(MoneyException.class)
                 .hasMessageContaining("[ERROR] 0으로 나눌 수 없습니다.");
     }
 
@@ -80,7 +81,7 @@ class MoneyTest {
     void null과_더할_경우_예외() {
         Money money = Money.of(1000);
         assertThatThrownBy(() -> money.plus(null))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(MoneyException.class)
                 .hasMessageContaining(ErrorMessages.OTHER_NULL.getMessage());
     }
 }

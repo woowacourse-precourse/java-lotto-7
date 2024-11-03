@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,7 @@ class WinningAnalysisReportTest {
         ProfitRate profitRate = ProfitRate.from(5000, Money.of(10000));
 
         assertThatThrownBy(() -> new WinningAnalysisReport(null, profitRate))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(WinningNumberException.class)
                 .hasMessage(ErrorMessages.WINNING_STATISTICS_NULL.getMessage());
     }
 
@@ -39,7 +40,7 @@ class WinningAnalysisReportTest {
         WinningStatistics statistics = new WinningStatistics();
 
         assertThatThrownBy(() -> new WinningAnalysisReport(statistics, null))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(WinningNumberException.class)
                 .hasMessage(ErrorMessages.PROFIT_RATE_NULL.getMessage());
     }
 

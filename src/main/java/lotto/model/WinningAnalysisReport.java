@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 
 public record WinningAnalysisReport(WinningStatistics winningStatistics, ProfitRate profitRate) {
 
@@ -13,10 +14,10 @@ public record WinningAnalysisReport(WinningStatistics winningStatistics, ProfitR
 
     private static void validate(WinningStatistics winningStatistics, ProfitRate profitRate) {
         if (winningStatistics == null) {
-            throw new LottoException(ErrorMessages.WINNING_STATISTICS_NULL);
+            throw new WinningNumberException(ErrorMessages.WINNING_STATISTICS_NULL);
         }
         if (profitRate == null) {
-            throw new LottoException(ErrorMessages.PROFIT_RATE_NULL);
+            throw new WinningNumberException(ErrorMessages.PROFIT_RATE_NULL);
         }
     }
 

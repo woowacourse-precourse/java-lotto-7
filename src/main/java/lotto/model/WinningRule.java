@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 
 public enum WinningRule {
     FIFTH_PRIZE("3개 일치 (5,000원)", 5_000),
@@ -20,7 +21,7 @@ public enum WinningRule {
 
     public static WinningRule of(int matchCount, boolean bonusMatch) {
         if (matchCount < 0) {
-            throw new LottoException(ErrorMessages.MATCH_COUNT_NEGATIVE);
+            throw new WinningNumberException(ErrorMessages.MATCH_COUNT_NEGATIVE);
         }
         if (matchCount == 6) {
             return FIRST_PRIZE;

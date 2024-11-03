@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.MoneyException;
 
 import java.math.BigDecimal;
 
@@ -16,13 +17,13 @@ public record Money(int amount) {
 
     private static void validate(int amount) {
         if (amount < 0 || amount % 1000 != 0) {
-            throw new LottoException(ErrorMessages.AMOUNT_INVALID);
+            throw new MoneyException(ErrorMessages.AMOUNT_INVALID);
         }
     }
 
     public int divide(int value) {
         if (value == 0) {
-            throw new ArithmeticException("[ERROR] 0으로 나눌 수 없습니다.");
+            throw new MoneyException(ErrorMessages.DIVIDE_BY_ZERO);
         }
         return amount / value;
     }
@@ -37,7 +38,7 @@ public record Money(int amount) {
 
     public Money plus(Money other) {
         if (other == null) {
-            throw new LottoException(ErrorMessages.OTHER_NULL);
+            throw new MoneyException(ErrorMessages.OTHER_NULL);
         }
         return new Money(this.amount + other.amount());
     }

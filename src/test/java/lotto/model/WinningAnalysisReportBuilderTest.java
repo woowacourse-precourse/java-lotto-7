@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,7 @@ class WinningAnalysisReportBuilderTest {
         WinningAnalysisReportBuilder builder = new WinningAnalysisReportBuilder();
 
         assertThatThrownBy(() -> builder.withLottoTickets(null))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(WinningNumberException.class)
                 .hasMessage(ErrorMessages.LOTTO_TICKETS_NULL.getMessage());
     }
 
@@ -68,7 +69,7 @@ class WinningAnalysisReportBuilderTest {
         WinningAnalysisReportBuilder builder = new WinningAnalysisReportBuilder();
 
         assertThatThrownBy(() -> builder.withLottoTickets(createLottoTickets(List.of())))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(WinningNumberException.class)
                 .hasMessage(ErrorMessages.LOTTO_TICKETS_NULL.getMessage());
     }
 
@@ -85,7 +86,7 @@ class WinningAnalysisReportBuilderTest {
             builder.withLottoTickets(lottoTickets);
 
             assertThatThrownBy(() -> builder.withWinningNumbers(null))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.WINNING_NUMBERS_NULL.getMessage());
         }
 
@@ -98,7 +99,7 @@ class WinningAnalysisReportBuilderTest {
             builder.withLottoTickets(lottoTickets);
 
             assertThatThrownBy(builder::build)
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.WINNING_NUMBERS_NULL.getMessage());
         }
     }

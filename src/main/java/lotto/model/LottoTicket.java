@@ -10,7 +10,7 @@ public record LottoTicket(Lotto lotto, Money price) {
 
     private void validate(Lotto lotto, Money price) {
         if (lotto == null) {
-            throw new LottoException(ErrorMessages.LOTTO_NULL);
+            throw new LottoException(ErrorMessages.LOTTO_TICKETS_NULL);
         }
         if (price == null) {
             throw new LottoException(ErrorMessages.PRICE_NULL);

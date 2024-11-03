@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -36,7 +37,7 @@ public class WinningStatistics {
 
     private void validateWinningRule(WinningRule rule) {
         if (rule == null) {
-            throw new LottoException(ErrorMessages.WINNING_RULE_NULL);
+            throw new WinningNumberException(ErrorMessages.WINNING_RULE_NULL);
         }
     }
 

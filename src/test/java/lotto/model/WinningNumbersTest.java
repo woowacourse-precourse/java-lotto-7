@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class WinningNumbersTest {
         @Test
         void winningNumbers_보너스번호_null() {
             assertThatThrownBy(() -> new WinningNumbers(createLotto(List.of(1, 2, 3, 4, 5, 6)), null))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.BONUS_NUMBER_NULL.getMessage());
         }
 
@@ -33,7 +34,7 @@ class WinningNumbersTest {
         @Test
         void winningNumbers_메인번호_null() {
             assertThatThrownBy(() -> new WinningNumbers(null, 7))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.MAIN_NUMBERS_NULL.getMessage());
         }
 
@@ -42,7 +43,7 @@ class WinningNumbersTest {
         void winningNumbers_중복된_보너스번호() {
             Lotto mainNumbers = createLotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new WinningNumbers(mainNumbers, 1))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.BONUS_NUMBER_DUPLICATE.getMessage());
         }
 
@@ -50,7 +51,7 @@ class WinningNumbersTest {
         @Test
         void winningNumbers_보너스번호_범위초과() {
             assertThatThrownBy(() -> new WinningNumbers(createLotto(List.of(1, 2, 3, 4, 5, 6)), 50))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.BONUS_NUMBER_RANGE.getMessage());
         }
 

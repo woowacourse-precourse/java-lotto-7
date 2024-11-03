@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class WinningRuleTest {
         @Test
         void winningRule_일치개수_음수() {
             assertThatThrownBy(() -> WinningRule.of(-1, false))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(WinningNumberException.class)
                     .hasMessage(ErrorMessages.MATCH_COUNT_NEGATIVE.getMessage());
         }
 

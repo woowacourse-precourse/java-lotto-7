@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import lotto.exception.WinningNumberException;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -14,7 +15,7 @@ public class WinningAnalysisReportBuilder {
 
     public WinningAnalysisReportBuilder withLottoTickets(LottoTickets lottoTickets) {
         if (lottoTickets == null || lottoTickets.isEmpty()) {
-            throw new LottoException(ErrorMessages.LOTTO_TICKETS_NULL);
+            throw new WinningNumberException(ErrorMessages.LOTTO_TICKETS_NULL);
         }
         this.lottoTickets = lottoTickets;
         return this;
@@ -22,7 +23,7 @@ public class WinningAnalysisReportBuilder {
 
     public WinningAnalysisReportBuilder withWinningNumbers(WinningNumbers winningNumbers) {
         if (winningNumbers == null) {
-            throw new LottoException(ErrorMessages.WINNING_NUMBERS_NULL);
+            throw new WinningNumberException(ErrorMessages.WINNING_NUMBERS_NULL);
         }
         this.winningNumbers = winningNumbers;
         return this;
@@ -40,10 +41,10 @@ public class WinningAnalysisReportBuilder {
 
     private void validateInputs() {
         if (lottoTickets == null) {
-            throw new LottoException(ErrorMessages.LOTTO_TICKETS_NULL);
+            throw new WinningNumberException(ErrorMessages.LOTTO_TICKETS_NULL);
         }
         if (winningNumbers == null) {
-            throw new LottoException(ErrorMessages.WINNING_NUMBERS_NULL);
+            throw new WinningNumberException(ErrorMessages.WINNING_NUMBERS_NULL);
         }
     }
 
