@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.Lotto;
 import lotto.LottoContainer;
@@ -50,5 +51,13 @@ class OutputControllerTest {
                         + "5개 일치 (1,500,000원) - 1개\n"
                         + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
                         + "6개 일치 (2,000,000,000원) - 0개\n");
+    }
+
+    @Test
+    void 반올림_테스트() {
+        final BigDecimal bigDecimal = new BigDecimal("150.252");
+
+        Assertions.assertThat(bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP))
+                .isEqualTo(new BigDecimal("150.3"));
     }
 }

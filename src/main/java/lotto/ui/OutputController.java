@@ -1,8 +1,10 @@
 package lotto.ui;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.LottoContainer;
 import lotto.LottoInfo;
+import lotto.LottoPayment;
 import lotto.Results;
 import lotto.common.LottoResult;
 
@@ -41,5 +43,10 @@ public class OutputController {
         outputUi.printWithLineBreak(results.getStatistics(LottoResult.THIRD).toString());
         outputUi.printWithLineBreak(results.getStatistics(LottoResult.SECOND).toString());
         outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIRST).toString());
+    }
+
+    public void printProfitRatio(final Results results, final LottoPayment lottoPayment) {
+        outputUi.printWithLineBreak(
+                "총 수익률은 " + results.getProfitRatio(lottoPayment).setScale(1, BigDecimal.ROUND_HALF_UP) + "%입니다.");
     }
 }
