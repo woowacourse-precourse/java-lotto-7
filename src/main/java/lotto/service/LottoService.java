@@ -25,4 +25,13 @@ public class LottoService {
         return LottoTicketsDto.from(tickets.getLottoTickets());
     }
 
+    public List<LottoResultDto> calculateResults(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        calculateAndStoreResults(tickets, winningNumbers, bonusNumber);
+        return convertToResultDtos();
+    }
+
+    private void calculateAndStoreResults(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        lottoResults.calculateResults(tickets, winningNumbers, bonusNumber);
+    }
+
 }
