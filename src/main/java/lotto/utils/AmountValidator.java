@@ -22,5 +22,10 @@ public class AmountValidator {
         }
     }
 
+    private static void validateNotZero(String input) {
+        if (Integer.parseInt(input) == 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 0일 수 없습니다.");
+        }
+    }
 
 }
