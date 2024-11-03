@@ -10,6 +10,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public int calculatePurchasableLottoCount() {
+        return amount / LOTTO_PRICE;
+    }
+
     private void validate(int purchaseAmount) {
         validateMinimumPurchaseAmount(purchaseAmount);
         validateDivisibility(purchaseAmount);
