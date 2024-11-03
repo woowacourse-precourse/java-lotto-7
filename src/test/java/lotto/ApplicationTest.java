@@ -103,6 +103,15 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("잘못된 금액 입력 시 에러 메시지 출력")
+    void displayErrorMessageForInvalidPurchaseAmount() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {
