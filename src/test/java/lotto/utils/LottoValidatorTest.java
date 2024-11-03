@@ -28,14 +28,14 @@ class LottoValidatorTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1, -100, -123"})
-    @DisplayName("구매 금액의 유효성 검사시, 음수를 입력하면 예외가 발생한다")
+    @ValueSource(strings = {"-1", "-1000", "0"})
+    @DisplayName("구매 금액의 유효성 검사시, 0이하의 값을 입력하면 예외가 발생한다")
     void t002(String purchaseAmount) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(ERROR_PREFIX)
-                        .hasMessageContaining("음수")
+                        .hasMessageContaining("0 이하")
         );
     }
 
@@ -52,14 +52,14 @@ class LottoValidatorTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"\n", " ", ""})
-    @DisplayName("구매 금액의 유효성 검사시, 공백을 입력하면 예외가 발생한다")
+    @ValueSource(strings = {"abc", "a", "zero"})
+    @DisplayName("구매 금액의 유효성 검사시, 숫자가 아닌 값을 입력하면 예외가 발생한다")
     void t004(String purchaseAmount) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(ERROR_PREFIX)
-                        .hasMessageContaining("공백")
+                        .hasMessageContaining("숫자")
         );
     }
 
@@ -76,21 +76,9 @@ class LottoValidatorTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"abc", "a", "zero"})
-    @DisplayName("구매 금액의 유효성 검사시, 숫자가 아닌 값을 입력하면 예외가 발생한다")
-    void t007(String purchaseAmount) {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
-                        .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessageContaining(ERROR_PREFIX)
-                        .hasMessageContaining("숫자")
-        );
-    }
-
-    @ParameterizedTest
     @ValueSource(strings = {"1001", "1", "10001"})
     @DisplayName("구매 금액의 유효성 검사시, 1000원 단위가 아닌 값을 입력하면 예외가 발생한다")
-    void t008(String purchaseAmount) {
+    void t006(String purchaseAmount) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -102,7 +90,7 @@ class LottoValidatorTest extends NsTest {
     @ParameterizedTest
     @ValueSource(strings = {"+1000", "+10000", "+200000"})
     @DisplayName("구매 금액의 유효성 검사시, '+'가 붙은 값을 입력하면 예외가 발생한다")
-    void t009(String purchaseAmount) {
+    void t007(String purchaseAmount) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -114,7 +102,7 @@ class LottoValidatorTest extends NsTest {
     @ParameterizedTest
     @ValueSource(strings = {" 1000 ", "10000 ", " 200000"})
     @DisplayName("구매 금액의 유효성 검사시, 앞 뒤로 공백이 포함된 숫자를 입력하면 예외가 발생한다")
-    void t010(String purchaseAmount) {
+    void t008(String purchaseAmount) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validator.validatePurchaseAmount(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
