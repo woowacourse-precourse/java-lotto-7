@@ -8,9 +8,9 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    private static final String WRONG_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String WRONG_RANGE = "[ERROR] 숫자 범위가 벗어났습니다.";
-    private static final String DUPLICATE_NUMBER = "[ERROR] 중복되는 숫자가 있습니다.";
+    private static final String WRONG_SIZE = "로또 번호는 6개여야 합니다.";
+    private static final String WRONG_RANGE = "숫자 범위가 벗어났습니다.";
+    private static final String DUPLICATE_NUMBER = "중복되는 숫자가 있습니다.";
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);

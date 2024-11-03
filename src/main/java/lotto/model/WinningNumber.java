@@ -11,10 +11,10 @@ public class WinningNumber {
     private final BonusNumber bonusNumber;
     private final List<Integer> allNumbers;
 
-    private static final String WRONG_RANGE_NUMBER = "[ERROR] 범위에 맞는 숫자를 입력해주세요.";
-    private static final String WRONG_INTEGER_NUMBER = "[ERROR] 정수를 입력해주세요.";
-    private static final String WRONG_SIZE = "[ERROR] 숫자는 6개 입력해주세요.";
-    private static final String DUPLICATE_NUMBER = "[ERROR] 중복되는 숫자가 있습니다.";
+    private static final String WRONG_RANGE_NUMBER = "범위에 맞는 숫자를 입력해주세요.";
+    private static final String WRONG_INTEGER_NUMBER = "정수를 입력해주세요.";
+    private static final String WRONG_SIZE = "숫자는 6개 입력해주세요.";
+    private static final String DUPLICATE_NUMBER = "중복되는 숫자가 있습니다.";
 
     public WinningNumber(String winningNumber, String bonusNumber) {
         this.winningNumbers = convertWinningNumbers(winningNumber);

@@ -4,9 +4,9 @@ public class Money {
 
     private final int money;
 
-    private static final String ONLY_NUMBER = "[ERROR] 숫자만 입력해 주세요!";
-    private static final String NEGATIVE_NUMBER = "[ERROR] 양수를 입력해주세요!";
-    private static final String NOT_1000_MULTIPLE = "[ERROR] 1000원 단위로 입력해주세요!";
+    private static final String ONLY_NUMBER = "숫자만 입력해 주세요!";
+    private static final String NEGATIVE_NUMBER = "양수를 입력해주세요!";
+    private static final String NOT_1000_MULTIPLE = "1000원 단위로 입력해주세요!";
 
     public Money(String money) {
         this.money = validateMoney(money);
