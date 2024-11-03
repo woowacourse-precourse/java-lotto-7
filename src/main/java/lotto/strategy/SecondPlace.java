@@ -8,6 +8,7 @@ public class SecondPlace implements PlaceAuction {
 
     private static final Integer SECOND_PLACE = 2;
     private static final Integer THIRD_PLACE = 3;
+    private static final Integer TRUE = 1;
 
     private final Map<Integer, Integer> placeMap;
     private final List<Integer> bonusResult;
@@ -27,6 +28,6 @@ public class SecondPlace implements PlaceAuction {
     }
 
     private boolean IsEqualToTrue(Integer bonus) {
-        return bonus.equals(Place.TRUE.getNumber());
+        return bonus.equals(TRUE);
     }
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.message.Place;
 import lotto.message.PrintMessage;
 import lotto.message.Prize;
 import lotto.strategy.FifthPlace;
@@ -19,8 +18,8 @@ public class ResultCalculator {
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
     private final List<Integer> prize = Prize.getPrize();
 
-    private final Integer START_PLACE = Place.MIN_PLACE.getNumber();
-    private final Integer END_PLACE = Place.MAX_PLACE.getNumber();
+    private static final Integer START_PLACE = 1;
+    private static final Integer END_PLACE = 2;
 
     private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
