@@ -21,19 +21,23 @@ public class Output {
                 .forEach(Output::printLottoResult);
 
         System.out.println("총 수익률은 " +
-                formatDecimal(LottoEnum.sum().divide(BigDecimal.valueOf(cost)).multiply(BigDecimal.valueOf(100)), "#,###.0") +
-                "%입니다.");
+                formatDecimal(LottoEnum.sum()
+                        .divide(BigDecimal.valueOf(cost))
+                        .multiply(BigDecimal.valueOf(100)), "#,###.0"
+                ) + "%입니다.");
 
     }
 
     private static void printLottoResult(LottoEnum value) {
-        if (value.getMatchCount() == LOTTO_BONUS_CORRECT) {
-            System.out.println("5개 일치, 보너스 볼 일치 (" + formatDecimal(value.getPrize(), "#,###") + "원) - " +
+        if (value.getMatchCount() == LOTTO_BONUS_HIT) {
+            System.out.println("5개 일치, 보너스 볼 일치 (" +
+                    formatDecimal(value.getPrize(), "#,###") + "원) - " +
                     formatDecimal(value.getWinnerCount(), "#,###") + "개");
             return;
         }
 
-        System.out.println(value.getMatchCount() + "개 일치 (" + formatDecimal(value.getPrize(), "#,###") + "원) - " +
+        System.out.println(value.getMatchCount() + "개 일치 (" +
+                formatDecimal(value.getPrize(), "#,###") + "원) - " +
                 formatDecimal(value.getWinnerCount(), "#,###") + "개");
     }
 
