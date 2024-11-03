@@ -16,5 +16,12 @@ public class LottoResult {
         }
         return result;
     }
+    public float getRateOfReturn(Map<Rank,Integer> result,int budget){
+        float profit = 0;
+        for (Rank rank : Rank.values()){
+            profit+=rank.getPrize()*result.get(rank);
+        }
+        return profit/budget;
+    }
 
 }
