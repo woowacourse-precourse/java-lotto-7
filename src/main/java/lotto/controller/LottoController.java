@@ -10,14 +10,16 @@ import lotto.view.Output;
 public class LottoController {
     private Input purchaseAmountInput;
     private Input winningNumbersInput;
+    private Input bonusNumberInput;
     private Output output;
     private LottoGenerator generator;
     private LottoChecker checker;
 
-    public LottoController(Input purchaseAmountInput, Input winningNumbersInput, Output output,
+    public LottoController(Input purchaseAmountInput, Input winningNumbersInput, Input bonusNumberInput, Output output,
                            LottoGenerator generator, LottoChecker checker) {
         this.purchaseAmountInput = purchaseAmountInput;
         this.winningNumbersInput = winningNumbersInput;
+        this.bonusNumberInput = bonusNumberInput;
         this.output = output;
         this.generator = generator;
         this.checker = checker;
@@ -29,7 +31,7 @@ public class LottoController {
             output.printLottoNumbers(
                     generator.generateLottos(purchaseAmount).getPurchasedLottos()
             );
-            Lotto winningNumbers = (Lotto) winningNumbersInput.input();
+            checker.setWinningNumbers((Lotto) winningNumbersInput.input(), (Integer) bonusNumberInput.input());
 
 
         } finally {
