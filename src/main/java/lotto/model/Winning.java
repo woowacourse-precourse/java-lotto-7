@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum Winning {
@@ -15,6 +16,7 @@ public enum Winning {
     private final String winningNumberMatch;
     private final boolean isMatchBonusNumber;
     private final long prizeMoney;
+    private long count = 0;
 
     Winning(int rank, String winningNumberMatch, boolean isMatchBonusNumber, long prizeMoney) {
         this.rank = rank;
