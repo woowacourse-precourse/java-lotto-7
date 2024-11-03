@@ -26,4 +26,9 @@ public class UserLottoList {
         return new Lotto(LottoNumberGenerator.getNumbers());
     }
 
+    public List<List<Integer>> getNumberList() {
+        return this.lottoList.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }

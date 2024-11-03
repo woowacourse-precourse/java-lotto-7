@@ -2,13 +2,16 @@ package lotto.controller;
 
 import lotto.model.UserLottoList;
 import lotto.util.MoneyToLottoCountUtil;
+import lotto.view.UserLottoListView;
 
 public class LottoController {
 
     private final InputController inputController;
+    private final UserLottoListView userLottoListView;
 
-    public LottoController(final InputController inputController) {
+    public LottoController(final InputController inputController, UserLottoListView userLottoListView) {
         this.inputController = inputController;
+        this.userLottoListView = userLottoListView;
     }
 
     public void run() {
@@ -16,5 +19,7 @@ public class LottoController {
         int lottoCount = MoneyToLottoCountUtil.moneyToLottoCount(money);
 
         UserLottoList userLottoList = new UserLottoList(lottoCount);
+
+        userLottoListView.printUserLottoList(userLottoList.getNumberList());
     }
 }
