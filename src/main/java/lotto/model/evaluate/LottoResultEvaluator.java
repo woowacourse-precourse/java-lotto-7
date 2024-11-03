@@ -30,11 +30,11 @@ public class LottoResultEvaluator {
 
     private MatchInfo evaluateMatch(List<Integer> lottoNumbers) {
         int matchesCount = lottoNumbersMatchCounter.countMatches(winningNumbers, lottoNumbers);
-        boolean bonusMatch = isBonusNumberMatched(lottoNumbers, matchesCount);
+        boolean bonusMatch = isBonusNumberMatched(lottoNumbers);
         return new MatchInfo(matchesCount, bonusMatch);
     }
 
-    private boolean isBonusNumberMatched(List<Integer> lottoNumbers, int matchesCount) {
-        return matchesCount == 5 && lottoNumbers.contains(bonusNumber);
+    private boolean isBonusNumberMatched(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
     }
 }
