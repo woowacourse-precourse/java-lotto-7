@@ -2,7 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import lotto.dto.LottoResultDto;
 import lotto.dto.LottoTicketsDto;
+import lotto.utils.RankMessages;
 
 public class OutputView {
 
@@ -14,6 +16,23 @@ public class OutputView {
     public static void printLottoTickets(List<LottoTicketsDto> lottoTickets) {
         System.out.println(lottoTickets.size() + PURCHASE_MESSAGE);
         lottoTickets.forEach(tickets -> System.out.println(tickets.getNumbers()));
+    }
+
+    public static void printLottoResults(LottoResultDto result) {
+        System.out.println("당첨 통계\n---");
+        printRankResults(result);
+        printProfitRate(result.getProfitRate());
+    }
+
+    private static void printRankResults(LottoResultDto result) {
+        result.getRankCounts().forEach((rank, count) -> {
+            String message = RankMessages.getMessage(rank.getMatchCount(), rank.isMatchBonus());
+            System.out.printf("%s (%d원) - %d개\n", message, rank.getPrize(), count);
+        });
+    }
+
+    private static void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     public static void printErrorMessage(String errorMessage) {
