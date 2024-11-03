@@ -1,6 +1,10 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.model.Lotto;
 
 public enum LottoPrize {
 
@@ -27,5 +31,32 @@ public enum LottoPrize {
                 && prize.bonusExists == hasBonus)
             .findFirst()
             .orElse(NO_PRIZE);
+    }
+
+    public static Map<LottoPrize, Integer> createLottoPrizeResult(List<Lotto> lottoList,
+        Lotto winningLotto, Integer bonusNumber) {
+
+        Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
+        for (LottoPrize prize : LottoPrize.values()) {
+            prizeCountMap.put(prize, 0);
+        }
+
+        for (Lotto lotto : lottoList) {
+            LottoPrize prize = lotto.compareNumber(winningLotto, bonusNumber);
+            prizeCountMap.compute(prize, (k, count) -> count + 1);
+        }
+        return prizeCountMap;
+    }
+
+    public int getWinningCount() {
+        return winningCount;
+    }
+
+    public boolean isBonusExists() {
+        return bonusExists;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

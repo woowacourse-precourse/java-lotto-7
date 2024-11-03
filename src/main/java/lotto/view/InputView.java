@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.dto.WinningNumber;
+import lotto.dto.WinningNumberRequestDto;
 
 public class InputView {
 
@@ -21,10 +21,10 @@ public class InputView {
         return price;
     }
 
-    public WinningNumber getEntireNumber() {
+    public WinningNumberRequestDto getEntireNumber() {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
-        return new WinningNumber(winningNumbers, bonusNumber);
+        return new WinningNumberRequestDto(winningNumbers, bonusNumber);
     }
 
     private List<Integer> getWinningNumbers() {
