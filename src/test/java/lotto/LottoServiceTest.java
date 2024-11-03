@@ -2,6 +2,9 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +28,18 @@ class LottoServiceTest {
 
         // then
         assertEquals(lottos.getLottos().size(), COUNT);
+    }
+
+    @Test
+    void 당첨된_내역을_기준으로_수익률을_계산한다() {
+        // given
+        Integer count = 3000;
+        List<Rank> ranks = List.of(Rank.FIFTH, Rank.FIRST, Rank.NONE);
+
+        // when
+        double revenueRate = lottoService.calculateRevenue(ranks, count);
+
+        // then
+        Assertions.assertEquals(66666833.3, revenueRate);
     }
 }
