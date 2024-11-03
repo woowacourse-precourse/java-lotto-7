@@ -14,14 +14,14 @@ public class LottoController {
     private final LottoProvider lottoProvider = new LottoProvider();
     public void start(){
         lottoOutputView.printCashNotification();
-        Cash cash = initializeCash();
+        Cash cash = requestCashInput();
 
-        List<Lotto> lottoBundle = publishLotto(cash);
+        List<Lotto> lottoBundle = buyLottoBundle(cash);
 
-
+        
     }
 
-    private Cash initializeCash(){
+    private Cash requestCashInput(){
         while (true) {
             try {
                 String cashAmount = lottoInputView.getUserInput();
@@ -32,7 +32,7 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> publishLotto(Cash cash){
+    private List<Lotto> buyLottoBundle(Cash cash){
         return lottoProvider.buyLottoBundle(cash);
     }
 }
