@@ -11,7 +11,11 @@ public interface VendingMachineRepository {
 
     void saveWinningStatistics(Map<Rank, Integer> statistics);
 
+    void saveEarningRate(double rate);
+
     List<Lotto> getStoredLottoTickets();
 
     Map<Rank, Integer> getWinningStatistics();
+
+    double getEarningRate();
 }
