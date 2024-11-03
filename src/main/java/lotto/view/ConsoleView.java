@@ -15,7 +15,7 @@ public class ConsoleView implements View {
   public UserInput promptInput(ValidateCommand command) {
     writeLine(command.ask());
     String input = readLine();
-    return validateInput(command, input);
+    return command.execute(input);
   }
 
   @Override
@@ -29,14 +29,5 @@ public class ConsoleView implements View {
 
   private String readLine() {
     return Console.readLine();
-  }
-
-  private UserInput validateInput(ValidateCommand command, String input) {
-    try {
-      return command.execute(input);
-    } catch (IllegalArgumentException | IllegalStateException e) {
-      displayOutput(e.getMessage());
-      return command.redo();
-    }
   }
 }

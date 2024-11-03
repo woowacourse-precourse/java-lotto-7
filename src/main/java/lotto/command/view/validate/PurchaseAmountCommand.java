@@ -18,10 +18,15 @@ public class PurchaseAmountCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    return validate(input);
+    try {
+      return validate(input);
+    } catch (IllegalArgumentException | IllegalStateException e) {
+      view.displayOutput(e.getMessage());
+      return redo();
+    }
   }
 
-  private PurchaseAmountUserInput validate (String input) {
+  public PurchaseAmountUserInput validate (String input) {
     validateBlank(input);
     validateWhiteSpace(input);
     long value = validateLongRange(input,
