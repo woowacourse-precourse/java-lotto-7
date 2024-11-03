@@ -21,7 +21,7 @@ public class LottoService {
         this.lottos = new ArrayList<>();
     }
 
-    public List<Lotto> buyLotto(LottoBuyAmount amount) {
+    public List<Lotto> buyLottos(LottoBuyAmount amount) {
         for (int i = 0; i < amount.getLottoBuyCount(); i++) {
             lottos.add(new Lotto(pickRandomNumbers()));
         }
@@ -43,7 +43,7 @@ public class LottoService {
         return (double) lottoResult.getTotalWinnings() / (lottos.size() * 1000) * 100;
     }
 
-    private List<Integer> pickRandomNumbers() {
+    protected List<Integer> pickRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 MIN_NUMBER,
                 MAX_NUMBER,
