@@ -5,13 +5,13 @@ public enum MoneyErrorConfig {
     STRING_TO_LONG_CONVERT_ERROR("[ERROR] 올바른 숫자를 입력해야 합니다."),
     DIVIDE_1000_ERROR("[ERROR] 1000의 배수인 숫자를 입력해야 합니다.");
 
-    private final String moneyError;
+    private final String errorMessage;
 
     MoneyErrorConfig(String moneyError) {
-        this.moneyError = moneyError;
+        this.errorMessage = moneyError;
     }
 
-    public String getMoneyError() {
-        return moneyError;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

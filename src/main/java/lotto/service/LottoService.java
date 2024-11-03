@@ -36,7 +36,7 @@ public class LottoService {
     private static String[] splitNumbers(String numbers) {
         String[] numbersArray = numbers.split(",");
         if (numbersArray.length != 6) {
-            throw new IllegalArgumentException(LottoServiceErrorConfig.COMMA_SPLIT_ERROR.getError());
+            throw new IllegalArgumentException(LottoServiceErrorConfig.COMMA_SPLIT_ERROR.getErrorMessage());
         }
 
         Arrays.sort(numbersArray);
@@ -47,7 +47,7 @@ public class LottoService {
         try {
             return Arrays.stream(numbersArray).map(LottoService::convertStringToInt).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getError());
+            throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getErrorMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class LottoService {
         try {
             return convertStringToInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getError());
+            throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getErrorMessage());
         }
     }
 

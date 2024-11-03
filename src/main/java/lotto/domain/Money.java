@@ -16,7 +16,7 @@ public class Money {
 
     private static void zeroValueCheck(String inputMoney) {
         if (inputMoney == null || inputMoney.isEmpty()) {
-            throw new IllegalArgumentException(MoneyErrorConfig.ZERO_VALUE_ERROR.getMoneyError());
+            throw new IllegalArgumentException(MoneyErrorConfig.ZERO_VALUE_ERROR.getErrorMessage());
         }
     }
 
@@ -24,13 +24,13 @@ public class Money {
         try {
             return Long.parseLong(inputMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(MoneyErrorConfig.STRING_TO_LONG_CONVERT_ERROR.getMoneyError());
+            throw new IllegalArgumentException(MoneyErrorConfig.STRING_TO_LONG_CONVERT_ERROR.getErrorMessage());
         }
     }
 
     private static void divideBy1000Check(long convertedMoney) {
         if (convertedMoney % 1000 != 0) {
-            throw new IllegalArgumentException(MoneyErrorConfig.DIVIDE_1000_ERROR.getMoneyError());
+            throw new IllegalArgumentException(MoneyErrorConfig.DIVIDE_1000_ERROR.getErrorMessage());
         }
     }
 
