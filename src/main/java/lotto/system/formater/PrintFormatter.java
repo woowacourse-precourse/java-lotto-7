@@ -38,9 +38,9 @@ public class PrintFormatter {
         return winningNumbers;
     }
 
-    public Bonus formatBonusNumber() {
+    public Bonus formatBonusNumber(List<Integer> winningNumbers) {
         OutPutView.printMessage(BONUS_NUMBER.getMessage());
-        Bonus bonus = new Bonus(InputView.inputBonusNumber());
+        Bonus bonus = new Bonus(InputView.inputBonusNumber(), winningNumbers);
         OutPutView.printNewLine();
 
         return bonus;

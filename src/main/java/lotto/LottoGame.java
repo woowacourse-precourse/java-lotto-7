@@ -19,7 +19,7 @@ public class LottoGame {
         List<LottoTicket> issuedTickets = ticketIssuer.issueLottoTickets();
         printFormatter.formatLottoTickets(issuedTickets, ticketIssuer.getQuantity());
         Lotto lotto = printFormatter.formatWinningNumbers();
-        Bonus bonus = printFormatter.formatBonusNumber();
+        Bonus bonus = printFormatter.formatBonusNumber(lotto.getNumbers());
 
         LottoWinningAnalyzer LottoWinningAnalyzer = new LottoWinningAnalyzer(lotto.getNumbers(), bonus.getNumber());
         Map<PrizeType, Integer> prizeTypeIntegerMap = LottoWinningAnalyzer.analyzeWinningStatistics(issuedTickets);
