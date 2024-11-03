@@ -1,7 +1,12 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import lotto.domain.Lotto;
 import lotto.domain.Member;
 import lotto.enums.lotto.LottoMessage;
+import lotto.enums.lotto.LottoRank;
 import lotto.util.LottoParser;
 
 public class OutputView {
@@ -18,7 +23,23 @@ public class OutputView {
         );
     }
 
-    // TODO: 당첨내역을 출력한다.
+    public void printIssuedLottos() {
+        List<Lotto> issuedLottos = member.getIssuedLottos();
+
+        for (Lotto lotto : issuedLottos) {
+            System.out.println(lotto.getNumbers().toString());
+        }
+    }
+
+    public void printLottoResult() {
+        System.out.println(LottoMessage.PRINT_OUTPUT_WINNING_RATE.getMessage());
+        System.out.println(LottoMessage.PRINT_OUTPUT_LINE.getMessage());
+
+        Map<LottoRank, Integer> lottoResults = member.getLottoResults();
+        for (Entry<LottoRank, Integer> result : lottoResults.entrySet()) {
+            System.out.println(LottoParser.parsingLottoResult(result.getKey(), result.getValue()));
+        }
+    }
 
     // TODO: 수익률을 출력한다.
 }
