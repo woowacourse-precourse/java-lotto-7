@@ -23,7 +23,6 @@ public enum Rank {
         this.criteria = criteria;
     }
 
-
     /**
      * 현재 랭크가 주어진 조건(일치한 번호 개수와 보너스 번호 일치 여부)에 부합하는지 체크
      *
@@ -33,14 +32,6 @@ public enum Rank {
      */
     public boolean matchesCriteria(int matchedCount, boolean bonus) {
         return criteria.apply(matchedCount, bonus);
-    }
-
-    public int getMatchingNumber() {
-        return matchingNumber;
-    }
-
-    public boolean isMatchingBonusNumber() {
-        return isMatchingBonusNumber;
     }
 
     public long getPrizeMoney() {
