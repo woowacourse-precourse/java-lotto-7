@@ -10,7 +10,7 @@ import lotto.model.PurchasePrice;
 import lotto.util.NumberValidator;
 
 public class LottoService {
-    private static final String WINNING_NUMBERS_SEPARATOR = ",";
+    private static final String NUMBERS_SEPARATOR = ",";
 
     public LottoTickets generateLottoTickets(final PurchasePrice purchasePrice) {
         List<Lotto> lottoTickets = new ArrayList<>();
@@ -28,7 +28,7 @@ public class LottoService {
     }
 
     private List<Integer> parseNumbers(final String input) {
-        List<String> numbers = List.of(input.split(WINNING_NUMBERS_SEPARATOR));
+        List<String> numbers = List.of(input.split(NUMBERS_SEPARATOR));
         numbers.forEach(this::validateNumber);
         return numbers.stream()
                 .map(Integer::parseInt)
