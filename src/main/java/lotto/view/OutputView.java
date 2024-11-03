@@ -21,7 +21,7 @@ public class OutputView {
     private static final String SEPARATOR = ", ";
 
     public void print(String message) {
-        System.out.println(message);
+        Writer.println(message);
     }
 
     public void printLottos(Lottos lottos) {
