@@ -29,6 +29,10 @@ public class LottoSeller {
     }
 
     private int calculateLottoCount(int money) {
+        if (money % LOTTO_PRISE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다.");
+        }
+
         return money / LOTTO_PRISE;
     }
 }
