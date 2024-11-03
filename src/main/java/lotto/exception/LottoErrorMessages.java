@@ -3,6 +3,7 @@ package lotto.exception;
 public enum LottoErrorMessages {
     ERROR_UNIT("[ERROR] "),
     PAY_INPUT_ERROR("숫자만 입력 가능합니다."),
+    NOT_THOUSAND("최소 천원 이상부터 구매가 가능합니다."),
     NOT_ENABLE_AMOUNT_START("수동 구매 갯수는 0부터 "),
     NOT_ENABLE_AMOUNT_END("사이의 숫자만 입력할 수 있습니다."),
     NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
