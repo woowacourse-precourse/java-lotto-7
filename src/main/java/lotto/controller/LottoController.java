@@ -27,7 +27,7 @@ public class LottoController {
 
     public void start() {
         int purchaseAmount = readPurchaseAmount();
-        AttemptCount attemptCount = new AttemptCount(purchaseAmount);
+        AttemptCount attemptCount = AttemptCount.from(purchaseAmount);
         Lottos lottos = generateLottos(attemptCount);
 
         displayLottos(lottos);
@@ -43,7 +43,7 @@ public class LottoController {
     }
 
     private Lottos generateLottos(AttemptCount attemptCount) {
-        return new Lottos(attemptCount.getCount(), generateNumbers);
+        return Lottos.of(attemptCount.getCount(), generateNumbers);
     }
 
     private void displayLottos(Lottos lottos) {
@@ -64,11 +64,11 @@ public class LottoController {
         int bonusNumber = Integer.parseInt(
                 RetryUtil.retryReadBonusNumber(inputView::readBonusNumber, winningNumbers.winningNumbers()));
 
-        return new BonusNumber(bonusNumber, winningNumbers.winningNumbers());
+        return BonusNumber.of(bonusNumber, winningNumbers.winningNumbers());
     }
 
     private void displayResults(int purchaseAmount, Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        LottoManager lottoManager = new LottoManager(lottos, winningNumbers, bonusNumber);
+        LottoManager lottoManager = LottoManager.of(lottos, winningNumbers, bonusNumber);
         LottoResultDTO lottoResultDTO = LottoResultDTO.of(lottoManager.getResults(),
                 lottoManager.calculateRateOfReturn(purchaseAmount));
         outputView.printResults(lottoResultDTO);

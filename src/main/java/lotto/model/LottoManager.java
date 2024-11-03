@@ -16,11 +16,15 @@ public class LottoManager {
     private final BonusNumber bonusNumber;
     private final Map<Rank, Long> results;
 
-    public LottoManager(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private LottoManager(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.results = calculateResults();
+    }
+
+    public static LottoManager of(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return new LottoManager(lottos, winningNumbers, bonusNumber);
     }
 
     private Map<Rank, Long> calculateResults() {

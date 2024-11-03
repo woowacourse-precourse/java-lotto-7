@@ -7,8 +7,12 @@ import lotto.util.GenerateNumbers;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(int attemptCount, GenerateNumbers generateNumbers) {
+    private Lottos(int attemptCount, GenerateNumbers generateNumbers) {
         this.lottos = generateLottos(attemptCount, generateNumbers);
+    }
+
+    public static Lottos of(int attemptCount, GenerateNumbers generateNumbers) {
+        return new Lottos(attemptCount, generateNumbers);
     }
 
     private List<Lotto> generateLottos(int attemptCount, GenerateNumbers generateNumbers) {

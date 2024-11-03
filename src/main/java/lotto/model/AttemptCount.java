@@ -7,22 +7,27 @@ public class AttemptCount {
 
     private final int attemptCount;
 
-    public AttemptCount(int purchaseAmount) {
-        this.attemptCount = calculateAttemptCount(purchaseAmount);
+    private AttemptCount(int attemptCount) {
+        this.attemptCount = attemptCount;
     }
 
-    private int calculateAttemptCount(int purchaseAmount) {
+    public static AttemptCount from(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
+        int attemptCount = calculateAttemptCount(purchaseAmount);
+        return new AttemptCount(attemptCount);
+    }
+
+    private static int calculateAttemptCount(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    private void validatePurchaseAmount(int purchaseAmount) {
+    private static void validatePurchaseAmount(int purchaseAmount) {
         if (isInvalidPurchaseAmount(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT.message());
         }
     }
 
-    private boolean isInvalidPurchaseAmount(int purchaseAmount) {
+    private static boolean isInvalidPurchaseAmount(int purchaseAmount) {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
 
