@@ -9,6 +9,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CheckResultService {
+    private static CheckResultService instance;
+    private CheckResultService() {
+    }
+    public static CheckResultService getInstance(){
+        if(instance == null){
+            instance = new CheckResultService();
+        }
+        return instance;
+    }
     public MatchResult checkMatchCount(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber){
         int matchCount = 0;
         Set<Integer> setForCheck = new HashSet<>(winningLotto.getNumbers());
