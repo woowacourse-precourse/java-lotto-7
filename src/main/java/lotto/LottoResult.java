@@ -29,6 +29,10 @@ public class LottoResult {
         }
     }
 
+    public void addWinningResult(final Rank rank) {
+        rankCounts.put(rank, rankCounts.get(rank) + WINNING_STATISTICS_PLUS);
+    }
+
     private double calculateReturnRate(final int inputPurchasePrice) {
         long totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : rankCounts.entrySet()) {
