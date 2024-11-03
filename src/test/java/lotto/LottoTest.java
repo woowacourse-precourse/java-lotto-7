@@ -4,8 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import validator.InputValidator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
     @Test
@@ -30,5 +34,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(List.of(-1, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 구입금액을 1000으로 나눌 수 없으면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000.1", "1100"})
+    void 로또_구매_금액_검증_예외_테스트(String input) {
+        assertThrows(IllegalArgumentException.class, () -> InputValidator.validatePurchaseAmount(input));
     }
 }
