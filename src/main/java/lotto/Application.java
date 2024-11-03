@@ -80,7 +80,7 @@ public class Application {
         ArrayList<Lotto> lottoTickets = new ArrayList<>();
 
         for (int count = 0; count < lottoCount; count++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(lottoNumbers);
             lottoTickets.add(new Lotto(lottoNumbers));
         }
