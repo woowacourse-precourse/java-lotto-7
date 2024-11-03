@@ -50,6 +50,5 @@ class LottoCreatorTest {
 		assertIterableEquals(numbers, winningLotto.getNumbers().stream()
 				.map(LottoNumber::getNumber)
 				.toList());
-
 	}
 }
