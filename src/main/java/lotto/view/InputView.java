@@ -36,11 +36,12 @@ public class InputView {
 
     private static void validateWinningNumber(String userInput) {
         String[] numbers = userInput.split(",");
-        List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
 
         Validator.isEmpty(userInput);
         Validator.allDigits(numbers);
         Validator.sizeEqual(numbers, LottoEnum.LOTTO_NUMBER_COUNT.getNumber());
+
+        List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
         Validator.allNumberRange(
                 new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
                 new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()),
@@ -57,10 +58,9 @@ public class InputView {
     }
 
     private static void validateBonusNumberInput(String userInput, List<Integer> winningNumberData) {
-        BigDecimal bonusNumber = Utils.stringToNumber(userInput);
-
         Validator.isEmpty(userInput);
         Validator.isDigitOnly(userInput);
+        BigDecimal bonusNumber = Utils.stringToNumber(userInput);
         Validator.oneNumberRange(
                 new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
                 new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()),
