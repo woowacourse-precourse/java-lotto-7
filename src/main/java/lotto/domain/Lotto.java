@@ -1,11 +1,13 @@
 package lotto.domain;
 
 import static java.util.stream.Collectors.toList;
+import static lotto.domain.LottoConstants.INPUT_IS_NOT_NUMBER;
 import static lotto.domain.LottoConstants.IS_DUPLICATE_NUMBER;
 import static lotto.domain.LottoConstants.IS_NOT_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.IS_NOT_LOTTO_SIZE;
 import static lotto.domain.LottoConstants.LOTTO_SIZE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,6 +26,26 @@ public class Lotto {
 
     public Lotto(Integer... lottoNumbers) {
         this(Arrays.stream(lottoNumbers).collect(toList()));
+    }
+
+    public Lotto(String[] inputNumbers) {
+        this(splitInput(inputNumbers));
+    }
+
+    private static List<Integer> splitInput(String[] inputNumbers) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : inputNumbers) {
+            numbers.add(convertStringToInt(number));
+        }
+        return numbers;
+    }
+
+    private static int convertStringToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER);
+        }
     }
 
     // TODO: 추가 기능 구현
@@ -59,6 +81,9 @@ public class Lotto {
         return lottoNumbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
     @Override
     public boolean equals(Object o) {
