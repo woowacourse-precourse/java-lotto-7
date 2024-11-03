@@ -16,7 +16,7 @@
 
 ## 5) ProfitCalculator
 
-## 6) RandomLottoCreator
+## 6) LottoCreator
 ---
 # < view >
 ## 1)  InputView
