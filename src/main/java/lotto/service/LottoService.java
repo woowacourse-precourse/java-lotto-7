@@ -63,6 +63,7 @@ public class LottoService {
         LottoNumberValidator.validateNumberCount(tokens);
 
         List<Integer> winningNumbers = ParseUtil.parseToIntegerList(tokens);
+        LottoNumberValidator.validateDuplicatedNumber(winningNumbers);
         Lotto winningLotto = new Lotto(winningNumbers);
         return winningLotto;
     }
