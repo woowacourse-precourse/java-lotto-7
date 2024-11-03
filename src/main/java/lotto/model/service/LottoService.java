@@ -2,6 +2,7 @@ package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -35,14 +36,24 @@ public class LottoService {
 
         List<Lotto> generatedLottos = IntStream.range(0, count)
                 .mapToObj(iter -> {
-                    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                    numbers.sort(Integer::compareTo);
+                    List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                    insertionSort(numbers);
                     return new Lotto(numbers);
                 })
                 .toList();
 
         lottoRepository.updateCustomerLottos(customerId, generatedLottos);
         return new LottosResponse(generatedLottos);
+    }
+
+    private void insertionSort(List<Integer> numbers) {
+        for (int i = 1; i < numbers.size(); i++) {
+            int j = i - 1;
+            while (j >= 0 && numbers.get(j) > numbers.get(i)) {
+                j--;
+            }
+            numbers.add(j + 1, numbers.remove(i));
+        }
     }
 
     public String saveWinningLottos(String winningNumbers) {
