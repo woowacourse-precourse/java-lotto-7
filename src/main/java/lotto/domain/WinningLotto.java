@@ -26,4 +26,16 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
+
+    public Rank match(Lotto lotto) {
+        int matchCount = countMatch(lotto);
+        boolean bonusMatch = matchCount == 5 && lotto.getNumbers().contains(bonusNumber);
+        return Rank.valueOf(matchCount, bonusMatch);
+    }
+
+    private int countMatch(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(number -> winningNumbers.getNumbers().contains(number))
+                .count();
+    }
 }
