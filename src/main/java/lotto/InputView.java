@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class InputView {
 
@@ -47,15 +45,6 @@ public class InputView {
     private static void validateNumberModulo(String inputPurchasePrice) {
         if (Integer.parseInt(inputPurchasePrice) % NUMBER_CHECK != 0) {
             throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateUserLottoDuplication(final List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (Integer number : numbers) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(Message.INPUT_NUMBER_DUPLICATION_ERROR.getMessage());
-            }
         }
     }
 }
