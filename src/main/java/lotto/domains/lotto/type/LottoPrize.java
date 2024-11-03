@@ -7,9 +7,9 @@ public enum  LottoPrize {
 	FIVE_HAS_BONUS(5, 30_000_000, true),
 	SIX(6, 2_000_000_000, false);
 
-	private int matchCount;
-	private int prize;
-	private boolean hasBonusNumber;
+	private final int matchCount;
+	private final int prize;
+	private final boolean hasBonusNumber;
 
 	LottoPrize(int matchCount, int prize, boolean hasBonusNumber) {
 		this.matchCount = matchCount;
