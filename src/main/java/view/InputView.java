@@ -29,18 +29,24 @@ public class InputView {
         return Integer.parseInt(userInput);
     }
 
-    public static List<Integer> winningNumberInput() {
+    public static void printWinningNumberMessage() {
         printBlank();
         System.out.println(WINNING_NUMBER_MESSAGE);
+    }
+
+    public static List<Integer> winningNumberInput() {
         String userInput = Console.readLine();
         List<Integer> winningNumbers = splitAndConvertUserInput(userInput);
         validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
-    public static int bonusNumberInput() {
+    public static void printBonusNumberMessage() {
         printBlank();
         System.out.println(BONUS_NUMBER_MESSAGE);
+    }
+
+    public static int bonusNumberInput() {
         String userInput = Console.readLine();
         validateBonusNumber(userInput);
         return Integer.parseInt(userInput);

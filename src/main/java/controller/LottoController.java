@@ -1,6 +1,5 @@
 package controller;
 
-import domain.Lotto;
 import java.util.List;
 import service.WinningService;
 import view.InputView;
@@ -15,8 +14,8 @@ public class LottoController {
         int ticketQuantity = buyTicket();
         List<List<Integer>> lottos = purchaseLottoResult(ticketQuantity);
 
-        List<Integer> winningNumbers = InputView.winningNumberInput();
-        int bonusNumber = InputView.bonusNumberInput();
+        List<Integer> winningNumbers = createWinningNumber();
+        int bonusNumber = createBonusNumber();
 /*
         for (Lotto lotto : lottos.getLottos()) {
             winningService.winningStatistics(winningNumbers, lotto.getNumbers(), bonusNumber);
@@ -38,6 +37,46 @@ public class LottoController {
 
     private int buyTicket() {
         InputView.printPurchaseMessage();
+        return getValidateTicketQuantity();
+    }
+
+    private List<Integer> createWinningNumber() {
+        InputView.printWinningNumberMessage();
+        return getValidatedWinningNumbers();
+    }
+
+    private int createBonusNumber() {
+        InputView.printBonusNumberMessage();
+        return getValidateBonusNumber();
+    }
+
+    private int getValidateBonusNumber() {
+        int bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = InputView.bonusNumberInput();
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private List<Integer> getValidatedWinningNumbers() {
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                winningNumbers = InputView.winningNumberInput();
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    private int getValidateTicketQuantity() {
         int ticketQuantity = 0;
         while (true) {
             try {
