@@ -59,7 +59,7 @@ public class LottoController {
     public void countLotto(Integer purchasePrice) {
         int lottoCount = purchasePrice / 1000;
         if (purchasePrice % 1000 != 0) {
-            OutputView.printError(ErrorMessage.NOT_DIV.getError());
+            //OutputView.printError(ErrorMessage.NOT_DIV.getError());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printBlank();
