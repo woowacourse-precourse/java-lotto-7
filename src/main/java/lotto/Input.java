@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Input {
@@ -46,7 +47,7 @@ public class Input {
         return new Lotto(numbers);
     }
 
-    public static int parseBonusNumber(String input) {
+    public static int parseBonusNumber(String input, List<Integer> winningLottoNumbers) {
         if (input.length() > Integer.toString(LottoInfo.endNumber).length()) {
             throw new IllegalArgumentException("[ERROR] 입력이 너무 깁니다.");
         }
@@ -60,15 +61,18 @@ public class Input {
             throw new IllegalArgumentException(
                     "[ERROR] 로또 번호는 " + LottoInfo.startNumber + "~" + LottoInfo.endNumber + " 사이여야 합니다.");
         }
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
 
         return bonusNumber;
     }
 
-    public static <T> T validate(Function<String, T> inputFunction) {
+    public static <T, U> T validate(U additionalParam, BiFunction<String, U, T> inputFunction) {
         while (true) {
             try {
                 String input = Console.readLine();
-                return inputFunction.apply(input);
+                return inputFunction.apply(input, additionalParam);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

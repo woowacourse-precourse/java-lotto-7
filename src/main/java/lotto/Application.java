@@ -9,7 +9,7 @@ public class Application {
     public static void main(String[] args) {
 
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Input.validate(Input::parseMoney);
+        int money = Input.validate(null, (input, unused) -> Input.parseMoney(input));
         System.out.println();
 
         int N = money / LottoInfo.price;
@@ -25,11 +25,11 @@ public class Application {
         System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto winningLotto = Input.validate(Input::parseWinningLotto);
+        Lotto winningLotto = Input.validate(null, (input, unused) -> Input.parseWinningLotto(input));
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Input.validate(Input::parseBonusNumber);
+        int bonusNumber = Input.validate(winningLotto.getNumbers(), Input::parseBonusNumber);
         System.out.println();
 
         System.out.println("당첨 통계");
