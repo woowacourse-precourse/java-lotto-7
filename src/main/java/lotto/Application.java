@@ -12,10 +12,10 @@ public class Application {
         // TODO: 프로그램 구현
 
         System.out.println("구입금액을 입력해 주세요.");
-        int count = Integer.parseInt(Console.readLine());
+        int pay = Integer.parseInt(Console.readLine());
         List<Lotto> lottos = new ArrayList<>();
 
-        count /= 1000;
+        int count = pay/1000;
 
         System.out.println(count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
@@ -25,19 +25,23 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNum = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(Console.readLine(),",");
-        for (int i = 0; i < st.countTokens(); i++) {
+        for (int i = 0; i < 6; i++) {
             winningNum.add(Integer.parseInt(st.nextToken()));
         }
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
 
+        int[] result = new int[5];
+        int prize = 0;
         for (Lotto lotto : lottos) {
-            lotto.read(winningNum, bonus);
+            Rank rank = lotto.read(winningNum, bonus);
+            if (rank != null) {
+                prize += rank.getAmount();
+                result[rank.getSerial() - 1] += 1;
+            }
         }
 
-
-
-     
-
+        Rank.print(result);
+        
     }
 }
