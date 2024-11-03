@@ -14,6 +14,8 @@ public class LottoController {
         int purchaseAmount = InputView.inputPurchaseAmount();
         List<Lotto> purchasedLottos = purchaseLottos(purchaseAmount / 1000);
         OutputView.printLottoNumbers(getLottoNubmers(purchasedLottos));
+
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
     }
 
     private List<Lotto> purchaseLottos(int count) {
