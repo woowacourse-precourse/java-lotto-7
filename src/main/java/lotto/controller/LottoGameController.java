@@ -27,7 +27,7 @@ public class LottoGameController {
             lottoService.generateLottoTickets(purchaseAmount);
 
             // 로또 구매 내역 출력
-            resultHandler.displayLottoPurchase();
+            resultHandler.printLottoPurchase();
 
             // 2. 사용자로부터 당첨 번호와 보너스 번호 입력 받기
             List<Integer> winningNumbers = inputHandler.getWinningNumbers();
@@ -35,8 +35,8 @@ public class LottoGameController {
             lottoService.setWinningNumbers(winningNumbers, bonusNumber);
 
             // 3. 결과 계산 및 출력
-            resultHandler.calculateAndDisplayResults();
-            resultHandler.displayProfitRate(purchaseAmount);
+            resultHandler.calculateAndPrintResults();
+            resultHandler.printProfitRate(purchaseAmount);
         } finally {
             inputHandler.close();
         }

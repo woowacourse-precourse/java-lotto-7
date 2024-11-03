@@ -15,14 +15,14 @@ public class ResultHandler {
         this.outputView = outputView;
     }
 
-    public void displayLottoPurchase() {
+    public void printLottoPurchase() {
         outputView.printLottoPurchase(lottoService.getLottoTickets());
     }
 
-    public void calculateAndDisplayResults() {
+    public void calculateAndPrintResults() {
         Map<PrizeTier, Long> prizeCounts = getPrizeCounts();
         Map<PrizeTier, Integer> integerPrizeCounts = convertToIntegerPrizeCounts(prizeCounts);
-        displayPrizeResults(integerPrizeCounts);
+        printPrizeResults(integerPrizeCounts);
     }
 
     private Map<PrizeTier, Long> getPrizeCounts() {
@@ -41,11 +41,11 @@ public class ResultHandler {
                 ));
     }
 
-    private void displayPrizeResults(Map<PrizeTier, Integer> integerPrizeCounts) {
+    private void printPrizeResults(Map<PrizeTier, Integer> integerPrizeCounts) {
         outputView.printWinningResults(integerPrizeCounts);
     }
 
-    public void displayProfitRate(int purchaseAmount) {
+    public void printProfitRate(int purchaseAmount) {
         double profitRate = getProfitRate(purchaseAmount);
         outputView.printProfitRate(profitRate);
     }
@@ -53,5 +53,5 @@ public class ResultHandler {
     private double getProfitRate(int purchaseAmount) {
         return lottoService.calculateProfitRate(purchaseAmount);
     }
-    
+
 }
