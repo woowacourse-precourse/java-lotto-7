@@ -16,7 +16,7 @@ public class LottoController {
         PurchaseView purchaseView = new PurchaseView();
         String paymentInput = purchaseView.readPayment();
         purchase = new Purchase(paymentInput);
-        purchaseView.displayPurchaseResult(purchase.getLottoCount(), purchase.getPurchasedLottoTickets());
+        purchaseView.displayPurchaseResult(purchase.calculateLottoCount(), purchase.getPurchasedLottoTickets());
     }
 
     public void drawLotto() {
