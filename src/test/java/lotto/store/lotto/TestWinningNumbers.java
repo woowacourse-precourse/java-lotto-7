@@ -11,8 +11,11 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestWinningNumbers extends WinningNumbers {
-    private static final Lotto testLotto = LottoGenerator.manual(List.of(1, 2, 3, 4, 5, 6));
-    private static final LottoNumber testBonus = new LottoNumber(7);
+
+    public static final List<Integer> testLottoInts = List.of(1, 2, 3, 4, 5, 6);
+    public static final int testBonusInt = 7;
+    private static final Lotto testLotto = LottoGenerator.manual(testLottoInts);
+    private static final LottoNumber testBonus = new LottoNumber(testBonusInt);
 
     public static final Lotto FIRST_LOTTO = LottoGenerator.manual(List.of(1, 2, 3, 4, 5, 6));
     public static final Lotto SECOND_LOTTO = LottoGenerator.manual(List.of(1, 2, 3, 4, 5, 7));
