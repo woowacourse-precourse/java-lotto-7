@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -28,7 +27,7 @@ public class LottoResult {
         result.put(lottoRank, result.get(lottoRank).add(BigDecimal.ONE));
     }
 
-    public Map<LottoRank, BigDecimal> getResult() {
-        return Collections.unmodifiableMap(result);
+    public BigDecimal get(LottoRank lottoRank) {
+        return result.get(lottoRank);
     }
 }
