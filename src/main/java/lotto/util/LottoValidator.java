@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
 import lotto.enums.lotto.LottoMessage;
 
 public class LottoValidator {
@@ -29,6 +30,12 @@ public class LottoValidator {
     public static void validateLottoNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(LottoMessage.EXCEPTION_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    public static void validateDuplicateNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(LottoMessage.EXCEPTION_DUPLICATE_NUMBER.getMessage());
         }
     }
 }
