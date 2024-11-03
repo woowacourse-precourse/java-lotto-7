@@ -1,17 +1,17 @@
 package lotto;
 
 import lotto.console.ConsoleInput;
-import lotto.console.ConsoleOutput;
 import lotto.domain.*;
+import lotto.util.LottoPrinter;
 
 public class LottoGameSetter {
 
-    public LottoGame set() {
+    public static LottoGame set() {
 
         LottoPrice totalPrice = setTotalPrice();
         Lottos purchasedLottos = LottoNumberGenerator.generate(totalPrice.getTotalLottoCount());
 
-        printDrawingResult(purchasedLottos);
+        LottoPrinter.print(purchasedLottos);
 
         Lotto winningNumbers = setWinningNumbers();
         BonusNumber bonusNumber = setBonusNumber(winningNumbers);
@@ -19,19 +19,15 @@ public class LottoGameSetter {
         return LottoGame.of(totalPrice, purchasedLottos, winningNumbers, bonusNumber);
     }
 
-    private BonusNumber setBonusNumber(Lotto winningNumbers) {
+    private static BonusNumber setBonusNumber(Lotto winningNumbers) {
         return BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
     }
 
-    private Lotto setWinningNumbers() {
+    private static Lotto setWinningNumbers() {
         return Lotto.from(ConsoleInput.getWinningNumbers());
     }
 
-    private void printDrawingResult(Lottos lottos) {
-        ConsoleOutput.print(lottos.toString());
-    }
-
-    private LottoPrice setTotalPrice() {
+    private static LottoPrice setTotalPrice() {
         return LottoPrice.valueOf(ConsoleInput.getTotalPrice());
     }
 }
