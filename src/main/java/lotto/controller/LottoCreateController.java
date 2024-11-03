@@ -21,9 +21,9 @@ public class LottoCreateController {
 		this.lottoCreator = lottoCreator;
 	}
 
-	public void run() {
+	public LottoBundle run() {
 		Price price = getPurchasePrice();
-		LottoBundle lottoBundle = purchaseLotto(price);
+		return purchaseLotto(price);
 	}
 
 	private Price getPurchasePrice() {
