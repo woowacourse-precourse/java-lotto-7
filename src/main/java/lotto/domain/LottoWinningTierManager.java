@@ -40,7 +40,7 @@ public class LottoWinningTierManager {
         }
         checkLottoWinningTier(matchCount, isBonusNumber);
     }
-    public void checkLottoWinningTier (int matchCount, boolean isBonusNumber) {
+    private void checkLottoWinningTier (int matchCount, boolean isBonusNumber) {
         lottoWinningTiers.put(
                 LottoWinningTier.getMatchCountTier(matchCount, isBonusNumber),
                 lottoWinningTiers.get(LottoWinningTier.getMatchCountTier(matchCount, isBonusNumber)) + 1);
