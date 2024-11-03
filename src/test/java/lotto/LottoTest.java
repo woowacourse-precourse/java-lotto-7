@@ -1,6 +1,10 @@
 package lotto;
 
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.util.CreateWinningMap;
+import lotto.domain.util.CreateWinningNumber;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +26,63 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 3개가 맞으면 해당 당첨 금액을 반환한다.")
+    void compareWinningTest1() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Map<String, Integer> winningDetail = CreateWinningMap.create();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9, 10);
+
+        long winningAmount = lotto.compareWinning(winningNumbers, winningDetail);
+
+        Assertions.assertThat(winningAmount).isEqualTo(5000L);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 4개가 맞으면 해당 당첨 금액을 반환한다.")
+    void compareWinningTest2() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Map<String, Integer> winningDetail = CreateWinningMap.create();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 7, 8, 9);
+
+        long winningAmount = lotto.compareWinning(winningNumbers, winningDetail);
+
+        Assertions.assertThat(winningAmount).isEqualTo(50_000L);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 5개가 맞으면 해당 당첨 금액을 반환한다.")
+    void compareWinningTest3() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Map<String, Integer> winningDetail = CreateWinningMap.create();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7, 8);
+
+        long winningAmount = lotto.compareWinning(winningNumbers, winningDetail);
+
+        Assertions.assertThat(winningAmount).isEqualTo(1_500_000L);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 5개와 보너스 번호가 맞으면 해당 당첨 금액을 반환한다.")
+    void compareWinningTest4() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Map<String, Integer> winningDetail = CreateWinningMap.create();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7, 6);
+
+        long winningAmount = lotto.compareWinning(winningNumbers, winningDetail);
+
+        Assertions.assertThat(winningAmount).isEqualTo(30_000_000L);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 6개가 맞으면 해당 당첨 금액을 반환한다.")
+    void compareWinningTest5() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Map<String, Integer> winningDetail = CreateWinningMap.create();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        long winningAmount = lotto.compareWinning(winningNumbers, winningDetail);
+
+        Assertions.assertThat(winningAmount).isEqualTo(2_000_000_000L);
+    }
 }
