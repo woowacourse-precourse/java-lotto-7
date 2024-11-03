@@ -39,12 +39,11 @@ public class Lotto {
     }
 
     private void checkRange(List<Integer> numbers) {
-        numbers.stream()
-                .forEach(s -> {
-                    if (s > 45 || s < 1) {
-                        throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
-                    }
-                });
+        numbers.forEach(s -> {
+            if (s > 45 || s < 1) {
+                throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+            }
+        });
     }
 
     private int matchWinningNumbers(List<Integer> numbers) {
