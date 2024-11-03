@@ -8,8 +8,8 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this.winningLotto = new Lotto(winningNumbers);
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
-        validateBonusNumber();
     }
 
     public Lotto getWinningLotto() {
@@ -20,7 +20,7 @@ public class WinningNumbers {
         return bonusNumber;
     }
 
-    private void validateBonusNumber() {
+    private void validateBonusNumber(int bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }

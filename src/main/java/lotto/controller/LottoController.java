@@ -52,14 +52,21 @@ public class LottoController {
         List<Integer> winningNumbers = inputWinningNumberList();
         System.out.println();
 
-        int bonusNumber = inputBonusNumber(winningNumbers);
-        return new WinningNumbers(winningNumbers, bonusNumber);
-    }
-
-    private int inputBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber = inputBonusNumber();
         while (true) {
             try {
-                return InputView.inputBonusNumber(winningNumbers);
+                return new WinningNumbers(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                bonusNumber = inputBonusNumber();
+            }
+        }
+    }
+
+    private int inputBonusNumber() {
+        while (true) {
+            try {
+                return InputView.inputBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
