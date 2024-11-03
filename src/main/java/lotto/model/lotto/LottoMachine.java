@@ -4,19 +4,19 @@ import lotto.number_generator.NumberGenerator;
 
 import java.util.List;
 
-public class LottoGenerator {
+public class LottoMachine {
 
     private final NumberGenerator numberGenerator;
 
-    public LottoGenerator(NumberGenerator numberGenerator) {
+    public LottoMachine(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Integer> createNumbers() {
+    public List<Integer> createLottoNumbers() {
         return numberGenerator.generate();
     }
 
-    public Lotto generate(List<Integer> numbers) {
+    public Lotto publishLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 }

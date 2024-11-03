@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoGenerator;
+import lotto.model.lotto.LottoMachine;
 import lotto.number_generator.LottoNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +13,8 @@ public class LottoGeneratorTest {
     @Test
     void createNumberTest() {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        LottoGenerator lottoGenerator = new LottoGenerator(lottoNumberGenerator);
+        LottoMachine lottoMachine = new LottoMachine(lottoNumberGenerator);
 
-        Assertions.assertEquals(Lotto.NUMBER_COUNT, lottoGenerator.createNumbers().size());
+        Assertions.assertEquals(Lotto.NUMBER_COUNT, lottoMachine.createLottoNumbers().size());
     }
 }
