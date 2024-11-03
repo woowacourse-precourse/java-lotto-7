@@ -50,7 +50,39 @@ class BonusCommandTest {
   void execute_shouldThrowExceptionWhenInvalidInput(String input, ExceptionEnum expectedException) {
     assertThatThrownBy(() -> command.execute(input))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(expectedException.getMessage());
+  }
+
+  @ParameterizedTest
+  @MethodSource("invalidWhiteSpace")
+  @DisplayName("[fail]execute : 공백 입력 처리")
+  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+      ExceptionEnum exceptionEnum) {
+    assertThatThrownBy(() -> command.execute(blankInput))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
+        .hasMessageContaining(exceptionEnum.getMessage());
+  }
+
+  @Test
+  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
+  void execute_shouldThrowExceptionWithSpace() {
+    String inputWithSpace = "1,2,3,4,5,6 ";
+    assertThatThrownBy(() -> command.execute(inputWithSpace))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
+        .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());
+  }
+
+  private static Stream<Arguments> invalidWhiteSpace() {
+    return Stream.of(
+        Arguments.of("", ExceptionEnum.CONTAIN_BLANK),
+        Arguments.of(" ", ExceptionEnum.CONTAIN_BLANK),
+        Arguments.of("\t", ExceptionEnum.CONTAIN_BLANK),
+        Arguments.of("\n", ExceptionEnum.CONTAIN_BLANK),
+        Arguments.of("\r", ExceptionEnum.CONTAIN_BLANK),
+        Arguments.of("\f", ExceptionEnum.CONTAIN_BLANK));
   }
 
   private static Stream<Arguments> provideInvalidBonusInputs() {
