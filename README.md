@@ -57,6 +57,7 @@
 ### Model
 
 Lotto : 단일 로또를 추상화  
+LottoCollection : 구매한 로또들을 다루는 일급 객체  
 LottoDispenser : 로또 발급기를 추상화  
 LottoHolder : 로또를 구매한 사람을 추상화 (로또를 소지하고, 로또가 당첨됐는지 확인)  
 
