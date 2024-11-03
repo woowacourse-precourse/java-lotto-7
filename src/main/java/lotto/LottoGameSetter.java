@@ -11,7 +11,7 @@ public class LottoGameSetter {
 
     public LottoGame set() {
 
-        Integer totalPrice = setTotalPrice();
+        LottoPrice totalPrice = setTotalPrice();
 
         Integer totalLottoCount = setTotalLottoCount(totalPrice);
 
@@ -84,17 +84,14 @@ public class LottoGameSetter {
         return lottos;
     }
 
-    private Integer setTotalLottoCount(Integer totalPrice) {
-        Integer totalLottoCount = totalPrice / 1000;
-        return totalLottoCount;
+    private Integer setTotalLottoCount(LottoPrice totalPrice) {
+        return totalPrice.getValue() / 1000;
     }
 
-    private Integer setTotalPrice() {
+    private LottoPrice setTotalPrice() {
         System.out.println("구입금액을 입력해 주세요.");
         Integer totalPrice = Integer.parseInt(readLine());
-        if(totalPrice % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 정수를 입력해야 합니다.");
-        }
-        return totalPrice;
+
+        return LottoPrice.valueOf(totalPrice);
     }
 }
