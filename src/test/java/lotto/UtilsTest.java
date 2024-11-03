@@ -110,4 +110,19 @@ public class UtilsTest {
 
         assertThat(resultCounts.get(Rank.FOUR)).isEqualTo(1);
     }
+
+    @DisplayName("로또 번호 3개 맞으면 Map에 Rank.FIVE부분이 +1이 된다.")
+    @Test
+    void 로또번호_3개일치_Map_FIVE갯수추가_로직() {
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(numbers);
+        int bonusNumber = 7;
+        List<Integer> myNumbers = new ArrayList<>(List.of(1, 2, 3, 8, 9, 10));
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(myNumbers));
+
+        Map<Rank, Integer> resultCounts = utils.evaluateLottoRanks(winningNumber, bonusNumber, lottos);
+
+        assertThat(resultCounts.get(Rank.FIVE)).isEqualTo(1);
+    }
 }
