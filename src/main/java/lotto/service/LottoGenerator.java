@@ -4,28 +4,24 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoGenerator {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    public static List<List<Integer>> generateLottoNumbers(int count){
-        List<List<Integer>> lottoNumbers= new ArrayList<>();
+    public List<Lotto> generateLottos(int count){
+        List<Lotto> lottoNumbers= new ArrayList<>();
         for(int i = 0; i < count; i++){
-            List<Integer> lotto = generateSingleLotto();
-            lottoNumbers.add(lotto);
+            lottoNumbers.add(generateSingleLotto());
         }
         return lottoNumbers;
     }
 
-    private static List<Integer> generateSingleLotto(){
-        List<Integer> numbers = new ArrayList<>();
-        while(numbers.size() < LOTTO_NUMBER_COUNT){
-            int number = Randoms.pickNumberInRange(MIN_NUMBER,MAX_NUMBER);
-            if(!numbers.contains(number)) numbers.add(number);
-        }
+    private Lotto generateSingleLotto(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBER_COUNT);
         Collections.sort(numbers);
-        return numbers;
+        return new Lotto(numbers);
     }
 }
