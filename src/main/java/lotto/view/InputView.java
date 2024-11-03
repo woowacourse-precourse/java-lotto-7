@@ -13,7 +13,7 @@ public class InputView {
 
 
     public int getMoneyInput(){
-        System.out.println("구입 입력을 입력해주세요.");
+        System.out.println("구입 금액을 입력해주세요.");
        return validate.validateLottoMoney(getLottoMoney());
     }
 
