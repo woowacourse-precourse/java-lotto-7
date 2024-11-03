@@ -29,7 +29,11 @@ public class Application {
         ArrayList<Lotto> lottos=new ArrayList<>();
         for(int i=0;i<amount;i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            try {
+                Collections.sort(numbers);
+            }catch (UnsupportedOperationException e){
+
+            }
             lottos.add(new Lotto(numbers));
         }
 
@@ -77,7 +81,62 @@ public class Application {
         //보너스 테스트용 코드
         System.out.println("bonus: "+bonus);
 
+        Level[] levels=Level.values();
+        for (Lotto lotto:lottos) {
+            checkWinning(lotto,goldenNumbers,bonus,levels);
+        }
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.format("3개 일치 (5,000원) - %d개\n",levels[4].getCount());
+        System.out.format("4개 일치 (50,000원) - %d개\n",levels[3].getCount());
+        System.out.format("5개 일치 (1,500,000원) - %d개\n",levels[2].getCount());
+        System.out.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",levels[1].getCount());
+        System.out.format("6개 일치 (2,000,000,000원) - %d개\n",levels[0].getCount());
+
+        int total=0;
+        for (Level level : levels) {
+            total+=level.apply();
+        }
+
+        double winRate=(total/(double)price)*100;
+
+        System.out.format("총 수익률은 %.1f%%입니다.",winRate);
+
+
+    }
+
+    public static void checkWinning(Lotto lotto, Lotto golden, int bonus,Level[] level){
+        int count=0;
+        boolean hasBonus=false;
+        for (int num : golden.getNumbers()) {
+            if(lotto.getNumbers().contains(num)){
+                count++;
+            }
+
+            if(num==bonus){
+                hasBonus=true;
+            }
+        }
+
+        updateLevel(count, hasBonus, level);
+
+    }
+
+    public static void updateLevel(int count, boolean hasBonus,Level[] level){
+        if(count==6){
+            level[0].check();
+            return;
+        }
+
+        if(count==5 && hasBonus){
+            level[1].check();
+            return;
+        }
+
+        if(count<=5 && count>=3){
+            level[7-count].check();
+        }
     }
 
     public static int getBonus(String bonusInput) throws IllegalArgumentException{
