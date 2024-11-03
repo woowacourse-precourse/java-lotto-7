@@ -30,4 +30,8 @@ public class Application {
     private static boolean isNum(String str) {
         return str.matches("\\d+");
     }
+
+    private static int calculateTicketCount(int amount){
+        return amount / LOTTO_PRICE;
+    }
 }
