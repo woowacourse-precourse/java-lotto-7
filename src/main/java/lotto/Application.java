@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 import util.NumberValidate;
@@ -24,9 +26,15 @@ public class Application {
         do {
             inputBonusNumber = getBonusNumber();
         } while (!validateBonusInput(inputBonusNumber, winningNumbers));
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
         System.out.println();
         System.out.println(GameMessage.RESULT_AVERAGE_MESSAGE.getMessage());
         System.out.println(GameMessage.RESULT_HYPE_MESSAGE.getMessage());
+
+        LottoHost lottoHost = new LottoHost(lottos);
+        LinkedHashMap<LottoResult, Integer> winningResults = lottoHost.getWinningResults(winningNumbers, bonusNumber);
+        printResults(winningResults);
+        printEarningRate(lottoHost, inputCash);
     }
 
     private static String getCashAmount() {
@@ -91,5 +99,31 @@ public class Application {
             return false;
         }
         return true;
+    }
+
+    private static void printResults(LinkedHashMap<LottoResult, Integer> winningResults) {
+        for (LottoResult lottoResult : winningResults.keySet()) {
+            if (lottoResult.getRankName().equals("NONE_RANK")) {
+                continue;
+            }
+            int prizeNumber = lottoResult.getPrize();
+            String subStringBonusNumber = " ";
+            if (lottoResult.getRankName().equals("SECOND_PRIZE")) {
+                subStringBonusNumber = ", 보너스 볼 일치";
+            }
+            String result = String.format("%d개 일치%s(%,d원) - %d개", lottoResult.getSameNumberCount(),
+                    subStringBonusNumber, prizeNumber,
+                    winningResults.get(lottoResult));
+            System.out.println(result);
+
+        }
+    }
+
+    private static void printEarningRate(LottoHost lottoHost, String inputCash) {
+        float earningRate = lottoHost.calcEarningRate(inputCash);
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        String formattedEarningRate = df.format(earningRate);
+        System.out.printf("%s %s %s\n", GameMessage.RESULT_RATE_MESSAGE_START.getMessage(), formattedEarningRate,
+                GameMessage.RESULT_RATE_MESSAGE_END.getMessage());
     }
 }
