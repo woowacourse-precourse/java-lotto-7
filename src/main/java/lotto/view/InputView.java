@@ -12,7 +12,7 @@ public class InputView {
     public static int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
 
-        int purchaseAmount = 0;
+        int purchaseAmount;
         try {
             purchaseAmount = Parser.parsePurchaseAmount(Console.readLine());
             Validator.validatePurchaseAmount(purchaseAmount);
@@ -27,7 +27,7 @@ public class InputView {
     public static List<Integer> inputWinningNumber() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
 
-        List<Integer> winningNumber = null;
+        List<Integer> winningNumber;
         try {
             winningNumber = Parser.parseWinningNumber(Console.readLine());
             Validator.validateWinningNumber(winningNumber);
@@ -42,7 +42,7 @@ public class InputView {
     public static Integer inputBonusNumber(List<Integer> winningNumber) {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
-        int bonusNumber = 0;
+        int bonusNumber;
         try {
             bonusNumber = Parser.parseBonusNumber(Console.readLine());
             Validator.validateBonusNumber(bonusNumber);
