@@ -12,9 +12,6 @@ public abstract class InputView {
 
         this.inputValue = removeWhiteSpace(Console.readLine());
 
-        initializeValidator();
-        validate();
-
         return inputValue;
     }
 
@@ -23,7 +20,4 @@ public abstract class InputView {
     }
 
     protected abstract void printInputMessage();
-
-    protected abstract void initializeValidator();
-    protected abstract void validate();
 }
