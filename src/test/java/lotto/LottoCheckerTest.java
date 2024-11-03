@@ -40,7 +40,7 @@ public class LottoCheckerTest {
         winningPrice.put(6, 2000000000);
         bonusWinningPrice.put(5, 30000000);
 
-        lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice, 6);
+        lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice);
 
         lottoes.add(lotto1);
         lottoes.add(lotto2);

@@ -10,12 +10,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         List<Integer> sortedNumbers = numbers.stream().sorted().toList();
-        validate(sortedNumbers, 1, 45, 6);
+        validate(sortedNumbers);
         this.numbers = sortedNumbers;
     }
 
-    public Lotto(int startNumber, int endNumber, int count) {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
+    public Lotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoInfo.startNumber, LottoInfo.endNumber, LottoInfo.count);
         Collections.sort(numbers);
 
         this.numbers = numbers;
@@ -25,25 +25,25 @@ public class Lotto {
         return this.numbers;
     }
 
-    public void printNumbers(int count) {
+    public void printNumbers() {
         System.out.print("[");
-        for (int i = 0; i < count - 1; i++) {
+        for (int i = 0; i < LottoInfo.count - 1; i++) {
             System.out.printf("%d, ", numbers.get(i));
         }
-        System.out.printf("%d]\n", numbers.get(count - 1));
+        System.out.printf("%d]\n", numbers.get(LottoInfo.count - 1));
     }
 
-    private void validate(List<Integer> numbers, int startNumber, int endNumber, int count) {
-        if (numbers.size() != count) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + count + "개여야 합니다.");
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != LottoInfo.count) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LottoInfo.count + "개여야 합니다.");
         }
-        for (int i = 0; i < count; i++) {
-            if (numbers.get(i) < startNumber || numbers.get(i) > endNumber) {
+        for (int i = 0; i < LottoInfo.count; i++) {
+            if (numbers.get(i) < LottoInfo.startNumber || numbers.get(i) > LottoInfo.endNumber) {
                 throw new IllegalArgumentException(
-                        "[ERROR] 로또 번호는 " + startNumber + "~" + endNumber + " 사이여야 합니다.");
+                        "[ERROR] 로또 번호는 " + LottoInfo.startNumber + "~" + LottoInfo.endNumber + " 사이여야 합니다.");
             }
         }
-        for (int i = 0; i < count - 1; i++) {
+        for (int i = 0; i < LottoInfo.count - 1; i++) {
             if (numbers.get(i).equals(numbers.get(i + 1))) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
             }

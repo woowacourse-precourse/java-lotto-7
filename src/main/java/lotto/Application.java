@@ -12,19 +12,14 @@ public class Application {
         int money = Input.validate(Input::parseMoney);
         System.out.println();
 
-        int lottoPrice = 1000;
-        int N = money / lottoPrice;
+        int N = money / LottoInfo.price;
 
         List<Lotto> lottoes = new ArrayList<>();
 
-        int startNumber = 1;
-        int endNumber = 45;
-        int count = 6;
-
         System.out.println(N + "개를 구매했습니다.");
         for (int i = 0; i < N; i++) {
-            Lotto lotto = new Lotto(startNumber, endNumber, count);
-            lotto.printNumbers(count);
+            Lotto lotto = new Lotto();
+            lotto.printNumbers();
             lottoes.add(lotto);
         }
         System.out.println();
@@ -47,7 +42,7 @@ public class Application {
         winningPrice.put(5, 1500000);
         winningPrice.put(6, 2000000000);
         bonusWinningPrice.put(5, 30000000);
-        LottoChecker lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice, 6);
+        LottoChecker lottoChecker = new LottoChecker(winningPrice, bonusWinningPrice);
 
         lottoChecker.result(winningLotto, lottoes, bonusNumber);
     }

@@ -11,11 +11,11 @@ public class LottoChecker {
     public int[] matchingCount;
     public int[] bonusMatchingCount;
 
-    public LottoChecker(Map<Integer, Integer> prizeMoney, Map<Integer, Integer> bonusWinningPrizeMoney, int maximumMatchingCount) {
+    public LottoChecker(Map<Integer, Integer> prizeMoney, Map<Integer, Integer> bonusWinningPrizeMoney) {
         this.prizeMoney = prizeMoney;
         this.bonusPrizeMoney = bonusWinningPrizeMoney;
-        this.matchingCount = new int[maximumMatchingCount + 1];
-        this.bonusMatchingCount = new int[maximumMatchingCount];
+        this.matchingCount = new int[LottoInfo.count + 1];
+        this.bonusMatchingCount = new int[LottoInfo.count];
     }
 
     public int numberMatch(List<Integer> winningNumbers, List<Integer> numbers) {
@@ -34,16 +34,19 @@ public class LottoChecker {
 
     public int calculateTotalWinningPrizeMoney() {
         int totalWinningPrizeMoney = 0;
-        totalWinningPrizeMoney += matchingCount[3] * prizeMoney.get(3);
-        totalWinningPrizeMoney += matchingCount[4] * prizeMoney.get(4);
-        totalWinningPrizeMoney += matchingCount[5] * prizeMoney.get(5);
-        totalWinningPrizeMoney += bonusMatchingCount[5] * bonusPrizeMoney.get(5);
-        totalWinningPrizeMoney += matchingCount[6] * prizeMoney.get(6);
+        for (int i = 0; i <= LottoInfo.count; i++) {
+            if (prizeMoney.containsKey(i)) {
+                totalWinningPrizeMoney += matchingCount[i] * prizeMoney.get(i);
+            }
+            if (bonusPrizeMoney.containsKey(i)) {
+                totalWinningPrizeMoney += bonusMatchingCount[i] * bonusPrizeMoney.get(i);
+            }
+        }
         return totalWinningPrizeMoney;
     }
 
     public String calculateProfitRate(int numberOfLottoes, int totalWinningPrice) {
-        int purchaseAmount = numberOfLottoes * 1000;
+        int purchaseAmount = numberOfLottoes * LottoInfo.price;
         double profitRate = ((double) totalWinningPrice / purchaseAmount) * 100;
         return String.format("%.1f", Math.round(profitRate * 100) / 100.0);
     }
