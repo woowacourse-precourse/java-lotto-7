@@ -15,6 +15,7 @@ public class Ticket {
     private final Set<LottoNumber> lottoNumbers;
     private final boolean isAuto;
 
+
     public Ticket(Set<LottoNumber> lottoNumbers, boolean isAuto) {
         this.lottoNumbers = lottoNumbers;
         this.isAuto = isAuto;
@@ -22,6 +23,13 @@ public class Ticket {
 
     public static Ticket createByImplementation(LottoNumbersGenerator lottoNumbersGenerator, boolean isAuto) {
         Set<LottoNumber> lottoNumbers = lottoNumbersGenerator.generate(TICKET_SIZE);
+        return new Ticket(lottoNumbers, isAuto);
+    }
+
+    public static Ticket createByIntegers(List<Integer> numbers, boolean isAuto) {
+        checkTicketSize(numbers.size());
+        checkDuplicate(numbers);
+        Set<LottoNumber> lottoNumbers = convertToLottoNumbers(numbers);
         return new Ticket(lottoNumbers, isAuto);
     }
 

@@ -1,7 +1,13 @@
 package lotto.view;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
+import lotto.domain.Ticket;
+import lotto.domain.Tickets;
 
 public class OutputView {
     private static final String LOSS_MESSAGE = "손해입니다.";
@@ -9,6 +15,38 @@ public class OutputView {
     private static final String RESULT_MESSAGE = "당첨 통계";
     private static final String DIVIDER = "==========";
     private static final int PROFIT_BASIS = 1;
+
+    public static void printTickets(int autoTicketCount, Tickets tickets) {
+        StringBuilder stringBuilder = new StringBuilder();
+        appendPrintTicketHeader(autoTicketCount, stringBuilder);
+        appendTickets(stringBuilder, tickets);
+        System.out.println(stringBuilder);
+    }
+
+    private static void appendPrintTicketHeader(int autoTicketCount, StringBuilder stringBuilder) {
+        stringBuilder.append("장, 자동으로")
+                .append(autoTicketCount)
+                .append("개를 구매했습니다.")
+                .append(System.lineSeparator());
+    }
+
+    private static void appendTickets(StringBuilder stringBuilder, Tickets tickets) {
+        for (Ticket ticket : tickets.getTickets()) {
+            Set<LottoNumber> lottoNumbers = ticket.getLottoNumbers();
+            stringBuilder.append("[")
+                    .append(String.join(DELIMITER, getLottoNumbers(lottoNumbers)))
+                    .append("]")
+                    .append(System.lineSeparator());
+        }
+    }
+
+    private static List<String> getLottoNumbers(Set<LottoNumber> lottoNumbers) {
+        return lottoNumbers.stream()
+                .map(LottoNumber::getNumber)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+    }
+
 
     public static void printResult(Map<Rank, Integer>result, double yield) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -38,7 +76,6 @@ public class OutputView {
                     .append(System.lineSeparator());
         }
     }
-
 
     private static String getBonus(Rank rank) {
         if (rank.isBonus()) {

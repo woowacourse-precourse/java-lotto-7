@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -8,6 +9,10 @@ public class Tickets {
 
     public Tickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public List<Ticket> getTickets() {
+        return Collections.unmodifiableList(tickets);
     }
 
     public int getTicketCount() {
