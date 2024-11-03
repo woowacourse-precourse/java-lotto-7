@@ -8,7 +8,10 @@ public class Application {
         // TODO: 프로그램 구현
         LottoController lottoController = new LottoController();
 
-        lottoController.run();
-
+        try{
+            lottoController.run();
+        }catch(IllegalArgumentException err){
+            System.out.println(err.getMessage());
+        }
     }
 }
