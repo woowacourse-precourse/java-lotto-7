@@ -12,7 +12,7 @@ public class InputView {
     }
 
     public String promptNumbers() {
-        System.out.println(ViewMessages.PROMPT_WINNING_NUMBERS.getMessage());
+        System.out.println(ViewMessages.PROMPT_WINNING_NUMBERS.getMessage(Constants.LOTTO_NUMBER_SIZE.getValue()));
         return Console.readLine();
     }
 }
