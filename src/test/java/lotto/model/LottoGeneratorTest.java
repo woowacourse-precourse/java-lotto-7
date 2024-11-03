@@ -18,4 +18,16 @@ class LottoGeneratorTest {
         // then
         Assertions.assertThat(lottoGenerator).isNotNull();
     }
+
+    @Test
+    @DisplayName("로또를 생성할 수 있다.")
+    void should_GenerateLotto() {
+        // given
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        LottoGenerator lottoGenerator = new LottoGenerator(numberGenerator);
+        // when
+        Lotto lotto = lottoGenerator.generate();
+        // then
+        Assertions.assertThat(lotto).isNotNull();
+    }
 }
