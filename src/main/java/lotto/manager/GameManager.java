@@ -22,6 +22,17 @@ public class GameManager {
         this.gameResultManager = new GameResultManager();
     }
 
+    public void run() {
+        Player player = sellLottoToPlayer();
+        Writer.writeIssuedLottos(player.getLottos());
+
+        getWinningLotto();
+
+        Result result = gameResultManager.getResult(player);
+
+        Writer.writeResult(result);
+    }
+
     private Player sellLottoToPlayer() {
         Player player;
 
