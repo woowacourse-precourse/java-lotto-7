@@ -8,7 +8,7 @@
 ***
 
 ![Static badge](https://img.shields.io/badge/precourse-week3-14CC80.svg)
-![Static badge](https://img.shields.io/badge/test-0_passed-1E96EB.svg)
+![Static badge](https://img.shields.io/badge/test-17_passed-1E96EB.svg)
 
 
 > 우아한테크코스 7기 3주차 프리코스 미션을 구현한 프로젝트
