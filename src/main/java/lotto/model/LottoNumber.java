@@ -16,6 +16,10 @@ public class LottoNumber {
         this.number = Integer.parseInt(strip);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

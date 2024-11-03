@@ -16,5 +16,21 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public WinningType match(AnswerNumbers answer, BonusNumber bonusNumber) {
+        int matchCount = match(answer);
+        boolean matchBonus = matchBonus(bonusNumber);
+        return WinningType.of(matchCount, matchBonus);
+    }
+
+    private int match(AnswerNumbers answer) {
+        return (int)answer.getAnswerNumbers().stream()
+                .map(LottoNumber::getNumber)
+                .filter(numbers::contains)
+                .count();
+    }
+
+    private boolean matchBonus(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getNumber());
+    }
+
 }
