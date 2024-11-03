@@ -44,6 +44,15 @@ public class LottoValidatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,", "45,44,33,22,11,1,"})
+    void 구분자로_끝나면_예외발생(String input) {
+        assertThatThrownBy(() -> {
+            validator = new LottoValidator(input);
+            validator.validateEndingComma();
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"99999999999999999999999999999999999,-99999999999999999999999999999999999"})
     void 정수_리스트_변환_불가능할경우_예외발생(String input) {
         assertThatThrownBy(() -> {
