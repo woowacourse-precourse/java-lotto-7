@@ -4,17 +4,26 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.platform.commons.util.StringUtils;
 
 public class LottoView {
     private static final String WINNING_DELIMITER = ",";
 
     public BigDecimal inputLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        return convertStringToBigDecimal(Console.readLine());
+        String str = Console.readLine();
+        return new BigDecimal(convertStringToInt(str));
     }
 
-    private BigDecimal convertStringToBigDecimal(String str) {
-        return new BigDecimal(Integer.parseInt(str));
+    private int convertStringToInt(String str) {
+        validateToInt(str);
+        return Integer.parseInt(str);
+    }
+
+    private void validateToInt(String str) {
+        if (StringUtils.isBlank(str) || str.chars().noneMatch(Character::isDigit)) {
+            throw new IllegalArgumentException("숫자만 가능합니다.");
+        }
     }
 
     public void printLottoCount(int lottoCount) {
@@ -30,7 +39,7 @@ public class LottoView {
         String winningNumber = Console.readLine();
         System.out.println();
         return Arrays.stream(winningNumber.split(WINNING_DELIMITER))
-                .map(Integer::parseInt)
+                .map(this::convertStringToInt)
                 .toList();
     }
 
@@ -38,7 +47,7 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         System.out.println();
-        return Integer.parseInt(bonusNumber);
+        return convertStringToInt(bonusNumber);
     }
 
     public void printWinningTrace(String winningTrace) {
