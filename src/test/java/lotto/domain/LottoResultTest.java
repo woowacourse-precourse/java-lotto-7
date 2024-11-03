@@ -86,5 +86,26 @@ public class LottoResultTest {
 
         assertThat(lottoResult.getCountByRank(Rank.NONE)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("수익률을 계산한다.")
+    void 수익률을_계산한다() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+
+        // 3장 구매, 1등 1장 (20억)
+        List<Integer> userNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottos = Arrays.asList(
+                new Lotto(userNumbers),
+                new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15)),
+                new Lotto(Arrays.asList(20, 21, 22, 23, 24, 25))
+        );
+
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto);
+
+        // 수익률 = (당첨금 * 100) / 구매금액
+        // = (2,000,000,000 * 100) / 3,000 = 66,666,666.7%
+        assertThat(lottoResult.getReturnRate()).isEqualTo(66666666.7, offset(0.1));
+    }
 }
 
