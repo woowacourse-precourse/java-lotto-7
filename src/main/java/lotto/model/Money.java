@@ -14,6 +14,14 @@ public class Money {
         this.value = getParsedInt(value);
     }
 
+    private Money(final int value) {
+        this.value = value;
+    }
+
+    public Money add(int value) {
+        return new Money(this.value + value);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

@@ -65,4 +65,15 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_MONEY_UNIT.getMessage());
     }
+
+    @Test
+    @DisplayName("Money를 더하면 값을 더한 Money를 반환한다.")
+    void should_ReturnMoneyWithAddedValue_When_AddMoney() {
+        // given
+        Money money = new Money("1000");
+        // when
+        Money addedMoney = money.add(1000);
+        // then
+        Assertions.assertThat(addedMoney).isEqualTo(new Money("2000"));
+    }
 }
