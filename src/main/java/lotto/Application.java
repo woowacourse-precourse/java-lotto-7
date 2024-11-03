@@ -20,7 +20,7 @@ public class Application {
         return lottoWinningNumbers; // 리스트 반환
     }
 
-    public static List<Integer> checkValidLottoNumbers(List<Integer> lottoWinningNumbers) {
+    public static List<Integer> checkValidLottoNumbers(List<Integer> lottoWinningNumbers) { //로또 번호 체크
         Set<Integer> lottoNumbersSet = new HashSet<>(lottoWinningNumbers);
 
         if (lottoWinningNumbers.size() != 6) throw new IllegalArgumentException("");
