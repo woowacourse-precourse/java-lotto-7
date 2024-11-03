@@ -18,7 +18,7 @@ public class OutputView {
      * 사용자가 구매한 로또 갯수 출력
      */
     public static void printLottoQuantity(int quantity) {
-        System.out.println(quantity + "" + SystemMessage.MESSAGE_OUTPUT_PURCHASE_LOTTO_QUANTITY);
+        System.out.println(quantity + SystemMessage.MESSAGE_OUTPUT_PURCHASE_LOTTO_QUANTITY.getMessage());
     }
 
     /**

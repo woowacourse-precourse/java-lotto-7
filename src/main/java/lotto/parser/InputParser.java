@@ -28,16 +28,24 @@ public class InputParser {
         return purchaseAmount / MULTIPLES_OF_LOTTO_PRICE;
     }
 
-    // 당첨번호(String)를 WinningLotto로 파싱
+    // 당첨번호(String)를 WinningLotto 로 파싱
     public static WinningLotto parseWinningLotto(String winningNumbers, int bonusNumber) {
-        // TODO 당첨번호가 숫자인지 확인 + 당첨번호가 null인지 체크
-        List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+        InputValidator.isWinningNumbersBlank(winningNumbers);
 
-        Lotto winningLotto = new Lotto(winningNumberList);
+        try{
+            List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
 
-        return new WinningLotto(winningLotto, bonusNumber);
+            winningNumberList.forEach(InputValidator::isWinningNumbersRangeIn);
+
+            Lotto winningLotto = new Lotto(winningNumberList);
+
+            return new WinningLotto(winningLotto, bonusNumber);
+
+        } catch (NumberFormatException e) {
+            throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
+        }
     }
 }
