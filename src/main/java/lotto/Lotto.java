@@ -35,4 +35,13 @@ public class Lotto {
         return matchCount;
     }
 
+    public boolean isBonusNumberMatched(WinningLotto winningLotto) {
+        for (Integer number : numbers) {
+            if (winningLotto.isBonusNumber(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
