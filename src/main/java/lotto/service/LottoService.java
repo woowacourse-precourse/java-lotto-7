@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.eunm.LottoConstants.*;
 import static lotto.eunm.WinningResult.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.dto.LottoDto;
@@ -11,21 +12,47 @@ import lotto.dto.WinningDto;
 public class LottoService {
 
     public WinningDto statisticsNumbers(LottoDto lottoDto) {
-        int[] numbers = calculateLottoNumber(lottoDto, lottoDto.getLottos(), lottoDto.getWinningNumbers());
-        WinningDto winningDto = WinningDto.of(numbers);
+        List<Integer> matchStatistics = calculateLottoNumber(lottoDto, lottoDto.getLottos(),
+                lottoDto.getWinningNumbers());
+        WinningDto winningDto = WinningDto.of(matchStatistics);
         winningDto.setPrice(totalPrice(winningDto, lottoDto.getLottosSize() * TICKET_PRICE_UNIT.value));
         return winningDto;
     }
 
-    private int[] calculateLottoNumber(LottoDto lottoDto, List<Lotto> lottos, List<Integer> winningNumbers) {
-        int[] matchStatistics = new int[8];
+    private List<Integer> calculateLottoNumber(LottoDto lottoDto, List<Lotto> lottos, List<Integer> winningNumbers) {
+        List<Integer> matchStatistics = initializeMatchStatistics();
 
         for (Lotto lotto : lottos) {
-            int matchedCount = countMatchedNumbers(lotto.getSortNumbers(), winningNumbers);
-            updateMatchStatistics(lottoDto, lotto, matchedCount, matchStatistics);
+            processLotto(lottoDto, winningNumbers, matchStatistics, lotto);
         }
 
         return matchStatistics;
+    }
+
+    private List<Integer> initializeMatchStatistics() {
+        return new ArrayList<>(List.of(0, 0, 0, 0, 0, 0, 0, 0));
+    }
+
+    private void processLotto(LottoDto lottoDto, List<Integer> winningNumbers, List<Integer> matchStatistics,
+                              Lotto lotto) {
+        int matchedCount = countMatchedNumbers(lotto.getSortNumbers(), winningNumbers);
+        updateMatchStatistics(lottoDto, lotto, matchedCount, matchStatistics);
+    }
+
+    private static void updateMatchStatistics(LottoDto lottoDto, Lotto lotto, int matchedCount,
+                                              List<Integer> matchStatistics) {
+        if (isBonusMatch(lottoDto, lotto, matchedCount)) {
+            matchStatistics.set(FIVE_AND_BONUS.winningCount, matchStatistics.get(FIVE_AND_BONUS.winningCount) + 1);
+            return;
+        }
+
+        if (isValidMatchCount(matchedCount, matchStatistics)) {
+            if (matchedCount == 6) {
+                matchStatistics.set(SIX.winningCount, matchStatistics.get(SIX.winningCount) + 1);
+                return;
+            }
+            matchStatistics.set(matchedCount, matchStatistics.get(matchedCount) + 1);
+        }
     }
 
     private int countMatchedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
@@ -34,19 +61,8 @@ public class LottoService {
                 .count();
     }
 
-    private static void updateMatchStatistics(LottoDto lottoDto, Lotto lotto, int matchedCount, int[] matchStatistics) {
-        if (isBonusMatch(lottoDto, lotto, matchedCount)) {
-            matchStatistics[FIVE_AND_BONUS.winningCount]++;
-            return;
-        }
-
-        if (isValidMatchCount(matchedCount, matchStatistics)) {
-            matchStatistics[matchedCount]++;
-        }
-    }
-
-    private static boolean isValidMatchCount(int matchedCount, int[] matchStatistics) {
-        return matchedCount > MINIMUM_NUMBER.value && matchedCount < matchStatistics.length;
+    private static boolean isValidMatchCount(int matchedCount, List<Integer> matchStatistics) {
+        return matchedCount > MINIMUM_NUMBER.value && matchedCount < matchStatistics.size();
     }
 
     private static boolean isBonusMatch(LottoDto lottoDto, Lotto lotto, int matchedCount) {
