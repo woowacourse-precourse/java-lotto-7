@@ -7,6 +7,7 @@ import lotto.input.InputParser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoConfiguration {
@@ -25,6 +26,22 @@ public class LottoConfiguration {
         this.bonusNumber = inputHandler.inputBonusNumber();
     }
 
+    public int lottoPrice() {
+        return purchaseAmount;
+    }
+    public int lottoCount() {
+        return lottoCount;
+    }
+    public List<Lotto> lottos(){
+        return lottos;
+    }
+    public List<Integer> winningNumbers() {
+        return winningNumbers;
+    }
+    public int bonusNumber() {
+        return bonusNumber;
+    }
+
     private int calculateLottoCount(int purchaseAmount){
         int lottoCount = purchaseAmount / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
@@ -33,7 +50,7 @@ public class LottoConfiguration {
     private List<Lotto> createLotto(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNumbers = (Randoms.pickUniqueNumbersInRange(1, 45, 6));
             showLottoNumbers(lottoNumbers);
             generatedLottos.add(new Lotto(lottoNumbers));
         }
@@ -45,4 +62,5 @@ public class LottoConfiguration {
     private String createWinningNumbers(InputHandler inputHandler) {
         return inputHandler.inputWinningNumbers();
     }
+
 }
