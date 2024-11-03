@@ -76,163 +76,298 @@
 ## Use Case  다이어그램
 <img src="https://github.com/user-attachments/assets/72a146d8-d402-49ed-b37a-74c5fa5fbf9e" alt="미션3_유스케이스_다이어그램" width="400"/>
 
-# MVC 구조
 
-## 🔵 **Model**
+## MVC 구조
 
-### ReturnRateRule 👉 수익률 계산 규칙을 관리하는 인터페이스
-- **메서드**
-  - `calculateReturnRate`: 수익률 계산하기
-
-### Lotto 👉 로또를 관리하는 클래스
-- **필드**
-  - `List<Integer> numbers`: 로또 번호 목록
-
-- **메서드**
-  - `Lotto` : 생성자
-  - `validate`: 로또 번호 유효성 검사하기
-  - `compareWinningNumbers`: 당첨 번호와 비교하기
-  - `numbersToString`: 번호를 문자열로 변환하기
-
-### Lottos 👉 발행된 로또들을 관리하는 클래스
-- **필드**
-  - `List<Lotto> lottos`: 로또 객체 리스트
-
-- **메서드**
-  - `Lottos`: 생성자
-  - `quantifyAllLottos`: 로또의 수량 반환하기
-  - `allLottosToString`: 모든 로또 번호를 문자열로 변환하기
+### 🔵 **Model**
 
 ### Money 👉 구입 금액을 관리하는 클래스
 - **필드**
   - `Integer money`: 구입 금액
 
-- **메서드**
-  - `Money`: 생성자
-  - `parserToInt`: 문자열을 정수로 파싱하기
-  - `validate`: 구입 금액의 유효성 검사하기
+- **생성자**
+  - `Money(String money)`: 문자열로부터 구입 금액 생성
 
-### WinningNumbers 👉 당첨 번호를 관리하는 클래스
+- **메서드**
+  - `boughtLottosQuantity()`: 구매한 로또 수량 반환하기
+  - `getMoney()`: 구입 금액 반환하기
+
+---
+
+### Lotto 👉 로또 한 장을 나타내는 클래스
 - **필드**
-  - `List<Integer> numbers`: 당첨 번호 리스트
+  - `List<Integer> numbers`: 로또 번호 목록
+
+- **생성자**
+  - `Lotto(List<Integer> numbers)`: 로또 번호로부터 생성
+
+- **메서드**
+  - `validate(List<Integer> numbers)`: 로또 번호 유효성 검사하기
+  - `sortedNumbersToString()`: 로또 번호를 오름차순으로 정렬하여 문자열로 반환하기
+  - `compareWinningNumbers(List<Integer> winningNumbers)`: 당첨 번호와 비교하여 일치하는 개수 반환하기
+  - `compareBonusNumber(Integer bonusNumber)`: 보너스 번호와 일치 여부 반환하기
+
+---
+
+### LottoFactory 👉 로또를 생성하는 팩토리 클래스
+- **정적 메서드**
+  - `createLottos(int quantityOfLottos)`: 지정된 수량의 로또 생성하기
+
+---
+
+### Lottos 👉 여러 로또들을 관리하는 클래스
+- **필드**
+  - `List<Lotto> lottos`: 로또 객체 리스트
+
+- **생성자**
+  - `Lottos(List<Lotto> lottos)`: 로또 리스트로부터 생성
+
+- **정적 메서드**
+  - `createLottos(int quantityOfLottos)`: 로또 팩토리를 통해 로또 생성하여 Lottos 객체 반환하기
+
+- **메서드**
+  - `allLottosToString()`: 모든 로또 번호를 문자열로 반환하기
+  - `getLottos()`: 로또 리스트 반환하기
+
+---
+
+### WinningNumbers 👉 당첨 번호와 보너스 번호를 관리하는 클래스
+- **필드**
+  - `List<Integer> winningNumbers`: 당첨 번호 리스트
   - `Integer bonusNumber`: 보너스 번호
 
+- **생성자**
+  - `WinningNumbers(String winningNumbers, String bonusNumber)`: 입력된 문자열로부터 생성
+
 - **메서드**
-  - `WinningNumbers`: 생성자
-  - `splitWinningNumbers`: 당첨 번호 문자열을 분리하기
-  - `paserWinningNumbers`: 당첨 번호를 정수로 파싱하기
-  - `paserBonusNumber`: 보너스 번호를 정수로 파싱하기
-  - `validate`: 당첨/보너스 번호의 유효성 검사하기
+  - `splitWinningNumbers(String winningNumbers)`: 당첨 번호 문자열을 분리하기
+  - `parseWinningNumbers(List<String> winningNumbers)`: 분리된 당첨 번호를 정수 리스트로 파싱하기
+  - `parseBonusNumber(String bonusNumber)`: 보너스 번호를 정수로 파싱하기
+  - `validate(List<Integer> winningNumbers)`: 당첨 번호와 보너스 번호의 유효성 검사하기
+  - `getWinningNumbers()`: 당첨 번호 리스트 반환하기
+  - `getBonusNumber()`: 보너스 번호 반환하기
+
+---
 
 ### WinningStatistic 👉 당첨 통계를 관리하는 클래스
 - **필드**
-  - `List<WinningType> winningStatistic`: 당첨 통계 리스트
+  - `List<WinningType> winningStatistic`: 당첨 결과 리스트
+
+- **생성자**
+  - `WinningStatistic(List<WinningType> winningStatistic)`: 당첨 결과 리스트로 생성
+
+- **정적 메서드**
+  - `createWinningStatistic(WinningNumbers winningNumbers, Lottos lottos)`: 당첨 번호와 로또 리스트로부터 당첨 통계 생성하기
 
 - **메서드**
-  - `WinningStatistic`: 생성자
-  - `calculateStatistic`: 당첨 통계 계산하기
-  - `statisticToString`: 당첨 통계 결과를 문자열로 변환하기
-  - `sumAllPrice`: 총 당첨금 계산하기
+  - `determineWinningType(Lotto lotto, WinningNumbers winningNumbers)`: 로또와 당첨 번호로부터 당첨 유형 결정하기
+  - `getWinningStatistic()`: 당첨 결과 리스트 반환하기
 
-### ReturnRate 👉 수익률을 관리하는 클래스
+---
+
+### TotalPrice 👉 총 당첨 금액을 관리하는 클래스 (`ReturnRate` 인터페이스 구현)
 - **필드**
-  - `Integer firstPercentage`: 첫 번째 수익률
+  - `Integer totalPrice`: 총 당첨 금액
+
+- **생성자**
+  - `TotalPrice(Integer totalPrice)`: 총 당첨 금액으로 생성
+
+- **정적 메서드**
+  - `sumAllPrice(List<WinningType> winningStatistic)`: 당첨 결과 리스트로부터 총 당첨 금액 계산하여 `TotalPrice` 객체 생성하기
 
 - **메서드**
-  - `ReturnRate`: 생성자
-  - `calculateReturnRate`: 수익률 계산하기
-  - `rounding`: 수익률을 소수점 둘째 자리에서 반올림하기
+  - `calculateReturnRate(Money money)`: 수익률 계산하기 (`ReturnRate` 인터페이스 구현)
 
+---
 
-## 🟡 **View**
+### ReturnRate 👉 수익률 계산을 위한 인터페이스
+- **메서드**
+  - `calculateReturnRate(Money money)`: 수익률 계산하기
+
+---
+
+### 🟡 **View**
 
 ### InputView 👉 사용자 입력을 처리하는 클래스
 - **메서드**
-  - `readMoney`: 구입 금액 입력 받기
-  - `readWinningNumbers`: 당첨 번호 입력 받기
-  - `readBonusNumber`: 보너스 번호 입력 받기
+  - `readMoney()`: 구입 금액 입력 받기
+  - `readWinningNumbers()`: 당첨 번호 입력 받기
+  - `readBonusNumber()`: 보너스 번호 입력 받기
+
+---
 
 ### OutputView 👉 결과 출력을 처리하는 클래스
 - **메서드**
-  - `printQuantityOfLottos`: 발행된 로또 수량 출력하기
-  - `printAllLottos`: 발행된 모든 로또 출력하기
-  - `printStatistic`: 당첨 통계 출력하기
-  - `printReturnRate`: 당첨 수익률 출력하기
+  - `printQuantityOfLottos(int boughtLottosQuantity)`: 구매한 로또 수량 출력하기
+  - `printAllLottos(String allLottos)`: 모든 로또 번호 출력하기
+  - `printStatistic(List<WinningType> winningStatistic)`: 당첨 통계 출력하기
+  - `printReturnRate(double returnRate, List<WinningType> winningStatistic)`: 수익률 출력하기
 
+---
 
-## 🟢 **Controller**
+### 🟢 **Controller**
 
-### RacingController 👉 로또 발매기에서 사용자 입력을 받고 모델과 상호작용하여 경주를 진행하는 컨트롤러
+### LottoMachineController 👉 로또 기계의 전체 흐름을 제어하는 컨트롤러
 - **필드**
-  - `Lottos`: 발행된 모든 로또 객체
-  - `WinningStatistic`: 당첨 통계 객체
-  - `Money`: 구입 금액 객체
-  - `ReturnRate`: 수익률 객체
+  - `Lottos lottos`: 발행된 로또 객체
+  - `Money money`: 구입 금액 객체
+  - `TotalPrice totalPrice`: 총 당첨 금액 객체
+  - `WinningNumbers winningNumbers`: 당첨 번호 객체
+  - `WinningStatistic winningStatistic`: 당첨 통계 객체
+  - `InputView inputView`: 입력 뷰 객체
+  - `OutputView outputView`: 출력 뷰 객체
+  - `LottoMachineFactory factory`: 로또 기계 팩토리 객체
+
+- **생성자**
+  - `LottoMachineController(LottoMachineFactory factory)`: 팩토리 객체로부터 생성
 
 - **메서드**
-  - `startRelease`: 로또 발매 시작하기
+  - `runLottoMachine()`: 로또 기계 실행하기
+  - `tryReadMoney()`: 구입 금액 입력 받기 및 예외 처리
+  - `getLottosQuantity()`: 구매한 로또 수량 계산하기
+  - `printQuantityOfLottos(int buyedLottosQuantity)`: 구매한 로또 수량 출력하기
+  - `tryMakeLotto(int buyedLottosQuantity)`: 로또 생성 및 예외 처리
+  - `printAllLottos(String allLottos)`: 모든 로또 번호 출력하기
+  - `tryReadBonusAndWinningNumbers()`: 당첨 번호와 보너스 번호 입력 받기 및 예외 처리
+  - `getWinningStatistic(WinningNumbers winningNumbers, Lottos lottos)`: 당첨 통계 계산하기
+  - `printStatistic(List<WinningType> winningResults)`: 당첨 통계 출력하기
+  - `getReturnRate(List<WinningType> winningResults)`: 수익률 계산하기
+  - `printReturnRate(double returnRate, List<WinningType> winningResults)`: 수익률 출력하기
 
+---
 
-
-## 🔴 **Validation**
-
-### MoneyValidator 👉 구입 금액 입력값의 유효성을 검사하는 클래스
+### LottoMachineFactory 👉 로또 기계의 객체들을 생성하는 팩토리 클래스
 - **메서드**
-  - `validateMoney`: 입력된 구입 금액의 유효성 검사하기
+  - `createInputView()`: `InputView` 객체 생성하기
+  - `createOutputView()`: `OutputView` 객체 생성하기
+  - `createLottos(int quantity)`: `Lottos` 객체 생성하기
+  - `createWinningStatistic(WinningNumbers winningNumbers, Lottos lottos)`: `WinningStatistic` 객체 생성하기
+  - `createTotalPrice(List<WinningType> winningResults)`: `TotalPrice` 객체 생성하기
 
-### WinningNumbersValidator 👉 당첨/보너스 번호 입력값의 유효성을 검사하는 클래스
+---
+
+### 🔴 **Validation**
+
+### MoneyValidator 👉 구입 금액의 유효성을 검사하는 클래스
 - **메서드**
-  - `mainValidator`: 여러 유효성 메서드 관리하기
-  - `validateNumbers`: 입력된 당첨/보너스 번호의 유효성 검사하기
-  - `validateDuplicate`: 입력된 당첨/보너스 번호 중에 중복 번호 여부 검사하기
+  - `validateMoney(Integer money)`: 구입 금액의 유효성 검사하기
+
+---
 
 ### LottoNumberValidator 👉 로또 번호의 유효성을 검사하는 클래스
 - **메서드**
-  - `validateNumbers`: 로또 번호의 유효성 검사하기
+  - `validateLottoNumbers(List<Integer> numbers)`: 로또 번호 유효성 검사 메인 메서드
+  - `validateNumbers(List<Integer> numbers)`: 로또 번호 개수 및 범위 검사하기
+  - `validateDuplicate(List<Integer> numbers)`: 중복 번호 검사하기
 
+---
 
-## 🟣 **Enum**
-
-### WinningType 👉 당첨 당첨 기준과 금액을 관리하는 enum
-- **상수 필드**
-  - `1ST_PLACE`: 1등
-  - `2ND_PLACE`: 2등
-  - `3RD_PLACE`: 3등
-  - `4TH_PLACE`: 4등
-  - `5TH_PLACE`: 5등
-  - `6TH_PLACE`: 6등
-
-### SystemMessage 👉 시스템 메세지를 관리하는 인터페이스
+### WinningAndBonusNumbersValidator 👉 당첨 번호와 보너스 번호의 유효성을 검사하는 클래스
 - **메서드**
-  - `getMessage`: 시스템 메세지 반환하기  
+  - `validateWinningAndBonusNumbers(List<Integer> winningAndBonusNumbers)`: 당첨 번호 및 보너스 번호 유효성 검사 메인 메서드
+  - `validateNumbers(List<Integer> winningAndBonusNumbers)`: 번호 개수 및 범위 검사하기
+  - `validateDuplicate(List<Integer> winningAndBonusNumbers)`: 중복 번호 검사하기
 
-### ErrorMessage 👉 시스템 에러 메세지를 관리하는 enum
+---
+
+### 🟣 **Enum**
+
+### WinningType 👉 당첨 유형을 나타내는 enum
+- **상수**
+  - `FIRST_PLACE`
+  - `SECOND_PLACE`
+  - `THIRD_PLACE`
+  - `FOURTH_PLACE`
+  - `FIFTH_PLACE`
+
+---
+
+### SystemMessage 👉 시스템 메시지 인터페이스
 - **메서드**
-  - `getMessage`: 시스템 에러 메세지 반환하기  
+  - `getMessage()`: 메시지 반환하기
 
-### IOMessage 👉 시스템 입출력 메세지를 관리하는 enum
+---
+
+### ErrorMessage 👉 에러 메시지를 관리하는 enum (`SystemMessage` 구현)
+- **상수**
+  - `INVALID_INT_NUMBER`
+  - `NOT_NATURAL_NUMBER`
+  - `INVALID_MONEY_UNIT`
+  - `INVALID_WINNING_NUMBER`
+  - `DUPLICATE_WINNING_NUMBER`
+  - `INVALID_WINNING_NUMBERS_QUANTITY`
+  - `INVALID_LOTTO_QUANTITY`
+  - `DUPLICATE_LOTTO_NUMBER`
+  - `INVALID_LOTTO_NUMBER`
+  - `INVALID_CALCULATE`
+
 - **메서드**
-  - `getMessage`: 시스템 IO메세지 반환하기  
+  - `getMessage()`: 에러 메시지 반환하기
 
+---
 
-## 🟤 **Utilities**
+### IOMessage 👉 입출력 메시지를 관리하는 enum (`SystemMessage` 구현)
+- **상수**
+  - `INPUT_PURCHASE_AMOUNT`
+  - `INPUT_WINNING_NUMBER`
+  - `INPUT_BONUS_NUMBER`
+  - `PRINT_QUANTITY_OF_LOTTOS`
+  - `PRINT_WINNING_STATISTIC`
+  - `PRINT_WINNING_STATISTIC_SEPARATER`
+  - `PRINT_UNIT_OF_QUANTITY`
+  - `PRINT_THREE_MATCHING_QUANTITY`
+  - `PRINT_FOUR_MATCHING_QUANTITY`
+  - `PRINT_FIVE_MATCHING_QUANTITY`
+  - `PRINT_FIVE_MATCHING_QUANTITY_AND_BONUS`
+  - `PRINT_SIX_MATCHING_QUANTITY`
+  - `PRINT_TOTAL_RETURN_RATE`
+  - `PRINT_NO_MONEY_EARNED`
 
-### Random 👉 무작위 숫자 생성 유틸리티 클래스
 - **메서드**
-  - `lottoGenerator`: 로또 번호 생성하기
+  - `getMessage()`: 메시지 반환하기
 
-### Parser 👉 문자열에서 정수로 파싱하는 유틸리티 클래스
-- **메서드**
-  - `parseNumberToInt`: 숫자 하나를 정수로 변환하기
-  - `parseNumbersToInt`: 여러 숫자를 정수로 변환하기
+---
 
-### Sorter 👉 정렬을 담당하는 유틸리티 클래스
+### 🟤 **Utilities**
+
+### Parser 👉 문자열을 정수로 파싱하는 유틸리티 클래스
 - **메서드**
-  - `inAscendingOrder`: 오름차순으로 정렬하기
+  - `parseNumberToInt(String number)`: 문자열을 정수로 파싱하기
+  - `parseNumbersToInt(List<String> numbers)`: 문자열 리스트를 정수 리스트로 파싱하기
+
+---
+
+### Random 👉 로또 번호를 생성하는 유틸리티 클래스
+- **메서드**
+  - `lottoGenerator()`: 랜덤 로또 번호 생성하기
+
+---
+
+### Sorter 👉 리스트를 정렬하는 유틸리티 클래스
+- **메서드**
+  - `inAscendingOrder(List<Integer> listOfLottoNumbers)`: 리스트를 오름차순으로 정렬하기
+
+---
 
 ### Splitter 👉 문자열을 분리하는 유틸리티 클래스
 - **메서드**
-  - `splitWinningNumbers`: 당첨 번호 문자열을 분리하기
+  - `splitWinningNumbers(String winningNumbers)`: 당첨 번호 문자열을 분리하기
+
+---
+
+### 🔵 **Constants**
+
+### MoneyConstants 👉 금액 관련 상수를 관리하는 클래스
+- **상수**
+  - `LOTTO_PRICE`: 로또 한 장의 가격 (1000원)
+
+---
+
+### RandomNumberConstants 👉 랜덤 번호 관련 상수를 관리하는 클래스
+- **상수**
+  - `MINIMUM_RANDOM_NUMBER`: 로또 번호의 최소값 (1)
+  - `MAXIMUM_RANDOM_NUMBER`: 로또 번호의 최대값 (45)
+
 
 ## 확장 가능성 고려 사항
 1. 로또 가격 변경
