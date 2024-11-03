@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+
 public class Application {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -38,16 +40,16 @@ public class Application {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 정수형이어야 합니다 : " + input);
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 정수형이어야 합니다.");
         }
     }
 
     private static void validatePurchaseAmount(int input) {
         if (input < 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 양수이어야 합니다 : " + input);
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 양수이어야 합니다.");
         }
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 1000단위이어야 합니다 : " + input);
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 1000단위이어야 합니다.");
         }
     }
 
@@ -60,7 +62,8 @@ public class Application {
     private static Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        Lotto winningNumbers = parseWinningNumbers(input);
+        //int[] numbers = parseWinningNumbers(input);
+        Lotto winningNumbers = new Lotto(Arrays.asList());
         return winningNumbers;
     }
 }
