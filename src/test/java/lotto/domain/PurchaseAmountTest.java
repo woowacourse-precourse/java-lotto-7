@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.domain.PurchaseAmount.ZERO;
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PurchaseAmountTest {
 
@@ -18,7 +18,7 @@ class PurchaseAmountTest {
 
     @Test
     void 구입금액이_0원인_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> new PurchaseAmount(ZERO))
+        assertThatThrownBy(() -> new PurchaseAmount(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
