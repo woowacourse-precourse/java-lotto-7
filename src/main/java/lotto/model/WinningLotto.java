@@ -6,10 +6,14 @@ public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+    private WinningLotto(Lotto winningLotto, int bonusNumber) {
         this.lotto = winningLotto;
         BonusNumberValidator.validateBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLotto of(Lotto winningLotto, int bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     public Lotto getLotto() {

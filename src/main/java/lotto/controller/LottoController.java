@@ -82,7 +82,7 @@ public class LottoController {
     private WinningLotto createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {
         while (true) {
             try {
-                return new WinningLotto(lottoWinningNumbers, lottoBonusNumber);
+                return WinningLotto.of(lottoWinningNumbers, lottoBonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.showExceptionMessage(e);
                 lottoBonusNumber = getLottoBonusNumber();
