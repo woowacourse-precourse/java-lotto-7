@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.NumberType.LOTTO_PRICE_UNIT;
+import static lotto.constant.NumberType.MIN_PURCHASE_COUNT;
 import static lotto.exception.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
 import static lotto.exception.ErrorMessage.INVALID_PURCHASE_MIN;
 
@@ -19,20 +21,20 @@ public class Count {
 
     private static int calculateCount(int money) {
         CountValidator.validateUnit(money);
-        int count = money / 1000;
+        int count = money / LOTTO_PRICE_UNIT.getNumber();
         CountValidator.validateCount(count);
         return count;
     }
 
     private static class CountValidator {
         private static void validateUnit(int money) {
-            if (money % 1000 != 0) {
+            if (money % LOTTO_PRICE_UNIT.getNumber() != 0) {
                 throw new LottoException(INVALID_PURCHASE_AMOUNT_UNIT);
             }
         }
 
         private static void validateCount(int count) {
-            if (count < 1) {
+            if (count < MIN_PURCHASE_COUNT.getNumber()) {
                 throw new LottoException(INVALID_PURCHASE_MIN);
             }
         }
