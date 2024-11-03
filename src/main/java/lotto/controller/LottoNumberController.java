@@ -4,6 +4,7 @@ import java.util.List;
 
 import lotto.model.Lotto;
 import lotto.validator.InputValidator;
+import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
 public class LottoNumberController {
@@ -20,6 +21,7 @@ public class LottoNumberController {
 	
 	public Lotto generateWinningLotto(String input) {
 		List<Integer> winningNumbers = InputValidator.validateWinningNumbers(input);
+		LottoValidator.validateLottoNumbers(winningNumbers);
 		return new Lotto(winningNumbers);
 	}
 }
