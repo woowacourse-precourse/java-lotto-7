@@ -11,14 +11,14 @@ import static lotto.domain.MonetaryUnit.PERCENTAGE;
 import static lotto.domain.MonetaryUnit.ROUND_UP_TO_TWO_DECIMAL_PLACES;
 
 public class LottoService {
-    public LottoTicketsDto createLottoTickets(int money) {
+    public LottoTicketsDto createUserLottoTickets(int money) {
         UserMoney userMoney = new UserMoney(money);
         int numberOfTickets = userMoney.calculateNumberOfLotto();
 
         return new LottoTicketsDto(new LottoTickets(numberOfTickets));
     }
 
-    public List<Rank> calculateRank(LottoTicketsDto lottoTicketsDto, List<Integer> winningNumber, int bonusNumber) {
+    public List<Rank> calculateUserLottoTicketsRank(LottoTicketsDto lottoTicketsDto, List<Integer> winningNumber, int bonusNumber) {
         List<Rank> rankResult = new ArrayList<>();
         Lotto winningLotto = new Lotto(winningNumber);
         for (LottoDto lottoTicketDto : lottoTicketsDto.getLottoTickets()) {
