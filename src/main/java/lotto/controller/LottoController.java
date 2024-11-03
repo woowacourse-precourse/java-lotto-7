@@ -1,9 +1,9 @@
 package lotto.controller;
 
+import lotto.exception.Converter;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
-import lotto.model.purchaseAmount.PurchaseAmountGenerator;
 import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningNumber.NumberGenerator;
 import lotto.model.winningResult.WinningResults;
@@ -28,14 +28,14 @@ public class LottoController {
         outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
-        WinningResults winningResults = checkLottoWinningResult(lottos, winningNumber, bonusNumber);
+        WinningResults winningResults = checkWinningResults(lottos, winningNumber, bonusNumber);
         outputWinningResults(winningResults, purchaseAmount);
     }
 
     private PurchaseAmount purchaseLottos() {
         try {
             String purchaseAmountInput = inputView.inputPurchaseAmount();
-            return PurchaseAmountGenerator.registerPurchaseAmount(purchaseAmountInput);
+            return new PurchaseAmount(Converter.toInteger(purchaseAmountInput));
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return purchaseLottos();
@@ -70,9 +70,9 @@ public class LottoController {
         }
     }
 
-    private WinningResults checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber,
+    private WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber,
                                                    BonusNumber bonusNumber) {
-        return lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
+        return lottoMachine.checkWinningResults(lottos, winningNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {

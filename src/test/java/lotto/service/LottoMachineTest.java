@@ -35,7 +35,7 @@ public class LottoMachineTest {
                 List.of(1, 2, 3, 4, 5, 6)
         ));
         BonusNumber bonusNumber = new BonusNumber(7);
-        WinningResults winningResults = lottoMachine.checkLottoWinningResult(
+        WinningResults winningResults = lottoMachine.checkWinningResults(
                 lottos, winningNumber, bonusNumber
         );
         return winningResults;

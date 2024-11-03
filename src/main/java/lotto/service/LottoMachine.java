@@ -15,17 +15,17 @@ import lotto.model.winningResult.WinningResults;
 public class LottoMachine {
     public Lottos issueLottos(PurchaseAmount purchaseAmount) {
         List<Lotto> lottos = IntStream.range(0, purchaseAmount.calculateLottoAmount())
-                .mapToObj(i -> new Lotto(RandomNumberPicker.pickNumbers()))
+                .mapToObj(i -> new Lotto(RandomNumberPicker.pick()))
                 .collect(Collectors.toList());
         return new Lottos(lottos);
     }
 
-    public WinningResults checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
         WinningResults winningResults = new WinningResults();
         for (Lotto lotto : lottos.getLottos()) {
-            int matchingWinnerNumberAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
-            boolean matchesBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
-            WinningRank winningRank = WinningRank.determineRank(matchingWinnerNumberAmount, matchesBonusNumber);
+            int matchingAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
+            boolean matchesBonusNumber = lotto.contains(bonusNumber.getNumber());
+            WinningRank winningRank = WinningRank.determineRank(matchingAmount, matchesBonusNumber);
             winningResults.add(winningRank);
         }
         return winningResults;

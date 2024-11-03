@@ -26,7 +26,7 @@ public class SorterTest {
     @Test
     @DisplayName("[success] 숫자를 오름차순 정렬한다.")
     void sortAscendingNumbers() {
-        List<Integer> randomNumbers = RandomNumberPicker.pickNumbers();
+        List<Integer> randomNumbers = RandomNumberPicker.pick();
 
         List<Integer> sortedRandomNumbers = Sorter.sortAscending(randomNumbers);
 
