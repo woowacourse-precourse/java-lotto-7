@@ -1,12 +1,13 @@
 package lotto.controller;
 
 import lotto.NumbersGenerator;
-import lotto.domain.*;
+import lotto.domain.Budget;
+import lotto.domain.LotteryVendor;
+import lotto.domain.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,23 +28,22 @@ public class GameController {
         this.numbersGenerator = numbersGenerator;
     }
 
-    // todo: 관심사 분리하기
     public void run() {
-        Budget budget = new Budget(readValidBudget());
-        BigInteger numberOfLotto = budget.numberOfLotto();
+        BigInteger numberOfLotto = new Budget(readValidBudget()).numberOfLotto();
         outputView.printNumberOfLotto(numberOfLotto);
-        List<List<Integer>> lottoNumbers = Stream.iterate(BigInteger.ZERO, idx -> idx.compareTo(numberOfLotto) < 0, idx -> idx.add(BigInteger.ONE))
+        List<List<Integer>> lottoNumbers = generateNumbers(numberOfLotto);
+        outputView.printNumbersCollections(lottoNumbers);
+        List<Integer> winningNumbers = readWinningNumbers();
+        Integer bonusNumber = readBonusNumber();
+        LotteryVendor vendor = new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+        Result result = vendor.calculateResult();
+        outputView.printResult(result.returnCounts(), result.returnRate());
+    }
+
+    private List<List<Integer>> generateNumbers(BigInteger numberOfNumbers) {
+        return Stream.iterate(BigInteger.ZERO, idx -> idx.compareTo(numberOfNumbers) < 0, idx -> idx.add(BigInteger.ONE))
                 .map(idx -> numbersGenerator.generateNumbers(NUMBER_COUNT))
                 .collect(Collectors.toList());
-        outputView.printNumbersCollections(lottoNumbers);
-        WinningNumber winningNumber = new WinningNumber(getWinningNumbers(), getBonusNumber());
-        List<Rank> results = new ArrayList<>();
-        for (List<Integer> numbers : lottoNumbers) {
-            Lotto lotto = new Lotto(numbers);
-            results.add(lotto.countRank(winningNumber.getNumbers(), winningNumber.getBonusNumber()));
-        }
-        Result result = new Result(results);
-        outputView.printResult(result.returnCounts(), result.returnRate(budget.value()));
     }
 
     private BigInteger readValidBudget() {
@@ -57,24 +57,24 @@ public class GameController {
         return new BigInteger(budgetInput);
     }
 
-    private List<Integer> getWinningNumbers() {
+    private List<Integer> readWinningNumbers() {
         String numbersInput = inputView.readWinningNumbers();
         try {
             InputValidator.validateWinningNumbers(numbersInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getWinningNumbers();
+            return readWinningNumbers();
         }
         return Arrays.stream(numbersInput.split(SPLITTER)).map(Integer::parseInt).toList();
     }
 
-    private Integer getBonusNumber() {
+    private Integer readBonusNumber() {
         String bonusInput = inputView.readBonusNumber();
         try {
             InputValidator.validateNumberInput(bonusInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getBonusNumber();
+            return readBonusNumber();
         }
         return Integer.parseInt(bonusInput);
     }

@@ -23,6 +23,7 @@ public class Lotto {
         }
     }
 
+    // todo: 함수 분리하기
     public Rank countRank(List<Integer> numbers, Integer bonus) {
         if (this.numbers.size() != numbers.size()) {
             throw new IllegalArgumentException(NUMBER_SIZE_NOT_MATCHED.message());

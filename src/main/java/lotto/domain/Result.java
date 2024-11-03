@@ -6,9 +6,11 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.Budget.LOTTO_PRICE;
+
 public class Result {
 
-    private final List<Rank> ranks;
+    public final List<Rank> ranks;
 
     public Result(List<Rank> ranks) {
         this.ranks = ranks;
@@ -20,9 +22,10 @@ public class Result {
         return counts;
     }
 
-    public BigDecimal returnRate(BigInteger budget) {
+    public BigDecimal returnRate() {
         BigDecimal sum = new BigDecimal(calculateSum());
-        return sum.multiply(BigDecimal.valueOf(100L)).divide(new BigDecimal(budget), 1, RoundingMode.HALF_EVEN);
+        return sum.multiply(BigDecimal.valueOf(100L))
+                .divide(new BigDecimal(ranks.size()).multiply(new BigDecimal(LOTTO_PRICE)), 1, RoundingMode.HALF_EVEN);
     }
 
     private BigInteger calculateSum() {

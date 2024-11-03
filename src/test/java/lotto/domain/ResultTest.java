@@ -28,7 +28,7 @@ class ResultTest {
     void returnRate() {
         Result result = new Result(List.of(Rank.BLANK, Rank.BLANK, Rank.FIFTH, Rank.FOURTH, Rank.FOURTH));
         // (5,000 + 50,000 + 50,000) / 5000 * 100 = 2,100
-        BigDecimal returnRate = result.returnRate(new BigInteger("5000"));
+        BigDecimal returnRate = result.returnRate();
         assertThat(returnRate.setScale(1, RoundingMode.HALF_UP)).isEqualTo("2100.0");
     }
 
@@ -37,7 +37,7 @@ class ResultTest {
     void zeroReturnRate() {
         Result result = new Result(List.of(Rank.BLANK, Rank.BLANK, Rank.BLANK, Rank.BLANK, Rank.BLANK));
         // (5,000 + 50,000 + 50,000) / 5000 * 100 = 2,100
-        BigDecimal returnRate = result.returnRate(new BigInteger("5000"));
+        BigDecimal returnRate = result.returnRate();
         assertThat(returnRate.setScale(1, RoundingMode.HALF_UP)).isEqualTo("0.0");
     }
 }
