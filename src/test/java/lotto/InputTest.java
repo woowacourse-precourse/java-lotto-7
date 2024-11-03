@@ -54,21 +54,24 @@ public class InputTest {
     @Test
     @DisplayName("보너스 번호에 숫자가 아닌 문자 입력 시 예외가 발생한다.")
     void 보너스_번호에_숫자_외의_문자_입력_시_예외_발생() {
-        assertThatThrownBy(() -> Input.parseBonusNumber("7!", List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Input.parseBonusNumber("7!",
+                new ParamDto.WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("보너스 번호에 1~45 외의 숫자 입력 시 예외가 발생한다.")
     void 보너스_번호에_로또_범위_넘는_숫자_입력_시_예외_발생() {
-        assertThatThrownBy(() -> Input.parseBonusNumber("65", List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Input.parseBonusNumber("65",
+                new ParamDto.WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     void 보너스_번호가_당첨_번호와_중복_시_예외_발생() {
-        assertThatThrownBy(() -> Input.parseBonusNumber("6", List.of(1, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Input.parseBonusNumber("6",
+                new ParamDto.WinningLottoNumbers(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

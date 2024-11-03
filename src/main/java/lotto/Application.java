@@ -29,7 +29,8 @@ public class Application {
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Input.validate(winningLotto.getNumbers(), Input::parseBonusNumber);
+        int bonusNumber = Input.validate(
+                new ParamDto.WinningLottoNumbers(winningLotto.getNumbers()), Input::parseBonusNumber);
         System.out.println();
 
         System.out.println("당첨 통계");

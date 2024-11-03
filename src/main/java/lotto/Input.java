@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class Input {
     public static int parseMoney(String input) {
@@ -47,7 +46,7 @@ public class Input {
         return new Lotto(numbers);
     }
 
-    public static int parseBonusNumber(String input, List<Integer> winningLottoNumbers) {
+    public static int parseBonusNumber(String input, ParamDto.WinningLottoNumbers winningLottoInfo) {
         if (input.length() > Integer.toString(LottoInfo.endNumber).length()) {
             throw new IllegalArgumentException("[ERROR] 입력이 너무 깁니다.");
         }
@@ -61,7 +60,7 @@ public class Input {
             throw new IllegalArgumentException(
                     "[ERROR] 로또 번호는 " + LottoInfo.startNumber + "~" + LottoInfo.endNumber + " 사이여야 합니다.");
         }
-        if (winningLottoNumbers.contains(bonusNumber)) {
+        if (winningLottoInfo.numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
 
