@@ -24,6 +24,9 @@ public class Money {
     }
 
     private static void validateMoney(long moneyValue) {
+        if (moneyValue <= 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 음수일 수 없습니다.");
+        }
         if (moneyValue < MINIMUM_MONEY_VALUE) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 미만일 수 없습니다.");
         }

@@ -36,7 +36,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public LottoWinning createWinningLotto(List<Integer> numbers, int bonusNumber) {
-        return new LottoWinning(new Lotto(numbers), bonusNumber);
+        return LottoWinning.of(new Lotto(numbers), bonusNumber);
     }
 
     @Override
