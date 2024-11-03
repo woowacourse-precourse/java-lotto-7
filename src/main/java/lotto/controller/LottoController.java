@@ -14,10 +14,6 @@ import lotto.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constant.CompareInteger.PRICE_MAXIMUM;
-import static lotto.constant.CompareInteger.PRICE_MINIMUM;
-import static lotto.constant.PriceRule.SCOPE;
-
 public class LottoController {
     public void run() {
         OutputView.printPriceGuide();
@@ -32,24 +28,14 @@ public class LottoController {
 
     private int getLottoPrice() {
         String inputPrice = InputView.readInput();
-        int price = inputToInt(inputPrice);
+        int price = NumberValidator.stringToInteger(inputPrice, PriceRule.ONLY_INTEGER.getMessage());
         try {
-            validatePrice(price);
+            PriceValidator.validatePrice(price);
             return price / CompareInteger.PRICE_LOTTO.getNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getLottoPrice();
         }
-    }
-
-    private int inputToInt(String input) throws IllegalArgumentException {
-        NumberValidator.validateOnlyInteger(input, PriceRule.ONLY_INTEGER.getMessage());
-        return Integer.parseInt(input);
-    }
-
-    private void validatePrice(int price) {
-        NumberValidator.validateScope(PRICE_MINIMUM.getNumber(), PRICE_MAXIMUM.getNumber(), price, SCOPE.getMessage());
-        PriceValidator.validatePriceUnit(price);
     }
 
     private void printLottoTicket(Consumer consumer) {

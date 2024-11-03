@@ -27,9 +27,8 @@ public class WinningNumberValidator {
         return winningNumber;
     }
 
-    public static Integer getValidatedNumber(String input) throws IllegalArgumentException{
-        validateOnlyInteger(input);
-        Integer inputNumber = Integer.parseInt(input);
+    public static Integer getValidatedNumber(String input) throws IllegalArgumentException {
+        Integer inputNumber = NumberValidator.stringToInteger(input, WinningNumberRule.ONLY_COMMA_INTEGER.getMessage());
         validateNumberScope(inputNumber);
         return inputNumber;
     }
@@ -60,14 +59,8 @@ public class WinningNumberValidator {
     }
 
     private static void validateCount(List<String> input) throws IllegalArgumentException {
-        if(input.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()){
+        if (input.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(WinningNumberRule.COUNT.getMessage());
-        }
-    }
-
-    private static void validateOnlyInteger(String input) throws IllegalArgumentException {
-        if (!input.matches(WinningNumberRule.MATCH_NUMBER.getMessage())) {
-            throw new IllegalArgumentException(WinningNumberRule.ONLY_COMMA_INTEGER.getMessage());
         }
     }
 

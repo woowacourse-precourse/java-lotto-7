@@ -4,10 +4,11 @@ import static lotto.constant.PriceRule.MATCH_NUMBER;
 
 public class NumberValidator {
 
-    public static void validateOnlyInteger(String input, String ErrorMessage) throws IllegalArgumentException {
+    public static Integer stringToInteger(String input, String ErrorMessage) throws IllegalArgumentException {
         if (!input.matches(MATCH_NUMBER.getMessage())) {
             throw new IllegalArgumentException(ErrorMessage);
         }
+        return Integer.parseInt(input);
     }
 
     public static void validateScope(int minimum, int maximum, int target, String ErrorMessage) throws IllegalArgumentException {
