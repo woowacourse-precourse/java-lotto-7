@@ -22,9 +22,17 @@ public class Application {
         InputView inputView = new InputView();
 
         // 구입 금액 입력
-        outputView.printPurchaseTotalPricePrompt();
-        PurchaseTotalPriceInput purchaseTotalPriceInput = inputView.readPurchaseTotalPrice();
-        PurchaseTotalPrice purchaseTotalPrice = PurchaseTotalPrice.from(purchaseTotalPriceInput.input());
+        PurchaseTotalPrice purchaseTotalPrice;
+        while (true) {
+            try {
+                outputView.printPurchaseTotalPricePrompt();
+                PurchaseTotalPriceInput purchaseTotalPriceInput = inputView.readPurchaseTotalPrice();
+                purchaseTotalPrice = PurchaseTotalPrice.from(purchaseTotalPriceInput.input());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // 티켓 수 계산
         TicketCountCalculator ticketCountCalculator = new TicketCountCalculator();
@@ -45,17 +53,32 @@ public class Application {
         outputView.printFormattedTickets(formattedTickets);
 
         //당첨 번호 입력
-        outputView.printLottoNumbersInputPrompt();
-        LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
-        List<Integer> parsedLottoNumber = LottoNumbersInputParser.parse(lottoNumbersInput.input());
-        Lotto lotto = new Lotto(parsedLottoNumber);
-
+        Lotto lotto;
+        while (true) {
+            try {
+                outputView.printLottoNumbersInputPrompt();
+                LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
+                List<Integer> parsedLottoNumber = LottoNumbersInputParser.parse(lottoNumbersInput.input());
+                lotto = new Lotto(parsedLottoNumber);
+                break; // 입력이 올바르면 반복 종료
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         //보너스 번호 입력
-        outputView.printBonusNumberInputPrompt();
-        BonusNumberInput bonusNumberInput = inputView.readBonusNumber();
-        int parsedBonusNumber = BonusNumberInputParser.parse(bonusNumberInput.input());
-        Bonus bonus = new Bonus(parsedBonusNumber, lotto);
+        Bonus bonus;
+        while (true) {
+            try {
+                outputView.printBonusNumberInputPrompt();
+                BonusNumberInput bonusNumberInput = inputView.readBonusNumber();
+                int parsedBonusNumber = BonusNumberInputParser.parse(bonusNumberInput.input());
+                bonus = new Bonus(parsedBonusNumber, lotto);
+                break; // 입력이 올바르면 반복 종료
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         //당첨 통계 헤더 출력
         outputView.printWinningStatisticsHeader();
