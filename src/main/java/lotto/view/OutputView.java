@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.constants.RequestMessage;
+import lotto.constants.ResultMessage;
 import lotto.domain.LottoWinningTierManager;
 
 import static lotto.constants.LottoConstants.EMPTY;

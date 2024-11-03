@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.constants;
 
 public class exceptionMessage {
     public static final String INVALID_PURCHASE_AMOUNT = "[ERROR] 구매 금액은 1000원 이상이어야 합니다.";

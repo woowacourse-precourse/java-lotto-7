@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.constants;
 
 public enum ResultMessage {
     PURCHASED_LOTTO("%d개를 구매했습니다."),

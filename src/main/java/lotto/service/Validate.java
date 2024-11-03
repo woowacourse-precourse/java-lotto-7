@@ -11,12 +11,12 @@ import static lotto.constants.LottoConstants.MAX_NUMBER;
 import static lotto.constants.LottoConstants.NUMBER_COUNT;
 import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_UNIT;
 import static lotto.constants.LottoConstants.ZERO;
-import static lotto.exception.exceptionMessage.INVALID_PURCHASE_AMOUNT;
-import static lotto.exception.exceptionMessage.INVALID_PURCHASE_AMOUNT_UNIT;
-import static lotto.exception.exceptionMessage.NOT_A_NUMBER;
-import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
-import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.exception.exceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constants.exceptionMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.constants.exceptionMessage.INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.constants.exceptionMessage.NOT_A_NUMBER;
+import static lotto.constants.exceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.constants.exceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.constants.exceptionMessage.DUPLICATE_LOTTO_NUMBER;
 
 public class Validate {
     // 구매 금액
