@@ -7,7 +7,7 @@ import lotto.dto.LottoPurchase;
 import lotto.dto.WinningStatistics;
 import lotto.model.LottoAnswer;
 import lotto.model.LottoGenerator;
-import lotto.model.LottoResult;
+import lotto.model.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,9 +29,9 @@ public class LottoController {
         printPurchaseTicket(lottoTickets);
 
         LottoAnswer lottoAnswer = getLottoAnswer();
-        List<LottoResult> results = compareWithAnswer(lottoAnswer, lottoTickets);
+        compareWithAnswer(lottoAnswer, lottoTickets);
 
-        WinningStatistics winningStatistics = new WinningStatistics(results, lottoPurchase.getAmount());
+        WinningStatistics winningStatistics = new WinningStatistics(lottoTickets, lottoPurchase.getAmount());
         outputView.printWinningStatistics(winningStatistics);
     }
     private LottoAnswer getLottoAnswer(){
@@ -40,11 +40,13 @@ public class LottoController {
         return new LottoAnswer(lottoWinningNumbers, bonusNumber);
     }
 
-    private List<LottoResult> compareWithAnswer(LottoAnswer lottoAnswer, List<Lotto> lottoTickets){
-        return lottoTickets.stream()
-                .map(lottoAnswer::getLottoAgreement)
-                .map(matchingAgreement -> LottoResult.valueOf(matchingAgreement[0], matchingAgreement[1]))
-                .toList();
+    private void compareWithAnswer(LottoAnswer lottoAnswer, List<Lotto> lottoTickets){
+        lottoTickets.forEach(
+                lotto -> {
+                    Rank rank = lottoAnswer.getLottoRank(lotto);
+                    lotto.setRank(rank);
+                }
+        );
     }
 
     private void printPurchaseTicket(List<Lotto> lottoTickets){

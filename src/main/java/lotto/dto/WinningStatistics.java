@@ -7,7 +7,7 @@ import static lotto.common.LottoConstant.PRIZE_SIX_MATCHES;
 import static lotto.common.LottoConstant.PRIZE_THREE_MATCHES;
 
 import java.util.List;
-import lotto.model.LottoResult;
+import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class WinningStatistics {
@@ -25,9 +25,9 @@ public class WinningStatistics {
     private int sixMatches=0;
     private double profitRate = 0;
 
-    public WinningStatistics(List<LottoResult> lottoResults, int amount){
-        List<Rank> ranks = lottoResults.stream()
-                .map(LottoResult::getRank)
+    public WinningStatistics(List<Lotto> lottoTickets, int amount){
+        List<Rank> ranks = lottoTickets.stream()
+                .map(Lotto::getRank)
                 .toList();
 
         int totalPrice = ranks.stream()

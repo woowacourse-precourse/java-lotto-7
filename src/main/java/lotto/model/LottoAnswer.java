@@ -12,10 +12,10 @@ public class LottoAnswer {
         this.bonusNumber = bonusNumber;
     }
 
-    public int[] getLottoAgreement(Lotto lotto){
+    public Rank getLottoRank(Lotto lotto){
         int answerMatchingNumber = getMatchingNumbersWithAnswer(lotto.getLottoNumbers());
         int bonusMatchingNumber = getMatchingNumbersWithBonus(lotto.getLottoNumbers());
-        return new int[]{answerMatchingNumber,bonusMatchingNumber};
+        return Rank.findRank(answerMatchingNumber, bonusMatchingNumber);
     }
 
     private int getMatchingNumbersWithBonus(List<Integer> lottoNumbers) {
