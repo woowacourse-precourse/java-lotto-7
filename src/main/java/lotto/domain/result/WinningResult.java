@@ -11,6 +11,7 @@ import java.util.Map;
 public class WinningResult {
 
     private static final int INCREASE_COUNT = 1;
+    private static final int DEFAULT_VALUE = 0;
 
     private final Map<LottoRank, Integer> lottoResult;
     private final Revenue revenue;
@@ -43,7 +44,7 @@ public class WinningResult {
 
     private static void initializeValidRank(LottoRank rank, Map<LottoRank, Integer> result) {
         if (rank != LottoRank.NONE) {
-            result.put(rank, 0);
+            result.put(rank, DEFAULT_VALUE);
         }
     }
 
