@@ -1,5 +1,7 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
@@ -25,6 +27,12 @@ public class LottoService {
         double rateOfReturn = (double) sum / (size * 1000);
 
         return Math.round(rateOfReturn * 100 * 100) / 100.0; // 소수점 둘째 자리에서 반올림
+    }
+
+    public List<Integer> addLotto(Lottos lottos) {
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        lottos.add(new Lotto(lotto));
+        return lotto;
     }
 
 }
