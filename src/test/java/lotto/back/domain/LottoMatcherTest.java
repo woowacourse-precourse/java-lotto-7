@@ -39,6 +39,7 @@ class LottoMatcherTest {
     void 객체_생성_예외_테트(List<Lotto> lotto, DrawnNumbers drawnNumbers, LottoNumber bonusNumber) {
         //given
         //when
+        //then
         assertThatThrownBy(() -> {
             new LottoMatcher(lotto, drawnNumbers, bonusNumber);
         }).isInstanceOf(DuplicatedLottoNumberException.class);
@@ -93,5 +94,28 @@ class LottoMatcherTest {
                         new Lotto(List.of(1, 2, 3, 4, 5, 6))),
                         new DrawnNumbers(List.of(1, 2, 3, 15, 25, 35)), new LottoNumber(40),
                         WinningLottoRank.FIFTH_PLACE));
+    }
+
+    @ParameterizedTest
+    @MethodSource("secondAndThirdPlaceParams")
+    @DisplayName("2등과 3등을 잘 가리는지 단위 테스트")
+    void 이등_삼등_계산_테스트(List<Lotto> lotto, DrawnNumbers drawnNumbers, LottoNumber bonusNumber) {
+        //given
+        //when
+        LottoMatcher lottoMatcher = new LottoMatcher(lotto, drawnNumbers, bonusNumber);
+        Map<WinningLottoRank, Integer> winningCount = lottoMatcher.getWinningResult();
+        //then
+        assertThat(winningCount.get(WinningLottoRank.SECOND_PLACE)).isEqualTo(1);
+        assertThat(winningCount.get(WinningLottoRank.THIRD_PLACE)).isEqualTo(1);
+        assertThat(winningCount.entrySet().stream().filter(entry -> entry.getKey() != WinningLottoRank.SECOND_PLACE
+                && entry.getKey() != WinningLottoRank.THIRD_PLACE).allMatch(entry -> entry.getValue() == 0)).isTrue();
+    }
+
+    private static Stream<Arguments> secondAndThirdPlaceParams() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 7))),
+                        new DrawnNumbers(List.of(1, 2, 3, 4, 5, 10)),
+                        new LottoNumber(7)));
     }
 }
