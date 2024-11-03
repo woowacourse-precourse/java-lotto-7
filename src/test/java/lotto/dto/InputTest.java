@@ -68,7 +68,7 @@ public class InputTest {
 
     @Test
     @DisplayName("보너스 번호 입력이 숫자가 아닐 경우, 예외를 발생시킨다.")
-    public void notNomberBonusNumber() {
+    public void notNumberBonusNumber() {
         // GIVEN
         String input = "a";
 
