@@ -22,7 +22,7 @@ class PurchaseTest {
         //given, when
         Purchase result = new Purchase(HUNDRED_THOUSAND);
         //then
-        assertThat(result.getAmount()).isEqualTo(HUNDRED_THOUSAND);
+        assertThat(result.getPriceAmount()).isEqualTo(HUNDRED_THOUSAND);
     }
 
     @DisplayName("""

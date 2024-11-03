@@ -3,25 +3,25 @@ package lotto.domain;
 import lotto.util.enums.ValidateMessage;
 
 public class Purchase {
-    private final int amount;
+    private final int priceAmount;
 
-    public Purchase(int amount) {
-        validateAmountThousandMultiple(amount);
-        validateAmountUnderHundredThousand(amount);
-        this.amount = amount;
+    public Purchase(int priceAmount) {
+        validatePriceAmountThousandMultiple(priceAmount);
+        validatePriceAmountUnderHundredThousand(priceAmount);
+        this.priceAmount = priceAmount;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPriceAmount() {
+        return priceAmount;
     }
 
-    private void validateAmountThousandMultiple(int amount) {
+    private void validatePriceAmountThousandMultiple(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ValidateMessage.NOT_ONE_THOUSAND_MULTIPLE_ERROR.getMessage());
         }
     }
 
-    private void validateAmountUnderHundredThousand(int amount) {
+    private void validatePriceAmountUnderHundredThousand(int amount) {
         if (amount > 100000) {
             throw new IllegalArgumentException(ValidateMessage.NOT_PURCHASE_MORE_HUNDRED_THOUSAND.getMessage());
         }
