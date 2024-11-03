@@ -38,4 +38,12 @@ public enum Rank {
         }
         return NONE;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public BigDecimal getPrize() {
+        return prize;
+    }
 }

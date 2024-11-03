@@ -16,4 +16,8 @@ public class Money {
     public int calculateLottoQuantity() {
         return amount / 1000;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
