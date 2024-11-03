@@ -5,7 +5,9 @@ import static lotto.constant.Constants.LOTTO_NUMBER_LENGTH;
 import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_END;
 import static lotto.constant.Constants.LOTTO_NUMBER_RANGE_START;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,6 +26,11 @@ public class Lotto {
             if (number < LOTTO_NUMBER_RANGE_START || number > LOTTO_NUMBER_RANGE_END) {
                 throw new IllegalArgumentException(ERROR_PREFIX + " 로또 번호는 1부터 45 사이여야 합니다.");
             }
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ERROR_PREFIX + " 로또 번호에 중복이 없어야 합니다.");
         }
     }
 
