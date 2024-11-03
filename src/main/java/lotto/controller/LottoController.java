@@ -2,6 +2,8 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.converter.StringToIntegerConverter;
 import lotto.domain.BonusNumber;
@@ -10,6 +12,7 @@ import lotto.domain.LottoMachine;
 import lotto.domain.Money;
 import lotto.dto.LottoNumberDto;
 import lotto.enums.ErrorMessage;
+import lotto.enums.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,7 +34,28 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber();
         validateBonusNumberNotInWinningLotto(winningLotto, bonusNumber);
 
+        Map<Rank, Long> statistics = getWinningStatistics(purchasedLotto, winningLotto, bonusNumber);
+        double profitRate = calculateProfitRate(statistics, purchaseAmount.getAmount());
+        OutputView.printStatistics(statistics, profitRate);
+    }
 
+    private Map<Rank, Long> getWinningStatistics(List<Lotto> purchasedLotto, Lotto winningLotto,
+                                                 BonusNumber bonusNumber) {
+        return purchasedLotto.stream()
+                .map(lotto -> {
+                    int matchCount = winningLotto.matchCount(lotto);
+                    boolean bonusMatch = lotto.contains(bonusNumber.getNumber());
+                    return Rank.valueOf(matchCount, bonusMatch);
+                })
+                .filter(rank -> rank != Rank.NONE)
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
+
+    private double calculateProfitRate(Map<Rank, Long> statistics, int purchaseAmount) {
+        long totalPrize = statistics.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 
     private void validateBonusNumberNotInWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {

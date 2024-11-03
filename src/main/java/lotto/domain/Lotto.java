@@ -45,6 +45,12 @@ public class Lotto {
         }
     }
 
+    public int matchCount(Lotto otherLotto) {
+        Set<Integer> otherNumbers = new HashSet<>(otherLotto.getNumbers());
+        otherNumbers.retainAll(numbers);
+        return otherNumbers.size();
+    }
+
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
