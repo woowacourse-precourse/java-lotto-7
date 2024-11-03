@@ -12,8 +12,8 @@ public class Application {
 
     public static int stringToNum(String input) {
         try {
-            int lotto_cost = Integer.parseInt(input);
-            return lotto_cost;
+            int num = Integer.parseInt(input);
+            return num;
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.");
         }
