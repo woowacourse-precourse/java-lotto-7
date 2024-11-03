@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import lotto.constants.ErrorMessage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +21,7 @@ class WinningNumbersValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("빈 문자열이 입력되었다면, 예외 처리된다.")
+    @DisplayName("빈 문자열이 입력되었다면, 예외가 발생한다.")
     @EmptySource
     void Given_AmountsAreEmptyString_When_CheckEmptyAmounts_Then_Error(String input) {
         assertThatThrownBy(() -> WinningNumbersValidator.validateNumbers(input))
@@ -31,7 +30,7 @@ class WinningNumbersValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("연속된 쉼표가 입력되었다면, 예외 처리한다.")
+    @DisplayName("연속된 쉼표가 입력되었다면, 예외가 발생한다.")
     @ValueSource(strings = "1,,2,3,4,5,6")
     void Given_NumbersHaveConsecutiveComma_When_CheckUnCorrectForm_Then_Error(String input) {
         assertThatThrownBy(() -> WinningNumbersValidator.validateNumbers(input))
@@ -40,7 +39,7 @@ class WinningNumbersValidatorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("숫자와 쉼표 이외의 값이 입력되었다면, 예외 처리한다.")
+    @DisplayName("숫자와 쉼표 이외의 값이 입력되었다면, 예외가 발생한다.")
     @ValueSource(strings = "1,!,3,4,5,6")
     void Given_NumbersHasAnotherForm_When_CheckUnCorrectForm_Then_Error(String input) {
         assertThatThrownBy(() -> WinningNumbersValidator.validateNumbers(input))
