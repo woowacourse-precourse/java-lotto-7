@@ -1,18 +1,37 @@
 package lotto.domain;
 
-import java.util.List;
+import static lotto.exception.ExceptionMessage.*;
+
+import java.util.*;
+import lotto.util.utils;
 
 public class Lotto {
+    private static final int REQUIRED_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        validateSize(numbers);
+        validateRange(numbers);
+        validateNoDuplicates(numbers);
+        this.numbers = List.copyOf(numbers.stream().sorted().toList());
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != REQUIRED_NUMBER_COUNT) {
+            throw new IllegalArgumentException(LOTTO_COUNT_LIMIT.getMessage());
+        }
+    }
+
+    private void validateRange(List<Integer> numbers){
+        for (int number : numbers) {
+            utils.validateRange(number);
+        }
+    }
+
+    private void validateNoDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
