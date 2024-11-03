@@ -26,4 +26,14 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("보너스 번호는 1~45 사이의 숫자를 입력해야 합니다.");
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 떄 예외를 발생시킨다.")
+    @Test
+    void checkBonusNumberDuplication() {
+        WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
+
+        Assertions.assertThatThrownBy(() -> BonusNumber.from("6", winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }
