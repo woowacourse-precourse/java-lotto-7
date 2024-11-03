@@ -1,5 +1,7 @@
 package lotto.vo;
 
+import lotto.util.Parser;
+
 import static lotto.common.ErrorMessage.INTEGER_RANGE_EXCESS;
 import static lotto.common.ErrorMessage.NOT_NUMBER_OR_RANGE_EXCESS;
 
@@ -16,9 +18,7 @@ public class Payment {
 
     private int parseToInt(final String inputValue) {
         try {
-            long number = Long.parseLong(inputValue);
-            checkRange(number);
-            return (int) number;
+            return Parser.parseStringToInt(inputValue);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage(), e);
         } catch (IllegalArgumentException e) {  // TODO: 알맞은 Exception으로 변환
@@ -29,13 +29,6 @@ public class Payment {
     private void validate(final int money) {
         checkNegative(money);
         checkMultiplesOfThousand(money);
-    }
-
-    private void checkRange(long value) {
-        if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
-            // TODO: 알맞은 Exception으로 변환
-            throw new IllegalArgumentException();
-        }
     }
 
     private void checkNegative(int money) {
