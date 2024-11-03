@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Splitter.CustomSplitter;
 import lotto.domain.generator.RandomIntegerListGenerator;
 import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.LottoBundle;
@@ -20,10 +21,13 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final CustomSplitter splitter;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, CustomSplitter splitter) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.splitter = splitter;
+
     }
 
 
@@ -52,7 +56,7 @@ public class LottoController {
 
         String input = inputView.readLine();
         outputView.printNewLine();
-        String[] splitInput = input.split(",");
+        String[] splitInput = splitter.splitFrom(input);
         List<LottoNumber> preWinningNumbers = new ArrayList<>();
         for (String splitNumber : splitInput) {
             preWinningNumbers.add(new LottoNumber(Integer.parseInt(splitNumber)));
