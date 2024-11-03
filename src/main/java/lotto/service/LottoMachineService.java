@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Member;
+import lotto.enums.lotto.LottoRank;
 import lotto.util.LottoParser;
 import lotto.util.LottoValidator;
 
@@ -55,4 +56,13 @@ public class LottoMachineService {
     }
 
     // TODO: 맞춘 개수와 금액을 사용자에게 전달한다.
+    public void giveCorrectCountAndMoney(List<Lotto> issuedLottos) {
+        for (Lotto lotto : issuedLottos) {
+            int matchCount = correctLottoNumber(lotto);
+            boolean hasBonus = correctBonusNumber(lotto);
+
+            LottoRank lottoRank = LottoRank.valueOf(matchCount, hasBonus);
+            member.addLottoResult(lottoRank);
+        }
+    }
 }
