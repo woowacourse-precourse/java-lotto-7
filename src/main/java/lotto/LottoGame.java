@@ -9,10 +9,15 @@ public class LottoGame {
     public void start() {
         try {
             int lottoCount = getValidatedLottoCount();
+            System.out.println();
+
             List<Lotto> purchasedLottos = generateLottos(lottoCount);
             printPurchasedLottos(purchasedLottos);
+            System.out.println();
+
             Map<PrizeRank, Integer> resultCounts = getResultCounts(purchasedLottos);
             LottoResultPrinter.printResults(resultCounts);
+            System.out.println();
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
@@ -25,7 +30,7 @@ public class LottoGame {
     }
 
     private int getPurchaseAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
