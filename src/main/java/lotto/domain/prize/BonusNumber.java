@@ -33,7 +33,7 @@ public class BonusNumber {
     }
 
     private static void validateDuplicate(int value, Lotto lotto) {
-        if (lotto.getNumbers().contains(value)) {
+        if (lotto.contains(value)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
