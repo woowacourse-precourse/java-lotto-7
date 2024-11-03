@@ -48,7 +48,8 @@ public class InputView {
             String bonusNumberInput = Console.readLine();
 
             try {
-                InputNumberValidator.validateBonusNumber(bonusNumberInput, winningNumberDTO.getWinningNumber());
+                InputNumberValidator.validateBonusNumberType(bonusNumberInput);
+                InputNumberValidator.validateBonusNumberValue(bonusNumberInput, winningNumberDTO.getWinningNumber());
                 return new BonusNumberDTO(Integer.parseInt(bonusNumberInput));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
