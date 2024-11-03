@@ -1,6 +1,7 @@
 package lotto.view.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,7 +17,9 @@ public class Lotto {
     }
 
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+        Collections.sort(numbers);
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
