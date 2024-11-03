@@ -39,4 +39,11 @@ class WinningNumbersTest {
         assertEquals("중복된 숫자가 포함되어 있습니다.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("당첨 번호에 중복된 숫자가 있는 경우 예외 발생")
+    void validateWinningNumbersNotNumbric() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5,j"));
+        assertEquals("입력된 값 중 숫자가 아닌 값이 있습니다.", exception.getMessage());
+    }
+
 }

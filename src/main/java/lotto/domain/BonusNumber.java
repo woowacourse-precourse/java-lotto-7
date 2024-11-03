@@ -3,18 +3,18 @@ package lotto.domain;
 import lotto.utils.BonusNumberValidator;
 
 public class BonusNumber {
-    private final int bonusNumber;
+    private final String bonusNumber;
 
-    private BonusNumber(int bonusNumber,WinningNumbers winningNumbers) {
+    private BonusNumber(String bonusNumber,WinningNumbers winningNumbers) {
         BonusNumberValidator.validateBonusNumber(String.valueOf(bonusNumber),winningNumbers.getWinningNumbers());
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber from(int bonusNumber,WinningNumbers winningNumbers) {
+    public static BonusNumber from(String bonusNumber,WinningNumbers winningNumbers) {
         return new BonusNumber(bonusNumber,winningNumbers);
     }
 
-    public int getBonusNumber() {
+    public String getBonusNumber() {
         return bonusNumber;
     }
 
