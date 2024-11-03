@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
     @Test
@@ -21,5 +23,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1 ~ 45를 넘지 못하거나 넘으면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_제약에_위배된_번호_예외_발생() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 57)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("모든 조건을 만족하는 경우 정상처리")
+    @Test
+    void 로또_번호_정상_제공() {
+        assertDoesNotThrow(() ->
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+    }
+
 }
