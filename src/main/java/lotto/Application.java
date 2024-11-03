@@ -13,19 +13,16 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-
         final InputView inputView = new InputView();
         final OutputView outputView = new OutputView();
 
         PaymentController paymentController = new PaymentController(inputView, outputView);
         Payment payment = paymentController.pay();
-
         LottoController lottoController = new LottoController(outputView, payment);
         lottoController.showTicket();
 
         WinningController winningController = new WinningController(inputView, outputView);
         WinningGenerator winningGenerator = winningController.inputWinning();
-
         BonusController bonusController = new BonusController(inputView, outputView);
         BonusGenerator bonusGenerator = bonusController.inputBonus(winningGenerator.getWinning());
 
