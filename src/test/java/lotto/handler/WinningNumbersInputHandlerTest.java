@@ -1,6 +1,7 @@
 package lotto.handler;
 
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.BonusNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,7 @@ public class WinningNumbersInputHandlerTest {
     void bonusNumberSuccessTest() {
         // given
         WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
-        int bonusNumber = 42;
+        BonusNumber bonusNumber = new BonusNumber(42);
 
         // when & then
         assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
@@ -53,7 +54,7 @@ public class WinningNumbersInputHandlerTest {
     void duplicateExceptionTest() {
         // given
         WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
-        int bonusNumber = 4;
+        BonusNumber bonusNumber = new BonusNumber(4);
 
         // when & then
         assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))

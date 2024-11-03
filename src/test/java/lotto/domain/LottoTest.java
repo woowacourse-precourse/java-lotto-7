@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -103,11 +104,12 @@ public class LottoTest {
             "'11,12,13,14,15,45', 4, false",
             "'5,10,1,35,20,25', 44, false"
     })
-    void bonusNumberSuccessTest(String lottoInput, int bonusNumber, boolean expected) {
+    void bonusNumberSuccessTest(String lottoInput, int bonusInput, boolean expected) {
         // given
         List<Integer> numbers = Arrays.stream(lottoInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
+        BonusNumber bonusNumber = new BonusNumber(bonusInput);
         Lotto lotto = new Lotto(numbers);
 
         // when

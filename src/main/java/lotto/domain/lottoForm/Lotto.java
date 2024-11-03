@@ -1,5 +1,6 @@
 package lotto.domain.lottoForm;
 
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.Number;
 
@@ -38,7 +39,9 @@ public class Lotto extends LottoForm {
                 .count());
     }
 
-    public boolean hasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+        return numbers2.stream()
+                .anyMatch(bonusNumber::isSame);
+//        contains(bonusNumber);
     }
 }

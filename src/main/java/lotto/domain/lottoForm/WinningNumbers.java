@@ -1,5 +1,6 @@
 package lotto.domain.lottoForm;
 
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.Number;
 
@@ -33,9 +34,9 @@ public class WinningNumbers extends LottoForm {
         }
     }
 
-    public void validateDuplicate(int number) {
+    public void validateDuplicate(BonusNumber bonusNumber) {
         numbers2.stream()
-                .filter(number2 -> number2.equals(number))
+                .filter(number2 -> number2.isSame(bonusNumber))
                 .findAny()
                 .ifPresent(foundNumber -> {
                     throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());

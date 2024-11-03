@@ -1,6 +1,7 @@
 package lotto.handler;
 
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.BonusNumber;
 
 import static lotto.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.LottoConstants.LOTTO_NUMBER_MIN;
@@ -22,14 +23,14 @@ public class WinningNumbersInputHandler {
         }
     }
 
-    public int getBonusNumber(WinningNumbers winningNumbers){
+    public BonusNumber getBonusNumber(WinningNumbers winningNumbers){
         while (true){
             try{
                 String input = getBonusInput();
                 int number = convertToInteger(input);
-                validateScope(number);
-                winningNumbers.validateDuplicate(number);
-                return number;
+                final BonusNumber bonusNumber = new BonusNumber(number);
+                winningNumbers.validateDuplicate(bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

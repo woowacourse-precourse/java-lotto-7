@@ -4,6 +4,7 @@ import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.BonusNumber;
 import lotto.handler.MoneyInputHandler;
 import lotto.handler.WinningNumbersInputHandler;
 
@@ -26,7 +27,7 @@ public class LottoController {
         showLottosInfo(lottos);
 
         WinningNumbers winningNumbers = numbersInputHandler.getWinningNumbers();
-        final int bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
+        final BonusNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
         lottos.compare(winningNumbers, bonusNumber);
 
         showResult();

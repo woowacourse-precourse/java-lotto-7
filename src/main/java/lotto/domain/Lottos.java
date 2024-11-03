@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.BonusNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Lottos {
         lottos.stream().map(Lotto::toString).forEach(System.out::println);
     }
 
-    public void compare(WinningNumbers winningNumbers, int bonusNumber) {
+    public void compare(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lotto : lottos) {
             int matchingNumber = lotto.getMatchingNumbers(winningNumbers);
             boolean bonus = lotto.hasBonusNumber(bonusNumber);
