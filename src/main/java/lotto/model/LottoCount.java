@@ -10,6 +10,7 @@ public class LottoCount {
     public static final int UNIT_PURCHASE_AMOUNT = 1000;
 
     public static final String NEED_THOUSAND_UNITS_OF_NUMBER = "구매 금액은 1000단위여야 합니다.";
+    public static final int REST_IS_ZERO = 0;
 
 
     private final int lottoCount;
@@ -32,7 +33,7 @@ public class LottoCount {
     }
 
     private static int calculateLottoCount(int parsedAmount) {
-        if (parsedAmount % UNIT_PURCHASE_AMOUNT != 0) {
+        if (parsedAmount % UNIT_PURCHASE_AMOUNT != REST_IS_ZERO) {
             throw new InputErrorException(NEED_THOUSAND_UNITS_OF_NUMBER);
         }
         return parsedAmount / UNIT_PURCHASE_AMOUNT;
