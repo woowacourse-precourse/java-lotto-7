@@ -56,7 +56,7 @@ public class WinningStatistics {
         return NO_WIN;
     }
 
-    private WinningCategory getWinningCategory(Lotto lotto) {
+    public WinningCategory getWinningCategory(Lotto lotto) {
         int matchCount = getMatchCount(lotto);
         boolean hasBonus = hasBonus(lotto);
         return determineCategory(lotto, matchCount, hasBonus);
