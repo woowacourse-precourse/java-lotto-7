@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.global.util.Validator.validatePrice;
 import static lotto.score.Prize.NO_PRIZE;
 
 import java.util.Arrays;
@@ -20,7 +21,6 @@ public class GameManager {
     }
 
     public void start() {
-        outputView.printPurchaseInputMessage();
         int price = readPrice();
         LottoShop lottoShop = new LottoShop();
         LottoJudge lottoJudge = new LottoJudge();
@@ -50,7 +50,17 @@ public class GameManager {
     }
 
     private int readPrice() {
-        return Integer.parseInt(inputView.readPrice());
+        outputView.printPurchaseInputMessage();
+        String input = inputView.readPrice();
+
+        try {
+            validatePrice(input);
+        } catch (IllegalArgumentException exception) {
+            outputView.println(exception.getMessage());
+            return readPrice();
+        }
+
+        return Integer.parseInt(input);
     }
 
     private LottoWinningSet readWinningLottoSet() {

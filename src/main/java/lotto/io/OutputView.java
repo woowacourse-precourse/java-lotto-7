@@ -37,11 +37,11 @@ public class OutputView {
         println(WINNING_STATISTIC_MESSAGE + "\n" + "---");
     }
 
-    private void println(String string) {
+    public void println(String string) {
         System.out.println(string);
     }
 
     public void printReturnRate(String returnRate) {
-        println(String.format("총 수익률은 %s입니다.",returnRate));
+        println(String.format("총 수익률은 %s입니다.", returnRate));
     }
 }
