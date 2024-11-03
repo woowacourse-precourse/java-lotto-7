@@ -19,6 +19,7 @@ public class Application {
         List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
         printLottoTickets(lottoTickets);
         List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
     }
     private static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -69,6 +70,16 @@ public class Application {
                 .collect(Collectors.toList());
 
         return winningNumbers;
+    }
+    private static int inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자 중 당첨 번호와 중복되지 않는 번호여야 합니다.");
+        }
+
+        return bonusNumber;
     }
 
 
