@@ -1,6 +1,6 @@
 package lotto.View;
 
-import lotto.Model.Lotto;
+import lotto.Lotto;
 import lotto.Messages.StateMessage;
 import lotto.Model.WinningDetails;
 

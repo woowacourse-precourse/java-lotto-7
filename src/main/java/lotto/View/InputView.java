@@ -1,7 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Model.Lotto;
+import lotto.Lotto;
 import lotto.Messages.ErrorMessage;
 
 import java.text.DecimalFormat;
@@ -44,7 +44,7 @@ public class InputView {
         int result = 0;
         try {
             result = Integer.parseInt(strNum);
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
         }
         return result;

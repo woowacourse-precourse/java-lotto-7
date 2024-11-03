@@ -1,4 +1,6 @@
-package lotto.Controller;
+package lotto;
+
+import lotto.Controller.LottoController;
 
 public class Application {
 

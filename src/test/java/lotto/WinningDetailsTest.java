@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.Model.Lotto;
 import lotto.Model.MyResults;
 import lotto.Model.WinningDetails;
 import org.junit.jupiter.api.DisplayName;

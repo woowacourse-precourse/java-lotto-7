@@ -1,7 +1,7 @@
 package lotto.Controller;
 
 import lotto.Messages.ErrorMessage;
-import lotto.Model.Lotto;
+import lotto.Lotto;
 import lotto.Model.MyResults;
 import lotto.Model.WinningDetails;
 import lotto.Model.MyInfo;
@@ -44,11 +44,7 @@ public class LottoController {
                 this.countLotto(purchasePrice);
                 isValid = true;
             } catch (IllegalArgumentException e) {
-                if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
-                    OutputView.printError(ErrorMessage.NOT_DIV.getError());
-                } else {
-                    OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-                }
+                OutputView.printError(e.getMessage());
             }
         }
         this.myInfo.setPurchasePrice(purchasePrice);
@@ -59,7 +55,6 @@ public class LottoController {
     public void countLotto(Integer purchasePrice) {
         int lottoCount = purchasePrice / 1000;
         if (purchasePrice % 1000 != 0) {
-            //OutputView.printError(ErrorMessage.NOT_DIV.getError());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printBlank();

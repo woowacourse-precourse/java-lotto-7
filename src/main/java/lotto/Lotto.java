@@ -1,7 +1,8 @@
-package lotto.Model;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Messages.ErrorMessage;
+import lotto.Model.MyResults;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
