@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -20,6 +21,11 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("로또 구입 금액에 맞는 로또의 개수를 반환 하는지 확인")
+    @Test
+    void lottoCountTest(){
+        assertThat(Lotto.lottoCount(5000)).isEqualTo(5);
+        assertThat(Lotto.lottoCount(8000)).isEqualTo(8);
+    }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

@@ -26,6 +26,5 @@ public class OutputSystem {
 
     public static void printMessageForWinningStatistics(){
         System.out.println("\n당첨 통계\n---");
-
     }
 }
