@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 class LottoManagerTest {
 
     private LottoManager manager;
@@ -13,7 +14,7 @@ class LottoManagerTest {
     @BeforeEach
     void setUp() {
         manager = new LottoManager();
-        manager.setPurchaseAmount(3);
+        manager.setPurchaseAmountForTest(3);
     }
     @Test
     void 로또_리스트_갯수_테스트(){
@@ -31,5 +32,4 @@ class LottoManagerTest {
             assertThat(numbers).isSorted();
         }
     }
-  
 }

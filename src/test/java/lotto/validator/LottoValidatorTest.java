@@ -35,6 +35,13 @@ class LottoValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 유효하지_않은_보너스번호_범위_테스트() {
+        int invalidBonusNum = 50; // 1~45 범위를 벗어난 경우
+        assertThatThrownBy(() -> LottoValidator.checkRangeLotto(invalidBonusNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }
