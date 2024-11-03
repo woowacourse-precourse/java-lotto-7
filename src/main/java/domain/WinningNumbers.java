@@ -8,16 +8,22 @@ public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
-        validateWinningNumbers(winningNumbers);
+
+        Validate validate = new Validate();
+
+        validate.validateIsCountSix(winningNumbers);
+        validate.validateIsInRange(winningNumbers);
+        validate.validateIsDuplicate(winningNumbers);
+
         Collections.sort(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-
-    }
-
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
+    }
+    @Override
+    public String toString() {
+        return winningNumbers.toString();
     }
 }

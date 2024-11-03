@@ -11,43 +11,28 @@ public class PlayerBuyLotto {
 
     public int purchasedLottoNums(String purchaseAmount) {
 
-        validatePurchaseAmount(purchaseAmount);
+        Validate validate = new Validate();
+
+        validate.validateContainsLetters(purchaseAmount);
+        validate.validatePurchaseAmount(purchaseAmount);
 
         int amount = Integer.parseInt(purchaseAmount);
 
-        return amount / 1000;
+        return amount / LOTTO_AMOUNT;
     }
 
     public List<Lotto> buyLotto(int lottoPurchased) {
 
-        LottoNumbers lottoNumbers = new LottoNumbers();
+        ManageNumbers manageNumbers = new ManageNumbers();
 
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoPurchased; i++) {
 
-            Lotto lotto = lottoNumbers.generateLotto();
+            Lotto lotto = manageNumbers.generateLotto();
             lottos.add(lotto);
         }
 
         return lottos;
-    }
-
-    private void validatePurchaseAmount(String purchaseAmount) {
-
-        int amount;
-
-        try {
-
-            amount = Integer.parseInt(purchaseAmount);
-        } catch (NumberFormatException e) {
-
-            throw new IllegalArgumentException(ErrorMessage.CONTAINS_LETTER.getErrorMessage());
-        }
-
-        if(amount % LOTTO_AMOUNT != 0){
-
-            throw new IllegalArgumentException(ErrorMessage.CANNOT_BUY_LOTTO.getErrorMessage());
-        }
     }
 }
