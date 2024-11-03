@@ -76,4 +76,24 @@ class InputValidatorTest {
         }
     }
 
+    @Nested
+    class 보너스_번호_검증 {
+        @Test
+        void 올바른_보너스_번호가_입력되면_성공한다() {
+            //given
+            String amount = "7";
+
+            //when & then
+            assertThatCode(() -> inputValidator.validateBonusNumber(amount))
+                    .doesNotThrowAnyException();
+        }
+
+        @Test
+        void 숫자가_아닌_문자가_입력되면_예외가_발생한다() {
+            assertThatThrownBy(() -> inputValidator.validateBonusNumber("a"))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("[ERROR] 문자가 아닌 숫자를 입력해주세요.");
+        }
+    }
+
 }
