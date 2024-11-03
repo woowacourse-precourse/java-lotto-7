@@ -36,6 +36,7 @@ public class LottoApplication {
 
         //당첨 통계 계산
         PrizeResultResponse prizeResult = controller.getPrizeResult(index);
+        output.printStatistics(prizeResult);
     }
 
 }
