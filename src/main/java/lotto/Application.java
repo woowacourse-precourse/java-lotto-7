@@ -74,6 +74,9 @@ public class Application {
 
         List<Lotto> lottos = inputPrice();
         WinningLotto winningLotto = inputWinningLotto();
+        LottoResult result = new LottoResult(lottos, winningLotto);
+        System.out.println("당첨 통계\n---");
+        result.printResult();
 
     }
 }
