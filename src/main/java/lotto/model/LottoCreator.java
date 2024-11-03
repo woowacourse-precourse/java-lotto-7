@@ -17,7 +17,7 @@ public class LottoCreator {
         return numberOfLotto;
     }
 
-    public void whetherPossiblePurchasePrice(int purchasePrice){
+    private void whetherPossiblePurchasePrice(int purchasePrice){
         if (purchasePrice <LOTTO_PRICE) {
             throw new IllegalArgumentException("\n[ERROR] 구입 금액은 "+String.format("%,d", LOTTO_PRICE)+"이상이여야 합니다.");
         }
@@ -25,4 +25,5 @@ public class LottoCreator {
             throw new IllegalArgumentException("\n[ERROR] 구입 금액은 "+String.format("%,d", LOTTO_PRICE)+"원으로 나누어 떨어져야합니다.");
         }
     }
+
 }

@@ -17,6 +17,8 @@
 ## 5) ProfitCalculator
 
 ## 6) LottoCreator
+* chooseNumberOfLotto //로또 개수 정하기
+* whetherPossiblePurchasePrice //가능한 로또 가격인지 확인하는 기능
 ---
 # < view >
 ## 1)  InputView
