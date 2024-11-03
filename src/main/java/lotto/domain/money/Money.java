@@ -1,5 +1,7 @@
 package lotto.domain.money;
 
+import lotto.domain.lotto.LottoNumberGenerator;
+import lotto.domain.lotto.Lottos;
 import lotto.global.exception.Exception;
 import lotto.global.exception.ValidatorBuilder;
 
@@ -24,5 +26,8 @@ public class Money {
                 .getNumericValue();
     }
 
+    public Lottos buyLottos() {
+        return Lottos.of(money / LOTTO_PRICE, LottoNumberGenerator.create());
+    }
 }
 

@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.lotto.dto.GetLottoDto;
 import lotto.domain.lottoMachine.BonusNumber;
 import lotto.global.exception.Exception;
 import lotto.global.exception.ValidatorBuilder;
@@ -32,6 +33,10 @@ public class Lotto {
     public static Lotto from(String numbers) {
         return new Lotto(parseNumbers(numbers));
     }
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
 
     private static List<Integer> parseNumbers(String numbers) {
         return Arrays.stream(numbers.split(SPLIT_DELIMITER))
@@ -44,6 +49,10 @@ public class Lotto {
     public boolean isContains(BonusNumber bonusNumber) {
         return numbers.stream()
                 .anyMatch(bonusNumber::isDuplicate);
+    }
+
+    public GetLottoDto getLotto() {
+        return new GetLottoDto(numbers);
     }
     // TODO: 추가 기능 구현
 

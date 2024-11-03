@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.lotto.dto.GetLottosDto;
+
 public class View {
     private final InputView inputView;
     private final OutputView outputView;
@@ -22,5 +24,9 @@ public class View {
     public String inputBonusNumber() {
         outputView.printMessage(Output.INPUT_BONUS_NUMBER);
         return inputView.userInput();
+    }
+
+    public void outputLottos(GetLottosDto getLottosDto) {
+        outputView.printLottos(getLottosDto);
     }
 }
