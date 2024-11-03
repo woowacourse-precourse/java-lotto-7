@@ -12,7 +12,7 @@ public class BonusNumber {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이어야 합니다.");
         }
-        if (winningLotto.getNumbers().contains(bonusNumber)){
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹치면 안됩니다.");
         }
     }
