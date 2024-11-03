@@ -7,8 +7,8 @@ public class InputView {
 
     private static final String SEPARATOR = ",";
     private static final String INPUT_AMOUNT = "구입 금액을 입력해주세요.";
-    private static final String INPUT_LOTTO = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_LOTTO = "\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS = "\n보너스 번호를 입력해 주세요.";
 
     public static String readAmount() {
         System.out.println(INPUT_AMOUNT);
@@ -17,7 +17,6 @@ public class InputView {
     }
 
     public static List<String> readNumbers() {
-        System.out.println();
         System.out.println(INPUT_LOTTO);
         String input = Console.readLine();
 
@@ -25,7 +24,6 @@ public class InputView {
     }
 
     public static String readBonusNumber() {
-        System.out.println();
         System.out.println(INPUT_BONUS);
 
         return Console.readLine();
