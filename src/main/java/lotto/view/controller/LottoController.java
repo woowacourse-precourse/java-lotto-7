@@ -1,5 +1,6 @@
 package lotto.view.controller;
 
+import java.util.List;
 import lotto.view.InputView;
 import lotto.view.console.ConsoleWriter;
 import lotto.view.domain.Amount;
@@ -16,7 +17,7 @@ public class LottoController {
     public void run() {
         Amount amount = requestAmount();
         Lottos lottos = createLottos(amount);
-        inputView.enterWinningNumbers();
+        List<Integer> numbers = requestWinningNumbers();
     }
 
     private Amount requestAmount() {
@@ -34,5 +35,16 @@ public class LottoController {
         Lottos lottos = new Lottos(amount);
         ConsoleWriter.printlnMessageWithEmptyLine(lottos.toString());
         return lottos;
+    }
+
+    private List<Integer> requestWinningNumbers() {
+        try {
+            List<Integer> numbers = inputView.enterWinningNumbers();
+            ConsoleWriter.printEmptyLine();
+            return numbers;
+        } catch (CustomException e) {
+            ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
+            return requestWinningNumbers();
+        }
     }
 }
