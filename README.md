@@ -141,6 +141,7 @@
   - 로또 구입 금액 입력
     - 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
   - 당첨 번호 입력
     - 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - 숫자가 6개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
@@ -168,6 +169,7 @@
   - [x] 로또 구입 금액 입력
     - [x] 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - [x] 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [x] 양수가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
   - [ ] 당첨 번호 입력
     - [ ] 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
     - [ ] 숫자가 6개가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
