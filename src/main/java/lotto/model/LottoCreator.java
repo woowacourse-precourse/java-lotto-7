@@ -12,16 +12,12 @@ public class LottoCreator {
 
 	public Lotto createPurchasedLotto() {
 		List<Integer> randomNumbers = getRandomNumbers();
-		List<LottoNumber> lottoNumbers = randomNumbers.stream()
-				.map(LottoNumber::from)
-				.toList();
+		List<LottoNumber> lottoNumbers = getLottoNumbers(randomNumbers);
 		return new Lotto(lottoNumbers);
 	}
 
 	public Lotto createWinningLotto(List<Integer> winningNumbers) {
-		List<LottoNumber> lottoNumbers = winningNumbers.stream()
-				.map(LottoNumber::from)
-				.toList();
+		List<LottoNumber> lottoNumbers = getLottoNumbers(winningNumbers);
 		return new Lotto(lottoNumbers);
 	}
 
