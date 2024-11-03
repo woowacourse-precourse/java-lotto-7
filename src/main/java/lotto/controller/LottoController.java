@@ -24,6 +24,7 @@ public class LottoController {
     }
 
     public List<Integer> validateWinningNumbers(String winningInput) {
+        NumberValidator.validateNumberInputNotNull(winningInput);
         String[] parsedWinningNumbers= winningInput.split(",");
         NumberValidator.validateWinningNumbersAreNumeric(parsedWinningNumbers);
 
@@ -54,6 +55,7 @@ public class LottoController {
     }
 
     public int validateBonusNumber(List<Integer> winningNumbers, String bonusInput) {
+        BonusValidator.validateBonusInputNotNull(bonusInput);
         BonusValidator.validateBonusIsNumeric(bonusInput);
 
         bonus = Integer.parseInt(bonusInput.trim());

@@ -26,7 +26,6 @@ public class MoneyController {
         MoneyValidator.validateMoneyIsNumeric(inputMoney);
 
         money = Integer.parseInt(inputMoney);
-        MoneyValidator.validateMoneyPositive(money);
         MoneyValidator.validateMoneyDivisibleByThousand(money);
     }
 

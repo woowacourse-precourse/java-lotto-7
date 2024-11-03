@@ -14,12 +14,6 @@ public class MoneyValidator {
 
     }
 
-    public static void validateMoneyPositive(int money) {
-        if (money<0) {
-            throw new IllegalArgumentException("[ERROR] 돈은 0보다 커야 합니다.");
-        }
-    }
-
     public static void validateMoneyDivisibleByThousand(int money) {
         if (money%1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하셔야 합니다.");

@@ -4,9 +4,15 @@ import java.util.List;
 
 public class BonusValidator {
 
+    public static void validateBonusInputNotNull(String bonusInput) {
+        if (bonusInput == null || bonusInput.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 보너스번호를 입력해야 합니다.");
+        }
+    }
+
     public static void validateBonusIsNumeric(String bonusInput) {
         if (!bonusInput.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
         }
 
     }

@@ -5,6 +5,12 @@ import java.util.List;
 
 public class NumberValidator {
 
+    public static void validateNumberInputNotNull(String winningInput) {
+        if (winningInput == null || winningInput.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또를 입력해야 합니다.");
+        }
+    }
+
     public static void validateNoDuplicateNumbers(List<Integer> numbers) {
         List<Integer> allNumbers = new ArrayList<>(numbers.size());
         for (Integer number : numbers) {

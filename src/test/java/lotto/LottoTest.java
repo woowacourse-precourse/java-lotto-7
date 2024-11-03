@@ -30,7 +30,22 @@ class LottoTest {
     @Test
     void 로또_번호는_범위안에_있어야_한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 60)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("로또 번호를 입력해야 한다.")
+    @Test
+    void 로또_번호를_입력해야_한다() {
+        // given
+        String lotto = "";
+        LottoController lottoController = new LottoController();
+
+        // when & then
+        assertThatThrownBy(() -> {
+            lottoController.validateWinningNumbers(lotto);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또를 입력해야 합니다.");
     }
 
     @DisplayName("로또 번호는 숫자여야 한다.")
@@ -43,7 +58,8 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> {
             lottoController.validateWinningNumbers(lotto);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 숫자여야 합니다.");
     }
 
     @DisplayName("로또 번호와 보너스 번호 중복이면 예외가 발생한다.")
@@ -56,7 +72,23 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> {
             lottoController.validateBonusNumber(lottos, bonus);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 보너스 번호와 중복되지 않아야 한다.");
+    }
+
+    @DisplayName("보너스 번호를 입력해야 한다.")
+    @Test
+    void 보너스_번호를_입력해야_한다() {
+        // given
+        List<Integer> lottos = List.of(1, 2, 3, 4, 5, 6);
+        String bonus = "";
+        LottoController lottoController = new LottoController();
+
+        // when & then
+        assertThatThrownBy(() -> {
+            lottoController.validateBonusNumber(lottos, bonus);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스번호를 입력해야 합니다.");
     }
 
     @DisplayName("보너스 번호 숫자여야 한다.")
@@ -70,7 +102,8 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> {
             lottoController.validateBonusNumber(lottos, bonus);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
     }
 
     @DisplayName("보너스 번호 1부터 45사이여야 한다.")
@@ -84,7 +117,8 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> {
             lottoController.validateBonusNumber(lottos, bonus);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     @DisplayName("돈을 입력해야 합니다.")
@@ -94,7 +128,8 @@ class LottoTest {
         MoneyController moneyController = new MoneyController();
         assertThatThrownBy(() -> {
             moneyController.validateMoneyInput(money);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 돈은 숫자를 입력해야 합니다.");
     }
 
     @DisplayName("돈은 숫자여야 합니다.")
@@ -104,17 +139,8 @@ class LottoTest {
         MoneyController moneyController = new MoneyController();
         assertThatThrownBy(() -> {
             moneyController.validateMoneyInput(money);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("돈은 양수여야 합니다.")
-    @Test
-    void 돈은_양수여야_합니다() {
-        String money = "-3";
-        MoneyController moneyController = new MoneyController();
-        assertThatThrownBy(() -> {
-            moneyController.validateMoneyInput(money);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 돈은 숫자를 입력해야 합니다.");
     }
 
     @DisplayName("돈은 1000원단위로 입력해야 합니다.")
@@ -124,6 +150,7 @@ class LottoTest {
         MoneyController moneyController = new MoneyController();
         assertThatThrownBy(() -> {
             moneyController.validateMoneyInput(money);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1000원 단위로 입력하셔야 합니다.");
     }
 }
