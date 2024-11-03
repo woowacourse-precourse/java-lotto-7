@@ -29,8 +29,8 @@ class LottoTest {
     @Test
     void countMatchesPositive() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 20, 21, 22);
-        assertThat(lotto.countMatches(winningNumbers)).isEqualTo(3);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 21, 22);
+        assertThat(lotto.countRank(winningNumbers, 15)).isEqualTo(Rank.FOURTH);
     }
 
     @DisplayName("인자 리스트의 사이즈와 로또 번호의 개수가 다르면 예외가 발생한다.")
@@ -38,7 +38,7 @@ class LottoTest {
     void countMatchesLengthException() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumbers = List.of(1, 2, 3, 20);
-        assertThatThrownBy(() -> lotto.countMatches(winningNumbers))
+        assertThatThrownBy(() -> lotto.countRank(winningNumbers, 15))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("당첨 번호의 개수가 로또 번호의 개수와 다릅니다.");
     }

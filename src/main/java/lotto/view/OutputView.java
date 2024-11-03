@@ -19,10 +19,8 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         for(List<Integer> numbers: numberCollections) {
             builder.append("[");
-            for (Integer number: numbers) {
-                builder.append(number).append(DELIMITER);
-            }
-            builder.append("]\n");
+            List<String> tokens = numbers.stream().map(num -> Integer.toString(num)).toList();
+            builder.append(String.join(DELIMITER, tokens)).append("]\n");
         }
         System.out.println(builder.append("\n"));
     }

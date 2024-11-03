@@ -13,7 +13,7 @@ public enum ExceptionCode {
 
     final String message;
 
-    static final String messageHeader = "[Error] ";
+    static final String messageHeader = "[ERROR] ";
 
     ExceptionCode(String message) {
         this.message = messageHeader + message;
