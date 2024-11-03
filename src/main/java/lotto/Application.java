@@ -56,6 +56,14 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
 
 
+        final String inputForBonus = Console.readLine();
+        try {
+            int bonusNumber = isNotNum(inputForBonus);
+            rangeOfNumber(bonusNumber);
+            isAlreadyExist(winningNumbers,bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
@@ -86,6 +94,12 @@ public class Application {
     public static void rangeOfNumber(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public static void isAlreadyExist(List<Integer> listOfInteger, int number){
+        if(listOfInteger.contains(number)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 해당하지 않는 숫자만 입력 가능합니다.");
         }
     }
 }
