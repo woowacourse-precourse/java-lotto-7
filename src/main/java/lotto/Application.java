@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,6 +11,10 @@ public class Application {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> purchasedLottos = issueLottos(purchaseAmount);
         printLottos(purchasedLottos);
+
+        // 당첨 번호와 보너스 번호 입력받기
+        Set<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private static int getPurchaseAmount() {
@@ -57,4 +59,69 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    private static Set<Integer> getWinningNumbers() {
+        Set<Integer> winningNumbers = new HashSet<>();
+
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분된 6개의 숫자)");
+                String[] input = Console.readLine().split(",");
+
+                // 6개의 숫자인지 확인
+                if (input.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+                }
+
+                // 숫자 검증 및 중복 확인
+                for (String num : input) {
+                    int number = Integer.parseInt(num.trim());
+
+                    if (number < 1 || number > 45) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                    if (!winningNumbers.add(number)) {
+                        throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+                    }
+                }
+                break; // 유효한 입력이면 반복문 탈출
+
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+                winningNumbers.clear();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                winningNumbers.clear();
+            }
+        }
+
+        return winningNumbers;
+    }
+
+    private static int getBonusNumber(Set<Integer> winningNumbers) {
+        int bonusNumber = 0;
+
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine());
+
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                }
+                break; // 유효한 보너스 번호이면 반복문 탈출
+
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
+    }
+
 }
