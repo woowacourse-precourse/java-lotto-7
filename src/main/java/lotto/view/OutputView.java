@@ -21,8 +21,7 @@ public class OutputView {
 
         String result = EMPTY_STRING;
         for (int i = 0; i < purchasedLotto.size(); i++) {
-            String lottoNumbers = purchasedLotto.get(i).toString();
-            result += String.format(OUTPUT_FORMAT_OF_LOTTO, lottoNumbers);
+            result += String.format(OUTPUT_FORMAT_OF_LOTTO, purchasedLotto.get(i).toString());
         }
         System.out.println(result);
     }

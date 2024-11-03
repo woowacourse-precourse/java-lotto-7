@@ -1,8 +1,11 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final String DELIMITER = ", ";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,8 +21,9 @@ public class Lotto {
 
     @Override
     public String toString(){
-        numbers.sort(Integer::compareTo);
-        return numbers.toString();
+        List<Integer> result = new ArrayList<>(numbers);
+        Collections.sort(result);
+        return String.join(DELIMITER, result.toString());
     }
 
     public int checkLotto(List<Integer> winningNumbers) {
