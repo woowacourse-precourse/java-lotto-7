@@ -33,7 +33,7 @@ public class Lotto {
 
     public Rank getResult(Set<Integer> winningNumbers, int bonusNumber) {
         List<Integer> missedNumbers = numbers.stream()
-                .filter(number -> !winningNumbers.contains(number))
+                .filter(number -> isMissedNumber(winningNumbers, number))
                 .toList();
         return Rank.getRank(missedNumbers, bonusNumber);
     }
@@ -42,5 +42,9 @@ public class Lotto {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_ERROR.getMessage());
         }
+    }
+
+    private boolean isMissedNumber(Set<Integer> winningNumbers, Integer number) {
+        return !winningNumbers.contains(number);
     }
 }

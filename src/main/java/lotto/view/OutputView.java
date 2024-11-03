@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(OutputMessage.BONUS_NUMBERS_INPUT_MESSAGE.getMessage());
     }
 
-    public void showResult(WinningStatistics winningStatistics) {
+    public void showWinningStatistics(WinningStatistics winningStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(FIFTH.getDescription() + " - " + winningStatistics.getRankCount(FIFTH) + "개");

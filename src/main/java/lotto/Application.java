@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.generator.Generator;
+import lotto.domain.LottoMachine;
 import lotto.generator.RandomGenerator;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -19,8 +19,8 @@ public class Application {
                 new BonusNumberValidator()
         );
         OutputView outputView = new OutputView();
-        Generator generator = new RandomGenerator();
-        LottoController lottoController = new LottoController(inputView, outputView, generator);
+        LottoMachine lottoMachine = new LottoMachine(new RandomGenerator());
+        LottoController lottoController = new LottoController(inputView, outputView, lottoMachine);
         lottoController.run();
     }
 }

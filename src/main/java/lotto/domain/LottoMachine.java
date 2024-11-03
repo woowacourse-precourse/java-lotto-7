@@ -21,9 +21,11 @@ public class LottoMachine {
 
     private LottoTickets generateLottoTickets(int quantity) {
         return LottoTickets.of(IntStream.range(0, quantity)
-                .mapToObj(index -> new Lotto(
-                        generator.generateNumbers().stream().sorted().toList()
-                ))
+                .mapToObj(index -> generateLotto())
                 .toList());
+    }
+
+    private Lotto generateLotto() {
+        return new Lotto(generator.generateNumbers().stream().sorted().toList());
     }
 }

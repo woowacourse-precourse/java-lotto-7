@@ -5,19 +5,18 @@ import java.util.Set;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningStatistics;
-import lotto.generator.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final Generator generator;
+    private final LottoMachine lottoMachine;
 
-    public LottoController(InputView inputView, OutputView outputView, Generator generator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.generator = generator;
+        this.lottoMachine = lottoMachine;
     }
 
     public void run() {
@@ -28,16 +27,19 @@ public class LottoController {
         int bonusNumber = getBonusNumber(winningNumbers);
 
         WinningStatistics winningStatistics = lottoTickets.getWinningStatistics(winningNumbers, bonusNumber);
-        outputView.showResult(winningStatistics);
-
         double rateOfReturn = winningStatistics.calculateRateOfReturn(purchaseAmount);
-
-        outputView.showRateOfReturn(rateOfReturn);
+        showResult(winningStatistics, rateOfReturn);
     }
 
     private int getPurchaseAmount() {
         outputView.showPurchaseAmountInputMessage();
         return inputView.inputPurchaseAmount();
+    }
+
+    private LottoTickets issueLottoTickets(int purchaseAmount) {
+        LottoTickets lottoTickets = lottoMachine.getLottoTickets(purchaseAmount);
+        outputView.showLottoCountAndNumbers(lottoTickets);
+        return lottoTickets;
     }
 
     private Set<Integer> getWinningNumbers() {
@@ -50,10 +52,8 @@ public class LottoController {
         return inputView.inputBonusNumber(winningNumbers);
     }
 
-    private LottoTickets issueLottoTickets(int purchaseAmount) {
-        LottoMachine lottoMachine = new LottoMachine(generator);
-        LottoTickets lottoTickets = lottoMachine.getLottoTickets(purchaseAmount);
-        outputView.showLottoCountAndNumbers(lottoTickets);
-        return lottoTickets;
+    private void showResult(WinningStatistics winningStatistics, double rateOfReturn) {
+        outputView.showWinningStatistics(winningStatistics);
+        outputView.showRateOfReturn(rateOfReturn);
     }
 }
