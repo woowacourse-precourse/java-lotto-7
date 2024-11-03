@@ -1,19 +1,21 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.controller.dto.BonusNumberSaveRequest;
-import lotto.controller.dto.LottoPurchaseResponse;
-import lotto.controller.dto.WinningNumberSaveResponse;
+import lotto.controller.dto.*;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.WinningNumber;
+import lotto.domain.value.Standard;
 import lotto.repository.LottoPurchaseRepository;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningNumberRepository;
 import lotto.utils.LottoUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -52,6 +54,24 @@ public class LottoService {
         return new WinningNumberSaveResponse(index, winningNumber);
     }
 
+    public void saveBonusNumber(BonusNumberSaveRequest request) {
+        WinningNumber winningNumber = winningNumberRepository.findByIndex(request.index());
+        int bonusNumber = LottoUtils.parseInt(request.bonusNumber());
+        winningNumber.setBonusNumber(bonusNumber);
+    }
+
+    public PrizeResultResponse calculatePrizeResult(int index) {
+        WinningNumber winningNumber = winningNumberRepository.findByIndex(index);
+        List<Lotto> lottoList = lottoRepository.findAll();
+
+        List<PrizeResultDto> result = Arrays.stream(Standard.values())
+            .map(standard -> calculateCount(standard, winningNumber, lottoList))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
+
+        return new PrizeResultResponse(result);
+    }
+
     private List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
@@ -66,9 +86,26 @@ public class LottoService {
         return lottoList;
     }
 
-    public void saveBonusNumber(BonusNumberSaveRequest request) {
-        WinningNumber winningNumber = winningNumberRepository.findByIndex(request.index());
-        int bonusNumber = LottoUtils.parseInt(request.bonusNumber());
-        winningNumber.setBonusNumber(bonusNumber);
+    private PrizeResultDto calculateCount(Standard standard, WinningNumber winningNumber, List<Lotto> lottoList) {
+        if (standard.equals(Standard.EMPTY_PLACE)) {
+            return null;
+        }
+
+        int count = (int) lottoList.stream()
+            .filter(lotto -> doCountMatch(lotto, winningNumber, standard))
+            .count();
+
+        return new PrizeResultDto(standard, count);
     }
+
+    private boolean doCountMatch(Lotto lotto, WinningNumber winningNumber, Standard standard) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> numbers = winningNumber.getWinningNumber().getNumbers();
+
+        int count = (int) lottoNumbers.stream().filter(numbers::contains).count();
+        boolean hasBonusNumber = lottoNumbers.contains(winningNumber.getBonusNumber());
+
+        return standard.checkCountMatches(count, hasBonusNumber);
+    }
+
 }

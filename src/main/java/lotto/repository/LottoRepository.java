@@ -17,6 +17,18 @@ public class LottoRepository {
         lottoList.addAll(lottos);
     }
 
+    public Lotto findOne() {
+        return lottoList.getLast();
+    }
+
+    public Lotto findByIndex(int index) {
+        return lottoList.get(index);
+    }
+
+    public List<Lotto> findAll() {
+        return lottoList;
+    }
+
     public void delete(Lotto lotto) {
         lottoList.remove(lotto);
     }

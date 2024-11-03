@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.controller.dto.BonusNumberSaveRequest;
 import lotto.controller.dto.LottoPurchaseResponse;
+import lotto.controller.dto.PrizeResultResponse;
 import lotto.controller.dto.WinningNumberSaveResponse;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.LottoException;
@@ -39,5 +40,9 @@ public class LottoController {
         );
 
         lottoService.saveBonusNumber(request);
+    }
+
+    public PrizeResultResponse getPrizeResult(int index) {
+        return lottoService.calculatePrizeResult(index);
     }
 }
