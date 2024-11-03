@@ -2,6 +2,7 @@ package lotto.view.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final static int LOTTO_AMOUNT = 1000;
@@ -22,5 +23,11 @@ public class Lottos {
 
     private int calculateLottoCount(Integer amount) {
         return amount / LOTTO_AMOUNT;
+    }
+
+    @Override
+    public String toString() {
+        return lottos.size() + "개를 구매했습니다.\n"
+                + lottos.stream().map(Lotto::toString).collect(Collectors.joining("\n"));
     }
 }

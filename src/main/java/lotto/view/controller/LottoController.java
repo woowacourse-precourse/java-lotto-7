@@ -15,15 +15,23 @@ public class LottoController {
 
     public void run() {
         Amount amount = requestAmount();
-        Lottos lottos = new Lottos(amount);
+        Lottos lottos = createLottos(amount);
     }
 
     private Amount requestAmount() {
         try {
-            return new Amount(inputView.enterAmount());
+            Amount amount = new Amount(inputView.enterAmount());
+            ConsoleWriter.printEmptyLine();
+            return amount;
         } catch (CustomException e) {
-            ConsoleWriter.printlnMessage(e.getMessage());
+            ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
             return requestAmount();
         }
+    }
+
+    private Lottos createLottos(Amount amount) {
+        Lottos lottos = new Lottos(amount);
+        ConsoleWriter.printlnMessageWithEmptyLine(lottos.toString());
+        return lottos;
     }
 }

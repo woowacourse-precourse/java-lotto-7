@@ -3,6 +3,7 @@ package lotto.view.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
@@ -30,5 +31,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
 }
