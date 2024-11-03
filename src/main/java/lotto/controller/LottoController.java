@@ -18,6 +18,7 @@ public class LottoController {
 
         List<Lotto> lottoBundle = buyLottoBundle(cash);
         lottoOutputView.printLottoBundleAmount(lottoBundle.size());
+        lottoOutputView.printLottoInBundle(lottoBundle);
     }
 
     private Cash requestCashInput(){
