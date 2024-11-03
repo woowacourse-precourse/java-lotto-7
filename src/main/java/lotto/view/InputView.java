@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,14 +11,21 @@ public class InputView {
 
     //로또 구입 금액 입력 메소드
     public static int getPurchaseAmount() {
+        final int AmountUnit = 1000;
+
         System.out.println("로또 구입 금액을 입력하십시오(1000원 단위).:");
         String input = Console.readLine();
 
         int PurchaseAmount =  Integer.parseInt(input);
 
-        if (PurchaseAmount <= 0 || PurchaseAmount % 1000 != 0) {
+        if (PurchaseAmount <= 0 || PurchaseAmount % AmountUnit != 0) {
             throw new IllegalArgumentException("금액은 1000원 단위입니다.");
         }
+
+        int LottoAmount = PurchaseAmount / AmountUnit;
+
+        System.out.println(LottoAmount + "개를 구매했습니다.");
+
         return PurchaseAmount;
     }
 
