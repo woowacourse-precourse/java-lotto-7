@@ -45,8 +45,9 @@ public class Controller {
         while (true) {
             try {
                 String inputNumbers = inputView.winLottoNumber();
+                validators.validateSplitNumericInput(inputNumbers);
                 return new Lotto(utils.convertToIntegerList(inputNumbers));
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | InputMismatchException e) {
                 System.out.println(e.getMessage());
             }
         }
