@@ -8,15 +8,21 @@ public class OutputView {
         System.out.println(string);
     }
 
-    public static void promptPurchaseAmount() {
-        print(PURCHASE_AMOUNT_TEXT);
+    public static void promptPurchaseAmount(boolean isFirstPrompt) {
+        if (isFirstPrompt) {
+            print(PURCHASE_AMOUNT_TEXT);
+        }
+
+        if (!isFirstPrompt) {
+            print(LINE_SPACE + PURCHASE_AMOUNT_TEXT);
+        }
     }
 
     public static void promptWinningNumbers() {
-        print(WINNING_NUMBERS_TEXT);
+        print(LINE_SPACE + WINNING_NUMBERS_TEXT);
     }
 
     public static void promptBonusNumber() {
-        print(BONUS_NUMBER_TEXT);
+        print(LINE_SPACE + BONUS_NUMBER_TEXT);
     }
 }
