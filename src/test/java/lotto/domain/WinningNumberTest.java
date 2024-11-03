@@ -43,4 +43,15 @@ public class WinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("당첨번호 개수 6개 아님 예외")
+    @Test
+    void winningNumbersSizeNotSix() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5);
+        int bonusNumber = 7;
+
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
 }
