@@ -12,7 +12,7 @@ public enum Rank {
     private final boolean matchBonus;
     private final int prize;
 
-    Rank(int matchCount, boolean matchBonus, int prize) {
+    Rank(final int matchCount, final boolean matchBonus, final int prize) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.prize = prize;
@@ -24,11 +24,11 @@ public enum Rank {
 
     public String getDisplayText() {
         if (this == NONE) return "";
-        String bonusText = matchBonus ? ", 보너스 볼 일치" : "";
+        final String bonusText = matchBonus ? ", 보너스 볼 일치" : "";
         return String.format("%d개 일치%s (%s원)", matchCount, bonusText, formatPrize(prize));
     }
 
-    private static String formatPrize(int prize) {
+    private static String formatPrize(final int prize) {
         return String.format("%,d", prize);
     }
 
