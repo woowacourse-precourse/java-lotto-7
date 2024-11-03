@@ -12,12 +12,15 @@ public class LottoNumberParser {
     private static final String WRONG_DELIMITER = ".*[./].*";
 
     public static List<Integer> parse(String numbers) {
-        validateEmptyLottoNumbers(numbers);
-        validateDelimiter(numbers);
+        validateInput(numbers);
 
-        List<String> splitNumbers = paresNumbers(numbers);
+        List<String> splitNumbers = splitNumbers(numbers);
         validateLottoSize(splitNumbers);
 
+        return convertNumbers(splitNumbers);
+    }
+
+    private static List<Integer> convertNumbers(List<String> splitNumbers) {
         List<Integer> lottoNumber = new ArrayList<>();
 
         for (String number : splitNumbers) {
@@ -27,8 +30,13 @@ public class LottoNumberParser {
         return lottoNumber;
     }
 
-    private static List<String> paresNumbers(String numbers) {
+    private static List<String> splitNumbers(String numbers) {
         return List.of(numbers.split(LOTTO_NUMBER_DELIMITER));
+    }
+
+    private static void validateInput(String numbers) {
+        validateEmptyLottoNumbers(numbers);
+        validateDelimiter(numbers);
     }
 
     private static void validateEmptyLottoNumbers(String numbers) {
