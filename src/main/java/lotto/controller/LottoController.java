@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Money;
 import lotto.service.InputService;
 import lotto.service.OutputService;
 
@@ -8,6 +9,7 @@ public class LottoController {
     private final OutputService outputService = new OutputService();
     public void run() {
         outputService.requestPay();
-        int money = inputService.inputPaidMoney();
+        Money money = new Money(inputService.inputPaidMoney());
+        int amountLotto = money.getAmount();
     }
 }
