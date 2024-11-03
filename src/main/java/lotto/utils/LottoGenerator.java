@@ -10,6 +10,10 @@ import lotto.domain.Number;
 
 public class LottoGenerator {
 
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int LOTTO_NUMBERS_COUNT = 6;
+
     public static LottoTickets generateLottoTickets(BigDecimal lottoAmount) {
         List<Lotto> lottoList = Stream.generate(LottoGenerator::generateSortedLottoNumbers)
                 .limit(lottoAmount.longValue())
@@ -20,7 +24,7 @@ public class LottoGenerator {
     }
 
     private static List<Integer> generateSortedLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_COUNT).stream()
                 .sorted()
                 .toList();
     }
