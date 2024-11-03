@@ -1,7 +1,7 @@
 package lotto.infrastructure.config;
 
 import lotto.adapter.inbound.cli.CliInputAdapter;
-import lotto.adapter.outbound.CliOutputAdapter;
+import lotto.adapter.outbound.cli.CliOutputAdapter;
 import lotto.application.port.inbound.CreateLottoUseCase;
 import lotto.application.port.inbound.InputAdapter;
 import lotto.application.port.inbound.InputPort;
