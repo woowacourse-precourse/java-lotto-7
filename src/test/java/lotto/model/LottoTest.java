@@ -29,7 +29,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> expectedLotto = List.of(1, 2, 3, 4, 5, 6);
 
-        assertEquals(lotto.getLotto(), expectedLotto);
+        assertEquals(lotto.getLottoNumbers(), expectedLotto);
     }
 
 
