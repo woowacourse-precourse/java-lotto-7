@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 import lotto.Lotto;
 import lotto.view.InputView;
 import lotto.domain.LottoGenerator;
@@ -26,6 +27,8 @@ public class LottoController {
 
         List<Lotto> lottoTickets = generateLottoTickets(lottoCount);
         printLottoTickets(lottoTickets);
+
+        Lotto winningNumbers = new Lotto(inputView.getInputWinningNumbers());
     }
 
     private int calculateLottoCount(int purchaseAmount) {
