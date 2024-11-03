@@ -12,7 +12,7 @@ public class LottoService {
 
     }
 
-    public LottoService createLottoService() {
+    public static LottoService createLottoService() {
         return new LottoService();
     }
 }
