@@ -4,7 +4,7 @@ import lotto.exception.ExceptionMessage;
 
 public class LottoPurchaseValidator {
 
-    public void validatePurchasePrice(String input) {
+    public void validate(String input) {
         checkBlankInput(input);
         checkIsNumber(input);
         checkPositiveNumber(input);
