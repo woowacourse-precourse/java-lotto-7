@@ -1,7 +1,6 @@
-package lotto;
+package lotto.model;
 
 import lotto.exception.LottoException.LottoNumberOutOfRangeException;
-import lotto.model.Lotto;
 import lotto.util.generator.LottoNumberGenerator;
 import lotto.vo.BonusNumber;
 import org.junit.jupiter.api.DisplayName;
@@ -88,6 +87,7 @@ class LottoTest {
         assertTrue(lotto.checkBonusNumberContain(bonusNumber));
     }
 
+    @DisplayName("테스트용 LottoNumberGenerator 구현")
     private static class TestLottoNumberGenerator implements LottoNumberGenerator {
         @Override
         public List<Integer> numberGenerator() {
