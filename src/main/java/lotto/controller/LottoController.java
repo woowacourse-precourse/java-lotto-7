@@ -1,35 +1,38 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.dto.LottoNumbers;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningNumbers;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
 
 
-    public LottoController(final InputView inputView, final OutputView outputView) {
+    public LottoController(final LottoService lottoService, final InputView inputView, final OutputView outputView) {
+        this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
         PurchasePrice purchasePrice = requestPurchasePrice();
-        responsePurchaseQuantity(purchasePrice);
+        respondPurchaseQuantity(purchasePrice);
 
-        LottoTickets lottoTickets = generateLottoTickets(purchasePrice);
-        responseLottoTickets(lottoTickets);
+        LottoTickets lottoTickets = lottoService.generateLottoTickets(purchasePrice);
+        respondLottoTickets(lottoTickets);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
-        responseWinningResult(lottoTickets, winningNumbers, purchasePrice);
+        respondWinningResult(lottoTickets, winningNumbers, purchasePrice);
     }
 
     private PurchasePrice requestPurchasePrice() {
@@ -37,22 +40,15 @@ public class LottoController {
         return new PurchasePrice(inputView.getInteger());
     }
 
-    private void responsePurchaseQuantity(final PurchasePrice purchasePrice) {
+    private void respondPurchaseQuantity(final PurchasePrice purchasePrice) {
         outputView.displayPurchaseQuantity(purchasePrice.calculateQuantity());
     }
 
-    private LottoTickets generateLottoTickets(final PurchasePrice purchasePrice) {
-        List<Lotto> lottoTickets = new ArrayList<>();
-        int quantity = purchasePrice.calculateQuantity();
-        for (int count = 0; count < quantity; count++) {
-            lottoTickets.add(Lotto.generateRandomly());
-        }
-
-        return new LottoTickets(lottoTickets);
-    }
-
-    private void responseLottoTickets(final LottoTickets lottoTickets) {
-        outputView.displayLottoNumbers(lottoTickets.tickets());
+    private void respondLottoTickets(final LottoTickets lottoTickets) {
+        List<LottoNumbers> lottoNumbers = lottoTickets.tickets().stream()
+                .map(LottoNumbers::of)
+                .toList();
+        outputView.displayLottoNumbers(lottoNumbers);
     }
 
     private WinningNumbers requestWinningNumbers() {
@@ -74,7 +70,7 @@ public class LottoController {
                 .toList();
     }
 
-    private void responseWinningResult(
+    private void respondWinningResult(
             final LottoTickets lottoTickets,
             final WinningNumbers winningNumbers,
             final PurchasePrice purchasePrice
