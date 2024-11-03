@@ -5,7 +5,6 @@ import lotto.constant.OutputMessage;
 import lotto.constant.Ranking;
 
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
@@ -15,8 +14,8 @@ public class LottoResult {
     private static final int INCREASE_SIZE = 1;
     private final Map<Ranking, Integer> elements;
 
-    public LottoResult() {
-        elements = new EnumMap<>(Ranking.class);
+    public LottoResult(Map<Ranking, Integer> elements) {
+        this.elements = elements;
         Arrays.stream(Ranking.values()).forEach(value -> elements.put(value, DEFAULT));
     }
 

@@ -2,8 +2,10 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.constant.OutputMessage;
+import lotto.constant.Ranking;
 
 import java.util.Collection;
+import java.util.EnumMap;
 
 public class Lottos {
 
@@ -24,7 +26,7 @@ public class Lottos {
     }
 
     public LottoResult calculateResult(WinningLotto winningLotto) {
-        LottoResult result = new LottoResult();
+        LottoResult result = new LottoResult(new EnumMap<>(Ranking.class));
         elements.forEach(value -> result.increaseCount(value.getRanking(winningLotto)));
         return result;
     }
