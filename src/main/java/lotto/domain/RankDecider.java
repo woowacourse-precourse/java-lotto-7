@@ -2,9 +2,7 @@ package lotto.domain;
 
 public class RankDecider {
 
-    public static int getRank( MatchResult matchResult ) {
-        int matchedNumberCount =  matchResult.getMatchedNumberCount();
-        boolean isBonusNumberMatched = matchResult.isBonusNumberMatched();
+    public static int getRank( int matchedNumberCount, boolean isBonusNumberMatched  ) {
 
         if(matchedNumberCount < 3){ return -1;}
         if(matchedNumberCount == 3){ return 5;}
