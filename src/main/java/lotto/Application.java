@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.enums.ErrorCode;
+import lotto.constants.ErrorCode;
 
 import java.util.List;
 import java.util.stream.Collectors;

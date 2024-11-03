@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.constants;
 
 public final class Value {
     public static final Long lottoPrice = 1000L;

@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.constants;
 
 public enum ErrorCode {
     MONEY_TYPE_ERROR("금액은 숫자여야 합니다."),

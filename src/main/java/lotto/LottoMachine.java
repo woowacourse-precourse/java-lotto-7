@@ -1,7 +1,7 @@
 package lotto;
 
-import lotto.enums.ErrorCode;
-import lotto.enums.Value;
+import lotto.constants.ErrorCode;
+import lotto.constants.Value;
 
 import java.util.ArrayList;
 import java.util.List;

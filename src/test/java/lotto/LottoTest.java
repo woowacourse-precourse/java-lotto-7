@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.enums.ErrorCode;
+import lotto.constants.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
