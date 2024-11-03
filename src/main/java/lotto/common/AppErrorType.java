@@ -1,5 +1,6 @@
 package lotto.common;
 
+import static lotto.common.AppConstant.ERROR_PREFIX;
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
@@ -24,14 +25,10 @@ public enum AppErrorType {
     }
 
     public String getMessage() {
-        String errorPrefix = "[ERROR] ";
-
-        return errorPrefix + message;
+        return ERROR_PREFIX + message;
     }
 
     public String getMessage(Object... args) {
-        String errorPrefix = "[ERROR] ";
-
-        return errorPrefix + String.format(message, args);
+        return ERROR_PREFIX + String.format(message, args);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.common.AppConstant.PROFIT_STRATEGY_FORMAT;
 import static lotto.model.LottoRank.*;
 import static lotto.view.ViewConstant.BOUGHT_COUNT_FORMAT;
 import static lotto.view.ViewConstant.LOTTO_STATISTIC_PREFIX;
@@ -31,7 +32,7 @@ public class OutputView {
     public void printLottoStatistic(LottoStatistic lottoStatistic) {
         HashMap<LottoRank, Integer> winningResult = lottoStatistic.getWinningResult();
         double profitRatio = lottoStatistic.getProfitRatio();
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_STRATEGY_FORMAT);
         String roundedProfitRatio = decimalFormat.format(profitRatio);
 
         System.out.println(LOTTO_STATISTIC_PREFIX);
