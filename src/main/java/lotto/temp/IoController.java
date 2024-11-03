@@ -23,4 +23,12 @@ public class IoController {
     public void printPurchaseLottoNumbers(List<Lotto> lottos){
         lottos.forEach(lotto -> io.printMessage(lotto.getNumbers()));
     }
+
+    public String inputWinningNumbers() {
+        return io.receiveInput();
+    }
+
+    public String inputBonusNumber() {
+        return io.receiveInput();
+    }
 }
