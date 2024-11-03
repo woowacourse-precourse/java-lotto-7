@@ -131,24 +131,32 @@ public class Application {
     private static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
         String input = Console.readLine();
+        List<Integer> winningNumbers = parseNumbers(input);
+        validateWinningNumbers(winningNumbers);
+        return winningNumbers;
+    }
+
+    private static List<Integer> parseNumbers(String input) {
         String[] splitInput = input.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
-
-
+        List<Integer> numbers = new ArrayList<>();
         for (String num : splitInput) {
-            int number = Integer.parseInt(num.trim());
-            if (number < 1 || number > 45) {
+            numbers.add(Integer.parseInt(num.trim()));
+        }
+        return numbers;
+    }
+
+    private static void validateWinningNumbers(List<Integer> winningNumbers) {
+        for (int number : winningNumbers) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
             }
-            if (winningNumbers.contains(number)) {
+            if (winningNumbers.stream().filter(n -> n == number).count() > 1) {
                 throw new IllegalArgumentException("중복된 당첨 번호가 있습니다.");
             }
-            winningNumbers.add(number);
         }
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개의 숫자를 입력해야 합니다.");
         }
-        return winningNumbers;
     }
 
     private static int inputBonusNumber(List<Integer> winningNumbers) {
