@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.NumberType.LOTTO_COUNT;
+import static lotto.constant.NumberType.LOTTO_MAX_NUMBER;
+import static lotto.constant.NumberType.LOTTO_MIN_NUMBER;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_COUNTS;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_DUPLICATE;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_RANGE;
@@ -26,7 +29,7 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT.getNumber()) {
             throw new LottoException(INVALID_LOTTO_COUNTS);
         }
     }
@@ -43,7 +46,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_NUMBER.getNumber() || number > LOTTO_MAX_NUMBER.getNumber()) {
                 throw new LottoException(INVALID_LOTTO_RANGE);
             }
         }
