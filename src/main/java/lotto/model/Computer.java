@@ -2,12 +2,14 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.config.RankType;
 
 public class Computer {
     private static final int MIN_CORRECT_COUNT = 3;
     private static final int MAX_RANK = 5;
     private static final int MIN_RANK = 1;
+    private static final int ONE_HUNDRED = 100;
 
     private final Lotto winningLotto;
     private int bonusNumber;
@@ -70,5 +72,16 @@ public class Computer {
 
     public HashMap<Integer, Integer> getResults() {
         return results;
+    }
+
+    public float calculateRateOfReturn(int quantity) {
+        int purchaseAmount = quantity * LottoConfig.PRICE.getNumber();
+
+        float totalReturn = 0;
+        for (int i = MAX_RANK; i >= MIN_RANK; i--) {
+            totalReturn += RankType.findByRank(i).getMoney() * results.get(i);
+        }
+
+        return (totalReturn / purchaseAmount) * ONE_HUNDRED;
     }
 }

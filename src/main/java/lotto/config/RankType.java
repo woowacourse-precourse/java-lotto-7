@@ -50,4 +50,11 @@ public enum RankType {
         }
         return RankType.THIRD;
     }
+
+    public static RankType findByRank(int rank) {
+        return Arrays.stream(values())
+                .filter(v -> v.getRank() == rank)
+                .findAny()
+                .orElse(null);
+    }
 }

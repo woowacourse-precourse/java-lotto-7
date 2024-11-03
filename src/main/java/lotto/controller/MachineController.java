@@ -17,6 +17,7 @@ public class MachineController {
         Computer computer = createComputer();
 
         computer.compareLotto(user.getLotto());
+        float rateOfReturn = computer.calculateRateOfReturn(user.getQuantity());
     }
 
     private User createUser() {
