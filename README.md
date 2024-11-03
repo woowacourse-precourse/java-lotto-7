@@ -47,6 +47,11 @@
 
 - 프로그램 종료 시 System.exit()를 호출하지 않는다.
 
+## 테스트
+
+- 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
+
 ## 코딩 컨벤션
 
 - 블록 들여쓰기는 4 space
@@ -56,15 +61,66 @@
 - indent(인덴트, 들여쓰기)는 2까지만 허용한다.(메소드를 적극적으로 분리하여 구현할 것)
 - 3항 연산자를 쓰지 않는다.
 - 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - else 예약어를 쓰지 않는다.(switch/case도 허용하지 않는다.)
 - Java Enum을 적용하여 프로그램을 구현한다.
-- 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+
 
 ## 패키지 구조
 
-이번 주차에서는 '객체'에 보다 집중해서 구현해보았다. 확실히 객체를 기반으로 프로그래밍을 하니 정리정돈이 잘 된 느낌이 들었다. 그러나 너무 과하게 계층을 분리한 것 같아서, 다음에는 계층을 축소시킬 계획이다.
+이번 주차에서는 '객체'에 보다 집중해서 구현해보았다. 확실히 OOPL의 핵심인 객체 위주로 개발을 하니 전반적으로 정리정돈이 잘 된 느낌이 들었다. 그러나 주어진 요구사항 볼륨에 비해 너무 과하게 계층을 분리한 것 같아서, 다음에는 일부 계층을 축소시킬 계획이다.
+
+```
++---main
+|   \---java
+|       \---lotto
+|           |   Application.java
+|           |
+|           +---config
+|           |       LottoConfig.java
+|           |
+|           +---controller
+|           |       LottoController.java
+|           |
+|           +---domain
+|           |   |   AmountOfLottos.java
+|           |   |   BonusNumber.java
+|           |   |   Lotto.java
+|           |   |   ResultCount.java
+|           |   |   WinningNumbers.java
+|           |   |
+|           |   \---enums
+|           |           WinningStatistics.java
+|           |
+|           +---error
+|           |   \---enums
+|           |           LottoErrorMessage.java
+|           |
+|           +---io
+|           |   |   Input.java
+|           |   |   Output.java
+|           |   |
+|           |   +---enums
+|           |   |       LottoInquiryMessage.java
+|           |   |
+|           |   \---impl
+|           |           ConsoleInput.java
+|           |           ConsoleOutput.java
+|           |
+|           \---service
+|                   LottoService.java
+|
+\---test
+    \---java
+        \---lotto
+            |   ApplicationTest.java
+            |
+            \---domain
+                    AmountOfLottosTest.java
+                    BonusNumberTest.java
+                    LottoTest.java
+                    WinningNumbersTest.java
+```
 
 
 ## 비즈니스
