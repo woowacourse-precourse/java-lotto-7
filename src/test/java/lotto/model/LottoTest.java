@@ -1,17 +1,13 @@
 package lotto.model;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import lotto.model.Lotto;
-import org.assertj.core.util.CheckReturnValue;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
@@ -33,9 +29,19 @@ class LottoTest {
             "0,1,2,3,4,5",
             "1,2,3,4,5,46"
     })
-    void throwExceptionIfLottoNumberIsNotInRange(String numberString){
+    void throwExceptionIfLottoNumberIsNotInRange(String numberString) {
         assertThatThrownBy(() -> new Lotto(Stream.of(numberString.split(","))
                 .map(Integer::parseInt).toList()))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호를 변경하려 하면 예외 발생")
+    @Test
+    public void throwExceptionIfModifyNumbersInLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> numbersFromLotto = lotto.getNumbers();
+
+        assertThatThrownBy(() -> numbersFromLotto.set(0, 7)).isInstanceOf(UnsupportedOperationException.class);
     }
 }
