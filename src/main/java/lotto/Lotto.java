@@ -7,7 +7,6 @@ import lotto.utilities.Sorter;
 import lotto.validation.LottoNumberValidator;
 
 public class Lotto {
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
