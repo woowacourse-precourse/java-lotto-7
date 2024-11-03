@@ -3,6 +3,8 @@ package lotto.ui;
 import java.util.List;
 import lotto.Lotto;
 import lotto.LottoContainer;
+import lotto.Results;
+import lotto.common.LottoResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,7 @@ class OutputControllerTest {
             printResult.append(message + "\n");
         }
     };
+
     @Test
     void 발행_목록_출력_테스트() {
         final OutputController outputController = new OutputController(outputUi);
@@ -32,5 +35,20 @@ class OutputControllerTest {
                 .isEqualTo("2개를 구매했습니다.\n"
                 + "[1, 2, 3, 4, 5, 6]\n"
                 + "[2, 3, 4, 5, 6, 7]\n");
+    }
+
+    @Test
+    void 통계_출력_테스트() {
+        final OutputController outputController = new OutputController(outputUi);
+
+        outputController.printStatisticResults(new Results(List.of(LottoResult.THIRD, LottoResult.SECOND)));
+        Assertions.assertThat(printResult.toString())
+                .isEqualTo("당첨 통계\n"
+                        + "---\n"
+                        + "3개 일치 (5,000원) - 0개\n"
+                        + "4개 일치 (50,000원) - 0개\n"
+                        + "5개 일치 (1,500,000원) - 1개\n"
+                        + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
+                        + "6개 일치 (2,000,000,000원) - 0개\n");
     }
 }

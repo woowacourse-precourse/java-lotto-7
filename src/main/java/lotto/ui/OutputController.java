@@ -3,6 +3,8 @@ package lotto.ui;
 import java.util.List;
 import lotto.LottoContainer;
 import lotto.LottoInfo;
+import lotto.Results;
+import lotto.common.LottoResult;
 
 public class OutputController {
     private final OutputUi outputUi;
@@ -29,5 +31,15 @@ public class OutputController {
 
     public void printToGetBonusNumberInput() {
         outputUi.printWithLineBreak("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printStatisticResults(final Results results) {
+        outputUi.printWithLineBreak("당첨 통계");
+        outputUi.printWithLineBreak("---");
+        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIFTH).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FORTH).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResult.THIRD).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResult.SECOND).toString());
+        outputUi.printWithLineBreak(results.getStatistics(LottoResult.FIRST).toString());
     }
 }

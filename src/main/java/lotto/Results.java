@@ -1,7 +1,6 @@
 package lotto;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import lotto.common.LottoResult;
 
@@ -26,5 +25,19 @@ public class Results {
         final BigDecimal payment = lottoPayment.getPayment();
 
         return sum.divide(payment).multiply(new BigDecimal("100"));
+    }
+
+    public long getCount(final LottoResult targetResult) {
+        return this.lottoResults.stream()
+                .filter(lottoResult -> lottoResult.equals(targetResult))
+                .count();
+    }
+
+    public LottoStatisticsInfo getStatistics(final LottoResult lottoResult) {
+        return new LottoStatisticsInfo(
+                lottoResult.getConditionInformation(),
+                lottoResult.getWinningAmount().intValue(),
+                getCount(lottoResult)
+        );
     }
 }
