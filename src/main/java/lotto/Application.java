@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.LottoTicket;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,13 +19,13 @@ public class Application {
 
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
-        List<Lotto> lottos = new ArrayList<>();
+        LottoTicket lottoTicket = new LottoTicket();
         System.out.println();
         System.out.println(purchaseAmountInt / 1000 + "개를 구매했습니다.");
         for (int i = 0; i < purchaseAmountInt / 1000; i++) {
             Lotto lotto = new Lotto(pickLottoNumber());
             lotto.sortAscendingInteger();
-            lottos.add(lotto);
+            lottoTicket.addLotto(lotto);
 
             System.out.println(lotto.getNumbers());
         }
@@ -40,7 +41,7 @@ public class Application {
         String inputBonusNumber = Console.readLine();
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        Map<LottoResult, Integer> lottoResultCount = calculateStatisticsLottoResult(lottos, winningNumbersInteger,
+        Map<LottoResult, Integer> lottoResultCount = calculateStatisticsLottoResult(lottoTicket, winningNumbersInteger,
                 bonusNumber);
         printStatistics(lottoResultCount);
 
@@ -58,7 +59,7 @@ public class Application {
         return prizeMoneyAmount;
     }
 
-    public static Map<LottoResult, Integer> calculateStatisticsLottoResult(List<Lotto> lottos,
+    public static Map<LottoResult, Integer> calculateStatisticsLottoResult(LottoTicket lottoTicket,
                                                                            List<Integer> winningNumbers,
                                                                            int bonusNumber) {
         Map<LottoResult, Integer> lottoResultCount = new HashMap<>();
@@ -67,7 +68,7 @@ public class Application {
             lottoResultCount.put(lottoResult, 0);
         }
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoTicket.getLottos()) {
             int matchCount = countMatches(lotto, winningNumbers);
             boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
             LottoResult lottoResult = LottoResult.getLottoResult(matchCount, hasBonus);
