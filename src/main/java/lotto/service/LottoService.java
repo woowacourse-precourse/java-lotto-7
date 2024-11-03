@@ -1,10 +1,14 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoConstants;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoRank;
+import lotto.domain.WinningNumbers;
 
 public class LottoService {
     private final List<Lotto> purchasedLottos = new ArrayList<>();
@@ -19,5 +23,23 @@ public class LottoService {
 
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
+    }
+
+    public Map<LottoRank, Integer> calculateResults(WinningNumbers winningNumbers) {
+        Map<LottoRank, Integer> results = new HashMap<>();
+        for (Lotto lotto : purchasedLottos) {
+            LottoRank rank = calculateRank(lotto, winningNumbers);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
+    }
+
+    private LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
+        List<Integer> winningNums = winningNumbers.getWinningLotto().getNumbers();
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNums::contains)
+                .count();
+        boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+        return LottoRank.valueOf(matchCount, matchBonus);
     }
 }
