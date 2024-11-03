@@ -19,46 +19,38 @@ public class LottoGameSetter {
 
         printDrawingResult(lottos);
 
-        Set<Integer> winningNumbers = setWinningNumbers();
+        LottoNumbers winningNumbers = setWinningNumbers();
 
         Integer bonusNumber = setBonusNumber(winningNumbers);
 
         return LottoGame.of(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
-    private Integer setBonusNumber(Set<Integer> winningNumbers) {
+    private Integer setBonusNumber(LottoNumbers winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumberInput = readLine();
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
         if(bonusNumber > 45 || bonusNumber <1) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
         }
-        if(winningNumbers.contains(bonusNumber)) {
+        if(winningNumbers.contains(LottoNumber.valueOf(bonusNumber))) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
         }
         return bonusNumber;
     }
 
-    private Set<Integer> setWinningNumbers() {
+    private LottoNumbers setWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = readLine();
         String[] inputNumbers = input.split(",");
 
-        Set<Integer> winningNumbers = Arrays.stream(inputNumbers)
+        Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
                 .map(String::trim)
                 .map(Integer::parseInt)
-                .filter(value -> {
-                    if(value > 45 || value < 1) {
-                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되지 않는 1~45 사이의 6가지 수여야 합니다.");
-                    }
-                    return true;
-                })
+                .map(LottoNumber::valueOf)
                 .collect(Collectors.toSet());
 
-        if(winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되지 않는 1~45 사이의 6가지 수여야 합니다.");
-        }
-        return winningNumbers;
+        return LottoNumbers.of(winningNumbers);
     }
 
     private void printDrawingResult(Lottos lottos) {

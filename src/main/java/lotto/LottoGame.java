@@ -7,17 +7,17 @@ public class LottoGame {
 
     private final LottoPrice totalPrice;
     private final Lottos lottos;
-    private final Set<Integer> winningNumbers;
+    private final LottoNumbers winningNumbers;
     private final Integer bonusNumber;
 
-    private LottoGame(LottoPrice totalPrice, Lottos lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
+    private LottoGame(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, Integer bonusNumber) {
         this.totalPrice = totalPrice;
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
+    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, Integer bonusNumber) {
         return new LottoGame(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
@@ -29,8 +29,8 @@ public class LottoGame {
         return lottos.getValue();
     }
 
-    public Set<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public Set<LottoNumber> getWinningNumbers() {
+        return winningNumbers.getValue();
     }
 
     public Integer getBonusNumber() {
