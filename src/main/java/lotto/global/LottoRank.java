@@ -28,7 +28,7 @@ public enum LottoRank {
             }
         }
 
-        throw new IllegalStateException(INVALID_MATCH_COUNT.toString());
+        throw new IllegalStateException(INVALID_MATCH_COUNT.toString() + i);
     }
 
     public int getMatchCount() {
