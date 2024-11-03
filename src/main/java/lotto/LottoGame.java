@@ -6,18 +6,18 @@ import java.util.Set;
 public class LottoGame {
 
     private final LottoPrice totalPrice;
-    private final List<Lotto> lottos;
+    private final Lottos lottos;
     private final Set<Integer> winningNumbers;
     private final Integer bonusNumber;
 
-    private LottoGame(LottoPrice totalPrice, List<Lotto> lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
+    private LottoGame(LottoPrice totalPrice, Lottos lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
         this.totalPrice = totalPrice;
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoGame of(LottoPrice totalPrice, List<Lotto> lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
+    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, Set<Integer> winningNumbers, Integer bonusNumber) {
         return new LottoGame(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
@@ -26,7 +26,7 @@ public class LottoGame {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return lottos.getValue();
     }
 
     public Set<Integer> getWinningNumbers() {

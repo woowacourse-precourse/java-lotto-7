@@ -15,7 +15,7 @@ public class LottoGameSetter {
 
         Integer totalLottoCount = setTotalLottoCount(totalPrice);
 
-        List<Lotto> lottos = drawLottery(totalLottoCount);
+        Lottos lottos = drawLottery(totalLottoCount);
 
         printDrawingResult(lottos);
 
@@ -61,10 +61,10 @@ public class LottoGameSetter {
         return winningNumbers;
     }
 
-    private void printDrawingResult(List<Lotto> lottos) {
+    private void printDrawingResult(Lottos lottos) {
         StringBuilder lottoPurchaseResult = new StringBuilder();
         lottoPurchaseResult.append("\n").append(lottos.size()).append("개를 구매했습니다.\n");
-        lottos.stream()
+        lottos.getValue()
                 .forEach(lotto -> {
                     lottoPurchaseResult.append("[");
                     lottoPurchaseResult.append(lotto.getNumbers().stream().map(String::valueOf).collect(Collectors.joining(", ")));
@@ -74,14 +74,14 @@ public class LottoGameSetter {
         System.out.println(lottoPurchaseResult);
     }
 
-    private List<Lotto> drawLottery(Integer totalLottoCount) {
+    private Lottos drawLottery(Integer totalLottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < totalLottoCount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(lotto);
             lottos.add(new Lotto(lotto));
         }
-        return lottos;
+        return Lottos.of(lottos);
     }
 
     private Integer setTotalLottoCount(LottoPrice totalPrice) {
