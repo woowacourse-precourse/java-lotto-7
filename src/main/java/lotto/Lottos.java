@@ -137,19 +137,19 @@ public class Lottos {
         return gainedMoney;
     }
 
-    public static float getRateOfReturn(int gainedMoney, int lottoNumber) {
-        return (float) gainedMoney / lottoNumber / lotto.Lotto.Price.PRICE * 100;
+    public static float getRateOfReturn(int gainedMoney, int lottoQuantity) {
+        return (float) gainedMoney / lottoQuantity / lotto.Lotto.Price.PRICE * 100;
     }
 
     /**
      * 로또 결과를 반환
      * @param rank 등수별 당첨 횟수
-     * @param lottoNumber 구입한 로또 개수
+     * @param lottoQuantity 구입한 로또 개수
      * @return 결과로 출력할 문자열을 반환
      */
-    public static String getResult(List<Integer> rank, int lottoNumber) {
+    public static String getResult(List<Integer> rank, int lottoQuantity) {
         int gainedMoney = Lottos.getGainedMoney(rank);
-        float rateOfReturn = Lottos.getRateOfReturn(gainedMoney, lottoNumber);
+        float rateOfReturn = Lottos.getRateOfReturn(gainedMoney, lottoQuantity);
 
         List<String> valueWithComma = Lotto.PRIZE_MONEY_WITH_COMMA;
         return io.Print.RESULT.formatted(valueWithComma.get(4), rank.get(4), valueWithComma.get(3), rank.get(3),

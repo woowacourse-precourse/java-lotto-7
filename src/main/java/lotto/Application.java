@@ -5,7 +5,7 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         io.Print.print(io.Print.MONEY_INPUT_MESSAGE);
-        int lottoNumber = exception.Handler.getLottoNumber();
+        int lottoNumber = exception.Handler.getLottoQuantity();
 
         io.Print.print(lottoNumber + io.Print.NUMBER_PRINT_MESSAGE);
         List<Lotto> lottos = Lottos.getLottos(lottoNumber);

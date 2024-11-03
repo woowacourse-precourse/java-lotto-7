@@ -42,7 +42,7 @@ public class Handler {
      * 입력 금액이 1000의 배수이면 구입 개수를 반환하고, 잘못된 입력값이면 다시 입력 받음
      * @return 로또 구입 개수
      */
-    public static int getLottoNumber() {
+    public static int getLottoQuantity() {
         int money = 0;
         boolean validity = false;
 
@@ -62,8 +62,8 @@ public class Handler {
     /**
      * 입력값과 발생 예외 메시지를 조합하여 메시지를 출력
      * 예를 들어 입력값에 번호 3이 중복되어 에러가 발생했다면, 3을 중복값으로 포함한다는 구체적인 내용을 제시하기 위함
-     * @param inputString
-     * @param exceptionMessage
+     * @param inputString 입력값
+     * @param exceptionMessage 발생 예외 메시지
      */
     public static void handleException(String inputString, String exceptionMessage) {
         exception.Message message = new exception.Message(inputString);
