@@ -3,8 +3,11 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoSystemConstant;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constant.ErrorMessage.BONUS_NUMBER_OUT_OF_BOUND;
 import static lotto.constant.ErrorMessage.DUPLICATE_BONUS_NUMBER_INPUT;
@@ -61,5 +64,24 @@ public class LottoService {
 
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
+    }
+
+    public List<Rank> calculateRankOfLottos() {
+        List<Rank> ranks = purchasedLottos.stream()
+                .map(lotto -> lotto.checkRank(winningLotto, bonusNumber))
+                .collect(Collectors.toList());
+
+        return ranks;
+    }
+
+    public long calculateTotalPrize() {
+        List<Rank> rankOfLottos = calculateRankOfLottos();
+        long totalPrize = 0;
+
+        for (Rank rank: rankOfLottos) {
+            totalPrize += rank.getPrize();
+        }
+
+        return totalPrize;
     }
 }
