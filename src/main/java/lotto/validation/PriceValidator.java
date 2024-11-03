@@ -2,6 +2,7 @@ package lotto.validation;
 
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
+import lotto.enums.RegexPattern;
 import lotto.util.Converter;
 
 public class PriceValidator {
@@ -40,7 +41,7 @@ public class PriceValidator {
     }
 
     private static void validateOnlyNumbers(String price) {
-        if (!price.matches("\\d+")) {
+        if (!RegexPattern.ONLY_NUMBER.matches(price)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER.getErrorMessage());
         }
     }

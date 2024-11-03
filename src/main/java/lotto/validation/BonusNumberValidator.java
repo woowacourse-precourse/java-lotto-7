@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.WinningNumber;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
+import lotto.enums.RegexPattern;
 import lotto.util.Converter;
 
 public class BonusNumberValidator {
@@ -26,7 +27,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateStartZero(String input) {
-        if (input.equals("0") || input.matches("^0\\d+")) {
+        if (input.equals("0") || RegexPattern.START_WITH_ZERO.matches(input)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_START_WITH_ZERO.getErrorMessage());
         }
     }
@@ -38,7 +39,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateNumericInput(String input) {
-        if (!input.matches("^\\d+$")) {
+        if (!RegexPattern.ONLY_NUMBER.matches(input)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER.getErrorMessage());
         }
     }
