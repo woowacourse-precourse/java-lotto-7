@@ -15,9 +15,14 @@ import lotto.utils.WinningCalculator;
 
 public class WinningService {
 
+    private final Lottos lottos;
+    private final LottoResult lottoResult;
     private Ticket ticket;
-    private Lottos lottos = Lottos.create();
-    private LottoResult lottoResult = LottoResult.create();
+
+    public WinningService(Lottos lottos, LottoResult lottoResult) {
+        this.lottos = lottos;
+        this.lottoResult = lottoResult;
+    }
 
     public int buyTicket(int purchaseAmount) {
         ticket = Ticket.from(purchaseAmount);

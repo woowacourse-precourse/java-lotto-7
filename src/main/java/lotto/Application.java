@@ -1,11 +1,12 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.factory.LottoFactory;
 
 public class Application {
 
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController();
+        LottoController lottoController = LottoFactory.createLottoController();
         lottoController.start();
     }
 }

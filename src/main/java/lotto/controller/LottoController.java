@@ -8,7 +8,11 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final WinningService winningService = new WinningService();
+    private final WinningService winningService;
+
+    public LottoController(WinningService winningService) {
+        this.winningService = winningService;
+    }
 
     public void start() {
         List<List<Integer>> lottos = processTicketPurchase();
