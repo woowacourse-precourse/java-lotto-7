@@ -8,7 +8,7 @@ import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoConfig {
+public class LottoContainer {
 
     private InputView inputView;
     private OutputView outputView;

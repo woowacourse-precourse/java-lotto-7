@@ -13,18 +13,22 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateRangeNumbers(numbers);
-        validateDuplicatedNumbers(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberSize(numbers);
+        validateNumbersInRange(numbers);
+        validateDuplicatedNumbers(numbers);
+    }
+
+    private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateRangeNumbers(List<Integer> numbers) {
+    private void validateNumbersInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하여야 합니다.");

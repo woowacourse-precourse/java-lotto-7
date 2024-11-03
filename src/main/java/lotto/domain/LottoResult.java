@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.Lotto.LOTTO_PRICE;
+
 import java.util.Map;
 
 public class LottoResult {
@@ -11,16 +13,26 @@ public class LottoResult {
         this.revenue = revenue;
     }
 
-    public static LottoResult of(Map<Ranking, Integer> lottoResults, Money baseMoney) {
+    public static LottoResult of(Map<Ranking, Integer> lottoResults) {
+        int purchasedLottoCount = calculatePurchasedLottoCount(lottoResults);
+        Money investmentMoney = LOTTO_PRICE.multiply(purchasedLottoCount);
         Money totalPrize = Money.from(calculateTotalPrize(lottoResults));
-        return new LottoResult(lottoResults, totalPrize.calculateRevenue(baseMoney));
+
+        return new LottoResult(lottoResults, totalPrize.calculateRevenue(investmentMoney));
+    }
+
+    private static int calculatePurchasedLottoCount(Map<Ranking, Integer> lottoResults) {
+        return lottoResults.values().stream()
+                .mapToInt(lottoCount -> lottoCount)
+                .sum();
     }
 
     private static Long calculateTotalPrize(Map<Ranking, Integer> lottoResults) {
-        return lottoResults.keySet().stream()
-                .mapToLong(key -> (long) key.getPrize() * lottoResults.get(key))
+        return lottoResults.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
+
 
     public Map<Ranking, Integer> getResults() {
         return result;

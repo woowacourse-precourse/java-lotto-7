@@ -11,17 +11,15 @@ import lotto.domain.WinningLotto;
 import lotto.domain.strategy.NumberGenerationStrategy;
 
 public class LottoService {
-    
+
     public Lottos purchaseLottos(Money lottoPurchaseMoney,
                                  NumberGenerationStrategy numberGenerationStrategy) {
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
         return lottoSeller.sellUntilNoMoney(lottoPurchaseMoney, numberGenerationStrategy);
     }
 
-    public LottoResult calculateLottoResult(Lottos purchasedLottos,
-                                            WinningLotto winningLotto,
-                                            Money lottoPurchaseMoney) {
+    public LottoResult calculateLottoResult(Lottos purchasedLottos, WinningLotto winningLotto) {
         Map<Ranking, Integer> lottoResult = purchasedLottos.calculateLottoResult(winningLotto);
-        return LottoResult.of(lottoResult, lottoPurchaseMoney);
+        return LottoResult.of(lottoResult);
     }
 }

@@ -28,7 +28,7 @@ public class LottoController {
         outputView.printPurchaseLottos(purchasedLottos.getLottos());
 
         WinningLotto winningLotto = inputHandler.inputWinningLotto();
-        LottoResult lottoResult = lottoService.calculateLottoResult(purchasedLottos, winningLotto, lottoPurchaseMoney);
+        LottoResult lottoResult = lottoService.calculateLottoResult(purchasedLottos, winningLotto);
         outputView.printLottoResults(lottoResult);
     }
 }

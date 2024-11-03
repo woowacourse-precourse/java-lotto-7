@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos() {
-        return new ArrayList<>(lottos);
+        return List.copyOf(lottos);
     }
 
     public Map<Ranking, Integer> calculateLottoResult(WinningLotto winningLotto) {

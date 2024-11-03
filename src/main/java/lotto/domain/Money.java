@@ -23,6 +23,10 @@ public class Money {
         return new Money(this.amount - money.amount);
     }
 
+    public Money multiply(int multiplier) {
+        return new Money(this.amount * multiplier);
+    }
+
     public boolean isZero() {
         return amount == 0;
     }
@@ -31,10 +35,10 @@ public class Money {
         return this.amount >= money.amount;
     }
 
-    public double calculateRevenue(Money baseAmount) {
-        if (baseAmount.isZero()) {
-            throw new IllegalArgumentException("기준 금액은 0이 될 수 없습니다.");
+    public double calculateRevenue(Money investmentMoney) {
+        if (investmentMoney.isZero()) {
+            throw new IllegalArgumentException("투자 금액은 0이 될 수 없습니다.");
         }
-        return ((double) this.amount / baseAmount.amount) * 100;
+        return ((double) this.amount / investmentMoney.amount) * 100;
     }
 }
