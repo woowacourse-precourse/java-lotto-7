@@ -39,6 +39,7 @@ public class LottoController {
                 int moneyInput = inputMoneyView.getValue();
                 return new Money(moneyInput);
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
