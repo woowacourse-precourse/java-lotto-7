@@ -3,6 +3,13 @@ package lotto.service;
 
 import static lotto.constants.InputException.VALID_AMOUNT_INPUT;
 import static lotto.constants.InputException.VALID_INPUT_BONUS;
+import static lotto.constants.InputException.VALID_WIN_NUMBER;
+import static lotto.constants.LottoRule.LOTTO_MATCH_FIVE;
+import static lotto.constants.LottoRule.PROFIT_PERCENTAGE_CALCULATE;
+import static lotto.constants.LottoRule.SPLIT_ALL_TOKEN;
+import static lotto.constants.LottoRule.Thousand_Multi_Number;
+import static lotto.constants.LottoRule.USE_ZERO;
+import static lotto.constants.LottoRule.WIN_NUMBER_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -34,7 +41,7 @@ public class LottoService {
         try {
             String inputAmount = Input.InputAmount();
             return BuyLottoValidate.lottoBuyValidation(inputAmount);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(VALID_AMOUNT_INPUT.getMessage());
             return buyLotto();
         }
@@ -59,12 +66,12 @@ public class LottoService {
 
     public List<Integer> numberSplit(String winNumber) {
         List<Integer> winNumbers = new ArrayList<>();
-        for (String name : winNumber.split(",", -1)) {
+        for (String name : winNumber.split(WIN_NUMBER_DELIMITER.getDelimiter(), SPLIT_ALL_TOKEN.getValue())) {
             try {
                 int number = Integer.parseInt(name);
                 winNumbers.add(number);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException("[ERROR] 잘못된 값입니다.");
+                throw new NumberFormatException(VALID_WIN_NUMBER.getMessage());
             }
         }
         return winNumbers;
@@ -94,7 +101,7 @@ public class LottoService {
     }
 
     public void checkBonus(Lotto lotto, Set<Integer> myLotto, int bonusNumber) {
-        if (myLotto.size() == 5 && lotto.getNumbers().contains(bonusNumber)) {
+        if (myLotto.size() == LOTTO_MATCH_FIVE.getValue() && lotto.getNumbers().contains(bonusNumber)) {
             fiveAndBonus = true;
         }
     }
@@ -116,12 +123,12 @@ public class LottoService {
 
 
     public double resultSum(EnumMap<WinAmount, Integer> winLottoAmountHistory, double count) {
-        count *= 1000;
-        int sum = 0;
+        count *= Thousand_Multi_Number.getValue();
+        int sum = USE_ZERO.getValue();
         for (WinAmount winAmount : winLottoAmountHistory.keySet()) {
             sum += winLottoAmountHistory.get(winAmount) * winAmount.getAmountNum();
         }
-        return sum / count * 100;
+        return sum / count * PROFIT_PERCENTAGE_CALCULATE.getValue();
     }
 
     public void finalResult(EnumMap<WinAmount, Integer> winLottoAmountHistory, double amountPercent) {
