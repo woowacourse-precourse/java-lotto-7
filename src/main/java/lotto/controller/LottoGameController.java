@@ -31,7 +31,7 @@ public final class LottoGameController {
                 play();
                 break;
             } catch (IllegalArgumentException e) {
-                outputView.print(e.getMessage());
+                outputView.errorMessagePrint(e.getMessage());
             }
         }
     }
@@ -67,6 +67,7 @@ public final class LottoGameController {
 
     private int readMoney() {
         String moneyInput = inputView.getMoneyInput();
+        outputView.printNewLine();
 
         Validator.validateMoneyInput(moneyInput);
 
@@ -75,6 +76,7 @@ public final class LottoGameController {
 
     private List<Integer> readWinningLottoNumbers() {
         String numbersInput = inputView.getNumbersInput();
+        outputView.printNewLine();
 
         Validator.validateNumbersInput(numbersInput);
 

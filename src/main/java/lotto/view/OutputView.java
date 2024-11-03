@@ -8,6 +8,10 @@ public final class OutputView {
     }
 
     public void printNewLine() {
-        System.out.println(NEW_LINE);
+        System.out.println();
+    }
+
+    public void errorMessagePrint(String errorMessage) {
+        System.out.println(errorMessage + NEW_LINE);
     }
 }
