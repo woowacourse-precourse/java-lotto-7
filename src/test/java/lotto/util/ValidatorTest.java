@@ -60,4 +60,13 @@ class ValidatorTest {
             validator.validateDivisibleByThousand(input);
         }, "1000 단위가 아닐 경우 예외 발생");
     }
+
+    @Test
+    void 로또_번호_범위가_아닌_경우_예외_발생() {
+        String input = "100";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateNumberRange(input);
+        }, "로또 번호 범위(1~45)가 아닌 경우 예외 발생");
+    }
 }
