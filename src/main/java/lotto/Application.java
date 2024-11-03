@@ -28,9 +28,7 @@ public class Application {
         System.out.println();
         System.out.println(pieces + "개를 구매했습니다.");
         publishLotto();
-        for (Lotto lotto : lottos) {
-            printLottos(lotto);
-        }
+        OutputHandler.printPurchasedLottos(lottos);
 
         // 당첨 번호와 보너스 번호 입력
         System.out.println();
@@ -44,9 +42,10 @@ public class Application {
             matchTest(lotto);
         }
 
+        // 결과 출력
         calculateRevenue();
         calculateRevenueRate();
-        printResult();
+        OutputHandler.printResult(matchCount, revenueRate);
     }
 
     public static void publishLotto() throws IllegalArgumentException {
@@ -55,17 +54,6 @@ public class Application {
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
-    }
-
-    public static void printLottos(Lotto lotto) {
-        String lottoNumber = "[";
-        List<Integer> numbers = lotto.getNumbers();
-        for (int number : numbers) {
-            lottoNumber += number + ", ";
-        }
-        lottoNumber = lottoNumber.substring(0,lottoNumber.length() - 2);
-        lottoNumber += "]";
-        System.out.println(lottoNumber);
     }
 
     public static void matchTest(Lotto lotto) {
@@ -79,19 +67,6 @@ public class Application {
 
     public static boolean bonusMatchTest(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    public static void printResult() {
-        StringBuffer sb = new StringBuffer("");
-        sb.append("당첨 통계\n");
-        sb.append("---\n");
-        sb.append("3개 일치 (5,000원) - " + matchCount[3] + "개\n");
-        sb.append("4개 일치 (50,000원) - " + matchCount[4] + "개\n");
-        sb.append("5개 일치 (1,500,000원) - " + matchCount[5] + "개\n");
-        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCount[7] + "개\n");
-        sb.append("6개 일치 (2,000,000,000원) - " + matchCount[6] + "개\n");
-        sb.append("총 수익률은 " + revenueRate + "%입니다.");
-        System.out.println(sb);
     }
 
     public static void calculateRevenue() {
