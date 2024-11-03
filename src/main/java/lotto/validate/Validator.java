@@ -2,16 +2,15 @@ package lotto.validate;
 
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
+import lotto.model.Number;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Validator{
-    public static void validateWinning(String input){
-        String[] splitNumber = input.split(",");
-        for (String number : splitNumber) {
-            validateNumber(toNumeric(number));
-        }
-    }
     public static void validateAmount(Integer input){
         isBlank(input);
         isMinus(input);
@@ -20,6 +19,12 @@ public class Validator{
     public static void validateNumber(Integer input){
         isBlank(input);
         isOutOfRange(input);
+    }
+
+    public static List<Integer> toNumberList(String input){
+        return Arrays.stream(input.split(","))
+                .map(Validator::toNumeric)
+                .collect(Collectors.toList());
     }
 
     public static Integer toNumeric(String input) {

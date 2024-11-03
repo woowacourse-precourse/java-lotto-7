@@ -18,6 +18,10 @@ public enum Reward {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public static Reward getRank(int count, boolean bonus){
         for (Reward reward : values()) {
             if(reward.count == count && reward.bonus == bonus){

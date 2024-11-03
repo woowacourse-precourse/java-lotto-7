@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.console.ConsoleManager;
 import lotto.model.Amount;
+import lotto.model.Lotto;
 import lotto.model.Number;
 import lotto.model.WinningNumbers;
 
@@ -13,9 +15,9 @@ public class InputView {
         println("구입금액을 입력해 주세요.");
         return new Amount(toNumeric(Console.readLine()));
     }
-    public WinningNumbers getWinning(){
+    public Lotto getWinning(){
         println("당첨 번호를 입력해 주세요.");
-        return new WinningNumbers(Console.readLine());
+        return new Lotto(toNumberList(Console.readLine()));
     }
 
     public Number getBonus(){
