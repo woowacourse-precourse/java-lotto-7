@@ -12,7 +12,8 @@ public class Result {
 
     private final Map<Rank, Integer> winningDetails;
 
-    public Result(Map<Rank, Integer> winningDetails) {
+    // 클래스 내부(from()), 테스트 환경에서만 사용하도록 설계된 생성자입니다. 일반 환경에서는 객체 생성을 지양해주세요.
+    Result(Map<Rank, Integer> winningDetails) {
         this.winningDetails = winningDetails;
     }
 
