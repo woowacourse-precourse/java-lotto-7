@@ -11,42 +11,38 @@ import java.util.List;
 import static lotto.validate.Validator.validateWinning;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-
-    private void validate(List<Integer> numbers) {
-        isDuplicated(numbers);
-        hasLengthSix(numbers);
-        isOutofRange(numbers);
-    }
-
-    private static void isDuplicated(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>(numbers);
-        if(set.size() != numbers.size()){
-            throw new InputException(ExceptionMessage.DUPLICATED_NUMBER_ERROR);
-        }
-    }
-
-    private static void hasLengthSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new InputException(ExceptionMessage.INVALID_COUNT_ERROR);
-        }
-    }
-
-    private static void isOutofRange(List<Integer> numbers){
+        this.numbers = new ArrayList<>();
         for (Integer number : numbers) {
-            if(number < 1 || number > 45){
-                throw new InputException(ExceptionMessage.NUMBER_RANGE_ERROR);
+            this.numbers.add(new Number(number));
+        }
+        Validator.validate(this.numbers);
+    }
+
+
+    private static class Validator{
+        static void validate(List<Number> numbers) {
+            isDuplicated(numbers);
+            hasLengthSix(numbers);
+        }
+
+        private static void isDuplicated(List<Number> numbers) {
+            HashSet<Number> set = new HashSet<>(numbers);
+            if(set.size() != numbers.size()){
+                throw new InputException(ExceptionMessage.DUPLICATED_NUMBER_ERROR);
+            }
+        }
+
+        private static void hasLengthSix(List<Number> numbers) {
+            if (numbers.size() != 6) {
+                throw new InputException(ExceptionMessage.INVALID_COUNT_ERROR);
             }
         }
     }
 
-    public List<Integer> getNumbers() {
+    public List<Number> getNumbers() {
         return numbers;
     }
 
