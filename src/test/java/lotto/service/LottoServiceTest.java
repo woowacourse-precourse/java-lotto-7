@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
+import lotto.domain.Money;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -43,7 +44,7 @@ class LottoServiceTest {
     @Test
     void 돈으로_로또를_구매할_수_있다() {
         // given
-        int money = 3000;
+        Money money = new Money(3000);
 
         // when
 

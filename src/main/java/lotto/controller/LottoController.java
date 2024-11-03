@@ -5,6 +5,8 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
+import lotto.domain.Money;
+import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -19,7 +21,7 @@ public class LottoController {
     }
 
     public void run() {
-        int money = 3000;
+        Money money = getMoneyFromUser();
         List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
         lottoView.showPurchasedLottos(purchasedLottos);
 
@@ -28,6 +30,11 @@ public class LottoController {
 
         Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, purchasedLottos);
         lottoView.showWinningResult(ranks);
+    }
+
+    private Money getMoneyFromUser() {
+        PurchaseAmount purchaseAmount = lottoView.getPurchaseAmountFromUser();
+        return purchaseAmount.toMoney();
     }
 
 }

@@ -8,6 +8,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoRanks;
+import lotto.domain.Money;
 
 public class LottoService {
 
@@ -19,13 +20,13 @@ public class LottoService {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public List<Lotto> purchaseBy(int money) {
+    public List<Lotto> purchaseBy(Money money) {
         List<Lotto> lottos = new ArrayList<>();
 
-        while (money >= LOTTO_PRICE) {
+        while (money.isEnoughToBuy(LOTTO_PRICE)) {
             List<Integer> numbers = lottoNumberGenerator.generate();
             lottos.add(Lotto.of(numbers));
-            money -= LOTTO_PRICE;
+            money = money.deduct(LOTTO_PRICE);
         }
         return lottos;
     }
