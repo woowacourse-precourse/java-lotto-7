@@ -5,14 +5,7 @@ import lotto.util.BuyingPriceParser;
 import static lotto.util.BuyingPriceParser.toIntStringPriceParser;
 
 public class BuyingPriceService {
-
-    private final BuyingPrice buyingPrice;
-
-    public BuyingPriceService(BuyingPrice buyingPrice) {
-        this.buyingPrice = buyingPrice;
-    }
-
-    public int returnNumberOfLotto(){
+    public static int returnNumberOfLotto(BuyingPrice buyingPrice){
         int lottoNum = 0;
         int price = buyingPrice.getPrice();
         try {
