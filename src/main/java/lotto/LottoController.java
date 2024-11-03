@@ -37,7 +37,7 @@ public class LottoController {
         try {
             String originalInput = InputView.inputWinningNumbers();
             List<String> parsedInput = Parser.parsing(originalInput);
-            Validator.validateWinningGroup(parsedInput);
+            Validator.validateWinningNumbers(parsedInput);
             List<Integer> numbers = Converter.convertStringToNumber(parsedInput);
             Validator.validateLottoNumbers(numbers);
             return numbers;

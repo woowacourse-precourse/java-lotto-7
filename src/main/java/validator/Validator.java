@@ -16,7 +16,7 @@ public class Validator {
     public static void validateInitialMoney(String money) {
         validateNumber(money);
         validatePositiveNumber(money);
-        validateCharge(Long.parseLong(money), LOTTO_COST);
+        validateNonCharge(Long.parseLong(money));
     }
 
     public static void validateNumber(String inputContent) {
@@ -34,9 +34,9 @@ public class Validator {
         }
     }
 
-    public static void validateCharge(long criteriaMoney, int cost) {
-        if (!isHavingCharge(criteriaMoney, cost)) {
-            throw new IllegalArgumentException("[ERROR] 잔액이 있습니다. 1000단위로 입력해주세요.");
+    public static void validateNonCharge(long criteriaMoney) {
+        if (!isHavingCharge(criteriaMoney, LOTTO_COST)) {
+            throw new IllegalArgumentException("[ERROR] 잔액이 있습니다. " + LOTTO_COST + "단위로 입력해주세요.");
         }
     }
 
@@ -58,12 +58,12 @@ public class Validator {
 
     public static void validateLottoNumbersInRange(List<Integer> groups) {
         for (Integer element : groups) {
-            validateNumberInRange(element, LOTTO_NUMBER_SCOPE);
+            validateNumberInLottoRange(element);
         }
     }
 
-    public static void validateNumberInRange(Integer number, Pair<Integer, Integer> scope) {
-        if (!isScope(number, scope)) {
+    public static void validateNumberInLottoRange(Integer number) {
+        if (!isScope(number, LOTTO_NUMBER_SCOPE)) {
             throw new IllegalArgumentException("[ERROR] 입력한 값이 범위에 맞지 않습니다.");
         }
     }
@@ -78,7 +78,7 @@ public class Validator {
         return true;
     }
 
-    public static void validateWinningGroup(List<String> elements) {
+    public static void validateWinningNumbers(List<String> elements) {
         validateWinningSize(elements.size());
         validateWinningElement(elements);
     }
@@ -92,12 +92,13 @@ public class Validator {
     private static void validateWinningElement(List<String> elements) {
         for (String element : elements) {
             validateNumber(element);
+            validateNumberInLottoRange(Integer.parseInt(element));
         }
     }
 
     public static void validateBonusNumber(String inputContent, Status status) {
         validateNumber(inputContent);
-        validateNumberInRange(Integer.parseInt(inputContent), LOTTO_NUMBER_SCOPE);
+        validateNumberInLottoRange(Integer.parseInt(inputContent));
         validateDuplicateToWinningGroup(inputContent, status);
     }
 
