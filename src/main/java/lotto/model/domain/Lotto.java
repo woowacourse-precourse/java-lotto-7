@@ -49,15 +49,44 @@ public class Lotto {
         }
     }
 
-    public WinningLottoDto generateWinningLotto(int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        return new WinningLottoDto(numbers, bonusNumber);
-    }
-
     private void validateBonusNumber(int bonusNumber) {
         validateNumberAreaOf(bonusNumber, ExceptionMessage.BONUS_NUMBER_AREA_EXCEPTION);
         Set<Integer> forValidateDuplication = new HashSet<>(numbers);
         validateNumberDuplication(forValidateDuplication, bonusNumber,
                 ExceptionMessage.BONUS_NUMBER_DUPLICATION_EXCEPTION);
+    }
+
+    public WinningLottoDto generateWinningLotto(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        return new WinningLottoDto(numbers, bonusNumber);
+    }
+
+    public int matchLottoNumbers(WinningLottoDto winningLottoDto) {
+        List<Integer> winningNumbers = winningLottoDto.getWinningNumbers();
+        int bonusNumber = winningLottoDto.getBonusNumber();
+        Set<Integer> forMatchNumber = new HashSet<>(numbers);
+        int matchCount = 0;
+        for (int number : winningNumbers) {
+            if (!forMatchNumber.add(number)) {
+                matchCount++;
+            }
+        }
+
+        if (matchCount == 6) {
+            return 1;
+        }
+        if (matchCount == 5) {
+            if (!forMatchNumber.add(bonusNumber)) {
+                return 2;
+            }
+            return 3;
+        }
+        if (matchCount == 4) {
+            return 4;
+        }
+        if (matchCount == 3) {
+            return 5;
+        }
+        return -1;
     }
 }

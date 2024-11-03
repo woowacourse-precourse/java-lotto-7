@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.dto.WinningLottoDto;
 import lotto.message.ExceptionMessage;
 import lotto.model.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -102,6 +103,27 @@ class LottoTest {
     static Stream<Arguments> generateWinningLotto() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7)
+        );
+    }
+
+    @DisplayName("당첨 번호와 비교하여 등수를 반환 하는 테스트입니다.")
+    @ParameterizedTest
+    @MethodSource("generateRankCase")
+    void generateWinningLottoTest(WinningLottoDto winningLottoDto, int rank) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.matchLottoNumbers(winningLottoDto)).isEqualTo(rank);
+    }
+
+    static Stream<Arguments> generateRankCase() {
+        return Stream.of(
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7), 1),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 6), 2),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 5, 8), 7), 3),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 4, 8, 9), 7), 4),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 3, 8, 9, 10), 7), 5),
+                Arguments.of(new WinningLottoDto(List.of(1, 2, 8, 9, 10, 11), 7), -1),
+                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 7), -1),
+                Arguments.of(new WinningLottoDto(List.of(11, 12, 13, 14, 15, 16), 1), -1)
         );
     }
 
