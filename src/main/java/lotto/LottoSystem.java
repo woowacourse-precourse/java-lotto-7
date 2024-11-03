@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.constant.LottoConfig;
-import lotto.constant.PurchaseConfig;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -10,7 +9,6 @@ import lotto.service.LottoPrize;
 import lotto.service.LottoTicketing;
 import lotto.util.InputHandler;
 import lotto.util.OutputHandler;
-
 import java.util.Map;
 
 import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;

@@ -3,10 +3,13 @@ package lotto.util;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.constant.LottoConfig.Rank;
-
 import java.util.Map;
 
-import static lotto.constant.IOMessage.*;
+import static lotto.constant.IOMessage.BONUS_MESSAGE;
+import static lotto.constant.IOMessage.COUNT_MESSAGE;
+import static lotto.constant.IOMessage.HEAD_MESSAGE;
+import static lotto.constant.IOMessage.RATE_OF_RETURN_MESSAGE;
+import static lotto.constant.IOMessage.RESULT_MESSAGE_FORMAT;
 import static lotto.constant.SystemConfig.DEFAULT_VALUE;
 
 public class OutputHandler {

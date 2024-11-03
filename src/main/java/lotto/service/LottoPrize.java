@@ -6,15 +6,17 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Purchase;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static lotto.constant.LottoConfig.Rank.*;
-import static lotto.constant.SystemConfig.*;
+import static lotto.constant.LottoConfig.Rank.NOTHING;
+import static lotto.constant.SystemConfig.HUNDRED_PERCENT;
+import static lotto.constant.SystemConfig.ROUND_TO_FIRST_DECIMAL;
+import static lotto.constant.SystemConfig.DEFAULT_VALUE;
+import static lotto.constant.SystemConfig.COUNT_INCREMENT_VALUE;
 
 public class LottoPrize {
     private final Lotto lotto;
@@ -32,18 +34,18 @@ public class LottoPrize {
         return roundToFirstDecimal(rateOfReturn);
     }
 
-    private static double roundToFirstDecimal(double rateOfReturn) {
-        return Math.round(rateOfReturn * ROUND_TO_FIRST_DECIMAL) / ROUND_TO_FIRST_DECIMAL;
-    }
-
-    private long calculateTotalPrize(Map<Rank, Integer> pizeCountForRanks) {
-        return Stream.of(values())
-                .mapToLong(rank -> calculateTotalPrizeForRank(pizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE), rank))
+    private long calculateTotalPrize(Map<Rank, Integer> prizeCountForRanks) {
+        return Stream.of(Rank.values())
+                .mapToLong(rank -> calculateTotalPrizeForRank(prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE), rank))
                 .sum();
     }
 
     private long calculateTotalPrizeForRank(int count, Rank rank) {
         return count * rank.getPrizeMoney();
+    }
+
+    private static double roundToFirstDecimal(double rateOfReturn) {
+        return Math.round(rateOfReturn * ROUND_TO_FIRST_DECIMAL) / ROUND_TO_FIRST_DECIMAL;
     }
 
     public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {

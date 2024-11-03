@@ -1,7 +1,11 @@
 package lotto.constant;
 
-import static lotto.constant.LottoConfig.*;
-import static lotto.constant.PurchaseConfig.*;
+import static lotto.constant.LottoConfig.LOTTO_COUNT;
+import static lotto.constant.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConfig.MIN_LOTTO_NUMBER;
+import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
+import static lotto.constant.PurchaseConfig.MAX_PURCHASE;
+import static lotto.constant.PurchaseConfig.MIN_PURCHASE;
 
 public enum ErrorMessage {
     ERROR_HEADER("[ERROR]"),

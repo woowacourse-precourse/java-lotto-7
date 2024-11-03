@@ -5,10 +5,11 @@ import lotto.constant.ErrorMessage;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
-
 import java.util.function.Function;
 
-import static lotto.constant.IOMessage.*;
+import static lotto.constant.IOMessage.BONUS_NUMBER_INPUT_MESSAGE;
+import static lotto.constant.IOMessage.LOTTO_NUMBER_INPUT_MESSAGE;
+import static lotto.constant.IOMessage.ORDER_AMOUNT_INPUT_MESSAGE;
 
 public class InputHandler {
     public static Bonus repeatInputBonusNumber(Lotto lotto) {

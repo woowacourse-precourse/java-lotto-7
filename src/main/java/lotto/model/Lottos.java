@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.model.Lotto;
-
 import java.util.List;
 
 public class Lottos {

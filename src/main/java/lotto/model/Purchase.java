@@ -2,7 +2,9 @@ package lotto.model;
 
 import lotto.constant.ErrorMessage;
 
-import static lotto.constant.PurchaseConfig.*;
+import static lotto.constant.PurchaseConfig.MAX_PURCHASE;
+import static lotto.constant.PurchaseConfig.MIN_PURCHASE;
+import static lotto.constant.PurchaseConfig.PURCHASE_UNIT;
 
 public class Purchase {
     private final int cost;
