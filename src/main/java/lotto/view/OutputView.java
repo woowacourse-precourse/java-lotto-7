@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+
 public class OutputView implements UserOutput{
     @Override
     public void outputLottoCount(int lottoCount) {
@@ -7,7 +9,8 @@ public class OutputView implements UserOutput{
     }
 
     @Override
-    public void outputStatistics() {
-
+    public void outputStatistics(Lotto lotto) {
+        String lottoNumbers = lotto.toString();
+        System.out.println(lottoNumbers);
     }
 }
