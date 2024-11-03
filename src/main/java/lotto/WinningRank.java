@@ -1,7 +1,7 @@
 package lotto;
 
 public enum WinningRank {
-  NO_LUCK(0,0,"저런! 운이 없었군요"),
+  NO_LUCK(0, 0, "저런! 운이 없었군요"),
   THREE_MATCH(1, 5000, "3개 일치 (5,000원)"),
   FOUR_MATCH(2, 50000, "4개 일치 (50,000원)"),
   FIVE_MATCH(3, 1500000, "5개 일치 (1,500,000원)"),
@@ -16,10 +16,6 @@ public enum WinningRank {
     this.rank = rank;
     this.prize = prize;
     this.description = description;
-  }
-
-  public int getRank() {
-    return rank;
   }
 
   public int getPrize() {
