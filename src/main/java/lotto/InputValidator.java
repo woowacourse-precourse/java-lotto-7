@@ -1,11 +1,17 @@
 package lotto;
 
 
+import static lotto.ErrorCode.*;
+
 public class InputValidator {
 
     public void validatePurchaseAmount(int purchaseAmount) {
+        validatePurchaseAmountFormat(purchaseAmount);
+    }
+
+    private void validatePurchaseAmountFormat(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력해야합니다.");
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 }

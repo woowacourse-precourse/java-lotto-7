@@ -1,6 +1,8 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
+import static lotto.ErrorCode.*;
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +17,8 @@ public class InputValidatorTest {
         int purchaseAmount = 10002;
 
         // when & then
-        Assertions.assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(purchaseAmount))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("로또 구입 금액은 1000원 단위로 입력해야합니다.");
+            .hasMessage(INVALID_PURCHASE_AMOUNT.getMessage());
     }
 }
