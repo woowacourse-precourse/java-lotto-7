@@ -23,11 +23,11 @@ public class LottoGenerator {
 
         List<Integer> lottoNumbers = randomNumberListGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
                 COUNT);
-        sorter.sort(lottoNumbers);
+        List<Integer> sortedLottoNumbers = sorter.sort(lottoNumbers);
 
         List<LottoNumber> numbers = new ArrayList<>();
 
-        for (Integer number : lottoNumbers) {
+        for (Integer number : sortedLottoNumbers) {
             numbers.add(new LottoNumber(number));
         }
 

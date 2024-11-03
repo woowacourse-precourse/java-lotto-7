@@ -15,11 +15,11 @@ class AscendingSorterTest {
         AscendingSorter sorter = new AscendingSorter();
 
         //when
-        sorter.sort(numbers);
+        List<Integer> sortedNumbers = sorter.sort(numbers);
 
         //then
-        assertThat(numbers.getFirst()).isEqualTo(1);
-        assertThat(numbers.getLast()).isEqualTo(5);
+        assertThat(sortedNumbers.getFirst()).isEqualTo(1);
+        assertThat(sortedNumbers.getLast()).isEqualTo(5);
     }
 
 }
