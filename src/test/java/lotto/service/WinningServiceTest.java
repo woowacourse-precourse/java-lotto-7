@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
@@ -51,14 +52,13 @@ public class WinningServiceTest {
         expectedRankCounts.put(Rank.THREE_MATCHES, 0);
         expectedRankCounts.put(Rank.NO_MATCH, 2);
 
-        BigDecimal expectedTotalPrize = BigDecimal.valueOf(Rank.SIX_MATCHES.getPrize()).multiply(BigDecimal.valueOf(2))
-                .add(BigDecimal.valueOf(Rank.FIVE_MATCHES_WITH_BONUS.getPrize()).multiply(BigDecimal.valueOf(3)))
-                .add(BigDecimal.valueOf(Rank.FIVE_MATCHES.getPrize()))
-                .add(BigDecimal.valueOf(Rank.FOUR_MATCHES.getPrize()));
+        BigDecimal expectedProfitRate = BigDecimal.valueOf(2_000_000_000L * 2 + 30_000_000 * 3 + 1_500_000 + 50_000)
+                .divide(BigDecimal.valueOf(9), 2, RoundingMode.HALF_UP)
+                .divide(BigDecimal.valueOf(10), 2, RoundingMode.HALF_UP);
 
         WinningResultDto result = winningService.calculateWinningResult(lottos, winningLotto);
 
         Assertions.assertThat(result.rankCounts()).isEqualTo(expectedRankCounts);
-        Assertions.assertThat(result.totalPrize()).isEqualTo(expectedTotalPrize);
+        Assertions.assertThat(result.profitRate()).isEqualTo(expectedProfitRate);
     }
 }
