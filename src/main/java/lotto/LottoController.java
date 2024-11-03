@@ -6,27 +6,34 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoResultAnalysisService;
 import lotto.service.LottoSalesService;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final InputView inputView;
     private final OutputView outputView;
     private final LottoSalesService salesService;
     private LottoResultAnalysisService resultAnalysisService;
 
-    public LottoController(OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
         this.outputView = outputView;
         this.salesService = new LottoSalesService();
         this.resultAnalysisService = null;
     }
 
     public void run() {
-        int payment = 8000; // TODO: InputView
+        outputView.printPaymentRequestMessage();
+        int payment = inputView.readPayment();
         int quantity = salesService.getAvailableLottoQuantity(payment);
         List<Lotto> lottos = salesService.createLottos(quantity);
         outputView.printLottoDetails(lottos);
 
-        List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6); // TODO: InputView
+        outputView.printWinningNumbersRequestMessage();
+        String numbers = inputView.readWinningNumbers();
+
+        outputView.printBonusNumberRequestMessage();
         int bonusNumber = 7; // TODO: InputView
 
         // TODO: 개선 요망
