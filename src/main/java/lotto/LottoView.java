@@ -22,7 +22,8 @@ public class LottoView {
     }
 
     public void printLotto(List<Lotto> lottos) {
-
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     public void printResult(int[] resultCnt, double profitRate) {
