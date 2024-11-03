@@ -7,16 +7,16 @@ import lotto.exception.CustomIllegalArgumentException;
 import java.util.HashSet;
 import java.util.List;
 
-public record WinningNumbers(List<Integer> lottoNumbers, int bonusNumber) {
+public record WinningNumbers(List<Integer> lottoNumbers) {
 
     public WinningNumbers {
         validateLottoNumbers(lottoNumbers);
-        validateBonusNumber(lottoNumbers, bonusNumber);
     }
 
     private void validateLottoNumbers(List<Integer> lottoNumbers) {
         validateLottoNumbersNotNull(lottoNumbers);
         validateLottoNumbersNotEmpty(lottoNumbers);
+        validateNoDuplicates(lottoNumbers);
     }
 
     private void validateLottoNumbersNotNull(List<Integer> lottoNumbers) {
@@ -31,9 +31,9 @@ public record WinningNumbers(List<Integer> lottoNumbers, int bonusNumber) {
         }
     }
 
-    private void validateBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
-        if (new HashSet<>(lottoNumbers).contains(bonusNumber)) {
-            throw CustomIllegalArgumentException.from(BONUS_NUMBER_DUPLICATE);
+    private void validateNoDuplicates(List<Integer> lottoNumbers) {
+        if (new HashSet<>(lottoNumbers).size() != lottoNumbers.size()) {
+            throw CustomIllegalArgumentException.from(DUPLICATE_NUMBER_IN_WINNING_NUMBERS);
         }
     }
 }

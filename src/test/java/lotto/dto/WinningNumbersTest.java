@@ -18,15 +18,13 @@ class WinningNumbersTest {
     class SuccessCases {
 
         @Test
-        @DisplayName("보너스 번호가 당첨 번호에 포함되지 않으면 정상적으로 생성된다.")
-        void 보너스_번호가_당첨_번호에_포함되지_않으면_정상적으로_생성된다() {
+        @DisplayName("로또 번호가 올바른 형식일 경우 정상적으로 생성된다.")
+        void 로또_번호_생성_성공() {
             List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-            int bonusNumber = 7;
 
-            WinningNumbers winningNumbers = new WinningNumbers(lottoNumbers, bonusNumber);
+            WinningNumbers winningNumbers = new WinningNumbers(lottoNumbers);
 
             assertThat(winningNumbers.lottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
-            assertThat(winningNumbers.bonusNumber()).isEqualTo(bonusNumber);
         }
     }
 
@@ -35,23 +33,11 @@ class WinningNumbersTest {
     class FailureCases {
 
         @Test
-        @DisplayName("보너스 번호가 당첨 번호에 포함될 경우 예외를 발생시킨다.")
-        void 보너스_번호가_당첨_번호에_포함될_경우_예외를_발생시킨다() {
-            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-            int bonusNumber = 5;
-
-            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
-                    .hasMessage(BONUS_NUMBER_DUPLICATE.getMessage());
-        }
-
-        @Test
         @DisplayName("로또 번호가 null일 경우 예외를 발생시킨다.")
         void 로또_번호가_null일_경우_예외를_발생시킨다() {
             List<Integer> lottoNumbers = null;
-            int bonusNumber = 7;
 
-            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
+            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
                     .isInstanceOf(CustomIllegalArgumentException.class)
                     .hasMessage(NULL_LOTTO_NUMBERS.getMessage());
         }
@@ -60,11 +46,20 @@ class WinningNumbersTest {
         @DisplayName("로또 번호가 빈 리스트일 경우 예외를 발생시킨다.")
         void 로또_번호가_빈_리스트일_경우_예외를_발생시킨다() {
             List<Integer> lottoNumbers = List.of();
-            int bonusNumber = 7;
 
-            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
+            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
                     .isInstanceOf(CustomIllegalArgumentException.class)
                     .hasMessage(EMPTY_LOTTO_NUMBERS.getMessage());
+        }
+
+        @Test
+        @DisplayName("로또 번호에 중복된 번호가 있을 경우 예외를 발생시킨다.")
+        void 로또_번호에_중복이_있을_경우_예외를_발생시킨다() {
+            List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 7, 7);
+
+            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
+                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .hasMessage(DUPLICATE_NUMBER_IN_WINNING_NUMBERS.getMessage());
         }
     }
 }
