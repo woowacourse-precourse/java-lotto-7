@@ -42,7 +42,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
 	}
 
 	@DisplayName("구입 금액이 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
@@ -58,7 +58,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_OVER_FLOW.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_PURCHASE_AMOUNT_OVER_FLOW.getMessage());
 	}
 
 	@DisplayName("구입 금액이 양수가 아니면 IllegalArgumentException 예외가 발생한다.")
@@ -74,7 +74,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_NEGATIVE.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_PURCHASE_AMOUNT_NEGATIVE.getMessage());
 	}
 
 	@DisplayName("쉼표(,)로 구분된 문자열을 숫자 번호 목록으로 반환한다.")
@@ -106,7 +106,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.MISSING_WINNING_NUMBERS_DELIMITER.getMessage());
+			.hasMessage(InputValidationMessage.MISSING_WINNING_NUMBERS_DELIMITER.getMessage());
 	}
 
 	@DisplayName("각 문자열이 숫자가 아니면 IllegalArgumentException 예외가 발생한다.")
@@ -123,7 +123,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
 	}
 
 	@DisplayName("각 문자열이 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
@@ -139,7 +139,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_OVER_FLOW.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_WINNING_NUMBERS_OVER_FLOW.getMessage());
 	}
 
 	@DisplayName("보너스 번호를 숫자로 반환한다.")
@@ -173,7 +173,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateBonusNumber(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_FORMAT.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_BONUS_NUMBER_FORMAT.getMessage());
 	}
 
 	@DisplayName("보너스 번호가 양수가 아니면 IllegalArgumentException 예외가 발생한다.")
@@ -189,7 +189,7 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateBonusNumber(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_NEGATIVE.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_BONUS_NUMBER_NEGATIVE.getMessage());
 	}
 
 	@DisplayName("보너스 번호가 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
@@ -205,6 +205,6 @@ class ValidatingParserTest {
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateBonusNumber(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_OVER_FLOW.getMessage());
+			.hasMessage(InputValidationMessage.INVALID_BONUS_NUMBER_OVER_FLOW.getMessage());
 	}
 }
