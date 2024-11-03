@@ -12,6 +12,7 @@ public enum ErrorMessage {
 
     BONUS_NUMBER_IN_WINNING_NUMBERS("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.\n"),
 
+    NOT_UNIQUE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복되지 않아야 합니다.\n"),
     INVALID_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호의 범위는 1~45여야 합니다.\n");
 
     private final String message;

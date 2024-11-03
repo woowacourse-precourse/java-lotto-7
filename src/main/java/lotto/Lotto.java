@@ -1,6 +1,7 @@
 package lotto;
 
 import static java.util.stream.Collectors.joining;
+import static lotto.ErrorMessage.NOT_UNIQUE_LOTTO_NUMBER;
 
 import java.util.List;
 
@@ -9,12 +10,23 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateLottoNumberUnique(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateLottoNumberUnique(final List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != 6) {
+            throw new IllegalArgumentException(NOT_UNIQUE_LOTTO_NUMBER.getMessage());
         }
     }
 
