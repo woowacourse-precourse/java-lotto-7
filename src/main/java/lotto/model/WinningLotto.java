@@ -25,6 +25,10 @@ public class WinningLotto {
 
 	public Map<Winning, Integer> drawLottoBundle(LottoBundle lottoBundle) {
 		Map<Winning, Integer> winningResult = Winning.initializeWinningResults();
+		lottoBundle.getLottos().stream()
+				.map(this::getWinningResult)
+				.forEach(result -> winningResult.put(result, winningResult.get(result) + WINNING_COUNT_INCREMENT));
+		return winningResult;
 	}
 
 	private Winning getWinningResult(Lotto lotto) {
