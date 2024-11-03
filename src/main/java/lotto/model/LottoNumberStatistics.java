@@ -13,16 +13,7 @@ public class LottoNumberStatistics {
     public HashMap<String, String> checkWinner(List<Lotto> lotteryTickets,
         HashMap<Integer, String> winnerNumbers) {
         HashMap<LottoRank, Integer> winningCount = initializeWinningCount();
-        long totalPrize = 0;
-        for (Lotto ticket : lotteryTickets) {
-            Map<String, Integer> matchResult = matchNumber(ticket, winnerNumbers);
-            LottoRank rank = LottoRank.getRank(matchResult.get("matchCount"),
-                matchResult.get("matchBonus") == 1);
-            if (rank != LottoRank.NONE) {
-                winningCount.put(rank, winningCount.get(rank) + 1);
-                totalPrize += rank.getPrize();
-            }
-        }
+        long totalPrize = calculateTotalPrize(lotteryTickets, winnerNumbers, winningCount);
         return calculateResults(winningCount, totalPrize, lotteryTickets.size());
     }
 
@@ -36,20 +27,24 @@ public class LottoNumberStatistics {
         return winningCount;
     }
 
+    private long calculateTotalPrize(List<Lotto> lotteryTickets,
+        HashMap<Integer, String> winnerNumbers, HashMap<LottoRank, Integer> winningCount) {
+        long totalPrize = 0;
+        for (Lotto ticket : lotteryTickets) {
+            Map<String, Integer> matchResult = matchNumber(ticket, winnerNumbers);
+            LottoRank rank = getRank(matchResult);
+            if (rank != LottoRank.NONE) {
+                winningCount.put(rank, winningCount.get(rank) + 1);
+                totalPrize += rank.getPrize();
+            }
+        }
+        return totalPrize;
+    }
+
     private Map<String, Integer> matchNumber(Lotto ticket, HashMap<Integer, String> winnerNumbers) {
         List<Integer> winningNumbers = getWinningNumbers(winnerNumbers);
         int bonusNumber = getBonusNumber(winnerNumbers);
-        int matchCount = (int) ticket.getNumbers().stream()
-            .filter(winningNumbers::contains)
-            .count();
-        int matchBonus = 0;
-        if (ticket.getNumbers().contains(bonusNumber)) {
-            matchBonus = 1;
-        }
-        Map<String, Integer> result = new HashMap<>();
-        result.put("matchCount", matchCount);
-        result.put("matchBonus", matchBonus);
-        return result;
+        return getMatchResult(ticket.getNumbers(), winningNumbers, bonusNumber);
     }
 
     private List<Integer> getWinningNumbers(HashMap<Integer, String> winnerNumbers) {
@@ -65,6 +60,25 @@ public class LottoNumberStatistics {
             .map(Map.Entry::getKey)
             .findFirst()
             .orElse(0);
+    }
+
+    private Map<String, Integer> getMatchResult(List<Integer> numbers, List<Integer> winningNumbers,
+        int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+            .filter(winningNumbers::contains)
+            .count();
+        int matchBonus = 0;
+        if (numbers.contains(bonusNumber)) {
+            matchBonus = 1;
+        }
+        Map<String, Integer> result = new HashMap<>();
+        result.put("matchCount", matchCount);
+        result.put("matchBonus", matchBonus);
+        return result;
+    }
+
+    private LottoRank getRank(Map<String, Integer> matchResult) {
+        return LottoRank.getRank(matchResult.get("matchCount"), matchResult.get("matchBonus") == 1);
     }
 
     private HashMap<String, String> calculateResults(HashMap<LottoRank, Integer> winningCount,
