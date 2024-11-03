@@ -4,23 +4,25 @@ import java.util.Arrays;
 
 public enum Ranking {
 
-    ZERO(0,0,"0"),
-    ONE(1,0,"0"),
-    TWO(2,0,"0"),
-    THREE(3,5000,"5,000"),
-    FOUR(4,50000,"50,000"),
-    FIVE(5,1500000,"1,500,000"),
-    FIVE_BONUS(5,30000000,"30,000,000"),
-    SIXTH(6,2000000000,"2,000,000,000");
+    ZERO(0, 0, "0", false),
+    ONE(1, 0, "0", false),
+    TWO(2, 0, "0", false),
+    THREE(3, 5000, "5,000", true),
+    FOUR(4, 50000, "50,000", true),
+    FIVE(5, 1500000, "1,500,000", true),
+    FIVE_BONUS(5, 30000000, "30,000,000", true),
+    SIXTH(6, 2000000000, "2,000,000,000", true);
 
     final private int count;
     final private int winnings;
     final private String strWinnings;
+    final private boolean isWinning;
 
-    Ranking(int count, int winnings, String strWinnings) {
+    Ranking(int count, int winnings, String strWinnings, boolean isWinning) {
         this.count = count;
         this.winnings = winnings;
         this.strWinnings = strWinnings;
+        this.isWinning = isWinning;
     }
 
     public int getCount() {
@@ -35,5 +37,7 @@ public enum Ranking {
         return strWinnings;
     }
 
-
+    public boolean isWinning() {
+        return isWinning;
+    }
 }

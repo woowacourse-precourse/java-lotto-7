@@ -9,8 +9,10 @@ public class RankingHandler {
     public void printResults(Customer customer) {
         Map<Ranking, Integer> results = customer.getLottoResults();
         for (Ranking ranking : Ranking.values()) {
-            int count = results.get(ranking);
-            resultOutput(ranking, count);
+            if (ranking.isWinning()) {
+                int count = results.get(ranking);
+                resultOutput(ranking, count);
+            }
         }
     }
 
