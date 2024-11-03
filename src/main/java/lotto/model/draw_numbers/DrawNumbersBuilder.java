@@ -1,4 +1,4 @@
-package lotto.model.lotto_result;
+package lotto.model.draw_numbers;
 
 import lotto.utils.DrawNumbersValidator;
 

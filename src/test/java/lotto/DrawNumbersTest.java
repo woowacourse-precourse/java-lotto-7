@@ -1,13 +1,12 @@
 package lotto;
 
-import lotto.model.lotto_result.DrawNumbers;
-import lotto.model.lotto_result.DrawNumbersBuilder;
+import lotto.model.draw_numbers.DrawNumbers;
+import lotto.model.draw_numbers.DrawNumbersBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 public class DrawNumbersTest {

@@ -1,7 +1,7 @@
 package lotto.model.lotto;
 
 import lotto.model.Winning;
-import lotto.model.lotto_result.DrawNumbers;
+import lotto.model.draw_numbers.DrawNumbers;
 
 import java.util.List;
 import java.util.Optional;

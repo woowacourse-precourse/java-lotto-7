@@ -1,13 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto_result.DrawNumbers;
-import lotto.model.lotto_result.DrawNumbersBuilder;
+import lotto.model.draw_numbers.DrawNumbersBuilder;
 import lotto.utils.DrawNumbersValidator;
 import lotto.utils.PaymentValidator;
-
-import java.util.List;
 
 public class InputView {
 

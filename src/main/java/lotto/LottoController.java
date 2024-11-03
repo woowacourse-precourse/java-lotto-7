@@ -3,10 +3,10 @@ package lotto;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.LottoPublisher;
-import lotto.model.lotto_result.DrawNumbers;
-import lotto.model.lotto_result.DrawNumbersBuilder;
-import lotto.number_generator.LottoNumberGenerator;
-import lotto.number_generator.NumberGenerator;
+import lotto.model.draw_numbers.DrawNumbers;
+import lotto.model.draw_numbers.DrawNumbersBuilder;
+import lotto.model.number_generator.LottoNumberGenerator;
+import lotto.model.number_generator.NumberGenerator;
 import lotto.view.InputView;
 
 import java.util.List;
