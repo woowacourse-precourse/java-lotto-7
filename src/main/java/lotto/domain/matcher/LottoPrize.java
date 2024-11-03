@@ -3,7 +3,7 @@ package lotto.domain.matcher;
 public enum LottoPrize {
 
     FIRST_PRIZE(6, false, 2000000000),
-    SECOND_PRIZE(5,false, 30000000 ),
+    SECOND_PRIZE(5,false, 30000000),
     THIRD_PRIZE(5, false, 1500000),
     FOURTH_PRIZE(4, true, 50000),
     FIFTH_PRIZE(3, false, 5000),
