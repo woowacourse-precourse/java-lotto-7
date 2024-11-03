@@ -14,6 +14,6 @@ public class OutputMessages {
     public final static String DIVINER = "---";
     public final static String ANNOUNCE_WIN_RESULT = "당첨 통계";
     public final static String WIN_RESULT_FORMAT = "%d개 일치%s (%s원) - %d개";
-    public final static String ANNOUNCE_PROFIT_FORMAT = "총 수익률은 %s%% 입니다.";
+    public final static String ANNOUNCE_PROFIT_FORMAT = "총 수익률은 %s%%입니다.";
 
 }
