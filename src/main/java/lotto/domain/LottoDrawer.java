@@ -3,12 +3,12 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoDraw {
+public class LottoDrawer {
 
     private final int count;
     private final NumbersGenerator numbersGenerator;
 
-    public LottoDraw(PurchaseAmount purchaseAmount, NumbersGenerator numbersGenerator) {
+    public LottoDrawer(PurchaseAmount purchaseAmount, NumbersGenerator numbersGenerator) {
         this.count = purchaseAmount.calculateLottoCount();
         this.numbersGenerator = numbersGenerator;
     }
