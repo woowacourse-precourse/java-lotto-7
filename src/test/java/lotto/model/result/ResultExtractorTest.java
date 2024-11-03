@@ -7,29 +7,23 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.WinningLotto;
+import lotto.model.lottogenerator.FixedLottoNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ResultExtractorTest {
+    private final LottoMachine lottoMachine = new LottoMachine(new FixedLottoNumberGenerator());
     private ResultExtractor resultExtractor;
 
     @BeforeEach
     void setUp() {
         final Lotto winningNumber = new Lotto(List.of(3, 16, 20, 23, 27, 22));
         final WinningLotto winningLotto = new WinningLotto(winningNumber, new BonusNumber("7"));
-
-        List<Lotto> fixedLottoNumbers = List.of(
-                new Lotto(List.of(3, 16, 20, 35, 44, 45)),
-                new Lotto(List.of(3, 16, 20, 23, 27, 45)),
-                new Lotto(List.of(1, 9, 10, 16, 25, 26)),
-                new Lotto(List.of(3, 16, 20, 23, 27, 7)),
-                new Lotto(List.of(1, 6, 18, 21, 41, 45)),
-                new Lotto(List.of(3, 16, 20, 35, 43, 45))
-        );
-        final Lottos lottos = new Lottos(fixedLottoNumbers);
+        final Lottos lottos = lottoMachine.execute(6);
 
         resultExtractor = new ResultExtractor(winningLotto, lottos);
     }
