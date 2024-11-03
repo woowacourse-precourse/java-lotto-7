@@ -31,14 +31,17 @@ public class Input {
     }
 
     public static String GetMoney() {
+        InputMoney();
         return money;
     }
 
     public static String GetNumber() {
+        InputNumbers();
         return number;
     }
 
     public static String GetBonus() {
+        InputBonus();
         return bonus;
     }
 }

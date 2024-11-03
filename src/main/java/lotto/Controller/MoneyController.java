@@ -16,6 +16,7 @@ public class MoneyController {
                 System.out.println(e.getMessage());
             }
         }
+        Input.Attempt(money);
         return money;
     }
 

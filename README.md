@@ -8,6 +8,7 @@
 │    └── Play.java <br>
 ├── Model <br>
 │    ├── Lotto.java <br>
+│    ├── Random.java <br>
 │    ├── Rank.java <br>
 │    ├── Statistics.java <br>
 │    └── Rate.java <br>
@@ -24,21 +25,26 @@
 - [X] MVC 패턴으로 로직 분리 <br>
 ---
 - [X] Application.java <br>
-  - [X] LottoPlay로 연결하여 프로그램 시작 <br>
+  - [X] lay로 연결 <br>
 ---
-- [ ] Controller <br>
+- [X] Controller <br>
   - [X] MoneyController.java <br>
     - [X] MoneyValidation에서 오류 확인 <br>
   - [X] LottoController.java <br>
     - [X] 입력 받은 당첨 번호 리스트로 변환 <br>
     - [X] LottoValidation에서 오류 확인 <br>
     - [X] BonusValidation에서 오류 확인 <br>
-  - [ ] Play.java <br>
-    - [ ] 시행 횟수 만큼 Model(Lotto) 반복 <br>
+  - [X] Play.java <br>
+    - [X] 게임 시작 <br>
+    - [X] 결과 계산 <br>
+    - [X] 수익률 계산 <br>
+
 ---
 - [X] Model <br>
   - [X] Lotto.java <br>
     - [X] 당첨 번호 6개 아닐 시 예외 처리 <br>
+  - [X] Random.java <br>
+    - [X] 시행 횟수 만큼 Model(Lotto) 반복 <br>
     - [X] 랜덤한 번호 추출 <br>
   - [X] Rank.java <br>
     - [X] 당첨 등수 및 당첨 금액 통계 표시 <br>
