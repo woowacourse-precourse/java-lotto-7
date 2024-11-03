@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,5 +15,12 @@ public class UserLottosTest {
         int purchaseAmount2 = 123456;
         assertThatThrownBy(() -> new UserLottos(purchaseAmount2))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구매금액에_맞는_수량을_구한다() {
+        int purchaseAmount = 14000;
+        assertThat(new UserLottos(purchaseAmount).getQuantity())
+                .isEqualTo(14);
     }
 }
