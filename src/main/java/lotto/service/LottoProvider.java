@@ -30,7 +30,7 @@ public class LottoProvider {
         try {
             return Integer.parseInt(numberStr);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("1,2,3,4,5,6 과 같이  ~ 45 사이의 중복되지 않은 자연수 6개여야 합니다.");
+            throw new IllegalArgumentException("1,2,3,4,5,6 과 같이 1 ~ 45 사이의 중복되지 않은 자연수 6개여야 합니다.");
         }
     }
 }
