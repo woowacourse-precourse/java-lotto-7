@@ -47,13 +47,13 @@
 - exception
   - ErrorMessage.java
   - LottoException.java
-- factory
-  - LottoFactory.java
 - model
   - Lotto.java
   - LottoMachine.java
-- validate
-  - Validator.java
+  - Rank.java
+  - Result.java
 - view
   - InputHelper.java
   - OutputHelper.java
+- validate
+  - Validator.java
