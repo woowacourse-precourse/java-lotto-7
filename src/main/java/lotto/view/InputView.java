@@ -26,7 +26,16 @@ public class InputView {
 
     public static List<Integer> inputLottoWinningNumbers(){
 
-        return Utils.splitWinningNumber(Console.readLine());
+        List<Integer> lottoWinningNumbers = Validator.validateWinningNumberSeparatorAndNotNumber(Console.readLine());
+
+        try {
+            Validator.validateAllWinningNumbers(lottoWinningNumbers);
+
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
+        return lottoWinningNumbers;
     }
 
     public static Integer inputLottoBonusNumber(){

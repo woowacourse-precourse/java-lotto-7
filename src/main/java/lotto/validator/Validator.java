@@ -16,6 +16,12 @@ public class Validator {
 
     }
 
+    public static void validateAllWinningNumbers(List<Integer> lottoWinningNumbers) {
+        validateLottoWinningNumbersCount(lottoWinningNumbers);
+        validateDuplicateWinningNumbers(lottoWinningNumbers);
+        validateLottoNumberInRangeOneToFortyFive(lottoWinningNumbers);
+    }
+
     public static void validateLottoNumberInRangeOneToFortyFive(List<Integer> lottoWinningNumbers){
 
         if (!lottoWinningNumbers.stream().allMatch(number -> number >= 1 && number <= 45)) {
