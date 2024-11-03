@@ -41,4 +41,11 @@ class LottoTest {
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("로또 번호가 6개 미만이면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_6개_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
