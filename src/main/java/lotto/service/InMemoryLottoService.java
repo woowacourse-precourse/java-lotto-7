@@ -1,12 +1,14 @@
 package lotto.service;
 
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
 import lotto.repository.LottoRepository;
 import lotto.validator.LottoValidator;
@@ -21,6 +23,7 @@ public class InMemoryLottoService implements LottoService {
         this.lottoValidator = lottoValidator;
         this.lottoRepository = lottoRepository;
     }
+
     public static InMemoryLottoService getInstance(LottoValidator lottoValidator, LottoRepository lottoRepository) {
         if (instance == null) {
             instance = new InMemoryLottoService(lottoValidator, lottoRepository);
@@ -28,7 +31,7 @@ public class InMemoryLottoService implements LottoService {
         return instance;
     }
 
-    @Override
+    @Override // 금액에 따라 로또 생성 및 저장
     public void buyLotto(String money) {
 
         lottoValidator.validateMoney(money);
@@ -42,7 +45,7 @@ public class InMemoryLottoService implements LottoService {
         }
     }
 
-    @Override
+    @Override // 당첨 번호와 보너스 번호를 입력받아 당첨 통계 계산
     public void checkLotto(String winNumbers, String bonusNumber) {
 
         lottoValidator.validateWinnerLottoNumbers(winNumbers);
