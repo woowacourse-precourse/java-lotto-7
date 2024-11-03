@@ -25,7 +25,7 @@ public class Validator {
     }
 
     public static String isEmpty(String input) {
-        if(input.isEmpty()) {
+        if(input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT_VALUE);
         }
         return input;
@@ -44,7 +44,7 @@ public class Validator {
     }
 
     public static int validateBonusNumber(List<Integer> numbers, String input) {
-        int number = isLottoNumberFormatValid(input);
+        int number = isLottoNumberFormatValid(Validator.isEmpty(input));
 
         List<Integer> hasBonusNumber = new ArrayList<>(numbers);
         hasBonusNumber.add(number);

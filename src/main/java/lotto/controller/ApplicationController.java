@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.service.Validator.isLottoNumbersDuplicated;
+
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.Extractor;
@@ -27,6 +30,7 @@ public class ApplicationController {
 
         // 1. 구매 금액을 입력 받음.
         int inputPrice = inputPrice();
+        outputView.printPurchaseLottoCount(inputPrice / 1000);
 
         // 2. 해당 금액을 바탕으로 로또를 구매함.
         buyLottos(inputPrice, lottos);
@@ -73,7 +77,9 @@ public class ApplicationController {
         while(true) {
             try {
                 String inputLottoNumbers = Validator.isEmpty(inputView.inputLottoNumbers());
-                return new Lotto(extractor.extractLottoNumber(inputLottoNumbers));
+                List<Integer> numbers = extractor.extractLottoNumber(inputLottoNumbers);
+                isLottoNumbersDuplicated(numbers);
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -83,10 +89,8 @@ public class ApplicationController {
     private int inputPrice() {
         while (true) {
             try {
-                String inputPrice = Validator.isEmpty(inputView.inputPrice());
-                int price = Validator.isLottoPriceValid(inputPrice);
-                outputView.printPurchaseLottoCount(price / 1000);
-                return price;
+                String inputPrice = Validator.isEmpty(inputView.inputPrice().strip());
+                return Validator.isLottoPriceValid(inputPrice);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
