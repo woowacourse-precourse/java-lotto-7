@@ -18,13 +18,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Rank rank(List<Integer> winningNumbers, int bonusNumber) {
-        int hitCount = (int) winningNumbers.stream()
-            .filter(numbers::contains)
-            .count();
-        boolean hitsBonusNumber = numbers.contains(bonusNumber);
-
-        return Rank.of(hitCount, hitsBonusNumber);
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {
