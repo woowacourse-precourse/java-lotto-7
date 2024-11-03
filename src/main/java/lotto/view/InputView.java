@@ -3,7 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputView {
 
@@ -14,6 +16,7 @@ public class InputView {
     private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
     private static final String WINNING_NUMBER_FORMAT_ERROR = "[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.";
     private static final String WINNING_NUMBER_PARSE_ERROR = "[ERROR] 당첨 번호는 숫자만 입력해 주세요.";
+    private static final String DUPLICATE_NUMBER_ERROR = "[ERROR] 당첨 번호는 중복될 수 없습니다.";
     private static final String AMOUNT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
 
     public static int getPurchaseAmount() {
@@ -31,7 +34,12 @@ public class InputView {
     public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBERS_PROMPT);
         String input = Console.readLine().trim();
-        return parseWinningNumbers(input);
+        List<Integer> winningNumbers = parseWinningNumbers(input);
+
+        // 중복된 번호가 있는지 확인
+        validateNoDuplicateNumbers(winningNumbers);
+
+        return winningNumbers;
     }
 
     public static int getBonusNumber() {
@@ -70,5 +78,12 @@ public class InputView {
             }
         }
         return winningNumbers;
+    }
+
+    private static void validateNoDuplicateNumbers(List<Integer> winningNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+        }
     }
 }
