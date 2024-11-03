@@ -10,4 +10,8 @@ public class Customer {
         validatePayAmount(payAmount);
         this.payAmount = payAmount;
     }
+
+    public int getPayAmount() {
+        return payAmount;
+    }
 }
