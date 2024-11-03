@@ -4,6 +4,8 @@ import java.util.List;
 
 public class WinningLotto {
 
+	private static final int WINNING_COUNT_INCREMENT = 1;
+
 	private final Lotto winningNumbers;
 	private final LottoNumber bonusNumber;
 
