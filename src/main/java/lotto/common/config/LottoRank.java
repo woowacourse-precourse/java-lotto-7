@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.common.config;
 
 public enum LottoRank {
     MATCH_6(6, false, 2_000_000_000),
