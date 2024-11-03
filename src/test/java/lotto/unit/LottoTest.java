@@ -19,4 +19,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_COUNT);
     }
+
+    @Test
+    @DisplayName("로또 번호에 중복된 값이 있는 경우 예외가 발생한다.")
+    void lottoNumbersContainDuplicates() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.DUPLICATE_LOTTO_NUMBER);
+    }
 }
