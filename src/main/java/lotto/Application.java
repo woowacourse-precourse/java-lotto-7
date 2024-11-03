@@ -47,6 +47,16 @@ public class Application {
         return results;
     }
 
+    public static int getEarnRate(List<Constants.LottoGrade> results ){
+        int startPrice = results.size() * 1000;
+        int getPrice = 0;
+        for( Constants.LottoGrade result : results ){
+            getPrice += result.getPrize();
+        }
+        int earnRate = ( getPrice / startPrice ) * 100;
+        return earnRate;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
     }
