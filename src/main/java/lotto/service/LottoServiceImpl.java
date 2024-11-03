@@ -1,6 +1,8 @@
 package lotto.service;
 
 import lotto.constants.LottoConstants;
+import lotto.domain.LottoTicket;
+import lotto.generator.RandomLottoNumberGenerator;
 import lotto.validation.PurchaseAmountValidator;
 import lotto.validation.WinningNumberValidator;
 
@@ -8,6 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoServiceImpl implements LottoService {
+    @Override
+    public LottoTicket generateLottoTicket(String purchaseAmountInput) {
+        int lottoCount = calculateLottoCount(purchaseAmountInput);
+        return new LottoTicket(new RandomLottoNumberGenerator(), lottoCount);
+    }
+
     private int calculateLottoCount(String purchaseAmountInput) {
         PurchaseAmountValidator.validatePurchaseAmountInput(purchaseAmountInput);
         int purchaseAmount = parsePurchaseAmount(purchaseAmountInput);
