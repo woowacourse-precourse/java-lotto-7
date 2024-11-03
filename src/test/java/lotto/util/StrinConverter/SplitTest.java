@@ -9,21 +9,20 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@DisplayName("StringConverter - 문자열 trim")
-public class TrimTest {
+@DisplayName("StringConverter - 문자열 split")
+public class SplitTest {
 
-    @DisplayName("문자열 앞뒤 공백 제거")
+    @DisplayName("문자열을 , 기준으로 자르기")
     @Test
-    void 문자열_앞뒤_공백_제거() {
+    void 문자열열_쉼표_기준으로_자르기() {
         // given
-        String input = "   prepre ";
+        String input = "1,2,3";
 
         // when
-        String result = StringConverter.trim(input);
+        String[] result = StringConverter.split(input);
 
         // then
-        Assertions.assertThat(result).isEqualTo("prepre");
-
+        Assertions.assertThat(result).containsExactly("1", "2", "3");
     }
 
     @DisplayName("null이나 빈 문자열이면 예외 발생")
@@ -31,10 +30,9 @@ public class TrimTest {
     @NullAndEmptySource
     @ValueSource(strings = {" ", "  "})
     void null이나_빈_문자열이면_예외발생(String input) {
-
+        
         // expect
-        Assertions.assertThatThrownBy(() -> StringConverter.trim(input))
+        Assertions.assertThatThrownBy(() -> StringConverter.split(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
