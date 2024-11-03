@@ -14,22 +14,27 @@ public class Application {
         LottoInput lottoInput = new LottoInput();
         LottoChecker lottoChecker = new LottoChecker();
         LottoResult lottoResult = new LottoResult();
-        List<Lotto> allLottos = new ArrayList<>();
 
+        List<Lotto> allLottos = generateLottos(lottoInput);
+        printAllLottosNumbers(allLottos);
+
+        List<Integer> winningNumbers = lottoInput.inputWinningNumbers();
+        Integer bonusNumber = lottoInput.inputBonusNumber();
+
+        lottoChecker.lottoCheckingProcess(allLottos, winningNumbers, bonusNumber, lottoResult);
+        lottoResult.printResults();
+        lottoResult.computeProfitRate(allLottos.size());
+    }
+
+    private static List<Lotto> generateLottos(LottoInput lottoInput) {
+        List<Lotto> allLottos = new ArrayList<>();
         int lottoPurchaseAmount = lottoInput.getLottoPurchaseAmount();
 
         for (int i = 0; i < lottoPurchaseAmount; i++) {
             Lotto lotto = new Lotto(generateLottoNumbers());
             allLottos.add(lotto);
         }
-
-        printAllLottosNumbers(allLottos);
-        List<Integer> winningNumbers = lottoInput.inputWinningNumbers();
-        Integer bonusNumber = lottoInput.inputBonusNumber();
-
-        lottoChecker.lottoCheckingProcess(allLottos, winningNumbers, bonusNumber, lottoResult);
-        lottoResult.printResults();
-        lottoResult.computeProfitRate(lottoPurchaseAmount);
+        return allLottos;
     }
 
     private static void printAllLottosNumbers(List<Lotto> allLottos) {
