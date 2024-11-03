@@ -13,8 +13,13 @@ public class InputMessageService {
   }
 
   public Long purchaseAmountAndValidation(){
-    long purchaseAmount=Long.parseLong(inputMessageView.enterPurchaseAmount());
-    purchaseAmountValidation.validatePurchaseAmount(purchaseAmount);
+    long purchaseAmount = 0;
+    boolean isValid = false;
+    while(!isValid) {
+        purchaseAmount=Long.parseLong(inputMessageView.enterPurchaseAmount());
+        isValid= purchaseAmountValidation.validatePurchaseAmount(purchaseAmount);
+
+    }
     return purchaseAmount;
   }
 

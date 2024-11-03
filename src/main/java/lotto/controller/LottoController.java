@@ -10,17 +10,21 @@ public class LottoController {
   private final InputMessageService inputMessageService;
   private final OutputMessageService outputMessageService;
   private final OutputMessageView outputMessageView;
+  private final LottoService lottoService;
   public LottoController(InputMessageService inputMessageService,
-      OutputMessageService outputMessageService,OutputMessageView outputMessageView) {
+      OutputMessageService outputMessageService,OutputMessageView outputMessageView,
+      LottoService lottoService) {
     this.inputMessageService=inputMessageService;
     this.outputMessageService=outputMessageService;
     this.outputMessageView=outputMessageView;
+    this.lottoService=lottoService;
   }
 
   public void run(){
     long purchaseAmount= inputMessageService.purchaseAmountAndValidation();
     long numberOfPurchases=outputMessageService.numberOfPurchases(purchaseAmount);
     outputMessageView.numberOfPurchases(numberOfPurchases);
+
   }
 
 }

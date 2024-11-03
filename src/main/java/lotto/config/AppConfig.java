@@ -10,7 +10,7 @@ import lotto.view.OutputMessageView;
 
 public class AppConfig {
   public LottoController lottoController(){
-    return new LottoController(inputMessageService(),outputMessageService(),outputMessageView());
+    return new LottoController(inputMessageService(),outputMessageService(),outputMessageView(),lottoService());
   }
   public LottoService lottoService(){
     return new LottoService();
