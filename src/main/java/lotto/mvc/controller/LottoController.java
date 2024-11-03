@@ -1,6 +1,7 @@
 package lotto.mvc.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +57,8 @@ public class LottoController {
 
         outputView.showWinningStatisticsMsg();
         outputView.showWinningStatistics(winningCounts);
+
+        BigInteger totalWinningAmount = calculateWinningAmount(winningCounts);
     }
 
     private Map<LottoWinningAmount, Integer> checkLottoWinning(List<Lotto> lottos, Lotto winningLotto, int bonus) {
@@ -133,5 +136,18 @@ public class LottoController {
         }
 
         return numbers;
+    }
+
+    private BigInteger calculateWinningAmount(Map<LottoWinningAmount, Integer> winningCounts) {
+        BigInteger winningAmount = BigInteger.ZERO;
+        LottoWinningAmount[] winningAmounts = LottoWinningAmount.values();
+
+        for (LottoWinningAmount winning : winningAmounts) {
+            BigInteger multiplied = BigInteger.valueOf(winningCounts.getOrDefault(winning, 0))
+                    .multiply(BigInteger.valueOf(winning.getAmount()));
+            winningAmount.add(multiplied);
+        }
+
+        return winningAmount;
     }
 }
