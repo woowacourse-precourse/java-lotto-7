@@ -1,7 +1,5 @@
 package model;
 
-import java.text.DecimalFormat;
-
 public enum LottoResult {
     FIRST("6개 일치", 2000000000),
     SECOND("5개 일치, 보너스 볼 일치", 30000000),
@@ -19,8 +17,8 @@ public enum LottoResult {
     }
 
     public String getMessage() {
-        DecimalFormat df = new DecimalFormat("###,###");
-        return rankInformation + " (" + df.format(reward) + "원)";
+        String returnFormat = "%s (%,d원)";
+        return String.format(returnFormat, rankInformation, reward);
     }
 
     public Integer getReward() {

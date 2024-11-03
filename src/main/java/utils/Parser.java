@@ -12,8 +12,7 @@ public class Parser {
     }
 
     private static List<String> splitting(String targetContent) {
-        return Arrays.stream(targetContent
-                        .split(DELIMITER))
+        return Arrays.stream(targetContent.split(DELIMITER))
                 .toList();
     }
 
