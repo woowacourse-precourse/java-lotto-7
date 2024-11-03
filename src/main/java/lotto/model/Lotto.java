@@ -20,6 +20,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNTS.getValue()) {
             throw new LottoException(INVALID_NUMBER_COUNTS.getMessage());
