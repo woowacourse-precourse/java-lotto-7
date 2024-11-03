@@ -24,10 +24,18 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void validateUniqueNumber() {
+    private void validateUniqueNumber(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    private void validateNumberInRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoConstants.LOTTO_MIN_NUMBER || number > LottoConstants.LOTTO_MAX_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }
