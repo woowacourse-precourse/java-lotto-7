@@ -6,8 +6,13 @@ public class LottoProfitRate {
 
     private double lottoProfitRate;
 
-    public LottoProfitRate(PurchasePrice purchasePrice){
-        lottoProfitRate = getLottoProfit(purchasePrice);
+    public LottoProfitRate(double lottoProfitRate){
+        this.lottoProfitRate = lottoProfitRate;
+    }
+
+    public static LottoProfitRate of(PurchasePrice purchasePrice) {
+        double lottoProfit = getLottoProfit(purchasePrice);
+        return new LottoProfitRate(lottoProfit);
     }
 
     private static double getLottoProfitSum(){
