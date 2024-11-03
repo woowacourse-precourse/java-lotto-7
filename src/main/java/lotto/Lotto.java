@@ -17,6 +17,7 @@ public class Lotto {
         }
     }
 
+    // TODO: 추가 기능 구현
     public static Lotto[] generateLottos(int lottoCount) {
         Lotto[] lottos = new Lotto[lottoCount];
         for (int i = 0; i < lottoCount; i++) {
@@ -26,5 +27,8 @@ public class Lotto {
         return lottos;
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
