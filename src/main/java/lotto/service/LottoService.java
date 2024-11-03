@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.utils.Constant.LOTTO_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +9,8 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.InputMoney;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 
@@ -15,20 +19,31 @@ public class LottoService {
     public LottoService() {
     }
 
-    public Lottos buyLottos(long userInputMoney) {
-        InputMoney inputMoney = new InputMoney(userInputMoney);
+    public Lottos buyLottos(InputMoney inputMoney) {
         long buyAmount = inputMoney.getBuyAmount();
         List<Lotto> lottos = new ArrayList<>();
         for(int i=0;i<buyAmount;i++) {
-            List<Integer> randoms = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randoms);
-            Lotto lotto = new Lotto(randoms);
-            lottos.add(lotto);
+            Lotto newLotto = Lotto.create();
+            lottos.add(newLotto);
         }
-        return new Lottos(lottos);
+        return Lottos.create(lottos);
     }
 
-    public void findAnswer(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-
+    public LottoResult findAnswer(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber,InputMoney inputMoney) {
+        long buyAmount = inputMoney.getBuyAmount();
+        long totalEarning = 0;
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+        for(int i=0;i<buyAmount;i++){
+            Lotto lotto = lottos.getElement(i);
+            int matchCount = winningNumbers.countMatchingNumbers(lotto);
+            boolean containBonus = lotto.containBonusNumber(bonusNumber);
+            LottoPrize lottoPrize = LottoPrize.valueOf(matchCount,containBonus);
+            if(lottoPrize == LottoPrize.NONE) {
+                continue;
+            }
+            lottoPrizes.add(lottoPrize);
+            totalEarning += lottoPrize.getPrize();
+        }
+        return LottoResult.of(lottoPrizes,totalEarning,inputMoney);
     }
 }
