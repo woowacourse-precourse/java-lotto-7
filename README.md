@@ -45,6 +45,11 @@
 3) CalculateResult 클래스
    - MatchLotto 클래스로부터 계산된 결과 해시맵을 기반으로 총 수익 계산
    - float 리턴
+### 5. constant package
+1) ErrorName 클래스
+   - 에러메세지를 저장해놓은 enum 클래스
+2) MatchMessage 클래스
+   - OutputViewLottoㅇ에서 사용되는 당첨결과 출력 시 사용되는 메세지를 저장해놓은 enum 클래스
 
 
 ---

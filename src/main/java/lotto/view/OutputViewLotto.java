@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.constant.MatchMessage;
 import lotto.model.BuyLotto;
 import lotto.item.Money;
 
@@ -15,11 +16,11 @@ public class OutputViewLotto {
     }
     public void ViewResultDetail(HashMap<Integer, Integer> result){
         HashMap<Integer, String> resultMap = new HashMap<>();
-        resultMap.put(5000, "3개 일치 (5,000원)");
-        resultMap.put(50000, "4개 일치 (50,000원)");
-        resultMap.put(1500000, "5개 일치 (1,500,000원)");
-        resultMap.put(30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)");
-        resultMap.put(2000000000, "6개 일치 (2,000,000,000원)");
+        resultMap.put(5000, MatchMessage.MessageThree.getMessage());
+        resultMap.put(50000, MatchMessage.MessageFour.getMessage());
+        resultMap.put(1500000, MatchMessage.MessageFive.getMessage());
+        resultMap.put(30000000, MatchMessage.MessageFiveWithAddition.getMessage());
+        resultMap.put(2000000000, MatchMessage.MessageSix.getMessage());
 
         for(int price:resultMap.keySet()){
             System.out.println(resultMap.get(price) + " - " + result.get(price) + "개");

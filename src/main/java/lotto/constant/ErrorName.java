@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum ErrorName {
     ErrorRange("[ERROR] 1부터 45 사이의 숫자를 입력하세요."),

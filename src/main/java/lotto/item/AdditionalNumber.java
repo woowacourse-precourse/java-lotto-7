@@ -1,6 +1,6 @@
 package lotto.item;
 
-import lotto.ErrorName;
+import lotto.constant.ErrorName;
 
 public class AdditionalNumber {
     private final int number;

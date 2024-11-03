@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.HashMap;
-import lotto.ErrorName;
+import lotto.constant.ErrorName;
 import lotto.item.AdditionalNumber;
 import lotto.item.Lotto;
 import lotto.item.Money;
