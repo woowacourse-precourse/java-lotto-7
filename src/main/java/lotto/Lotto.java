@@ -11,7 +11,7 @@ public class Lotto {
         this.winningNumbers = numbers;
     }
 
-    // 각 로또 번호 리스트를 확인하여 등수를 계산하고 통계를 출력합니다.
+    // 각 로또 번호 확인
     public void calculateStatistics(List<List<Integer>> buyLottoNumbers, int bonusNumber, int buyLottoAmount) {
         Map<WinningNums, Integer> statistics = new HashMap<>();
 
