@@ -4,8 +4,6 @@ import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinnerLottoTest {
@@ -43,7 +41,6 @@ class WinnerLottoTest {
 
     @Test
     void 입력된_보너스_번호가_당첨번호와_중복되면_예외가_발생한다() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,6").setBonusNumber("6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATES_WITH_WINNING_NUMBERS.getMessage());
