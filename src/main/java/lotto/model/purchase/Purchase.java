@@ -3,7 +3,6 @@ package lotto.model.purchase;
 import static lotto.constant.LottoConstant.PRICE;
 
 import java.util.List;
-import lotto.model.draw.Payment;
 
 public class Purchase {
     private final Payment payment;
