@@ -35,7 +35,7 @@ public class LottoService {
             String inputAmount = Input.InputAmount();
             return BuyLottoValidate.lottoBuyValidation(inputAmount);
         } catch (Exception e) {
-            System.out.println(VALID_AMOUNT_INPUT);
+            System.out.println(VALID_AMOUNT_INPUT.getMessage());
             return buyLotto();
         }
     }
