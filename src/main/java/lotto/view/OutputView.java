@@ -1,20 +1,26 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import lotto.Lotto;
+import lotto.util.LottoRank;
 
 public class OutputView {
 
-    public void printLottoInfo(int count, ArrayList<Lotto> lottos) {
-        System.out.println(count + "개를 구매했습니다.");
+    public void printLottoInfo(ArrayList<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < lottos.size(); i++) {
             System.out.println(lottos.get(i).toString());
         }
     }
 
-    public void printWinningResult() {
-
+    public void printWinningResult(HashMap<LottoRank, Integer> winningResult) {
+        StringBuilder sb = new StringBuilder();
+        for (LottoRank lottoRank : LottoRank.values()){
+            sb.append(lottoRank.toString()+winningResult.get(lottoRank)+"개\n");
+        }
+        System.out.println(sb);
     }
 
     public void printProfitRate(double profitRate) {
