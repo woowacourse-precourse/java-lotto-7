@@ -2,6 +2,8 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Arrays;
+
 public class Input {
     public int readLottoAmount(){
         try {
@@ -17,7 +19,17 @@ public class Input {
         }
     }
 
+    public int [] readWinningNumber(){
+        try {
+            String input = readLine();
 
+            return  Arrays.stream(input.split(","))
+                    .mapToInt(Integer::parseInt)
+                    .toArray();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] ");
+        }
+    }
 
     public int readBonusNumber(){
         try {
