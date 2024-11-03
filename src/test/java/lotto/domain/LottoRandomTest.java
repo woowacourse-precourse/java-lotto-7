@@ -3,6 +3,8 @@ package lotto.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRandom;
 import org.junit.jupiter.api.Test;
 
 class LottoRandomTest {

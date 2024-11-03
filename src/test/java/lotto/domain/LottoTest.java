@@ -4,6 +4,7 @@ import static lotto.global.Error.LOTTO_NUMBER_IS_NOT_BETWEEN_1_AND_46;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
