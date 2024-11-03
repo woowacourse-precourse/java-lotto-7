@@ -3,7 +3,8 @@ package lotto.view.util;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static lotto.exception.ExceptionMessage.*;
+import static lotto.exception.ExceptionMessage.INVALID_DELIMITER_FORMAT;
+import static lotto.exception.ExceptionMessage.INVALID_WINNING_NUMBER_FORMAT;
 
 public class WinningNumberSplitter {
 

@@ -1,8 +1,8 @@
 package lotto.exception;
 
 import static java.lang.String.format;
-import static lotto.view.util.WinningNumberSplitter.DELIMITER;
 import static lotto.domain.constant.LottoRule.*;
+import static lotto.view.util.WinningNumberSplitter.DELIMITER;
 
 public enum ExceptionMessage {
 
