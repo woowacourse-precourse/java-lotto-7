@@ -105,4 +105,78 @@ class WinningNumbersTest {
         assertEquals(ERROR_PROMPT + INVALID_DUPLICATE_WINNING_NUMBER, exception.getMessage());
     }
 
+    @Test
+    @DisplayName("당첨 숫자와 중복되지 않는 유효한 보너스 숫자를 넣으면 보너스 번호가 잘 생성된다.")
+    void getBonusNumber () {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        String rawBonusNumber = VALID_BONUS_NUMBER;
+
+        // when
+        winningNumbers.getBonusNumber(rawBonusNumber);
+
+        // then
+        assertTrue(winningNumbers.compareBonusNumber(BONUS_NUMBER));
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 숫자가 아닐 경우 에러를 반환한다.")
+    void BonusNumberIsNotNumber () {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        String rawBonusNumber = BONUS_NUMBER_NOT_NUMERIC;
+
+        // when & then
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.getBonusNumber(rawBonusNumber);
+        });
+
+        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 1보다 작을 경우 에러를 반환한다.")
+    void BonusNumberIsUnderMax () {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        String rawBonusNumber = UNDER_BONUS_NUMBER;
+
+        // when & then
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.getBonusNumber(rawBonusNumber);
+        });
+
+        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 45를 넘을 경우 에러를 반환한다.")
+    void BonusNumberIsUpperMax () {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        String rawBonusNumber = UP_BONUS_NUMBER;
+
+        // when & then
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.getBonusNumber(rawBonusNumber);
+        });
+
+        assertEquals(ERROR_PROMPT + INVALID_BONUS_NUMBER, exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 당첨 숫자와 중복될 경우 에러를 반환한다.")
+    void bonusNumberIsDuplicatedWithWinningNumbers () {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers(VALID_WINNING_NUMBERS);
+        String rawBonusNumber = DUPLICATED_BONUS_NUMBER;
+
+        // when & then
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            winningNumbers.getBonusNumber(rawBonusNumber);
+        });
+
+        assertEquals(ERROR_PROMPT + INVALID_DUPLICATE_BONUS_NUMBER, exception.getMessage());
+    }
+
 }

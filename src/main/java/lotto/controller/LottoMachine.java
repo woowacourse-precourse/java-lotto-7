@@ -76,6 +76,10 @@ public class LottoMachine {
 
         WinningNumbers winningNumbers = winningNumbersService.getWinningNumbers(inputWinningNumbers);
 
+        String rawBonusNumber = inputView.getBonusNumber();
+
+        winningNumbersService.getBonusNumber(winningNumbers, rawBonusNumber);
+
         return winningNumbers;
     }
 }

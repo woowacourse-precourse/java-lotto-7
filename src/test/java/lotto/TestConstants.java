@@ -16,8 +16,14 @@ public class TestConstants {
     public static String UP_WINNING_NUMBERS_SIZE = "1,2,3,4,5,6,7";
     public static String DUPLICATED_WINNING_NUMBERS = "1,2,1,2,1,2";
     public static String VALID_WINNING_NUMBERS = "1,2,3,4,5,6";
+    public static String BONUS_NUMBER_NOT_NUMERIC = "invalid";
+    public static String UNDER_BONUS_NUMBER = "0";
+    public static String UP_BONUS_NUMBER = "46";
+    public static String DUPLICATED_BONUS_NUMBER = "1";
+    public static String VALID_BONUS_NUMBER = "7";
 
     public static Integer TICKET_COUNT = 10;
+    public static Integer BONUS_NUMBER = 7;
 
     public static List<Integer> LOTTO_NUMBERS = new ArrayList<>(List.of(2, 1, 4, 3, 6, 5));
     public static final List<Integer> SORTED_LOTTO_NUMBERS = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));

@@ -9,11 +9,27 @@ import static lotto.common.ValidationUtils.*;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
-    private final Integer bonusNumber;
+    private Integer bonusNumber;
 
     public WinningNumbers(String inputWinningNumbers) {
         this.winningNumbers = getWinningNumbers(inputWinningNumbers);
         this.bonusNumber = null;
+    }
+
+    public void getBonusNumber(String rawBonusNumber) {
+        validateBonusNumber(rawBonusNumber);
+
+        bonusNumber = Integer.parseInt(rawBonusNumber);
+    }
+
+
+    public boolean compareNumbers(List<Integer> winningNumbers) {
+        return Objects.equals(this.winningNumbers, winningNumbers);
+    }
+
+
+    public boolean compareBonusNumber(Integer bonusNumber) {
+        return Objects.equals(this.bonusNumber, bonusNumber);
     }
 
     private List<Integer> getWinningNumbers (String inputWinningNumbers) {
@@ -43,7 +59,12 @@ public class WinningNumbers {
         validateDuplicatedNumber(winningNumbers, winningNumber, INVALID_DUPLICATE_WINNING_NUMBER);
     }
 
-    public boolean compareNumbers(List<Integer> winningNumbers) {
-        return Objects.equals(this.winningNumbers, winningNumbers);
+    private void validateBonusNumber (String rawBonusNumber) {
+        validateNumber(rawBonusNumber, INVALID_BONUS_NUMBER);
+        validateInRange(rawBonusNumber, MIN_WINNING_NUMBER, MAX_WINNING_NUMBER, INVALID_BONUS_NUMBER);
+
+        Integer bonusNumber = Integer.parseInt(rawBonusNumber);
+
+        validateDuplicatedNumber(winningNumbers, bonusNumber, INVALID_DUPLICATE_BONUS_NUMBER);
     }
 }

@@ -5,6 +5,7 @@ public class Constants {
     public static String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
     public static String LOTTO_TICKET_COUNT_PROMPT = "개를 구매했습니다.";
     public static String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
+    public static String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
 
     // number
     public static Long MIN_PURCHASE_AMOUNT = 1L;
@@ -28,4 +29,6 @@ public class Constants {
     public static String INVALID_DUPLICATE_LOTTO = "로또 번호는 중복되면 안됩니다.";
     public static String INVALID_WINNING_NUMBER = "당첨 번호는 1~45 사이의 숫자여야 합니다.";
     public static String INVALID_DUPLICATE_WINNING_NUMBER = "당첨 번호에는 중복된 수가 들어갈 수 없습니다.";
+    public static String INVALID_BONUS_NUMBER = "보너스 번호는 1~45 사이의 숫자여야 합니다.";
+    public static String INVALID_DUPLICATE_BONUS_NUMBER = "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 }
