@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -10,8 +8,7 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
-        numbers = sorted(numbers);
-        this.numbers = numbers;
+        this.numbers = sorted(numbers);
     }
 
     private void validate(List<LottoNumber> numbers) {
@@ -32,9 +29,17 @@ public class Lotto {
         }
     }
 
-    private List<LottoNumber> sorted(List<LottoNumber> numbers){
+    private List<LottoNumber> sorted(List<LottoNumber> numbers) {
         return numbers.stream()
-                .sorted()
+                .sorted(Comparator.comparingInt(LottoNumber::lottoNumber))
                 .collect(Collectors.toList());
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 }

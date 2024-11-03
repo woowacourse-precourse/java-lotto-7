@@ -29,4 +29,12 @@ public enum WinningRank {
         }
         return LAST_PLACE;
     }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

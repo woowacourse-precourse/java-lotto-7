@@ -31,4 +31,20 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호랑 보너스 번호가 중복됩니다.");
         }
     }
+
+    public WinningRank match(Lotto userLotto) {
+        int matchCount = countMatch(userLotto);
+        boolean matchBonus = matchBonus(userLotto);
+        return WinningRank.valueOf(matchCount, matchBonus);
+    }
+
+    private int countMatch(Lotto userLotto) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
+    private boolean matchBonus(Lotto userLotto) {
+        return userLotto.contains(bonusNumber);
+    }
 }
