@@ -23,18 +23,24 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public Integer countSameNumber(final List<Integer> winningNumber) {
+    public Boolean contains(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public LottoRank checkRank(final List<Integer> winningNumber, final Integer bonusNumber) {
+        int sameNumberCounts = countSameNumber(winningNumber);
+
+        return LottoRank.findRank(sameNumberCounts, isSecondRank(sameNumberCounts, bonusNumber));
+    }
+
+    Integer countSameNumber(final List<Integer> winningNumber) {
         return numbers.stream()
                 .filter(winningNumber::contains)
                 .map(number -> 1)
                 .reduce(0, Integer::sum);
     }
 
-    public Boolean contains(Integer bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
-
-    public Boolean isSecondRank(final List<Integer> winningNumbers, final Integer bonusNumber) {
-        return this.countSameNumber(winningNumbers) == 5 && this.contains(bonusNumber);
+    Boolean isSecondRank(Integer sameNumberCounts, Integer bonusNumber) {
+        return sameNumberCounts == 5 && this.contains(bonusNumber);
     }
 }
