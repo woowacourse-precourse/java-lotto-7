@@ -16,4 +16,9 @@ public class StringConverter {
         }
     }
 
+    public static String trim(String text) {
+        validateNotBlank(text);
+        return text.trim();
+    }
+
 }
