@@ -37,4 +37,8 @@ public class LottoGame {
     public void setBonusNumber(int number) {
         this.bonusNumber = number;
     }
+
+    public List<Lotto> getTickets() {
+        return tickets;
+    }
 }
