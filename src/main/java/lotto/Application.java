@@ -6,6 +6,7 @@ import lotto.controller.PurchaseController;
 import lotto.controller.WinningController;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.WinningNumber;
 import lotto.service.TicketService;
 import lotto.temp.IoController;
 import lotto.temp.Winning;
@@ -27,6 +28,8 @@ public class Application {
 
         Lotto winningNumbers = winningController.createWinningNumber();
         BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
+
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
 
     }
 }
