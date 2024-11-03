@@ -19,7 +19,6 @@ public class StoreController {
     }
 
     public void setWeeklyNumbers() {
-
         String inputWeeklyNumbers = storeInputView.inputWeeklyNumbers();
 
         try {
@@ -29,5 +28,7 @@ public class StoreController {
             return;
         }
 
+        //TODO: split과 parsing을 두번 호출? 아니면 어케 넘겨줄 방법? 리팩토링?
+        storeService.modifyWeeklyNumbers(inputWeeklyNumbers);
     }
 }
