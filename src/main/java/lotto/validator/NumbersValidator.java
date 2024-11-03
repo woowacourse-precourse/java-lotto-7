@@ -24,7 +24,7 @@ public class NumbersValidator {
     }
 
     private List<Integer> parseNumbers(String input) {
-        return Arrays.stream(input.split(INPUT_DELIMITER))
+        return Arrays.stream(input.split(DELIMITER, -1))
                 .peek(this::validateNoSpace)
                 .peek(this::validateIsNumber)
                 .map(Integer::parseInt)
