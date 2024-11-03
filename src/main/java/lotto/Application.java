@@ -15,29 +15,31 @@ public class Application {
 
 
     private static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
 
-        int purchaseAmount = parsePurchaseAmount(input);
-        validatePurchaseAmount(purchaseAmount);
-
-        System.out.println();
-        return purchaseAmount;
+                int purchaseAmount = parsePurchaseAmount(input);
+                validatePurchaseAmount(purchaseAmount);
+                System.out.println();
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
     private static int parsePurchaseAmount(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println(ERROR_MESSAGE + " 구입금액은 정수형이어야 합니다 : " + input);
-            return -1;
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 정수형이어야 합니다 : " + input);
         }
     }
 
     private static void validatePurchaseAmount(int input) {
-        if (input == -1) {
-            throw new IllegalArgumentException();
-        }
         if (input < 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 양수이어야 합니다 : " + input);
         }
