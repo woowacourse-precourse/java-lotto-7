@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Winning;
 import lotto.service.LottoServiceImpl;
 
 public class LottoController {
@@ -22,7 +23,7 @@ public class LottoController {
         lottoService.saveWinningNumber(winningNumbers);
     }
 
-    public void calWinning(){
-        lottoService.calWinning();
+    public List<Winning> calWinning(){
+        return lottoService.calWinning();
     }
 }

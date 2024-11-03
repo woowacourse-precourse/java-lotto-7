@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Winning;
 import lotto.repository.LottoRepository;
 
 public class MainController {
@@ -14,6 +15,7 @@ public class MainController {
         List<Integer> winningNumbers = viewController.getWinningNumber();
         lottoController.saveWinningNumber(winningNumbers);
         viewController.getBonus();
-        lottoController.calWinning();
+        List<Winning> winnings = lottoController.calWinning();
+        viewController.printWinning(winnings);
     }
 }

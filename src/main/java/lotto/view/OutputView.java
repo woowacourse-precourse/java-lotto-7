@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.List;
+import lotto.Winning;
 import lotto.repository.LottoRepository;
 import lotto.util.Utils;
 
@@ -34,5 +38,20 @@ public class OutputView {
     public void printBonus(){
         System.out.println();
         System.out.println(Utils.PRINT_BONUS);
+    }
+
+    public void printWinning(List<Winning> winnings){
+        System.out.println();
+        System.out.println(Utils.PRINT_WINNING);
+        Arrays.stream(Winning.values())
+                .filter(winning -> winning != Winning.NOT) // NOT 제외
+                .forEach(winning -> {
+                    System.out.print(winning.getMessage());
+                    long count = winnings.stream().filter(e -> e == winning).count();
+                    System.out.println(count);
+                    LottoRepository.revenue+=winning.getPrizeMoney()*count;
+                });
+        System.out.println(LottoRepository.revenue);
+
     }
 }
