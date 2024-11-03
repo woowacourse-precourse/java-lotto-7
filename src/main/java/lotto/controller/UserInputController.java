@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.view.UserInput;
 
 import java.util.Arrays;
@@ -33,9 +33,6 @@ public class UserInputController {
     private List<Integer> checkWinningNumber(String input){
         List<String> unCheckWinningNumbers = Arrays.stream(input.split(",")).toList();
 
-        if(unCheckWinningNumbers.size() != Lotto.LOTTO_NUMBER_COUNT)
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 갯수는 6개이여야 합니다.");
-
         for(String winningNum : unCheckWinningNumbers){
             checkCanInteger(winningNum);
         }
@@ -47,6 +44,4 @@ public class UserInputController {
 
         return winningNumbers;
     }
-
-
 }
