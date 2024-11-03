@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.exception.MoneyExceptionType;
 
@@ -12,7 +13,7 @@ public class LottoService {
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     private int numOfLottos;
-    private List<List<Integer>> lottos = new ArrayList<>();
+    private List<Lotto> lottos = new ArrayList<>();
 
     public void checkAndConvertInputMoney(String moneyInput) throws IllegalArgumentException {
         if (moneyInput.isBlank()) {
@@ -28,7 +29,7 @@ public class LottoService {
         numOfLottos = money.getMoney() / LOTTO_PRIZE;
     }
 
-    public List<List<Integer>> generateLottos() {
+    public List<Lotto> generateLottos() {
         for (int i = 0; i < numOfLottos; i++) {
             lottos.add(randomNumberGenerator.generateLottoNumbers());
         }
