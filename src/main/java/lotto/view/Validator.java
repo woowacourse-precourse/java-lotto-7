@@ -6,6 +6,7 @@ import java.util.List;
 public class Validator {
 
     private static final String ERROR_NOT_DIVISIBLE_BY_1000_MESSAGE = "[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다.";
+    private static final String ERROR_NOT_NEGATIVE_PURCHASE_NUMBER = "[ERROR] 구입 금액은 양수여야 합니다.";
     private static final String ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 총 6개 입력되어야 합니다.";
     private static final String ERROR_OUT_OF_RANGE_WINNING_NUMBER_MESSAGE =
             "[ERROR] 당첨 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
@@ -23,6 +24,9 @@ public class Validator {
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     public static void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount < ZERO) {
+            throw new IllegalArgumentException(ERROR_NOT_NEGATIVE_PURCHASE_NUMBER);
+        }
         if (purchaseAmount % PURCHASE_AMOUNT_UNITS != ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_DIVISIBLE_BY_1000_MESSAGE);
         }
