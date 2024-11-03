@@ -10,14 +10,18 @@ public class LottoScoreResponse {
     private final boolean containsBonus;
     private final int prize;
 
-    private LottoScoreResponse(Score score) {
-        this.matchCount = score.getMatchCount();
-        this.containsBonus = score.containsBonus();
-        this.prize = score.getPrize();
+    private LottoScoreResponse(int matchCount, boolean containsBonus, int prize) {
+        this.matchCount = matchCount;
+        this.containsBonus = containsBonus;
+        this.prize = prize;
     }
 
     public static LottoScoreResponse from(Score score) {
-        return new LottoScoreResponse(score);
+        return new LottoScoreResponse(
+                score.getMatchCount(),
+                score.containsBonus(),
+                score.getPrize()
+        );
     }
 
     public int getMatchCount() {

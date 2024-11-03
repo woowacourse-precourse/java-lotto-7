@@ -9,13 +9,15 @@ public class LottoScoreResponses {
 
     private final Map<LottoScoreResponse, Integer> lottoScoreResponses;
 
-    private LottoScoreResponses(Map<Score, Integer> scores) {
-        this.lottoScoreResponses = new HashMap<>();
-        scores.forEach((score, count) -> lottoScoreResponses.put(LottoScoreResponse.from(score), count));
+    private LottoScoreResponses(Map<LottoScoreResponse, Integer> lottoScoreResponses) {
+        this.lottoScoreResponses = lottoScoreResponses;
     }
 
     public static LottoScoreResponses from(Map<Score, Integer> scores) {
-        return new LottoScoreResponses(scores);
+        Map<LottoScoreResponse, Integer> lottoScoreResponses = new HashMap<>();
+        scores.forEach((score, count) -> lottoScoreResponses.put(LottoScoreResponse.from(score), count));
+        
+        return new LottoScoreResponses(lottoScoreResponses);
     }
 
     public Map<LottoScoreResponse, Integer> getLottoScoreResponses() {

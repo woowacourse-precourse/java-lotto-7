@@ -8,12 +8,12 @@ public class LottoNumberResponse {
 
     private final List<Integer> lottoNumbers;
 
-    private LottoNumberResponse(LottoNumbers lottoNumbers) {
-        this.lottoNumbers = lottoNumbers.mapToInt();
+    private LottoNumberResponse(List<Integer> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
     public static LottoNumberResponse from(LottoNumbers lottoNumbers) {
-        return new LottoNumberResponse(lottoNumbers);
+        return new LottoNumberResponse(lottoNumbers.mapToInt());
     }
 
     public List<Integer> getLottoNumbers() {
