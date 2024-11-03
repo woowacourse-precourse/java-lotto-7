@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.dto.LottoNumbers;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
 
@@ -16,9 +17,9 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다.%n", quantity);
     }
 
-    public void displayLottoNumbers(final List<Lotto> lottoTickets) {
-        String result = lottoTickets.stream()
-                .map(Lotto::getNumbers)
+    public void displayLottoNumbers(final List<LottoNumbers> lottoNumbers) {
+        String result = lottoNumbers.stream()
+                .map(LottoNumbers::numbers)
                 .map(List::toString)
                 .collect(Collectors.joining("\n"));
         System.out.println(result);
