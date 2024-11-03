@@ -30,6 +30,6 @@ public class PurchaseAmountService {
     }
 
     public void savePurchaseAmount(final PurchaseAmountDto dto) {
-        purchaseAmountRepository.save(dto.value);
+        purchaseAmountRepository.save(dto.toEntity());
     }
 }
