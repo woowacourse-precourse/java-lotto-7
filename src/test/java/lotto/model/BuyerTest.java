@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -26,5 +27,13 @@ public class BuyerTest {
         assertEquals(buyer.getMatchCount(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(40, 39, 4, 3, 2, 1))), 4);
         assertEquals(buyer.getMatchCount(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(40, 5, 4, 3, 2, 1))), 5);
         assertEquals(buyer.getMatchCount(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(6, 5, 4, 3, 2, 1))), 6);
+    }
+
+    @Test
+    @DisplayName("Lotto에 보너스 번호가 존재하는지 유무 테스트")
+    void testHasBonusNumberInMyLotto() {
+        Buyer buyer = new Buyer();
+        assertThat(buyer.hasBonusNumber(7, new Lotto(List.of(1, 2, 13, 41, 7, 8)))).isTrue();
+        assertThat(buyer.hasBonusNumber(15, new Lotto(List.of(1, 2, 13, 41, 7, 8)))).isFalse();
     }
 }
