@@ -2,6 +2,7 @@ package lotto.domain.money;
 
 import lotto.domain.lotto.LottoNumberGenerator;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.money.dto.GetProfitRateDto;
 import lotto.global.exception.Exception;
 import lotto.global.exception.ValidatorBuilder;
 
@@ -28,6 +29,10 @@ public class Money {
 
     public Lottos buyLottos() {
         return Lottos.of(money / LOTTO_PRICE, LottoNumberGenerator.create());
+    }
+
+    public GetProfitRateDto caluteProfitRate(int reward) {
+        return new GetProfitRateDto(reward / (double) money * 100);
     }
 }
 

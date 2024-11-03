@@ -31,4 +31,10 @@ public class Result {
     public GetResultDto getResults() {
         return new GetResultDto(rankCount);
     }
+
+    public int getReward() {
+        return rankCount.entrySet().stream()
+            .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+            .sum();
+    }
 }

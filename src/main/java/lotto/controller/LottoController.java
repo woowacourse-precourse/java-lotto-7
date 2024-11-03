@@ -23,10 +23,8 @@ public class LottoController {
         Lottos lottos = buyLottos(money);
         WinningLotto winningLotto = createWinningLottoFromLottoAndBonusNumber();
 
-        getResults(lottos, winningLotto);
-
-//        getProfitRate(money, lottos, winningLotto, bonusNumber);
-//        view.outputProfitRate(money, lottos.match(winningLotto, bonusNumber));
+        Result result = getResults(lottos, winningLotto);
+        getProfitRate(money, result);
     }
 
     private Money createMoneyFromUserInput() {
@@ -54,9 +52,15 @@ public class LottoController {
         return WinningLotto.of(lotto, bonusNumber);
     }
 
-    private void getResults(Lottos lottos, WinningLotto winningLotto) {
+    private Result getResults(Lottos lottos, WinningLotto winningLotto) {
         Result result = Result.of(lottos, winningLotto);
         view.outputResult(result.getResults());
+
+        return result;
+    }
+
+    private void getProfitRate(Money money, Result result) {
+        view.outputProfitRate(money.caluteProfitRate(result.getReward()));
     }
 
 }

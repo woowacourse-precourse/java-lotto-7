@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.lotto.dto.GetLottosDto;
 import lotto.domain.lottoMachine.dto.GetResultDto;
+import lotto.domain.money.dto.GetProfitRateDto;
 
 public class View {
     private final InputView inputView;
@@ -38,5 +39,9 @@ public class View {
         outputView.printMessage(Output.OUTPUT_DELIMITER);
 
         outputView.printResult(getResultDto);
+    }
+
+    public void outputProfitRate(GetProfitRateDto getProfitRateDto) {
+        outputView.printProfitRate(getProfitRateDto);
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.view.Output.NEW_LINE;
 import static lotto.view.Output.OUTPUT_COUNT_OF_PURCHASED_LOTTO;
+import static lotto.view.Output.OUTPUT_PROFIT;
 import static lotto.view.Output.OUTPUT_STATISTICS_RESULT;
 import static lotto.view.Output.OUTPUT_STATISTICS_RESULT_WITH_BONUS;
 
@@ -9,6 +10,7 @@ import lotto.domain.lotto.dto.GetLottoDto;
 import lotto.domain.lotto.dto.GetLottosDto;
 import lotto.domain.lottoMachine.Rank;
 import lotto.domain.lottoMachine.dto.GetResultDto;
+import lotto.domain.money.dto.GetProfitRateDto;
 
 public class OutputView {
 
@@ -44,5 +46,9 @@ public class OutputView {
             return OUTPUT_STATISTICS_RESULT_WITH_BONUS.message;
         }
         return OUTPUT_STATISTICS_RESULT.message;
+    }
+
+    public void printProfitRate(GetProfitRateDto getProfitRateDto) {
+        System.out.printf(OUTPUT_PROFIT.message, getProfitRateDto.profitRate());
     }
 }
