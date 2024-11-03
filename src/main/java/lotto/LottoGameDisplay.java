@@ -28,13 +28,8 @@ public class LottoGameDisplay {
     public List<Integer> inputWinnerNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String numberMass = Console.readLine();
-        String[] rawNumbers = numberMass.split(",");
 
-        return Arrays.stream(rawNumbers)
-                .map(String::strip)
-                .map(Integer::parseInt)
-                .toList();
+        return inputNumbers(",");
     }
 
     public int inputBonusNumber(List<Integer> winnerNumbers) {
