@@ -18,7 +18,7 @@ class LottoTicketTest {
         LottoTicket lottoTicket = new LottoTicket(Arrays.asList(lotto1, lotto2));
 
         // When
-        LottoBundle lottoBundle = lottoTicket.getLottoTicketStatus();
+        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
 
         // Then
         assertThat(lottoBundle.getLottoNumbers().size()).isEqualTo(2);

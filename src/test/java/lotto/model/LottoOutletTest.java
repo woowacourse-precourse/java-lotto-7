@@ -15,8 +15,8 @@ class LottoOutletTest {
         int expectedCount = lottoAmount / 1000;
         // When
         LottoTicket lottoTicket = LottoOutlet.purchaseLottoTickets(lottoAmount);
-        LottoBundle lottoCount = lottoTicket.getLottoTicketStatus();
+        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
         // Then
-        assertThat(lottoCount.getLottoNumbers().size()).isEqualTo(expectedCount);
+        assertThat(lottoBundle.getLottoNumbers().size()).isEqualTo(expectedCount);
     }
 }
