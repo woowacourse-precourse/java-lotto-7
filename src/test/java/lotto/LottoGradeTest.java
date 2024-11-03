@@ -40,7 +40,7 @@ public class LottoGradeTest {
 
     @Test
     void 로또_등급_예외테스트() {
-        LottoGrade by = LottoGrade.findBy(7, 0);
-        System.out.println(by);
+        Assertions.assertThatThrownBy(() -> LottoGrade.findBy(7, 0))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

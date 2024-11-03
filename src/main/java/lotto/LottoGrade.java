@@ -24,7 +24,7 @@ public enum LottoGrade {
 
     public static LottoGrade findBy(int target, int bonus) {
         validate(target, bonus);
-        
+
         return Arrays.stream(LottoGrade.values())
                 .filter(lottoGrade -> target >= lottoGrade.target)
                 .filter(lottoGrade -> bonus >= lottoGrade.bonus)
