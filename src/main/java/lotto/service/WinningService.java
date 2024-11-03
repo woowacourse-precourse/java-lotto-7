@@ -10,7 +10,6 @@ import lotto.dto.WinningResultDto;
 
 public class WinningService {
 
-    // @todo dto profitRate 로 수정 + 테스트 수정 lottos getLottoCount 추가 다음 커밋은 앞 순서대로
     public WinningResultDto calculateWinningResult(Lottos lottos, WinningLotto winningLotto) {
         Map<Rank, Integer> rankCounts = calculateRankCounts(lottos, winningLotto);
         BigDecimal totalPrize = calculateTotalPrize(rankCounts);
