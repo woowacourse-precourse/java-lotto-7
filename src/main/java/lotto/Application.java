@@ -131,5 +131,10 @@ public class Application {
                 fifthCount++;
             }
         }
+
+        // 7. 수익률 계산
+        int earnings = firstCount * 2000000000 + secondCount * 30000000 + thirdCount * 1500000 + fourthCount * 50000 + fifthCount * 5000;
+        double earningsRate = (double) (earnings - money) / money * 100;
+        earningsRate = Math.round(earningsRate * 100 / 100.0);
     }
 }
