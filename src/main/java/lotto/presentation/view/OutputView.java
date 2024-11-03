@@ -1,5 +1,7 @@
 package lotto.presentation.view;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
@@ -20,18 +22,26 @@ public class OutputView {
     }
 
     private void printLottoDrawResults(List<LottoRank> lottoRanks) {
-        for (LottoRank currentRank : LottoRank.values()) {
-            long lottoHitCount = lottoRanks.stream()
-                    .filter(myLottoRank -> myLottoRank == currentRank)
-                    .count();
-            if (currentRank.isBonusHit()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n",
-                        currentRank.getHitCount(), currentRank.getPrize(), lottoHitCount);
-            } else {
-                System.out.printf("%d개 일치 (%d원) - %d개%n",
-                        currentRank.getHitCount(), currentRank.getPrize(), lottoHitCount);
-            }
+        Arrays.stream(LottoRank.values())
+                .sorted(Comparator.reverseOrder())
+                .forEach(currentRank -> {
+                    long lottoHitCount = countHitLotto(lottoRanks, currentRank);
+                    System.out.println(printLottoRankResult(currentRank, lottoHitCount));
+                });
+    }
+
+    private long countHitLotto(List<LottoRank> lottoRanks, LottoRank currentRank) {
+        return lottoRanks.stream()
+                .filter(myLottoRank -> myLottoRank == currentRank)
+                .count();
+    }
+
+    private String printLottoRankResult(LottoRank rank, long count) {
+        String formattedPrize = String.format("%,d", rank.getPrize());
+        if (rank.isBonusHit()) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getHitCount(), formattedPrize, count);
         }
+        return String.format("%d개 일치 (%s원) - %d개", rank.getHitCount(), formattedPrize, count);
     }
 
     private void printIssuedLotto(Lotto issuedLotto) {
