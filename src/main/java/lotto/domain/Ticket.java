@@ -33,7 +33,7 @@ public class Ticket {
                 .sum();
 
         double earningRate = (double) totalPrize / price;
-        return Math.round(earningRate * 100) / 10.0;
+        return Math.round(earningRate * 1000) / 10.0;
     }
 
     private EnumMap<Prize, Integer> makeResult() {
