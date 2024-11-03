@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.controller.dto.PrizeResultDto;
 import lotto.exception.LottoException;
+import lotto.utils.LottoUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         LottoException.throwIllegalArgumentException(ONLY_LOTTO_SIZE_SIX, !validateLottoSize(numbers));
         LottoException.throwIllegalArgumentException(ONLY_NUMBER_ONE_TO_FORTY_FIVE, !validateLottoNumbers(numbers));
+        LottoException.throwIllegalArgumentException(NOT_DUPLICATE_NUMBER_IN_LOTTO_NUMBER, LottoUtils.hasDuplicateNumber(numbers));
     }
 
     private boolean validateLottoSize(List<Integer> numbers) {

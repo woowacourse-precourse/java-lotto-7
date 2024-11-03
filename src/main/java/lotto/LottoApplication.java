@@ -19,21 +19,21 @@ public class LottoApplication {
     public static void run() {
 
         //lotto 구입, 저장, 출력
-        String userInput = input.printPurchaseAmountInputMessage();
-        int purchaseIndex = controller.saveLottoAmountInput(userInput);
+        int purchase = input.printPurchaseAmountInputMessage();
+        int purchaseIndex = controller.saveLottoAmountInput(purchase);
         LottoPurchaseResponse purchaseResponse = controller.getLottoNumber();
         output.printPurchaseLotto(purchaseResponse);
 
         //당첨 번호 입력 및 저장
-        userInput = input.printWinningNumberInputMessage();
+        String userInput = input.printWinningNumberInputMessage();
         WinningNumberSaveResponse winningNumberSaveResponse = controller.saveLottoWinningNumberInput(userInput);
 
         //key값 저장
         int winningNumberIndex = winningNumberSaveResponse.winningNumberIndex();
 
         //보너스 번호 입력 및 저장
-        userInput = input.printBonusNumberInputMessage();
-        controller.saveBonusNumber(new BonusNumberSaveRequest(winningNumberIndex, userInput));
+        int bonusNumber = input.printBonusNumberInputMessage();
+        controller.saveBonusNumber(new BonusNumberSaveRequest(winningNumberIndex, bonusNumber));
 
         //당첨 통계 계산
         PrizeResultResponse prizeResult = controller.getPrizeResult(winningNumberIndex, purchaseIndex);

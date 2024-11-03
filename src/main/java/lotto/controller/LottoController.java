@@ -16,15 +16,8 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public int saveLottoAmountInput(String request) {
-        while (true) {
-            try {
-                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request));
-                return lottoService.saveLottoPurchase(request);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public int saveLottoAmountInput(int request) {
+        return lottoService.saveLottoPurchase(request);
     }
 
     public LottoPurchaseResponse getLottoNumber() {
@@ -43,15 +36,7 @@ public class LottoController {
     }
 
     public void saveBonusNumber(BonusNumberSaveRequest request) {
-        while (true) {
-            try {
-                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request.bonusNumber()));
-                lottoService.saveBonusNumber(request);
-                return;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        lottoService.saveBonusNumber(request);
 
     }
 

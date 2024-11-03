@@ -29,8 +29,8 @@ public class LottoService {
         this.winningNumberRepository = winningNumberRepository;
     }
 
-    public int saveLottoPurchase(String request) {
-        LottoPurchase lottoPurchase = LottoPurchase.to(request);
+    public int saveLottoPurchase(int request) {
+        LottoPurchase lottoPurchase = new LottoPurchase(request);
         lottoPurchaseRepository.save(lottoPurchase);
         return lottoPurchaseRepository.findIndexByLottoPurchase(lottoPurchase);
     }
@@ -58,8 +58,7 @@ public class LottoService {
 
     public void saveBonusNumber(BonusNumberSaveRequest request) {
         WinningNumber winningNumber = winningNumberRepository.findByIndex(request.index());
-        int bonusNumber = LottoUtils.parseInt(request.bonusNumber());
-        winningNumber.setBonusNumber(bonusNumber);
+        winningNumber.setBonusNumber(request.bonusNumber());
     }
 
     public List<PrizeResultDto> calculatePrizeResult(int index) {
