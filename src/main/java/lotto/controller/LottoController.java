@@ -27,7 +27,10 @@ public class LottoController {
     private Lottos buyLottos() {
         try {
             Money money = getPurchaseMoney();
-            return lottoMachine.purchase(money);
+            Lottos lottos = lottoMachine.purchase(money);
+            output.goToNext();
+            output.showLottos(lottos);
+            return lottos;
         } catch (IllegalArgumentException ex) {
             output.outputError(ex);
             return buyLottos();

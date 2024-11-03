@@ -67,4 +67,8 @@ public class Lotto {
         }
         return matched;
     }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(this.numbers);
+    }
 }
