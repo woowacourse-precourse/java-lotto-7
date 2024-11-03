@@ -9,7 +9,7 @@ import lotto.global.exception.LottoException;
 public class Lotto {
     private final List<Number> numbers;
 
-    private Lotto(List<Integer> numbers) {
+    protected Lotto(List<Integer> numbers) {
         Validator.validate(numbers);
         this.numbers = generate(numbers);
     }

@@ -18,7 +18,7 @@ public class AnswerNumbers {
 
     public Rank compare(Lotto lotto) {
         return Rank.find(
-                lotto.countMatchingNumbers(winningNumbers.getWinningNumbers()),
+                lotto.countMatchingNumbers(winningNumbers),
                 lotto.hasBonusNumbers(bonusNumber.getBonusNumber())
         );
     }

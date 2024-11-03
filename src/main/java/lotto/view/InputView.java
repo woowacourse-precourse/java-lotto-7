@@ -1,11 +1,11 @@
 package lotto.view;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Number;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
-import lotto.domain.lotto.Lotto;
 import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
@@ -39,12 +39,10 @@ public class InputView {
         return BonusNumber.valueOf(winningNumbers, Number.of(bonusNumber));
     }
 
-    private Lotto convert(String input) {
-        return Lotto.of(
-                Arrays.stream(input.split(SEPARATOR))
-                        .map(Validator::validateNumber)
-                        .toList()
-        );
+    private List<Integer> convert(String input) {
+        return Arrays.stream(input.split(SEPARATOR))
+                .map(Validator::validateNumber)
+                .toList();
     }
 
     private static class Validator {

@@ -1,24 +1,15 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.domain.lotto.Lotto;
 
-public class WinningNumbers {
+public class WinningNumbers extends Lotto {
 
-    private final Lotto winningNumbers;
-
-    private WinningNumbers(Lotto winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    private WinningNumbers(List<Integer> winningNumbers) {
+        super(winningNumbers);
     }
 
-    public static WinningNumbers of(Lotto winningNumbers) {
+    public static WinningNumbers of(List<Integer> winningNumbers) {
         return new WinningNumbers(winningNumbers);
-    }
-
-    public boolean contains(Number target) {
-        return winningNumbers.contains(target);
-    }
-
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
     }
 }
