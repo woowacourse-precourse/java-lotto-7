@@ -8,25 +8,25 @@ public class InputBonusValidator {
     private static final int BONUS_NUMBER_MAX = 45;
     private static final int BONUS_NUMBER_MINIMUM = 1;
 
-    String bonusNumber;
+    private final String bonusNumber;
 
     public InputBonusValidator(String bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateBonusNumber() {
+    private void validateBonusNumber() {
         if (!Pattern.matches(BONUS_NUMBER_REGEX_PATTERN, bonusNumber)) {
             ErrorMessageUtil.BONUS_NUMBER_NOT_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
-    public void checkSameNumberInWinningNumber(List<Integer> winningNumber, int bonusNumber) {
+    private void checkSameNumberInWinningNumber(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             ErrorMessageUtil.BONUS_NUMBER_REPEAT_ERROR_MESSAGE.errorException();
         }
     }
 
-    public void validateNumberRange() {
+    private void validateNumberRange() {
         if (Integer.parseInt(bonusNumber) > BONUS_NUMBER_MAX || Integer.parseInt(bonusNumber) < BONUS_NUMBER_MINIMUM) {
             ErrorMessageUtil.BONUS_NUMBER_RANGE_ERROR_MESSAGE.errorException();
         }

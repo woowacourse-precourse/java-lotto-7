@@ -11,7 +11,7 @@ public class InputLottoValidator {
 
     Lotto lotto;
 
-    public void validateNumber(String winningNumber) {
+    private void validateNumber(String winningNumber) {
         if (Pattern.matches(WINNING_NUMBER_REGEX_PATTERN, winningNumber)) {
             ErrorMessageUtil.WINNING_LOTTO_NOT_NUMBER_ERROR_MESSAGE.errorException();
         }
@@ -24,7 +24,7 @@ public class InputLottoValidator {
         return checkWrongSeparator(winningNumber);
     }
 
-    public List<Integer> checkWrongSeparator(String winningNumber){
+    private List<Integer> checkWrongSeparator(String winningNumber){
         try {
             return Arrays.stream(winningNumber.split(WINNING_NUMBER_SEPARATOR)).map(Integer::parseInt).toList();
         }catch (NumberFormatException e) {
@@ -33,7 +33,7 @@ public class InputLottoValidator {
         return List.of();
     }
 
-    public void checkEmpty(String winningNumber) {
+    private void checkEmpty(String winningNumber) {
         if (winningNumber.contains(WINNING_NUMBER_BLANK)) {
             ErrorMessageUtil.WINNING_LOTTO_EMPTY_ERROR_MESSAGE.errorException();
         }

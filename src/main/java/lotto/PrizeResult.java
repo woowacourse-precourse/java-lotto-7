@@ -16,7 +16,7 @@ public class PrizeResult {
         return makeRateOfReturn((totalPrizeMoney  / (money*1.0))*100);
     }
 
-    public String makeRateOfReturn(double rateOfMoney) {
+    private String makeRateOfReturn(double rateOfMoney) {
         return String.format(RATE_OF_RETURN_ROUND,rateOfMoney);
     }
 }

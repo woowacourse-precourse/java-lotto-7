@@ -12,13 +12,13 @@ public class InputMoneyValidator {
         validateTicketPrice(money);
     }
 
-    public void validateNumber(String money) {
+    private void validateNumber(String money) {
         if (!Pattern.matches(MONEY_REGEX_PATTERN, money)) {
             ErrorMessageUtil.PURCHASE_MONEY_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
-    public void validateTicketPrice(String money) {
+    private void validateTicketPrice(String money) {
         if (Integer.parseInt(money)%MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money)/MINIMUM_MONEY_UNIT == 0) {
             ErrorMessageUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }

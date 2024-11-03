@@ -33,16 +33,16 @@ public class OutputView {
         }
     }
 
-    public void printPrizeMatch(WinningPrize prize) {
+    private void printPrizeMatch(WinningPrize prize) {
         System.out.printf(PRINT_PRIZE_MATCH,prize.winningCount,printChangeMoneyBar(prize),prize.totalCount);
     }
 
-    public void printBonusMatch(WinningPrize prize) {
+    private void printBonusMatch(WinningPrize prize) {
         System.out.printf(
                 PRINT_BONUS_MATCH,prize.winningCount,printChangeMoneyBar(prize),prize.totalCount);
     }
 
-    public String printChangeMoneyBar(WinningPrize prize) {
+    private String printChangeMoneyBar(WinningPrize prize) {
         return String.format("%,d",prize.prizeMoney);
     }
 }

@@ -24,7 +24,7 @@ public class LottoStore {
         return money;
     }
 
-    public void changeTickets() {
+    private void changeTickets() {
         this.tickets = money/MINIMUM_MONEY_UNIT;
     }
 

@@ -9,11 +9,11 @@ public class LottoResult {
         this.bonusCount = bonusCount;
     }
 
-    public int getWinningCount() {
+    private int getWinningCount() {
         return winningCount;
     }
 
-    public int getBonusCount() {
+    private int getBonusCount() {
         return bonusCount;
     }
 

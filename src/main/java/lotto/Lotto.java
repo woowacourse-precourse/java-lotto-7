@@ -20,20 +20,20 @@ public class Lotto {
         validateNumberRange();
     }
 
-    public void validateNumberSize() {
+    private void validateNumberSize() {
         if (numbers.size() != WINNING_NUMBER_SIZE) {
             ErrorMessageUtil.WINNING_LOTTO_SIZE_ERROR_MESSAGE.errorException();
         }
     }
 
-    public void validateNumberRange() {
+    private void validateNumberRange() {
         for (int number : numbers) {
             if (number > WINNING_NUMBER_MAX || number < WINNING_NUMBER_MINIMUM) {
                 ErrorMessageUtil.WINNING_LOTTO_RANGE_ERROR_MESSAGE.errorException();
             }
         }
     }
-    public void validateNumberRepeat(){
+    private void validateNumberRepeat(){
         if (numbers.stream().distinct().toList().size() != numbers.size()){
             ErrorMessageUtil.WINNING_LOTTO_REPEAT_ERROR_MESSAGE.errorException();
         }
