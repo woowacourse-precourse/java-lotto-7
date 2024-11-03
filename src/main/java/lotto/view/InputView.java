@@ -20,8 +20,7 @@ public final class InputView {
 
     public static String getWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
-        String numbers = Console.readLine().trim();
-        return numbers;
+        return Console.readLine().trim();
     }
 
     public static int getBonusNumber() {
