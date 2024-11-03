@@ -1,37 +1,30 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 import lotto.exception.WinningNumberException;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * WinningAnalysisReportBuilder는 로또 당첨 분석 보고서를 생성하는 빌더 클래스입니다.
- */
+
 public class WinningAnalysisReportBuilder {
     private LottoTickets lottoTickets;
     private WinningNumbers winningNumbers;
 
     public WinningAnalysisReportBuilder withLottoTickets(LottoTickets lottoTickets) {
-        if (lottoTickets == null || lottoTickets.isEmpty()) {
-            throw new WinningNumberException(ErrorMessages.LOTTO_TICKETS_NULL);
-        }
+        validateLottoTickets(lottoTickets);
         this.lottoTickets = lottoTickets;
         return this;
     }
 
     public WinningAnalysisReportBuilder withWinningNumbers(WinningNumbers winningNumbers) {
-        if (winningNumbers == null) {
-            throw new WinningNumberException(ErrorMessages.WINNING_NUMBERS_NULL);
-        }
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
         return this;
     }
 
     public WinningAnalysisReport build() {
         validateInputs();
-        WinningStatistics statistics = initializeStatistics();
+        WinningStatistics statistics = new WinningStatistics();
         AtomicInteger totalProfits = new AtomicInteger();
 
         processAllTickets(statistics, totalProfits);
@@ -40,33 +33,42 @@ public class WinningAnalysisReportBuilder {
     }
 
     private void validateInputs() {
-        if (lottoTickets == null) {
+        validateLottoTickets(lottoTickets);
+        validateWinningNumbers(winningNumbers);
+    }
+
+    private void validateLottoTickets(LottoTickets lottoTickets) {
+        if (lottoTickets == null || lottoTickets.isEmpty()) {
             throw new WinningNumberException(ErrorMessages.LOTTO_TICKETS_NULL);
         }
+    }
+
+    private void validateWinningNumbers(WinningNumbers winningNumbers) {
         if (winningNumbers == null) {
             throw new WinningNumberException(ErrorMessages.WINNING_NUMBERS_NULL);
         }
     }
 
-    private WinningStatistics initializeStatistics() {
-        return new WinningStatistics();
-    }
-
     private void processAllTickets(WinningStatistics statistics, AtomicInteger totalProfits) {
         for (LottoTicket ticket : lottoTickets.tickets()) {
-            processTicket(ticket.lotto(), statistics, totalProfits);
+            processTicket(ticket, statistics, totalProfits);
         }
     }
 
-    private void processTicket(Lotto ticket, WinningStatistics statistics, AtomicInteger totalProfits) {
-        int matchCount = ticket.countMatchingNumbers(winningNumbers.mainNumbers());
-        boolean bonusMatch = ticket.containsNumber(winningNumbers.bonusNumber());
-        updateStatistics(statistics, totalProfits, matchCount, bonusMatch);
+    private void processTicket(LottoTicket ticket, WinningStatistics statistics, AtomicInteger totalProfits) {
+        TicketProcessingContext context = new TicketProcessingContext(ticket.lotto(), winningNumbers, statistics, totalProfits);
+        int matchCount = context.ticket.countMatchingNumbers(context.winningNumbers.mainNumbers());
+        boolean bonusMatch = context.ticket.containsNumber(context.winningNumbers.bonusNumber());
+        updateStatistics(context, matchCount, bonusMatch);
     }
 
-    private void updateStatistics(WinningStatistics statistics, AtomicInteger totalProfits, int matchCount, boolean bonusMatch) {
+    private void updateStatistics(TicketProcessingContext context, int matchCount, boolean bonusMatch) {
         WinningRule winningRule = WinningRule.of(matchCount, bonusMatch);
-        statistics.increment(winningRule);
-        totalProfits.addAndGet(winningRule.getPrizeAmount());
+        context.statistics.increment(winningRule);
+        context.totalProfits.addAndGet(winningRule.getPrizeAmount());
+    }
+
+    private record TicketProcessingContext(Lotto ticket, WinningNumbers winningNumbers, WinningStatistics statistics,
+                                           AtomicInteger totalProfits) {
     }
 }

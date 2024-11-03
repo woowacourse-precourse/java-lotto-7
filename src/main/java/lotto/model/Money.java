@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
 
 import java.math.BigDecimal;
@@ -16,7 +15,18 @@ public record Money(int amount) {
     }
 
     private static void validate(int amount) {
-        if (amount < 0 || amount % 1000 != 0) {
+        validateNonNegative(amount);
+        validateAmountInThousands(amount);
+    }
+
+    private static void validateNonNegative(int amount) {
+        if (amount < 0) {
+            throw new MoneyException(ErrorMessages.AMOUNT_INVALID);
+        }
+    }
+
+    private static void validateAmountInThousands(int amount) {
+        if (amount % 1000 != 0) {
             throw new MoneyException(ErrorMessages.AMOUNT_INVALID);
         }
     }

@@ -1,12 +1,12 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 import lotto.exception.WinningNumberException;
 
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WinningStatistics {
     private static final int INITIAL_COUNT = 0;
@@ -23,11 +23,13 @@ public class WinningStatistics {
     }
 
     private Map<WinningRule, Integer> initializeStatistics() {
-        Map<WinningRule, Integer> initialStats = new TreeMap<>();
-        for (WinningRule rule : WinningRule.values()) {
-            initialStats.put(rule, INITIAL_COUNT);
-        }
-        return initialStats;
+        return Stream.of(WinningRule.values())
+                .collect(Collectors.toMap(
+                        rule -> rule,
+                        rule -> INITIAL_COUNT,
+                        (existing, replacement) -> existing,
+                        TreeMap::new
+                ));
     }
 
     public void increment(WinningRule rule) {
@@ -46,7 +48,11 @@ public class WinningStatistics {
         return statistics.entrySet()
                 .stream()
                 .filter(entry -> entry.getKey().isWinning())
-                .map(entry -> String.format(STATISTICS_FORMAT, entry.getKey().getDescription(), entry.getValue()))
+                .map(this::formatStatisticsEntry)
                 .collect(Collectors.joining("\n"));
+    }
+
+    private String formatStatisticsEntry(Map.Entry<WinningRule, Integer> entry) {
+        return String.format(STATISTICS_FORMAT, entry.getKey().getDescription(), entry.getValue());
     }
 }

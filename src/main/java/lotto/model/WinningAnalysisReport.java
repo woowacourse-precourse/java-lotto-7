@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 import lotto.exception.WinningNumberException;
 
 public record WinningAnalysisReport(WinningStatistics winningStatistics, ProfitRate profitRate) {

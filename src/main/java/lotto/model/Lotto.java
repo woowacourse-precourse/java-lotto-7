@@ -18,12 +18,24 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private static void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicates(numbers);
+        validateRange(numbers);
+    }
+
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != MAX_LOTTO_SIZE) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBERS_SIZE);
         }
+    }
+
+    private static void validateDuplicates(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBERS_DUPLICATE);
         }
+    }
+
+    private static void validateRange(List<Integer> numbers) {
         if (!numbers.stream().allMatch(num -> num >= MIN_LOTTO_NUMBER && num <= MAX_LOTTO_NUMBER)) {
             throw new LottoException(ErrorMessages.LOTTO_NUMBERS_RANGE);
         }
