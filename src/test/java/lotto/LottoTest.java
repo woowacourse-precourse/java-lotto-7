@@ -27,11 +27,16 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호_범위_예외(){
+    void 로또_번호_범위_예외() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 번호_출력() {
+        assertThat(new Lotto(List.of(5, 4, 3, 2, 1, 6)).toString()).contains("[1, 2, 3, 4, 5, 6]");
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성

@@ -41,6 +41,10 @@ public class Lotto {
     }
 
     //  > 크기, 값의 범위, 중복 여부
+    public String toString() {
+        return numbers.toString();
+    }
+
     //- [ ] 번호를 정렬한다.
     //- [ ] 우승 로또와 맞는 개수를 전달한다.
     //- [ ] 보너스볼을 체크한다.
