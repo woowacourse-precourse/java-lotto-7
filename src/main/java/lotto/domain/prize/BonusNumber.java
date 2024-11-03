@@ -18,7 +18,7 @@ public class BonusNumber {
     }
 
     public int getValue() {
-        return 0;
+        return value;
     }
 
     private static void validate(int value, Lotto lotto) {
