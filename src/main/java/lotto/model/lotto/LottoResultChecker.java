@@ -2,20 +2,20 @@ package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.winning.WinningLotto;
+import lotto.model.winning.WinningNumbersAndBonusNumber;
 
 public class LottoResultChecker {
 
-    private final WinningLotto winningLotto;
+    private final WinningNumbersAndBonusNumber winningNumbersAndBonusNumber;
 
-    public LottoResultChecker(WinningLotto winningLotto) {
-        this.winningLotto = winningLotto;
+    public LottoResultChecker(WinningNumbersAndBonusNumber winningNumbersAndBonusNumber) {
+        this.winningNumbersAndBonusNumber = winningNumbersAndBonusNumber;
     }
 
     public List<LottoResult> check(Lottos lottos) {
         List<LottoResult> results = new ArrayList<>();
-        List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
-        int bonusNumber = winningLotto.getBonusNumber().getNumber();
+        List<Integer> winningNumbers = winningNumbersAndBonusNumber.getWinningNumbers().getNumbers();
+        int bonusNumber = winningNumbersAndBonusNumber.getBonusNumber().getNumber();
 
         for (Lotto lotto : lottos.getLottos()) {
             results.add(evaluateLotto(lotto, winningNumbers, bonusNumber));

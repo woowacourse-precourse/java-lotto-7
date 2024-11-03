@@ -9,17 +9,17 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lotto.model.winning.WinningLotto;
+import lotto.model.winning.WinningNumbersAndBonusNumber;
 
 public class LottoResultCheckerTest {
 
-    private WinningLotto winningLotto;
+    private WinningNumbersAndBonusNumber winningNumbersAndBonusNumber;
     private LottoResultChecker lottoResultChecker;
 
     @BeforeEach
     void setUp() {
-        winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
-        lottoResultChecker = new LottoResultChecker(winningLotto);
+        winningNumbersAndBonusNumber = new WinningNumbersAndBonusNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        lottoResultChecker = new LottoResultChecker(winningNumbersAndBonusNumber);
     }
 
     @Test
