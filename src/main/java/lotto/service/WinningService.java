@@ -12,12 +12,10 @@ import lotto.view.WinningView;
 
 public class WinningService {
 
-    private final User user;
     private final Lottos lottos;
-    private final Winning winning;
+    private static Winning winning;
 
-    public WinningService(User user, Lottos lottos, Winning winning) {
-        this.user = user;
+    public WinningService(Lottos lottos, Winning winning) {
         this.lottos = lottos;
         this.winning = winning;
     }
@@ -34,13 +32,12 @@ public class WinningService {
         }
     }
 
-    public void containsWinningNumber(Lotto lotto) {
+    public static void containsWinningNumber(Lotto lotto) {
         HashSet<Integer> lottoSet = lotto.getLottoSet();
         HashSet<Integer> winningSet = winning.getWinningSet();
 
-        Iterator<Integer> iter = winningSet.iterator();
-        while (iter.hasNext()) {
-            if (lottoSet.contains((Integer)iter.next())) lottoSet.remove((Integer)iter.next());
+        for (int winningNumber : winningSet) {
+            lottoSet.remove(winningNumber);
         }
     }
 

@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Winning;
 import lotto.service.WinningService;
 import lotto.validate.WinningValidate;
@@ -132,5 +135,37 @@ public class WinningTest {
         int bonusNumber = 2;
 
         assertFalse(WinningValidate.isBonusNotInWinning(bonusNumber, winning));
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 동일한 숫자는 제거된다.")
+    public void testRemoveWinningNumber() {
+        Winning winning = new Winning();
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        winning.setHashSet(winningSet);
+
+        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,5,6)));
+        Lottos lottos = new Lottos();
+        WinningService winningService = new WinningService(lottos, winning);
+
+        WinningService.containsWinningNumber(lotto);
+
+        assertEquals(0, lotto.getLottoSet().size());
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 동일하지 않은 숫자는 제거되지 않는다.")
+    public void testNotRemoveWinningNumber() {
+        Winning winning = new Winning();
+        HashSet<Integer> winningSet = new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        winning.setHashSet(winningSet);
+
+        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(7,8,9,10,11,12)));
+        Lottos lottos = new Lottos();
+        WinningService winningService = new WinningService(lottos, winning);
+
+        WinningService.containsWinningNumber(lotto);
+
+        assertEquals(6, lotto.getLottoSet().size());
     }
 }

@@ -20,11 +20,11 @@ public class Winning {
         return winningSet;
     }
 
-    public HashSet<Integer> setHashSet(HashSet<Integer> winningNumberSet) {
-        return this.winningSet = winningNumberSet;
+    public void setHashSet(HashSet<Integer> winningNumberSet) {
+        this.winningSet = winningNumberSet;
     }
 
-    public int setBonusNumber(int bonusNumber) {
-        return this.bonusNumber = bonusNumber;
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

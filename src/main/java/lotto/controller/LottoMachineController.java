@@ -15,7 +15,7 @@ public class LottoMachineController {
 
     InputService inputService = new InputService(user);
     LottoService lottoService = new LottoService(user, lottos);
-    WinningService winningService = new WinningService(user, lottos, winning);
+    WinningService winningService = new WinningService(lottos, winning);
 
     public void run() {
         inputService.run();
