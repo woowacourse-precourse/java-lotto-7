@@ -46,4 +46,10 @@ public enum Rank {
         return ranks.stream()
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
+
+    public static long calcTotalPrize(List<Rank> ranks) {
+        return ranks.stream()
+                .mapToLong(rank -> rank.prize)
+                .sum();
+    }
 }
