@@ -1,7 +1,7 @@
 package lotto.ui;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.ui.ViewConstant.*;
+import static lotto.constant.ViewConstant.*;
 
 public class InputView {
 

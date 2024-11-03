@@ -1,6 +1,6 @@
 package lotto.ui;
 
-import static lotto.ui.ViewConstant.BUY_LOTTO_MESSAGE_FORMAT;
+import static lotto.constant.ViewConstant.BUY_LOTTO_MESSAGE_FORMAT;
 
 import java.util.List;
 import lotto.model.Lotto;
