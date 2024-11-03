@@ -22,7 +22,7 @@ public class Exceptions {
     }
 
     public void checkIntegerOverflow(String input) {
-        long number = Long.parseLong(input);
+        long number = Long.parseLong(input.trim());
 
         if (number < Integer.MIN_VALUE || number > Integer.MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessages.INT_OUT_OF_BOUNDS);
