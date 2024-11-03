@@ -15,7 +15,7 @@ class LottoDrawTest {
         NumbersGenerator fixedNumbersGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
         LottoDraw lottoDraw = new LottoDraw(purchaseAmount, fixedNumbersGenerator);
 
-        LottoTicket lottoTicket = new LottoTicket(lottoDraw.generateLottos());
+        LottoTicket lottoTicket = lottoDraw.generateLottos();
 
         lottoTicket.getLottos().forEach(lotto ->
                 assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6))

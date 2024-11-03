@@ -13,12 +13,12 @@ public class LottoDraw {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public List<Lotto> generateLottos() {
+    public LottoTicket generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = numbersGenerator.generate();
             lottos.add(new Lotto(numbers));
         }
-        return lottos;
+        return new LottoTicket(lottos);
     }
 }
