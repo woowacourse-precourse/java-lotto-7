@@ -39,6 +39,18 @@ public class Application {
         for (LottoRank rank : LottoRank.values()) {
             winningStatistics.put(rank, 0);
         }
+
+        // 6 . 당첨&보너스 번호 통계 비교 작업
+        for (Lotto lotto : lottoRepository) {
+            List<Integer> intersection = new ArrayList<>(winningNumber);
+            intersection.retainAll(lotto.getNumbers());
+            int count = intersection.size();
+            boolean bonus = lotto.getNumbers().contains(bonusNumber);
+            LottoRank rank = LottoRank.getLottoRank(count, bonus);
+            if (rank != null) {
+                winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+            }
+        }
     }
 
     private static int getValidBonus(List<Integer> winningNumber) {
