@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import lotto.domain.Rank;
 
 public enum OutputMessage {
+    ASK_PURCHASE_PRICE("구입금액을 입력해 주세요."),
+    ASK_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
+    ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+
     SHOW_PURCHASE_COUNT("%d개를 구매했습니다."),
     SHOW_STATISTICS_INTRO("당첨 통계"),
     SHOW_SEPARATOR_LINE("---"),
