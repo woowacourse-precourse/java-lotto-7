@@ -14,12 +14,14 @@ public class InputView {
     }
 
     public String readLottoNum(){
+        System.out.println();
         System.out.println(INPUT_LOTTO_NUMBER);
         String lottoNum = Console.readLine();
         return lottoNum;
     }
 
     public String readBonusNum() {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
         String bonusNum = Console.readLine();
         return bonusNum;
