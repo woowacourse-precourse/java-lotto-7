@@ -55,4 +55,15 @@ class WinningNumbersTest {
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
         assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
     }
+
+    @Test
+    @DisplayName("보너스 번호가 메인 숫자에 포함될 때 예외 발생")
+    void throwExceptionWhenBonusNumberIsInMainNumbers() {
+        List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 3; // 보너스 번호가 메인 숫자에 포함
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(mainNumbers, bonusNumber));
+        assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
+    }
 }
