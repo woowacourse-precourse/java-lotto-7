@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.exception.ExceptionCode.NUMBER_SIZE_NOT_MATCHED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -40,7 +40,7 @@ class LottoTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 20);
         assertThatThrownBy(() -> lotto.countRank(winningNumbers, 15))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("당첨 번호의 개수가 로또 번호의 개수와 다릅니다.");
+                .hasMessageContaining(NUMBER_SIZE_NOT_MATCHED.message());
     }
 
 }
