@@ -15,4 +15,6 @@ public class LottoNumbers {
 
         return new Lotto(numbers);
     }
+
+
 }

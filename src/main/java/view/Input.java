@@ -8,6 +8,7 @@ import message.Message;
 public class Input {
 
     public String inputPurchaseAmount() {
+
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
 
         String purchaseAmount = Console.readLine();
@@ -17,5 +18,18 @@ public class Input {
         System.out.println();
 
         return purchaseAmount;
+    }
+
+    public String inputWinningNumbers() {
+
+        System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
+
+        String winningNumbers = Console.readLine();
+        if(winningNumbers.isEmpty()){
+            throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getErrorMessage());
+        }
+        System.out.println();
+
+        return winningNumbers;
     }
 }
