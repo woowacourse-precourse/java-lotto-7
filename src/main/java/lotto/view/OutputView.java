@@ -10,6 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Money;
 import lotto.domain.Profit;
+import lotto.exception.InputException;
 
 public class OutputView {
     public static void printPurchasedResult(Money money, List<Lotto> lottos) {
@@ -48,5 +49,9 @@ public class OutputView {
 
     private static void printNewLine() {
         System.out.println();
+    }
+
+    public static void printErrorMessage(InputException exception) {
+        System.out.println(exception.getMessage());
     }
 }
