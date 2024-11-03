@@ -16,8 +16,6 @@ public class Application {
         Lotto winningLotto = getValidWinningLotto(winningNumbers);
         int bonusNumber = getValidBonusNumber(winningLotto);
 
-
-
         System.out.println("당첨 통계");
         System.out.println("---");
         //printWinningStatistics();  // TODO : 당첨 통계 처리
