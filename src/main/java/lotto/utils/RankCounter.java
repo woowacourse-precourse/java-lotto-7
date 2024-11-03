@@ -7,6 +7,10 @@ import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.Rank;
 
 public class RankCounter {
+
+    private RankCounter() {
+    }
+
     public static Map<Rank, Integer> countRanks(List<LottoTicket> lottoTickets) {
         Map<Rank, Integer> rankCounts = initializeRankCounts();
 

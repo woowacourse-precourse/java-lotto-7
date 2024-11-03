@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class LottoValidator {
 
-    protected LottoValidator() {
+    private LottoValidator() {
     }
 
     public static void validate(List<Integer> numbers) {

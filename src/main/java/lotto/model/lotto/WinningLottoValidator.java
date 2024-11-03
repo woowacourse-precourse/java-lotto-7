@@ -5,7 +5,6 @@ import java.util.List;
 
 public class WinningLottoValidator {
     private WinningLottoValidator() {
-        super();
     }
 
     public static void validate(List<Integer> numbers, int bonusNumber) {

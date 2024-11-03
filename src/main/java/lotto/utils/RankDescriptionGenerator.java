@@ -4,6 +4,9 @@ import lotto.model.lotto.Rank;
 
 public class RankDescriptionGenerator {
 
+    private RankDescriptionGenerator() {
+    }
+
     public static String makeDescription(Rank rank) {
         StringBuilder description = new StringBuilder();
 

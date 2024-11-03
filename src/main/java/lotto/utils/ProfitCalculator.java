@@ -4,6 +4,10 @@ import java.util.List;
 import lotto.model.lotto.LottoTicket;
 
 public class ProfitCalculator {
+
+    private ProfitCalculator() {
+    }
+
     public static double calculateProfitRate(List<LottoTicket> lottoTickets, int paidAmount) {
         return ((double) (calculateTotalProfit(lottoTickets)) / paidAmount) * 100;
     }
