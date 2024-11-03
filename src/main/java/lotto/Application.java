@@ -8,6 +8,11 @@ public class Application {
         GameControllerConfig config = GameControllerConfig.getInstance();
         GameController gameController = config.getGameController();
 
-        gameController.run();
+        try{
+            gameController.run();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
