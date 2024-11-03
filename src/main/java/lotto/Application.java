@@ -16,7 +16,7 @@ public class Application {
         OutputView.printPurchasedLottos(purchasedLottos);
 
         List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
         LottoResult lottoResult = LottoMachine.getResult(purchasedLottos, winningNumbers, bonusNumber);
         OutputView.printResult(lottoResult, purchaseAmount);

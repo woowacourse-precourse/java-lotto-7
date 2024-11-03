@@ -18,7 +18,9 @@ public class OutputView {
         System.out.println("---------");
 
         for (Map.Entry<Rank, Integer> entry : result.getRankCounts().entrySet()) {
-            System.out.printf("%s - %d개%n", entry.getKey().getMessage(), entry.getValue());
+            if (entry.getKey() != Rank.NONE) {
+                System.out.printf("%s - %d개%n", entry.getKey().getMessage(), entry.getValue());
+            }
         }
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", result.calculateYield(purchaseAmount));

@@ -9,7 +9,14 @@ public class LottoResult {
     private final int totalWinnings;
 
     public LottoResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        initializeRankCounts();
         totalWinnings = calculateTotalWinnings(lottos, winningNumbers, bonusNumber);
+    }
+
+    private void initializeRankCounts() {
+        for (Rank rank : Rank.values()) {
+            rankCounts.put(rank, 0);
+        }
     }
 
     private int calculateTotalWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
