@@ -52,9 +52,9 @@ public class InputValidator {
         try {
             String[] numbers = splitString(InputView.getPrizeNumber());
             List<Integer> prizeNumbers = convertIntegers(numbers);
+            isValidRange(prizeNumbers);
             isValidLength(prizeNumbers);
             isDuplicate(prizeNumbers);
-
             return prizeNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -86,6 +86,17 @@ public class InputValidator {
     }
 
     /**
+     * 당첨 번호가 1-45 범위 안에 있는지 검사
+     */
+    public static void isValidRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
+            }
+        }
+    }
+
+    /**
      * 입력된 당첨 번호가 6개인지 검사
      */
     public static void isValidLength(List<Integer> numbers) {
@@ -110,12 +121,22 @@ public class InputValidator {
     public static int getValidBonusNumber(List<Integer> prizeNumbers) {
         try {
             int bonusNumber = convertInteger(InputView.getBonusNumber());
+            isValidRange(bonusNumber);
             isDuplicateWithPrizeNumber(prizeNumbers, bonusNumber);
 
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getValidBonusNumber(prizeNumbers);
+        }
+    }
+
+    /**
+     * 보너스 번호가 1-45 범위 안에 있는지 검사
+     */
+    public static void isValidRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
         }
     }
 
