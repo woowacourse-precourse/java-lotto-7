@@ -12,7 +12,7 @@ public class OutputView {
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "\n당첨 통계\n---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
+    private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
 
     public static void printLottoTickets(List<LottoTicketsDto> lottoTickets) {
         System.out.println(lottoTickets.size() + PURCHASE_MESSAGE);
