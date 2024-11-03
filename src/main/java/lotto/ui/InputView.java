@@ -53,7 +53,9 @@ public class InputView {
                 return number;
 
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
+                System.out.println(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
