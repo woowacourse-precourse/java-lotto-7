@@ -10,7 +10,7 @@ public class WinningNumberValidate {
 
     private static final String SPLIT_DELIMITER = ",";
 
-    public static String validate(String input) {
+    public static void validate(String input) {
         List<String> winningNumber = Arrays.stream(input.split(SPLIT_DELIMITER)).map(String::trim).toList();
 
         checkSize(winningNumber);
@@ -19,7 +19,6 @@ public class WinningNumberValidate {
             checkType(number);
             checkRange(number);
         }
-        return input;
     }
 
     // 입력값 개수 검사

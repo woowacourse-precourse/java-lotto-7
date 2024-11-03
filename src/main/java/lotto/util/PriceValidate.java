@@ -4,11 +4,10 @@ import lotto.exception.ErrorMessages;
 
 public class PriceValidate {
 
-    public static String validate(String input) {
+    public static void validate(String input) {
         checkType(input);
         checkThousandUnit(input);
         checkMinRange(input);
-        return input;
     }
 
     // 입력값 자료형 검사

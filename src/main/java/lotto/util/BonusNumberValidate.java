@@ -6,11 +6,10 @@ import java.util.List;
 
 public class BonusNumberValidate {
 
-    public static String validate(String input, List<Integer> winningNumber) {
+    public static void validate(String input, List<Integer> winningNumber) {
         checkType(input);
         checkRange(input);
         checkDuplicate(input, winningNumber);
-        return input;
     }
 
     // 입력값 자료형 검사
