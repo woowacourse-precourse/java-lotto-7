@@ -1,12 +1,12 @@
 package lotto.lotto.infrastructure;
 
 import lotto.lotto.domain.WinningLotto;
-import lotto.lotto.service.WinningLottoCreatorService;
+import lotto.lotto.service.WinningLottoGenerator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 
-public class WinningLottoCreator implements WinningLottoCreatorService {
+public class UserInputWinningLottoGenerator implements WinningLottoGenerator {
     private final InputHandlerService inputHandlerService;
-    public WinningLottoCreator(InputHandlerService inputHandlerService) {
+    public UserInputWinningLottoGenerator(InputHandlerService inputHandlerService) {
         this.inputHandlerService = inputHandlerService;
     }
     @Override
