@@ -3,14 +3,15 @@ package lotto.service;
 import lotto.model.Lotto;
 import lotto.model.LottoWinningNumber;
 import lotto.service.lottoImpl.DataServiceImpl;
+import lotto.service.lottoImpl.RandomNumberServiceImpl;
 
 import java.util.List;
 
 public class DataService implements DataServiceImpl {
-    private final RandomNumberService randomNumberService;
+    private final RandomNumberServiceImpl randomNumberServiceImpl;
 
-    public DataService(RandomNumberService randomNumberService) {
-        this.randomNumberService = randomNumberService;
+    public DataService(RandomNumberServiceImpl randomNumberServiceImpl) {
+        this.randomNumberServiceImpl = randomNumberServiceImpl;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class DataService implements DataServiceImpl {
 
     @Override
     public List<Lotto> createLottos(int tickets) {
-        return randomNumberService.createRandomNumber(tickets);
+        return randomNumberServiceImpl.createRandomNumber(tickets);
     }
 
     @Override
