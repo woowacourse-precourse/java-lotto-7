@@ -7,6 +7,8 @@ import lotto.model.lotto.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -17,29 +19,48 @@ public class LottoController {
     }
 
     public void play() {
-        try {
-            int ticketCount = readValidTicketCount();
-            outputView.printTicketNumber(ticketCount);
-            LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
-            outputView.printLottoTickets(lottoTickets);
+        retryRunnable(this::buyTickets);
+        Lotto winningNumber = retrySupplier(this::readValidWinningNumber);
+        int bonusNumber = retrySupplier(inputView::readBonusNumber);
+    }
 
-            Lotto winningNumber = new Lotto(inputView.readWinningNumber());
+    private void buyTickets() {
+        int ticketCount = retrySupplier(this::readValidTicketCount);
+        outputView.printTicketNumber(ticketCount);
 
-        } catch (IllegalArgumentException | IllegalStateException exception) {
-            outputView.printExceptionMessage(exception);
-        }
+        LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
+        outputView.printLottoTickets(lottoTickets);
     }
 
     private int readValidTicketCount() {
+        int budget = inputView.readBudget();
+        LottoStore store = new LottoStore();
+        LottoBuyer buyer = new LottoBuyer();
+        buyer.buyTickets(budget, store);
+        return buyer.getOwnedTickets();
+    }
+
+    private Lotto readValidWinningNumber() {
+        return new Lotto(inputView.readWinningNumber());
+    }
+
+    private void retryRunnable(Runnable action) {
         while (true) {
             try {
-                int budget = inputView.readBudget();
-                LottoStore store = new LottoStore();
-                LottoBuyer buyer = new LottoBuyer();
-                buyer.buyTickets(budget, store);
-                return buyer.getOwnedTickets();
-            } catch (IllegalArgumentException exception) {
-                outputView.printExceptionMessage(exception);
+                action.run();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
+    }
+
+    private <T> T retrySupplier(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
             }
         }
     }
