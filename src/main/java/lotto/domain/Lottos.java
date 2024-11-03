@@ -9,9 +9,9 @@ public class Lottos {
 
     public Lottos() {}
 
-    public Lottos(List<Lotto> lottos, int purchasedPrice) {
+    public Lottos(List<Lotto> lottos, int lottoCount) {
         this.lottos = lottos;
-        this.lottoCount = purchasedPrice / LOTTO_PRICE;
+        this.lottoCount = lottoCount;
     }
 
     public Lottos(int purchasedPrice) {

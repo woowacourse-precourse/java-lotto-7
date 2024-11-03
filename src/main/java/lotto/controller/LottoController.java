@@ -22,12 +22,11 @@ public class LottoController {
             Lotto winningNumbers = new Lotto(InputView.readWinningNumbers());
             BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
 
-            printWinningResult(purchasedLottos, winningNumbers, bonusNumber);
+            printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
 
 
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            throw e;
         }
     }
 
@@ -36,9 +35,9 @@ public class LottoController {
         return lottoService.generateLottos(lottoCount);
     }
 
-    private void printWinningResult(Lottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+    private void printWinningResult(Lottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber, PurchasedPrice purchasedPrice) {
         LottoRanks lottoRanks = lottoService.getResult(purchasedLottos, winningNumbers, bonusNumber);
-        OutputView.printResult(lottoRanks);
+        OutputView.printResult(lottoRanks, purchasedPrice);
     }
 
 }
