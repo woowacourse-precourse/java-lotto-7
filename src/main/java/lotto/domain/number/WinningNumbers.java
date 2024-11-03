@@ -1,5 +1,7 @@
 package lotto.domain.number;
 
+import lotto.global.validator.LottoValidator;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class WinningNumbers {
 
     private WinningNumbers(final String input) {
         this.winningNumbers = parseWinningNumbers(input);
+        LottoValidator.validate(winningNumbers);
     }
 
     public static WinningNumbers from(final String input) {
@@ -28,5 +31,9 @@ public class WinningNumbers {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public boolean contains(final int number) {
+        return winningNumbers.contains(number);
     }
 }
