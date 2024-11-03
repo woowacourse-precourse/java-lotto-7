@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ExceptionMessage;
 import lotto.constant.Prize;
 
 public record WinningNumbers(Lotto numbers, int bonusNumber) {
@@ -16,13 +17,13 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
 
     private void validateRange(final int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_INVALID_RANGE.getMessage());
         }
     }
 
     private void validateNotWinningNumbers(final Lotto numbers, final int bonusNumber) {
         if (numbers.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATED_NUMBER.getMessage());
         }
     }
 

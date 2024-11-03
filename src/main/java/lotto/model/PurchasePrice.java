@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.ExceptionMessage;
+
 public record PurchasePrice(int value) {
     private static final int LOTTO_PRICE = 1000;
 
@@ -14,13 +16,13 @@ public record PurchasePrice(int value) {
 
     private void validateIsPositive(final int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_NON_POSITIVE_AMOUNT.getMessage());
         }
     }
 
     private void validateIsPurchaseUnit(final int value) {
         if (value % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 

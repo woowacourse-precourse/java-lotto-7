@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import lotto.constant.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,20 +28,20 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_INVALID_SIZE.getMessage());
         }
     }
 
     private void validateIsDuplicated(final List<Integer> numbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_DUPLICATED_NUMBER.getMessage());
         }
     }
 
     private void validateRange(final List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isInvalidRange)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_INVALID_RANGE.getMessage());
         }
     }
 
