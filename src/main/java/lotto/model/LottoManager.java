@@ -21,8 +21,6 @@ public class LottoManager {
     }
 
     public Integer purchaseLotto() {
-        LottoValidator lottoValidator = new LottoValidator();
-        lottoValidator.validatePrice(price);
         int numberOfLotto = price / LottoConstants.LOTTO_PRICE;
         for (int i = 0; i < numberOfLotto; i++) {
             purchasedLotto.add(generateRandomLotto());
@@ -43,7 +41,6 @@ public class LottoManager {
     }
 
     public List<LottoPrize> isLottoResult(List<Integer> lottoResult, Integer bonusNumber, List<Lotto> purchasedLotto) {
-        validator.validate(lottoResult);
         List<LottoPrize> prizeResults = new ArrayList<>();
 
         for (Lotto lotto : purchasedLotto) {
@@ -78,11 +75,20 @@ public class LottoManager {
             totalEarnings += prize.getLottoPrize();
         }
 
-        if (totalInvested == 0) {
-            return 0.0;
-        }
+        if (totalInvested == 0) { return 0.0;}
 
         return (double) totalEarnings / totalInvested * 100;
     }
 
+    public boolean validateLotto(List<Integer> lottoNumbers, Integer bonusNumber) {
+        try {
+            validator.validate(lottoNumbers);
+            LottoValidator lottoValidator = new LottoValidator();
+            lottoValidator.validateBonusNumber(bonusNumber, lottoNumbers);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }
