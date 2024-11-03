@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constant.ErrorMessage.NOT_INTEGER;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Parser {
             String inputWithoutSpace = input.replaceAll("\\s+", "");
             return Integer.parseInt(inputWithoutSpace);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[error] 정수만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
     }
 
