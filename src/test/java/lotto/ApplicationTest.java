@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.dto.LottoPurchasedAmountInput;
 import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -122,20 +126,18 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 입력된_문자열이_null_이면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException(null))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorMessage.NULL_INPUT_ERROR.getMessage());
+        LottoException exception = assertThrows(LottoException.class, () -> {
+            LottoPurchasedAmountInput.from(null);
         });
+        assertEquals(ErrorMessage.NULL_INPUT_ERROR.getMessage(), exception.getMessage());
     }
 
     @Test
     void 입력된_문자열이_빈_문자열이면_예외가_발생한다() {
-        assertSimpleTest(() -> {
-            assertThatThrownBy(() -> runException(""))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorMessage.EMPTY_INPUT_ERROR.getMessage());
+        LottoException exception = assertThrows(LottoException.class, () -> {
+            LottoPurchasedAmountInput.from("");
         });
+        assertEquals(ErrorMessage.EMPTY_INPUT_ERROR.getMessage(), exception.getMessage());
     }
 
     @Test
