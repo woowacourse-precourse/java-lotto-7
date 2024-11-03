@@ -83,8 +83,7 @@ public class LottoManager {
     private List<Integer> generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumberConstants.MIN_VALUE.getValue(),
                 LottoNumberConstants.MAX_VALUE.getValue(), LottoNumberConstants.NUMBER_COUNT.getValue());
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        return numbers.stream().sorted().toList();
     }
 
 }
