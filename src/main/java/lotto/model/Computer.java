@@ -1,13 +1,26 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
+import lotto.config.RankType;
 
 public class Computer {
+    private static final int MIN_CORRECT_COUNT = 3;
+    private static final int MAX_RANK = 5;
+    private static final int MIN_RANK = 1;
+
     private final Lotto winningLotto;
     private int bonusNumber;
+    private final HashMap<Integer, Integer> results;
 
     public Computer(List<Integer> winningNumbers) {
         this.winningLotto = new Lotto(winningNumbers);
+
+        HashMap<Integer, Integer> results = new HashMap<>();
+        for (int i = MAX_RANK; i >= MIN_RANK; i--) {
+            results.put(i, 0);
+        }
+        this.results = results;
     }
 
     public Lotto getWinningLotto() {
@@ -25,11 +38,15 @@ public class Computer {
     public void compareLotto(List<Lotto> lotto) {
         for (Lotto oneOfLotto : lotto) {
             int correctCount = getCorrectCount(oneOfLotto);
-            boolean hasBonus = hasBonus(oneOfLotto);
+
+            if (correctCount >= MIN_CORRECT_COUNT) {
+                int rank = findRank(correctCount, hasBonusNumber(oneOfLotto));
+                addResult(rank);
+            }
         }
     }
 
-    public int getCorrectCount(Lotto lotto) {
+    private int getCorrectCount(Lotto lotto) {
         int correctCount = 0;
         for (int number : lotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(number)) {
@@ -39,7 +56,19 @@ public class Computer {
         return correctCount;
     }
 
-    public boolean hasBonus(Lotto lotto) {
+    private boolean hasBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private int findRank(int correctCount, boolean hasBonus) {
+        return RankType.findByCorrectCountAndHasBonus(correctCount, hasBonus).getRank();
+    }
+
+    private void addResult(int rank) {
+        results.put(rank, results.get(rank) + 1);
+    }
+
+    public HashMap<Integer, Integer> getResults() {
+        return results;
     }
 }
