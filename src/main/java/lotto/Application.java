@@ -1,11 +1,9 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.LottoConstants.LOTTO_PRICE;
 import static lotto.LottoConstants.NUMBER_COUNT;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -18,19 +16,6 @@ public class Application {
 
         // 로또 구매
         int amount = InputHandler.getPurchaseAmount();
-//        System.out.println("구입금액을 입력해 주세요.");
-//        try {
-//            amount = Integer.parseInt(readLine());
-//            System.out.println();
-//        } catch (NumberFormatException e) {
-//            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
-//        }
-//        if (amount < 0) {
-//            throw new IllegalArgumentException("[ERROR] 0이상의 값을 입력해야 합니다.");
-//        }
-//        if (amount % LOTTO_PRICE != 0) {
-//            throw new IllegalArgumentException("[ERROR] 1000원으로 나눠 떨어지는 값을 입력해야 합니다.");
-//        }
         lottoCount = amount / LOTTO_PRICE;
 
         for (int i = 0; i < lottoCount; i++) {
@@ -45,22 +30,7 @@ public class Application {
         System.out.println();
 
         // 당첨번호 입력
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] tokens = readLine().split(",");
-        List<Integer> winningNumbersNoBonus = Arrays.stream(tokens).map(token -> {
-            try {
-                return Integer.parseInt(token.trim());
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 숫자만 입력해야 합니다.");
-            }
-        }).toList();
-        System.out.println();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(readLine());
-        System.out.println();
-
-        WinningNumbers winningNumbers = new WinningNumbers(winningNumbersNoBonus, bonusNumber);
+        WinningNumbers winningNumbers = InputHandler.getWinningNumbers();
 
         // EnumMap으로 등수 갯수 계산
         Map<Rank, Integer> rankCountMap = new EnumMap<>(Rank.class);
