@@ -7,6 +7,9 @@ import lotto.model.Lottos;
 import lotto.service.LottoService;
 import lotto.util.Validator;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class LottoController {
     private final Output output;
     private final Input input;
@@ -60,10 +63,10 @@ public class LottoController {
 
     private Lottos createLottosWithCount(int count) {
         Lottos lottos = new Lottos();
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(lottoService.pickLottoNumbers());
-            lottos.addLotto(lotto);
-        }
+        List<Lotto> lottoList = IntStream.range(0, count)
+                .mapToObj(i -> new Lotto(lottoService.pickLottoNumbers()))
+                .toList();
+        lottoList.forEach(lottos::addLotto);
         return lottos;
     }
 }
