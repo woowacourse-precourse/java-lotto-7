@@ -7,6 +7,7 @@ import lotto.constants.PrizeRank;
 public class LottoGame {
 
     private static final double TO_ROUND = 10.0;
+    private static final int HUNDRED = 100;
     private final LottoTickets lottoTickets;
     private final WinningLotto winningLotto;
     private final int money;
@@ -25,7 +26,7 @@ public class LottoGame {
                         .multiply(BigInteger.valueOf(entry.getValue())))
                 .reduce(BigInteger.ZERO, BigInteger::add);
 
-        double profitRate = Math.round(TO_ROUND * prizeMoney.doubleValue() / money) / TO_ROUND;
+        double profitRate = Math.round(TO_ROUND * (HUNDRED * prizeMoney.doubleValue() / money)) / TO_ROUND;
 
         return new LottoGameResult(prizeResultMap, profitRate);
     }
