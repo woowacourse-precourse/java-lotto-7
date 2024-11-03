@@ -4,7 +4,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class RetryHandler {
-
     public <T> T retry(Supplier<T> logic) {
         boolean retryFlag = true;
         T result = null;
