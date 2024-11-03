@@ -38,7 +38,7 @@ public class PurchasePrice {
     }
 
     private static boolean canDivide(int amount){
-        return amount % 1000 != 0;
+        return amount % LOTTO_PER_PRICE != 0;
     }
 
     private static int convertToInteger(String price) {
