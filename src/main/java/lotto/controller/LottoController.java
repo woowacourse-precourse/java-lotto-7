@@ -22,9 +22,9 @@ public class LottoController {
 
     public void run() {
         String purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
+        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
 
-        displayFormattedLottoNumbers(lottos);
+        displayLottoNumbers(lottos);
 
         String winningNumbers = getWinningNumbers();
         String bonusNumber = getBonusNumber(winningNumbers);
@@ -40,10 +40,8 @@ public class LottoController {
         return getValidInput(InputValidator::validatePurchaseAmount);
     }
 
-    private void displayFormattedLottoNumbers(List<Lotto> lottos) {
-        String formattedLottoNumbers = lottoService.getFormattedLottoNumbers(lottos);
-
-        OutputView.showLottoNumbers(lottos.size(), formattedLottoNumbers);
+    private void displayLottoNumbers(List<Lotto> lottos) {
+        OutputView.showLottoNumbers(lottos);
     }
 
     private String getWinningNumbers() {

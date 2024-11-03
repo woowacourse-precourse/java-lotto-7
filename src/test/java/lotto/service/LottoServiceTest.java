@@ -19,7 +19,7 @@ public class LottoServiceTest {
         String purchaseAmount = "14000";
 
         // when
-        List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
+        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
 
         // then
         assertThat(lottos).hasSize(14);

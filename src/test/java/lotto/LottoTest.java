@@ -25,20 +25,6 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호가 오름차순으로 정렬된 형식으로 반환된다.")
-    void 오름차순_테스트() {
-        // given
-        List<Integer> lottoNumbers = Arrays.asList(15, 3, 22, 8, 35, 1);
-        Lotto lotto = new Lotto(lottoNumbers);
-
-        // when
-        String formatted = lotto.formattedNumbers();
-
-        // then
-        assertThat(formatted).isEqualTo("[1, 3, 8, 15, 22, 35]");
-    }
-
-    @Test
     @DisplayName("로또 번호가 당첨 번호와 몇 개 일치하는지 확인한다")
     void 당첨_번호_일치_테스트() {
         // given

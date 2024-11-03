@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static lotto.CommonSymbols.*;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,12 +7,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
 
 public class LottoService {
-    public List<Lotto> generateLottos(String purchaseAmount) {
+    public List<Lotto> generateLotto(String purchaseAmount) {
         int parsedPurchaseAmount = Integer.parseInt(purchaseAmount);
 
         int lottoCount = parsedPurchaseAmount / 1000;
@@ -22,12 +19,6 @@ public class LottoService {
         return IntStream.range(0, lottoCount)
                 .mapToObj(count -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .toList();
-    }
-
-    public String getFormattedLottoNumbers(List<Lotto> lottos) {
-        return lottos.stream()
-                .map(Lotto::formattedNumbers)
-                .collect(Collectors.joining(NEW_LINE.getSymbol()));
     }
 
     public Map<Integer, Integer> winningDetermination(String winningNumbers, String bonusNumber,

@@ -5,7 +5,6 @@ import static lotto.exception.ExceptionMessage.WINNING_NUMBER_DUPLICATE;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,11 +24,8 @@ public class Lotto {
         }
     }
 
-    public String formattedNumbers() {
-        return numbers.stream()
-                .sorted()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"));
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
