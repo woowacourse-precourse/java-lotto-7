@@ -20,10 +20,10 @@ public class WinningDetails {
         }
     }
 
-    public static List<MyResults> saveMyGrades(List<Lotto> lottoList, Lotto answer, int bonus){
+    public static List<MyResults> saveMyGrades(List<Lotto> lottos, Lotto answer, int bonus){
         List<MyResults> myResults = new ArrayList<>();
-        for(int i = 0; i < lottoList.size(); i++){
-            MyResults gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
+        for(int i = 0; i < lottos.size(); i++){
+            MyResults gradedLotto = Lotto.gradeLotto(answer, lottos.get(i), bonus);
             myResults.add(gradedLotto);
         }
         return myResults;
@@ -43,5 +43,20 @@ public class WinningDetails {
     }
     public Integer getSixth() {
         return sixth;
+    }
+    public void setThird(Integer third) {
+        this.third = third;
+    }
+    public void setFourth(Integer fourth) {
+        this.fourth = fourth;
+    }
+    public void setFifth(Integer fifth) {
+        this.fifth = fifth;
+    }
+    public void setFifthBonus(Integer fifthBonus) {
+        this.fifthBonus = fifthBonus;
+    }
+    public void setSixth(Integer sixth) {
+        this.sixth = sixth;
     }
 }
