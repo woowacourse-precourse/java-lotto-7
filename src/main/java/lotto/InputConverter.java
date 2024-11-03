@@ -24,7 +24,15 @@ public final class InputConverter {
                     .boxed()
                     .toList();
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자이어야 합니다. 다시 입력해주세요.");
+        }
+    }
+
+    public static int convertToBonusNumber(final String bonusNumberInput) {
+        try {
+            return Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자이어야 합니다. 다시 입력해주세요.");
         }
     }
 }

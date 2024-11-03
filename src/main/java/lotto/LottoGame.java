@@ -1,12 +1,13 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoGame {
 
     public void run() {
         LottoManager lottoManager = getLottoManager();
-        do {
-            WinningLotto winningLotto = InputHandler.inputWinningLottoNumbers();
-        } while (true);
+        final List<Integer> winningLottoNumbers = InputHandler.inputWinningLottoNumbers();
+        final int bonusNumber = InputHandler.inputBonusNumber();
     }
 
     private LottoManager getLottoManager() {

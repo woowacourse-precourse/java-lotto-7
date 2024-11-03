@@ -22,17 +22,22 @@ public final class InputHandler {
         return 0;
     }
 
-    public static WinningLotto inputWinningLottoNumbers() {
+    public static List<Integer> inputWinningLottoNumbers() {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 final List<Integer> winningLottoNumbers = InputConverter.convertToWinningLottoNumbers(Console.readLine());
                 InputValidator.validateWinningLottoNumbersCount(winningLottoNumbers);
                 InputValidator.validateWinningLottoNumbersInRange(winningLottoNumbers);
-                return new WinningLotto(winningLottoNumbers);
+                return winningLottoNumbers;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return InputConverter.convertToBonusNumber(Console.readLine());
     }
 }
