@@ -20,6 +20,9 @@ public class Application {
 
         // 3.7 형식에 맞는 당첨 번호가 입력될 때까지 반복하여 입력을 받는 기능
         ArrayList<Integer> winningNumbers = getWinningNumbers();
+
+        // 4.1 보너스 번호를 입력 받는 기능
+        String bonusNumberInput = getInputString("보너스 번호를 입력해 주세요.");
     }
 
 
