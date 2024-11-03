@@ -26,4 +26,10 @@ public class InputView {
         }
         return inputMoney;
     }
+
+    public String inputNumbers() {
+        System.out.println(IOMessageConstants.INPUT_LOTTO_NUMBERS);
+        String inputNumbers = Console.readLine();
+        return inputNumbers;
+    }
 }
