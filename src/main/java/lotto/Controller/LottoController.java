@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.domain.*;
+import lotto.view.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,10 +27,27 @@ public class LottoController {
         }
     }
     public void PrintInput(){
+        int step = 1;
+        while (step <= 3) {
+            try {
+                if (step == 1) PrintAmount();
+                if (step == 2) PrintNumber();
+                if (step == 3) PrintBonus();
+                step++;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public void PrintAmount(){
         String amount_str =InputView.purchaseAmount();
         PlayerAmount(amount_str);
+    }
+    public void PrintNumber(){
         String number_str =InputView.sixLottoNumber();
         lottoNum(number_str);
+    }
+    public void PrintBonus(){
         String bonusnum_str=InputView.bonusLottoNumber();
         bonusNum(bonusnum_str);
     }
@@ -55,6 +73,7 @@ public class LottoController {
     }
     public void bonusNum(String bonusNum_str){
         bonusNumber=new BonusNumber(bonusNum_str);
+        OverlapNumber(lottoNumber, bonusNumber.getBonusNum());
     }
     public void PrintOutput(){
         OutputView.printTotal();
@@ -71,5 +90,12 @@ public class LottoController {
         RateOfReturn rateOfReturn=new RateOfReturn();
         double rate=rateOfReturn.rate(count,purchaseAmount.getAmountNum());
         OutputView.printRate(rate);
+    }
+    public void OverlapNumber(List <Integer> lottoNumber,int bonusNum){
+        for (Integer number : lottoNumber) {
+            if (lottoNumber.contains(bonusNum)) {
+                throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_OVERLAP.getMessage());
+            }
+        }
     }
 }
