@@ -1,12 +1,8 @@
 package lotto.temp;
 
-import lotto.model.Lotto;
-import lotto.util.CommonIo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,13 +12,6 @@ class StaticsTest {
     @BeforeEach
     void setUp() {
         statics = new Statics();
-    }
-
-    @Test
-    @DisplayName("보너스 번호와 로또가 일치하는지 확인하는 테스트")
-    void compareBonusNumber(){
-        assertThat(statics.checkBonusNumber(Lotto.createUserLotto(List.of(1,2,3,4,5,6)),6)).isTrue();
-        assertThat(statics.checkBonusNumber(Lotto.createUserLotto(List.of(1,2,3,4,5,6)),7)).isFalse();
     }
 
     @Test

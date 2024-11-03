@@ -5,14 +5,23 @@ import java.util.List;
 import java.util.Map;
 
 public class RankCalculator {
-    public List<Integer> compareLottos(List<Lotto> lottos, Lotto winningNumbers) {
+    public List<Rank> compareLottos(List<Lotto> lottos, WinningNumber winningNumber) {
         return lottos.stream()
-                .map(lotto -> compareSingleLotto(lotto,winningNumbers))
+                .map(lotto ->{
+                    int matchedNumbersCount = compareSingleLotto(lotto, winningNumber);
+                        return determineRank(matchedNumbersCount,checkBonusNumber(lotto, winningNumber));
+                        })
                 .toList();
     }
 
-    private int compareSingleLotto(Lotto userLotto, Lotto winningNumbers) {
-        return (int) userLotto.getNumbers().stream().filter(winningNumbers.getNumbers()::contains).count();
+    public boolean checkBonusNumber(Lotto userLotto, WinningNumber winningNumber) {
+        return userLotto.getNumbers().contains(winningNumber.getBonusNumber().getBonusNumber());
+    }
+
+    private int compareSingleLotto(Lotto userLotto, WinningNumber winningNumber) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(winningNumber.getWinningNumber().getNumbers()::contains)
+                .count();
     }
 
     public Rank determineRank(int matchCount, boolean isBonusContain) {

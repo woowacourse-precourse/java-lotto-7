@@ -20,13 +20,31 @@ class RankCalculatorTest {
     @Test
     @DisplayName("구입한 로또와 당첨번호가 몇 개 일치하는지 확인하는 테스트")
     void compareLottos(){
+        BonusNumber bonusNumber = new BonusNumber(45);
         assertThat(rankCalculator.compareLottos(
                 List.of(Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
                         Lotto.createUserLotto(List.of(1,2,3,4,5,7)),
                         Lotto.createUserLotto(List.of(1,2,3,4,7,8)),
                         Lotto.createUserLotto(List.of(1,2,3,7,8,9)),
                         Lotto.createUserLotto(List.of(1,2,7,8,9,10))),
-                Lotto.createWinningLotto(List.of(1,2,3,4,5,6)))).containsExactly(6,5,4,3,2);
+                new WinningNumber(Lotto.createWinningLotto(List.of(1,2,3,4,5,6)),bonusNumber)))
+                .containsExactly(Rank.FIRST,Rank.THIRD,Rank.FOURTH,Rank.FIFTH,Rank.MISS);
+    }
+
+    @Test
+    @DisplayName("보너스 번호와 로또가 일치하는지 확인하는 테스트")
+    void compareBonusNumber(){
+        BonusNumber bonusNumber1 = new BonusNumber(6);
+        BonusNumber bonusNumber2 = new BonusNumber(7);
+
+        assertThat(rankCalculator.checkBonusNumber(
+                Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
+                new WinningNumber(Lotto.createWinningLotto(List.of(1,2,3,4,5,6)),bonusNumber1)))
+                .isTrue();
+        assertThat(rankCalculator.checkBonusNumber(
+                Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
+                new WinningNumber(Lotto.createWinningLotto(List.of(1,2,3,4,5,6)),bonusNumber2)))
+                .isFalse();
     }
 
     @Test
