@@ -9,7 +9,7 @@ import lotto.enums.Rank;
 
 public class OutputView {
     private static final String INPUT_LOTTO_PURCHASE_COST_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_LOTTO_MESSAGE = "%d개를 구입했습니다.";
+    private static final String PURCHASE_LOTTO_MESSAGE = "%d개를 구매했습니다..";
     private static final String INPUT_LOTTO_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_LOTTO_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String RESULT_MESSAGE = "당첨 통계\n---";

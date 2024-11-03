@@ -40,7 +40,7 @@ public class LottoController {
             try {
                 outputView.printLottoPurchaseCostMessage();
                 return LottoPurchaseCost.from(inputView.InputLottoPurchaseAmount());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
@@ -51,7 +51,7 @@ public class LottoController {
             try {
                 outputView.printInputLottoWinningNumbersMessage();
                 return WinningLottoNumbers.from(inputView.InputLottoWinningNumbers());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
@@ -62,7 +62,7 @@ public class LottoController {
             try {
                 outputView.printInputLottoBonusNumberMessage();
                 return BonusLottoNumber.from(inputView.InputLottoBonusNumber(), winningLottoNumbers);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
