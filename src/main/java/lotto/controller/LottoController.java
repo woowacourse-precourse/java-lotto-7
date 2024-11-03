@@ -37,6 +37,7 @@ public class LottoController {
 
         purchaseAmount = getAmount();
         lottoCollection = getLottoCollection(purchaseAmount);
+        printCollectionState(lottoCollection);
         winningNumber = getWinningNumber();
         winningLotto = getWinningLotto(winningNumber);
         lottoService = new LottoService(lottoCollection, winningLotto);
@@ -71,7 +72,6 @@ public class LottoController {
     private LottoCollection getLottoCollection(PurchaseAmount purchaseAmount) {
         LottoCollection lottoCollection;
         lottoCollection = getCollection(purchaseAmount);
-        printCollectionState(lottoCollection);
         return lottoCollection;
     }
 

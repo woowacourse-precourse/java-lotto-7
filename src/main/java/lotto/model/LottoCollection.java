@@ -29,6 +29,7 @@ public class LottoCollection {
 
     private Lotto getRandomLotto() {
         List<Integer> randomNumbers = RandomNumbers.getRandomNumbers();
+        randomNumbers.sort(Integer::compareTo);
         return new Lotto(randomNumbers);
     }
 
