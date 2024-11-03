@@ -27,4 +27,11 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NON_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }
+
+    public void validateNumberRange(String input) {
+        int number = Integer.parseInt(input);
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
 }

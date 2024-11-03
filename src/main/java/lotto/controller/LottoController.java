@@ -99,6 +99,7 @@ public class LottoController {
         for (String number : winningNumbers) {
             validator.validateNonNumber(number);
             validator.validatePositiveNumber(number);
+            validator.validateNumberRange(number);
         }
     }
 }
