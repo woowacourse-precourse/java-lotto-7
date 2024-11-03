@@ -1,14 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
     public static void main(String[] args) {
         int purchaseAmount = inputAmount();
-
         // TODO: 프로그램 구현
-
     }
     private static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -34,4 +33,7 @@ public class Application {
     private static int calculateTicketCount(int amount){
         return amount / LOTTO_PRICE;
     }
+
+
+
 }
