@@ -77,6 +77,6 @@ public class LottoController {
     }
 
     private double calculateReturnRate(Lottos purchasedLottos, LottoResult lottoResult) {
-        return lottoResult.calculateReturnRate(purchasedLottos.getSize() * 1000);
+        return lottoResult.calculateReturnRate((long) purchasedLottos.getSize() * Money.getLottoPriceUnit());
     }
 }

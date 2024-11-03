@@ -41,4 +41,8 @@ public class Money {
     public long getLottoQuantity() {
         return amount / LOTTO_PRICE_UNIT;
     }
+
+    public static int getLottoPriceUnit() {
+        return LOTTO_PRICE_UNIT;
+    }
 }
