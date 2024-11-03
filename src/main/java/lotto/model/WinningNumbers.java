@@ -19,6 +19,12 @@ public class WinningNumbers {
         return new WinningNumbers(numbers);
     }
 
+    public int getMatchCount(Lotto lotto) {
+        return (int) lotto.numbers().stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
     public List<LottoNumber> numbers() {
         return List.copyOf(numbers);
     }

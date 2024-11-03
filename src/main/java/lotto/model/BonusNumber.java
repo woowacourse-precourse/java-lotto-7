@@ -12,6 +12,10 @@ public class BonusNumber {
         return new BonusNumber(number);
     }
 
+    public boolean isMatched(Lotto lotto) {
+        return lotto.numbers().contains(number);
+    }
+
     public LottoNumber number() {
         return number;
     }
