@@ -42,7 +42,8 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public Float revenue() {
-        return 0f;
+    public Double revenue(Integer input) {
+        Long revenue = LottoRepository.revenue;
+        return revenue.doubleValue() * 100 / input;
     }
 }

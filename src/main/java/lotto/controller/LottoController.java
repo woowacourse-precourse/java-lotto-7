@@ -19,11 +19,15 @@ public class LottoController {
         lottoService.buyLotto(lottoCount);
     }
 
-    public void saveWinningNumber(List<Integer> winningNumbers){
+    public void saveWinningNumber(List<Integer> winningNumbers) {
         lottoService.saveWinningNumber(winningNumbers);
     }
 
-    public List<Winning> calWinning(){
+    public List<Winning> calWinning() {
         return lottoService.calWinning();
+    }
+
+    public Double revenue(Integer lottoCount) {
+        return lottoService.revenue(lottoCount * 1000);
     }
 }

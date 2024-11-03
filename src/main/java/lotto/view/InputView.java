@@ -12,7 +12,7 @@ public class InputView {
         return inputView;
     }
 
-    public String readLine(){
+    public String readLine() {
         return Console.readLine();
     }
 }
