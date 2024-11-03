@@ -1,10 +1,6 @@
-package lotto.service;
-
-import lotto.domain.WinningInfo;
-import lotto.domain.Lottos;
+package lotto.domain;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class LottoResult {
     private final HashMap<WinningInfo, Integer> result = new HashMap<>();

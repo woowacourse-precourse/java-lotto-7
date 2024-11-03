@@ -1,7 +1,7 @@
 package lotto.config;
 
 import lotto.service.LottoGenerator;
-import lotto.service.LottoResult;
+import lotto.domain.LottoResult;
 import lotto.service.ProfitCalculator;
 import lotto.service.WinningChecker;
 import lotto.io.Input;

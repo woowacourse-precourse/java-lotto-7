@@ -7,7 +7,7 @@ import lotto.domain.Lottos;
 import lotto.io.Input;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
-import lotto.service.LottoResult;
+import lotto.domain.LottoResult;
 import lotto.service.ProfitCalculator;
 import lotto.service.WinningChecker;
 
