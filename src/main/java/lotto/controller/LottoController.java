@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.view.InputView;
 
+import static lotto.common.Constants.LOTTO_PRICE_UNIT;
 import static lotto.service.Validator.validatePurchaseAmount;
 
 public class LottoController {
@@ -12,14 +13,19 @@ public class LottoController {
     }
 
     public void run () {
-        Integer purchaseAmount = lottoPurchase();
+        Integer lottoCount = lottoPurchase();
     }
 
     private Integer lottoPurchase () {
         String rawPurchaseAmount = inputView.getPurchaseAmount();
 
         validatePurchaseAmount(rawPurchaseAmount);
+        Integer purchaseAmount = Integer.parseInt(rawPurchaseAmount);
 
-        return Integer.parseInt(rawPurchaseAmount);
+        return changeLottoFromMoney(purchaseAmount);
+    }
+
+    private Integer changeLottoFromMoney (Integer money) {
+        return money % LOTTO_PRICE_UNIT;
     }
 }
