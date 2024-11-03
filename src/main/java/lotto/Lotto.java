@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,4 +18,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public String toString() {
+        String string = "[" + numbers.get(0);
+
+        for (int i = 1; i < numbers.size(); i++) {
+            string += ", " + numbers.get(i);
+        }
+        return string;
+    }
 }
