@@ -7,8 +7,8 @@ public class OutputView {
     private static final String PURCHASED_TICKET_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String LOTTO_NUMBERS_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
-
-
+    private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
+    private static final String STATISTICS_DIVIDER = "---";
 
     public void printPurchaseTotalPricePrompt() {
         System.out.println(PURCHASE_TOTAL_PRICE_PROMPT);
@@ -29,5 +29,10 @@ public class OutputView {
 
     public void printBonusNumberInputPrompt() {
         System.out.println(BONUS_NUMBER_INPUT_PROMPT);
+    }
+
+    public void printWinningStatisticsHeader() {
+        System.out.println(WINNING_STATISTICS_HEADER);
+        System.out.println(STATISTICS_DIVIDER);
     }
 }

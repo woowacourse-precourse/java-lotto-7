@@ -52,5 +52,8 @@ public class Application {
         int parsedBonusNumber = BonusNumberInputParser.parse(bonusNumberInput.input());
         Bonus bonus = new Bonus(parsedBonusNumber, lotto);
 
+        //당첨 통계 출력
+        outputView.printWinningStatisticsHeader();
+
     }
 }
