@@ -55,7 +55,12 @@ public class Print {
     }
 
     public static void totalReward(double num) {
-        System.out.println("총 수익률은 " + num + "%입니다.");
+        double result = roundUp(num);
+        System.out.println("총 수익률은 " + result + "%입니다.");
+    }
+
+    public static double roundUp(double number) {
+        return Math.round(number * 100) / 100.0;
     }
 
 }

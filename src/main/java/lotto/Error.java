@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Error {
 
-    public static HashSet<Integer> hashSet = new HashSet<>();
+    public static HashSet<Integer> lottoNumbers = new HashSet<>();
 
     public static void duplicates(List<Integer> numbers) {
-        hashSet = new HashSet<>();
+        lottoNumbers = new HashSet<>();
         for (Integer number : numbers) {
             addToHashSet(number);
         }
     }
 
     public static void addToHashSet(int number) {
-        if (!hashSet.add(number)) {
+        if (!lottoNumbers.add(number)) {
             throw new IllegalArgumentException("중복 값이 존재합니다.");
         }
     }

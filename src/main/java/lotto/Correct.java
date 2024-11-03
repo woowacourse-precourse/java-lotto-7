@@ -34,13 +34,17 @@ public class Correct {
         }
         if (num==3) {
             correctDetail[0]++;
-        } else if (num==4) {
+        }
+        if (num==4) {
             correctDetail[1]++;
-        } else if (num==5 && bonusCorrect==1) {
+        }
+        if (num==5 && bonusCorrect==1) {
             correctDetail[3]++;
-        } else if (num==5) {
+        }
+        if (num==5) {
             correctDetail[2]++;
-        } else if (num==6) {
+        }
+        if (num==6) {
             correctDetail[4]++;
         }
     }
