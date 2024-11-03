@@ -34,14 +34,14 @@ public class LottoGame {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
         LottoDraw lottoDraw = new LottoDraw(purchaseAmount, randomNumbersGenerator);
 
-        LottoTicket lottoTicket = new LottoTicket(lottoDraw.generateLottos());ㄴ
+        LottoTicket lottoTicket = new LottoTicket(lottoDraw.generateLottos());
 
         output.printLottoTicket(lottoTicket);
 
-        run(lottoTicket);
+        result(lottoTicket);
     }
 
-    public void run(LottoTicket lottoTicket) {
+    public void result(LottoTicket lottoTicket) {
 
         WinningLotto winningLotto = new WinningLotto(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
