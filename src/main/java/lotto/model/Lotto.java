@@ -10,6 +10,10 @@ import java.util.Set;
 import lotto.validator.LottoWinningNumbersValidator;
 
 public class Lotto {
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -35,7 +39,7 @@ public class Lotto {
         List<Lotto> lottos = new ArrayList<>();
         Set<List<Integer>> uniqueLottoSets = new HashSet<>();
         while (lottos.size() < numberOfTickets) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_SIZE));
             Collections.sort(numbers);
             if (uniqueLottoSets.add(numbers)) {
                 lottos.add(new Lotto(numbers));
