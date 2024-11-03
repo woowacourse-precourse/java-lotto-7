@@ -1,10 +1,10 @@
-package lotto.draw;
+package lotto.donghang;
 
 import lotto.vendingmachine.Lotto;
 
 public class WinningLotto {
-    final Lotto lottoNumbers;
-    final int bonus;
+    public final Lotto lottoNumbers;
+    public final int bonus;
 
     public WinningLotto(Lotto lottoNumbers, int bonus) {
         this.lottoNumbers = lottoNumbers;
