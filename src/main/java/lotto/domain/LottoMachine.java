@@ -13,9 +13,11 @@ import lotto.vo.WinningConditions;
 public class LottoMachine {
 
     private final LottoNumbersComparison lottoNumbersComparison;
+    private final ProfitCalculator profitCalculator;
 
     public LottoMachine() {
         lottoNumbersComparison = new LottoNumbersComparison();
+        profitCalculator = new ProfitCalculator();
     }
 
     public WinningResultStatics runMachine(GeneratedNumbers generatedNumbers, InputNumbers inputNumbers,
@@ -37,7 +39,7 @@ public class LottoMachine {
             prizeSum += getWinningPrizeStatics(winningCondition, countMatchNumbers);
         }
 
-        return new WinningResultStatics(winningNumbersStatics);
+        return new WinningResultStatics(winningNumbersStatics, profitCalculator.calculateProfit(prizeSum,numberOfTickets));
     }
 
     private WinningNumbersStatics storeWinningNumbersStatics(WinningConditions winningCondition,
