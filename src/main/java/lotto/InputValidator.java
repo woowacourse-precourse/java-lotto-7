@@ -37,4 +37,10 @@ public final class InputValidator {
     private static boolean validateInLottoNumberRange(final int winningLottoNumber) {
         return winningLottoNumber >= 1 && winningLottoNumber <= 45;
     }
+
+    public static void validateBonusNumber(final List<Integer> winningLottoNumbers, final int bonusNumber) {
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다. 다시 입력해 주세요.");
+        }
+    }
 }

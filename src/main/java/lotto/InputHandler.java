@@ -36,8 +36,16 @@ public final class InputHandler {
         }
     }
 
-    public static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return InputConverter.convertToBonusNumber(Console.readLine());
+    public static int inputBonusNumber(final List<Integer> winningLottoNumbers) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                final int bonusNumber = InputConverter.convertToBonusNumber(Console.readLine());
+                InputValidator.validateBonusNumber(winningLottoNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

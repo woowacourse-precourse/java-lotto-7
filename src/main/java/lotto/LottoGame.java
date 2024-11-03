@@ -6,8 +6,7 @@ public class LottoGame {
 
     public void run() {
         LottoManager lottoManager = getLottoManager();
-        final List<Integer> winningLottoNumbers = InputHandler.inputWinningLottoNumbers();
-        final int bonusNumber = InputHandler.inputBonusNumber();
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     private LottoManager getLottoManager() {
@@ -22,5 +21,11 @@ public class LottoGame {
             purchaseAmount = InputHandler.inputLottoPurchaseAmount();
         }
         return purchaseAmount;
+    }
+
+    private WinningLotto getWinningLotto() {
+        final List<Integer> winningLottoNumbers = InputHandler.inputWinningLottoNumbers();
+        final int bonusNumber = InputHandler.inputBonusNumber(winningLottoNumbers);
+        return new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 }
