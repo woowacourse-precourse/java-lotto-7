@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -30,5 +31,16 @@ public class Lottos {
 
     public Integer size() {
         return lottos.size();
+    }
+
+    public String toString() {
+        StringBuilder lottoPurchaseResult = new StringBuilder();
+        lottoPurchaseResult.append("\n").append(this.size()).append("개를 구매했습니다.\n");
+        lottos.forEach(lotto -> {
+                    lottoPurchaseResult.append("[");
+                    lottoPurchaseResult.append(lotto.getNumbers().stream().map(String::valueOf).collect(Collectors.joining(", ")));
+                    lottoPurchaseResult.append("]\n");
+                });
+        return String.valueOf(lottoPurchaseResult);
     }
 }

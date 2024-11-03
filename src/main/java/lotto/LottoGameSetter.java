@@ -47,17 +47,7 @@ public class LottoGameSetter {
     }
 
     private void printDrawingResult(Lottos lottos) {
-
-        StringBuilder lottoPurchaseResult = new StringBuilder();
-        lottoPurchaseResult.append("\n").append(lottos.size()).append("개를 구매했습니다.\n");
-        lottos.getValue()
-                .forEach(lotto -> {
-                    lottoPurchaseResult.append("[");
-                    lottoPurchaseResult.append(lotto.getNumbers().stream().map(String::valueOf).collect(Collectors.joining(", ")));
-                    lottoPurchaseResult.append("]\n");
-                });
-
-        ConsoleOutput.print(String.valueOf(lottoPurchaseResult));
+        ConsoleOutput.print(lottos.toString());
     }
 
     private Lottos drawLottery(Integer totalLottoCount) {
