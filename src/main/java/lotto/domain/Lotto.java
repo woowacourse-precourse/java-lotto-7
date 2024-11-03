@@ -13,4 +13,10 @@ public class Lotto {
         Collections.sort(numbers);
         this.numbers = numbers;
     }
+
+    public int countMathchingNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 }
