@@ -17,6 +17,7 @@ public class LottoNumberFormatter {
             for (int i = 0; i < inputNums.length; i++) {
                 inputNums[i] = inputNums[i].trim();
                 int winningNum = Integer.parseInt(inputNums[i]);
+                outOfBounds(winningNum);
                 winningNums.add(winningNum);
             }
         } catch (NumberFormatException e) {
@@ -28,7 +29,9 @@ public class LottoNumberFormatter {
 
     public int convertToBonusNum(String bonus) {
         try {
-            return Integer.parseInt(bonus);
+            int bonusNum = Integer.parseInt(bonus);
+            outOfBounds(bonusNum);
+            return bonusNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
         }
@@ -49,6 +52,12 @@ public class LottoNumberFormatter {
 
         if (winningNums.size() != uniqueWinningNums.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 당첨 번호가 있습니다.");
+        }
+    }
+
+    public void outOfBounds(int num) {
+        if(1 > num || num > 45) {
+            throw new IllegalArgumentException("[ERROR] 해당 번호는 사용 불가합니다.");
         }
     }
 }
