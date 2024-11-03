@@ -21,7 +21,7 @@ public class LottoView {
     }
 
     private void validateToInt(String str) {
-        if (StringUtils.isBlank(str) || str.chars().noneMatch(Character::isDigit)) {
+        if (StringUtils.isBlank(str) || !str.codePoints().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("숫자만 가능합니다.");
         }
     }

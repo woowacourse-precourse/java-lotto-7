@@ -25,9 +25,15 @@ public class LottoController {
         view.printLottoNumbers(lottos.toStringAllLottoNumber());
     }
 
-    public void inputAndConfirmWinningNumber() {
-        List<Integer> winningNumber = view.inputWinningNumber();
-        int bonusNumber = view.inputBonusNumber();
+    public List<Integer> getWinningNumber() {
+        return view.inputWinningNumber();
+    }
+
+    public int getBonusNumber() {
+        return view.inputBonusNumber();
+    }
+
+    public void confirmWinning(List<Integer> winningNumber, int bonusNumber) {
         lottos.setByCorrectCount(winningNumber, bonusNumber);
         view.printWinningTrace(toStringWithoutNone());
     }
