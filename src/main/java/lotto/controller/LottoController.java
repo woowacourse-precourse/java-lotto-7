@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoStatistics;
 import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
@@ -34,5 +35,11 @@ public class LottoController {
 
         WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
 
+        LottoStatistics lottoStatistics = new LottoStatistics();
+        lottoStatistics.calculateStatistics(lottoTickets.getLottos(),winningNumbers);
+
+        outputView.printOutputLottoStatistics(lottoStatistics.getResultMap());
+        double profit = lottoStatistics.calculateProfit(lottoTickets.getPurchaseAmount());
+        outputView.printOutputProfit(profit);
     }
 }
