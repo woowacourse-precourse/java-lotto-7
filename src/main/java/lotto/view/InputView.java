@@ -1,11 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.util.ExceptionMessage;
+import lotto.util.validator.BonusValidator;
 import lotto.util.validator.WinningNumberValidator;
 
 public class InputView {
@@ -25,5 +22,11 @@ public class InputView {
         new WinningNumberValidator().validate(input);
 
         return List.of(0, 0);
+    }
+
+    public int readBonusNumber() {
+        String input = Console.readLine();
+        new BonusValidator().validate(input);
+        return Integer.parseInt(input);
     }
 }
