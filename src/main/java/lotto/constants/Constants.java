@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum ModelContstants {
+public enum Constants {
 
     // 로또 생성에 대한 상수
     LOTTO_STARTING_RANGE(1),
@@ -24,13 +24,14 @@ public enum ModelContstants {
     NOTHING_PLACE_PRIZE(0),
 
     // 수익률 계산을 위한 퍼센트 상수
-    PERCENTAGE_NUMBER(100);
+    PERCENTAGE_NUMBER(100),
 
-    // 로또 번호 구분자
+    // 로또 가격 단위 1000원 상수
+    LOTTO_PRICE(1000);
 
     private int value;
 
-    ModelContstants(int value) {
+    Constants(int value) {
         this.value = value;
     }
 
