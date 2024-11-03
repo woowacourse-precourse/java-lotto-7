@@ -2,27 +2,31 @@ package lotto.value;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 public enum WinningResult {
 
-    FIRST(2, 1, 6, false, 2_000_000_000L),
-    SECOND(1, 2, 5, true, 30_000_000L),
-    THIRD(3, 3, 5, false, 1_500_000L),
-    FOURTH(4, 4, 4, false, 50_000L),
-    FIFTH(5, 5, 3, false, 5_000L),
-    LOSE(6, null, 0, false, 0L);
+    FIRST(1, 2, 1, 6, false, 2_000_000_000L),
+    SECOND(2, 1, 2, 5, true, 30_000_000L),
+    THIRD(3, 3, 3, 5, false, 1_500_000L),
+    FOURTH(4, 4, 4, 4, false, 50_000L),
+    FIFTH(5, 5, 5, 3, false, 5_000L),
+    LOSE(6, 6, null, 0, false, 0L);
 
+    private final int order;
+    private final int matchOrder;
     public final Integer ranking;
-    public final long prize;
     public final int minCountOfWinningNumber;
     public final boolean isRequiredWinningBonus;
-    private final int matchOrder;
+    public final long prize;
 
-    WinningResult(int matchOrder,
+    WinningResult(int order,
+                  int matchOrder,
                   Integer ranking,
                   int minCountOfWinningNumber,
                   boolean isRequiredWinningBonus,
                   long prize) {
+        this.order = order;
         this.matchOrder = matchOrder;
         this.ranking = ranking;
         this.minCountOfWinningNumber = minCountOfWinningNumber;
@@ -35,12 +39,18 @@ public enum WinningResult {
             return SECOND;
         }
 
+        long numberForAlreadyGuessedSecondPrize = 1L;
         return Arrays.stream(WinningResult.values())
                 .sorted(Comparator.comparing(result -> result.matchOrder))
-                .skip(1L)
+                .skip(numberForAlreadyGuessedSecondPrize)
                 .filter(result -> result.minCountOfWinningNumber <= countOfWinningNumber)
                 .findFirst()
                 .get(); // 당첨 판정 결과는 반드시 존재한다.
+    }
+
+    public static Stream<WinningResult> orderedStream() {
+        return Arrays.stream(WinningResult.values())
+                .sorted(Comparator.comparing(result -> result.order));
     }
 
     private static boolean isSecondPrize(int countOfWinningNumber, boolean isWinningBonus) {
