@@ -14,6 +14,9 @@ import static lotto.domain.LottoRankType.*;
 public class OutputView {
 
     private static final String NUMBER_FORMAT = "%,d";
+    private static final String DELIMITER = ",";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
     private static final int DEFAULT_VALUE = 0;
     private static final int INCREMENT_COUNT = 1;
 
@@ -27,6 +30,10 @@ public class OutputView {
 
     public static void printLottoProfitRate(String lottoProfitRate) {
         printMessage(String.format(PROFIT_RATE.getText(), lottoProfitRate));
+    }
+
+    public static void printLottoListPrompt(List<Lotto> lottos) {
+        lottos.forEach(lotto -> printMessage(formatLottoNumbers(lotto)));
     }
 
     public static void printLottoResultPrompt(List<LottoRankType> lottoRankTypes) {
@@ -48,11 +55,11 @@ public class OutputView {
 
     private static void printLottoResults(EnumMap<LottoRankType, Integer> rankCountMap) {
         List.of(
-                formatResult(FIFTH.getMatchCount(), FIFTH.getPrice(), rankCountMap.getOrDefault(FIFTH, 0)),
-                formatResult(FOURTH.getMatchCount(), FOURTH.getPrice(), rankCountMap.getOrDefault(FOURTH, 0)),
-                formatResult(THIRD.getMatchCount(), THIRD.getPrice(), rankCountMap.getOrDefault(LottoRankType.THIRD, 0)),
-                formatBonusResult(SECOND.getMatchCount(), SECOND.getPrice(), rankCountMap.getOrDefault(SECOND, 0)),
-                formatResult(FOURTH.getMatchCount(), FIRST.getPrice(), rankCountMap.getOrDefault(FIRST, 0))
+                formatResult(FIFTH.getMatchCount(), FIFTH.getPrice(), rankCountMap.getOrDefault(FIFTH, DEFAULT_VALUE)),
+                formatResult(FOURTH.getMatchCount(), FOURTH.getPrice(), rankCountMap.getOrDefault(FOURTH, DEFAULT_VALUE)),
+                formatResult(THIRD.getMatchCount(), THIRD.getPrice(), rankCountMap.getOrDefault(LottoRankType.THIRD, DEFAULT_VALUE)),
+                formatBonusResult(SECOND.getMatchCount(), SECOND.getPrice(), rankCountMap.getOrDefault(SECOND, DEFAULT_VALUE)),
+                formatResult(FOURTH.getMatchCount(), FIRST.getPrice(), rankCountMap.getOrDefault(FIRST, DEFAULT_VALUE))
         ).forEach(OutputView::printMessage);
     }
 
@@ -64,14 +71,10 @@ public class OutputView {
         return String.format(MATCH_BONUS_RESULT.getText(), matchCount, String.format(NUMBER_FORMAT, price), count);
     }
 
-    public static void printLottoListPrompt(List<Lotto> lottos) {
-        lottos.forEach(lotto -> printMessage(formatLottoNumbers(lotto)));
-    }
-
     private static String formatLottoNumbers(Lotto lotto) {
         return lotto.getNumbers().stream()
                 .map(String::valueOf)
-                .collect(joining(", ", "[", "]"));
+                .collect(joining(DELIMITER, PREFIX, SUFFIX));
     }
 
 }
