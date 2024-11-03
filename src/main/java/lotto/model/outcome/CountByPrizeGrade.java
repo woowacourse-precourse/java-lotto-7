@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** 구매한 로또 묶음과 우승 로또 번호들을 바탕으로 로또 등급별 당첨 개수와 구해서 저장한다. */
+/** 로또 등급별 당첨 개수를 구해서 저장하는 클래스 */
 public class CountByPrizeGrade {
 
     private final LinkedHashMap<PrizeGrade, Integer> countByPrizeGrade;
@@ -18,6 +18,7 @@ public class CountByPrizeGrade {
         this.countByPrizeGrade = countByPrizeGrade;
     }
 
+    // 구매 로또와 우승 번호를 바탕으로 당첨 등급별 개수를 구해서 저장
     public static CountByPrizeGrade getOfBoughtAndWinLotto(BoughtLottos lottos,
                                                            WinLotto winLotto) {
         LinkedHashMap<PrizeGrade, Integer> countByPrizeGrades = new LinkedHashMap<>();

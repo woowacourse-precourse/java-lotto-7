@@ -7,7 +7,11 @@ import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.containsBlank;
 
-/** 로또 구매액을 보관한다. */
+/**
+ * 로또 구매액을 보관하는 클래스
+ * 주어진 문자열 검증 기능을 담당
+ * 문자 형식을 검증하고 잘못된 경우 예외를 호출
+ */
 public class SpendingMoney {
     
     private static final String EXCEPTION_MESSAGE_OUT_OF_LONG =
