@@ -58,5 +58,22 @@ public class ValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("list에 모든 숫자가 매개변수 min,max 범위밖이면 예외 발생 테스트")
+    void allNumberRange() {
+        BigDecimal min = new BigDecimal(1);
+        BigDecimal max = new BigDecimal(45);
+        List<BigDecimal> numbers = new ArrayList<>();
+
+        numbers.add(new BigDecimal(100));
+        numbers.add(new BigDecimal(2));
+        numbers.add(new BigDecimal(3));
+        numbers.add(new BigDecimal(4));
+        numbers.add(new BigDecimal(5));
+
+        assertThatThrownBy(() -> {
+            Validator.allNumberRange(min, max, numbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
     }
 }
