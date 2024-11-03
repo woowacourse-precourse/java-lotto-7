@@ -13,7 +13,7 @@ class WinningTest {
 
     @BeforeEach
     void setUp() {
-        winning = new Winning(new CommonIo());
+        winning = new Winning();
     }
 
     @Test
