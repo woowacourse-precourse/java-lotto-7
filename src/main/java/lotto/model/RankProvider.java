@@ -2,7 +2,7 @@ package lotto.model;
 
 public interface RankProvider {
 
-    String provide(WinningResult result);
+    String notation(WinningResult result);
 
     Long totalPrize(WinningResult result);
 

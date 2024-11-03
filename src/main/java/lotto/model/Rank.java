@@ -7,7 +7,7 @@ public enum Rank implements RankProvider {
 
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -19,7 +19,7 @@ public enum Rank implements RankProvider {
     },
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -31,7 +31,7 @@ public enum Rank implements RankProvider {
     },
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -43,7 +43,7 @@ public enum Rank implements RankProvider {
     },
     FOURTH(4, 50_000, "4개 일치 (50,000원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -56,7 +56,7 @@ public enum Rank implements RankProvider {
     },
     FIFTH(3, 5_000, "3개 일치 (5,000원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -69,7 +69,7 @@ public enum Rank implements RankProvider {
     },
     NONE(0, 0, "당첨되지 않았음 (0원)") {
         @Override
-        public String provide(WinningResult result) {
+        public String notation(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
@@ -114,7 +114,7 @@ public enum Rank implements RankProvider {
     public static String notationFrom(WinningResult result) {
         return Arrays.stream(values())
             .filter(rank -> rank != NONE)
-            .map(rank -> rank.provide(result))
+            .map(rank -> rank.notation(result))
             .collect(Collectors.joining());
     }
 
