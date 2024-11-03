@@ -48,7 +48,12 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumber(List<Integer> winningNumbers) {
+    public static void validateWinningNumber(List<String> winningNumbers) {
+        winningNumbers.forEach(Validator::validateNumberFormat);
+        validateDuplicateWinningNumber(winningNumbers);
+    }
+
+    private static void validateDuplicateWinningNumber(List<String> winningNumbers) {
         int oldSize = winningNumbers.size();
         int newSize = (int) winningNumbers.stream().distinct().count();
         if (oldSize != newSize) {
@@ -57,11 +62,18 @@ public class Validator {
     }
 
     public static void validateBonusNumber(List<Integer> winningNumbers, String input) {
-        int bonusNumber = Integer.parseInt(input);
+        validateNumberFormat(input);
+        validateDuplicateBonusNumber(winningNumbers, input);
+    }
 
+    private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, String input) {
+        int bonusNumber = Integer.parseInt(input);
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_EXIST);
         }
     }
 
+    public static void validateLottoWinningSet(UniqueNumber uniqueNumber) {
+        validateDuplicateNumber(uniqueNumber);
+    }
 }

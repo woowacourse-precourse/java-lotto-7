@@ -73,11 +73,11 @@ public class GameManager {
     }
 
     private List<Integer> readWinningNumber() {
-        List<Integer> winningNumber = Arrays.stream(inputView.readWinningNumber())
+        List<String> input = Arrays.asList(inputView.readWinningNumber());
+        validateWinningNumber(input);
+        return input.stream()
                 .map(Integer::parseInt)
                 .toList();
-        validateWinningNumber(winningNumber);
-        return winningNumber;
     }
 
     private int readBonusNumber() {
