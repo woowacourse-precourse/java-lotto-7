@@ -16,6 +16,6 @@ public class Lottos {
     }
 
     public List<Lotto> toUnmodifiableList() {
-        return Collections.unmodifiableList(lottos);
+        return lottos;
     }
 }
