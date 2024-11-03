@@ -24,6 +24,7 @@ public class LottoController {
         int lottoTickets  = userService.inputAmount();
         User user = userService.priceLotto(lottoTickets);
         Lotto lotto = lottoService.winningLottoNumbers();
+        lotto = lottoService.bonusLottoNumbers(lotto);
         System.out.println(lotto.getNumbers());
     }
 }

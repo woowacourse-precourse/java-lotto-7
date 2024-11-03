@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.message.ErrorMessage;
+import lotto.util.ParserToInt;
 import lotto.validation.AmountValidator;
 
 public class PurchaseAmount {
@@ -9,19 +10,11 @@ public class PurchaseAmount {
     private final int lottoTickets;
 
     public PurchaseAmount(String strAmount){
-        this.lottoTickets = validateAmount(parseToInt(strAmount)) / LOTTO_PRICE;
+        this.lottoTickets = validateAmount(ParserToInt.parserToInt(strAmount)) / LOTTO_PRICE;
     }
 
     public int getLottoTickets(){
         return lottoTickets;
-    }
-
-    private int parseToInt(String strAmount){
-        try {
-            return Integer.parseInt(strAmount);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
-        }
     }
 
     private int validateAmount(int amount){

@@ -23,4 +23,14 @@ public class LottoService {
             return winningLottoNumbers();
         }
     }
+
+    public Lotto bonusLottoNumbers(Lotto lotto) {
+        try{
+            lotto.addBonusNumber(inputView.inputBonusNumber());
+            return lotto;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return bonusLottoNumbers(lotto);
+        }
+    }
 }
