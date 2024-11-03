@@ -19,14 +19,14 @@ public class OutputView {
     }
 
     public void showPurchasedLottos(PurchaseResultDTO result) {
-        System.out.printf("%d개를 구매했습니다.\n", result.getCount());
+        System.out.printf("\n%d개를 구매했습니다.\n", result.getCount());
         for (LottoResponseDTO lotto : result.getResults()) {
             System.out.println(lotto);
         }
     }
 
     public void showLottoResults(Map<LottoRank, Integer> results) {
-        System.out.println("당첨 통계\n---\n");
+        System.out.println("\n당첨 통계\n---");
         showFifthResult(results);
         showFourthResult(results);
         showThirdResult(results);
