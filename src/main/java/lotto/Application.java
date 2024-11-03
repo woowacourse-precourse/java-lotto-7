@@ -16,20 +16,20 @@ public class Application {
         try {
             lottoPrice = Integer.parseInt(lottoPriceString);
             if(lottoPrice <= 0 || lottoPrice%1000 != 0){
-                throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력해야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다.");
         }
 
         Integer lottoCount = lottoPrice / 1000;
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println(String.format("%d개를 구매했습니다.", lottoCount));
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottoList = new ArrayList<>();
 
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator(lottoCount);
         lottoNumberGenerator.generateLotto().forEach(lottoNumber -> {
-            lottos.add(new Lotto(lottoNumber));
+            lottoList.add(new Lotto(lottoNumber));
             System.out.println(lottoNumber);
         });
 
@@ -43,7 +43,7 @@ public class Application {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList()));
         } catch (Exception e) {
-            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다.");
         }
 
         System.out.println("보너스 볼을 입력해 주세요.");
@@ -53,12 +53,12 @@ public class Application {
         try{
             bonusNumber = Integer.parseInt(bonusNumberString);
         } catch (Exception e) {
-            throw new IllegalArgumentException("입력 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다.");
         }
 
-        LottoManager lottoManager = new LottoManager(lottos, winningLotto, bonusNumber);
+        LottoManager lottoManager = new LottoManager(lottoList, winningLotto, bonusNumber);
         lottoManager.processResult();
         lottoManager.calculateProfitRate();
-        lottoManager.printWinnigStatistics();
+        lottoManager.printWinningStatistics();
     }
 }

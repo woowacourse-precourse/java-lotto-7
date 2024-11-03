@@ -21,7 +21,7 @@ public enum LottoResult {
             if (result.defaultMatchCount.equals(defaultMatchCount) && result.bonusMatchCount.equals(bonusMatchCount))
                 return result;
         }
-        return NONE; // 일치하는 값이 없을 경우 NONE 반환
+        return NONE;
     }
 
     public Integer getWinningMoney() {

@@ -12,14 +12,14 @@ public class LottoManager {
 
     public LottoManager(List<Lotto> myLotto, Lotto winningLotto, Integer bonusNumber) {
         if (myLotto.isEmpty())
-            throw new IllegalArgumentException("로또를 구매해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또를 구매해야 합니다.");
 
         if (bonusNumber < 1 || bonusNumber > 45)
-            throw new IllegalArgumentException("보너스 볼은 1부터 45까지의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 볼은 1부터 45까지의 숫자여야 합니다.");
 
         for(int i = 0; i < 6; i++){
             if (winningLotto.get(i) == bonusNumber)
-                throw new IllegalArgumentException("보너스 볼은 당첨 번호와 중복될 수 없습니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 볼은 당첨 번호와 중복될 수 없습니다.");
         }
 
         this.myLotto = myLotto;
@@ -67,7 +67,7 @@ public class LottoManager {
         return profitRate;
     }
 
-    public void printWinnigStatistics() {
+    public void printWinningStatistics() {
         System.out.println("당첨 통계\n---");
         System.out.println(String.format("3개 일치 (5,000원) - %d개", lottoResultList.stream()
                 .filter(item -> item.equals(LottoResult.THREE))
