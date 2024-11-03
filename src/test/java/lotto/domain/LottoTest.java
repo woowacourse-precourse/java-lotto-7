@@ -50,12 +50,20 @@ class LottoTest {
         @Test
         void 로또_번호가_1에서_45_사이가_아니면_Lotto_객체_생성에_실패한다() {
             // given
-            List<Integer> outOfRangeNumbers = List.of(0, 2, 3, 4, 5, 46);
+            List<Integer> outOfRangeNumbers = List.of(1, 2, 3, 4, 5, 46);
 
             // when & then
             assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
+
+        @Test
+        void 로또_번호가_음수일_경우_Lotto_객체_생성에_실패한다() {
+            List<Integer> negativeNumbers = List.of(-1, 2, 3, 4, 5, 6);
+            assertThatThrownBy(() -> new Lotto(negativeNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED.getMessage());
         }
     }
 }

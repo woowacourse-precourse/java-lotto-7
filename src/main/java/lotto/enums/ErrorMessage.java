@@ -5,8 +5,9 @@ public enum ErrorMessage {
     INVALID_INTEGER_INPUT("[ERROR] 숫자는 정수 값만 입력해야 합니다."),
     INVALID_PURCHASE_AMOUNT_UNIT("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
     NEGATIVE_AMOUNT_NOT_ALLOWED("[ERROR] 구입 금액은 1,000원 단위의 양의 정수여야 합니다."),
-    DUPLICATE_LOTTO_NUMBER_NOT_ALLOWED("로또 번호는 모두 다른 번호여야 합니다."),
-    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+    DUPLICATE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 모두 다른 번호여야 합니다."),
+    INVALID_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다."),
+    NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 양의 정수여야 합니다.");
 
     private final String message;
 

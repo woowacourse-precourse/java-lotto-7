@@ -10,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validatePositive(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
         this.numbers = numbers;
@@ -32,6 +33,14 @@ public class Lotto {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
+        }
+    }
+
+    private void validatePositive(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number <= 0) {
+                throw new IllegalArgumentException(ErrorMessage.NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED.getMessage());
             }
         }
     }
