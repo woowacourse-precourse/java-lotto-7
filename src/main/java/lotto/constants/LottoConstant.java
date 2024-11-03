@@ -7,7 +7,6 @@ public final class LottoConstant {
     public final static int LOTTO_COUNT = 6;
     public final static int MIN_LOTTO_NUMBER = 1;
     public final static int MAX_LOTTO_NUMBER = 45;
-    public final static int COUNT = 6;
 
     private LottoConstant() {
     }
