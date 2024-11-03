@@ -11,11 +11,13 @@ public enum WinningState implements MessageProvider {
     FIVE_BONUS(5, true, 30_000_000) {
         @Override
         public String provideMessage(int count) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", getMatchCount(), getPrize(), count);
+            return String.format(MATCH_WITH_BONUS_TEMPLATE, getMatchCount(), getPrize(), count);
         }
     },
     SIX(6, false, 2_000_000_000);
 
+    private static final String MATCH_TEMPLATE = "%d개 일치 (%,d원) - %d개";
+    private static final String MATCH_WITH_BONUS_TEMPLATE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private final int matchCount;
     private final boolean hasBonus;
     private final int prize;
@@ -56,6 +58,6 @@ public enum WinningState implements MessageProvider {
 
     @Override
     public String provideMessage(int count) {
-        return String.format("%d개 일치 (%,d원) - %d개", this.matchCount, this.prize, count);
+        return String.format(MATCH_TEMPLATE, this.matchCount, this.prize, count);
     }
 }
