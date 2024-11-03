@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -21,5 +22,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호의 범위가 1 ~ 45가 아니면 예외를 발생한다.")
+    @Test
+    void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호를_리턴받는다(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), lotto.getNumbers());
+    }
 }
