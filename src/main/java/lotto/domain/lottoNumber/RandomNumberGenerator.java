@@ -5,11 +5,12 @@ import java.util.List;
 
 public class RandomNumberGenerator {
 
-    int startInclusive = LottoRange.LOTTO.getStart();
-    int endInclusive = LottoRange.LOTTO.getEnd();
-    int count = LottoRange.LOTTO.getCount();
+    private final int startInclusive = LottoRange.LOTTO.getStart();
+    private final int endInclusive = LottoRange.LOTTO.getEnd();
+    private final int count = LottoRange.LOTTO.getCount();
 
-    public List<Integer> generate() {
+    private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
+
 }
