@@ -15,7 +15,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s\n";
 
     public static void printLottoTickets(List<LottoTicketsDto> lottoTickets) {
-        System.out.println(lottoTickets.size() + PURCHASE_MESSAGE);
+        System.out.println("\n"+lottoTickets.size()+PURCHASE_MESSAGE);
         lottoTickets.forEach(tickets -> System.out.println(tickets.getNumbers()));
     }
 
