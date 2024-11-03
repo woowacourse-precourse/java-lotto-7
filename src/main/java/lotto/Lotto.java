@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Lotto {
 
     public static final int PRICE = 1000;
+    public static final int MAX_NUM = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -28,8 +29,8 @@ public class Lotto {
         }
 
         for(Integer num : numbers){
-            if(num<=0 || num>45){
-                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            if(num<=0 || num>Lotto.MAX_NUM){
+                throw new IllegalArgumentException("로또 번호는 1부터 "+Lotto.MAX_NUM+" 사이의 숫자여야 합니다.");
             }
         }
     }

@@ -11,7 +11,9 @@ public class Application {
 
     public static int parseInt(String s){
         try{
-            return Integer.parseInt(s);
+            int num = Integer.parseInt(s);
+            if(num <= 0 || num > Lotto.MAX_NUM) throw new IllegalArgumentException("로또 숫자 범위를 초과합니다.");
+            return num;
         }catch (NumberFormatException e){
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }
@@ -58,10 +60,20 @@ public class Application {
         }
     }
 
+    public static WinningLotto inputWinningLotto(){
+        while(true){
+            try{
+                return new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         List<Lotto> lottos = inputPrice();
-        WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
+        WinningLotto winningLotto = inputWinningLotto();
 
     }
 }

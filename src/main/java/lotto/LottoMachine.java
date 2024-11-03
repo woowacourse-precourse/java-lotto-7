@@ -15,7 +15,7 @@ public class LottoMachine {
     }
 
     private Lotto createRandomLotto(){
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, Lotto.MAX_NUM, 6));
     }
 
     private List<Lotto> createLottos(int size){
