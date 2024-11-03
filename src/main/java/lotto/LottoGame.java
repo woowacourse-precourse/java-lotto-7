@@ -8,6 +8,7 @@ public class LottoGame {
     }
 
     public void run() {
+        inputView.displayLottoPurchaseAmountPrompt();
         int lottoPurchaseAmount = inputView.readLottoPurchaseAmount();
     }
 }
