@@ -1,12 +1,15 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.generator.LottoGenerator;
 import lotto.view.LottoInfoMessages;
 
 public class LottoService {
     ValidationService validationService = ValidationService.createValidationService();
+    LottoGenerator lottoGenerator = LottoGenerator.createLottoGenerator();
     public int countMatches(List<Integer> winnerNumbers, List<Integer> numbers) {
         winnerNumbers.retainAll(numbers);
         return winnerNumbers.size();
@@ -41,5 +44,13 @@ public class LottoService {
             manualAmount--;
         }
         return manualNumberList;
+    }
+
+    public List<Set<Integer>> generateAutoNumberSet(int amount) {
+        List<Set<Integer>> autoLottoList = new ArrayList<>();
+        for (int i = 0; i < amount; i++) {
+            autoLottoList.add(new HashSet<>(lottoGenerator.getLottoNumbers()));
+        }
+        return autoLottoList;
     }
 }
