@@ -1,9 +1,9 @@
-package lotto.view;
+package lotto.view.output;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.WinningRank;
+import lotto.model.winningResult.WinningRank;
 
 public class Utils {
     public static List<WinningRank> sortDescending(List<WinningRank> winningRanks) {

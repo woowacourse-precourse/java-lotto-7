@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 public class PurchaseAmountGenerator {
     public static PurchaseAmount registerPurchaseAmount(String purchaseAmount) {

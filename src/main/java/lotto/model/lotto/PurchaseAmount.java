@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 public class PurchaseAmount {
     private final int purchaseAmount;

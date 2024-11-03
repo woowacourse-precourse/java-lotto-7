@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 public class InputValidator {
     public static void validateGeneralValueInput(String generalValue) {

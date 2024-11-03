@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.winningResult;
 
 import java.util.ArrayList;
 import java.util.Collections;

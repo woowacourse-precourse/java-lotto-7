@@ -2,13 +2,24 @@ package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.model.RandomNumberPicker;
-import org.junit.jupiter.api.Test;
+import lotto.model.lotto.RandomNumberPicker;
+import lotto.model.winningResult.WinningRank;
+import lotto.view.output.Utils;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class UtilsTest {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4})
+    void 등수를_내림차순으로_정렬한다(int winningRanksIndex) {
+        List<WinningRank> winningRanks = Utils.sortDescending(new ArrayList<>(List.of(WinningRank.values())));
+
+        assertThat(winningRanks.get(winningRanksIndex).getRank())
+                .isGreaterThan(winningRanks.get(winningRanksIndex + 1).getRank());
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4})
     void 숫자를_오름차순으로_정렬한다(int lottoNumbersIndex) {
@@ -18,10 +29,5 @@ public class UtilsTest {
 
         assertThat(sortedRandomNumbers.get(lottoNumbersIndex))
                 .isLessThan(sortedRandomNumbers.get(lottoNumbersIndex + 1));
-    }
-
-    @Test
-    void 등수를_내림차순으로_정렬한다() {
-
     }
 }

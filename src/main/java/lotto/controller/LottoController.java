@@ -1,15 +1,15 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.PurchaseAmount;
-import lotto.model.Lottos;
-import lotto.model.PurchaseAmountGenerator;
-import lotto.model.WinningNumber;
-import lotto.model.NumberGenerator;
-import lotto.model.WinningResults;
+import lotto.model.winningNumber.BonusNumber;
+import lotto.model.lotto.PurchaseAmount;
+import lotto.model.lotto.Lottos;
+import lotto.model.lotto.PurchaseAmountGenerator;
+import lotto.model.winningNumber.WinningNumber;
+import lotto.model.winningNumber.NumberGenerator;
+import lotto.model.winningResult.WinningResults;
 import lotto.service.LottoMachine;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.input.InputView;
+import lotto.view.output.OutputView;
 
 public class LottoController {
     private final InputView inputView;

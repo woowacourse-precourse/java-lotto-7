@@ -3,14 +3,14 @@ package lotto.service;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.PurchaseAmount;
-import lotto.model.Lottos;
-import lotto.model.RandomNumberPicker;
-import lotto.model.WinningNumber;
-import lotto.model.WinningRank;
-import lotto.model.WinningResults;
+import lotto.model.winningNumber.BonusNumber;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.PurchaseAmount;
+import lotto.model.lotto.Lottos;
+import lotto.model.lotto.RandomNumberPicker;
+import lotto.model.winningNumber.WinningNumber;
+import lotto.model.winningResult.WinningRank;
+import lotto.model.winningResult.WinningResults;
 
 public class LottoMachine {
     public Lottos issueLottos(PurchaseAmount purchaseAmount) {

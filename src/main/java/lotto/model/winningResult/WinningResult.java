@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.winningResult;
 
 public class WinningResult {
     private final WinningRank winningRank;

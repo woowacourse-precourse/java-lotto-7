@@ -1,7 +1,7 @@
-package lotto.view;
+package lotto.view.output;
 
 import java.util.List;
-import lotto.model.WinningRank;
+import lotto.model.winningResult.WinningRank;
 
 public class Messages {
     //Message처럼 상수화하고 싶다.

@@ -1,10 +1,10 @@
-package lotto.view;
+package lotto.view.output;
 
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.WinningRank;
-import lotto.model.WinningResults;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
+import lotto.model.winningResult.WinningRank;
+import lotto.model.winningResult.WinningResults;
 
 public class OutputView {
     public void outputExceptionMessage(String message) {

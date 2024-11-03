@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.winningNumber;
 
 public class BonusNumber {
     private final int bonusNumber;

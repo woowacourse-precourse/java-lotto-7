@@ -1,18 +1,19 @@
-package lotto.model;
+package lotto.model.winningNumber;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
+public class WinningNumber {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public WinningNumber(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
+    //Lotto와 검증로직 겹침, 전환로직과 분리 필요
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -36,18 +37,11 @@ public class Lotto {
         return !uniqueNumbers.add(number);
     }
 
-    public int checkMatchingAmountWith(List<Integer> numbers) {
-        int matchingAmount = 0;
-        for (int number : numbers) {
-            if (contains(number)) {
-                matchingAmount++;
-            }
-        }
-        return matchingAmount;
-    }
-
     public boolean contains(int number) {
-        return numbers.contains(number);
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
     }
 
     public List<Integer> getNumbers() {
