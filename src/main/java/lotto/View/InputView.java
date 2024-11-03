@@ -65,8 +65,8 @@ public class InputView {
                 .allMatch(number -> number >= 1 && number <= 45);
     }
 
-    public static void checkPurchaseRange(int purchaseAmount){
-        if(!(purchaseAmount >= 1000 && purchaseAmount <= 200000000)){
+    public static void checkPurchaseRange(int purchaseAmount) {
+        if (!(purchaseAmount >= 1000 && purchaseAmount <= 200000000)) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_RANGE.getError());
         }
     }
