@@ -55,15 +55,16 @@ public class LottoTransactionController {
 
   public Map<List<Integer>, PrizeRank> compareWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
     Set<Integer> _winningNumbers = new HashSet<>(winningNumbers);
-    List<Lotto> lotttos = lottoTransaction.getPurchasedLottos();
     Map<List<Integer>, PrizeRank> results = new HashMap<>();
 
-    for (Lotto lotto : lotttos) {
+    for (Lotto lotto : lottoTransaction.getPurchasedLottos()) {
       List<Integer> numbers = lotto.getNumbers();
       Set<Integer> _numbers = new HashSet<>(numbers);
+
       _numbers.retainAll(_winningNumbers);
       PrizeRank prizeRank = PrizeRank.getPrizeRank(_numbers.size(), numbers.contains(bonusNumber));
       results.put(numbers, prizeRank);
+      lottoTransaction.addMatchCount(prizeRank);
     }
     return results;
   }
