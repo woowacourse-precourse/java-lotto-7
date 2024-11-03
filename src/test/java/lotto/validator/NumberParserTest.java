@@ -1,32 +1,56 @@
 package lotto.validator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class NumberParserTest {
 
     @Test
-    @DisplayName("구분자로 입력된 문자열을 받아 숫자 리스트로 반환 실패시 Num")
-    void testToNumbers() {
-        String rightInput1 = "1,2,3,4,5,6";
-        String rightInput2 = "1, 2, 3, 4, 5, 6";
-        String wrongInput1 = "1,2,3,4,5,a";
-        String wrpngInput2 = "";
+    @DisplayName("실패 - 숫자가 아닌 경우")
+    void 숫자_파싱_테스트_숫자_아닌_경우() {
+        String input = "1,2,3,4,5,a";
 
-        List<Integer> rightResult1 = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        Assertions.assertEquals(rightResult1, NumberParser.toNumbers(rightInput1));
-        Assertions.assertEquals(rightResult1, NumberParser.toNumbers(rightInput2));
-
-        Assertions.assertThrows(NumberFormatException.class,
-                () -> NumberParser.toNumbers(wrongInput1),
+        assertThrows(NumberFormatException.class,
+                () -> NumberParser.toNumbers(input),
                 "[ERROR] 숫자를 입력해 주세요.");
+    }
 
-        Assertions.assertThrows(NumberFormatException.class,
-                () -> NumberParser.toNumbers(wrpngInput2),
-                "[ERROR] 숫자를 입력해 주세요.");
+    @Test
+    @DisplayName("실패 - 공백이거나 빈 값일 경우")
+    void 숫자_파싱_테스트_공백_빈값() {
+        String input1 = "";
+        String input2 = " ";
+
+        assertThrows(NumberFormatException.class,
+                () -> NumberParser.toNumbers(input1),
+                "[ERROR] 숫자를 입력해 주세요."
+        );
+        assertThrows(NumberFormatException.class,
+                () -> NumberParser.toNumbers(input2),
+                "[ERROR] 숫자를 입력해 주세요."
+        );
+    }
+
+    @Test
+    @DisplayName("성공 - 정상 입력")
+    void 숫자_파싱_테스트_정상() {
+        String input = "1,2,3,4,5,6";
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertEquals(expected, NumberParser.toNumbers(input));
+    }
+
+    @Test
+    @DisplayName("성공 - 앞,뒤,사이 공백이 있을 경우")
+    void 숫자_파싱_테스트_앞뒤사이_공백() {
+        String input = "1, 2,3 , 4,5 , 6 ";
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        assertEquals(expected, NumberParser.toNumbers(input));
     }
 }
