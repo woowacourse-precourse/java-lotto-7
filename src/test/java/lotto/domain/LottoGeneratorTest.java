@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +15,10 @@ public class LottoGeneratorTest {
         int count = 5;
 
         // when
-        List<Lotto> lottos = generator.generateLottos(count);
+        Lottos lottos = generator.generateLottos(count);
 
         // then
-        assertEquals(count, lottos.size());
+        assertEquals(count, lottos.getLottos().size());
     }
 
 }
