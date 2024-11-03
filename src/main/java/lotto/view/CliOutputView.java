@@ -23,10 +23,9 @@ public class CliOutputView {
     }
 
     private String convertLottoNumbersToString(Lotto sortedLotto) {
-        String numbers = sortedLotto.getNumbers().stream()
+        return sortedLotto.getNumbers().stream()
             .map(String::valueOf)
             .collect(Collectors.joining(", "));
-        return numbers;
     }
 
 }
