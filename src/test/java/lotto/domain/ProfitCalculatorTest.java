@@ -32,4 +32,21 @@ class ProfitCalculatorTest {
 
         Assertions.assertThat(totalWinningAmount).isEqualTo(2_031_500_000);
     }
+
+    @DisplayName("총 당첨 금액을 통해 수익률을 계산한다.")
+    @Test
+    void calculateProfitRate() {
+        List<MatchResult> matchResults = List.of(
+                new MatchResult(3, false),
+                new MatchResult(2, true),
+                new MatchResult(1, false),
+                new MatchResult(1, false)
+        );
+
+        long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchResults);
+
+        double profitRate = profitCalculator.calculateProfitRate(totalWinningAmount, 4000);
+
+        Assertions.assertThat(profitRate).isEqualTo(125.0);
+    }
 }
