@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,16 +24,12 @@ public class LottoVending {
         String errorMessage;
 
         // 구입 금액 입력, 검증 및 파싱
-        System.out.println("구입 금액을 입력해 주세요.");
+        outputView.printPurchaseAmountMessage();
         long purchaseAmount = 0;
         boolean purchaseAmountInputFailed = true;
         while (purchaseAmountInputFailed) {
-            String purchaseAmountInput = Console.readLine().strip();
             try {
-                if (purchaseAmountInput.isBlank()) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "구입 금액을 입력해주세요.";
-                    throw new IllegalArgumentException(errorMessage);
-                }
+                String purchaseAmountInput = inputView.getPurchaseAmount();
                 try {
                     purchaseAmount = Long.parseLong(purchaseAmountInput);
                 } catch (NumberFormatException e) {
@@ -57,16 +52,12 @@ public class LottoVending {
         System.out.println();
 
         // 당첨 번호 입력, 검증 및 파싱
-        System.out.println("당첨 번호를 입력해 주세요.");
+        outputView.printWinningNumbersMessage();
         List<Integer> winningNumbers = new ArrayList<>();
         boolean winningNumberInputFailed = true;
         while (winningNumberInputFailed) {
             try {
-                String winningNumbersInput = Console.readLine().strip();
-                if (winningNumbersInput.isBlank()) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "당첨 번호를 입력해주세요.";
-                    throw new IllegalArgumentException(errorMessage);
-                }
+                String winningNumbersInput = inputView.getWinningNumbers();
                 List<String> separatedWinningNumbersInput = List.of(winningNumbersInput.split(","));
                 if (separatedWinningNumbersInput.size() != 6) {
                     errorMessage = ERROR_MESSAGE_PREFIX + "당첨 번호는 6개를 입력해야 합니다. 입력한 당첨 번호: " + winningNumbersInput;
@@ -102,16 +93,12 @@ public class LottoVending {
         System.out.println();
 
         //보너스 번호 입력
-        System.out.println("보너스 번호를 입력해 주세요.");
+        outputView.printWinningNumbersMessage();
         int bonusNumber = 0;
         boolean bonusInputFailed = true;
         while (bonusInputFailed) {
             try {
-                String bonusNumberInput = Console.readLine().strip();
-                if (bonusNumberInput.isBlank()) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "보너스 번호를 입력해주세요.";
-                    throw new IllegalArgumentException(errorMessage);
-                }
+                String bonusNumberInput = inputView.getBonusNumber();
                 try {
                     bonusNumber = Integer.parseInt(bonusNumberInput);
                     if (bonusNumber < 1 || bonusNumber > 45) {
