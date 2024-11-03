@@ -22,16 +22,14 @@ public class LottoController {
         OutputView.outputPurchasedLottoCount(purchasedLottoCount);
         PurchasedLottos purchasedLottos = new PurchasedLottos(purchaseLotto(purchasedLottoCount));
 
-        List<Integer> parsedWinningNumbers = inputWinningNumbers();
-        WinningNumbers winningNumbers = new WinningNumbers(parsedWinningNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers());
         int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
         winningNumbers.checkBonusDuplicate(bonusNumber);
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
         lottoGame.process();
 
-        OutputView.outputMatchedCount(lottoGame.getLottoMatchedCount());
-        outputProfitRate(inputtedCost, lottoGame.getLottoMatchedCount());
+        outputResult(lottoGame, inputtedCost);
     }
 
     private int inputPurchaseCost() {
@@ -58,5 +56,11 @@ public class LottoController {
     private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
         double profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
         OutputView.outputProfitRate(profitRate);
+    }
+
+    private void outputResult(LottoGame lottoGame, int inputtedCost) {
+        OutputView.outputMatchedCount(lottoGame.getLottoMatchedCount());
+        outputProfitRate(inputtedCost, lottoGame.getLottoMatchedCount());
+
     }
 }
