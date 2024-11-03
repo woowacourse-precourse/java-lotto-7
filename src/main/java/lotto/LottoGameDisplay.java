@@ -47,6 +47,14 @@ public class LottoGameDisplay {
         return Integer.parseInt(rawBonusNumber);
     }
 
+    private int inputNumber() {
+        String rawNumber = Console.readLine();
+
+        LottoGameValidator.checkIsNumeric(rawNumber);
+
+        return Integer.parseInt(rawNumber);
+    }
+
     private void printErrorMessage(Exception e) {
         System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
     }
