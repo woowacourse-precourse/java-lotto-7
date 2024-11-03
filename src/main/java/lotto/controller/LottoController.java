@@ -21,14 +21,16 @@ public class LottoController {
         outputView.displayPurchaseQuantity(money.getPurchaseQuantity());
 
         Lottos purchasedLottos = purchaseLotto(money);
-        outputView.displayPurchasedLottos(purchasedLottos);
+        purchasedLottos.forEach(
+                lotto -> outputView.displayPurchasedLottos(lotto.getSortedLottoString())
+        );
 
         WinningLotto winningLotto = repeatUntilValid(this::getWinningLotto);
         BonusNumber bonusNumber = repeatUntilValid(() -> getBonusNumber(winningLotto));
 
         WinningResult winningResult = getWinningResult(purchasedLottos, winningLotto, bonusNumber);
         Profit profit = Profit.of(money, winningResult);
-        outputView.dispalyWinningStatistics(winningResult, profit);
+        outputView.displayWinningStatistics(winningResult.getWinningResultString(), profit.getProfitString());
     }
 
     private Money getLottoMoney() {

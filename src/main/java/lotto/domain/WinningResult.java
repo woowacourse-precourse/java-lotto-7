@@ -29,7 +29,7 @@ public class WinningResult {
         winningResult.put(rank, winningResult.get(rank) + 1);
     }
 
-    public String winningResultString() {
+    public String getWinningResultString() {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.ordinal() <= Rank.FIFTH.ordinal())
                 .map(rank -> rank.getMessage() + winningResult.get(rank) + "개")

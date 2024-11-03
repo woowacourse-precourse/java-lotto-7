@@ -1,9 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
-import lotto.domain.Profit;
-import lotto.domain.WinningResult;
-
 public class OutputView extends OutputWriter {
     public void requestLottoMoney() {
         displayMessage("구입금액을 입력해 주세요.");
@@ -14,10 +10,8 @@ public class OutputView extends OutputWriter {
         displayMessage(quantity + "개를 구매했습니다.");
     }
 
-    public void displayPurchasedLottos(Lottos lottos) {
-        lottos.forEach(lotto -> {
-            displayMessage(lotto.getSortedLottoString());
-        });
+    public void displayPurchasedLottos(String purchasedLottos) {
+        displayMessage(purchasedLottos);
     }
 
     public void requestWinningNumber() {
@@ -30,11 +24,11 @@ public class OutputView extends OutputWriter {
         displayMessage("보너스 번호를 입력해 주세요.");
     }
 
-    public void dispalyWinningStatistics(WinningResult winningResult, Profit profit) {
+    public void displayWinningStatistics(String winningResult, String profit) {
         displayNewLine();
         displayMessage("당첨 통계");
         displayMessage("---");
-        displayMessage(winningResult.winningResultString());
-        displayMessage(profit.getProfitString());
+        displayMessage(winningResult);
+        displayMessage(profit);
     }
 }
