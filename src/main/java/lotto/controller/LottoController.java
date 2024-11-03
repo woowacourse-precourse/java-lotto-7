@@ -45,8 +45,7 @@ public class LottoController {
         1. 지불을 완료한 만큼 새로운 로또의 발급을 요청한다.
          */
 
-        //FIXME: REMOVE
-        System.out.println("purchaseAmount = " + purchaseAmount);
+        lottoService.generateByPurchaseAmount(purchaseAmount);
     }
 
 }
