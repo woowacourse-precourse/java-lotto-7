@@ -13,6 +13,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 로또_번호가_1부터_45사이의_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 47, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
