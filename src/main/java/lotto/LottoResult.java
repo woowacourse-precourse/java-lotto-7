@@ -12,7 +12,7 @@ public class LottoResult {
     public LottoResult(){
 
         winningStatistics.put(CorrectStatus.THREE_CORRECT,0);
-        winningStatistics.put(CorrectStatus.FOUT_CORRECT,0);
+        winningStatistics.put(CorrectStatus.FOUR_CORRECT,0);
         winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_NO_SPECIAL_NUMBER,0);
         winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_SPECIAL_NUMBER,0);
         winningStatistics.put(CorrectStatus.SIX_CORRECT,0);
