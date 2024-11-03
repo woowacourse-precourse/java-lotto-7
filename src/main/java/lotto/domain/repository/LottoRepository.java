@@ -8,4 +8,6 @@ public interface LottoRepository {
     void saveAll(List<Lotto> lottos);
 
     List<Lotto> getAll();
+
+    void clear();
 }

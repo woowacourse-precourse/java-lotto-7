@@ -27,4 +27,9 @@ public class InMemoryLottoRepository implements LottoRepository {
     public List<Lotto> getAll() {
         return lottoRepository.stream().toList();
     }
+
+    @Override
+    public void clear() {
+        lottoRepository.clear();
+    }
 }
