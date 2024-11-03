@@ -18,8 +18,8 @@ public class OutputView {
     public void displayStatistics(Map<RankType, RankResult> statistics, String earningRate) {
         System.out.println(PromptMessage.WINNING_STATISTICS_MESSAGE);
         statistics.forEach((rankType, rankResult) ->
-            System.out.println(rankType.getDescription() + " - " + rankResult.getCount())
+            System.out.println(rankType.getDescription() + " - " + rankResult.getCount() + "개")
         );
-        System.out.print("총 수익률은 " + earningRate + "%입니다.");
+        System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 }
