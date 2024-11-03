@@ -9,17 +9,17 @@ import lotto.model.PrizeTable;
 public class OutputView {
 
     public void printPurchaseQuantity(int purchaseMoney) {
-        System.out.printf("%d개를 구매했습니다.\n", purchaseMoney / 1000);
+        System.out.printf("\n%d개를 구매했습니다.\n", purchaseMoney / 1000);
     }
 
     public void printAllLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            lotto.getNumbers();
+            System.out.println(lotto.getNumbers());
         }
     }
 
     public void printWinningResult() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
     }
 
     public void printDetailResult() {
@@ -39,7 +39,7 @@ public class OutputView {
     }
 
     public void printRateOfReturn(int totalPrizeMoney, int purchaseMoney) {
-        double rateOfReturn = (double) (totalPrizeMoney / purchaseMoney) * 100;
-        System.out.printf("총 수익률은 %.1f%% 입니다.", rateOfReturn);
+        double rateOfReturn = ((double) totalPrizeMoney / purchaseMoney) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }
