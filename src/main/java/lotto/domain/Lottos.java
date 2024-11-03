@@ -8,7 +8,19 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
+        // 방어적 copy
         this.lottos = new ArrayList<>(lottos);
+    }
+
+    public static Lottos create(List<Lotto> lottos) {
+        return new Lottos(lottos);
+    }
+
+    public Lotto getElement(int index) {
+        if(index < 0 || index >= lottos.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return lottos.get(index);
     }
 
     public long getSize() {
