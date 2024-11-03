@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.global.constant.Config.LOTTO_PRICE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,6 @@ public class LottoShop {
     }
 
     private int calculateNumberOfPurchase(int price) {
-        return price / 1000;
+        return price / LOTTO_PRICE;
     }
 }

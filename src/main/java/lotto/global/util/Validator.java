@@ -74,10 +74,6 @@ public class Validator {
         }
     }
 
-    public static void validateLottoWinningSet(UniqueNumber uniqueNumber) {
-        validateDuplicateNumber(uniqueNumber);
-    }
-
     public static void validateRateOfReturn(int investmentMoney) {
         validateDivisionByZero(investmentMoney);
     }

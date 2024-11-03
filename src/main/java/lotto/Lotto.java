@@ -33,12 +33,6 @@ public class Lotto implements UniqueNumber {
         return numbers.contains(number);
     }
 
-    public int calculateNumberOfMatch(List<Integer> numberOfCompare) {
-        return (int) numberOfCompare.stream()
-                .filter(numbers::contains)
-                .count();
-    }
-
     public boolean isNumbersInRange() {
         long sizeOfInRange = numbers.stream()
                 .filter(this::isNumberInRange)

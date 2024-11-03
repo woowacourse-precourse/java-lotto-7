@@ -17,7 +17,7 @@ public class LottoWinningSet implements UniqueNumber {
                 || winningNumber.contains(bonusNumber));
     }
 
-    public int calculateMatchingNumberCount(Lotto lotto) {
+    public int countMatchingNumbers(Lotto lotto) {
         return winningNumber.stream()
                 .filter(lotto::hasNumber)
                 .toList()

@@ -24,31 +24,51 @@ public class GameManager {
 
     public void start() {
         int price = readPrice();
-        LottoShop lottoShop = new LottoShop();
-        LottoJudge lottoJudge = new LottoJudge();
-        RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
-        YieldCalculator yieldCalculator = new YieldCalculator();
-        List<Lotto> lottos = lottoShop.buyLotto(price, randomLottoGenerator);
-        printLottoPurchase(lottos.size());
-        outputView.printLottos(lottos);
+        List<Lotto> lottos = buyLotto(price);
+        printLottoPurchaseSize(lottos.size());
+        printLottoState(lottos);
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
-        Map<Prize, Integer> lottoScore = lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
-        outputView.printWinningStatisticMessage();
+        Map<Prize, Integer> lottoScore = calculateLottoScore(lottos, lottoWinningSet);
         printLottoScore(lottoScore);
-        int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
-        printReturnRate(yieldCalculator.calculateRateOfReturn(price, prizeMoney));
+        printRateOfReturn(lottoScore, price);
     }
 
-    private void printReturnRate(String returnRate) {
+    private void printRateOfReturn(Map<Prize, Integer> lottoScore, int price) {
+        YieldCalculator yieldCalculator = new YieldCalculator();
+        int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
+        printRateOfReturn(yieldCalculator.calculateRateOfReturn(price, prizeMoney));
+    }
+
+    private void printWinningStatisticMessage() {
+        outputView.printWinningStatisticMessage();
+    }
+
+    private Map<Prize, Integer> calculateLottoScore(List<Lotto> lottos, LottoWinningSet lottoWinningSet) {
+        LottoJudge lottoJudge = new LottoJudge();
+        return lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
+    }
+
+    private void printLottoState(List<Lotto> lottos) {
+        outputView.printLottos(lottos);
+    }
+
+    private List<Lotto> buyLotto(int price) {
+        LottoShop lottoShop = new LottoShop();
+        LottoGenerator lottoGenerator = new RandomLottoGenerator();
+        return lottoShop.buyLotto(price, lottoGenerator);
+    }
+
+    private void printRateOfReturn(String returnRate) {
         outputView.printReturnRate(returnRate);
     }
 
     private void printLottoScore(Map<Prize, Integer> lottoScore) {
+        printWinningStatisticMessage();
         String lottoScoreToString = Arrays.stream(Prize.values())
                 .filter(prize -> prize != NO_PRIZE)
                 .map(prize -> prize.formatScoreDetails(lottoScore.get(prize)))
                 .collect(Collectors.joining("\n"));
-        System.out.println(lottoScoreToString);
+        outputView.println(lottoScoreToString);
     }
 
     private int readPrice() {
@@ -72,32 +92,36 @@ public class GameManager {
     }
 
     private List<Integer> readWinningNumber() {
-        printWinningNumberInputMessage();
-        List<String> input = Arrays.asList(inputView.readWinningNumber());
-        try {
-            validateWinningNumber(input);
-        } catch (IllegalArgumentException exception) {
-            outputView.println(exception.getMessage());
-            return readWinningNumber();
+        while (true) {
+            printWinningNumberInputMessage();
+            List<String> input = Arrays.asList(inputView.readWinningNumber());
+
+            try {
+                validateWinningNumber(input);
+                return input.stream()
+                        .map(Integer::parseInt)
+                        .toList();
+            } catch (IllegalArgumentException exception) {
+                outputView.println(exception.getMessage());
+            }
         }
-        return input.stream()
-                .map(Integer::parseInt)
-                .toList();
     }
 
     private int readBonusNumber(List<Integer> winningNumber) {
-        printBonusNumberInputMessage();
-        String input = inputView.readBonusNumber();
-        try {
-            validateBonusNumber(winningNumber, input);
-        } catch (IllegalArgumentException exception) {
-            outputView.println(exception.getMessage());
-            return readBonusNumber(winningNumber);
+        while (true) {
+            printBonusNumberInputMessage();
+            String input = inputView.readBonusNumber();
+
+            try {
+                validateBonusNumber(winningNumber, input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException exception) {
+                outputView.println(exception.getMessage());
+            }
         }
-        return Integer.parseInt(input);
     }
 
-    private void printLottoPurchase(Integer lottoSize) {
+    private void printLottoPurchaseSize(Integer lottoSize) {
         outputView.printLottoPurchase(lottoSize.toString());
     }
 

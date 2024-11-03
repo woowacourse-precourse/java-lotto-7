@@ -15,7 +15,7 @@ class LottoWinningSetTest {
         LottoWinningSet lottoWinningSet = new LottoWinningSet(winningNumber, bonusNumber);
 
         //when
-        int matchingWinningNumber = lottoWinningSet.calculateMatchingNumberCount(lotto);
+        int matchingWinningNumber = lottoWinningSet.countMatchingNumbers(lotto);
 
         //then
         Assertions.assertThat(matchingWinningNumber).isEqualTo(1);

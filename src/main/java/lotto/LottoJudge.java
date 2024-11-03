@@ -19,20 +19,19 @@ public class LottoJudge {
     }
 
     private void evaluateLottoScore(List<Lotto> lottos, LottoWinningSet lottoWinningSet, Map<Prize, Integer> score) {
-        for (Lotto lotto : lottos) {
+        lottos.forEach(lotto -> {
             Prize prize = determinePrizeForLotto(lottoWinningSet, lotto);
             increasePrizeCount(score, prize);
-        }
+        });
     }
 
     private Prize determinePrizeForLotto(LottoWinningSet lottoWinningSet, Lotto lotto) {
-        int matchingNumberCount = lottoWinningSet.calculateMatchingNumberCount(lotto);
+        int matchingNumberCount = lottoWinningSet.countMatchingNumbers(lotto);
         boolean bonusNumberMatch = lottoWinningSet.hasMatchingBonusNumber(lotto);
         return Prize.calculateScore(matchingNumberCount, bonusNumberMatch);
     }
 
     private void increasePrizeCount(Map<Prize, Integer> score, Prize prize) {
-        int newCount = score.get(prize) + 1;
-        score.put(prize, newCount);
+        score.compute(prize, (key, value) -> value + 1);
     }
 }
