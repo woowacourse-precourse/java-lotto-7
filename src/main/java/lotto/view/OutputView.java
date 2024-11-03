@@ -1,8 +1,12 @@
 package lotto.view;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import lotto.model.domain.LottoRank;
+import lotto.model.domain.Pocket;
 
 public class OutputView {
     private OutputView() {
@@ -20,8 +24,15 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void printPurchasedLottoCount(int numberOfLottos) {
-        System.out.println(numberOfLottos + "개를 구매했습니다.");
+    public static void printPurchasedLottoCount(Pocket pocket) {
+        int sizeOfLottos = pocket.getLottos().size();
+        System.out.println(sizeOfLottos + "개를 구매했습니다.");
+        for (int i = 0; i < sizeOfLottos; i++) {
+            List<Integer> numbers = new ArrayList<>(
+                    pocket.getLottos().get(i).getNumbers());
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
     }
 
     public static void printErrorMessage(String errorMessage) {
