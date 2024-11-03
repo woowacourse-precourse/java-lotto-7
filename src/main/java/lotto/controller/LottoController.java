@@ -40,7 +40,7 @@ public class LottoController {
         List<Long> rankCount = counter.getRankCount();
 
         outputView.printStatistics();
-        System.out.println(rankCount);
+        outputView.printRanks(rankCount);
 
     }
 

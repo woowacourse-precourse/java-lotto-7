@@ -1,12 +1,12 @@
 package lotto.util;
 
 public enum Ranks {
-    NO_WIN(0, 0, BonusCondition.NOT_APPLICABLE, 0),
-    FIRST(1, 6, BonusCondition.NOT_APPLICABLE, 2000000000),
-    SECOND(2, 5, BonusCondition.WIN, 30000000),
-    THIRD(3, 5, BonusCondition.LOSE, 1500000),
+    FIFTH(5, 3, BonusCondition.NOT_APPLICABLE, 5000),
     FOURTH(4, 4, BonusCondition.NOT_APPLICABLE, 50000),
-    FIFTH(5, 3, BonusCondition.NOT_APPLICABLE, 5000);
+    THIRD(3, 5, BonusCondition.LOSE, 1500000),
+    SECOND(2, 5, BonusCondition.WIN, 30000000),
+    FIRST(1, 6, BonusCondition.NOT_APPLICABLE, 2000000000),
+    NO_WIN(0, 0, BonusCondition.NOT_APPLICABLE, 0);
 
     private final int number;
     private final int matchCount;
