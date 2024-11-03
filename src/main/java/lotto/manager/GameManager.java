@@ -3,8 +3,8 @@ package lotto.manager;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.Result;
-import lotto.io.Reader;
-import lotto.io.Writer;
+import lotto.util.io.Reader;
+import lotto.util.io.Writer;
 import lotto.util.function.LottoNumberSupplier;
 
 import java.util.List;
