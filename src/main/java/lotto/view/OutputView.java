@@ -35,11 +35,11 @@ public class OutputView {
         DecimalFormat df = new DecimalFormat("###,###");
 
         StringBuilder result = new StringBuilder("\n당첨 통계\n---\n");
-        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FIFTH.numberMatched(), df.format(Rank.FIFTH.prize()), counts.get(Rank.FIFTH)));
-        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FOURTH.numberMatched(), df.format(Rank.FOURTH.prize()), counts.get(Rank.FOURTH)));
-        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.THIRD.numberMatched(), df.format(Rank.THIRD.prize()), counts.get(Rank.THIRD)));
-        result.append(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", Rank.SECOND.numberMatched(), df.format(Rank.SECOND.prize()), counts.get(Rank.SECOND)));
-        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FIRST.numberMatched(), df.format(Rank.FIRST.prize()), counts.get(Rank.FIRST)));
+        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FIFTH.matchedCount(), df.format(Rank.FIFTH.prize()), counts.get(Rank.FIFTH)));
+        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FOURTH.matchedCount(), df.format(Rank.FOURTH.prize()), counts.get(Rank.FOURTH)));
+        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.THIRD.matchedCount(), df.format(Rank.THIRD.prize()), counts.get(Rank.THIRD)));
+        result.append(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", Rank.SECOND.matchedCount(), df.format(Rank.SECOND.prize()), counts.get(Rank.SECOND)));
+        result.append(String.format("%d개 일치 (%s원) - %d개\n", Rank.FIRST.matchedCount(), df.format(Rank.FIRST.prize()), counts.get(Rank.FIRST)));
 
         result.append(String.format("총 수익률은 %s%%입니다.\n", returnRate.setScale(1, RoundingMode.HALF_EVEN)));
         System.out.println(result);

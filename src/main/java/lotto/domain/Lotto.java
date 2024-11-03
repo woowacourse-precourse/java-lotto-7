@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static lotto.exception.ExceptionCode.*;
+import static lotto.exception.ExceptionCode.DUPLICATED_NUMBER;
+import static lotto.exception.ExceptionCode.INCORRECT_NUMBER_COUNTS;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,21 +25,11 @@ public class Lotto {
         }
     }
 
-    // todo: 함수 분리하기
     public Rank countRank(Lotto lotto, Integer bonus) {
         long count = this.numbers.stream().filter(lotto.numbers::contains).count();
-        if (count == 6) {
-            return Rank.FIRST;
-        } else if (count == 5) {
-            if (this.numbers.contains(bonus)) {
-                return Rank.SECOND;
-            }
-            return Rank.THIRD;
-        } else if (count == 4) {
-            return Rank.FOURTH;
-        } else if (count == 3) {
-            return Rank.FIFTH;
-        }
-        return Rank.BLANK;
+        boolean containsBonus = this.numbers.contains(bonus);
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matches(count, containsBonus))
+                .findFirst().orElse(Rank.BLANK);
     }
 }
