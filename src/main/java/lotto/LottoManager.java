@@ -13,6 +13,7 @@ import java.util.Map;
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE_FACTOR = 100;
+    private static final String PURCHASE_AMOUNT_NOT_ENOUGH_ERROR_MESSAGE = "구입 금액은 최소 1000원 이상입니다.";
     private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
@@ -32,9 +33,17 @@ public class LottoManager {
 
     private static int getPurchaseAmount() {
         try {
-            return parseInt(inputPurchaseAmount());
+            int purchaseAmount = parseInt(inputPurchaseAmount());
+            validatePurchaseAmountEnough(purchaseAmount);
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             return getPurchaseAmount();
+        }
+    }
+
+    private static void validatePurchaseAmountEnough(int purchaseAmount) {
+        if (purchaseAmount < LOTTO_PRICE) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_ENOUGH_ERROR_MESSAGE);
         }
     }
 
