@@ -7,7 +7,7 @@ import static lotto.constant.LottoConstant.MAX_PURCHASE_AMOUNT;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lottos {
+public class LottoPurchase {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
@@ -15,12 +15,12 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public static Lottos of(List<Lotto> lottos) {
+    public static LottoPurchase purchase(List<Lotto> lottos) {
         validate(lottos);
 
-        Lottos newLottos = new Lottos();
-        lottos.forEach(newLottos::add);
-        return newLottos;
+        LottoPurchase newLottoPurchase = new LottoPurchase();
+        lottos.forEach(newLottoPurchase::add);
+        return newLottoPurchase;
     }
 
     private static void validate(List<Lotto> lottos) {
