@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,36 +57,36 @@ public class GameController {
     }
 
     private Budget readValidBudget() {
-        String budgetInput = inputView.readBudget();
-        try {
+        return retryUntilValid(() -> {
+            String budgetInput = inputView.readBudget();
             InputValidator.validateBudgetInput(budgetInput);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return readValidBudget();
-        }
-        return new Budget(new BigInteger(budgetInput.strip()));
+            return new Budget(new BigInteger(budgetInput.strip()));
+        });
     }
 
     private List<Integer> readValidWinningNumbers() {
-        String numbersInput = inputView.readWinningNumbers();
-        try {
+        return retryUntilValid(() -> {
+            String numbersInput = inputView.readWinningNumbers();
             InputValidator.validateWinningNumbers(numbersInput);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return readValidWinningNumbers();
-        }
-        return Arrays.stream(numbersInput.split(SPLITTER)).map(String::strip).map(Integer::parseInt).toList();
+            return Arrays.stream(numbersInput.split(SPLITTER)).map(String::strip).map(Integer::parseInt).toList();
+        });
     }
 
     private Integer readValidBonusNumber(List<Integer> winningNumbers) {
-        String bonusInput = inputView.readBonusNumber();
-        try {
+        return retryUntilValid(() -> {
+            String bonusInput = inputView.readBonusNumber();
             InputValidator.validateBonusNumber(bonusInput, winningNumbers);
+            return Integer.parseInt(bonusInput);
+        });
+    }
+
+    private <T> T retryUntilValid(Supplier<T> supplier) {
+        try {
+            return supplier.get();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return readValidBonusNumber(winningNumbers);
+            return retryUntilValid(supplier);
         }
-        return Integer.parseInt(bonusInput);
     }
 
 }
