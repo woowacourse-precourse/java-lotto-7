@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.LottoTicket;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import lotto.domain.Lotto;
@@ -12,14 +13,13 @@ public class LottoMachineTest {
 
     @Test
     void 로또_티켓_발급(){
-        int count = 6;
-        LottoMachine machine = new LottoMachine(count);
+        int price = 10000;
+        LottoTicket ticket = new LottoTicket(price);
 
-        // when
+        LottoMachine machine = new LottoMachine(ticket);
         List<Lotto> lottos = machine.getLottos();
 
-        // then
-        assertThat(lottos).hasSize(count);
+        assertThat(lottos).hasSize(ticket.getCount());
     }
 
 
