@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class WinningResult {
+
     private final Map<Rank, Integer> winningResult;
 
     private WinningResult() {
@@ -31,7 +32,7 @@ public class WinningResult {
 
     public String getWinningResultString() {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.ordinal() <= Rank.FIFTH.ordinal())
+                .filter(rank -> rank.getWinningMoney() > Rank.MISS.getWinningMoney())
                 .map(rank -> rank.getMessage() + winningResult.get(rank) + "개")
                 .collect(Collectors.joining("\n"));
     }
