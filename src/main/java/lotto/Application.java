@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -54,5 +55,12 @@ public class Application {
         for (String splitWinningNumber : splitWinningNumbers)
             winningNumbers.add(Integer.parseInt(splitWinningNumber));
         int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+        Map<LottoRank, Integer> rankCounts = lottoMachine.getRankCounts(lottos, winningNumbers, bonusNumber);
+        List<String> winningStatistics = lottoMachine.getWinningStatistics(rankCounts);
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (String statistic : winningStatistics)
+            System.out.println(statistic);
     }
 }

@@ -5,7 +5,7 @@ public enum LottoRank {
     SECOND(30000000, 5),
     THIRD(1500000, 5),
     FOURTH(50000, 4),
-    FIFTH(5000, 3)
+    FIFTH(5000, 3),
     ;
 
     private final int winnings;
@@ -25,12 +25,16 @@ public enum LottoRank {
     }
 
     public static LottoRank getRank(int matchCount, boolean isMatchBonus){
-        if (matchCount == 5 && !isMatchBonus)
-            return THIRD;
-        for (LottoRank lottoRank : LottoRank.values()){
-            if (lottoRank.getMatchCount() == matchCount)
-                return lottoRank;
-        }
+        if (matchCount == LottoRank.FIRST.getMatchCount())
+            return LottoRank.FIRST;
+        if (matchCount == LottoRank.SECOND.getMatchCount() && isMatchBonus)
+            return LottoRank.SECOND;
+        if (matchCount == LottoRank.THIRD.getMatchCount())
+            return LottoRank.THIRD;
+        if (matchCount == LottoRank.FOURTH.getMatchCount())
+            return LottoRank.FOURTH;
+        if (matchCount == LottoRank.FIFTH.getMatchCount())
+            return LottoRank.FIFTH;
         return null;
     }
 }
