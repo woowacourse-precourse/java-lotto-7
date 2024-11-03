@@ -25,7 +25,7 @@ public class RevenueCalculatorTest {
     void 최종_수익률_소수점_둘째자리까지_계산() {
         PurchaseAmount purchaseAmount = new PurchaseAmount("8000");
         WinningRank.match(3, false);
-        
+
         assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isCloseTo(62.50, within(0.01));
     }
 }
