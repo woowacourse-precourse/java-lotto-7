@@ -14,14 +14,14 @@ public class Reader {
     }
 
     public static List<Integer> readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
         String input = Console.readLine();
 
         return Parser.parseInputToNumbers(input);
     }
 
     public static int readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.printf("%n보너스 번호를 입력해 주세요.%n");
         String input = Console.readLine();
 
         return Parser.parseInputToNumber(input);
