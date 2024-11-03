@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.LottoMatchDTO;
-import lotto.dto.WinningNumber;
+import lotto.dto.WinningNumberDTO;
 import lotto.model.Lottos;
 import lotto.view.PurchaseAmountView;
 import lotto.view.PurchaseLottosView;
@@ -12,8 +12,8 @@ public final class LottoController {
     public void run() {
         int purchaseQuantity = PurchaseAmountView.purchaseAmount();
         Lottos purchaseLottos = PurchaseLottosView.purchaseLottos(purchaseQuantity);
-        WinningNumber winningNumber = WinningBonusNumberView.winningBonusNumber();
-        LottoMatchDTO lottoMatchDTO = new LottoMatchDTO(purchaseLottos, winningNumber);
+        WinningNumberDTO winningNumberDTO = WinningBonusNumberView.winningBonusNumber();
+        LottoMatchDTO lottoMatchDTO = new LottoMatchDTO(purchaseLottos, winningNumberDTO);
         WinningStatisticView.winningStatistic(lottoMatchDTO);
     }
 }

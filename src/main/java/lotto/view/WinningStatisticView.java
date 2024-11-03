@@ -19,8 +19,8 @@ public final class WinningStatisticView {
     private static void getWinningStatistic(LottoMatchDTO lottoMatchDTO) {
         WinningStatistic.createStatistics();
         for (Lotto purchaseLotto : lottoMatchDTO.purchaseLottos().lottos) {
-            int matchCount = lottoMatchDTO.winningNumber().winningLotto().matchLottoCount(purchaseLotto);
-            boolean isBonusMatched = purchaseLotto.matchBonus(lottoMatchDTO.winningNumber().bonusNumber());
+            int matchCount = lottoMatchDTO.winningNumberDTO().winningLotto().matchLottoCount(purchaseLotto);
+            boolean isBonusMatched = purchaseLotto.matchBonus(lottoMatchDTO.winningNumberDTO().bonusNumber());
             NumberMatchType numberMatchType = determineMatchType(matchCount, isBonusMatched);
             WinningStatistic.incrementMatchCount(numberMatchType);
         }

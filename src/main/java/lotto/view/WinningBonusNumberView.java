@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.dto.WinningNumber;
+import lotto.dto.WinningNumberDTO;
 import lotto.io.Input;
 import lotto.io.Output;
 import lotto.message.IOMessage;
@@ -8,10 +8,10 @@ import lotto.model.Lotto;
 import lotto.validation.WinningBonusNumberValidation;
 
 public final class WinningBonusNumberView {
-    public static WinningNumber winningBonusNumber() {
+    public static WinningNumberDTO winningBonusNumber() {
         Lotto winningLotto = winningNumberInput();
         int bonusNumber = bonusNumberInput(winningLotto);
-        return new WinningNumber(winningLotto, bonusNumber);
+        return new WinningNumberDTO(winningLotto, bonusNumber);
     }
 
     private static Lotto winningNumberInput() {
