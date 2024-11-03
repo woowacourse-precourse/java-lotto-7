@@ -1,6 +1,8 @@
 package lotto.model.lotto;
 
 import lotto.error.LottoErrorMessage;
+import lotto.model.Winning;
+import lotto.model.lotto_result.DrawNumbers;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,13 @@ public class Lotto {
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
+    }
+
+    public Winning checkWinner(DrawNumbers drawNumbers) {
+        int matchCount = drawNumbers.countMatch(numbers);
+        int countBonusNumber = drawNumbers.countBonusNumber(numbers);
+
+        return Winning.getPlace(matchCount, countBonusNumber);
     }
     // TODO: 추가 기능 구현
 }
