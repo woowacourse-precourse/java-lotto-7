@@ -1,14 +1,11 @@
 package lotto.util;
 
+import static lotto.util.LottoConstants.*;
+
 import java.util.HashSet;
 import java.util.List;
 
 public class LottoValidator {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-
     public static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < 0) {
             throw new IllegalArgumentException("음수는 허용되지 않습니다.");
