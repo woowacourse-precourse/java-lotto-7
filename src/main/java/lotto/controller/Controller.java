@@ -1,12 +1,10 @@
 package lotto.controller;
 
-import static lotto.view.constant.Message.BONUS_START;
 import static lotto.view.constant.Message.STATISTICS;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
-import lotto.domain.Parser;
 import lotto.domain.ScoreBoard;
 import lotto.domain.Winning;
 import lotto.dto.LottoResultDto;
@@ -16,7 +14,6 @@ import lotto.view.OutputView;
 public class Controller {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final Parser parser = new Parser();
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public void start() {
@@ -40,20 +37,6 @@ public class Controller {
     private Winning createWinning() {
         Winning winning = inputView.inputWinningNumbers();
         return inputView.inputBonusNumber(winning);
-    }
-
-    private int getIntValue() {
-        try {
-            return parser.parseToInt(inputView.inputString());
-        } catch (IllegalArgumentException e) {
-            outputView.printResult(e.getMessage());
-            return getIntValue();
-        }
-    }
-
-    private int getBonusNumber() {
-        outputView.printMessage(BONUS_START);
-        return getIntValue();
     }
 
 }
