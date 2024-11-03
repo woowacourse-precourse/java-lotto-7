@@ -64,7 +64,6 @@ public class LottoController {
     public Lotto gainWinningInput() {
         Lotto answer = null;
         boolean isValid = false;
-
         while (!isValid) {
             try {
                 OutputView.printWinning();
