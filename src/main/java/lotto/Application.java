@@ -15,8 +15,8 @@ public class Application {
 
         PaymentController paymentController = new PaymentController(inputView, outputView);
 
-        LottoController lottoController = new LottoController(outputView);
-        lottoController.showTicket(paymentController.getPayment());
+        LottoController lottoController = new LottoController(outputView, paymentController.getPayment());
+        lottoController.showTicket();
 
         WinningController winningController = new WinningController(inputView, outputView);
         BonusController bonusController = new BonusController(inputView, outputView,
