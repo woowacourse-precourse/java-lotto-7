@@ -15,6 +15,10 @@ public class Application {
         // 당첨 번호와 보너스 번호 입력받기
         Set<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
+
+        // 당첨 통계 계산
+        Map<String, Integer> statistics = calculateStatistics(purchasedLottos, winningNumbers, bonusNumber);
+        printStatistics(statistics, purchaseAmount);
     }
 
     private static int getPurchaseAmount() {
@@ -124,4 +128,77 @@ public class Application {
         return bonusNumber;
     }
 
+    private static Map<String, Integer> calculateStatistics(List<Lotto> lottos, Set<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> stats = new HashMap<>();
+        stats.put("3개 일치 (5,000원)", 0);
+        stats.put("4개 일치 (50,000원)", 0);
+        stats.put("5개 일치 (1,500,000원)", 0);
+        stats.put("5개 + 보너스 일치 (30,000,000원)", 0);
+        stats.put("6개 일치 (2,000,000,000원)", 0);
+
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            if (matchCount == 6) {
+                stats.put("6개 일치 (2,000,000,000원)", stats.get("6개 일치 (2,000,000,000원)") + 1);
+            } else if (matchCount == 5 && bonusMatch) {
+                stats.put("5개 + 보너스 일치 (30,000,000원)", stats.get("5개 + 보너스 일치 (30,000,000원)") + 1);
+            } else if (matchCount == 5) {
+                stats.put("5개 일치 (1,500,000원)", stats.get("5개 일치 (1,500,000원)") + 1);
+            } else if (matchCount == 4) {
+                stats.put("4개 일치 (50,000원)", stats.get("4개 일치 (50,000원)") + 1);
+            } else if (matchCount == 3) {
+                stats.put("3개 일치 (5,000원)", stats.get("3개 일치 (5,000원)") + 1);
+            }
+        }
+        return stats;
+    }
+
+    private static int getMatchCount(List<Integer> lottoNumbers, Set<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static void printStatistics(Map<String, Integer> statistics, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int totalPrize = 0;
+
+        for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
+            String rank = entry.getKey();
+            int count = entry.getValue();
+            System.out.println(rank + " - " + count + "개");
+
+            // 각 등수에 맞는 상금 계산
+            int prize = getPrizeAmount(rank);
+            totalPrize += prize * count;
+        }
+
+        // 수익률 계산 및 출력
+        double yield = (double) totalPrize / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
+    }
+
+    private static int getPrizeAmount(String rank) {
+        switch (rank) {
+            case "3개 일치 (5,000원)":
+                return 5000;
+            case "4개 일치 (50,000원)":
+                return 50000;
+            case "5개 일치 (1,500,000원)":
+                return 1500000;
+            case "5개 + 보너스 일치 (30,000,000원)":
+                return 30000000;
+            case "6개 일치 (2,000,000,000원)":
+                return 2000000000;
+            default:
+                return 0;
+        }
+    }
 }
