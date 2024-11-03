@@ -12,7 +12,8 @@ public class WinningNumbersTest {
 
     @Test
     void 당첨번호가_중복되면_예외_발생() {
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 5)));
+        assertThrows(IllegalArgumentException.class,
+                () -> ValidationService.validateWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 5)));
     }
 
     @Test
@@ -21,6 +22,7 @@ public class WinningNumbersTest {
         String invalidBonusNumber = "46"; // 범위 초과
 
         // 표현식 람다로 수정
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateBonusNumber(invalidBonusNumber, winningNumbers));
+        assertThrows(IllegalArgumentException.class,
+                () -> ValidationService.validateBonusNumber(invalidBonusNumber, winningNumbers));
     }
 }

@@ -15,44 +15,52 @@ public class ValidationServiceTest {
     @Test
     void 구입금액이_0이면_예외_발생() {
         String input = "0";
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input), ErrorMessages.ZERO_PURCHASE_AMOUNT.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input),
+                ErrorMessages.ZERO_PURCHASE_AMOUNT.getMessage());
     }
 
     @Test
     void 구입금액이_음수면_예외_발생() {
         String input = "-1000";
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input), ErrorMessages.ZERO_PURCHASE_AMOUNT.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input),
+                ErrorMessages.ZERO_PURCHASE_AMOUNT.getMessage());
     }
 
     @Test
     void 구입금액이_1000원_미만이면_예외_발생() {
         String input = "500";
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input), ErrorMessages.MINIMUM_PURCHASE_AMOUNT.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input),
+                ErrorMessages.MINIMUM_PURCHASE_AMOUNT.getMessage());
     }
 
     @Test
     void 구입금액이_1000원_단위가_아니면_예외_발생() {
         String input = "1500";
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input), ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validatePurchaseAmount(input),
+                ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
     }
 
     @Test
     void 당첨번호가_6개가_아니면_예외_발생() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateWinningNumbers(numbers), ErrorMessages.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateWinningNumbers(numbers),
+                ErrorMessages.INVALID_LOTTO_NUMBER_COUNT.getMessage());
     }
 
     @Test
     void 당첨번호가_범위를_벗어나면_예외_발생() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 46);
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateWinningNumbers(numbers), ErrorMessages.INVALID_NUMBER_RANGE.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateWinningNumbers(numbers),
+                ErrorMessages.INVALID_NUMBER_RANGE.getMessage());
     }
 
     @Test
     void 보너스번호가_당첨번호와_중복되면_예외_발생() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         String bonusNumber = "3";
-        assertThrows(IllegalArgumentException.class, () -> ValidationService.validateBonusNumber(bonusNumber, winningNumbers), ErrorMessages.BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
+        assertThrows(IllegalArgumentException.class,
+                () -> ValidationService.validateBonusNumber(bonusNumber, winningNumbers),
+                ErrorMessages.BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
     }
 
     @Test
@@ -69,6 +77,4 @@ public class ValidationServiceTest {
         int result = ValidationService.validateBonusNumber(validBonusNumber, winningNumbers);
         assertEquals(7, result);
     }
-
-
 }

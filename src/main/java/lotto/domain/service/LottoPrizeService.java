@@ -11,5 +11,4 @@ public class LottoPrizeService {
         boolean matchBonus = winningNumbers.isBonusMatch(lotto);
         return PrizeCategory.getCategory(matchCount, matchBonus);
     }
-
 }

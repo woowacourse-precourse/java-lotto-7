@@ -27,5 +27,4 @@ public class LottoGenerationServiceTest {
 
         assertNotEquals(lotto1.getNumbers(), lotto2.getNumbers());
     }
-
 }

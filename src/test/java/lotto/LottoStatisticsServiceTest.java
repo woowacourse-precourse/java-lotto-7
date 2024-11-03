@@ -52,8 +52,7 @@ public class LottoStatisticsServiceTest {
     void 다양한_당첨_등급이_포함된_통계_계산_확인() {
         LottoStatisticsService statisticsService = new LottoStatisticsService();
         WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
-        List<Lotto> tickets = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
+        List<Lotto> tickets = Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 2등
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)), // 3등
                 new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9))  // 4등
@@ -66,6 +65,4 @@ public class LottoStatisticsServiceTest {
         assertEquals(1, prizeCounts[PrizeCategory.THIRD.ordinal()]);
         assertEquals(1, prizeCounts[PrizeCategory.FOURTH.ordinal()]);
     }
-
-
 }

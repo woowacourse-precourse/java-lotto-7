@@ -9,7 +9,6 @@ public class WinningNumbers {
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        // ValidationService에서 이미 검증이 끝난 numbers와 bonusNumber를 그대로 할당
         this.numbers = numbers.stream().sorted().collect(Collectors.toList());
         this.bonusNumber = bonusNumber;
     }

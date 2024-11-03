@@ -7,7 +7,7 @@ import lotto.domain.model.PrizeCategory;
 import java.util.List;
 
 
- //사용자 출력을 담당하는 클래스
+//사용자 출력을 담당하는 클래스
 public class LottoOutputView {
 
     public void displayErrorMessage(String message) {
@@ -24,14 +24,14 @@ public class LottoOutputView {
         System.out.println("---");
 
         List<PrizeCategory> sortedCategories = prizeCategories.stream()
-                .sorted(Comparator.comparingInt(PrizeCategory::getMatchCount))
-                .toList();
+                .sorted(Comparator.comparingInt(PrizeCategory::getMatchCount)).toList();
 
         for (PrizeCategory category : sortedCategories) {
             int count = prizeCounts[category.ordinal()];
-            String message = (category == PrizeCategory.SECOND)
-                    ? OutputMessages.BONUS_MATCH_STATISTICS.format(category.getMatchCount(), formatCurrency(category.getPrize()), count)
-                    : OutputMessages.MATCH_STATISTICS.format(category.getMatchCount(), formatCurrency(category.getPrize()), count);
+            String message = (category == PrizeCategory.SECOND) ? OutputMessages.BONUS_MATCH_STATISTICS.format(
+                    category.getMatchCount(), formatCurrency(category.getPrize()), count)
+                    : OutputMessages.MATCH_STATISTICS.format(category.getMatchCount(),
+                            formatCurrency(category.getPrize()), count);
             System.out.println(message);
         }
     }

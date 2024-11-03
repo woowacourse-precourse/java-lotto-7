@@ -20,8 +20,7 @@ public class LottoInputView {
     public WinningNumbers getWinningNumbers() {
         System.out.println(OutputMessages.REQUEST_WINNING_NUMBERS.getMessage());
 
-        List<Integer> numbers = Arrays.stream(Console.readLine().split(","))
-                .map(Integer::parseInt)
+        List<Integer> numbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt)
                 .collect(Collectors.toList());
         ValidationService.validateWinningNumbers(numbers); // 당첨 번호 검증
 
