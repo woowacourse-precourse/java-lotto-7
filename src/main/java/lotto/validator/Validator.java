@@ -1,5 +1,5 @@
 package lotto.validator;
 
-public abstract class Validator {
-    public abstract void validate() throws IllegalArgumentException;
+public interface Validator {
+    void validate() throws IllegalArgumentException;
 }

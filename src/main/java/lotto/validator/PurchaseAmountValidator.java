@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class PurchaseAmountValidator extends Validator {
+public class PurchaseAmountValidator implements Validator {
     private static final String AMOUNT_NEGATIVE = "[ERROR] 구매 금액은 음수가 될 수 없습니다.";
     private static final String AMOUNT_NOT_MULTIPLE_OF_1000 = "[ERROR] 구매 금액이 1,000원 단위가 아닙니다.";
     private static final String AMOUNT_OVER_LIMIT = "[ERROR] 구매 금액이 너무 큽니다.";
