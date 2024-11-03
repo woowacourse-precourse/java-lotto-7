@@ -31,13 +31,17 @@ public class Application {
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
+
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = inputHandler.winningNumbersInput();
+        Lotto winningLotto = inputHandler.winningNumbersInput();
+
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = inputHandler.bonusNumberInput(winningNumbers);
+        int bonusNumber = inputHandler.bonusNumberInput(winningLotto.getNumbers());
+
         System.out.println("당첨 통계");
         System.out.println("---");
-        Map<Rank,Integer> result = lottoResult.getFinalResult(lottoTickets,winningNumbers,bonusNumber);
+
+        Map<Rank,Integer> result = lottoResult.getFinalResult(lottoTickets,winningLotto.getNumbers(),bonusNumber);
         for(Rank rank : Rank.values()){
             if (rank==Rank.NONE){
                 continue;

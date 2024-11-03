@@ -29,29 +29,21 @@ public class InputHandler {
         }
     }
 
-    public List<Integer> winningNumbersInput() {
+    public Lotto winningNumbersInput() {
         while (true) {
             try {
                 List<Integer> winningNumbers = new ArrayList<>();
                 List<String> numbersInString = Arrays.asList(Console.readLine().split(","));
                 for (String number : numbersInString) {
-                    winningNumbers.add(Integer.parseInt(number));
+                    winningNumbers.add(Integer.parseInt(number.trim()));
                 }
-                winningNumbersInputValidator(winningNumbers);
-                return winningNumbers;
+                Lotto lotto = new Lotto(winningNumbers);
+                return lotto;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 정수가 아닙니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    public void winningNumbersInputValidator(List<Integer> winningNumbers) {
-        List<Integer> check = new ArrayList<>();
-        for (int number : winningNumbers) {
-            if (check.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호에 중복된 숫자가 존재합니다.");
-            }
-            check.add(number);
         }
     }
 

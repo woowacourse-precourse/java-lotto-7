@@ -15,6 +15,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        for (int number : numbers){
+            if (number<1 || number>45){
+                throw new IllegalArgumentException("[ERROR] 로또번호는 1~45사이의 정수여야 합니다.");
+            }
+        }
         List<Integer> check = new ArrayList<>();
         for (int number : numbers) {
             if (check.contains(number)) {
