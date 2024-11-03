@@ -1,5 +1,6 @@
 package lotto.domains;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,5 +21,13 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void sortNumbers() {
         Collections.sort(numbers);
+    }
+
+    public String getNumbersString() {
+        return Arrays.toString(numbers.toArray());
+    }
+
+    public boolean existsNumber(int target) {
+        return Collections.binarySearch(numbers, target) >= 0;
     }
 }
