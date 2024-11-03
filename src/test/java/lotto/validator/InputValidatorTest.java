@@ -32,4 +32,18 @@ class InputValidatorTest {
                     .hasMessage(ErrorMessage.INVALID_INTEGER_INPUT.getMessage());
         }
     }
+
+    @Nested
+    class 당첨_번호_입력_검증 {
+
+        @ParameterizedTest
+        @NullAndEmptySource
+        @ValueSource(strings = {" "})
+        void 당첨_번호_입력은_비거나_공백으로_이루어진_문자열일_수_없다(String input) {
+            // when & then
+            assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.BLANK_INPUT_NOT_ALLOWED.getMessage());
+        }
+    }
 }

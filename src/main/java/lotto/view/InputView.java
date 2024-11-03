@@ -13,4 +13,10 @@ public class InputView {
         InputValidator.validateInteger(input);
         return input;
     }
+
+    public static String inputWinningNums() {
+        String input = Console.readLine().trim();
+        InputValidator.validateWinningNumbers(input);
+        return input;
+    }
 }
