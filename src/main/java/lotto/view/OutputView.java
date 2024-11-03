@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OutputView {
     public void printUserLotto(UserNumbers userNumbers) {
-        System.out.println("\n" + userNumbers.getPurchaseCount() + "개 구매했습니다.");
+        System.out.println("\n" + userNumbers.getPurchaseCount() + "개를 구매했습니다.");
         for (UserNumber userNumber : userNumbers.getUserNumbers()) {
             System.out.println(userNumber.getUserNumber());
         }
