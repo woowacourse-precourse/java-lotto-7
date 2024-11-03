@@ -51,22 +51,25 @@ public class lottoController {
         return winningLotto;
     }
 
-    public static void checkNoDuplicate(List<String> number){
-        Set<String> set = new HashSet<>(number);
-        if (set.size() != number.size()){
+    public static void checkWinningLotto(List<String> numbers){
+        Set<String> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()){
             throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
+        }
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(Error_Messages.LOTTO_COUNT_ERROR);
         }
     }
 
     public static WinningLotto winningLotto() {
-        List<String> number = readWinningNumbers();
+        List<String> numbers = readWinningNumbers();
         try {
-            checkNoDuplicate(number);
+            checkWinningLotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningLotto();
         }
-        return makeWinningLotto(number);
+        return makeWinningLotto(numbers);
     }
 
     private static void checkBonusNumber(WinningLotto winningLotto, int number){
