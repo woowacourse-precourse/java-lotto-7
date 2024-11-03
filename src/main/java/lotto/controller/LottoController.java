@@ -39,7 +39,7 @@ public class LottoController {
     }
 
     private Lottos purchaseLotto(Money money) {
-        return LottoMachine.createLottoMachine().issueLottos(money.getPurchaseQuantity());
+        return LottoMachine.create().issueLottos(money.getPurchaseQuantity());
     }
 
     private WinningLotto getWinningLotto() {

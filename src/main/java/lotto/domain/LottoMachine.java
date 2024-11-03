@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class LottoMachine {
     private LottoMachine() {}
 
-    public static LottoMachine createLottoMachine() {
+    public static LottoMachine create() {
         return new LottoMachine();
     }
 

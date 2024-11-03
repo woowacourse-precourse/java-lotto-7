@@ -1,9 +1,9 @@
 package lotto.exception;
 
-public class NumberFormatException extends IllegalArgumentException {
+public class InputNumberFormatException extends IllegalArgumentException {
     private static final String ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
 
-    public NumberFormatException() {
+    public InputNumberFormatException() {
         super(ERROR_MESSAGE);
     }
 }

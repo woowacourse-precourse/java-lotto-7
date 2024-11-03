@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.exception.LottoInputFormatException;
-import lotto.exception.NumberFormatException;
+import lotto.exception.InputNumberFormatException;
 import lotto.util.Parser;
 
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class InputView extends InputReader {
 
     private void validateInputNumberFormat(String input) {
         if (!input.matches("^[0-9]+$")) {
-            throw new NumberFormatException();
+            throw new InputNumberFormatException();
         }
     }
 
