@@ -9,8 +9,11 @@ import static lotto.constant.LottoWinnings.THIRD_PLACE;
 import static lotto.constant.PrintFormattedText.LOTTO_EARNING_RATES;
 import static lotto.constant.PrintFormattedText.LOTT_WINNING_RESULT;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.constant.LottoWinnings;
 
@@ -39,12 +42,11 @@ public class LottoResult {
         lottoSameCount.put(FOURTH_PLACE, INIT_SAME_COUNT);
         lottoSameCount.put(FIFTH_PLACE, INIT_SAME_COUNT);
 
-        LOTTO_WINNINGS.put(FIRST_PLACE, FIRST_PLACE_WINNINGS);
-        LOTTO_WINNINGS.put(SECOND_PLACE, SECOND_PLACE_WINNINGS);
-        LOTTO_WINNINGS.put(THIRD_PLACE, THIRD_PLACE_WINNINGS);
-        LOTTO_WINNINGS.put(FOURTH_PLACE, FOURTH_PLACE_WINNINGS);
         LOTTO_WINNINGS.put(FIFTH_PLACE, FIFTH_PLACE_WINNINGS);
-
+        LOTTO_WINNINGS.put(FOURTH_PLACE, FOURTH_PLACE_WINNINGS);
+        LOTTO_WINNINGS.put(THIRD_PLACE, THIRD_PLACE_WINNINGS);
+        LOTTO_WINNINGS.put(SECOND_PLACE, SECOND_PLACE_WINNINGS);
+        LOTTO_WINNINGS.put(FIRST_PLACE, FIRST_PLACE_WINNINGS);
     }
 
     public void calculateResult(int sameWinningCount, int sameBonusCount) {
@@ -90,8 +92,10 @@ public class LottoResult {
 
     public String printTotalWinningCount() {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry<LottoWinnings, Integer> sameCount : lottoSameCount.entrySet()) {
-            sb.append(LOTT_WINNING_RESULT.format(sameCount.getKey().getLottoWinnings(), sameCount.getValue()));
+        List<LottoWinnings> lottoWinnings = new ArrayList<>(lottoSameCount.keySet());
+        lottoWinnings.sort(Comparator.comparing(LottoWinnings::getLottoWinnings));
+        for (LottoWinnings lottoWinning : lottoWinnings) {
+            sb.append(LOTT_WINNING_RESULT.format(lottoWinning.getLottoWinnings(), lottoSameCount.get(lottoWinning)));
             sb.append(NEW_LINE.getText());
         }
         return sb.toString();
