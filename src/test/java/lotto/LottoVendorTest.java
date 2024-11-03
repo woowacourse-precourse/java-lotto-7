@@ -1,6 +1,5 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,11 +30,9 @@ public class LottoVendorTest {
          LottoVendor vendor = new LottoVendor();
 
          //when & then
-         assertThatThrownBy(vendor.issue(amount))
+         assertThatThrownBy(() -> vendor.issue(amount))
                  .isInstanceOf(IllegalArgumentException.class)
                  .hasMessage("금액은 천원단위여야 합니다.");
-
-      
       }
      
 }
