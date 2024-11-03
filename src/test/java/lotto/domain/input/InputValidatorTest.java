@@ -65,6 +65,18 @@ class InputValidatorTest {
     }
 
     @Test
+    @DisplayName("당첨 번호가 1-45 범위 안에 있는지 검사")
+    void 입력번호_범위밖인경우() {
+        // given
+        List<Integer> numbers = List.of(0, 2, 3, 4, 5, 6);
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.isValidRange(numbers);
+        });
+    }
+
+    @Test
     @DisplayName("입력된 당첨 번호가 6개인지 검사")
     void 입력번호_6개_아닐때() {
         // given
@@ -85,6 +97,18 @@ class InputValidatorTest {
         // when & then
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.isDuplicate(numbers);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 1-45 범위 안에 있는지 검사")
+    void 보너스번호_범위밖인경우() {
+        // given
+        int bonusNumber = 46;
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.isValidRange(bonusNumber);
         });
     }
 
