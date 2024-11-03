@@ -3,26 +3,40 @@ package lotto.model.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import lotto.Exceptions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PurchaseAmountTest {
-    @ParameterizedTest
-    @CsvSource(value = {"1000:1", "5000:5", "11000:11", "25000:25", "303000:303", "1474134000:1474134",
-            "1000000000:1000000"}, delimiter = ':')
-    void 금액을_1000으로_나누어_개수를_구한다(int testNumber, int expected) {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(testNumber);
+    @Test
+    @DisplayName("[success] 구매 금액을 저장한다.")
+    void savePurchaseAmount() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
 
-        assertThat(purchaseAmount.calculateLottoAmount()).isEqualTo(expected);
+        assertThat(purchaseAmount.getPurchaseAmount()).isEqualTo(10000);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 10, 1002, 2524, 100001, 100020})
-    void 금액이_1000으로_나누어떨어지지_않으면_예외(int testNumber) {
+    @DisplayName("[success] 금액을 1000으로 나누어 개수를 구한다.")
+    @CsvSource(value = {"1000:1", "5000:5", "11000:11", "25000:25", "303000:303", "1474134000:1474134",
+            "1000000000:1000000"}, delimiter = ':')
+    void calculateLottoAmountByDivision(int testNumber, int expected) {
         PurchaseAmount purchaseAmount = new PurchaseAmount(testNumber);
+
+        int lottoAmount = purchaseAmount.calculateLottoAmount();
+
+        assertThat(lottoAmount).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @DisplayName("[fail] 금액이 1000으로 나누어떨어지지 않으면 예외가 발생한다.")
+    @ValueSource(ints = {1, 10, 1002, 2524, 100001, 100020})
+    void fail_IfPurchaseAmountNotDivisableByLottoPrice(int testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> purchaseAmount.calculateLottoAmount())
-                .withMessage("[ERROR] 1000 단위의 금액을 입력해주세요.");
+                        () -> new PurchaseAmount(testNumber))
+                .withMessage(Exceptions.NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
     }
 }

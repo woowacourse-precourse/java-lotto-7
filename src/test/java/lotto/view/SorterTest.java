@@ -7,27 +7,32 @@ import java.util.List;
 import lotto.model.lotto.RandomNumberPicker;
 import lotto.model.winningResult.WinningRank;
 import lotto.view.output.Sorter;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class SorterTest {
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4})
-    void 등수를_내림차순으로_정렬한다(int winningRanksIndex) {
-        List<WinningRank> winningRanks = Sorter.sortDescending(new ArrayList<>(List.of(WinningRank.values())));
+    @Test
+    @DisplayName("[success] 6개의 등수를 등수(1, 2, .., 6)를 기준으로 내림차순 정렬한다.")
+    void sortDescendingWinningRankList() {
+        List<WinningRank> winningRanks = Sorter.sortDescending(
+                new ArrayList<>(List.of(WinningRank.values())));
 
-        assertThat(winningRanks.get(winningRanksIndex).getRank())
-                .isGreaterThan(winningRanks.get(winningRanksIndex + 1).getRank());
+        for (int i = 0; i < 5; i++) {
+            assertThat(winningRanks.get(i).getRank())
+                    .isGreaterThan(winningRanks.get(i + 1).getRank());
+        }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4})
-    void 숫자를_오름차순으로_정렬한다(int lottoNumbersIndex) {
-        List<Integer> randomNumbers = RandomNumberPicker.pickAscendingNumbers();
+    @Test
+    @DisplayName("[success] 숫자를 오름차순 정렬한다.")
+    void sortAscendingNumbers() {
+        List<Integer> randomNumbers = RandomNumberPicker.pickNumbers();
 
         List<Integer> sortedRandomNumbers = Sorter.sortAscending(randomNumbers);
 
-        assertThat(sortedRandomNumbers.get(lottoNumbersIndex))
-                .isLessThan(sortedRandomNumbers.get(lottoNumbersIndex + 1));
+        for (int i = 0; i < 5; i++) {
+            assertThat(sortedRandomNumbers.get(i))
+                    .isLessThan(sortedRandomNumbers.get(i + 1));
+        }
     }
 }

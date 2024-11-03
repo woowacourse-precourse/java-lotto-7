@@ -12,7 +12,7 @@ public enum WinningRank {
     THIRD(3, 5, false, 1500000),
     FOURTH(4, 4, false, 50000),
     FIFTH(5, 3, false, 5000),
-    FAIL(-1, -1, false, 0)
+    FAIL(6, -1, false, 0)
     ;
 
     private final int rank;

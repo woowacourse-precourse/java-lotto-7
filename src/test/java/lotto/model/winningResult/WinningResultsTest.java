@@ -1,24 +1,42 @@
 package lotto.model.winningResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningResultsTest {
-    private final WinningResults winningResults = new WinningResults();
+    private final WinningResults defaultWinningResults = new WinningResults();
+
     @Test
-    void 등수별로_6개의_WinningResult를_초기화한다() {
-        assertThat(winningResults.getWinningResults().size())
+    @DisplayName("[success] 등수 별로 6개의 WinningResult 객체를 리스트에 담아 초기화한다.")
+    void initializeWinningResultListByWinningRank() {
+        assertThat(defaultWinningResults.getWinningResults().size())
                 .isEqualTo(6);
     }
 
     @Test
-    void 등수에_해당하는_당첨로또_개수를_1_증가시킨다() {
-        winningResults.add(WinningRank.FIRST);
-        winningResults.add(WinningRank.FIRST);
-        winningResults.add(WinningRank.FIRST);
+    @DisplayName("[success] 특정 등수에 해당하는 당첨 로또 개수를 1 증가시킨다.")
+    void increaseLottoAmountOfWinningResultByWinningRank() {
+        defaultWinningResults.add(WinningRank.FIRST);
+        defaultWinningResults.add(WinningRank.FIRST);
+        defaultWinningResults.add(WinningRank.FIRST);
 
-        assertThat(winningResults.findLottoAmountByRank(WinningRank.FIRST))
+        assertThat(defaultWinningResults.findLottoAmountByRank(WinningRank.FIRST))
                 .isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("[fail] getter로 받은 당첨결과 리스트를 수정하는 경우 예외가 발생한다.")
+    void fail_IfModifyWinningResultList() {
+        WinningResults winningResults = new WinningResults();
+        List<WinningResult> winningResultList = winningResults.getWinningResults();
+
+        assertThatThrownBy(() -> winningResultList.add(new WinningResult(WinningRank.FAIL)))
+                .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() -> winningResultList.remove(0))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }

@@ -7,6 +7,7 @@ public enum Exceptions {
     NOT_POSITIVE_INTEGER("양의 정수를 입력해주세요.", Type.INTEGER),
     OUT_OF_INTEGER_RANGE("10자리 이하의 금액을 입력해주세요.", Type.INTEGER),
 
+    NOT_DIVISIBLE_BY_LOTTO_PRICE("1000 단위의 금액을 입력해주세요.", Type.LOTTERY),
     WRONG_LOTTERY_NUMBER_SIZE("로또 번호는 6개여야 합니다.", Type.LOTTERY),
     DUPLICATED_LOTTERY_NUMBER("중복되지 않은 숫자를 입력해주세요.", Type.LOTTERY),
     OUT_OF_LOTTERY_NUMBER_RANGE("1 이상 45 이하의 정수를 입력해주세요.", Type.LOTTERY),
