@@ -19,13 +19,13 @@ public class Lotto {
         }
     }
 
-    public LottoResult getLottoResult(int size, boolean hasBonus) {
-        if (size == LottoResult.SECOND.getCount() & hasBonus){
+    public LottoResult getResult(int sameNumberCount, boolean hasBonus) {
+        if (sameNumberCount == LottoResult.SECOND.getCount() & hasBonus){
             return LottoResult.SECOND;
         }
-        for (LottoResult resultValue: LottoResult.values()) {
-            if (resultValue.getCount().equals(size)){
-                return resultValue;
+        for (LottoResult lottoResultValue : LottoResult.values()) {
+            if (lottoResultValue.getCount().equals(sameNumberCount)){
+                return lottoResultValue;
             }
         }
         return LottoResult.NONE;

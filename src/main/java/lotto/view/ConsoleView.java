@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 
 public class ConsoleView {
@@ -35,5 +36,11 @@ public class ConsoleView {
             System.out.println(lotto.getLottoNumbers().stream().sorted().toList());
         }
         System.out.println();
+    }
+
+    public void printStatistics(List<LottoResult> lottoResults) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
     }
 }
