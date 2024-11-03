@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import lotto.core.constants.Error;
+import lotto.core.constants.Error.LottoError;
 import lotto.core.dto.LottoDto;
 
 public class Lotto {
@@ -26,13 +27,13 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LottoRule.LOTTO_NUMBERS_LENGTH) {
-            throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBERS_LENGTH);
+            throw new IllegalArgumentException(LottoError.INVALID_NUMBERS_LENGTH);
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != LottoRule.LOTTO_NUMBERS_LENGTH) {
-            throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBER_DUPLICATED);
+            throw new IllegalArgumentException(LottoError.INVALID_NUMBER_DUPLICATED);
         }
     }
 

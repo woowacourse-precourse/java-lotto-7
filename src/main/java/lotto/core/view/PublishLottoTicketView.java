@@ -2,7 +2,7 @@ package lotto.core.view;
 
 import java.util.List;
 import lotto.commons.util.Collections;
-import lotto.core.constants.Error;
+import lotto.core.constants.Error.LottoTicketError;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoTicketDto;
 
@@ -36,7 +36,7 @@ public class PublishLottoTicketView implements View<LottoTicketDto> {
 
     private void validateContent(LottoTicketDto content) {
         if (content == null || content.lottos() == null) {
-            throw new IllegalStateException(Error.LottoTicket.FAILED_PUBLISHED);
+            throw new IllegalStateException(LottoTicketError.FAILED_PUBLISHED);
         }
     }
 }

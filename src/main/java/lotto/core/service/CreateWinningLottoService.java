@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import lotto.commons.numbers.Integers;
-import lotto.core.constants.Error;
+import lotto.core.constants.Error.WinningLottoError;
 import lotto.core.dto.LottoDto;
 import lotto.core.model.Lotto;
 
@@ -22,7 +22,7 @@ public class CreateWinningLottoService {
 
     private void validateValue(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException(Error.WinningLotto.REQUIRED_NUMBER);
+            throw new IllegalArgumentException(WinningLottoError.REQUIRED_NUMBER);
         }
     }
 
@@ -30,7 +30,7 @@ public class CreateWinningLottoService {
         List<Integer> numbers = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(value, ",");
         while (tokenizer.hasMoreTokens()) {
-            numbers.add(Integers.parseIntOrThrow(tokenizer.nextToken(), Error.WinningLotto.INVALID_NUMBER_FORMAT));
+            numbers.add(Integers.parseIntOrThrow(tokenizer.nextToken(), WinningLottoError.INVALID_NUMBER_FORMAT));
         }
         return numbers;
     }
