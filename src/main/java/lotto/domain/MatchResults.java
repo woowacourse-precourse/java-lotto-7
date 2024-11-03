@@ -3,8 +3,14 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.constants.LottoRankPrize;
+import lotto.dto.FinalResultsDto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ProfitDto;
+import lotto.dto.RankResultsDto;
+
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
 
 public class MatchResults {
     private final List<MatchResult> matchResults;
@@ -21,7 +27,15 @@ public class MatchResults {
         return new MatchResults(matchResults);
     }
 
-    public HashMap<Integer, Integer> getRankResults() {
+    public FinalResultsDto buildFinalResultsDto(){
+
+        RankResultsDto rankResultsDto = buildRankResultsDto();
+        ProfitDto profitDto = buildProfitDto(rankResultsDto.rankResults());
+
+        return new FinalResultsDto(rankResultsDto, profitDto);
+    }
+
+    private RankResultsDto buildRankResultsDto() {
         HashMap<Integer, Integer> rankResults = new HashMap<>();
 
         for (MatchResult matchResult : matchResults) {
@@ -32,8 +46,26 @@ public class MatchResults {
 
         rankResults.remove(-1);
 
-        return rankResults;
+        return new RankResultsDto(rankResults);
     }
+
+    private ProfitDto buildProfitDto(HashMap<Integer, Integer> rankResults) {
+        long totalProfit = 0;
+        for (LottoRankPrize rank: LottoRankPrize.values()) {
+            long rankCount = rankResults.getOrDefault(rank, 0);
+            totalProfit += rankCount * rank.getPrize();
+        }
+
+        double profitRate = (double) (totalProfit / matchResults.size() * LOTTO_PRICE.getValue());
+
+        return new ProfitDto(totalProfit, profitRate);
+
+    }
+
+
+
+
+
 
 
 }
