@@ -19,6 +19,16 @@ public class LottoTicket {
         return new LottoTicket(generateLottos(lottoNumberGenerator, quantity));
     }
 
+    public List<MatchResult> gatherMatchResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return ticket.stream()
+                .map(lotto -> lotto.compareWithWinningNumbers(winningNumber, bonusNumber))
+                .toList();
+    }
+
+    public List<Lotto> getTicket() {
+        return ticket;
+    }
+
     private static List<Lotto> generateLottos(LottoNumberGenerator lottoNumberGenerator, int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoQuantity; i++) {
@@ -30,16 +40,6 @@ public class LottoTicket {
     private static Lotto createLotto(LottoNumberGenerator lottoNumberGenerator) {
         List<Integer> numbers = lottoNumberGenerator.generate();
         return new Lotto(numbers);
-    }
-
-    public List<MatchResult> gatherMatchResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
-        return ticket.stream()
-                .map(lotto -> lotto.compareWithWinningNumbers(winningNumber, bonusNumber))
-                .toList();
-    }
-
-    public List<Lotto> getTicket() {
-        return ticket;
     }
 
     private void validateNonEmptyTicket(List<Lotto> lottos) {

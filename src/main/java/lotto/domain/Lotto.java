@@ -13,16 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private int countMatchingNumber(WinningNumber winningNumber) {
-        return (int) numbers.stream()
-                .filter(winningNumber::contains)
-                .count();
-    }
-
-    private boolean containsBonusNumber(BonusNumber bonusNumber) {
-        return numbers.stream().anyMatch(bonusNumber::isEqualTo);
-    }
-
     public MatchResult compareWithWinningNumbers(WinningNumber winningNumber, BonusNumber bonusNumber) {
         int matchCount = countMatchingNumber(winningNumber);
         boolean containsBonusNumber = containsBonusNumber(bonusNumber);
@@ -31,5 +21,15 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private int countMatchingNumber(WinningNumber winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
+
+    private boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return numbers.stream().anyMatch(bonusNumber::isEqualTo);
     }
 }
