@@ -23,7 +23,7 @@ public class Lotto {
     }
     private boolean containsOutOfRangeNumber(List<Integer> numbers){
         for (int number : numbers){
-            if (number < 0 || number > 45){
+            if (number < 1 || number > 45){
                 return true;
             }
         }
