@@ -37,9 +37,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
 }

@@ -11,7 +11,7 @@ public class WinningResult {
     private final Map<Prize, Integer> winning;
 
     public WinningResult(WinningLotto winningNumbers, List<Lotto> lottos) {
-        this.winning = Collections.unmodifiableMap(calculate(winningNumbers, lottos));
+        this.winning = calculate(winningNumbers, lottos);
     }
 
     private Map<Prize, Integer> calculate(WinningLotto winningNumbers, List<Lotto> lottos) {
@@ -32,10 +32,8 @@ public class WinningResult {
         return winning;
     }
 
-    public List<String> getWinning() {
-        return winning.entrySet().stream()
-                .map(entry -> String.format("%s - %d개", entry.getKey(), entry.getValue()))
-                .toList();
+    public Map<Prize, Integer> getWinning() {
+        return Collections.unmodifiableMap(winning);
     }
 
     public double getRateOfReturn(PurchaseAmount purchaseAmount) {

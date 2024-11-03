@@ -8,6 +8,7 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
 import lotto.utils.RetryUtil;
 import lotto.view.InputView;
+import lotto.view.ObjectConvertor;
 import lotto.view.OutputView;
 
 public class LottoMachineController {
@@ -24,7 +25,7 @@ public class LottoMachineController {
         PurchaseAmount purchaseAmount = RetryUtil.retry(this::readPurchaseAmount);
 
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount.getPurchaseAmount());
-        outputView.printBuyingLottos(lottoMachine.getBuyingLottos());
+        outputView.printBuyingLottos(ObjectConvertor.convertBuyingLottos(lottoMachine.getBuyingLottos()));
 
         Lotto lotto = RetryUtil.retry(this::readLotto);
         Bonus bonus = RetryUtil.retry(() -> readBonus(lotto));
@@ -32,7 +33,7 @@ public class LottoMachineController {
         WinningLotto winningLotto = new WinningLotto(lotto, bonus);
 
         WinningResult winningCount = lottoMachine.calculateWinningCount(winningLotto);
-        outputView.printWinningCount(winningCount.getWinning());
+        outputView.printWinningCount(ObjectConvertor.convertWinningCount(winningCount));
         outputView.printRateOfReturn(winningCount.getRateOfReturn(purchaseAmount));
     }
 

@@ -15,10 +15,8 @@ public class LottoMachine {
                 .toList();
     }
 
-    public List<String> getBuyingLottos() {
-        return buyingLottos.stream()
-                .map(Lotto::toString)
-                .toList();
+    public List<Lotto> getBuyingLottos() {
+        return buyingLottos;
     }
 
     public WinningResult calculateWinningCount(WinningLotto winningNumbers) {

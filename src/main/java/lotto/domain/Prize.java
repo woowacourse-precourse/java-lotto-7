@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Optional;
 
 public enum Prize {
@@ -34,16 +32,11 @@ public enum Prize {
         return money;
     }
 
-    @Override
-    public String toString() {
-        if (isMatchBonus) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s원)", equalLottoCount, formatNumberWithCommas());
-        }
-        return String.format("%d개 일치 (%s원)", equalLottoCount, formatNumberWithCommas());
+    public int getEqualLottoCount() {
+        return equalLottoCount;
     }
 
-    private String formatNumberWithCommas() {
-        NumberFormat numberFormat = NumberFormat.getInstance(Locale.US);
-        return numberFormat.format(money);
+    public boolean isMatchBonus() {
+        return isMatchBonus;
     }
 }
