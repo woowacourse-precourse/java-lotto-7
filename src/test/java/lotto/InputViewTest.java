@@ -2,8 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.View.InputView;
 import lotto.message.ErrorMessage;
+import lotto.view.InputView;
 import org.junit.jupiter.api.Test;
 
 public class InputViewTest {

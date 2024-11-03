@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.view;
 
 import lotto.message.NotifyMessage;
 import lotto.message.ResultMessage;

@@ -1,12 +1,13 @@
-package lotto;
+package lotto.controller;
 
-import lotto.View.InputView;
-import lotto.View.OutputView;
+import lotto.info.LottoInfo;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     public void start() {
         int money = InputView.getMoneyToBuy();
-        int amount = money / 1000;
+        int amount = money / LottoInfo.PRICE.getNumber();
         OutputView.printBlankLine();
         OutputView.notifyAmount(amount);
     }
