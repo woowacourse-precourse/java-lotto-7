@@ -1,6 +1,11 @@
 package lotto.io;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Parser {
+
+    private static final String NUMBER_DELIMITER = ",";
 
     public static int parseInputToMoney(String moneyInput) {
         int money;
@@ -12,5 +17,19 @@ public class Parser {
         }
 
         return money;
+    }
+
+    public static List<Integer> parseInputToNumbers(String winningNumberInput) {
+        List<Integer> numbers;
+
+        try {
+            numbers = Arrays.stream(winningNumberInput.split(NUMBER_DELIMITER))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[Error] 로또 번호 입력은 정수와 ','로 이루어져야 합니다.");
+        }
+
+        return numbers;
     }
 }
