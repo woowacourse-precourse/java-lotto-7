@@ -36,9 +36,8 @@ public class LottoService {
     public List<Lotto> generateLottos(int size) {
         List<Lotto> lottos = IntStream.range(0, size)
                 .mapToObj(i -> {
-                    // 가변 리스트로 복사하여 생성
                     List<Integer> numbers = new ArrayList<>(RandomUtil.getSixRandomNumbers(1, 45));
-                    Collections.sort(numbers); // 정렬
+                    Collections.sort(numbers);
                     return new Lotto(numbers);
                 })
                 .collect(Collectors.toList());
