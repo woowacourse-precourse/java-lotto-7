@@ -10,12 +10,13 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> winningNumbers) {
         validateLength(winningNumbers);
         validateDuplicates(winningNumbers);
+        validateOverFourtySix(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
-    private void validateDuplicates(List<Integer> winningNumbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
-        if (uniqueNumbers.size() != winningNumbers.size()) {
+    private void validateDuplicates(List<Integer> parsedNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(parsedNumbers);
+        if (uniqueNumbers.size() != parsedNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수는 입력하실 수 없습니다.");
         }
     }
@@ -23,6 +24,12 @@ public class WinningNumbers {
     private static void validateLength(List<Integer> parsedNumbers) {
         if (parsedNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateOverFourtySix(List<Integer> parsedNumbers) {
+        if (parsedNumbers.stream().anyMatch(number -> number >= 46)) {
+            throw new IllegalArgumentException("[ERROR] 최대 45까지만 입력 가능합니다.");
         }
     }
 
