@@ -25,7 +25,7 @@ public class MatchCounter {
     }
 
     private int checkMatchedAllOrBonus(int matchedCount, boolean matchingBonusResult) {
-        if (!matchingBonusResult) {
+        if (matchedCount == COUNTER_CHANGE_POINT && !matchingBonusResult) {
             return matchedCount;
         }
         return ++matchedCount;

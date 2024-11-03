@@ -12,7 +12,7 @@ class MatchCounterTest {
         // give
         MatchCounter matchCounter = new MatchCounter();
         int matchedNumber = 3;
-        boolean matchedBonusResult = true;
+        boolean matchedBonusResult = false;
         int expectedCounterResult = 1;
 
         // when
@@ -60,7 +60,7 @@ class MatchCounterTest {
         // give
         MatchCounter matchCounter = new MatchCounter();
         int matchedNumber = 6;
-        boolean matchedBonusResult = true;
+        boolean matchedBonusResult = false;
         int expectedCounterResult = 1;
 
         // when
