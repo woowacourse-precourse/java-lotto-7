@@ -14,7 +14,7 @@ public class LottoPurchase {
                 validateAmount(amount);
                 return amount;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -26,7 +26,7 @@ public class LottoPurchase {
         return Integer.parseInt(Console.readLine().trim());
     }
 
-    private void validateAmount(int amount) {
+    protected  void validateAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
         }

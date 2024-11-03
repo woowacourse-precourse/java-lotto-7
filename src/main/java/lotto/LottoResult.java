@@ -20,7 +20,7 @@ public class LottoResult {
         }
     }
 
-    private Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();

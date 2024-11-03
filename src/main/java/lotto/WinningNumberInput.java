@@ -8,6 +8,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumberInput {
+
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -43,7 +48,7 @@ public class WinningNumberInput {
         return Console.readLine().trim();
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
+    public List<Integer> parseWinningNumbers(String input) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
