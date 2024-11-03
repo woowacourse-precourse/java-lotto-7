@@ -25,6 +25,6 @@ public class InputView {
         String input = readLine();
         int bonusNumber = StringParser.parseInt(input);
         Validator.checkLottoNumber(bonusNumber);
-        return 0;
+        return bonusNumber;
     }
 }
