@@ -15,20 +15,17 @@ public class Application {
 
     private static int getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-
         final String input = Console.readLine();
-
         try {
-            // 숫자가 아닐경우 예외처리
             int price = isNotNum(input);
 
-            // 1000원 단위가 아닐 경우 예외처리
             if (price % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
             }
 
             return price;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getPrice();
         }
     }
