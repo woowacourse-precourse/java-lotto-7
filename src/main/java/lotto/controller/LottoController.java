@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.dto.WinningResultDto;
+import lotto.view.output.ResultView;
+import lotto.domain.WinningLotto;
 import lotto.wrapper.Amount;
 import lotto.wrapper.BonusNumber;
 import lotto.domain.Lotto;
@@ -28,6 +31,10 @@ public class LottoController {
         Lotto winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         InputView.closeStream();
+
+        WinningLotto winningLotto = WinningLotto.of(winningNumber, bonusNumber);
+        WinningResultDto winningResult = winningService.calculateWinningResult(lottos, winningLotto);
+        ResultView.printResult(winningResult);
     }
 
     private Amount getLottoAmount() {
