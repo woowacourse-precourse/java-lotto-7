@@ -9,11 +9,15 @@ public class WinningLotto {
     private final BonusNumber bonusNumber;
 
     public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        validationWinningLottoNumbersDuplication(winningLotto, bonusNumber);
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validationWinningLottoNumbersDuplication(Lotto winningLotto, BonusNumber bonusNumber) {
         if(winningLotto.getNumbers().contains(bonusNumber.getBonusNumber())){
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WITH_WINNING_ERROR_MESSAGE);
         }
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningLotto() {
