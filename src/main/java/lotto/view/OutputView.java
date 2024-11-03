@@ -59,7 +59,7 @@ public class OutputView {
                 formatResult(FOURTH.getMatchCount(), FOURTH.getPrice(), rankCountMap.getOrDefault(FOURTH, DEFAULT_VALUE)),
                 formatResult(THIRD.getMatchCount(), THIRD.getPrice(), rankCountMap.getOrDefault(LottoRankType.THIRD, DEFAULT_VALUE)),
                 formatBonusResult(SECOND.getMatchCount(), SECOND.getPrice(), rankCountMap.getOrDefault(SECOND, DEFAULT_VALUE)),
-                formatResult(FOURTH.getMatchCount(), FIRST.getPrice(), rankCountMap.getOrDefault(FIRST, DEFAULT_VALUE))
+                formatResult(FIRST.getMatchCount(), FIRST.getPrice(), rankCountMap.getOrDefault(FIRST, DEFAULT_VALUE))
         ).forEach(OutputView::printMessage);
     }
 
