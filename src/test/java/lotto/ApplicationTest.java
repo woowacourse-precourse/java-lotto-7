@@ -7,8 +7,7 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -81,6 +80,18 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> LottoValidator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 46), 7))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        int[] matchCounts = new int[LottoRank.values().length];
+        matchCounts[LottoRank.FIRST.ordinal()] = 1;
+        matchCounts[LottoRank.FIFTH.ordinal()] = 2;
+
+        int purchaseAmount = 5000;
+        double profitRate = Application.calculateProfitRate(matchCounts, purchaseAmount);
+
+        assertThat(profitRate).isCloseTo(40005000.00, within(5000.0));
     }
 
     @Override

@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +32,9 @@ public class Application {
 
             int[] matchCounts = LottoResultCalculator.calculateResults(userLottos, winningNumbers, bonusNumber);
             printResults(matchCounts);
+
+            double profitRate = calculateProfitRate(matchCounts, purchaseAmount);
+            System.out.printf("총 수익률은 %.2f%%입니다.%n", profitRate);
 
         } catch (NumberFormatException e) {
             System.out.println(ErrorMessages.INVALID_INPUT.getMessage());
@@ -62,5 +68,14 @@ public class Application {
 
     private static void printLottoNumbers(List<Lotto> lottos) {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public static double calculateProfitRate(int[] matchCounts, int purchaseAmount) {
+        long totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalPrize += (long) matchCounts[rank.ordinal()] * rank.getPrize();
+        }
+        BigDecimal profitRate = BigDecimal.valueOf((double) totalPrize / purchaseAmount * 100);
+        return profitRate.setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }
