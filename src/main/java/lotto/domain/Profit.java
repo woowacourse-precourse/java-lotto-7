@@ -7,7 +7,7 @@ public class Profit {
         this.profit = profit;
     }
 
-    public static Profit from(Money money, WinningResult winningResult) {
+    public static Profit of(Money money, WinningResult winningResult) {
         int purchaseMoney = money.getPurchaseQuantity() * 1000;
         int winningMoney = winningResult.getWinningMoney();
 

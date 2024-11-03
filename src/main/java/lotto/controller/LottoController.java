@@ -27,7 +27,7 @@ public class LottoController {
         BonusNumber bonusNumber = repeatUntilValid(() -> getBonusNumber(winningLotto));
 
         WinningResult winningResult = getWinningResult(purchasedLottos, winningLotto, bonusNumber);
-        Profit profit = Profit.from(money, winningResult);
+        Profit profit = Profit.of(money, winningResult);
         outputView.dispalyWinningStatistics(winningResult, profit);
     }
 
