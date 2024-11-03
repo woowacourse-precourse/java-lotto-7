@@ -8,9 +8,13 @@ public class BonusNumber {
 
     private final long number;
 
-    public BonusNumber(long number) {
-        validateNumberInRange(number);
+    private BonusNumber(long number) {
         this.number = number;
+    }
+
+    public static BonusNumber from(long number) {
+        validateNumberInRange(number);
+        return new BonusNumber(number);
     }
 
     private static void validateNumberInRange(long number) {
@@ -26,8 +30,4 @@ public class BonusNumber {
     public long getNumber() {
         return number;
     }
-
-
-
-
 }

@@ -21,8 +21,8 @@ public class LottoController {
 
     private Lottos initLotts() {
         try {
-            Money money = new Money(InputView.inputNumber(InputMessage.PURCHASE_AMOUNT));
-            return new Lottos(money.getLottoQuantity());
+            Money money = Money.wons(InputView.inputNumber(InputMessage.PURCHASE_AMOUNT));
+            return Lottos.autoGenerate(money.getLottoQuantity());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return initLotts();
@@ -37,7 +37,7 @@ public class LottoController {
         try {
             Lotto winnerLotto = inputLotto();
             BonusNumber bonusNumber = inputBonus();
-            return new WinningNumbers(winnerLotto, bonusNumber);
+            return WinningNumbers.of(winnerLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return inputWinningNumbers();
@@ -47,7 +47,7 @@ public class LottoController {
     private Lotto inputLotto() {
         try {
             List<Integer> mainWinningNumbers = InputView.inputWinningLotto(InputMessage.WINNING_NUMBERS);
-            return new Lotto(mainWinningNumbers);
+            return Lotto.from(mainWinningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return inputLotto();
@@ -57,7 +57,7 @@ public class LottoController {
     private BonusNumber inputBonus() {
         try {
             long winningBonusNumberInput = InputView.inputNumber(InputMessage.BONUS_NUMBER);
-            return new BonusNumber(winningBonusNumberInput);
+            return BonusNumber.from(winningBonusNumberInput);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return inputBonus();

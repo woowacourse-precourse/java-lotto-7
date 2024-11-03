@@ -4,23 +4,24 @@ import java.util.List;
 import lotto.global.message.ErrorMessage;
 
 public class WinningNumbers {
-
     private final Lotto mainNumbers;
-    private  BonusNumber bonusNumber;
+    private final BonusNumber bonusNumber;
 
-
-    public WinningNumbers(Lotto winnerLotto, BonusNumber bonusNumber) {
-        validate(winnerLotto, bonusNumber);
-        this.mainNumbers = winnerLotto;
+    private WinningNumbers(Lotto mainNumbers, BonusNumber bonusNumber) {
+        this.mainNumbers = mainNumbers;
         this.bonusNumber = bonusNumber;
     }
 
+    public static WinningNumbers of(Lotto mainNumbers, BonusNumber bonusNumber) {
+        validate(mainNumbers, bonusNumber);
+        return new WinningNumbers(mainNumbers, bonusNumber);
+    }
 
-    private void validate(Lotto mainNumbers, BonusNumber bonusNumber) {
+    private static void validate(Lotto mainNumbers, BonusNumber bonusNumber) {
         validateBonusNumberDuplicate(mainNumbers, bonusNumber);
     }
 
-    private void validateBonusNumberDuplicate(Lotto mainNumbers, BonusNumber bonusNumber) {
+    private static void validateBonusNumberDuplicate(Lotto mainNumbers, BonusNumber bonusNumber) {
         if (mainNumbers.contains(bonusNumber.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER);
         }
@@ -46,6 +47,4 @@ public class WinningNumbers {
     public boolean matchBonus(Lotto lotto) {
         return lotto.contains(bonusNumber.getNumber());
     }
-
-
 }

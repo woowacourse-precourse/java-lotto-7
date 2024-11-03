@@ -6,33 +6,25 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
-    private List<Lotto> lottos;
-    private static final int MIN_LOTTO_NUMBER=1;
-    private static final int  MAX_LOTTO_NUMBER=45;
-    private static final int LOTTO_SIZE=6;
+    private final List<Lotto> lottos;
 
+    private Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
 
-    public Lottos(long count){
-    lottos = new ArrayList<>();
-    generateRandomNumber(count);
-}
-
-    private void generateRandomNumber(long count) {
+    public static Lottos autoGenerate(long count) {
+        List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                    MIN_LOTTO_NUMBER,
-                    MAX_LOTTO_NUMBER,
-                    LOTTO_SIZE);
-            lottos.add(new Lotto(numbers));
+            generatedLottos.add(Lotto.auto());
         }
+        return new Lottos(generatedLottos);
     }
 
     public int getSize() {
         return lottos.size();
     }
 
-    public  List<Lotto> getLottos() {
+    public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
-
 }
