@@ -4,6 +4,7 @@ import static lotto.constants.LottoConstants.LOTTO_MAX_NUMBER;
 import static lotto.constants.LottoConstants.LOTTO_MIN_NUMBER;
 import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,8 +16,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateNumbers(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        this.numbers = mutableNumbers;
     }
 
     private void validateNumbers(List<Integer> numbers) {
