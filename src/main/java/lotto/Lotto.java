@@ -22,8 +22,12 @@ public class Lotto {
         }
     }
 
-    private List<Integer> getNumbers() {
+    private List<Integer> makeRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LottoInfo.MIN_NUMBER.getNumber(), LottoInfo.MAX_NUMBER.getNumber(),
                 LottoInfo.COUNT.getNumber());
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
