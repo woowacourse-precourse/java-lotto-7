@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.errors.PurchaseAmountErrors;
 import lotto.model.Lotto;
 import lotto.model.LottoChecker;
 import lotto.model.LottoInput;
@@ -19,7 +20,7 @@ public class Application {
         printAllLottosNumbers(allLottos);
 
         List<Integer> winningNumbers = lottoInput.inputWinningNumbers();
-        Integer bonusNumber = lottoInput.inputBonusNumber();
+        Integer bonusNumber = lottoInput.inputBonusNumber(winningNumbers);
 
         lottoChecker.lottoCheckingProcess(allLottos, winningNumbers, bonusNumber, lottoResult);
         lottoResult.finalizeLottoResultsProcess(allLottos.size());
