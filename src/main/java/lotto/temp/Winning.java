@@ -1,12 +1,15 @@
 package lotto.temp;
 
+import lotto.model.Lotto;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class Winning {
-    public List<Integer> createWinningNumbers(String rawWinningNumbers) {
+    public Lotto createWinningNumbers(String rawWinningNumbers) {
         List<String> winningNumbers = splitWinningNumbers(rawWinningNumbers);
-        return convertWinningNumbers(winningNumbers);
+        List<Integer> numbers = convertWinningNumbers(winningNumbers);
+        return Lotto.createWinningLotto(numbers);
     }
 
     private List<String> splitWinningNumbers(String rawWinningNumbers) {
