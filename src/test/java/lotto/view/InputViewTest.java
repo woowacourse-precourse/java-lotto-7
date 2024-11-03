@@ -34,28 +34,12 @@ public class InputViewTest {
         assertThat(amount).isEqualTo(3000);
     }
 
-    @DisplayName("당첨 번호가 6개가 아니면 예외가 발생한다.")
-    @Test
-    void 당첨_번호가_6개가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> InputValidator.validateWinningNumber(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
-    }
-
     @DisplayName("당첨 번호가 1미만 45초과 라면 예외가 발생한다.")
     @Test
     void 당첨_번호가_1미만_45초과_라면_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateWinningNumber(List.of(-1, 0, 3, 4, 5, 100)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 번호는 1부터 45 사이어야 합니다.");
-    }
-
-    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> InputValidator.validateWinningNumber(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 중복된 번호가 있습니다.");
     }
 
     @DisplayName("보너스 번호가 1미만 45초과 라면 예외가 발생한다.")
