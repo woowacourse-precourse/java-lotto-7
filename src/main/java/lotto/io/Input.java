@@ -87,6 +87,7 @@ public class Input {
     private void validateBonusNumber(String input) throws IllegalArgumentException {
         validateInputNumeric(input);
         validateBonusNumberInRange(input);
+        validateBonusNumberDuplicate(input);
     }
 
     private void validateInputNumeric(String price) {
