@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
+import java.util.stream.Collectors;
 import java.util.List;
 import lotto.validation.LottoValidation;
 
@@ -18,8 +18,9 @@ public class Lotto {
     }
 
     private List<Integer> numberSort(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public String lottoValue() {

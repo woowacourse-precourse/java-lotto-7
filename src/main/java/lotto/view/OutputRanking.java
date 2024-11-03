@@ -6,10 +6,10 @@ import java.text.DecimalFormat;
 
 public class OutputRanking {
 
-    private static final String MESSAGE_STATISTICS = "당첨 통계";
+    private static final String MESSAGE_STATISTICS = "\n당첨 통계";
     private static final String LINES = "---";
-    private static final String MESSAGE_RANK = "%d개 일치 (%,d원) = %d개";
-    private static final String MESSAGE_RANK_SECOND = "%d개 일치, 보너스 볼 일치 (%,d원) = %d개";
+    private static final String MESSAGE_RANK = "%d개 일치 (%,d원) - %d개";
+    private static final String MESSAGE_RANK_SECOND = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
 
     public static void rankingOutput(RankService ranking) {
         System.out.println(MESSAGE_STATISTICS);

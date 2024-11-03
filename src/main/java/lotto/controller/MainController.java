@@ -9,10 +9,10 @@ public class MainController {
     public void run() {
         int amount = runPurchaseAmount();
         List<Lotto> lottos = runSetLottos(amount);
-        int tickets = runChangeTickets(amount);
         List<Integer> winnings = runWinningNumbers();
         int bonus = runBonusNumber(winnings);
         RankService ranking = runRanking(lottos, winnings, bonus);
+        runRate(ranking, amount);
     }
 
     private int runPurchaseAmount() {
@@ -25,12 +25,6 @@ public class MainController {
         LottoController lottoController = new LottoController();
         List<Lotto> lottos = lottoController.setLottos(amount);
         return lottos;
-    }
-
-    private int runChangeTickets(int amount) {
-        LottoController lottoController = new LottoController();
-        int tickets = lottoController.changeTickets(amount);
-        return tickets;
     }
 
     private List<Integer> runWinningNumbers() {
@@ -49,6 +43,11 @@ public class MainController {
         RankController rankController = new RankController();
         RankService ranking = rankController.rankingStatistics(lottos, winnings, bonus);
         return ranking;
+    }
+
+    private void runRate(RankService ranking, int amount) {
+        RateController rateController = new RateController();
+        rateController.calculateRate(ranking, amount);
     }
 
 }

@@ -15,15 +15,11 @@ public class LottoController {
     }
 
     public List<Lotto> setLottos(int amount) {
-        int tickets = changeTickets(amount);
+        int tickets = TicketsService.purchaseTickets(amount);
         List<Lotto> lottos = LottosService.lottos(tickets);
         outputTickets(tickets);
         outputLottos(lottos);
         return lottos;
-    }
-
-    public int changeTickets(int amount) {
-        return TicketsService.purchaseTickets(amount);
     }
 
     private static void outputTickets(int tickets) {
