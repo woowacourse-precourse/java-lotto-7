@@ -15,14 +15,14 @@ class LottoTest {
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.ERROR_LENGTH_MESSAGE);
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_LENGTH);
     }
 
     @Test
     void 로또_번호의_개수가_6개보다_작으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.ERROR_LENGTH_MESSAGE);
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_LENGTH);
 
     }
 
@@ -31,21 +31,21 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.ERROR_DUPLICATE_MESSAGE);
+                .hasMessageContaining(ErrorMessages.DUPLICATE_LOTTO_NUMBER);
     }
 
     @Test
     void 로또_번호가_1보다_작으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.ERROR_RANGE_MESSAGE);
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
     }
 
     @Test
     void 로또_번호가_45보다_크면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(46, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessages.ERROR_RANGE_MESSAGE);
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
     }
 
     @Test

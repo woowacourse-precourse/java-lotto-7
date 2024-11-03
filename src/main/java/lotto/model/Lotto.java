@@ -23,7 +23,7 @@ public class Lotto {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBER_LENGTH) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_LENGTH_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_LENGTH);
         }
     }
 
@@ -31,13 +31,13 @@ public class Lotto {
         boolean isInvalidRange = numbers.stream()
                 .anyMatch(n -> n < Constants.LOTTO_MIN_NUMBER || n > Constants.LOTTO_MAX_NUMBER);
         if (isInvalidRange) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_RANGE_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
     private void validateUniqueness(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_LOTTO_NUMBER);
         }
     }
 

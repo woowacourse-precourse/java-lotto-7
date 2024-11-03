@@ -16,13 +16,13 @@ public class PurchaseAmountValidator {
 
     private void validateMultipleOfPrice(int amount) {
         if (amount % lottoPrice != 0) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_AMOUNT);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_MULTIPLE_OF_PRICE);
         }
     }
 
     private void validateMinimumPurchaseAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException(ErrorMessages.ERROR_NON_POSITIVE_TICKET_COUNT);
+            throw new IllegalArgumentException(ErrorMessages.NON_POSITIVE_PURCHASE_AMOUNT);
         }
     }
 
