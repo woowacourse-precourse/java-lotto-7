@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -33,5 +34,14 @@ class LottoTest {
     void testValidLottoTest() {
         assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("로또는 번호들을 오름차순으로 정렬한다.")
+    void testSortLottoNumbers() {
+        Lotto lotto = new Lotto(List.of(5, 3, 6, 1, 2, 4));
+
+        assertThat(lotto.getNumbers())
+                .containsExactly(1, 2, 3, 4, 5, 6);  // 정렬된 순서 확인
     }
 }

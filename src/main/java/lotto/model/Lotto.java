@@ -14,7 +14,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateUniqueLottoNumbers(numbers);
         validateLottoSize(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validateUniqueLottoNumbers(List<Integer> numbers) {
@@ -29,6 +33,4 @@ public class Lotto {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
         }
     }
-
-    // TODO: 추가 기능 구현
 }
