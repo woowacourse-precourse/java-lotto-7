@@ -13,14 +13,12 @@ class CommonInputValidatorTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> CommonInputValidator.validateCommonInput(input),
                 "입력값에 공백이 포함되면 예외가 발생해야 합니다.");
-
     }
 
     @Test
     void 입력_값이_Null일_경우의_예외_테스트() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> CommonInputValidator.validateCommonInput(""),
-                "입력값이 Null이면 예외가 발생해야 합니다.");
+                "입력값이 null이면 예외가 발생해야 합니다.");
     }
-
 }
