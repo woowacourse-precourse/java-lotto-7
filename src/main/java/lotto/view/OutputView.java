@@ -34,7 +34,7 @@ public class OutputView implements Output {
     }
 
     @Override
-    public void printProfitRate(float profit) {
+    public void printProfitRate(double profit) {
         System.out.printf(PrintMessage.LOTTO_PROFIT_RATE.getMessage(), profit);
     }
 }

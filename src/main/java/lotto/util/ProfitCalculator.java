@@ -4,9 +4,9 @@ import lotto.service.Payment;
 
 public class ProfitCalculator {
 
-    private static final Integer PERCENT = 100;
+    private static final Long PERCENT = 100L;
 
-    public static float calculate(Payment payment, Integer prizeMoney) {
-        return (float) prizeMoney / payment.getWalletMoney() * PERCENT;
+    public static double calculate(Payment payment, Long prizeMoney) {
+        return (double) prizeMoney / payment.getWalletMoney() * PERCENT;
     }
 }

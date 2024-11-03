@@ -5,9 +5,9 @@ import lotto.message.Place;
 
 public class FifthPlace implements PlaceAuction {
 
-    private final EnumMap<Place, Integer> placeMap;
+    private final EnumMap<Place, Long> placeMap;
 
-    public FifthPlace(EnumMap<Place, Integer> placeMap) {
+    public FifthPlace(EnumMap<Place, Long> placeMap) {
         this.placeMap = placeMap;
     }
 

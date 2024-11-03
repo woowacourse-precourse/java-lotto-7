@@ -8,10 +8,10 @@ public class SecondPlace implements PlaceAuction {
 
     private static final Integer TRUE = 1;
 
-    private final EnumMap<Place, Integer> placeMap;
+    private final EnumMap<Place, Long> placeMap;
     private final List<Integer> bonusResult;
 
-    public SecondPlace(EnumMap<Place, Integer> placeMap, List<Integer> bonusResult) {
+    public SecondPlace(EnumMap<Place, Long> placeMap, List<Integer> bonusResult) {
         this.placeMap = placeMap;
         this.bonusResult = bonusResult;
     }

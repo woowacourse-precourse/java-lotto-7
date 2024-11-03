@@ -16,5 +16,5 @@ public interface Output {
 
     void printWinningDetail(List<String> winning);
 
-    void printProfitRate(float profit);
+    void printProfitRate(double profit);
 }

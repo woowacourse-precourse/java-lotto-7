@@ -16,9 +16,9 @@ import lotto.strategy.SecondPlace;
 
 public class ResultCalculator {
 
-    private final EnumMap<Place, Integer> placeMap = new EnumMap<>(Place.class);
+    private final EnumMap<Place, Long> placeMap = new EnumMap<>(Place.class);
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
-    private final EnumMap<Place, Integer> prize = Prize.getPrize();
+    private final EnumMap<Place, Long> prize = Prize.getPrize();
 
     private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
@@ -31,7 +31,7 @@ public class ResultCalculator {
 
     private void init(List<Integer> bonusResult) {
         for (Place place : Place.values()) {
-            placeMap.put(place, 0);
+            placeMap.put(place, 0L);
         }
         placeAuctionMap.put(6, new FirstPlace(placeMap));
         placeAuctionMap.put(5, new SecondPlace(placeMap, bonusResult));
@@ -68,8 +68,8 @@ public class ResultCalculator {
         return printResult;
     }
 
-    public Integer getPrizeMoney() {
-        int prizeMoney = 0;
+    public Long getPrizeMoney() {
+        long prizeMoney = 0;
         for (Place place : Place.values()) {
             prizeMoney += placeMap.get(place) * prize.get(place);
         }
