@@ -1,8 +1,7 @@
 package lotto.domain.WinningLotto;
 
-import java.text.NumberFormat;
 
-public enum WinningLottoInfo {
+public enum WinningLotto {
     NO_MATCH(0, 0),
     THREE_MATCH(3, 5000),
     FOUR_MATCH(4, 50000),
@@ -11,37 +10,23 @@ public enum WinningLottoInfo {
     SIX_MATCH(6, 2000000000);
 
     private final int matchedCount;
-    private final int prize;
-    private int count;
+    private final long prize;
 
-    WinningLottoInfo(int matchedCount, int prize) {
+    WinningLotto(int matchedCount, int prize) {
         this.matchedCount = matchedCount;
         this.prize = prize;
-        this.count = 0;
     }
 
     public int getMatchedCount() {
         return matchedCount;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public String getFormattedPrize() {
-        NumberFormat formatter = NumberFormat.getInstance();
-        return formatter.format(prize);
-    }
-
-    public void incrementCount() {
-        count++;
-    }
-
-    public static WinningLottoInfo from(int matchedCount, boolean hasBonus) {
+    public static WinningLotto from(int matchedCount, boolean hasBonus) {
         if (matchedCount == 6) {
             return SIX_MATCH;
         }

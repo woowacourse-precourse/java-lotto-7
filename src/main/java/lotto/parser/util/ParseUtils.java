@@ -22,7 +22,7 @@ public class ParseUtils {
         return trimmedWinNumbers;
     }
 
-    public static int covertToNumber(String input) {
+    public static int convertToNumber(String input) {
         return validateParseNumberAndReturn(input);
     }
 

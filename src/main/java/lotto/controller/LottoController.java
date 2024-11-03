@@ -29,16 +29,22 @@ public class LottoController {
         for (String formattedLottoNumber : formattedLottoNumbers) {
             outputView.printLottoNumbers(formattedLottoNumber);
         }
+        outputView.printWhiteSpace();
 
         String winningNumbers = inputView.inputWinningNumbers();
+        outputView.printWhiteSpace();
         String bonusNumber = inputView.inputBonusNumber();
 
         lottoService.recordWinningLottoInfo(winningNumbers, bonusNumber);
         List<WinningLottoResultDTO> formatWinningLottoResults = lottoService.formatWinningLottoResults();
 
+        outputView.printWhiteSpace();
         outputView.printBeforeWinningLottoInfo();
         for (WinningLottoResultDTO winningLottoResultDTO : formatWinningLottoResults) {
             outputView.printWinningLottoInfo(winningLottoResultDTO.getMatchedCount(), winningLottoResultDTO.getPrize(), winningLottoResultDTO.getCount());
         }
+
+        double lottoRateOfReturn = lottoService.calculateLottoRateOfReturn(buyLottoMoney);
+        outputView.printRateOfReturn(lottoRateOfReturn);
     }
 }

@@ -4,12 +4,13 @@ import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoGenerator;
 import lotto.domain.Lotto.LottoManager;
 import lotto.domain.LottoFormatter;
-import lotto.domain.WinningLotto.WinningLottoManager;
+import lotto.domain.WinningLotto.WinningLottoCounter;
 import lotto.dto.WinningLottoResultDTO;
 import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,7 @@ public class LottoServiceTest {
     private LottoGenerator lottoGenerator;
     private LottoManager lottoManager;
     private LottoFormatter lottoFormatter;
-    private WinningLottoManager winningLottoManager;
+    private WinningLottoCounter winningLottoCounter;
     private LottoService lottoService;
 
     @BeforeEach
@@ -28,8 +29,11 @@ public class LottoServiceTest {
         lottoManager = new LottoManager();
         lottoFormatter = new LottoFormatter();
         lottoGenerator = new LottoGenerator(lottoValidator);
-        winningLottoManager = new WinningLottoManager();
-        lottoService = new LottoService(lottoGenerator, lottoManager, lottoFormatter, winningLottoManager);
+        winningLottoCounter = new WinningLottoCounter();
+        lottoService = new LottoService(lottoGenerator, lottoManager, lottoFormatter, winningLottoCounter);
+
+        lottoManager.createLottosByRandomNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lottoManager.createLottosByRandomNumbers(Arrays.asList(7, 8, 9, 10, 11, 12));
     }
 
     @Test
@@ -59,8 +63,8 @@ public class LottoServiceTest {
 
     @Test
     void 당첨_로또_결과_포맷_확인() {
-        winningLottoManager.recordWinningLotto(6, false);
-        winningLottoManager.recordWinningLotto(6, false);
+        lottoService.recordWinningLottoInfo("1,2,3,4,5,6", "7");
+        lottoService.recordWinningLottoInfo("1,2,3,4,5,6", "7");
 
         List<WinningLottoResultDTO> resultDTOs = lottoService.formatWinningLottoResults();
 
@@ -74,5 +78,14 @@ public class LottoServiceTest {
                 assertThat(dto.getCount()).isEqualTo(0);
             }
         }
+    }
+
+    @Test
+    void 총_수익률_계산_() {
+        int buyLottoMoney = 5000;
+        long totalAmount = 10000;
+
+        double result = lottoService.calculateLottoRateOfReturn(buyLottoMoney);
+
     }
 }

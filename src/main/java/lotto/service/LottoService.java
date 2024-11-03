@@ -57,16 +57,16 @@ public class LottoService {
         Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
 
         for (WinningLotto winningLotto : WinningLotto.values()) {
-            formatResults.add(new WinningLottoResultDTO(
-                    winningLotto.getMatchedCount(),
-                    winningLotto.getFormattedPrize(),
-                    counts.get(winningLotto)
-            ));
+            if (winningLotto != WinningLotto.NO_MATCH) {
+                formatResults.add(new WinningLottoResultDTO(
+                        winningLotto.getMatchedCount(),
+                        lottoFormatter.formatPrize(winningLotto.getPrize()),
+                        counts.get(winningLotto)
+                ));
+            }
         }
-
         return formatResults;
     }
-
 
     public double calculateLottoRateOfReturn(int buyLottoMoney) {
         long totalAmount = calculateTotalPrize();
@@ -75,7 +75,7 @@ public class LottoService {
     }
 
     private double calculateRateOfReturn(int buyLottoMoney, long totalPrize) {
-        double rateOfReturn = (double) totalPrize / buyLottoMoney;
+        double rateOfReturn = ((double) totalPrize / buyLottoMoney) * 100;
         return rateOfReturn;
     }
 
@@ -89,7 +89,7 @@ public class LottoService {
     }
 
     private double formatRounding(double rateOfReturn) {
-        return Math.round((rateOfReturn * 1000) / 10.0);
+        return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 
     private int calculateEqualWinningNumberBySingleLotto(List<Integer> winningNumbers, Lotto lotto) {
