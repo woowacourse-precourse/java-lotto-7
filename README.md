@@ -94,7 +94,8 @@ lotto/
  ├── model/                          
  │    ├── Lotto.java                       # 로또 도메인 클래스
  │    ├── Lottos.java                      # 로또 여러 장을 관리하는 일급 컬렉션 클래스
- │    └── Rank.java                        # 당첨 등수와 상금 정의 (enum)
+ │    ├── Rank.java                        # 당첨 등수와 상금 정의 (enum)
+ │    └── RankCount.java                   # 등수별 당첨 개수를 관리하는 클래스
  ├── io/                               
  │    ├── Input.java                       # 사용자 입력값 처리
  │    └── Output.java                      # 결과 출력
