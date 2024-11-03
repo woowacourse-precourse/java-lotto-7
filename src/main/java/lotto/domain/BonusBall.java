@@ -14,6 +14,4 @@ public class BonusBall {
     public int num() {
         return bonusNum;
     }
-
-    // 여기서는 단순히 문자, 숫자 등에 대한 검증 로직
 }

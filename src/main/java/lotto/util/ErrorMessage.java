@@ -4,6 +4,7 @@ import lotto.service.LottoMachine;
 
 public enum ErrorMessage {
 
+    IS_NOT_NUMBER("[ERROR] 숫자가 아닌 입력입니다."),
     MONEY_NOT_NUMBER("[ERROR] 구입 금액은 정수만 가능합니다."),
     MONEY_LESS_THEN_MINIMUM(String.format("[ERROR] 구입 금액은 최소 %d원 이상이어야 합니다.", LottoMachine.LOTTO_PRICE)),
     MONEY_MORE_THEN_MAXIMUM(String.format("[ERROR] 로또는 한번에 %d 만원까지 구매할 수 있습니다.", LottoMachine.MONEY_MAX)),
