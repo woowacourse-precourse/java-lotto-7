@@ -89,6 +89,6 @@ public class ProfitCalculatorTest {
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
-        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("40631100.0");
+        assertThat(ProfitCalculator.calculate(1000, matchedCount)).isEqualTo("203155500.0");
     }
 }

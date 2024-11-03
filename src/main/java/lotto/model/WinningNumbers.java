@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumbers {
+    private static final int REQUIRED_NUMBERS_LENGTH = 6;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private List<Integer> winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
@@ -24,13 +26,13 @@ public class WinningNumbers {
     }
 
     private static void validateLength(List<Integer> parsedNumbers) {
-        if (parsedNumbers.size() != 6) {
+        if (parsedNumbers.size() != REQUIRED_NUMBERS_LENGTH) {
             throw new IllegalArgumentException(ExceptionEnum.MUST_SIX.getMessage());
         }
     }
 
     private void validateOverFourtySix(List<Integer> parsedNumbers) {
-        if (parsedNumbers.stream().anyMatch(number -> number >= 46)) {
+        if (parsedNumbers.stream().anyMatch(number -> number > MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
         }
     }

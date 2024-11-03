@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.utility.NumberParser;
-import lotto.utility.ProfitCalculator;
-import lotto.utility.RandomNumberCreator;
-import lotto.utility.WinningNumberParser;
+import lotto.utility.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,8 +21,7 @@ public class LottoController {
         PurchasedLottos purchasedLottos = new PurchasedLottos(purchaseLotto(purchasedLottoCount));
 
         WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers());
-        int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
-        winningNumbers.checkBonusDuplicate(bonusNumber);
+        int bonusNumber = inputBonusNumber(winningNumbers);
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, winningNumbers, bonusNumber);
         lottoGame.process();
@@ -52,6 +48,14 @@ public class LottoController {
     private List<Integer> inputWinningNumbers() {
         String rawWinningNumbers = InputView.inputWinningNumbers();
         return WinningNumberParser.parseWinningNumbers(rawWinningNumbers);
+    }
+
+    private int inputBonusNumber(WinningNumbers winningNumbers) {
+        int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
+        winningNumbers.checkBonusDuplicate(bonusNumber);
+        BonusNumberValidator.validateUnderFourtySix(bonusNumber);
+
+        return bonusNumber;
     }
 
     private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
