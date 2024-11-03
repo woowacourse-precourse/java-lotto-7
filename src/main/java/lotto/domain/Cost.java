@@ -12,6 +12,10 @@ public class Cost {
         this.value = Integer.parseInt(value);
     }
 
+    public int getValue(){
+        return value;
+    }
+
     private void validate(String value){
         if(!isInteger(value) || !isPositive(value)){
             throw new IllegalArgumentException(COST_POSITIVE_INTEGER_ERROR);
