@@ -19,8 +19,7 @@ public class PurchaseProcessHandler extends LottoHandler {
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
         int purchasedlottosCount = getLottosCount(handlerToken);
-        List<Lotto> lottos = generateLottos(purchasedlottosCount);
-        LottosDTO lottosDTO = LottosDTO.create(lottos);
+        LottosDTO lottosDTO = LottosDTO.create(generateLottos(purchasedlottosCount));
         handlerToken.addContent(TokenType.LOTTOS_DTO, lottosDTO);
         return handlerToken;
     }

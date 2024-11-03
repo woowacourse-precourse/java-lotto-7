@@ -10,9 +10,12 @@ public class StatisticsPrinterHandler extends LottoHandler {
 
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
-        ProfitRateDTO profitRateDTO = handlerToken.getContent(TokenType.PROFIT_RATE_DTO, ProfitRateDTO.class);
-        String profitRate = profitRateDTO.getProfitRate();
-        System.out.print(DisplayFormat.STATISTICS.displayWithOneValue(profitRate));
+        ProfitRateDTO profitRateDTO = getProfitRateDTOInHandlerToken(handlerToken);
+        System.out.print(DisplayFormat.STATISTICS.displayWithOneValue(profitRateDTO.getProfitRate()));
         return handlerToken;
+    }
+
+    private ProfitRateDTO getProfitRateDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.PROFIT_RATE_DTO, ProfitRateDTO.class);
     }
 }

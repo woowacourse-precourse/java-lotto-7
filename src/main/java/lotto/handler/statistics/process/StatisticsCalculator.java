@@ -2,6 +2,7 @@ package lotto.handler.statistics.process;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.display.DisplayFormat;
 import lotto.handler.purchase.process.WinningRank;
 
 public class StatisticsCalculator {
@@ -14,6 +15,6 @@ public class StatisticsCalculator {
     }
 
     private String getProfitRate(double totalPrize, double purchaseAmount) {
-        return String.format("%.1f", (totalPrize / purchaseAmount) * 100);
+        return String.format(DisplayFormat.PROFIT_RATE_FORMAT.displayDefault(), (totalPrize / purchaseAmount) * 100);
     }
 }

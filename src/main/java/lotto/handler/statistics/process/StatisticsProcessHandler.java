@@ -18,16 +18,24 @@ public class StatisticsProcessHandler extends LottoHandler {
 
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
-        RankCountsDTO rankCountsDTO = handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class);
-        PurchaseAmountDTO purchaseAmountDTO = handlerToken.getContent(TokenType.PURCHASE_AMOUNT_DTO,
-                PurchaseAmountDTO.class);
+        RankCountsDTO rankCountsDTO = getRankCountsDTOInHandlerToken(handlerToken);
+        PurchaseAmountDTO purchaseAmountDTO = getPurchaseAmountDTOInHandlerToken(handlerToken);
         HashMap<WinningRank, Integer> rankCounts = rankCountsDTO.getRankCounts();
         String purchaseAmount = purchaseAmountDTO.getPurchaseAmount();
+
         String profitRate = statisticsCalculator.calculate(rankCounts, Double.parseDouble(purchaseAmount));
 
         ProfitRateDTO profitRateDTO = ProfitRateDTO.create(profitRate);
         handlerToken.addContent(TokenType.PROFIT_RATE_DTO, profitRateDTO);
 
         return handlerToken;
+    }
+
+    private RankCountsDTO getRankCountsDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class);
+    }
+
+    private PurchaseAmountDTO getPurchaseAmountDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.PURCHASE_AMOUNT_DTO, PurchaseAmountDTO.class);
     }
 }

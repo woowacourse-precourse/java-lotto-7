@@ -12,10 +12,13 @@ public class PurchaseLottosPrintHandler extends LottoHandler {
 
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
-        LottosDTO lottosDTO = handlerToken.getContent(TokenType.LOTTOS_DTO, LottosDTO.class);
-        List<Lotto> lottos = lottosDTO.getLottos();
-        printLottos(lottos);
+        LottosDTO lottosDTO = getLottosDTOInHandlerToken(handlerToken);
+        printLottos(lottosDTO.getLottos());
         return handlerToken;
+    }
+
+    private LottosDTO getLottosDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.LOTTOS_DTO, LottosDTO.class);
     }
 
     private void printLottos(List<Lotto> lottos) {

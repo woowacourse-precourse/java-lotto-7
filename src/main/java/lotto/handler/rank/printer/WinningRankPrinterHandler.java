@@ -12,12 +12,13 @@ public class WinningRankPrinterHandler extends LottoHandler {
 
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
-        RankCountsDTO rankCountsDTO = handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class);
-        HashMap<WinningRank, Integer> rankCounts = rankCountsDTO.getRankCounts();
-
-        printRankCounts(rankCounts);
-
+        RankCountsDTO rankCountsDTO = getRankCountsDTOInHandlerToken(handlerToken);
+        printRankCounts(rankCountsDTO.getRankCounts());
         return handlerToken;
+    }
+
+    private RankCountsDTO getRankCountsDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.class);
     }
 
     private void printRankCounts(HashMap<WinningRank, Integer> rankCounts) {

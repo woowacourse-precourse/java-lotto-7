@@ -25,6 +25,13 @@ public class Lotto {
         return getRank(sameNumberCount);
     }
 
+    private WinningRank getSecondOrThirdRank(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return WinningRank.SECOND;
+        }
+        return WinningRank.THIRD;
+    }
+
     private WinningRank getRank(int sameNumberCount) {
         if (isFirstRank(sameNumberCount)) {
             return WinningRank.FIRST;
@@ -36,13 +43,6 @@ public class Lotto {
             return WinningRank.FIFTH;
         }
         return WinningRank.LOSE;
-    }
-
-    private WinningRank getSecondOrThirdRank(List<Integer> numbers, int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            return WinningRank.SECOND;
-        }
-        return WinningRank.THIRD;
     }
 
     private boolean isFirstRank(int sameNumberCount) {

@@ -15,7 +15,6 @@ public class RankCounter {
             WinningRank rank = lotto.getRank(winningNumbers, bonusNumber);
             rankCounts.put(rank, rankCounts.get(rank) + 1);
         }
-
         return rankCounts;
     }
 

@@ -1,9 +1,11 @@
 package lotto.handler.rank.process;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.handler.LottoHandler;
 import lotto.handler.purchase.dto.LottosDTO;
 import lotto.handler.purchase.process.Lotto;
+import lotto.handler.purchase.process.WinningRank;
 import lotto.handler.rank.dto.RankCountsDTO;
 import lotto.handler.rank.dto.WinningNumberDTO;
 import lotto.handler.token.HandlerToken;
@@ -19,17 +21,22 @@ public class WinningRankHandler extends LottoHandler {
 
     @Override
     protected HandlerToken process(HandlerToken handlerToken) {
-        LottosDTO lottosDTO = handlerToken.getContent(TokenType.LOTTOS_DTO, LottosDTO.class);
-        WinningNumberDTO winningNumbersDTO = handlerToken.getContent(TokenType.WINNING_NUMBER_DTO,
-                WinningNumberDTO.class);
+        LottosDTO lottosDTO = getLottosDTOInHandlerToken(handlerToken);
+        WinningNumberDTO winningNumbersDTO = getWinningNumberDTOInHandlerToken(handlerToken);
 
-        List<Lotto> lottos = getLottos(lottosDTO);
-        List<Integer> winningNumbers = getWinningNumbers(winningNumbersDTO);
-        int bonusNumber = getBonusNumbers(winningNumbersDTO);
+        HashMap<WinningRank, Integer> rankCounts = rankCounter.countRanks(getLottos(lottosDTO),
+                getWinningNumbers(winningNumbersDTO), getBonusNumbers(winningNumbersDTO));
 
-        RankCountsDTO rankCountsDTO = RankCountsDTO.create(rankCounter.countRanks(lottos, winningNumbers, bonusNumber));
-        handlerToken.addContent(TokenType.RANK_COUNTS_DTO, rankCountsDTO);
+        handlerToken.addContent(TokenType.RANK_COUNTS_DTO, RankCountsDTO.create(rankCounts));
         return handlerToken;
+    }
+
+    private LottosDTO getLottosDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.LOTTOS_DTO, LottosDTO.class);
+    }
+
+    private WinningNumberDTO getWinningNumberDTOInHandlerToken(HandlerToken handlerToken) {
+        return handlerToken.getContent(TokenType.WINNING_NUMBER_DTO, WinningNumberDTO.class);
     }
 
     private List<Lotto> getLottos(LottosDTO lottosDTO) {
