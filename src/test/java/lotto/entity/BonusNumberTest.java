@@ -33,4 +33,18 @@ class BonusNumberTest {
                 .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.LOTTO_NUMBER_INVALID_RANGE);
     }
+
+    @Test
+    void validateInRange_보너스_번호의_범위가_맞지_않아_검증에_실패한다2() {
+        // given
+        Integer number = 0;
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new BonusNumber(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.LOTTO_NUMBER_INVALID_RANGE);
+    }
 }

@@ -50,6 +50,20 @@ class WinnerNumberTest {
     }
 
     @Test
+    void validateInRange_당첨_번호의_범위가_맞지_않아_검증에_실패한다2() {
+        // given
+        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 0);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> new WinnerNumber(winnerNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.LOTTO_NUMBER_INVALID_RANGE);
+    }
+
+    @Test
     void validateDuplicate_중복된_번호가_있어_검증에_실패한다() {
         // given
         List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 5);

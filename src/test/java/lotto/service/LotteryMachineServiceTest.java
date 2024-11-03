@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import lotto.entity.Lotto;
+import lotto.entity.Prize;
 import lotto.entity.PurchaseAmount;
 import lotto.model.LotteryMachineModel;
 import lotto.model.StatisticModel;
@@ -58,12 +60,12 @@ class LotteryMachineServiceTest {
         long purchaseCount = 8;
         StringBuilder sb = new StringBuilder();
 
-        Method getPurchaseCount = lotteryMachineService.getClass()
+        Method issue = lotteryMachineService.getClass()
                 .getDeclaredMethod("issue", long.class, StringBuilder.class);
-        getPurchaseCount.setAccessible(true);
+        issue.setAccessible(true);
 
         // when
-        getPurchaseCount.invoke(lotteryMachineService, purchaseCount, sb);
+        issue.invoke(lotteryMachineService, purchaseCount, sb);
 
         // then
         assertThat(lotteryMachineModel.getIssuedLotto().lottos().size()).isEqualTo(purchaseCount);
@@ -72,16 +74,118 @@ class LotteryMachineServiceTest {
     @Test
     void generate_Lotto를_정상적으로_생성하여_반환한다() throws Exception {
         // given
-        Method getPurchaseCount = lotteryMachineService.getClass()
+        Method generate = lotteryMachineService.getClass()
                 .getDeclaredMethod("generate");
-        getPurchaseCount.setAccessible(true);
+        generate.setAccessible(true);
 
         // when
 
         // then
         assertThatCode(() -> {
-            Lotto lotto = (Lotto) getPurchaseCount.invoke(lotteryMachineService);
+            Lotto lotto = (Lotto) generate.invoke(lotteryMachineService);
         })
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    void check_당첨_확인_메서드가_정상_동작한다() {
+        // given
+        lotteryMachineModel.insertPurchaseAmount(new PurchaseAmount(1000L));
+        lotteryMachineService.buy(new StringBuilder());
+
+        // when
+
+        // then
+        assertThatCode(() -> lotteryMachineService.check())
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    void compare_당첨_로또를_비교하고_저장한다() throws Exception {
+        // given
+        statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
+        Method compare = lotteryMachineService.getClass()
+                .getDeclaredMethod("compare", List.class, Integer.class, List.class);
+        compare.setAccessible(true);
+
+        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+        List<Integer> lotto = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        compare.invoke(lotteryMachineService, winnerNumbers, bonusNumber, lotto);
+
+        // then
+        assertThat(statisticModel.getPrizeMoney()).isEqualTo(Prize.FIRST.getMoney());
+    }
+
+    @Test
+    void savePrize() throws Exception {
+        // given
+        statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
+        Method savePrize = lotteryMachineService.getClass()
+                .getDeclaredMethod("savePrize", int.class, boolean.class);
+        savePrize.setAccessible(true);
+
+        int match = 6;
+        boolean bonus = false;
+
+        // when
+        savePrize.invoke(lotteryMachineService, match, bonus);
+
+        // then
+        assertThat(statisticModel.getPrizeMoney()).isEqualTo(Prize.FIRST.getMoney());
+    }
+
+    @Test
+    void getStatistic_통계_데이터를_반환한다() throws Exception {
+        // given
+        StringBuilder sb = new StringBuilder();
+
+        statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
+        Method savePrize = lotteryMachineService.getClass()
+                .getDeclaredMethod("savePrize", int.class, boolean.class);
+        savePrize.setAccessible(true);
+
+        int match = 6;
+        boolean bonus = false;
+        savePrize.invoke(lotteryMachineService, match, bonus);
+
+        // when
+        lotteryMachineService.getStatistic(sb);
+        String result = sb.toString();
+
+        // then
+        assertThat(result).isEqualTo("""
+                당첨 통계
+                ---
+                3개 일치 (5,000원) - 0개
+                4개 일치 (50,000원) - 0개
+                5개 일치 (1,500,000원) - 0개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+                6개 일치 (2,000,000,000원) - 1개""");
+    }
+
+    @Test
+    void getProfitRate_수익률을_계산하여_반환한다() throws Exception {
+        // given
+        StringBuilder sb = new StringBuilder();
+
+        statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
+        Method savePrize = lotteryMachineService.getClass()
+                .getDeclaredMethod("savePrize", int.class, boolean.class);
+        savePrize.setAccessible(true);
+
+        int match = 6;
+        boolean bonus = false;
+        savePrize.invoke(lotteryMachineService, match, bonus);
+
+        // when
+        lotteryMachineService.getProfitRate(sb);
+        String result = sb.toString();
+
+        // then
+        assertThat(result).isEqualTo("총 수익률은 200000000.0%입니다.");
+    }
+
 }
