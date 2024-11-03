@@ -25,7 +25,7 @@ public class LottoController {
 
         WinningLottoNumber winningLottoNumber = inputWinningLottoNumber();
         LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos,winningLottoNumber,purchasePrice);
-        OutputView.printLottoDetails(lottoProfitRate);
+        OutputView.displayLottoDetails(lottoProfitRate);
     }
 
     private static PurchasePrice inputPurchasePrice() {
