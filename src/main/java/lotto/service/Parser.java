@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.domain.LottoInfo.PRICE_FOR_ONE;
+import static lotto.utils.Utils.makeErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.Utils;
@@ -23,6 +26,18 @@ public class Parser {
         LottoValidator.isLottoNumInRange(bonusNumber);
 
         return bonusNumber;
+    }
+
+    public static int parseMoney(String inputMoney) {
+        LottoValidator.validateEmptyString(inputMoney);
+        int money = Utils.changeStringToNum(inputMoney);
+        if (money <= 0) {
+            throw new IllegalArgumentException(makeErrorMessage("금액은 양수이어야 합니다."));
+        }
+        if (money % PRICE_FOR_ONE != 0) {
+            throw new IllegalArgumentException(makeErrorMessage("1000단위로 입력해주세요."));
+        }
+        return money;
     }
 
     private static List<Integer> createWinningnumbs(String[] winningNumbsStrs) {

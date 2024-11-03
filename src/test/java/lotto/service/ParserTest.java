@@ -132,4 +132,22 @@ public class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+    
+    @ParameterizedTest
+    @ValueSource(strings = {"1000","59000"})
+    public void 로또_금액에_1000원_단위_입력_테스트(String input) throws Exception{
+        //given
+        int money = Parser.parseMoney(input);
+        //when
+        //then
+        Assertions.assertThat(money).isEqualTo(Integer.parseInt(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0","-1","-10021312"})
+    public void 로또_금액에_0원이하_입력_예외테스트(String input) throws Exception{
+        Assertions.assertThatThrownBy(() -> Parser.parseMoney(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] " + "금액은 양수이어야 합니다.");
+    }
 }
