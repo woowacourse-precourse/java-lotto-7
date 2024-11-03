@@ -23,16 +23,5 @@ public enum Winnings {
         return matchCount;
     }
 
-    public String getMessage(int count) {
-        String message;
-        if(this == SECOND) {
-            message = String.format("%d개 일치, 보너스 볼 일치 (%,.0f)원 - %d개", matchCount, prize, count);
-            return message;
-        }
-        return String.format("%d개 일치 (%,.0f원) - %d개", matchCount, prize, count);
-    }
 
-    public String getFormattedMessage(int count) {
-        return getMessage(count);
-    }
 }
