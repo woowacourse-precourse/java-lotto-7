@@ -14,7 +14,6 @@ public class PriceValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"asd", ",123", "12 12432", "@$%#!", "123@$12,./"})
     void 구입_금액에_숫자_외의_문자가_있으면_예외가_발생한다(String input){
-        System.out.println(input);
         assertThatThrownBy(() -> new PriceValidator(input).validate())
                 .isInstanceOf(IllegalArgumentException.class);
     }
