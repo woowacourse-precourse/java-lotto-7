@@ -12,8 +12,7 @@ public class Controller {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    private int chooseNumberOfLottoContinuously() {
-        LottoCreator lottoCreator = new LottoCreator();
+    private int chooseNumberOfLottoContinuously(ProfitCalculator profitCalculator,LottoCreator lottoCreator) {
         int numberOfLotto;
         int purchasePrice;
         while (true) {
@@ -21,13 +20,13 @@ public class Controller {
             numberOfLotto = lottoCreator.chooseNumberOfLotto(purchasePrice);
             if (numberOfLotto != LottoCreator.INITIAL_NUMBER_OF_LOTTO) break;
         }
-        ProfitCalculator profitCalculator = new ProfitCalculator();
         profitCalculator.settingPurchasePrice(purchasePrice);
         return numberOfLotto;
     }
 
-    private List<Lotto> purchaseLottos() {
-        int numberOfLotto = chooseNumberOfLottoContinuously();
+    private List<Lotto> purchaseLottos(ProfitCalculator profitCalculator) {
+        LottoCreator lottoCreator = new LottoCreator();
+        int numberOfLotto = chooseNumberOfLottoContinuously(profitCalculator, lottoCreator);
         Lottos lottos = new Lottos(numberOfLotto);
         outputView.outputNumberOfLotto(numberOfLotto);
         List<Lotto> lottoTickets = lottos.getLottoTickets();
@@ -35,7 +34,7 @@ public class Controller {
         return lottoTickets;
     }
 
-    private static List<Integer> convertToIntegerList(String winningNumber) {
+    private static List<Integer> convertToInteger(String winningNumber) {
         return Arrays.stream(winningNumber.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -43,16 +42,21 @@ public class Controller {
     }
 
     private WinningLotto createWinningLotto() {
-        String winningNumbersBeforeConvert = inputView.inputWinningNumbers();
-        List<Integer> winningNumbers = convertToIntegerList(winningNumbersBeforeConvert);
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
-        int bonusNumber = inputView.inputBonusNumber();
-        winningLotto.settingBonusNumber(bonusNumber);
-        return winningLotto;
+        while (true) {
+            try {
+                String winningNumbersBeforeConvert = inputView.inputWinningNumbers();
+                List<Integer> winningNumbers = convertToInteger(winningNumbersBeforeConvert);
+                WinningLotto winningLotto = new WinningLotto(winningNumbers);
+                int bonusNumber = inputView.inputBonusNumber();
+                winningLotto.settingBonusNumber(bonusNumber);
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private void printStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusBallNumber) {
-        ProfitCalculator profitCalculator = new ProfitCalculator();
+    private void printStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusBallNumber, ProfitCalculator profitCalculator) {
         OutputView outputView = new OutputView();
         profitCalculator.calculateRankCount(lottoTickets, winningNumbers, bonusBallNumber);
         profitCalculator.calculateProfit();
@@ -60,10 +64,11 @@ public class Controller {
     }
 
     public void runLotto() {
-        List<Lotto> lottoTickets = purchaseLottos();
+        ProfitCalculator profitCalculator = new ProfitCalculator();
+        List<Lotto> lottoTickets = purchaseLottos(profitCalculator);
         WinningLotto winningLotto = createWinningLotto();
         List<Integer> winningNumbers = winningLotto.getWinningNumbers();
         int bonusBallNumber = winningLotto.getBonusNumber();
-        printStatistics(lottoTickets, winningNumbers, bonusBallNumber);
+        printStatistics(lottoTickets, winningNumbers, bonusBallNumber, profitCalculator);
     }
 }

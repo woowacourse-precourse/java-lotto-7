@@ -28,11 +28,11 @@ public class OutputView {
 
     private void outputMatchCount(LottoRank lottoRank, int count){
         if(lottoRank.getMatchCount()!=0){
-            System.out.printf(lottoRank.getMatchCount()+"개 일치");
+            System.out.printf("\n"+lottoRank.getMatchCount()+"개 일치");
             if(lottoRank == LottoRank.SECOND){
                 System.out.printf(", 보너스 볼 일치");
             }
-            System.out.printf(" ("+String.format("%,d",lottoRank.getPrize())+"원) - "+count+"개\n");
+            System.out.printf(" ("+String.format("%,d",lottoRank.getPrize())+"원) - "+count+"개");
         }
     }
 
@@ -42,7 +42,7 @@ public class OutputView {
 
     public void outputStatistics(Map<LottoRank, Integer> rankCounts, double profitRate){
         System.out.println("\n당첨 통계");
-        System.out.println("---");
+        System.out.printf("---");
         outputMatchCounts(rankCounts);
         System.out.println();
         outputProfitRate(profitRate);

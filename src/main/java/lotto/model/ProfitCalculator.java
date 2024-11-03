@@ -39,12 +39,13 @@ public class ProfitCalculator {
     }
 
     public void calculateProfit(){
+        System.out.println(purchasePrice);
         int profitPrice=0;
         for (Map.Entry<LottoRank, Integer> rankCount : rankCounts.entrySet()) {
             LottoRank lottoRank = rankCount.getKey();
             int count = rankCount.getValue();
             int lottoPrice = lottoRank.getPrize();
-            profitPrice = lottoPrice*count;
+            profitPrice += lottoPrice*count;
         }
         profitRate = (double)profitPrice/purchasePrice;
     }
