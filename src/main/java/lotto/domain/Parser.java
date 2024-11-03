@@ -8,6 +8,14 @@ public class Parser {
         return Integer.parseInt(input);
     }
 
+    public List<Integer> parseToIntList(String input) {
+        List<String> parsedString = parseComma(input);
+
+        return parsedString.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
+
     private List<String> parseComma(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
