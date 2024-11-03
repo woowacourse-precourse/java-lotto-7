@@ -11,7 +11,7 @@ public class LottoStore {
         lottoMachine.purchase(cash);
         outputView.printLottoTickets(lottoMachine);
 
-
+        WinningNumbers winningNumbers = inputHandler.inputWinningNumbers();
     }
 
 }
