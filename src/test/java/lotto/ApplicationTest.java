@@ -54,6 +54,31 @@ class ApplicationTest extends NsTest {
         assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
     }
 
+    @Test
+    void 문자입력_예외_테스트() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            runException("abc");
+        });
+        assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
+
+    }
+
+    @Test
+    void 음수입력_예외_테스트() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            runException("-1000");
+        });
+        assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
+    }
+
+    @Test
+    void 소수입력_예외_테스트() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            runException("1000.5");
+        });
+        assertThat(exception.getMessage()).contains(ERROR_MESSAGE);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
