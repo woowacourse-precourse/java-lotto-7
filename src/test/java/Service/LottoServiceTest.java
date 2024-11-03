@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.LottoList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +47,14 @@ class LottoServiceTest {
                 .isThrownBy(() -> {
                     lottoService.getCount(NonThousandUnitAmount);
                 }).withMessageMatching("\\[ERROR\\] 금액은 1000원 단위로 입력해야 합니다\\.");
+    }
+
+    @DisplayName("구매 개수에 맞게 로또 리스트가 생성되는지 테스트")
+    @Test
+    void generateLottosTest() {
+        int purchaseCount = 5;
+        LottoList lottoList = lottoService.generateLottos(purchaseCount);
+
+        assertThat(lottoList.size()).isEqualTo(purchaseCount);
     }
 }
