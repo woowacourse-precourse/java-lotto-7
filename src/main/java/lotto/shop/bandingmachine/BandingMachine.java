@@ -9,12 +9,23 @@ public class BandingMachine {
 
     public void inputMoney() {
         MessageCenter.START.print();
-        Integer money = pos.getMoney();
-        trialHistory.savePayment(money);
-        Integer totalCount = pos.getCount(money);
-        trialHistory.saveTotalCount(totalCount);
+        getMoney();
+        getCount();
+        System.out.println(trialHistory.getTotalCount() + MessageCenter.COUNT.get());
+    }
+
+    public void drawNumbers() {
 
     }
 
+    private void getMoney() {
+        Integer money = pos.checkMoney();
+        trialHistory.savePayment(money);
+    }
 
+    private void getCount() {
+        Integer payment = trialHistory.getPayment();
+        Integer totalCount = pos.checkCount(payment);
+        trialHistory.saveTotalCount(totalCount);
+    }
 }

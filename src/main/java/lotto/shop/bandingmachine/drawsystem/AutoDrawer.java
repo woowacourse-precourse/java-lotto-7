@@ -1,20 +1,30 @@
-package lotto.committee.drawsystem;
+package lotto.shop.bandingmachine.drawsystem;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import lotto.shop.bandingmachine.TrialHistory;
 
-public class DrawMachine {
+public class AutoDrawer {
 
-    private final WinningNumbers winningNumbers;
+    DrawnNumbers drawnNumbers;
+    List<DrawnNumbers> drawnNumberPacks = new ArrayList<>();
 
-    private DrawMachine(WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    AutoDrawer(DrawnNumbers drawnNumbers) {
+        this.drawnNumbers = drawnNumbers;
     }
 
-    static DrawMachine forTest(WinningNumbers winningNumbers) {
-        DrawMachine objForTest = new DrawMachine(winningNumbers);
-        objForTest.runDraw();
-        return objForTest;
+    static AutoDrawer forTest(DrawnNumbers drawnNumbers) {
+        return new AutoDrawer(drawnNumbers);
+    }
+
+    List<DrawnNumbers> runDraws(Integer totalCount) {
+        for (int currentCount = 0; currentCount < totalCount; currentCount++) {
+            drawnNumbers = DrawnNumbers.create();
+            runDraw();
+            drawnNumberPacks.add(drawnNumbers);
+        }
+        return drawnNumberPacks;
     }
 
     void runDraw() {
@@ -24,8 +34,8 @@ public class DrawMachine {
     }
 
     private void addDrawResult(List<Integer> mainNumbers, Integer bonusNumber) {
-            winningNumbers.addMainNumbers(mainNumbers);
-            winningNumbers.addBonusNumber(bonusNumber);
+            drawnNumbers.addMainNumbers(mainNumbers);
+            drawnNumbers.addBonusNumber(bonusNumber);
     }
 
     private List<Integer> drawMainNumbers() {
@@ -45,7 +55,7 @@ public class DrawMachine {
 
     private Integer makeUnique(List<Integer> mainNumbers, Integer bonusNumber) {
         boolean result = true;
-        while (result == true) {
+        while (result) {
             bonusNumber = initBonusNumber();
             result = isBonusNumberAlready(mainNumbers, bonusNumber);
         }

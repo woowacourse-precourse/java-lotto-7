@@ -4,14 +4,14 @@ import java.util.List;
 
 public class TrialHistory {
 
-    private Integer wonInput;
+    private Integer payment;
     private Integer totalCount;
     private Integer printCount;
     private List<List<Integer>> tempMainPacks;
     private List<Integer> tempBonusPacks;
 
     void savePayment(Integer money) {
-        this.wonInput = money;
+        this.payment = money;
     }
 
     void saveTotalCount(Integer totalCount) {
@@ -30,8 +30,8 @@ public class TrialHistory {
         tempBonusPacks.add(bonusNumber);
     }
 
-    Integer getWonInput() {
-        return wonInput;
+    Integer getPayment() {
+        return payment;
     }
 
     Integer getTotalCount() {

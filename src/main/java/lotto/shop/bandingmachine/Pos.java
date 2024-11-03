@@ -6,8 +6,9 @@ import lotto.MessageCenter;
 public class Pos {
 
     Integer money;
+    int divider = 1000;
 
-    public Integer getMoney() {
+    public Integer checkMoney() {
         while(money == null) {
             String textWon = read();
             validateNumber(textWon);
@@ -16,6 +17,9 @@ public class Pos {
         return money;
     }
 
+    public Integer checkCount(Integer money) {
+        return money / divider;
+    }
 
     private String read() {
         return Console.readLine();
@@ -54,9 +58,6 @@ public class Pos {
     }
 
     void validateCount(Integer parsedWon) {
-
-        int divider = 1000;
-
         if (parsedWon % divider != 0) {
             throwException();
         }

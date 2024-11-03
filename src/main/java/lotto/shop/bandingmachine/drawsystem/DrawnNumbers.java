@@ -1,69 +1,69 @@
-package lotto.committee.drawsystem;
+package lotto.shop.bandingmachine.drawsystem;
 
 import java.util.Collections;
 import java.util.List;
 import lotto.MessageCenter;
 
-public class WinningNumbers {
+public class DrawnNumbers {
 
-    private List<Integer> wonMainNumbers;
-    private Integer wonBonusNumber;
+    private List<Integer> mainNumbers;
+    private Integer bonusNumber;
 
-    private WinningNumbers() {}
+    private DrawnNumbers() {}
 
-    static WinningNumbers create() {
-        return new WinningNumbers();
+    static DrawnNumbers create() {
+        return new DrawnNumbers();
     }
 
-    static WinningNumbers forTest() {
-        return new WinningNumbers();
+    static DrawnNumbers forTest() {
+        return new DrawnNumbers();
     }
 
-    public WinningNumbers getWinningNumbers() {
+    public DrawnNumbers getDrawnNumbers() {
         validateBothNotNull();
         return this;
     }
 
     public List<Integer> getMainNumbers() {
         validateMainNotNull();
-        return wonMainNumbers;
+        return mainNumbers;
     }
 
     public Integer getBonusNumber() {
         validateBothNotNull();
-        return wonBonusNumber;
+        return bonusNumber;
     }
 
     void addMainNumbers(List<Integer> mainNumbers) {
         validateMainNull();
-        this.wonMainNumbers = Collections.unmodifiableList(mainNumbers);
+        this.mainNumbers = Collections.unmodifiableList(mainNumbers);
     }
 
     void addBonusNumber(Integer bonusNumber) {
         validateBonusNull();
-        this.wonBonusNumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateMainNotNull() {
-        if (wonMainNumbers == null) {
+        if (mainNumbers == null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_NULL.get());
         }
     }
 
     private void validateBothNotNull() {
-        if (wonMainNumbers == null || wonBonusNumber == null) {
+        if (mainNumbers == null || bonusNumber == null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_NULL.get());
         }
     }
 
     private void validateMainNull() {
-        if (wonMainNumbers != null) {
+        if (mainNumbers != null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_NOTNULL.get());
         }
     }
 
     private void validateBonusNull() {
-        if (wonBonusNumber != null) {
+        if (bonusNumber != null) {
             throw new IllegalArgumentException(MessageCenter.ERROR_NOTNULL.get());
         }
     }
