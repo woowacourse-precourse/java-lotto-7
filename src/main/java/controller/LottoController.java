@@ -13,8 +13,8 @@ public class LottoController {
 
 
     public void start() {
-        int purchaseAmount = InputView.purchasePriceInput();
-        Lottos lottos = winningService.generateLottoNumber(purchaseAmount);
+        int ticketQuantity = buyTicket();
+        Lottos lottos = winningService.generateLottoNumber(ticketQuantity);
         OutputView.printTicketQuantity(winningService.getTicketQuantity());
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
@@ -27,7 +27,24 @@ public class LottoController {
         }
 
         OutputView.printResult(winningService.getLottoResult());
-        String profit = winningService.getProfit(purchaseAmount);
-        OutputView.printProfit(profit);
+        //String profit = winningService.getProfit(purchaseAmount);
+        //OutputView.printProfit(profit);
     }
+
+    private int buyTicket() {
+        InputView.printPurchaseMessage();
+        int ticketQuantity = 0;
+        while (true) {
+            try {
+                int purchaseAmount = InputView.purchasePriceInput();
+                ticketQuantity = winningService.buyTicket(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        return ticketQuantity;
+    }
+
+
 }

@@ -20,9 +20,13 @@ public class WinningService {
     private LottoResult lottoResult = LottoResult.create();
     private Winning winning;
 
-    public Lottos generateLottoNumber(int purchaseAmount) {
+    public int buyTicket(int purchaseAmount) {
         ticket = Ticket.from(purchaseAmount);
-        for(int i=0; i<ticket.getQuantity(); i++) {
+        return ticket.getQuantity();
+    }
+
+    public Lottos generateLottoNumber(int ticketQuantity) {
+        for(int i=0; i<ticketQuantity; i++) {
             Lotto lotto = new Lotto(RandomNumber.create());
             lottos.addLotto(lotto);
         }

@@ -19,8 +19,11 @@ public class InputView {
     private InputView() {
     }
 
-    public static int purchasePriceInput() {
+    public static void printPurchaseMessage() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
+    }
+
+    public static int purchasePriceInput() {
         String userInput = Console.readLine();
         validateOnlyNumber(userInput);
         return Integer.parseInt(userInput);

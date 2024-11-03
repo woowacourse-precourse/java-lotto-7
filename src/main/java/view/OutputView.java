@@ -29,6 +29,9 @@ public class OutputView {
         printBoundary();
         printStatistics(lottoResult);
     }
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 
     public static void printProfit(String formatProfit) {
         System.out.printf(PROFIT_MESSAGE, formatProfit);
