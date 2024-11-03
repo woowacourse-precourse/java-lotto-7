@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
+import lotto.model.dummy.LottoDummy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,14 +57,20 @@ class LottoTest {
     }
 
     @DisplayName("당첨로또에 해당하는 등수를 반환할 수 있다.")
-    @ParameterizedTest
-    @MethodSource("generateLottoListAndWinningLotto")
-    void 당첨로또에_해당하는_등수를_반환할_수_있다(Lotto lotto, WinningLotto winningLotto, LottoRank expectedRank) {
+    @Test
+    void 당첨로또에_해당하는_등수를_반환할_수_있다() {
+        // given
+        LottoDummy lottoDummy = new LottoDummy();
+        List<Lotto> lottoList = lottoDummy.getLottoList();
+        WinningLotto winningLotto = lottoDummy.winningLotto;
+        HashMap<Lotto, LottoRank> lottoResult = lottoDummy.lottoResult;
+
         // when
-        LottoRank actualRank = lotto.getRankFrom(winningLotto);
+        List<LottoRank> actualRankList = lottoList.stream().map(lotto -> lotto.getRankFrom(winningLotto)).toList();
 
         // then
-        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+        List<LottoRank> expectedRankList = lottoResult.values().stream().toList();
+        Assertions.assertThat(actualRankList).isEqualTo(expectedRankList);
     }
 
     private static Stream<List<Integer>> invalidSizeWinningNumberList() {
@@ -75,25 +82,5 @@ class LottoTest {
                 List.of(1, 2, 3, 4),
                 List.of(1, 2, 3, 4, 5)
         );
-    }
-
-    private static Stream<Arguments> generateLottoListAndWinningLotto() {
-        WinningLotto winningNumber = new WinningLotto(
-                new Lotto(List.of(7, 9, 13, 26, 29, 43)), 11
-        );
-
-        HashMap<Lotto, LottoRank> lottoResult = new HashMap<>();
-        lottoResult.put(new Lotto(List.of(1, 2, 3, 4, 5, 6)), LottoRank.LOSE);
-        lottoResult.put(new Lotto(List.of(7, 8, 11, 14, 15, 16)), LottoRank.LOSE);
-        lottoResult.put(new Lotto(List.of(7, 9, 11, 14, 15, 16)), LottoRank.LOSE);
-        lottoResult.put(new Lotto(List.of(7, 9, 13, 14, 15, 16)), LottoRank.RANK_5);
-        lottoResult.put(new Lotto(List.of(7, 9, 13, 26, 27, 28)), LottoRank.RANK_4);
-        lottoResult.put(new Lotto(List.of(7, 9, 13, 26, 29, 36)), LottoRank.RANK_3);
-        lottoResult.put(new Lotto(List.of(7, 9, 11, 13, 26, 29)), LottoRank.RANK_2);
-        lottoResult.put(new Lotto(List.of(7, 9, 11, 26, 29, 43)), LottoRank.RANK_2);
-        lottoResult.put(new Lotto(List.of(7, 9, 13, 26, 29, 43)), LottoRank.RANK_1);
-
-        return lottoResult.entrySet().stream()
-                .map(lotto -> Arguments.of(lotto.getKey(), winningNumber, lotto.getValue()));
     }
 }
