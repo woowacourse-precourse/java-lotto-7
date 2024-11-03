@@ -21,10 +21,6 @@ public class LottoService {
         userNumbers = new UserNumbers(purchaseAmount);
     }
 
-    public List<UserNumber> getUserNumbers() {
-        return userNumbers.getUserNumbers();
-    }
-
     public void generateLotto(String inputValue) {
         String[] lottoNumber = inputValue.split(",");
         List<Integer> lottoNumberList = Arrays.stream(lottoNumber)
@@ -50,7 +46,7 @@ public class LottoService {
     }
 
     private void setResults(long matchingCount, UserNumber userNumber) {
-        int bonus = this.bonusNumber.getNumber(); //순서 바꿔야 할듯
+        int bonus = this.bonusNumber.getNumber(); //상수로 관리
         if (matchingCount == 3) {
             results.set(0, results.get(0) + 1);
             return;
@@ -73,22 +69,23 @@ public class LottoService {
     }
 
     public double calculateRate() {
-        return roundOff((pureProfit() / getInvestmentCost()) * 100);
+        //System.out.println(getProfit() / (double) getInvestmentCost());
+        return roundOff((getProfit() / (double) getInvestmentCost()) * 100);
     }
 
     private double roundOff(double number) {
-        return Math.round(number * 100) / 100.0;
+        return Math.round(number * 10) / 10.0;
     }
 
-    private int pureProfit() {
-        return getProfit() - getInvestmentCost();
+    private long getInvestmentCost() {
+        return userNumbers.getPurchaseAmount();
     }
 
-    private int getInvestmentCost() {
-        return userNumbers.getPurchaseCount();
-    }
+    private long getProfit() {
+        return 5000L * results.get(0) + 50000L * results.get(1) + 1500000L * results.get(2) + 30000000L * results.get(3) + 2000000000L * results.get(4);
+    } //int의 범위를 고려해야 하는가?
 
-    private int getProfit() {
-        return 5000 * results.get(0) + 50000 * results.get(1) + 1500000 * results.get(2) + 30000000 * results.get(3) + 2000000000 * results.get(4);
+    public UserNumbers getUserNumbers() {
+        return userNumbers;
     }
 }
