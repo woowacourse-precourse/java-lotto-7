@@ -59,4 +59,17 @@ public class LottoServiceTest {
 
         assertThat(totalPrize).isEqualTo(expectedPrize);
     }
+
+    @DisplayName("수익률 계산 확인")
+    @Test
+    void yieldTest() {
+        LottoService lottoService = new LottoService();
+        int purchaseAmount = 8000;
+        int totalPrize = 2_031_555_000;
+
+        double yield = lottoService.calculateYield(purchaseAmount, totalPrize);
+
+        double expectedYield = ((double) totalPrize / purchaseAmount) * 100;
+        assertThat(yield).isEqualTo(expectedYield);
+    }
 }
