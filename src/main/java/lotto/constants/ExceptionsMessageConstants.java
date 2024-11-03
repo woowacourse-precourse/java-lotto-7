@@ -10,6 +10,7 @@ public final class ExceptionsMessageConstants {
     public static final String INPUT_CANNOT_BE_EMPTY_OR_NULL = "빈 문자열이나 null값이면 안됩니다.";
     public static final String INPUT_CONTAINS_NUMBER_AND_COMMA_ONLY = "입력값은 숫자와 콤마(,)만 포함해야 합니다.";
     public static final String INPUT_NUMBERS_COUNT_MUST_BE_SIX = "숫자는 6개를 입력해주세요.";
+    public static final String INPUT_NUMBERS_MUST_BE_IN_ALLOWED_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     private ExceptionsMessageConstants() {}
 }

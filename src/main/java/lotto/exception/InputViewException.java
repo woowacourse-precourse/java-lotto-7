@@ -1,10 +1,12 @@
 package lotto.exception;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.constants.ExceptionsMessageConstants;
 
 public class InputViewException {
 
-    public void validateInputMoney(String inputMoney){
+    public void validateInputMoney(String inputMoney) {
         validateMoneyFormat(inputMoney);
         validateIfMoneyPositive(inputMoney);
         validateIfMoneyMultipleOfThousand(inputMoney);
@@ -12,7 +14,7 @@ public class InputViewException {
         validateIfInputContainsWhitespace(inputMoney);
     }
 
-    private void validateMoneyFormat(String inputMoney){
+    private void validateMoneyFormat(String inputMoney) {
         try {
             Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
@@ -55,6 +57,7 @@ public class InputViewException {
         validateIfInputContainsWhitespace(inputNumbers);
         validateIfInputContainsOtherThanNumbersAndComma(inputNumbers);
         validateNumbersCount(inputNumbers);
+        validateNumbersRange(inputNumbers);
 
     }
 
@@ -77,6 +80,17 @@ public class InputViewException {
         if (numbers.length > 6) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBERS_COUNT_MUST_BE_SIX);
+        }
+    }
+
+    private void validateNumbersRange(String inputNumbers) {
+        List<String> numbers = Arrays.stream(inputNumbers.split(",")).toList();
+        for (String number : numbers) {
+            if (!number.equals(String.valueOf(Integer.parseInt(number))) || Integer.parseInt(number) <= 0
+                    || Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
+                        + ExceptionsMessageConstants.INPUT_NUMBERS_MUST_BE_IN_ALLOWED_RANGE);
+            }
         }
     }
 
