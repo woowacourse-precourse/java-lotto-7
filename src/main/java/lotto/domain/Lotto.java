@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
@@ -12,9 +9,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-        validate(numbers);
-        this.numbers = numbers;
+        List<Integer> initializationNumbers = new ArrayList<>(numbers);
+        Collections.sort(initializationNumbers);
+        validate(initializationNumbers);
+        this.numbers = initializationNumbers;
     }
 
     private void validate(List<Integer> numbers) {

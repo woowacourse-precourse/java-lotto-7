@@ -5,10 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
@@ -28,6 +25,9 @@ public class LottoController {
         printPurchasedLottos(purchasedLottos);
 
         inputWinningNumbers();
+        inputBonusNumber();
+
+        printResult();
     }
 
     private int inputPurchaseAmount() {
@@ -41,7 +41,7 @@ public class LottoController {
                 validateNoChangeAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -72,13 +72,11 @@ public class LottoController {
         StringBuilder message = new StringBuilder();
         String numberOfLottosMessage = NUMBER_OF_PURCHASED_LOTTOS.formatted(lottos.size());
         message.append(numberOfLottosMessage);
-        message.append('\n');
         for (Lotto lotto: lottos) {
             message.append(lotto.getNumbers());
             message.append('\n');
         }
 
-        message.append('\n');
         System.out.println(message);
     }
 
@@ -93,7 +91,7 @@ public class LottoController {
                 lottoService.setWinningLotto(winningLotto);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -120,14 +118,41 @@ public class LottoController {
                 lottoService.setBonusNumber(bonus);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
 
     private void printResult() {
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder(STATS_HEADER);
 
+        Map<Rank, Integer> map = countRanks();
+        for (Rank rank: Rank.values()) {
+            if(rank == Rank.FAILURE) continue;
+            String statsOfRankMessage = statsOfRank(rank, map.get(rank));
+            result.append(statsOfRankMessage);
+            result.append('\n');
+        }
+
+        String statsOfBenefitRateMessage = statsOfBenefitRate();
+        result.append(statsOfBenefitRateMessage);
+
+        System.out.println(result);
+    }
+
+    private String statsOfRank(Rank rank, int count) {
+        String bonusExistMessage = "";
+        if(rank.hasBonusNumber()) {
+            bonusExistMessage = HAS_BONUS_NUMBER;
+        }
+
+        return NUMBER_OF_WON_LOTTOS.formatted(rank.getMatchingNumbers(), bonusExistMessage, rank.getPrize(), count);
+    }
+
+    private String statsOfBenefitRate() {
+        double benefitRate = lottoService.calculateBenefitRate();
+
+        return TOTAL_BENEFIT_RATE.formatted(benefitRate);
     }
 
     private Map<Rank, Integer> countRanks() {
