@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.message.ErrorMessage;
+import lotto.validator.MoneyValidator;
 import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
@@ -11,25 +11,10 @@ public class InputView {
             try {
                 OutputView.notifyEnterMoneyToBuy();
                 String input = Console.readLine();
-                return validateMoneyToBuy(input);
+                return MoneyValidator.validateMoneyToBuy(input);
             } catch (Exception e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
-        }
-    }
-
-    public static int validateMoneyToBuy(String input) {
-        try {
-            int moneyToBuy = Integer.parseInt(input); // 숫자가 아닌 경우 NumberFormatException 발생
-            if (moneyToBuy <= 0) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_ERROR_MESSAGE.getMessage());
-            }
-            if (moneyToBuy % 1000 != 0) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_ERROR_MESSAGE.getMessage());
-            }
-            return moneyToBuy;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage(), e);
         }
     }
 
