@@ -23,12 +23,12 @@ public class InputViewImpl implements InputView {
 
     @Override
     public String bonusNumber() {
-        System.out.print("보너스 번호를 입력하세요: ");
+        System.out.println("보너스 번호를 입력해 주세요. ");
         return Console.readLine();
     }
 
     private String winningNumbersInput() {
-        System.out.print("당첨 번호를 입력하세요 (쉼표로 구분): ");
+        System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 

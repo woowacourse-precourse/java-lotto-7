@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import lotto.model.Lotto;
+import lotto.model.LottoGame;
 
 import java.util.List;
 
@@ -11,5 +12,12 @@ public class ResultViewImpl implements ResultView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    public void printResult(LottoGame lottoGame) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(lottoGame.getLottoResult());
+        lottoGame.printReturnRate();
     }
 }

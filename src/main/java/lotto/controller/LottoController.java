@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoGame;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.ui.InputView;
@@ -14,6 +16,7 @@ public class LottoController {
     private final ResultView resultView;
     private final Validator validator;
     private final LottoService lottoService;
+    private LottoGame lottoGame;
 
     public LottoController(InputView inputView, ResultView resultView,
                            Validator validator, LottoService lottoService) {
@@ -27,8 +30,18 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = purchaseAmount();
-                resultView.displayLottos(lottoService.generateLottos(purchaseAmount));
-                createWinningLotto().validateBonusNumber(validator);
+                lottoGame = new LottoGame(purchaseAmount);
+                List<Lotto> purchasedLottos = lottoService.generateLottos(purchaseAmount);
+                resultView.displayLottos(purchasedLottos);
+
+                WinningLotto winningLotto = createWinningLotto();
+                List<Rank> ranks = lottoService.checkWinningLottos(purchasedLottos, winningLotto);
+
+                for (Rank rank : ranks) {
+                    lottoGame.addResult(rank);
+                }
+
+                resultView.printResult(lottoGame);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
