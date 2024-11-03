@@ -13,9 +13,17 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InputViewTest extends NsTest {
     InputView inputView = new InputView();
+
+    @Test
+    public void testParseInt() {
+        assertThrows(IllegalArgumentException.class, () -> InputView.parseInt("abc"));
+        assertEquals(123, InputView.parseInt("123"));
+    }
 
     @Test
     @DisplayName("parseInt 정상 작동 테스트")

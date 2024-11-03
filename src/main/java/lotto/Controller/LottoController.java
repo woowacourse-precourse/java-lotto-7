@@ -67,13 +67,17 @@ public class LottoController {
     }
 
     public Lotto gainWinningInput() {
-        Lotto answer;
+        Lotto answer = null;
+        boolean isValid = false;
+
         OutputView.printWinning();
-        try {
-            answer = InputView.readWinningNum();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(ErrorMessage.WIN_INPUT.getError());
-            return gainWinningInput();
+        while (!isValid) {
+            try {
+                answer = InputView.readWinningNum();
+                isValid = true; // 입력이 성공적이면 루프 종료
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(ErrorMessage.WIN_INPUT.getError());
+            }
         }
         OutputView.printBlank();
         return answer;
@@ -81,12 +85,16 @@ public class LottoController {
 
     public int gainBonusInput(Lotto answer) {
         int bonus = 0;
+        boolean isValid = false;
+
         OutputView.printBonus();
-        try {
-            bonus = InputView.readBonus(answer);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(ErrorMessage.BONUS.getError());
-            return gainBonusInput(answer);
+        while (!isValid) {
+            try {
+                bonus = InputView.readBonus(answer);
+                isValid = true; // 입력이 성공적이면 루프 종료
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(ErrorMessage.BONUS.getError());
+            }
         }
         OutputView.printBlank();
         return bonus;

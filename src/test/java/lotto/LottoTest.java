@@ -2,15 +2,23 @@ package lotto;
 
 import lotto.Messages.ErrorMessage;
 import lotto.Model.Lotto;
+import lotto.Model.MyInfo;
 import lotto.Model.MyResults;
+import lotto.View.InputView;
+import lotto.View.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
     @Test
