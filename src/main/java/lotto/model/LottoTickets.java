@@ -4,11 +4,20 @@ import static lotto.constant.ErrorMessages.INVALID_MONEY;
 
 public class LottoTickets {
 
-    private static final int PRICE_PER_TICKET = 1000;
+    private static final int PRICE_PER_TICKET = 1_000;
     private int ticketCount;
 
     public LottoTickets(String stringMoney) {
         int money = parsePositiveNumber(stringMoney);
+        if (money % PRICE_PER_TICKET != 0) {
+            throw new IllegalArgumentException(INVALID_MONEY);
+        }
+
+        ticketCount = money / PRICE_PER_TICKET;
+    }
+
+    public int getTicketCount() {
+        return ticketCount;
     }
 
     private int parsePositiveNumber(String number) {

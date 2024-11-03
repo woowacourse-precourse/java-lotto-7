@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.constant.ErrorMessages;
@@ -7,6 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketsTest {
+
+    @Test
+    @DisplayName("머니가 2,000원이면 티켓 2장이 생성된다.")
+    void testValidMoney() {
+        LottoTickets lottoTickets = new LottoTickets("2000");
+        assertThat(lottoTickets.getTicketCount()).isEqualTo(2);
+    }
 
     @Test
     @DisplayName("머니가 빈 공백이면 예외를 던진다.")
