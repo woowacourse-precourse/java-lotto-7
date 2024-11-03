@@ -61,7 +61,7 @@ class ApplicationTest extends NsTest {
     void 기능_테스트2() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("asdf","8000a","8000","12,3,4,5,","1,2,3,4,5,6","7");
+                    run("asdf","asdf","8000","12,3,4,5,","1,2,3,4,5,6","7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "3개 일치 (5,000원) - 2개",
