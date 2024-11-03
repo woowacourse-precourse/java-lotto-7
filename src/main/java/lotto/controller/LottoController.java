@@ -9,6 +9,8 @@ import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class LottoController {
 
     private final OutputView outputView;
@@ -31,17 +33,33 @@ public class LottoController {
     }
 
     private PurchaseAmount readPurchasePrice() {
-        outputView.printPurchaseGuide();
-        return inputView.readPurchasePrice();
+        return attemptedRead(() -> {
+            outputView.printPurchaseGuide();
+            return inputView.readPurchasePrice();
+        });
     }
 
     private Lotto readWinningNumber() {
-        outputView.printWinningNumberGuide();
-        return inputView.readWinningNumber();
+        return attemptedRead(() -> {
+            outputView.printWinningNumberGuide();
+            return inputView.readWinningNumber();
+        });
     }
 
     private BonusNumber readBonusNumber() {
-        outputView.printBonusNumberGuide();
-        return inputView.readBonusNumber();
+        return attemptedRead(() -> {
+            outputView.printBonusNumberGuide();
+            return inputView.readBonusNumber();
+        });
+    }
+
+    private <T> T attemptedRead(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            outputView.printNewLine();
+            return supplier.get();
+        }
     }
 }

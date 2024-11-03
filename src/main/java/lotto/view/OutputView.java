@@ -29,4 +29,12 @@ public class OutputView {
         System.out.println(OutputMessage.LINE.getMessage());
         System.out.println(resultScreen);
     }
+
+    public void printExceptionMessage(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
+
+    public void printNewLine() {
+        System.out.println();
+    }
 }
