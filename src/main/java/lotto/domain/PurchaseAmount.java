@@ -3,33 +3,26 @@ package lotto.domain;
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoConstant.*;
 
-public class PurchaseAmount {
+public record PurchaseAmount(Integer amount) {
 
-    private final Integer purchaseAmount;
-
-    public PurchaseAmount(Integer purchaseAmount) {
-        validateIsMultipleOfLottoPrice(purchaseAmount);
-        validateIsNotZero(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
+    public PurchaseAmount {
+        validateIsMultipleOfLottoPrice(amount);
+        validateIsNotZero(amount);
     }
 
-    public Integer getPurchaseAmount() {
-        return purchaseAmount;
-    }
-
-    private void validateIsMultipleOfLottoPrice(int purchaseAmount) {
-        if (isNotMultipleOfLottoPrice(purchaseAmount)) {
+    private void validateIsMultipleOfLottoPrice(int amount) {
+        if (isNotMultipleOfLottoPrice(amount)) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
-    private void validateIsNotZero(int purchaseAmount) {
-        if (purchaseAmount == INT_ZERO.getValue()) {
+    private void validateIsNotZero(int amount) {
+        if (amount == INT_ZERO.getValue()) {
             throw new IllegalArgumentException(INVALID_ZERO_AMOUNT.getMessage());
         }
     }
 
-    private boolean isNotMultipleOfLottoPrice(int purchaseAmount) {
-        return purchaseAmount % LOTTO_PRICE.getValue() != INT_ZERO.getValue();
+    private boolean isNotMultipleOfLottoPrice(int amount) {
+        return amount % LOTTO_PRICE.getValue() != INT_ZERO.getValue();
     }
 }
