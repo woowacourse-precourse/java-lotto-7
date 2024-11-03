@@ -1,8 +1,8 @@
 package lotto.model;
 
 public class WinningLotto {
-    private Lotto winningLotto;
-    private int bonusNumber;
+    private final Lotto winningLotto;
+    private final int bonusNumber;
 
     public WinningLotto(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
