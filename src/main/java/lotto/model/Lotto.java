@@ -1,9 +1,7 @@
 package lotto.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.view.error.ErrorType;
+import lotto.util.InputValidator;
 import lotto.view.error.InputErrorException;
 
 public class Lotto {
@@ -12,7 +10,10 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private final InputValidator inputValidator;
+
+    public Lotto(List<Integer> numbers, InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
         validate(numbers);
         this.numbers = numbers;
     }
@@ -22,31 +23,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkIfEmpty(numbers);
+        inputValidator.checkIfEmpty(numbers);
         checkLottoNumberCount(numbers);
-        hasDuplicate(numbers);
+        inputValidator.checkDuplicate(numbers);
     }
 
     private void checkLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new InputErrorException(NEED_SIX_NUMBERS);
-        }
-    }
-
-    private void hasDuplicate(List<Integer> numbers) {
-
-        Set<Integer> distinctLottoNumbers = new HashSet<>();
-
-        for (Integer lottoNumber : numbers) {
-            if (!distinctLottoNumbers.add(lottoNumber)) {
-                throw new InputErrorException(ErrorType.NEED_DISTINCT_NUMBER);
-            }
-        }
-    }
-
-    private void checkIfEmpty(List<Integer> numbers) {
-        if (numbers.isEmpty()) {
-            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
     }
 }
