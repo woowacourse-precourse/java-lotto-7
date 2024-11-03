@@ -30,4 +30,21 @@ class LottoServiceTest {
         }
     }
 
+    @Test
+    @DisplayName("로또 결과 계산 및 수익률 확인")
+    void calculateResultAndProfitRate() {
+        LottoTickets tickets = LottoTickets.from(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+        ));
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
+        BonusNumber bonusNumber = BonusNumber.from("7", winningNumbers);
+
+        LottoResultDto result = lottoService.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertEquals(1, result.getRankCounts().get(Rank.SIX));
+        assertEquals(1, result.getRankCounts().get(Rank.FIVE));
+        assertTrue(result.getProfitRate() > 0);
+    }
+
 }
