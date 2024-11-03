@@ -11,9 +11,16 @@ public class WinningNumber {
     private int bonusNumber;
 
     public void inputWinningNumber() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        this.winningNumbers = parseWinningNumbers(input);
+        while(true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                this.winningNumbers = parseWinningNumbers(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> parseWinningNumbers(String input) {
@@ -45,7 +52,7 @@ public class WinningNumber {
 
     private void validateWinningNumbersRange(List<Integer> winningNumbers) {
         if (winningNumbers.stream().anyMatch(n -> n < MIN_NUMBER || n > MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -56,9 +63,16 @@ public class WinningNumber {
     }
 
     public void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine().trim();
-        this.bonusNumber = parseBonusNumber(input);
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String input = Console.readLine().trim();
+                this.bonusNumber = parseBonusNumber(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int parseBonusNumber(String bonusNumber) {
@@ -83,7 +97,7 @@ public class WinningNumber {
         }
     }
 
-    public void validateBonusNumberDuplication(int bonusNumber) {
+    private void validateBonusNumberDuplication(int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
