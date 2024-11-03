@@ -31,10 +31,9 @@ class LottoValidatorTest {
         assertDoesNotThrow(() -> LottoValidator.validatePriceUnit(price));
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 34, 45, 23})
-    public void 숫자범위가_1에서_45사이인지_확인하다(int number) {
-        assertDoesNotThrow(() -> LottoValidator.validateLottoNumber(number));
+    @Test
+    public void 숫자범위가_1에서_45사이인지_확인하다() {
+        assertDoesNotThrow(() -> LottoValidator.validateLottoNumber(List.of(1, 43, 44, 45, 25, 12)));
     }
 
     @Test
@@ -63,11 +62,10 @@ class LottoValidatorTest {
                 () -> LottoValidator.validatePriceUnit(invalidPrice));
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 46, -1, 100, 99999})
-    void 숫자범위가_1에서_45사이의_숫자가_아니면_예외를_던진다(int invalidNumber) {
+    @Test
+    void 숫자범위가_1에서_45사이의_숫자가_아니면_예외를_던진다() {
         assertThrows(IllegalArgumentException.class,
-                () -> LottoValidator.validateLottoNumber(invalidNumber));
+                () -> LottoValidator.validateLottoNumber(List.of(-1, 10, 46)));
     }
 
     @ParameterizedTest
