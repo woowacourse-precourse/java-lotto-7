@@ -6,6 +6,7 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoTickets;
 import lotto.model.RandomNumberGenerator;
 import lotto.view.LottoGameInputView;
+import lotto.view.LottoGameOutputView;
 
 public class LottoGameController {
 
@@ -14,5 +15,6 @@ public class LottoGameController {
 
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
         List<Lotto> lottos = lottoMachine.exchangeLotto(lottoTickets);
+        LottoGameOutputView.printLottos(lottos);
     }
 }
