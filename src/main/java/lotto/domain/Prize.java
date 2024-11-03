@@ -19,6 +19,16 @@ public enum Prize {
         this.money = money;
     }
 
+    public static Prize getMatchPrize(int matchCount, boolean bonusFlag) {
+        for (Prize value : Prize.values()) {
+            if (value.matchCount == matchCount && value.isBonus == bonusFlag) {
+                return value;
+            }
+        }
+
+        return Prize.FAIL;
+    }
+
     public int getMoney() {
         return money;
     }
