@@ -31,18 +31,18 @@ class LottoPurchasedInfoTests {
     @Test
     @DisplayName("당첨된 복권의 개수를 등수별로 그룹화")
     void groupByLottoRankTest() {
-        Map<LottoRank, Integer> expected = Map.of(LottoRank.NONE, 1, LottoRank.FIFTH, 1);
-        Map<LottoRank, Integer> result = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
+        Map<LottoRank, Long> expected = Map.of(LottoRank.NONE, 1L, LottoRank.FIFTH, 1L);
+        Map<LottoRank, Long> result = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
 
         assertEquals(result, expected);
     }
 
     @Test
     @DisplayName("당첨된 복권으로 얻은 수익의 총합을 계산")
-    void calculateTotalRewardsTest() {
+    void calculateTotalProfitTest() {
         Long expected = 5000L;
 
-        assertEquals(lottoPurchasedInfo.calculateTotalRewards(), expected);
+        assertEquals(lottoPurchasedInfo.calculateTotalProfit(), expected);
     }
 
     @Test

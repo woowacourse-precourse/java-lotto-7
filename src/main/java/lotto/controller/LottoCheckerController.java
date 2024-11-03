@@ -20,7 +20,7 @@ public class LottoCheckerController {
         List<Integer> winningNumbers = winningLotto.getWinningNumber();
         Integer bonusNumber = winningLotto.getBonusNumber();
 
-        Map<LottoRank, Integer> countResult = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
+        Map<LottoRank, Long> countResult = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
         Double profitPercentage = lottoPurchasedInfo.calculateProfitPercentage();
 
         return new LottoResultDTO(countResult, profitPercentage);

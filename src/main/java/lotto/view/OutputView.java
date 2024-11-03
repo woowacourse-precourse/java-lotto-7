@@ -20,24 +20,24 @@ public class OutputView {
         purchased.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public void displayLottoStatistic(Map<LottoRank, Integer> winningCount, Double profit) {
+    public void displayLottoStatistic(Map<LottoRank, Long> winningCount, Double profit) {
         System.out.println(OUTPUT_WINNING_STATISTIC_TITLE);
 
         Arrays.stream(LottoRank.values())
                 .filter(rank -> rank != LottoRank.NONE)
-                .forEach(rank -> System.out.print(makeString(rank, winningCount.getOrDefault(rank, 0))));
+                .forEach(rank -> System.out.print(makeToString(rank, winningCount.getOrDefault(rank, 0L))));
 
         System.out.printf(OUTPUT_TOTAL_PROFIT_PERCENTAGE, profit);
     }
 
-    public String makeString(LottoRank rank, Integer winningCount) {
+    public String makeToString(LottoRank rank, Long winningCount) {
         StringBuilder lottoRankInfo = new StringBuilder();
 
         lottoRankInfo.append(String.format(OUTPUT_SAME_LOTTO_NUMBER_COUNT, rank.getSameNumberCount()));
         if (rank.isSecondRank()) {
             lottoRankInfo.append(OUTPUT_BONUS_NUMBER_SAME);
         }
-        lottoRankInfo.append(String.format(OUTPUT_REWARDS_AND_LOTTO_COUNT, rank.getReward(), winningCount));
+        lottoRankInfo.append(String.format(OUTPUT_REWARDS_AND_LOTTO_COUNT, rank.getProfit(), winningCount));
 
         return lottoRankInfo.toString();
     }

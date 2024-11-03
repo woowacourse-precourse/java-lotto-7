@@ -11,40 +11,41 @@ public class LottoPurchasedInfo {
     private final List<Lotto> purchased;
     private final Long totalCost;
 
-    private Map<LottoRank, Integer> countResult;
+    private Map<LottoRank, Long> winningCountByRank;
 
     public LottoPurchasedInfo(List<Lotto> purchased, Long totalCost) {
         this.purchased = purchased;
         this.totalCost = totalCost;
     }
 
-    public Map<LottoRank, Integer> getWinningResult(List<Integer> winningNumber, Integer bonusNumber) {
-        if (this.countResult == null) {
-            countResult = groupByLottoRank(winningNumber, bonusNumber);
+    public Map<LottoRank, Long> getWinningResult(List<Integer> winningNumber, Integer bonusNumber) {
+        if (this.winningCountByRank == null) {
+            winningCountByRank = groupByLottoRank(winningNumber, bonusNumber);
         }
+        return Collections.unmodifiableMap(winningCountByRank);
+    }
+
+    private Map<LottoRank, Long> groupByLottoRank(List<Integer> winningNumber, Integer bonusNumber) {
+        Map<LottoRank, Long> countResult = new EnumMap<>(LottoRank.class);
+
+        purchased.forEach(lotto -> {
+            LottoRank lottoRank = lotto.checkRank(winningNumber, bonusNumber);
+            countResult.merge(lottoRank, 1L, Long::sum);
+        });
+
         return Collections.unmodifiableMap(countResult);
     }
 
-    private Map<LottoRank, Integer> groupByLottoRank(List<Integer> winningNumber, Integer bonusNumber) {
-        Map<LottoRank, Integer> countResult = new EnumMap<>(LottoRank.class);
-        for (Lotto lotto : purchased) {
-            int sameNumberCount = lotto.countSameNumber(winningNumber);
-            boolean isSecondRank = lotto.isSecondRank(winningNumber, bonusNumber);
-            LottoRank rank = LottoRank.findRank(sameNumberCount, isSecondRank);
-
-            countResult.merge(rank, 1, Integer::sum);
-        }
-        return Collections.unmodifiableMap(countResult);
-    }
-
-
-    public Long calculateTotalRewards() {
+    public Long calculateTotalProfit() {
         return Arrays.stream(LottoRank.values())
-                .map(rank -> rank.getReward() * countResult.getOrDefault(rank, 0))
+                .map(rank -> {
+                    Long winningCount = winningCountByRank.getOrDefault(rank, 0L);
+                    return rank.calculateProfitByCount(winningCount);
+                })
                 .reduce(0L, Long::sum);
     }
 
     public Double calculateProfitPercentage() {
-        return calculateTotalRewards() * 100.0 / totalCost;
+        return this.calculateTotalProfit() * 100.0 / totalCost;
     }
 }
