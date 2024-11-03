@@ -85,13 +85,8 @@ public class LottoTransactionController {
   }
 
   private Lotto produceLotto() {
-    Set<Integer> lottoNumbers = new HashSet<>();
 
-    while (lottoNumbers.size() < 6) {
-      int number = Randoms.pickNumberInRange(1, 45);
-      lottoNumbers.add(number);
-    }
-    List<Integer> numbers = new ArrayList<>(lottoNumbers);
+    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
     return new Lotto(numbers);
   }
