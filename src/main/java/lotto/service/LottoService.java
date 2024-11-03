@@ -5,10 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoService {
     private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
@@ -19,7 +16,20 @@ public class LottoService {
     }
 
     public List<Integer> generateLottonumbers() {
-        return new ArrayList<>((Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        while (true) {
+            List<Integer> lottoNumbers = new ArrayList<>((Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            if (hasDuplicates(lottoNumbers)) {
+                return lottoNumbers;
+            }
+        }
+    }
+
+    private Boolean hasDuplicates(List<Integer> lottoNumbers) {
+        Set<Integer> NoDuplicateLottoNumbers = new HashSet<>(lottoNumbers);
+        if (NoDuplicateLottoNumbers.size() < 6) {
+            return false;
+        }
+        return true;
     }
 
     public List<Lotto> issueLottos(int purchaseAmount) {

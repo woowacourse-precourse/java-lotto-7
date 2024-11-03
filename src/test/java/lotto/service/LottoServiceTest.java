@@ -44,6 +44,12 @@ public class LottoServiceTest {
     }
 
     @Test
+    void 로또의_번호들은_중복되지_않아야_한다() {
+        Set<Integer> lottoNumbers = new HashSet<>(lottoService.generateLottonumbers());
+        assertThat(lottoNumbers.size()).isEqualTo(6);
+    }
+
+    @Test
     void 발행된_로또들의_랭크_리스트를_올바르게_반환하는지_테스트() {
         // given
         List<Lotto> lottos = new ArrayList<>(List.of(
