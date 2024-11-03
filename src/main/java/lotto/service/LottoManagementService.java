@@ -11,6 +11,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoManagementService {
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int LOTTO_NUMBERS_COUNT = 6;
 
     private final UserLottoRepository userLottoRepository;
     private final LottoRepository lottoRepository;
@@ -39,6 +42,16 @@ public class LottoManagementService {
 
     private boolean hasBonusNum(UserLotto userLotto) {
         return userLotto.getHasBonusnum();
+    }
+
+    // 랜덤한 로또 번호를 생성하여 UserLotto 객체로 반환
+    public UserLotto createLottoNumbers() {
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER,
+                MAX_LOTTO_NUMBER, LOTTO_NUMBERS_COUNT));
+
+        Collections.sort(lottoNumbers); // 오름차순 정렬
+
+        return new UserLotto(lottoNumbers);
     }
 
 }
