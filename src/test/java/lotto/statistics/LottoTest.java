@@ -30,7 +30,7 @@ class LottoTest {
 
     @DisplayName("숫자 리스트를 알려주면 일치하는 숫자 개수를 반환한다.")
     @Test
-    void shouldReturnCountMatchingNumbersWhenGiveWinningLotto() {
+    void shouldReturnCountMatchingNumbersWhenGiveMyLotto() {
         // give
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> myLotto = List.of(1, 2, 3, 7, 8, 9);
