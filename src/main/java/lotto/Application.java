@@ -9,12 +9,12 @@ public class Application {
         ConsoleInput input = new ConsoleInput();
         ConsoleOutput output = new ConsoleOutput();
 
-        while(true) {
+        LottoGame lottoGame = new LottoGame(input, output);
+        while (true) {
             try {
-                LottoGame lottoGame = new LottoGame(input, output);
                 lottoGame.play();
                 break;
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
