@@ -40,7 +40,14 @@ public class LottoMachineService {
         }
     }
 
-    // TODO: 사용자의 로또 번호와 비교한다.
+    public int correctNumber(Lotto lotto) {
+        List<Integer> memberLotto = lotto.getNumbers();
+        List<Integer> winningLotto = lottoMachine.getWinningLotto().getNumbers();
+
+        return (int) memberLotto.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
 
     // TODO: 맞춘 개수와 금액을 사용자에게 전달한다.
 }
