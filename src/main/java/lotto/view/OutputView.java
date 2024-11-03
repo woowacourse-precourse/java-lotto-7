@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.Rank;
-import lotto.dto.FormattedTickets;
-import lotto.utils.RankPrizeFormatter;
+import lotto.domain.core.Rank;
+import lotto.dto.result.FormattedTickets;
+import lotto.utils.formatter.RankPrizeFormatter;
 
 import java.math.BigDecimal;
 

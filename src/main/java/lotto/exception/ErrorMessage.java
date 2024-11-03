@@ -30,6 +30,8 @@ public enum ErrorMessage {
     INVALID_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
     DUPLICATE_NUMBER("[ERROR] 로또 번호에는 중복된 숫자가 포함될 수 없습니다."),
     INVALID_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+
+    NOT_ZERO_TOTAL_PURCHASE("[ERROR] 구입 총액은 0일 수 없습니다."),
     ;
 
     private final String message;

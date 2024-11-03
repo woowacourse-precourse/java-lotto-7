@@ -1,13 +1,17 @@
 package lotto;
 
-import lotto.domain.*;
-import lotto.dto.*;
-import lotto.utils.BonusNumberInputParser;
-import lotto.utils.LottoNumbersInputParser;
+import lotto.domain.calculator.*;
+import lotto.domain.core.*;
+import lotto.dto.input.BonusNumberInput;
+import lotto.dto.input.LottoNumbersInput;
+import lotto.dto.input.PurchaseTotalPriceInput;
+import lotto.dto.result.*;
+import lotto.utils.parser.BonusNumberInputParser;
+import lotto.utils.parser.LottoNumbersInputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.utils.TicketFormatter;
-import lotto.utils.TicketSorter;
+import lotto.utils.formatter.TicketFormatter;
+import lotto.utils.sorter.TicketSorter;
 
 import java.util.List;
 import java.util.Map;
