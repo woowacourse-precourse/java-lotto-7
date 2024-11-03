@@ -90,7 +90,7 @@
 |           | Prize 번호(PrizeNumber) 관리    | WinnerNumbers 객체로 당첨 번호 설정        | ✅  |
 |           |                             | BonusNumber 객체로 보너스 번호 설정         | ✅  |
 |           |                             | 당첨 정보를 DTO(PrizeNumberResult)로 조회 | ✅️ |
-|           | 당첨 번호(WinnerNumbers) 관리     | Lotto 객체로 당첨 번호 설정                | ⬜️ |
+|           | 당첨 번호(WinnerNumbers) 관리     | Lotto 객체로 당첨 번호 설정                | ✅  |
 |           | 보너스 번호(BonusNumber) 관리      | 보너스 번호 생성                         | ⬜️ |
 |           |                             | 보너스 번호 범위 검증(1~45)                | ⬜️ |
 |           |                             | 당첨 번호와의 중복 검증                     | ⬜️ |
