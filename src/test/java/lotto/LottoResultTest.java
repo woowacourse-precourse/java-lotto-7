@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLottoNumbers;
 import org.junit.jupiter.api.DisplayName;
@@ -26,5 +27,21 @@ public class LottoResultTest {
 
         // then
         assertThat(matchCount).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("보너스 번호와 일치하는지 확인한다.")
+    void 성공_보너스번호체크_유효한파라미터() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        String bonusNumber = "7";
+        BonusNumber parsedBonusNumber = BonusNumber.from(bonusNumber);
+
+        // when
+        boolean hasBonus = lotto.matchBonusNumber(parsedBonusNumber);
+
+        // then
+        assertThat(hasBonus).isTrue();
     }
 }
