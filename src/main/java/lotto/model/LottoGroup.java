@@ -39,7 +39,8 @@ public class LottoGroup {
     }
 
     private static Lotto generateLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        List<Integer> lottoNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
