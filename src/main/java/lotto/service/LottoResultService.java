@@ -40,22 +40,20 @@ public class LottoResultService {
     public List<MatchingCountResult> getWinningCount() {
         for (Lotto lotto : purchaseLotto) {
             HashMap<String, Integer> matchingCount = lottoMatchingCounter.countMatchingNumbers(lotto);
-            MatchingCountResult matchingCountResult = Converter.matchingCounterResultConvert(
+            WinningCondition condition = Converter.matchingCounterResultConvert(
                     matchingCount.get(WINNING_COUNT),
                     matchingCount.get(BONUS_COUNT));
-            addOrUpdateMatchingCountResult(matchingCountResults, matchingCountResult);
+            updateMatchingCount(matchingCountResults, condition);
         }
 
         return matchingCountResults;
     }
 
-    private void addOrUpdateMatchingCountResult(List<MatchingCountResult> matchingCountResults,
-                                                MatchingCountResult matchingCountResult) {
-        for (int i = 0; i < matchingCountResults.size(); i++) {
-            MatchingCountResult existingResult = matchingCountResults.get(i);
-            if (existingResult.getWinningCondition().equals(matchingCountResult.getWinningCondition())) {
-                existingResult.addCount();
-                return;
+    private void updateMatchingCount(List<MatchingCountResult> matchingCountResults,
+                                     WinningCondition winningCondition) {
+        for (MatchingCountResult result : matchingCountResults) {
+            if (result.getWinningCondition().equals(winningCondition)) {
+                result.addCount();
             }
         }
     }
