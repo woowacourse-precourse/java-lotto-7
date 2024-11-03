@@ -76,4 +76,14 @@ public class LottoResult {
         System.out.println(FOURTH_RANK.getDescription() + fourthRankCount + "개");
         System.out.println(FIFTH_RANK.getDescription() + fifthRankCount + "개");
     }
+
+    public static void printRateOfReturn(int amount) {
+        int earnings = firstRankCount * FIRST_RANK.getPrize()
+                + secondRankCount * SECOND_RANK.getPrize()
+                + thirdRankCount * THIRD_RANK.getPrize()
+                + fourthRankCount * FOURTH_RANK.getPrize()
+                + fifthRankCount * FIFTH_RANK.getPrize();
+        double rateOfReturn = (double) earnings / amount;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn * 100);
+    }
 }
