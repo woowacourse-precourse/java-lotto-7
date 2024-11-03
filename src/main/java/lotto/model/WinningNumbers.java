@@ -10,11 +10,10 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers getInstance(Lotto winningLotto, int bonusNumber) {
+    public static void initializeInstance(Lotto winningLotto, int bonusNumber) {
         if (instance == null) {
             instance = new WinningNumbers(winningLotto, bonusNumber);
         }
-        return instance;
     }
 
     public static WinningNumbers getInstance() {
