@@ -1,9 +1,11 @@
 package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoAnswer;
 import lotto.model.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -149,6 +151,24 @@ class LottoMatcherTest {
 
         // when
         final WinningResult result = LottoMatcher.match(userLotto, winningLotto, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Lotto와 LottoAnswer클래스 비교 테스트 - 1등")
+    void matchFirstTest_class() {
+        // given
+        List<Integer> userLottoNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningLottoNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        final int bonusNumber = 7;
+        final WinningResult expected = WinningResult.FIRST;
+
+        var userLotto = new Lotto(userLottoNumber);
+        var winningLotto = new LottoAnswer(winningLottoNumber, bonusNumber);
+        // when
+        final WinningResult result = LottoMatcher.match(userLotto, winningLotto);
 
         // then
         assertThat(result).isEqualTo(expected);
