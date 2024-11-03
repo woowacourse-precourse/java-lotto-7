@@ -1,9 +1,11 @@
 package lotto.view;
 
 import static lotto.MessageContainer.RATE_OF_RETURN_MESSAGE;
+import static lotto.MessageContainer.WINNING_STATISTICS;
 
 public class OutputView {
     public void printWinningDetails(String winningDetails) {
+        System.out.println(WINNING_STATISTICS);
         System.out.println(winningDetails);
     }
 
