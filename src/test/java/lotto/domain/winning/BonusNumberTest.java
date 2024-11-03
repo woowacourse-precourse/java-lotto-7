@@ -22,22 +22,22 @@ class BonusNumberTest {
     @DisplayName("객체 생성 테스트")
     @Test
     void 객체생성_테스트() {
-        Number number = Number.of(9);
+        int number = 9;
         WinningLotto winningLotto = WinningLotto.of(numbers);
 
         BonusNumber bonusNumber = BonusNumber.valueOf(winningLotto, number);
 
         assertThat(bonusNumber).isNotNull();
-        assertThat(bonusNumber.getBonusNumber()).isEqualTo(number);
+        assertThat(bonusNumber.getValue()).isEqualTo(number);
+        assertThat(bonusNumber).isInstanceOf(Number.class);
     }
 
     @DisplayName("당첨 번호에 포함된 숫자가 입력될 경우 예외")
     @Test
     void 중복_숫자_입력_예외() {
-        Number number = Number.of(1);
         WinningLotto winningLotto = WinningLotto.of(numbers);
 
-        assertThatThrownBy(() -> BonusNumber.valueOf(winningLotto, number))
+        assertThatThrownBy(() -> BonusNumber.valueOf(winningLotto, 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
     }

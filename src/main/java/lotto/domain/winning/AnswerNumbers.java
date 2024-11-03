@@ -21,7 +21,7 @@ public class AnswerNumbers {
     public Rank compare(Lotto lotto) {
         return Rank.find(
                 lotto.countMatchingNumbers(winningLotto),
-                lotto.contains(bonusNumber.getBonusNumber())
+                lotto.contains(bonusNumber)
         );
     }
 

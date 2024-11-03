@@ -4,34 +4,28 @@ import lotto.domain.number.Number;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
-public class BonusNumber {
+public class BonusNumber extends Number {
 
-    private final Number bonusNumber;
-
-    private BonusNumber(WinningLotto winningLotto, Number number) {
-        Validator.validate(winningLotto, number);
-        this.bonusNumber = number;
+    private BonusNumber(int number) {
+        super(number);
     }
 
     public static BonusNumber valueOf(WinningLotto winningLotto,
-                                      Number number) {
-        return new BonusNumber(winningLotto, number);
-    }
-
-    public Number getBonusNumber() {
-        return bonusNumber;
+                                      int number) {
+        Validator.validate(winningLotto, number);
+        return new BonusNumber(number);
     }
 
     private static class Validator {
         private static void validate(WinningLotto winningLotto,
-                                     Number number) {
+                                     int number) {
             if (isBonusNumberInWinningNumbers(winningLotto, number)) {
                 throw new LottoException(ErrorMessage.INVALID_BONUS_NUMBER);
             }
         }
 
         private static boolean isBonusNumberInWinningNumbers(
-                WinningLotto winningLotto, Number number) {
+                WinningLotto winningLotto, int number) {
             return winningLotto.contains(number);
         }
     }
