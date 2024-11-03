@@ -11,6 +11,8 @@ public class Validator {
     public static final String WINNING_NUM_PATTERN = "^(\\d+,)+\\d+$";
     public static final int MINIMAL_LOTTO_NUMBER = 1;
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
+    public static final int LOTTO_PRICE = 1000;
+    public static final int MINIMAL_PRICE_INPUT = 0;
 
     public static void priceValidator(String input) {
         nullAndEmptyValidator(input);
@@ -23,11 +25,11 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT.getMessage());
         }
 
-        if (price <= 0) {
+        if (MINIMAL_PRICE_INPUT <= 0) {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NEGATIVE.getMessage());
         }
 
-        if (price % 1000 != 0) {
+        if (price % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT_UNIT.getMessage());
         }
     }
@@ -35,7 +37,8 @@ public class Validator {
     public static void winningNumValidator(String input) {
         nullAndEmptyValidator(input);
 
-        if (!WINNING_NUM_PATTERN.matches(input)) {
+        if (!input.matches(WINNING_NUM_PATTERN)) {
+            System.out.println("매치");
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.getMessage());
         }
 
