@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Randoms.*;
 import static lotto.Constants.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PurchasedLotto {
@@ -22,7 +23,7 @@ public class PurchasedLotto {
     }
 
     public List<Lotto> get() {
-        return this.lottos;
+        return Collections.unmodifiableList(this.lottos);
     }
 
     public String getFormatted() {
