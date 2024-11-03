@@ -1,0 +1,35 @@
+package lotto.model;
+
+import java.util.stream.Stream;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class LottoRankTest {
+
+    @DisplayName("일치하는 수와 보너스 일치 여부에 해당하는 등수를 반환할 수 있다.")
+    @ParameterizedTest
+    @MethodSource("generateMatchRankSources")
+    void 일치하는_수와_보너스_일치_여부에_해당하는_등수를_반환할_수_있다(int matchCount, boolean matchBonus, LottoRank expectedRank) {
+        // when
+        LottoRank actualRank = LottoRank.by(matchCount, matchBonus);
+
+        // then
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    private static Stream<Arguments> generateMatchRankSources() {
+        return Stream.of(
+                Arguments.of(0, false, LottoRank.LOSE),
+                Arguments.of(1, false, LottoRank.LOSE),
+                Arguments.of(2, false, LottoRank.LOSE),
+                Arguments.of(3, false, LottoRank.RANK_5),
+                Arguments.of(4, false, LottoRank.RANK_4),
+                Arguments.of(5, false, LottoRank.RANK_3),
+                Arguments.of(5, true, LottoRank.RANK_2),
+                Arguments.of(6, false, LottoRank.RANK_1)
+        );
+    }
+}
