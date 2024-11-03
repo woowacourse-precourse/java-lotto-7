@@ -1,38 +1,35 @@
 package lotto.application.ticket.controller;
 
 import lotto.application.common.ThousandWons.ThousandWons;
+import lotto.application.ticket.domain.payment.LottoQuantity;
 import lotto.application.ticket.dto.TicketResponse;
-import lotto.application.ticket.view.input.TicketInputView;
-import lotto.application.ticket.view.output.TicketOutputView;
-import lotto.usecase.CreateLottoTicketUsecase;
-import lotto.usecase.GetLottoTicketUsecase;
+import lotto.application.ticket.service.TicketReadService;
+import lotto.application.ticket.service.TicketWriteService;
+import lotto.application.ticket.service.payment.PaymentWriteService;
 
 public class TicketController {
-    private final TicketInputView inputView;
-    private final TicketOutputView outputView;
-    private final CreateLottoTicketUsecase createLottoTicketUsecase;
-    private final GetLottoTicketUsecase getLottoTicketUsecase;
+    private final PaymentWriteService paymentWriteService;
+    private final TicketWriteService ticketWriteService;
+    private final TicketReadService ticketReadService;
 
-    public TicketController(TicketInputView inputView,
-                            TicketOutputView outputView,
-                            CreateLottoTicketUsecase createLottoTicketUsecase,
-                            GetLottoTicketUsecase getLottoTicketUsecase) {
+    public TicketController(PaymentWriteService paymentWriteService,
+                            TicketWriteService ticketWriteService,
+                            TicketReadService ticketReadService) {
 
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.createLottoTicketUsecase = createLottoTicketUsecase;
-        this.getLottoTicketUsecase = getLottoTicketUsecase;
+        this.paymentWriteService = paymentWriteService;
+        this.ticketWriteService = ticketWriteService;
+        this.ticketReadService = ticketReadService;
     }
 
-    public TicketResponse create() {
-        ThousandWons krMoney = inputView.initialize();
+    public Long create(ThousandWons krMoney) {
+        LottoQuantity lottoQuantity = paymentWriteService.pay(krMoney);
+        Long ticketId = ticketWriteService.create(lottoQuantity);
 
-        Long ticketId = createLottoTicketUsecase.execute(krMoney);
-        TicketResponse ticketResponse = getLottoTicketUsecase.execute(ticketId);
+        return ticketId;
+    }
 
-        outputView.show(ticketResponse);
-
-        return ticketResponse;
+    public TicketResponse getTicket(Long createdId) {
+        return ticketReadService.getTicket(createdId);
     }
 
 }

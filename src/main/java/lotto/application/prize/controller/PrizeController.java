@@ -14,7 +14,7 @@ public class PrizeController {
         this.readService = readService;
     }
 
-    public Long save(List<Integer> numbers, int bonus) {
+    public Long create(List<Integer> numbers, int bonus) {
         return writeService.create(numbers, bonus);
     }
 

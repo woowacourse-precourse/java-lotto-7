@@ -1,6 +1,7 @@
 package lotto.application.ticket.service;
 
 import lotto.application.ticket.domain.ticket.Ticket;
+import lotto.application.ticket.dto.TicketResponse;
 import lotto.application.ticket.repository.TicketReadRepository;
 
 public class TicketReadService {
@@ -10,9 +11,11 @@ public class TicketReadService {
         this.repository = repository;
     }
 
-    public Ticket getById(Long ticketId) {
-        return repository.findById(ticketId)
+    public TicketResponse getTicket(Long ticketId) {
+        Ticket ticket = repository.findById(ticketId)
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재 하지 않는 티켓 ID 입니다."));
+
+        return TicketResponse.from(ticket);
     }
 
 }

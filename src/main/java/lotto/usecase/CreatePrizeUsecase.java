@@ -16,9 +16,9 @@ public class CreatePrizeUsecase {
 
     public PrizeResponse execute() {
         PrizeViewRequest request = inputView.initialize();
-        Long savedId = controller.save(request.winnerNumbers(), request.bonusNumber());
+        Long createdId = controller.create(request.winnerNumbers(), request.bonusNumber());
 
-        return controller.getPrize(savedId);
+        return controller.getPrize(createdId);
     }
 
 }

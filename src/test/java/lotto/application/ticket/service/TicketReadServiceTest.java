@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.application.ticket.domain.ticket.Lotto;
 import lotto.application.ticket.domain.ticket.Lottos;
 import lotto.application.ticket.domain.ticket.Ticket;
+import lotto.application.ticket.dto.TicketResponse;
 import lotto.application.ticket.repository.TicketCommonStorage;
 import lotto.application.ticket.repository.TicketReadRepository;
 import lotto.application.ticket.repository.TicketWriteRepository;
@@ -42,14 +43,15 @@ class TicketReadServiceTest {
         TicketReadRepository ticketReadRepository = new TicketReadRepository();
         TicketReadService ticketReadService = new TicketReadService(ticketReadRepository);
 
-        Long saveId = ticketWriteRepository.save(createTicket(1L));
-        long ticketId = 1L;
+        Ticket ticket = createTicket(1L);
 
+        Long saveId = ticketWriteRepository.save(ticket);
         // when
-        Ticket foundTicket = ticketReadService.getById(ticketId);
+        TicketResponse response = ticketReadService.getTicket(1L);
+        response.lottos();
 
         // then
-        assertThat(foundTicket.getId()).isEqualTo(saveId);
+        assertThat(response.lottosSize()).isEqualTo(ticket.getLottosSize());
     }
 
     @DisplayName("없는 티켓Id로 조회 실패")
@@ -60,7 +62,7 @@ class TicketReadServiceTest {
         TicketReadService ticketReadService = new TicketReadService(ticketReadRepository);
 
         // expect
-        Assertions.assertThatThrownBy(() -> ticketReadService.getById(1L))
+        Assertions.assertThatThrownBy(() -> ticketReadService.getTicket(1L))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 존재 하지 않는 티켓 ID 입니다.");
     }
