@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.view.OutputView;
+import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        OutputView.requestPurchaseMoney();
+        LottoController.run();
     }
 }
