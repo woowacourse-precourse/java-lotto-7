@@ -11,6 +11,8 @@ import java.util.List;
 
 public class PurchasedLottos {
 
+    private static final int INT_ZERO = 0;
+
     private final List<Lotto> purchaseLottos;
 
     private PurchasedLottos(final int count) {
@@ -23,7 +25,7 @@ public class PurchasedLottos {
     }
 
     private void generateLottos(final int count) {
-        for (int i = 0; i < count; i++) {
+        for (int i = INT_ZERO; i < count; i++) {
             List<Integer> numbers = generateRandomNumber();
             purchaseLottos.add(Lotto.from(numbers));
         }
@@ -48,8 +50,6 @@ public class PurchasedLottos {
 
     private static class Validator {
 
-        private static final int INT_ZERO = 0;
-
         private static void validate(final int purchaseAmount) {
             validatePositiveAmount(purchaseAmount);
             validateDivisibleByPrice(purchaseAmount);
@@ -62,7 +62,7 @@ public class PurchasedLottos {
         }
 
         private static void validateDivisibleByPrice(final int purchaseAmount) {
-            if (purchaseAmount % LottoConstant.LOTTO_PRICE != 0) {
+            if (purchaseAmount % LottoConstant.LOTTO_PRICE != INT_ZERO) {
                 throw LottoException.from(ErrorMessage.INVALID_PURCHASE_AMOUNT);
             }
         }
