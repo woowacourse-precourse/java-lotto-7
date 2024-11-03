@@ -1,14 +1,13 @@
-package lotto.io;
+package lotto.parser;
 
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_FORMAT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_FORMAT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_FORMAT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_FORMAT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.parser.UserInputParser;
 import org.junit.jupiter.api.Test;
 
 class UserInputParserTest {

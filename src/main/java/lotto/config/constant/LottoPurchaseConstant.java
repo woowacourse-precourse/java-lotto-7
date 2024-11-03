@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.config.constant;
 
 public class LottoPurchaseConstant {
 

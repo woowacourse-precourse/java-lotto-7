@@ -1,13 +1,13 @@
 package lotto.parser;
 
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_FORMAT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_FORMAT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT;
-import static lotto.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_FORMAT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_FORMAT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT;
+import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
 
-import lotto.constant.LottoNumberConstant;
-import lotto.constant.LottoPurchaseConstant;
+import lotto.config.constant.LottoNumberConstant;
+import lotto.config.constant.LottoPurchaseConstant;
 
 public class UserInputParser {
 
