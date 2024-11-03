@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberRangeException;
 import lotto.exception.LottoNumberSizeException;
+import lotto.util.Limit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Limit.LOTTO_SIZE) {
             throw new LottoNumberSizeException();
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (!numbers.stream().allMatch(number -> number >= 1 && number <= 45)) {
+        if (!numbers.stream().allMatch(number -> number >= Limit.MIN_RANGE && number <= Limit.MAX_RANGE)) {
             throw new LottoNumberRangeException();
         }
     }

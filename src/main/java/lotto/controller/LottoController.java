@@ -34,7 +34,7 @@ public class LottoController {
     }
 
     private Money getLottoMoney() {
-        outputView.requestLottoMoney();
+        outputView.requestPurchaseMoney();
         int inputLottoMoney = inputView.inputLottoMoney();
         return Money.from(inputLottoMoney);
     }

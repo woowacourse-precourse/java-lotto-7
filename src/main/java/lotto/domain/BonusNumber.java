@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberRangeException;
+import lotto.util.Limit;
 
 public class BonusNumber {
     private final int number;
@@ -17,7 +18,7 @@ public class BonusNumber {
     }
 
     private void validateRange(int number) {
-        if (!(number >= 1 && number <= 45)) {
+        if (!(number >= Limit.MIN_RANGE && number <= Limit.MAX_RANGE)) {
             throw new LottoNumberRangeException();
         }
     }
