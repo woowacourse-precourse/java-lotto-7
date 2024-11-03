@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 class ReturnRateTest {
 
     private ReturnRate returnRate;
-    private SpyResult result;
+    private MockResult result;
     private Payment payment;
 
     @BeforeEach
     void setUp() {
-        result = new SpyResult();
+        result = new MockResult();
         payment = Payment.from("10000");
     }
 

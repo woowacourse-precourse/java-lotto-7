@@ -2,10 +2,10 @@ package lotto;
 
 import java.util.LinkedHashMap;
 
-public class SpyResult extends Result {
+public class MockResult extends Result {
     private long totalPrize;
 
-    public SpyResult() {
+    public MockResult() {
         super(new LinkedHashMap<>());
         this.totalPrize = 0L;
     }
