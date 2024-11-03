@@ -17,4 +17,10 @@ public class Reader {
 
         return Parser.parseInputToNumbers(input);
     }
+
+    public static int readBonusNumber() {
+        String input = Console.readLine();
+
+        return Parser.parseInputToNumber(input);
+    }
 }
