@@ -12,12 +12,10 @@ import static lotto.message.ErrorMessage.NON_INTEGER_LOTTO;
 
 public class WinningNumbers extends LottoForm {
     private final String SPLIT_DELIMITER = ",";
-//    private final List<Integer> numbers;
     private final List<Number> numbers2;
 
     public WinningNumbers(String input) {
         List<Integer> rawNumbers = convertToIntegers(input);
-//        this.numbers = validateAndSort(rawNumbers);
         this.numbers2 = validateAndSort(rawNumbers).stream()
                 .map(Number::new)
                 .toList();
@@ -41,10 +39,6 @@ public class WinningNumbers extends LottoForm {
                 .ifPresent(foundNumber -> {
                     throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
                 });
-
-//        if (numbers.contains(number)) {
-//            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
-//        }
     }
 
     public boolean contains(LottoNumber number) {

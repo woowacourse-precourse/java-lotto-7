@@ -27,7 +27,7 @@ public class LottoController {
         showLottosInfo(lottos);
 
         WinningNumbers winningNumbers = numbersInputHandler.getWinningNumbers();
-        final BonusNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
         lottos.compare(winningNumbers, bonusNumber);
 
         showResult();

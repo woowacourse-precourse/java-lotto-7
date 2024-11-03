@@ -28,8 +28,7 @@ public class WinningNumbersInputHandler {
             try{
                 String input = getBonusInput();
                 int number = convertToInteger(input);
-                final BonusNumber bonusNumber = new BonusNumber(number);
-                winningNumbers.validateDuplicate(bonusNumber);
+                final BonusNumber bonusNumber = new BonusNumber(number, winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());

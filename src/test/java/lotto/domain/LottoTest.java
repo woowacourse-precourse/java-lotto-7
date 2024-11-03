@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
 import lotto.domain.lottoForm.WinningNumbers;
-import lotto.domain.number.BonusNumber;
+import lotto.domain.number.LottoNumber;
 import lotto.domain.number.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -109,7 +109,7 @@ public class LottoTest {
         List<Integer> numbers = Arrays.stream(lottoInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
-        BonusNumber bonusNumber = new BonusNumber(bonusInput);
+        LottoNumber bonusNumber = new Number(bonusInput);
         Lotto lotto = new Lotto(numbers);
 
         // when

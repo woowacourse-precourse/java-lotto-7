@@ -1,6 +1,5 @@
 package lotto.domain.lottoForm;
 
-import lotto.domain.number.BonusNumber;
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.Number;
 
@@ -21,7 +20,6 @@ public class Lotto extends LottoForm {
 
     @Override
     public String toString() {
-//        return String.join(DELIMITER, numbers.toString());
         String result = numbers2.stream()
                 .map(LottoNumber::getNumber)
                 .map(String::valueOf)
@@ -39,9 +37,8 @@ public class Lotto extends LottoForm {
                 .count());
     }
 
-    public boolean hasBonusNumber(BonusNumber bonusNumber) {
+    public boolean hasBonusNumber(LottoNumber bonusNumber) {
         return numbers2.stream()
                 .anyMatch(bonusNumber::isSame);
-//        contains(bonusNumber);
     }
 }

@@ -10,19 +10,10 @@ import static lotto.message.ErrorMessage.*;
 public abstract class LottoForm {
 
     protected List<Integer> validateAndSort(List<Integer> numbers) {
-//        validateScope(numbers);
         validateSize(numbers);
         validateDuplicate(numbers);
         return numbers.stream().sorted().toList();
     }
-
-//    private void validateScope(List<Integer> numbers) {
-//        boolean result = numbers.stream()
-//                .allMatch(number -> number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX);
-//        if (!result) {
-//            throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
-//        }
-//    }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {

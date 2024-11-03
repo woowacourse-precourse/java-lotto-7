@@ -19,10 +19,10 @@ public class WinningNumbersInputHandlerTest {
     void bonusNumberSuccessTest() {
         // given
         WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
-        BonusNumber bonusNumber = new BonusNumber(42);
+        int bonusNumber = 42;
 
         // when & then
-        assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
+        assertThatCode(() -> new BonusNumber(42, winningNumbers))
                 .doesNotThrowAnyException();
     }
 
@@ -54,10 +54,10 @@ public class WinningNumbersInputHandlerTest {
     void duplicateExceptionTest() {
         // given
         WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
-        BonusNumber bonusNumber = new BonusNumber(4);
+        int bonusNumber = 4;
 
         // when & then
-        assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
+        assertThatCode(() -> new BonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
     }

@@ -5,7 +5,7 @@ import static lotto.LottoConstants.LOTTO_NUMBER_MIN;
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
 
 public abstract class LottoNumber {
-    private int number;
+    private final int number;
 
     public LottoNumber(int number) {
         validateScope(number);
