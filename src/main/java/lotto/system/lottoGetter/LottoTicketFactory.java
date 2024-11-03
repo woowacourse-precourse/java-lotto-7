@@ -15,6 +15,4 @@ public class LottoTicketFactory { // 로또 수량 만큼 로또 티켓들을 �
                 .mapToObj(i -> LottoTicket.ofLottoNumbers(generateUniqueNumbersInRange()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
-
-
 }

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import lotto.system.unit.LottoNumber;
 
 public class LottoGenerator {
+
     protected static List<LottoNumber> generateUniqueNumbersInRange() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND, LOTTO_NUMBER_COUNT)
                 .stream()

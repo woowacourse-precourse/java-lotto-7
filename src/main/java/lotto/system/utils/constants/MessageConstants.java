@@ -7,5 +7,4 @@ public interface MessageConstants {
     default String getMessage(Object... args) {
         return String.format(getMessage(), args);
     }
-
 }
