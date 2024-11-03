@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private final List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> lottoNumbers) {
-        validate(lottoNumbers);
-        this.lottoNumbers = lottoNumbers.stream()
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers.stream()
             .map(LottoNumber::new)
             .toList();
     }
@@ -29,8 +29,8 @@ public class Lotto {
         return new HashSet<>(lottoNumbers).size() != lottoNumbers.size();
     }
 
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers.stream()
+    public List<Integer> getNumbers() {
+        return numbers.stream()
             .map(LottoNumber::getNumber)
             .toList();
     }
