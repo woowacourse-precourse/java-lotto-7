@@ -20,6 +20,8 @@ public class LottoMachine {
             }
         }
 
+        outputHandler.showPurchaseLottoCount(purchaseCost);
+
     }
 }
 
