@@ -28,11 +28,11 @@ public class InputView {
 		return input;
 	}
 
-	public String readBonusNumberInput() {
+	public int readBonusNumberInput() {
 		String input = Console.readLine();
 		validateBonusNumberInput(input);
 
-		return input;
+		return Integer.parseInt(input);
 	}
 
 	private void validatePurchaseAmount(String input) {
