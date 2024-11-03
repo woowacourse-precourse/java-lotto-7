@@ -1,56 +1,74 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Cost;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
+import lotto.dto.LottosDto;
+import lotto.dto.WinningResultDto;
+import lotto.common.factory.LottoFactory;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.Arrays;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void start() {
         inputView.requestPurchaseAmount();
-        Cost cost = initCost(inputView);
+        Cost cost = initCost();
+        Lottos lottos = LottoFactory.sizeFrom(calculateSize(cost));
+        outputView.printPurchaseOverview(new LottosDto(lottos));
 
-        inputView.requestWinningNumber();
-        WinningNumbers winningNumbers = initWinningNumbers(inputView);
-
-        inputView.requestBonusNumber();
-        BonusNumber bonusNumber = initBonusNumbers(inputView);
+        DrawnNumbers drawnNumbers = initDrawnNumbers();
+        Buyer buyer = new Buyer(cost, lottos);
+        buyer.recordTotalScore(drawnNumbers);
+        outputView.printWinningResult(new WinningResultDto(buyer.getScoreBoard(), buyer.calculateReturnRate()));
     }
 
-    private BonusNumber initBonusNumbers(InputView inputView) {
+    private int calculateSize(Cost cost) {
+        return cost.getCost() / 1000;
+    }
+
+    private DrawnNumbers initDrawnNumbers() {
+        inputView.requestWinningNumber();
+        WinningNumbers winningNumbers = makeWinningNumbers();
+
+        inputView.requestBonusNumber();
+        return makeDrawnNumbers(winningNumbers);
+    }
+
+    private DrawnNumbers makeDrawnNumbers(WinningNumbers winningNumbers) {
         try {
-            return new BonusNumber(inputView.getInput());
+            BonusNumber bonusNumber = new BonusNumber(inputView.getInput());
+            return new DrawnNumbers(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return initBonusNumbers(inputView);
+            outputView.printErrorMessage(e);
+            return makeDrawnNumbers(winningNumbers);
         }
     }
 
-    private WinningNumbers initWinningNumbers(InputView inputView) {
+    private WinningNumbers makeWinningNumbers() {
         try {
             String input = inputView.getInput();
             return new WinningNumbers(Arrays.stream(input.split(","))
                     .toList());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return initWinningNumbers(inputView);
+            outputView.printErrorMessage(e);
+            return makeWinningNumbers();
         }
     }
 
-    private Cost initCost(InputView inputView) {
+    private Cost initCost() {
         try {
             return new Cost(inputView.getInput());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-            return initCost(inputView);
+            outputView.printErrorMessage(e);
+            return initCost();
         }
     }
 }

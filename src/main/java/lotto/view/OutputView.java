@@ -10,4 +10,8 @@ public class OutputView {
     public void printWinningResult(WinningResultDto resultDto) {
         System.out.println(OutputMaker.makeFinalResult(resultDto));
     }
+
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println("[ERROR] " + e.getMessage());
+    }
 }
