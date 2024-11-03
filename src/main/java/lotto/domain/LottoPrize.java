@@ -45,7 +45,7 @@ public enum LottoPrize {
         return describePrize.formatted(matchCount, "", formattedPrizeMoney);
     }
 
-    public long getPrizeMoney() {
+    public int getPrizeMoney() {
         return prizeMoney;
     }
 }
