@@ -23,6 +23,13 @@ public class Application {
 
         // 4.1 보너스 번호를 입력 받는 기능
         String bonusNumberInput = getInputString("보너스 번호를 입력해 주세요.");
+
+        try {
+            // 4.2 입력된 보너스 번호를 정수로 변환할 수 없는 경우 예외 처리하는 기능
+            validateNumericString(bonusNumberInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
