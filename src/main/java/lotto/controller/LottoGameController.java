@@ -27,8 +27,14 @@ public class LottoGameController {
 
     private void prepareMoney() {
         OutputView.printPurchasePrice();
-        int lottoPurchase = InputView.inputLottoPurchase();
-        lottoCount = LottoCount.calculatePurchaseCount(lottoPurchase);
+        try {
+            int lottoPurchase = InputView.inputLottoPurchase();
+            lottoCount = LottoCount.calculatePurchaseCount(lottoPurchase);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e);
+            OutputView.printLine();
+            prepareMoney();
+        }
     }
 
     private void purchaseLotteries(LottoCount lottoCount) {
