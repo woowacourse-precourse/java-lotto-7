@@ -10,6 +10,8 @@ import java.util.List;
 
 public class LottoController {
 
+    private static final int PURCHASE_MIN_UNIT = 1000;
+
     private List<Lotto> lottos = new ArrayList<>();
     private PrizeSystem prizeSystem;
 
@@ -44,7 +46,7 @@ public class LottoController {
      * 구입 금액만큼 로또 발행
      */
     public void generateLotto() {
-        int size = purchaseMoney / 1000;
+        int size = purchaseMoney / PURCHASE_MIN_UNIT;
         for (int i = 0; i < size; i++) {
             List<Integer> lottoNumber = Lotto.generateLottoNumber();
             List<Integer> sortedLottoNumbers = Lotto.sortNumbers(lottoNumber);
