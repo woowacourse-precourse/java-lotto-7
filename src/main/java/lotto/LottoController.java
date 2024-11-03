@@ -25,6 +25,7 @@ public class LottoController {
     }
 
     public void run() {
+        // TODO: Input이 Null인지 확인!!
         outputView.printPaymentRequestMessage();
         int payment = inputView.readPayment();
         int quantity = salesService.getAvailableLottoQuantity(payment);
@@ -35,7 +36,7 @@ public class LottoController {
         String numbers = inputView.readWinningNumbers();
 
         outputView.printBonusNumberRequestMessage();
-        int bonusNumber = 7; // TODO: InputView
+        int bonusNumber = inputView.readBonusNumber();
 
         List<Integer> winningNumbers = createWinningNumbers(numbers);
         // TODO: 개선 요망
