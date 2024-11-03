@@ -30,6 +30,6 @@ public class LottoService {
         }
         LottoTickets lottoTickets = new LottoTickets(generatedLottos);
 
-        return new RandomLottoNumberDTO(lottoTickets, lottoPurchaseCount);
+        return new RandomLottoNumberDTO(lottoTickets);
     }
 }
