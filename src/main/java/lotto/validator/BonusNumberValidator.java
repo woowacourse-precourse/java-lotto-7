@@ -1,6 +1,7 @@
 package lotto.validator;
 
-import static lotto.util.LottoUtils.validateNumberRange;
+import static lotto.validator.ValidatorUtils.BONUS_NUMBER_ERROR_MESSAGE;
+import static lotto.validator.ValidatorUtils.isNumberInRange;
 
 public class BonusNumberValidator implements Validator<Integer> {
 
@@ -10,6 +11,8 @@ public class BonusNumberValidator implements Validator<Integer> {
     }
 
     private void validateBonusNumberRange(Integer bonusNumber) {
-        validateNumberRange(bonusNumber);
+        if (!isNumberInRange(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_ERROR_MESSAGE);
+        }
     }
 }
