@@ -2,6 +2,7 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.model.LottoNumber;
 
 public class LottoMaker {
 
@@ -9,9 +10,11 @@ public class LottoMaker {
     private static final int MAXIMUM = 45;
     private static final int COUNT = 6;
 
-    public static List<Integer> make() {
+    public static List<LottoNumber> make() {
         return Randoms.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, COUNT)
                 .stream()
-                .sorted().toList();
+                .sorted()
+                .map(LottoNumber::new)
+                .toList();
     }
 }

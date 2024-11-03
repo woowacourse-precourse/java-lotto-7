@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.model.LottoNumber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,9 @@ public class LottoMakerTest {
     @Test
     @DisplayName("무작위로 뽑은 숫자는 서로 중복되지 않는다")
     void pick_unique_numbers_without_duplication() {
-        List<Integer> numbers = LottoMaker.make();
+        List<LottoNumber> numbers = LottoMaker.make();
 
-        Set<Integer> deleted_duplication = new HashSet<>(numbers);
+        Set<LottoNumber> deleted_duplication = new HashSet<>(numbers);
 
         Assertions.assertEquals(numbers.size(), deleted_duplication.size());
     }
@@ -24,7 +25,7 @@ public class LottoMakerTest {
     void pick_numbers_as_fix_size() {
         int fixedSize = 6;
 
-        List<Integer> numbers = LottoMaker.make();
+        List<LottoNumber> numbers = LottoMaker.make();
 
         Assertions.assertEquals(numbers.size(), fixedSize);
     }
@@ -32,8 +33,8 @@ public class LottoMakerTest {
     @Test
     @DisplayName("뽑은 숫자들을 오름차순으로 정렬한다")
     void sort_random_numbers() {
-        List<Integer> numbers = LottoMaker.make();
+        List<LottoNumber> numbers = LottoMaker.make();
 
-        org.assertj.core.api.Assertions.assertThat(numbers).isSortedAccordingTo(Integer::compareTo);
+        org.assertj.core.api.Assertions.assertThat(numbers).isSortedAccordingTo(LottoNumber::compareTo);
     }
 }
