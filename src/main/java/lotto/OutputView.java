@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -17,6 +18,22 @@ public class OutputView {
 
     private List<Integer> randomNumber(){
         return Randoms.pickUniqueNumbersInRange(1,45,6);
+    }
+
+    public void generateLottoTest(){
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        lottoNumbers.add(Arrays.asList(1,2,3,4,5,6)); // 1등
+        lottoNumbers.add(Arrays.asList(5,3,4,6,1,2)); // 1등
+        lottoNumbers.add(Arrays.asList(1,2,3,4,5,7)); // 2등
+        lottoNumbers.add(Arrays.asList(1,2,3,4,5,8)); // 3등
+        lottoNumbers.add(Arrays.asList(1,2,3,4,8,9)); // 4등
+        lottoNumbers.add(Arrays.asList(1,2,3,8,9,10)); // 5등
+
+        for (List<Integer> lottoNumber : lottoNumbers) {
+            lottoNumber.sort(Integer::compareTo);
+        }
+        this.boughtLottoNumbers = lottoNumbers;
+
     }
 
     public void generateLotto(int lottoCount){
