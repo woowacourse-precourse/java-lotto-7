@@ -12,12 +12,12 @@ public class LottoTicketGenerator {
     }
 
     public LottoTicket generateLottoTicket(PurchaseAmount purchaseAmount) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> ticket = new ArrayList<>();
         int lottoAmount = purchaseAmount.getPurchasableLottoAmount();
         for (int i = 0; i < lottoAmount; i++) {
-            lottos.add(lottoGenerator.generateLotto());
+            ticket.add(lottoGenerator.generateLotto());
         }
-        return new LottoTicket(lottos);
+        return new LottoTicket(ticket);
     }
 
 }

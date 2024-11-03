@@ -3,24 +3,26 @@ package lotto.model.lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoTicket {
+public record LottoTicket(List<Lotto> lottoTicket) {
 
-    private final List<Lotto> lottos;
-
-    public LottoTicket(List<Lotto> lottos) {
-            this.lottos = lottos;
-    }
+    private static final String DELIMITER = "\n";
 
     public int getSize() {
-        return lottos.size();
+        return lottoTicket.size();
     }
 
-    public List<Lotto> getLottos() {
-        return List.copyOf(lottos);
+    @Override
+    public List<Lotto> lottoTicket() {
+        return List.copyOf(lottoTicket);
     }
 
     @Override
     public String toString() {
-        return lottos.stream().map(Lotto::toString).collect(Collectors.joining("\n"));
+        return lottoTicket.stream()
+                .map(Lotto::toString)
+                .collect(
+                        Collectors.joining(DELIMITER)
+                );
     }
+
 }

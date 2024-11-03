@@ -10,7 +10,9 @@ public enum Prize {
     THIRD(3,5, 1500000, "%S개 일치 (%S원)"),
     FOURTH(4,4, 50000, "%S개 일치 (%S원)"),
     FIFTH(5,3, 5000, "%S개 일치 (%S원)"),
-    BLANK();
+    BLANK(6,0,0,"0개 일치");
+
+    private static final String MONEY_UNIT_PATTERN = "###,###";
 
     private final int rank;
     private final int conditionCount;
@@ -22,13 +24,6 @@ public enum Prize {
         this.conditionCount = conditionCount;
         this.prizeMoney = prizeMoney;
         this.message = message;
-    }
-
-    Prize() {
-        this.message = "0개 일치";
-        this.conditionCount = 0;
-        this.prizeMoney = 0;
-        this.rank = 6;
     }
 
     public static Prize findPrize(int sameNumberCount, boolean isContainBonusNumber) {
@@ -56,7 +51,7 @@ public enum Prize {
     }
 
     public String getMessage() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormat decimalFormat = new DecimalFormat(MONEY_UNIT_PATTERN);
         String money = decimalFormat.format(prizeMoney);
         return String.format(message,conditionCount,money);
     }

@@ -12,11 +12,12 @@ import lotto.model.lotto.LottoTicket;
 
 public class DrawResult {
 
+    private static final int INIT_COUNT = 0;
+
+    private final Map<Prize, Integer> drawResult;
     private final WinningLotto winningLotto;
     private final BonusNumber bonusNumber;
     private final LottoTicket lottoTicket;
-
-    private final Map<Prize, Integer> drawResult;
 
     private DrawResult(WinningLotto winningLotto, BonusNumber bonusNumber, LottoTicket lottoTicket) {
         drawResult = new TreeMap<>((o1, o2) -> o2.getRank() - o1.getRank());
@@ -33,29 +34,26 @@ public class DrawResult {
     private void initDrawResult() {
         Prize[] prizes = values();
         Arrays.stream(prizes).forEach(
-                prize -> { drawResult.put(prize, 0); }
+                prize -> { drawResult.put(prize, INIT_COUNT); }
         );
     }
 
     public void generateDrawResult() {
-        List<Lotto> lottos = lottoTicket.getLottos();
-        for (Lotto lotto : lottos) {
+        List<Lotto> ticket = lottoTicket.lottoTicket();
+        for (Lotto lotto : ticket) {
             checkPrize(lotto);
         }
     }
 
     private void checkPrize(Lotto lotto) {
         int sameNumberCount = lotto.countSameNumber(winningLotto.getWinningLotto());
-
         boolean isContainBonusNumber = lotto.isContain(bonusNumber.getNumber());
-
         Prize prize = findPrize(sameNumberCount, isContainBonusNumber);
-
         updatePrizeCount(prize);
     }
 
     private void updatePrizeCount(Prize prize) {
-        Integer currentWinningCount = drawResult.getOrDefault(prize, 0);
+        Integer currentWinningCount = drawResult.getOrDefault(prize, INIT_COUNT);
         drawResult.put(prize, currentWinningCount + 1);
     }
 
@@ -71,4 +69,5 @@ public class DrawResult {
         }
         return sum;
     }
+
 }

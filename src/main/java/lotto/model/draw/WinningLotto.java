@@ -5,6 +5,10 @@ import lotto.model.lotto.Lotto;
 
 public class WinningLotto {
 
+    private static final String INVALID_EMPTY_MESSAGE = "[ERROR] 당첨 번호가 빈 값입니다.";
+    private static final String INVALID_NUMERIC_MESSAGE = "[ERROR] 당첨 번호는 숫자만 입력 가능합니다.";
+    private static final String INPUT_DELIMITER_REGEX = ",";
+
     private final Lotto winningLotto;
 
     private WinningLotto(Lotto winningLotto) {
@@ -13,7 +17,7 @@ public class WinningLotto {
 
     public static WinningLotto from(String input) {
         validateInputEmpty(input);
-        List<String> splitInput = List.of(input.split(",", -1));
+        List<String> splitInput = List.of(input.split(INPUT_DELIMITER_REGEX, -1));
         validateNumeric(splitInput);
         List<Integer> numbers = splitInput.stream()
                 .map(number ->
@@ -23,8 +27,8 @@ public class WinningLotto {
     }
 
     private static void validateInputEmpty(String input) {
-        if ( input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 빈 값입니다.");
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException(INVALID_EMPTY_MESSAGE);
         }
     }
 
@@ -32,7 +36,7 @@ public class WinningLotto {
         try {
             splitInput.forEach(Integer::parseInt);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_NUMERIC_MESSAGE);
         }
     }
 
@@ -48,4 +52,5 @@ public class WinningLotto {
     public String toString() {
         return winningLotto.toString();
     }
+
 }
