@@ -7,11 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
+import static lotto.domain.LottoRule.*;
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int NUMBER_COUNT = 6;
+public class Lotto {
 
     private final List<Integer> numbers;
 
@@ -36,7 +34,11 @@ public class Lotto {
     }
 
     public static List<Integer> createNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
+    }
+
+    private boolean outOfNumberRange(Integer number) {
+        return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
     }
 
     private void validateNumbers(List<Integer> numbers) {
@@ -46,21 +48,21 @@ public class Lotto {
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException(String.format("로또 번호는 %d개여야 합니다.", NUMBER_COUNT));
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(String.format("로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_COUNT));
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
-            throw new IllegalArgumentException(String.format("로또 번호는 %d ~ %d 범위여야 합니다.", MIN_NUMBER, MAX_NUMBER));
+                .anyMatch(this::outOfNumberRange)) {
+            throw new IllegalArgumentException(String.format("로또 번호는 %d ~ %d 범위여야 합니다.", LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER));
         }
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() != NUMBER_COUNT) {
+        if (numberSet.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("로또 번호는 중복되면 안됩니다.");
         }
     }
