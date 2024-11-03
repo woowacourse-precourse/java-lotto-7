@@ -23,7 +23,7 @@ public class LottoHandler {
         this.tickets = new ArrayList<>(lottoCount);
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNumbers = Randomizer.getRandomValues();
+            List<Integer> randomNumbers = Randomizer.getRandomLottoNumbers();
             Lotto newLotto = new Lotto(randomNumbers);
             outputView.printIntegerList(randomNumbers);
             this.tickets.add(newLotto);

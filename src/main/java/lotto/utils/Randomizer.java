@@ -6,7 +6,7 @@ import lotto.models.constants.LottoValues;
 import java.util.List;
 
 public class Randomizer {
-    public static List<Integer> getRandomValues() {
+    public static List<Integer> getRandomLottoNumbers() {
         int startInclusive = LottoValues.MIN_NUMBER.getValue();
         int endInclusive = LottoValues.MAX_NUMBER.getValue();
         int count = LottoValues.LOTTO_SIZE.getValue();
