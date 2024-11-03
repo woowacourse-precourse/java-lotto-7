@@ -1,8 +1,6 @@
 package lotto.domain.buyer;
 
-import java.util.List;
 import java.util.Objects;
-import lotto.domain.lotto.Lotto;
 
 public class Buyer {
     private final LottosCount LottosCount;
@@ -17,8 +15,8 @@ public class Buyer {
         return LottosCount.getLottosCount();
     }
 
-    public List<Lotto> getbuyLottos() {
-        return buyLottos.getLottos();
+    public BuyLottos getbuyLottos() {
+        return buyLottos;
     }
 
     @Override
