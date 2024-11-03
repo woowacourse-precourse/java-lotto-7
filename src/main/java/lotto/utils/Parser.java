@@ -1,9 +1,13 @@
 package lotto.utils;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.exception.ParserException;
 import lotto.exception.message.ParserExceptionMessage;
 
 public final class Parser {
+
+    private static final String SEPARATOR = ",";
 
     private Parser() {
     }
@@ -15,6 +19,12 @@ public final class Parser {
         } catch (NumberFormatException exception) {
             throw new ParserException(ParserExceptionMessage.NOT_NUMBER);
         }
+    }
+
+    public static List<Integer> splitBySeparator(String input){
+        return Arrays.stream(input.split(SEPARATOR, -1))
+                .map(Parser::parseStringToInt)
+                .toList();
     }
 
     private static void validateIsEmpty(String input) {
