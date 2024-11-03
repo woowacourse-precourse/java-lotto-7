@@ -17,4 +17,8 @@ public class ResultView {
         System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", 5, 30000000, resultMap.getOrDefault(50, 0)));
         System.out.println(String.format("%d개 일치 (%,d원) - %d개", 6, 2000000000, resultMap.getOrDefault(6, 0)));
     }
+
+    public static void displayProfitability(double profitability) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitability));
+    }
 }
