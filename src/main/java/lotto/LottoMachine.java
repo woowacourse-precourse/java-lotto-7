@@ -44,22 +44,33 @@ public class LottoMachine {
     public int getBonusNumber() {
         return bonusNumber;
     }
-    public void calculateResult() {
+    public void calculateResult(int purchaseAmount) {
         int[] matchCounts = new int[6];
+        int totalPrize = 0;
+
         for (Lotto lotto : purchasedLottos) {
             int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
 
             if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                totalPrize += getPrize(5);
                 matchCounts[5]++;
                 continue;
             }
             if (matchCount >= 3) {
                 matchCounts[matchCount - 3]++;
+                totalPrize += getPrize(matchCount);
             }
         }
         displayResult(matchCounts);
+        displayYield(totalPrize, purchaseAmount);
     }
-
+    private int getPrize(int matchCount) {
+        if (matchCount == 6) return 2_000_000_000;
+        if (matchCount == 5) return 1_500_000;
+        if (matchCount == 4) return 50_000;
+        if (matchCount == 3) return 5_000;
+        return 0;
+    }
     private int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
         for (int number : lottoNumbers) {
@@ -77,6 +88,11 @@ public class LottoMachine {
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", matchCounts[2]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", matchCounts[5]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", matchCounts[3]);
+    }
+
+    private void displayYield(int totalPrize, int purchaseAmount) {
+        double yield = (double) totalPrize / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(yield * 10) / 10.0);
     }
 
 
