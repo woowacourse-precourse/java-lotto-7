@@ -17,6 +17,9 @@ public class LottoController {
     public void run() {
         int purchaseAmount = getValidatedPurchaseAmount();
         int ticketCount = purchaseAmount / 1000;
+
+        List<Lotto> tickets = lottoMachine.generateLottoTickets(ticketCount);
+        ResultView.printLottoTickets(tickets);
     }
 
     private int getValidatedPurchaseAmount() {
