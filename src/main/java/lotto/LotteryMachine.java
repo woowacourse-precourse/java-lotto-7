@@ -12,7 +12,7 @@ import lotto.domain.winner.WinningStatistic;
 
 public class LotteryMachine {
 
-    private static final String CANNOT_MAKE_STATISTIC = "[ERROR] 아직 추첨을 하지 않아 통게를 낼 수 없습니다.";
+    private static final String CANNOT_MAKE_STATISTIC = "아직 추첨을 하지 않아 통게를 낼 수 없습니다.";
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
     private final List<LottoResult> lottoResults = new ArrayList<>();
