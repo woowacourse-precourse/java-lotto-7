@@ -2,16 +2,26 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGame lottoGame = new LottoGame();
-        try {
-            int quantity = lottoGame.getPurchaseAmount();
-            lottoGame.purchaseLottos(quantity);
-            lottoGame.inputWinningNumbers();
-            lottoGame.inputBonusNumber();
-            lottoGame.calculateAndPrintResults();
+        new Application().startLottoGame();
+    }
 
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+    private void startLottoGame() {
+        LottoGame lottoGame = new LottoGame();
+        int quantity = getValidPurchaseAmount(lottoGame);
+
+        lottoGame.purchaseLottos(quantity);
+        lottoGame.inputWinningNumbers();
+        lottoGame.inputBonusNumber();
+        lottoGame.calculateAndPrintResults();
+    }
+
+    private int getValidPurchaseAmount(LottoGame lottoGame) {
+        while (true) {
+            try {
+                return lottoGame.getPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
