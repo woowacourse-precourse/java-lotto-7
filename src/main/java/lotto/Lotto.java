@@ -23,4 +23,8 @@ public class Lotto {
     private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public void printLottery() {
+        System.out.println(numbers);
+    }
 }
