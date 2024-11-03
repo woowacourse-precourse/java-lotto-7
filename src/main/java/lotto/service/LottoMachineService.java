@@ -24,7 +24,7 @@ public class LottoMachineService {
             try {
                 makeLotto(readPurchaseLotto());
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -67,7 +67,7 @@ public class LottoMachineService {
             try {
                 winningLotto = readEnterWinningNumbers();
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -86,7 +86,7 @@ public class LottoMachineService {
 
     public void calculateWinnings() {
         compareWinningNumbers();
-        getStats();
+        printStats(getStats());
     }
 
     private void compareWinningNumbers() {
@@ -95,10 +95,8 @@ public class LottoMachineService {
         }
     }
 
-    private void getStats() {
-        Statistics statistics = new Statistics(purchasedLottosResult);
-
-        printStats(statistics);
+    private Statistics getStats() {
+        return new Statistics(purchasedLottosResult);
     }
 
     private void printStats(Statistics statistics) {
