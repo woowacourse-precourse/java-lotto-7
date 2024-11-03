@@ -36,13 +36,16 @@ public class Utils {
 
     public Map<Rank, Integer> evaluateLottoRanks(Lotto winningNumber, int bonusNumber, List<Lotto> lottos) {
         Map<Rank, Integer> resultCounts = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            resultCounts.put(rank, 0);
+        }
         for (Lotto lotto : lottos) {
             matchLottoNumber(resultCounts, winningNumber, bonusNumber, lotto);
         }
         return resultCounts;
     }
 
-    private void matchLottoNumber(Map<Rank, Integer> map, Lotto winningNumber, int bonusNumber, Lotto lotto) {
+    private void matchLottoNumber(Map<Rank, Integer> resultCounts, Lotto winningNumber, int bonusNumber, Lotto lotto) {
         int count = 0, bonusCount = 0;
         for (int i = 0; i < 6; i++) {
             if (lotto.matchNumber(winningNumber.getIndex(i))) {
@@ -54,7 +57,7 @@ public class Utils {
         }
         if (count >= 3) {
             Rank rank = rankingLotto(count, bonusCount);
-            map.put(rank, map.getOrDefault(rank, 0) + 1);
+            resultCounts.put(rank, resultCounts.getOrDefault(rank, 0) + 1);
         }
     }
 
