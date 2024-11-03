@@ -26,7 +26,7 @@ class LottoMachineTest {
         assertThatThrownBy(() -> LottoMachine.purchaseLotto(minuslottoPrice))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        int zerolottoPrice = -1234;
+        int zerolottoPrice = 0;
         assertThatThrownBy(() -> LottoMachine.purchaseLotto(zerolottoPrice))
                 .isInstanceOf(IllegalArgumentException.class);
     }
