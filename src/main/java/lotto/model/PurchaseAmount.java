@@ -1,18 +1,11 @@
 package lotto.model;
 
-public class LottoAmount {
-    private int lottoAmount;
+public class PurchaseAmount {
+    private final int purchaseAmount;
 
-    public LottoAmount(String purchaseAmountInput) {
+    public PurchaseAmount(String purchaseAmountInput) {
         int purchaseAmount = transferToInteger(purchaseAmountInput);
-        validate(purchaseAmount);
-        this.lottoAmount = calculateLottoAmount(purchaseAmount);
-    }
-
-    private void validate(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 단위의 금액을 입력해주세요.");
-        }
+        this.purchaseAmount = purchaseAmount;
     }
 
     private int transferToInteger(String purchaseAmountInput) {
@@ -24,11 +17,18 @@ public class LottoAmount {
         }
     }
 
-    private int calculateLottoAmount(int purchaseAmount) {
+    public int calculateLottoAmount() {
+        validate(purchaseAmount);
         return purchaseAmount / 1000;
     }
 
-    public int getLottoAmount() {
-        return lottoAmount;
+    private void validate(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000 단위의 금액을 입력해주세요.");
+        }
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

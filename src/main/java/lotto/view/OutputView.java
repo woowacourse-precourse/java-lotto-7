@@ -41,4 +41,11 @@ public class OutputView {
             ));
         }
     }
+
+    public void outputEarningsRate(double earningsRate) {
+        System.out.println(String.format(
+                "총 수익률은 %.1f%%입니다."
+                , Math.round(earningsRate * 10) / 10.0
+        ));
+    }
 }

@@ -1,7 +1,6 @@
 package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 
 import java.util.ArrayList;
 import java.util.List;

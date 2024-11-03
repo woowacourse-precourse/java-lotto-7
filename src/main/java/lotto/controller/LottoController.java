@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.BonusNumber;
-import lotto.model.LottoAmount;
+import lotto.model.PurchaseAmount;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
 import lotto.model.NumberGenerator;
@@ -22,20 +22,19 @@ public class LottoController {
     }
 
     public void run() {
-        LottoAmount lottoAmount = purchaseLottos();
-        Lottos lottos = lottoMachine.issueLottos(lottoAmount);
+        PurchaseAmount purchaseAmount = purchaseLottos();
+        Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
         outputView.outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
         WinningResults winningResults = lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
-        outputWinningResults(winningResults);
-
+        outputWinningResults(winningResults, purchaseAmount);
     }
 
-    private LottoAmount purchaseLottos() {
+    private PurchaseAmount purchaseLottos() {
         try {
             String purchaseAmount = inputView.inputPurchaseAmount();
-            return new LottoAmount(purchaseAmount);
+            return new PurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return purchaseLottos();
@@ -62,10 +61,11 @@ public class LottoController {
         }
     }
 
-    private void outputWinningResults(WinningResults winningResults) {
+    private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {
         outputView.outputWinningResultStartLine();
         outputView.outputWinningRanks(winningResults);
-
+        double earningsRate = lottoMachine.calculateEarningsRate(winningResults, purchaseAmount.getPurchaseAmount());
+        outputView.outputEarningsRate(earningsRate);
     }
 
 }

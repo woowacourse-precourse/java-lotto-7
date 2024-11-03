@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.LottoAmount;
+import lotto.model.PurchaseAmount;
 import lotto.model.Lottos;
 import lotto.model.RandomNumberPicker;
 import lotto.model.WinningNumber;
@@ -13,8 +13,8 @@ import lotto.model.WinningRank;
 import lotto.model.WinningResults;
 
 public class LottoMachine {
-    public Lottos issueLottos(LottoAmount lottoAmount) {
-        List<Lotto> lottos = IntStream.range(0, lottoAmount.getLottoAmount())
+    public Lottos issueLottos(PurchaseAmount purchaseAmount) {
+        List<Lotto> lottos = IntStream.range(0, purchaseAmount.calculateLottoAmount())
                 .mapToObj(i -> new Lotto(RandomNumberPicker.pickAscendingNumbers()))
                 .collect(Collectors.toList());
         return new Lottos(lottos);
@@ -30,5 +30,13 @@ public class LottoMachine {
             winningResults.add(winningRank);
         }
         return winningResults;
+    }
+
+    public double calculateEarningsRate(WinningResults winningResults, int expense) {
+        int earnings = 0;
+        for (WinningRank winningRank : WinningRank.values()) {
+            earnings += winningResults.findLottoAmountByRank(winningRank) * winningRank.getPrice();
+        }
+        return ((double) earnings) / expense * 100;
     }
 }
