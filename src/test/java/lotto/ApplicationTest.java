@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -52,6 +53,194 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 가격입력_정상(){
+        assertSimpleTest(
+                ()
+                        ->
+                {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains("price: 8000");
+                }
+        );
+    }
+
+    @Test
+    void 가격입력_비정상_음수(){
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 가격입력_비정상_1000원단위(){
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    public void 로또번호추첨(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]",
+                            "[7, 11, 16, 35, 36, 44]",
+                            "[1, 8, 11, 31, 41, 42]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "[7, 11, 30, 40, 42, 43]",
+                            "[2, 13, 22, 32, 38, 45]",
+                            "[1, 3, 5, 14, 22, 45]"
+                    );
+                },
+                new ArrayList<>(List.of(8, 21, 23, 41, 42, 43)),
+                new ArrayList<>(List.of(3, 5, 11, 16, 32, 38)),
+                new ArrayList<>(List.of(7, 11, 16, 35, 36, 44)),
+                new ArrayList<>(List.of(1, 8, 11, 31, 41, 42)),
+                new ArrayList<>(List.of(13, 14, 16, 38, 42, 45)),
+                new ArrayList<>(List.of(7, 11, 30, 40, 42, 43)),
+                new ArrayList<>(List.of(2, 13, 22, 32, 38, 45)),
+                new ArrayList<>(List.of(1, 3, 5, 14, 22, 45))
+        );
+    }
+
+    @Test
+    public void 당첨번호테스트(){
+        assertSimpleTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6","7");
+                    assertThat(output()).contains(
+                            "golden Numbers: [1, 2, 3, 4, 5, 6]"
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_중복(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,5");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_모자람(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_음수(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,-5,-3");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_경계벗어남(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "0,2,3,4,50,46");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_이상한값(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,50,java","7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_정상(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","7");
+                    assertThat(output()).contains(
+                            "bonus: 7"
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_중복(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","6");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_음수(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","-1");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_경계벗어남(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","46");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_이상한값(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","a");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
     }
 
     @Override
