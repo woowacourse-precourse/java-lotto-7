@@ -57,7 +57,6 @@ class LottoRankManagerTest {
     @DisplayName("총 상금 계산 테스트")
     @Test
     void 로또_상금계산() {
-        // 3개 일치 2개, 5개 일치 + 보너스 1개 추가
         lottoRankManager.updateLottoRank(3, false);
         lottoRankManager.updateLottoRank(3, false);
         lottoRankManager.updateLottoRank(5, true);
@@ -70,7 +69,6 @@ class LottoRankManagerTest {
     @DisplayName("수익률 계산 테스트")
     @Test
     void 로또_수익율_계산() {
-        // 총 당첨 금액 30,000원 예시 (투자 8000원)
         lottoRankManager.updateLottoRank(3, false);
         lottoRankManager.updateLottoRank(5, true);
 
