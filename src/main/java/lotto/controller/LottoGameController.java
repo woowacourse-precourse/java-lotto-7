@@ -3,17 +3,19 @@ package lotto.controller;
 import static lotto.constants.Constants.DELIMITER;
 import static lotto.utils.UnitConverter.convertUnit;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constants.Prizes;
-import lotto.domain.Lotties;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Ticket;
 import lotto.domain.UserLotto;
+import lotto.dto.PublishedLottiesDTO;
+import lotto.dto.ResultMarginDTO;
 import lotto.dto.UserLottoDTO;
-import lotto.dto.UserMoneyTicketDTO;
+import lotto.dto.UserMoneyDTO;
 import lotto.dto.UserSixNumberDTO;
 import lotto.service.LottoBowl;
 import lotto.service.LottoComparator;
@@ -27,39 +29,48 @@ import lotto.vo.Money;
 public class LottoGameController {
 
     public void run() {
-        UserMoneyTicketDTO userMoneyTicketDTO = userMoneyController();
-        // -------------------------------------------------------- 위까지 유저 돈, 티켓 정리 UserInfoDTO
-        Ticket ticket = userMoneyTicketDTO.getPublishedTicket();
+        UserMoneyDTO userMoneyDTO = readUserMoney();
+
+        Ticket ticket = Ticket.from(userMoneyDTO.getUserMoney());
         LottoBowl lottoBowl = LottoBowl.from(ticket);
-        Lotties RandomLotties = lottoBowl.publishLotties();
 
-        OutputView.printLottoCount(ticket.getTicket());
-        OutputView.printEnter();
-        for (Lotto lotto : RandomLotties.getLotties()) {
-            OutputView.printLotto(lotto.getLotto());
-        }
-        OutputView.printEnter();
-        // -------------------------------------------------------- 위까지 출력부분
+        PublishedLottiesDTO publishedLottiesDTO = PublishedLottiesDTO.from(lottoBowl.publishLotties(), ticket);
 
-        UserSixNumberDTO userSixNumberDTO = userSixNumberController();
+        showRandomLotties(publishedLottiesDTO);
 
-        // -------------------------------------------------------- 위까지 유저가 입력한 로또 UserLottoDTO
-        UserLottoDTO userLottoDTO = userLottoController(userSixNumberDTO.getUserSixNumber());
+        UserSixNumberDTO userSixNumberDTO = readUserSixNumber();
+        UserLottoDTO userLottoDTO = readUserLotto(userSixNumberDTO.getUserSixNumber());
 
-        // -------------------------------------------------------- 위까지 유저가 입력한 보너스 넘버 UserBonusDTO
-        UserLotto userLotto = userLottoDTO.getUserLotto();
-        Money userMoney = userMoneyTicketDTO.getUserMoney();
+        LottoComparator lottoComparator = LottoComparator.from(publishedLottiesDTO.getRandomLotties(),
+                userLottoDTO.getUserLotto());
 
-        LottoComparator lottoComparator = LottoComparator.from(RandomLotties, userLotto);
         LottoResult lottoResult = LottoResult.initialize();
 
         lottoComparator.compare(lottoResult);
-        MarginCalculator marginCalculator = new MarginCalculator(lottoResult, userMoney);
+        MarginCalculator marginCalculator = new MarginCalculator(lottoResult, userMoneyDTO.getUserMoney());
 
         BigDecimal margin = marginCalculator.calculateMargin();
 
+        ResultMarginDTO resultMarginDTO = ResultMarginDTO.from(lottoResult, margin);
+
+        showLottoResult(resultMarginDTO);
+        Console.close();
+    }
+
+    private void showRandomLotties(PublishedLottiesDTO publishedLottiesDTO) {
+        OutputView.printLottoCount(publishedLottiesDTO.getPublishedTicket());
+        OutputView.printEnter();
+        for (Lotto lotto : publishedLottiesDTO.getRandomLotties()) {
+            OutputView.printLotto(lotto.getLotto());
+        }
+        OutputView.printEnter();
+    }
+
+    private void showLottoResult(ResultMarginDTO resultMarginDTO) {
         OutputView.printWinningBanner();
         OutputView.printDiviner();
+
+        LottoResult lottoResult = resultMarginDTO.getLottoResult();
 
         for (Prizes prize : Arrays.stream(Prizes.values()).toList()) {
             OutputView.printWinningResult(
@@ -69,26 +80,25 @@ public class LottoGameController {
                     prize.getComment());
         }
 
-        OutputView.printTotalProfit(convertUnit(margin));
+        OutputView.printTotalProfit(convertUnit(resultMarginDTO.getMargin()));
     }
 
-    private UserMoneyTicketDTO userMoneyController() {
+    private UserMoneyDTO readUserMoney() {
         while (true) {
             try {
                 OutputView.printInsertMoney();
                 String rawUserMoney = InputView.getUserMoney();
                 OutputView.printEnter();
-
                 Money userMoney = new Money(Integer.parseInt(rawUserMoney));
-                Ticket ticket = Ticket.from(userMoney);
-                return new UserMoneyTicketDTO(userMoney, ticket);
+
+                return new UserMoneyDTO(userMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private UserSixNumberDTO userSixNumberController() {
+    private UserSixNumberDTO readUserSixNumber() {
         while (true) {
             try {
                 OutputView.printInsertUserLotto();
@@ -110,7 +120,7 @@ public class LottoGameController {
         }
     }
 
-    private UserLottoDTO userLottoController(Lotto userSixNumber) {
+    private UserLottoDTO readUserLotto(Lotto userSixNumber) {
         while (true) {
             try {
                 OutputView.printInsertBonus();
