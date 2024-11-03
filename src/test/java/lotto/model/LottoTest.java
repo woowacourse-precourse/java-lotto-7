@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -24,11 +25,19 @@ class LottoTest {
 				.hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
 	}
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
+	@DisplayName("로또 번호에 중복된 숫자가 있으면 에러를 발생시킨다.")
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+		// given
+		List<LottoNumber> lottoNumbers = IntStream.rangeClosed(1, 5)
+				.mapToObj(LottoNumber::from)
+				.collect(Collectors.toList());
+		lottoNumbers.add(LottoNumber.from(1));
+
+		// when, then
+		assertThatThrownBy(() -> new Lotto(lottoNumbers))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
