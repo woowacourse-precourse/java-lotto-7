@@ -8,23 +8,27 @@ public class LottoProfitCalculator {
     private final LottoResult lottoResult;
     private final IssuedLotto issuedLotto;
 
-    public LottoProfitCalculator(LottoResult lottoResult, IssuedRandomLotto issuedRandomLotto) {
+    public LottoProfitCalculator(LottoResult lottoResult, IssuedLotto issuedLotto) {
         this.lottoResult = lottoResult;
-        this.issuedLotto = issuedRandomLotto;
+        this.issuedLotto = issuedLotto;
+    }
+
+    public List<LottoRank> getLottoRanks() {
+        return lottoRanks;
     }
 
     public double calculateRateOfProfit() {
         if (lottoRanks.isEmpty()) {
             return 0.0;
         }
-        int profit = 0;
+        double profit = 0;
         for (LottoRank lottoRank : lottoRanks) {
             profit += lottoRank.getPrize();
         }
         return Math.round((profit / (double) issuedLotto.getLottoPurchaseAmount() * 100) * 10) / 10.0;
     }
 
-    public List<LottoRank> calculateLottoStatistics() {
+    public void calculateLottoStatistics() {
         for (Lotto issuedLotto : issuedLotto.getIssuedLottos()) {
             int hitLottoNumbers = calculateHitLottoNumbers(issuedLotto);
             boolean isBonusNumberHit = calculateHitBonusNumber(issuedLotto);
@@ -33,7 +37,6 @@ public class LottoProfitCalculator {
                 lottoRanks.add(lottoRank);
             }
         }
-        return lottoRanks;
     }
 
     private int calculateHitLottoNumbers(Lotto lotto) {

@@ -20,7 +20,7 @@ public class LottoProfitCalculatorTest {
     @Test
     void 로또가_일치하는_갯수_반환() {
         // given
-        IssuedRandomLotto issuedLotto = createIssuedLotto(3000, List.of(
+        IssuedLotto issuedLotto = createIssuedLotto(3000, List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),       // 2등
                 new Lotto(List.of(1, 2, 3, 4, 8, 9)),       // 4등
                 new Lotto(List.of(8, 9, 10, 11, 12, 13))    // 꽝
@@ -29,7 +29,8 @@ public class LottoProfitCalculatorTest {
         LottoProfitCalculator calculator = new LottoProfitCalculator(lottoResult, issuedLotto);
 
         // when
-        List<LottoRank> lottoRanks = calculator.calculateLottoStatistics();
+        calculator.calculateLottoStatistics();
+        List<LottoRank> lottoRanks = calculator.getLottoRanks();
 
         // then
         Assertions.assertThat(lottoRanks.size()).isEqualTo(2);
@@ -41,7 +42,7 @@ public class LottoProfitCalculatorTest {
     @Test
     void 로또3개구매_2등_4등_당첨됐을때의_수익률_반환() {
         // given
-        IssuedRandomLotto issuedLotto = createIssuedLotto(3000, List.of(
+        IssuedLotto issuedLotto = createIssuedLotto(3000, List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),       // 2등
                 new Lotto(List.of(1, 2, 3, 4, 8, 9)),       // 4등
                 new Lotto(List.of(8, 9, 10, 11, 12, 13))    // 꽝
@@ -61,7 +62,7 @@ public class LottoProfitCalculatorTest {
     @Test
     void 로또8개_구매해서_5등_한번_당첨됐을때의_수익률_반환() {
         // given
-        IssuedRandomLotto issuedLotto = createIssuedLotto(8000, List.of(
+        IssuedLotto issuedLotto = createIssuedLotto(8000, List.of(
                 new Lotto(List.of(1, 2, 3, 7, 8, 9)),       // 5등
                 new Lotto(List.of(8, 9, 10, 11, 12, 13)),   // 꽝
                 new Lotto(List.of(8, 9, 10, 11, 12, 13)),   // 꽝
