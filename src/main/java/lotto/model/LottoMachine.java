@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.util.RandomUtil;
+import lotto.helper.util.RandomUtil;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
@@ -13,7 +13,7 @@ public class LottoMachine {
         for (int i=0; i<count; i++) {
             lottos.add(generateLotto());
         }
-        return new LottoTicket(lottos);
+        return new LottoTicket(lottos, price);
     }
 
     private Lotto generateLotto() {
