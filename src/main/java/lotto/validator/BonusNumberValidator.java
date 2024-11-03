@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import lotto.LottoConstants;
 import lotto.model.Lotto;
+import lotto.model.LottoConstants;
 
 public class BonusNumberValidator {
 

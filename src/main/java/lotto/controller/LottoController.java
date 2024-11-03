@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import java.util.Map;
-import lotto.LottoConstants;
 import lotto.model.Lotto;
+import lotto.model.LottoConstants;
 import lotto.model.LottoRank;
 import lotto.model.LottoRevenueCalculator;
 import lotto.model.PurchasedLottos;

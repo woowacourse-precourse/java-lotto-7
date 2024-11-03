@@ -1,7 +1,7 @@
 package lotto.validator;
 
 import java.util.List;
-import lotto.LottoConstants;
+import lotto.model.LottoConstants;
 
 public class LottoValidator {
 

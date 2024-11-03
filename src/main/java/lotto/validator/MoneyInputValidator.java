@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.LottoConstants;
+import lotto.model.LottoConstants;
 
 public class MoneyInputValidator {
 
