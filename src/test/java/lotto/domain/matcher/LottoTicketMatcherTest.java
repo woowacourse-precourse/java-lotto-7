@@ -6,6 +6,8 @@ import java.util.Arrays;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.WinningLotto;
+import lotto.domain.prize.LottoPrize;
+import lotto.domain.prize.LottoResult;
 import lotto.domain.ticket.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

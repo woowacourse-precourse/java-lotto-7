@@ -1,6 +1,6 @@
 package lotto.domain.money;
 
-import lotto.domain.matcher.LottoResult;
+import lotto.domain.prize.LottoResult;
 
 public class Revenue {
 

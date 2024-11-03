@@ -2,7 +2,7 @@ package lotto.interfaces;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.matcher.LottoResult;
+import lotto.domain.prize.LottoResult;
 import lotto.domain.money.Revenue;
 
 public record LottoResponse(

@@ -1,6 +1,8 @@
 package lotto.domain.matcher;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.prize.LottoPrize;
+import lotto.domain.prize.LottoResult;
 import lotto.domain.ticket.LottoTicket;
 import lotto.domain.lotto.WinningLotto;
 

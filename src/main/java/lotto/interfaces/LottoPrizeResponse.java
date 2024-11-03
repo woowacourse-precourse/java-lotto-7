@@ -1,6 +1,6 @@
 package lotto.interfaces;
 
-import lotto.domain.matcher.LottoPrize;
+import lotto.domain.prize.LottoPrize;
 
 public record LottoPrizeResponse(
         int matchCount,
