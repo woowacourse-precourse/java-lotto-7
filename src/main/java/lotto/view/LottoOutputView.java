@@ -7,4 +7,7 @@ public class LottoOutputView {
     public void printErrorMessage(String reason){
         System.out.println("[ERROR]"+reason);
     }
+    public void printLottoBundleAmount(int amount){
+        System.out.println(amount+"개를 구매했습니다.");
+    }
 }
