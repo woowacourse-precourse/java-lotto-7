@@ -2,8 +2,11 @@ package lotto.mvc.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.mvc.model.Lotto;
+import lotto.mvc.model.LottoWinningAmount;
 import lotto.mvc.validation.LottoBonusNumberValidator;
 import lotto.mvc.validation.LottoNumberValidator;
 import lotto.mvc.validation.PurchaseAmountValidator;
@@ -41,7 +44,41 @@ public class LottoController {
 
         LottoBonusNumberValidator.isValid(winningLotto, bonusNumber);
 
+        int bonus = Integer.parseInt(bonusNumber);
 
+        Map<LottoWinningAmount, Integer> winningCounts = checkLottoWinning(lottos, winningLotto, bonus);
+    }
+
+    private Map<LottoWinningAmount, Integer> checkLottoWinning(List<Lotto> lottos, Lotto winningLotto, int bonus) {
+        Map<LottoWinningAmount, Integer> results = new HashMap<>();
+
+        for (int i = 0; i < lottos.size(); i++) {
+            int matchCount = 0;
+            boolean matchBonus = false;
+
+            Lotto lotto = lottos.get(i);
+            List<Integer> lottoNumbers = lotto.getNumbers();
+
+            for (int j = 0; j < lottoNumbers.size(); j++) {
+                if (winningLotto.getNumbers().contains(lottoNumbers.get(j))) {
+                    matchCount++;
+                }
+            }
+
+            if (lottoNumbers.contains(bonus)) {
+                matchBonus = true;
+            }
+
+            LottoWinningAmount[] winningAmounts = LottoWinningAmount.values();
+
+            for (int j = 0; j < winningAmounts.length; j++) {
+                if (matchCount == winningAmounts[j].getCount() && matchBonus == winningAmounts[j].getBonus()) {
+                    results.put(winningAmounts[j], results.getOrDefault(winningAmounts[j], 0) + 1);
+                }
+            }
+        }
+
+        return results;
     }
 
     private String trimInput(String input) {
