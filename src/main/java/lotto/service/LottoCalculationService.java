@@ -4,16 +4,15 @@ import java.util.List;
 import lotto.constant.WinningType;
 import lotto.model.Lotto;
 import lotto.model.WinningCriteria;
+import lotto.model.WinningResult;
 
 public class LottoCalculationService {
 
-    public List<WinningType> calculateWinning(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
+    public WinningResult calculateWinning(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
         List<WinningType> winningResult = issuedLotto.stream()
                 .map(lotto -> calculateWinning(lotto, winningCriteria))
                 .toList();
-        return winningResult.stream()
-                .filter(winningType -> winningType != WinningType.NONE)
-                .toList();
+        return new WinningResult(winningResult);
     }
 
     private WinningType calculateWinning(Lotto issuedLotto, WinningCriteria winningCriteria) {

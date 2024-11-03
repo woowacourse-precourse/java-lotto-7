@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.constant.WinningType;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningCriteria;
+import lotto.model.WinningResult;
 import lotto.service.InputParsingService;
 import lotto.service.InputValidationService;
 import lotto.service.LottoCalculationService;
@@ -43,7 +43,7 @@ public class LottoController {
         List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
         printIssuedLotto(issuedLotto);
         WinningCriteria winningCriteria = inputWinningCriteria();
-        List<WinningType> winningResult = calculateWinningResult(issuedLotto, winningCriteria);
+        WinningResult winningResult = calculateWinningResult(issuedLotto, winningCriteria);
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -78,7 +78,7 @@ public class LottoController {
         return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
     }
 
-    private List<WinningType> calculateWinningResult(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
+    private WinningResult calculateWinningResult(List<Lotto> issuedLotto, WinningCriteria winningCriteria) {
         return lottoCalculationService.calculateWinning(issuedLotto, winningCriteria);
     }
 }
