@@ -1,7 +1,5 @@
 package lotto.util;
 
-import lotto.util.message.Messages;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -57,19 +55,19 @@ public class InputValidator {
 
     private static void checkDuplicated(List<Integer> winningNumbers) {
         if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 포함될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBERS);
         }
     }
 
     private static void checkSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_WINNING_SIZE);
         }
     }
 
     private static void checkRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
 
