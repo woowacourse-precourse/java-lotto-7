@@ -15,6 +15,7 @@ public class WinningNumbersTest {
     @Test
     void 당첨번호_생성() {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        
         assertThat(winningNumbers).isEqualTo(new WinningNumbers("1,2,3,4,5,6"));
     }
 
@@ -53,8 +54,7 @@ public class WinningNumbersTest {
     void 로또와_당첨번호를_비교하여_매칭_개수_구하기() {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
         List<LottoNumber> numbers = List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3),
-                LottoNumber.from(4),
-                LottoNumber.from(44), LottoNumber.from(45));
+                LottoNumber.from(4), LottoNumber.from(44), LottoNumber.from(45));
 
         assertThat(winningNumbers.countNumbers(numbers)).isEqualTo(4);
     }

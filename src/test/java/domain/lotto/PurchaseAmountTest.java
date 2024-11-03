@@ -31,12 +31,14 @@ public class PurchaseAmountTest {
     @Test
     void 구매_개수_계산() {
         PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
+
         assertThat(purchaseAmount.calculatePurchaseCount()).isEqualTo(3);
     }
 
     @Test
     void 수익_비율_계산() {
         PurchaseAmount purchaseAmount = new PurchaseAmount("1000");
+
         assertThat(purchaseAmount.revenueRatio(5000)).isEqualTo(5.0);
     }
 }
