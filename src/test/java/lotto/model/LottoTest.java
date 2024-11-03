@@ -69,6 +69,15 @@ class LottoTest {
         Assertions.assertThat(actualRankList).isEqualTo(expectedRankList);
     }
 
+    @DisplayName("로또의 범위가 맞지 않으면 에러가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateInvalidRangeNumberList")
+    void 로또의_범위가_맞지_않으면_에러가_발생한다(List<Integer> numberList) {
+        Assertions.assertThatThrownBy(() -> {
+            new Lotto(numberList);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<List<Integer>> invalidSizeWinningNumberList() {
         return Stream.of(
                 List.of(),
@@ -78,5 +87,12 @@ class LottoTest {
                 List.of(1, 2, 3, 4),
                 List.of(1, 2, 3, 4, 5)
         );
+    }
+
+    private static Stream<List<Integer>> generateInvalidRangeNumberList() {
+        return Stream.of(
+                List.of(0, 2, 3, 5, 46, 99),
+                List.of(99, 999, 9999, 99999, 999999, 9999999)
+                );
     }
 }

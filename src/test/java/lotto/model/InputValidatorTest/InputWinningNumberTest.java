@@ -15,15 +15,6 @@ public class InputWinningNumberTest {
         inputValidator = new InputValidator();
     }
 
-    @DisplayName("당첨 번호의 범위가 1에서 45가 아닐 경우 에러가 발생한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"'0,2,3,5,46,99'", "'99,999,9999,99999,999999,9999999'"})
-    public void 당첨_번호의_범위가_1에서_45가_아닐_경우_에러가_발생한다(String input) {
-        Assertions.assertThatThrownBy(() -> {
-            inputValidator.validateInputWinningNumber(input);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("당첨 번호가 음수일 경우 에러가 발생한다.")
     @ParameterizedTest
     @CsvSource(value = {"'-1,1,2,3,4,5'", "'-99,-8,-12,-20,-999'"})
