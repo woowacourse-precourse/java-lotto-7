@@ -31,8 +31,11 @@ public class LotteryCashier {
     }
 
     private List<Integer> generateUniqueNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LottoValue.MIN_NUMBER, LottoValue.MAX_NUMBER,
-                LottoValue.NUMBER_SIZE);
+        return Randoms.pickUniqueNumbersInRange(
+                LottoValue.MIN_NUMBER,
+                LottoValue.MAX_NUMBER,
+                LottoValue.NUMBER_SIZE
+        );
     }
 
     private <T> List<T> convertMutable(List<T> collection) {
