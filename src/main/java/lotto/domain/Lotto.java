@@ -20,7 +20,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
-        if(checkDuplicateNumbers(numbers)) {
+        if (checkDuplicateNumbers(numbers)) {
             throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBERS_ERROR);
         }
     }
@@ -37,6 +37,7 @@ public class Lotto {
 
     @Override
     public String toString() {
+        numbers.sort(Integer::compareTo);
         return numbers.toString();
     }
 }
