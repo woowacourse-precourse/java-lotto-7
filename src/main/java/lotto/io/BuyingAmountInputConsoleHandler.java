@@ -2,7 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputConsoleHandler {
+public class BuyingAmountInputConsoleHandler {
     public void showBuyingAmountGuideMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
