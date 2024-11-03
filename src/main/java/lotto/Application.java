@@ -97,13 +97,14 @@ public class Application {
         return numbers;
     }
 
+
     private static int inputBonusNumber() {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
 
-                int bonusNumber = Integer.parseInt(input);
+                int bonusNumber = parseBonusNumber(input);
 
                 System.out.println();
                 return bonusNumber;
@@ -111,6 +112,14 @@ public class Application {
                 System.out.println(e.getMessage());
                 System.out.println();
             }
+        }
+    }
+
+    private static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 정수형이어야 합니다.");
         }
     }
 }
