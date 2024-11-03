@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class InputParser {
     private static final String WINNING_NUMBER_DELIMITER = ",";
+    private static final String INVALID_INPUT_ERROR_MESSAGE = "[ERROR] 정수를 입력해주세요.\n";
 
     public static List<Integer> parseWinningNumber(final String input) {
         String[] winningNumbers = input.split(WINNING_NUMBER_DELIMITER);
@@ -16,6 +17,11 @@ public class InputParser {
     }
 
     public static int parseInt(final String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println(INVALID_INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE);
+        }
     }
 }

@@ -16,12 +16,12 @@ public class LottoManager {
     private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
-        int purchaseAmount = parseInt(inputPurchaseAmount());
+        int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottoes = purchaseLottoes(purchaseAmount);
         Output.printPurchaseMessage(lottoes.size());
         lottoes.forEach(Output::printLotto);
-        List<Integer> winningNumber = parseWinningNumber(inputWinningNumber());
-        int bonusNumber = parseInt(inputBonusNumber());
+        List<Integer> winningNumber = getWinningNumber();
+        int bonusNumber = getBonusNumber();
         lottoes.stream()
                 .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
@@ -29,6 +29,31 @@ public class LottoManager {
         double returnRate = (double) calculateTotalWinningAmount() * PERCENTAGE_FACTOR / purchaseAmount;
         Output.printReturnRate(returnRate);
     }
+
+    private static int getPurchaseAmount() {
+        try {
+            return parseInt(inputPurchaseAmount());
+        } catch (IllegalArgumentException e) {
+            return getPurchaseAmount();
+        }
+    }
+
+    private static List<Integer> getWinningNumber() {
+        try {
+            return parseWinningNumber(inputWinningNumber());
+        } catch (IllegalArgumentException e) {
+            return getWinningNumber();
+        }
+    }
+
+    private static int getBonusNumber() {
+        try {
+            return parseInt(inputBonusNumber());
+        } catch (IllegalArgumentException e) {
+            return getBonusNumber();
+        }
+    }
+
 
     private void saveRankOnRecord(final Rank rank) {
         int rankCount = winningRecord.getOrDefault(rank, 0);
