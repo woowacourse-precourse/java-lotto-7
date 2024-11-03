@@ -16,4 +16,6 @@ public interface LottoService {
     void deleteLottos();
 
     String getPercent(Map<Rank, Integer> rankCounts);
+
+    List<Integer> convertToNumbers(String winnerNumbers);
 }

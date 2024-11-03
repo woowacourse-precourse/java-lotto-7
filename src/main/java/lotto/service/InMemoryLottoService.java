@@ -15,47 +15,41 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.repository.LottoRepository;
-import lotto.validator.LottoValidator;
 
 public class InMemoryLottoService implements LottoService {
 
-    private final LottoValidator lottoValidator;
     private final LottoRepository lottoRepository;
     private static InMemoryLottoService instance;
 
-    private InMemoryLottoService(LottoValidator lottoValidator, LottoRepository lottoRepository) {
-        this.lottoValidator = lottoValidator;
+    private InMemoryLottoService(LottoRepository lottoRepository) {
         this.lottoRepository = lottoRepository;
     }
 
-    public static InMemoryLottoService getInstance(LottoValidator lottoValidator, LottoRepository lottoRepository) {
+    public static InMemoryLottoService getInstance(LottoRepository lottoRepository) {
         if (instance == null) {
-            instance = new InMemoryLottoService(lottoValidator, lottoRepository);
+            instance = new InMemoryLottoService(lottoRepository);
         }
         return instance;
     }
 
     @Override // 금액에 따라 로또 생성 및 저장
     public void buyLotto(String money) {
-        lottoValidator.validateMoney(money);
 
         int purchasableLottoCount = Integer.parseInt(money) / LOTTO_PRICE;
 
         for (int i = 0; i < purchasableLottoCount; i++) {
             List<Integer> lottoNumbers = createLottoNumbers();
-            lottoValidator.validateGeneratedLottoNumbers(lottoNumbers);
             lottoRepository.save(new Lotto(lottoNumbers));
         }
     }
 
     @Override // 당첨 번호와 보너스 번호를 입력받아 당첨 통계 계산
     public Map<Rank, Integer> calculateLottoResults(String winNumbers, String bonusNumber) {
-        lottoValidator.validateWinnerLottoNumbers(winNumbers);
+
         List<Integer> winnerNumbers = Arrays.stream(winNumbers.split(","))
                 .map(Integer::parseInt)
                 .toList();
 
-        lottoValidator.validateBonusNumber(winnerNumbers, bonusNumber);
         int bonus = Integer.parseInt(bonusNumber);
 
         return getRankCounts(winnerNumbers, bonus);
@@ -67,6 +61,13 @@ public class InMemoryLottoService implements LottoService {
         int totalPurchase = lottoRepository.count() * LOTTO_PRICE;
         double profitRate = (double) totalPrize / totalPurchase * 100;
         return String.format("%.1f", profitRate);
+    }
+
+    @Override
+    public List<Integer> convertToNumbers(String winnerNumbers) {
+        return Arrays.stream(winnerNumbers.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     @Override

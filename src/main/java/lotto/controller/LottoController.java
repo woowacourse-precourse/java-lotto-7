@@ -33,7 +33,8 @@ public class LottoController {
 
     public Map<Rank, Integer> calculateLottoResults() {
         String winnerNumbers = inputView.inputWinnerNumbers();
-        String bonusNumber = inputView.inputBonusNumber();
+        List<Integer> convertedWinnerNumbers = lottoService.convertToNumbers(winnerNumbers);
+        String bonusNumber = inputView.inputBonusNumber(convertedWinnerNumbers);
         return lottoService.calculateLottoResults(winnerNumbers, bonusNumber);
     }
 
