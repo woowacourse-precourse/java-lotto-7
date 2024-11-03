@@ -8,6 +8,7 @@ import lotto.utility.WinningNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class LottoController {
     }
 
     private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
-        double profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
+        BigDecimal profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
         OutputView.outputProfitRate(profitRate);
     }
 

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.utility.MatchedCountNameEnum;
 import lotto.utility.MatchedNumberEnum;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class OutputView {
         System.out.println(MatchedNumberEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage()) + "개");
     }
 
-    public static void outputProfitRate(double profitRate) {
+    public static void outputProfitRate(BigDecimal profitRate) {
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }
