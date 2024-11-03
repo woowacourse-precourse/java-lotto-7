@@ -9,6 +9,7 @@ import java.util.List;
 
 public class PurchasedLotto {
     private static final String LOTTO_DELIMITER = "\n";
+
     private final List<Lotto> lottos;
 
     public PurchasedLotto(List<Lotto> lottos) {
