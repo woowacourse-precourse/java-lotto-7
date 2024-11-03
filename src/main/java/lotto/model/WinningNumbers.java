@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 import lotto.utilities.Parser;
 import lotto.utilities.Splitter;
-import lotto.validation.WinningNumbersValidator;
+import lotto.validation.WinningAndBonusNumbersValidator;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
@@ -33,7 +33,7 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> winningNumbers) {
-        WinningNumbersValidator.mainValidator(winningNumbers);
+        WinningAndBonusNumbersValidator.validateWinningAndBonusNumbers(winningNumbers);
     }
 
     public List<Integer> getWinningNumbers() {

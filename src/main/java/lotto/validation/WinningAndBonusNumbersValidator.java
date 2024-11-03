@@ -5,10 +5,10 @@ import java.util.List;
 import lotto.constants.RandomNumberConstants;
 import lotto.enums.ErrorMessage;
 
-public class WinningNumbersValidator {
+public class WinningAndBonusNumbersValidator {
     private static final int QUANTITY_OF_WINNING_NUMBERS = 7;
 
-    public static void mainValidator(List<Integer> winningAndBonusNumbers) {
+    public static void validateWinningAndBonusNumbers(List<Integer> winningAndBonusNumbers) {
         validateNumbers(winningAndBonusNumbers);
         validateDuplicate(winningAndBonusNumbers);
     }
