@@ -22,6 +22,7 @@ public class InputView {
     public WinningNumbers inputWinningNumbers() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println(InputMessages.WINNING_NUMBERS_PROMPT);
                 String input = Console.readLine();
                 return new WinningNumbers(input);
@@ -36,6 +37,7 @@ public class InputView {
     public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
+                System.out.println();
                 System.out.println(InputMessages.BONUS_NUMBER_PROMPT);
                 String input = Console.readLine();
                 int bonusNumber = Integer.parseInt(input.trim());
