@@ -6,4 +6,5 @@ public class ErrorMessage {
     public static final String EMPTY_INPUT_VALUE = "[ERROR] 입력이 비어있습니다.";
     public static final String INVALID_PRICE_ERROR = "[ERROR] 로또 구입 금액은 1000원 단위로 나누어 떨어져야 합니다.";
     public static final String DUPLICATED_LOTTO_NUMBER = "[ERROR] 중복된 로또 번호를 입력하였습니다.";
+    public static final String HAS_SIX_LOTTO_NUMBER = "[ERROR] 로또 번호는 6개여야 합니다.";
 }

@@ -7,6 +7,12 @@ import lotto.domain.Lottos;
 
 public class LottoService {
 
+    private static final Long THREE_NUMBER_PRICE = 5000L;
+    private static final Long FOUR_NUMBER_PRICE = 50000L;
+    private static final Long FIVE_NUMBER_PRICE = 1500000L;
+    private static final Long FIVE_BONUS_NUMBER_PRICE = 30000000L;
+    private static final Long SIX_NUMBER_PRICE = 2000000000L;
+
     // 당첨 통계 설정
     public void setWinningLottoCount(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
@@ -20,8 +26,9 @@ public class LottoService {
     public double getRateOfReturn(Lottos lottos, int price) {
         int[] counts = lottos.getWinningLottoCounts();
 
-        long sum = counts[3] * 5000L + counts[4] * 50000L + counts[5] * 1500000L + counts[7] * 30000000L
-                + counts[6] * 2000000000L;
+        long sum = counts[3] * THREE_NUMBER_PRICE + counts[4] * FOUR_NUMBER_PRICE
+                + counts[5] * FIVE_NUMBER_PRICE + counts[7] * FIVE_BONUS_NUMBER_PRICE
+                + counts[6] * SIX_NUMBER_PRICE;
 
         double rateOfReturn = (double) sum / price;
 
