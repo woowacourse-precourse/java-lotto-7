@@ -32,7 +32,7 @@ public class WinningResultTest {
         Money money = new Money(10000);
         WinningResult result = new WinningResult(counts, money);
 
-        BigDecimal value = result.calculatePrizeRate();
+        BigDecimal value = result.calculateTotalPrizeRate();
 
         // 실제로 소숫점 둘째자리를 xxx.00으로 입력하면 xxx.0으로 입력되기 때문
         assertThat(value.toString()).isEqualTo("20300000.0");

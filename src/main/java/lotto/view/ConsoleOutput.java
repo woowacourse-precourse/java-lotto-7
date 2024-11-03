@@ -31,6 +31,6 @@ public class ConsoleOutput {
                 System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
             }
         }
-        System.out.println("총 수익률은 " + result.calculatePrizeRate() + "%입니다.");
+        System.out.println("총 수익률은 " + result.calculateTotalPrizeRate() + "%입니다.");
     }
 }

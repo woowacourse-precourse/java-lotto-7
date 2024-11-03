@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 
 public class Money {
     private static final int LOTTO_PRICE = 1000;
+    private static final int SCALE = 1; // 반올림해서 소숫점 몇 번째 자리까지 나타낼지
 
     private final BigDecimal amount;
 
@@ -34,12 +35,15 @@ public class Money {
         return amount.compareTo(BigDecimal.valueOf(LOTTO_PRICE)) == -1;
     }
 
+    public BigDecimal calculateTotalPrizeRate(BigDecimal totalPrize) {
+        return totalPrize
+                .multiply(BigDecimal.valueOf(100))
+                .divide(this.amount, SCALE, RoundingMode.HALF_UP);
+    }
+
     public int calculateLottoQuantity() {
         BigDecimal value = amount.divide(BigDecimal.valueOf(LOTTO_PRICE), RoundingMode.UNNECESSARY);
         return value.intValue();
     }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
 }

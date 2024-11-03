@@ -1,7 +1,6 @@
 package lotto;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Map;
 
 public class WinningResult {
@@ -20,10 +19,9 @@ public class WinningResult {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    // TODO: Money 한테 책임 주기
-    public BigDecimal calculatePrizeRate() {
+    public BigDecimal calculateTotalPrizeRate() {
         BigDecimal totalPrize = calculateTotalPrize();
-        return totalPrize.multiply(BigDecimal.valueOf(100)).divide(money.getAmount(), 1, RoundingMode.HALF_UP);
+        return money.calculateTotalPrizeRate(totalPrize);
     }
 
     public Map<Rank, Integer> getCounts() {
