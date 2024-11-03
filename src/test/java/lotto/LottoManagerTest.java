@@ -4,7 +4,6 @@ import lotto.domain.Attempt;
 import lotto.domain.BonusLotto;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

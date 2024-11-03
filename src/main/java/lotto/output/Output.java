@@ -3,7 +3,6 @@ package lotto.output;
 import lotto.LottoPrize;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class Output {
 
