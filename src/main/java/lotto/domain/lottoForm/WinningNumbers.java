@@ -31,4 +31,8 @@ public class WinningNumbers extends LottoForm {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

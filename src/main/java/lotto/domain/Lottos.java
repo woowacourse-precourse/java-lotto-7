@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
+import lotto.domain.lottoForm.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,4 +24,13 @@ public class Lottos {
     public void showInfo(){
         lottos.stream().map(Lotto::toString).forEach(System.out::println);
     }
+
+    public void compare(WinningNumbers winningNumbers, int bonusNumber) {
+        for (Lotto lotto : lottos) {
+            int matchingNumber = lotto.getMatchingNumbers(winningNumbers);
+            boolean bonus = lotto.hasBonusNumber(bonusNumber);
+            Result.update(matchingNumber, bonus);
+        }
+    }
+
 }

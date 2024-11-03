@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.message.InfoMessage;
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 import static lotto.message.InfoMessage.*;
@@ -48,4 +49,14 @@ public enum Result {
         result++;
     }
 
+    private boolean matches(int matchingNumber, boolean bonus) {
+        return predicate.test(matchingNumber, bonus);
+    }
+
+    public static void update(int matchingNumber, boolean bonus) {
+        Arrays.stream(Result.values())
+                .filter(result -> result.matches(matchingNumber, bonus))
+                .findAny()
+                .ifPresent(Result::increment);
+    }
 }

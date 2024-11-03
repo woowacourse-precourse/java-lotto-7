@@ -18,4 +18,14 @@ public class Lotto extends LottoForm {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int getMatchingNumbers(WinningNumbers winningNumbers) {
+        return Math.toIntExact(numbers.stream()
+                .filter(winningNumbers::contains)
+                .count());
+    }
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

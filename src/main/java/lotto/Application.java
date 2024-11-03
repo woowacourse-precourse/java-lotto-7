@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.controller.LottoController;
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
+import lotto.domain.Result;
 import lotto.domain.lottoForm.WinningNumbers;
 import lotto.handler.MoneyInputHandler;
 import lotto.handler.WinningNumbersInputHandler;
@@ -20,5 +22,8 @@ public class Application {
         WinningNumbersInputHandler NumbersInputHandler = new WinningNumbersInputHandler();
         WinningNumbers winningNumbers = NumbersInputHandler.getWinningNumbers();
         int bonusNumber = NumbersInputHandler.getBonusNumber(winningNumbers);
+
+        LottoController lottoController = new LottoController(lottos, winningNumbers, bonusNumber);
+        lottoController.evaluate();
     }
 }
