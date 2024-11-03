@@ -26,6 +26,8 @@ public enum ModelContstants {
     // 수익률 계산을 위한 퍼센트 상수
     PERCENTAGE_NUMBER(100);
 
+    // 로또 번호 구분자
+
     private int value;
 
     ModelContstants(int value) {
