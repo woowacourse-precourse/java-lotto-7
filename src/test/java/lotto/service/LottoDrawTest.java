@@ -2,15 +2,24 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoDrawTest {
+
+    private LottoDraw lottoDraw;
+
+    @BeforeEach
+    void setUp() {
+        lottoDraw = new LottoDraw();
+    }
 
     static Stream<Arguments> winningNumberFactory() {
         return Stream.of(
@@ -32,7 +41,7 @@ class LottoDrawTest {
         Lotto lotto = new Lotto(numbers);
 
         //When
-        int actual = new LottoDraw().compareWinningNumber(lotto, winningNumbers);
+        int actual = lottoDraw.compareWinningNumber(lotto, winningNumbers);
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -54,7 +63,30 @@ class LottoDrawTest {
         Lotto lotto = new Lotto(numbers);
 
         //When
-        boolean actual = new LottoDraw().compareBonusNumber(lotto, bonusNumber);
+        boolean actual = lottoDraw.compareBonusNumber(lotto, bonusNumber);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> returnRateFactory() {
+        return Stream.of(
+                Arguments.arguments(5000, 8000, 62.5),
+                Arguments.arguments(5000, 1000, 500.0),
+                Arguments.arguments(0, 1000, 0.0),
+                Arguments.arguments(1000, 1000, 100.0),
+                Arguments.arguments(333, 1000, 33.3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("returnRateFactory")
+    public void 수익률_테스트(double totalPrize, int amountValue, double expected) throws Exception {
+        //Given
+        Amount amount = new Amount(amountValue);
+
+        //When
+        double actual = lottoDraw.calcReturnRate(totalPrize, amount);
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);

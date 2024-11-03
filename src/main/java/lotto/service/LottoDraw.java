@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.HashMap;
+import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
@@ -11,6 +12,8 @@ import lotto.domain.WinningNumber;
 
 public class LottoDraw {
 
+    private static final double PERCENTAGE = 100.0;
+    private static final double DECIMAL_PLACE = 10.0;
     private final HashMap<LottoRank, Integer> statistics = new HashMap<>();
 
     public int compareWinningNumber(Lotto lotto, WinningNumber winningNumber) {
@@ -32,6 +35,10 @@ public class LottoDraw {
         statistics.put(key, value);
     }
 
+    private int getMatchesWinning(LottoRank key) {
+        return statistics.getOrDefault(key, 0) + 1;
+    }
+
     public void draw(LottoBundle lottoBundle, WinningNumber winningNumber, BonusNumber bonusNumber) {
         for (Lotto lotto : lottoBundle.getBundle()) {
             int matchesWinning = compareWinningNumber(lotto, winningNumber);
@@ -39,5 +46,17 @@ public class LottoDraw {
             LottoRank rank = LottoWinningRule.getRank(matchesWinning, isMatchBonus);
             saveDrawResult(rank);
         }
+    }
+
+    public double calcTotalPrize() {
+        double totalPrize = 0.0;
+        for (LottoRank key : LottoRank.values()) {
+            totalPrize += LottoWinningRule.getPrize(key) * getMatchesWinning(key);
+        }
+        return totalPrize;
+    }
+
+    public double calcReturnRate(double totalPrize, Amount amount) {
+        return Math.round(totalPrize / amount.getValue() * PERCENTAGE * DECIMAL_PLACE) / DECIMAL_PLACE;
     }
 }

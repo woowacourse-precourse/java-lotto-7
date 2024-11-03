@@ -17,4 +17,8 @@ public class LottoPurchase {
     public List<String> retrievePurchasedLottoNumbers() {
         return bundle.retrieveLottoNumbers();
     }
+
+    public LottoBundle getBundle() {
+        return bundle;
+    }
 }
