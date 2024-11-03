@@ -15,6 +15,13 @@ public class LottoValue {
         validatePrice(lottoPrice);
         this.lottoPrice = lottoPrice;
         this.lottoCount = calculateCount();
+        validateMinCount();
+    }
+
+    private void validateMinCount() {
+        if (lottoCount <= 0) {
+            throw new IllegalArgumentException("구매 갯수는 1개 이상이어야 합니다.");
+        }
     }
 
     private static void validatePrice(BigDecimal lottoPrice) {

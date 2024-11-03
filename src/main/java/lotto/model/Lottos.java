@@ -36,6 +36,10 @@ public class Lottos {
         return lottos.size();
     }
 
+    public void clear() {
+        lottos.clear();
+    }
+
     public Winning getWinning(Lotto lotto) {
         return lottos.get(lotto);
     }

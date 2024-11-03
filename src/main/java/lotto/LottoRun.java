@@ -21,7 +21,7 @@ public class LottoRun {
             lottoController.printAndCalculateWinningRate();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            lottoController.printAndCalculateWinningRate();
+            winningRate(lottoController);
         }
     }
 
@@ -29,22 +29,22 @@ public class LottoRun {
         int bonusNumber = 0;
         try {
             bonusNumber = lottoController.getBonusNumber();
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            bonusNumber = lottoController.getBonusNumber();
+            return bonusNumber(lottoController);
         }
-        return bonusNumber;
     }
 
     private static List<Integer> winningNumber(LottoController lottoController) {
         List<Integer> winningNumber = null;
         try {
             winningNumber = lottoController.getWinningNumber();
+            return winningNumber;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            winningNumber = lottoController.getWinningNumber();
+            return winningNumber(lottoController);
         }
-        return winningNumber;
     }
 
     private static void set(LottoController lottoController) {
@@ -52,7 +52,7 @@ public class LottoRun {
             lottoController.setAndPrintLottos();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            lottoController.setAndPrintLottos();
+            set(lottoController);
         }
     }
 
@@ -60,11 +60,11 @@ public class LottoRun {
         LottoController lottoController = null;
         try {
             lottoController = configure();
+            return lottoController;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            lottoController = configure();
+            return init();
         }
-        return lottoController;
     }
 
     private static LottoController configure() {

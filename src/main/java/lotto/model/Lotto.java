@@ -8,9 +8,9 @@ public class Lotto {
     private static final String TO_STRING_DELIMITER = ", ";
     private static final String TO_STRING_SUFFIX = "]";
     private static final int DELIMITER_SIZE = 2;
-    private static final int MAX_SIZE = 6;
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
+    public static final int MAX_SIZE = 6;
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

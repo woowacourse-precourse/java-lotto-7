@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.model.Lotto.MAX_RANGE;
+import static lotto.model.Lotto.MAX_SIZE;
+import static lotto.model.Lotto.MIN_RANGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -37,17 +41,41 @@ public class LottoView {
     public List<Integer> inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
+        String[] winningNumberSplit = winningNumber.split(WINNING_DELIMITER);
+        validateSize(winningNumberSplit);
         System.out.println();
-        return Arrays.stream(winningNumber.split(WINNING_DELIMITER))
-                .map(this::convertStringToInt)
+        return winningNumberToList(winningNumberSplit);
+    }
+
+    private List<Integer> winningNumberToList(String[] winningNumberSplit) {
+        return Arrays.stream(winningNumberSplit)
+                .map(str -> {
+                    int num = convertStringToInt(str);
+                    validateRange(num);
+                    return num;
+                })
                 .toList();
+    }
+
+    private void validateSize(String[] split) {
+        if (split.length != MAX_SIZE) {
+            throw new IllegalArgumentException("담청 번호는 6자리 입니다.");
+        }
+    }
+
+    private void validateRange(int num) {
+        if (num < MIN_RANGE || num > MAX_RANGE) {
+            throw new IllegalArgumentException("번호는 1에서 45 사이여야 합니다.");
+        }
     }
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         System.out.println();
-        return convertStringToInt(bonusNumber);
+        int num = convertStringToInt(bonusNumber);
+        validateRange(num);
+        return num;
     }
 
     public void printWinningTrace(String winningTrace) {
