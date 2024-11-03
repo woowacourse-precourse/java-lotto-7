@@ -143,4 +143,5 @@
 ### **view**
 - LottoAmountTest - 금액을 입력받는 로직이 의도한대로 예외 처리가 잘 되는지 테스트
 
+---
 - ApplicationTest - 예외 테스트
