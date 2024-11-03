@@ -35,7 +35,6 @@ public class OutputView {
             System.out.println(String.format(
                     "%s (%s원) - %d개"
                     , Messages.MATCHING_CONDITION(winningRank)
-                    , winningRank.getMatchingAmount()
                     , Messages.PRICE(winningRank.getPrice())
                     , winningResults.findLottoAmountByRank(winningRank)
             ));
