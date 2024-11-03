@@ -34,4 +34,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("유효한 로또 번호가 주어졌을 때 정상적으로 생성된다.")
+    @Test
+    void 유효한_로또_번호로_생성() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
 }
