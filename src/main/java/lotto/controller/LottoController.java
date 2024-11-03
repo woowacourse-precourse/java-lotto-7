@@ -51,6 +51,9 @@ public class LottoController {
         BonusNumber bonusNumber = BonusNumber.from(LottoNumber.from(InputUtils.parseStringToInt(number)));
 
         LottoResultService lottoResultService = new LottoResultService(winningNumbers, bonusNumber);
-        Map<Winning, Integer> winningResults = lottoResultService.checkWinningResults(lottoTickets);
+        Map<Winning, Integer> winningResults = lottoResultService.getWinningResults(lottoTickets);
+        double rateOfReturn = lottoResultService.calculateRateOfReturn(
+                PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount)), winningResults
+        );
     }
 }

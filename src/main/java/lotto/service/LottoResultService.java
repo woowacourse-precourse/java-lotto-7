@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.PurchaseAmount;
 import lotto.model.Winning;
 import lotto.model.WinningNumbers;
 
@@ -18,7 +19,7 @@ public class LottoResultService {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Winning, Integer> checkWinningResults(List<Lotto> lottoTickets) {
+    public Map<Winning, Integer> getWinningResults(List<Lotto> lottoTickets) {
         Map<Winning, Integer> winningResults = new HashMap<>();
 
         lottoTickets.forEach(lotto -> {
@@ -31,5 +32,10 @@ public class LottoResultService {
         });
 
         return winningResults;
+    }
+
+    public double calculateRateOfReturn(PurchaseAmount purchaseAmount, Map<Winning, Integer> winningResults) {
+        long prizeMoney = winningResults.keySet().stream().mapToLong(Winning::prizeMoney).sum();
+        return Math.round((double) prizeMoney / purchaseAmount.amount() * 10) / 10.0;
     }
 }
