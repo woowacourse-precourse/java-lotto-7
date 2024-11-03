@@ -15,50 +15,52 @@ import java.util.List;
 public class LottoController {
 
     public void startGame() {
-        // 구매금액
+        LottoGameInfo gameInfo = getGameInfo();
+        List<Lotto> lottoTickets = generateLottoTickets(gameInfo.getLottotickets());
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        LottoResult lottoResult = calculateRank(lottoTickets, winningNumbers, bonusNumber);
+        printLottoResult(lottoResult, gameInfo.getPurchaseAmount());
+    }
+
+    private LottoGameInfo getGameInfo() {
         int purchaseAmount = InputView.getPurchaseAmount();
         LottoGameInfo gameInfo = new LottoGameInfo();
         gameInfo.setPurchaseAmount(purchaseAmount);
         gameInfo.setLottotickets(purchaseAmount);
+        return gameInfo;
+    }
 
-        //로또 생성
-        int lottoTicketsCount = gameInfo.getLottotickets();
+    private List<Lotto> generateLottoTickets (int lottoTicketsCount) {
         OutputView.countLotto(lottoTicketsCount);
         List<Lotto> lottoTickets = LottoGenerator.generateLottoTickets(lottoTicketsCount);
         for (Lotto lotto : lottoTickets) {
             OutputView.lottoPrint(lotto);
         }
+        return lottoTickets;
+    }
 
-        //당첨 번호
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        gameInfo.setWinningNumber(winningNumbers);
+    private List<Integer> getWinningNumbers  () {
+        return InputView.getWinningNumbers();
+    }
 
-        //보너스번호
-        int bonusNumber = InputView.getBonusNumber(winningNumbers);
-        gameInfo.setBonusNumber(bonusNumber);
+    private int getBonusNumber (List<Integer> winningNumbers) {
+        return InputView.getBonusNumber(winningNumbers);
+    }
 
-
-        //당첨계산
+    private LottoResult calculateRank (List<Lotto> userLotto, List<Integer> winningNumbers, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
-        for (int i = 0; i < lottoTicketsCount; i++) {
-            LottoRank rank = LottoCalculator.calculateRank(
-                    lottoTickets.get(i),
-                    gameInfo.getWinningNumber(),
-                    gameInfo.getBonusNumber()
-            );
+        for (Lotto lotto : userLotto) {
+            LottoRank rank = LottoCalculator.calculateRank(lotto, winningNumbers, bonusNumber);
             if (rank != LottoRank.LOSING) {
                 lottoResult.incrementRankCount(rank);
             }
         }
+        return lottoResult;
+    }
 
-        //결과 출력
-        OutputView.lottoResult(lottoResult, lottoResult.getTotalPrizeAmount(), purchaseAmount);
-
-
-
-
-
-
-
+    private void printLottoResult(LottoResult lottoResult, int purchaseAmount) {
+        int totalPrizeAmount = lottoResult.getTotalPrizeAmount();
+        OutputView.lottoResult(lottoResult, totalPrizeAmount, purchaseAmount);
     }
 }
