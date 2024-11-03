@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoWinningTierManager {
     private final Map<LottoWinningTier, Integer> lottoWinningTiers;
@@ -22,6 +19,13 @@ public class LottoWinningTierManager {
     public Map<LottoWinningTier, Integer> getLottoWinningTiers() {
         return lottoWinningTiers;
     }
+
+    public int calculateTotalPrize() {
+        return lottoWinningTiers.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
     public void increaseLottoWinningTier(int matchCount, boolean isBonusNumber) {
         if (matchCount == 5 && isBonusNumber) {
             checkLottoWinningTier(matchCount, true);

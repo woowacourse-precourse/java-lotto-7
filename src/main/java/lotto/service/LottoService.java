@@ -41,4 +41,8 @@ public class LottoService {
     public boolean checkMatchBonusNumber(Lotto lotto, LottoWinningNumbers winningNumbers) {
         return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
     }
+
+    public double calculateTotalProfitRate (LottoWinningTierManager lottoWinningTierManager, int purchaseAmount) {
+        return ((double) lottoWinningTierManager.calculateTotalPrize() / purchaseAmount) * 100;
+    }
 }
