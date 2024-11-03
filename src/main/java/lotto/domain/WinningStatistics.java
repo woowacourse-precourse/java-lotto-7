@@ -35,7 +35,7 @@ public enum WinningStatistics {
 
         for (WinningStatistics statistics : winningSets) {
 
-            if (statistics.match == 5 && statistics.match == value && bonusNumber) {
+            if (statistics.match == SECOND.match && statistics.match == value && bonusNumber) {
                 statistics.count++;
                 return;
             }
