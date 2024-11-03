@@ -7,6 +7,11 @@ public enum LottoRank {
     FIVE_MATCH_BONUS(5, 30_000_000, "%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     SIX_MATCH(6, 2_000_000_000, "%d개 일치 (%,d원) - %d개");
 
+    public static final int MATCH_SIX = 6;
+    public static final int MATCH_FIVE = 5;
+    public static final int MATCH_FOUR = 4;
+    public static final int MATCH_THREE = 3;
+
     LottoRank(int matchCount, int prize, String printFormat) {
         this.matchCount = matchCount;
         this.prize = prize;
@@ -30,19 +35,19 @@ public enum LottoRank {
     }
 
     public static LottoRank getLottoRank(int count, boolean bonus) {
-        if (count == 6) {
+        if (count == MATCH_SIX) {
             return SIX_MATCH;
         }
-        if (count == 5 && bonus) {
+        if (count == MATCH_FIVE && bonus) {
             return FIVE_MATCH_BONUS;
         }
-        if (count == 5) {
+        if (count == MATCH_FIVE) {
             return FIVE_MATCH;
         }
-        if (count == 4) {
+        if (count == MATCH_FOUR) {
             return FOUR_MATCH;
         }
-        if (count == 3) {
+        if (count == MATCH_THREE) {
             return THREE_MATCH;
         }
         return null;
