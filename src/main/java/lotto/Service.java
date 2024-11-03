@@ -19,11 +19,11 @@ public class Service {
         return lottos;
     }
 
-    ArrayList<Integer> checkWinning(List<List<Integer>> lottos, int[] winningNum){
+    ArrayList<Integer> checkWinning(List<List<Integer>> lottos, Lotto winningNum){
         ArrayList<Integer> score = new ArrayList<Integer>();
         for(List<Integer> lotto : lottos){
             int count = 0;
-            for (int num: winningNum){
+            for (int num: winningNum.numbers){
                 if (lotto.contains(num)){
                     count+=1;
                 }

@@ -11,7 +11,7 @@ public class Controller {
     Service service = new Service();
 
     public List<List<Integer>> lottos;
-    int[] winningNum;
+    Lotto winningNum;
     static int bonusNum;
     ArrayList<Integer> winningScore;
 
