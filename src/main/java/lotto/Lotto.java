@@ -50,4 +50,14 @@ public class Lotto {
         }
         return count;
     }
+
+    public int countMatchingNumbersWithIntegerList(List<Integer> otherNumbers) {
+        int count = 0;
+        for (int element : otherNumbers) {
+            if (numbers.contains(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
