@@ -7,7 +7,8 @@ import java.util.List;
 public class Lotto {
 
     private final int LOTTO_NUMBER_COUNT_CRITERION = 6;
-    private final String DELIMITER = ",";
+    public final static int LOTTO_NUMBER_MINIMUM_CRITERION = 1;
+    public final static int LOTTO_NUMBER_MAXIMUM_CRITERION = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -34,12 +35,8 @@ public class Lotto {
     }
 
     private void validateProperNumberRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-	throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-            }
+        if (numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MINIMUM_CRITERION || number > LOTTO_NUMBER_MAXIMUM_CRITERION)) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
-
-    // TODO: 추가 기능 구현
 }
