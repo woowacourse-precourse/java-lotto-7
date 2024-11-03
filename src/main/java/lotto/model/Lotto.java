@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,13 +17,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_VALID_SIZE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> !isInRange(number))) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 유효 범위를 벗어났습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.getMessage());
         }
     }
 
@@ -30,7 +31,7 @@ public class Lotto {
         Set<Integer> numSet = new HashSet<>(numbers);
 
         if (numSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
         }
     }
 
