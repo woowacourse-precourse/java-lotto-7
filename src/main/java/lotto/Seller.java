@@ -6,4 +6,9 @@ public class Seller {
     public static void setInputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
     }
+
+    public static int countNumberOfLotto(int purchaseAmount) {
+        int countNumberOfLotto = purchaseAmount / 1000;
+        return countNumberOfLotto;
+    }
 }
