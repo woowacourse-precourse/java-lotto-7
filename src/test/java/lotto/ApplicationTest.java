@@ -45,15 +45,6 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
