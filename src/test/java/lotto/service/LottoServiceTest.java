@@ -37,7 +37,7 @@ public class LottoServiceTest {
         });
     }
 
-    @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우")
+    @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우 (1500)")
     @Test
     void IsNotDivisibleByLottoPriceThrowException() {
         String invalidLottoPrice = "1500";
@@ -48,7 +48,7 @@ public class LottoServiceTest {
     }
 
 
-    @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우")
+    @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우 (0)")
     @Test
     void LottoPriceIsZeroThrowException() {
         String invalidLottoPrice = "0";
@@ -73,10 +73,20 @@ public class LottoServiceTest {
         );
     }
 
-    @DisplayName("유효하지 않은 당첨 번호를 입력하면 예외가 발생한다 - 숫자 형식이 아닌 경우")
+    @DisplayName("유효하지 않은 당첨 번호를 입력하면 예외가 발생한다 - 유효한 숫자 형식이 아닌 경우 (문자열) ")
     @Test
-    void createWinningLottoWithInvalidNumberFormat() {
+    void createWinningLottoWithInvalidNumberFormatString() {
         String invalidWinningNumbers = "1,2,three,4,5,6";
+
+        assertThatThrownBy(() -> lottoService.createWinningLotto(invalidWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LottoErrorMessage.WINNING_NUMBER_FORMAT_ERROR.getMessage());
+    }
+
+    @DisplayName("유효하지 않은 당첨 번호를 입력하면 예외가 발생한다 - 유효한 숫자 형식이 아닌 경우 (실수) ")
+    @Test
+    void createWinningLottoWithInvalidNumberFormatNotInteger() {
+        String invalidWinningNumbers = "1,2,3.4,4,5,6";
 
         assertThatThrownBy(() -> lottoService.createWinningLotto(invalidWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -93,7 +103,7 @@ public class LottoServiceTest {
                 .hasMessageContaining(LottoErrorMessage.WINNING_NUMBER_FORMAT_ERROR.getMessage());
     }
 
-    @DisplayName("유효하지 않은 보너스 번호를 입력하면 예외가 발생한다. - 숫자 형식이 아닌 경우")
+    @DisplayName("유효하지 않은 보너스 번호를 입력하면 예외가 발생한다. - 유효한 숫자 형식이 아닌 경우 (문자열)")
     @Test
     void setWinningLottoBonusNumberWithString() {
         WinningLotto winningLotto = lottoService.createWinningLotto("1,2,3,4,5,6");
@@ -115,7 +125,19 @@ public class LottoServiceTest {
                 .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_IN_RANGE.getMessage());
     }
 
+    @DisplayName("유효하지 않은 보너스 번호를 입력하면 예외가 발생한다. - 당첨 번호와 중복되는 경우")
+    @Test
+    void setWinningLottoBonusNumberWhenDuplicateLottoNumbersExist() {
+        WinningLotto winningLotto = lottoService.createWinningLotto("1,2,3,4,5,6");
+        String invalidWinningNumber = "6";
+
+        assertThatThrownBy(() -> lottoService.setWinningLottoBonusNumber(winningLotto, invalidWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+    }
+
     // 수익률
+    @DisplayName("로또 구매 : 8000원 당첨 금액 : 0 원 수익률 : 0 %")
     @Test
     void testReturnRate_0Percent() {
         LottoService lottoService = new LottoService();
@@ -134,6 +156,7 @@ public class LottoServiceTest {
         assertThat(result).isEqualTo(0.0f);
     }
 
+    @DisplayName("로또 구매 : 8000원 당첨 금액 : 5000 원 수익률 : 62.5 %")
     @Test
     void testReturnRate_62_5Percent() {
         LottoService lottoService = new LottoService();
@@ -152,6 +175,8 @@ public class LottoServiceTest {
         assertThat(result).isEqualTo(62.5f);
     }
 
+
+    @DisplayName("로또 구매 : 8000원 당첨 금액 : 10000 원 수익률 : 125 %")
     @Test
     void testReturnRate_125Percent() {
         LottoService lottoService = new LottoService();
@@ -170,6 +195,7 @@ public class LottoServiceTest {
         assertThat(result).isEqualTo(125.0f);
     }
 
+    @DisplayName("로또 구매 : 8000원 당첨 금액 : 2000000000 원 수익률 : 25000000 %")
     @Test
     void testReturnRate_25000000Percent() {
         LottoService lottoService = new LottoService();
