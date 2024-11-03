@@ -2,8 +2,11 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.controller.PurchaseController;
+import lotto.controller.WinningController;
+import lotto.model.Lotto;
 import lotto.service.TicketService;
 import lotto.temp.IoController;
+import lotto.temp.Winning;
 import lotto.util.CommonIo;
 
 public class Application {
@@ -16,6 +19,11 @@ public class Application {
         IoController ioController = new IoController(new CommonIo());
 
         ioController.printPurchaseLottoNumbers(lottoController.excuteLottos());
+
+        WinningController winningController = new WinningController(new Winning());
+
+        Lotto winningNumbers = winningController.createWinningNumber();
+
 
 
     }
