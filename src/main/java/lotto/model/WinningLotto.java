@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class WinningLotto {
 
@@ -20,6 +21,10 @@ public class WinningLotto {
 
 	private LottoNumber createBonusNumber(int number) {
 		return LottoNumber.from(number);
+	}
+
+	public Map<Winning, Integer> drawLottoBundle(LottoBundle lottoBundle) {
+		Map<Winning, Integer> winningResult = Winning.initializeWinningResults();
 	}
 
 	private Winning getWinningResult(Lotto lotto) {
