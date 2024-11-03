@@ -28,4 +28,13 @@ public class InputView {
         return winningNumbers;
     }
 
+    public int enterBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+
+        inputValidator.validateBonusNumber(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
+
 }
