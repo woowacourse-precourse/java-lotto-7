@@ -28,6 +28,7 @@ public class LottoController {
 
         LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto,cash);
         lottoOutputView.printLottoPrizes(lottoResult.getLottoPrizes());
+        lottoOutputView.printLottoBenefit(lottoResult.getTotalBenefit());
     }
 
     private Cash requestCashInput() {

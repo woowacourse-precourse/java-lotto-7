@@ -23,10 +23,6 @@ public class LottoBundle {
         }
         return prizeCount;
     }
-    public int calculateTotalCost(Cash cash){
-        return lottoBundle.size() * cash.getPurchasableLottoCount();
-    }
-
     private Map<LottoPrizeType, Integer> initializePrizeCountSetting() {
         Map<LottoPrizeType, Integer> map = new TreeMap<>(Comparator.reverseOrder());
         for (LottoPrizeType prizeType : LottoPrizeType.values()) {

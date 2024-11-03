@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoBundle;
 import lotto.model.LottoPrizeType;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
@@ -41,5 +42,14 @@ public class LottoOutputView {
             System.out.print(" ("+koreaNumberFormatter.format(prizeType.getPrizeAmount())+")");
             System.out.println(" - "+count+"개");
         }
+    }
+    public void printLottoBenefit(double benefit){
+        String formattedBenefit = formatBenefit(benefit);
+        System.out.print("총 수익률은 "+formattedBenefit+"입니다.");
+    }
+    private String formatBenefit(double number) {
+        double percentage = number * 100; // Convert to percentage
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0"); // Format to one decimal place
+        return decimalFormat.format(percentage) + "%";
     }
 }

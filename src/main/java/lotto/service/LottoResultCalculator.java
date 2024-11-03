@@ -14,8 +14,7 @@ public class LottoResultCalculator {
     private double calculateBenefit(Map<LottoPrizeType, Integer> lottoPrizes, LottoBundle lottoBundle, Cash cash) {
         int totalPrizeCash = calculateTotalPrizeCash(lottoPrizes);
         if (totalPrizeCash != 0) {
-            double benefit = (double) totalPrizeCash / lottoBundle.calculateTotalCost(cash);
-            return Math.round(benefit * 100.0) / 100.0;
+            return (double) totalPrizeCash / cash.getTotalAmount();
         }
         return 0;
     }
