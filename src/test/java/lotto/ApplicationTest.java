@@ -1,16 +1,26 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.lang.reflect.Field;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @BeforeEach
+    void resetCounts() throws NoSuchFieldException, IllegalAccessException {
+        for (LottoWinner winner : LottoWinner.values()) {
+            Field countField = LottoWinner.class.getDeclaredField("count");
+            countField.setAccessible(true); // private 필드 접근 허용
+            countField.setInt(winner, 0);   // count 값을 0으로 초기화
+        }
+    }
 
     @Test
     void 기능_테스트() {
@@ -47,9 +57,77 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_모든_등수_수익률() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("5000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "5개를 구매했습니다.",
+                            "[1, 2, 3, 8, 9, 10]",
+                            "[1, 2, 3, 4, 8, 9]",
+                            "[1, 2, 3, 4, 5, 8]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 40631100.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 8, 9, 10),
+                List.of(1, 2, 3, 4, 8, 9),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_예외_갯수_초과() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_예외_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_예외_잘못된_값() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,55");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_예외_중복() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_예외_잘못된_값() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "47");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
