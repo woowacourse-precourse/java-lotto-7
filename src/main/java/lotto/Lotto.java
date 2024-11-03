@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class Lotto {
@@ -45,9 +42,9 @@ public class Lotto {
 
     public static List<List<Integer>> generatePurchaseLotto(int toPurchaseSize) {
 
-        List<List<Integer>> purchaseLottos = new java.util.ArrayList<>(List.of());
+        List<List<Integer>> purchaseLottos = new ArrayList<>(List.of());
         for (int i = 0; i < toPurchaseSize; i++) {
-            List<Integer> LottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> LottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             sortNumbers(LottoNumbers);
             purchaseLottos.add(LottoNumbers);
         }
