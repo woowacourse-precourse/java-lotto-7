@@ -35,25 +35,25 @@ class ResultTest {
     }
 
     @ParameterizedTest(name = "{index}: {1}")
-    @MethodSource("resultTest")
-    @DisplayName("당첨 금액 테스트")
-    void result_totalMoneyTest(List<Integer> prizeCount, String message, int totalMoney) {
+    @MethodSource("calculateProfitRateTest")
+    @DisplayName("수익률 계산 테스트")
+    void result_calculateProfitRateTest(List<Integer> prizeCount, String message, String totalMoney) {
         Map<Prize, Integer> sampleMap = new HashMap<>();
         for (Prize prize : Prize.values()) {
             sampleMap.put(prize, prizeCount.get(prize.ordinal()));
         }
         Result sampleResult = new Result(sampleMap);
 
-        assertEquals(sampleResult.totalMoney(), totalMoney);
+        assertEquals(sampleResult.calculateProfitRate(24000), totalMoney);
     }
 
-    static Stream<Arguments> resultTest() {
+    static Stream<Arguments> calculateProfitRateTest() {
         return Stream.of(
-                Arguments.of(List.of(2, 1, 0, 0, 1), "당첨 금액 테스트 1", 2_000_060_000),
-                Arguments.of(List.of(3, 0, 1, 1, 0), "당첨 금액 테스트 2", 31_515_000),
-                Arguments.of(List.of(7, 7, 2, 0, 0), "당첨 금액 테스트 3", 3_385_000),
-                Arguments.of(List.of(0, 0, 0, 0, 0), "당첨 금액 테스트 4", 0)
+                Arguments.of(List.of(2, 1, 0, 0, 1), "수익률 테스트 1", "8,333,583.3"),
+                Arguments.of(List.of(3, 0, 1, 1, 0), "수익률 테스트 2", "131,312.5"),
+                Arguments.of(List.of(7, 7, 2, 0, 0), "수익률 테스트 3", "14,104.2"),
+                Arguments.of(List.of(3, 0, 0, 0, 0), "수익률 테스트 4", "62.5"),
+                Arguments.of(List.of(0, 0, 0, 0, 0), "수익률 테스트 5", "0.0")
         );
     }
-
 }
