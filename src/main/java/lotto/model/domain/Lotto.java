@@ -54,10 +54,9 @@ public class Lotto {
         return new WinningLottoDto(numbers, bonusNumber);
     }
 
-    public void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         validateNumberAreaOf(bonusNumber, ExceptionMessage.BONUS_NUMBER_AREA_EXCEPTION);
-        Set<Integer> forValidateDuplication = new HashSet<>();
-        forValidateDuplication.addAll(numbers);
+        Set<Integer> forValidateDuplication = new HashSet<>(numbers);
         validateNumberDuplication(forValidateDuplication, bonusNumber,
                 ExceptionMessage.BONUS_NUMBER_DUPLICATION_EXCEPTION);
     }

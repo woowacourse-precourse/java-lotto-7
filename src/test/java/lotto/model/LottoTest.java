@@ -66,7 +66,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateDuplicationCaseOfBonusNumbers")
     void validateBonusNumberDuplicationTest(Lotto lotto, int bonusNumber) {
-        assertThatThrownBy(() -> lotto.validateBonusNumber(bonusNumber))
+        assertThatThrownBy(() -> lotto.generateWinningLotto(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.BONUS_NUMBER_DUPLICATION_EXCEPTION);
     }
@@ -81,7 +81,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("generateInvalidAreaCaseOfBonusNumbers")
     void validateBonusNumberAreaTest(Lotto lotto, int bonusNumber) {
-        assertThatThrownBy(() -> lotto.validateBonusNumber(bonusNumber))
+        assertThatThrownBy(() -> lotto.generateWinningLotto(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.BONUS_NUMBER_AREA_EXCEPTION);
     }
