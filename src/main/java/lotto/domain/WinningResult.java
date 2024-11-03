@@ -12,7 +12,7 @@ public class WinningResult {
     private static final int COUNT_INITIALIZE = 0;
 
     private final Map<WinningRank, Integer> winningCount;
-    private int prizeMoney;
+    private long prizeMoney;
     private final WinningRank[] winningRanks = WinningRank.values();
 
     public WinningResult() {
@@ -33,7 +33,7 @@ public class WinningResult {
         }
     }
 
-    private WinningRank compareLottoNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public WinningRank compareLottoNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = 0;
         boolean matchBonus = false;
 
@@ -50,7 +50,7 @@ public class WinningResult {
         return getLottoRank(matchCount, matchBonus);
     }
 
-    private WinningRank getLottoRank(int matchCount, boolean matchBonus) {
+    public WinningRank getLottoRank(int matchCount, boolean matchBonus) {
         return WinningRank.getRank(matchCount, matchBonus);
     }
 
@@ -83,5 +83,9 @@ public class WinningResult {
 
     private double getRate(int amount) {
         return (double) prizeMoney / amount * 100;
+    }
+
+    public void setPrizeMoney(int prizeMoney) {
+        this.prizeMoney = prizeMoney;
     }
 }
