@@ -14,7 +14,13 @@ public class LottoService {
 
         for (Lotto lotto : lottos) {
             int matchCount = countMatchingNumbers(lotto, winningNumber);
-            if (matchCount >= 3 && matchCount <= 6) {
+            boolean bonusMatch = isBonusNumberMatch(lotto, winningNumber);
+
+            if (matchCount == 6) {
+                matchCounts[4]++; // 6개 일치
+            } else if (matchCount == 5 && bonusMatch) {
+                matchCounts[3]++; // 5개 일치 + 보너스 번호 일치
+            } else if (matchCount >= 3 && matchCount <= 5) {
                 matchCounts[matchCount - 3]++;
             }
         }
@@ -33,5 +39,9 @@ public class LottoService {
         return (int) userLotto.getNumbers().stream()
                 .filter(winningNumber.getNumbers()::contains)
                 .count();
+    }
+
+    private boolean isBonusNumberMatch(Lotto userLotto, WinningNumber winningNumber) {
+        return userLotto.getNumbers().contains(winningNumber.getBonusNumber());
     }
 }

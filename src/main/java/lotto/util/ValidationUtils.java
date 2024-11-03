@@ -32,4 +32,13 @@ public class ValidationUtils {
             }
         }
     }
+
+    public static void validateBonusNumber(int bonusNumber, Set<Integer> numbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_WINNING_NUMBER_RANGE.getMessage());
+        }
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
+        }
+    }
 }

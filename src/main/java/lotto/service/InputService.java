@@ -34,4 +34,15 @@ public class InputService {
             }
         }
     }
+
+    public int getValidBonusNumberInput() {
+        while (true) {
+            try {
+                String bonusNum = inputView.getBonusNum();
+                return inputParser.parseBonusNumber(bonusNum);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

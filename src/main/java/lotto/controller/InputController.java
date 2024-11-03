@@ -20,7 +20,8 @@ public class InputController {
     }
 
     public WinningNumber getWinningNumber() {
-        Set<Integer> winnginNumber = inputService.getValidWinningNumInput();
-        return new WinningNumber(winnginNumber);
+        Set<Integer> winningNumbers = inputService.getValidWinningNumInput();
+        int bonusNumber = inputService.getValidBonusNumberInput();
+        return new WinningNumber(winningNumbers, bonusNumber);
     }
 }
