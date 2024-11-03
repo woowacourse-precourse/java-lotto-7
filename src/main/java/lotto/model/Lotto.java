@@ -21,4 +21,14 @@ public class Lotto {
         Collections.sort(numbers);
         return numbers.toString();
     }
+
+    public int countCorrectNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean contains(int input) {
+        return numbers.contains(input);
+    }
 }

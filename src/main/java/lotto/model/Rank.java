@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     NONE("", 0, 0),
@@ -17,5 +19,19 @@ public enum Rank {
         this.message = message;
         this.prizeAmount = prizeAmount;
         this.correctCount = correctCount;
+    }
+
+    public static Rank valueOf(int correctCount, boolean containsBonusNumber) {
+        if (SECOND.matchCorrect(correctCount) && containsBonusNumber)
+            return SECOND;
+
+        return Arrays.stream(Rank.values())
+                .filter(result -> result.matchCorrect(correctCount) && result != SECOND)
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    private boolean matchCorrect(int correctCount) {
+        return this.correctCount == correctCount;
     }
 }

@@ -9,4 +9,11 @@ public class WinningLotto {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
+    public Rank compareLotto(Lotto lotto) {
+        int correctCount = winningNumbers.countCorrectNumbers(lotto);
+        boolean containsBonusNumber = lotto.contains(bonusNumber.bonusNumber());
+
+        return Rank.valueOf(correctCount, containsBonusNumber);
+    }
 }
