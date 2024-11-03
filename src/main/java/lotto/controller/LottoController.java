@@ -98,4 +98,17 @@ public class LottoController {
         }
     }
 
+    public void resultLotto() {
+        //로또 등수 산출
+        lottoService.calculationLottoRank(consumer, lottoPrize);
+
+        //로또 수익율 결과 출력
+        OutputView.printLottoMessage();
+        OutputView.printLottoRank(consumer.getLottoRankResult());
+
+        double lottoRate = lottoService.resultLotto(consumer);
+        OutputView.printTotalYield(lottoRate);
+
+    }
+
 }
