@@ -4,7 +4,7 @@ import lotto.constants.LottoConstants;
 
 public class LottoConverter {
 
-    public int convertPriceToLotto(int price) {
+    public static int convertPriceToLotto(int price) {
         Validator.validatePrice(price);
         return price / LottoConstants.BASE_PRICE;
     }
