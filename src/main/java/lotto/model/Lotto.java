@@ -20,4 +20,13 @@ public class Lotto {
     public List<Integer> getLotto() {
         return numbers;
     }
+
+    public LottoRank determineRank(WinningLotto winningLotto) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningLotto.getWinningNumbers()::contains)
+                .count();
+        boolean matchBonusNumber = numbers.contains(winningLotto.getBonusNumber());
+
+        return LottoRank.getRank(matchCount, matchBonusNumber);
+    }
 }

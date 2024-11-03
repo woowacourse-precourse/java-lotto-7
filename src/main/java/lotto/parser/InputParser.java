@@ -6,13 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.InputException;
 import lotto.message.ErrorMessage;
-import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 import lotto.validator.InputValidator;
 
 public class InputParser {
 
-    // 구매 금액을 구매 수량으로 파싱
+    /**
+     * 구매 금액을 구매 수량으로 파싱
+     */
     public static int parsePurchaseAmount(String input) {
         int purchaseAmount;
         InputValidator.isPurchaseAmountBlank(input);
@@ -28,7 +29,9 @@ public class InputParser {
         return purchaseAmount / MULTIPLES_OF_LOTTO_PRICE;
     }
 
-    // 당첨번호(String)를 WinningLotto 로 파싱
+    /**
+     * 당첨번호(String)를 WinningLotto 로 파싱
+     */
     public static WinningLotto parseWinningLotto(String winningNumbers, int bonusNumber) {
         InputValidator.isWinningNumbersBlank(winningNumbers);
 
@@ -38,11 +41,11 @@ public class InputParser {
                     .map(Integer::parseInt)
                     .toList();
 
+            InputValidator.hasDuplicateNumbers(winningNumberList);
             winningNumberList.forEach(InputValidator::isWinningNumbersRangeIn);
+            InputValidator.hasDuplicateBonusNumber(winningNumberList, bonusNumber);
 
-            Lotto winningLotto = new Lotto(winningNumberList);
-
-            return new WinningLotto(winningLotto, bonusNumber);
+            return new WinningLotto(winningNumberList, bonusNumber);
 
         } catch (NumberFormatException e) {
             throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());

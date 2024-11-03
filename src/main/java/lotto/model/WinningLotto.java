@@ -1,20 +1,21 @@
 package lotto.model;
 
+import java.util.List;
+
 public class WinningLotto {
-    private final Lotto winningLotto;
+    private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
-        this.winningLotto = winningLotto;
+    public WinningLotto(List<Integer> winningLotto, int bonusNumber) {
+        this.winningNumbers = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
     public int getBonusNumber() {
         return bonusNumber;
     }
-
 }
