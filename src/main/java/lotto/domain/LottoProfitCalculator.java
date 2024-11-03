@@ -21,7 +21,8 @@ public class LottoProfitCalculator {
         BigDecimal percentageFactor = BigDecimal.valueOf(100L);
 
         return profit.multiply(percentageFactor)
-            .divide(divider, 1, RoundingMode.HALF_UP);
+            .divide(divider, 1, RoundingMode.HALF_UP)
+            .stripTrailingZeros();
     }
 
     private void validate(int payment) {
