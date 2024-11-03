@@ -24,7 +24,7 @@ public class LottoResultService {
     }
 
     public ReturnRate calculateReturnRate(LottoResult lottoResult, LottoPurchasePrice lottoPurchasePrice) {
-        int totalPrizeMoney = calculateTotalPrizeMoney(lottoResult);
+        long totalPrizeMoney = calculateTotalPrizeMoney(lottoResult);
         return new ReturnRate((double) totalPrizeMoney / lottoPurchasePrice.price() * 100);
     }
 
@@ -45,7 +45,7 @@ public class LottoResultService {
         return lotto.getNumbers().contains(bonusNumber.number());
     }
 
-    private int calculateTotalPrizeMoney(LottoResult lottoResult) {
+    private long calculateTotalPrizeMoney(LottoResult lottoResult) {
         return Arrays.stream(LottoRank.values())
                 .mapToInt(rank -> lottoResult.getWinningCount(rank) * rank.getPrizeMoney())
                 .sum();
