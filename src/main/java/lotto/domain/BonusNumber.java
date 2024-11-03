@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.enums.ErrorMessage.INVALID_BONUS_NUMBER;
+
 public class BonusNumber {
 
     private final LottoNumber value;
@@ -14,7 +16,11 @@ public class BonusNumber {
     }
 
     public static BonusNumber of(String value, Lotto numbers) {
-        return of(LottoNumber.valueOf(value), numbers);
+        try{
+            return of(LottoNumber.valueOf(value), numbers);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
+        }
     }
 
     private static void validate(LottoNumber value, Lotto numbers) {
@@ -23,7 +29,7 @@ public class BonusNumber {
 
     private static void isNotDuplicated(LottoNumber value, Lotto numbers) {
         if(numbers.contains(value)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
         }
     }
 

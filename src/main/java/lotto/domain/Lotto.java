@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static lotto.enums.ErrorMessage.INVALID_LOTTO_NUMBER;
+
 public class Lotto {
     private final Set<LottoNumber> lottoNumbers;
 
@@ -17,15 +19,19 @@ public class Lotto {
     }
 
     public static Lotto from(String value) {
-        String[] inputNumbers = value.split(",");
+        try{
+            String[] inputNumbers = value.split(",");
 
-        Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .map(LottoNumber::valueOf)
-                .collect(Collectors.toSet());
+            Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .map(LottoNumber::valueOf)
+                    .collect(Collectors.toSet());
 
-        return from(winningNumbers);
+            return from(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
+        }
     }
 
     private static void validate(Set<LottoNumber> lottoNumbers) {
@@ -34,7 +40,7 @@ public class Lotto {
 
     private static void validateLottoNumberCount(Set<LottoNumber> lottoNumbers) {
         if(lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 정수여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 

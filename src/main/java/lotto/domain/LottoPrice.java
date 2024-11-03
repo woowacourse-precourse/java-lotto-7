@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.enums.ErrorMessage.INVALID_PRICE_INPUT;
+
 public class LottoPrice {
     private final Integer lottoPrice;
 
@@ -16,7 +18,7 @@ public class LottoPrice {
         try {
             return valueOf(Integer.parseInt(lottoPriceString));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRICE_INPUT.getMessage());
         }
     }
 
@@ -28,13 +30,13 @@ public class LottoPrice {
 
     private static void isNonNegative(Integer value) {
         if(value < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRICE_INPUT.getMessage());
         }
     }
 
     private static void isDividableByThousand(Integer value) {
         if(value % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_PRICE_INPUT.getMessage());
         }
     }
 

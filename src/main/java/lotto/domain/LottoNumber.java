@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.enums.ErrorMessage.INVALID_BONUS_NUMBER;
+
 public class LottoNumber {
 
     private final Integer value;
@@ -23,7 +25,7 @@ public class LottoNumber {
 
     private static void isBetweenLottoNumberRule(Integer value) {
         if (value < 1 || value > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 수여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
