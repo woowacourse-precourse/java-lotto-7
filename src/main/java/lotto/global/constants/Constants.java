@@ -2,7 +2,9 @@ package lotto.global.constants;
 
 public enum Constants {
     ERROR_HEADER("[ERROR] "),
-    WHITESPACE_REGEX(".*\\s+.*"),
+
+    IS_CONTAIN_WHITESPACE_REGEX(".*\\s+.*"),
+    WHITE_SPACE("\\s+"),
     COMMA_DIGITS_REGEX("^[0-9,]+$");
 
     private final String value;

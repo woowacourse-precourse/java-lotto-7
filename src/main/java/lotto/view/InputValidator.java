@@ -2,11 +2,17 @@ package lotto.view;
 
 import static lotto.global.constants.Constants.*;
 
+import java.util.List;
+import lotto.global.utils.NumberFormatter;
+
 public class InputValidator {
 
-    // 현재 클래스와 관련성이 깊은 상수는 굳이 enum 클래스로 두지 않았다.
+    // 현재 클래스와 관련성이 깊은 상수는 굳이 enum 클래스로 두지 않았다(비즈니스 로직)
     private static final int PURCHASE_MAX_LIMIT = 100_000;
     private static final int PURCHASE_MIN_LIMIT = 1000;
+    private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
 
     public static void validateStringTypeAmount(String input) {
         validateEmptyInput(input);
@@ -19,6 +25,26 @@ public class InputValidator {
         validateDivisibleByThousand(amount);
     }
 
+    // 당첨 번호 검증
+    // 1. 아무 것도 입력하지 않았는가?
+    // 2. 입력은 되었지만 공백만 입력되었는가?(띄어쓰기 여러 개)
+    // 3. 탭과 줄바꿈만 포함된 입력값인 경우인가?
+    // 4. 숫자와 콤마로만 입력되었는가?
+    public static void validateWinningNumbers(String winningNumbers) {
+        validateEmptyInput(winningNumbers);
+        String sanitizedNumbers = NumberFormatter.removeAllWhiteSpaces(winningNumbers);
+        validateNoWhiteSpaceInBetween(sanitizedNumbers);
+        validateContainsOnlyCommaAndDigits(sanitizedNumbers);
+    }
+
+    // 당첨 번호의 개수와 각각의 숫자에 대한 검증
+    // 1. 리스트에 담긴 숫자의 개수가 6개가 맞는가?
+    // 2. 리스트에 담긴 각각의 숫자는 1이상 45이하의 범위에 속하는가?
+    public static void validateLottoNumbers(List<Integer> lottoNumbers) {
+        validateLottoNumberCount(lottoNumbers);
+        validateLottoNumberInRange(lottoNumbers);
+    }
+
     // 사용자가 아무 입력도 없이 엔터만 입력했는지 검증
     private static void validateEmptyInput(String input) {
         if (input == null || input.trim().isEmpty()) {
@@ -28,7 +54,7 @@ public class InputValidator {
 
     // 입력된 문자열 사이에 공백(스페이스, 탭 등 다양한 공백)이 포함되어 있는지 검증
     private static void validateNoWhiteSpaceInBetween(String input) {
-        if (input.matches(WHITESPACE_REGEX.getValue())) {
+        if (input.matches(IS_CONTAIN_WHITESPACE_REGEX.getValue())) {
             throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력값에 공백이 포함될 수 없습니다.");
         }
     }
@@ -57,6 +83,24 @@ public class InputValidator {
     private static void validateDivisibleByThousand(int input) {
         if (input % PURCHASE_MIN_LIMIT != 0) {
             throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력값은 1000으로 나누어 떨어져야 합니다.");
+        }
+    }
+
+    // 사용자가 입력한 로또 개수가 6개가 맞는가?
+    private static void validateLottoNumberCount(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() < LOTTO_SIZE) {
+            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력한 로또 번호의 개수가 부족합니다.");
+        } else if (lottoNumbers.size() > LOTTO_SIZE) {
+            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력한 로또 번호의 개수가 한도를 초과했습니다.");
+        }
+    }
+
+    // 사용자가 입력한 로또 번호는 모두 1이상 45이하의 범위 속하는가?
+    private static void validateLottoNumberInRange(List<Integer> lottoNumbers) {
+        for (int number : lottoNumbers) {
+            if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+                throw new IllegalArgumentException(ERROR_HEADER.getValue() + "범위를 벗어난 번호입니다.");
+            }
         }
     }
 

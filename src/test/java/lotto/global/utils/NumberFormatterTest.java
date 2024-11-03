@@ -63,4 +63,70 @@ class NumberFormatterTest {
         assertEquals(expected, NumberFormatter.parseToInt(input));
     }
 
+
+
+    @Test
+    @DisplayName("중간에 공백이 있는 경우 모든 공백이 제거되는지 확인")
+    void shouldRemoveAllWhiteSpaces_whenContainsSpacesInMiddle() {
+        String input = "Hello   World";
+        String expected = "HelloWorld";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("앞뒤에 공백이 있는 경우 모든 공백이 제거되는지 확인")
+    void shouldRemoveAllWhiteSpaces_whenContainsLeadingAndTrailingSpaces() {
+        String input = "   HelloWorld   ";
+        String expected = "HelloWorld";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("탭과 줄바꿈이 포함된 경우 모든 공백이 제거되는지 확인")
+    void shouldRemoveAllWhiteSpaces_whenContainsTabsAndNewlines() {
+        String input = "Hello\tWorld\nNew Line";
+        String expected = "HelloWorldNewLine";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("연속된 공백이 포함된 경우 모든 공백이 제거되는지 확인")
+    void shouldRemoveAllWhiteSpaces_whenContainsMultipleConsecutiveSpaces() {
+        String input = "Hello      World";
+        String expected = "HelloWorld";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("입력값이 비어 있는 경우 빈 문자열 반환")
+    void shouldReturnEmptyString_whenInputIsEmpty() {
+        String input = "";
+        String expected = "";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("공백만 있는 입력값인 경우 빈 문자열 반환")
+    void shouldReturnEmptyString_whenInputContainsOnlySpaces() {
+        String input = "     ";
+        String expected = "";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("탭과 줄바꿈만 포함된 입력값인 경우 빈 문자열 반환")
+    void shouldReturnEmptyString_whenInputContainsOnlyTabsAndNewlines() {
+        String input = "\t\n\t";
+        String expected = "";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
+    @Test
+    @DisplayName("공백이 없는 경우 입력값이 그대로 반환")
+    void shouldReturnSameString_whenInputHasNoWhiteSpaces() {
+        String input = "HelloWorld";
+        String expected = "HelloWorld";
+        assertEquals(expected, NumberFormatter.removeAllWhiteSpaces(input));
+    }
+
 }
