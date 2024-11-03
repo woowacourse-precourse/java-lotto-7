@@ -19,7 +19,7 @@ public class InputView {
         return Console.readLine().trim();
     }
 
-    public static int getBonusNumbers(){
+    public static int getBonusNumbers() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine().trim();

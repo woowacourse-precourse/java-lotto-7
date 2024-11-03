@@ -13,45 +13,65 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    public List<Lotto> purchase(int amount){
-        // 구매할 수 있는 로또 개수
+
+    // 구매 금액에 따라 로또를 생성
+    public List<Lotto> purchase(int amount) {
         int count = amount / LottoFactory.PRICE;
 
         return LottoFactory.create(count);
     }
 
+    // 문자열을 파싱하여 Lotto 객체로 변환
     public Lotto parseLotto(String input) {
         try {
-            // 문자열을 쉼표로 구분하여 정수 리스트로 변환
             List<Integer> numbers = Arrays.stream(input.split(","))
-                    .map(String::trim)                      // 각 요소를 trim하여 공백 제거
-                    .map(Integer::parseInt)                 // 문자열을 정수로 변환
-                    .collect(Collectors.toList());          // 리스트로 수집
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
 
-            // 변환된 리스트를 Lotto 객체로 생성하여 반환
             return new Lotto(numbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
         }
     }
 
-    public Result calculateResult(List<Lotto> userLottos, WinningLotto winningLotto){
-        Map<Rank, Integer>  result = setResult();
+    // 사용자 로또와 당첨 번호를 비교하여 결과 계산
+    public Result calculateResult(List<Lotto> userLottos, WinningLotto winningLotto) {
+        Map<Rank, Integer> result = setResult();
 
-        for(Lotto lotto : userLottos){
+        for (Lotto lotto : userLottos) {
             Rank rank = Rank.valueOf(lotto, winningLotto);
-            result.put(rank, result.get(rank)+1);
+            result.put(rank, result.get(rank) + 1);
         }
 
-        return new Result(result, 0);
+        int totalPrize = calculateTotalPrize(result);
+        double profitRate = calculateProfitRate(totalPrize, userLottos.size() * LottoFactory.PRICE);
+
+        return new Result(result, profitRate, totalPrize);
     }
 
-    public Map<Rank, Integer> setResult(){
+    // 각 Rank에 대한 초기 결과 설정
+    private Map<Rank, Integer> setResult() {
         Map<Rank, Integer> result = new EnumMap<>(Rank.class);
-        for(Rank rank : Rank.values()){
+        for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
 
         return result;
+    }
+
+    // 총 상금을 계산
+    private int calculateTotalPrize(Map<Rank, Integer> result) {
+        return result.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
+    // 수익률 계산
+    private double calculateProfitRate(int totalPrize, int totalSpent) {
+        if (totalSpent == 0) //0으로 나누는 경우 처리
+            return 0;
+
+        return (double) totalPrize / totalSpent * 100;
     }
 }

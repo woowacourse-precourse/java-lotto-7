@@ -8,9 +8,9 @@ public enum Rank {
     SECOND(5, 30_000_000, true),
     FIRST(6, 2_000_000_000);
 
-    private final int matchCount;
-    private final int prize;
-    private final boolean requireBonus;
+    private final int matchCount; // 일치하는 번호 개수
+    private final int prize; // 당첨 금액
+    private final boolean requireBonus; // 보너스 번호 요구 여부
 
     Rank(int matchCount, int prize) {
         this(matchCount, prize, false);
@@ -22,6 +22,7 @@ public enum Rank {
         this.requireBonus = requireBonus;
     }
 
+    // 로또와 당첨 로또를 비교하여 Rank를 반환
     public static Rank valueOf(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = lotto.matchCount(winningLotto.getWinningNumbers());
         boolean bonusMatch = lotto.contains(winningLotto.getBonusNumber());

@@ -7,10 +7,10 @@ import lotto.model.Result;
 import java.util.List;
 
 public class OutputView {
-    public static void printPurchase(List<Lotto> lottos){
+    public static void printPurchase(List<Lotto> lottos) {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for(Lotto lotto : lottos){
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
     }

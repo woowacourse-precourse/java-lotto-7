@@ -1,10 +1,12 @@
 package lotto.service;
 
+import lotto.factory.LottoFactory;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.Result;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 import java.util.Map;
 
@@ -87,4 +89,40 @@ class LottoServiceTest {
         assertEquals(1, matchCount.get(Rank.FIFTH));
         assertEquals(0, matchCount.get(Rank.NONE));
     }
+
+    @Test
+    void 총_상금_계산_테스트() {
+        List<Lotto> userLottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))  // 2등
+        );
+
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+        Result result = lottoService.calculateResult(userLottos, winningLotto);
+
+        int totalPrize = Rank.FIRST.getPrize() + Rank.SECOND.getPrize();
+        assertEquals(totalPrize, result.getTotalPrize(), "총 상금이 올바르게 계산되어야 합니다.");
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        // 사용자 로또 생성 (더미 데이터)
+        List<Lotto> userLottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등 당첨용
+                new Lotto(List.of(7, 8, 9, 10, 11, 12))
+        );
+
+        // 당첨 로또 생성
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+
+        // 결과 계산
+        Result result = lottoService.calculateResult(userLottos, winningLotto);
+
+        // 예상 수익률 계산
+        int totalSpent = userLottos.size() * LottoFactory.PRICE;
+        double expectedProfitRate = (double) Rank.FIRST.getPrize() / totalSpent * 100;
+
+        assertEquals(expectedProfitRate, result.getProfitRate(), 0.01, "수익률이 올바르게 계산되어야 합니다.");
+    }
+
 }
