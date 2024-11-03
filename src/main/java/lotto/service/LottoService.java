@@ -53,4 +53,9 @@ public class LottoService {
         }
         return totalPrize;
     }
+
+    public double calculateYield(int purchaseAmount, int totalPrize) {
+        double yield = ((double) totalPrize / purchaseAmount) * 100;
+        return yield;
+    }
 }
