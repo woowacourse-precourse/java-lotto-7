@@ -19,7 +19,11 @@ public class LottoController {
         OutputView.printInputPurchaseAmountMessage();
         String purchaseAmountInput = InputView.getUserInput();
         int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-        int lottoCount = purchaseAmount % 1000;
+        int lottoCount = purchaseAmount / 1000;
+
+        List<Lotto> lottos = lottoService.generateLottos(lottoCount);
+        OutputView.printLottoCountMessage(lottoCount);
+        OutputView.printLottoNumbers(lottos);
 
         OutputView.printInputWinningNumbers();
         String winningNumbersInput = InputView.getUserInput();
@@ -29,11 +33,12 @@ public class LottoController {
         String bonusNumberInput = InputView.getUserInput();
         int bonusNumber = lottoService.getBonusNumber(bonusNumberInput);
 
-        List<Lotto> lottos = lottoService.generateLottos(lottoCount);
         Map<String, Integer> matchCounts = lottoService.getMatchCounts(lottos, winningLotto, bonusNumber);
 
         long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts);
         String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseAmount);
+
+
 
 
     }
