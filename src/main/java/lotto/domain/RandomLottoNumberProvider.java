@@ -12,8 +12,8 @@ public class RandomLottoNumberProvider {
 	public List<List<Integer>> provideBy(int purchaseLottoCount) {
 		return Stream.generate(() -> {
 				List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
-					LottoInfo.MAX_NUMBER.getInfo(),
 					LottoInfo.MIN_NUMBER.getInfo(),
+					LottoInfo.MAX_NUMBER.getInfo(),
 					LottoInfo.SIZE.getInfo()
 				));
 				Collections.sort(randomNumbers);
