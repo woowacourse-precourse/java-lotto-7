@@ -1,13 +1,13 @@
 package lotto.buyer.infrastructure;
 
-import lotto.buyer.domain.InsertMoneyService;
+import lotto.buyer.service.InsertMoneyService;
 import lotto.money.domain.Money;
 import lotto.money.infrastructure.PurchaseAmount;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 
-public class InsertPurchaseMoney implements InsertMoneyService {
+public class UserInputInsertMoney implements InsertMoneyService {
     private final InputHandlerService inputHandlerService;
-    public InsertPurchaseMoney(InputHandlerService inputHandlerService) {
+    public UserInputInsertMoney(InputHandlerService inputHandlerService) {
         this.inputHandlerService = inputHandlerService;
     }
     @Override
