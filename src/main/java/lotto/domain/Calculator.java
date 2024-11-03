@@ -6,25 +6,30 @@ import java.util.Map.Entry;
 public class Calculator {
     private final LottoResultChecker lottoResultChecker;
     private final Money money;
+    private double profitRate;
 
     public Calculator(LottoResultChecker lottoResultChecker, Money money) {
         this.lottoResultChecker = lottoResultChecker;
         this.money = money;
     }
 
-    public double calculateRateOfReturn(){
+    public double getProfitRate() {
+        calculateProfitRate();
+        return profitRate;
+    }
+
+    private void calculateProfitRate(){
 
         int paymentAmount = money.getPaymentAmount();
         lottoResultChecker.findRank();
         Map<Rank, Integer> rankCount = lottoResultChecker.getRankCount();
 
-        double profit = 0;
+        double totalProfit = 0;
         for(Entry<Rank,Integer> entry : rankCount.entrySet()){
             int prize = entry.getKey().getPrize();
             Integer count = entry.getValue();
-            profit += (prize * count);
+            totalProfit += (prize * count);
         }
-
-        return (profit /paymentAmount) * 100;
+        profitRate = (totalProfit /paymentAmount) * 100;
     }
 }
