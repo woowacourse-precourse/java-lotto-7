@@ -2,11 +2,17 @@ package lotto.domain;
 
 import lotto.global.ErrorMessage;
 
-public record ProfitCalculator(int inputMoney) {
+public class UserAccount {
+    private final int inputMoney;
     private static final int LOTTO_PRICE = 1000;
 
-    public ProfitCalculator {
+    private UserAccount(int inputMoney) {
+        this.inputMoney =  inputMoney;
         validate(inputMoney);
+    }
+
+    public static UserAccount of(String rawInput){
+        return new UserAccount(Integer.parseInt(rawInput));
     }
 
     public int getTicketCount(){

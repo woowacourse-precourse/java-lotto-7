@@ -5,10 +5,10 @@ import java.util.List;
 public class LottoGame {
     private final LottoTicketBundle lottoTicketBundle;
     private final WinningTicket winningTicket;
-    private final ProfitCalculator profitCalculator;
+    private final UserAccount userAccount;
 
-    public LottoGame(ProfitCalculator profitCalculator, LottoTicketBundle lottoTicketBundle, WinningTicket winningTicket) {
-        this.profitCalculator = profitCalculator;
+    public LottoGame(UserAccount userAccount, LottoTicketBundle lottoTicketBundle, WinningTicket winningTicket) {
+        this.userAccount = userAccount;
         this.lottoTicketBundle = lottoTicketBundle;
         this.winningTicket = winningTicket;
     }
@@ -19,7 +19,7 @@ public class LottoGame {
 
     public float calculateEarningRate() {
         int totalReward = lottoTicketBundle.getTotalReward(winningTicket);
-        return profitCalculator.calculateEarningRate(totalReward);
+        return userAccount.calculateEarningRate(totalReward);
     }
 
     public String getPurchasedTickets() {
@@ -27,6 +27,6 @@ public class LottoGame {
     }
 
     public int getPurchasedTicketsCount() {
-        return profitCalculator.getTicketCount();
+        return userAccount.getTicketCount();
     }
 }

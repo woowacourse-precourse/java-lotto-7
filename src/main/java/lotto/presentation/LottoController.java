@@ -1,11 +1,12 @@
 package lotto.presentation;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoGenerateStrategy;
 import lotto.domain.LottoTicketBundle;
 import lotto.domain.Prize;
-import lotto.domain.ProfitCalculator;
+import lotto.domain.UserAccount;
 import lotto.domain.WinningTicket;
 
 public class LottoController {
@@ -15,13 +16,18 @@ public class LottoController {
         this.lottoGenerateStrategy = lottoGenerateStrategy;
     }
 
-    public void run() {
-        int money = InputView.getMoney();
-        ProfitCalculator profitCalculator = new ProfitCalculator(money);
-        LottoTicketBundle ticketBundle = purchaseTickets(profitCalculator.getTicketCount());
+    public void run(){
+        UserAccount userAccount = UserAccount.of(InputView.getMoney());
+        LottoTicketBundle ticketBundle = purchaseTickets(userAccount.getTicketCount());
         WinningTicket winningTicket = getWinningTicketFromInput();
-        LottoGame lottoGame = new LottoGame(profitCalculator, ticketBundle, winningTicket);
+        LottoGame lottoGame = new LottoGame(userAccount, ticketBundle, winningTicket);
         displayGameResults(lottoGame);
+    }
+
+    private List<Integer> parseToIntegerList(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private LottoTicketBundle purchaseTickets(int ticketCount) {
@@ -30,20 +36,20 @@ public class LottoController {
         return ticketBundle;
     }
 
-    private void displayGameResults(LottoGame lottoGame) {
-        displayPrizeResults(lottoGame);
-        displayEarningRate(lottoGame);
-    }
-
-    private WinningTicket getWinningTicketFromInput() {
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber(winningNumbers);
-        return new WinningTicket(winningNumbers, bonusNumber);
-    }
-
     private void displayPurchaseInfo(LottoTicketBundle ticketBundle) {
         OutputView.printPurchaseAmount(ticketBundle.size());
         OutputView.printPurchasedLottos(ticketBundle.toString());
+    }
+
+    private WinningTicket getWinningTicketFromInput() {
+        List<Integer> winningNumbers = parseToIntegerList(InputView.getWinningNumbers());
+        String bonusNumber = InputView.getBonusNumber(winningNumbers);
+        return new WinningTicket(winningNumbers, Integer.parseInt(bonusNumber));
+    }
+
+    private void displayGameResults(LottoGame lottoGame) {
+        displayPrizeResults(lottoGame);
+        displayEarningRate(lottoGame);
     }
 
     private void displayPrizeResults(LottoGame lottoGame) {
