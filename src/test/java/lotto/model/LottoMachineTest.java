@@ -1,15 +1,10 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.LottoPrize;
-import lotto.model.LottoResult;
-import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -89,7 +84,7 @@ public class LottoMachineTest {
 
     @DisplayName("6개의 번호가 일치하면 20억원 당첨이다.")
     @Test
-    void prizeFor6MatchShouldBe2_000_000_000Won() {
+    void prizeFor6Match__ShouldBe__2_000_000_000Won() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));
@@ -104,7 +99,7 @@ public class LottoMachineTest {
 
     @DisplayName("아무 번호도 일치하지 않으면 당첨금은 없다.")
     @Test
-    void noPrizeForNoMatch() {
+    void prizeFor0Match_ShouldBe_empty() {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
         Lotto lotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         List<Lotto> generatedLottos = new ArrayList<>(List.of(lotto));

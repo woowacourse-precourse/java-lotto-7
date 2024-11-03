@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,7 +13,7 @@ public class WinningNumbersTest {
 
     @DisplayName("당첨 번호는 1부터 45 중 중복되지 않는 6개의 숫자이다.")
     @Test
-    void winningNumbersShouldBe6NumbersAndBetween1And45() {
+    void winningNumbers_ShouldBe_6NumbersAndBetween1And45() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusBall = 7;
 
