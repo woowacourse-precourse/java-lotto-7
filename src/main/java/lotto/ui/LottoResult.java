@@ -7,6 +7,7 @@ import java.util.List;
 public class LottoResult {
     private final List<LottoRank> buyerLottoRanks;
     private final double rateOfReturn;
+    private final int PERCENTAGE_MULTIPLIER = 100;
 
     public LottoResult(List<LottoRank> lottoRanks, double rateOfReturn) {
         this.buyerLottoRanks = List.copyOf(lottoRanks);
@@ -31,7 +32,7 @@ public class LottoResult {
         sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.SECOND)));
         sb.append("6개 일치 (2,000,000,000원) - %d개\n".formatted(count(buyerLottoRanks, LottoRank.FIRST)));
 
-        sb.append("총 수익률은 %.1f%%입니다".formatted(rateOfReturn));
+        sb.append("총 수익률은 %.1f%%입니다.".formatted(rateOfReturn * PERCENTAGE_MULTIPLIER));
         return sb.toString();
     }
 
