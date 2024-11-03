@@ -2,6 +2,7 @@ package lotto.handler;
 
 import lotto.domain.lottoForm.WinningNumbers;
 import lotto.domain.number.BonusNumber;
+import lotto.domain.number.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,7 +45,7 @@ public class WinningNumbersInputHandlerTest {
         int nonValidScope = 46;
 
         // when & then
-        assertThatCode(() -> numbersInputHandler.validateScope(nonValidScope))
+        assertThatCode(() -> new LottoNumber(nonValidScope))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_SCOPE_ERROR.getMessage());
     }

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.LottoConstants.LOTTO_SIZE;
+import static lotto.constant.LottoValues.LOTTO_SIZE;
 import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.*;
@@ -70,7 +70,7 @@ public class LottoTest {
         System.out.println(lottoLottoNumbers);
 
         // then
-        for (int i = 0; i < LOTTO_SIZE - 1; i++) {
+        for (int i = 0; i < LOTTO_SIZE.value() - 1; i++) {
             assertThat(lottoLottoNumbers.get(i).getNumber()).isLessThan(lottoLottoNumbers.get(i + 1).getNumber());
         }
     }

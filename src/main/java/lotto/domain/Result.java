@@ -9,14 +9,8 @@ import static lotto.message.InfoMessage.*;
 
 public enum Result {
 
-    ZERO(false, null, 0,
-            (match, bonus) -> match == 0),
-
-    ONE(false, null, 0,
-            (match, bonus) -> match == 1),
-
-    TWO(false, null, 0,
-            (match, bonus) -> match == 2),
+    NO_PROFIT(false, null, 0,
+            (match, bonus) -> match < 3),
 
     THREE(true, THREE_NUMBERS_MATCH, 5_000,
             (match, bonus) -> match == 3),
@@ -59,7 +53,7 @@ public enum Result {
         return Arrays.stream(Result.values())
                 .filter(result -> result.equals(matchingNumber, bonus))
                 .findAny()
-                .orElse(ZERO);
+                .orElse(NO_PROFIT);
     }
 
     public static void update(int matchingNumber, boolean bonus) {

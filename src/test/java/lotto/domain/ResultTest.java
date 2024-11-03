@@ -74,7 +74,7 @@ public class ResultTest {
         Result result = matches(matchingNumber, bonus);
 
         // then
-        assertThat(result).isEqualTo(ZERO);
+        assertThat(result).isEqualTo(NO_PROFIT);
     }
 
 }

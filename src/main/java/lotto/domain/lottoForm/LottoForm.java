@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoConstants.LOTTO_SIZE;
+import static lotto.constant.LottoValues.LOTTO_SIZE;
 import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 
@@ -17,7 +17,7 @@ public abstract class LottoForm {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_SIZE.value()) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }

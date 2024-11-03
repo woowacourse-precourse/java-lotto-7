@@ -3,8 +3,8 @@ package lotto.handler;
 import lotto.domain.lottoForm.WinningNumbers;
 import lotto.domain.number.BonusNumber;
 
-import static lotto.LottoConstants.LOTTO_NUMBER_MAX;
-import static lotto.LottoConstants.LOTTO_NUMBER_MIN;
+import static lotto.constant.LottoValues.LOTTO_NUMBER_MAX;
+import static lotto.constant.LottoValues.LOTTO_NUMBER_MIN;
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
 import static lotto.message.ErrorMessage.NON_INTEGER_PURCHASE_AMOUNT;
 import static lotto.view.RequestView.getBonusInput;
@@ -28,17 +28,10 @@ public class WinningNumbersInputHandler {
             try{
                 String input = getBonusInput();
                 int number = convertToInteger(input);
-                final BonusNumber bonusNumber = new BonusNumber(number, winningNumbers);
-                return bonusNumber;
+                return new BonusNumber(number, winningNumbers);
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    public void validateScope(int number) {
-        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX){
-            throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
         }
     }
 

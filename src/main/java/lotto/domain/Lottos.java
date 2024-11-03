@@ -23,7 +23,9 @@ public class Lottos {
     }
 
     public void showInfo(){
-        lottos.stream().map(Lotto::toString).forEach(System.out::println);
+        lottos.stream()
+                .map(Lotto::toString)
+                .forEach(System.out::println);
     }
 
     public void compare(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
