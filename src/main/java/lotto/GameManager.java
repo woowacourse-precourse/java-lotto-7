@@ -72,17 +72,19 @@ public class GameManager {
     }
 
     private int readPrice() {
-        outputView.printPurchaseInputMessage();
-        String input = inputView.readPrice();
-
-        try {
-            validatePrice(input);
-        } catch (IllegalArgumentException exception) {
-            outputView.println(exception.getMessage());
-            return readPrice();
+        int price;
+        while (true) {
+            outputView.printPurchaseInputMessage();
+            String input = inputView.readPrice();
+            try {
+                validatePrice(input);
+                price = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException exception) {
+                outputView.println(exception.getMessage());
+            }
         }
-
-        return Integer.parseInt(input);
+        return price;
     }
 
     private LottoWinningSet readWinningLottoSet() {
