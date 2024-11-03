@@ -23,7 +23,7 @@ public class Print {
         }
 
         double yield = statistics.calculateYield();
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
 
     }
 

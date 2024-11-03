@@ -53,7 +53,7 @@ public class LottoService {
     }
 
     private LottoResult handleFiveMatches(Lotto lotto, Integer bonusNumber) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
+        if (!lotto.getNumbers().contains(bonusNumber)) {
             return LottoResult.FIVE_BONUS_MATCH;
         }
         return LottoResult.FIVE_MATCH;

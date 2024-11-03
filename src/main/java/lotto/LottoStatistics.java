@@ -37,10 +37,8 @@ public class LottoStatistics {
         if (totalCost == 0) {
             return 0; // 총 비용이 0이면 수익률은 0%
         }
-        double yield = ((double) totalWinnings - totalCost) / totalCost * 100; // 수익률 계산
-        System.out.println(totalWinnings + " " + totalCost);
-        System.out.println(yield);
-        return yield; // 수익률 반환
+        double yield = ((double) totalWinnings)/ totalCost * 100; // 수익률 계산
+        return yield;
     }
 
     public int getTotalCost() {
