@@ -8,7 +8,6 @@ import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
-import lotto.util.Validator;
 import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
 
@@ -31,7 +30,7 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        InputHandler inputHandler = new InputHandler(new Validator());
+        InputHandler inputHandler = new InputHandler();
         long givenMoney = inputHandler.getInputForPurchaseMoney();
         return new Money(givenMoney);
     }
@@ -42,7 +41,7 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        InputHandler inputHandler = new InputHandler(new Validator());
+        InputHandler inputHandler = new InputHandler();
         List<Integer> winningLottoNumbers = inputHandler.getInputForWinningNumber();
         Integer bonusNumber = inputHandler.getInputForBonusNumber();
         return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);

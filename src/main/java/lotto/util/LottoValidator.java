@@ -1,9 +1,8 @@
 package lotto.util;
 
 import java.util.List;
-import java.util.stream.Stream;
 
-public class Validator {
+public class LottoValidator {
     /* LOTTO_NUMBER_REGEX 정규식 설명
      * 1. 각 숫자는 1부터 45사이의 값이어야 한다.
      * 2. 숫자가 한자리일 경우, 앞에 0을 붙여도 정상 입력으로 처리한다. (예: 03)
@@ -20,7 +19,7 @@ public class Validator {
     private static final String PURCHASE_MONEY_INVALID_ERROR = "구입 금액은 1,000원 단위로 입력해야 합니다.";
     private static final String LOTTO_NUMBER_RANGE_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
-    public void checkLottoNumbers(String input) {
+    public static void checkLottoNumbers(String input) {
         if (!input.matches(LOTTO_NUMBERS_REGEX)) {
             throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUMBER_INVALID_ERROR);
         }
@@ -29,19 +28,19 @@ public class Validator {
         }
     }
 
-    public void checkPurchaseMoney(String input) {
+    public static void checkPurchaseMoney(String input) {
         if (!input.matches(PURCHASE_MONEY_REGEX)) {
             throw new IllegalArgumentException(ERROR_PREFIX + PURCHASE_MONEY_INVALID_ERROR);
         }
     }
 
-    public void checkBonusNumber(String input) {
+    public static void checkBonusNumber(String input) {
         if (!input.matches(BONUS_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUMBER_RANGE_ERROR);
         }
     }
 
-    private boolean hasNoDuplicates(String input) {
+    private static boolean hasNoDuplicates(String input) {
         // 중복을 확인하기 위해 중복 제거 작업 후 원본과 크기 비교
         List<String> numbers = List.of(input.split(DELIMITER));
         int size = numbers.size();

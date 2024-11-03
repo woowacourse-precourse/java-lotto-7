@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class ValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    Validator validator = new Validator();
+    LottoValidator validator = new LottoValidator();
 
     @DisplayName("로또 번호를 올바른 형식으로 입력할 수 있다")
     @ParameterizedTest

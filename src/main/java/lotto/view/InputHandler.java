@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.util.Validator;
+import lotto.util.LottoValidator;
 
 public class InputHandler {
     private static final String DELIMITER = ",";
@@ -12,18 +12,13 @@ public class InputHandler {
     private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String NEW_LINE = "\n";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private final Validator validator;
-
-    public InputHandler(Validator validator) {
-        this.validator = validator;
-    }
 
     public long getInputForPurchaseMoney() {
         while (true) {
             try {
                 print(ENTER_PURCHASE_MONEY_MESSAGE);
                 String input = Console.readLine();
-                validator.checkPurchaseMoney(input);
+                LottoValidator.checkPurchaseMoney(input);
                 return Long.parseLong(input);
             } catch (IllegalArgumentException e) {
                 print(e.getMessage());
@@ -36,9 +31,8 @@ public class InputHandler {
             try {
                 print(INPUT_WINNING_NUMBER_MESSAGE);
                 String input = Console.readLine();
-                validator.checkLottoNumbers(input);
-                return Stream.of(input.split(DELIMITER))
-                        .map(number -> Integer.parseInt(number.trim()))
+                LottoValidator.checkLottoNumbers(input);
+                return Stream.of(input.split(DELIMITER)).map(number -> Integer.parseInt(number.trim()))
                         .collect(Collectors.toList());
             } catch (IllegalArgumentException e) {
                 print(e.getMessage());
@@ -51,7 +45,7 @@ public class InputHandler {
             try {
                 print(NEW_LINE + INPUT_BONUS_NUMBER_MESSAGE);
                 String input = Console.readLine();
-                validator.checkBonusNumber(input);
+                LottoValidator.checkBonusNumber(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 print(e.getMessage());
