@@ -1,10 +1,10 @@
 package lotto.Service;
 
 public class ParsingService {
-    private final int money;
+    private int money;
 
-    public ParsingService(String money) {
-        this.money=Integer.parseInt(money);
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public int getMoney() {
