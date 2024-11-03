@@ -14,7 +14,6 @@ public class BonusNumber {
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto lotto) {
-        isBonusNumberBlank(bonusNumber);
 
         isBonusNumberNegative(bonusNumber);
 
@@ -27,12 +26,6 @@ public class BonusNumber {
         if (bonusNumber < LottoRange.MIN_NUMBER.getDescription()
                 || bonusNumber > LottoRange.MAX_NUMBER.getDescription()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
-        }
-    }
-
-    private void isBonusNumberBlank(int bonusNumber) {
-        if (String.valueOf(bonusNumber).isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
         }
     }
 

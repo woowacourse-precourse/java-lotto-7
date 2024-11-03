@@ -17,7 +17,6 @@ public class Lotto {
         isLottoNotDuplicated(numbers);
 
         for (Integer number : numbers) {
-            isLottoBlank(number);
 
             isLottoNegative(number);
 
@@ -35,12 +34,6 @@ public class Lotto {
     private void isLottoNotDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().toList().size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안 됩니다.");
-        }
-    }
-
-    private void isLottoBlank(Integer number) {
-        if (number == null || String.valueOf(number).isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해주세요.");
         }
     }
 
