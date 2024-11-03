@@ -5,7 +5,8 @@ public enum WinningCategory {
     FIVE_MATCH_WITH_BONUS(5, true, 30_000_000),
     FIVE_MATCH(5, false, 1_500_000),
     FOUR_MATCH(4, false, 50_000),
-    THREE_MATCH(3, false, 5_000);
+    THREE_MATCH(3, false, 5_000),
+    NO_WIN(0, false, 0);
 
     private final int matchCount;
     private final boolean hasBonus;

@@ -34,27 +34,32 @@ public class WinningStatistics {
         return bonusNumber;
     }
 
-    private WinningCategory getWinningCategory(Lotto lotto) {
-        List<Integer> lottoNumbers = lotto.getLottoNumbers();
-        List<Integer> winningLottoNumbers = winningLotto.getLottoNumbers();
-        boolean hasBonus = lottoNumbers.stream().anyMatch(number -> number == bonusNumber);
-        int matchCount = lottoNumbers.stream()
-                .filter(number -> winningLottoNumbers.stream()
+    private boolean hasBonus(Lotto lotto) {
+        return lotto.getLottoNumbers().stream()
+                .anyMatch(number -> number == bonusNumber);
+    }
+
+    private int getMatchCount(Lotto lotto) {
+        return lotto.getLottoNumbers().stream()
+                .filter(number -> winningLotto.getLottoNumbers().stream()
                         .anyMatch(Predicate.isEqual(number)))
                 .toList()
                 .size();
+    }
+
+    private WinningCategory determineCategory(Lotto lotto, int matchCount, boolean hasBonus) {
         for (WinningCategory category : WinningCategory.values()) {
             if (category.getMatchCount() == matchCount && category.hasBonus() == hasBonus) {
                 return category;
             }
         }
-        return null;
+        return NO_WIN;
     }
 
-
-
-
-
-
+    private WinningCategory getWinningCategory(Lotto lotto) {
+        int matchCount = getMatchCount(lotto);
+        boolean hasBonus = hasBonus(lotto);
+        return determineCategory(lotto, matchCount, hasBonus);
+    }
 
 }
