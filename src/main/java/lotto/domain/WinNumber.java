@@ -33,4 +33,8 @@ public class WinNumber {
                 .filter(otherLotto.getNumbers()::contains)
                 .count();
     }
+
+    private boolean matchWithBonusNumber(Lotto otherLotto) {
+        return otherLotto.contains(bonusNumber.getBonusNumber());
+    }
 }
