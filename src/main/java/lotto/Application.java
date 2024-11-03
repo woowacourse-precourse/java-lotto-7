@@ -53,13 +53,77 @@ public class Application {
         }
 
 
+        List<Integer> winningHistoty = allLottos.stream()
+                .map(lotto -> {
+                    int correctCount = 0;
+                    for(Integer value : lotto) {
+                        if(numbersInput.contains(value)) {
+                            correctCount++;
+                        }
+                    }
+                    if (correctCount == 5) {
+                        if (lotto.contains(bonusNumber)) {
+                            correctCount = 7;
+                        }
+                    }
+                    return  correctCount;
+                })
+                .toList();
 
+        List<Integer> winningRanks = winningHistoty.stream()
+                .map(wimCount -> {
+                    if(wimCount == 6) {
+                        return 1;
+                    }
 
+                    if(wimCount == 7) {
+                        return 2;
+                    }
 
+                    if(wimCount == 5) {
+                        return 3;
+                    }
 
+                    if(wimCount == 4) {
+                        return 4;
+                    }
 
+                    if(wimCount == 3) {
+                        return 5;
+                    }
 
+                    return 0;
+                })
+                .toList();
 
+        Integer totalEarned = winningRanks.stream()
+                .mapToInt(rank -> {
+                    if(rank == 1) {
+                        return 2000000000;
+                    }
+
+                    if(rank == 2) {
+                        return 30000000;
+                    }
+
+                    if(rank == 3) {
+                        return 1500000;
+                    }
+
+                    if(rank == 4) {
+                        return 50000;
+                    }
+
+                    if(rank == 5) {
+                        return 5000;
+                    }
+
+                    return 0;
+                })
+                .sum();
+
+        double earnRate = ((double) totalEarned / totalPrice) * 10;
+        Double roundedEarnRate = Math.round(earnRate * 100) / 100.0;
 
     }
 }
