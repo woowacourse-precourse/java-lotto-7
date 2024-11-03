@@ -8,13 +8,13 @@ public enum LottoPrize {
     FOURTH_PRIZE(50000),
     FIFTH_PRIZE(5000);
 
-    private final int amount;
+    final long amount;
 
     LottoPrize(int amount){
         this.amount = amount;
     }
 
-    public int getAmount(){
+    public long getAmount(){
         return this.amount;
     }
 }
