@@ -1,12 +1,12 @@
 package lotto.contoller;
 
 import lotto.constant.GameConfig;
-import lotto.domain.RandomLotto;
+import lotto.model.RandomLotto;
 import lotto.model.Lotto;
 import lotto.constant.Rank;
-import lotto.domain.WinningLotto;
+import lotto.model.WinningLotto;
 import lotto.service.ProfitCalculatorService;
-import lotto.service.WinningStatisticsService;
+import lotto.service.ResultStatisticsService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,13 +17,13 @@ import java.util.stream.Stream;
 
 public class LottoController {
 
-    private final WinningStatisticsService checkResultService;
+    private final ResultStatisticsService resultStatisticsService;
     private final ProfitCalculatorService benefitService;
 
 
-    public LottoController(WinningStatisticsService checkResultService,
+    public LottoController(ResultStatisticsService resultStatisticsService,
                            ProfitCalculatorService benefitService) {
-        this.checkResultService = checkResultService;
+        this.resultStatisticsService = resultStatisticsService;
         this.benefitService = benefitService;
     }
 
@@ -36,9 +36,7 @@ public class LottoController {
 
     public int getPurchaseAmount(){
         OutputView.requestPurchaseAmount();
-        int purchaseAmount = InputView.readPurchasePrice();
-        //valid
-        return purchaseAmount;
+        return InputView.readPurchasePrice();
     }
 
     public List<Lotto> createLottoTickets(int numberOfTickets){
@@ -59,7 +57,7 @@ public class LottoController {
 
     public void showGameResults(int purchaseAmount, List<Lotto> purchasedLotto, WinningLotto winningLotto){
         OutputView.printResultTitle();
-        Map<Rank, Integer> prizeResults = checkResultService.collectWinningStatistics(purchasedLotto, winningLotto);
+        Map<Rank, Integer> prizeResults = resultStatisticsService.collectWinningStatistics(purchasedLotto, winningLotto);
         OutputView.printWinningResults(prizeResults);
         showBenefitRate(purchaseAmount, prizeResults);
     }

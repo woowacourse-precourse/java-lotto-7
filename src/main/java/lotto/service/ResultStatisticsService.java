@@ -2,19 +2,19 @@ package lotto.service;
 
 import lotto.model.Lotto;
 import lotto.constant.Rank;
-import lotto.domain.WinningLotto;
+import lotto.model.WinningLotto;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class WinningStatisticsService {
-    private static WinningStatisticsService instance;
-    private WinningStatisticsService() {
+public class ResultStatisticsService {
+    private static ResultStatisticsService instance;
+    private ResultStatisticsService() {
     }
-    public static WinningStatisticsService getInstance(){
+    public static ResultStatisticsService getInstance(){
         if(instance == null){
-            instance = new WinningStatisticsService();
+            instance = new ResultStatisticsService();
         }
         return instance;
     }
@@ -34,16 +34,6 @@ public class WinningStatisticsService {
     }
 
     public  Map<Rank, Integer> collectWinningStatistics(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
-//        Map<Rank, Integer> statistics = new HashMap<>();
-//        for(Lotto lotto : purchasedLottos){
-//            int matchCount = countMatches(lotto, winningLotto);
-//            boolean isBonusMatched = isBonusMatched(lotto, winningLotto);
-//            Rank rank = Rank.getRank(matchCount, isBonusMatched);
-//            int rankCount = statistics.getOrDefault(rank, 0);
-//            statistics.put(rank, rankCount + 1);
-//        }
-//        return statistics;
-
         return purchasedLottos.stream()
                 .map(lotto -> Rank.getRank(
                         countMatches(lotto, winningLotto),
