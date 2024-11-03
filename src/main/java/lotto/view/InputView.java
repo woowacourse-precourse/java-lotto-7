@@ -35,17 +35,38 @@ public class InputView {
     }
 
     public List<Integer> getWinningNumbers() {
+        while(true){
+            try{
+                List<String> winningNumbers = readWinningNumbers();
+                return inputValidator.validateWinningNumbers(winningNumbers);
+            }catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    private List<String> readWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBER);
         String input = Console.readLine();
-        List<String> winningNumbers = Arrays.stream(input.split(","))
-                .collect(Collectors.toList());
-        return inputValidator.validateWinningNumbers(winningNumbers);
+        return Arrays.stream(input.split(",")).collect(Collectors.toList());
+
     }
 
     public int getBonusNumber() {
+        while(true){
+            try{
+                String bonus = readBonusNumber();
+                return inputValidator.validateBonusNumber(bonus);
+            }catch (IllegalArgumentException ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+
+    }
+
+    private String readBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
-        String input = Console.readLine();
-        return inputValidator.validateBonusNumber(input);
+        return Console.readLine();
     }
 }
 
