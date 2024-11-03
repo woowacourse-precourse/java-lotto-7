@@ -5,6 +5,7 @@ import lotto.domain.User;
 import lotto.domain.Winning;
 import lotto.service.InputService;
 import lotto.service.LottoService;
+import lotto.service.ResultService;
 import lotto.service.WinningService;
 
 public class LottoMachineController {
@@ -16,10 +17,12 @@ public class LottoMachineController {
     InputService inputService = new InputService(user);
     LottoService lottoService = new LottoService(user, lottos);
     WinningService winningService = new WinningService(lottos, winning);
+    ResultService resultService = new ResultService(lottos);
 
     public void run() {
         inputService.run();
         lottoService.run();
         winningService.run();
+        resultService.run();
     }
 }
