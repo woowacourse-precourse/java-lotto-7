@@ -1,15 +1,19 @@
 package lotto.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static lotto.util.Constants.*;
 
 public class WinningNumberParser {
 
-    private static final List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> winningNumbers;
 
     public List<Integer> parseWinningNumbers(String winningNumber) {
+        winningNumbers = new ArrayList<>();
+
         String[] result = winningNumber.split(",");
 
         if (result.length != 6) {
@@ -41,8 +45,10 @@ public class WinningNumberParser {
         }
     }
 
-    private static void validateDistinct() {
-        if (winningNumbers.stream().distinct().count() != 6) {
+    private void validateDistinct() {
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+
+        if (uniqueNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBER.getMessage());
         }
     }

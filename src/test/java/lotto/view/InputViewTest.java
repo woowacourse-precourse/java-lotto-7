@@ -14,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     private LottoAmountValidator lottoAmountValidator;
     private WinningNumberParser winningNumberParser;
     private BonusNumberValidator bonusNumberValidator;

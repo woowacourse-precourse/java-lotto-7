@@ -29,11 +29,12 @@ public class LottoService {
     }
 
     private List<Integer> setRandomNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
 
         return lottoNumbers;
     }
+
 
     public LottoResultResponse getLottoResult(LottoResultRequest request) {
         Map<Ranking, Integer> result = new LinkedHashMap<>();
