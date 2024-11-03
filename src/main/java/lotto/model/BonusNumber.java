@@ -5,12 +5,9 @@ import static lotto.constant.LottoConstants.MIN_NUMBER;
 
 import lotto.exception.LottoNumberOutOfRangeException;
 
-public class BonusNumber {
-    private final Integer number;
-
-    public BonusNumber(Integer number) {
+public record BonusNumber(Integer number) {
+    public BonusNumber {
         validateLottoNumberRange(number);
-        this.number = number;
     }
 
     private void validateLottoNumberRange(Integer number) {
@@ -21,9 +18,5 @@ public class BonusNumber {
 
     private boolean isLottoNumberRange(Integer number) {
         return number >= MIN_NUMBER && number <= MAX_NUMBER;
-    }
-
-    public Integer getNumber() {
-        return number;
     }
 }

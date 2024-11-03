@@ -8,7 +8,7 @@ public record LottosDTO(
         List<LottoNumbers> lottos
 ) {
     public static LottosDTO from(Lottos lottos) {
-        return new LottosDTO(lottos.getLottos()
+        return new LottosDTO(lottos.lottos()
                 .stream()
                 .map(LottoNumbers::from)
                 .toList()
@@ -18,7 +18,7 @@ public record LottosDTO(
     public record LottoNumbers(List<Integer> numbers) {
 
         public static LottoNumbers from(Lotto lotto) {
-            return new LottoNumbers(lotto.getNumbers());
+            return new LottoNumbers(lotto.numbers());
         }
     }
 }

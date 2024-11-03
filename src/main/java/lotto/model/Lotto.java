@@ -10,17 +10,15 @@ import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.LottoNumberCountException;
 import lotto.exception.LottoNumberOutOfRangeException;
 
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+public record Lotto(List<Integer> numbers) {
+    public Lotto {
         validateLottoNumberCount(numbers);
         validateDuplicateLottoNumber(numbers);
         validateLottoNumbersRange(numbers);
-        this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
+    @Override
+    public List<Integer> numbers() {
         return new ArrayList<>(numbers);
     }
 

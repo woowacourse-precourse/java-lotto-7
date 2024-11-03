@@ -4,14 +4,9 @@ import static lotto.constant.LottoConstants.NUMBER_COUNT;
 
 import lotto.exception.DuplicateLottoNumberException;
 
-public class WinningLotto {
-    private final Lotto lotto;
-    private final BonusNumber bonusNumber;
-
-    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+public record WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+    public WinningLotto {
         validateDuplicateNumber(lotto, bonusNumber);
-        this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
     }
 
     private void validateDuplicateNumber(Lotto lotto, BonusNumber bonusNumber) {
@@ -21,15 +16,7 @@ public class WinningLotto {
     }
 
     private boolean isContainsBonusNumberInLotto(Lotto lotto, BonusNumber bonusNumber) {
-        return lotto.getNumbers().contains(bonusNumber.getNumber());
-    }
-
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
+        return lotto.numbers().contains(bonusNumber.number());
     }
 
     public Rank calculateRank(Lotto lotto) {
@@ -39,7 +26,7 @@ public class WinningLotto {
     private int matchCount(Lotto lotto) {
         int matchCount = 0;
         for (int i = 0; i < NUMBER_COUNT; i++) {
-            if (this.lotto.getNumbers().contains(lotto.getNumber(i))) {
+            if (this.lotto.numbers().contains(lotto.getNumber(i))) {
                 matchCount++;
             }
         }
@@ -47,6 +34,6 @@ public class WinningLotto {
     }
 
     private boolean containsBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber.getNumber());
+        return lotto.numbers().contains(bonusNumber.number());
     }
 }
