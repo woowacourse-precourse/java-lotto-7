@@ -10,10 +10,10 @@ public class PurchaseAmountValidator {
 
     public static boolean checkValidPurchaseAmount(String inputAmount) throws IllegalArgumentException {
         try {
-            checkPurchaseAmountIsNumeric(inputAmount);
-            checkPurchaseAmountInRange(inputAmount);
-            checkPurchaseAmountIsPositive(inputAmount);
-            checkPurchaseAmountIsMultipleOfThousand(inputAmount);
+            isNumeric(inputAmount);
+            isAmountInRange(inputAmount);
+            amountIsPositive(inputAmount);
+            isMultipleOfThousand(inputAmount);
         } catch (Exception e) {
             OutputView.printErrorMessage(e.getMessage());
             return false;
@@ -21,26 +21,26 @@ public class PurchaseAmountValidator {
         return true;
     }
 
-    private static void checkPurchaseAmountIsNumeric(String inputAmount) throws IllegalArgumentException {
+    private static void isNumeric(String inputAmount) throws IllegalArgumentException {
         if (!inputAmount.matches("^[0-9]+$")) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMERIC_MESSAGE);
         }
     }
 
-    private static void checkPurchaseAmountInRange(String inputAmount) throws IllegalArgumentException {
+    private static void isAmountInRange(String inputAmount) throws IllegalArgumentException {
         if (inputAmount.length() > 7) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_IN_RANGE_MESSAGE);
         }
     }
 
-    private static void checkPurchaseAmountIsPositive(String inputAmount) throws IllegalArgumentException {
+    private static void amountIsPositive(String inputAmount) throws IllegalArgumentException {
         long amount = Long.parseLong(inputAmount);
         if (amount <= 0) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_POSITIVE_MESSAGE);
         }
     }
 
-    private static void checkPurchaseAmountIsMultipleOfThousand(String inputAmount) throws IllegalArgumentException {
+    private static void isMultipleOfThousand(String inputAmount) throws IllegalArgumentException {
         long amount = Long.parseLong(inputAmount);
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND_MESSAGE);
