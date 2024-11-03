@@ -18,37 +18,41 @@ public class OutputView {
         System.out.println(output.message);
     }
 
-    public void printLottos(GetLottosDto getLottosDto) {
+    public void printNewLine() {
+        System.out.print(NEW_LINE.message);
+    }
+
+    public void printLottos(final GetLottosDto getLottosDto) {
         System.out.printf(NEW_LINE.message + OUTPUT_COUNT_OF_PURCHASED_LOTTO.message + NEW_LINE.message,
                 getLottosDto.GetLottoDtos().size());
 
         getLottosDto.GetLottoDtos().forEach(this::printLotto);
-        System.out.print(NEW_LINE.message);
+        printNewLine();
     }
 
-    private void printLotto(GetLottoDto getLottoDto) {
+    private void printLotto(final GetLottoDto getLottoDto) {
         System.out.println(getLottoDto.lotto());
     }
 
-    public void printResult(GetResultDto getResultDto) {
+    public void printResult(final GetResultDto getResultDto) {
         Rank.getRanks().forEach(rank -> {
             String rankMessage = rankMessageFormat(rank);
 
             System.out.printf(rankMessage, rank.getMatchCount(), rank.getReward(),
                     getResultDto.result().getOrDefault(rank, 0));
 
-            System.out.print(NEW_LINE.message);
+            printNewLine();
         });
     }
 
-    private String rankMessageFormat(Rank rank) {
+    private String rankMessageFormat(final Rank rank) {
         if (rank.equals(Rank.SECOND)) {
             return OUTPUT_STATISTICS_RESULT_WITH_BONUS.message;
         }
         return OUTPUT_STATISTICS_RESULT.message;
     }
 
-    public void printProfitRate(GetProfitRateDto getProfitRateDto) {
+    public void printProfitRate(final GetProfitRateDto getProfitRateDto) {
         System.out.printf(OUTPUT_PROFIT.message, getProfitRateDto.profitRate());
     }
 }

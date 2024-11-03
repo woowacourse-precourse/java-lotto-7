@@ -8,7 +8,7 @@ public class View {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public View(InputView inputView, OutputView outputView) {
+    public View(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -24,24 +24,24 @@ public class View {
     }
 
     public String inputBonusNumber() {
-        System.out.print(Output.NEW_LINE.message);
+        outputView.printNewLine();
         outputView.printMessage(Output.INPUT_BONUS_NUMBER);
         return inputView.userInput();
     }
 
-    public void outputLottos(GetLottosDto getLottosDto) {
+    public void outputLottos(final GetLottosDto getLottosDto) {
         outputView.printLottos(getLottosDto);
     }
 
-    public void outputResult(GetResultDto getResultDto) {
-        System.out.print(Output.NEW_LINE.message);
+    public void outputResult(final GetResultDto getResultDto) {
+        outputView.printNewLine();
         outputView.printMessage(Output.OUTPUT_STATISTICS);
         outputView.printMessage(Output.OUTPUT_DELIMITER);
 
         outputView.printResult(getResultDto);
     }
 
-    public void outputProfitRate(GetProfitRateDto getProfitRateDto) {
+    public void outputProfitRate(final GetProfitRateDto getProfitRateDto) {
         outputView.printProfitRate(getProfitRateDto);
     }
 }
