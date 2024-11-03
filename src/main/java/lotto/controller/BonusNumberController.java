@@ -20,11 +20,11 @@ public class BonusNumberController {
     public BonusNumber createBonusNumber() {
         inputView.printRequestBonusNumber();
 
-        int bonusNumber = repeatUntilValid(() -> {
+        return repeatUntilValid(() -> {
             String rawBonusNumber = ioController.inputBonusNumber();
-            return ioController.convertInputToInt(rawBonusNumber);
+            int bonusNumber = ioController.convertInputToInt(rawBonusNumber);
+            return new BonusNumber(bonusNumber);
         },commonIo);
 
-        return new BonusNumber(bonusNumber);
     }
 }
