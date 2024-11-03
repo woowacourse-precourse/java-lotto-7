@@ -2,7 +2,6 @@ package lotto.controller;
 
 import lotto.Lotto;
 import lotto.service.LottoService;
-import lotto.util.ParseUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,9 +30,9 @@ public class LottoController {
         int bonusNumber = lottoService.getBonusNumber(bonusNumberInput);
 
         List<Lotto> lottos = lottoService.generateLottos(lottoCount);
-        Map<Integer, Integer> matchCounts = lottoService.getMatchCounts(lottos, winningLotto);
+        Map<String, Integer> matchCounts = lottoService.getMatchCounts(lottos, winningLotto, bonusNumber);
 
-        long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts, bonusNumber);
+        long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts);
         String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseAmount);
 
 

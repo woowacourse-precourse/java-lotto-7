@@ -1,7 +1,6 @@
 package lotto.service;
 
 import lotto.Lotto;
-import lotto.util.MathUtil;
 import lotto.util.ParseUtil;
 import lotto.util.RandomUtil;
 
@@ -14,14 +13,14 @@ import java.util.stream.IntStream;
 
 public class LottoService {
     static final String DELIMITER = ",";
-    private static Map<Integer, Integer> matchCountPrizeMap;
+    private static Map<String, Integer> matchCountPrizeMap;
+    private static final String[] matchNumbers = {"0", "1", "2", "3", "4", "5", "5.5", "6"};
+    private static final int[] prizes = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
 
     public LottoService() {
-        this.matchCountPrizeMap = new HashMap<>();
-        matchCountPrizeMap.put(6, 2000000000);
-        matchCountPrizeMap.put(5, 1500000);
-        matchCountPrizeMap.put(4, 50000);
-        matchCountPrizeMap.put(3, 5000);
+        this.matchCountPrizeMap = IntStream.range(0, 8)
+                .boxed()
+                .collect(Collectors.toMap(i -> matchNumbers[i], i -> prizes[i]));
     }
 
     public List<Lotto> generateLottos(int size) {
@@ -31,16 +30,26 @@ public class LottoService {
         return lottos;
     }
 
-    public Map<Integer, Integer> getMatchCounts(List<Lotto> lottos, Lotto winningLotto) {
-        Map<Integer, Integer> matchCounts = IntStream.rangeClosed(0, 6)
-                .boxed()
-                .collect(Collectors.toMap(i -> i, i -> 0));
+    public Map<String, Integer> getMatchCounts(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<String, Integer> matchCounts = new HashMap<>();
+        for (String matchNumber : matchNumbers) {
+            matchCounts.put(matchNumber, 0);
+        }
 
         lottos.stream()
-                .map(lotto -> MathUtil.getMatchCount(lotto.getNumbers(), winningLotto.getNumbers()))
+                .map(lotto -> getMatchCount(lotto, winningLotto, bonusNumber))
                 .forEach(matchCount -> matchCounts.put(matchCount, matchCounts.get(matchCount) + 1));
 
         return matchCounts;
+    }
+
+    private String getMatchCount(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        int matchCount = 0;
+        for (int i : lotto.getNumbers()) {
+            if (winningLotto.getNumbers().contains(i)) matchCount++;
+        }
+        if (matchCount == 5 && winningLotto.getNumbers().contains(bonusNumber)) return "5.5";
+        return String.valueOf(matchCount);
     }
 
     public Lotto getWinningLotto(String winningNumbersInput) {
@@ -50,11 +59,11 @@ public class LottoService {
         return winningLotto;
     }
 
-    public long getPrizeMoney(Map<Integer, Integer> matchCounts, int bonusNumber) {
+    public long getPrizeMoney(Map<String, Integer> matchCounts) {
         long totalPrizeMoney = 0;
-        for(int i=3; i<=6; i++) {
-            int matchCount = matchCounts.get(i);
-            totalPrizeMoney += (long) matchCount * matchCountPrizeMap.get(i);
+        for (String matchNumber : matchNumbers) {
+            int matchCount = matchCounts.get(matchNumber);
+            totalPrizeMoney += (long) matchCount * matchCountPrizeMap.get(matchNumber);
         }
         return totalPrizeMoney;
     }
