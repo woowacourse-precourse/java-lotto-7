@@ -16,7 +16,6 @@ public class LottoService {
     public LottoResultDTO checkWinnings(Lottos userLottos, WinningLotto winningLotto) {
         List<LottoDTO> lottoDTOs = userLottos.toDtoList();
 
-        // 수정 가능한 리스트로 변경
         List<Integer> winningCounts = new ArrayList<>(Arrays.asList(INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE));
         int totalPrize = INITIAL_VALUE;
 
@@ -63,19 +62,7 @@ public class LottoService {
     }
 
     private int calculatePrize(int rank) {
-        switch (rank) {
-            case 1:
-                return 2_000_000_000;
-            case 2:
-                return 30_000_000;
-            case 3:
-                return 1_500_000;
-            case 4:
-                return 50_000;
-            case 5:
-                return 5_000;
-            default:
-                return 0;
-        }
+        return Rank.fromRank(rank).getPrize();
     }
+
 }
