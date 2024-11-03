@@ -3,13 +3,13 @@ package lotto;
 import lotto.controller.BonusNumberController;
 import lotto.controller.LottoController;
 import lotto.controller.PurchaseController;
-import lotto.controller.WinningController;
+import lotto.controller.WinningNumberGenerationController;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.WinningNumber;
 import lotto.service.TicketService;
 import lotto.temp.IoController;
-import lotto.temp.Winning;
+import lotto.model.WinningNumberGenerator;
 import lotto.util.CommonIo;
 
 public class Application {
@@ -23,10 +23,10 @@ public class Application {
 
         ioController.printPurchaseLottoNumbers(lottoController.excuteLottos());
 
-        WinningController winningController = new WinningController(new Winning());
+        WinningNumberGenerationController winningNumberGenerationController = new WinningNumberGenerationController(new WinningNumberGenerator());
         BonusNumberController bonusNumberController = new BonusNumberController();
 
-        Lotto winningNumbers = winningController.createWinningNumber();
+        Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();
         BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
 
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);

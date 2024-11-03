@@ -1,11 +1,9 @@
-package lotto.temp;
-
-import lotto.model.Lotto;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Winning {
+public class WinningNumberGenerator {
     public Lotto createWinningNumbers(String rawWinningNumbers) {
         List<String> winningNumbers = splitWinningNumbers(rawWinningNumbers);
         List<Integer> numbers = convertWinningNumbers(winningNumbers);
