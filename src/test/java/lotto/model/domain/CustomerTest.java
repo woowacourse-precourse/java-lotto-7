@@ -2,6 +2,7 @@ package lotto.model.domain;
 
 import static lotto.message.ErrorMessage.INVALID_PAYMENT_AMOUNT;
 import static lotto.message.ErrorMessage.INVALID_PAYMENT_FORMAT;
+import static lotto.message.ErrorMessage.INVALID_PAYMENT_LIMIT;
 import static lotto.message.ErrorMessage.PAYMENT_IS_BLANK;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -36,5 +37,14 @@ class CustomerTest {
         assertThatThrownBy(() -> new Customer(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_PAYMENT_AMOUNT.getMessage());
+    }
+
+    @DisplayName("입력이 10만원을 초과할 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = { "100001" })
+    void 입력이_10만원을_초과할_경우_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> new Customer(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_PAYMENT_LIMIT.getMessage());
     }
 }
