@@ -14,6 +14,17 @@ public class GameResultManager {
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
+    public Result getResult(Player player) {
+        if (winningLotto == null) {
+            throw new RuntimeException("[Error] 아직 당첨 로또를 설정하지 않았습니다.");
+        }
+
+        Map<Prize, Integer> prizeCount = getPrizeCountFrom(player);
+        float returnRate = getReturnRate(player, prizeCount);
+
+        return new Result(prizeCount, returnRate);
+    }
+
     private Map<Prize, Integer> getPrizeCountFrom(Player player) {
 
         return player.getLottos().stream()
