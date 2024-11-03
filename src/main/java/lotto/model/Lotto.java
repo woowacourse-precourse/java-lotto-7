@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private LottoResult lottoResult;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -18,5 +19,16 @@ public class Lotto {
         }
     }
 
+    public LottoResult getLottoResult(int size, boolean hasBonus) {
+        if (size == LottoResult.SECOND.getCount() & hasBonus){
+            return LottoResult.SECOND;
+        }
+        for (LottoResult resultValue: LottoResult.values()) {
+            if (resultValue.getCount().equals(size)){
+                return resultValue;
+            }
+        }
+        return LottoResult.NONE;
+    }
     // TODO: 추가 기능 구현
 }
