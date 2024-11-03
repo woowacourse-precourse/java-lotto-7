@@ -9,4 +9,12 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getWinningNumber() {
+        return winningNumber;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
+
 }

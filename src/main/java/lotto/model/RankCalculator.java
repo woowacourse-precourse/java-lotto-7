@@ -5,6 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class RankCalculator {
+    public List<Integer> compareLottos(List<Lotto> lottos, Lotto winningNumbers) {
+        return lottos.stream()
+                .map(lotto -> compareSingleLotto(lotto,winningNumbers))
+                .toList();
+    }
+
+    private int compareSingleLotto(Lotto userLotto, Lotto winningNumbers) {
+        return (int) userLotto.getNumbers().stream().filter(winningNumbers.getNumbers()::contains).count();
+    }
 
     public Rank determineRank(int matchCount, boolean isBonusContain) {
         return Rank.valueOf(matchCount, isBonusContain);

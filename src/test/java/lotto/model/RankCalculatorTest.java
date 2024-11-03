@@ -18,6 +18,18 @@ class RankCalculatorTest {
     }
 
     @Test
+    @DisplayName("구입한 로또와 당첨번호가 몇 개 일치하는지 확인하는 테스트")
+    void compareLottos(){
+        assertThat(rankCalculator.compareLottos(
+                List.of(Lotto.createUserLotto(List.of(1,2,3,4,5,6)),
+                        Lotto.createUserLotto(List.of(1,2,3,4,5,7)),
+                        Lotto.createUserLotto(List.of(1,2,3,4,7,8)),
+                        Lotto.createUserLotto(List.of(1,2,3,7,8,9)),
+                        Lotto.createUserLotto(List.of(1,2,7,8,9,10))),
+                Lotto.createWinningLotto(List.of(1,2,3,4,5,6)))).containsExactly(6,5,4,3,2);
+    }
+
+    @Test
     @DisplayName("일치하는 개수에 따라 올바른 등수를 나타내는지 확인하는 테스트")
     void confirmLottoRank(){
         assertThat(rankCalculator.determineRank(2,true)).isEqualTo(Rank.MISS);
