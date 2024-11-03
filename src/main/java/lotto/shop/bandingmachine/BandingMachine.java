@@ -9,9 +9,9 @@ public class BandingMachine {
 
     public void inputMoney() {
         MessageCenter.START.print();
-        Integer won = pos.getMoney();
-        trialHistory.saveWon(won);
-        Integer totalCount = pos.getCount(won);
+        Integer money = pos.getMoney();
+        trialHistory.savePayment(money);
+        Integer totalCount = pos.getCount(money);
         trialHistory.saveTotalCount(totalCount);
 
     }

@@ -5,19 +5,15 @@ import lotto.MessageCenter;
 
 public class Pos {
 
-    Integer won;
+    Integer money;
 
     public Integer getMoney() {
-        while(won == null) {
+        while(money == null) {
             String textWon = read();
-            validateBlank(textWon);
-            won = parse(textWon);
+            validateNumber(textWon);
+            money = parse(textWon);
         }
-        return won;
-    }
-
-    public Integer getCount(Integer wonInput) {
-
+        return money;
     }
 
 
@@ -25,34 +21,43 @@ public class Pos {
         return Console.readLine();
     }
 
-    private Integer parse(String text) {
-        String trimmedText = trim(text);
-        won = validateNumber(trimmedText);
-        return won;
+    private Integer parse(String textWon) {
+        String trimmedWon = trim(textWon);
+        return Integer.parseInt(trimmedWon);
     }
 
     private String trim(String text) {
         return text.trim();
     }
 
-    Integer validateNumber(String trimmedText) {
-        try {
-            won = Integer.parseInt(trimmedText);
-            validatePositive(won);
+    void validateNumber(String textWon) {
+        try{
+        validateBlank(textWon);
+        Integer parsedWon = parse(textWon);
+        validatePositive(parsedWon);
+        validateCount(parsedWon);
         } catch (IllegalArgumentException e) {
             throwException();
         }
-        return won;
     }
 
-    void validatePositive(Integer parsedNumber) {
-        if (parsedNumber <= 0) {
+    void validatePositive(Integer parsedWon) {
+        if (parsedWon <= 0) {
             throwException();
         }
     }
 
     private void validateBlank(String textWon) {
         if (textWon == null || textWon.isBlank()) {
+            throwException();
+        }
+    }
+
+    void validateCount(Integer parsedWon) {
+
+        int divider = 1000;
+
+        if (parsedWon % divider != 0) {
             throwException();
         }
     }
