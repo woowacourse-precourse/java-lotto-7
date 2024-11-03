@@ -11,7 +11,7 @@ class BonusNumberTest {
     @DisplayName("보너스 번호를 가지고 BonusNumber 객체를 생성할 수 있다.")
     void should_CreateBonusNumber_When_GivenNumber() {
         // given
-        int number = 1;
+        String number = "1";
         // when
         BonusNumber bonusNumber = new BonusNumber(number);
         // then
