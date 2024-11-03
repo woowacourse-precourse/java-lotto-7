@@ -16,4 +16,16 @@ public class OutputView {
     public void printBuyLotto(Money money) {
         System.out.printf((OUTPUT_MESSAGE) + "%n", money.getTicket());
     }
+
+    public void printLottos(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            System.out.println(formatLottoNumbers(lotto.getNumbers()));
+        }
+    }
+
+    private String formatLottoNumbers(List<LottoNumber> numbers) {
+        return numbers.stream()
+                .map(number -> String.valueOf(number.lottoNumber()))
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 }
