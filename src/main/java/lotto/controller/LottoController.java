@@ -1,6 +1,10 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Lotto;
 import lotto.view.InputView;
+import lotto.domain.LottoGenerator;
 import lotto.domain.LottoService;
 
 import static lotto.constants.LottoConstants.*;
@@ -19,9 +23,21 @@ public class LottoController {
 
         int lottoCount = calculateLottoCount(purchaseAmount);
         promptLottoCount(lottoCount);
+
+        List<Lotto> lottoTickets = generateLottoTickets(lottoCount);
+        printLottoTickets(lottoTickets);
     }
 
     private int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / PURCHASE_AMOUNT_UNIT;
+    }
+
+    private List<Lotto> generateLottoTickets(int count) {
+        List<Lotto> tickets = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            tickets.add(new Lotto(LottoGenerator.generateNumbers()));
+        }
+
+        return tickets;
     }
 }
