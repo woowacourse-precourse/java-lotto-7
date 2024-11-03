@@ -39,7 +39,8 @@ public class Lotto {
         List<Lotto> lottoList = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6)); // 불변 리스트를 변경 가능 리스트로 복사
             Collections.sort(numbers); // 오름차순 정렬
             lottoList.add(new Lotto(numbers));
         }
