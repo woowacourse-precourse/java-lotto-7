@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.app.dto.LottoResultResponseDto;
+import lotto.app.dto.LottoResultDto;
 import lotto.domain.Lotto;
 
 public class OutputView {
@@ -15,10 +15,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(List<LottoResultResponseDto> dtos) {
+    public void printResult(List<LottoResultDto> dtos) {
         System.out.println();
         System.out.println("당첨 통계");
-        for (LottoResultResponseDto dto : dtos) {
+        for (LottoResultDto dto : dtos) {
             System.out.printf("%d개 일치 (%d원) - %d개%n",
                 dto.correctNumber(),
                 dto.prize(),

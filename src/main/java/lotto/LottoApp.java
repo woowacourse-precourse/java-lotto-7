@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.List;
 import lotto.app.dto.LottoPurchaseResponseDto;
+import lotto.app.dto.LottoResultDto;
 import lotto.ui.LottoController;
 
 public class LottoApp {
@@ -13,7 +15,8 @@ public class LottoApp {
 
     public void run() {
         LottoPurchaseResponseDto purchaseDto = purchaseLotto();
-        lottoController.getResult(purchaseDto.lottoList());
+        List<LottoResultDto> lottoResultDto = lottoController.getResult(purchaseDto.lottoList());
+        lottoController.getInvestment(purchaseDto.price(), lottoResultDto);
     }
 
     private LottoPurchaseResponseDto purchaseLotto() {

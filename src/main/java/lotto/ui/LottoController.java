@@ -1,13 +1,11 @@
 package lotto.ui;
 
 import java.util.List;
-import java.util.Map;
 import lotto.app.LottoService;
 import lotto.app.dto.LottoPurchaseResponseDto;
-import lotto.app.dto.LottoResultResponseDto;
+import lotto.app.dto.LottoResultDto;
 import lotto.app.dto.WinningNumberRequestDto;
 import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
 import lotto.domain.PositiveNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,11 +22,12 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void getResult(List<Lotto> lottoList) {
+    public List<LottoResultDto> getResult(List<Lotto> lottoList) {
         WinningNumberRequestDto dto = inputView.getEntireNumber();
-        List<LottoResultResponseDto> dtoList = lottoService.getResult(dto, lottoList);
+        List<LottoResultDto> dtoList = lottoService.getResult(dto, lottoList);
 
         outputView.printResult(dtoList);
+        return dtoList;
     }
 
     public LottoPurchaseResponseDto purchaseAll() {
@@ -40,8 +39,8 @@ public class LottoController {
         return new LottoPurchaseResponseDto(price, lottoList);
     }
 
-    public void getInvestment(Integer inputPrice, Map<LottoPrize, Integer> prizeIntegerMap) {
-        double investment = lottoService.getInvestment(inputPrice, prizeIntegerMap);
+    public void getInvestment(PositiveNumber inputPrice, List<LottoResultDto> dto) {
+        double investment = lottoService.getInvestment(inputPrice, dto);
 
         outputView.printInvestment(investment);
     }

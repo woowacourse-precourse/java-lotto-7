@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoPrize;
-import lotto.app.dto.LottoResultResponseDto;
+import lotto.app.dto.LottoResultDto;
 import lotto.app.dto.WinningNumberRequestDto;
 import lotto.domain.Lotto;
 import lotto.domain.PositiveNumber;
@@ -17,14 +17,14 @@ public class LottoService {
         this.generator = generator;
     }
 
-    public List<LottoResultResponseDto> getResult(WinningNumberRequestDto dto, List<Lotto> lottoList) {
+    public List<LottoResultDto> getResult(WinningNumberRequestDto dto, List<Lotto> lottoList) {
         Lotto winningLotto = new Lotto(dto.winningNumbers());
 
         Map<LottoPrize, Integer> lottoPrizeResult = LottoPrize
             .createLottoPrizeResult(lottoList, winningLotto, dto.bonusNumber());
 
         return lottoPrizeResult.entrySet().stream()
-            .map(entry -> new LottoResultResponseDto(
+            .map(entry -> new LottoResultDto(
                 entry.getKey().getWinningCount(),
                 entry.getKey().getPrize(),
                 entry.getValue()))
@@ -41,12 +41,11 @@ public class LottoService {
         return lottoList;
     }
 
-    public double getInvestment(Integer inputPrice, Map<LottoPrize, Integer> prizeIntegerMap) {
-        long result = prizeIntegerMap.entrySet().stream()
-            .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+    public double getInvestment(PositiveNumber inputPrice, List<LottoResultDto> dtos) {
+        long prizeSum = dtos.stream().mapToLong(dto -> dto.prize() * dto.amount())
             .sum();
 
-        return (double) result / inputPrice;
+        return (double) prizeSum / inputPrice.get();
     }
 
     private Lotto purchaseLotto() {
