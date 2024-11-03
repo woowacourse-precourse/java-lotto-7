@@ -4,11 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class RandomNumberMachine {
+public class RandomNumberGenerator {
 
-    private RandomNumberMachine() {}
+    private RandomNumberGenerator() {}
 
-    public static List<Integer> createNumbers() {
+    public static List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
