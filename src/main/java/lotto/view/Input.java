@@ -8,6 +8,6 @@ public interface Input<T, S> {
     public void validate(S input);
 
     default String readInput() {
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 }
