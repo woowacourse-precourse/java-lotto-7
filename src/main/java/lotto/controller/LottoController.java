@@ -39,11 +39,30 @@ public class LottoController {
         printResults(lottoResult, investment);
     }
 
+    private void validateInput(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력이 잘못 되었습니다.");
+        }
+    }
+
     private Investment purchaseLotto() {
-        outputView.printPurchaseGuide();
-        int cost = Integer.parseInt(inputView.readLine());
-        outputView.printNewLine();
-        return new Investment(BigInteger.valueOf(cost));
+        try {
+            outputView.printPurchaseGuide();
+            String input = inputView.readLine();
+            validateInput(input);
+            int cost = Integer.parseInt(input);
+
+            outputView.printNewLine();
+
+            return new Investment(BigInteger.valueOf(cost));
+        } catch (NumberFormatException e) {
+            outputView.printErrorMessage("[ERROR] 입력은 숫자만 가능합니다.");
+            return purchaseLotto();
+
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return purchaseLotto();
+        }
     }
 
     private LottoBundle generateLottoBundle(int quantity) {
