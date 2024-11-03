@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.*;
 
 
@@ -24,10 +22,7 @@ public class Application {
         int bonusNumber = LottoInput.getValidBonus(winningNumber);
 
         // 5 . 당첨 통계 초기화
-        Map<LottoRank, Integer> winningStatistics = new HashMap<>();
-        for (LottoRank rank : LottoRank.values()) {
-            winningStatistics.put(rank, 0);
-        }
+        Map<LottoRank, Integer> winningStatistics = LottoRankInit.getLottoRank();
 
         // 6 . 당첨&보너스 번호 통계 비교 작업
         for (Lotto lotto : manager.getLottoRepository()) {
