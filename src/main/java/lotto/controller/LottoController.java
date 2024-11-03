@@ -25,6 +25,7 @@ public class LottoController {
     public void setLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
     public static int checkTotalAmountIfValid(int totalAmount) {
         if (totalAmount <= 0)
             throw new IllegalArgumentException(Error_Messages.INPUT_NOT_POSITIVE_INT);
@@ -56,10 +57,18 @@ public class LottoController {
         return this.lottos;
     }
 
+    private static void inputNullCheck(String s){
+        if (s.isEmpty()){
+            throw new IllegalArgumentException(Error_Messages.NUMBER_FORMAT_ERROR);
+        }
+    }
+
     public static List<Integer> changeStringListToIntList(List<String> stringList) {
         List<Integer> intList = new ArrayList<>();
-        for (String s : stringList)
+        for (String s : stringList){
+            inputNullCheck(s);
             intList.add(Integer.valueOf(s));
+        }
         return intList;
     }
 
@@ -82,8 +91,8 @@ public class LottoController {
 
     public static WinningLotto makeWinningLotto() {
         List<String> inputNumbers = readWinningNumbers();
-        List<Integer> numbers = changeStringListToIntList(inputNumbers);
         try {
+            List<Integer> numbers = changeStringListToIntList(inputNumbers);
             Lotto lotto = new Lotto(numbers);
             WinningLotto winningLotto = new WinningLotto(lotto);
             checkWinningLotto(winningLotto);
@@ -95,21 +104,23 @@ public class LottoController {
         return null;
     }
 
-    private static void checkBonusNumber(WinningLotto winningLotto, int number){
-        if (winningLotto.getNumbers().contains(number)) {
+    private static int checkBonusNumber(WinningLotto winningLotto, String number){
+        inputNullCheck(number);
+        int num = Integer.parseInt(number);
+        if (winningLotto.getNumbers().contains(num)) {
             throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
+        return num;
     }
 
     public static void bonusNumber(WinningLotto winningLotto){
-        int bonusNumber = readBonusNumber();
+        String bonusNumber = readBonusNumber();
         try{
-            checkBonusNumber(winningLotto, bonusNumber);
+            winningLotto.setBonusNumber(checkBonusNumber(winningLotto, bonusNumber));
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bonusNumber(winningLotto);
         }
-        winningLotto.setBonusNumber(bonusNumber);
     }
 
     public static void getSummary(LottoController lottoController, WinningLotto winningLotto) {

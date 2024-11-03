@@ -32,9 +32,9 @@ public class input {
         return List.of(Console.readLine().split(","));
     }
 
-    public static int readBonusNumber(){
+    public static String readBonusNumber(){
         printWhiteSpace();
         printInputBonusNumber();
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 }

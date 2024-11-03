@@ -15,6 +15,7 @@ public class constants {
         public static final String LOTTO_COUNT_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
         public static final String NUMBER_RANGE_ERROR = "[ERROR] 번호는 1~45 이여야 합니다.";
         public static final String DUPLICATE_ERROR = "[ERROR] 번호는 중복되면 안됩니다.";
+        public static final String NUMBER_FORMAT_ERROR = "[ERROR] 숫자만 입력하세요.";
     }
     public static class Output_Messages{
         public static final String[] MATCH_MESSAGE = {
