@@ -6,7 +6,7 @@ import lotto.enums.DelimiterConstants;
 import lotto.manager.LottoManager;
 import lotto.domain.UserLotto;
 import lotto.util.LottoValidator;
-import lotto.util.MoneyValidator;
+import lotto.util.PriceValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,7 +41,7 @@ public class LottoController {
     private String getPurchaseAmountAsString(){
         try{
             String input = inputView.enterPurchaseAmount();
-            MoneyValidator.validate(input);
+            PriceValidator.validate(input);
             return input;
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());

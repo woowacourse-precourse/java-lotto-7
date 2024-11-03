@@ -3,7 +3,7 @@ package lotto.util;
 import lotto.enums.ErrorMessage;
 import lotto.enums.PriceConstants;
 
-public final class MoneyValidator extends Validator {
+public final class PriceValidator extends Validator {
     public static void validate(String input) {
         checkNumberForm(input);
 
