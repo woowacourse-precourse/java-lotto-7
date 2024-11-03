@@ -1,6 +1,5 @@
 package lotto;
 
-import convert.SingleStringToNumConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,12 +9,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoPurchaseAmountTest {
     private String lottoPurchaseAmount;
-    private SingleStringToNumConverter stringToIntConverter;
     private LottoPurchaseAmountValidator lottoPurchaseAmountValidator;
 
     @BeforeEach
     void setUp() {
-        stringToIntConverter = new SingleStringToNumConverter();
         lottoPurchaseAmountValidator = new LottoPurchaseAmountValidator();
     }
 

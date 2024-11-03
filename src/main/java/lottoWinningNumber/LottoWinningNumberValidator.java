@@ -1,7 +1,5 @@
 package lottoWinningNumber;
 
-import convert.ListStringToNumConverter;
-import lottoWinningNumber.LottoWinningNumberDelimiter;
 import java.util.List;
 
 public class LottoWinningNumberValidator {
@@ -39,18 +37,15 @@ public class LottoWinningNumberValidator {
 
     // numberFormatException 외 다른 exception 존재?
     private void validateNumbersAreNumeric(List<String> seperatedLottoWinningNumbers) {
-        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter();
-
         try {
-            listStringToNumConverter.convert(seperatedLottoWinningNumbers);
+            convertToCompareNumbers(seperatedLottoWinningNumbers);
         } catch (NumberFormatException numberFormatException) {
             throw EXCEPTION_LOTTO_WINNING_NUMBER;
         }
     }
 
     private void validateRangeOfNumbersGreaterThan1AndLessThan45(List<String> seperatedLottoWinningNumbers) {
-        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter();
-        List<Integer> seperatedLottoWinningNumbersToInt = listStringToNumConverter.convert(seperatedLottoWinningNumbers);
+        List<Integer> seperatedLottoWinningNumbersToInt = convertToCompareNumbers(seperatedLottoWinningNumbers);
 
         if (!isAllNumbersThatFitConditions(seperatedLottoWinningNumbersToInt)) {
             throw EXCEPTION_LOTTO_WINNING_NUMBER;
@@ -61,5 +56,13 @@ public class LottoWinningNumberValidator {
         return seperatedLottoWinningNumbersToInt.stream().allMatch(
                 seperatedLottoWinningNumberToInt -> seperatedLottoWinningNumberToInt >= MINIMUM_LOTTO_NUMBER
                         && seperatedLottoWinningNumberToInt <= MAXIMUM_LOTTO_NUMBER);
+    }
+
+    public List<Integer> convertToCompareNumbers(List<String> seperatedLottoWinningNumbers) {
+        List<Integer> convertedWinningNumbersToCompare = seperatedLottoWinningNumbers.stream().mapToInt(Integer::parseInt).boxed()
+                .toList();
+
+        // 이름 바꿔야 함.
+        return convertedWinningNumbersToCompare;
     }
 }
