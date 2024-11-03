@@ -1,56 +1,55 @@
 package lotto.contoller;
 
-import lotto.Lotto;
-import lotto.constant.Prize;
-import lotto.model.WinningLotto;
-import lotto.service.BenefitService;
-import lotto.service.CheckResultService;
+import lotto.constant.LottoConstants;
+import lotto.component.Lotto;
+import lotto.component.Prize;
+import lotto.domain.WinningLotto;
+import lotto.service.ProfitCalculatorService;
+import lotto.service.WinningStatisticsService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private LottoService lottoService = LottoService.getInstance();
-    private CheckResultService checkResultService = CheckResultService.getInstance();
-    private BenefitService benefitService = BenefitService.getInstance();
+
+    private final LottoService lottoService;
+    private final WinningStatisticsService checkResultService;
+    private final ProfitCalculatorService benefitService;
 
     private WinningLotto winningLotto;
 
-    private static LottoController instance;
-    private LottoController() {
-    }
-    public static LottoController getInstance(){
-        if(instance == null){
-            instance = new LottoController();
-        }
-        return instance;
+    public LottoController(LottoService lottoService,
+                           WinningStatisticsService checkResultService,
+                           ProfitCalculatorService benefitService) {
+        this.lottoService = lottoService;
+        this.checkResultService = checkResultService;
+        this.benefitService = benefitService;
     }
 
     public void start(){
-        int purchasePrice = promptPurchaseCount();
-        List<Lotto> purchasedLottos = generateRandomLottos(purchasePrice/ 1000);
-        winningLotto = promptWinningLotto();
-        printResult(purchasePrice, purchasedLottos);
+        int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottoTickets = createLottoTickets(purchaseAmount/ LottoConstants.LOTTO_PRICE);
+        winningLotto = getWinningLotto();
+        showGameResults(purchaseAmount, lottoTickets);
     }
 
-    public int promptPurchaseCount(){
+    public int getPurchaseAmount(){
         OutputView.requestPurchaseAmount();
-        int purchasePrice = InputView.readPurchasePrice();
+        int purchaseAmount = InputView.readPurchasePrice();
         //valid
-        return purchasePrice;
+        return purchaseAmount;
     }
 
-    public List<Lotto> generateRandomLottos(int count){
-        List<Lotto> randomLottos = lottoService.generateRandomLottos(count);
-        OutputView.printLottoTickets(count, randomLottos);
-        return randomLottos;
+    public List<Lotto> createLottoTickets(int numberOfTickets){
+        List<Lotto> lottoTickets = lottoService.createRandomLottos(numberOfTickets);
+        OutputView.printLottoTickets(numberOfTickets, lottoTickets);
+        return lottoTickets;
     }
 
-    public WinningLotto promptWinningLotto(){
+    public WinningLotto getWinningLotto(){
         OutputView.requestWinningNumbers();
         Lotto lotto = new Lotto(InputView.readWinningNumbers());
         OutputView.requestBonusNumber();
@@ -58,18 +57,16 @@ public class LottoController {
         return new WinningLotto(lotto, bonusNumber);
     }
 
-    public void printResult(int purchasePrice, List<Lotto> purchasedLotto){
+    public void showGameResults(int purchasePrice, List<Lotto> purchasedLotto){
         OutputView.printResultTitle();
-        Map<Prize, Integer> results = checkResultService.collectWinningStatistics(
-                purchasedLotto, winningLotto.getLotto(),
-                winningLotto.getBonusNumber());
-        OutputView.printWinningResults(results);
-        printBenefitRate(purchasePrice, results);
+        Map<Prize, Integer> prizeResults = checkResultService.collectWinningStatistics(purchasedLotto, winningLotto);
+        OutputView.printWinningResults(prizeResults);
+        showBenefitRate(purchasePrice, prizeResults);
     }
 
-    public void printBenefitRate(int purchasePrice , Map<Prize, Integer> results){
-        Long totalPrize = benefitService.calculateTotalPrize(results);
-        Double benefitRate = benefitService.calculateBenefit(purchasePrice, totalPrize);
+    public void showBenefitRate(int purchaseAmount , Map<Prize, Integer> prizeResults){
+        Long totalWinningAmount = benefitService.calculateWinningAmount(prizeResults);
+        Double benefitRate = benefitService.calculateBenefitRate(purchaseAmount, totalWinningAmount);
         OutputView.printBenefitRate(String.valueOf(benefitRate));
     }
 

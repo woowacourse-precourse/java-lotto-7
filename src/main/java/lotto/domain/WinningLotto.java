@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.domain;
 
-import lotto.Lotto;
+import lotto.component.Lotto;
+import lotto.constant.LottoConstants;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,17 +13,18 @@ public class WinningLotto {
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
         //vliad
+        validateWinningNumbers(lotto.getNumbers(), bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public void validate(List<Integer> numbers, int bonusNumber) {
-        Set<Integer> setForValid = new HashSet<>(numbers);
-        setForValid.add(bonusNumber);
-        if(setForValid.size() != 7){
+    public void validateWinningNumbers(List<Integer> numbers, int bonusNumber) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        uniqueNumbers.add(bonusNumber);
+        if(uniqueNumbers.size() != LottoConstants.WINNING_LOTTO_NUMBERS_COUNT){
             throw new IllegalArgumentException();
         }
-        if(bonusNumber < 1 || bonusNumber > 45){
+        if(bonusNumber < LottoConstants.MIN_RANGE_NUMBER || bonusNumber > LottoConstants.MAX_RANGE_NUMBER){
             throw new IllegalArgumentException("[ERROR]");
         }
     }

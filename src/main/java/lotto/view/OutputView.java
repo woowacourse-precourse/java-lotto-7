@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.component.Lotto;
 import lotto.constant.MessageConstants;
-import lotto.constant.Prize;
+import lotto.component.Prize;
 
 import java.util.List;
 import java.util.Map;
@@ -12,9 +12,9 @@ public class OutputView {
         System.out.println(MessageConstants.REQUEST_PURCHASE_AMOUNT);
     }
 
-    public static void printLottoTickets(int purchaseCount, List<Lotto> lottos) {
+    public static void printLottoTickets(int numberOfTickets, List<Lotto> lottos) {
         System.out.println();
-        System.out.println(String.format(MessageConstants.PURCHASED_LOTTO_COUNT, purchaseCount));
+        System.out.println(String.format(MessageConstants.PURCHASED_LOTTO_COUNT, numberOfTickets));
         lottos.stream()
                 .map(Lotto::getNumbers)
                 .forEach(System.out::println);
@@ -42,12 +42,12 @@ public class OutputView {
                 break;
             }
             String resultMessage = MessageConstants.MATCH_RESULT_FORMAT;
-            if (prize.isBonusMatch()) {
+            if (prize.isBonusMatched()) {
                 resultMessage = MessageConstants.MATCH_BONUS_RESULT_FORMAT;
             }
             System.out.println(String.format(
                     resultMessage,
-                    prize.getMatchCount(),
+                    prize.getCorrectNumberCount(),
                     prize.getPrize(),
                     prizeResults.getOrDefault(prize,0)));
         }
