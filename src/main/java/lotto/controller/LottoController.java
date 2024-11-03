@@ -5,6 +5,7 @@ import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningNumbers;
 import lotto.domain.constant.Ranking;
 import lotto.service.LottoService;
+import lotto.view.InputProcessor;
 import lotto.view.OutputView;
 
 import java.util.EnumMap;

@@ -1,9 +1,8 @@
-package lotto.controller.util;
+package lotto.view.util;
 
 import static lotto.exception.ExceptionMessage.INVALID_NUMBER_FORMAT;
 
 public class NumberParser {
-
     public Integer parseToInt(String input) {
         try {
             return Integer.parseInt(input);

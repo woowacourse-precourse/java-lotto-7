@@ -1,9 +1,8 @@
-package lotto.controller;
+package lotto.view;
 
-import lotto.controller.util.NumberParser;
-import lotto.controller.util.WinningNumberSplitter;
 import lotto.domain.Lotto;
-import lotto.view.InputView;
+import lotto.view.util.NumberParser;
+import lotto.view.util.WinningNumberSplitter;
 
 import java.util.List;
 

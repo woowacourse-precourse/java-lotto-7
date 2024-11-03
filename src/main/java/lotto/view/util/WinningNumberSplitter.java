@@ -1,4 +1,4 @@
-package lotto.controller.util;
+package lotto.view.util;
 
 import java.util.List;
 import java.util.regex.Pattern;

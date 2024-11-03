@@ -1,7 +1,7 @@
 package lotto.exception;
 
 import static java.lang.String.format;
-import static lotto.controller.util.WinningNumberSplitter.DELIMITER;
+import static lotto.view.util.WinningNumberSplitter.DELIMITER;
 import static lotto.domain.constant.LottoRule.*;
 
 public enum ExceptionMessage {
