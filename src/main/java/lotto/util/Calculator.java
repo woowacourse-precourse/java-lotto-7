@@ -8,7 +8,7 @@ public class Calculator {
         return input / 1000;
     }
 
-    public static String calculateRateOfReturn(int lottoAmount, Map<Result, Integer> results) {
+    public static String calculateProfit(int lottoAmount, Map<Result, Integer> results) {
         float totalProfit = 0;
 
         for (Result result : results.keySet()) {

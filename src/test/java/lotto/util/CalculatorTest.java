@@ -21,6 +21,6 @@ public class CalculatorTest {
         results.put(Result.THIRD, 0);
         results.put(Result.FORTH, 0);
         results.put(Result.FIFTH, 1);
-        assertEquals("62.5", Calculator.calculateRateOfReturn(8000, results));
+        assertEquals("62.5", Calculator.calculateProfit(8000, results));
     }
 }

@@ -29,7 +29,7 @@ public class LottoController {
         int bonusNumber = inputBonusNumber(winningLotto);
 
         Map<Result, Integer> results = compareLottoWithWinningNumber(userLottos, winningLotto, bonusNumber);
-        output.printProfit(Calculator.calculateRateOfReturn(lottoAmount, results));
+        output.printProfit(Calculator.calculateProfit(lottoAmount, results));
     }
 
     public int inputLottoAmount() {
