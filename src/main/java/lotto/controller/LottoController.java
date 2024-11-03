@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +7,7 @@ import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.service.LottoService;
 import lotto.service.StatisticsService;
+import lotto.view.InputView;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -19,26 +19,15 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount;
-        System.out.println("구입금액을 입력해 주세요.");
-        purchaseAmount = Console.readLine();
-
+        String purchaseAmount = InputView.requestPurchaseAmount();
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
         LottoTicket lottoTicket = lottoService.generateLottos(purchaseAmountInt);
         System.out.println("\n" + lottoTicket.getLottos().size() + "개를 구매했습니다.");
         lottoTicket.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
 
-        String inputWinningNumbers;
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        inputWinningNumbers = Console.readLine();
-
-        List<String> winningNumbers = List.of(inputWinningNumbers.split(","));
-        List<Integer> winningNumbersInteger = stringListToIntegerList(winningNumbers);
-
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String inputBonusNumber = Console.readLine();
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        List<Integer> winningNumbersInteger = InputView.requestWinningNumbers();
+        int bonusNumber = InputView.requestBonusNumber();
 
         Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(lottoTicket,
                 winningNumbersInteger,
