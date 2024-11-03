@@ -10,7 +10,7 @@ public class LottoGenerator {
             throw new IllegalArgumentException("[ERROR] " + PRICE_PER_LOTTO.getValue() + "원 이상의 금액을 입력하세요.");
         }
         if (budget % PRICE_PER_LOTTO.getValue() != 0) {
-            throw new IllegalArgumentException("[ERROR] " + PRICE_PER_LOTTO + "원 단위로만 구매 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] " + PRICE_PER_LOTTO.getValue() + "원 단위로만 구매 가능합니다.");
         }
         return budget / PRICE_PER_LOTTO.getValue();
     }

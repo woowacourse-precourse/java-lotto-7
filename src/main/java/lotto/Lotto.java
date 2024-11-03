@@ -42,6 +42,10 @@ public class Lotto {
         }
     }
 
+    private void validateBounsNumber(List<Integer> numbers) {
+
+    }
+
     public List<Integer> getLottoNumbers() {
         return Collections.unmodifiableList(numbers);
     }

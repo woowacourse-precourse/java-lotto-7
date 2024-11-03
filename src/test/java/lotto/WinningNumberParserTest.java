@@ -28,4 +28,19 @@ public class WinningNumberParserTest {
         assertThatThrownBy(() -> WinningNumberParser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 쉼표가_연속으로_입력될_경우_예외가_발생한다() {
+        String input = "1,4,8,9,,43";
+        assertThatThrownBy(() -> WinningNumberParser.parse(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 문자열_맨_앞에_쉼표가_있을_경우_예외가_발생한다() {
+        String input = ",1,4,8,9,10,44";
+        assertThatThrownBy(() -> WinningNumberParser.parse(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
