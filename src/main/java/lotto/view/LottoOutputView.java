@@ -42,7 +42,7 @@ public class LottoOutputView {
             if (prizeType == LottoPrizeType.SECOND){
                 System.out.print(", 보너스 볼 일치");
             }
-            System.out.print(" ("+koreaNumberFormatter.format(prizeType.getPrizeAmount())+")");
+            System.out.print(" ("+koreaNumberFormatter.format(prizeType.getPrizeAmount())+"원)");
             System.out.println(" - "+count+"개");
         }
     }
@@ -51,8 +51,8 @@ public class LottoOutputView {
         System.out.print("총 수익률은 "+formattedBenefit+"입니다.");
     }
     private String formatBenefit(double number) {
-        double percentage = number * 100; // Convert to percentage
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0"); // Format to one decimal place
+        double percentage = number * 100;
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         return decimalFormat.format(percentage) + "%";
     }
 }
