@@ -84,14 +84,8 @@ public class LottoController {
     }
 
     private WinningResult evaluateLotto(LottoWinningSet winningSet, LottoTickets lottoTickets) {
-        LottoResultEvaluator lottoResultEvaluator = crateLottoResultEvaluator(winningSet);
+        LottoResultEvaluator lottoResultEvaluator = new LottoResultEvaluator(winningSet);
         return lottoResultEvaluator.evaluate(lottoTickets);
-    }
-
-    private LottoResultEvaluator crateLottoResultEvaluator(LottoWinningSet winningSet) {
-        List<Integer> winningNumbers = winningSet.getWinningNumbers();
-        int bonusNumber = winningSet.getBonusNumber();
-        return new LottoResultEvaluator(winningNumbers, bonusNumber);
     }
 
     private void displayResult(WinningResult winningResult) {

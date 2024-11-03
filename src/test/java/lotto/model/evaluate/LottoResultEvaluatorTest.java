@@ -6,6 +6,9 @@ import java.util.List;
 import lotto.dto.WinningResult;
 import lotto.model.ticket.Lotto;
 import lotto.model.ticket.LottoTickets;
+import lotto.model.win.BonusNumber;
+import lotto.model.win.LottoWinningSet;
+import lotto.model.win.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,9 +20,10 @@ class LottoResultEvaluatorTest {
 
     @BeforeEach
     void setUp() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        lottoResultEvaluator = new LottoResultEvaluator(winningNumbers, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+        LottoWinningSet lottoWinningSet = new LottoWinningSet(winningNumbers, bonusNumber);
+        lottoResultEvaluator = new LottoResultEvaluator(lottoWinningSet);
     }
 
     @DisplayName("6개 번호가 모두 일치하는 경우")

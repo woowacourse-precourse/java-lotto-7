@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
 import lotto.model.ticket.LottoTickets;
+import lotto.model.win.LottoWinningSet;
 
 public class LottoResultEvaluator {
 
@@ -12,9 +13,9 @@ public class LottoResultEvaluator {
     private final LottoNumbersMatchCounter lottoNumbersMatchCounter;
     private final LottoResultCollector lottoResultCollector;
 
-    public LottoResultEvaluator(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    public LottoResultEvaluator(LottoWinningSet lottoWinningSet) {
+        this.winningNumbers = lottoWinningSet.getWinningNumbers();
+        this.bonusNumber = lottoWinningSet.getBonusNumber();
         this.lottoNumbersMatchCounter = new LottoNumbersMatchCounter();
         this.lottoResultCollector = new LottoResultCollector();
     }
