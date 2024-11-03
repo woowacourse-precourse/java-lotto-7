@@ -1,6 +1,8 @@
 package lotto.utils;
 
 import java.math.BigDecimal;
+    import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,5 +52,13 @@ public class UtilsTest {
         assertTrue(Utils.isDivisibleByThousand(1000));
         assertTrue(Utils.isDivisibleByThousand(10000));
         assertTrue(Utils.isDivisibleByThousand(5000));
+    }
+
+    @DisplayName("문자열 배열이 모두 숫자인지 확인한다.")
+    @Test
+    void allElementsAreDigits() {
+        String[] input = {"1", "100", "3"};
+
+        assertTrue(Utils.allElementsAreDigits(input));
     }
 }
