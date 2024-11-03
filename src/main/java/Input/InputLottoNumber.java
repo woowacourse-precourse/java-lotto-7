@@ -16,7 +16,6 @@ public class InputLottoNumber {
         List<Integer> userLottoNumbers = new ArrayList<>();
 
         //사용자의 당첨 번호 입력
-        // System.out.println("로또 번호를 입력하세요");
         String UserLottoNumber = Console.readLine();
         //사용자의 당첨번호를 쉼표 기준으로 나눔
         for (String num : UserLottoNumber.split(",")) {

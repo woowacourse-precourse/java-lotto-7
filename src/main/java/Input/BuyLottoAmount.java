@@ -9,6 +9,7 @@ public class BuyLottoAmount {
         int LottoPrice = 1000;
         int InsertAmount = 0;
 
+        //예외 처리
         while (true) {
             try {
                 String input = Console.readLine();
