@@ -4,6 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.constants.PrizeRank;
 
 public class LottoTickets {
 
@@ -21,7 +24,7 @@ public class LottoTickets {
 
     private Lotto generateLottoTicket() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        
+
         Collections.sort(randomNumbers);
 
         return new Lotto(randomNumbers);
@@ -35,5 +38,11 @@ public class LottoTickets {
         }
 
         return lottoTicketsNumbers;
+    }
+
+    public Map<PrizeRank, Integer> getPrizeRankCountMap(WinningLotto winningLotto) {
+        return lottoTickets.stream()
+                .map(lotto -> lotto.getPrizeRank(winningLotto))
+                .collect(Collectors.groupingBy(prizeRank -> prizeRank, Collectors.summingInt(rank -> 1)));
     }
 }
