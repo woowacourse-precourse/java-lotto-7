@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Convertor {
 
-    private static final String NON_NUMERIC_EXCEPTION = "입력값은 숫자여야 합니다";
+    private static final String NON_NUMERIC_EXCEPTION = "입력값은 숫자여야 합니다.";
 
     public static long convertToLong(String input) {
         try {
