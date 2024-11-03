@@ -23,7 +23,7 @@ public class Controller {
 
     public void start() {
         outputView.printMessage(START);
-        List<Lotto> lottos = pickLotto();
+        List<Lotto> lottos = pickLottos();
         outputView.printLottos(lottos);
 
         Winning winning = createWinning();
@@ -35,7 +35,7 @@ public class Controller {
         outputView.printResult(scoreBoard.getRate().getDescription());
     }
 
-    private List<Lotto> pickLotto() {
+    private List<Lotto> pickLottos() {
         int count = inputView.inputCountFromCash();
         return lottoMachine.generateLottos(count);
     }
