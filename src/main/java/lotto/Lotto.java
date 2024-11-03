@@ -3,6 +3,10 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+    /*
+    - Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
+    - numbers의 접근 제어자인 private은 변경할 수 없다.
+    */
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
