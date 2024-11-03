@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.List;
 import lotto.LottoList;
 import lotto.PurchaseCount;
+import lotto.WinningNumbers;
 import service.LottoService;
 import view.LottoView;
 
@@ -29,5 +31,11 @@ public class LottoController {
 
     private void displayPurchasedLottoNumbers(LottoList lottoList) {
         lottoView.printPurchasedLottoNumbersFromView(lottoList.getLottoList());
+    }
+
+    private List getWinningNumbers() {
+        String winningNumbers = lottoView.inputWinningNumbers();
+        String bonusNumber = lottoView.inputBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber).getAllWinningNumbers();
     }
 }
