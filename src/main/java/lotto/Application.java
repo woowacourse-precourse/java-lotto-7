@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 public class Application {
     public static void main(String[] args) {
