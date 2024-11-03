@@ -11,7 +11,14 @@ public record Lotto(List<LottoNumber> numbers) {
         validate(numbers);
     }
 
-    private void validate(List<LottoNumber> numbers) {
+    public static Lotto from(List<Integer> intNumbers) {
+        List<LottoNumber> lottoNumbers = intNumbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+        return new Lotto(lottoNumbers);
+    }
+
+    private void validate(final List<LottoNumber> numbers) {
         validateLottoSize(numbers);
         validateDuplicate(numbers);
     }
