@@ -16,6 +16,7 @@ public class Validator {
         plusSignValidate(inputPurchaseAmount);
         blankValidate(inputPurchaseAmount);
         decimalValidate(inputPurchaseAmount);
+        //TODO: 0이 앞에 붙어있는지 검사하는 내용 추가
         purchaseAmount = parsingValidate(inputPurchaseAmount);
         greaterThanZeroValidate(purchaseAmount);
         purchaseAmountUnitValidate(purchaseAmount);
@@ -28,6 +29,25 @@ public class Validator {
         if (numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException(ERROR_MSG_PREFIX + "중복된 값은 불가합니다.");
         }
+    }
+
+    public static void validateWeeklyNumbers(String inputWeeklyNumbers) {
+
+        /*
+        TODO: 입력된 당첨 번호에 대한 유효성 검사
+        +) 쉼표로 나누기
+        1. 쉼표로 나눈 결과가 총 6개인지 검사
+        2. 나눈 내용에 공백이나 무입력이 있을 수 없다
+        3. 나눈 내용이 소수일 수 없다
+        4. 나눈 내용이 0보다 작거나 같을 수 없다
+        5. 나눈 내용에 +기호가 붙어있을 수 없다
+        6. 0이 앞에 붙어있을 수 없다
+        7. 나눈 내용이 숫자로 변환 가능해야한다
+        +) 변환
+        8. 각 숫자가 중복되지 않는지 검사
+        9. 각 숫자가 1부터 45 사이의 값인지 검사
+         */
+
     }
 
     private static void plusSignValidate(String input) {
