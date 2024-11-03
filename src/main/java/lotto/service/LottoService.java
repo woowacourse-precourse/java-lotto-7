@@ -94,4 +94,38 @@ public class LottoService {
 
         return cost;
     }
+
+    public int[] getWinningCount(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        int[] counts = new int[LottoRank.values().length];
+
+        for (Lotto issueLotto: lottos) {
+            LottoRank rank = getLottoRank(issueLotto, winningLotto, bonusNumber);
+            counts[rank.ordinal()]++;
+        }
+
+        return counts;
+    }
+
+    public LottoRank getLottoRank(Lotto issueLotto, Lotto winningLotto, int bonusNumber) {
+        int matchCount = issueLotto.getCount(winningLotto);
+        boolean existBonusNumber = issueLotto.existsNumber(bonusNumber);
+        return getLottoRank(matchCount, existBonusNumber);
+    }
+
+    private LottoRank getLottoRank(int matchCount, boolean existBonusNumber) {
+        if(matchCount == 5) {
+            if (existBonusNumber) {
+                return LottoRank.SECOND;
+            }
+            return LottoRank.THIRD;
+        }
+
+        for (LottoRank rank : LottoRank.values()) {
+            if(matchCount == rank.getMatchCount()) {
+                return rank;
+            }
+        }
+
+        return LottoRank.NONE;
+    }
 }

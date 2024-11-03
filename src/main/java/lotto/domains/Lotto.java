@@ -30,4 +30,13 @@ public class Lotto {
     public boolean existsNumber(int target) {
         return Collections.binarySearch(numbers, target) >= 0;
     }
+
+    public int getCount(Lotto lotto) {
+        int count = 0;
+        for (Integer num : lotto.numbers) {
+            if(existsNumber(num))   count++;
+        }
+
+        return count;
+    }
 }
