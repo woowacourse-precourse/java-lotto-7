@@ -24,6 +24,8 @@ public class Application {
 
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
+
+        displayResults(purchasedLottos, winningNumbers, bonusNumber, purchaseAmount);
     }
 
     private int getPurchaseAmount() {
@@ -83,5 +85,29 @@ public class Application {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    private void displayResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
+        Map<Rank, Integer> results = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.getRank(winningNumbers, bonusNumber);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+
+        System.out.println("당첨 통계\n---");
+        int totalPrize = 0;
+
+        for (Rank rank : Rank.values()) {
+            int count = results.getOrDefault(rank, 0);
+            if (rank != Rank.NONE) {
+                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                        rank.matchCount, rank.hasBonus ? ", 보너스 볼 일치" : "", rank.prize, count);
+            }
+            totalPrize += rank.prize * count;
+        }
+
+        double yield = (double) totalPrize / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 }
