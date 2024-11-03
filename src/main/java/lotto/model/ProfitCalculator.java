@@ -47,7 +47,7 @@ public class ProfitCalculator {
             int lottoPrice = lottoRank.getPrize();
             profitPrice += lottoPrice*count;
         }
-        profitRate = (double)profitPrice/purchasePrice;
+        profitRate = (double)profitPrice/purchasePrice*100;
     }
 
     public void settingPurchasePrice(int purchasePrice){
