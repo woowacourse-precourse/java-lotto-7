@@ -1,5 +1,11 @@
 package lotto.util;
 
+import static lotto.enums.Constants.LOTTO_NUMBER_MAXIMUM;
+import static lotto.enums.Constants.LOTTO_NUMBER_MINIMUM;
+import static lotto.enums.Constants.PURCHASE_AMOUNT_MINIMUM;
+import static lotto.enums.Constants.PURCHASE_AMOUNT_UNIT;
+import static lotto.enums.Constants.WINNING_NUMBER_COUNT;
+import static lotto.enums.Constants.ZERO_VALUE;
 import static lotto.enums.ExceptionMessage.BONUS_NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.enums.ExceptionMessage.BONUS_NUMBER_FORMAT_EXCEPTION;
 import static lotto.enums.ExceptionMessage.BONUS_NUMBER_RANGE_EXCEPTION;
@@ -14,9 +20,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.enums.ExceptionMessage;
 
 public class Validator {
+
+    private static final String DELIMITER = ",";
 
     public static int validatePurchaseAmount(String input) {
         try {
@@ -24,9 +31,9 @@ public class Validator {
 
             if (purchaseAmount > Integer.MAX_VALUE) {
                 throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_LARGE.getMessage());
-            } else if (purchaseAmount < 1000) {
+            } else if (purchaseAmount < PURCHASE_AMOUNT_MINIMUM.getValue()) {
                 throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_SMALL.getMessage());
-            } else if (purchaseAmount % 1000 != 0) {
+            } else if (purchaseAmount % PURCHASE_AMOUNT_UNIT.getValue() != ZERO_VALUE.getValue()) {
                 throw new IllegalArgumentException(PURCHASE_AMOUNT_UNIT_EXCEPTION.getMessage());
             }
 
@@ -37,16 +44,18 @@ public class Validator {
     }
 
     public static List<Integer> validateWinningNumbers(String input) {
-        String[] winningNumbers = input.split(",");
+        String[] winningNumbers = input.split(DELIMITER);
 
         Set<String> unique = new HashSet<>(Arrays.asList(winningNumbers));
-        if (unique.size() != 6) {
+        if (unique.size() != WINNING_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION.getMessage());
         }
 
         boolean anyMatch = Arrays.stream(winningNumbers)
                 .mapToInt(Integer::parseInt)
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number ->
+                        number < LOTTO_NUMBER_MINIMUM.getValue() ||
+                        number > LOTTO_NUMBER_MAXIMUM.getValue());
         if (anyMatch) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION.getMessage());
         }
@@ -60,7 +69,8 @@ public class Validator {
         try {
             int bonusNumber = Integer.parseInt(input);
 
-            if (bonusNumber < 1 || bonusNumber > 45) {
+            if (bonusNumber < LOTTO_NUMBER_MINIMUM.getValue() ||
+                    bonusNumber > LOTTO_NUMBER_MAXIMUM.getValue()) {
                 throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
             }
 
