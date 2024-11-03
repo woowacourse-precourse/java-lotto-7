@@ -31,6 +31,8 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
         printLottoStatistics();
+
+        printRateOfReturn(purchasePrice);
     }
 
     public static int inputLottoPurchaseAmount() {
@@ -173,6 +175,14 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + winningRecord.get(5) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningRecord.get(7) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winningRecord.get(6) + "개");
+
+    }
+    public static void printRateOfReturn(int purchasePrice) {
+        double rate = 0;
+
+        double sum = 5000 * winningRecord.get(3) + 50000 * winningRecord.get(4) + 1500000 * winningRecord.get(5) + 30000000 * winningRecord.get(7) + 2000000000 * winningRecord.get(6);
+        rate = (sum / purchasePrice) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rate);
 
     }
 
