@@ -14,7 +14,7 @@ public class LottoBank {
 
     public double calculateProfitRate(LottoResult lottoResult, int lottoCount) {
         long totalInvestment = (long) lottoCount * getLottoPrice();
-        long totalProfit = lottoResult.getResult().stream().mapToLong(prize -> prize.getMoney()).sum();
+        long totalProfit = lottoResult.calculateTotalProfit();
         double profitRate = ((double) totalProfit / totalInvestment) * 100;
         return Math.round(profitRate * 100) / 100.0;
     }
