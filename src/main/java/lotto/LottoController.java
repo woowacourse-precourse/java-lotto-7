@@ -1,11 +1,14 @@
 package lotto;
 
+import static lotto.Consumer.duplicateWithWinnging;
 import static lotto.Consumer.enterPurchaseAmount;
 import static lotto.Consumer.enterWinningNumbers;
+import static lotto.Consumer.getBousNumber;
 import static lotto.Consumer.getWinningNumbers;
 import static lotto.Seller.countNumberOfLotto;
 import static lotto.Seller.getHowManyLottoMessage;
 import static lotto.Seller.giveLotto;
+import static lotto.Seller.setBonusNumbers;
 import static lotto.Seller.setInputPurchaseAmount;
 import static lotto.Seller.setWinningNumbers;
 
@@ -22,5 +25,9 @@ public class LottoController {
         System.out.println();
         setWinningNumbers();
         List<Integer> winningNumbers = getWinningNumbers();
+        System.out.println();
+        setBonusNumbers();
+        int bonusNumber = getBousNumber();
+        duplicateWithWinnging(winningNumbers,bonusNumber);
     }
 }

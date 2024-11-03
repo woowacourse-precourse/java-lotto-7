@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Seller {
-    private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요";
+    private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String HOW_MANY_LOTTO_TEMPLATE = "%d개를 구매했습니다.";
-    private static final String WINNING_NUMBERS = "당첨번호를 입력해주세요";
+    private static final String WINNING_NUMBERS = "당첨번호를 입력해 주세요.";
+    private static final String BONUS_NUMBERS = "보너스 번호를 입력해 주세요.";
 
     public static void setInputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
@@ -35,5 +36,9 @@ public class Seller {
 
     public static void setWinningNumbers() {
         System.out.println(WINNING_NUMBERS);
+    }
+
+    public static void setBonusNumbers() {
+        System.out.println(BONUS_NUMBERS);
     }
 }

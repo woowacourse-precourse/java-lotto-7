@@ -2,15 +2,15 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.Consumer.converToNumber;
-import static lotto.Consumer.getWinningNumbers;
 import static lotto.Consumer.validateCount;
 import static lotto.Consumer.validateDuplicate;
 import static lotto.Consumer.validateRange;
+import static lotto.Consumer.validateSingleNumber;
 import static lotto.Exception.DONT_NOT_ZERO;
 import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
 import static lotto.Exception.IS_NOT_1000_UNIT;
+import static lotto.Exception.NUMBER_RANGE;
 import static lotto.Exception.SIX_WINNING_NUMBER;
-import static lotto.Exception.WINNING_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,8 +18,6 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ConsumerTest extends NsTest {
@@ -59,13 +57,13 @@ public class ConsumerTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "0","1,2,3,4,5,46"})
+    @ValueSource(strings = {"-1", "0", "1,2,3,4,5,46"})
     void 당첨번호_범위_테스트(String input) {
         List<Integer> winningNumbers = converToNumber(input);
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validateRange(winningNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(WINNING_NUMBER_RANGE)
+                        .hasMessage(NUMBER_RANGE)
         );
     }
 
@@ -89,6 +87,16 @@ public class ConsumerTest extends NsTest {
                 assertThatThrownBy(() -> validateDuplicate(winningNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(DUPLICATE_WINNING_NUMBER)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "46"})
+    void 보너스번호_범위_테스트(String bonusNumber) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> validateSingleNumber(Integer.parseInt(bonusNumber)))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(NUMBER_RANGE)
         );
     }
 }

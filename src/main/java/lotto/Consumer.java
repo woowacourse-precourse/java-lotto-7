@@ -1,10 +1,11 @@
 package lotto;
 
 import static lotto.Exception.DONT_NOT_ZERO;
+import static lotto.Exception.DUPLICATE_BONUS_WINNING;
 import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
 import static lotto.Exception.IS_NOT_1000_UNIT;
+import static lotto.Exception.NUMBER_RANGE;
 import static lotto.Exception.SIX_WINNING_NUMBER;
-import static lotto.Exception.WINNING_NUMBER_RANGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -67,9 +68,7 @@ public class Consumer {
 
     public static void validateRange(List<Integer> winningNumbers) {
         for (Integer number : winningNumbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(WINNING_NUMBER_RANGE);
-            }
+            validateSingleNumber(number);
         }
     }
 
@@ -77,6 +76,24 @@ public class Consumer {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER);
+        }
+    }
+
+    public static int getBousNumber() {
+        int bonusNumber = Integer.parseInt(input());
+        validateSingleNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    public static void validateSingleNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(NUMBER_RANGE);
+        }
+    }
+
+    public static void duplicateWithWinnging(List<Integer> winningNumbers, int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_WINNING);
         }
     }
 }
