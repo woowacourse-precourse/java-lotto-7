@@ -11,5 +11,15 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         }
     },
 
+    INVAILD_WINNING_NUMBER("[ERROR] 당첨 번호는 6개 입니다.") {
+        // 사용자가 입력한 당첨 번호의 숫자는 6개
+        @Override
+        public void validate(List<Integer> numbers) {
+            if (numbers.size() != 6) {
+                throw new IllegalArgumentException(getMessage());
+            }
+        }
+    },
+
 
 }
