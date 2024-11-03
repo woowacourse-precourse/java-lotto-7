@@ -4,6 +4,7 @@ import lotto.utils.Constants;
 
 import java.util.*;
 
+/** 로또 티켓으로 중복되지 않은 여섯개의 숫자로 이루어진다. */
 public class Lotto {
     
     private static final String EXCEPTION_MESSAGE_DUPLICATE =

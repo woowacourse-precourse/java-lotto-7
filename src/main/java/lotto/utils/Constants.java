@@ -1,5 +1,6 @@
 package lotto.utils;
 
+/** 여러 클래스에서 쓰는 상수값을 보관한다. */
 public final class Constants {
     
     private Constants() {}

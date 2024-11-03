@@ -7,6 +7,7 @@ import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.containsBlank;
 
+/** 로또 구매액을 보관한다. */
 public class SpendingMoney {
     
     private static final String EXCEPTION_MESSAGE_OUT_OF_LONG =
@@ -42,7 +43,6 @@ public class SpendingMoney {
         if (isNotModTicketPriceZero(numberToValidate)) {
            throw new IllegalArgumentException(EXCEPTION_MESSAGE_SMALL_CHANGE_NOT_ZERO);
         }
-
         this.money = Long.parseLong(numberToValidate);
     }
 

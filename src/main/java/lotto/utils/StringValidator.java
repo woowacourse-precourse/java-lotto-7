@@ -1,5 +1,6 @@
 package lotto.utils;
 
+/** 여러 클래스에서 공통으로 쓰는 입력값 문자열 검증기능을 담당한다. */
 public final class StringValidator {
     
     private StringValidator() {}

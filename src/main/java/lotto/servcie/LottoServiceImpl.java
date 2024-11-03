@@ -8,6 +8,11 @@ import lotto.model.condition.SpendingMoney;
 import lotto.model.winlotto.WinLotto;
 import lotto.repository.Repository;
 
+/**
+ * controller로부터 전달 받은 모델을 가지고 주요 결과를 만들어서
+ * repository에 저장한다. controller로부터 요청을 받아서 repository에
+ * 저장한 값을 불러와서 반환한다.
+ */
 public class LottoServiceImpl implements LottoService {
     
     private final Repository repository;

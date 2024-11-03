@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.BoughtLottos;
 import lotto.model.outcome.LottoResult;
 
+/** 출력값을 전달받아서 콘솔로 출력한다. */
 public class ConsoleOutputView implements OutputView {
     
     private static final String GUIDE_AMOUNT_BUY = "개를 구매했습니다.";

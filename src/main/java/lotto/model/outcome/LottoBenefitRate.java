@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
+/** 로또 등급별 당첨 개수와 총 구매액을 통해 로또 수익률을 계산하고 보관한다. */
 public class LottoBenefitRate {
 
     private final BigDecimal rate;

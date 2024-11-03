@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 
 import java.util.Set;
 
+/** 우승 로또 번호, 보너스 번호를 보관하며 일치 여부를 판단한다. */
 public class WinLotto {
     
     private final Set<Integer> basicNumber;

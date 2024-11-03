@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.text.DecimalFormat;
 
+/** 로또 당첨 등급 별 조건, 상금을 보관한다 */
 public enum PrizeGrade {
     THREE_MATCH("3개 일치", 5000, 3, false),
     FOUR_MATCH("4개 일치", 50000, 4, false),

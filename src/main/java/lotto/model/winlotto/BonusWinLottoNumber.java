@@ -8,6 +8,7 @@ import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.containsBlank;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
 
+/** 보너스 로또 번호를 저장한다. */
 public class BonusWinLottoNumber {
     
     private static final String EXCEPTION_MESSAGE_DUPLICATE =

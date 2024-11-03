@@ -12,6 +12,7 @@ import static lotto.utils.StringValidator.containsBlank;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
 
+/** 기본 우승 로또 번호를 보관한다. */
 public class BasicWinLottoNumbers {
 
     private static final String EXCEPTION_MESSAGE_WRONG_LOTTO_NUMBER_COUNT =

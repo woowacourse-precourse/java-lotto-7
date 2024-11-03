@@ -1,5 +1,6 @@
 package lotto.utils;
 
+/** 여러 클래스에서 쓰이는 예외 메시지를 보관한다. */
 public enum ExceptionMessage {
 
     EMPTY_INPUT("빈 칸입니다. 형식에 맞게 입력하세요."),

@@ -6,6 +6,7 @@ import lotto.utils.Constants;
 
 import java.util.*;
 
+/** 구매 금액만큼 무작위 숫자로 생성한 로또 티켓들을 보관한다. */
 public class BoughtLottos implements Iterable<Lotto> {
 
     private final List<Lotto> lottos;

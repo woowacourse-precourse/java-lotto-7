@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+/** 입력값을 받아서 반환한다. */
 public class ConsoleInputView implements InputView {
     
     private static final String ENTER_MONEY_BUY_LOTTO = "구입금액을 입력해주세요.";

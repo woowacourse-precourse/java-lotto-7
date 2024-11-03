@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/** 구매 로또 당첨 등급별 당첨 개수, 수익률을 보관한다. */
 public class LottoResult {
 
     private final List<String> result;

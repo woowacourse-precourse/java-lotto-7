@@ -10,6 +10,11 @@ import lotto.servcie.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+/**
+ * view로부터 입력값을 받아서 주요 모델을 생성하고, 입력값이 잘못되어서 예외가
+ * 호출되면 예외메시지를 출력한 후 다시 입력받는다. 만든 주요 모델을 service에
+ * 전달한다. 저장된 결과 값을 요청하여 view에 전달한다.
+ */
 public class LottoController {
     
     private final InputView inputView;
