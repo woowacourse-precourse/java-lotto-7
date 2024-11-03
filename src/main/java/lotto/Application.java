@@ -57,9 +57,10 @@ public class Application {
         Lotto lotto = new Lotto(new ArrayList<>());
         System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
         String winning[] = Console.readLine().split(",");
-        for(int i = 0; i < numSize; i++){
+        for(int i = 0; i < winning.length; i++){
             lotto.numbers.add(validate_parseInt(winning[i]));
         }
+        int size = lotto.getNumbers().size();
         lotto.validate(lotto.getNumbers());
         lotto.getNumbers().sort(Integer::compareTo);
         winning_number = lotto.getNumbers();
