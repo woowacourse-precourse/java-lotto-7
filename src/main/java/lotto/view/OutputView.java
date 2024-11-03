@@ -30,10 +30,11 @@ public class OutputView extends OutputWriter {
         displayMessage("보너스 번호를 입력해 주세요.");
     }
 
-    public void dispalyWinningStatistics(WinningResult winningResult) {
+    public void dispalyWinningStatistics(WinningResult winningResult, Profit profit) {
         displayNewLine();
         displayMessage("당첨 통계");
         displayMessage("---");
         displayMessage(winningResult.winningResultString());
+        displayMessage(profit.getProfitString());
     }
 }

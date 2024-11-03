@@ -35,4 +35,9 @@ public class WinningResult {
                 .map(rank -> rank.getMessage() + winningResult.get(rank) + "개")
                 .collect(Collectors.joining("\n"));
     }
+
+    public int getWinningMoney() {
+        return Arrays.stream(Rank.values())
+                .mapToInt(rank -> rank.getWinningMoney() * winningResult.get(rank)).sum();
+    }
 }
