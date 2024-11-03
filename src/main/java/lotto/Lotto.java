@@ -128,4 +128,36 @@ public class Lotto {
     private static boolean calculateBonusStatus(List<Integer> lottoNumbers, int bonusNumber) {
         return lottoNumbers.contains(bonusNumber);
     }
+
+    private static int checkResult(int number, boolean bonus) {
+        Rank rank = Rank.getRank(number, bonus);
+        if (rank == Rank.THREE) {
+            return 5000;
+        }
+        if (rank == Rank.TWO_WITH_BONUS) {
+            return 5000;
+        }
+        if (rank == Rank.FOUR) {
+            return 50000;
+        }
+        if (rank == Rank.THREE_WITH_BONUS) {
+            return 50000;
+        }
+        if (rank == Rank.FOUR_WITH_BONUS) {
+            return 1500000;
+        }
+        if (rank == Rank.FIVE) {
+            return 3000000;
+        }
+        if (rank == Rank.FIVE_WITH_BONUS) {
+            return 2000000000;
+        }
+        if (rank == Rank.SIX) {
+            return 2000000000;
+        }
+        if (rank == Rank.SIX_WITH_BONUS) {
+            return 2000000000;
+        }
+        return 0; // 모든 조건에 맞지 않을 경우의 기본 반환값
+    }
 }
