@@ -9,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LotteryUnitTest {
+class LotteryUnitTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void 보너스_번호_중복_예외() {
