@@ -10,7 +10,6 @@ import static lotto.global.ErrorCode.*;
 public class Lotto {
     private final List<Integer> numbers;
 
-    private int bonusNumber = -1;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -32,8 +31,6 @@ public class Lotto {
     public void setBonusNumber(int bonusNumber) {
         if (bonusNumber <= 0) throw new InputException(BONUS_NUMBER_ZERO_AND_LESS);
         if (numbers.contains(bonusNumber)) throw new InputException(WIN_NOT_EXIST_NUMBER);
-
-        this.bonusNumber = bonusNumber;
     }
 
     @Override
