@@ -1,8 +1,8 @@
-package service;
+package lotto.service;
 
-import lotto.Lotto;
-import lotto.Prize;
-import lotto.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.Prize;
+import lotto.model.WinningLotto;
 
 import java.util.EnumMap;
 import java.util.List;

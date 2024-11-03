@@ -1,7 +1,6 @@
-package view;
+package lotto.view;
 
-import lotto.Lotto;
-import lotto.Prize;
+import lotto.model.Prize;
 
 import java.text.NumberFormat;
 import java.util.*;

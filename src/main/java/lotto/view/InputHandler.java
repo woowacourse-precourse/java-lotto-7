@@ -1,9 +1,8 @@
-package view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import validation.InputValidator;
+import lotto.validation.InputValidator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

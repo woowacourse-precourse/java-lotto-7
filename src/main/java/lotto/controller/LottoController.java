@@ -1,13 +1,12 @@
-package controller;
+package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-import service.LottoManager;
-import lotto.Prize;
-import lotto.WinningLotto;
-import service.PrizeCalculator;
-import view.InputHandler;
-import view.OutputHandler;
+import lotto.model.Lotto;
+import lotto.service.LottoManager;
+import lotto.model.Prize;
+import lotto.model.WinningLotto;
+import lotto.service.PrizeCalculator;
+import lotto.view.InputHandler;
+import lotto.view.OutputHandler;
 
 import java.util.*;
 
