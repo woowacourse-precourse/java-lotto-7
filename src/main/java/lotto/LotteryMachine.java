@@ -13,30 +13,30 @@ public class LotteryMachine {
         this.lottos = new ArrayList<>();
     }
 
-
-    private int drawCount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+    private int purchaseAmount(int moneyAmount) {
+        return moneyAmount / 1000;
         // 추후 1,000원 단위 조건 체크 필요.
     }
 
-    public void drawLottos(int purchaseAmount) {
-        int count = drawCount(purchaseAmount);
+    public void drawLottos(int moneyAmount) {
+        int count = purchaseAmount(moneyAmount);
 
         for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(pickRandomNumbers());
-            lottos.add(lotto);
+            List<Integer> lotto = pickRandomNumbers();
+            lottos.add(new Lotto(lotto));
         }
     }
 
     public void printLottos() {
-
+        for (int i = 0; i < lottos.size(); i++) {
+            System.out.println(lottos.get(i).getNumbers());
+        }
     }
 
     private List<Integer> pickRandomNumbers() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto);
-
-        return lotto;
+        List<Integer> drawLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(drawLotto);
+        return drawLotto;
     }
 
     public List<Lotto> getLottos() {
