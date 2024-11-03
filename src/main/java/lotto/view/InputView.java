@@ -13,7 +13,6 @@ public class InputView {
     public static String inputWinningNumbers() {
         String input = inputWithValidation();
         InputValidator.validateDelimitedByComma(input);
-        InputValidator.validateWinningNumbersSize(input);
         return input;
     }
 
