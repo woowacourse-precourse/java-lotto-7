@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoMachine;
+import lotto.model.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,6 +22,9 @@ public class LottoController {
             int bonusNumber = InputView.requestBonusNumber(winningNumbers);
 
             // TODO: 당첨 결과 계산 및 출력 로직 추가
+            Result result = lottoMachine.calculateResults(winningNumbers, bonusNumber, purchaseAmount);
+            OutputView.printResults(result);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

@@ -5,6 +5,7 @@ import lotto.exception.InvalidPurchaseAmountException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoMachine {
@@ -39,5 +40,22 @@ public class LottoMachine {
     // 발행된 로또 목록 반환
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
+    }
+
+    // 당첨 결과 계산
+    public Result calculateResults(Set<Integer> winningNumbers, int bonusNumber, int totalSpent) {
+        Result result = new Result(totalSpent);
+
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+
+            // Rank Enum을 사용하여 당첨 등수를 판별
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            result.updateResult(rank);
+        }
+        return result;
     }
 }
