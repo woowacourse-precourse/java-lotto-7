@@ -55,7 +55,7 @@ public class LottoTransactionController {
 
   public Map<List<Integer>, PrizeRank> compareWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
     Set<Integer> _winningNumbers = new HashSet<>(winningNumbers);
-    Map<List<Integer>, PrizeRank> results = new HashMap<>();
+    Map<List<Integer>, PrizeRank> result = new HashMap<>();
 
     for (Lotto lotto : lottoTransaction.getPurchasedLottos()) {
       List<Integer> numbers = lotto.getNumbers();
@@ -63,10 +63,10 @@ public class LottoTransactionController {
 
       _numbers.retainAll(_winningNumbers);
       PrizeRank prizeRank = PrizeRank.getPrizeRank(_numbers.size(), numbers.contains(bonusNumber));
-      results.put(numbers, prizeRank);
-      lottoTransaction.addMatchCount(prizeRank);
+      result.put(numbers, prizeRank);
+      lottoTransaction.addRankCount(prizeRank);
     }
-    return results;
+    return result;
   }
 
   private Lotto produceLotto() {

@@ -38,8 +38,8 @@ class LottoTransactionTest {
   public void 랭크_카운트_추가_테스트() {
     PrizeRank prizeRank = PrizeRank.FIRST;
 
-    lottoTransaction.addMatchCount(prizeRank);
-    lottoTransaction.addMatchCount(prizeRank);
+    lottoTransaction.addRankCount(prizeRank);
+    lottoTransaction.addRankCount(prizeRank);
 
     EnumMap<PrizeRank, Integer> matchCounts = lottoTransaction.getRankCounts();
     assertEquals(2, matchCounts.get(prizeRank).intValue());

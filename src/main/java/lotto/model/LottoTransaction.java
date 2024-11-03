@@ -24,7 +24,7 @@ public class LottoTransaction {
     this.amount = amount;
   }
 
-  public void addMatchCount(PrizeRank prizeRank) {
+  public void addRankCount(PrizeRank prizeRank) {
 
     rankCounts.put(prizeRank, rankCounts.get(prizeRank) + 1);
   }
