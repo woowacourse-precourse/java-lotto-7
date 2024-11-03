@@ -2,21 +2,25 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseNum;
-        int winningNum;
+        List<Integer> winningNum;
         int bonusNum;
 
         purchaseNum = getPurchaseNum();
         Lotto[] lottos = new Lotto[purchaseNum];
-
         System.out.println("purchaseNum" + "개를 구매했습니다.");
+
         for(int i = 0; i < purchaseNum; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos[i] = new Lotto(numbers);
+            lottos[i].printNums();
         }
         winningNum = getWinningNum();
         bonusNum = getBonusNum();
@@ -32,8 +36,34 @@ public class Application {
         return sum / 1000;
     }
 
-    public static int getWinningNum() {
+    public static List<Integer> getWinningNum() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String nums = Console.readLine();
+        String[] numbers = nums.split(",");
 
+        if(numbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리여야 합니다.");
+        }
+
+        List<Integer> winningNum = new ArrayList<>();
+        for(int i = 0; i < numbers.length; i++) {
+            if(Integer.parseInt(numbers[i].trim()) > 45 || Integer.parseInt(numbers[i].trim()) < 1) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            winningNum.add(Integer.parseInt(numbers[i].trim()));
+        }
+        Collections.sort(winningNum);
+        return winningNum;
     }
 
+    public static int getBonusNum() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String num = Console.readLine();
+
+        int bonusNum = Integer.parseInt(num.trim());
+        if(bonusNum > 45 || bonusNum < 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonusNum;
+    }
 }
