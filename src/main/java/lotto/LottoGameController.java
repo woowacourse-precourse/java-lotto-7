@@ -23,7 +23,7 @@ public class LottoGameController {
 
     private List<Lotto> purchaseLottos(){
         try {
-            int amount = LottoInputView.();
+            int amount = LottoInputView.readPurchaseAmount();
 
         }
     }
