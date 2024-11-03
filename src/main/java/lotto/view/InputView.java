@@ -1,8 +1,8 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +19,40 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해 주세요.");
         }
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine().trim();
+        return parseNumbers(input);
+    }
+
+    public static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine().trim();
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해 주세요.");
+        }
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] parts = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String part : parts) {
+            try {
+                int number = Integer.parseInt(part.trim());
+                numbers.add(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해 주세요.");
+            }
+        }
+        new Lotto(numbers);
+        return numbers;
     }
 }

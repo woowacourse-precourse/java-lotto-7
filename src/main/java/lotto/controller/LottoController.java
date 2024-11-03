@@ -20,12 +20,35 @@ public class LottoController {
 
         List<Lotto> tickets = lottoMachine.generateLottoTickets(ticketCount);
         ResultView.printLottoTickets(tickets);
+
+        List<Integer> winningNumbers = getValidatedWinningNumbers();
+        int bonusNumber = getValidatedBonusNumber();
     }
 
     private int getValidatedPurchaseAmount() {
         while (true) {
             try {
                 return InputView.getPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidatedWinningNumbers() {
+        while (true) {
+            try {
+                return InputView.getWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidatedBonusNumber() {
+        while (true) {
+            try {
+                return InputView.getBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
