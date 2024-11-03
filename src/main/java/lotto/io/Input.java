@@ -2,7 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorCode;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 import java.util.regex.Pattern;
 

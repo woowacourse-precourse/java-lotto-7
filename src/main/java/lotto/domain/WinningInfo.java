@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum WinningInfo {
     FIRST_WINNER(6,"6개 일치 (2,000,000,000원)", 2_000_000_000),

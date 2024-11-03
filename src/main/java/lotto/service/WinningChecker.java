@@ -1,4 +1,8 @@
-package lotto;
+package lotto.service;
+
+import lotto.domain.WinningInfo;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 public class WinningChecker {
     private final Lotto winningNumber;

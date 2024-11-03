@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.ErrorCode;
 
 import java.util.Arrays;
 import java.util.HashSet;

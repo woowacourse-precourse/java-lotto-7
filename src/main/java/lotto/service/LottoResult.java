@@ -1,4 +1,7 @@
-package lotto;
+package lotto.service;
+
+import lotto.domain.WinningInfo;
+import lotto.domain.Lottos;
 
 import java.util.HashMap;
 import java.util.Map;

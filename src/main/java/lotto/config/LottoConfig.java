@@ -1,5 +1,8 @@
-package lotto;
+package lotto.config;
 
+import lotto.service.LottoGenerator;
+import lotto.service.LottoResult;
+import lotto.service.WinningChecker;
 import lotto.io.Input;
 
 public class LottoConfig {

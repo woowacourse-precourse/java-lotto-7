@@ -1,8 +1,14 @@
 package lotto;
 
 
+import lotto.config.Container;
+import lotto.config.LottoConfig;
+import lotto.domain.Lottos;
 import lotto.io.Input;
 import lotto.io.View;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoResult;
+import lotto.service.WinningChecker;
 
 
 public class Application {
@@ -20,6 +26,8 @@ public class Application {
 
         printIssuedLottos(lottos);
         printResult(lottos, lottoResult);
+
+        Container.reset();
     }
 
     private static void printIssuedLottos(Lottos lottos) {
