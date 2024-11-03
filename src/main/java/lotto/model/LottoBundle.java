@@ -13,23 +13,23 @@ public class LottoBundle {
     }
 
     public Map<LottoPrizeType, Integer> matchCountWithBonus(Lotto winningLotto, LottoBonusNumber bonusNumber) {
-        Map<LottoPrizeType, Integer> prizeCount = initializePrizeCountSetting();
+        Map<LottoPrizeType, Integer> lottoPrizes = initializePrizeCountSetting();
 
         for (Lotto lotto : lottoBundle) {
             LottoPrizeType prizeType = calculatePrizeType(lotto, winningLotto, bonusNumber);
             if (prizeType != null) {
-                prizeCount.put(prizeType, prizeCount.get(prizeType) + 1);
+                lottoPrizes.put(prizeType, lottoPrizes.get(prizeType) + 1);
             }
         }
-        return prizeCount;
+        return lottoPrizes;
     }
 
     private Map<LottoPrizeType, Integer> initializePrizeCountSetting() {
-        Map<LottoPrizeType, Integer> map = new TreeMap<>(Comparator.reverseOrder());
+        Map<LottoPrizeType, Integer> lottoPrizes = new TreeMap<>(Comparator.reverseOrder());
         for (LottoPrizeType prizeType : LottoPrizeType.values()) {
-            map.put(prizeType, 0);
+            lottoPrizes.put(prizeType, 0);
         }
-        return map;
+        return lottoPrizes;
     }
 
     private LottoPrizeType calculatePrizeType(Lotto lotto, Lotto winningLotto, LottoBonusNumber bonusNumber) {
