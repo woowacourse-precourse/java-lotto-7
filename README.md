@@ -49,12 +49,12 @@ Validator
 -[ ] 입력값을 검증한다.
 -- -- --
 ## 다이어그램
-#### 클래스 다이어그램
-#### 시퀀스 다이어그램
-
+#### 클래스 다이어그램 (설계 기준)
+![classDiagram.png](docs/classDiagram.png)
+#### 시퀀스 다이어그램 (설계 기준)
+![sequenceDiagram.png](docs/sequenceDiagram.png)
 -- -- --
 ## 요구사항 분석
-
 협력 목표: 로또를 구매해서, 로또 당첨 여부와 결과를 알려주는 것
 
 시나리오:
