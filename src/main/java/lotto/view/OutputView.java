@@ -32,11 +32,11 @@ public class OutputView {
     }
 
     public void WinningStatistics() {
-        System.out.print("당첨 통계");
+        System.out.println("당첨 통계");
         System.out.print("---");
         System.out.println();
     }
-    
+
     public void matchWinningCount(List<Integer> winningCounts) {
         for (int rank = winningCounts.size(); rank > 0; rank--) {
             int winningCount = winningCounts.get(rank-1);
@@ -45,6 +45,6 @@ public class OutputView {
     }
 
         public void promptTotalReturnRate(String totalReturnRate) {
-        System.out.println("총 수익률은 " + "totalReturnRate" + "%입니다.");
+        System.out.println("총 수익률은 " + totalReturnRate + "%입니다.");
     }
 }

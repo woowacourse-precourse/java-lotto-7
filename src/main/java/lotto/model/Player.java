@@ -24,7 +24,9 @@ public class Player {
     public List<Lotto> getLottos() {
         return lottos;
     }
-
+    public int getWinningMoney() {
+        return winningMoney;
+    }
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
@@ -55,5 +57,12 @@ public class Player {
             }
         }
         return winningRank;
+    }
+
+    public String getRateOfReturn(int winning) {
+        String roundFormat = "%.".concat(Integer.toString(1).concat("f"));
+        System.out.println("winningAmount >>>>>" + winning);
+        System.out.println("purchaseAmount >>>>>" + purchaseAmount);
+        return String.format(roundFormat, (double)winning * 100 / purchaseAmount).concat("%");
     }
 }
