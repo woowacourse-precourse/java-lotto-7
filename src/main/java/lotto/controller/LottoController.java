@@ -74,5 +74,16 @@ public class LottoController {
     private void handleWinningNumbers() {
         output.printWinningNumbersInputPrompt();
         String winningNumbersInput = input.inputString();
+
+        validateWinningNumbersInput(winningNumbersInput);
+    }
+
+    private void validateWinningNumbersInput(String input) {
+        try {
+            validator.validateEmptyInput(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            handleWinningNumbers();
+        }
     }
 }
