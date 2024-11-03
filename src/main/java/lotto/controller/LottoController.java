@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.exception.ValidationValues;
+import lotto.exception.ValidateValues;
 import lotto.model.Lotto;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoResultManager;
@@ -20,7 +20,7 @@ public class LottoController {
 
     public void startLotto() {
         String inputPurchaseAmount = InputView.getLottoPurchaseAmount();
-        int purchaseAmount = ValidationValues.purchaseAmount(inputPurchaseAmount);
+        int purchaseAmount = ValidateValues.purchaseAmount(inputPurchaseAmount);
         int count = purchaseAmount / 1000;
 
         List<Lotto> lottos = lottoGenerator.generateLotto(count);

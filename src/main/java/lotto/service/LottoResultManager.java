@@ -1,6 +1,7 @@
 package lotto.service;
 
-import lotto.exception.ValidateWinningNumbers;
+import lotto.exception.InputValidation;
+import lotto.exception.ValidateValues;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
@@ -9,18 +10,16 @@ import java.util.StringTokenizer;
 
 public class LottoResultManager {
 
-    public List<String> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         String inputWinningNumbers = InputView.getWinningNumbers();
-        List<String> winningNumbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
 
-        if(ValidateWinningNumbers.NOT_BLANK.validateNumbers(inputWinningNumbers)){
+        if(InputValidation.NOT_BLANK.validate(inputWinningNumbers)){
             StringTokenizer tokenizer = new StringTokenizer(inputWinningNumbers,",");
             while(tokenizer.hasMoreTokens()){
                 String winnerNumber = tokenizer.nextToken();
-                if(ValidateWinningNumbers.NOT_NUMBER.validateNumbers(winnerNumber)
-                    && ValidateWinningNumbers.NOT_INTEGER.validateNumbers(winnerNumber)
-                    && ValidateWinningNumbers.NOT_IN_RANGE.validateNumbers(winnerNumber)){
-                    winningNumbers.add(winnerNumber);
+                if(ValidateValues.winningNumber(winnerNumber)){
+                    winningNumbers.add(Integer.parseInt(winnerNumber));
                 }
             }
         }
