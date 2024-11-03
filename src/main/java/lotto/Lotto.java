@@ -101,4 +101,15 @@ public class Lotto {
         }
         return false;
     }
+
+
+    // 1. 로또 구입 금액 만큼의 로또 번호를 저장한다.
+    public static void purchaseLotto(int num) {
+        for (int i = 0; i < num; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            new Lotto(numbers);
+            System.out.println(numbers);
+        }
+    }
+
 }
