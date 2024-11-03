@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.common.ExceptionMessage;
+import lotto.view.LottoOutputView;
+
 import java.util.List;
 
 public class Lotto {
@@ -8,13 +11,19 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        LottoOutputView.printLotto(this);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_COUNT_NUMBERS.getMessage());
+        }
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_DUPLICATED.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
