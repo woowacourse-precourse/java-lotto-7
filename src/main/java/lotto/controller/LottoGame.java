@@ -15,6 +15,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
+import lotto.util.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,8 +40,9 @@ public class LottoGame {
     private void purchaseLotto() {
         while (true) {
             try {
-                int money = inputView.getLottoAmount();
-                int lottoCount = money / MONEY_UNIT;
+                String money = inputView.getMoney();
+                InputValidator.validateMoney(money);
+                int lottoCount = Integer.parseInt(money) / MONEY_UNIT;
                 outputView.printLottoCount(lottoCount);
                 makeLottos(lottoCount);
                 break;
@@ -72,7 +74,9 @@ public class LottoGame {
         winningLottoNumbers = receiveWinningLottoNumbers();
         while (true) {
             try {
-                int bonusNumber = inputView.getBonusNumber();
+                String uncheckedBonusNumber = inputView.getBonusNumber();
+                InputValidator.validateBonusNumber(uncheckedBonusNumber);
+                int bonusNumber = Integer.parseInt(uncheckedBonusNumber);
                 winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
@@ -82,10 +86,13 @@ public class LottoGame {
     }
 
     private List<Integer> receiveWinningLottoNumbers() {
+        String uncheckedWinningLottoNumbers;
         List<Integer> winningLottoNumbers;
         while (true) {
             try {
-                winningLottoNumbers = inputView.getWinningLottoNumber();
+                uncheckedWinningLottoNumbers = inputView.getWinningLottoNumber();
+                InputValidator.validateLottoNumber(uncheckedWinningLottoNumbers);
+                winningLottoNumbers = InputValidator.makeLottoNumber(uncheckedWinningLottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
