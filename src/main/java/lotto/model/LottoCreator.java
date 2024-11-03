@@ -30,4 +30,10 @@ public class LottoCreator {
 		numbers.sort(Integer::compareTo);
 		return numbers;
 	}
+
+	private List<LottoNumber> getLottoNumbers(List<Integer> numbers) {
+		return numbers.stream()
+				.map(LottoNumber::from)
+				.toList();
+	}
 }
