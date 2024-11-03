@@ -22,7 +22,7 @@ public class LottoResult {
 
     public void update(final CorrectCount correctCount) {
         final WinningType type = WinningType.getType(correctCount);
-        result.put(type, result.getOrDefault(type, 0) + 1);
+        result.put(type, result.get(type) + 1);
     }
 
     public double getIncomeRatio(LottoPurchase purchase) {
