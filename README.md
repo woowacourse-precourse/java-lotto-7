@@ -31,3 +31,4 @@
 - provide interface for Machine service logic
   - [x] create Lotto more than ones
   - [x] save win Lotto number and bonus number from user
+  - [ ] return winning info of created Lottos

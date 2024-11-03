@@ -1,8 +1,11 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
+import lotto.constant.PrizeTier;
 import lotto.utils.NumberList;
 
 public class LottoModel {
@@ -53,6 +56,20 @@ public class LottoModel {
         return this.bonusNumber;
     }
 
+    public Map<PrizeTier,Integer> getWinningInfo(){
+
+        Map<PrizeTier,Integer> winningInfo = this.initWinningInfo();
+
+        for(Lotto lotto : this.lottoRepository){
+            PrizeTier result = lotto.checkPrizeTier(this.winLotto,this.bonusNumber);
+            int count = winningInfo.get(result);
+
+            winningInfo.replace(result,++count);
+        }
+
+        return winningInfo;
+    }
+
 
     private Lotto createLotto(){
         NumberList numberList = new NumberList();
@@ -61,6 +78,17 @@ public class LottoModel {
         Lotto newLotto = new Lotto(numberList);
 
         return newLotto;
+    }
+
+    private Map<PrizeTier,Integer> initWinningInfo(){
+        Map<PrizeTier,Integer> prizeTierMap = new EnumMap<>(PrizeTier.class);
+
+        for(PrizeTier prizeTier : PrizeTier.values()){
+            int count = 0;
+            prizeTierMap.put(prizeTier,count);
+        }
+
+        return prizeTierMap;
     }
 
 }
