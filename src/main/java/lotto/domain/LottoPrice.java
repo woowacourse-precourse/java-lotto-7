@@ -24,4 +24,8 @@ public class LottoPrice {
     public int cacluateGameCount() {
         return gameMoney / GAME_PRICE;
     }
+
+    public int getgameMoney() {
+        return gameMoney;
+    }
 }
