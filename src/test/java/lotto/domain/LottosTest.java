@@ -18,7 +18,7 @@ class LottosTest {
     @BeforeEach
     void setUp() {
         winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        bonusNumber = BonusNumber.of("7");
+        bonusNumber = BonusNumber.of(7);
     }
 
     @DisplayName("당첨번호와 일치하는 Rank리스트를 반환한다.")

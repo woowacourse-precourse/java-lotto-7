@@ -4,22 +4,13 @@ public class BonusNumber {
 
     private final int number;
 
-    private BonusNumber(String inputNumber) {
-        int number = validateType(inputNumber);
+    private BonusNumber(int number) {
         validateRange(number);
         this.number = number;
     }
 
-    public static BonusNumber of(String inputNumber) {
-        return new BonusNumber(inputNumber);
-    }
-
-    private int validateType(String inputNumber) {
-        try {
-            return Integer.parseInt(inputNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
-        }
+    public static BonusNumber of(int number) {
+        return new BonusNumber(number);
     }
 
     private void validateRange(int number) {

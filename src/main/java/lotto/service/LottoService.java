@@ -53,13 +53,13 @@ public class LottoService {
     }
 
     public BonusNumber createBonusNumber(String inputBonusNumber, Lotto winningNumber) {
-        BonusNumber bonusNumber = BonusNumber.of(inputBonusNumber);
-        validateDuplicatedBonusNumber(bonusNumber.getNumber(), winningNumber);
+        int parsedBonusNumber = Parse.stringToInt(inputBonusNumber);
+        validateDuplicateWith(parsedBonusNumber, winningNumber);
 
-        return bonusNumber;
+        return BonusNumber.of(parsedBonusNumber);
     }
 
-    private void validateDuplicatedBonusNumber(int bonusNumber, Lotto winningNumber) {
+    private void validateDuplicateWith(int bonusNumber, Lotto winningNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 보너스 번호는 입력할 수 없습니다.");
         }
