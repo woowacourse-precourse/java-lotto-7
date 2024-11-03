@@ -22,13 +22,13 @@ public class LottoRateCalculator {
         totalPrize += lottoResult.get(2) * THIRD_PRIZE;
         totalPrize += lottoResult.get(3) * FOURTH_PRIZE;
         totalPrize += lottoResult.get(4) * FIFTH_PRIZE;
-        rate = (double) totalPrize / price;
+        rate = ((double) totalPrize / price) * 100;
 
         halfUp();
     }
 
     private void halfUp() {
-        rate = Math.round(rate * 100.0) / 100.0;
+        rate = Math.round(rate * 10.0) / 10.0;
     }
 
     public double getRate() {
