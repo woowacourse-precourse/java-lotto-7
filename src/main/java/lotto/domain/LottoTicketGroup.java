@@ -19,4 +19,8 @@ public class LottoTicketGroup {
             ticket.printLottoNumbers();
         }
     }
+
+    public List<LottoTicket> getTickets() {
+        return tickets;
+    }
 }
