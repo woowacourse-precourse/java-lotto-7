@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoInfo {
-    public static List<Integer> lotteryNumbers;
+    List<Integer> lotteryNumbers;
     public static List<List<Integer>> AllLotteryNumbers = new ArrayList<>();
     Lotto lotto;
     int theNumberOfLotto;
@@ -42,10 +42,11 @@ public class LottoInfo {
 
     private void setRandomNumbers() {
         lotteryNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotteryNumbers);
-        AllLotteryNumbers.add(lotteryNumbers);
+        List<Integer> lottoNumbers = new ArrayList<>(lotteryNumbers);
+        Collections.sort(lottoNumbers);
+        AllLotteryNumbers.add(lottoNumbers);
 
-        lotto = new Lotto(lotteryNumbers);
+        lotto = new Lotto(lottoNumbers);
         System.out.println(lotto.getNumbers());
     }
 }
