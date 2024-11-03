@@ -18,6 +18,7 @@ public class LottoController {
         // 보너스 번호 입력받는다.
         int bonusNumber = LottoInputView.lottoBonusNumber(winningNumbers);
         lottoGame.setLottoGame(new Lotto(winningNumbers), bonusNumber);
+        lottoGame.calculateLotto(makePurchasedLottos);
     }
 
     public int count (int lottoPurchase) {

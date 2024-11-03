@@ -23,7 +23,7 @@ public enum LottoRank{
         return prize;
     }
 
-    public static LottoRank valueof(int match, boolean matchBonus) {
+    public static LottoRank valueOf(int match, boolean matchBonus) {
         for (LottoRank rank : values()) {
             if (rank.match == match && rank.matchBonus == matchBonus) {
                 return rank;
