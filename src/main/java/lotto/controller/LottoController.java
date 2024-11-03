@@ -18,6 +18,7 @@ public class LottoController {
     private final LottoOutputView lottoOutputView;
     private final RetryHandler retryHandler;
     private final LottoConfig lottoConfig;
+    private final LottoDispenser lottoDispenser;
 
     public LottoController(
             LottoInputView lottoInputView,
@@ -29,6 +30,7 @@ public class LottoController {
         this.lottoOutputView = lottoOutputView;
         this.retryHandler = retryHandler;
         this.lottoConfig = lottoConfig;
+        this.lottoDispenser = LottoDispenser.fromConfig(lottoConfig);
     }
 
     public void run() {
@@ -49,7 +51,6 @@ public class LottoController {
     }
 
     private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
-        LottoDispenser lottoDispenser = LottoDispenser.fromConfig(lottoConfig);
         return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
     }
 
