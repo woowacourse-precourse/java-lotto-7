@@ -1,12 +1,17 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import lotto.domains.customer.Customer;
+import lotto.domains.lotto.domain.Lotto;
+import lotto.domains.lotto.domain.LottoPrizeNumbers;
+import lotto.domains.lotto.domain.LottoTicket;
 
 public class CustomerTest {
 	@DisplayName("Customer 클래스가 올바르게 생성된다.")
@@ -27,5 +32,24 @@ public class CustomerTest {
 	void 천원_미만의_금액을_입력하면_예외가_발생한다() {
 		assertThatThrownBy(() -> Customer.from(999))
 			.isInstanceOf(IllegalArgumentException.class);
+	}
+
+	@DisplayName("몇개의 로또가 당첨되었는지 확인할 수 있다")
+	@Test
+	void 몇개의_로또가_당첨되었는지_확인할_수_있다() {
+		Customer customer = Customer.from(1000);
+		List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+		int bonusNumbers = 7;
+		List<Lotto> tickets = List.of(
+			new Lotto(List.of(1,2,3,8,9,10)),
+			new Lotto(List.of(2,4,6,1,12,13))
+		);
+		LottoTicket lottoTickets = new LottoTicket(tickets);
+		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumbers);
+
+		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
+
+		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(3))).isTrue();
+		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(4))).isTrue();
 	}
 }
