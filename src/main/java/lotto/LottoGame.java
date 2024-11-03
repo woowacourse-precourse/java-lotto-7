@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
+import lotto.domain.LottoDraw;
 import lotto.domain.LottoTicket;
 import lotto.domain.NumbersGenerator;
 import lotto.domain.PurchaseAmount;
@@ -32,9 +32,9 @@ public class LottoGame {
 
     private void draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, randomNumbersGenerator);
+        LottoDraw lottoDraw = new LottoDraw(purchaseAmount, randomNumbersGenerator);
 
-        LottoTicket lottoTicket = new LottoTicket(lottoMachine.generateLottos());
+        LottoTicket lottoTicket = new LottoTicket(lottoDraw.generateLottos());ㄴ
 
         output.printLottoTicket(lottoTicket);
 
