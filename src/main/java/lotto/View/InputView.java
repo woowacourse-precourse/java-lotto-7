@@ -28,13 +28,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
 
-        List<Integer> numbers = parseNumbers(input);
-
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
-        }
-        validateNumberRange(numbers);
-        return numbers;
+        return parseNumbers(input);
     }
 
     public static int inputBonusNumber() {
@@ -56,13 +50,5 @@ public class InputView {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private static void validateNumberRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
-            }
-        }
     }
 }
