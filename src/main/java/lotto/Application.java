@@ -22,6 +22,13 @@ public class Application {
 
         // 3.2 입력된 당첨 번호를 쉼표(,)를 기준으로 분리하는 기능
         String[] winningNumbersInputSplits = winningNumbersInput.split(",");
+
+        try {
+            // 3.3 분리한 문자열의 개수가 맞지 않는 경우 예외 처리하는 기능
+            validateWinningNumbersCount(winningNumbersInputSplits);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static String getInputString(String message) {
@@ -88,6 +95,12 @@ public class Application {
         System.out.println("\n" + lottoTickets.size() + "개를 구매했습니다.");
         for (Lotto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
+        }
+    }
+
+    private static void validateWinningNumbersCount(String[] winningNumbersInputSplits) {
+        if (winningNumbersInputSplits.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
         }
     }
 }
