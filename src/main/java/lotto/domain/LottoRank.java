@@ -37,17 +37,20 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
-        for (LottoRank rank : values()) {
-            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
-                return rank;
-            }
+        if (matchCount == 6) {
+            return FIRST;
         }
-        if (matchCount >= 3) {
-            for (LottoRank rank : values()) {
-                if (rank.matchCount == matchCount && !rank.matchBonus) {
-                    return rank;
-                }
-            }
+        if (matchCount == 5 && matchBonus) {
+            return SECOND;
+        }
+        if (matchCount == 5) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
         }
         return NONE;
     }
