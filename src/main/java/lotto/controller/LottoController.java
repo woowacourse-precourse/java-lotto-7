@@ -32,27 +32,48 @@ public class LottoController {
     }
 
     private TicketCount getTicketCount() {
-        String inputAmount = inputView.readPurchaseAmount();
-        TicketCount ticketCount = new TicketCount(inputAmount);
-        outputView.printPurchaseTicketCount(ticketCount.getCount());
-        return ticketCount;
+        try {
+            String readPurchaseAmount = inputView.readPurchaseAmount();
+            int purchaseAmount = Integer.parseInt(readPurchaseAmount);
+            TicketCount ticketCount = new TicketCount(purchaseAmount);
+            outputView.printPurchaseTicketCount(ticketCount.getCount());
+            return ticketCount;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getTicketCount();
+        }
     }
 
     private Tickets generateTickets(TicketCount ticketCount) {
-        Tickets tickets = new Tickets(ticketCount);
-        List<String> ticketsInfo = tickets.getTicketsInfo();
-        outputView.printTicketNumbers(ticketsInfo);
-        return tickets;
+        try {
+            Tickets tickets = new Tickets(ticketCount);
+            List<String> ticketsInfo = tickets.getTicketsInfo();
+            outputView.printTicketNumbers(ticketsInfo);
+            return tickets;
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return generateTickets(ticketCount);
+        }
     }
 
     private Winning getWinningNumbers() {
-        String winningNumber = inputView.readWinningNumber();
-        return new Winning(winningNumber);
+        try {
+            String winningNumber = inputView.readWinningNumber();
+            return new Winning(winningNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private Bonus getBonusNumber() {
-        String bonusNumber = inputView.readBonusNumber();
-        return new Bonus(Integer.parseInt(bonusNumber));
+        try {
+            String bonusNumber = inputView.readBonusNumber();
+            return new Bonus(Integer.parseInt(bonusNumber));
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getBonusNumber();
+        }
     }
 
     private WinningResultCounter calculateWinningResults(Tickets tickets, Winning winning, Bonus bonus) {
