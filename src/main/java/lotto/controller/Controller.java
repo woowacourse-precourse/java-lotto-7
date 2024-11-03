@@ -38,10 +38,8 @@ public class Controller {
     }
 
     private Winning createWinning() {
-        List<Integer> winningNumber = inputView.inputWinningNumber();
-        int bonus = getBonusNumber();
-
-        return new Winning(winningNumber, bonus);
+        Winning winning = inputView.inputWinningNumbers();
+        return inputView.inputBonusNumber(winning);
     }
 
     private int getIntValue() {
