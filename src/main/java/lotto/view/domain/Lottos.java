@@ -10,6 +10,10 @@ public class Lottos {
     public Lottos(Amount amount) {
         lottos = new ArrayList<>();
         int lottoCount = calculateLottoCount(amount.getValue());
+
+        for (int i = 1; i < lottoCount; i++) {
+            lottos.add(new Lotto());
+        }
     }
 
     private int calculateLottoCount(Integer amount) {
