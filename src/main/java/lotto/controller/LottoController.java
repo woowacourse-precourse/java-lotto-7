@@ -21,7 +21,7 @@ public class LottoController {
             // 구입 금액을 입력 받고 로또 구매
             int amount = InputView.getPurcahseAmount();
             List<Lotto> userLottos = lottoService.purchase(amount);
-            OutputView.purchase(userLottos);
+            OutputView.printPurchase(userLottos);
 
             // 당첨 번호와 보너스 번호를 입력 받음
             String winningNumbersInput = InputView.getWinningNumbers();
@@ -30,7 +30,7 @@ public class LottoController {
 
             WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
             Result result = lottoService.calculateResult(userLottos, winningLotto);
-
+            OutputView.printResult(result);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -33,4 +33,16 @@ public enum Rank {
         if (matchCount == 3) return FIFTH;
         return NONE;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean isRequireBonus() {
+        return requireBonus;
+    }
 }
