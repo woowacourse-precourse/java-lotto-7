@@ -24,31 +24,12 @@ public class InputDTO {
         this.money = money;
     }
 
-    public InputDTO() {}
-
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
-    public void setWinningNumbers(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
-    }
 
     public int getBonusNumber() {
         return bonusNumber;
-    }
-
-    public void setBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
-    }
-
-
-    public int getMoney() {
-        return money;
-    }
-
-    public int setMoney(int money) {
-        this.money = money;
-        return money;
     }
 }
