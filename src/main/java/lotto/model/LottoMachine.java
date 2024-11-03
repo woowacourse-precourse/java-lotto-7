@@ -9,7 +9,6 @@ import static lotto.common.error.AppErrorType.DIVIDED_BY_PRICE_ERROR;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.common.error.AppException;
 
 public class LottoMachine {
     public List<Lotto> buyLottoByPrice(int money) {
@@ -31,7 +30,7 @@ public class LottoMachine {
 
     private void validateDivideByUnit(int money) {
         if (money <= 0 || money % LOTTO_UNIT_PRICE != 0) {
-            throw new AppException(DIVIDED_BY_PRICE_ERROR);
+            throw new IllegalArgumentException(DIVIDED_BY_PRICE_ERROR.getMessage());
         }
     }
 

@@ -9,7 +9,6 @@ import static lotto.common.error.AppErrorType.PARSE_NUMBER_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.error.AppException;
 
 public class InputValidator {
     public void validateInputMoney(String input) {
@@ -37,7 +36,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (Exception exception) {
-            throw new AppException(PARSE_NUMBER_ERROR);
+            throw new IllegalArgumentException(PARSE_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -45,7 +44,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput <= 0) {
-            throw new AppException(NEGATIVE_NUMBER_ERROR);
+            throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR.getMessage());
         }
     }
 
@@ -53,7 +52,7 @@ public class InputValidator {
         int parsedInt = Integer.parseInt(input);
 
         if (LOTTO_START_RANGE > parsedInt || parsedInt > LOTTO_END_RANGE) {
-            throw new AppException(NUMBER_RANGE_ERROR);
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
         }
     }
 }

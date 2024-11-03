@@ -7,7 +7,6 @@ import static lotto.common.error.AppErrorType.NUMBER_SIZE_ERROR;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import lotto.common.error.AppException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new AppException(NUMBER_SIZE_ERROR);
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR);
         }
     }
     
@@ -28,7 +27,7 @@ public class Lotto {
         HashSet<Integer> deDuplicatedNumbers = new HashSet<>(numbers);
 
         if (deDuplicatedNumbers.size() != numbers.size()) {
-            throw new AppException(NUMBER_DUPLICATE_ERROR);
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
