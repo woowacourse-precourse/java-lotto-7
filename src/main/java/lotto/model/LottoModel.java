@@ -8,7 +8,8 @@ import lotto.utils.NumberList;
 public class LottoModel {
 
     private List<Lotto> lottoRepository;
-
+    private Lotto winLotto;
+    private int bonusNumber;
 
     public LottoModel(){
         this.lottoRepository = new ArrayList<Lotto>();
@@ -28,6 +29,28 @@ public class LottoModel {
         }
 
         return createdLottos;
+    }
+
+
+
+    public void setWinLottoWithBonusNumber(List<Integer> winLottoNumbers, int bonusNumber){
+
+        NumberList newNumberList = new NumberList();
+        newNumberList.addAll(winLottoNumbers);
+
+        this.winLotto = new Lotto(newNumberList);
+        this.bonusNumber = bonusNumber;
+
+
+    }
+
+    public Lotto readWinLotto(){
+
+        return new Lotto(this.winLotto.getNumbers());
+    }
+
+    public int readBonusNumber(){
+        return this.bonusNumber;
     }
 
 
