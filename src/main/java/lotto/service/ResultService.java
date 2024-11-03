@@ -6,23 +6,42 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
+import lotto.domain.User;
 import lotto.domain.Winning;
 import lotto.view.ResultView;
 
 public class ResultService {
 
+    private final User user;
     private final Lottos lottos;
     private static Winning winning;
     private final Result result = new Result();
 
-    public ResultService(Lottos lottos, Winning winning) {
+    public ResultService(User user, Lottos lottos, Winning winning) {
+        this.user = user;
         this.lottos = lottos;
         this.winning = winning;
     }
 
     public void run() {
-        ResultView.displayLottoResult();
+        ResultView.displayLottoResultTitle();
         loopResult(lottos);
+        ResultView.displayLottoResultState(result.getResultMap());
+        double profitability = calculateProfitability(result.getResultMap(), user.getMoney());
+        ResultView.displayProfitability(profitability);
+    }
+
+    public double calculateProfitability(HashMap<Integer, Integer> resultMap, int money) {
+        HashMap<Integer, Integer> calculateMap = resultMap;
+        int winnerMoney = 0;
+
+        winnerMoney += calculateMap.getOrDefault(3, 0) * 5000;
+        winnerMoney += calculateMap.getOrDefault(4, 0) * 50000;
+        winnerMoney += calculateMap.getOrDefault(5, 0) * 1500000;
+        winnerMoney += calculateMap.getOrDefault(50, 0) * 30000000;
+        winnerMoney += calculateMap.getOrDefault(6, 0) * 2000000000;
+
+        return (winnerMoney - money) / (double) money * 100;
     }
 
     public void loopResult(Lottos lottos) {
@@ -36,7 +55,7 @@ public class ResultService {
 
     public int hasBonusNumber(List<Integer> lottoNumbers, int winningNumber) {
         if (lottoNumbers.contains(winning.getBonusNumber())) {
-            return winningNumber + 10;
+            return 50;
         }
         return winningNumber;
     }

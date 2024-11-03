@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
+import lotto.domain.User;
 import lotto.domain.Winning;
 import lotto.service.ResultService;
 import lotto.service.WinningService;
@@ -18,18 +19,20 @@ import org.junit.jupiter.api.Test;
 
 public class ResultTest {
 
-    private WinningService winningService;
-    private ResultService resultService;
+    private User user;
     private Result result;
     private Winning winning;
     private Lottos lottos;
+    private ResultService resultService;
+    private WinningService winningService;
 
     @BeforeEach
     public void setUp() {
+        user = new User();
         result = new Result();
         winning = new Winning();
         winningService = new WinningService(lottos, winning);
-        resultService = new ResultService(lottos, winning);
+        resultService = new ResultService(user, lottos, winning);
 
         HashSet<Integer> winningSet = new HashSet<>();
         winningSet.add(1);
