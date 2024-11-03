@@ -74,7 +74,7 @@ class WinningNumberTest {
     void 당첨_번호는_쉼표를_기준으로_구분한다() {
         WinningNumber winningNumber = WinningNumber.from("1,2,3,4,5,6");
 
-        List<Integer> numbers = winningNumber.getNumbers();
+        List<Integer> numbers = winningNumber.get();
 
         assertIterableEquals(List.of(1, 2, 3, 4, 5, 6), numbers);
     }

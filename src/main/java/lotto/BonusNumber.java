@@ -29,7 +29,7 @@ public class BonusNumber {
     }
 
     public void isDuplicated(WinningNumber winningNumber) {
-        List<Integer> winningNumbers = winningNumber.getNumbers();
+        List<Integer> winningNumbers = winningNumber.get();
         if (winningNumbers.contains(this.number)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR);
         }
