@@ -7,7 +7,7 @@
   - Application.java 로 실행 진행
 
 2. 도메인 모델 구현
-  - 로또 번호 및 등수 도메인 구현
+  - 로또 번호 및 등수 구현
   - LottoNumber enum 구현
   - WinningRank enum 구현
 
