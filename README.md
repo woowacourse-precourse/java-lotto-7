@@ -48,5 +48,5 @@
 
 ### 5. Controller 구현
 
-- [ ]  ApplicationController 클래스 생성
-   - [ ]  애플리케이션 실행 기능
+- [x]  ApplicationController 클래스 생성
+   - [x]  애플리케이션 실행 기능 구현
