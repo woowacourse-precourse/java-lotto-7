@@ -35,7 +35,7 @@ public class LottoController {
     }
 
     private PurchaseAmount enterPurchaseAmount() {
-        return new PurchaseAmount(input.inputPurchaseAmount());
+        return input.inputPurchaseAmount();
     }
 
     private int computePurchaseCount(PurchaseAmount purchaseAmount) {

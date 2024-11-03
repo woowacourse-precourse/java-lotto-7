@@ -1,12 +1,19 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.PurchaseAmount;
 
 public class InputView {
 
-    public String inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+    public PurchaseAmount inputPurchaseAmount() {
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                return new PurchaseAmount(Console.readLine());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public String inputWinningNumbers() {

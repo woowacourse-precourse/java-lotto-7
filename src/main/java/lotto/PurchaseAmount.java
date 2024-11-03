@@ -16,15 +16,11 @@ public class PurchaseAmount {
     }
 
     private int toInt(String input) {
-        int money;
-
         try {
-            money = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
         }
-
-        return money;
     }
 
     private void checkDivided(int money) {
