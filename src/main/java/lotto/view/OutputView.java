@@ -1,7 +1,5 @@
 package lotto.view;
 
-import static java.lang.String.format;
-
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Revenue;
@@ -21,7 +19,9 @@ public class OutputView {
     }
 
     public static void printPurchaseMessage(int lottoQuantity) {
-        System.out.println(format(INFORM_PURCHASE_LOTTO_MESSAGE, lottoQuantity));
+        printNewLine();
+        System.out.printf(INFORM_PURCHASE_LOTTO_MESSAGE, lottoQuantity);
+        printNewLine();
     }
 
     public static void printLottoExceptionMessage(LottoException e) {
@@ -46,6 +46,6 @@ public class OutputView {
     }
 
     public static void printReturnRate(Revenue revenue) {
-        System.out.println(format(RETURN_RATE_STAT, revenue.getReturnRate()));
+        System.out.printf(RETURN_RATE_STAT, revenue.getReturnRate());
     }
 }
