@@ -10,7 +10,7 @@ public enum Ranking {
     FIFTH(5_000, 3, false),
     MISS(0, 0, false);
 
-    private final int prize;
+    private final long prize;
     private final int matchCount;
     private final boolean isRequireMatchBonus;
 
@@ -28,7 +28,7 @@ public enum Ranking {
                 .orElse(MISS);
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 

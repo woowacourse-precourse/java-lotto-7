@@ -13,12 +13,17 @@ public class LottoResult {
         this.revenue = revenue;
     }
 
-    public static LottoResult of(Map<Ranking, Integer> lottoResults) {
+    public static LottoResult calculate(Map<Ranking, Integer> lottoResults) {
+        double revenue = calculateRevenue(lottoResults);
+        return new LottoResult(lottoResults, revenue);
+    }
+
+    private static double calculateRevenue(Map<Ranking, Integer> lottoResults) {
         int purchasedLottoCount = calculatePurchasedLottoCount(lottoResults);
         Money investmentMoney = LOTTO_PRICE.multiply(purchasedLottoCount);
         Money totalPrize = Money.from(calculateTotalPrize(lottoResults));
 
-        return new LottoResult(lottoResults, totalPrize.calculateRevenue(investmentMoney));
+        return totalPrize.calculateRevenue(investmentMoney);
     }
 
     private static int calculatePurchasedLottoCount(Map<Ranking, Integer> lottoResults) {
@@ -29,7 +34,7 @@ public class LottoResult {
 
     private static Long calculateTotalPrize(Map<Ranking, Integer> lottoResults) {
         return lottoResults.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 
