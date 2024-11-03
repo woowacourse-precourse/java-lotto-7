@@ -1,9 +1,12 @@
 package lotto.model;
 
 import lotto.model.BonusNumber;
+import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberTest {
 
@@ -16,6 +19,26 @@ class BonusNumberTest {
         BonusNumber bonusNumber = new BonusNumber(number);
         // then
         Assertions.assertThat(bonusNumber).isNotNull();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자가 아닌 경우 예외를 발생한다.")
+    void should_ThrowException_When_BonusNumberIsNotNumber() {
+        // given
+        String number = "a";
+        // when, then
+        Assertions.assertThatThrownBy(() -> new BonusNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호가 범위에 맞지 않는 값을 지닌 경우 예외를 발생한다..")
+    @ValueSource(strings = {"0", "46"})
+    void should_ThrowException_When_BonusNumberIsNotInRange(String number) {
+        // when, then
+        Assertions.assertThatThrownBy(() -> new BonusNumber(number))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_BONUS_NUMBER_VALUE.getMessage());
     }
 
 }
