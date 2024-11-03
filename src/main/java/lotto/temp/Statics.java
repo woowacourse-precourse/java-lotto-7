@@ -4,9 +4,7 @@ import lotto.model.Lotto;
 import lotto.util.CommonIo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Statics {
     private final CommonIo io;
@@ -33,16 +31,9 @@ public class Statics {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public void printWinningResult(int matchCount, int prize, int rankCount){
-        io.printMessage(matchCount +"개 일치 (" + prize + "원) - " + rankCount + "개");
-    }
-
     public float calculateProfit(int money, int totalPrize){
         float profit = ((float)totalPrize / money) * 100;
         return Math.round(profit * 10) / 10.0f;
     }
 
-    public void printProfit(float profit) {
-        io.printMessage("총 수익률은 " + profit + "%입니다.");
-    }
 }
