@@ -6,9 +6,12 @@ import static lotto.common.constant.ErrorMessage.*;
 
 public class PriceToBuyLottoValidation{
 
+    private static Integer priceMaxLimit = 2000000000;
+
     public static void validatePriceToBuyLotto(Integer priceToBuyLotto) {
         thowExceptionIfPriceIsNull(priceToBuyLotto);
         throwExceptionIfNotDivideBy1000(priceToBuyLotto);
+        throwExceptionIfPriceIsOverThanMax(priceToBuyLotto);
     }
 
     private static void thowExceptionIfPriceIsNull(Integer priceToBuyLotto){
@@ -20,6 +23,12 @@ public class PriceToBuyLottoValidation{
     private static void throwExceptionIfNotDivideBy1000(Integer priceToBuyLotto) {
         if (priceToBuyLotto % 1000 != 0) {
             throw new PriceToBuyLottoException(PRICE_SHOULD_BE_DIVIDED_BY_1000);
+        }
+    }
+
+    private static void throwExceptionIfPriceIsOverThanMax(Integer priceToBuyLotto) {
+        if(priceToBuyLotto < 0 || priceToBuyLotto > priceMaxLimit){
+            throw new PriceToBuyLottoException(PRICE_SHOULD_BE_SMALLER_THAN_LIMITS);
         }
     }
 }
