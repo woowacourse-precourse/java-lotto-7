@@ -37,7 +37,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
     - [X] 예외 처리
 - [ ] 보너스 숫자 1개 입력 받기
   - [ ] 보너스 번호 메시지 출력
-  - [ ] 예외 처리
+  - [X] 예외 처리
 - [ ] 구매한 로또의 당첨 금액 확인
   - [ ] 구매한 로또와 당첨 번호 비교
   - [ ] 당첨 통계(맞은 개수, 해당 금액, 개수) 반환
