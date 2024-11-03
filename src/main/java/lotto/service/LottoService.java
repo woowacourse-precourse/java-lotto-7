@@ -7,6 +7,7 @@ import lotto.view.ValidatorOfView;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class LottoService {
@@ -59,5 +60,22 @@ public class LottoService {
         return count;
     }
 
+    public double getProfitRate(LottoArchive lottoArchive, LottoResult lottoResult) {
+        int amount = lottoArchive.getLottoAmount();
+        int totalProfit = getTotalProfit(lottoResult);
+        return totalProfit / (double) amount * 100;
+    }
+
+    private int getTotalProfit(LottoResult lottoResult) {
+        int totalProfit = 0;
+        Map<LottoPolicy, Integer> results = lottoResult.getResults();
+        for (LottoPolicy rank : lottoResult.getResults().keySet()) {
+            if (rank == LottoPolicy.FAIL) {
+                continue;
+            }
+            totalProfit += rank.getMoney() * lottoResult.getResults().get(rank);
+        }
+        return totalProfit;
+    }
 
 }

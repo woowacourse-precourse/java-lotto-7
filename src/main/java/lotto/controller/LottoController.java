@@ -14,7 +14,7 @@ import java.util.List;
 public class LottoController {
     private final LottoService lottoService;
     static int budget;
-    static int lottoNumber;
+    static int lottoAmount;
     private LottoArchive lottoArchive;
     private WinningLotto winningLotto;
 
@@ -34,7 +34,7 @@ public class LottoController {
     public void readUserBudget(){
         OutputView.printBudgetInputDescription();
         budget = InputView.inputBudget();
-        lottoNumber = budget/1000;
+        lottoAmount = budget/1000;
     }
 
     public void printLottoNumber(){
@@ -43,10 +43,10 @@ public class LottoController {
 
     public void generateLottos(){
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoNumber; i++) {
+        for (int i = 0; i < lottoAmount; i++) {
             lottos.add(lottoService.createLotto());
         }
-        lottoArchive = new LottoArchive(lottos);
+        lottoArchive = new LottoArchive(lottos,lottoAmount);
     }
 
     public void printLottos(){
@@ -87,6 +87,9 @@ public class LottoController {
             }
             OutputView.printEachRank(lottoPolicy.getMessage(), lottoPolicy.getMoney(),lottoResult.getResults().get(lottoPolicy));
         }
+        OutputView.printProfitRate(lottoService.getProfitRate(lottoArchive, lottoResult));
     }
+
+
 
 }

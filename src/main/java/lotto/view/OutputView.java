@@ -29,7 +29,6 @@ public class OutputView {
     public static void printResultDescription(){
         System.out.println(LOTTO_RESULT_OUTPUT_DESC);
     }
-
     public static void printEachRank(String message, int money, Integer count) {
         DecimalFormat formatter = new DecimalFormat("###,###");
         String str = message
@@ -37,4 +36,9 @@ public class OutputView {
                 + String.format(" - %s개", count);
         System.out.println(str);
     }
+    public static void printProfitRate(double profitRate) {
+        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        System.out.printf("총 수익률은 %s%%입니다.%n", formatter.format(profitRate));
+    }
+
 }
