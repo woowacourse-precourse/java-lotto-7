@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -9,7 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
-        validateDuplicated(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -25,8 +26,10 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(new HashSet<>()::add)) {
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> numSet = new HashSet<>(numbers);
+
+        if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
