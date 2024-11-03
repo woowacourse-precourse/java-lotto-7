@@ -1,7 +1,6 @@
 package lotto.controller;
 
 
-import java.util.List;
 import lotto.helper.handler.InputHandler;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
@@ -9,9 +8,6 @@ import lotto.model.LottoMachine;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
-import lotto.helper.util.InputUtil;
-import lotto.view.error.ErrorView;
-import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class GameController {
@@ -50,7 +46,5 @@ public class GameController {
         }
         OutputView.outputRankSummary(lottoResult.getResultRank(), lottoResult.calculateProfitRate());
     }
-
-
 
 }
