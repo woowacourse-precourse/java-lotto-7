@@ -12,6 +12,6 @@ public enum PromptMessage {
     }
 
     public String getMessage() {
-        return this.message;
+        return message;
     }
 }

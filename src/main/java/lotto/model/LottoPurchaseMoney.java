@@ -28,6 +28,6 @@ public class LottoPurchaseMoney extends Money {
     }
 
     public int toLottoCount() {
-        return this.money / LOTTO_PRICE;
+        return amount / LOTTO_PRICE;
     }
 }
