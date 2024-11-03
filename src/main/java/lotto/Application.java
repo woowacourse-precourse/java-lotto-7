@@ -26,6 +26,8 @@ public class Application {
             
             WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
             
+            LottoResult result = new LottoResult(lottos, winningLotto);
+            
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 예외 메시지 출력
         }

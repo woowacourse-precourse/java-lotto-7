@@ -22,7 +22,7 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    public Lotto getWinningNumbers() {
-        return winningNumbers;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
     }
 }
