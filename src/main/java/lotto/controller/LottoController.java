@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import com.sun.source.tree.Tree;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
 import lotto.Lotto;
@@ -33,7 +35,8 @@ public class LottoController {
         lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
 
         lottoService.calculateWinningAmount();
-        TreeMap<Integer, Integer> winningResult = lottoService.getWinningResult();
+        TreeMap<Integer, Integer> winningResult = new TreeMap<>(Comparator.reverseOrder());
+        winningResult.putAll(lottoService.getWinningResult());
         promptWinningResult();
         printWinningResult(winningResult);
 
