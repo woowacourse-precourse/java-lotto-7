@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.validation.LottoNumberValidator.validateLottoNumbers;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Lotto {
     }
 
     public static List<Integer> lottoGenerator() {
-        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_SIZE);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_SIZE));
     }
 
     public List<Integer> getNumbers() {
