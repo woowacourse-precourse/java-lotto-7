@@ -5,35 +5,30 @@ import static lotto.constant.ExceptionMessage.INVALID_NUMBER_FORMAT;
 import static lotto.constant.ExceptionMessage.NULL_OR_EMPTY_INPUT;
 
 public class NumberParser {
-    private static final int MAX_DIGITS_TO_PREVENT_OVERFLOW = 19;
+    private static final int INTEGER_MAX_DIGITS = 10;
+    private static final int LONG_MAX_DIGITS = 19;
 
     private NumberParser() {
     }
 
-    public static Long parse(String input) {
-        validateNotNull(input);
-
-        String trimmedInput = input.strip();
-        validateNotEmpty(trimmedInput);
-        validateNotOverflow(trimmedInput);
-
-        return parseToLong(trimmedInput);
+    public static Long parseLong(String input) {
+        return parseNumber(input, LONG_MAX_DIGITS, NumberParser::parseToLong);
     }
 
-    private static void validateNotNull(String input) {
-        if (input == null) {
+    public static Integer parseInt(String input) {
+        return parseNumber(input, INTEGER_MAX_DIGITS, NumberParser::parseToInteger);
+    }
+
+    private static <T> T parseNumber(String input, int maxDigits, Parser<T> parser) {
+        validate(input, maxDigits);
+        return parser.parse(input.strip());
+    }
+
+    private static void validate(String input, int maxDigits) {
+        if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT.message());
         }
-    }
-
-    private static void validateNotEmpty(String input) {
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT.message());
-        }
-    }
-
-    private static void validateNotOverflow(String input) {
-        if (input.length() >= MAX_DIGITS_TO_PREVENT_OVERFLOW) {
+        if (input.strip().length() >= maxDigits) {
             throw new IllegalArgumentException(INPUT_TOO_LONG.message());
         }
     }
@@ -44,5 +39,18 @@ public class NumberParser {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.message());
         }
+    }
+
+    private static Integer parseToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.message());
+        }
+    }
+
+    @FunctionalInterface
+    private interface Parser<T> {
+        T parse(String input);
     }
 }

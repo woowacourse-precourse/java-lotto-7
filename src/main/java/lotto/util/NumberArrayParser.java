@@ -10,7 +10,7 @@ public class NumberArrayParser {
     private NumberArrayParser() {
     }
 
-    public static List<Long> parse(String input) {
+    public static List<Integer> parse(String input) {
         if (input.isEmpty()) {
             return new ArrayList<>();
         }
@@ -18,7 +18,7 @@ public class NumberArrayParser {
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::strip)
                 .filter(NumberArrayParser::isNotEmpty)
-                .map(NumberParser::parse)
+                .map(NumberParser::parseInt)
                 .toList();
     }
 
