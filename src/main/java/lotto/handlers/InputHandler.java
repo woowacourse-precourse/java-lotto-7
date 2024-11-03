@@ -11,6 +11,10 @@ import java.util.stream.Stream;
 public class InputHandler {
     private final InputView inputView;
 
+    public InputHandler(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     private String getLottoNumberInput() {
         String input = "";
         boolean isValidInput = false;
@@ -39,10 +43,6 @@ public class InputHandler {
             }
         } while (!isValidInput);
         return input;
-    }
-
-    public InputHandler(InputView inputView) {
-        this.inputView = inputView;
     }
 
     public void handlePurchaseAmountInput(LottoHandler lottoHandler, ResultHandler resultHandler) {
