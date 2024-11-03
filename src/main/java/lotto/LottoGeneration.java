@@ -37,4 +37,8 @@ public class LottoGeneration {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 나누어 떨어져야 합니다.");
         }
     }
+
+    public static int extractQuantity(int amount) {
+        return amount / 1000;
+    }
 }
