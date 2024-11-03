@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+
 public class Validator {
     public static void validateAmount(String input) {
         isOnlyDigits(input);
@@ -8,20 +10,63 @@ public class Validator {
         isValidAmountUnit(amount);
     }
 
+    public static void validateUserPickNumbers(String input) {
+        isOnlyDigitsAndCommas(input);
+        ArrayList<Integer> numbers = Parser.parseUserPickNumbers(input);
+        isValidNumbersCount(numbers);
+        isNumbersInRange(numbers);
+        isNumbersUnique(numbers);
+    }
+
     private static void isOnlyDigits(String input) {
         for (char c : input.toCharArray()) {
-            if (Character.isDigit(c) == false)
+            if (Character.isDigit(c) == false) {
                 ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            }
         }
     }
 
     private static void isAmountInRange(int amount) {
-        if (amount < 1000 || 10000 < amount)
+        if (amount < Constants.AMOUNT_MIN || Constants.AMOUNT_MAX < amount) {
             ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+        }
     }
 
     private static void isValidAmountUnit(int amount) {
-        if ((amount % 1000) != 0)
+        if ((amount % Constants.AMOUNT_UNIT) != 0) {
             ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+        }
+    }
+
+    private static void isOnlyDigitsAndCommas(String input) {
+        for (char c : input.toCharArray()) {
+            if (Character.isDigit(c) == false && c != ',') {
+                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            }
+        }
+    }
+
+    private static void isValidNumbersCount(ArrayList<Integer> numbers) {
+        if (numbers.size() != Constants.NUMBER_COUNT) {
+            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+        }
+    }
+
+    private static void isNumbersInRange(ArrayList<Integer> numbers) {
+        for (int i : numbers) {
+            if (i < Constants.NUMBER_MIN || Constants.NUMBER_MAX < i) {
+                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            }
+        }
+    }
+
+    private static void isNumbersUnique(ArrayList<Integer> numbers) {
+        boolean[] checkedNumbers = new boolean[46];
+        for (int i : numbers) {
+            if (checkedNumbers[i] == true) {
+                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            }
+            checkedNumbers[i] = true;
+        }
     }
 }

@@ -7,9 +7,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
+//        sortNumbers(numbers);
+        validate(numbers);
     }
+
+    public List<Integer> getNumbers() { return numbers; }
+    public ArrayList<Integer> getNumbersArrayList() { return new ArrayList<Integer>(numbers); }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -17,6 +21,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() { return numbers; }
-    public ArrayList<Integer> getNumbersArrayList() { return new ArrayList<Integer>(numbers); }
+//    private static void sortNumbers(ArrayList<Integer> randomNumbers) {
+//        randomNumbers.sort(null);
+//    }
 }
