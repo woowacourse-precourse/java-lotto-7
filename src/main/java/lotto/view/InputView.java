@@ -54,6 +54,27 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public static int inputBonusNumber(Lotto winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = readLine();
+        addBlankLine();
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return Integer.parseInt(bonusNumber);
+    }
+
+    static void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
+        if (!NUMERIC_PATTERN.matcher(bonusNumber).matches()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+        }
+        int convertBonusNumber = Integer.parseInt(bonusNumber);
+        if (convertBonusNumber < 1 || convertBonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.getLotto().contains(convertBonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
+        }
+    }
+
     private static void addBlankLine() {
         System.out.println();
     }
