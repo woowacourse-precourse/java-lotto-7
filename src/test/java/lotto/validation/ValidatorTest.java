@@ -92,4 +92,16 @@ public class ValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    @DisplayName("숫자 범위가 매개변수 min, max 범위 밖이면 예외발생하는 테스트")
+    void oneNumberRange() {
+        BigDecimal min = new BigDecimal(1);
+        BigDecimal max = new BigDecimal(45);
+        BigDecimal number = new BigDecimal(46);
+
+        assertThatThrownBy(() -> {
+            Validator.oneNumberRange(min, max, number);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
