@@ -65,6 +65,6 @@ public class InputView {
                 new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
                 new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()),
                 bonusNumber);
-        Validator.isDuplicateBonusNumber(winningNumberData,bonusNumber.intValue());
+        Validator.isDuplicateBonusNumber(winningNumberData, bonusNumber.intValue());
     }
 }
