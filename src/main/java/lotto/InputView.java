@@ -12,14 +12,14 @@ public class InputView {
 
     public int buyLotto() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
+        String amount = Console.readLine();
 
         inputValidator.validateBuyLotto(amount);
 
-        return amount;
+        return Integer.parseInt(amount);
     }
 
-    public String enterWinningNumber() {
+    public String enterWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요");
         String winningNumbers = Console.readLine();
 
