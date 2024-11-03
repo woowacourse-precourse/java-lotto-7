@@ -80,17 +80,17 @@
     - [x] 구매한 로또 번호를 오름차순으로 정렬하여 출력한다.
     - [x] 예시 출력: `8개를 구매했습니다. [8, 21, 23, 41, 42, 43]`
 
-- [ ] **당첨 번호 입력 및 검증**
-    - [ ] 당첨 번호 6개를 입력받고 유효성을 검증한다.
-        - [ ] 1~45 범위 내에 있어야 하며, 중복이 없어야 한다.
-        - [ ] 범위 벗어날 경우 `IllegalArgumentException` 발생
-        - [ ] 중복 시 `DuplicateNumberException` 발생
+- [x] **당첨 번호 입력 및 검증**
+    - [x] 당첨 번호 6개를 입력받고 유효성을 검증한다.
+        - [x] 1~45 범위 내에 있어야 하며, 중복이 없어야 한다.
+        - [x] 범위 벗어날 경우 `IllegalArgumentException` 발생
+        - [x] 중복 시 `DuplicateNumberException` 발생
 
-- [ ] **보너스 번호 입력 및 검증**
-    - [ ] 보너스 번호 1개를 입력받고 유효성을 검증한다.
-        - [ ] 1~45 범위 내의 숫자여야 하고, 당첨 번호와 중복되지 않아야 한다.
-        - [ ] 범위 벗어날 경우 `IllegalArgumentException` 발생
-        - [ ] 중복 시 `DuplicateNumberException` 발생
+- [x] **보너스 번호 입력 및 검증**
+    - [x] 보너스 번호 1개를 입력받고 유효성을 검증한다.
+        - [x] 1~45 범위 내의 숫자여야 하고, 당첨 번호와 중복되지 않아야 한다.
+        - [x] 범위 벗어날 경우 `IllegalArgumentException` 발생
+        - [x] 중복 시 `DuplicateNumberException` 발생
 
 - [ ] **당첨 결과 계산**
     - [ ] 구매한 로또 번호와 당첨 번호를 비교하여 일치하는 개수를 계산한다.
@@ -125,7 +125,7 @@
     - PrizeMoneyCalculator
     - PurchasePriceCalculator
     - Lotto
-    - Numbers
+    - LottoTickets
 - Service
     - LottoService
 - Util
@@ -135,9 +135,10 @@
     - Constant
         - IOMessage
         - GeneralConstants
+    - Splitter
+        - InputSplitter
 - Validation
-    - WinNumbersValidator
-    - BonusNumberValidator
+    - InputNumbersValidator
     - PriceValidator
 - View
     - InputView
