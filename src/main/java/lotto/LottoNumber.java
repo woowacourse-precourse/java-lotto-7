@@ -19,7 +19,7 @@ public class LottoNumber {
 
     private static void isBetweenLottoNumberRule(Integer value) {
         if(value < 1 || value > 45) {
-            throw new IllegalArgumentException("당첨 번호는 1~45 사이의 수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 수여야 합니다.");
         }
     }
 

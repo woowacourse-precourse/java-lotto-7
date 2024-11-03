@@ -1,11 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.console.ConsoleInput;
+import lotto.console.ConsoleOutput;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoGameSetter {
 
@@ -27,16 +27,14 @@ public class LottoGameSetter {
     }
 
     private BonusNumber setBonusNumber(LottoNumbers winningNumbers) {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusNumberInput = readLine();
+        String bonusNumberInput = ConsoleInput.getBonusNumberInput();
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
 
         return BonusNumber.of(LottoNumber.valueOf(bonusNumber), winningNumbers);
     }
 
     private LottoNumbers setWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine();
+        String input = ConsoleInput.getWinningNumbers();
         String[] inputNumbers = input.split(",");
 
         Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
@@ -49,6 +47,7 @@ public class LottoGameSetter {
     }
 
     private void printDrawingResult(Lottos lottos) {
+
         StringBuilder lottoPurchaseResult = new StringBuilder();
         lottoPurchaseResult.append("\n").append(lottos.size()).append("개를 구매했습니다.\n");
         lottos.getValue()
@@ -58,7 +57,7 @@ public class LottoGameSetter {
                     lottoPurchaseResult.append("]\n");
                 });
 
-        System.out.println(lottoPurchaseResult);
+        ConsoleOutput.print(String.valueOf(lottoPurchaseResult));
     }
 
     private Lottos drawLottery(Integer totalLottoCount) {
@@ -76,9 +75,7 @@ public class LottoGameSetter {
     }
 
     private LottoPrice setTotalPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        Integer totalPrice = Integer.parseInt(readLine());
-
-        return LottoPrice.valueOf(totalPrice);
+        String totalPrice = ConsoleInput.getTotalPrice();
+        return LottoPrice.valueOf(Integer.parseInt(totalPrice));
     }
 }
