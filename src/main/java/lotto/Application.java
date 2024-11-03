@@ -2,10 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.Map;
 import lotto.checker.WinningChecker;
 import lotto.config.constant.LottoPurchaseConstant;
-import lotto.config.enumerate.WinningInfo;
+import lotto.data.Lotto;
+import lotto.data.WinningLotto;
+import lotto.data.WinningResult;
 import lotto.generator.LottoGenerator;
 import lotto.parser.UserInputParser;
 import lotto.printer.ResultPrinter;
@@ -13,29 +14,36 @@ import lotto.printer.ResultPrinter;
 public class Application {
     public static void main(String[] args) {
 
-        UserInputParser userInputParser = new UserInputParser();
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        WinningChecker winningChecker;
+        try {
 
-        System.out.println("구입 금액을 입력해 주세요.");
-        String lottoPurchaseAmountInput = Console.readLine();
-        long lottoPurchaseAmount = userInputParser.getLottoPurchaseAmount(lottoPurchaseAmountInput);
+            UserInputParser userInputParser = new UserInputParser();
+            LottoGenerator lottoGenerator = new LottoGenerator();
+            WinningChecker winningChecker;
 
-        List<Lotto> lottoes = lottoGenerator.generate(lottoPurchaseAmount / LottoPurchaseConstant.AMOUNT_UNIT);
-        ResultPrinter.printLottoesBought(lottoes);
+            System.out.println("구입 금액을 입력해 주세요.");
+            String lottoPurchaseAmountInput = Console.readLine();
+            long lottoPurchaseAmount = userInputParser.getLottoPurchaseAmount(lottoPurchaseAmountInput);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String lottoWinningNumbersInput = Console.readLine();
-        int[] winningNumbers = userInputParser.getLottoWinningNumbers(lottoWinningNumbersInput);
+            List<Lotto> lottoes = lottoGenerator.generateLottoes(
+                    lottoPurchaseAmount / LottoPurchaseConstant.AMOUNT_UNIT);
+            ResultPrinter.printLottoesBought(lottoes);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String winningBonusNumberInput = Console.readLine();
-        int bonusNumber = userInputParser.getLottoWinningBonusNumber(winningBonusNumberInput);
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String lottoWinningNumbersInput = Console.readLine();
+            List<Integer> winningNumbers = userInputParser.getLottoWinningNumbers(lottoWinningNumbersInput);
 
-        winningChecker = new WinningChecker(winningNumbers, bonusNumber);
-        Map<WinningInfo, Integer> winningResult = winningChecker.getWinningResult(lottoes);
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String winningBonusNumberInput = Console.readLine();
+            int bonusNumber = userInputParser.getLottoWinningBonusNumber(winningBonusNumberInput);
 
-        //ResultPrinter.printWinningResult(winningResult);
+            WinningLotto winningLotto = lottoGenerator.generateWinningLotto(winningNumbers, bonusNumber);
 
+            winningChecker = new WinningChecker(winningLotto);
+            WinningResult winningResult = winningChecker.getWinningResult(lottoPurchaseAmount, lottoes);
+
+            ResultPrinter.printWinningResult(winningResult);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

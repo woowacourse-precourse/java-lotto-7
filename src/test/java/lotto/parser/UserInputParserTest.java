@@ -8,6 +8,7 @@ import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUI
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class UserInputParserTest {
@@ -57,7 +58,7 @@ class UserInputParserTest {
         String lottoWinningNumbersInput = "1,2,3,4,5,6";
 
         //when
-        int[] lottoWinningNumbers = userInputParser.getLottoWinningNumbers(lottoWinningNumbersInput);
+        List<Integer> lottoWinningNumbers = userInputParser.getLottoWinningNumbers(lottoWinningNumbersInput);
 
         //then
         assertThat(lottoWinningNumbers).containsExactly(1, 2, 3, 4, 5, 6);

@@ -1,12 +1,11 @@
 package lotto.parser;
 
 import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_FORMAT;
-import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_FORMAT;
 import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_PURCHASE_AMOUNT_UNIT;
-import static lotto.config.constant.ExceptionMessageConstant.INVALID_LOTTO_REQUIRED_COUNT;
 
-import lotto.config.constant.LottoNumberConstant;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.config.constant.LottoPurchaseConstant;
 
 public class UserInputParser {
@@ -25,20 +24,14 @@ public class UserInputParser {
     }
 
 
-    public int[] getLottoWinningNumbers(String lottoWinningNumbersInput) {
+    public List<Integer> getLottoWinningNumbers(String lottoWinningNumbersInput) {
 
         try {
             String[] numbersSplit = lottoWinningNumbersInput.split(LOTTO_NUMBER_SEPARATOR);
-
-            validateNumberOfWinningNumbers(numbersSplit.length);
-
-            int[] winningNumbers = new int[LottoNumberConstant.REQUIRED_COUNT];
-
-            for (int winningNumberId = 0; winningNumberId < winningNumbers.length; winningNumberId++) {
-                winningNumbers[winningNumberId] = Integer.parseInt(numbersSplit[winningNumberId]);
-                validateLottoNumber(winningNumbers[winningNumberId]);
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (String numberInput : numbersSplit) {
+                winningNumbers.add(Integer.parseInt(numberInput));
             }
-
             return winningNumbers;
 
         } catch (NumberFormatException numberFormatException) {
@@ -49,10 +42,7 @@ public class UserInputParser {
 
     public int getLottoWinningBonusNumber(String winningBonusNumberInput) {
         try {
-            int winningBonusNumber = Integer.parseInt(winningBonusNumberInput);
-            validateLottoNumber(winningBonusNumber);
-
-            return winningBonusNumber;
+            return Integer.parseInt(winningBonusNumberInput);
         } catch (NumberFormatException numberFormatException) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT);
         }
@@ -62,22 +52,6 @@ public class UserInputParser {
         if (lottoPurchaseAmount % LottoPurchaseConstant.AMOUNT_UNIT != 0) {
             throw new IllegalArgumentException(INVALID_LOTTO_PURCHASE_AMOUNT_UNIT);
         }
-    }
-
-
-    private void validateNumberOfWinningNumbers(int numberOfWinningNumbers) {
-        if (numberOfWinningNumbers != LottoNumberConstant.REQUIRED_COUNT) {
-            throw new IllegalArgumentException(INVALID_LOTTO_REQUIRED_COUNT);
-        }
-    }
-
-
-    private void validateLottoNumber(int winningNumberId) {
-
-        if (!(LottoNumberConstant.MIN_NUMBER <= winningNumberId && winningNumberId <= LottoNumberConstant.MAX_NUMBER)) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
-        }
-
     }
 
 }

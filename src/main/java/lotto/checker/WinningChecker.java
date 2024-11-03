@@ -1,36 +1,50 @@
 package lotto.checker;
 
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.data.Lotto;
 import lotto.config.enumerate.WinningInfo;
+import lotto.data.WinningLotto;
+import lotto.data.WinningResult;
 
 public class WinningChecker {
 
     private final int BONUS_CHECK_CRITERIA = 5;
 
-    private final int[] winningNumbers;
-    private final int bonusNumber;
-    private final Map<WinningInfo, Integer> winningResult = new EnumMap<>(WinningInfo.class);
+    private final WinningLotto winningLotto;
+    private final WinningResult winningResult = new WinningResult();
 
-    public WinningChecker(int[] winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-
-        for (WinningInfo info : WinningInfo.values()) {
-            winningResult.put(info, 0);
-        }
+    public WinningChecker(WinningLotto winningLotto) {
+        this.winningLotto = winningLotto;
     }
 
-    public Map<WinningInfo, Integer> getWinningResult(List<Lotto> lottoes) {
+    public WinningResult getWinningResult(long lottoPurchaseAmount, List<Lotto> lottoes) {
+
+        updateWinningCount(lottoes);
+        updateProfitRate(lottoPurchaseAmount);
+        return winningResult;
+
+    }
+
+    private void updateWinningCount(List<Lotto> lottoes) {
+        Map<WinningInfo, Integer> winningCount = winningResult.getWinningCount();
 
         for (Lotto lotto : lottoes) {
             WinningInfo winningInfo = getWinningInfo(lotto);
-            winningResult.put(winningInfo, winningResult.get(winningInfo) + 1);
+            winningCount.put(winningInfo, winningCount.get(winningInfo) + 1);
         }
+    }
 
-        return winningResult;
+    private void updateProfitRate(long lottoPurchaseAmount) {
+        int totalPrize = 0;
+        Map<WinningInfo, Integer> winningCount = winningResult.getWinningCount();
+        for (Map.Entry<WinningInfo, Integer> entry : winningCount.entrySet()) {
+            WinningInfo winningInfo = entry.getKey();
+            int eachCount = entry.getValue();
+            totalPrize += winningInfo.getPrize() * eachCount;
+        }
+        double profitRate = (double) totalPrize / lottoPurchaseAmount * 100;
+        winningResult.setProfitRate(profitRate);
     }
 
     private WinningInfo getWinningInfo(Lotto lotto) {
@@ -56,7 +70,7 @@ public class WinningChecker {
     }
 
     private boolean winningNumbersHasNumber(int number) {
-        for (int lottoWinningNumber : winningNumbers) {
+        for (int lottoWinningNumber : winningLotto.getNumbers()) {
             if (number == lottoWinningNumber) {
                 return true;
             }
@@ -66,7 +80,7 @@ public class WinningChecker {
 
     private boolean checkBonus(Lotto lotto) {
         int numberToCheckBonus = getNumberToCheckBonus(lotto.getNumbers());
-        return numberToCheckBonus == bonusNumber;
+        return numberToCheckBonus == winningLotto.getBonusNumber();
     }
 
     private int getNumberToCheckBonus(List<Integer> lottoNumbers) {

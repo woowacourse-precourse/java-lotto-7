@@ -25,6 +25,19 @@ public enum WinningInfo {
         this.isBonus = isBonus;
     }
 
+    public int getMatchingNumbers() {
+        return this.matchingNumbers;
+    }
+
+
+    public int getPrize() {
+        return this.prize;
+    }
+
+    public boolean isBonus() {
+        return isBonus;
+    }
+
     public static WinningInfo getWinningInfo(int numberOfMatch, boolean isBonus) {
         return Arrays.stream(values())
                 .filter(winningInfo -> winningInfo.matchingNumbers == numberOfMatch && winningInfo.isBonus == isBonus)
