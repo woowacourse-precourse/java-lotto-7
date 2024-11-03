@@ -11,4 +11,8 @@ public class Validator {
     public static boolean isDivided(int num, int divider) {
         return num % divider == 0;
     }
+
+    public static boolean isBetween(int minInclusive, int num, int maxInclusive) {
+        return (minInclusive <= num) && (num <= maxInclusive);
+    }
 }

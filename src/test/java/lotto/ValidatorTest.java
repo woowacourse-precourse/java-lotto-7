@@ -51,4 +51,34 @@ public class ValidatorTest {
         assertThat(result)
                 .isFalse();
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 7, 34, 45})
+    void isBetweenTrue(int num) {
+        // given
+        int min = 1;
+        int max = 45;
+
+        // when
+        boolean result = Validator.isBetween(min, num, max);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 47, 100})
+    void isBetweenFalse(int num) {
+        // given
+        int min = 1;
+        int max = 45;
+
+        // when
+        boolean result = Validator.isBetween(min, num, max);
+
+        // then
+        assertThat(result)
+                .isFalse();
+    }
 }
