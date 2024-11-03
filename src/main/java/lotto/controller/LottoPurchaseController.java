@@ -10,13 +10,15 @@ import lotto.view.OutputView;
 
 public class LottoPurchaseController {
 
-	public void run() {
+	public List<LottoTicket> purchaseLottoTickets() {
 		int purchasePrice = getValidatedPurchasePriceWithRetry();
 
 		List<LottoTicket> tickets = LottoTicketGenerator.generateTickets(purchasePrice);
 		int ticketsCount = tickets.size();
 		OutputView.displayPurchaseCount(ticketsCount);
 		OutputView.displayLottoTickets(tickets);
+
+		return tickets;
 	}
 
 	private int getValidatedPurchasePriceWithRetry() {
