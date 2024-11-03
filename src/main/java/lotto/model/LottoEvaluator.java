@@ -23,7 +23,7 @@ public class LottoEvaluator {
     public LottoEvaluatedStatus getEvaluatedStatus(){
         HashMap<LottoPrize, Integer> prize = getPrize();
 
-        LottoBundle lottoBundle = lottoTicket.getLottoTicketStatus();
+        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
         int lottoAmount = lottoBundle.getLottoNumbers().size() * WON_1000;
         double returnOnInvestment = calculateReturnOnInvestment(prize, lottoAmount);
 
@@ -31,7 +31,7 @@ public class LottoEvaluator {
     }
 
     private HashMap<LottoPrize, Integer> getPrize() {
-        LottoBundle lottoBundle = lottoTicket.getLottoTicketStatus();
+        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
         List<LottoNumbers> lottoNumbers = lottoBundle.getLottoNumbers();
 
         return evaluateTicket(lottoNumbers);
@@ -42,9 +42,9 @@ public class LottoEvaluator {
 
         initializePrizeStatus(prizeStatus);
         for (LottoNumbers lottoNumber : lottoNumbers) {
-            int winningCount = countMatchingNumbers(lottoNumber);
-            int bonusCount = countMatchingBonus(lottoNumber);
-            LottoPrize prize = checkPrize(winningCount, bonusCount);
+            int matchingWinningCount = countMatchingWinningNumbers(lottoNumber);
+            int bonusCount = countMatchingBonusNumber(lottoNumber);
+            LottoPrize prize = checkPrize(matchingWinningCount, bonusCount);
             updatePrizeStatus(prizeStatus, prize);
         }
 
@@ -57,7 +57,7 @@ public class LottoEvaluator {
         }
     }
 
-    private int countMatchingNumbers(LottoNumbers lottoNumbers) {
+    private int countMatchingWinningNumbers(LottoNumbers lottoNumbers) {
         List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
         List<Integer> winningNumber = winningNumbers.getLottoNumbers().getLottoNumbers();
         int count = 0;
@@ -71,7 +71,7 @@ public class LottoEvaluator {
         return count;
     }
 
-    private int countMatchingBonus(LottoNumbers lottoNumbers) {
+    private int countMatchingBonusNumber(LottoNumbers lottoNumbers) {
         List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
 
         if (lottoNumber.contains(bonusNumber)) {
@@ -97,7 +97,6 @@ public class LottoEvaluator {
 
     private double calculateReturnOnInvestment(HashMap<LottoPrize, Integer> prizeStatus, int lottoAmount) {
         Set<LottoPrize> lottoPrizes = prizeStatus.keySet();
-        double returnOnInvestment;
 
         long totalPrize = 0;
         for (LottoPrize lottoPrize : lottoPrizes) {
@@ -105,7 +104,7 @@ public class LottoEvaluator {
             totalPrize += prize * prizeStatus.get(lottoPrize);
         }
 
-        returnOnInvestment = (double) totalPrize / lottoAmount * 100;
+        double returnOnInvestment = (double) totalPrize / lottoAmount * 100;
         return  (double) Math.round(returnOnInvestment * 10) / 10.0;
     }
 }
