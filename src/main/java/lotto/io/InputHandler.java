@@ -3,6 +3,7 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.Sign;
 import lotto.domain.BonusNumber;
 import lotto.domain.Price;
 import lotto.domain.WinningNumbers;
@@ -12,8 +13,6 @@ public class InputHandler {
     private static final String ERROR_PREFIX = "[ERROR]";
     private static final String CANNOT_STRING = "입력은 문자일 수 없습니다.";
     private static final String CANNOT_EMPTY_OR_BLANK = "입력은 공백이거나 비어있을 수 없습니다.";
-    private static final String WHITE_SPACE = " ";
-    private static final String COMMA = ",";
 
     public Price getPriceFromUser() {
         try {
@@ -55,7 +54,7 @@ public class InputHandler {
     }
 
     private List<Integer> retrieveWinningNumbers(String numbersString) {
-        return Arrays.stream(numbersString.split(COMMA))
+        return Arrays.stream(numbersString.split(Sign.COMMA))
                 .map(this::parseAsInteger)
                 .toList();
     }
@@ -83,6 +82,6 @@ public class InputHandler {
     }
 
     private String formatExceptionMessage(String nativeExceptionMessage) {
-        return String.join(WHITE_SPACE, ERROR_PREFIX, nativeExceptionMessage);
+        return String.join(Sign.WHITE_SPACE, ERROR_PREFIX, nativeExceptionMessage);
     }
 }
