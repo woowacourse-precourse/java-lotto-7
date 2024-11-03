@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -22,7 +23,7 @@ public class LottoManager {
         return new Lotto(numberList);
     }
 
-    public List<LottoRank> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
+    public Map<LottoRank,Long> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
         List<LottoRank> lottoRankResults = new ArrayList<>();
         for (Lotto currentLottoNumbers : lottoSets) {
             boolean hasBonusNumber = false;
@@ -32,7 +33,8 @@ public class LottoManager {
             }
             lottoRankResults.add(getLottoRank(hitCount, hasBonusNumber));
         }
-        return lottoRankResults;
+        return lottoRankResults.stream()
+                .collect(Collectors.groupingBy(rank->rank,Collectors.counting()));
     }
 
     private boolean checkHasBonusNumber(List<Integer> lotto, int bonusNumber) {
@@ -49,6 +51,5 @@ public class LottoManager {
         }
         return hitCount;
     }
-
 
 }
