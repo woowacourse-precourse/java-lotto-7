@@ -1,10 +1,10 @@
-package lotto.model.winnerRank;
+package lotto.model.rank;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public enum WinnerRank {
+public enum Rank {
     FIRST(1, 6, false, 2000000000),
     SECOND(2, 5, true, 30000000),
     THIRD(3, 5, false, 1500000),
@@ -17,21 +17,21 @@ public enum WinnerRank {
     private final boolean withBonusNumber;
     private final int price;
 
-    WinnerRank(int rank, int matchingAmount, boolean withBonusNumber, int price) {
+    Rank(int rank, int matchingAmount, boolean withBonusNumber, int price) {
         this.rank = rank;
         this.matchingAmount = matchingAmount;
         this.withBonusNumber = withBonusNumber;
         this.price = price;
     }
 
-    public static List<WinnerRank> findRanksExceptFail() {
-        List<WinnerRank> winnerRanks = new ArrayList<>(List.of(WinnerRank.values()));
-        winnerRanks.remove(WinnerRank.FAIL);
-        return Collections.unmodifiableList(winnerRanks);
+    public static List<Rank> findRanksExceptFail() {
+        List<Rank> ranks = new ArrayList<>(List.of(Rank.values()));
+        ranks.remove(Rank.FAIL);
+        return Collections.unmodifiableList(ranks);
     }
 
-    public static WinnerRank findByRank(int rank) {
-        for (WinnerRank winnerRank : WinnerRank.values()) {
+    public static Rank findByRank(int rank) {
+        for (Rank winnerRank : Rank.values()) {
             if (rank == winnerRank.rank) {
                 return winnerRank;
             }

@@ -1,13 +1,13 @@
 package lotto.model.winningResult;
 
-import lotto.model.winnerRank.WinnerRank;
+import lotto.model.rank.Rank;
 
 public class WinningResult {
-    private final WinnerRank winnerRank;
+    private final Rank rank;
     private int winningLottoAmount;
 
-    public WinningResult(WinnerRank winnerRank) {
-        this.winnerRank = winnerRank;
+    public WinningResult(Rank rank) {
+        this.rank = rank;
         this.winningLottoAmount = 0;
     }
 
@@ -15,8 +15,8 @@ public class WinningResult {
         winningLottoAmount++;
     }
 
-    public boolean correspondsTo(WinnerRank winnerRank) {
-        if (this.winnerRank.equals(winnerRank)) {
+    public boolean correspondsTo(Rank rank) {
+        if (this.rank.equals(rank)) {
             return true;
         }
         return false;

@@ -3,7 +3,7 @@ package lotto.model.winningResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.winnerRank.WinnerRank;
+import lotto.model.rank.Rank;
 
 public class WinningResults{
     private final List<WinningResult> winningResults;
@@ -14,23 +14,23 @@ public class WinningResults{
 
     private List<WinningResult> initializeWinningResults() {
         List<WinningResult> winningResults = new ArrayList<>();
-        for (WinnerRank winnerRank : WinnerRank.values()) {
-            winningResults.add(new WinningResult(winnerRank));
+        for (Rank rank : Rank.values()) {
+            winningResults.add(new WinningResult(rank));
         }
         return winningResults;
     }
 
-    public void add(WinnerRank winnerRank) {
+    public void add(Rank rank) {
         for (WinningResult winningResult : winningResults) {
-            if (winningResult.correspondsTo(winnerRank)) {
+            if (winningResult.correspondsTo(rank)) {
                 winningResult.addLottoAmount();
             }
         }
     }
 
-    public int findLottoAmountByRank(WinnerRank winnerRank) {
+    public int findLottoAmountByRank(Rank rank) {
         for (WinningResult winningResult : winningResults) {
-            if (winningResult.correspondsTo(winnerRank)) {
+            if (winningResult.correspondsTo(rank)) {
                 return winningResult.getWinningLottoAmount();
             }
         }

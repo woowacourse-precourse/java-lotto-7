@@ -3,7 +3,7 @@ package lotto.view.output;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
-import lotto.model.winnerRank.WinnerRank;
+import lotto.model.rank.Rank;
 import lotto.model.winningResult.WinningResults;
 
 public class OutputView {
@@ -30,13 +30,13 @@ public class OutputView {
     }
 
     public void outputWinningRanks(WinningResults winningResults) {
-        List<WinnerRank> descendingWinnerRanks = Sorter.sortDescending(WinnerRank.findRanksExceptFail());
-        for (WinnerRank winnerRank : descendingWinnerRanks) {
+        List<Rank> descendingRanks = Sorter.sortDescending(Rank.findRanksExceptFail());
+        for (Rank rank : descendingRanks) {
             System.out.println(String.format(
                     "%s (%s원) - %d개"
-                    , Messages.MATCHING_CONDITION(winnerRank)
-                    , Messages.PRICE(winnerRank.getPrice())
-                    , winningResults.findLottoAmountByRank(winnerRank)
+                    , Messages.MATCHING_CONDITION(rank)
+                    , Messages.PRICE(rank.getPrice())
+                    , winningResults.findLottoAmountByRank(rank)
             ));
         }
     }

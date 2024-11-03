@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.winnerRank.WinnerRank;
+import lotto.model.rank.Rank;
 import lotto.view.output.Messages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ public class MessagesTest {
     @DisplayName("[success] 특정 등수의 일치 조건을 정해진 형식으로 출력한다.")
     @CsvSource(value = {"FIRST:6개 일치", "SECOND:5개 일치, 보너스 볼 일치", "THIRD:5개 일치", "FOURTH:4개 일치", "FIFTH:3개 일치"}
             , delimiter = ':')
-    void matchingContidionOfWinningRankMessage(WinnerRank winnerRank, String expectedMessage) {
-        String matchingConditionMsg = Messages.MATCHING_CONDITION(winnerRank);
+    void matchingContidionOfWinningRankMessage(Rank rank, String expectedMessage) {
+        String matchingConditionMsg = Messages.MATCHING_CONDITION(rank);
 
         assertThat(matchingConditionMsg).isEqualTo(expectedMessage);
     }

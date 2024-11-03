@@ -9,17 +9,17 @@ import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.RandomNumberPicker;
 import lotto.model.winningNumber.WinningNumber;
-import lotto.model.winnerRank.WinnerRank;
-import lotto.model.winnerRank.WinnerRankDeterminer;
+import lotto.model.rank.Rank;
+import lotto.model.rank.RankDeterminer;
 import lotto.model.winningResult.WinningResults;
 
 public class LottoMachineImpl implements LottoMachine{
     private static final int PERCENTAGE_MULIPLIER = 100;
 
-    private final WinnerRankDeterminer winnerRankDeterminer;
+    private final RankDeterminer rankDeterminer;
 
-    public LottoMachineImpl(WinnerRankDeterminer winnerRankDeterminer) {
-        this.winnerRankDeterminer = winnerRankDeterminer;
+    public LottoMachineImpl(RankDeterminer rankDeterminer) {
+        this.rankDeterminer = rankDeterminer;
     }
 
     @Override
@@ -36,8 +36,8 @@ public class LottoMachineImpl implements LottoMachine{
         for (Lotto lotto : lottos.lottos()) {
             int matchingAmount = lotto.checkMatchingAmountWith(winningNumber.numbers());
             boolean matchesBonusNumber = lotto.contains(bonusNumber.number());
-            WinnerRank winnerRank = winnerRankDeterminer.determine(matchingAmount, matchesBonusNumber);
-            winningResults.add(winnerRank);
+            Rank rank = rankDeterminer.determine(matchingAmount, matchesBonusNumber);
+            winningResults.add(rank);
         }
         return winningResults;
     }
@@ -46,8 +46,8 @@ public class LottoMachineImpl implements LottoMachine{
     public double calculateEarningsRate(WinningResults winningResults, PurchaseAmount purchaseAmount) {
         int expense = purchaseAmount.purchaseAmount();
         int earnings = 0;
-        for (WinnerRank winnerRank : WinnerRank.values()) {
-            earnings += winningResults.findLottoAmountByRank(winnerRank) * winnerRank.getPrice();
+        for (Rank rank : Rank.values()) {
+            earnings += winningResults.findLottoAmountByRank(rank) * rank.getPrice();
         }
         return ((double) earnings) / expense * PERCENTAGE_MULIPLIER;
     }
