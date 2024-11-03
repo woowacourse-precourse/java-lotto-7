@@ -1,31 +1,51 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.model.Lotto;
+import java.math.BigInteger;
+import lotto.service.LottoService;
+import lotto.utils.LottoValidator;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class LottoController {
 
+    private static final LottoValidator lottoValidator = new LottoValidator();
+
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
+    private final LottoService lottoService;
+
+    public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView,
+                           LottoService lottoService) {
+        this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
+        this.lottoService = lottoService;
+    }
+
     public void payingForLotto() {
-        Long paidAmount = paying();
-        generateLottoRequest(paidAmount);
+        BigInteger purcharseAmount = paying();
+        generateLotto(purcharseAmount);
     }
 
-    private Long paying() {
-        /*
-        TODO
-        1. 구매할 금액을 입력한다.
-        2. 입력한 내용의 유효성 검사를 실시한다.
-        3. 유효성 검사에서 통과하지 못했다면, 다시 입력을 받는다.
-        4. 검사를 통과했다면, 본인이 지불한 금액을 Long타입으로 변환하여 반환한다.
-         */
+    private BigInteger paying() {
 
-        return null;
+        String input = lottoInputView.inputPurchaseAmount();
+
+        try {
+            lottoValidator.validatePurchaseAmount(input);
+        } catch (Exception e) {
+            return paying();
+        }
+
+        return new BigInteger(input);
     }
 
-    private void generateLottoRequest(Long paidAmount) {
+    private void generateLotto(BigInteger purchaseAmount) {
         /*
         1. 지불을 완료한 만큼 새로운 로또의 발급을 요청한다.
          */
+
+        //FIXME: REMOVE
+        System.out.println("purchaseAmount = " + purchaseAmount);
     }
 
 }
