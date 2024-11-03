@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -16,6 +17,14 @@ public class Application {
         }
     }
 
+    public static List<Integer> parseInts(String s){
+        List<Integer> integers = new ArrayList<>();
+        for(String num : s.split(",")){
+            integers.add(parseInt(num));
+        }
+        return integers;
+    }
+
     public static List<Lotto> inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
         while(true){
@@ -27,10 +36,32 @@ public class Application {
         }
     }
 
+    public static Lotto inputWinningLottoNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while(true){
+            try{
+                return new Lotto(parseInts(Console.readLine()));
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
+    }
+
+    public static Integer inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while(true){
+            try{
+                return parseInt(Console.readLine());
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] "+e.getMessage());
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         List<Lotto> lottos = inputPrice();
-
+        WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
 
     }
 }
