@@ -14,6 +14,7 @@ public class InputHandler {
             String input = Console.readLine();
             try {
                 payment = Payment.from(input);
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -28,6 +29,7 @@ public class InputHandler {
             String input = Console.readLine();
             try {
                 winning = Winning.from(input);
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -43,6 +45,7 @@ public class InputHandler {
             try {
                 bonus = Bonus.from(input);
                 bonus.isDuplicated(winning);
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
