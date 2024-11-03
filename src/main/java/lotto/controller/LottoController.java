@@ -23,6 +23,25 @@ public class LottoController {
     }
 
     public void run() {
+        PurchaseAmount purchaseAmount = initializePurchaseAmount();
+        lottoMachine = new LottoMachine(purchaseAmount, lottos);
+        OutputView.printPurchaseAmount(purchaseAmount);
+        OutputView.printLottos(lottoMachine.getLottos());
+
+        List<Integer> winningNumbers = initializeWinningNumbers();
+        int bonusNumberValue = initializeBonusNumber(winningNumbers);
+
+        LottoResultCalculator calculator = new LottoResultCalculator();
+        lottoResult = calculator.calculateResults(
+                lottoMachine.getLottos(),
+                new WinningNumber(winningNumbers),
+                new BonusNumber(bonusNumberValue, new WinningNumber(winningNumbers))
+        );
+
+        OutputView.printResult(lottoResult);
+    }
+
+    private PurchaseAmount initializePurchaseAmount() {
         PurchaseAmount purchaseAmount = null;
         while (purchaseAmount == null) {
             try {
@@ -32,11 +51,10 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+        return purchaseAmount;
+    }
 
-        lottoMachine = new LottoMachine(purchaseAmount, lottos);
-        OutputView.printPurchaseAmount(purchaseAmount);
-        OutputView.printLottos(lottoMachine.getLottos());
-
+    private List<Integer> initializeWinningNumbers() {
         List<Integer> winningNumbers = null;
         while (winningNumbers == null) {
             try {
@@ -47,7 +65,10 @@ public class LottoController {
                 winningNumbers = null;
             }
         }
+        return winningNumbers;
+    }
 
+    private int initializeBonusNumber(List<Integer> winningNumbers) {
         int bonusNumberValue = 0;
         boolean validBonusNumber = false;
         while (!validBonusNumber) {
@@ -59,10 +80,6 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-
-        LottoResultCalculator calculator = new LottoResultCalculator();
-        lottoResult = calculator.calculateResults(lottoMachine.getLottos(), new WinningNumber(winningNumbers), new BonusNumber(bonusNumberValue, new WinningNumber(winningNumbers)));
-
-        OutputView.printResult(lottoResult);
+        return bonusNumberValue;
     }
 }
