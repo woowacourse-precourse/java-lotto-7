@@ -10,7 +10,6 @@ public class Wallet {
     private final static int MIN_PRICE_PER_LOTTO_TICKET = 1000;
 
     private final int amount;
-    private int ticket;
     private float rateOfReturn = 0;
 
     public Wallet(int money) {
@@ -20,18 +19,14 @@ public class Wallet {
         this.amount = money;
     }
 
-    public void calculateNumberOfTicket(TicketCalculator ticketCalculator) {
-        ticket = ticketCalculator.calculate(amount);
+    public int calculateNumberOfTicket(TicketCalculator ticketCalculator) {
+        return ticketCalculator.calculate(amount);
     }
 
     public void calculateRateOfReturn(YieldCalculator yieldCalculator, long finalPrizeAmount) {
         rateOfReturn = yieldCalculator.calculate(finalPrizeAmount, amount);
     }
 
-
-    public int getTicket() {
-        return ticket;
-    }
 
     public float getRateOfReturn() {
         return rateOfReturn;
