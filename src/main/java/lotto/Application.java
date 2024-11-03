@@ -1,5 +1,6 @@
 package lotto;
 
+import controller.LottoController;
 import purchase.PurchaseAmount;
 import view.InputView;
 

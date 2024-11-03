@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Lotto;
+import domain.WinningLotto;
 import purchase.PurchaseAmount;
 import view.InputView;
 
