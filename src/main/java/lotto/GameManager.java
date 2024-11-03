@@ -1,6 +1,8 @@
 package lotto;
 
+import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.util.Validator.validatePrice;
+import static lotto.global.util.Validator.validateWinningNumber;
 import static lotto.score.Prize.NO_PRIZE;
 
 import java.util.Arrays;
@@ -72,9 +74,11 @@ public class GameManager {
     }
 
     private List<Integer> readWinningNumber() {
-        return Arrays.stream(inputView.readWinningNumber())
+        List<Integer> winningNumber = Arrays.stream(inputView.readWinningNumber())
                 .map(Integer::parseInt)
                 .toList();
+        validateWinningNumber(winningNumber);
+        return winningNumber;
     }
 
     private int readBonusNumber() {

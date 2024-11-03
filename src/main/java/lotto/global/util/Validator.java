@@ -6,6 +6,7 @@ import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
 
+import java.util.List;
 import lotto.Lotto;
 import lotto.UniqueNumber;
 
@@ -46,4 +47,13 @@ public class Validator {
             throw new IllegalArgumentException(LOTTO_PRICE_DIVISIBILITY);
         }
     }
+
+    public static void validateWinningNumber(List<Integer> winningNumbers) {
+        int oldSize = winningNumbers.size();
+        int newSize = (int) winningNumbers.stream().distinct().count();
+        if (oldSize != newSize) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_EXIST);
+        }
+    }
+
 }
