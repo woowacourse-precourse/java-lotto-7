@@ -9,8 +9,10 @@ public class Application {
     List<Integer> winnerNumber = new ArrayList<>();
     LottoQuickPick lottoQuickPick = new LottoQuickPick();
     WinnerInputHandler winnerInputHandler = new WinnerInputHandler();
+    LottoResultChecker lottoResultChecker = new LottoResultChecker();
 
     purchasedLottoList = lottoQuickPick.quickPick();
     winnerNumber = winnerInputHandler.getWinnerNumberAll();
+    lottoResultChecker.run(purchasedLottoList, winnerNumber);
   }
 }
