@@ -81,6 +81,6 @@ public class Utils {
     }
 
     public double calculateYieldRate(int sum, int price) {
-        return (double) sum / price;
+        return (double) sum / price * 100;
     }
 }
