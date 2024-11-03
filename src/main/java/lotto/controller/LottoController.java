@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.lotto.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.model.lotto.LottoGenerator;
 
 import java.util.List;
 
@@ -16,15 +17,15 @@ public class LottoController {
         int LottoAmount  = PurchaseAmount/InputView.AmountUnit;
         OutputView.printLottoAmount(LottoAmount);
 
+        List<Lotto> purchasedLottos = LottoGenerator.generateLottos(LottoAmount);
+        OutputView.printPurchasedLottos(purchasedLottos);
+
         // 당첨 로또 번호 입력
         List<Integer> WinningNumber = InputView.getWinLottoNumbers();
         Lotto winningLotto = new Lotto(WinningNumber);
 
-        System.out.println("Winning numbers: " + WinningNumber);
-
         //보너스 금액 입력
         int bonusNumber = InputView.getBonusNumber();
-        System.out.println("Bonus number: " + bonusNumber);
     }
 
 }

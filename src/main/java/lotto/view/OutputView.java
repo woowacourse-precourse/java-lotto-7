@@ -17,6 +17,13 @@ public class OutputView {
         System.out.println("총 수익률은 %.1f%%입니다." + rateOfReturn);
     }
 
+    // 구매한 로또 리스트 출력
+    public static void printPurchasedLottos(List<Lotto> purchasedLottos) {
+        for (Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
     public void printWinningStatisticHeader() {
         System.out.println("당첨 통계\n---");
     }
