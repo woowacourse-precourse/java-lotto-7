@@ -24,7 +24,11 @@ public class LottoGameController {
     private List<Lotto> purchaseLottos(){
         try {
             int amount = LottoInputView.readPurchaseAmount();
-
+            List<Lotto> lottos = lottoService.purchaseLotto(amount);
+            LottoOutputView.printPurchaseResult(lottos); // 출력필요.
+            return lottos;
+        } catch (IllegalArgumentException e){
+            LottoOutputView.print // 에러 표시 필요.
         }
     }
 }
