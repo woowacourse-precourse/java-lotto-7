@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,7 +36,7 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또는 가지고 있는 숫자를 보여준다.")
+    @DisplayName("로또는 가지고 있는 숫자를 형식에 맞게 보여준다.")
     @ParameterizedTest
     @MethodSource("provideValidNumbers")
     public void thenRepresentLotto(List<Integer> numbers) {
@@ -45,6 +46,17 @@ class LottoTest {
 
         //when & then
         assertTrue(lotto.represent().matches(regex));
+    }
+
+    @DisplayName("로또는 숫자를 정렬해서 보여줘야 한다.")
+    @ParameterizedTest
+    @MethodSource("provideValidNumbers")
+    public void shouldDisplaySortedList(List<Integer> numbers) {
+        //given
+        Lotto lotto = new Lotto(numbers);
+        
+        //when & then
+        assertThat(lotto.getNumbers()).isSorted();
     }
 
     private static Stream<List<Integer>> provideValidNumbers() {
