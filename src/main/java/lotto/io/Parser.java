@@ -32,4 +32,16 @@ public class Parser {
 
         return numbers;
     }
+
+    public static int parseInputToNumber(String numberInput) {
+        int number;
+
+        try {
+            number = Integer.parseInt(numberInput);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[Error] 보너스 번호는 정수여야 합니다.");
+        }
+
+        return number;
+    }
 }
