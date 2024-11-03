@@ -37,7 +37,7 @@ class LottoCalculationServiceTest {
         assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.FIRST)).isEqualTo(1);
         assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.SECOND)).isEqualTo(1);
         assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.THIRD)).isEqualTo(1);
-        assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.FORT)).isEqualTo(1);
+        assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.FOURTH)).isEqualTo(1);
         assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.FIFTH)).isEqualTo(1);
         assertThat(actualWinningResult.getCountPerWinningType().get(WinningType.NONE)).isEqualTo(2);
     }
@@ -53,12 +53,12 @@ class LottoCalculationServiceTest {
     void 당첨_상금_계산() {
         WinningResult winningResult = new WinningResult(List.of(
                 WinningType.FIRST, WinningType.SECOND, WinningType.THIRD,
-                WinningType.FORT, WinningType.FIFTH, WinningType.NONE));
+                WinningType.FOURTH, WinningType.FIFTH, WinningType.NONE));
 
         long actualPrizeMoney = lottoCalculationService.calculationAllPrizeMoney(winningResult);
 
         long expectedPrizeMoney = WinningType.FIRST.getPrizeMoney() + WinningType.SECOND.getPrizeMoney() +
-                WinningType.THIRD.getPrizeMoney() + WinningType.FORT.getPrizeMoney() +
+                WinningType.THIRD.getPrizeMoney() + WinningType.FOURTH.getPrizeMoney() +
                 WinningType.FIFTH.getPrizeMoney() + WinningType.NONE.getPrizeMoney();
         assertThat(actualPrizeMoney).isEqualTo(expectedPrizeMoney);
     }
@@ -70,12 +70,12 @@ class LottoCalculationServiceTest {
         PurchasePrice purchasePrice = new PurchasePrice(price);
         WinningResult winningResult = new WinningResult(List.of(
                 WinningType.FIRST, WinningType.SECOND, WinningType.THIRD,
-                WinningType.FORT, WinningType.FIFTH, WinningType.NONE));
+                WinningType.FOURTH, WinningType.FIFTH, WinningType.NONE));
 
         double actualRate = lottoCalculationService.calculationRateOfReturn(purchasePrice, winningResult);
 
         long expectedPrizeMoney = WinningType.FIRST.getPrizeMoney() + WinningType.SECOND.getPrizeMoney() +
-                WinningType.THIRD.getPrizeMoney() + WinningType.FORT.getPrizeMoney() +
+                WinningType.THIRD.getPrizeMoney() + WinningType.FOURTH.getPrizeMoney() +
                 WinningType.FIFTH.getPrizeMoney() + WinningType.NONE.getPrizeMoney();
         double expectedRate = expectedPrizeMoney / (double) price;
         assertThat(actualRate).isEqualTo(expectedRate);

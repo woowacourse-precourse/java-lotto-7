@@ -18,7 +18,7 @@ class WinningResultTest {
                 WinningType.FIRST,
                 WinningType.SECOND, WinningType.SECOND,
                 WinningType.THIRD, WinningType.THIRD, WinningType.THIRD,
-                WinningType.FORT, WinningType.FORT, WinningType.FORT, WinningType.FORT,
+                WinningType.FOURTH, WinningType.FOURTH, WinningType.FOURTH, WinningType.FOURTH,
                 WinningType.FIFTH, WinningType.FIFTH, WinningType.FIFTH, WinningType.FIFTH, WinningType.FIFTH
         );
 
@@ -28,7 +28,7 @@ class WinningResultTest {
         assertThat(countPerWinningType.get(WinningType.FIRST)).isEqualTo(1);
         assertThat(countPerWinningType.get(WinningType.SECOND)).isEqualTo(2);
         assertThat(countPerWinningType.get(WinningType.THIRD)).isEqualTo(3);
-        assertThat(countPerWinningType.get(WinningType.FORT)).isEqualTo(4);
+        assertThat(countPerWinningType.get(WinningType.FOURTH)).isEqualTo(4);
         assertThat(countPerWinningType.get(WinningType.FIFTH)).isEqualTo(5);
         assertThat(countPerWinningType.get(WinningType.NONE)).isEqualTo(0);
     }
