@@ -9,7 +9,7 @@ class PurchaseValidatorTest {
 
     @Test
     @DisplayName("구매 금액에 대한 예외 테스트")
-    void testValidatePurchaseAmount() {
+    void testValidatePurchaseMoney() {
 
         String wrongInput1 = "abcd";
         String wrongInput2 = "";
@@ -22,16 +22,16 @@ class PurchaseValidatorTest {
         String rightInput1 = "1000";
         String rightInput2 = "   1000";
 
-        boolean wrongResult1 = purchaseValidator.validatePurchaseAmount(wrongInput1);
-        boolean wrongResult2 = purchaseValidator.validatePurchaseAmount(wrongInput2);
-        boolean wrongResult3 = purchaseValidator.validatePurchaseAmount(wrongInput3);
-        boolean wrongResult4 = purchaseValidator.validatePurchaseAmount(wrongInput4);
-        boolean wrongResult5 = purchaseValidator.validatePurchaseAmount(wrongInput5);
-        boolean wrongResult6 = purchaseValidator.validatePurchaseAmount(wrongInput6);
-        boolean wrongResult7 = purchaseValidator.validatePurchaseAmount(wrongInput7);
+        boolean wrongResult1 = purchaseValidator.validatePurchaseMoney(wrongInput1);
+        boolean wrongResult2 = purchaseValidator.validatePurchaseMoney(wrongInput2);
+        boolean wrongResult3 = purchaseValidator.validatePurchaseMoney(wrongInput3);
+        boolean wrongResult4 = purchaseValidator.validatePurchaseMoney(wrongInput4);
+        boolean wrongResult5 = purchaseValidator.validatePurchaseMoney(wrongInput5);
+        boolean wrongResult6 = purchaseValidator.validatePurchaseMoney(wrongInput6);
+        boolean wrongResult7 = purchaseValidator.validatePurchaseMoney(wrongInput7);
 
-        boolean rightResult1 = purchaseValidator.validatePurchaseAmount(rightInput1);
-        boolean rightResult2 = purchaseValidator.validatePurchaseAmount(rightInput2);
+        boolean rightResult1 = purchaseValidator.validatePurchaseMoney(rightInput1);
+        boolean rightResult2 = purchaseValidator.validatePurchaseMoney(rightInput2);
 
         Assertions.assertFalse(wrongResult1);
         Assertions.assertFalse(wrongResult2);
