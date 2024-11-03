@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Game {
     private static final int LOTTO_MAX_COUNT = 100;
+    private static final int[] PRIZE_AMOUNTS = {5000, 50000, 1500000, 30000000, 2000000000};
 
     private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
@@ -57,9 +58,16 @@ public class Game {
         results[3]++;
     }
 
-
-
     // 수익률 계산
+    public long calculateRateOfReturn(int purchaseAmount, int[] results) {
+        int revenue = 0;
+
+        for (int i = 0; i < results.length; i++) {
+            revenue += results[i] * PRIZE_AMOUNTS[i];
+        }
+
+        return (long) revenue * 100 / purchaseAmount;
+    }
 
 
     // 등록된 로또 최대 개수 검증
