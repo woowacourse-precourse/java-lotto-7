@@ -1,5 +1,5 @@
 package lotto.domain;
 
-public record MatchResult(int matchingNumberCount, boolean bonusMatched) {
+public record MatchResult(int sameNumberCount, boolean bonusMatched) {
 
 }

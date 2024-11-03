@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
@@ -38,7 +37,7 @@ public class LottoService {
         for (Lotto lotto : lottos) {
             MatchResult matchResult = winningLotto.match(lotto);
 
-            LottoRank.findBy(matchResult.matchingNumberCount(), matchResult.bonusMatched())
+            LottoRank.findBy(matchResult.sameNumberCount(), matchResult.bonusMatched())
                     .ifPresent(lottoRanks::add);
         }
 

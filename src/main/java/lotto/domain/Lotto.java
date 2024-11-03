@@ -23,7 +23,7 @@ public class Lotto {
                 .toList());
     }
 
-    public int countMatchingNumbers(Lotto lotto) {
+    public int countSameNumbers(Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::contains)
                 .count();

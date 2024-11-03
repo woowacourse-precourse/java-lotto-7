@@ -20,7 +20,7 @@ class WinningLottoTest {
         MatchResult matchResult = winningLotto.match(lotto);
 
         // then
-        assertThat(matchResult.matchingNumberCount()).isEqualTo(5);
+        assertThat(matchResult.sameNumberCount()).isEqualTo(5);
         assertThat(matchResult.bonusMatched()).isTrue();
     }
 

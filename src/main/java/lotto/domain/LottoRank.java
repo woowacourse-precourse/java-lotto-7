@@ -25,9 +25,9 @@ public enum LottoRank {
         this.bonusCondition = bonusCondition;
     }
 
-    public static Optional<LottoRank> findBy(int matchingNumberCount, boolean bonusMatched) {
+    public static Optional<LottoRank> findBy(int sameNumberCount, boolean bonusMatched) {
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.neededCount == matchingNumberCount)
+                .filter(rank -> rank.neededCount == sameNumberCount)
                 .filter(rank -> rank.bonusCondition.isSatisfiedBy(bonusMatched))
                 .findAny();
     }

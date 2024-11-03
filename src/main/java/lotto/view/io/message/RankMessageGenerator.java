@@ -11,12 +11,12 @@ public class RankMessageGenerator {
     private static final String BONUS_CONDITION = "보너스 볼 일치";
     private static final String REWARD_FORMAT = "%,d원";
     private static final int DEFAULT_COUNT = 0;
-    private static final String MATCH_NUMBER_COUNT_FORMAT = "%d개";
+    private static final String NUMBER_COUNT_FORMAT = "%d개";
 
-    public String getMessage(LottoRank lottoRank, Integer matchCount) {
+    public String getMessage(LottoRank lottoRank, Integer sameNumberCount) {
         String matchConditionMessage = getMatchConditionMessage(lottoRank);
         String rewardMessage = getRewardMessage(lottoRank);
-        String matchingCountMessage = getMatchingNumberCountMessage(matchCount);
+        String matchingCountMessage = getSameNumberCountMessage(sameNumberCount);
 
         return String.format(FULL_MESSAGE_FORMAT, matchConditionMessage, rewardMessage, matchingCountMessage);
     }
@@ -43,11 +43,11 @@ public class RankMessageGenerator {
         return String.format(REWARD_FORMAT, rewardAmount);
     }
 
-    private String getMatchingNumberCountMessage(Integer matchCount) {
-        if (matchCount == null) {
-            matchCount = DEFAULT_COUNT;
+    private String getSameNumberCountMessage(Integer sameNumberCount) {
+        if (sameNumberCount == null) {
+            sameNumberCount = DEFAULT_COUNT;
         }
-        return String.format(MATCH_NUMBER_COUNT_FORMAT, matchCount);
+        return String.format(NUMBER_COUNT_FORMAT, sameNumberCount);
     }
 
 }

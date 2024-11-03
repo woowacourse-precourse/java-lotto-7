@@ -20,10 +20,10 @@ public class WinningLotto {
     }
 
     public MatchResult match(Lotto lotto) {
-        int matchingNumberCount = this.lotto.countMatchingNumbers(lotto);
+        int sameNumberCount = this.lotto.countSameNumbers(lotto);
         boolean bonusMatched = lotto.contains(bonusNumber);
 
-        return new MatchResult(matchingNumberCount, bonusMatched);
+        return new MatchResult(sameNumberCount, bonusMatched);
     }
 
 }

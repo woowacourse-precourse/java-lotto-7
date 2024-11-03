@@ -31,10 +31,10 @@ class LottoTest {
         Lotto lotto2 = Lotto.of(List.of(1, 2, 3, 4, 11, 12));
 
         // when
-        int matchingCount = lotto1.countMatchingNumbers(lotto2);
+        int sameNumberCount = lotto1.countSameNumbers(lotto2);
 
         // then
-        assertThat(matchingCount).isEqualTo(4);
+        assertThat(sameNumberCount).isEqualTo(4);
     }
 
     @Test
