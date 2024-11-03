@@ -54,6 +54,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_금액_1000원_단위_아닌_경우_예외_테스트(){
+
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
