@@ -2,10 +2,14 @@ package lotto.lotto;
 
 import static lotto.service.LottoService.getRandomLottoNumber;
 import static lotto.service.LottoService.sortAscending;
+import static lotto.validate.LottosValidate.isAscendingNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -72,5 +76,26 @@ public class LottoTest {
 
         // then
         assertThat(Lotto).isSorted();
+    }
+
+    @Test
+    @DisplayName("로또 번호를 오름차순 정렬되었는지 확인한다.")
+    public void testIsSortAscending() {
+        // given
+        List<Integer> Lotto = getRandomLottoNumber();
+        sortAscending(Lotto);
+
+        // then
+        assertTrue(isAscendingNumber(Lotto));
+    }
+
+    @Test
+    @DisplayName("로또 번호를 오름차순 정렬되지 않는 상황은 불가능하다.")
+    public void testIsNotSortAscending() {
+        // given
+        List<Integer> Lotto = getRandomLottoNumber();
+
+        // then
+        assertFalse(isAscendingNumber(Lotto));
     }
 }
