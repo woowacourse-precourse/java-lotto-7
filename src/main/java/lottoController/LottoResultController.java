@@ -11,9 +11,10 @@ public class LottoResultController {
     private static Lotto winningNumber;
     private static int bonusNumber;
 
-    public void checkLottoResult() {
+    public void showLottoResult() {
         saveWinningNumber(InputView.inputWinningNumber());
         saveBonusNumber();
+        //checkLottoResult();
     }
 
     public void saveWinningNumber(String InputWinningNumber) {
@@ -42,4 +43,17 @@ public class LottoResultController {
             throw new IllegalArgumentException("[ERORR] 숫자만 입력 가능 합니다.");
         }
     }
+
+//    public void checkLottoResult(){
+//        GenerateLottoController generateLottoController = new GenerateLottoController();
+//        List<Lotto> lottoList = new ArrayList<>();
+//        lottoList = generateLottoController.getLottoList();
+//
+//        int[] countResult = new int[5];
+//
+//        for (Lotto lotto : lottoList){
+//            winningNumber.getNumbers().stream().filter(number -> lotto.getNumbers().contains(number)).count();
+//        }
+//
+//    }
 }
