@@ -16,13 +16,14 @@ public class OutputView {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public static void printLottos(int count, Lottos lottos) {
-        System.out.println();
-        System.out.println(count + NUMBER_OF_PURCHASES_MESSAGE);
+        System.out.println(System.lineSeparator() + count + NUMBER_OF_PURCHASES_MESSAGE);
         printLottoNumbers(lottos);
     }
 
     private static void printLottoNumbers(Lottos lottos) {
-        lottos.getLottos().forEach(System.out::println);
+        StringBuilder sb = new StringBuilder();
+        lottos.getLottos().forEach(lotto -> sb.append(lotto).append(System.lineSeparator()));
+        System.out.print(sb);
     }
 
     public static void printRankResult(RankResult result) {
