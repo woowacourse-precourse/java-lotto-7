@@ -2,8 +2,12 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.Number;
+import lotto.model.Reward;
+import lotto.model.WinningResult;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import static lotto.console.ConsoleManager.*;
 
@@ -18,6 +22,23 @@ public class OutputView {
             println(line);
         }
         println();
+    }
+    public void displayRank(WinningResult result){
+        HashMap<Reward, Integer> rankCount = result.getRankCount();
+        for (Reward reward : rankCount.keySet()) {
+            String line = getRankLine(reward, rankCount);
+            println(line);
+        }
+    }
+
+    private static String getRankLine(Reward reward, HashMap<Reward, Integer> rankCount) {
+        String line = reward.getCount()+"개 일치";
+        if(reward.isBonus()){
+            line += ", 보너스 볼 일치";
+        }
+        line += " ("+ reward.getFormatPrize()+"원)";
+        line += " = "+ rankCount.get(reward)+"개";
+        return line;
     }
 
     private static String getDecoratedLine(List<Number> numbers) {

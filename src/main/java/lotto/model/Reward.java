@@ -1,8 +1,6 @@
 package lotto.model;
 
-import javax.swing.text.NumberFormatter;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 public enum Reward {
     FIRST(6,false,2_000_000_000,1),
@@ -41,7 +39,7 @@ public enum Reward {
         return NumberFormat.getInstance().format(prize);
     }
 
-    public static Reward getRank(int rank){
+    public static Reward getReward(int rank){
         for (Reward reward : values()) {
             if(reward.rank == rank){
                 return reward;
@@ -50,7 +48,7 @@ public enum Reward {
         return NONE;
     }
 
-    public static Reward getRank(int count, boolean bonus){
+    public static Reward getReward(int count, boolean bonus){
         for (Reward reward : values()) {
             if(reward.count == count && reward.bonus == bonus){
                 return reward;

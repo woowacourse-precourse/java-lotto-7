@@ -3,13 +3,14 @@ package lotto.model;
 import java.util.HashMap;
 
 public class WinningResult {
-    private final HashMap<Integer, Integer> rankCount = new HashMap<>();
+    private final HashMap<Reward, Integer> rankCount = new HashMap<>();
 
     public void put(int rank) {
-        rankCount.put(rank, rankCount.getOrDefault(rank,0)+1);
+        Reward reward = Reward.getReward(rank);
+        rankCount.put(reward, rankCount.getOrDefault(reward,0)+1);
     }
 
-    public HashMap<Integer, Integer> getRankCount() {
+    public HashMap<Reward, Integer> getRankCount() {
         return rankCount;
     }
 }

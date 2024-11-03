@@ -3,7 +3,6 @@ package lotto.model;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
@@ -25,7 +24,7 @@ public class WinningNumbers {
                 .filter(numbers::contains)
                 .count();
 
-        return Reward.getRank(count,bonus);
+        return Reward.getReward(count,bonus);
     }
 
 }
