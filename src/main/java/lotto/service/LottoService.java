@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domains.Lotto;
+import lotto.enums.LottoRank;
 
 public class LottoService {
     private static final int LOTTO_COST = 1_000;
@@ -83,5 +84,14 @@ public class LottoService {
         } catch (NumberFormatException exception) {
             throw new NumberFormatException("[Error] 번호가 아닌 값을 입력받았습니다. 입력 값: " + value);
         }
+    }
+
+    public long getWinningCost(int[] counts) {
+        long cost = 0L;
+        for (LottoRank rank : LottoRank.values()) {
+            cost += (long)counts[rank.ordinal()] * rank.getGetPrize();
+        }
+
+        return cost;
     }
 }
