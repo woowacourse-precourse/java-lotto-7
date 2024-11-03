@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.constant.ErrorMessage.NOT_NUMBER_RANGE_WINNING_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_SIX_WINNING_NUMBER;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import lotto.util.DuplicateWinningNumberException;
 
 public class WinningNumbers {
     private static final int WINNING_NUMBERS_SIZE = 6;
+    private static final int WINNING_NUMBER_MIN = 1;
+    private static final int WINNING_NUMBER_MAX = 45;
 
     private final List<Integer> winningNumbers;
 
@@ -29,6 +32,13 @@ public class WinningNumbers {
         }
         if (numbers.size() != numbers.stream().distinct().toList().size()) {
             throw new DuplicateWinningNumberException();
+        }
+
+        for (int winningNumber : numbers) {
+            if (winningNumber < WINNING_NUMBER_MIN
+                    || winningNumber > WINNING_NUMBER_MAX) {
+                throw new IllegalArgumentException(NOT_NUMBER_RANGE_WINNING_NUMBER.getMessage());
+            }
         }
     }
 }
