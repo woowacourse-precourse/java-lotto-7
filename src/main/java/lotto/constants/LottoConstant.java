@@ -9,4 +9,7 @@ public final class LottoConstant {
     public static final int NATURAL_STANDARD = 1;
 
     public static final String REGEX = ",";
+
+    private LottoConstant() {
+    }
 }
