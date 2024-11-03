@@ -1,15 +1,12 @@
 package lotto.controller;
 
-import lotto.model.LottoGame;
-import lotto.model.LottoResult;
-import lotto.model.LottoTickets;
+import lotto.model.LottoPurchase;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public final class LottoGameController {
 
-    private LottoGame lottoGame;
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -21,7 +18,7 @@ public final class LottoGameController {
     public void run() {
         while (true) {
             try {
-                playLottoGame();
+                play();
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -29,16 +26,15 @@ public final class LottoGameController {
         }
     }
 
-    private void playLottoGame() {
-        setupLottoGame();
+    private void play() {
+        LottoPurchase lottoPurchase = buyLotto();
+
     }
 
-    private void setupLottoGame() {
-        int money = readMoney();
+    private LottoPurchase buyLotto() {
+        LottoPurchase lottoPurchase = new LottoPurchase(readMoney());
 
-        LottoTickets lottoTickets = new LottoTickets(money);
-        LottoResult lottoResult;
-        LottoGame lottoGame = LottoGame(lottoTickets, lottoResult, money);
+        return lottoPurchase;
     }
 
     private int readMoney() {

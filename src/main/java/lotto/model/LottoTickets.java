@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    private static final int LOTTO_PRICE = 1000;
+
     private final List<Lotto> lottoTickets;
 
-    public LottoTickets(int money) {
-        int amount = money / LOTTO_PRICE;
+    public LottoTickets(int amount) {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < amount; i++) {
