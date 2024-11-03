@@ -13,12 +13,32 @@ public class LottoMachine {
     }
 
     private int getPurchaseCountFromUser() {
+        while (true) {
+            try {
+                return tryGetPurchaseCountFromUser();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int tryGetPurchaseCountFromUser() {
         int amount = InputView.getAmountFromUser();
         Validator.checkValidPurchaseCount(amount);
         return amount / LOTTO_PRICE;
     }
 
     private LottoWinningNumber getWinningNumberFromUser() {
+        while (true) {
+            try {
+                return tryGetWinningNumberFromUser();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoWinningNumber tryGetWinningNumberFromUser() {
         List<Integer> lottoNumbers = InputView.getLottoNumbersFromUser();
         int bonusNumber = InputView.getBonusNumberFromUser();
         return new LottoWinningNumber(lottoNumbers, bonusNumber);
