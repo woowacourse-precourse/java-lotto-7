@@ -11,7 +11,7 @@ public class LottoController {
   }
 
   public void run(){
-
+    int purchaseAmount= inputMessageService.purchaseAmountAndValidation();
   }
 
 }

@@ -15,6 +15,7 @@ public class InputMessageService {
   public int purchaseAmountAndValidation(){
     int purchaseAmount=Integer.parseInt(inputMessageView.enterPurchaseAmount());
     purchaseAmountValidation.validatePurchaseAmount(purchaseAmount);
+    return purchaseAmount;
   }
 
 
