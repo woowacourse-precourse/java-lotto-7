@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Set;
 import lotto.common.LottoConfig;
 
 public class LottoResult {
