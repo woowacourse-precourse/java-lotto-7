@@ -15,7 +15,7 @@ public class PlayerBuyLotto {
 
         int amount = Integer.parseInt(purchaseAmount);
 
-        return amount % 1000;
+        return amount / 1000;
     }
 
     public List<Lotto> buyLotto(int lottoPurchased) {
