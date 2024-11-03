@@ -20,9 +20,6 @@ public class InputView {
         }
     }
 
-    private void validatePurchaseAmount(String inputPurchaseAmount) {
-    }
-
     public List<Integer> getValidWinningNumbers() {
         while (true) {
             try {
@@ -41,9 +38,6 @@ public class InputView {
         }
     }
 
-    private void validateWinningNumbers(String[] splitInputWinningNumbers) {
-    }
-
     public int getValidBonusNumber() {
         while (true) {
             try {
@@ -57,6 +51,12 @@ public class InputView {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    private void validatePurchaseAmount(String inputPurchaseAmount) {
+    }
+
+    private void validateWinningNumbers(String[] splitInputWinningNumbers) {
     }
 
     private void validateBonusNumber(String inputBonusNumber) {
