@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Validator {
@@ -74,12 +75,15 @@ public class Validator {
         }
     }
 
-    public void validateBonusNumber(String bonusNumberInput) {
+    public void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
         try {
             checkIsNumber(bonusNumberInput);
             int num = Integer.parseInt(bonusNumberInput);
             checkIsPositiveNumber(num);
             checkIsLotteryRange(num);
+            if (winningNumbers.contains(num)) {
+                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+            }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
