@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.validator.ValidatorUtils.PRICE_ERROR_MESSAGE;
+
 public class PriceValidator implements Validator<Integer> {
 
     @Override
@@ -10,13 +12,13 @@ public class PriceValidator implements Validator<Integer> {
 
     private void validatePositive(Integer price) {
         if (price <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수를 입력해 주세요.");
+            throw new IllegalArgumentException(PRICE_ERROR_MESSAGE);
         }
     }
 
     private void validateThousandUnit(Integer price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수를 입력해 주세요.");
+            throw new IllegalArgumentException(PRICE_ERROR_MESSAGE);
         }
     }
 }
