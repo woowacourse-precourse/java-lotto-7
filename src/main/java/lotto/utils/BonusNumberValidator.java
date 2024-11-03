@@ -3,6 +3,13 @@ package lotto.utils;
 import java.util.List;
 
 public class BonusNumberValidator {
+
+    public static void validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+        validateIsNumeric(bonusNumber);
+        validateInRange(bonusNumber);
+        validateNotDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+    }
+
     private static void validateIsNumeric(String number) {
         try {
             Integer.parseInt(number);
