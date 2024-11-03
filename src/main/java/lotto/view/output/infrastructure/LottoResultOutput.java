@@ -6,37 +6,39 @@ import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.domain.WinningPlace;
+import lotto.view.output.domain.Message;
+import lotto.view.output.domain.ResultMessage;
 import lotto.view.output.service.ResultViewService;
 
-public class CommonResultOutput implements ResultViewService {
+public class LottoResultOutput implements ResultViewService {
     @Override
     public void viewByInsertMoney(Money money) {
-        System.out.println(money);
+        ResultMessage.INSERT_MONEY.print(money);
         nextLine();
     }
 
     @Override
     public void viewByLottoTickets(LottoTickets lottoTickets) {
-        System.out.println(lottoTickets);
+        ResultMessage.PURCHASE_TICKETS_INFO.print(lottoTickets);
     }
 
     @Override
     public void viewByWinningLotto(WinningLotto winningLotto) {
-        System.out.println(winningLotto);
+        ResultMessage.WINNING_LOTTO.print(winningLotto);
         nextLine();
     }
 
     @Override
     public void viewByBonusNumber(BonusNumber bonusNumber) {
-        System.out.println(bonusNumber);
+        ResultMessage.BONUS_NUMBER.print(bonusNumber);
         nextLine();
     }
 
     @Override
     public void viewByWinningStatistic(Benefit benefit, Money purchaseMoney) {
-        System.out.println("당첨 통계\n" + "---");
-        System.out.print(WinningPlace.print());
-        System.out.printf("총 수익률은 %s%%입니다.", benefit.getDecimalFormatByRateOfReturn(purchaseMoney));
+        Message.WINNING_STATISTICS_HEADER.print();
+        ResultMessage.WINNING_PLACE_INFO.print(WinningPlace.print());
+        ResultMessage.TOTAL_PROFIT_RATE.print(benefit.getDecimalFormatByRateOfReturn(purchaseMoney));
     }
 
     private void nextLine() {

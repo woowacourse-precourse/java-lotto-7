@@ -1,11 +1,12 @@
 package lotto.view.output.infrastructure;
 
-import lotto.view.output.domain.InfoViewService;
+import lotto.view.output.domain.Message;
+import lotto.view.output.service.InfoViewService;
 
 public class MoneyOutput implements InfoViewService {
 
     @Override
     public void view() {
-        System.out.println("구입금액을 입력해 주세요.");
+        Message.PURCHASE_AMOUNT_PROMPT.print();
     }
 }

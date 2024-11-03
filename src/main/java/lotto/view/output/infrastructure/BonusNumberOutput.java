@@ -1,11 +1,12 @@
 package lotto.view.output.infrastructure;
 
-import lotto.view.output.domain.InfoViewService;
+import lotto.view.output.domain.Message;
+import lotto.view.output.service.InfoViewService;
 
 public class BonusNumberOutput implements InfoViewService {
 
     @Override
     public void view() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        Message.BONUS_NUMBER_PROMPT.print();
     }
 }
