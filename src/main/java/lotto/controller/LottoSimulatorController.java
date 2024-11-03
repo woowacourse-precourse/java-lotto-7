@@ -18,6 +18,7 @@ public class LottoSimulatorController {
     public void run(){
         issueLotto();
         drawNumbers();
+        calculatePrize();
     }
 
     private void issueLotto() {
@@ -32,5 +33,11 @@ public class LottoSimulatorController {
         String bonusNumber = inputView.readBonusNumber();
         Draw draw = new Draw(winningNumbers, bonusNumber);
         lottoSimulator.countPrize(draw);
+    }
+
+    private void calculatePrize(){
+        outputView.printStatics(lottoSimulator.getPrizeResult());
+        double profitRate = lottoSimulator.checkProfitRate();
+        outputView.printProfitRate(profitRate);
     }
 }

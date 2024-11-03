@@ -15,6 +15,7 @@ public class LottoSimulator {
     private final static int END_NUMBER = 45;
     private final static int COUNT_OF_NUMBER = 6;
     private final static int DEFAULT = 0;
+    private final static int PERCENT_CONSTANT = 100;
     private final int cost;
     private List<Lotto> purchasedLotto;
     private Map<Integer, Integer> prizeResult;
@@ -59,6 +60,18 @@ public class LottoSimulator {
             return Prize.FIFTH_PRIZE;
         }
         return null;
+    }
+
+    public double checkProfitRate() {
+        double sum = 0;
+        for (int i = Prize.FIRST_PRIZE.rank; i <= Prize.FIFTH_PRIZE.rank; i++) {
+            double count = 0;
+            if (prizeResult.containsKey(i)) {
+                count = prizeResult.get(i);
+            }
+            sum += count * Prize.findPrizeByRank(i).jackpot;
+        }
+        return (sum / cost) * PERCENT_CONSTANT;
     }
 
 
