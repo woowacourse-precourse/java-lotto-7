@@ -6,6 +6,7 @@ import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
+import static lotto.global.constant.ErrorMessage.PRICE_CAN_NOT_BE_MINUS;
 import static lotto.global.constant.ErrorMessage.PRICE_CAN_NOT_BE_ZERO;
 
 import java.util.List;
@@ -34,11 +35,18 @@ public class Validator {
         validateNumberFormat(price);
         validateDivisibilityByLottoPrice(price);
         validatePriceNotZero(price);
+        validatePriceNotMinus(price);
     }
 
     private static void validatePriceNotZero(String price) {
         if (Integer.parseInt(price) == 0) {
             throw new IllegalArgumentException(PRICE_CAN_NOT_BE_ZERO);
+        }
+    }
+
+    private static void validatePriceNotMinus(String price) {
+        if(Integer.parseInt(price) < 0) {
+            throw new IllegalArgumentException(PRICE_CAN_NOT_BE_MINUS);
         }
     }
 

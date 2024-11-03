@@ -4,6 +4,7 @@ import static lotto.global.constant.ErrorMessage.DIVISION_BY_ZERO;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
+import static lotto.global.constant.ErrorMessage.PRICE_CAN_NOT_BE_MINUS;
 import static lotto.global.constant.ErrorMessage.PRICE_CAN_NOT_BE_ZERO;
 import static lotto.global.util.Validator.validateBonusNumber;
 import static lotto.global.util.Validator.validatePrice;
@@ -62,7 +63,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 당첨_번호가_숫자형식이_아닐_때_예와_발생() {
+    void 당첨_번호가_숫자형식이_아닐_때_예외_발생() {
         //given
         List<String> winningNumber = Arrays.asList("a", "1", "2", "3", "4", "5");
 
@@ -73,7 +74,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 보너스_번호가_숫자형식이_아닐_때_예와_발생() {
+    void 보너스_번호가_숫자형식이_아닐_때_예외_발생() {
         //given
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         String bonusNumber = "a";
@@ -85,7 +86,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 수익률_계산시_투자_금액이_0일때_예외_발생() {
+    void 수익률_계산시_투자_금액이_0일_때_예외_발생() {
         //given
         int investmentMoney = 0;
 
@@ -96,7 +97,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 구매_가격이_0일때_예외_발생() {
+    void 구매_가격이_0일_때_예외_발생() {
         //given
         String price = "0";
 
@@ -104,5 +105,16 @@ class ValidatorTest {
         Assertions.assertThatThrownBy(() -> validatePrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PRICE_CAN_NOT_BE_ZERO);
+    }
+
+    @Test
+    void 구매_가격이_음수일_때_예외_발생() {
+        //given
+        String price = "-1000";
+
+        //then
+        Assertions.assertThatThrownBy(() -> validatePrice(price))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(PRICE_CAN_NOT_BE_MINUS);
     }
 }

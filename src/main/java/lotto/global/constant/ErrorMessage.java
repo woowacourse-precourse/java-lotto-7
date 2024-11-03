@@ -10,4 +10,5 @@ public class ErrorMessage {
     public static final String LOTTO_NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호가 지정된 숫자 범위를 넘어갑니다.";
     public static final String DIVISION_BY_ZERO = "[ERROR] 분모로 0이 나올 수 없습니다.";
     public static final String PRICE_CAN_NOT_BE_ZERO = "[ERROR] 구입 가격은 0이 나올 수 없습니다.";
+    public static final String PRICE_CAN_NOT_BE_MINUS = "[ERROR] 구입 가격은 음수가 나올 수 없습니다.";
 }
