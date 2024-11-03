@@ -56,6 +56,38 @@ class LottoTest {
         assertThat(lotto.isSorted()).isTrue();
     }
 
+    @Test
+    void 로또_당첨_검사_1등(){
+        //given
+        List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
+        //when
+        Lotto lotto = Lotto.generateLotto(unorderedList);
+
+        //then
+        assertThat(lotto.checkWin(List.of(1, 2, 3, 4, 5, 6), 7)).isEqualTo(Prize.FIRST_PLACE);
+    }
+    @Test
+    void 로또_당첨_검사_2등(){
+        //given
+        List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
+        //when
+        Lotto lotto = Lotto.generateLotto(unorderedList);
+
+        //then
+        assertThat(lotto.checkWin(List.of(1, 2, 3, 4, 5, 7), 6)).isEqualTo(Prize.SECOND_PLACE);
+    }
+
+    @Test
+    void 로또_당첨_검사_낙첨(){
+        //given
+        List<Integer> unorderedList = List.of(1, 2, 3, 4, 5, 6);
+        //when
+        Lotto lotto = Lotto.generateLotto(unorderedList);
+
+        //then
+        assertThat(lotto.checkWin(List.of(6, 7, 8, 9, 10, 11), 4)).isEqualTo(Prize.NOTHING);
+    }
+
     static Stream<List<Integer>> provideIntegerList() {
         return Stream.of(
                 List.of(0, 1, 2, 3, 4, 5),
