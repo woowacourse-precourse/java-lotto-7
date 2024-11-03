@@ -10,6 +10,7 @@ import lotto.utils.Validator;
 public class InputView {
     private static final String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static int purchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
@@ -27,6 +28,23 @@ public class InputView {
         List<Integer> parsedNumbers = convertToIntegerAndValidate(splitNumbers);
 
         return new Lotto(parsedNumbers);
+    }
+
+    public static int bonusNumber(List<Integer> winningNumbers) {
+        System.out.println();
+        System.out.println(INPUT_BONUS_NUMBER);
+        String bonusNumber = read();
+
+        return parseAndValidateDuplication(winningNumbers, bonusNumber);
+    }
+
+    private static int parseAndValidateDuplication(List<Integer> winningNumbers, String bonusNumber) {
+        String cleanedNumber = trimSpaces(bonusNumber);
+        Validator.isNumber(cleanedNumber);
+        int parsedBonusNumber = Integer.parseInt(cleanedNumber);
+
+        Validator.numberIsUnique(winningNumbers, parsedBonusNumber);
+        return parsedBonusNumber;
     }
 
     private static List<String> splitByCommaAndValidateLength(String numbers) {
