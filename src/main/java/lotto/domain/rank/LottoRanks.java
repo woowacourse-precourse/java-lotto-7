@@ -6,17 +6,17 @@ import lotto.domain.LottoPrice;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLotto;
 
-public class LottoRankPrices {
+public class LottoRanks {
 
     private static final int BONUS_COUNT = 5;
 
-    private final List<LottoRankPrice> lottoRankPrices;
+    private final List<LottoRank> lottoRanks;
 
-    public LottoRankPrices(List<Lotto> lottos, WinningLotto winningLotto) {
-        this.lottoRankPrices = createRanks(lottos, winningLotto);
+    public LottoRanks(List<Lotto> lottos, WinningLotto winningLotto) {
+        this.lottoRanks = createRanks(lottos, winningLotto);
     }
 
-    public List<Integer> sortRanks() {
+    public List<Integer> provideSortedRankCounts() {
         List<Integer> sortedRanks = new ArrayList<>();
 
         for (LottoPrice price : LottoPrice.values()) {
@@ -28,24 +28,24 @@ public class LottoRankPrices {
     }
 
     public double sumLottoPrice() {
-        return lottoRankPrices.stream()
-                .mapToDouble(LottoRankPrice::getPrice)
+        return lottoRanks.stream()
+                .mapToDouble(LottoRank::getPrice)
                 .sum();
     }
 
     private int calculatePriceCount(LottoPrice price) {
-        return (int) lottoRankPrices.stream()
+        return (int) lottoRanks.stream()
                 .filter(rank -> price.isSameLottoPrice(rank.getPrice()))
                 .count();
     }
 
-    private List<LottoRankPrice> createRanks(List<Lotto> lottos, WinningLotto winningLotto) {
-        List<LottoRankPrice> ranks = new ArrayList<>();
+    private List<LottoRank> createRanks(List<Lotto> lottos, WinningLotto winningLotto) {
+        List<LottoRank> ranks = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
             int winningCount = calculateWinningCount(winningLotto, lotto);
             boolean isBonus = isBonus(winningLotto, lotto, winningCount);
-            ranks.add(new LottoRankPrice(winningCount, isBonus));
+            ranks.add(new LottoRank(winningCount, isBonus));
         }
 
         return ranks;

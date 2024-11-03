@@ -21,6 +21,18 @@ public enum LottoPrice {
         this.lottoPrice = lottoPrice;
     }
 
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public boolean isBonus() {
+        return isBonus;
+    }
+
+    public int getLottoPrice() {
+        return lottoPrice;
+    }
+
     public boolean isSameLottoPrice(int lottoPrice) {
         return this.lottoPrice == lottoPrice;
     }

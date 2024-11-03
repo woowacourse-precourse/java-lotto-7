@@ -4,9 +4,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 class LottoPriceTest {
+
+    @ParameterizedTest
+    @EnumSource(LottoPrice.class)
+    void 모든_인스턴스가_올바른_값을_반환한다(LottoPrice lottoPrice) {
+        // when
+        int actualPrice = LottoPrice.getByLottoCount(lottoPrice.getLottoCount(), lottoPrice.isBonus());
+
+        // then
+        assertThat(actualPrice).isEqualTo(lottoPrice.getLottoPrice());
+    }
+
+    @ParameterizedTest
+    @EnumSource(LottoPrice.class)
+    void 로또_가격이_일치한다(LottoPrice lottoPrice) {
+        // given
+        int price = lottoPrice.getLottoPrice();
+
+        // when & then
+        assertThat(lottoPrice.isSameLottoPrice(price)).isTrue();
+    }
 
     @ParameterizedTest
     @CsvSource({

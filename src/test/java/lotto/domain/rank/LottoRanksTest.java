@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
-class LottoRankPricesTestPrice {
+class LottoRanksTest {
 
     private List<Lotto> lottos;
     private WinningLotto winningLotto;
@@ -30,10 +30,10 @@ class LottoRankPricesTestPrice {
     @Test
     void 각_로또에_대한_당첨_개수를_생성한다() {
         // given
-        LottoRankPrices lottoRankPrices = new LottoRankPrices(lottos, winningLotto);
+        LottoRanks lottoRanks = new LottoRanks(lottos, winningLotto);
 
         // when
-        List<Integer> sortedRanks = lottoRankPrices.sortRanks();
+        List<Integer> sortedRanks = lottoRanks.provideSortedRankCounts();
 
         // then
         assertThat(sortedRanks.get(0)).isEqualTo(1);
@@ -46,11 +46,11 @@ class LottoRankPricesTestPrice {
     @Test
     void 전체_당첨금액을_계산한다() {
         // given
-        LottoRankPrices lottoRankPrices = new LottoRankPrices(lottos, winningLotto);
+        LottoRanks lottoRanks = new LottoRanks(lottos, winningLotto);
         double expected = 2030055000.0;
 
         // when
-        double actual = lottoRankPrices.sumLottoPrice();
+        double actual = lottoRanks.sumLottoPrice();
 
         // then
         assertThat(actual).isEqualTo(expected);

@@ -23,6 +23,10 @@ public class Money {
         this.money = money;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public int buyLottos() {
         return money / MONEY_DIVIDER;
     }

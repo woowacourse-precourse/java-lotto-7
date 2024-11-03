@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 @SuppressWarnings("NonAsciiCharacters")
-class LottoRankPriceTest {
+class LottoRankTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -17,11 +17,11 @@ class LottoRankPriceTest {
     })
     void 로또_당첨_개수로_만들어지는_당첨금을_확인한다(int lottoCount, boolean isBonus) {
         // given
-        LottoRankPrice lottoRankPrice = new LottoRankPrice(lottoCount, isBonus);
-        int expected = lottoRankPrice.getPrice();
+        LottoRank lottoRank = new LottoRank(lottoCount, isBonus);
+        int expected = lottoRank.getPrice();
 
         // then
-        assertThat(lottoRankPrice.getPrice()).isEqualTo(expected);
+        assertThat(lottoRank.getPrice()).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -34,10 +34,10 @@ class LottoRankPriceTest {
             "6, false, 2000000000"})
     void 로또_당첨에_개수에_따라_상금이_달라진다(int lottoCount, boolean isBonus, int lottoPrice) {
         // given
-        LottoRankPrice lottoRankPrice = new LottoRankPrice(lottoCount, isBonus);
+        LottoRank lottoRank = new LottoRank(lottoCount, isBonus);
 
         // when
-        int actual = lottoRankPrice.getPrice();
+        int actual = lottoRank.getPrice();
 
         // then
         assertThat(actual).isEqualTo(lottoPrice);
