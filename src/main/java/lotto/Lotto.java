@@ -9,7 +9,16 @@ public class Lotto {
     private final List<Integer> numbers;
 
     /**
+     * 당첨금 리스트
+     */
+    public static final List<Integer> PRIZE_MONEY = List.of(2000000000, 30000000, 1500000, 50000, 5000);
+
+    public static final List<String> PRIZE_MONEY_WITH_COMMA = lotto.Lotto.PRIZE_MONEY.stream().map(lotto.Lotto::getNumberWithComma)
+            .toList();
+
+    /**
      * 예외처리 후 번호를 저장
+     *
      * @param numbers 번호를 포함한 List
      */
     public Lotto(List<Integer> numbers) {
@@ -19,7 +28,8 @@ public class Lotto {
 
     /**
      * 보너스 번호와 로또 번호가 중복되면 예외 처리
-     * @param lotto 로또 번호
+     *
+     * @param lotto       로또 번호
      * @param bonusNumber 보너스 번호 입력
      */
     static void checkBonusNumber(Lotto lotto, int bonusNumber) {
@@ -32,6 +42,7 @@ public class Lotto {
 
     /**
      * 로또 리스트에서 각 로또의 번호를 출력
+     *
      * @param lottos 로또 리스트
      */
 
@@ -57,9 +68,10 @@ public class Lotto {
 
     /**
      * 로또 등수를 반환
-     * @param lotto 체크할 로또
+     *
+     * @param lotto        체크할 로또
      * @param winningLotto 당첨 번호
-     * @param bonusNumber 보너스 번호
+     * @param bonusNumber  보너스 번호
      * @return 등수
      */
     public static Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
@@ -75,19 +87,12 @@ public class Lotto {
     }
 
     /**
-     * 당첨금 리스트
-     */
-    public static final List<Integer> PRIZE_MONEY = List.of(2000000000, 30000000, 1500000, 50000, 5000);
-
-    /**
      * 정수를 ,로 포맷한 문자열로 반환 (10000000 -> 10,000,000)
+     *
      * @param number 반환할 정수
      * @return 반환된 문자열
      */
     public static String getNumberWithComma(int number) {
         return String.format("%,d", number);
     }
-
-    public static final List<String> PRIZE_MONEY_WITH_COMMA = lotto.Lotto.PRIZE_MONEY.stream().map(lotto.Lotto::getNumberWithComma)
-            .toList();
 }
