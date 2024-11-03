@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,7 +16,7 @@ public class Lotto {
         }
     }
 
-    public void getLottoNumbers() {
+    public void printLottoNumber() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         for (int i = 0; i < 5; i++) {
