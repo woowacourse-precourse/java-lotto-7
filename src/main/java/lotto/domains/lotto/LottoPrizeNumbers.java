@@ -14,4 +14,12 @@ public class LottoPrizeNumbers {
 	public static LottoPrizeNumbers of(List<Integer> winningNumbers, int bonusNumber) {
 		return new LottoPrizeNumbers(winningNumbers, bonusNumber);
 	}
+
+	public List<Integer> getWinningNumbers() {
+		return winningNumbers;
+	}
+
+	public int getBonusNumber() {
+		return bonusNumber;
+	}
 }
