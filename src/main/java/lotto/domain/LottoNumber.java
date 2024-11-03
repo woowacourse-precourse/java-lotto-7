@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public record LottoNumber(int lottoNumber) {
     private static final int MIN_LOTTO_NUMBER = 1;
