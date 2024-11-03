@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.NumberValidator.validateNumberRange;
+
 import lotto.constants.ErrorMessages;
 
 public class UserLotto {
@@ -22,6 +24,7 @@ public class UserLotto {
 
     private void validate(Lotto lotto, int number) {
         validateDuplication(lotto, number);
+        validateNumberRange(number, 45, 1);
     }
 
     private void validateDuplication(Lotto lotto, int number) {
