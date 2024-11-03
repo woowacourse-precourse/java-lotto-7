@@ -16,6 +16,7 @@ public class LottoController {
     private LottoNumbers lottoNumbers;
     private CheckLotto checkLotto;
     private int cost;
+    private int purchaseCount;
     private int bonusNumber;
 
     public LottoController(OutputView outputView, InputView inputView) {
@@ -24,14 +25,31 @@ public class LottoController {
     }
 
     public void run() {
+        requestCost();
+
+        selectLottoNumbers();
+
+        requestWinningNumbers();
+
+        requestBonusNumber();
+
+        displayWinningStatus();
+
+        displayEarningRatio();
+
+    }
+
+    private void requestCost() {
         outputView.showStartComment();
 
         cost = requestCostInput();
 
-        int purchaseCount = cost / CostUnit.COST_UNIT.getUnit();
+        purchaseCount = cost / CostUnit.COST_UNIT.getUnit();
 
         outputView.showInsertNewLine();
+    }
 
+    private void selectLottoNumbers() {
         outputView.showPurchaseResult(purchaseCount);
 
         lottoNumbers = LottoNumbers.from(new ArrayList<>());
@@ -39,19 +57,25 @@ public class LottoController {
         lottoNumbers.purchaseLotto(purchaseCount, outputView);
 
         outputView.showInsertNewLine();
+    }
 
+    private void requestWinningNumbers() {
         outputView.showRequestLottoNumberComment();
 
         lotto = requestLottoNumberInput();
 
         outputView.showInsertNewLine();
+    }
 
+    private void requestBonusNumber() {
         outputView.showRequestBonusNumberComment();
 
         bonusNumber = requestBonusNumberInput(lotto);
 
         outputView.showInsertNewLine();
+    }
 
+    private void displayWinningStatus() {
         outputView.showWinningStatistics();
 
         checkLotto = CheckLotto.create();
@@ -60,10 +84,11 @@ public class LottoController {
 
         outputView.showWinningResult(checkLotto.getThreeMatched(), checkLotto.getFourMatched(),
                 checkLotto.getFiveMatched(), checkLotto.getBonusMatched(), checkLotto.getAllMatched());
+    }
 
+    private void displayEarningRatio() {
         String earningRatio = checkLotto.getEarningRatio(cost);
         outputView.showTotalEarningRatio(earningRatio);
-
     }
 
     private int requestCostInput() {
