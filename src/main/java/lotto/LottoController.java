@@ -1,9 +1,5 @@
 package lotto;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-
 public class LottoController {
     private final InputHandler inputHandler;
     private final View view;
@@ -16,30 +12,18 @@ public class LottoController {
     }
 
     public void run() {
-        Integer count = getAmountFromUser();
-        WinningNumbers winningNumbers = getWinningNumber();
+        Integer count = getCount();
+        WinningNumbers winningNumbers = getWinningNumbers();
         Lottos lottos = createLottos(count);
+
         displayLottos(count, lottos);
-        calculateTotalPrize(lottos, winningNumbers, count);
+        displayResults(lottos, winningNumbers, count);
     }
 
-    public void calculateTotalPrize(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
-        List<Rank> ranks = lottoService.calculateWinnings(lottos, winningNumbers);
-        Map<Rank, Integer> rankFrequency = rankCounter(ranks);
-        double revenue = lottoService.calculateRevenue(ranks, count * 1000);
-        view.total(rankFrequency);
-        view.revenue(revenue);
-    }
-
-    public Map<Rank, Integer> rankCounter(List<Rank> ranks) {
-        Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
-        for (Rank rank : Rank.values()) {
-            rankCounts.put(rank, 0);
-        }
-        for (Rank rank : ranks) {
-            rankCounts.put(rank, rankCounts.get(rank) + 1);
-        }
-        return rankCounts;
+    public void displayResults(Lottos lottos, WinningNumbers winningNumbers, Integer count) {
+        LottoResults lottoResults = lottoService.calculateResults(lottos, winningNumbers, count);
+        view.total(lottoResults.getRankFrequency());
+        view.revenue(lottoResults.getRevenue());
     }
 
     public void displayLottos(Integer count, Lottos lottos) {
@@ -47,12 +31,12 @@ public class LottoController {
         view.lottos(lottos);
     }
 
-    public Integer getAmountFromUser() {
+    public Integer getCount() {
         Integer amount = inputHandler.handleAmount();
-        return amount/1000;
+        return amount / 1000;
     }
 
-    public WinningNumbers getWinningNumber() {
+    public WinningNumbers getWinningNumbers() {
         Lotto winNumberLotto = inputHandler.handleWinNumbers();
         return inputHandler.handleBonusNumber(winNumberLotto);
     }
