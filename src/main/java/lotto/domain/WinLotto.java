@@ -1,6 +1,4 @@
-package lotto.application.service;
-
-import lotto.domain.Lotto;
+package lotto.domain;
 
 public class WinLotto {
 

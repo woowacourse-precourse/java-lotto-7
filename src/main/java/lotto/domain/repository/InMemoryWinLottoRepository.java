@@ -2,7 +2,7 @@ package lotto.domain.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.application.service.WinLotto;
+import lotto.domain.WinLotto;
 
 public class InMemoryWinLottoRepository implements WinLottoRepository {
 

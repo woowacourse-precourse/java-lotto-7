@@ -1,7 +1,7 @@
 package lotto.common;
 
 import lotto.LottoApplication;
-import lotto.LottoResultUseCase;
+import lotto.application.LottoResultUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
 import lotto.application.service.LottoResultService;

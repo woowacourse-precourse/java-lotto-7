@@ -1,6 +1,6 @@
 package lotto.domain.repository;
 
-import lotto.application.service.WinLotto;
+import lotto.domain.WinLotto;
 
 public interface WinLottoRepository {
 

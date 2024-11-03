@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.application.LottoResultUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
 import lotto.domain.Lotto;

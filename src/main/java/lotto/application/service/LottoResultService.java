@@ -1,8 +1,9 @@
 package lotto.application.service;
 
 import java.util.List;
-import lotto.LottoResultUseCase;
+import lotto.application.LottoResultUseCase;
 import lotto.domain.Lotto;
+import lotto.domain.WinLotto;
 import lotto.domain.repository.WinLottoRepository;
 
 public class LottoResultService implements LottoResultUseCase {
