@@ -6,6 +6,7 @@ import lotto.dto.PurchaseMoneyRequestDTO;
 import lotto.dto.PurchaseResultDTO;
 import lotto.dto.WinningNumberRequestDTO;
 import lotto.model.BonusNumber;
+import lotto.model.LottoDraw;
 import lotto.model.LottoRank;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
@@ -30,9 +31,8 @@ public class LottoController {
     public void run() {
         Money money = retryIfHasError(this::getMoney);
         Lottos lottos = buyLottos(money);
-        WinningNumbers winningNumbers = retryIfHasError(this::getWinningNumbers);
-        BonusNumber bonusNumber = retryIfHasError(this::getBonusNumber);
-        Map<LottoRank, Integer> ranks = lottos.getLottoResults(winningNumbers, bonusNumber);
+        LottoDraw lottoDraw = retryIfHasError(this::getLottoDraw);
+        Map<LottoRank, Integer> ranks = lottos.getLottoResults(lottoDraw);
         outputView.showLottoResults(ranks);
     }
 
@@ -55,6 +55,12 @@ public class LottoController {
     private BonusNumber getBonusNumber() {
         BonusNumberRequestDTO bonusNumberInput = inputView.readBonusNumberInput();
         return new BonusNumber(bonusNumberInput);
+    }
+
+    private LottoDraw getLottoDraw() {
+        WinningNumbers winningNumbers = getWinningNumbers();
+        BonusNumber bonusNumber = getBonusNumber();
+        return new LottoDraw(winningNumbers, bonusNumber);
     }
 
     private <T> T retryIfHasError(Retryable<T> retryable) {

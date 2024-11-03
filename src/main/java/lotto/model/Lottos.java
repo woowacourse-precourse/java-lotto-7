@@ -16,8 +16,8 @@ public class Lottos {
         return lottos;
     }
 
-    public Map<LottoRank, Integer> getLottoResults(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        List<LottoRank> ranks = getLottoRanks(winningNumbers, bonusNumber);
+    public Map<LottoRank, Integer> getLottoResults(LottoDraw lottoDraw) {
+        List<LottoRank> ranks = getLottoRanks(lottoDraw);
         return countLottoRanks(ranks);
     }
 
@@ -26,15 +26,16 @@ public class Lottos {
         for (LottoRank lottoRank : LottoRank.values()) {
             result.put(lottoRank, 0);
         }
+
         for (LottoRank lottoRank : ranks) {
             result.put(lottoRank, result.get(lottoRank) + 1);
         }
         return result;
     }
 
-    private List<LottoRank> getLottoRanks(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private List<LottoRank> getLottoRanks(LottoDraw lottoDraw) {
         return lottos.stream()
-                .map(lotto -> lotto.calculateRank(winningNumbers, bonusNumber))
+                .map(lotto -> lotto.calculateRank(lottoDraw.getWinningNumbers(), lottoDraw.getBonusNumber()))
                 .toList();
     }
 }
