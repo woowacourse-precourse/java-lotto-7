@@ -23,13 +23,8 @@ public class Application {
             Lotto lotto = new Lotto(randomNumbers);
             lottos.add(lotto);
         }
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
-        System.out.println();
+        OutputHandler.displayPurchasedLottos(lottos);
 
-        // 당첨번호 입력
         WinningNumbers winningNumbers = InputHandler.getWinningNumbers();
 
         // EnumMap으로 등수 갯수 계산
@@ -44,19 +39,7 @@ public class Application {
         }
 
         // 결과 출력
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        for (Rank rank : Rank.values()) {
-            System.out.print(rank.getMatchCount());
-            System.out.print("개 일치");
-            if (rank.isRequireBonus()) {
-                System.out.print(", 보너스 볼 일치");
-            }
-            System.out.print(" (" + String.format("%,d", rank.getPrize()) + "원)");
-            System.out.println(" - " + rankCountMap.get(rank) + "개");
-        }
-
-        System.out.println("총 수익률은 " + String.format("%.1f", (double) totalPrice / amount * 100) + "%입니다.");
+        double profitRate = (double) totalPrice / amount * 100;
+        OutputHandler.displayResults(rankCountMap, profitRate);
     }
 }
