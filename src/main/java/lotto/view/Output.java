@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.Rank.FIFTH;
 import static lotto.Rank.FIRST;
@@ -8,6 +8,8 @@ import static lotto.Rank.THIRD;
 
 import java.util.List;
 import java.util.Map;
+import lotto.Lotto;
+import lotto.Rank;
 
 public class Output {
     private static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";

@@ -7,15 +7,16 @@ import static lotto.ErrorMessage.NOT_UNIQUE_WINNING_NUMBER;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_EXCEED_LIMIT;
 import static lotto.ErrorMessage.NOT_ENOUGH_PURCHASE_AMOUNT;
 import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE;
-import static lotto.Input.inputBonusNumber;
-import static lotto.Input.inputPurchaseAmount;
-import static lotto.Input.inputWinningNumbers;
+import static lotto.view.Input.inputBonusNumber;
+import static lotto.view.Input.inputPurchaseAmount;
+import static lotto.view.Input.inputWinningNumbers;
 import static lotto.InputParser.parseInt;
 import static lotto.InputParser.parseWinningNumbers;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.view.Output;
 
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
