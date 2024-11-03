@@ -24,6 +24,12 @@ public class LottoService {
     }
 
     private int[] calculateResults(Lotto[] userLottos, Winning winning) {
+        int[] ranks = new int[6];
+        for (Lotto lotto : userLottos) {
+            int rank = winning.checkLotto(lotto);
+            if (rank > 0) ranks[rank]++;
+        }
+        return ranks;
     }
 
     private int getBonusNumber() {
@@ -47,9 +53,18 @@ public class LottoService {
     }
 
     private void displayBenefit(int amount, int[] ranks) {
+        double yield = benefit.calculateBenefit(amount, ranks);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
     }
 
     private void displayResults(int[] ranks) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개%n", ranks[5]);
+        System.out.printf("4개 일치 (50,000원) - %d개%n", ranks[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", ranks[3]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", ranks[2]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", ranks[1]);
     }
 
 }
