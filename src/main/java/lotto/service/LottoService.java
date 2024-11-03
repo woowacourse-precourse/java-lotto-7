@@ -35,6 +35,7 @@ public class LottoService {
         int totalWinnings = lottoCollection.getTotalWinnings();
         double purchaseAmount1 = lottoCollection.getPurchaseAmount();
         double result = totalWinnings / purchaseAmount1;
-        return result * Constant.PERCENTAGE;
+        double rateOfReturn = result * Constant.PERCENTAGE;
+        return Math.round(rateOfReturn * Constant.PERCENTAGE) / Constant.PERCENTAGE;
     }
 }

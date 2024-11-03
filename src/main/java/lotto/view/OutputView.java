@@ -48,7 +48,8 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println(Message.RATE_OF_RETURN_START_MESSAGE + rateOfReturn + Message.RATE_OF_RETURN_END_MESSAGE);
+        String format = String.format("%.1f", rateOfReturn);
+        System.out.println(Message.RATE_OF_RETURN_START_MESSAGE + format + Message.RATE_OF_RETURN_END_MESSAGE);
     }
 
     public void printExceptionMessage(String message) {
