@@ -36,3 +36,4 @@
 - provide user interface
   - [ ] read input money from user
   - [ ] read input winning number and bonus number from user
+  - [ ] print bought Lotto info

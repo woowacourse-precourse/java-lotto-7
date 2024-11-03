@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import lotto.Lotto;
 import lotto.constant.ExceptionMessage;
 import lotto.view.constant.UserInterfaceMessage;
 
@@ -42,6 +44,15 @@ public class LottoView {
         return transformToIntegerList(rawNumberList);
     }
 
+    public void printBoughtLottoInfo(List<Lotto> lottos){
+        System.out.printf(UserInterfaceMessage.PRINTF_BOUGHT_LOTTO_INFO+"\n",lottos.size());
+
+        for(Lotto lotto : lottos){
+            this.printLottoNumbers(lotto);
+        }
+
+        System.out.println();
+    }
     public List<Integer> transformToIntegerList(String[] rawNumberList){
         List<Integer> numberList = new ArrayList<>();
 
@@ -65,6 +76,25 @@ public class LottoView {
         validateIntRange(rawNumber);
         int number = Integer.parseInt(rawNumber);
         validatePositiveNumber(number);
+    }
+
+    public void printLottoNumbers(Lotto lotto){
+       String result = UserInterfaceMessage.PRINT_LOTTO_LIST_START_DELIMITER;
+       String joinedNumbers = joinToString(lotto.getNumbers(),UserInterfaceMessage.PRINT_LOTTO_LIST_MIDDLE_DELIMITER);
+       result = result.concat(joinedNumbers).concat(UserInterfaceMessage.PRINT_LOTTO_LIST_END_DELIMITER);
+       System.out.println(result);
+    }
+
+    static public String joinToString(List<Integer> numberList, String delimiter){
+
+
+        List<String> stringNumbers = new ArrayList<>();
+
+        for(int number : numberList){
+            stringNumbers.add(Integer.toString(number));
+        }
+
+       return String.join(delimiter,stringNumbers);
     }
 
     /*TODO
