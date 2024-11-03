@@ -1,12 +1,12 @@
 package lotto.service;
 
+import static lotto.service.ErrorMessages.Sales.INVALID_UNIT_OF_PAID_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.controller.ErrorMessages;
-import lotto.model.customer.Customer;
 import lotto.dto.LottoDto;
+import lotto.model.customer.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ public class LottoSalesServiceTest {
         // when & then
         assertThatThrownBy(() -> lottoSalesService.sellLottoToNewCustomer(invalidUnitInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_UNIT_OF_PAID_AMOUNT);
+                .hasMessage(INVALID_UNIT_OF_PAID_AMOUNT);
     }
 
     @Test
