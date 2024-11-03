@@ -8,4 +8,9 @@ public class InputView {
         Message.INPUT_PURCHASE_MONEY.println();
         return Console.readLine();
     }
+
+    public String readWinningNumbers() {
+        Message.INPUT_WIN_NUMBER.println();
+        return Console.readLine();
+    }
 }

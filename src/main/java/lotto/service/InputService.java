@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import java.math.BigInteger;
+import java.util.List;
 
 public class InputService {
     public BigInteger getPurchaseMoney() {
@@ -16,5 +17,22 @@ public class InputService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Long> getWinningNumbers() {
+        InputView inputView = new InputView();
+        Validator validator = new Validator();
+
+        while (true) {
+            try {
+                return validator.validWinningNumbers(inputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public Long getBonusNumber() {
+        return 0L;
     }
 }

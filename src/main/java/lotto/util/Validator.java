@@ -3,6 +3,7 @@ package lotto.util;
 import lotto.message.ErrorMessage;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class Validator {
     public BigInteger validPurchaseMoney(String number) {
@@ -21,5 +22,21 @@ public class Validator {
 
     public boolean isDivisibleByThousand(BigInteger purchaseMoney) {
         return purchaseMoney.remainder(BigInteger.valueOf(1000)).equals(BigInteger.ZERO);
+    }
+
+    public List<Long> validWinningNumbers(String winningNumbers) {
+        List<Long> winningNumberList = isNumbers(winningNumbers);
+
+        return winningNumberList;
+    }
+
+    private List<Long> isNumbers(String winningNumbers) {
+        Splitter splitter = new Splitter();
+
+        try {
+            return splitter.splitNumberByComma(winningNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.NONE_NUMBER.getMessage());
+        }
     }
 }
