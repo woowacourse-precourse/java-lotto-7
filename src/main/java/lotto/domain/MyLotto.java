@@ -19,4 +19,14 @@ public class MyLotto {
         return bonusNumber;
     }
 
+    public Integer getMatchCount(Lotto generatedLotto) {
+        return (int) generatedLotto.getNumbers().stream()
+                .filter(num -> myLotto.getNumbers().contains(num))
+                .count();
+    }
+
+    public boolean hasBonus(Lotto generatedLotto) {
+        return generatedLotto.getNumbers().contains(bonusNumber);
+    }
+
 }
