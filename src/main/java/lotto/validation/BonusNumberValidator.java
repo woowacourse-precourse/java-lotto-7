@@ -11,9 +11,8 @@ public class BonusNumberValidator {
 
     private BonusNumberValidator() {}
 
-    public static void validateRange(String input) {
-        int bonusNum = Convertor.convertToInt(input);
-        if (bonusNum > MAX_NUMBER_RANGE || bonusNum < MIN_NUMBER_RANGE) {
+    public static void validateRange(int bonusNumber) {
+        if (bonusNumber > MAX_NUMBER_RANGE || bonusNumber < MIN_NUMBER_RANGE) {
             throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + "보너스 번호는 1~45 사이의 숫자를 입력해야 합니다.");
         }
     }

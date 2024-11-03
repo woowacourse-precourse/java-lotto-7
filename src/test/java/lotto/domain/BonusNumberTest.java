@@ -11,7 +11,7 @@ class BonusNumberTest {
     @DisplayName("BonusNumber 객체 생성 테스트")
     @Test
     void createBonusNumber() {
-        BonusNumber bonusNumber = BonusNumber.from("7");
+        BonusNumber bonusNumber = BonusNumber.from("7", WinningNumber.from("1,2,3,4,5,6"));
 
         Assertions.assertThat(bonusNumber.isEqualTo(7)).isTrue();
     }

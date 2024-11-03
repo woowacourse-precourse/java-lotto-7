@@ -65,9 +65,9 @@ public class LottoController {
 
     private BonusNumber getBonusNumber(WinningNumber winningNumber) {
         OutputView.printBonusNumberInputMessage();
-        String inputBonusNumber = InputView.inputBonusNumber(winningNumber);
+        String inputBonusNumber = InputView.inputBonusNumber();
         System.out.println();
-        return BonusNumber.from(inputBonusNumber);
+        return BonusNumber.from(inputBonusNumber, winningNumber);
     }
 
     private Map<LottoRank, Integer> produceStatistics(List<MatchResult> matchResults) {

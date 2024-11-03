@@ -36,7 +36,7 @@ class LottoTest {
         WinningNumber winningNumber = WinningNumber.from(enteredWinningNumbers);
         Lotto lotto = new Lotto(lottoNumbers);
 
-        MatchResult matchResult = lotto.compareWithWinningNumbers(winningNumber, BonusNumber.from("10"));
+        MatchResult matchResult = lotto.compareWithWinningNumbers(winningNumber, BonusNumber.from("10", winningNumber));
         int actualMatchCount = matchResult.matchCount();
 
         Assertions.assertThat(actualMatchCount).isEqualTo(4);
@@ -48,10 +48,11 @@ class LottoTest {
         String enteredBonusNumber = "7";
         List<Integer> lottoNumbers = List.of(1,2,3,4,7,9);
 
-        BonusNumber bonusNumber = BonusNumber.from(enteredBonusNumber);
+        WinningNumber winningNumber = WinningNumber.from("10,11,12,13,14,15");
+        BonusNumber bonusNumber = BonusNumber.from(enteredBonusNumber, winningNumber);
         Lotto lotto = new Lotto(lottoNumbers);
 
-        MatchResult matchResult = lotto.compareWithWinningNumbers(WinningNumber.from("10,11,12,13,14,15"), bonusNumber);
+        MatchResult matchResult = lotto.compareWithWinningNumbers(winningNumber, bonusNumber);
         boolean actualContainsBonusNumber = matchResult.containBonusNumber();
 
         Assertions.assertThat(actualContainsBonusNumber).isEqualTo(true);
