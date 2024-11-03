@@ -1,6 +1,9 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputHandler {
 
@@ -13,5 +16,16 @@ public class InputHandler {
 
         return purchaseCost;
     }
-    
+
+    public List<Integer> getWinningLottoInput() {
+        String input = Console.readLine();
+
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    public Integer getWinningLottoBonusNumberInput() {
+        return Integer.parseInt(Console.readLine());
+    }
 }

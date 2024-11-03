@@ -8,6 +8,14 @@ public class OutputHandler {
         System.out.println("구입금액을 입력해주세요.");
     }
 
+    public void showWinningLottoInputComment() {
+        System.out.println("당첨 번호를 입력해주세요");
+    }
+
+    public void showWinningLottoBonusNumberInputComment(){
+        System.out.println("보너스 번호를 입력해주세요");
+    }
+
     public void showErrorMessage(String message) {
         System.err.println(message);
     }
@@ -19,4 +27,6 @@ public class OutputHandler {
     public void showNumber(Lotto lotto) {
         System.out.println(lotto.getNumbers());
     }
+
+
 }
