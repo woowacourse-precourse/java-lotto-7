@@ -14,4 +14,12 @@ public class InputView {
     public static String inputLottoNumbers() {
         return Console.readLine();
     }
+
+    public static int inputBonusNumber() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 확인해주세요.");
+        }
+    }
 }
