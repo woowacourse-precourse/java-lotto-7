@@ -8,7 +8,7 @@ import lotto.exception.CheckInput;
 
 public class InputConsole {
 
-    public static int intputMoney() {
+    public static int inputMoney() {
         System.out.println("구매금액을 입력해 주세요.");
 
         int inputMoney = 0;

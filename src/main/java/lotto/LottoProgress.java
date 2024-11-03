@@ -7,7 +7,7 @@ import lotto.console.OutputConsole;
 public class LottoProgress {
 
     public static void lottoProgress() {
-        int inputMoney = InputConsole.intputMoney();
+        int inputMoney = InputConsole.inputMoney();
         List<Lotto> lottoList = buyLotto(inputMoney);
 
         Lotto winningLottoNumbers = InputConsole.inputWinningNumbers();

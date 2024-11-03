@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lotto.enums.ErrorType;
 
 public class Lotto {
@@ -27,16 +26,13 @@ public class Lotto {
     }
 
     public boolean checkDuplicateWithBonusNumber(int bonusNum) {
-        if (numbers.contains(bonusNum)) {
-            return true;
-        }
-        return false;
+        return numbers.contains(bonusNum);
     }
 
     public int findDuplicateNum(List<Integer> winningNumber) {
 
         List<Integer> matchNum = this.numbers.stream().filter(o -> winningNumber.stream()
-                .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
+                .anyMatch(Predicate.isEqual(o))).toList();
 
         return matchNum.size();
     }
