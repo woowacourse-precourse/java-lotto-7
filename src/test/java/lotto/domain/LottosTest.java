@@ -17,9 +17,9 @@ public class LottosTest {
     void buyLottos() {
         Money money = new Money("3000");
 
-        int ticketCount = lottoService.getTicketCount(money);
-        Lottos lottos = new Lottos(ticketCount);
+        Lottos lottos = lottoService.buyLottos(money);
+        int expectedLottoCount = money.getValue() / 1000;
 
-        assertThat(lottos.getLottos().size()).isEqualTo(ticketCount);
+        assertThat(lottos.getLottos().size()).isEqualTo(expectedLottoCount);
     }
 }

@@ -14,35 +14,37 @@ public class LottoController {
     private Lotto winningNumber;
     private Lottos lottos;
     private Money money;
-    private int count;
     private BonusNumber bonusNumber;
 
     public LottoController() {
         this.lottoService = new LottoService();
-//        this.lotto = new Lotto(InputView.inputLottoNumbers());
     }
 
     public void set() {
-        this.money = new Money(InputView.inputMoney());
 
-        this.count = lottoService.getTicketCount(money);
-        System.out.printf((Prompt.CONFIRM_TICKET_COUNT.getMessage()) + "%n", count);
+        buyingLottos();
 
-        this.lottos = new Lottos(count);
-        OutputView.printBoughtLottos(lottos);
-
-        this.winningNumber = lottoService.getWinningNumbers();
-        this.bonusNumber = lottoService.getBonusNumber();
+        inputWinningNumbersAndBonusNumber();
 
         calculatePrize();
     }
 
-    private void calculatePrize() {
-        long totalPrize = lottoService.getTotalPrize(lottos, winningNumber, bonusNumber);
-        double earningRate = calculateEarningRate(totalPrize);
+    private void buyingLottos() {
+        this.money = new Money(InputView.inputMoney());
+
+        this.lottos = lottoService.buyLottos(money);
+
+        OutputView.printBoughtLottos(lottos, money);
     }
 
-    private double calculateEarningRate(long totalPrize) {
-        return (double) totalPrize /  money.getValue() * 100;
+    private void inputWinningNumbersAndBonusNumber() {
+        this.winningNumber = lottoService.getWinningNumbers();
+        this.bonusNumber = lottoService.getBonusNumber();
     }
+
+    private void calculatePrize() {
+        long totalPrize = lottoService.getTotalPrize(lottos, winningNumber, bonusNumber);
+        double earningRate = lottoService.calculateEarningRate(totalPrize, money);
+    }
+
 }

@@ -15,6 +15,12 @@ public class LottoService {
     public LottoService() {
     }
 
+    public Lottos buyLottos(Money money) {
+        int ticketCount = getTicketCount(money);
+
+        return new Lottos(ticketCount);
+    }
+
     public int getTicketCount(Money money) {
         return money.getValue() / 1000;
     }
@@ -44,5 +50,9 @@ public class LottoService {
         }
 
         return totalPrize;
+    }
+
+    public double calculateEarningRate(long totalPrize, Money money) {
+        return (double) totalPrize /  money.getValue() * 100;
     }
 }
