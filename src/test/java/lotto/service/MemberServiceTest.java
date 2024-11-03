@@ -2,7 +2,6 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
@@ -31,14 +30,13 @@ class MemberServiceTest {
         String amount = "8000";
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "7";
-        List<Lotto> lottos = new ArrayList<>();
 
         // when
         lottoMachineService.inputLottoPurchaseAmount(amount);
         lottoMachineService.inputWinningNumbers(winningNumbers);
         lottoMachineService.inputBonusNumber(bonusNumber);
-        lottos.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
-        lottoMachineService.giveCorrectCountAndMoney(lottos);
+        member.saveIssuedLotto(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
+        lottoMachineService.giveCorrectCountAndMoney();
         memberService.calculateReturnOfRate();
 
         // then

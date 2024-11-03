@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
@@ -109,14 +108,13 @@ class LottoMachineServiceTest {
         // given
         String bonusNumber = "12";
         String numbers = "1,2,3,4,5,6";
-        List<Lotto> issuedLottos = new ArrayList<>();
         Lotto issuedNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 12));
-        issuedLottos.add(issuedNumbers);
 
         // when
         lottoMachineService.inputWinningNumbers(numbers);
         lottoMachineService.inputBonusNumber(bonusNumber);
-        lottoMachineService.giveCorrectCountAndMoney(issuedLottos);
+        member.saveIssuedLotto(issuedNumbers);
+        lottoMachineService.giveCorrectCountAndMoney();
 
         // then
         assertEquals(1, member.getLottoResults().get(LottoRank.SECOND));
