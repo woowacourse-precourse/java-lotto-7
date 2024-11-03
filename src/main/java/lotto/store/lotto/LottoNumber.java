@@ -2,7 +2,7 @@ package lotto.store.lotto;
 
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable {
     private int number;
 
     protected static final int MIN_LOTTO_NUMBER = 1;
@@ -34,5 +34,11 @@ public class LottoNumber {
     @Override
     public String toString() {
         return String.valueOf(number);
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        LottoNumber lottoNumber = (LottoNumber) obj;
+        return Integer.compare(number, lottoNumber.number);
     }
 }

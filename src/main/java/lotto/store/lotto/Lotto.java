@@ -13,7 +13,7 @@ public class Lotto {
         if(hasDuplicatedNumbers(numbers))
             throw new IllegalArgumentException("로또 번호는 6개는 유니크해야 합니다.");
 
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     public boolean contains(LottoNumber number) {
