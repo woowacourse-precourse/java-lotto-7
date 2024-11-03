@@ -12,7 +12,7 @@ public class InputHandler {
         this.outputView = outputView;
     }
 
-    private int readPurchaseAmount() {
+    public int readPurchaseAmount() {
         outputView.printRequirePurchasePrice();
         String input = readLine();
         final int amount = parseToInteger(input);
