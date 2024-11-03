@@ -2,6 +2,9 @@ package lotto.models;
 
 import java.util.HashSet;
 import java.util.List;
+import static lotto.utils.ErrorMessages.*;
+import static lotto.utils.Constants.*;
+import static lotto.utils.MessageFormatter.formatErrorMessage;
 
 /*
 - Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
@@ -10,9 +13,6 @@ import java.util.List;
 */
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_LOWER_BOUND = 1;
-    private static final int LOTTO_UPPER_BOUND = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,14 +21,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(formatErrorMessage(LOTTO_SHOULD + BE_N_SIZE, LOTTO_SIZE));
         }
         if (new HashSet<>(numbers).size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(formatErrorMessage(LOTTO_SHOULD, NOT_BE_REPEATED));
         }
         for (int number: numbers) {
             if (number < LOTTO_LOWER_BOUND || number > LOTTO_UPPER_BOUND) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다. ");
+                throw new IllegalArgumentException(formatErrorMessage(LOTTO_SHOULD + BE_IN_RANGE,LOTTO_LOWER_BOUND,LOTTO_UPPER_BOUND));
             }
         }
     }
