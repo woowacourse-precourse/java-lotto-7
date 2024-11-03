@@ -20,4 +20,15 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
     }
+    
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외가 발생한다.")
+    void bonusNumberDuplicateWithWinningNumbers() {
+        String input = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(input);
+        int bonusNumber = 6;
+        assertThatThrownBy(() -> new BonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.BONUS_NUMBER_DUPLICATE);
+    }
 }
