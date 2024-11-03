@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import dto.LottoResultDTO;
 import dto.LottosDTO;
 import java.util.Arrays;
 import java.util.List;
@@ -35,8 +36,9 @@ public class LottoController {
         BonusNumber bonusNumber = createBonusNumberFromInput(winningNumbers);
 
         LottoManager lottoManager = new LottoManager(lottos, winningNumbers, bonusNumber);
-
-        outputView.printResults(lottoManager.getResults(), lottoManager.calculateRateOfReturn(purchaseAmount));
+        LottoResultDTO lottoResultDTO = LottoResultDTO.of(lottoManager.getResults(),
+                lottoManager.calculateRateOfReturn(purchaseAmount));
+        outputView.printResults(lottoResultDTO);
     }
 
     private WinningNumbers createWinningNumbersFromInput() {

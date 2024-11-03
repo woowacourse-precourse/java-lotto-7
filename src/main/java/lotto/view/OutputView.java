@@ -1,10 +1,9 @@
 package lotto.view;
 
+import dto.LottoResultDTO;
 import dto.LottosDTO;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.Map;
-import lotto.model.Rank;
+import java.text.NumberFormat;
+import java.util.List;
 
 public class OutputView {
 
@@ -15,23 +14,41 @@ public class OutputView {
         );
     }
 
-    public void printResults(Map<Rank, Long> results, double rateOfReturn) {
+    public void printResults(LottoResultDTO lottoResultDTO) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        printRankResults(results);
-        printRateOfReturn(rateOfReturn);
+        printRankResults(lottoResultDTO);
+        printRateOfReturn(lottoResultDTO.rateOfResult());
     }
 
-    private void printRankResults(Map<Rank, Long> results) {
-        results.forEach((rank, count) -> {
-            int prize = rank.getPrize();
-            System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getMatchCount(), prize, count);
-        });
+    private void printRankResults(LottoResultDTO lottoResultDTO) {
+        List<Integer> matchCounts = lottoResultDTO.matchCounts();
+        List<Integer> prizes = lottoResultDTO.prizes();
+        List<Long> counts = lottoResultDTO.counts();
+        List<Boolean> requiresBonus = lottoResultDTO.requiresBonus();
+
+        for (int i = 0; i < matchCounts.size(); i++) {
+            String formattedPrize = formatPrize(prizes.get(i));
+            printSingleRankResult(matchCounts.get(i), formattedPrize, counts.get(i), requiresBonus.get(i));
+        }
+    }
+
+    private String formatPrize(int prize) {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        return numberFormat.format(prize);
+    }
+
+    private void printSingleRankResult(int matchCount, String formattedPrize, long count, boolean requiresBonus) {
+        if (requiresBonus) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", matchCount, formattedPrize, count);
+        }
+        System.out.printf("%d개 일치 (%s원) - %d개%n", matchCount, formattedPrize, count);
+
     }
 
     private void printRateOfReturn(double rateOfReturn) {
         String formattedRateOfReturn = String.format("%.1f", rateOfReturn);
-        System.out.printf("총 수익률은 %s%%입니다.%n", formattedRateOfReturn);
+        System.out.println("총 수익률은 " + formattedRateOfReturn + "%입니다.");
     }
 }
