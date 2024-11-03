@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Lotto {
@@ -24,7 +25,13 @@ public class Lotto {
         Collections.sort(numbers);
     }
     public int getRetainAllSize(List<Integer> winningNumbers){
-        numbers.retainAll(winningNumbers);
-        return numbers.size();
+        List<Integer> currentNumbers = new LinkedList<>(numbers);
+        currentNumbers.retainAll(winningNumbers);
+        return currentNumbers.size();
+    }
+    public boolean hasBonusNumber(int bonusNumber){
+        if(numbers.contains(bonusNumber))
+            return true;
+        return false;
     }
 }

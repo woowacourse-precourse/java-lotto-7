@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -51,9 +48,19 @@ public class Application {
 
         // 겹치는 번호 개수
         List<Integer> countRetain = new LinkedList<>();
+        int countHasBonusNumber = 0;
         iterator = lottoNumbers.listIterator();
         while(iterator.hasNext()){
-            countRetain.add(iterator.next().getRetainAllSize(winningNumbers));
+            Lotto currentNumeberList = iterator.next();
+            int count = currentNumeberList.getRetainAllSize(winningNumbers);
+
+            if(count == 5 && currentNumeberList.hasBonusNumber(bonusNumber)){
+
+                countHasBonusNumber++;
+            }
+            else{
+                countRetain.add(count);
+            }
         }
 
         int count;
@@ -72,7 +79,8 @@ public class Application {
         statistics += count * 1500000;
         System.out.println("5개 일치 (1,500,000원) - " + count + "개");
 
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
+        statistics += countHasBonusNumber * 30000000;
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + countHasBonusNumber + "개");
 
         count = Collections.frequency(countRetain, 6);
         statistics += count * 2000000000;
