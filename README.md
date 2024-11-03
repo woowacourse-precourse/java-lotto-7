@@ -28,7 +28,7 @@
 
 ## 로또 구입 금액 입력 안내 메시지 출력
 
-- []  `"구입금액을 입력해 주세요."`를 출력한다.
+- [x]  `"구입금액을 입력해 주세요."`를 출력한다.
 
 ## 로또 구입 금액 입력
 
@@ -47,7 +47,7 @@
 
 ## 당첨 번호 입력 안내 메시지 출력
 
-- []  `"당첨 번호를 입력해 주세요."`를 출력한다.
+- [x]  `"당첨 번호를 입력해 주세요."`를 출력한다.
 
 ## 당첨 번호 입력
 
@@ -61,7 +61,7 @@
 
 ## 보너스 번호 입력 안내 메시지 출력
 
-- []  `"보너스 번호를 입력해 주세요."`를 출력한다.
+- [x]  `"보너스 번호를 입력해 주세요."`를 출력한다.
 
 ## 보너스 번호 입력
 
@@ -249,16 +249,16 @@
 
 ## **라이브러리 요구 사항**
 
-- [ ]  `camp.nextstep.edu.missionutils`에서 제공하는 `Console` API를 사용하여 구현해야 한다.
-- [ ]  Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
-- [ ]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
+- [x]  `camp.nextstep.edu.missionutils`에서 제공하는 `Console` API를 사용하여 구현해야 한다.
+- [x]  Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickNumberInRange()`를 활용한다.
+- [x]  사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 ## **Lotto 클래스**
 
-- [ ]  제공된 `Lotto` 클래스를 사용하여 구현해야 한다.
-- [ ]  `Lotto`에 `numbers` 이외의 필드(인스턴스 변수)를 추가할 수 없다.
-- [ ]  `numbers`의 접근 제어자인 `private`은 변경할 수 없다.
-- [ ]  `Lotto`의 패키지를 변경할 수 있다.
+- [x]  제공된 `Lotto` 클래스를 사용하여 구현해야 한다.
+- [x]  `Lotto`에 `numbers` 이외의 필드(인스턴스 변수)를 추가할 수 없다.
+- [x]  `numbers`의 접근 제어자인 `private`은 변경할 수 없다.
+- [x]  `Lotto`의 패키지를 변경할 수 있다.
 
 ```java
 public class Lotto {
