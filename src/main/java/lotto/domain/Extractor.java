@@ -14,7 +14,7 @@ public class Extractor {
         try {
             return Arrays.stream(input.split(DELIMITER)).map(s -> Integer.parseInt(s.trim())).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.ILLEGAL_LOTTO_NUMBER);
         }
     }
 }
