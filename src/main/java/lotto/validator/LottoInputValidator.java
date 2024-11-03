@@ -5,9 +5,7 @@ import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_BLANK;
 import static lotto.exception.LottoErrorCode.BONUS_NUMBER_NOT_ONE;
 import static lotto.exception.LottoErrorCode.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_DUPLICATED;
-import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_NOT_SORTED;
 import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE;
-import static lotto.exception.LottoErrorCode.LOTTO_NUMBERS_SIZE_NOT_6;
 import static lotto.exception.LottoErrorCode.LOTTO_PRICE_NOT_BLANK;
 import static lotto.exception.LottoErrorCode.LOTTO_PRICE_NOT_IN_1_000;
 import static lotto.exception.LottoErrorCode.LOTTO_PRICE_NOT_OVER_1_000_000;
@@ -21,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class LottoValidator {
+public class LottoInputValidator { // 사용자 Input 검증
 
     private static final Pattern POSITIVE_INTEGER = Pattern.compile("^[1-9]\\d*$");
     private static final Pattern BONUS_NUMBER = Pattern.compile("\\d{1,2}");
@@ -34,13 +32,6 @@ public class LottoValidator {
         isMoneyNotIn_1_000(money);
     }
 
-    public void validateGeneratedLottoNumbers(List<Integer> lottoNumbers) {
-        isNumbersSize6(lottoNumbers);
-        isNumbersOutOfRange(lottoNumbers);
-        isNumbersDuplicated(lottoNumbers);
-        isNumbersSorted(lottoNumbers);
-    }
-
     public void validateWinnerLottoNumbers(String winnerNumbers) {
         isWinnerNumbersBlank(winnerNumbers);
         isWinnerNumbersContainComma(winnerNumbers);
@@ -48,8 +39,8 @@ public class LottoValidator {
 
         List<Integer> lottoNumbers = getLottoNumbersFromWinnerLottoNumbers(winnerNumbers);
 
-        isNumbersOutOfRange(lottoNumbers);
-        isNumbersDuplicated(lottoNumbers);
+        isWinnerNumbersOutOfRange(lottoNumbers);
+        isWinnerNumbersDuplicated(lottoNumbers);
     }
 
     public void validateBonusNumber(List<Integer> winnerNumbers, String bonusNumber) {
@@ -110,27 +101,15 @@ public class LottoValidator {
         }
     }
 
-    private static void isNumbersSorted(List<Integer> lottoNumbers) {
-        if (!lottoNumbers.stream().sorted().toList().equals(lottoNumbers)) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_NOT_SORTED.getMessage());
-        }
-    }
-
-    private static void isNumbersOutOfRange(List<Integer> lottoNumbers) {
+    private static void isWinnerNumbersOutOfRange(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 
-    private static void isNumbersDuplicated(List<Integer> lottoNumbers) {
+    private static void isWinnerNumbersDuplicated(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATED.getMessage());
-        }
-    }
-
-    private static void isNumbersSize6(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_SIZE_NOT_6.getMessage());
         }
     }
 

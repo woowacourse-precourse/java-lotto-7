@@ -5,7 +5,7 @@ import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
 import lotto.service.InMemoryLottoService;
 import lotto.service.LottoService;
-import lotto.validator.LottoValidator;
+import lotto.validator.LottoInputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,8 +27,8 @@ public class AppConfig {
         return InMemoryLottoRepository.getInstance();
     }
 
-    public LottoValidator lottoValidator() {
-        return new LottoValidator();
+    public LottoInputValidator lottoValidator() {
+        return new LottoInputValidator();
     }
 
     public LottoService lottoService() {

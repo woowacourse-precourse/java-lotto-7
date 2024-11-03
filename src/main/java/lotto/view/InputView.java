@@ -6,14 +6,14 @@ import static lotto.constant.LottoInputMessage.INPUT_WINNING_NUMBER_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.validator.LottoValidator;
+import lotto.validator.LottoInputValidator;
 
 public class InputView {
 
-    private final LottoValidator lottoValidator;
+    private final LottoInputValidator lottoInputValidator;
 
-    public InputView(LottoValidator lottoValidator) {
-        this.lottoValidator = lottoValidator;
+    public InputView(LottoInputValidator lottoInputValidator) {
+        this.lottoInputValidator = lottoInputValidator;
     }
 
     public String inputMoney() {
@@ -21,7 +21,7 @@ public class InputView {
             System.out.println(INPUT_MONEY_MESSAGE);
             String money = Console.readLine();
             try {
-                lottoValidator.validateMoney(money);
+                lottoInputValidator.validateMoney(money);
                 return money;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -35,7 +35,7 @@ public class InputView {
             System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
             String winnerNumbers = Console.readLine();
             try {
-                lottoValidator.validateWinnerLottoNumbers(winnerNumbers);
+                lottoInputValidator.validateWinnerLottoNumbers(winnerNumbers);
                 return winnerNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,7 +49,7 @@ public class InputView {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             String bonusNumber = Console.readLine();
             try {
-                lottoValidator.validateBonusNumber(winnerNumbers, bonusNumber);
+                lottoInputValidator.validateBonusNumber(winnerNumbers, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
