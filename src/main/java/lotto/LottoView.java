@@ -27,6 +27,12 @@ public class LottoView {
     }
 
     public void printResult(int[] resultCnt, double profitRate) {
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(LottoRank.FIFTH.getMatchCount() + "개 일치 (" + LottoRank.FIFTH.getPrize() + "원) - " + resultCnt[4] + "개");
+        System.out.println(LottoRank.FOURTH.getMatchCount() + "개 일치 (" + LottoRank.FOURTH.getPrize() + "원) - " + resultCnt[3] + "개");
+        System.out.println(LottoRank.THIRD.getMatchCount() + "개 일치 (" + LottoRank.THIRD.getPrize() + "원) - " + resultCnt[2] + "개");
+        System.out.println(LottoRank.SECOND.getMatchCount() + "개 일치 (" + LottoRank.SECOND.getPrize() + "원) - " + resultCnt[1] + "개");
+        System.out.println(LottoRank.FIRST.getMatchCount() + "개 일치 (" + LottoRank.FIRST.getPrize() + "원) - " + resultCnt[0] + "개");
     }
 }
