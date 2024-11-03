@@ -1,13 +1,13 @@
-package lotto.controller;
+package lotto.ui;
 
 import java.util.List;
 import java.util.Map;
-import lotto.LottoPrize;
-import lotto.dto.LottoResultResponseDto;
-import lotto.dto.WinningNumberRequestDto;
-import lotto.model.Lotto;
-import lotto.model.PositiveNumber;
-import lotto.service.LottoService;
+import lotto.domain.LottoPrize;
+import lotto.app.dto.LottoResultResponseDto;
+import lotto.app.dto.WinningNumberRequestDto;
+import lotto.domain.Lotto;
+import lotto.domain.PositiveNumber;
+import lotto.app.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

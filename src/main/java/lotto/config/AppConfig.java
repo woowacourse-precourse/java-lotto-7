@@ -1,8 +1,8 @@
-package lotto;
+package lotto.config;
 
-import lotto.handler.LottoController;
-import lotto.handler.RandomValueGenerator;
-import lotto.service.LottoService;
+import lotto.ui.LottoController;
+import lotto.app.RandomValueGenerator;
+import lotto.app.LottoService;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

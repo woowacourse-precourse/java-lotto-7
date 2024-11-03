@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.dto.LottoResultResponseDto;
-import lotto.model.Lotto;
+import lotto.app.dto.LottoResultResponseDto;
+import lotto.domain.Lotto;
 
 public class OutputView {
 

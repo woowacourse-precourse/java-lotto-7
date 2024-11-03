@@ -3,9 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.dto.WinningNumberRequestDto;
-import lotto.model.PositiveNumber;
-import lotto.model.PositiveNumbers;
+import lotto.app.dto.WinningNumberRequestDto;
+import lotto.domain.PositiveNumber;
 
 public class InputView {
 
@@ -15,11 +14,11 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public PositiveNumber getPrice() {
+    public PositiveNumber getAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         long price = Long.parseLong(Console.readLine());
         inputValidator.isDivisibleByThousand(price);
-        return new PositiveNumber(price);
+        return new PositiveNumber(price).divide(1000L);
     }
 
     public WinningNumberRequestDto getEntireNumber() {
