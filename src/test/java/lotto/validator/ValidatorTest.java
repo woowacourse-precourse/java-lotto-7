@@ -30,7 +30,7 @@ public class ValidatorTest {
     @DisplayName("인자로 오는 정수들중 중복되는 경우 예외로 처리합니다.")
     @Test
     void 인자로_서로_중복된_정수가_오는_경우_예외처리() {
-        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5);
+        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5,5);
 
         assertThrows(IllegalArgumentException.class, () ->
                 Validator.validateWinningNumber(winningNumbers));
@@ -39,7 +39,7 @@ public class ValidatorTest {
     @DisplayName("로또 번호(1~45)에 해당하지 않는 숫자가 나온 경우 에외로 처리합니다.")
     @Test
     void 인자로_로또_번호가_아닌_숫자가_오는_경우_예외처리() {
-        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5);
+        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5,46);
 
         assertThrows(IllegalArgumentException.class, () ->
                 Validator.validateWinningNumber(winningNumbers));
@@ -48,7 +48,7 @@ public class ValidatorTest {
     @DisplayName("인자로 로또 번호의 숫자 6자리를 벗어나는 크기의 리스트가 오는 경우 예외로 처리합니다.")
     @Test
     void _6자리_숫자를_벗어나는_경우_예외처리() {
-        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5);
+        List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5,6,7);
 
         assertThrows(IllegalArgumentException.class, () ->
                 Validator.validateWinningNumber(winningNumbers));
