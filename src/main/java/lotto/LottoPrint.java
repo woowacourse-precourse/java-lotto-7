@@ -8,13 +8,14 @@ public class LottoPrint {
     public static int TOTAL_PRIZE = 0;
 
     public static void purchaseNumber(int lottoQuantity, List<Lotto> lottoRepository) {
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        System.out.println("\n" + lottoQuantity + "개를 구매했습니다.");
         for (Lotto lotto : lottoRepository) {
             System.out.println(lotto.getNumbers());
         }
     }
 
     public static void getTotalPrize(Map<LottoRank, Integer> rankStatistics ) {
+        System.out.println("\n당첨 통계\n---");
         for (LottoRank rank : LottoRank.values()) {
             int count = rankStatistics .get(rank);
             System.out.printf(rank.getPrintFormat() + "\n", rank.getMatchCount(), rank.getPrize(), count);
