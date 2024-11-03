@@ -6,14 +6,19 @@ import lotto.input.InputHandler;
 public class LottoGame {
 
     public void run() {
-        LottoManager lottoManager = getLottoManager();
-        WinningLotto winningLotto = getWinningLotto();
-    }
-
-    private LottoManager getLottoManager() {
         final int purchaseAmount = InputHandler.inputLottoPurchaseAmount();
         final int lottoAmount = purchaseAmount / 1000;
-        return new LottoManager(lottoAmount);
+        final List<Lotto> lottos = LottoGenerator.createLottos(lottoAmount);
+
+        WinningLotto winningLotto = getWinningLotto();
+        LottoManager lottoManager = getLottoManager(lottos, winningLotto);
+        LottoReferee referee = new LottoReferee(lottoManager);
+
+        referee.judgeWinning();
+    }
+
+    private LottoManager getLottoManager(final List<Lotto> lottos, final WinningLotto winningLotto) {
+        return new LottoManager(lottos, winningLotto);
     }
 
     private WinningLotto getWinningLotto() {
