@@ -20,7 +20,7 @@ import lotto.domain.Purchase;
 import lotto.domain.Result;
 
 public class LottoController {
-    private LottoMachine lottoMachine;
+    private final LottoMachine lottoMachine;
 
     public LottoController() {
         lottoMachine = new LottoMachine();
