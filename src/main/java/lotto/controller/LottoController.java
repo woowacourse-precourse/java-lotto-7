@@ -6,11 +6,12 @@ import lotto.service.genaration.GenerateService;
 import lotto.view.OutputView;
 
 public class LottoController {
-    public static void run(PurchaseAmountRequestDto purchaseAmountRequestDto) {
+    public static Lottos run(PurchaseAmountRequestDto purchaseAmountRequestDto) {
         int numberOfLotto = purchaseAmountRequestDto.getPurchaseAmount() / 1000;
         GenerateService lottoGenerator = new GenerateService(numberOfLotto);
 
         Lottos lottos = lottoGenerator.generateLotos();
         OutputView.printLottos(lottos);
+        return lottos;
     }
 }
