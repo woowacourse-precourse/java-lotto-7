@@ -42,7 +42,7 @@ public class Application {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없는 문자열입니다.");
+            throw new IllegalArgumentException("[ERROR] 정수로 변환할 수 없는 문자열입니다.");
         }
     }
 
@@ -111,7 +111,7 @@ public class Application {
             try {
                 validateNumericString(winningNumberInputSplit);
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없는 문자열이 포함되어 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 정수로 변환할 수 없는 문자열이 포함되어 있습니다.");
             }
         }
     }
