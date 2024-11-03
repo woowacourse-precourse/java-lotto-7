@@ -39,7 +39,7 @@ public class LottoGame {
             long totalWinnings = winningCalculator.calculateTotalWinnings(rankCount);
             double roi = winningCalculator.calculateROI(totalWinnings, purchaseAmount);
 
-            OutputView.printStatistics(rankCount, totalWinnings, roi);
+            OutputView.printStatistics(rankCount, roi);
         }catch (Exception e){
             System.out.println("[ERROR] 예기치 않은 오류가 발생했습니다: " + e.getMessage());
         }
