@@ -27,4 +27,7 @@ public class LottoTickets {
         return purchaseAmount.getLottoCount();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

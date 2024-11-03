@@ -21,5 +21,7 @@ public class LottoController {
         LottoTickets lottoTickets = lottoService.purchaseLotto(inputView.getPurchaseAmount());
 
         outputView.printOutputLottoCount(lottoTickets.getLottoCount());
+        outputView.printOutputLottoNumbers(lottoTickets.getLottos());
+
     }
 }
