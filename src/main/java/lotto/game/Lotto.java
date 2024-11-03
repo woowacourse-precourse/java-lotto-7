@@ -2,6 +2,7 @@ package lotto.game;
 
 import lotto.Utils.Convertor;
 import lotto.dto.LottoPrize;
+import lotto.dto.Buyer;
 import lotto.dto.WinningNumbers;
 import lotto.io.OutputHandler;
 
@@ -26,9 +27,10 @@ public class Lotto {
         OutputHandler.printLottos(Convertor.convert(numbers));
     }
 
-    public LottoPrize decideLottoPrize(WinningNumbers winningNumbers) {
-        int matchCount = checkMatchingCount(winningNumbers.getSelectedNumbers());
-        boolean hasBonusNumber = hasBonusNumber(winningNumbers.getBonusNumber());
+    public LottoPrize decideLottoPrize(Buyer buyer) {
+        WinningNumbers winningNumbers = buyer.getwinningNumbers();
+        int matchCount = winningNumbers.checkMatchingCount(numbers);
+        boolean hasBonusNumber = hasBonusNumber(buyer.getBonusNumber());
 
         if (matchCount == 5 && hasBonusNumber) {
             return LottoPrize.BONUS;
@@ -39,12 +41,6 @@ public class Lotto {
         }
 
         return null;
-    }
-
-    private int checkMatchingCount(List<Integer> selectedNumbers) {
-        return  (int) numbers.stream()
-                .filter(selectedNumbers::contains)
-                .count();
     }
 
     private boolean hasBonusNumber(int bonusNumber) {

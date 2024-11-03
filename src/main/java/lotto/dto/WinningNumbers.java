@@ -1,23 +1,27 @@
 package lotto.dto;
 
 import lotto.Utils.Convertor;
+import lotto.validation.Validator;
 
 import java.util.List;
 
 public class WinningNumbers {
     private final List<Integer> selectedNumbers;
-    private final int bonusNumber;
 
-    public WinningNumbers(String selectedNumbers, int bonusNumber) {
+    public WinningNumbers(String selectedNumbers) {
         this.selectedNumbers = Convertor.convert(selectedNumbers);
-        this.bonusNumber = bonusNumber;
+        validateNumbers();
     }
 
-    public List<Integer> getSelectedNumbers() {
-        return selectedNumbers;
+    private void validateNumbers() {
+        Validator.validateDuplicatedNumbers(selectedNumbers);
+        Validator.validateNumberCount(selectedNumbers);
+        Validator.validateNegativeNumbers(selectedNumbers);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public int checkMatchingCount(List<Integer> numbers) {
+        return  (int) numbers.stream()
+                .filter(selectedNumbers::contains)
+                .count();
     }
 }

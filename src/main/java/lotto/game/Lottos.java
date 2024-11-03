@@ -1,9 +1,7 @@
 package lotto.game;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoPrize;
-import lotto.dto.WinningNumbers;
-import lotto.io.OutputHandler;
+import lotto.dto.Buyer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +23,10 @@ public class Lottos {
         }
     }
 
-    public LottoPrizeRecord checkLottos(WinningNumbers winningNumbers) {
+    public LottoPrizeRecord checkLottos(Buyer buyer) {
         LottoPrizeRecord lottoPrizeRecord = new LottoPrizeRecord();
         for (Lotto lotto : lottos) {
-            LottoPrize lottoPrize = lotto.decideLottoPrize(winningNumbers);
+            LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
             lottoPrizeRecord.updateResult(lottoPrize);
         }
         return lottoPrizeRecord;

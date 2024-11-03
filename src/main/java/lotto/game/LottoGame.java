@@ -1,7 +1,7 @@
 package lotto.game;
 
 import lotto.dto.BuyingPrice;
-import lotto.dto.WinningNumbers;
+import lotto.dto.Buyer;
 import lotto.io.OutputHandler;
 
 public class LottoGame {
@@ -13,8 +13,8 @@ public class LottoGame {
         this.lottos = lottos;
     }
 
-    public void start(WinningNumbers winningNumbers) {
-        LottoPrizeRecord lottoPrizeRecord = lottos.checkLottos(winningNumbers);
+    public void start(Buyer buyer) {
+        LottoPrizeRecord lottoPrizeRecord = lottos.checkLottos(buyer);
         lottoPrizeRecord.printResult();
         int totalWinningPrice = lottoPrizeRecord.computeWinningPrice();
 

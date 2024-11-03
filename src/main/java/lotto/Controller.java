@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.dto.BuyingPrice;
-import lotto.dto.WinningNumbers;
+import lotto.dto.Buyer;
 import lotto.game.LottoCreator;
 import lotto.game.LottoGame;
 import lotto.game.Lottos;
@@ -23,9 +23,7 @@ public class Controller {
     }
 
     private void playLottoGame(LottoGame lottoGame) {
-        String selectedNumbers = inputHandler.getSelectedNumbers();
-        int bonusNumber = inputHandler.getBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(selectedNumbers, bonusNumber);
-        lottoGame.start(winningNumbers);
+        Buyer buyer = inputHandler.getBuyer();
+        lottoGame.start(buyer);
     }
 }

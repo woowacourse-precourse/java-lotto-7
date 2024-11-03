@@ -100,6 +100,62 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    // ===========================================================
+
+    @DisplayName("당첨 번호가 중복되면 예외 발생")
+    @Test
+    void exception6() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 6개가 아니면 예외 발생")
+    @Test
+    void exception7() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 빈 값이면 예외 발생")
+    @Test
+    void exception8() {
+        assertSimpleTest(() -> {
+            runException("8000", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 공백이면 예외 발생")
+    @Test
+    void exception10() {
+        assertSimpleTest(() -> {
+            runException("8000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아니면 예외 발생")
+    @Test
+    void exception9() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,d,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 음수이면 예외 발생")
+    @Test
+    void exception11() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,-2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

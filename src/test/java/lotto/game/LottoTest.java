@@ -1,6 +1,7 @@
 package lotto.game;
 
 import lotto.dto.LottoPrize;
+import lotto.dto.Buyer;
 import lotto.dto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,11 +33,12 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         String numbers = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
         int bonusNumber = 13;
-        WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
+        Buyer buyer = new Buyer(winningNumbers, bonusNumber);
 
         // when
-        LottoPrize lottoPrize = lotto.decideLottoPrize(winningNumbers);
+        LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
 
         // then
         assertThat(lottoPrize).isEqualTo(LottoPrize.SIX);
@@ -49,11 +51,12 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 13));
 
         String numbers = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
         int bonusNumber = 13;
-        WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
+        Buyer buyer = new Buyer(winningNumbers, bonusNumber);
 
         // when
-        LottoPrize lottoPrize = lotto.decideLottoPrize(winningNumbers);
+        LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
 
         // then
         assertThat(lottoPrize).isEqualTo(LottoPrize.BONUS);
