@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.model.BonusNumber;
 import lotto.model.Money;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -24,6 +25,20 @@ public class InputView {
         return readLine();
     }
 
+    public static void printInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public static BonusNumber inputBonusNumber() {
+        printInputBonusNumber();
+        return new BonusNumber(parseBonusNumber(readLine()));
+
+    }
+
+    public static void printRetryMessage() {
+        System.out.println("다시 입력해 주세요.");
+    }
+
     private static long parseAmount(String input) {
         try {
             return Long.parseLong(input);
@@ -32,7 +47,11 @@ public class InputView {
         }
     }
 
-    public static void printRetryMessage() {
-        System.out.println("다시 입력해 주세요.");
+    private static int parseBonusNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로만 입력해 주세요.");
+        }
     }
 }
