@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Set;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import lotto.domain.WinningPrize;
 
 public class Calculate {
 
-    public int matchCount(Lotto issuedLotto, Lotto winningLotto) {
+    public int matchCount(Lotto issuedLotto) {
         List<Integer> issuedNumbers = issuedLotto.getNumbers();
-        Set<Integer> winningNumbers = new HashSet<>(winningLotto.getNumbers());
+        Set<Integer> winningNumbers = new HashSet<>(WinningNumbers.getInstance().getWinningNumbers());
 
         int matchCount = 0;
 
@@ -24,8 +25,8 @@ public class Calculate {
         return matchCount;
     }
 
-    public WinningPrize rank(int matchCount, BonusNumber bonusNumber, Lotto winningLotto) {
-        Set<Integer> winningNumbers = new HashSet<>(winningLotto.getNumbers());
+    public WinningPrize rank(int matchCount, Lotto issuedLotto, BonusNumber bonusNumber) {
+        Set<Integer> issuedNumber = new HashSet<>(issuedLotto.getNumbers());
 
         if (matchCount == 3) {
             return WinningPrize.FIFTH;
@@ -34,7 +35,7 @@ public class Calculate {
             return WinningPrize.FOURTH;
         }
         if (matchCount == 5) {
-            if (winningNumbers.contains(bonusNumber.getNumber())) {
+            if (issuedNumber.contains(bonusNumber.getNumber())) {
                 return WinningPrize.SECOND;
             }
             return WinningPrize.THIRD;
