@@ -23,22 +23,30 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = purchaseLottos();
-        Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
-        outputView.outputIssuedLottos(lottos);
+        Lottos lottos = issueLottos(purchaseAmount);
+        outputIssuedLottos(lottos);
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
-        WinningResults winningResults = lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
+        WinningResults winningResults = checkLottoWinningResult(lottos, winningNumber, bonusNumber);
         outputWinningResults(winningResults, purchaseAmount);
     }
 
     private PurchaseAmount purchaseLottos() {
         try {
-            String purchaseAmount = inputView.inputPurchaseAmount();
-            return new PurchaseAmount(purchaseAmount);
+            String purchaseAmountInput = inputView.inputPurchaseAmount();
+            return new PurchaseAmount(purchaseAmountInput);
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return purchaseLottos();
         }
+    }
+
+    private Lottos issueLottos(PurchaseAmount purchaseAmount) {
+        return lottoMachine.issueLottos(purchaseAmount);
+    }
+
+    private void outputIssuedLottos(Lottos lottos) {
+        outputView.outputIssuedLottos(lottos);
     }
 
     private WinningNumber pickWinningNumber() {
@@ -59,6 +67,11 @@ public class LottoController {
             outputView.outputExceptionMessage(e.getMessage());
             return pickBonusNumber(winningNumber);
         }
+    }
+
+    private WinningResults checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber,
+                                                   BonusNumber bonusNumber) {
+        return lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {
