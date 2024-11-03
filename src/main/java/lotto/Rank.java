@@ -18,4 +18,39 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
         this.description = description;
     }
+
+    public static Rank valueOf(final int matchCount, final boolean matchBonus) {
+        return findByMatchCount(matchCount, matchBonus);
+    }
+
+    public static Rank findByMatchCount(final int matchCount, final boolean matchBonus) {
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return matchBonusNumber(matchBonus);
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return NONE;
+    }
+
+    public static Rank matchBonusNumber(final boolean matchBonus) {
+        if (matchBonus) {
+            return SECOND;
+        }
+        return FOURTH;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
