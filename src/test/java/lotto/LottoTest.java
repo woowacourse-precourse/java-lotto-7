@@ -56,4 +56,12 @@ class LottoTest {
         assertThat(lotto1.countMatchingNumbers(lotto2)).isEqualTo(3);
     }
 
+    @DisplayName("특정 번호가 로또 번호에 포함되는지 확인한다.")
+    @Test
+    void 로또_번호_포함_여부_확인() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(3)).isTrue();
+        assertThat(lotto.contains(7)).isFalse();
+    }
+
 }
