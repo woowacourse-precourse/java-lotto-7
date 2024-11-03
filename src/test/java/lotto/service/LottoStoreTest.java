@@ -29,5 +29,20 @@ class LottoStoreTest {
         }
     }
 
+    @Test
+    @DisplayName("로또 번호가 중복되지 않고 오름차순으로 정렬되어 있는지 확인")
+    void generateLottoTicketWithUniqueSortedNumbers() {
+        LottoTickets tickets = lottoStore.generateLottoTickets(5);
+
+        for (Lotto lotto : tickets.getLottoTickets()) {
+            assertEquals(6, lotto.getNumbers().size());
+
+            assertEquals(6, lotto.getNumbers().stream().distinct().count());
+
+            for (int i = 0; i < lotto.getNumbers().size() - 1; i++) {
+                assertTrue(lotto.getNumbers().get(i) < lotto.getNumbers().get(i + 1));
+            }
+        }
+    }
 
 }
