@@ -1,8 +1,10 @@
 package lotto;
 
+import lotto.controller.BonusNumberController;
 import lotto.controller.LottoController;
 import lotto.controller.PurchaseController;
 import lotto.controller.WinningController;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.service.TicketService;
 import lotto.temp.IoController;
@@ -21,10 +23,10 @@ public class Application {
         ioController.printPurchaseLottoNumbers(lottoController.excuteLottos());
 
         WinningController winningController = new WinningController(new Winning());
+        BonusNumberController bonusNumberController = new BonusNumberController();
 
         Lotto winningNumbers = winningController.createWinningNumber();
-
-
+        BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
 
     }
 }
