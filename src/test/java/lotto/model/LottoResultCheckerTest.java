@@ -41,6 +41,8 @@ class LottoResultCheckerTest {
         assertThat(prizeCount.get(1)).isSameAs(2);
     }
 
+
+
     // 당첨개수 0개 로또 생성
     static Stream<Arguments> provideZeroLottoResultChecker() {
         List<Lotto> purchaseLottoList = new ArrayList<>();

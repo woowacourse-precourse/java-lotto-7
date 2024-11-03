@@ -4,7 +4,6 @@ import lotto.model.*;
 import lotto.view.LottoResultView;
 import lotto.view.PrizeNumbersView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResultController {
