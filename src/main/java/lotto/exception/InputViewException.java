@@ -106,12 +106,13 @@ public class InputViewException {
         }
     }
 
-    public void validateInputBonusNumber(String inputBonusNumber) {
+    public void validateInputBonusNumber(String inputBonusNumber, List<Integer> parsedInputNumbers) {
         validateIfInputContainsWhitespace(inputBonusNumber);
         validateIfInputContainsNullOrEmpty(inputBonusNumber);
         validateInputBonusFormat(inputBonusNumber);
         validateInputBonusNumberStartsWithZero(inputBonusNumber);
         validateInputBonusInRange(inputBonusNumber);
+        validateIfBonusNumberDuplicated(inputBonusNumber, parsedInputNumbers);
     }
 
     private void validateInputBonusFormat(String inputBonusNumber) {
@@ -134,6 +135,15 @@ public class InputViewException {
         if (Integer.parseInt(inputBonusNumber) <= 0 && Integer.parseInt(inputBonusNumber) > 45) {
             throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
                     + ExceptionsMessageConstants.INPUT_BONUS_NUMBER_MUST_BE_IN_ALLOWED_RANGE);
+        }
+    }
+
+    private void validateIfBonusNumberDuplicated(String inputBonusNumber, List<Integer> parsedInputNumbers) {
+        for (Integer number : parsedInputNumbers) {
+            if (number == Integer.parseInt(inputBonusNumber)) {
+                throw new IllegalArgumentException(
+                        ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_BONUS_NUMBER_DUPLICATED);
+            }
         }
     }
 

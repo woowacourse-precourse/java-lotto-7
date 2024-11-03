@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.constants.IOMessageConstants;
 import lotto.exception.InputViewException;
 
@@ -42,11 +43,11 @@ public class InputView {
         return inputNumbers;
     }
 
-    public String inputBonusNumber() {
+    public String inputBonusNumber(List<Integer> parsedInputNumbers) {
         System.out.println();
         System.out.println(IOMessageConstants.INPUT_BONUS_NUMBER);
         String inputBonusNumber = Console.readLine();
-        inputViewException.validateInputBonusNumber(inputBonusNumber);
+        inputViewException.validateInputBonusNumber(inputBonusNumber, parsedInputNumbers);
         System.out.println();
         return inputBonusNumber;
     }
