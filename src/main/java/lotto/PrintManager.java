@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class PrintManager {
@@ -29,5 +30,9 @@ public class PrintManager {
 
     public void printBonusNotice() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printWinningResult(EnumMap<MatchCount, Integer> winningResult) {
+        
     }
 }

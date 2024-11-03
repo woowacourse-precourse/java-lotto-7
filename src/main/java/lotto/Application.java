@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class Application {
@@ -21,7 +22,9 @@ public class Application {
         System.out.println("");
         final int bonusNumber = lottoWinningManager.getBonusNumber(winningLotto);
 
-        
+        EnumMap<MatchCount, Integer> winningResult = lottoWinningManager.WinningResult(purchasedLotto, winningLotto, bonusNumber);
+        lottoWinningManager.showWinningResult(winningResult);
+        lottoWinningManager.showTotalYield(totalLottoPrice, winningResult);
         
     }
 }

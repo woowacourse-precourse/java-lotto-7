@@ -28,6 +28,27 @@ public class Lotto {
         return true;
     }
 
+    public int countDuplicates(Lotto winningLotto) {
+        int duplicateCount = 0;
+        for (int number : this.numbers) {
+            if (winningLotto.isNumberInLotto(number)) {
+                duplicateCount++;
+            }
+        }
+        return duplicateCount;
+    }
+
+    public boolean isBonusInLotto(int bonusNumber) {
+        boolean isIn = false;
+        for (int number : this.numbers) {
+            if (number == bonusNumber) {
+                isIn = true;
+            }
+        }
+        return isIn;
+    }
+    
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -50,5 +71,15 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
             }
         }
+    }
+
+    private boolean isNumberInLotto(int winningLottoNumbers) {
+        boolean isIn = false;
+        for (int number : this.numbers) {
+            if (number == winningLottoNumbers) {
+                isIn = true;
+            }
+        }
+        return isIn;
     }
 }
