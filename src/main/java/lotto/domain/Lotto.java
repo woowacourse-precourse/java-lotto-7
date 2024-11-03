@@ -29,6 +29,15 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
         }
         validateDuplication(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < Constant.START_INCLUSIVE || number > Constant.END_INCLUSIVE) {
+                throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE_ERROR_MESSAGE);
+            }
+        }
     }
 
     private void validateDuplication(List<Integer> numbers) {
