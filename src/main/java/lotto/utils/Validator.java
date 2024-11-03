@@ -19,7 +19,8 @@ public class Validator {
      */
     public static void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
+            LoggerUtils.logError(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
@@ -31,14 +32,17 @@ public class Validator {
      */
     public static void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 입력해야 합니다.");
+            LoggerUtils.logError(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER.getMessage());
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+            LoggerUtils.logError(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER.getMessage());
         }
         if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
+            LoggerUtils.logError(ErrorMessages.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
@@ -50,7 +54,8 @@ public class Validator {
      */
     public static void validateBonusNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이여야 합니다.");
+            LoggerUtils.logError(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 }
