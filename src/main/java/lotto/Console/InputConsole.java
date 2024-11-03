@@ -36,20 +36,4 @@ public class InputConsole {
         CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers);
         return bonusNum;
     }
-
-    public static void inputConsole() {
-
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-
-        CheckWinning.checkDuplicateNum(winningLottoNumbers, lottoList, bonusNum);
-        System.out.println("3개 일치 (5,000원) - " + WinningType.FIRST.getCount() + "개");
-        System.out.println("4개 일치 (50,000원) - " + WinningType.SECOND.getCount() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + WinningType.THIRD.getCount() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + WinningType.FOURTH_BONUS.getCount() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + WinningType.FIFTH.getCount() + "개");
-
-        System.out.println("총 수익률은 " + CheckWinning.calculateProfit(inputMoney) + "%입니다.");
-    }
-
 }
