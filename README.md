@@ -66,5 +66,5 @@ LottoSimulator: 로또 과정을 전체적으로 관할한다.
 
 ### View
 
-InputView : 사용자의 입력을 처리한다.
+InputView : 사용자의 입력을 처리한다.  
 OutputView : 사용자의 출력을 처리한다.
