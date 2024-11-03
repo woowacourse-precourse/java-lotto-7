@@ -138,7 +138,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 발급한 숫자를 로또 단위로 출력한다
 
 2. 로또 당첨 확인하기
-- [ ] 당첨 번호를 입력받는다
+- [x] 당첨 번호를 입력받는다
     - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
 - [ ] 보너스 번호를 입력받는다
     - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다

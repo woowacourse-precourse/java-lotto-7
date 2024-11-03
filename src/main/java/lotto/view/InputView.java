@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
 
@@ -16,5 +18,12 @@ public class InputView {
         }
         
         return price;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Arrays.stream(Console.readLine().split(","))
+            .map(Integer::parseInt)
+            .toList();
     }
 }
