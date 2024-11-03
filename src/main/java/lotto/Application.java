@@ -1,17 +1,16 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
+import lotto.service.LottoService;
 
 public class Application {
     public static void main(String[] args) {
+        LottoService lottoService = new LottoService();
 
         String purchaseAmount;
         System.out.println("구입금액을 입력해 주세요.");
@@ -19,16 +18,9 @@ public class Application {
 
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
-        LottoTicket lottoTicket = new LottoTicket();
-        System.out.println();
-        System.out.println(purchaseAmountInt / 1000 + "개를 구매했습니다.");
-        for (int i = 0; i < purchaseAmountInt / 1000; i++) {
-            Lotto lotto = new Lotto(pickLottoNumber());
-            lotto.sortAscendingInteger();
-            lottoTicket.addLotto(lotto);
-
-            System.out.println(lotto.getNumbers());
-        }
+        LottoTicket lottoTicket = lottoService.generateLottos(purchaseAmountInt);
+        System.out.println("\n" + lottoTicket.getLottos().size() + "개를 구매했습니다.");
+        lottoTicket.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
 
         String inputWinningNumbers;
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -41,7 +33,8 @@ public class Application {
         String inputBonusNumber = Console.readLine();
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        Map<LottoResult, Integer> lottoResultCount = calculateStatisticsLottoResult(lottoTicket, winningNumbersInteger,
+        Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(lottoTicket,
+                winningNumbersInteger,
                 bonusNumber);
         printStatistics(lottoResultCount);
 
@@ -59,28 +52,6 @@ public class Application {
         return prizeMoneyAmount;
     }
 
-    public static Map<LottoResult, Integer> calculateStatisticsLottoResult(LottoTicket lottoTicket,
-                                                                           List<Integer> winningNumbers,
-                                                                           int bonusNumber) {
-        Map<LottoResult, Integer> lottoResultCount = new HashMap<>();
-
-        for (LottoResult lottoResult : LottoResult.values()) {
-            lottoResultCount.put(lottoResult, 0);
-        }
-
-        for (Lotto lotto : lottoTicket.getLottos()) {
-            int matchCount = countMatches(lotto, winningNumbers);
-            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-            LottoResult lottoResult = LottoResult.getLottoResult(matchCount, hasBonus);
-
-            if (lottoResult != null) {
-                lottoResultCount.put(lottoResult, lottoResultCount.get(lottoResult) + 1);
-            }
-        }
-
-        return lottoResultCount;
-    }
-
     public static void printStatistics(Map<LottoResult, Integer> lottoResultCount) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
@@ -96,27 +67,12 @@ public class Application {
         }
     }
 
-
-    public static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for (int number : lotto.getNumbers()) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
     public static List<Integer> stringListToIntegerList(List<String> stringList) {
         List<Integer> intList = new ArrayList<>();
         for (String s : stringList) {
             intList.add(Integer.parseInt(s));
         }
         return intList;
-    }
-
-    public static List<Integer> pickLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public static int validatePurchaseAmount(String purchaseAmount) {
