@@ -43,6 +43,8 @@ public class LottoGame {
 
     public void result(LottoTicket lottoTicket) {
 
+        input.readWinningLotto();
+
         WinningLotto winningLotto = new WinningLotto(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
         );
