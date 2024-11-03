@@ -12,6 +12,8 @@ public class InputHandler {
                 int price = Integer.parseInt(Console.readLine());
                 budgetInputValidator(price);
                 return price;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 정수가 아닙니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -21,6 +23,9 @@ public class InputHandler {
     public void budgetInputValidator(int price) {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 가능합니다.");
+        }
+        if (price < 1000){
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000 이상부터 가능합니다.");
         }
     }
 
