@@ -24,3 +24,9 @@
 
 - manage Lotto Prize Tier
    - [x] return matched Prize Tier
+
+
+### Lotto Machine relation
+
+- provide interface for Machine service logic
+  - [ ] create Lotto more than ones
