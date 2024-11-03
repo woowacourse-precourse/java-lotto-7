@@ -25,7 +25,18 @@ public class Application {
         StringTokenizer tokenizer = new StringTokenizer( input, "," );
         List<Integer> winNumbers = new ArrayList<Integer>();
         while( tokenizer.hasMoreTokens() )  winNumbers.add( Integer.parseInt( tokenizer.nextToken() ) );
+        if( winNumbers.size() != 6 ) throw new IllegalArgumentException();
         return winNumbers;
+    }
+
+    public static int setBonusNumber( String input ){
+        try{
+            int bounusNumber = Integer.parseInt( input );
+            return bounusNumber;
+        } catch( Exception e ){
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     public static void main(String[] args) {
