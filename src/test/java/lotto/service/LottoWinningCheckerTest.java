@@ -2,11 +2,18 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.PrizeInfo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoWinningCheckerTest {
@@ -63,4 +70,50 @@ class LottoWinningCheckerTest {
                 .hasMessage(ERROR_MESSAGE+"보너스 번호가 당첨번호와 중복됩니다.");
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "'1,2,3,4,5,6',FIRST",
+            "'1,2,3,4,5,7',SECOND",
+            "'1,2,3,4,5,45',THIRD",
+            "'1,2,3,4,44,45',FOURTH",
+            "'1,2,3,43,44,45',FIFTH",
+            "'1,2,42,43,44,45',NONE",
+    })
+    public void 당첨_여부_확인_테스트(String inputLottoNumbs,String rankName) throws Exception{
+        //given
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (String s : inputLottoNumbs.split(",")) {
+            int i = Integer.parseInt(s);
+            lottoNumbers.add(i);
+        }
+        Lotto lotto = new Lotto(lottoNumbers);
+        lottoWinningChecker.saveWinningNumbs(Arrays.asList(1,2,3,4,5,6));
+        lottoWinningChecker.saveBonusNumber(7);
+        //when
+        LottoRank lottoRank = lottoWinningChecker.checkRank(lotto);
+        //then
+        Assertions.assertThat(lottoRank.name()).isEqualTo(rankName);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "'1,2,3,4,5,6',2_000_000_000",
+            "'1,2,3,4,44,45',50_000",
+            "'1,2,42,43,44,45',0",
+    })
+    public void 당첨_금액_테스트(String inputLottoNumbs,int prize) throws Exception{
+        //given
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (String s : inputLottoNumbs.split(",")) {
+            int i = Integer.parseInt(s);
+            lottoNumbers.add(i);
+        }
+        Lotto lotto = new Lotto(lottoNumbers);
+        lottoWinningChecker.saveWinningNumbs(Arrays.asList(1,2,3,4,5,6));
+        lottoWinningChecker.saveBonusNumber(7);
+        //when
+        LottoRank lottoRank = lottoWinningChecker.checkRank(lotto);
+        //then
+        Assertions.assertThat(lottoRank.getPrize()).isEqualTo(prize);
+    }
 }
