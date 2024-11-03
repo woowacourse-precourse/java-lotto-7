@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -20,6 +22,8 @@ public class Application {
         printLottoTickets(lottoTickets);
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
+        Map<String, Integer> winningStatistics = calculateResults(lottoTickets, winningNumbers, bonusNumber);
+        printWinningStatistics(winningStatistics, purchaseAmount);
     }
     private static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -80,6 +84,46 @@ public class Application {
         }
 
         return bonusNumber;
+    }
+    private static Map<String, Integer> calculateResults(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> statistics = new LinkedHashMap<>(Map.of(
+                "3개 일치 (5,000원)", 0,
+                "4개 일치 (50,000원)", 0,
+                "5개 일치 (1,500,000원)", 0,
+                "5개 일치, 보너스 볼 일치 (30,000,000원)", 0,
+                "6개 일치 (2,000,000,000원)", 0
+        ));
+
+        for (Lotto ticket : tickets) {
+            int matchedCount = countMatchingNumbers(ticket.getNumbers(), winningNumbers);
+            if (matchedCount == 6) {
+                statistics.put("6개 일치 (2,000,000,000원)", statistics.get("6개 일치 (2,000,000,000원)") + 1);
+            } else if (matchedCount == 5 && ticket.getNumbers().contains(bonusNumber)) {
+                statistics.put("5개 일치, 보너스 볼 일치 (30,000,000원)", statistics.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
+            } else if (matchedCount == 5) {
+                statistics.put("5개 일치 (1,500,000원)", statistics.get("5개 일치 (1,500,000원)") + 1);
+            } else if (matchedCount == 4) {
+                statistics.put("4개 일치 (50,000원)", statistics.get("4개 일치 (50,000원)") + 1);
+            } else if (matchedCount == 3) {
+                statistics.put("3개 일치 (5,000원)", statistics.get("3개 일치 (5,000원)") + 1);
+            }
+        }
+
+        return statistics;
+    }
+    private static int countMatchingNumbers(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
+        return (int) ticketNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+    private static void printWinningStatistics(Map<String, Integer> statistics, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue() + "개");
+        }
+
     }
 
 
