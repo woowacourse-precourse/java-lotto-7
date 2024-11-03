@@ -65,24 +65,18 @@ public class Application {
         winning_number = lotto.getNumbers();
     }
 
-    public int numberMatch(int i){
-        int p1 = 0;
-        int p2 = 0;
-        return matchRecursive(p1, p2, 0, i);
-    }
-
-    public int matchRecursive(int p1,int p2, int result,int i) {
+    public int matchRecursive(int p1,int p2,int i) {
         if(p1 == numSize || p2 == numSize) {
             return 0;
         }
         int compare = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
         if(compare > 0) {
-            return matchRecursive(p1,p2+1,compare,i);
+            return matchRecursive(p1,p2+1,i);
         }
         if(compare < 0) {
-            return matchRecursive(p1+1,p2,compare,i);
+            return matchRecursive(p1+1,p2,i);
         }
-        return 1 + matchRecursive(p1+1,p2+1,compare,i);
+        return 1 + matchRecursive(p1+1,p2+1,i);
     }
 
     public void bonusCheck(int i){
@@ -99,7 +93,7 @@ public class Application {
     public void matchCount(){
         amoutAry = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
-            int num = numberMatch(i);
+            int num = matchRecursive(0, 0, i);
             if(num == 5){
                 bonusCheck(i);
             }
