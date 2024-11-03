@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return null;
+        return numbers;
     }
 
     public int checkNumbers(Lotto winningLotto) {
