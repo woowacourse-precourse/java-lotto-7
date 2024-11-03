@@ -11,6 +11,8 @@ import lotto.view.InputView;
 
 public class IteratorInputHandler {
 
+    private static final String INPUT_WINNING_NUMBER_DELIMITER = ",";
+
     private final InputView inputView;
     private final InputValidator inputValidator;
     private final InputTemplate inputTemplate;
@@ -48,7 +50,7 @@ public class IteratorInputHandler {
                 inputView::inputWinningNumber,
                 winningNumber -> {
                     StringToIntConverter converter = new StringToIntConverter();
-                    List<Integer> winningNumbers = Stream.of(winningNumber.split(","))
+                    List<Integer> winningNumbers = Stream.of(winningNumber.split(INPUT_WINNING_NUMBER_DELIMITER))
                             .map(converter::convert)
                             .toList();
                     return new Lotto(winningNumbers);

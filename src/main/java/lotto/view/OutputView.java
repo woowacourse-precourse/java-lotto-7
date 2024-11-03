@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +27,29 @@ public class OutputView {
         printEmptyLine();
     }
 
+    public void printLottoResults(LottoResult lottoResult) {
+        printEmptyLine();
+        printLottoResultsNoticeMessage();
+        printLottoResult(lottoResult);
+        printRevenue(lottoResult);
+    }
+
+    public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
+        printLottoResultInfo(ranking, lottoResults.getOrDefault(ranking, 0));
+    }
+
+    public void printErrorMessage(Exception exception) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
+    }
+
     private void printPurchaseCount(int lottoCount) {
         System.out.printf(PURCHASE_COUNT_MESSAGE_FORMAT, lottoCount);
     }
 
     private void printLotto(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
-        Collections.sort(numbers);
+        List<Integer> numbers = lotto.getNumbers().stream()
+                .sorted()
+                .toList();
         System.out.printf(LOTTO_NUMBER_MESSAGE_FORMAT, createOutputNumbers(numbers));
     }
 
@@ -48,13 +63,6 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResults(LottoResult lottoResult) {
-        printEmptyLine();
-        printLottoResultsNoticeMessage();
-        printLottoResult(lottoResult);
-        printRevenue(lottoResult);
-    }
-
     private void printLottoResultsNoticeMessage() {
         System.out.println(LOTTO_RESULT_NOTICE_MESSAGE);
     }
@@ -64,11 +72,6 @@ public class OutputView {
                 .filter(ranking -> ranking != Ranking.MISS)
                 .sorted(Comparator.comparingInt(Ranking::getGrade).reversed())
                 .forEach(ranking -> printLottoResult(lottoResult.getResults(), ranking));
-    }
-
-    public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
-        int count = lottoResults.getOrDefault(ranking, 0);
-        printLottoResultInfo(ranking, count);
     }
 
     private static void printLottoResultInfo(Ranking ranking, int count) {
@@ -82,9 +85,5 @@ public class OutputView {
 
     private void printRevenue(LottoResult lottoResult) {
         System.out.printf(LOTTO_REVENUE_FORMAT, lottoResult.getRevenue());
-    }
-
-    public void printErrorMessage(Exception exception) {
-        System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
     }
 }
