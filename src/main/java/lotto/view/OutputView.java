@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.LottoRank;
 
 public class OutputView {
+
     public void result(List<List<Integer>> lottoTickets) {
         System.out.println();
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");

@@ -1,6 +1,7 @@
 package lotto.valuate;
 
 public class BonusNumberValuate extends Valuate {
+
     public static void isValidNumber(String s) {
         try {
             Valuate.isNum(s);

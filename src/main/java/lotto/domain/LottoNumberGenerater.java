@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberGenerater {
+
     List<List<Integer>> lotto = new ArrayList<>();
 
     public List<List<Integer>> generateLottoTickets(int numberOfLotto) {

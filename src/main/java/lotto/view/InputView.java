@@ -7,6 +7,7 @@ import lotto.valuate.BonusNumberValuate;
 import lotto.valuate.PriceValuate;
 
 public class InputView {
+
     public LottoController controller;
 
     public InputView() {

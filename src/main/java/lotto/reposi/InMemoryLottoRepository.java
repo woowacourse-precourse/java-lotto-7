@@ -6,6 +6,7 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 
 public class InMemoryLottoRepository implements LottoRepository {
+
     private List<List<Integer>> lottoNumbers = new ArrayList<>();
     private Lotto winningLotto;
     private Bonus bonus;

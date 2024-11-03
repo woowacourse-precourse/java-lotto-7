@@ -7,6 +7,7 @@ import lotto.valuate.PriceValuate;
 
 public class LottoTicketService {
 
+
     public int purchaseLottoTickets(int price) {
         PriceValuate.isValidPrice(price);
         return (price / 1000);

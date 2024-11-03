@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum LottoRank {
+
     FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
     THIRD(5, false, 1500000),

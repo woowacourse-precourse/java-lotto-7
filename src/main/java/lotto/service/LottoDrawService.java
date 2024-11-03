@@ -8,6 +8,7 @@ import lotto.domain.WinningChecker;
 import lotto.reposi.LottoRepository;
 
 public class LottoDrawService {
+
     public Map<String, Integer> checkWinning(LottoRepository lottoRepository) {
         Bonus bonus = lottoRepository.getBonusNumber();
         Lotto lotto = lottoRepository.getWinningNumbers();

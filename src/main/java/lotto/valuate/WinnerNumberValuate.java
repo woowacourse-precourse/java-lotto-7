@@ -1,6 +1,7 @@
 package lotto.valuate;
 
 public class WinnerNumberValuate extends Valuate {
+
     public static void isValidNumber(String s) {
         if (s == "") {
             throw new IllegalArgumentException("당첨 번호에 공백을 포함할 수 없습니다.");

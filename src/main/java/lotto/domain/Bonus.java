@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class Bonus {
+
     private final int bonusNumber;
 
     public Bonus(int bonusNumber, Lotto lotto) {

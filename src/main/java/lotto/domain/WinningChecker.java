@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningChecker {
+
     public Map<String, Integer> checkWinning(Bonus bonus, Lotto lotto, List<List<Integer>> userLottos) {
         Map<String, Integer> lottoRankCount = LottoRank.LottoRankCollector();
 

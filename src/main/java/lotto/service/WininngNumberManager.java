@@ -9,6 +9,7 @@ import lotto.reposi.LottoRepository;
 import lotto.valuate.WinnerNumberValuate;
 
 public class WininngNumberManager {
+
     public void createWinningNumber(String[] inputWinningNumber, LottoRepository lottoRepository) {
         List<Integer> WinningNumber = parsingWinningInput(inputWinningNumber);
         lottoRepository.saveWinningNumbers(new Lotto(WinningNumber));

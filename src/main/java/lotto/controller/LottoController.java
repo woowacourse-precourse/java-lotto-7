@@ -13,6 +13,7 @@ public class LottoController {
     LottoRepository lottoRepository = new InMemoryLottoRepository();
     private int numberOfLotto;
 
+
     public void createLottoNumber(int price) {
         LottoTicketService lottoTicketService = new LottoTicketService();
         numberOfLotto = lottoTicketService.purchaseLottoTickets(price);
