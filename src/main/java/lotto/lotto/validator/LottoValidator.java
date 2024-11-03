@@ -22,6 +22,17 @@ public class LottoValidator {
         isWithinRangeValidate(bonusNumber);
     }
 
+    private static boolean isNotContainDuplicate(List<Integer> numbers) {
+        Set<Integer> exceptedDuplicate = new HashSet<>(numbers);
+        return numbers.size() != exceptedDuplicate.size();
+    }
+
+    private static boolean isWithinRange(int number) {
+        int minNumberRange = LottoConstant.MIN_LOTTO_NUMBER_RANGE.getValue();
+        int maxNumberRange = LottoConstant.MAX_LOTTO_NUMBER_RANGE.getValue();
+        return number < minNumberRange || number > maxNumberRange;
+    }
+
     private static void isDuplicateValidate(BonusNumber bonusNumber, WinningLotto winningLotto) {
         if (winningLotto.isContain(bonusNumber.getNumber())) ErrorMessage.DUPLICATE.throwIllegalArgumentException();
     }
@@ -36,20 +47,13 @@ public class LottoValidator {
         boolean outOfRange = isWithinRange(bonusNumber.getNumber());
         if (outOfRange) ErrorMessage.WITHIN_RANGE.throwIllegalArgumentException();
     }
+
     private static void isWithinRangeValidate(List<Integer> numbers) {
         boolean outOfRange = numbers.stream().anyMatch(LottoValidator::isWithinRange);
         if (outOfRange) ErrorMessage.WITHIN_RANGE.throwIllegalArgumentException();
     }
 
     private static void isDuplicateValidate(List<Integer> numbers) {
-        Set<Integer> exceptedDuplicate = new HashSet<>(numbers);
-        if (numbers.size() != exceptedDuplicate.size()) ErrorMessage.DUPLICATE.throwIllegalArgumentException();
-
-    }
-
-    private static boolean isWithinRange(int number) {
-        int minNumberRange = LottoConstant.MIN_LOTTO_NUMBER_RANGE.getValue();
-        int maxNumberRange = LottoConstant.MAX_LOTTO_NUMBER_RANGE.getValue();
-        return number < minNumberRange || number > maxNumberRange;
+        if (isNotContainDuplicate(numbers)) ErrorMessage.DUPLICATE.throwIllegalArgumentException();
     }
 }
