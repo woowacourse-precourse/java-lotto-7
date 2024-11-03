@@ -5,10 +5,14 @@ import lotto.exception.ErrorCode;
 public class PurchaseAmount {
 
     private final int money;
+    private final int ticket;
+
+    private static final int ticketPrice = 1000;
 
     public PurchaseAmount(final String money){
         validate(money);
         this.money = Integer.valueOf(money);
+        this.ticket = this.money / ticketPrice;
     }
     private void validate(final String money){
 
@@ -39,6 +43,10 @@ public class PurchaseAmount {
 
     public int getMoney(){
         return this.money;
+    }
+
+    public int getTicket(){
+        return this.ticket;
     }
 
 
