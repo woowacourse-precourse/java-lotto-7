@@ -20,11 +20,6 @@ public class Utils {
         return (min <= value && max >= value);
     }
 
-    //문자열을 int로 바꾸는 메서드
-    public static int stringToInteger(String input) {
-        return Integer.parseInt(input);
-    }
-
     //입력을 숫자로 바꾸는 메서드
     public static BigDecimal stringToNumber(String input) {
         return new BigDecimal(input);
