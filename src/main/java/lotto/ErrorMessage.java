@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public enum ErrorMessage {      // 예외별 메시지 관리
     INVAILD_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1,000원 단위의 양수 입니다.") {
@@ -31,6 +33,18 @@ public enum ErrorMessage {      // 예외별 메시지 관리
             }
         }
     },
+
+    DUPLICATE_WINNING_NUMBER("[ERROR] 당첨 번호는 중복될수 없습니다.") {
+        @Override
+        public void validate(List<Integer> numbers) {
+            Set<Integer> compareWinningNumber = new HashSet<>(numbers);
+            if (compareWinningNumber.size() != numbers.size()) {
+                throw new IllegalArgumentException(getMessage);
+            }
+        }
+    },
+
+
 
 
 }
