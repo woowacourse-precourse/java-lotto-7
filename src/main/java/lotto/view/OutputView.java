@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.constants.LottoConstants.*;
+
 public class OutputView {
 
     public static void print(String string) {
@@ -7,14 +9,14 @@ public class OutputView {
     }
 
     public static void promptPurchaseAmount() {
-        print("구입금액을 입력해 주세요.");
+        print(PURCHASE_AMOUNT_TEXT);
     }
 
     public static void promptWinningNumbers() {
-        print("당첨 번호를 입력해 주세요.");
+        print(WINNING_NUMBERS_TEXT);
     }
 
     public static void promptBonusNumber() {
-        print("보너스 번호를 입력해 주세요.");
+        print(BONUS_NUMBER_TEXT);
     }
 }

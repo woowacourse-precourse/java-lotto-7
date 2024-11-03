@@ -49,4 +49,10 @@ public class LottoConstants {
     public static final String PURCHASE_AMOUNT = "구입 금액";
     public static final int PURCHASE_AMOUNT_THRESHOLD = 0;
     public static final int PURCHASE_AMOUNT_UNIT = 1000;
+
+    // OutputView 클래스
+    public static final String PURCHASE_AMOUNT_TEXT = "구입금액을 입력해 주세요.";
+    public static final String WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
+    public static final String BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
+
 }
