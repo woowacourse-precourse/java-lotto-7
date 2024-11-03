@@ -33,28 +33,22 @@ public class LottoController {
         OutputView.printReturn(myInfo.getMyReturn());
     }
 
-//    public void gainPurchaseAmount() {
-//        int purchasePrice = 0;
-//        try {
-//            OutputView.printPurchaseAmount();
-//            purchasePrice = InputView.readPurchaseAmount();
-//        } catch (IllegalArgumentException e) {
-//            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
-//                OutputView.printError(ErrorMessage.NOT_DIV.getError());
-//                gainPurchaseAmount(); return;
-//            }
-//            OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-//            gainPurchaseAmount(); return;
-//        }
-//        this.countLotto(purchasePrice);
-//        this.myInfo.setPurchasePrice(purchasePrice);
-//    }
-        public void gainPurchaseAmount() {
+    public void gainPurchaseAmount() {
+        int purchasePrice = 0;
+        try {
             OutputView.printPurchaseAmount();
-            int purchasePrice = InputView.readPurchaseAmount();
-            this.countLotto(purchasePrice);
-            this.myInfo.setPurchasePrice(purchasePrice);
+            purchasePrice = InputView.readPurchaseAmount();
+        } catch (Exception e) {
+            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
+                OutputView.printError(ErrorMessage.NOT_DIV.getError());
+                gainPurchaseAmount(); return;
+            }
+            OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
+            gainPurchaseAmount(); return;
         }
+        this.countLotto(purchasePrice);
+        this.myInfo.setPurchasePrice(purchasePrice);
+    }
 
 
     public void countLotto(Integer purchasePrice) {
@@ -73,7 +67,7 @@ public class LottoController {
         OutputView.printWinning();
         try {
             answer = InputView.readWinningNum();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             OutputView.printError(ErrorMessage.WIN_INPUT.getError());
             return gainWinningInput();
         }

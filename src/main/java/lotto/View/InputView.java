@@ -11,47 +11,46 @@ import java.util.stream.Collectors;
 public class InputView {
     private static final String DELIMITER = ",";
 
-//    public static Integer readPurchaseAmount() {
-//        int purchasePrice = 0;
-//        try {
-//            String rawPurchasePrice = Console.readLine();
-//            purchasePrice = parseInt(rawPurchasePrice);
-//            checkPurchaseRange(purchasePrice);
-//        } catch (NumberFormatException e) {
-//            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
-//        }
-//        return purchasePrice;
-//    }
-        public static Integer readPurchaseAmount() {
-            while (true) {
-                try {
-                    String rawPurchasePrice = Console.readLine();
-                    int purchasePrice = parseInt(rawPurchasePrice);
-                    checkPurchaseRange(purchasePrice);
-                    return purchasePrice; // 입력이 올바르면 반환
-                } catch (NumberFormatException e) {
-                    System.out.println("[ERROR] " + ErrorMessage.ONLY_NUMBER.getError());
-                } catch (IllegalArgumentException e) {
-                    System.out.println(ErrorMessage.NOT_DIV.getError());
-                }
+    public static Integer readPurchaseAmount() {
+        while (true) {
+            try {
+                String rawPurchasePrice = Console.readLine();
+                int purchasePrice = parseInt(rawPurchasePrice);
+                checkPurchaseRange(purchasePrice);
+                return purchasePrice; // 입력이 성공적으로 처리되면 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage()); // 예외 메시지 출력
             }
         }
-
+    }
 
     public static Lotto readWinningNum() {
-        String rawWinningInput = Console.readLine();
-        return new Lotto(Arrays.asList(rawWinningInput.split(DELIMITER)).stream()
-                .map(InputView::parseInt)
-                .collect(Collectors.toList()));
+        while (true) {
+            try {
+                String rawWinningInput = Console.readLine();
+                return new Lotto(Arrays.asList(rawWinningInput.split(DELIMITER)).stream()
+                        .map(InputView::parseInt)
+                        .collect(Collectors.toList())); // 성공 시 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage()); // 예외 메시지 출력
+            }
+        }
     }
 
     public static int readBonus(Lotto answer) {
-        String rawBonus = Console.readLine();
-        int bonus = parseInt(rawBonus);
-        checkBonus(bonus, answer);
-        checkBonusRange(bonus);
-        return bonus;
+        while (true) {
+            try {
+                String rawBonus = Console.readLine();
+                int bonus = parseInt(rawBonus);
+                checkBonus(bonus, answer);
+                checkBonusRange(bonus);
+                return bonus; // 성공 시 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage()); // 예외 메시지 출력
+            }
+        }
     }
+
 
     public static int parseInt(String strNum) {
         int result = 0;
