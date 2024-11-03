@@ -10,6 +10,6 @@ public class Extractor {
     public Extractor() {}
 
     public List<Integer> extractLottoNumber(String input) {
-        return Arrays.stream(input.split(DELIMITER)).map(Validator::validateLottoNumber).toList();
+        return Arrays.stream(input.split(DELIMITER)).map(Validator::isLottoNumberFormatValid).toList();
     }
 }

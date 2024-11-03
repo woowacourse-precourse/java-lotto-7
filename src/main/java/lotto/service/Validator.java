@@ -10,7 +10,7 @@ public class Validator {
 
     public Validator() {}
 
-    public static int validateLottoPrice(String input) {
+    public static int isLottoPriceValid(String input) {
         try {
             int price = Integer.parseInt(input);
             if(price < 0) {
@@ -31,7 +31,7 @@ public class Validator {
         return input;
     }
 
-    public static int validateLottoNumber(String input) {
+    public static int isLottoNumberFormatValid(String input) {
         try {
             int number = Integer.parseInt(input);
             if(number < 0 || number > 45) {
@@ -44,17 +44,17 @@ public class Validator {
     }
 
     public static int validateBonusNumber(List<Integer> numbers, String input) {
-        int number = validateLottoNumber(input);
+        int number = isLottoNumberFormatValid(input);
 
         List<Integer> hasBonusNumber = new ArrayList<>(numbers);
         hasBonusNumber.add(number);
 
-        validateLottoNumbers(hasBonusNumber);
+        isLottoNumbersDuplicated(hasBonusNumber);
 
         return number;
     }
 
-    public static void validateLottoNumbers(List<Integer> numbers) {
+    public static void isLottoNumbersDuplicated(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER);

@@ -33,13 +33,13 @@ public class OutputView {
         sb.append("3개 일치 (5,000원) - ").append(counts[3]).append("개\n");
         sb.append("4개 일치 (50,000원) - ").append(counts[4]).append("개\n");
         sb.append("5개 일치 (1,500,000원) - ").append(counts[5]).append("개\n");
-        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(counts[0]).append("개\n");
-        sb.append("6개 일치 (2,000,000,000원) - ").append(counts[6]).append("개\n");
+        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(counts[7]).append("개\n");
+        sb.append("6개 일치 (2,000,000,000원) - ").append(counts[6]).append("개");
 
         System.out.println(sb);
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.printf("총 수익은 %.1f%%입니다.\n", rateOfReturn);
+        System.out.printf(PRINT_RATE_OF_RETURN, rateOfReturn);
     }
 }
