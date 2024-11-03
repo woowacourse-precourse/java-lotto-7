@@ -32,8 +32,12 @@ public class LottoController {
 
         List<Integer> lottoNumbers = getWinningNumbersFromManager();
         Integer bonusNumber = getBonusNumberFromManager();
+        while (!lottoManager.validateLotto(lottoNumbers, bonusNumber)) {
+            lottoNumbers = getWinningNumbersFromManager();
+            bonusNumber = getBonusNumberFromManager();
+        }
 
-        List<LottoPrize> resultPrize = calculateLottoResults(lottoManager, lottoMember, lottoNumbers, bonusNumber);
+        List<LottoPrize> resultPrize = lottoManager.isLottoResult(lottoNumbers, bonusNumber, lottoMember.getPurchasedLotto());
         displayResults(resultPrize, lottoManager, lottoMember);
     }
 
@@ -65,9 +69,6 @@ public class LottoController {
         return managerInputView.getLottoBonusNumber();
     }
 
-    private List<LottoPrize> calculateLottoResults(LottoManager lottoManager, LottoMember lottoMember, List<Integer> lottoNumbers, Integer bonusNumber) {
-        return lottoManager.isLottoResult(lottoNumbers, bonusNumber, lottoMember.getPurchasedLotto());
-    }
 
     private void displayResults(List<LottoPrize> resultPrize, LottoManager lottoManager, LottoMember lottoMember) {
         lottoMember.setLottoResult(resultPrize);
