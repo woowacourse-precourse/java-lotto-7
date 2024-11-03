@@ -19,6 +19,7 @@ public enum ExceptionMessage {
     DUPLICATE_LOTTO_NUMBER("로또 번호는 중복되지 않아야 합니다."),
     BLANK_WINNING_LOTTO_NUMBERS("공백이 아닌 당첨 번호를 입력해주세요."),
     INVALID_WINNING_LOTTO_NUMBERS_PATTERN("당첨 번호는 쉼표(,)로 구분되는 6개의 숫자들로 입력해야 합니다."),
+    DUPLICATE_WINNING_NUMBERS("당첨 번호는 중복되지 않아야 합니다."),
     OUT_OF_LOTTO_NUMBER_RANGE("로또 번호의 범위는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + "까지 입니다."),
     BLANK_BONUS_NUMBER("공백이 아닌 보너스 번호를 입력해주세요."),
     NON_POSITIVE_BONUS_NUMBER("보너스 번호는 양수이어야 합니다."),
