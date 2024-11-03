@@ -52,19 +52,23 @@ public class Application {
         while (true) {
             String purchaseAmountInput = getInputString("구입 금액을 입력해 주세요.");
             try {
-                return convertPurchaseAmount(purchaseAmountInput);
+                return getValidatedPurchaseAmount(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static int convertPurchaseAmount(String purchaseAmountInput) {
+    private static void validatePurchaseAmount(String purchaseAmountInput) {
         validateNumericString(purchaseAmountInput);
         int purchaseAmount = Integer.parseInt(purchaseAmountInput);
         validatePositiveNumber(purchaseAmount);
         validateThousandUnit(purchaseAmount);
-        return purchaseAmount;
+    }
+
+    private static int getValidatedPurchaseAmount(String purchaseAmountInput) {
+        validatePurchaseAmount(purchaseAmountInput);
+        return Integer.parseInt(purchaseAmountInput);
     }
 
     private static int calculateLottoCount(int purchaseAmount) {
@@ -139,13 +143,17 @@ public class Application {
         }
     }
 
-    private static ArrayList<Integer> convertWinningNumbers(String[] winningNumbersInputSplits) {
+    private static void validateWinningNumbers(String[] winningNumbersInputSplits) {
         validateWinningNumbersCount(winningNumbersInputSplits);
         validateNumericStrings(winningNumbersInputSplits);
         ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
         validateLottoNumbersInRange(winningNumbers);
         validateUniqueNumbers(winningNumbers);
-        return winningNumbers;
+    }
+
+    private static ArrayList<Integer> getValidatedWinningNumbers(String[] winningNumbersInputSplits) {
+        validateWinningNumbers(winningNumbersInputSplits);
+        return parseIntWinningNumbers(winningNumbersInputSplits);
     }
 
     private static ArrayList<Integer> getWinningNumbers() {
@@ -153,7 +161,7 @@ public class Application {
             String winningNumbersInput = getInputString("당첨 번호를 입력해 주세요.");
             String[] winningNumbersInputSplits = winningNumbersInput.split(",");
             try {
-                return convertWinningNumbers(winningNumbersInputSplits);
+                return getValidatedWinningNumbers(winningNumbersInputSplits);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
