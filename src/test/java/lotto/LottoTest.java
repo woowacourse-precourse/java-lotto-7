@@ -27,8 +27,13 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
     void 로또_번호_오름차순_정렬() {
+        // given
         List<Integer> numbers = List.of(6, 5, 4, 3, 2, 1);
+
+        // when
         List<Integer> sortedNumbers = Lotto.sortNumbers(numbers);
+
+        // then
         assertThat(sortedNumbers.get(0)).isEqualTo(1);
     }
 }
