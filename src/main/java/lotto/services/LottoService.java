@@ -1,44 +1,55 @@
 package lotto.services;
 
-import lotto.views.InputView;
-import lotto.models.Lotto;
-import lotto.models.Bonus;
+import lotto.models.*;
+import lotto.utils.Prize;
+
+import static lotto.validation.InputValidator.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class LottoService {
-    private static final String DELIMITER = ",";
-    private final InputView inputView;
+    private LottoIssuer lottoIssuer;
+    private Lotto lotto;
+    private Bonus bonus;
+    private Statistics statistics;
 
-    public LottoService(InputView inputView) {
-        this.inputView = inputView;
+    public void issue (String purchaseAmountInput) {
+        int purchaseAmount = amountValidate(purchaseAmountInput);
+        lottoIssuer = new LottoIssuer(purchaseAmount);
     }
 
-    private List<Integer> stringToList (String lottoNumberInput) {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        String[] tokens = lottoNumberInput.split(DELIMITER);
-        try {
-            for (String token : tokens) {
-                numbers.add(Integer.parseInt(token));
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다. ");
-        }
-        return numbers;
+    public int getIssueAmount() {
+        return lottoIssuer.getAmount();
     }
 
-    public void lotto () {
-        String lottoInput = inputView.requestUserInput(InputView.promptForInput.LottoNumbers);
-        try {
-            List<Integer> lottoNumbers = stringToList(lottoInput);
-            Lotto lotto = new Lotto(lottoNumbers);
-        } catch(IllegalArgumentException e) {
-            lotto();
-        }
-        String bonusInput = inputView.requestUserInput(InputView.promptForInput.BonusNumber);
-        Bonus bonus = new Bonus(bonusInput);
+    public int getIssueCount() {
+        return lottoIssuer.getCount();
+    }
+
+    public List<List<Integer>> getAllIssuedLotto() {
+        return lottoIssuer.getAllIssuedLotto();
+    }
+
+    public void setWinningNumbers(String winningNumberInput) {
+        List<Integer> winningNumber = listValidate(winningNumberInput);
+        lotto = new Lotto(winningNumber);
+    }
+
+    public List<Integer> getWinningNumber() {
+        return lotto.getNumbers();
+    }
+
+    public void setBonusNumber (String bonusNumberInput) {
+        int bonusNumber = bonusValidate(bonusNumberInput);
+        bonus = new Bonus(bonusNumber, lotto);
+    }
+
+    public int getBonusNumber() {
+        return bonus.getNumber();
+    }
+
 
     }
 
