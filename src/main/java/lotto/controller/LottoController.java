@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Balance;
 import lotto.model.Bonus;
@@ -44,7 +46,9 @@ public class LottoController {
         OutputView.printLottoTicketMessage(balance.getTicket());
         for (int i = 0; i < balance.getTicket(); i++) {
             user.addLotto(LottoService.createLottoNumbers());
-            OutputView.printLottoNumbers(user.getLottos().get(i));
+            List<Integer> sortedNumbers = new ArrayList<>(user.getLottos().get(i));
+            Collections.sort(sortedNumbers);
+            OutputView.printLottoNumbers(sortedNumbers);
         }
     }
 
