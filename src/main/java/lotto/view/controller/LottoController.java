@@ -70,18 +70,9 @@ public class LottoController {
         ConsoleWriter.printlnMessage("당첨 통계");
         ConsoleWriter.printlnMessage("---");
         for (WinningCondition winningCondition : WinningCondition.getAllConditions().reversed()) {
-            if (winningCondition.mustIncludeBonusNumber()) {
-                String str = String.format(
-                        "%d개 일치, 보너스 볼 일치 (%s원) - %d개",
-                        winningCondition.getWinningNumberCount(),
-                        String.format("%,d", winningCondition.getRewardAmount()),
-                        result.getResultMap().get(winningCondition).size()
-                );
-                ConsoleWriter.printlnMessage(str);
-                continue;
-            }
+            String format = determineFormat(winningCondition);
             String str = String.format(
-                    "%d개 일치 (%s원) - %d개",
+                    format,
                     winningCondition.getWinningNumberCount(),
                     String.format("%,d", winningCondition.getRewardAmount()),
                     result.getResultMap().get(winningCondition).size()
@@ -90,5 +81,12 @@ public class LottoController {
         }
         String str = String.format("총 수익률은 %s%%입니다.", profitRate);
         ConsoleWriter.printlnMessage(str);
+    }
+
+    private String determineFormat(WinningCondition winningCondition) {
+        if (winningCondition.mustIncludeBonusNumber()) {
+            return "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+        }
+        return "%d개 일치 (%s원) - %d개";
     }
 }
