@@ -5,6 +5,7 @@ import static lotto.constant.LottoGameRule.MIN_LOTTO_NUMBER;
 import static lotto.constant.LottoGameRule.NUMBER_OF_PICKS;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class LottoNumbersGenerator {
     }
 
     private static List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }
