@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Consumer;
 import lotto.domain.LottoPrize;
+import lotto.domain.LottoRankManager;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
 
@@ -18,16 +19,19 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private Consumer consumer;
     private LottoPrize lottoPrize;
+    private LottoRankManager lottoRankManager;
 
     public void start() {
-        setting();
-        startLotto();
-        resultLotto();
+        initLottoSetting();
+        startLottoPick();
+        LottoResult();
     }
 
-    public void setting() {
+    public void initLottoSetting() {
         consumer = payMoney();
         lottoService.buyLottoes(consumer, NUMBER_LIMIT);
+        lottoRankManager = new LottoRankManager(consumer);
+        lottoRankManager.initLottoRank();
         lottoResult();
     }
 
@@ -55,7 +59,7 @@ public class LottoController {
         }
     }
 
-    public void startLotto() {
+    public void startLottoPick() {
         lottoPrize = lottoPrizeNumber();
         lottoPrize = lottoBonusNumber();
     }
@@ -98,15 +102,13 @@ public class LottoController {
         }
     }
 
-    public void resultLotto() {
-        //로또 등수 산출
-        lottoService.calculationLottoRank(consumer, lottoPrize);
+    public void LottoResult() {
+        lottoService.calculationLottoRank(consumer, lottoRankManager, lottoPrize);
 
-        //로또 수익율 결과 출력
         OutputView.printLottoMessage();
-        OutputView.printLottoRank(consumer.getLottoRankResult());
+        OutputView.printLottoRank(lottoRankManager.getLottoRankResult());
 
-        double lottoRate = lottoService.resultLotto(consumer);
+        double lottoRate = lottoService.resultLotto(lottoRankManager);
         OutputView.printTotalYield(lottoRate);
 
     }

@@ -1,14 +1,9 @@
 package lotto.service;
 
-import lotto.domain.Consumer;
-import lotto.domain.Lotto;
-import lotto.domain.LottoPrize;
-import lotto.domain.LottoRank;
+import lotto.domain.*;
 import lotto.util.Utils;
-import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class LottoService {
@@ -35,15 +30,15 @@ public class LottoService {
         return new Lotto(lottoNumbers);
     }
 
-    public void calculationLottoRank(Consumer consumer, LottoPrize lottoPrize) {
+    public void calculationLottoRank(Consumer consumer, LottoRankManager lottoRankManager, LottoPrize lottoPrize) {
         ArrayList<Lotto> lottoes = consumer.getLottoes();
         List<Integer> lottoPrizeNumbers = lottoPrize.getLottoPrizeNumbers();
         Integer bonusNumber = lottoPrize.getBonusNumber();
 
-        findMatchingNumbers(consumer, lottoes, lottoPrizeNumbers, bonusNumber);
+        findMatchingNumbers(lottoRankManager, lottoes, lottoPrizeNumbers, bonusNumber);
     }
 
-    public void findMatchingNumbers(Consumer consumer, ArrayList<Lotto> lottoes, List<Integer> lottoPrizeNumbers, Integer bonusNumber) {
+    public void findMatchingNumbers(LottoRankManager lottoRankManager, ArrayList<Lotto> lottoes, List<Integer> lottoPrizeNumbers, Integer bonusNumber) {
         int matchNumbers;
         boolean matchBonusNumber;
 
@@ -58,7 +53,7 @@ public class LottoService {
                 matchNumbers += MATCH_NUMBER;
             }
 
-            consumer.updateLottoRank(matchNumbers, matchBonusNumber);
+            lottoRankManager.updateLottoRank(matchNumbers, matchBonusNumber);
         }
     }
 
@@ -75,7 +70,7 @@ public class LottoService {
         return lottoNumbers.contains(bonusNumber);
     }
 
-    public double resultLotto(Consumer consumer) {
-        return consumer.calculateYield();
+    public double resultLotto(LottoRankManager lottoRankManager) {
+        return lottoRankManager.calculateYield();
     }
 }
