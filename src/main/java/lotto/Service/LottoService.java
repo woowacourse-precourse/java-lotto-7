@@ -50,7 +50,7 @@ public class LottoService {
     }
 
     private void setResults(long matchingCount, UserNumber userNumber) {
-        int bonus = this.bonusNumber.getNumber();
+        int bonus = this.bonusNumber.getNumber(); //순서 바꿔야 할듯
         if (matchingCount == 3) {
             results.set(0, results.get(0) + 1);
             return;
@@ -70,5 +70,25 @@ public class LottoService {
         if (matchingCount == 6) {
             results.set(4, results.get(4) + 1);
         }
+    }
+
+    public double calculateRate() {
+        return roundOff((pureProfit() / getInvestmentCost()) * 100);
+    }
+
+    private double roundOff(double number) {
+        return Math.round(number * 100) / 100.0;
+    }
+
+    private int pureProfit() {
+        return getProfit() - getInvestmentCost();
+    }
+
+    private int getInvestmentCost() {
+        return userNumbers.getPurchaseCount();
+    }
+
+    private int getProfit() {
+        return 5000 * results.get(0) + 50000 * results.get(1) + 1500000 * results.get(2) + 30000000 * results.get(3) + 2000000000 * results.get(4);
     }
 }

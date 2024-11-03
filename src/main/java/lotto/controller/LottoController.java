@@ -22,5 +22,7 @@ public class LottoController {
         service.generateBonusNumber(viewFacade.getBonusNumber());
 
         List<Integer> result = service.calculateResult();
+        double rate = service.calculateRate();
+
     }
 }
