@@ -6,18 +6,18 @@ import lotto.constant.LottoConfig.Rank;
 import java.util.Map;
 
 import static lotto.constant.IOMessage.BLANK_LINE;
-import static lotto.constant.IOMessage.BONUS_MESSAGE;
-import static lotto.constant.IOMessage.COUNT_MESSAGE;
-import static lotto.constant.IOMessage.HEAD_MESSAGE;
-import static lotto.constant.IOMessage.RATE_OF_RETURN_MESSAGE;
-import static lotto.constant.IOMessage.RESULT_MESSAGE_FORMAT;
+import static lotto.constant.IOMessage.OUTPUT_BONUS_RESULT;
+import static lotto.constant.IOMessage.OUTPUT_COUNT;
+import static lotto.constant.IOMessage.OUTPUT_HEAD;
+import static lotto.constant.IOMessage.OUTPUT_RATE_OF_RETURN;
+import static lotto.constant.IOMessage.OUTPUT_RESULT;
 import static lotto.constant.SystemConfig.DEFAULT_VALUE;
 
 public class OutputHandler {
 
     public static void printCount(int count) {
-        output(BLANK_LINE);
-        output(String.format(COUNT_MESSAGE, count));
+        output(BLANK_LINE.getMessage());
+        output(String.format(OUTPUT_COUNT.getMessage(), count));
     }
 
     public static void printTicket(Lottos lottos) {
@@ -27,8 +27,8 @@ public class OutputHandler {
     }
 
     public static void printLottoResult(Map<Rank, Integer> results) {
-        output(BLANK_LINE);
-        output(HEAD_MESSAGE);
+        output(BLANK_LINE.getMessage());
+        output(OUTPUT_HEAD.getMessage());
         for(Rank rank : Rank.values()){
             if(rank == Rank.NOTHING) {
                 continue;
@@ -39,14 +39,15 @@ public class OutputHandler {
     }
 
     private static String getLottoResultForm(Rank rank, Integer count) {
+        String bonusMessageForm = "";
         if(rank == Rank.SECOND) {
-            return String.format(RESULT_MESSAGE_FORMAT, rank.getMatchedCount(), BONUS_MESSAGE, rank.getPrizeMoney(), count);
+            bonusMessageForm = OUTPUT_BONUS_RESULT.getMessage();
         }
-        return String.format(RESULT_MESSAGE_FORMAT, rank.getMatchedCount(), "", rank.getPrizeMoney(), count);
+        return String.format(OUTPUT_RESULT.getMessage(), rank.getMatchedCount(), bonusMessageForm, rank.getPrizeMoney(), count);
     }
 
     public static void printRateOfReturn(Double rateOfReturn) {
-        output(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn));
+        output(String.format(OUTPUT_RATE_OF_RETURN.getMessage(), rateOfReturn));
     }
 
     private static void output(String message) {
