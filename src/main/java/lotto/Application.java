@@ -8,10 +8,10 @@ public class Application {
             lottoGame.purchaseLottos(quantity);
             lottoGame.inputWinningNumbers();
             lottoGame.inputBonusNumber();
+            lottoGame.calculateAndPrintResults();
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            throw e;
         }
     }
 }
