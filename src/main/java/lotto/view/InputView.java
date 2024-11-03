@@ -27,4 +27,8 @@ public class InputView {
         return lottoInput.split(split);
     }
 
+    public int lottoBonus(){
+        return Integer.parseInt(Console.readLine());
+    }
+
 }
