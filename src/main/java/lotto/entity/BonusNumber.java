@@ -4,18 +4,18 @@ import lotto.validator.Validator;
 import lotto.validator.input.BonusNumberValidator;
 
 public class BonusNumber {
-    private final int bonusNumber;
+    private final int value;
     private Validator validator;
 
     public BonusNumber(String inputValue){
         initializeValidator(inputValue);
         validate();
         
-        this.bonusNumber = parseData(inputValue);
+        this.value = parseData(inputValue);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public int getValue() {
+        return value;
     }
 
     private void initializeValidator(String inputValue){

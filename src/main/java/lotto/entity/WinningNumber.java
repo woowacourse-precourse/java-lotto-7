@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumber {
-    private final Lotto winningNumber;
+    private final Lotto value;
     private Validator validator;
 
     public WinningNumber(String inputValue){
         initializeValidator(inputValue);
         validator.validate();
 
-        this.winningNumber = new Lotto(parseData(inputValue));
+        this.value = new Lotto(parseData(inputValue));
     }
 
-    public Lotto getWinningNumber() {
-        return winningNumber;
+    public Lotto getValue() {
+        return value;
     }
 
     private void initializeValidator(String inputValue){
