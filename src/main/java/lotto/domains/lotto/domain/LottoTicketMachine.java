@@ -20,14 +20,15 @@ public class LottoTicketMachine {
 		return new LottoTicketMachine(amount);
 	}
 
-	public LottoTicket generateLottoTickets(){
+	public LottoTicket generateLottoTickets() {
 		return IntStream.range(0, amount)
 			.mapToObj(i -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
 			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
 
-	public String registerLottoResult(Map<LottoPrize, Integer> winningStatus, List<Map<Integer, Boolean>> lottoResults) {
-		lottoResults.forEach(lottoResult-> {
+	public String registerLottoResult(Map<LottoPrize, Integer> winningStatus,
+		List<Map<Integer, Boolean>> lottoResults) {
+		lottoResults.forEach(lottoResult -> {
 			for (Map.Entry<Integer, Boolean> matches : lottoResult.entrySet()) {
 				int matchCount = matches.getKey();
 				boolean hasBonusNumber = matches.getValue();
@@ -37,22 +38,23 @@ public class LottoTicketMachine {
 		return formattingForPrintLottoResult(winningStatus);
 	}
 
-	private String formattingForPrintLottoResult(Map<LottoPrize, Integer> winningStatus){
+	private void updateWinningStatus(Map<LottoPrize, Integer> winningStatus, int matchCount,
+		boolean hasBonusNumber) {
+		for (LottoPrize prize : LottoPrize.values()) {
+			if (prize.getMatchCount() == matchCount && prize.getHasBonusNumber() == hasBonusNumber) {
+				winningStatus.put(prize, winningStatus.getOrDefault(prize, 0) + 1);
+			}
+		}
+	}
+
+	private String formattingForPrintLottoResult(Map<LottoPrize, Integer> winningStatus) {
 		return String.format(OutputInterface.WINNING_STATISTICS.toString(),
 			winningStatus.get(LottoPrize.THREE),
 			winningStatus.get(LottoPrize.FOUR),
 			winningStatus.get(LottoPrize.FIVE),
 			winningStatus.get(LottoPrize.FIVE_HAS_BONUS),
 			winningStatus.get(LottoPrize.SIX)
-			);
-	}
-
-	private static void updateWinningStatus(Map<LottoPrize, Integer> winningStatus, int matchCount, boolean hasBonusNumber) {
-		for (LottoPrize prize : LottoPrize.values()) {
-			if (prize.getMatchCount() == matchCount && prize.getHasBonusNumber() == hasBonusNumber) {
-				winningStatus.put(prize, winningStatus.getOrDefault(prize, 0) + 1);
-			}
-		}
+		);
 	}
 
 }
