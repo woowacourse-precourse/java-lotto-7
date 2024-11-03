@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoInputView {
     public int validateMoney(String input) {
@@ -21,5 +23,30 @@ public class LottoInputView {
     public int readMoney() {
         String input = Console.readLine();
         return validateMoney(input);
+    }
+    public List<Integer> validateWinningNumbers(String input) {
+        if (!input.contains(",")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)로 구분해야 합니다.");
+        }
+
+        String[] numbers = input.split(",");
+        if (numbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+
+        return convertToNumbers(numbers);
+    }
+
+    private List<Integer> convertToNumbers(String[] numbers) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            winningNumbers.add(Integer.parseInt(number.trim()));
+        }
+        return winningNumbers;
+    }
+
+    public String readWinningNumbers() {
+        String input = Console.readLine();
+        return input;
     }
 }

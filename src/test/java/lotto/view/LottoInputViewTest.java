@@ -32,4 +32,22 @@ class LottoInputViewTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 구입 금액은 0보다 커야 합니다.");
     }
+
+    @DisplayName("당첨 번호가 쉼표로 구분되지 않으면 예외가 발생한다")
+    @Test
+    void validateWinningNumbersFormat() {
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateWinningNumbers("1 2 3 4 5 6");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 쉼표(,)로 구분해야 합니다.");
+    }
+
+    @DisplayName("당첨 번호가 6개가 아니면 예외가 발생한다")
+    @Test
+    void validateWinningNumbersCount() {
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateWinningNumbers("1,2,3,4,5");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
 }
