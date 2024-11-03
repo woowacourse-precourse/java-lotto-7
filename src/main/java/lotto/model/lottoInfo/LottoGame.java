@@ -28,4 +28,8 @@ public class LottoGame {
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getWinningNumbers();
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber.getBonusNumber();
+    }
 }
