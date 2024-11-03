@@ -25,6 +25,10 @@ public class Won {
         return new Won(amount);
     }
 
+    public static Won of(Long amount) {
+        return new Won(BigInteger.valueOf(amount));
+    }
+
     public Won add(Integer amount) {
         return add(new Won(amount));
     }

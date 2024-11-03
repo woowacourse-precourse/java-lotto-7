@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import lotto.value.LottoNumber;
 import lotto.value.LottoNumbers;
@@ -21,15 +20,19 @@ public class Lotto {
         this.numbers = LottoNumbers.of(lottoNumbersGenerator.generate());
     }
 
-    public static List<Lotto> issueMultipleLottoBy(Won amountOfPaid, LottoNumbersGenerator lottoNumbersGenerator) {
+    public static int calculateCanBuyLotto(Won amountOfPaid) {
         if (!isMoneyLeftFrom(amountOfPaid)) {
             throw new IllegalArgumentException(String.format(
                     "[ERROR] 로또 한 장의 가격은 %d 원이며, 거스름돈을 남길 수 없습니다.",
                     PRICE.getIntValue()));
         }
 
-        return IntStream.rangeClosed(1, getNumberOfLottoAvailable(amountOfPaid))
-                .mapToObj(count -> new Lotto(lottoNumbersGenerator))
+        return getNumberOfLottoAvailable(amountOfPaid);
+    }
+
+    public static List<Lotto> issueLottosBy(int numberOfLottosPurchased, LottoNumbersGenerator lottoNumbersGenerator) {
+        return Stream.generate(() -> new Lotto(lottoNumbersGenerator))
+                .limit(numberOfLottosPurchased)
                 .toList();
     }
 
