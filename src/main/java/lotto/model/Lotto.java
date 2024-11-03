@@ -16,6 +16,10 @@ public class Lotto {
         numbers = new ArrayList<>();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(NUMBER_SIZE_ERROR_MESSAGE);
