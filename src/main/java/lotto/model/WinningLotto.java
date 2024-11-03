@@ -9,16 +9,19 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningLotto extends Lotto{
-    private final int bonusNumber;
+    private int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
+    public WinningLotto(List<Integer> numbers) {
         super(numbers);
-        validateWinningNumbers(numbers, bonusNumber);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateWinningNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateWinningNumbers(List<Integer> numbers, int bonusNumber) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+    public void validateWinningNumbers(int bonusNumber) {
+        Set<Integer> uniqueNumbers = new HashSet<>(super.getNumbers());
         uniqueNumbers.add(bonusNumber);
         if(uniqueNumbers.size() != GameConfig.WINNING_LOTTO_NUMBERS_COUNT){
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_WINNING_AND_BONUS_ERROR);

@@ -31,12 +31,19 @@ public class LottoController {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottoTickets = createLottoTickets(purchaseAmount/ GameConfig.LOTTO_PRICE);
         WinningLotto winningLotto = getWinningLotto();
+        winningLotto = getBonusNumber(winningLotto);
         showGameResults(purchaseAmount, lottoTickets, winningLotto);
     }
 
     public int getPurchaseAmount(){
-        OutputView.requestPurchaseAmount();
-        return InputView.readPurchasePrice();
+        while(true) {
+            try {
+                OutputView.requestPurchaseAmount();
+                return InputView.readPurchasePrice();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Lotto> createLottoTickets(int numberOfTickets){
@@ -48,11 +55,26 @@ public class LottoController {
     }
 
     public WinningLotto getWinningLotto(){
-        OutputView.requestWinningNumbers();
-        List<Integer> winningNumbers = InputView.readWinningNumbers();
-        OutputView.requestBonusNumber();
-        int bonusNumber = InputView.readBonusNumber();
-        return new WinningLotto(winningNumbers, bonusNumber);
+        while(true) {
+            try {
+                OutputView.requestWinningNumbers();
+                return new WinningLotto(InputView.readWinningNumbers());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public WinningLotto getBonusNumber(WinningLotto winningLotto){
+        while(true) {
+            try {
+                OutputView.requestBonusNumber();
+                winningLotto.setBonusNumber(InputView.readBonusNumber());
+                return winningLotto;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void showGameResults(int purchaseAmount, List<Lotto> purchasedLotto, WinningLotto winningLotto){
