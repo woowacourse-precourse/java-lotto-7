@@ -77,13 +77,18 @@ public class LottoController {
         WinningResult winningResult = new WinningResult();
 
         for (Lotto oneLotto : tickets) {
-            int oneRank = winningNumber.getWinningRank(oneLotto);
-            for (Rank rank : Rank.values()) {
-                if (rank.getRank() == oneRank) {
-                    winningResult.add(rank);
-                }
-            }
+            addWinningRankToResult(oneLotto, winningResult, winningNumber);
         }
         return winningResult;
+    }
+
+    private void addWinningRankToResult(Lotto oneLotto, WinningResult winningResult, WinningNumber winningNumber) {
+        int currentLottoRank = winningNumber.getWinningRank(oneLotto);
+
+        for (Rank rank : Rank.values()) {
+            if (rank.getRank() == currentLottoRank) {
+                winningResult.add(rank);
+            }
+        }
     }
 }
