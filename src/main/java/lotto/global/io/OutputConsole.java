@@ -38,4 +38,8 @@ public class OutputConsole {
         System.out.println("---");
         System.out.println(statistics);
     }
+
+    public void printProfitRate(double rate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rate);
+    }
 }
