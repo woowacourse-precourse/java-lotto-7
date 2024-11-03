@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoBundle;
 
 import java.util.List;
 
@@ -14,8 +15,8 @@ public class LottoOutputView {
     public void printLottoBundleAmount(int amount){
         System.out.println(amount+"개를 구매했습니다.");
     }
-    public void printLottoInBundle(List<Lotto> lottoBundle){
-        for (Lotto lotto : lottoBundle){
+    public void printLottoInBundle(LottoBundle lottoBundle){
+        for (Lotto lotto : lottoBundle.getLottoBundle()){
             System.out.println(lotto.getNumbers().toString());
         }
     }
