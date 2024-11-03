@@ -8,7 +8,7 @@ import lotto.domain.Amount;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Profit;
+import lotto.domain.Prize;
 import lotto.domain.WinningCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,10 +51,10 @@ class LottoServiceTest {
 
         //then
         assertThat(winningCount.getWinningCount()).hasSize(5);
-        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_6.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_5_BONUS_MATCH.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_5.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_4.name())).isEqualTo(2);
-        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_3.name())).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Prize.MATCHES_6)).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Prize.MATCHES_5_BONUS_MATCH)).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Prize.MATCHES_5)).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Prize.MATCHES_4)).isEqualTo(2);
+        assertThat(winningCount.getWinningCount().get(Prize.MATCHES_3)).isEqualTo(0);
     }
 }

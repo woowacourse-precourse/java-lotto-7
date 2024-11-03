@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.function.Function;
 import lotto.constant.Constant;
 
-public enum Profit {
+public enum Prize {
     MATCHES_3(count -> count * Constant.THREE_MATCHES_PROFIT),
     MATCHES_4(count -> count * Constant.FOUR_MATCHES_PROFIT),
     MATCHES_5(count -> count * Constant.FIVE_MATCHES_PROFIT),
@@ -12,11 +12,11 @@ public enum Profit {
 
     private Function<Integer, Integer> expression;
 
-    Profit(Function<Integer, Integer> expression) {
+    Prize(Function<Integer, Integer> expression) {
         this.expression = expression;
     }
 
-    public int calculate(int count) {
+    public int calculateProfit(int count) {
         return expression.apply(count);
     }
 }

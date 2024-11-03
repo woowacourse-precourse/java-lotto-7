@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Profit;
+import lotto.domain.Prize;
 
 public class OutputView {
     private final String ISSUED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
@@ -24,17 +24,17 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void displayResult(Map<String, Integer> winningCount, double profitRate) {
+    public void displayResult(Map<Prize, Integer> winningCount, double profitRate) {
         StringBuilder result = new StringBuilder();
         result.append(System.lineSeparator())
                 .append(RESULT_TITLE).append(System.lineSeparator())
                 .append(DIVIDER).append(System.lineSeparator())
-                .append(String.format(THREE_MATCHES_RESULT, winningCount.get(Profit.MATCHES_3.name())))
-                .append(String.format(FOUR_MATCHES_RESULT, winningCount.get(Profit.MATCHES_4.name())))
-                .append(String.format(FIVE_MATCHES_RESULT, winningCount.get(Profit.MATCHES_5.name())))
+                .append(String.format(THREE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_3)))
+                .append(String.format(FOUR_MATCHES_RESULT, winningCount.get(Prize.MATCHES_4)))
+                .append(String.format(FIVE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_5)))
                 .append(String.format(FIVE_MATCHES_BONUS_MATCH_RESULT,
-                        winningCount.get(Profit.MATCHES_5_BONUS_MATCH.name())))
-                .append(String.format(SIX_MATCHES_RESULT, winningCount.get(Profit.MATCHES_6.name())))
+                        winningCount.get(Prize.MATCHES_5_BONUS_MATCH)))
+                .append(String.format(SIX_MATCHES_RESULT, winningCount.get(Prize.MATCHES_6)))
                 .append(String.format(PROFIT_RATE_RESULT, profitRate));
         System.out.println(result);
         Console.close();

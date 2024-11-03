@@ -1,9 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.constant.Constant;
@@ -11,7 +11,7 @@ import lotto.domain.Amount;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Profit;
+import lotto.domain.Prize;
 import lotto.domain.ProfitRate;
 import lotto.domain.WinningCount;
 
@@ -59,16 +59,20 @@ public class LottoService {
         if (matchCount < 3) {
             return;
         }
-        String key = Constant.WINNING_COUNT_KEY_PREFIX + matchCount;
+        String key = Constant.PRIZE_NAME_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            key += Constant.WINNING_COUNT_BONUS_MATCH_KEY_SUFFIX;
+            key += Constant.PRIZE_BONUS_MATCH_NAME_SUFFIX;
         }
-        winningCount.increaseCount(key);
+        winningCount.increaseCount(Prize.valueOf(key));
     }
 
-    private int getTotalProfit(Map<String, Integer> winningCount) {
-        return Arrays.stream(Profit.values())
-                .mapToInt(proceeds -> proceeds.calculate(winningCount.get(proceeds.name())))
-                .sum();
+    private int getTotalProfit(Map<Prize, Integer> winningCount) {
+        int totalProfit = 0;
+        for (Entry<Prize, Integer> entry : winningCount.entrySet()) {
+            Prize prize = entry.getKey();
+            Integer count = entry.getValue();
+            totalProfit += prize.calculateProfit(count);
+        }
+        return totalProfit;
     }
 }
