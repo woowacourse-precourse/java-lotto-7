@@ -41,7 +41,7 @@ public class PurchasePriceInputTest extends NsTest {
     void shouldThrowExceptionWhenPurchasePriceIsNotMultipleOfThousand() {
         assertThatThrownBy(() -> runException("12345"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 구입 금액은 1000단위 이상이어야 합니다.");
+                .hasMessageContaining("로또 구입 금액은 1000단위로 입력해야 합니다.");
     }
 
     @DisplayName("로또 구입 금액이 1억원 이상일 때 예외 처리")
