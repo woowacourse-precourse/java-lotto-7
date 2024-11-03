@@ -5,7 +5,6 @@ public enum InputErrorMessage {
     CANNOT_BE_NULL_OR_EMPTY(ERROR.message + "값은 비워둘 수 없습니다."),
     INTEGER_REQUIRED(ERROR.message + "숫자만 입력 가능합니다."),
     POSITIVE_NUMBER_REQUIRED(ERROR.message + "양수만 입력 가능합니다"),
-    LOTTO_PURCHASE_MUST_BE_POSITIVE_INTEGER(ERROR.message + "로또 구입 금액은 양수로 입력해주세요."),
     LOTTO_PURCHASE_MUST_BE_MULTIPLE_OF_THOUSAND(ERROR.message + "로또 구입 금액은 1,000원 단위여야 합니다."),
     LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA(ERROR.message + "쉼표로 구분하여 유효한 로또 번호를 입력해주세요."),
     LOTTO_NUMBER_LENGTH_INVALID(ERROR.message + "로또 번호는 6개여야 합니다."),
