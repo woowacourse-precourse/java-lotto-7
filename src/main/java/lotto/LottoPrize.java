@@ -1,0 +1,45 @@
+package lotto;
+
+import java.util.Arrays;
+
+public enum LottoPrize {
+    NO_PRIZE(0, false, 0),
+    FIFTH_PRIZE(3, false, 5000),
+    FOURTH_PRIZE(4, false, 50000),
+    THIRD_PRIZE(5, false, 1500000),
+    SECOND_PRIZE(5, true, 300000000),
+    FIRST_PRIZE(6, false, 2000000000);
+
+    private final int correctCount;
+    private final boolean bonus;
+    private final int prizeMoney;
+
+    private LottoPrize(int correctCount, boolean bonus, int prizeMoney){
+        this.correctCount = correctCount;
+        this.prizeMoney = prizeMoney;
+        this.bonus = bonus;
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public static LottoPrize getFromCorrectCountAndBonus(int correctCount, boolean bonus){
+        if(correctCount == 5){
+            return Arrays.stream(LottoPrize.values())
+                    .filter(prize -> prize.correctCount == correctCount)
+                    .filter(prize -> prize.bonus == bonus)
+                    .findFirst()
+                    .get();
+        }
+
+        return Arrays.stream(LottoPrize.values())
+                .filter(prize -> prize.correctCount == correctCount)
+                .findFirst()
+                .get();
+    }
+}
