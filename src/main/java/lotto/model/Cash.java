@@ -18,7 +18,7 @@ public class Cash {
     }
 
     private void validateAmountInUnits() {
-        if (totalAmount % CASH_UNIT != 0 || totalAmount <=0) {
+        if (totalAmount % CASH_UNIT != 0 || totalAmount <= 0) {
             throw new IllegalArgumentException(CASH_UNIT + "원 단위의 자연수만 입력 가능합니다.");
         }
     }

@@ -15,7 +15,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    public int matchCountWithBonus(Lotto anotherLotto, LottoBonusNumber bonusNumber){
+
+    public int matchCountWithBonus(Lotto anotherLotto, LottoBonusNumber bonusNumber) {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
         int matchCount = 0;
         for (Integer number : anotherLotto.getNumbers()) {
@@ -28,7 +29,8 @@ public class Lotto {
         }
         return matchCount;
     }
-    public boolean isBonusMatched(LottoBonusNumber lottoBonusNumber){
+
+    public boolean isBonusMatched(LottoBonusNumber lottoBonusNumber) {
         return numbers.contains(lottoBonusNumber.getNumber());
     }
 
@@ -37,15 +39,17 @@ public class Lotto {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 중복되지 않은 자연수 6개여야 합니다.");
         }
     }
-    private boolean containsOutOfRangeNumber(List<Integer> numbers){
-        for (int number : numbers){
-            if (number < 1 || number > 45){
+
+    private boolean containsOutOfRangeNumber(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
                 return true;
             }
         }
         return false;
     }
-    private boolean hasDuplicationNumbers(List<Integer> numbers){
+
+    private boolean hasDuplicationNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNames = new HashSet<>(numbers);
         if (uniqueNames.size() < numbers.size()) {
             return true;

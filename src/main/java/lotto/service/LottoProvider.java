@@ -11,15 +11,17 @@ import java.util.List;
 
 public class LottoProvider {
     LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    public LottoBundle buyLottoBundle(Cash cash){
+
+    public LottoBundle buyLottoBundle(Cash cash) {
         List<Lotto> lottoBundle = new ArrayList<>();
         int lottoCount = cash.getPurchasableLottoCount();
-        for (int i = 0; i < lottoCount; i++){
+        for (int i = 0; i < lottoCount; i++) {
             lottoBundle.add(new Lotto(lottoNumberGenerator.generateLottoNumbers()));
         }
         return new LottoBundle(lottoBundle);
     }
-    public Lotto publishWinningLotto(String winningLottoNumbers){
+
+    public Lotto publishWinningLotto(String winningLottoNumbers) {
         List<Integer> winningNumbers = Arrays.stream(winningLottoNumbers.split(","))
                 .map(this::parseNumber)
                 .toList();

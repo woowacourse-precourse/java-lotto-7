@@ -26,7 +26,7 @@ public class LottoController {
         lottoOutputView.printBonusNumberNotification();
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
 
-        LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto,cash);
+        LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle, lottoBonusNumber, winningLotto, cash);
         lottoOutputView.printLottoPrizesNotification();
         lottoOutputView.printLottoPrizes(lottoResult.getLottoPrizes());
         lottoOutputView.printLottoBenefit(lottoResult.getTotalBenefit());
@@ -58,7 +58,7 @@ public class LottoController {
         }
     }
 
-    private LottoBonusNumber requestBonusNumberInput(){
+    private LottoBonusNumber requestBonusNumberInput() {
         while (true) {
             try {
                 String bonusNumber = lottoInputView.getUserInput();
