@@ -54,6 +54,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_정답_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
