@@ -1,6 +1,6 @@
 package lotto.exception;
 
-public class LottoException extends RuntimeException {
+public class LottoException extends IllegalArgumentException {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
     public static final String DUPLICATED_INPUT_ERROR = "로또 번호는 중복되지 않은 6개여야 합니다.";
