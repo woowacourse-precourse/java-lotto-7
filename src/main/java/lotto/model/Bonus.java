@@ -16,6 +16,10 @@ public class Bonus {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(int number) {
         validateRange(number);
     }

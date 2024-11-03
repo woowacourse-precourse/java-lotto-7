@@ -21,7 +21,9 @@ public enum Errors {
             + MessageParser.getComma(Constants.MIN_LOTTO_NUMBER.getNumber())
             + "부터 "
             + MessageParser.getComma(Constants.MAX_LOTTO_NUMBER.getNumber())
-            + " 사이의 숫자여야 합니다.");
+            + " 사이의 숫자여야 합니다."),
+
+    BONUS_UNDETERMINED("보너스 번호를 대조하는 중 오류가 발생했습니다.");
 
     private final String message;
 

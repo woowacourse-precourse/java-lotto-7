@@ -24,12 +24,18 @@ public class OutputView {
     }
 
     public void printLottoRequest() {
-        System.out.println();
         System.out.println(Outputs.LOTTO_REQUEST.getMessage());
     }
 
     public void printBonusRequest() {
-        System.out.println();
         System.out.println(Outputs.BONUS_REQUEST.getMessage());
+    }
+
+    public void printStatistics() {
+        System.out.println(Outputs.STATISTICS.getMessage());
+    }
+
+    public void printRanks(List<Long> rankCount) {
+        
     }
 }

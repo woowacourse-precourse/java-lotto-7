@@ -6,6 +6,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Ticket;
+import lotto.service.RankCounter;
 import lotto.service.TicketGenerator;
 import lotto.util.InputParser;
 import lotto.validator.BonusValidator;
@@ -34,6 +35,13 @@ public class LottoController {
 
         Lotto lotto = tryUntilSuccess(() -> new Lotto(getLotto()));
         Bonus bonus = tryUntilSuccess(() -> new Bonus(getBonus()));
+
+        RankCounter counter = new RankCounter(tickets, lotto, bonus);
+        List<Long> rankCount = counter.getRankCount();
+
+        outputView.printStatistics();
+        System.out.println(rankCount);
+
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
