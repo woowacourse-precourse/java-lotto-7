@@ -7,7 +7,8 @@ public enum CompareInteger {
     ZERO(0),
     LOTTO_NUMBER_MINIMUM(1),
     LOTTO_NUMBER_MAXIMUM(45),
-    LOTTO_NUMBER_COUNT(6);
+    LOTTO_NUMBER_COUNT(6),
+    LOTTO_MATCHING_COUNT_SECOND_PLACE(5);
 
     private final Integer number;
 
