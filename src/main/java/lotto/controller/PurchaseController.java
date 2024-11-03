@@ -29,6 +29,8 @@ public class PurchaseController {
     private int getPrice(){
         Processor<Integer> purchaseProcessor = new PurchaseProcessor();
         return purchaseProcessor.process();
+
+
     }
 
 
