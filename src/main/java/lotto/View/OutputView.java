@@ -16,10 +16,17 @@ public class OutputView {
     public static void printLottoResult(LottoResult result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        List<Rank> ranks = Arrays.asList(Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH);
+
+        List<Rank> ranks = Arrays.asList(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST); // 출력 순서대로 정렬
         for (Rank rank : ranks) {
-            System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getMatchCount(), rank.getPrize(), result.getWinningCounts().getOrDefault(rank, 0));
+            if (!rank.getDescription().isEmpty()) {
+                System.out.printf("%s (%s원) - %d개%n", rank.getDescription(), formatPrize(rank.getPrize()), result.getWinningCounts().getOrDefault(rank, 0));
+            }
         }
+    }
+
+    private static String formatPrize(int prize) {
+        return String.format("%,d", prize);
     }
 
     public static void printProfitRate(double profitRate) {

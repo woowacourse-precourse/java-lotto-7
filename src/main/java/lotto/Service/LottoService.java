@@ -14,8 +14,7 @@ public class LottoService {
     }
 
     public List<Lotto> purchaseLottos(int amount) {
-        int lottoCount = amount / LottoMachine.LOTTO_PRICE;
-        return lottoMachine.generateLottos(lottoCount);
+        return lottoMachine.generateLottos(amount);
     }
 
     public LottoResult checkResults(List<Lotto> lottos, WinningLotto winningLotto) {
