@@ -5,6 +5,7 @@ import lotto.view.console.ConsoleWriter;
 import lotto.view.domain.Amount;
 import lotto.view.domain.Lotto;
 import lotto.view.domain.Lottos;
+import lotto.view.domain.WinningResult;
 import lotto.view.global.exception.CustomException;
 
 public class LottoController {
@@ -19,6 +20,8 @@ public class LottoController {
         Lottos purchasedLottos = createLottos(inputAmount);
         Lotto winningNumbers = requestWinningNumbers();
         int bonusNumber = requestBonusNumber(winningNumbers);
+
+        WinningResult result = new WinningResult(purchasedLottos, winningNumbers, bonusNumber);
     }
 
     private Amount requestAmount() {
