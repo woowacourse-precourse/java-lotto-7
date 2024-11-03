@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
-import lotto.domain.Validator;
+import lotto.service.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,15 +18,16 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public int getWinningNumberCount(List<Integer> inputNumbers) {
+    // 보너스 볼 획득 및 5개 일치 시 0으로 리턴. 그 외에는 당첨된 숫자 리턴.
+    public int getWinningNumberCount(List<Integer> inputNumbers, int bonusNumber) {
         int count = 0;
-        for (Integer inputNumber : inputNumbers) {
-            if(numbers.contains(inputNumber)) count++;
+        boolean hasBonus = false;
+        for (Integer number : numbers) {
+            if(inputNumbers.contains(number)) count++;
+            else if(number == bonusNumber) hasBonus = true;
         }
+
+        if(hasBonus && count == 5) return 0;
         return count;
     }
 
