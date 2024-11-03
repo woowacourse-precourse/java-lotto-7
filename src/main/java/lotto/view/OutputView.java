@@ -6,4 +6,8 @@ public class OutputView {
     public void printPurchaseAmountMessage() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
+
+    public void printQuantity(int quantity) {
+        System.out.printf("%d개를 구매했습니다.\n", quantity);
+    }
 }
