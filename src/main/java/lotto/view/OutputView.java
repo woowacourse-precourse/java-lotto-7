@@ -45,7 +45,7 @@ public class OutputView {
     }
 
     private static void printProfit(Profit profit) {
-        System.out.printf(String.format(SHOW_TOTAL_PROFIT.getMessage(), profit.calculateProfit()));
+        System.out.printf(SHOW_TOTAL_PROFIT.getMessage(), profit.calculateProfit());
     }
 
     private static void printNewLine() {
