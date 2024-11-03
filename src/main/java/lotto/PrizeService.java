@@ -5,15 +5,15 @@ import java.util.Map;
 
 public class PrizeService {
 
-    public Map<LottoRate, Integer> prizeService(List<Lotto> lottos, List<Integer> lottoNumbers, int bonusNumber) {
+    public Map<LottoRate, Integer> servicePrize(List<Lotto> lottos, List<Integer> lottoNumbers, int bonusNumber) {
         Map<LottoRate, Integer> prize = new HashMap<>();
 
-        prizeCalculate(lottos, lottoNumbers, bonusNumber, prize);
+        calculatePrize(lottos, lottoNumbers, bonusNumber, prize);
 
         return prize;
     }
 
-    private static void prizeCalculate(List<Lotto> lottos, List<Integer> lottoNumbers, int bonusNumber, Map<LottoRate, Integer> prize) {
+    private static void calculatePrize(List<Lotto> lottos, List<Integer> lottoNumbers, int bonusNumber, Map<LottoRate, Integer> prize) {
         for (Lotto lotto : lottos) {
             int matchCount = (int) lotto.getNumbers().stream()
                     .filter(lottoNumbers::contains)
@@ -25,6 +25,14 @@ public class PrizeService {
 
             prize.put(rate, prize.getOrDefault(rate, 0) + 1);
         }
+    }
+
+    public double calculateReturnValue(Map<LottoRate, Integer> prize, int lottoMoney){
+        double returnValue = prize.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrize()*entry.getValue())
+                .sum();
+
+        return (returnValue / lottoMoney) * 100;
     }
 
 
