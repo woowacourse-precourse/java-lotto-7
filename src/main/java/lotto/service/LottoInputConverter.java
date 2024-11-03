@@ -21,6 +21,11 @@ public class LottoInputConverter {
         return list;
     }
 
+    public int convertBonusNumber(String input) {
+        validateNumber(input);
+        return Integer.parseInt(input);
+    }
+
     private void validateNumber(String s) {
         try {
             Integer.parseInt(s);
@@ -28,4 +33,5 @@ public class LottoInputConverter {
             throw new IllegalArgumentException("[ERROR] 로또번호 및 보너스번호는 숫자만 입력 가능합니다.");
         }
     }
+
 }

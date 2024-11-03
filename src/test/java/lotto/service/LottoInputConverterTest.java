@@ -45,4 +45,24 @@ public class LottoInputConverterTest {
         assertThatThrownBy(() -> lottoInputConverter.convertNumbers(input))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호를_입력받아_숫자로_변환한다() {
+        //given
+        String input = "7";
+
+        //when
+        int bonusNumber = lottoInputConverter.convertBonusNumber(input);
+
+        //then
+        assertThat(bonusNumber).isEqualTo(7);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"일", "이", "삼", "사", "오", "육"})
+    void 보너스_번호는_숫자만_입력_가능하다() {
+        //when & then
+        assertThatThrownBy(() -> lottoInputConverter.convertBonusNumber("일"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
