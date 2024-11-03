@@ -3,8 +3,10 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.model.LottoTicket;
 import lotto.model.Money;
 import lotto.model.WinningNumbers;
+import lotto.model.WinningStatistics;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -33,6 +35,13 @@ public class LottoController {
         int bonusNumber = inputView.inputNumber();
 
         return new WinningNumbers(winningNumber, bonusNumber);
+    }
+
+    private void winningStatistics(LottoTicket lottoTicket, WinningNumbers winningNumbers, Money money) {
+        WinningStatistics winningStatistics = new WinningStatistics();
+        winningStatistics.createStatistics(lottoTicket.getLottoTicket(), winningNumbers);
+        outputView.winningStatistics(winningStatistics.getWinningCount());
+        outputView.rateOfReturn(winningStatistics.getRateOfReturn(money));
     }
 
     private <T> T retryIfErrorOccur(Supplier<T> supplier) {
