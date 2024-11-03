@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.dto.WinningNumber;
 
 public class InputView {
 
@@ -20,14 +21,20 @@ public class InputView {
         return price;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public WinningNumber getEntireNumber() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
+        return new WinningNumber(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         return Arrays.stream(Console.readLine().split(","))
             .map(Integer::parseInt)
             .toList();
     }
 
-    public int getBonusNumber() {
+    private int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
