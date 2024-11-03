@@ -20,9 +20,9 @@ public class LottoCustomer implements Customer<Lotto>{
     }
 
     @Override
-    public void viewExpenditureSummary(long investment, long profit) {
+    public void viewTotalProfit(long investment, long profit) {
         System.out.println("총 수익률은 "
-                + String.format("%.1f", (double) profit / investment)
+                + String.format("%.1f", (double) profit / investment * 100)
                 + "%입니다.");
     }
 

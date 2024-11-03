@@ -12,11 +12,15 @@ import lotto.numberSelector.RandomSelector;
 
 public class LottoShop implements Shop<Lotto>{
 
-    Map<Class<? extends Item>, Integer> menu = new HashMap<>();
-    NumberSelector selector = new RandomSelector();
+    private Map<Class<? extends Item>, Integer> menu = new HashMap<>();
+    private NumberSelector selector = new RandomSelector();
+    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_START = 1;
+    public static final int LOTTO_END = 45;
+    public static final int LOTTO_SIZE = 6;
 
     public LottoShop() {
-        setItem(Lotto.class, 1000);
+        setItem(Lotto.class, LOTTO_PRICE);
     }
 
     @Override

@@ -6,10 +6,9 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import java.util.Map;
 import lotto.customer.LottoCustomer;
+import lotto.item.Lotto;
 import lotto.item.WinningLotto;
-import lotto.numberSelector.RandomSelector;
 import org.junit.jupiter.api.Test;
 
 class LottoCustomerTest extends NsTest {
@@ -19,67 +18,46 @@ class LottoCustomerTest extends NsTest {
     @Test
     void buy() {
         assertSimpleTest(() -> {
-            run("8000");
-            assertThat(lottoCustomer.buy(new RandomSelector()).size()).isEqualTo(8);
+            assertThat(lottoCustomer.buy(Lotto.class, 8000).size()).isEqualTo(8);
             assertThat(output()).contains("8개를 구매했습니다.");
         });
     }
 
     @Test
+    void viewTotalProfit() {
+        lottoCustomer.viewTotalProfit(5000, 1248);
+        assertThat(output()).contains("총 수익률은 25.0%입니다.");
+    }
+
+    @Test
     void setWinningLotto() {
         assertSimpleTest(() -> {
-            run("1,2,3,4,5,6", "7");
-            WinningLotto result = lottoCustomer.setWinningLotto();
+            List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+            int bonusNumber = 7;
+            WinningLotto result = lottoCustomer.setWinningLotto(numbers, bonusNumber);
             assertThat(result.getNumbers()).containsExactly(1,2,3,4,5,6);
             assertThat(result.getBonusNum()).isEqualTo(7);
         });
     }
 
     @Test
-    void countPrizeAndStatistics() {
+    void showStatistics() {
         assertRandomUniqueNumbersInRangeTest(() -> {
-            run("8000", "1,2,3,4,5,6", "7");
-            Map<Prize, Integer> result = lottoCustomer.countPrize(
-                    lottoCustomer.buy(new RandomSelector()), lottoCustomer.setWinningLotto());
-            assertThat(result).contains(
-                    Map.entry(Prize.FIFTH, 0),
-                    Map.entry(Prize.FOURTH, 1),
-                    Map.entry(Prize.THIRD, 2),
-                    Map.entry(Prize.SECOND, 3),
-                    Map.entry(Prize.FIRST, 2)
-                    );
-
-            lottoCustomer.statistics(result);
+            List<Lotto> lottoTickets = lottoCustomer.buy(Lotto.class, 3000);
+            List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+            int bonusNumber = 7;
+            WinningLotto winningLotto = lottoCustomer.setWinningLotto(numbers, bonusNumber);
+            lottoCustomer.showStatistics(lottoTickets, winningLotto);
             assertThat(output()).contains(
-                    "3개 일치 (5,000원) - 0개",
-                    "4개 일치 (50,000원) - 1개",
-                    "5개 일치 (1,500,000원) - 2개",
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 3개",
-                    "6개 일치 (2,000,000,000원) - 2개",
-                    "총 수익률은 " +
-                            String.format("%.1f" , calExpected(8000, 0,1,2,3,2))+
-                            "%입니다."
-            );
-        },
-                List.of(1,2,3,4,5,6),
-                List.of(1,2,3,4,5,6),
-                List.of(1,2,3,4,5,7),
-                List.of(1,2,3,4,5,7),
-                List.of(1,2,3,4,5,7),
-                List.of(1,2,3,4,5,8),
-                List.of(1,2,3,4,5,8),
-                List.of(1,2,3,4,8,9));
-    }
-
-    private float calExpected(int money, int fifth, int fourth, int third, int second, int first) {
-        long total = 0;
-        total += 5000L * fifth;
-        total += 50000L * fourth;
-        total += 1500000L * third;
-        total += 30000000L * second;
-        total += 2000000000L * first;
-
-        return (float) total / money * 100;
+                    "당첨 통계",
+                    "- - -",
+                    "3개 일치 (5,000원) - 1개",
+                    "4개 일치 (50,000원) - 0개",
+                    "5개 일치 (1,500,000원) - 0개",
+                    "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                    "6개 일치 (2,000,000,000원) - 0개"
+                    );
+        }, List.of(1,2,3,7,8,9), List.of(1,2,7,8,9,10), List.of(1,7,8,9,10,11));
     }
 
     @Override

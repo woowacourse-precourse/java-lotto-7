@@ -10,16 +10,16 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ReaderTest extends NsTest {
+class LottoReaderTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private Reader reader = new Reader();
+    private LottoReader lottoReader = new LottoReader();
 
     @Test
     void readMoney() {
         assertSimpleTest(() -> {
             run("8000");
-            assertThat(reader.readMoney()).isEqualTo(8000);
+            assertThat(lottoReader.readMoney()).isEqualTo(8000);
         });
     }
 
@@ -27,7 +27,7 @@ class ReaderTest extends NsTest {
     void readLottoNumbers() {
         assertSimpleTest(() -> {
             run("1,2,3,4,5,6");
-            assertThat(reader.readLottoNumbers()).containsExactly(1,2,3,4,5,6);
+            assertThat(lottoReader.readLottoNumbers()).containsExactly(1,2,3,4,5,6);
         });
     }
 
@@ -35,9 +35,9 @@ class ReaderTest extends NsTest {
     void readBonusNumber() {
         assertSimpleTest(() -> {
             run("1,2,3,4,5,6", "7");
-            List<Integer> lottoNumbers = reader.readLottoNumbers();
+            List<Integer> lottoNumbers = lottoReader.readLottoNumbers();
             System.out.println("lottoNumbers = " + lottoNumbers);
-            assertThat(reader.readBonusNumber(lottoNumbers)).isEqualTo(7);
+            assertThat(lottoReader.readBonusNumber(lottoNumbers)).isEqualTo(7);
         });
     }
 
@@ -46,7 +46,7 @@ class ReaderTest extends NsTest {
     void 기능_테스트_readMoney_에러_발생_후_계속_입력() {
         assertSimpleTest(() -> {
             run(invalidMoneyInputs(), "7000");
-            assertThat(reader.readMoney()).isEqualTo(7000);
+            assertThat(lottoReader.readMoney()).isEqualTo(7000);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -68,7 +68,7 @@ class ReaderTest extends NsTest {
     void 기능_테스트_readLottoNumbers_에러_발생_후_계속_입력() {
         assertSimpleTest(() -> {
             run(invalidLottoNumberInputs(), "1,2,3,4,5,6");
-            assertThat(reader.readLottoNumbers()).contains(1,2,3,4,5,6);
+            assertThat(lottoReader.readLottoNumbers()).contains(1,2,3,4,5,6);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -92,9 +92,9 @@ class ReaderTest extends NsTest {
     void 기능_테스트_readBonusNumber_에러_발생_후_계속_입력() {
         assertSimpleTest(() -> {
             run("1,2,3,4,5,6", invalidBonusNumberInputs(), "7");
-            List<Integer> lottoNumbers = reader.readLottoNumbers();
+            List<Integer> lottoNumbers = lottoReader.readLottoNumbers();
             System.out.println("lottoNumbers = " + lottoNumbers);
-            assertThat(reader.readBonusNumber(lottoNumbers)).isEqualTo(7);
+            assertThat(lottoReader.readBonusNumber(lottoNumbers)).isEqualTo(7);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

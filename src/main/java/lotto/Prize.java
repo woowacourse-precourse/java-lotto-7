@@ -27,6 +27,10 @@ public enum Prize {
 
     @Override
     public String toString() {
+        if (this.prizeMoney == 0) {
+            return null;
+        }
+
         String string = matchedCount + "개 일치";
 
         if (this.bonus) {

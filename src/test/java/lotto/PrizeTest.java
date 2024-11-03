@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import static lotto.Prize.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PrizeTest extends NsTest {
@@ -20,24 +22,22 @@ class PrizeTest extends NsTest {
     }
 
     private String expected(Prize prize) {
-        //why can't I use switch/case or else?
-        //how to handle "no return statement"
-        if (prize == Prize.FIRST) {
+        if (prize == FIRST) {
             return "6개 일치 (2,000,000,000원)";
         }
-        if (prize == Prize.SECOND) {
+        if (prize == SECOND) {
             return "5개 일치, 보너스 볼 일치 (30,000,000원)";
         }
-        if (prize == Prize.THIRD) {
+        if (prize == THIRD) {
             return "5개 일치 (1,500,000원)";
         }
-        if (prize == Prize.FOURTH) {
+        if (prize == FOURTH) {
             return "4개 일치 (50,000원)";
         }
-        if (prize == Prize.FIFTH) {
+        if (prize == FIFTH) {
             return "3개 일치 (5,000원)";
         }
-        return "";
+        return null;
     }
 
     @DisplayName("기능_테스트_getPrize")
@@ -50,12 +50,12 @@ class PrizeTest extends NsTest {
         Lotto lotto5 = new Lotto(List.of(1,2,3,7,8,9));
         Lotto lottoNo = new Lotto(List.of(1,2,7,8,9,10));
         WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6),7);
-        assertThat(Prize.getPrize(lotto1, winningLotto)).isEqualTo(Prize.FIRST);
-        assertThat(Prize.getPrize(lotto2, winningLotto)).isEqualTo(Prize.SECOND);
-        assertThat(Prize.getPrize(lotto3, winningLotto)).isEqualTo(Prize.THIRD);
-        assertThat(Prize.getPrize(lotto4, winningLotto)).isEqualTo(Prize.FOURTH);
-        assertThat(Prize.getPrize(lotto5, winningLotto)).isEqualTo(Prize.FIFTH);
-        assertThat(Prize.getPrize(lottoNo, winningLotto)).isNull();
+        assertThat(Prize.getPrize(lotto1, winningLotto)).isEqualTo(FIRST);
+        assertThat(Prize.getPrize(lotto2, winningLotto)).isEqualTo(SECOND);
+        assertThat(Prize.getPrize(lotto3, winningLotto)).isEqualTo(THIRD);
+        assertThat(Prize.getPrize(lotto4, winningLotto)).isEqualTo(FOURTH);
+        assertThat(Prize.getPrize(lotto5, winningLotto)).isEqualTo(FIFTH);
+        assertThat(Prize.getPrize(lottoNo, winningLotto)).isEqualTo(DRAW);
     }
 
     @Override
