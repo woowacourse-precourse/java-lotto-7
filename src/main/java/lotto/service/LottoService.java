@@ -93,9 +93,9 @@ public class LottoService {
         for (Lotto lotto : lottos) {
             Set<Integer> myLotto = new HashSet<>(lotto.getNumbers());
             myLotto.retainAll(winNumber);
-            int correctNumber = myLotto.size();
+            int overlappingNumber = myLotto.size();
             checkBonus(lotto, myLotto, bonusNumber);
-            compare(correctNumber);
+            winAmountCompare(overlappingNumber);
         }
         return winLottoAmountHistory;
     }
@@ -106,21 +106,12 @@ public class LottoService {
         }
     }
 
-    public void compare(int correctNumber) {
-        if (correctNumber == 3) {
-            winLottoAmountHistory.put(WinAmount.Three, winLottoAmountHistory.get(WinAmount.Three) + 1);
-        } else if (correctNumber == 4) {
-            winLottoAmountHistory.put(WinAmount.Four, winLottoAmountHistory.get(WinAmount.Four) + 1);
-        } else if (correctNumber == 5 && !fiveAndBonus) {
-            winLottoAmountHistory.put(WinAmount.Five, winLottoAmountHistory.get(WinAmount.Five) + 1);
-        } else if (correctNumber == 5) {
-            winLottoAmountHistory.put(WinAmount.FiveBonus, winLottoAmountHistory.get(WinAmount.FiveBonus) + 1);
-            fiveAndBonus = false;
-        } else if (correctNumber == 6) {
-            winLottoAmountHistory.put(WinAmount.Six, winLottoAmountHistory.get(WinAmount.Six) + 1);
+    public void winAmountCompare(int overlappingNumber) {
+        WinAmount winAmount = WinAmount.determineWinAmount(overlappingNumber, fiveAndBonus);
+        if (winAmount != null) {
+            winLottoAmountHistory.put(winAmount, winLottoAmountHistory.get(winAmount) + 1);
         }
     }
-
 
     public double resultSum(EnumMap<WinAmount, Integer> winLottoAmountHistory, double count) {
         count *= Thousand_Multi_Number.getValue();
