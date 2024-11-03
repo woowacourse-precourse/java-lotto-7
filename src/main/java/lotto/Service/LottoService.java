@@ -4,13 +4,10 @@ import lotto.model.*;
 import java.util.List;
 
 public class LottoService {
-
-
     private UserLottos userLottos;
     private Lotto lotto;
     private BonusNumber bonusNumber;
     private Result result;
-
 
     public void generateUserNumbers(int purchaseAmount) {
         userLottos = new UserLottos(purchaseAmount);
