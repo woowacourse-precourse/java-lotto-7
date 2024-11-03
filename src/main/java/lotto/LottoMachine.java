@@ -8,7 +8,7 @@ public class LottoMachine {
     private final int LOTTO_PRICE = 1000;
 
     public int calculateTicketCount(int amount) {
-        Validation.validateAmount(amount);
+        ValidationUtil.validateAmount(amount);
         return amount / LOTTO_PRICE;
     }
 

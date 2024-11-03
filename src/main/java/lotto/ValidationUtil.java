@@ -1,6 +1,6 @@
 package lotto;
 
-public class VaildationUtil {
+public class ValidationUtil {
     private final int LOTTO_MIN_NUMBER = 1;
     private final int LOTTO_MAX_NUMBER = 45;
     private final int LOTTO_PRICE = 1000;
@@ -16,6 +16,12 @@ public class VaildationUtil {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력하세요.");
+        }
+    }
+
+    public void validateLottoNumbers(Set<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 ")
         }
     }
 }

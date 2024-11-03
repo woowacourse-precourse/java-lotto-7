@@ -15,7 +15,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        VaildationUtil.validateLottoNumbers(Set.copyOf(numbers));
+        ValidationUtil.validateLottoNumbers(Set.copyOf(numbers));
     }
 
     public List<Integer> getNumbers() {

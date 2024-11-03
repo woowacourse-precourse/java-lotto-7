@@ -9,7 +9,7 @@ public class LottoTicket {
     private final Set<Integer> numbers;
 
     public LottoTicket(List<Integer> numbers) {
-        VaildationUtil.validateLottoNumbers(Set.copyOf(numbers));
+        ValidationUtil.validateLottoNumbers(Set.copyOf(numbers));
         this.numbers = List.copyOf(numbers);
     }
 
