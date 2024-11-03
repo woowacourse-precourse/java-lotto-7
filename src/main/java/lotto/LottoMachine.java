@@ -13,7 +13,7 @@ public class LottoMachine {
         Lottos lottos = makeLottos(purchase.numberOfPurchases());
         showLottos(lottos);
         WinningNumbers winningNumbers = makeWinningNumbers();
-        BonusNumber bonusNumber = makeBonusNumber();
+        BonusNumber bonusNumber = makeBonusNumber(winningNumbers);
     }
 
     private Purchase makePurchase() {
@@ -56,15 +56,22 @@ public class LottoMachine {
         return dividedInput;
     }
 
-    private BonusNumber makeBonusNumber() {
+    private BonusNumber makeBonusNumber(WinningNumbers winningNumbers) {
         try {
             String initialInput = inputView.askBonusNumber();
             List<String> dividedInput = Arrays.asList(initialInput.split(","));
             BonusNumber bonusNumber = new BonusNumber(dividedInput);
+            checkDuplicateBonus(winningNumbers, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return makeBonusNumber();
+            return makeBonusNumber(winningNumbers);
+        }
+    }
+
+    private void checkDuplicateBonus(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 입력하신 번호가 이미 당첨번호에 존재합니다.");
         }
     }
 }

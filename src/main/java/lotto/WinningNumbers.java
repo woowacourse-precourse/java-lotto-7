@@ -60,4 +60,12 @@ public class WinningNumbers {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 수를 입력해 주세요.");
         }
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public boolean contains(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.number());
+    }
 }
