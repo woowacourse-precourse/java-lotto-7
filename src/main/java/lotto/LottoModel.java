@@ -1,12 +1,14 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.request.LottoBonusNumberRequest;
+import lotto.dto.request.LottoMatchRequest;
 import lotto.dto.request.LottoResultRequest;
 import lotto.dto.response.LottoBuyResponse;
+import lotto.dto.response.LottoMatchResponse;
+import lotto.dto.response.LottoResultResponse;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,9 +34,42 @@ public class LottoModel {
         return new Lotto(getWinnerNumber(winnerNumbers));
     }
 
-    public void lottoResult(LottoResultRequest lottoResultRequest) {
-        Lotto lotto = lottoResultRequest.lotto();
-        int bonusNumber = lottoResultRequest.bonusNumber();
+    public int getBonusNumber(LottoBonusNumberRequest lottoPrizeNumberRequest) {
+        int validBonusNumber = numberValidate(lottoPrizeNumberRequest.bonusNumber());
+        lottoPrizeNumberRequest.lotto().bonusNumberValidate(validBonusNumber);
+
+        return lottoNumberValidate(validBonusNumber);
+    }
+
+    public LottoResultResponse lottoResult(LottoResultRequest lottoPrizeNumberRequest) {
+        Lotto lotto = lottoPrizeNumberRequest.lotto();
+        int bonusNumber = lottoPrizeNumberRequest.bonusNumber();
+
+        List<LottoMatchResponse> list = getLottoMatchResponseList(lotto, bonusNumber);
+        Map<Rank, Integer> rankCounts = getRankCounts(list);
+        String rate = calculatorRate(rankCounts);
+
+        return new LottoResultResponse(rankCounts, rate);
+    }
+
+    private Map<Rank, Integer> getRankCounts(List<LottoMatchResponse> matchResponses) {
+        Map<Rank, Integer> rankCounts = EnumSet.allOf(Rank.class).stream()
+                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+
+        matchResponses.stream()
+                .map(l -> Rank.findRank(l.matchCount(), l.isBonusMatch()))
+                .filter(rank -> rank != Rank.NONE)
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.collectingAndThen(Collectors.counting(), Long::intValue)))
+                .forEach((rank, count) -> rankCounts.merge(rank, count, Integer::sum));
+
+        return rankCounts;
+    }
+
+    private List<LottoMatchResponse> getLottoMatchResponseList(Lotto lotto, int bonusNumber) {
+
+        return buyLotto.stream()
+                .map(l -> lotto.matchNumberCount(new LottoMatchRequest(l, bonusNumber)))
+                .toList();
     }
 
     private List<Integer> getWinnerNumber(String numbers) {
@@ -44,6 +79,16 @@ public class LottoModel {
                 .map(this::numberValidate)
                 .map(this::lottoNumberValidate)
                 .toList();
+    }
+
+    private String calculatorRate(Map<Rank, Integer> rankCounts) {
+        double totalPrize = rankCounts.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        double rate = (totalPrize / seedMoney) * 100;
+
+        return String.format("%.1f", rate);
     }
 
     private void getLottoNumbers(int buyLottoNumber) {
