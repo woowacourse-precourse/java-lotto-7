@@ -10,5 +10,5 @@ public interface LottoService {
     int calculateLottoCount(int price);
     List<Integer> pickLottoNumbers();
     List<RankCount> calculateWinningStatistics(Lottos lottos, Lotto winningNumbers, Integer bonusNumber);
-
+    double calculateProfitability(List<RankCount> winningStatistics, int purchasePrice);
 }

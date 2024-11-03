@@ -74,4 +74,21 @@ public class LottoServiceImpl implements LottoService {
         if (matchCount == 6)
             rankCounts.get(4).incrementCount();
     }
+
+    @Override
+    public double calculateProfitability(List<RankCount> winningStatistics, int purchasePrice) {
+        long prizeSum = 0;
+        for (RankCount rankCount: winningStatistics) {
+            prizeSum += calculatePrizeForRankCount(rankCount);
+        }
+        double profitability = (double) prizeSum / purchasePrice * 100;
+        return Math.round(profitability * 100.0) / 100.0;
+    }
+
+    private long calculatePrizeForRankCount(RankCount rankCount) {
+        if (rankCount.getCount() != 0) {
+            return (long) rankCount.getCount() * rankCount.getRank().getPrize();
+        }
+        return 0;
+    }
 }

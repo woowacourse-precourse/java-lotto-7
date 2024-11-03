@@ -37,6 +37,7 @@ public class LottoController {
         lottoWinningNumbers = handleWinningNumbers();
         lottoBonusNumber = handleBonusNumber();
         List<RankCount> winningStatistics = handleWinningStatistics(lottos);
+        handleProfitability(winningStatistics, count);
     }
 
     private int handlePurchasePrice() {
@@ -142,5 +143,9 @@ public class LottoController {
         output.printWinningStatistics(winningStatistics);
 
         return winningStatistics;
+    }
+
+    private void handleProfitability(List<RankCount> winningStatistics, int count) {
+        double profitability = lottoService.calculateProfitability(winningStatistics, count * 1000);
     }
 }
