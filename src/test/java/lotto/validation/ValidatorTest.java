@@ -120,4 +120,15 @@ public class ValidatorTest {
             Validator.isDuplicateBonusNumber(winningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 길이가 6개 아니면 예외발생하는 테스트")
+    void checkLottoLength() {
+        int invalidLottoLength = 10;
+
+        assertThatThrownBy(() -> {
+            Validator.checkLottoLength(invalidLottoLength);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
