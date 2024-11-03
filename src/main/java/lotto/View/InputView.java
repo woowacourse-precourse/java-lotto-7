@@ -1,21 +1,23 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.DTO.BonusNumberDTO;
 import lotto.DTO.PaymentPriceDTO;
+import lotto.DTO.WinningNumberDTO;
 import lotto.Util.Constant.IOMessage;
-import lotto.Util.Error.ErrorMessage;
-import lotto.Validation.PriceValidator;
+import lotto.Util.Splitter.InputSplitter;
+import lotto.Validation.InputNumberValidator;
 
 public class InputView {
-
     public PaymentPriceDTO inputPaymentPrice() {
         while (true) {
             System.out.println(IOMessage.INPUT_PAYMENT_PRICE.getMessage());
             String paymentPriceInput = Console.readLine();
 
             try {
-                validatePaymentPriceType(paymentPriceInput);
-                validatePaymentPriceValue(paymentPriceInput);
+                InputNumberValidator.validatePaymentPriceType(paymentPriceInput);
+                InputNumberValidator.validatePaymentPriceValue(paymentPriceInput);
                 return new PaymentPriceDTO(paymentPriceInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -23,22 +25,34 @@ public class InputView {
         }
     }
 
-    protected void validatePaymentPriceType(String paymentPriceInput) {
-        if (PriceValidator.isNotInteger(paymentPriceInput)) {
-            throw new NumberFormatException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
+    public WinningNumberDTO inputWinningNumber() {
+        while (true) {
+            System.out.println(IOMessage.INPUT_WINNING_NUMBER.getMessage());
+            String winnigNumberInput = Console.readLine();
+
+            try {
+                InputNumberValidator.validateWinnigNumberType(winnigNumberInput);
+                InputNumberValidator.validateWinnigNumberValue(winnigNumberInput);
+
+                List<Integer> winningNumber = InputSplitter.splitByDelimiter(winnigNumberInput);
+                return new WinningNumberDTO(winningNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    protected void validatePaymentPriceValue(String paymentPriceInput) {
-        if (PriceValidator.isOutOfIntegerRange(paymentPriceInput)) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_LIMIT_REACHED.getMessage());
-        }
-        if (PriceValidator.isZero(paymentPriceInput) || PriceValidator.isNegative(paymentPriceInput)) {
-            throw new IllegalArgumentException(ErrorMessage.MINIMUM_PURCHASE_AMOUNT.getMessage());
-        }
-        if (PriceValidator.isNotThousandUnit(paymentPriceInput)) {
-            throw new ArithmeticException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
+    public BonusNumberDTO inputBonusNumber(WinningNumberDTO winningNumberDTO) {
+        while (true) {
+            System.out.println(IOMessage.INPUT_BONUS_NUMBER.getMessage());
+            String bonusNumberInput = Console.readLine();
+
+            try {
+                InputNumberValidator.validateBonusNumber(bonusNumberInput, winningNumberDTO.getWinningNumber());
+                return new BonusNumberDTO(Integer.parseInt(bonusNumberInput));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
-
 }
