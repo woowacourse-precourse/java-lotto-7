@@ -1,5 +1,6 @@
 package lotto.common;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public enum LottoResult {
@@ -12,15 +13,15 @@ public enum LottoResult {
 
     private final int matchedCount;
     private final boolean bonusNumberMatched;
-    private final int winningAmount;
+    private final BigDecimal winningAmount;
 
     LottoResult(final int matchedCount, final boolean bonusNumberMatched, final int winningAmount) {
         this.matchedCount = matchedCount;
         this.bonusNumberMatched = bonusNumberMatched;
-        this.winningAmount = winningAmount;
+        this.winningAmount = new BigDecimal(winningAmount);
     }
 
-    public int getWinningAmount() {
+    public BigDecimal getWinningAmount() {
         return this.winningAmount;
     }
 

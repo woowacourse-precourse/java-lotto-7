@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +23,7 @@ class LottoGeneratorTest {
     @MethodSource("구입금액데이터")
     void 로또_구매_기능_테스트(final int payment, final int count) {
         final LottoGenerator lottoGenerator = new LottoGenerator();
-        final LottoPayment lottoPayment = new LottoPayment(payment);
+        final LottoPayment lottoPayment = new LottoPayment(new BigDecimal(payment));
 
         Assertions.assertEquals(lottoGenerator.generate(lottoPayment).getSize(), count);
     }

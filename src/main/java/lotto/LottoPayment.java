@@ -1,22 +1,27 @@
 package lotto;
 
+import java.math.BigDecimal;
 import lotto.exception.LottoArgumentException;
 
 public class LottoPayment {
-    private static final int LOTTO_PRICE = 1000;
-    private final int amount;
+    private static final BigDecimal LOTTO_PRICE = new BigDecimal(1000);
+    private final BigDecimal purchaseAmount;
 
-    public LottoPayment(final int amount) {
-        validate(amount);
-        this.amount = amount;
+    public LottoPayment(final BigDecimal purchaceAmount) {
+        validate(purchaceAmount);
+        this.purchaseAmount = purchaceAmount;
     }
 
     public int getLottoCount() {
-        return this.amount / LOTTO_PRICE;
+        return purchaseAmount.divide(LOTTO_PRICE).intValue();
     }
 
-    private void validate(final int amount) {
-        if (amount == 0 || amount % LOTTO_PRICE != 0) {
+    public BigDecimal getPayment() {
+        return this.purchaseAmount;
+    }
+
+    private void validate(final BigDecimal purchaceAmount) {
+        if (purchaceAmount.equals(BigDecimal.ZERO) || !purchaceAmount.remainder(LOTTO_PRICE).equals(BigDecimal.ZERO)) {
             throw new LottoArgumentException("금액은 " + LOTTO_PRICE + "단위로 입력해야 합니다.");
         }
     }

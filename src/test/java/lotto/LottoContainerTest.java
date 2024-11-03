@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.LottoResult;
@@ -25,7 +26,7 @@ class LottoContainerTest {
 
     @ParameterizedTest
     @MethodSource("로또구매데이터")
-    void 로또_덩첨_결과_테스트(final List<Lotto> lotteries, final int expectedSum) {
+    void 로또_덩첨_결과_테스트(final List<Lotto> lotteries, final BigDecimal expectedSum) {
         final LottoContainer lottoContainer = new LottoContainer(lotteries);
 
         Assertions.assertEquals(
@@ -39,14 +40,14 @@ class LottoContainerTest {
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7))
                         ),
-                        LottoResult.FIRST.getWinningAmount() + LottoResult.SECOND.getWinningAmount()
+                        LottoResult.FIRST.getWinningAmount().add(LottoResult.SECOND.getWinningAmount())
                 ),
                 Arguments.of(
                         List.of(
                                 new Lotto(List.of(11, 12, 13, 14, 15, 16)),
                                 new Lotto(List.of(5, 6, 7, 8, 9, 10))
                         ),
-                        0
+                        BigDecimal.ZERO
                 )
         );
     }

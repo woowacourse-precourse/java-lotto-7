@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,7 @@ class LottoPaymentTest {
     @ParameterizedTest
     @MethodSource("입금금액데이터")
     void 로또_갯수_테스트(final int amount, final int lottoCount) {
-        final LottoPayment lottoPayment = new LottoPayment(amount);
+        final LottoPayment lottoPayment = new LottoPayment(new BigDecimal(amount));
         Assertions.assertThat(lottoPayment.getLottoCount())
                 .isEqualTo(lottoCount);
     }
@@ -22,7 +23,7 @@ class LottoPaymentTest {
     @ParameterizedTest
     @MethodSource("잘못된입금데이터")
     void 로또_1000원_단위가_아닐_때_에러_출력_테스트(final int amount) {
-        Assertions.assertThatThrownBy(() -> new LottoPayment(amount));
+        Assertions.assertThatThrownBy(() -> new LottoPayment(new BigDecimal(amount)));
     }
 
     static Stream<Arguments> 입금금액데이터() {
