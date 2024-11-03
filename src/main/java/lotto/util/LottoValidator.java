@@ -33,4 +33,12 @@ public class LottoValidator {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
+
+    public static int parseNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_PARSE.getMessage());
+        }
+    }
 }
