@@ -69,7 +69,10 @@ public class LottoGameDisplay {
     }
 
     private List<Integer> inputNumbers(String separator) {
-        List<String> rawNumbers = Arrays.stream(Console.readLine().split(separator))
+        String rawNumberMess = Console.readLine();
+        LottoGameValidator.checkIsBlank(rawNumberMess);
+
+        List<String> rawNumbers = Arrays.stream(rawNumberMess.split(separator))
                 .map(String::strip)
                 .toList();
 
