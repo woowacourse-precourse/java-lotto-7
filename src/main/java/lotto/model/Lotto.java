@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.constants.Error_Messages;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    protected List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

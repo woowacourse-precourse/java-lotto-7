@@ -3,12 +3,11 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningLotto {
-    private List<Integer> numbers;
+public class WinningLotto extends Lotto {
     private int bonusNumber;
 
     public WinningLotto() {
-        this.numbers = new ArrayList<>();
+        super(new ArrayList<>());
         this.bonusNumber = 0;
     }
 
@@ -18,10 +17,6 @@ public class WinningLotto {
 
     public void setNumbers(List<Integer> numbers) {
         this.numbers = numbers;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     public int getBonusNumber() {
