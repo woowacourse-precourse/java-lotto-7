@@ -30,5 +30,7 @@ public class LottoController {
 
         Player player = new Player(winningLotto, bonusNumber);
         statsService.calculateStats(lottos, player);
+
+        OutputView.Stats(statsService.getStatsCount());
     }
 }
