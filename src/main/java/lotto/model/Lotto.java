@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> numbers) {
         validateNumberCount(numbers);
+        hasDuplicateNumbers(numbers);
         this.numbers = numbers;
     }
 
