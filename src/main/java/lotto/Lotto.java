@@ -1,7 +1,9 @@
 package lotto;
 
 import common.ErrorMessage;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +17,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_WINNER_NUMBER_COUNT.getMessage());
         }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
+        }
     }
 
     @Override
@@ -25,4 +32,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
 }
