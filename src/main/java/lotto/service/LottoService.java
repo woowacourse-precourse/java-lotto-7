@@ -53,6 +53,6 @@ public class LottoService {
         int matchCount = WinningCalculator.countMatchingNumber(winningNumbers, lotto);
         boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lotto, bonusNumber);
         WinningPrice winningPrice = WinningPrice.of(matchCount, bonusNumberMatched);
-        lottoResult.countWinningPrice(winningPrice);
+        lottoResult.increaseWinningCount(winningPrice);
     }
 }

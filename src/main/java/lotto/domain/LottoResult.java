@@ -18,7 +18,7 @@ public class LottoResult {
         return new LottoResult();
     }
 
-    public int countWinningPrice(WinningPrice winningPrice) {
+    public int increaseWinningCount(WinningPrice winningPrice) {
         result.put(winningPrice, result.get(winningPrice) + 1);
         return result.get(winningPrice);
     }
