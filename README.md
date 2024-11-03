@@ -1,48 +1,54 @@
-## 기능 목록
+# 기능 목록
 
-### Config
+## Config
 - [x] 시스템
 - [x] 에러 메세지
 - [x] 승리 조건
 - [x] 콘솔 메세지
 
-#### View
+## View
 - [x] 공통
+
+#### 예산
 - [x] 예산 입력
 - [x] 구매 로또 출력
+#### 로또
 - [x] 당첨 번호 입력
 - [x] 보너스 번호 입력
 - [x] 로또 결과 출력
 
-#### DTO
+## DTO
 - [x] 로또결과
 - [x] 로또결과 빌더
 
-#### Exception
+## Exception
 - Budget Exception
 - Lotto Exception
 - View Exception
 
-#### Controller
+## Controller
 - [x] 중계 (브로커)
 - [x] 예산
 - [x] 당첨 번호
 - [x] 보너스 번호
 - [x] 로또 결과
 
-#### Service
+## Service
 - [x] 유효성 검증
 - [x] 번호 생성기
 - [x] 로또 서비스
 
-#### Model
+## Model
+#### 예산
 - [x] 예산
-- [x] 로또
+- [x] 로또 게임
 - [x] 로또 매니저
+#### 로또
+- [x] 로또
 - [x] 당첨 번호
 - [x] 등수
 
-## 시나리오
+# 시나리오
 
 #### 예산
 - 예산을 입력한다.
