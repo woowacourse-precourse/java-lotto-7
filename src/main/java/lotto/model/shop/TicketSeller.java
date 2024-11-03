@@ -1,6 +1,7 @@
-package lotto.model.ticket;
+package lotto.model.shop;
 
-import lotto.error.InputError;
+import lotto.util.Validator;
+import lotto.model.ticket.LottoTickets;
 import lotto.rule.LottoRule;
 
 public class TicketSeller {
@@ -12,15 +13,14 @@ public class TicketSeller {
     }
 
     public LottoTickets exchangeMoneyForTickets(int purchaseAmount) {
-        validatePurchaseAmountUnit(purchaseAmount);
+        validatePurchaseAmount(purchaseAmount);
         int quantity = calculateLottoQuantity(purchaseAmount);
         return lottoMachine.issueTicket(quantity);
     }
 
-    private void validatePurchaseAmountUnit(int purchaseAmount) {
-        if (purchaseAmount % LottoRule.PURCHASE_AMOUNT_UNIT != 0) {
-            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_UNIT_INVALID.getMessage());
-        }
+    private void validatePurchaseAmount(int purchaseAmount) {
+        Validator.checkAboveBaseAmount(purchaseAmount);
+        Validator.checkPurchaseAmountUnit(purchaseAmount);
     }
 
     private int calculateLottoQuantity(int purchaseAmount) {

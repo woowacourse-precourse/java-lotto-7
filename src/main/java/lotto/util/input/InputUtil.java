@@ -1,11 +1,11 @@
-package lotto.util;
+package lotto.util.input;
 
 public class InputUtil {
 
     private InputUtil() {
     }
 
-    public static <T> T retryIfNeeded(SupplierWithException<T> method) {
+    public static <T> T retryIfError(SupplierWithException<T> method) {
         while (true) {
             try {
                 return method.get();

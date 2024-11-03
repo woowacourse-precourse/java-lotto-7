@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.input;
 
 @FunctionalInterface
 public interface SupplierWithException<T> {

@@ -1,14 +1,22 @@
-package lotto.model.ticket;
+package lotto.model.shop;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.util.Validator;
+import lotto.model.ticket.Lotto;
+import lotto.model.ticket.LottoTickets;
 import lotto.rule.LottoRule;
 
 public class LottoMachine {
 
     public LottoTickets issueTicket(int quantity) {
+        validateQuantity(quantity);
         return generateLottoTickets(quantity);
+    }
+
+    private void validateQuantity(int quantity) {
+        Validator.checkPurchaseQuantity(quantity);
     }
 
     private LottoTickets generateLottoTickets(int quantity) {

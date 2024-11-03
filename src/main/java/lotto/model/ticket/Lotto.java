@@ -1,9 +1,7 @@
 package lotto.model.ticket;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.rule.LottoRule;
+import lotto.util.Validator;
 
 public class Lotto {
 
@@ -15,17 +13,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoRule.LOTTO_NUMBERS_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-        validateNumbersDuplicate(numbers);
-    }
-
-    private void validateNumbersDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-        }
+        Validator.checkLottoNumbersCount(numbers);
+        Validator.checkLottoNumbersDuplicate(numbers);
+        Validator.checkLottoNumbersRange(numbers);
     }
 
     public List<Integer> getNumbers() {

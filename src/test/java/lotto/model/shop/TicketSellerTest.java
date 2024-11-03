@@ -1,8 +1,10 @@
-package lotto.model.ticket;
+package lotto.model.shop;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lotto.util.error.LottoErrorMessage;
+import lotto.model.ticket.LottoTickets;
 import lotto.rule.LottoRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,19 @@ class TicketSellerTest {
         assertEquals(lottoTickets.getCount(), 1);
     }
 
-    @DisplayName("구매 단위가 올바르지 않은 경우 예외가 발생한다.")
+    @DisplayName("구입금액이 최소 구입금액보다 작은 경우 예외가 발생한다.")
+    @Test
+    void shouldThrowException_WhenPurchaseAmountUnderBaseLimit() {
+        LottoMachine lottoMachine = new LottoMachine();
+        TicketSeller ticketSeller = new TicketSeller(lottoMachine);
+
+        int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT - 1;
+        assertThatThrownBy(() -> ticketSeller.exchangeMoneyForTickets(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessage.PURCHASE_AMOUNT_UNDER_BASE_LIMIT.get());
+    }
+
+    @DisplayName("구입금액의 단위가 올바르지 않은 경우 예외가 발생한다.")
     @Test
     void shouldThrowException_WhenPurchaseAmountUnitIsInvalid() {
         LottoMachine lottoMachine = new LottoMachine();
@@ -29,6 +43,7 @@ class TicketSellerTest {
 
         int purchaseAmount = LottoRule.PURCHASE_AMOUNT_UNIT + 1;
         assertThatThrownBy(() -> ticketSeller.exchangeMoneyForTickets(purchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessage.PURCHASE_AMOUNT_UNIT_INVALID.get());
     }
 }

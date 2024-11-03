@@ -1,14 +1,16 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.WinningResult;
-import lotto.error.InputValidator;
+import lotto.util.input.InputParser;
 import lotto.model.evaluate.LottoResultEvaluator;
-import lotto.model.ticket.LottoShop;
+import lotto.model.win.BonusNumber;
+import lotto.model.shop.LottoShop;
 import lotto.model.ticket.LottoTickets;
-import lotto.model.ticket.TicketSeller;
-import lotto.util.InputUtil;
+import lotto.model.win.LottoWinningSet;
+import lotto.model.shop.TicketSeller;
+import lotto.model.win.WinningNumbers;
+import lotto.util.input.InputUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,24 +27,25 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = InputUtil.retryIfNeeded(this::readPurchaseAmount);
-        LottoTickets lottoTickets = purchaseLottoTickets(purchaseAmount);
+        LottoTickets lottoTickets = purchaseLotto();
+        LottoWinningSet winningSet = createWinningSetFromUserInput();
+        evaluateAndDisplayResults(winningSet, lottoTickets);
+    }
+
+    private LottoTickets purchaseLotto() {
+        LottoTickets lottoTickets = InputUtil.retryIfError(this::purchaseLottoTicketsByUserRequest);
         displayLotto(lottoTickets);
-        List<Integer> winningNumbers = InputUtil.retryIfNeeded(this::readWinningNumbers);
-        int bonusNumber = InputUtil.retryIfNeeded(() -> readBonusNumber(winningNumbers));
-        WinningResult winningResult = evaluateLotto(winningNumbers, bonusNumber, lottoTickets);
-        displayResult(winningResult);
+        return lottoTickets;
+    }
+
+    private LottoTickets purchaseLottoTicketsByUserRequest() {
+        int purchaseAmount = readPurchaseAmount();
+        return purchaseLottoTickets(purchaseAmount);
     }
 
     private int readPurchaseAmount() {
         String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
-        validatePurchaseAmount(rawInputPurchaseAmount);
-        return Integer.parseInt(rawInputPurchaseAmount);
-    }
-
-    private void validatePurchaseAmount(String rawInput) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.validatePurchaseAmount(rawInput);
+        return InputParser.validateAndParsePurchaseAmount(rawInputPurchaseAmount);
     }
 
     private LottoTickets purchaseLottoTickets(int purchaseAmount) {
@@ -55,41 +58,40 @@ public class LottoController {
         outputView.printLottoTickets(lottoTickets.getAllNumbers());
     }
 
-    private List<Integer> readWinningNumbers() {
+    private LottoWinningSet createWinningSetFromUserInput() {
+        WinningNumbers winningNumbers = InputUtil.retryIfError(this::readWinningNumbers);
+        return InputUtil.retryIfError(() -> {
+            BonusNumber bonusNumber = readBonusNumber();
+            return new LottoWinningSet(winningNumbers, bonusNumber);
+        });
+    }
+
+    private WinningNumbers readWinningNumbers() {
         String rawInputWinningNumbers = inputView.requestWinningNumbers();
-        validateWinningNumbers(rawInputWinningNumbers);
-        return parseWinningNumbers(rawInputWinningNumbers);
+        List<Integer> numbers = InputParser.validateAndParseWinningNumbers(rawInputWinningNumbers);
+        return new WinningNumbers(numbers);
     }
 
-    private void validateWinningNumbers(String rawInput) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.validateWinningNumbers(rawInput);
-    }
-
-    private List<Integer> parseWinningNumbers(String rawInput) {
-        String[] separatedInputs = rawInput.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
-
-        for (String input : separatedInputs) {
-            winningNumbers.add(Integer.parseInt(input.trim()));
-        }
-        return winningNumbers;
-    }
-
-    private int readBonusNumber(List<Integer> winningNumbers) {
+    private BonusNumber readBonusNumber() {
         String rawInputBonusNumber = inputView.requestBonusNumber();
-        validateBonusNumber(rawInputBonusNumber, winningNumbers);
-        return Integer.parseInt(rawInputBonusNumber);
+        int bonusNumber = InputParser.validateAndParseBonusNumber(rawInputBonusNumber);
+        return new BonusNumber(bonusNumber);
     }
 
-    private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.validateBonusNumber(rawInput, winningNumbers);
+    private void evaluateAndDisplayResults(LottoWinningSet winningSet, LottoTickets lottoTickets) {
+        WinningResult winningResult = evaluateLotto(winningSet, lottoTickets);
+        displayResult(winningResult);
     }
 
-    private WinningResult evaluateLotto(List<Integer> winningNumbers, int bonusNumber, LottoTickets lottoTickets) {
-        LottoResultEvaluator lottoResultEvaluator = new LottoResultEvaluator(winningNumbers, bonusNumber);
+    private WinningResult evaluateLotto(LottoWinningSet winningSet, LottoTickets lottoTickets) {
+        LottoResultEvaluator lottoResultEvaluator = crateLottoResultEvaluator(winningSet);
         return lottoResultEvaluator.evaluate(lottoTickets);
+    }
+
+    private LottoResultEvaluator crateLottoResultEvaluator(LottoWinningSet winningSet) {
+        List<Integer> winningNumbers = winningSet.getWinningNumbers();
+        int bonusNumber = winningSet.getBonusNumber();
+        return new LottoResultEvaluator(winningNumbers, bonusNumber);
     }
 
     private void displayResult(WinningResult winningResult) {

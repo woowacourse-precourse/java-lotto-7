@@ -1,4 +1,4 @@
-package lotto.model.ticket;
+package lotto.model.shop;
 
 public class LottoShop {
 
