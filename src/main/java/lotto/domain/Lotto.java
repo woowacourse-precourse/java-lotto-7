@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.constant.ErrorMessage.DUPLICATED;
+import static lotto.domain.constant.ErrorMessage.OUT_OF_RANGE;
+import static lotto.domain.constant.ErrorMessage.VALUE_COUNT;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,14 +25,14 @@ public class Lotto {
 
     private void checkNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(VALUE_COUNT.getMessage());
         }
     }
 
     private void checkDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATED.getMessage());
         }
     }
 
@@ -36,7 +40,7 @@ public class Lotto {
         numbers.stream()
                 .forEach(s -> {
                     if (s > 45 || s < 1) {
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45를 벗어날 수 없습니다.");
+                        throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
                     }
                 });
     }
