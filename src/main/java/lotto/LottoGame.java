@@ -13,17 +13,48 @@ import lotto.user.Lotto;
 
 public class LottoGame {
 
-    public static void start() {
-        PrintFormatter printFormatter = new PrintFormatter();
-        LottoTicketIssuer ticketIssuer = printFormatter.formatPurchaseInfo();
-        List<LottoTicket> issuedTickets = ticketIssuer.issueLottoTickets();
-        printFormatter.formatLottoTickets(issuedTickets, ticketIssuer.getQuantity());
-        Lotto lotto = printFormatter.formatWinningNumbers();
-        Bonus bonus = printFormatter.formatBonusNumber(lotto.getNumbers());
+    private final PrintFormatter printFormatter = new PrintFormatter();
 
-        LottoWinningAnalyzer LottoWinningAnalyzer = new LottoWinningAnalyzer(lotto.getNumbers(), bonus.getNumber());
-        Map<PrizeType, Integer> prizeTypeIntegerMap = LottoWinningAnalyzer.analyzeWinningStatistics(issuedTickets);
-        printFormatter.formatResult(
-                WinningStatisticsFormatter.formatStatistics(prizeTypeIntegerMap, ticketIssuer.getPurchaseAmount()));
+    public static void start() {
+        LottoGame game = new LottoGame();
+        game.run();
+    }
+
+    private void run() {
+        LottoTicketIssuer ticketIssuer = issueTickets();
+        List<LottoTicket> issuedTickets = ticketIssuer.issueLottoTickets();
+        displayTickets(issuedTickets, ticketIssuer.getQuantity());
+
+        Lotto lotto = getWinningNumbers();
+        Bonus bonus = getBonusNumber(lotto.getNumbers());
+
+        Map<PrizeType, Integer> prizeStatistics = analyzeResults(issuedTickets, lotto, bonus);
+        displayResults(prizeStatistics, ticketIssuer.getPurchaseAmount());
+    }
+
+    private LottoTicketIssuer issueTickets() {
+        return printFormatter.formatPurchaseInfo();
+    }
+
+    private void displayTickets(List<LottoTicket> tickets, int quantity) {
+        printFormatter.formatLottoTickets(tickets, quantity);
+    }
+
+    private Lotto getWinningNumbers() {
+        return printFormatter.formatWinningNumbers();
+    }
+
+    private Bonus getBonusNumber(List<Integer> winningNumbers) {
+        return printFormatter.formatBonusNumber(winningNumbers);
+    }
+
+    private Map<PrizeType, Integer> analyzeResults(List<LottoTicket> issuedTickets, Lotto lotto, Bonus bonus) {
+        LottoWinningAnalyzer analyzer = new LottoWinningAnalyzer(lotto.getNumbers(), bonus.getNumber());
+        return analyzer.analyzeWinningStatistics(issuedTickets);
+    }
+
+    private void displayResults(Map<PrizeType, Integer> prizeStatistics, int purchaseAmount) {
+        String formattedStatistics = WinningStatisticsFormatter.formatStatistics(prizeStatistics, purchaseAmount);
+        printFormatter.formatResult(formattedStatistics);
     }
 }
