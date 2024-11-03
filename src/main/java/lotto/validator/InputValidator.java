@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import message.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,34 +29,34 @@ public class InputValidator {
 
     private static void validateNotEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 비어 있을 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT);
         }
     }
 
     private static void validateIsNumeric(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
         }
     }
 
     private static void validatePositiveAmount(String input) {
         int amount = Integer.parseInt(input);
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT);
         }
     }
 
     private static void validateThousandUnit(String input) {
         int amount = Integer.parseInt(input);
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT);
         }
     }
 
     private static void validateWinningNumberFormat(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 구성되어야 하며, 콤마로 구분되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT);
         }
     }
 
@@ -65,11 +67,10 @@ public class InputValidator {
             validateIsNumeric(number);
             int num = Integer.parseInt(number);
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE);
             }
         }
     }
-
 
     private static void validateNoDuplicateWinningNumbers(String input) {
         Set<Integer> numberSet = new HashSet<>();
@@ -78,7 +79,7 @@ public class InputValidator {
         for (String number : numbers) {
             int num = Integer.parseInt(number);
             if (!numberSet.add(num)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 있을 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS);
             }
         }
     }
@@ -86,14 +87,14 @@ public class InputValidator {
     private static void validateBonusNumberRange(String input) {
         int bonusNum = Integer.parseInt(input);
         if (bonusNum < 1 || bonusNum > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE);
         }
     }
 
     private static void validateBonusNumberNotInWinningNumbers(String input, List<Integer> winningNumbers) {
         int bonusNum = Integer.parseInt(input);
         if (winningNumbers.contains(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
         }
     }
 
