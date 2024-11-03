@@ -42,7 +42,8 @@ public class Application {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
             try {
-                bonusNumber = bonusNumber.from(input, winningNumber);
+                bonusNumber = BonusNumber.from(input);
+                bonusNumber.isDuplicated(winningNumber);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
