@@ -30,6 +30,17 @@ public class IOController {
         return bonusNumberInput;
     }
 
+    public void printLotto(List<Integer> numbers) {
+        System.out.print("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.print(numbers.get(i));
+            if (i != numbers.size() - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
+
     public void printWinningStatistics(double statistic) {
         System.out.println("총 수익률은 " + statistic + "%입니다.");
     }
