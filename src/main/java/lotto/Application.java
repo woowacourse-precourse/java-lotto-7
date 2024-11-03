@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -28,6 +25,9 @@ public class Application {
 
         int bonusNumber = getBonusNumber();
         System.out.println("보너스 번호: " + bonusNumber);
+
+        Map<String, Integer> results = checkResults(purchasedLottos, winningNumbers, bonusNumber);
+        printResults(results);
     }
 
     private static int getPurchaseAmount() {
@@ -67,6 +67,46 @@ public class Application {
     private static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine().trim());
+    }
+
+    private static Map<String, Integer> checkResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<String, Integer> results = new HashMap<>();
+        results.put("1등", 0);
+        results.put("2등", 0);
+        results.put("3등", 0);
+        results.put("4등", 0);
+        results.put("5등", 0);
+        results.put("꽝", 0);
+
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
+            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+            String prize = determinePrize(matchCount, hasBonus);
+            results.put(prize, results.get(prize) + 1);
+        }
+        return results;
+    }
+
+    private static int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+
+    private static String determinePrize(int matchCount, boolean hasBonus) {
+        if (matchCount == 6) return "1등";
+        if (matchCount == 5 && hasBonus) return "2등";
+        if (matchCount == 5) return "3등";
+        if (matchCount == 4) return "4등";
+        if (matchCount == 3) return "5등";
+        return "꽝";
+    }
+
+    private static void printResults(Map<String, Integer> results) {
+        System.out.println("당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + results.get("5등") + "개");
+        System.out.println("4개 일치 (50,000원) - " + results.get("4등") + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + results.get("3등") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get("2등") + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + results.get("1등") + "개");
     }
 }
 
