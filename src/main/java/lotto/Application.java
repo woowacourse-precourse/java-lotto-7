@@ -30,10 +30,10 @@ public class Application {
             purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
             List<Integer> winningNumbers = getWinningNumbers();
-            System.out.println("당첨 번호: " + winningNumbers);
+            //System.out.println("당첨 번호: " + winningNumbers);
 
             int bonusNumber = getBonusNumber();
-            System.out.println("보너스 번호: " + bonusNumber);
+            //System.out.println("보너스 번호: " + bonusNumber);
 
             Map<String, Integer> results = checkResults(purchasedLottos, winningNumbers, bonusNumber);
             printResults(results);
@@ -70,7 +70,7 @@ public class Application {
     }
 
     private static List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -81,7 +81,7 @@ public class Application {
     }
 
     private static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine().trim());
         if (bonusNumber < LOTTO_NUMBER_RANGE_START || bonusNumber > LOTTO_NUMBER_RANGE_END) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
@@ -132,7 +132,7 @@ public class Application {
     }
 
     private static void printResults(Map<String, Integer> results) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + results.get("5등") + "개");
         System.out.println("4개 일치 (50,000원) - " + results.get("4등") + "개");
         System.out.println("5개 일치 (1,500,000원) - " + results.get("3등") + "개");
