@@ -18,18 +18,18 @@ public class LottoInputValidator {
     }
 
     public void validateLottoBonusNumber(String bonusNumber) {
-        validateNumbers(bonusNumber);
+        validateDigit(bonusNumber);
     }
 
     private void validateDigit(String number) {
         if (!INPUT_DIGIT_FORMAT.matcher(number).matches()) {
-            throw new IllegalArgumentException(LottoError.LOTTO_PURCHASE_PRICE_NOT_DIGIT.getMessage());
+            throw new IllegalArgumentException(LottoError.INPUT_NUMBER_INVALID.getMessage());
         }
     }
 
     private void validateNumbers(String numbers) {
         if (!NUMBERS_FORMAT.matcher(numbers).matches()) {
-            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_INVALID_FORMAT.getMessage());
+            throw new IllegalArgumentException(LottoError.INPUT_NUMBERS_INVALID.getMessage());
         }
     }
 }
