@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import lotto.model.Lotto;
 import lotto.constant.ExceptionMessage;
@@ -13,7 +13,6 @@ public class WinningLotto extends Lotto{
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
         super(numbers);
-        //vliad
         validateWinningNumbers(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
