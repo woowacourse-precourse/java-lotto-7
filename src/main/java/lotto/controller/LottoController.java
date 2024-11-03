@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Money;
 import lotto.dto.LottoNumberDto;
+import lotto.enums.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,7 +29,15 @@ public class LottoController {
 
         Lotto winningLotto = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber();
+        validateBonusNumberNotInWinningLotto(winningLotto, bonusNumber);
 
+
+    }
+
+    private void validateBonusNumberNotInWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        if (winningLotto.contains(bonusNumber.getNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_LOTTO.getMessage());
+        }
     }
 
     private BonusNumber getBonusNumber() {
