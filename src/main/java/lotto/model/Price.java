@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Map;
+
 public class Price {
 
 	private static final int PRICE_DIVISIBILITY_UNIT = 1000;
@@ -15,6 +17,10 @@ public class Price {
 
 	public int getPrice() {
 		return price;
+	}
+
+	public String getProfitRate(Map<Winning, Integer> winningResult) {
+		long totalWinningPrize = Winning.getTotalWinningPrize(winningResult);
 	}
 
 	private void validatePrice(int price) {
