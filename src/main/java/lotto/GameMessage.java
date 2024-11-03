@@ -6,7 +6,10 @@ public enum GameMessage {
     GET_WINNING_NUMBER_MESSAGE("당첨 번호를 입력해 주세요."),
     GET_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
     RESULT_AVERAGE_MESSAGE("당첨 통계"),
-    RESULT_HYPE_MESSAGE("---");
+    RESULT_HYPE_MESSAGE("---"),
+    RESULT_COUNT_MESSAGE("개 일치"),
+    RESULT_RATE_MESSAGE_START("총 수익률은 "),
+    RESULT_RATE_MESSAGE_END("%입니다.");
 
     private String message;
 
