@@ -13,10 +13,12 @@ public class LottoManager {
     private Lotto winningLotto;
     private HashMap<LottoRank, Integer> winningResult;
 
+
     public void setWinningLotto(List<Integer> numbers, int bonus) {
         this.winningLotto = new Lotto(numbers);
         this.winningLotto.setBonusNumber(bonus);
     }
+
 
     public ArrayList<Lotto> purchaseLotto(int amount) {
         validateAmount(amount);
@@ -29,6 +31,7 @@ public class LottoManager {
 
         return lottos;
     }
+
 
     public Lotto drawLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -44,36 +47,54 @@ public class LottoManager {
         }
 
         for (Lotto lotto : lottos) {
-            int count = 0;
-            boolean bonusMatch = false;
-            for (int i : lotto.getNumbers()) {
-                if (winningLotto.getNumbers().contains(i)) {
-                    count++;
-                }
-                if (winningLotto.getBonusNumber() == i) {
-                    bonusMatch = true;
-                }
-            }
+            int count = getMatchCount(lotto);
+            boolean bonusMatch = getBonusMatch(lotto);
+            plusWinningCount(count, bonusMatch);
+        }
+        return winningResult;
+    }
 
-            if (count == 3) {
-                winningResult.put(LottoRank.FIFTH,
-                    winningResult.getOrDefault(LottoRank.FIFTH, 0) + 1);
-            } else if (count == 4) {
-                winningResult.put(LottoRank.FOURTH,
-                    winningResult.getOrDefault(LottoRank.FOURTH, 0) + 1);
-            } else if (count == 5 && bonusMatch) {
-                winningResult.put(LottoRank.SECOND,
-                    winningResult.getOrDefault(LottoRank.SECOND, 0) + 1);
-            } else if (count == 5) {
-                winningResult.put(LottoRank.THIRD,
-                    winningResult.getOrDefault(LottoRank.THIRD, 0) + 1);
-            } else if (count == 6) {
-                winningResult.put(LottoRank.FIRST,
-                    winningResult.getOrDefault(LottoRank.FIRST, 0) + 1);
+
+    private int getMatchCount(Lotto lotto) {
+        int count = 0;
+        for (int i : lotto.getNumbers()) {
+            if (winningLotto.getNumbers().contains(i)) {
+                count++;
             }
         }
+        return count;
+    }
 
-        return winningResult;
+
+    private boolean getBonusMatch(Lotto lotto) {
+        boolean bonusMatch = false;
+
+        for (int i : lotto.getNumbers()) {
+            if (winningLotto.getBonusNumber() == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private void plusWinningCount(int count, boolean bonusMatch) {
+        if (count == 3) {
+            winningResult.put(LottoRank.FIFTH,
+                winningResult.getOrDefault(LottoRank.FIFTH, 0) + 1);
+        } else if (count == 4) {
+            winningResult.put(LottoRank.FOURTH,
+                winningResult.getOrDefault(LottoRank.FOURTH, 0) + 1);
+        } else if (count == 5 && bonusMatch) {
+            winningResult.put(LottoRank.SECOND,
+                winningResult.getOrDefault(LottoRank.SECOND, 0) + 1);
+        } else if (count == 5) {
+            winningResult.put(LottoRank.THIRD,
+                winningResult.getOrDefault(LottoRank.THIRD, 0) + 1);
+        } else if (count == 6) {
+            winningResult.put(LottoRank.FIRST,
+                winningResult.getOrDefault(LottoRank.FIRST, 0) + 1);
+        }
     }
 
 
@@ -87,6 +108,7 @@ public class LottoManager {
         profitRate = Math.round(totalPrize / amount * 10000) / 100.0;
         return profitRate;
     }
+
 
     private void validateAmount(int amount) {
         if (amount % 1000 != 0) {
