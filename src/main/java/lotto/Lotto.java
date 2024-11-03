@@ -20,7 +20,7 @@ public class Lotto {
             statistics.put(rank, 0);
         }
 
-        // 각 로또 번호와 당첨 번호를 비교하여 통계 업데이트
+        // 각 로또 번호와 당첨 번호를 비교
         for (List<Integer> lottoNumbers : buyLottoNumbers) {
             int matchingCount = 0;
 
