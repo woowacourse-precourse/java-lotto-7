@@ -23,4 +23,9 @@ public class LottoSimulatorController {
         lottoSimulator.buyRandomLotto();
         outputView.printLottoGroup(lottoSimulator.getPurchasedLotto());
     }
+
+    private void drawNumbers() {
+        String winningNumbers = inputView.readWinningNumbers();
+        String bonusNumber = inputView.readBonusNumber();
+    }
 }
