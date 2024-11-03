@@ -43,6 +43,10 @@ public enum LottoRank {
                      .orElse(NONE);
     }
 
+    public BigDecimal calculatePrizeByRankCount(int rankCount) {
+        return prize.multiply(BigDecimal.valueOf(rankCount));
+    }
+
     public int getWinningCount() {
         return winningCount;
     }
