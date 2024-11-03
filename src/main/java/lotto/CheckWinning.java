@@ -34,8 +34,8 @@ public class CheckWinning {
 
         long allProfit = WinningType.getAllProfit();
 
-        double profit = (double)(allProfit/inputPrice)*100;
-        profit = Math.round(profit);
+        double profit = ((double)allProfit/(double)inputPrice)*100;
+        profit = Math.round(profit * 100.0) / 100.0;
 
         return profit;
     }

@@ -19,8 +19,10 @@ public class LottoList {
         for(int i = 0; i < lottoNumber; i++){
             List<Integer> tmpLottoList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-            Collections.sort(tmpLottoList);
-            lottoList.add(new Lotto(tmpLottoList));
+            List<Integer> mutableLottoList = new ArrayList<>(tmpLottoList);
+
+            Collections.sort(mutableLottoList);
+            lottoList.add(new Lotto(mutableLottoList));
         }
 
         return lottoList;

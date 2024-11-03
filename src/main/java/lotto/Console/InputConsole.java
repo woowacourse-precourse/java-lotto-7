@@ -38,9 +38,10 @@ public class InputConsole {
             if(winningLottoNumbers != null){
                 isValid = true;
             }
-
-            System.out.println("\n당첨 번호를 다시 입력해 주세요.");
-            winningLottoNum = readLine();
+            if(winningLottoNumbers == null){
+                System.out.println("\n당첨 번호를 다시 입력해 주세요.");
+                winningLottoNum = readLine();
+            }
         }
 
         return winningLottoNumbers;
