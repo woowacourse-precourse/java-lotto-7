@@ -15,7 +15,7 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoService {
 
-    public Lotto[] LottoIssuer(Money money) {
+    public Lotto[] issueLotto(Money money) {
         int lottoCount = money.getPurchaseAmount() / 1000;
         System.out.println("\n" + lottoCount + OutputMessage.NOTICE_PURCHASE_COUNT.getMessage());
         Lotto[] issuedLottos = new Lotto[lottoCount];

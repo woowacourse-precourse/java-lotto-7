@@ -16,7 +16,7 @@ public class LottoController {
 
     public void run() {
         Money money = new Money(inputView.getPurchasedMoney());
-        Lotto[] issuedLottos = lottoService.LottoIssuer(money);
+        Lotto[] issuedLottos = lottoService.issueLotto(money);
         lottoService.showLottoNumbers(issuedLottos);
 
         Lotto lotto = new Lotto(inputView.getWinningNumbers());
