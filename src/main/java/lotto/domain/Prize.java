@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Prize {
-    // 각 등수에 해당하는 일치 개수와 상금 정의
     THREE(3, 5_000),                // 3개 일치
     FOUR(4, 50_000),                // 4개 일치
     FIVE(5, 1_500_000),             // 5개 일치
