@@ -17,6 +17,14 @@ class LottoTicketsTest {
     }
 
     @Test
+    @DisplayName("머니가 1,000원 단위가 아니면 예외를 던진다.")
+    void testInValidMoneyThrowsException() {
+        assertThatThrownBy(() -> new LottoTickets("1500"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessages.INVALID_MONEY);
+    }
+
+    @Test
     @DisplayName("머니가 빈 공백이면 예외를 던진다.")
     void testBlankInputThrowsException() {
         assertThatThrownBy(() -> new LottoTickets("   "))
