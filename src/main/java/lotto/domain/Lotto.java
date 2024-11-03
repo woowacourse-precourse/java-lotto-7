@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.global.message.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +24,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE);
         }
     }
     private static void validateNumberRange(List<Integer> numbers) {
@@ -34,7 +35,7 @@ public class Lotto {
 
     private static void validateNumberInRange(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
@@ -45,7 +46,7 @@ public class Lotto {
 
     private static void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
         }
     }
 
@@ -54,8 +55,8 @@ public class Lotto {
         return numbers.size() != uniqueNumbers.size();
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
+    public boolean contains(long number) {
+        return numbers.contains((int) number);
     }
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);

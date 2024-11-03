@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.global.message.ErrorMessage;
 
 public class InputView {
     public static long inputNumber(String message) {
@@ -20,7 +21,7 @@ public class InputView {
 
     private static void validateEmpty(String inputValue) {
         if (inputValue == null || inputValue.isBlank()) {
-            throw new IllegalArgumentException("입력값이 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT);
         }
     }
 
@@ -29,13 +30,13 @@ public class InputView {
             long amount = Long.parseLong(inputValue);
             validateNegative(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("유효한 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
         }
     }
 
     private static void validateNegative(long amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException(" 음수는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
         }
     }
 
@@ -76,7 +77,7 @@ public class InputView {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("쉼표(,)로 구분된 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.COMMA_SEPARATED_NUMBER);
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.global.message.ErrorMessage;
+
 public class Money {
     private long purchaseAmount;
     private static final int MINIMUM_LOTTO_PRICE = 1000;
@@ -18,17 +20,15 @@ public class Money {
 
     private void validateMinimumAmount(long money) {
         if (money < MINIMUM_LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매는 1000원부터 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MINIMUM_PURCHASE_AMOUNT);
         }
     }
 
     private void validateDivisibleByLottoPrice(long money) {
         if (money % LOTTO_PRICE_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매는 1000원 단위로 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT);
         }
     }
-
-
 
     public long getLottoQuantity() {
         return purchaseAmount / LOTTO_PRICE_UNIT;

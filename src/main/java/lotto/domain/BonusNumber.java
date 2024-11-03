@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.global.message.ErrorMessage;
+
 public class BonusNumber {
 
     private final long number;
@@ -11,7 +13,7 @@ public class BonusNumber {
 
     private static void validateNumberInRange(long number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE);
         }
     }
 
