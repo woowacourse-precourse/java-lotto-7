@@ -12,11 +12,7 @@ import lotto.view.OutputView;
 public class LottoController {
     public void run() {
         int lottosAmount = InputView.inputPurchase();
-        List<Lotto> purchaseLottos = new ArrayList<>();
-        for (int i = 0; i < lottosAmount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            purchaseLottos.add(new Lotto(numbers));
-        }
+        List<Lotto> purchaseLottos = generateLotto(lottosAmount);
         OutputView.printLottoTicket(purchaseLottos);
 
         List<Integer> winNumbers = InputView.WinNumbers();
@@ -43,5 +39,14 @@ public class LottoController {
         double earningRate = ((double) totalPrize / (lottosAmount * 1000)) * 100;
 
         OutputView.printWinningStatistics(rankCount, earningRate);
+    }
+
+    public List<Lotto> generateLotto(int lottosAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottosAmount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 }
