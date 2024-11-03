@@ -2,15 +2,13 @@ package lotto;
 
 import static lotto.Constants.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Result {
-    private static final String MATCHING_COUNT_UNIT = "개";
-    private static final String WINNING_DETAIL_DELIMITER = "\n";
+    private static final String WINNING_DETAIL_FORMAT = "%s%d개\n";
 
     private final Map<Winning, Integer> winningDetails;
 
@@ -26,27 +24,16 @@ public class Result {
     }
 
     public String getFormattedWinningDetails() {
-        StringBuilder result = new StringBuilder();
-        for(Map.Entry<Winning, Integer> entry : winningDetails.entrySet()) {
-            result.append(entry.getKey().getPrintFormat());
-            result.append(entry.getValue() + MATCHING_COUNT_UNIT);
-            result.append(WINNING_DETAIL_DELIMITER);
-        }
-        return result.toString();
+        return winningDetails.entrySet().stream()
+                .map(entry -> getFormattedWinningDetail(entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining());
     }
 
-    public void calculate(WinningNumber winningNumber, BonusNumber bonusNumber, PurchasedLotto purchasedLotto) {
-        for(Lotto lotto : purchasedLotto.get()) {
-            List<Integer> purchasedLottoNumber = new ArrayList<>(lotto.get());
-            boolean isBonusContained = purchasedLottoNumber.contains(bonusNumber.get());
-
-            purchasedLottoNumber.retainAll(winningNumber.get());
-            int matchingCount = purchasedLottoNumber.size();
-
-            Winning satisfiedWinning = getSatisfiedWinning(matchingCount, isBonusContained);
-            if(satisfiedWinning != null) {
-                winningDetails.put(satisfiedWinning, winningDetails.get(satisfiedWinning) + 1);
-            }
+    public void calculate(WinningNumber winningNumber, BonusNumber bonusNumber, PurchasedLotto purchasedLottos) {
+        for(Lotto purchasedLotto : purchasedLottos.get()) {
+            int matchingCount = purchasedLotto.getMatchingCountWith(winningNumber);
+            boolean isBonusContained = purchasedLotto.isContained(bonusNumber);
+            addWinningDetails(matchingCount, isBonusContained);
         }
     }
 
@@ -55,6 +42,17 @@ public class Result {
                 .mapToLong(entry -> entry.getKey()
                         .calculatePrize(entry.getValue()))
                 .sum();
+    }
+
+    private String getFormattedWinningDetail(Winning condition, Integer count) {
+        return String.format(WINNING_DETAIL_FORMAT, condition.getPrintFormat(), count);
+    }
+
+    private void addWinningDetails(int matchingCount, boolean isBonusContained) {
+        Winning satisfiedWinning = getSatisfiedWinning(matchingCount, isBonusContained);
+        if(satisfiedWinning != null) {
+            winningDetails.put(satisfiedWinning, winningDetails.get(satisfiedWinning) + 1);
+        }
     }
 
     private Winning getSatisfiedWinning(int matchingCount, boolean isBonusContained) {
