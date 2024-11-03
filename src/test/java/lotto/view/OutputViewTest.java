@@ -23,8 +23,16 @@ class OutputViewTest extends NsTest {
 
     @Test
     @DisplayName("구매한 로또 번호 출력")
-    void displayLottoCount() {
+    void displayLottoTickets() {
         List<List<Integer>> lottoTickets = List.of(List.of(1,2,3,4,5,6));
+        outputView.displayPurchasedLottoTickets(lottoTickets);
+        assertTrue(output().contains("[1, 2, 3, 4, 5, 6]"));
+    }
+
+    @Test
+    @DisplayName("구매한 로또 번호 낮은 번호부터 출력")
+    void displayLottoTicketToSorted() {
+        List<List<Integer>> lottoTickets = List.of(List.of(1,3,2,6,5,4));
         outputView.displayPurchasedLottoTickets(lottoTickets);
         assertTrue(output().contains("[1, 2, 3, 4, 5, 6]"));
     }
