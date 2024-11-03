@@ -56,5 +56,4 @@ public class LottoPriceValidator {
         }
         return false;
     }
-
 }

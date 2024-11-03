@@ -3,6 +3,8 @@ package lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
 
     public static final int LOTTO_PRICE = 1000;
@@ -12,6 +14,8 @@ public class LottoController {
     final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
     final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
     final LottoPriceValidator lottoPriceValidator = new LottoPriceValidator();
+    final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    private int lottoCount;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
 
@@ -19,6 +23,7 @@ public class LottoController {
         int lottoCount = purchaseLottos();
         createLottos(lottoCount);
         makeWinningNumbers();
+        makeBonusNumber(winningNumbers.get());
         calculateResults(lottoCount * LOTTO_PRICE);
         displayResults();
     }
@@ -26,12 +31,26 @@ public class LottoController {
     private void makeWinningNumbers() {
         outputView.printWinningNumbersGuide();
         winningNumbers = new WinningNumbers(inputView.getWinningNumbers());
-        outputView.printBonusNumberGuide();
-        bonusNumber = new BonusNumber(inputView.getBonusNumber(), winningNumbers.get());
+    }
+
+    private void makeBonusNumber(List<Integer> winnerNumbers) {
+        while (true) {
+            outputView.printBonusNumberGuide();
+            String inputBonusNumber = inputView.getBonusNumber();
+            String checkBonusNumber = bonusNumberValidator.validate(inputBonusNumber, winnerNumbers);
+
+            if (!isPriceInputError(inputBonusNumber, checkBonusNumber)) {
+                bonusNumber = new BonusNumber(inputBonusNumber);
+                break;
+            }
+
+            outputView.printErrorMessage(checkBonusNumber);
+            outputView.printRetryGuide();
+        }
     }
 
     private int purchaseLottos() {
-        int lottoCount = 0;
+        lottoCount = 0;
         while (true) {
             outputView.printPurchaseGuide();
             String price = inputView.getPurchasePrice();
