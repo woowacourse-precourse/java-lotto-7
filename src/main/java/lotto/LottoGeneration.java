@@ -12,4 +12,14 @@ public class LottoGeneration {
             }
         }
     }
+
+    private static int parseInputToInteger(String input) {
+        try {
+            validatePurchaseAmount(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return -1;
+    }
 }
