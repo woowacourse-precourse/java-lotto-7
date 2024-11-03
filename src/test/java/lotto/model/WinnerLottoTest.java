@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.Arrays;
 import lotto.exception.ErrorMessage;
+import lotto.validator.WinnerLottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,5 +46,10 @@ class WinnerLottoTest {
         assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,6").setBonusNumber("6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATES_WITH_WINNING_NUMBERS.getMessage());
+
+        WinnerLottoValidator validator = new WinnerLottoValidator();
+        assertThatThrownBy(() -> validator.checkForDuplicate(Arrays.asList(1, 2, 3, 4, 5), 5))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage());
     }
 }
