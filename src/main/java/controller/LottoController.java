@@ -1,8 +1,12 @@
 package controller;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.LottoPurchaseInfo;
+import lotto.LottoRank;
 import lotto.LottoResult;
 import lotto.Lottos;
 import lotto.generator.RandomNumberGenerator;
@@ -61,8 +65,17 @@ public class LottoController {
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {
         LottoResult lottoResult = lottoService.calculateLottoResult(
                 lottos, lottoPurchaseInfo.getNumbers(), lottoPurchaseInfo.getBonusNumber());
-        OutputView.printLottoResult(lottoResult);
+        showLottoResults(lottoResult);
         return lottoResult;
+    }
+
+    private void showLottoResults(LottoResult lottoResult) {
+        Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
+        List<LottoRank> ranks = Arrays.stream(LottoRank.values())
+                                      .filter(rank -> rank != LottoRank.NONE)
+                                      .collect(Collectors.toList());
+
+        OutputView.printLottoResult(ranks, rankCounts);
     }
 
     private void calculateAndPrintReturnOnInvestment(LottoPurchaseInfo lottoPurchaseInfo, LottoResult lottoResult) {

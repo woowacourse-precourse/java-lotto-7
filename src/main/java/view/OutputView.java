@@ -3,12 +3,11 @@ package view;
 import static view.message.ViewMessage.*;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.Lotto;
 import lotto.LottoRank;
-import lotto.LottoResult;
 
 public class OutputView {
 
@@ -34,14 +33,9 @@ public class OutputView {
               .forEach(System.out::println);
     }
 
-    public static void printLottoResult(LottoResult lottoResult) {
+    public static void printLottoResult(List<LottoRank> ranks, Map<LottoRank, Integer> rankCounts) {
         System.out.println(LOTTO_RESULT_MESSAGE);
-
-        Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
-
-        Arrays.stream(LottoRank.values())
-              .filter(rank -> rank != LottoRank.NONE)
-              .forEach(rank -> printLottoRank(rank, rankCounts.get(rank)));
+        ranks.forEach(rank -> printLottoRank(rank, rankCounts.get(rank)));
     }
 
     private static void printLottoRank(LottoRank lottoRank, int matchCount) {
