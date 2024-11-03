@@ -11,10 +11,14 @@ public class BonusGenerator {
 
     private final Integer bonus;
 
-    public BonusGenerator(Lotto winning, String bonus) {
+    private BonusGenerator(Lotto winning, String bonus) {
         Integer newBonus = NumberValidator.change(bonus);
         validate(winning, newBonus);
         this.bonus = newBonus;
+    }
+
+    public static BonusGenerator create(Lotto winning, String bonus) {
+        return new BonusGenerator(winning, bonus);
     }
 
     private boolean duplicateWinning(Lotto winning, Integer bonus) {

@@ -15,8 +15,12 @@ public class LottoGenerator {
     private final Integer lottoCount;
     private final List<Lotto> lottoTicket = new ArrayList<>();
 
-    public LottoGenerator(Integer lottoCount) {
+    private LottoGenerator(Integer lottoCount) {
         this.lottoCount = lottoCount;
+    }
+
+    public static LottoGenerator create(Integer lottoCount) {
+        return new LottoGenerator(lottoCount);
     }
 
     private List<Integer> generateNumber() {

@@ -20,9 +20,13 @@ public class ResultCalculator {
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
     private final EnumMap<Place, Integer> prize = Prize.getPrize();
 
-    public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
+    private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
         calculate(winningResult, bonusResult);
+    }
+
+    public static ResultCalculator create(List<Integer> winningResult, List<Integer> bonusResult) {
+        return new ResultCalculator(winningResult, bonusResult);
     }
 
     private void init(List<Integer> bonusResult) {

@@ -3,8 +3,6 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.factory.ResultCalculatorFactory;
-import lotto.factory.ResultGeneratorFactory;
 import lotto.message.PrintMessage;
 import lotto.service.Payment;
 import lotto.service.calculator.ResultCalculator;
@@ -25,10 +23,10 @@ public class ResultController {
     }
 
     public void showWinning(Lotto winning, Bonus bonus) {
-        ResultGenerator resultGenerator = ResultGeneratorFactory.create(lottoTicket, winning, bonus);
+        ResultGenerator resultGenerator = ResultGenerator.create(lottoTicket, winning, bonus);
 
         outputView.printlnMessage(PrintMessage.LOTTO_WINNING_RESULT_MESSAGE);
-        ResultCalculator resultCalculator = ResultCalculatorFactory.create(resultGenerator.getWinningResult(),
+        ResultCalculator resultCalculator = ResultCalculator.create(resultGenerator.getWinningResult(),
                 resultGenerator.getBonusResult());
         outputView.printWinningDetail(resultCalculator.getDetail());
 

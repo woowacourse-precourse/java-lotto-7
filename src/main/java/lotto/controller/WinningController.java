@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.factory.WinningGeneratorFactory;
 import lotto.message.PrintMessage;
 import lotto.service.generator.WinningGenerator;
 import lotto.view.InputView;
@@ -30,7 +29,7 @@ public class WinningController {
         try {
             outputView.printlnMessage(PrintMessage.INPUT_LOTTO_WINNING_NUMBER);
             String lottoWinning = inputView.inputUser();
-            return WinningGeneratorFactory.create(lottoWinning);
+            return WinningGenerator.create(lottoWinning);
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
         }

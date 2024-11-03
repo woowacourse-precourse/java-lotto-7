@@ -8,8 +8,12 @@ public class Payment {
 
     private final Wallet wallet;
 
-    public Payment(Wallet wallet) {
+    private Payment(Wallet wallet) {
         this.wallet = wallet;
+    }
+
+    public static Payment create(Wallet wallet) {
+        return new Payment(wallet);
     }
 
     public Integer getLottoCount() {

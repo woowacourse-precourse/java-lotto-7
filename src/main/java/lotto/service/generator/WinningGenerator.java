@@ -15,9 +15,13 @@ public class WinningGenerator {
 
     private final List<Integer> winning;
 
-    public WinningGenerator(String winning) {
+    private WinningGenerator(String winning) {
         validate(winning);
         this.winning = changeType(winning);
+    }
+
+    public static WinningGenerator create(String winning) {
+        return new WinningGenerator(winning);
     }
 
     private boolean IsContainSeparator(String winning) {

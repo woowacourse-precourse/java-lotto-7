@@ -8,8 +8,12 @@ public class WalletGenerator {
 
     private final Integer money;
 
-    public WalletGenerator(String money) {
+    private WalletGenerator(String money) {
         this.money = NumberValidator.change(money);
+    }
+
+    public static WalletGenerator create(String money) {
+        return new WalletGenerator(money);
     }
 
     public Wallet getWallet() {
