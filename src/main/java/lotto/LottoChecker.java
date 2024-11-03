@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 public class LottoChecker {
     private List<Integer> winningNumbers;
@@ -28,15 +27,15 @@ public class LottoChecker {
     }
 
     public void convertToWinningNums(String input) {
-        input = input.trim();
         String[] inputNums = input.split(",");
 
         validateWinningNums(inputNums);
 
         try {
-            for (String inputNum : inputNums) {
-                int number = Integer.parseInt(inputNum);
-                winningNumbers.add(number);
+            for (int i = 0; i < inputNums.length; i++) {
+                inputNums[i] = inputNums[i].trim();
+                int winningNum = Integer.parseInt(inputNums[i]);
+                winningNumbers.add(winningNum);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
@@ -71,12 +70,37 @@ public class LottoChecker {
 
     public List<Integer> lottoCheck(Customer customer) {
         List<Integer> totalRanks = new ArrayList<>();
+
         for (Lotto lotto : customer.getLottos()) {
-            int rank = determineRank(lotto);
+            int count = determineRank(lotto);
+            int rank = calculateRankFromCount(count);
             totalRanks.add(rank);
         }
-
         return totalRanks;
+    }
+
+    public int calculateRankFromCount(int rank) {
+        if (rank == 15) {
+            return 2;
+        }
+
+        if (rank == 6) {
+            return 1;
+        }
+
+        if (rank == 5) {
+            return 3;
+        }
+
+        if (rank % 10 == 4) {
+            return 4;
+        }
+
+        if (rank % 10 == 3) {
+            return 5;
+        }
+
+        return 0;
     }
 
     public int determineRank(Lotto lotto) {
