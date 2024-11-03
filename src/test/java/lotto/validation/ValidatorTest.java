@@ -75,5 +75,21 @@ public class ValidatorTest {
             Validator.allNumberRange(min, max, numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("중복된 숫자가 있으면 예외발생하는 테스트")
+    void DuplicateNumber() {
+        List<BigDecimal> numbers = new ArrayList<>();
+
+        numbers.add(new BigDecimal(1));
+        numbers.add(new BigDecimal(1));
+        numbers.add(new BigDecimal(3));
+        numbers.add(new BigDecimal(4));
+        numbers.add(new BigDecimal(5));
+
+        assertThatThrownBy(() -> {
+            Validator.DuplicateNumber(numbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+
     }
 }
