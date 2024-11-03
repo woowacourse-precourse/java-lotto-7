@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class WinningInformation {
 
@@ -18,6 +20,10 @@ public class WinningInformation {
         priceAndCount.put(WinningPrize.THIRD, 0);
         priceAndCount.put(WinningPrize.SECOND, 0);
         priceAndCount.put(WinningPrize.FIRST, 0);
+    }
+
+    public Map<WinningPrize, Integer> getPriceAndCount() {
+        return Collections.unmodifiableMap(priceAndCount);
     }
 
     public static WinningInformation getInstance() {
