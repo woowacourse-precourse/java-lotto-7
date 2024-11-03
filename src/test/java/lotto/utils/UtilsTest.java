@@ -3,6 +3,8 @@ package lotto.utils;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UtilsTest {
@@ -31,5 +33,14 @@ public class UtilsTest {
         BigDecimal num = new BigDecimal(10);
 
         assertTrue(Utils.isInRange(min, max, num));
+    }
+
+    @DisplayName("문자열인 숫자를 BigDecimal 타입으로 변환하는 기능 테스트")
+    @Test
+    void stringToNumber() {
+        BigDecimal origin = new BigDecimal(123);
+        BigDecimal target = Utils.stringToNumber("123");
+
+        assertEquals(origin, target);
     }
 }
