@@ -39,4 +39,14 @@ public class StringUtil {
             return numbers;
         }
     }
+
+    public static class BonusNumber {
+        public static int parsingBonusNumber(String input) {
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException(ERROR_MSG_PREFIX + "숫자가 아닌 값은 입력할 수 없습니다.");
+            }
+        }
+    }
 }

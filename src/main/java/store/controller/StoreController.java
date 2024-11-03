@@ -1,7 +1,9 @@
 package store.controller;
 
+import static global.utils.Validator.validateBonusNumber;
 import static global.utils.Validator.validateWeeklyNumbers;
 
+import java.util.List;
 import store.service.StoreService;
 import store.view.StoreInputView;
 import store.view.StoreOutputView;
@@ -34,9 +36,10 @@ public class StoreController {
 
     public void setBonusNumber() {
         String inputBonusNumber = storeInputView.inputBonusNumber();
+        List<Integer> storedWeeklyNumbers = storeService.getStoredWeeklyNumbers();
 
         try {
-            validateBonusNumber(inputBonusNumber)
+            validateBonusNumber(inputBonusNumber, storedWeeklyNumbers);
         } catch(Exception e) {
             setBonusNumber();
             return;

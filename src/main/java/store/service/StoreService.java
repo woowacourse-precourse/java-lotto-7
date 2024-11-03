@@ -24,13 +24,21 @@ public class StoreService {
         storeRepository.save(store);
     }
 
-    public void modifyBonusNumber(int bonusNumber) {
+    public void modifyBonusNumber(String inputBonusNumber) {
         Store store = get();
-        store.setBonusNumber(bonusNumber);
+        store.setBonusNumber(Integer.parseInt(inputBonusNumber));
         storeRepository.save(store);
     }
 
     public Store get() {
         return storeRepository.find();
+    }
+
+    public List<Integer> getStoredWeeklyNumbers() {
+        return storeRepository.find().getWeeklyNumbers();
+    }
+
+    public Integer getStoredBonusNumber() {
+        return storeRepository.find().getBonusNumber();
     }
 }

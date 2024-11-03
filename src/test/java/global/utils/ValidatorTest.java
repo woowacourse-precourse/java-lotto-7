@@ -5,6 +5,9 @@ import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
 import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -216,7 +219,9 @@ class ValidatorTest {
     @ValueSource(strings = {"", " "})
     @DisplayName("입력한 보너스 번호는 공백 혹은 무입력 상태를 허용하지 않는다")
     void t019(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("공백");
@@ -226,7 +231,9 @@ class ValidatorTest {
     @ValueSource(strings = {"010", "045"})
     @DisplayName("입력한 보너스 번호는 0으로 시작할 수 없다")
     void t020(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("0");
@@ -236,7 +243,9 @@ class ValidatorTest {
     @ValueSource(strings = {"1.1", "1.0", "1.45"})
     @DisplayName("입력한 보너스 번호는 소수일 수 없다")
     void t021(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("소수");
@@ -246,7 +255,9 @@ class ValidatorTest {
     @ValueSource(strings = {"-1", "-45", "0"})
     @DisplayName("입력한 보너스 번호는 0보다 작거나 같은 수가 될 수 없다")
     void t022(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("0");
@@ -256,7 +267,9 @@ class ValidatorTest {
     @ValueSource(strings = {"+1", "+45"})
     @DisplayName("입력한 보너스 번호에는 +기호가 포함될 수 없다")
     void t023(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber,weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("+");
@@ -266,7 +279,9 @@ class ValidatorTest {
     @ValueSource(strings = {" 1", " 45", "1 ", "45 ", " 1 ", " 45 "})
     @DisplayName("입력한 보너스 번호에는 앞 뒤 공백을 허용하지 않는다.")
     void t024(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber,weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("공백");
@@ -276,7 +291,9 @@ class ValidatorTest {
     @ValueSource(strings = {"100", "46"})
     @DisplayName("입력한 보너스 번호는 1과 45 사이의 숫자여야 한다")
     void t025(String bonusNumber) {
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        List<Integer> weeklyNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber,weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining(String.valueOf(LOTTO_START_NUMBER))
@@ -287,11 +304,12 @@ class ValidatorTest {
     @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
     @DisplayName("입력한 보너스 번호는 사전에 설정된 당첨 번호와 중복될 수 없다")
     void t026(String bonusNumber) {
-        String weeklyNumber = "1,2,3,4,5,6";
+        String inputWeeklyNumbers = "1,2,3,4,5,6";
         StoreService storeService = new StoreService(new StoreSingleRepositoryImpl());
-        storeService.modifyWeeklyNumbers(weeklyNumber);
+        storeService.modifyWeeklyNumbers(inputWeeklyNumbers);
+        List<Integer> weeklyNumbers = storeService.getStoredWeeklyNumbers();
 
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber))
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("중복");

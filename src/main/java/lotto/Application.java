@@ -30,5 +30,6 @@ public class Application {
     public static void main(String[] args) {
         lottoController.payingForLotto();
         storeController.setWeeklyNumbers();
+        storeController.setBonusNumber();
     }
 }
