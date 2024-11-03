@@ -14,15 +14,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ResultExtractorTest {
-    private Lotto winningNumber;
-    private WinningLotto winningLotto;
-    private Lottos lottos;
     private ResultExtractor resultExtractor;
 
     @BeforeEach
     void setUp() {
-        winningNumber = new Lotto(List.of(3, 16, 20, 23, 27, 22));
-        winningLotto = new WinningLotto(winningNumber, new BonusNumber("7"));
+        final Lotto winningNumber = new Lotto(List.of(3, 16, 20, 23, 27, 22));
+        final WinningLotto winningLotto = new WinningLotto(winningNumber, new BonusNumber("7"));
+
         List<Lotto> fixedLottoNumbers = List.of(
                 new Lotto(List.of(3, 16, 20, 35, 44, 45)),
                 new Lotto(List.of(3, 16, 20, 23, 27, 45)),
@@ -31,7 +29,8 @@ class ResultExtractorTest {
                 new Lotto(List.of(1, 6, 18, 21, 41, 45)),
                 new Lotto(List.of(3, 16, 20, 35, 43, 45))
         );
-        lottos = new Lottos(fixedLottoNumbers);
+        final Lottos lottos = new Lottos(fixedLottoNumbers);
+
         resultExtractor = new ResultExtractor(winningLotto, lottos);
     }
 
