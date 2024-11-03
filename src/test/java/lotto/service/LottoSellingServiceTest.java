@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import static lotto.exception.Exception.LOTTO_AMOUNT_NOT_DIVISIBLE;
 import static lotto.exception.Exception.MINIMUM_LOTTO_COUNT_REQUIRED;
@@ -6,8 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.LottoBundle;
-import lotto.dto.LottoPurchaseResponseDto;
-import lotto.service.LottoSellingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +24,10 @@ class LottoSellingServiceTest {
         int amount = 1000;
 
         //when
-        LottoPurchaseResponseDto lotteries = service.sell(amount);
+        LottoBundle lottoBundle = service.sell(amount);
 
         //then
-        assertThat(lotteries.getPurchaseCount()).isEqualTo(amount / 1000);
+        assertThat(lottoBundle.getLotteriesSize()).isEqualTo(amount / 1000);
     }
 
     @Test
