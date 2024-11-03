@@ -27,6 +27,6 @@ public record PurchasePrice(int value) {
     }
 
     public int calculateQuantity() {
-        return LOTTO_PRICE / 1000;
+        return value / LOTTO_PRICE;
     }
 }
