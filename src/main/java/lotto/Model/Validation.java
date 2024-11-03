@@ -17,20 +17,23 @@ public class Validation {
         }
 
     }
+
     //보너스숫자 검증메소드
     public void bonusNumberValidator(int input) {
         validateRange(input);
     }
+
     //당첨 숫자 검증메소드
     public void winningNumberValidator(String[] setNumber) {
         validateNumberCount(setNumber);
         validateNoDuplicates(setNumber);
-        Arrays.stream(setNumber).forEach(number->
+        Arrays.stream(setNumber).forEach(number ->
                 validateRange(Integer.parseInt(number)));
     }
+
     //보너스 넘버가 당첨번호와 중복되는지 검증 메소드
-    public void isWinningNumberContainBonus(ArrayList<Integer> winningNumber,int bonusNumber){
-        if(winningNumber.contains(bonusNumber)){
+    public void isWinningNumberContainBonus(ArrayList<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
@@ -41,6 +44,7 @@ public class Validation {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
+
     //중복을 체크하는 메소드
     private void validateNoDuplicates(String[] numbers) {
         Set<String> uniqueNumbers = new HashSet<>(List.of(numbers));
@@ -48,6 +52,7 @@ public class Validation {
             throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
+
     //로또 숫자가 1~45인지 검증하는 메소드
     private void validateRange(int num) {
         if (num < 1 || num > 45) {

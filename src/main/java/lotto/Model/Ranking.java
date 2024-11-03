@@ -26,6 +26,7 @@ public enum Ranking {
         this.message = message;
         this.bonusState = bonusState;
     }
+
     //로또에서 당첨숫자 일치개수와 보너스 일치를 받아서 Rank를 정하는 로직
     public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
         if (countOfMatch < WINNING_MIN_COUNT) {

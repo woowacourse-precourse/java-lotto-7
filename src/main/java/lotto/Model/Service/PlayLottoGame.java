@@ -27,20 +27,21 @@ public class PlayLottoGame {
     }
 
     //보너스 번호가 당첨번호와 중복되는지 여부 체크
-    public void validate(){
+    public void validate() {
         boolean check = false;
         while (!check) {
             try {
-                validation.isWinningNumberContainBonus(winningNumbers,bonusNumber);
-                check=true;
+                validation.isWinningNumberContainBonus(winningNumbers, bonusNumber);
+                check = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println(OUTPUT_RETYPE);
-                this.bonusNumber = InputView.setBonusNumber();
+                this.bonusNumber = InputView.getBonusNumber();
             }
         }
 
     }
+
     //각각의 로또가 당첨숫자와 몇개가 일치하는지,보너스 숫자가 일치하는지 반환하는 로직
     public Map<Integer, Boolean> play() {
         lottoList.forEach(lotto -> {
@@ -50,12 +51,14 @@ public class PlayLottoGame {
         });
         return matchingResult;
     }
+
     //당첨숫자와 로또 비교 메소드
     private int countMatches(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
+
     //보너스 숫자와 비교 메소드
     private boolean checkBonusMatch(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);

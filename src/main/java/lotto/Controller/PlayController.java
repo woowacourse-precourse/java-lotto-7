@@ -22,10 +22,10 @@ public class PlayController {
 
     public PlayController() {
         this.inputController = new InputController();
-        gameNumber = inputController.setPurchasePrice();
+        gameNumber = inputController.getPurchasePrice();
         lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
-        winningNumbers = inputController.setWinningNumber();
-        int bonusNumber = inputController.setBonusNumber();
+        winningNumbers = inputController.getWinningNumber();
+        int bonusNumber = inputController.getBonusNumber();
         playLottoGame = new PlayLottoGame(winningNumbers, lottoNumberList, bonusNumber);
         initializeResultSet();
     }

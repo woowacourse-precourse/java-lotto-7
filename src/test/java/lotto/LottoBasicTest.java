@@ -94,6 +94,13 @@ class LottoBasicTest {
         assertThat(Ranking.valueOf(2, false)).isEqualTo(Ranking.MISS);
     }
 
+    @Test
+    void InvalidConditions(){
+        assertThatThrownBy(()->Ranking.valueOf(7,false))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
 
     @Test
     void testPlayControllerWinningNumbers() {
@@ -101,4 +108,6 @@ class LottoBasicTest {
         assertThat(winningNumbers).hasSize(6);
         assertThat(winningNumbers).allMatch(num -> num >= 1 && num <= 45);
     }
+
+
 }
