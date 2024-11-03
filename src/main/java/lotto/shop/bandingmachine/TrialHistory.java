@@ -10,7 +10,7 @@ public class TrialHistory {
     private List<List<Integer>> tempMainPacks;
     private List<Integer> tempBonusPacks;
 
-    void saveWonInput(Integer money) {
+    void saveWon(Integer money) {
         this.wonInput = money;
     }
 
