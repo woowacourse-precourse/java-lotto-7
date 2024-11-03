@@ -14,7 +14,7 @@ public class PaymentValidator {
     static final int MAX_SPLIT_PAYMENT_LENGTH = 2;
     static final String DOT = "\\.";
     static final long LOTTO_OBJECT_SIZE = 200L;
-    static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.1;
+    static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.7;
 
     public boolean validate(String paymentInput) {
         String[] splitPayment = paymentInput.split(DOT);
