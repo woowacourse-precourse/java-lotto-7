@@ -12,4 +12,11 @@ public class Input {
 			throw new IllegalArgumentException("[ERROR] 번호는 1부터 45까지의 수만 입력 가능합니다.");
 		}
 	}
+
+	public void validateLuckyNumberRange(String input) {
+		for (String s : input.split(",")) {
+			int number = Integer.parseInt(s);
+			validateNumberRange(number);
+		}
+	}
 }
