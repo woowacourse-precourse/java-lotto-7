@@ -19,7 +19,7 @@ public class LottoNumberValidatorTest {
 
         // when & then
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> LottoNumberRangeValidator.validateLottoNumberRange(invalidNumbers))
+                assertThatThrownBy(() -> LottoNumberValidator.validateRange(invalidNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LottoException.INVALID_RANGE.getMessage())
         );
@@ -34,7 +34,7 @@ public class LottoNumberValidatorTest {
 
         // when & then
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> LottoNumberRangeValidator.validateLottoNumberRange(invalidNumbers))
+                assertThatThrownBy(() -> LottoNumberValidator.validateCount(invalidNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LottoException.INVALID_COUNT.getMessage())
         );
