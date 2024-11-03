@@ -38,7 +38,8 @@ class BonusNumberTest {
         return Stream.of(
                 Arguments.of(0, bannedNumbers, BonusNumber.NOT_POSITIVE_NUMBER_EXCEPTION_MESSAGE),
                 Arguments.of(-1, bannedNumbers, BonusNumber.NOT_POSITIVE_NUMBER_EXCEPTION_MESSAGE),
-                Arguments.of(10, bannedNumbers, BonusNumber.BANNED_NUMBER_MESSAGE)
+                Arguments.of(10, bannedNumbers, BonusNumber.BANNED_NUMBER_MESSAGE),
+                Arguments.of(10, null, BonusNumber.NULL_BANNED_NUMBER_EXCEPTION_MESSAGE)
         );
     }
 }

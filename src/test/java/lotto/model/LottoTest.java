@@ -52,7 +52,8 @@ class LottoTest {
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7), Lotto.INCORRECT_NUMBER_COUNT_EXCEPTION_MESSAGE),
                 Arguments.of(List.of(1, 1, 3, 4, 5, 6), Lotto.NUMBER_DUPLICATION_EXCEPTION_MESSAGE),
                 Arguments.of(List.of(1, 2, 3, 4, 5, 46), Lotto.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE),
-                Arguments.of(List.of(0, 2, 3, 4, 5, 6), Lotto.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE)
+                Arguments.of(List.of(0, 2, 3, 4, 5, 6), Lotto.OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE),
+                Arguments.of(null, Lotto.NULL_NUMBER_EXCEPTION_MESSAGE)
         );
     }
 

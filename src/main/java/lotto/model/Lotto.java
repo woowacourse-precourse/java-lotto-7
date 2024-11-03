@@ -2,10 +2,12 @@ package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import lotto.constant.LottoConfiguration;
 
 public class Lotto {
 
+    public static final String NULL_NUMBER_EXCEPTION_MESSAGE = "로또 번호 리스트가 null인 것은 허용하지 않습니다.";
     public static final String NUMBER_DUPLICATION_EXCEPTION_MESSAGE = "로또 번호는 중복이 존재하면 안됩니다.";
     public static final String INCORRECT_NUMBER_COUNT_EXCEPTION_MESSAGE =
             String.format("로또 번호는 %d 개여야 합니다.", LottoConfiguration.LOTTO_NUMBER_COUNT);
@@ -16,10 +18,17 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateNull(numbers);
         validateNumberCount(numbers);
         validateNumberDuplication(numbers);
         validateNumberRange(numbers);
         this.numbers = alignNumber(numbers);
+    }
+
+    private void validateNull(List<Integer> numbers) {
+        if (Objects.isNull(numbers)) {
+            throw new IllegalArgumentException(NULL_NUMBER_EXCEPTION_MESSAGE);
+        }
     }
 
     private void validateNumberCount(List<Integer> numbers) {

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -30,5 +31,15 @@ class WinningResultTest {
         assertThat(countPerWinningType.get(WinningType.FORT)).isEqualTo(4);
         assertThat(countPerWinningType.get(WinningType.FIFTH)).isEqualTo(5);
         assertThat(countPerWinningType.get(WinningType.NONE)).isEqualTo(0);
+    }
+
+    @DisplayName("잘못된 입력을 통한 객체 생성 시도")
+    @Test
+    void 잘못된_입력을_통한_객체_생성_시도() {
+        List<WinningType> inputWinningTypes = null;
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningResult(inputWinningTypes))
+                .withMessage(WinningResult.NULL_WINNING_TYPES_EXCEPTION_MESSAGE);
     }
 }
