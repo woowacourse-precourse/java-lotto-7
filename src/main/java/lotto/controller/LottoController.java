@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.BoughtLottos;
 import lotto.model.winlotto.BasicWinLottoNumbers;
 import lotto.model.winlotto.BonusWinLottoNumber;
 import lotto.model.outcome.LottoResult;

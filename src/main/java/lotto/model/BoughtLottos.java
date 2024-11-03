@@ -4,7 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.condition.SpendingMoney;
 import lotto.utils.Constants;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /** 구매 금액만큼 무작위 숫자로 생성한 로또 티켓들을 보관한다. */
 public class BoughtLottos implements Iterable<Lotto> {

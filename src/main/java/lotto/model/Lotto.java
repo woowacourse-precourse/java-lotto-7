@@ -2,7 +2,11 @@ package lotto.model;
 
 import lotto.utils.Constants;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /** 로또 티켓으로 중복되지 않은 여섯개의 숫자로 이루어진다. */
 public class Lotto {
