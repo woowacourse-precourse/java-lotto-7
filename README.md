@@ -60,12 +60,14 @@ Lotto : 단일 로또를 추상화
 LottoCollection : 구매한 로또들을 다루는 일급 객체  
 LottoDispenser : 로또 발급기를 추상화  
 LottoHolder : 로또를 구매한 사람을 추상화 (로또를 소지하고, 로또가 당첨됐는지 확인)  
+DrawnLotto : 사용자가 입력한 추첨된 로또를 처리  
+Ranking : 당첨될 수 있는 랭킹 enum
 
 ### Controller
 
-LottoSimulator: 로또 과정을 전체적으로 관할한다.
+LottoSimulator: 로또 과정을 전체적으로 관할
 
 ### View
 
-InputView : 사용자의 입력을 처리한다.  
-OutputView : 사용자의 출력을 처리한다.
+InputView : 사용자의 입력을 처리
+OutputView : 사용자의 출력을 처리
