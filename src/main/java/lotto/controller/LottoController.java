@@ -14,20 +14,13 @@ public class LottoController {
         Lottos purchasedLottos =initLotts();
         printPurchaseResult(purchasedLottos);
         WinningNumbers winningNumbers=   inputWinningNumbers();
-
-        LottoResult lottoResult = new LottoResult();
-        lottoResult.calculateResult(purchasedLottos, winningNumbers);
-        double returnRate = lottoResult.calculateReturnRate(
-                purchasedLottos.getSize() * 1000);
-        View.printLottoResults(lottoResult, returnRate);
-
+        printLottoResults(purchasedLottos, winningNumbers);
     }
 
     private Lottos initLotts(){
         View.promptForPurchaseAmount();
         Money money =  new Money(View.inputLottoPurchaseAmount());
         return new Lottos(money.getLottoQuantity());
-
     }
 
     private void printPurchaseResult(Lottos purchasedLottos) {
@@ -38,10 +31,8 @@ public class LottoController {
     private WinningNumbers inputWinningNumbers() {
         Lotto winnerLotto=  inputLotto();
         BonusNumber bonusNumber = inpuBonus();
-
         return new WinningNumbers(winnerLotto,bonusNumber);
     }
-
 
     private  Lotto inputLotto(){
         View.promptForWinningLotto();
@@ -54,6 +45,23 @@ public class LottoController {
         int winningBonusNumberInput=   View.inputWinningBonusNumber();
         return new BonusNumber(winningBonusNumberInput);
     }
+
+    private void printLottoResults(Lottos purchasedLottos, WinningNumbers winningNumbers) {
+        LottoResult lottoResult = createLottoResult(purchasedLottos, winningNumbers);
+        double returnRate = calculateReturnRate(purchasedLottos, lottoResult);
+        View.printLottoResults(lottoResult, returnRate);
+    }
+
+    private LottoResult createLottoResult(Lottos purchasedLottos, WinningNumbers winningNumbers) {
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateResult(purchasedLottos, winningNumbers);
+        return lottoResult;
+    }
+
+    private double calculateReturnRate(Lottos purchasedLottos, LottoResult lottoResult) {
+        return lottoResult.calculateReturnRate(purchasedLottos.getSize() * 1000);
+    }
+
 
 
 
