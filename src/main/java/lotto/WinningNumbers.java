@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.ErrorMessage.BONUS_NUMBER_IN_WINNING_NUMBERS;
 import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.ErrorMessage.INVALID_WINNING_NUMBERS_COUNT;
 import static lotto.ErrorMessage.NOT_UNIQUE_WINNING_NUMBER;
@@ -23,6 +24,15 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
+    public void validateDuplicatedWithBonusNumber(final int bonusNumber) {
+        if (contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
+        }
+    }
+
+    public boolean contains(int lottoNumber) {
+        return winningNumbers.contains(lottoNumber);
+    }
 
     private static void validateUniqueWinningNumber(final List<Integer> winningNumbers) {
         long distinctCount = winningNumbers.stream()
@@ -50,9 +60,5 @@ public class WinningNumbers {
         if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
-    }
-
-    public boolean contains(int lottoNumber) {
-        return winningNumbers.contains(lottoNumber);
     }
 }

@@ -1,9 +1,5 @@
 package lotto;
 
-import static lotto.ErrorMessage.BONUS_NUMBER_IN_WINNING_NUMBERS;
-import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.LottoMachine.MAX_LOTTO_NUMBER_RANGE;
-import static lotto.LottoMachine.MIN_LOTTO_NUMBER_RANGE;
 import static lotto.view.Input.inputBonusNumber;
 import static lotto.view.Input.inputPurchaseAmount;
 import static lotto.view.Input.inputWinningNumbers;
@@ -24,7 +20,7 @@ public class LottoManager {
         Output.printPurchaseMessage(lottoes.size());
         lottoes.forEach(Output::printLotto);
         WinningNumbers winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
         lottoes.stream()
                 .map(lotto -> lotto.getRank(winningNumbers, bonusNumber))
                 .forEach(this::saveRankOnRecord);
@@ -53,12 +49,11 @@ public class LottoManager {
         }
     }
 
-    private static int getBonusNumber(final WinningNumbers winningNumbers) {
+    private static BonusNumber getBonusNumber(final WinningNumbers winningNumbers) {
         try {
             int bonusNumber = parseInt(inputBonusNumber());
-            validateLottoNumberRange(bonusNumber);
-            validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
-            return bonusNumber;
+            winningNumbers.validateDuplicatedWithBonusNumber(bonusNumber);
+            return BonusNumber.of(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getBonusNumber(winningNumbers);
@@ -81,18 +76,5 @@ public class LottoManager {
             totalWinningAmount += winningRankCount * rank.getWinningAmount();
         }
         return totalWinningAmount;
-    }
-
-    private static void validateBonusNumberNotInWinningNumbers(final WinningNumbers winningNumbers,
-                                                               final int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_IN_WINNING_NUMBERS.getMessage());
-        }
-    }
-
-    private static void validateLottoNumberRange(final int number) {
-        if (number < MIN_LOTTO_NUMBER_RANGE || number > MAX_LOTTO_NUMBER_RANGE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
     }
 }
