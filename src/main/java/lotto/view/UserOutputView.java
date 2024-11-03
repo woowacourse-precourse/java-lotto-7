@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.Rank;
 
 import java.util.List;
 import java.util.Map;
@@ -18,14 +19,16 @@ public class UserOutputView {
         System.out.println();
     }
 
-    public static void outputWinningStatistics(Map<String, Integer> statistics) {
+    public static void outputWinningStatistics(Map<Rank, Integer> statistics) {
         System.out.println(STATISTICS_MESSAGE);
         System.out.println(STATISTICS_DIVIDER);
-        System.out.println("3개 일치 (5,000원) - " + statistics.getOrDefault("5등", 0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + statistics.getOrDefault("4등", 0) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + statistics.getOrDefault("3등", 0) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statistics.getOrDefault("2등", 0) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + statistics.getOrDefault("1등", 0) + "개");
+
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) continue; // Skip "낙첨" rank
+
+            int count = statistics.getOrDefault(rank, 0);
+            System.out.println(rank.getRank() + " (" + rank.getPrize() + "원) - " + count + "개");
+        }
     }
 
     public static void outputProfitRate(double profitRate) {
