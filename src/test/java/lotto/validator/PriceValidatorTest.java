@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import lotto.validator.entity.PriceValidator;
 import org.junit.jupiter.api.DisplayName;

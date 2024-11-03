@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import lotto.validator.model.LottoNumberValidator;
 import org.junit.jupiter.api.DisplayName;
