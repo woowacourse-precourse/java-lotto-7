@@ -13,4 +13,8 @@ public class Prize {
         return new Prize(id, prizeNumber);
     }
 
+    public PrizeNumberResult getPrizeNumber() {
+        return prizeNumber.getValue();
+    }
+
 }
