@@ -4,7 +4,7 @@ import lotto.exception.PriceToBuyLottoException;
 
 import static lotto.common.constant.ErrorMessage.*;
 
-public class PriceToBuyLottoValidation{
+public class PriceToBuyLottoValidator {
 
     private static Integer priceMaxLimit = 2000000000;
 
