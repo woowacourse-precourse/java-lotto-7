@@ -37,7 +37,6 @@ public class BonusNumberTest {
 
     @Test
     void 보너스번호가_비어있을때_예외발생() {
-
         assertThatThrownBy(() -> new BonusNumber(InputParser.parseNumber(""), winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
