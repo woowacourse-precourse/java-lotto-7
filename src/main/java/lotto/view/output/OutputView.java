@@ -1,8 +1,11 @@
 package lotto.view.output;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoShop;
+import lotto.domain.Rank;
 
 public class OutputView {
     public static void printError(IllegalArgumentException e) {
@@ -34,5 +37,13 @@ public class OutputView {
 
     public static void printWinningStatics() {
         System.out.println(OutputMessage.WINNING_STATISTICS.message);
+    }
+
+    public static void printMatchNumber(LottoResult lottoResult) {
+        Map<Integer, Integer> rankCount = lottoResult.getMatchNumber();
+        for (Rank rank : Rank.values()) {
+            int matchCount = rankCount.getOrDefault(rank.getMatchNumber(), 0);
+            System.out.printf(rank.getMessage() + "%n", matchCount);
+        }
     }
 }
