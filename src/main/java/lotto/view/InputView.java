@@ -14,7 +14,7 @@ public class InputView {
                 System.out.println(NotificationMessage.PURCHASE_AMOUNT.getMessage());
 
                 String purchaseInput = Console.readLine().trim();
-                validatePositiveInteger(purchaseInput);
+                validateInteger(purchaseInput);
                 int purchaseAmount = Integer.parseInt(purchaseInput);
 
                 validatePurchaseAmount(purchaseAmount);
@@ -28,6 +28,7 @@ public class InputView {
     }
 
     private static void validatePurchaseAmount(int amount) {
+        validatePositiveInteger(amount);
         validateOverPrice(amount);
         validateDivisibleByPrice(amount);
     }
@@ -44,13 +45,16 @@ public class InputView {
         }
     }
 
-    private static void validatePositiveInteger(String input) {
+    private static void validateInteger(String input) {
         try {
             int number = Integer.parseInt(input);
-            if (number < 0) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
-            }
         } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
+        }
+    }
+
+    private static void validatePositiveInteger(int number) {
+        if (number < 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
         }
     }
