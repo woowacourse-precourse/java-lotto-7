@@ -18,7 +18,8 @@ public class LottoController {
         numberOfLottery = InputView.getInstance().enterPaymentForLottery();
         System.out.println("\n" + numberOfLottery + SystemMessage.NUMBER_OF_LOTTERY);
         lottoService = new LottoService(numberOfLottery);
-        lottoService.getLotteries().forEach(each -> System.out.println(each.getNumbers()));
+
+        OutputView.getInstance().printSortedNumbers(lottoService.getLotteries());
 
         winningLottery = InputView.getInstance().enterWinningLottery();
         bonusLottery = InputView.getInstance().enterBonusLottery(winningLottery);

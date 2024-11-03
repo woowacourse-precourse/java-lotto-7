@@ -2,7 +2,11 @@ package lotto.view;
 
 import static lotto.exception.Validator.LOTTERY_PRICE;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
 import lotto.service.CommonWinningStrategy;
 
 public class OutputView {
@@ -20,6 +24,14 @@ public class OutputView {
 
     public void printErrorMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printSortedNumbers(List<Lotto> lotteries) {
+        for (Lotto lotto : lotteries) {
+            List<Integer> sortedLotteryNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedLotteryNumbers);
+            System.out.println(sortedLotteryNumbers);
+        }
     }
 
     public void printWinningStatistics(CommonWinningStrategy commonWinningStrategy, int count) {
