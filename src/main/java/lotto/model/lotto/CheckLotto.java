@@ -58,6 +58,14 @@ public class CheckLotto {
         return String.format("%,.1f", earningRatio);
     }
 
+    private int calculateTotalWinnings() {
+        return (WinningStatus.FIFTH_PRIZE.getPrizeAmount() * threeMatched) + (
+                WinningStatus.FOURTH_PRIZE.getPrizeAmount() * fourMatched) +
+                (WinningStatus.THIRD_PRIZE.getPrizeAmount() * fiveMatched) + (
+                WinningStatus.SECOND_PRIZE.getPrizeAmount() * bonusMatched) +
+                (WinningStatus.FIRST_PRIZE.getPrizeAmount() * allMatched);
+    }
+
     private boolean checkLottoMatched(int lottoCount, boolean isBonusMatched) {
         if (isLottoAllMatched(lottoCount)) {
             return true;
@@ -74,23 +82,9 @@ public class CheckLotto {
         return false;
     }
 
-    private void isLottoThreeMatched(int lottoCount) {
-        if (lottoCount == WinningStatus.FIFTH_PRIZE.getMatchCount()) {
-            this.threeMatched++;
-        }
-    }
-
-    private boolean isLottoFourMatched(int lottoCount) {
-        if (lottoCount == WinningStatus.FOURTH_PRIZE.getMatchCount()) {
-            this.fourMatched++;
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isLottoFiveMatched(int lottoCount) {
-        if (lottoCount == WinningStatus.THIRD_PRIZE.getMatchCount()) {
-            this.fiveMatched++;
+    private boolean isLottoAllMatched(int lottoCount) {
+        if (lottoCount == WinningStatus.FIRST_PRIZE.getMatchCount()) {
+            this.allMatched++;
             return true;
         }
         return false;
@@ -104,12 +98,26 @@ public class CheckLotto {
         return false;
     }
 
-    private boolean isLottoAllMatched(int lottoCount) {
-        if (lottoCount == WinningStatus.FIRST_PRIZE.getMatchCount()) {
-            this.allMatched++;
+    private boolean isLottoFiveMatched(int lottoCount) {
+        if (lottoCount == WinningStatus.THIRD_PRIZE.getMatchCount()) {
+            this.fiveMatched++;
             return true;
         }
         return false;
+    }
+
+    private boolean isLottoFourMatched(int lottoCount) {
+        if (lottoCount == WinningStatus.FOURTH_PRIZE.getMatchCount()) {
+            this.fourMatched++;
+            return true;
+        }
+        return false;
+    }
+
+    private void isLottoThreeMatched(int lottoCount) {
+        if (lottoCount == WinningStatus.FIFTH_PRIZE.getMatchCount()) {
+            this.threeMatched++;
+        }
     }
 
     private int countLottoNumber(Lotto lotto, List<Integer> lottoNumber, int lottoCount) {
@@ -119,13 +127,5 @@ public class CheckLotto {
             }
         }
         return lottoCount;
-    }
-
-    private int calculateTotalWinnings() {
-        return (WinningStatus.FIFTH_PRIZE.getPrizeAmount() * threeMatched) + (
-                WinningStatus.FOURTH_PRIZE.getPrizeAmount() * fourMatched) +
-                (WinningStatus.THIRD_PRIZE.getPrizeAmount() * fiveMatched) + (
-                WinningStatus.SECOND_PRIZE.getPrizeAmount() * bonusMatched) +
-                (WinningStatus.FIRST_PRIZE.getPrizeAmount() * allMatched);
     }
 }

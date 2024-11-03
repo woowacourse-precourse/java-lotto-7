@@ -23,16 +23,16 @@ public class BonusNumber {
         isBonusNumberNotDuplicated(bonusNumber, lotto);
     }
 
-    private void isBonusNumberNotDuplicated(int bonusNumber, Lotto lotto) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
-        }
-    }
-
     private void isBonusNumberInRange(int bonusNumber) {
         if (bonusNumber < LottoRange.MIN_NUMBER.getDescription()
                 || bonusNumber > LottoRange.MAX_NUMBER.getDescription()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
+        }
+    }
+
+    private void isBonusNumberBlank(int bonusNumber) {
+        if (String.valueOf(bonusNumber).isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
         }
     }
 
@@ -42,9 +42,9 @@ public class BonusNumber {
         }
     }
 
-    private void isBonusNumberBlank(int bonusNumber) {
-        if (String.valueOf(bonusNumber).isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
+    private void isBonusNumberNotDuplicated(int bonusNumber, Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
         }
     }
 
