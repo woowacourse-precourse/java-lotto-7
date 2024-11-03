@@ -2,7 +2,7 @@ package lotto.service;
 
 public interface WinnerLottoService {
 
-    void addWinnerLotto(String winnerNumber);
+    void addWinnerNumber(String winnerNumber);
 
     void addBonusNumber(String input);
 }

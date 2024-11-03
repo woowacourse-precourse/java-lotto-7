@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.BIG_MONEY;
 import static lotto.utils.ErrorMessage.INVALID_MONEY_INPUT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -108,11 +109,11 @@ class MoneyTest {
     }
 
     @Test
-    @DisplayName("최대 테스트 : Bigger than Long Max Value")
+    @DisplayName("Long 보다 큰 입력은 에러를 반환한다.")
     void test10() {
         assertThatThrownBy(() -> new Money("10000000000000000000000000000000000000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_MONEY_INPUT.getMessage());
+                .hasMessage(BIG_MONEY.getMessage());
     }
 
     @ParameterizedTest

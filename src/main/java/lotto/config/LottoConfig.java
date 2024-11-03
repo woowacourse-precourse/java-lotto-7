@@ -26,7 +26,7 @@ import lotto.viewer.impl.ViewerImpl;
 
 public class LottoConfig {
 
-    private static final Viewer VIEWER_IMPL = new ViewerImpl();
+    private static final Viewer VIEWER = new ViewerImpl();
 
     private static final SingleRepository<Money> MONEY_REPOSITORY = new MoneyRepository();
     private static final SingleRepository<LottoList> LOTTO_LIST_REPOSITORY = new LottoListRepository();
@@ -35,24 +35,21 @@ public class LottoConfig {
 
     private static final LottoService LOTTO_BUY_SERVICE = new LottoServiceImpl(MONEY_REPOSITORY,
             LOTTO_LIST_REPOSITORY);
-    private static final LottoController LOTTO_BUY_CONTROLLER = new LottoController(LOTTO_BUY_SERVICE, VIEWER_IMPL);
+    private static final LottoController LOTTO_BUY_CONTROLLER = new LottoController(LOTTO_BUY_SERVICE, VIEWER);
 
     private static final WinnerLottoService WINNER_LOTTO_SERVICE = new WinnerLottoServiceImpl(
             WINNER_LOTTO_REPOSITORY);
     private static final WinnerLottoController WINNER_LOTTO_CONTROLLER = new WinnerLottoController(WINNER_LOTTO_SERVICE,
-            VIEWER_IMPL);
+            VIEWER);
 
     private static final StatusService STATUS_SERVICE = new StatusServiceImpl(
             WINNER_LOTTO_REPOSITORY, LOTTO_LIST_REPOSITORY, WINNER_STATUS_REPOSITORY);
-    private static final StatusController STATUS_CONTROLLER = new StatusController(STATUS_SERVICE, VIEWER_IMPL);
+    private static final StatusController STATUS_CONTROLLER = new StatusController(STATUS_SERVICE, VIEWER);
 
     private static final ProfitRateService PROFIT_RATE_SERVICE = new ProfitRateServiceImpl(MONEY_REPOSITORY,
             WINNER_STATUS_REPOSITORY);
     private static final ProfitRateController PROFIT_RATE_CONTROLLER = new ProfitRateController(PROFIT_RATE_SERVICE,
-            VIEWER_IMPL);
-
-    private LottoConfig() {
-    }
+            VIEWER);
 
     public static WinnerLottoController getWinnerLottoController() {
         return WINNER_LOTTO_CONTROLLER;
@@ -71,6 +68,9 @@ public class LottoConfig {
     }
 
     public static Viewer viewer() {
-        return VIEWER_IMPL;
+        return VIEWER;
+    }
+
+    private LottoConfig() {
     }
 }

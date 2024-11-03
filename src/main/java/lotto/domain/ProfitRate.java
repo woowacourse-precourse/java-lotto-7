@@ -25,7 +25,9 @@ public class ProfitRate {
     }
 
     private String calculate() {
-        BigDecimal sumPercentage = winnerStatus.sum().multiply(PERCENTAGE);
+        BigDecimal sumPercentage = winnerStatus.sum()
+                .multiply(PERCENTAGE);
+
         return money.calculateProfitRate(sumPercentage);
     }
 

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.BIG_MONEY;
 import static lotto.utils.ErrorMessage.INVALID_MONEY_INPUT;
 
 import java.math.BigDecimal;
@@ -32,7 +33,8 @@ public class Money {
     }
 
     protected String calculateProfitRate(BigDecimal sumPercentage) {
-        return sumPercentage.divide(BigDecimal.valueOf(amount), SCALE, RoundingMode.HALF_UP).toString();
+        return sumPercentage.divide(BigDecimal.valueOf(amount), SCALE, RoundingMode.HALF_UP)
+                .toString();
     }
 
     private Long parseMoney(String input) {
@@ -49,8 +51,8 @@ public class Money {
     }
 
     private void validateMaxMoney(BigInteger value) {
-        if (value.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
-            throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
+        if (value.compareTo(BigInteger.valueOf(Long.MAX_VALUE / LOTTO_PRICE * LOTTO_PRICE)) > 0) {
+            throw new IllegalArgumentException(BIG_MONEY.getMessage());
         }
     }
 

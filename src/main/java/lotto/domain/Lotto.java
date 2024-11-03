@@ -14,6 +14,10 @@ import java.util.StringJoiner;
 
 public class Lotto {
 
+    private static final String SEPARATOR = ", ";
+    private static final String OPEN_BRACKET = "[";
+    private static final String CLOSE_BRACKET = "]";
+
     private final List<LottoNum> numbers;
 
     protected Lotto(List<LottoNum> numbers) {
@@ -26,10 +30,15 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    protected static List<LottoNum> convertToLottoNums(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNum::new)
+                .toList();
+    }
+
     public static Lotto create(List<LottoNum> numbers) {
         return new Lotto(numbers);
     }
-
 
     private static List<LottoNum> generateRandomLottoNumbers() {
         return convertToLottoNums(generateUniqueRandomNumbers());
@@ -37,12 +46,6 @@ public class Lotto {
 
     private static List<Integer> generateUniqueRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_COUNT);
-    }
-
-    private static List<LottoNum> convertToLottoNums(List<Integer> numbers) {
-        return numbers.stream()
-                .map(LottoNum::new)
-                .toList();
     }
 
     protected int matchCount(Lotto compareLotto) {
@@ -99,11 +102,11 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringJoiner joiner = new StringJoiner(", ");
+        StringJoiner joiner = new StringJoiner(SEPARATOR);
         for (LottoNum num : numbers) {
             joiner.add(num.toString());
         }
 
-        return "[" + joiner + "]";
+        return OPEN_BRACKET + joiner + CLOSE_BRACKET;
     }
 }

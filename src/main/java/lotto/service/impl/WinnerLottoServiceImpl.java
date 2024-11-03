@@ -17,7 +17,7 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
     }
 
     @Override
-    public void addWinnerLotto(String winnerNumber) {
+    public void addWinnerNumber(String winnerNumber) {
         WinnerLotto winnerLotto = WinnerLotto.create(winnerNumber);
 
         winnerLottoRepository.save(winnerLotto);

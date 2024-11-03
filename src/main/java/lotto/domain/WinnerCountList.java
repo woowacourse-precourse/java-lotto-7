@@ -42,9 +42,14 @@ public class WinnerCountList {
     }
 
     private Map<Integer, Integer> initializeRewardMap() {
-        List<Integer> reward = List.of(FIRST.getPrize(), SECOND.getPrize(), THIRD.getPrize(), FOURTH.getPrize(),
+        List<Integer> reward = List.of(
+                FIRST.getPrize(),
+                SECOND.getPrize(),
+                THIRD.getPrize(),
+                FOURTH.getPrize(),
                 FIFTH.getPrize());
         Map<Integer, Integer> rewardMap = new TreeMap<>();
+
         for (Integer amount : reward) {
             rewardMap.put(amount, 0);
         }

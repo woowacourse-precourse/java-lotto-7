@@ -4,6 +4,7 @@ import static lotto.utils.Reward.FIFTH;
 import static lotto.utils.Reward.FIRST;
 import static lotto.utils.Reward.FOURTH;
 import static lotto.utils.Reward.NO_REWARD;
+import static lotto.utils.Reward.SECOND;
 import static lotto.utils.Reward.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -63,5 +64,12 @@ class WinnerCountTest {
     void test4() {
         Reward reward = Reward.getReward(5, false);
         assertThat(reward).isEqualTo(THIRD);
+    }
+
+    @Test
+    @DisplayName("상금 2등 테스트")
+    void test5() {
+        Reward reward = Reward.getReward(5, true);
+        assertThat(reward).isEqualTo(SECOND);
     }
 }

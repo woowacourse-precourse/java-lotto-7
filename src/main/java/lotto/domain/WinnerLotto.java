@@ -50,7 +50,9 @@ public class WinnerLotto {
 
     private Lotto parseToLotto(String input) {
         String[] splitNums = input.split(COMMA);
-        List<LottoNum> winnerNums = Arrays.stream(splitNums).map(LottoNum::new).toList();
+        List<LottoNum> winnerNums = Arrays.stream(splitNums)
+                .map(LottoNum::new)
+                .toList();
 
         return Lotto.create(winnerNums);
     }

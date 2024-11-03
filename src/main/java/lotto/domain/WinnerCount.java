@@ -20,6 +20,4 @@ public class WinnerCount {
         Reward reward = Reward.getReward(this.matchedCount, this.hasBonus);
         return reward.getPrize();
     }
-
-
 }
