@@ -48,6 +48,16 @@ public class LottoResultChecker {
   }
 
   private void lottoResultMessage() {
-    //결과 출력
+    System.out.println("당첨 통계\n---");
+    WinningRank[] rankList = WinningRank.values();
+    for (WinningRank rank : rankList) {
+      Integer count = map.get(rank);
+      if (count == null) {
+        count = 0;
+      }
+      if (rank != WinningRank.NO_LUCK) {
+        System.out.printf(rank.getDescription() + " - %d개\n", count);
+      }
+    }
   }
 }

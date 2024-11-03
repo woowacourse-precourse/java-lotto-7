@@ -23,6 +23,7 @@ public class WinnerInputHandler {
         break;
       }
     }
+    System.out.println();
     winningNumber.add(getBonusNumber(winningNumber)); // 보너스 번호는 List의 마지막에 저장
     return winningNumber;
   }
@@ -73,6 +74,7 @@ public class WinnerInputHandler {
         break;
       }
     }
+    System.out.println();
     return bonusNumber;
   }
 

@@ -28,9 +28,10 @@ public class LottoQuickPick {
   }
 
   private void messagePrint(List<Lotto> randomPicks, int amount) {
-    System.out.printf("%d개를 구매했습니다.\n", amount);
+    System.out.printf("\n%d개를 구매했습니다.\n", amount);
     for (Lotto lotto : randomPicks) {
       System.out.println(lotto);
     }
+    System.out.println();
   }
 }
