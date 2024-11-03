@@ -3,9 +3,13 @@ package lotto.model;
 import java.util.List;
 
 public class MyLotto {
-    List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public MyLotto(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
     }
 }
