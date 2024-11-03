@@ -6,20 +6,26 @@ import java.util.stream.Collectors;
 import lotto.Enum.LottoRange;
 
 public class LottoNumber {
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
-    public List<Integer> generateNumbers() {
+    public LottoNumber() {
+        this.numbers = generateNumbers();
+    }
+
+    private List<Integer> generateNumbers() {
         return new Random()
-                .ints(LottoRange.LOTTO_LOWEST_NUMBER,
-                        LottoRange.LOTTO_HIGHEST_NUMBER)
+                .ints(LottoRange.LOTTO_LOWEST_NUMBER.getValue(),
+                        LottoRange.LOTTO_HIGHEST_NUMBER.getValue())
                 .distinct()
-                .limit(7)
+                .limit(6)
                 .boxed()
+                .sorted()
                 .collect(Collectors.toList());
     }
 
-    public LottoNumbers() {
-        List<Integer> numbers = generateNumbers();
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
+
 

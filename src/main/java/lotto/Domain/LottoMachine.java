@@ -10,8 +10,10 @@ public class LottoMachine {
     public LottoMachine(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-
     }
 
-
+    public LottoNumber generateNumber() {
+        return new LottoNumber();
+    }
 }
+
