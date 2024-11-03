@@ -31,6 +31,9 @@ public class LottoOutputView {
     public void printBonusNumberNotification(){
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+    public void printLottoPrizesNotification(){
+        System.out.println("당첨 통계\n" + "---");
+    }
     public void printLottoPrizes(Map<LottoPrizeType, Integer> lottoPrizes){
         for (Map.Entry<LottoPrizeType, Integer> lottoPrize : lottoPrizes.entrySet()) {
             LottoPrizeType prizeType = lottoPrize.getKey();
