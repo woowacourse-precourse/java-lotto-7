@@ -12,10 +12,17 @@ public class Validator {
 
     public static void validateUserPickNumbers(String input) {
         isOnlyDigitsAndCommas(input);
-        ArrayList<Integer> numbers = Parser.parseUserPickNumbers(input);
+        ArrayList<Integer> numbers = Parser.parseNumbersByComma(input);
         isValidNumbersCount(numbers);
         isNumbersInRange(numbers);
         isNumbersUnique(numbers);
+    }
+
+    public static void validateUserPickBonus(String input, ArrayList<Integer> numbers) {
+        isOnlyDigits(input);
+        int bonus = Integer.parseInt(input);
+        isBonusInRange(bonus);
+        isBonusUnique(bonus, numbers);
     }
 
     private static void isOnlyDigits(String input) {
@@ -67,6 +74,20 @@ public class Validator {
                 ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
             }
             checkedNumbers[i] = true;
+        }
+    }
+
+    private static void isBonusInRange(int bonus) {
+        if (bonus < Constants.NUMBER_MIN || Constants.NUMBER_MAX < bonus) {
+            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+        }
+    }
+
+    private static void isBonusUnique(int bonus, ArrayList<Integer> numbers) {
+        for (int number : numbers) {
+            if (number == bonus) {
+                ErrorHandler.printAndThrow(Constants.INPUT_ERROR_FORM);
+            }
         }
     }
 }

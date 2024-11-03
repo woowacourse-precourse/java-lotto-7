@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,13 @@ class ParserTest {
 
         ArrayList<Integer> numbers = Parser.parseUserPickNumbers(dummyInput);
         assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    void 보너스_파싱_테스트() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "7";
+
+        assertThat(Parser.parseUserPickBonus(dummyInput, numbers)).isEqualTo(7);
     }
 }

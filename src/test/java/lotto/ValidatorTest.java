@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -118,6 +121,80 @@ class ValidatorTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
                     Validator.validateUserPickNumbers(dummyInput);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "7";
+
+        Validator.validateUserPickBonus(dummyInput, numbers);
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_문자() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "a";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_범위1() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "0";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_범위2() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "46";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_개수() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "1, 2";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_형식() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "1 ";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
+                });
+    }
+
+    @Test
+    void 보너스_유효성_테스트_예외_중복() {
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String dummyInput = "1";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Validator.validateUserPickBonus(dummyInput, numbers);
                 });
     }
 }

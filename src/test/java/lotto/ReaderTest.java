@@ -13,7 +13,6 @@ class ReaderTest {
         String dummyInput = "1000";
         TestUtils.setInputStream(dummyInput);
 
-        new Reader();
         String input = Reader.readInput();
 
         assertThat(input).isEqualTo(dummyInput);
@@ -26,7 +25,6 @@ class ReaderTest {
                     String dummyInput = "";
                     TestUtils.setInputStream(dummyInput);
 
-                    new Reader();
                     String input = Reader.readInput();
 
                     assertThat(dummyInput).isEqualTo(input);

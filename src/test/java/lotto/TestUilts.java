@@ -3,7 +3,9 @@ package lotto;
 import java.io.ByteArrayInputStream;
 
 class TestUtils {
-    static void setInputStream(String dummyInput) {
-        System.setIn(new ByteArrayInputStream(dummyInput.getBytes()));
+    static void setInputStream(final String... args) {
+
+        final byte[] buf = String.join("\n", args).getBytes();
+        System.setIn(new ByteArrayInputStream(buf));
     }
 }

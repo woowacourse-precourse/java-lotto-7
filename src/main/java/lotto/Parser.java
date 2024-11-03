@@ -12,8 +12,14 @@ public class Parser {
     }
 
     public static ArrayList<Integer> parseUserPickNumbers(String input) {
+        Validator.validateUserPickNumbers(input);
         ArrayList<Integer> numbers = parseNumbersByComma(input);
         return sortNumbers(numbers);
+    }
+
+    public static int parseUserPickBonus(String input, ArrayList<Integer> numbers) {
+        Validator.validateUserPickBonus(input, numbers);
+        return Integer.parseInt(input);
     }
 
     public static ArrayList<Integer> parseNumbersByComma(String input) {
