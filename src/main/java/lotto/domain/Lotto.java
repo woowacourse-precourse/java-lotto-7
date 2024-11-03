@@ -36,7 +36,7 @@ public class Lotto {
     private void validateNumberInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (LOTTO_NUMBER_RANGE_START > number || LOTTO_NUMBER_RANGE_END < number) {
-                throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE.getMessage());
+                throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE.getMessageWithArgs(LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END));
             }
         }
     }

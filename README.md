@@ -30,10 +30,10 @@
   - [x] 당첨 내역을 계산한다.
   - [x] 수익률을 계산한다.
   - [x] 당첨 내역과 수익률을 출력한다.
-- [] 잘못된 입력을 할 경우 IllegalArgumentException 을 발생시킨다.
+- [x] 잘못된 입력을 할 경우 IllegalArgumentException 을 발생시킨다.
   - [x] "[ERROR]" 로 시작하는 에러 메세지를 출력한다.
-  - [] 에러가 발생한 부분부터 입력을 다시 받는다.
-  - [] Exception이 아닌 IllegalArgumentException, IllegalStateException 같이 명확한 예외를 처리한다.
+  - [x] 에러가 발생한 부분부터 입력을 다시 받는다.
+  - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 같이 명확한 예외를 처리한다.
   - [x] 로또 구입 금액 관련 예외
     - [x] 천원 단위로 나누어 떨어지지 않는 경우
     - [x] 숫자가 아닌 경우
