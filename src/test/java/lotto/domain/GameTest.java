@@ -66,13 +66,59 @@ public class GameTest {
     }
 
     @Test
-    void 수익률_계산_테스트() {
+    void 수익률_계산_테스트_100_이상() {
         // given
-
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
+        int purchaseAmount = 1000;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 10;
+        Game game = new Game(lottos, winningNumbers, bonusNumber);
 
         // when
-
+        int[] results1 = game.compareNumbers(winningNumbers);
+        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results1);
 
         // then
+        assertEquals(rateOfReturn, 500);
+    }
+
+    @Test
+    void 수익률_계산_테스트_100() {
+        // 수익률 100%
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11)),
+                new Lotto(List.of(1, 2, 7, 8, 9, 11))
+                );
+        int purchaseAmount = 5000;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 10;
+        Game game = new Game(lottos, winningNumbers, bonusNumber);
+
+        // when
+        int[] results = game.compareNumbers(winningNumbers);
+        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
+
+        // then
+        assertEquals(rateOfReturn, 100);
+    }
+
+    @Test
+    void 수익률_계산_테스트_100_미만() {
+        // 수익률 100% 미만
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 7, 8, 9, 11)));
+        int purchaseAmount = 1000;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 10;
+        Game game = new Game(lottos, winningNumbers, bonusNumber);
+
+        // when
+        int[] results = game.compareNumbers(winningNumbers);
+        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
+
+        // then
+        assertEquals(rateOfReturn, 0);
     }
 }
