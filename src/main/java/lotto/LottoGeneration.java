@@ -28,7 +28,7 @@ public class LottoGeneration {
         return -1;
     }
 
-    public static void validatePurchaseAmount(String input) {
+    private static void validatePurchaseAmount(String input) {
         if (!Util.isInteger(input)) {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000 단위 정수만 입력되야 합니다.");
         }
