@@ -72,4 +72,17 @@ public class WinningLottoNumbersTest {
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 
+    @Test
+    @DisplayName("보너스 번호와 당첨 번호가 올바르면 WinningNumbers 객체가 생성된다.")
+    void 성공_보너스번호_당첨번호생성_유효한파라미터() {
+        // given
+        String winningNumbers = "1, 2, 3, 4, 5, 6";
+        String duplicateNumber = "7";
+
+        // when & then
+        assertThatCode(() ->
+                new WinningNumbers(WinningLottoNumbers.from(winningNumbers),
+                        BonusNumber.from(duplicateNumber)))
+                .doesNotThrowAnyException();
+    }
 }
