@@ -2,20 +2,24 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.PurchasedLottos;
 import lotto.service.LottoChecker;
 import lotto.service.LottoGenerator;
-import lotto.view.Input;
+import lotto.view.BonusNumberInput;
 import lotto.view.Output;
+import lotto.view.PurchaseAmountInput;
+import lotto.view.WinningNumbersInput;
 
 public class LottoController {
-    private Input purchaseAmountInput;
-    private Input winningNumbersInput;
-    private Input bonusNumberInput;
+    private PurchaseAmountInput purchaseAmountInput;
+    private WinningNumbersInput winningNumbersInput;
+    private BonusNumberInput bonusNumberInput;
     private Output output;
     private LottoGenerator generator;
     private LottoChecker checker;
 
-    public LottoController(Input purchaseAmountInput, Input winningNumbersInput, Input bonusNumberInput, Output output,
+    public LottoController(PurchaseAmountInput purchaseAmountInput, WinningNumbersInput winningNumbersInput,
+                           BonusNumberInput bonusNumberInput, Output output,
                            LottoGenerator generator, LottoChecker checker) {
         this.purchaseAmountInput = purchaseAmountInput;
         this.winningNumbersInput = winningNumbersInput;
@@ -27,13 +31,14 @@ public class LottoController {
 
     public void run() {
         try {
-            int purchaseAmount = (int) purchaseAmountInput.input();
-            output.printLottoNumbers(
-                    generator.generateLottos(purchaseAmount).getPurchasedLottos()
-            );
-            checker.setWinningNumbers((Lotto) winningNumbersInput.input(), (Integer) bonusNumberInput.input());
-
-
+            int purchaseAmount = purchaseAmountInput.input();
+            PurchasedLottos purchasedLottos = generator.generateLottos(purchaseAmount);
+            output.printLottoNumbers(purchasedLottos.getPurchasedLottos());
+            Lotto winning = winningNumbersInput.input();
+            Integer bonus = bonusNumberInput.input(winning);
+            checker.setWinningNumbers(winning, bonus);
+//            checker.checkLottos();
+//            output.printWinningStatistics();
         } finally {
             Console.close();
         }
