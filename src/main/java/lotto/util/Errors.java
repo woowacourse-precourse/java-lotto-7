@@ -13,6 +13,7 @@ public enum Errors {
     REMAINDER_EXISTENT("값이 나누어 떨어지지 않습니다."),
 
     NOT_INTEGER("Integer 범위를 벗어났습니다."),
+    ENDING_WITH_COMMA("구분자로 끝날 수 없습니다."),
     LOTTO_NUMBER_COUNT_ERROR("로또 번호는 "
             + MessageParser.getComma(Constants.LOTTO_NUMBER_COUNT.getNumber())
             + "개여야 합니다."),

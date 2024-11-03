@@ -15,6 +15,7 @@ public class LottoValidator extends Validator {
 
     public void validate() {
         super.validate();
+        validateEndingComma();
         validateListOfInteger();
     }
 
@@ -25,6 +26,14 @@ public class LottoValidator extends Validator {
                 .anyMatch(number -> !Pattern.matches("-?\\d+", number))) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
+        }
+    }
+
+    @VisibleForTesting
+    void validateEndingComma() {
+        if (super.input.endsWith(Regex.COMMA.getValue())) {
+            throw new IllegalArgumentException(
+                    MessageParser.getErrorMessage(Errors.ENDING_WITH_COMMA.getMessage()));
         }
     }
 
