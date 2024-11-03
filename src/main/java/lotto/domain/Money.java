@@ -25,4 +25,8 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원으로 나누어 떨어져야합니다.");
         }
     }
+
+    public int calculateLottoTickets() {
+        return money / ONE_THOUSAND;
+    }
 }
