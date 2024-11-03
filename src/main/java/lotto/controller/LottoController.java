@@ -26,9 +26,12 @@ public class LottoController {
 
     public void run() {
         int money = purchaseAmount.input();
+        System.out.println();
         lotteryTickets = lottoPlayer.purchase(money);
         purchaseListPrinter.output(lotteryTickets);
+        System.out.println();
         winnerNumbers = winningNumber.input();
+        System.out.println();
         winningResults = lottoNumberStatistics.checkWinner(lotteryTickets, winnerNumbers);
         winningStatsPrinter.output(winningResults);
     }
