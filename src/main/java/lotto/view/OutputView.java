@@ -22,6 +22,9 @@ public class OutputView {
 
     public void printWinningResult(int matchCount, int prize, int rankCount){
         String formattedPrize = NumberFormat.getInstance().format(prize);
+        if(prize == 30000000){
+            io.printMessage(matchCount +"개 일치, 보너스 볼 일치 (" + formattedPrize + "원) - " + rankCount + "개");
+        }
         io.printMessage(matchCount +"개 일치 (" + formattedPrize + "원) - " + rankCount + "개");
     }
 
