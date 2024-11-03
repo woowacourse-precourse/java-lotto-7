@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import lotto.Lotto;
 import lotto.enums.WinningType;
 
 public class WinningStatistic {
