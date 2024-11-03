@@ -4,9 +4,9 @@ public class SpyLottoIssuer extends LottoIssuer {
 
     private final Lotto[] lottos;
 
-    public SpyLottoIssuer(int price) {
+    public SpyLottoIssuer(Price price) {
         super(price);
-        lottos = new Lotto[1];
+        lottos = new Lotto[price.getValue()/1000];
     }
 
     @Override
@@ -14,7 +14,7 @@ public class SpyLottoIssuer extends LottoIssuer {
         return this.lottos;
     }
 
-    public void setLottos(Lotto lotto) {
-        this.lottos[0] = lotto;
+    public void setLottos(Lotto lotto, int idx) {
+        this.lottos[idx] = lotto;
     }
 }
