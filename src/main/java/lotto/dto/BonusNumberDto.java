@@ -10,7 +10,7 @@ public class BonusNumberDto {
         this.value = value;
     }
 
-    public BonusNumber fromEntity() {
+    public BonusNumber toEntity() {
         return new BonusNumber(this.value);
     }
 }
