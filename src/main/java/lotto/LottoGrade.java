@@ -22,11 +22,19 @@ public enum LottoGrade {
         this.price = price;
     }
 
-    public static LottoGrade findBy(int target, long bonus) {
+    public static LottoGrade findBy(int target, int bonus) {
+        validate(target, bonus);
+        
         return Arrays.stream(LottoGrade.values())
-                .filter(lottoGrade -> lottoGrade.target >= target)
-                .filter(lottoGrade -> lottoGrade.bonus >= bonus)
+                .filter(lottoGrade -> target >= lottoGrade.target)
+                .filter(lottoGrade -> bonus >= lottoGrade.bonus)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 등급 등록되지 않음"));
+    }
+
+    private static void validate(int target, int bonus) {
+        if (target < 0 || target > 6 || bonus < 0 || bonus > 1) {
+            throw new IllegalArgumentException("해당하는 등급 등록되지 않음");
+        }
     }
 }
