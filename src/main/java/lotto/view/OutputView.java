@@ -13,7 +13,9 @@ public class OutputView extends OutputWriter {
     }
 
     public void displayPurchasedLottos(Lottos lottos) {
-        lottos.forEach(lotto -> {displayMessage(lotto.getLottoString());});
+        lottos.forEach(lotto -> {
+            displayMessage(lotto.getSortedLottoString());
+        });
     }
 
     public void requestWinningNumber() {

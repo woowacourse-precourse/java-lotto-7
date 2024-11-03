@@ -4,6 +4,7 @@ import lotto.exception.LottoNumberDuplicateException;
 import lotto.exception.LottoNumberRangeException;
 import lotto.exception.LottoNumberSizeException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -34,9 +35,10 @@ public class Lotto {
         }
     }
 
-    public String getLottoString() {
-        numbers.sort(Integer::compareTo);
-        return numbers.toString();
+    public String getSortedLottoString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Integer::compareTo);
+        return sortedNumbers.toString();
     }
 
     public boolean isContain(int number) {
