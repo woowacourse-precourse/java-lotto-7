@@ -2,7 +2,6 @@ package lotto.lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -69,7 +68,7 @@ class LottoTest {
     void should_Success_When_ValidLottoNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertNotNull(lotto);
+        assertThat(lotto).isNotNull();
     }
 
     @DisplayName("성공 | 자동 로또 발행")
@@ -81,7 +80,7 @@ class LottoTest {
                 .map(Integer::parseInt)
                 .toList();
 
-        assertNotNull(lotto);
+        assertThat(lotto).isNotNull();
         assertThat(numbers.size()).isEqualTo(6);
     }
 
@@ -91,7 +90,7 @@ class LottoTest {
     void should_Success_When_IssueLottoManually(List<Integer> numbers) {
         Lotto lotto = Lotto.issue(numbers);
 
-        assertNotNull(lotto);
+        assertThat(lotto).isNotNull();
         assertThat(lotto.toString()).isEqualTo(numbers.toString());
     }
 }
