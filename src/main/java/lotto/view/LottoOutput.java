@@ -16,7 +16,7 @@ public class LottoOutput {
         System.out.println(lottoCost.divideCostByUnit() + "개를 구매했습니다.");
 
         lottos.forEach(lotto -> {
-            System.out.println(lotto.numbers().toString());
+            System.out.println(lotto.numbers().stream().sorted().toList().toString());
         });
     }
 
