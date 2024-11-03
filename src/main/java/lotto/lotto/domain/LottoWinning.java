@@ -1,5 +1,8 @@
 package lotto.lotto.domain;
 
+import static lotto.common.rule.Rule.LOTTO_MAXIMUM_NUMBER;
+import static lotto.common.rule.Rule.LOTTO_MINIMUM_NUMBER;
+
 public class LottoWinning {
 
     private final Lotto lotto;
@@ -16,7 +19,7 @@ public class LottoWinning {
     }
 
     private static void validateLottoWinning(Lotto lotto, int bonusNumber) {
-        if (bonusNumber < 0 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MINIMUM_NUMBER || bonusNumber > LOTTO_MAXIMUM_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 부터 45까지의 정수이여야 합니다");
         }
         if (lotto.getNumbers().contains(bonusNumber)) {
