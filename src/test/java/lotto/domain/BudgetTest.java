@@ -28,7 +28,7 @@ class BudgetTest {
                 .hasMessageContaining(REMAINDER_EXISTED.message());
     }
 
-    @DisplayName("구매 금액 생성하면 구입 가능한 로또의 개수를 반환한다.")
+    @DisplayName("구매 금액 생성하면 구입 가능한 로또의 개수를 얻을 수 있다.")
     @Test
     void getNumberOfLotto() {
         BigInteger value = new BigInteger("10000");

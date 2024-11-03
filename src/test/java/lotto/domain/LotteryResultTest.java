@@ -53,9 +53,9 @@ class LotteryResultTest {
     @Test
     void zeroReturnRate() {
         lottoNumbers = List.of(
-                List.of(1, 2, 3, 4, 5, 6), // 4
-                List.of(1, 2, 3, 4, 5, 6), // 1
-                List.of(1, 2, 3, 4, 5, 6) // 1
+                List.of(11, 22, 3, 4, 5, 6), // 2개 일치
+                List.of(11, 2, 3, 4, 5, 6), // 1개 일치
+                List.of(1, 2, 3, 4, 5, 6) // 0개 일치
         );
         winningNumbers = List.of(18, 11, 22, 33, 44, 21);
         bonusNumber = 45;
