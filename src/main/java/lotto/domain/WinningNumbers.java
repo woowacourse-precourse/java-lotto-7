@@ -5,6 +5,7 @@ import lotto.utils.Converter;
 import lotto.utils.WinningNumbersValidator;
 
 public class WinningNumbers {
+    private static final String DELIMITER = ",";
     private final List<Integer> winningNumbers;
 
     private WinningNumbers(String winningNumbers) {
@@ -19,7 +20,7 @@ public class WinningNumbers {
     }
 
     private List<String> splitInput(String input) {
-        return List.of(input.split(","));
+        return List.of(input.split(DELIMITER));
     }
 
     public List<Integer> getWinningNumbers() {

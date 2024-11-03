@@ -1,13 +1,13 @@
 package lotto.service;
 
 import java.util.LinkedHashMap;
+import java.util.SequencedMap;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
 
-import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResults {
