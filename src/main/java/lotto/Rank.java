@@ -39,7 +39,7 @@ public enum Rank {
                 return rank;
             }
         }
-        return null;
+        return Rank.NONE;
     }
 
     private static Rank decideSecondOrThird(boolean bonus) {

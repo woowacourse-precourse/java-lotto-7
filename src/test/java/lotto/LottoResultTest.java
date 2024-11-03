@@ -13,19 +13,19 @@ class LottoResultTest {
     @Test
     void 로또티켓_당첨결과_저장_테스트() {
         //Given
-        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 10;
 
         List<Lotto> lottoTickets = new ArrayList<>();
         //2등
-        lottoTickets.add(new Lotto(List.of(1,2,3,4,5,10)));
+        lottoTickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 10)));
         //3등
-        lottoTickets.add(new Lotto(List.of(1,2,3,4,5,8)));
-        lottoTickets.add(new Lotto(List.of(6,2,3,4,5,8)));
+        lottoTickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
+        lottoTickets.add(new Lotto(List.of(6, 2, 3, 4, 5, 8)));
 
         //When
         LottoResult lottoResult = new LottoResult();
-        Map<Rank,Integer> result = lottoResult.getFinalResult(lottoTickets,winningNumbers,bonus);
+        Map<Rank, Integer> result = lottoResult.getFinalResult(lottoTickets, winningNumbers, bonus);
 
         //Then
         Assertions.assertThat(result.get(Rank.FIRST)).isEqualTo(0);
