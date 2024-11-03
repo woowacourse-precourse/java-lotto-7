@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.HashMap;
+import lotto.ErrorName;
 import lotto.item.AdditionalNumber;
 import lotto.item.Lotto;
 import lotto.item.Money;
@@ -19,7 +20,7 @@ public class LottoController {
 
     public void LottoNumberController() {
         while (lotto.getLottoValue().contains(additionalNumber.getNumber())){
-            System.out.println("[ERROR] 로또 번호와 겹치지 않는 숫자여야 합니다.");
+            System.out.println(ErrorName.ErrorDuplicationforAdditionalNumber.getErrorMessage());
             additionalNumber = Input.getAdditionalNumber();
         }
     }
