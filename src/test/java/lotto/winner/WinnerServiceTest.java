@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.io.input.Input;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoResult;
 import lotto.lotto.LottoWinning;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -15,12 +16,6 @@ class WinnerServiceTest {
     @AfterEach
     void close() {
         Input.close();
-    }
-
-    @BeforeEach
-    void setUp() {
-        Arrays.stream(LottoWinning.values())
-                .forEach(LottoWinning::reset);
     }
 
     @Test
@@ -38,10 +33,11 @@ class WinnerServiceTest {
         winnerService.announceWinner(lottos);
 
         // then
-        Assertions.assertEquals(LottoWinning.THREE_MATCH.getCount(), 1);
-        Assertions.assertEquals(LottoWinning.FOUR_MATCH.getCount(), 0);
-        Assertions.assertEquals(LottoWinning.FIVE_MATCH.getCount(), 0);
-        Assertions.assertEquals(LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER.getCount(), 1);
-        Assertions.assertEquals(LottoWinning.SIX_MATCH.getCount(), 1);
+        LottoResult result = winnerService.getLottoResult();
+        Assertions.assertEquals(1, result.getCount(LottoWinning.THREE_MATCH));
+        Assertions.assertEquals(0, result.getCount(LottoWinning.FOUR_MATCH));
+        Assertions.assertEquals(0, result.getCount(LottoWinning.FIVE_MATCH));
+        Assertions.assertEquals(1, result.getCount(LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER));
+        Assertions.assertEquals(1, result.getCount(LottoWinning.SIX_MATCH));
     }
 }

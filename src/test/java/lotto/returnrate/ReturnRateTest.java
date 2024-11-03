@@ -20,12 +20,6 @@ class ReturnRateTest {
         Input.close();
     }
 
-    @BeforeEach
-    void setUp() {
-        Arrays.stream(LottoWinning.values())
-                .forEach(LottoWinning::reset);
-    }
-
     @Test
     @DisplayName("총 수익률 계산")
     void calculateReturnRate() {
@@ -35,7 +29,7 @@ class ReturnRateTest {
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
         Winner winner = new Winner(new Lotto(integers), 7);
         WinnerService winnerService = new WinnerService(winner);
-        ReturnRate returnRate = new ReturnRate();
+        ReturnRate returnRate = new ReturnRate(winnerService.getLottoResult());
 
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(8, 21, 23, 41, 42, 43)),

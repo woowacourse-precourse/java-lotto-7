@@ -3,14 +3,17 @@ package lotto.winner;
 import java.util.Arrays;
 import java.util.List;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoResult;
 import lotto.lotto.LottoWinning;
 
 public class WinnerService {
 
     private final Winner winner;
+    private final LottoResult lottoResult;
 
     public WinnerService(Winner winner) {
         this.winner = winner;
+        this.lottoResult = new LottoResult();
     }
 
     public void announceWinner(List<Lotto> lottos) {
@@ -28,7 +31,8 @@ public class WinnerService {
         int bonusNumber = winner.getBonusNumber();
 
         if (matchedCount == 5 && lottoNumbers.contains(bonusNumber)) {
-            LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER.incrementCount();
+//            LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER.incrementCount();
+            lottoResult.incrementCount(LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER);
             return true;
         }
 
@@ -39,7 +43,11 @@ public class WinnerService {
         Arrays.stream(LottoWinning.values())
                 .filter(winning -> winning.getMatchedCount() == matchedCount)
                 .findFirst()
-                .ifPresent(LottoWinning::incrementCount);
+//                .ifPresent(LottoWinning::incrementCount);
+                .ifPresent(lottoResult::incrementCount);
     }
 
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
 }

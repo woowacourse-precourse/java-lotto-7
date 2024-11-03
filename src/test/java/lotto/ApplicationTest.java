@@ -22,12 +22,6 @@ class ApplicationTest extends NsTest {
         Input.close();
     }
 
-    @BeforeEach
-    void setUp() {
-        Arrays.stream(LottoWinning.values())
-                .forEach(LottoWinning::reset);
-    }
-
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(

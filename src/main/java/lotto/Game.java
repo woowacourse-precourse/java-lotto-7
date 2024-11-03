@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.io.input.Input;
 import lotto.io.output.Output;
 import lotto.lotto.Lotto;
+import lotto.lotto.LottoResult;
 import lotto.lotto.LottoService;
 import lotto.lotto.LottoWinning;
 import lotto.random.RandomImpl;
@@ -27,24 +28,25 @@ public class Game {
 
         Winner winner = getWinner();
         WinnerService winnerService = new WinnerService(winner);
+        LottoResult lottoResult = winnerService.getLottoResult();
 
         winnerService.announceWinner(lottos);
-        displayWinningStatistics();
+        displayWinningStatistics(lottoResult);
 
-        double returnRate = ReturnRate.calculateReturnRate(priceInput);
-        Output.displayTotalReturnRate(returnRate);
+        ReturnRate returnRate = new ReturnRate(lottoResult);
+        Output.displayTotalReturnRate(returnRate.calculateReturnRate(priceInput));
 
         Input.close();
     }
 
-    private void displayWinningStatistics() {
+    private void displayWinningStatistics(LottoResult lottoResult) {
         Output.displayWinningStatisticsHeader();
         for (LottoWinning winning : LottoWinning.values()) {
             if (winning == LottoWinning.FIVE_MATCH_WITH_BONUS_NUMBER) {
-                Output.displayMatchCountWithBonus(winning);
+                Output.displayMatchCountWithBonus(winning, lottoResult.getCount(winning));
                 continue;
             }
-            Output.displayMatchCount(winning);
+            Output.displayMatchCount(winning, lottoResult.getCount(winning));
         }
     }
 

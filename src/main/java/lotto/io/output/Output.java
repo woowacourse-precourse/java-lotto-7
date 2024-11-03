@@ -44,13 +44,15 @@ public class Output {
         System.out.println(WINNING_STATISTICS_HEADER.getMessage());
     }
 
-    public static void displayMatchCount(LottoWinning winning) {
-        System.out.printf(MATCH_COUNT.getMessage(), winning.getMatchedCount(), winning.getPrice(), winning.getCount());
+    public static void displayMatchCount(LottoWinning winning, int count) {
+//        System.out.printf(MATCH_COUNT.getMessage(), winning.getMatchedCount(), winning.getPrice(), winning.getCount());
+        System.out.printf(MATCH_COUNT.getMessage(), winning.getMatchedCount(), winning.getPrice(), count);
     }
 
-    public static void displayMatchCountWithBonus(LottoWinning winning) {
+    public static void displayMatchCountWithBonus(LottoWinning winning, int count) {
         System.out.printf(MATCH_COUNT_WITH_BONUS.getMessage(), winning.getMatchedCount(), winning.getPrice(),
-                winning.getCount());
+//                winning.getCount());
+                count);
     }
 
     public static void displayTotalReturnRate(double returnRate) {
