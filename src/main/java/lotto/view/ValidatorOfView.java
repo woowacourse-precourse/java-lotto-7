@@ -39,9 +39,10 @@ public class ValidatorOfView {
     }
 
     public static void isValidateBonusNumber(List<Integer> winningNumbers, int bonusNumber){
-        if(!isDuplicateOfBonus(winningNumbers,bonusNumber))
+        if(isDuplicateOfBonus(winningNumbers,bonusNumber))
             throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER_DESC);
     }
+
     public static boolean isGreaterThanZero(int budget) {
         return budget > 0;
     }
