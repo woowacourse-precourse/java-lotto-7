@@ -23,7 +23,7 @@ public class InputView {
     }
 
     private int getPriceInput() {
-        System.out.println(INPUT_MESSAGE);
+        System.out.println(INPUT_PRICE);
         String str = Console.readLine();
         return inputValidator.validatePrice(str);
     }

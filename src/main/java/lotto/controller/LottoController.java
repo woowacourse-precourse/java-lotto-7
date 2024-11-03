@@ -29,7 +29,7 @@ public class LottoController {
     }
 
     private void printLottoStatus(List<Lotto> lottoTicket) {
-        System.out.println(lottoTicket.size() + QUANTITY_OF_LOTTO_MESSAGE);
+        System.out.println(lottoTicket.size() + QUANTITY_OF_LOTTO);
         for(Lotto lotto:lottoTicket){
             System.out.println(lotto);
         }

@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidatorTest {
+    private final static String ERROR = "[ERROR]";
 
     private InputValidator validator;
 
@@ -38,7 +39,7 @@ class InputValidatorTest {
         // when & then
         assertThatThrownBy( () -> validator.validatePrice(input)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(ERROR);
     }
 
     @DisplayName("빈 문자열 입력 시 예외가 발생한다.")
@@ -50,7 +51,7 @@ class InputValidatorTest {
         // when & then
         assertThatThrownBy( () -> validator.validatePrice(input)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(ERROR);
     }
 
     @DisplayName("숫자가 아닌 문자열 입력 시 예외가 발생한다.")
@@ -62,6 +63,6 @@ class InputValidatorTest {
         // when & then
         assertThatThrownBy( () -> validator.validatePrice(input)
         ).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessageContaining(ERROR);
     }
 }
