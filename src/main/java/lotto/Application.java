@@ -24,7 +24,7 @@ public class Application {
 
             // 1000원 단위가 아닐 경우 예외처리
             if (price % 1000 != 0) {
-                throw new IllegalArgumentException("1000원 단위가 아닐 경우 예외 처리");
+                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
             }
 
             return price;
@@ -37,7 +37,7 @@ public class Application {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닐경우 예외 처리");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
 }
