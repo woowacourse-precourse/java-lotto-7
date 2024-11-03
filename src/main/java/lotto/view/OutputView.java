@@ -24,19 +24,25 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void displayResult(Map<Prize, Integer> winningCount, double profitRate) {
-        StringBuilder result = new StringBuilder();
-        result.append(System.lineSeparator())
-                .append(RESULT_TITLE).append(System.lineSeparator())
-                .append(DIVIDER).append(System.lineSeparator())
-                .append(String.format(THREE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_3)))
-                .append(String.format(FOUR_MATCHES_RESULT, winningCount.get(Prize.MATCHES_4)))
-                .append(String.format(FIVE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_5)))
-                .append(String.format(FIVE_MATCHES_BONUS_MATCH_RESULT,
-                        winningCount.get(Prize.MATCHES_5_BONUS_MATCH)))
-                .append(String.format(SIX_MATCHES_RESULT, winningCount.get(Prize.MATCHES_6)))
-                .append(String.format(PROFIT_RATE_RESULT, profitRate));
+    public void displayStatistics(Map<Prize, Integer> winningCount, double profitRate) {
+        String result = System.lineSeparator()
+                + RESULT_TITLE + System.lineSeparator()
+                + DIVIDER + System.lineSeparator()
+                + getWinningResult(winningCount)
+                + getProfitRateResult(profitRate);
         System.out.println(result);
         Console.close();
+    }
+
+    private String getWinningResult(Map<Prize, Integer> winningCount) {
+        return String.format(THREE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_3))
+                + String.format(FOUR_MATCHES_RESULT, winningCount.get(Prize.MATCHES_4))
+                + String.format(FIVE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_5))
+                + String.format(FIVE_MATCHES_BONUS_MATCH_RESULT, winningCount.get(Prize.MATCHES_5_BONUS_MATCH))
+                + String.format(SIX_MATCHES_RESULT, winningCount.get(Prize.MATCHES_6));
+    }
+
+    private String getProfitRateResult(double profitRate) {
+        return String.format(PROFIT_RATE_RESULT, profitRate);
     }
 }
