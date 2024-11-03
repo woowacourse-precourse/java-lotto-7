@@ -1,8 +1,10 @@
 package lotto;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -25,5 +27,16 @@ class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("올바른 보너스 번호가 입력되면 객체가 생성된다.")
+    void 성공_보너스번호입력_유효한파라미터() {
+        // given
+        String input = "17";
+
+        // when & then
+        assertThatCode(() -> BonusNumber.from(input))
+                .doesNotThrowAnyException();
     }
 }
