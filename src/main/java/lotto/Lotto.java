@@ -19,4 +19,8 @@ public class Lotto {
     public void addNumber(int number) {
         this.numbers.add(number);
     }
+
+    public List numbersList() {
+        return numbers;
+    }
 }

@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import com.oracle.svm.core.annotate.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -11,11 +10,13 @@ public class Application {
     public static void main(String[] args) {
         Long money = inputMoney();
         Long countLotto = availableLotto(money);
+
         List<List<Integer>> lottoList = lottoRandom(countLotto);
         haveLotto(lottoList);
+
         Lotto lotto = new Lotto(prizeNumbers());
-        int bonusNumber = inputBonus();
-        lotto.addNumber(bonusNumber);
+        lotto.addNumber(inputBonus());
+        checkPrize(lottoList, lotto.numbersList());
     }
 
     public static Long inputMoney() {
@@ -108,6 +109,12 @@ public class Application {
     public static void haveLotto(List<List<Integer>> lottoList) {
         for (List<Integer> lotto : lottoList) {
             System.out.println(lotto);
+        }
+    }
+
+    public static void checkPrize(List<List<Integer>> lottoList, List<Integer> numbersList) {
+        for (List<Integer> lotto : lottoList) {
+            lotto.retainAll(numbersList);
         }
     }
 
