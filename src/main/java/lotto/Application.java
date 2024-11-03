@@ -110,7 +110,10 @@ public class Application {
 
         BigDecimal totalPrizeBD = BigDecimal.valueOf(totalPrize);
         BigDecimal totalPurchaseAmountBD = BigDecimal.valueOf(totalPurchaseAmount);
-        BigDecimal winningStatic = totalPrizeBD.divide(totalPurchaseAmountBD, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal winningStatic = totalPrizeBD
+                .divide(totalPurchaseAmountBD, 3, RoundingMode.HALF_UP) // 소수점 3자리로 계산
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(1, RoundingMode.HALF_UP); // 소수점 1자리로 반올림
 
         return "당첨 통계\n" +
                 "---\n" +
