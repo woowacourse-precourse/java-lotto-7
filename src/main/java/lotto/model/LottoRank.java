@@ -41,7 +41,7 @@ public enum LottoRank {
         return requiredBonus;
     }
 
-    public LottoRank findByRank(int rank) {
+    public static LottoRank findByRank(int rank) {
         for(LottoRank lottoRank : LottoRank.values()) {
             if(lottoRank.getRank() == rank) {
                 return lottoRank;
