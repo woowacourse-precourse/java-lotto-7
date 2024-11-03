@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.domain.BonusNumber;
 import lotto.model.domain.Pocket;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
@@ -22,6 +23,11 @@ public class LottoController {
 
         String inputWinningNumbers = InputView.requestLottoWinningNumbers();
         List<Integer> winningLottoNumbers = lottoService.winningNumbersGenerator(inputWinningNumbers);
+
+        String inputBonusNumber = InputView.requestLottoBonusNumber();
+        BonusNumber bonusNumber = lottoService.bonusNumberGenerator(inputBonusNumber);
+
+        
 
     }
 }
