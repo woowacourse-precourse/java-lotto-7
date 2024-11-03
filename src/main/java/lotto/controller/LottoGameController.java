@@ -46,7 +46,6 @@ public final class LottoGameController {
         LottoPurchase lottoPurchase = new LottoPurchase(readMoney());
 
         outputView.print(resultFormatter.formatLottoPurchaseResult(lottoPurchase.getLottoPurchaseResult()));
-        outputView.printNewLine();
 
         return lottoPurchase;
     }
@@ -76,7 +75,6 @@ public final class LottoGameController {
 
     private List<Integer> readWinningLottoNumbers() {
         String numbersInput = inputView.getNumbersInput();
-        outputView.printNewLine();
 
         Validator.validateNumbersInput(numbersInput);
 
@@ -87,7 +85,6 @@ public final class LottoGameController {
 
     private int readBonusNumber() {
         String bonusNumberInput = inputView.getBonusInput();
-        outputView.printNewLine();
 
         Validator.validateBonusNumberInput(bonusNumberInput);
 

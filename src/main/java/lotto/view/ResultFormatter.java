@@ -10,10 +10,10 @@ public class ResultFormatter {
     private static final String AMOUNT_POSTFIX = "개를 구매했습니다.";
 
     // LottoGameResult 상수
-    private static final String LOTTO_GAME_RESULT_TITLE = " 당첨 통계\n---\n";
+    private static final String LOTTO_GAME_RESULT_TITLE = "당첨 통계\n---\n";
     private static final String PRIZE_COUNT_POSTFIX = "개";
     private static final String PROFIT_PREFIX = "총 수익률은 ";
-    private static final String PROFIT_POSTFIX = "입니다.";
+    private static final String PROFIT_POSTFIX = "%입니다.";
 
     private static final String NEW_LINE = "\n";
 
