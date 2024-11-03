@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.enums.ErrorMessage;
 import lotto.enums.PrizeAmount;
 import lotto.model.Lotto;
 import lotto.parser.InputParser;
@@ -37,11 +38,9 @@ public class LottoController {
         List<Lotto> lottoIns = lottoService.lottoIssuance(money);
         outputHandler.printLottoS(lottoIns);
 
-        List<Integer> numbers = inputParser.parseNumbers(inputHandler.getInputNums());
-        Lotto lotto = new Lotto(numbers);
-        int bonusNum = inputParser.parseBonus(inputHandler.getInputBonusNums());
+        List<Integer> numbers = inputNumberHandler();
 
-        if (!validateService.validateBonus(bonusNum)) { return; }
+        int bonusNum = inputBonusHandler();
 
         Map<PrizeAmount, Integer> lottoWinnings = lottoService.lottoWinning(lottoIns, numbers, bonusNum);
         Double returnRate = incomeService.rateOfReturn(money, lottoWinnings);
@@ -50,12 +49,44 @@ public class LottoController {
     }
 
     public int inputMoneyHandler() {
-        String input_money = inputHandler.getInputMoney();
-        int money = inputParser.parseMoney(input_money);
-        if (validateService.validateMoney(money)){
-            return money;
+        while (true) {
+            try {
+                String inputMoney = inputHandler.getInputMoney();
+                int money = inputParser.parseMoney(inputMoney);
+
+                validateService.validateMoney(money);
+                return money;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return 0;
+    }
+
+    public List<Integer> inputNumberHandler() {
+        while(true) {
+            try {
+                List<Integer> numbers = inputParser.parseNumbers(inputHandler.getInputNums());
+                Lotto lotto = new Lotto(numbers);
+
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int inputBonusHandler() {
+        while(true) {
+            try {
+                int bonusNum = inputParser.parseBonus(inputHandler.getInputBonusNums());
+                validateService.validateBonus(bonusNum);
+
+                return bonusNum;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void outputHandle(Map<PrizeAmount, Integer> prizeAmounts, Double rate) {

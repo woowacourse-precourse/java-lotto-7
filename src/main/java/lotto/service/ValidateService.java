@@ -14,7 +14,7 @@ public class ValidateService {
 
     public boolean validateBonus (int bonusNum) {
         if (bonusNum < 1 || bonusNum > 45) {
-            return false;
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
         return true;
     }

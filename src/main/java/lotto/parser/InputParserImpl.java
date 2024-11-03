@@ -13,9 +13,9 @@ public class InputParserImpl implements InputParser {
         int intmoney = 0;
         try {
             intmoney = Integer.parseInt(money);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 //            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_INPUT.getMessage());
-            System.out.println(ErrorMessage.INVALID_MONEY_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_INPUT.getMessage());
         }
         return intmoney;
     }
