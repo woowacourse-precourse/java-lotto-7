@@ -4,6 +4,7 @@ import lotto.model.Lottos;
 
 public class OutputView {
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public void printPurchaseAmountMessage() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -15,5 +16,9 @@ public class OutputView {
 
     public void printLottos(Lottos lottos) {
         System.out.println(lottos);
+    }
+
+    public void printWinningNumbersMessage() {
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
     }
 }

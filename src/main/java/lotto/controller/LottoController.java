@@ -3,8 +3,11 @@ package lotto.controller;
 import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -20,6 +23,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
         Lottos lottos = issueLottos(purchaseAmount);
+        WinningNumbers winningNumbers = inputWinningNumbers();
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -34,5 +38,11 @@ public class LottoController {
         Lottos lottos = lottoGenerator.issue(quantity);
         outputView.printLottos(lottos);
         return lottos;
+    }
+
+    private WinningNumbers inputWinningNumbers() {
+        outputView.printWinningNumbersMessage();
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        return WinningNumbers.from(winningNumbers);
     }
 }
