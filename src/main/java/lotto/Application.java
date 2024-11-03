@@ -51,6 +51,17 @@ public class Application {
                 winningStatistics.put(rank, winningStatistics.get(rank) + 1);
             }
         }
+
+        // 7 . 통계 출력 및 수익률 계산 & 출력
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            int count = winningStatistics.get(rank);
+            System.out.printf(rank.getPrintFormat() + "\n", rank.getMatchCount(), rank.getPrize(), count);
+            totalPrize += count * rank.getPrize();
+        }
+
+        double grossMargin = (double) totalPrize / purchasePrice * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", grossMargin);
     }
 
     private static int getValidBonus(List<Integer> winningNumber) {
