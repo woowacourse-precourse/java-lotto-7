@@ -8,6 +8,8 @@ import static lotto.constants.OutputMessage.PRIZE_SEPARATOR;
 import static lotto.constants.OutputMessage.RETURN_ON_INVESTMENT_IS;
 import static lotto.constants.OutputMessage.UNIT_COUNT;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import lotto.dto.LottoNumbers;
@@ -72,6 +74,8 @@ public class OutputView {
     }
 
     private void printReturnOnInvestment(double returnOnInvestment) {
-        System.out.println(RETURN_ON_INVESTMENT_IS.getMessage() +returnOnInvestment + PERCENT_IS.getMessage());
+        BigDecimal bigROI = new BigDecimal(returnOnInvestment);
+        BigDecimal roi = bigROI.setScale(1, RoundingMode.HALF_UP);
+        System.out.println(RETURN_ON_INVESTMENT_IS.getMessage() + roi + PERCENT_IS.getMessage());
     }
 }
