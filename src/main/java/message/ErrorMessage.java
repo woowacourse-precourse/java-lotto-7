@@ -7,7 +7,8 @@ public enum ErrorMessage {
     CONTAINS_LETTER("[ERROR] 입력값에 숫자가 아닌 문자가 포함되어 있습니다."),
     NUM_OF_NUMBERS("[ERROR] 로또 번호는 6개여야 합니다."),
     OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    DUPLICATE_NUMBER("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    DUPLICATE_NUMBER("[ERROR] 로또 번호는 중복될 수 없습니다."),
+    DUPLICATE_WINNING_BONUS("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
     private final String errorMessage;
 

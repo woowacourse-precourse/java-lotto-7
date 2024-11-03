@@ -58,4 +58,11 @@ public class Validate {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getErrorMessage());
         }
     }
+
+    public void validateBonusNumAndWinningNum(List<Integer> numbers, int num) {
+
+        if (numbers.contains(num)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_BONUS.getErrorMessage());
+        }
+    }
 }

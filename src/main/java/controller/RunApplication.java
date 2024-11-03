@@ -15,6 +15,7 @@ public class RunApplication {
         PlayerBuyLotto playerBuyLotto = new PlayerBuyLotto();
         WinningNum winningNum = new WinningNum();
         BonusNumber bonusNum = new BonusNumber();
+        Validate validate = new Validate();
 
         while(true) {
             try {
@@ -25,6 +26,7 @@ public class RunApplication {
                 List<Integer> winningNumbers = winningNum.generateWinningNumbers(inputtedWinningNumbers);
                 String inputtedBonusNumber = input.inputBonusNumber();
                 int bonusNumber = bonusNum.generateBonusNumber(inputtedBonusNumber);
+                validate.validateBonusNumAndWinningNum(winningNumbers, bonusNumber);
                 break;
 
             } catch (IllegalArgumentException e) {
