@@ -15,4 +15,11 @@ public class LottoService {
     public static LottoService createLottoService() {
         return new LottoService();
     }
+
+    public int calculateChange(int pay){
+        return pay%1000;
+    }
+    public int calculateAmount(int pay){
+        return pay/1000;
+    }
 }
