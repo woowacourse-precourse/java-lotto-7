@@ -13,6 +13,12 @@ import lotto.strategy.SecondPlace;
 
 public class ResultCalculator {
 
+    private static final Long INIT_PLACE_NUMBER = 0L;
+    private static final Integer THREE_MATCH = 3;
+    private static final Integer FOUR_MATCH = 4;
+    private static final Integer FIVE_MATCH = 5;
+    private static final Integer SIX_MATCH = 6;
+
     private final EnumMap<Place, Long> places = new EnumMap<>(Place.class);
     private final Map<Integer, PlaceAuction> placeAuctions = new HashMap<>();
 
@@ -27,12 +33,12 @@ public class ResultCalculator {
 
     private void init(List<Integer> bonusResult) {
         for (Place place : Place.values()) {
-            places.put(place, 0L);
+            places.put(place, INIT_PLACE_NUMBER);
         }
-        placeAuctions.put(6, new FirstPlace(places));
-        placeAuctions.put(5, new SecondPlace(places, bonusResult));
-        placeAuctions.put(4, new FourthPlace(places));
-        placeAuctions.put(3, new FifthPlace(places));
+        placeAuctions.put(SIX_MATCH, new FirstPlace(places));
+        placeAuctions.put(FIVE_MATCH, new SecondPlace(places, bonusResult));
+        placeAuctions.put(FOUR_MATCH, new FourthPlace(places));
+        placeAuctions.put(THREE_MATCH, new FifthPlace(places));
     }
 
     private void calculate(List<Integer> winningResult, List<Integer> bonusResult) {
