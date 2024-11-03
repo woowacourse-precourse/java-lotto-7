@@ -41,5 +41,4 @@ class PurchasePriceTest {
                 Arguments.of(priceWithChange, PurchasePrice.EXIST_CHANGE_EXCEPTION_MESSAGE)
         );
     }
-
 }

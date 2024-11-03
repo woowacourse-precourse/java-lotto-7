@@ -63,7 +63,7 @@ class LottoCalculationServiceTest {
         assertThat(actualPrizeMoney).isEqualTo(expectedPrizeMoney);
     }
 
-    @DisplayName("수익률  계산")
+    @DisplayName("수익률 계산")
     @Test
     void 수익률_계산() {
         int price = 6000;

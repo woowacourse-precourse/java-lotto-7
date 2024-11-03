@@ -16,12 +16,12 @@ class BonusNumberTest {
     @DisplayName("올바른 입력값을 통해 객체 생성을 시도")
     @Test
     void 올바른_입력값을_통해_객체_생성을_시도() {
-        List<Integer> givenBannedNumbers = List.of(10, 11, 12, 13, 14, 15);
-        int givenBonusNumber = 1;
+        List<Integer> bannedNumbers = List.of(10, 11, 12, 13, 14, 15);
+        int bonusNumber = 1;
 
-        BonusNumber actualBonusNumber = new BonusNumber(givenBonusNumber, givenBannedNumbers);
+        BonusNumber actualBonusNumber = new BonusNumber(bonusNumber, bannedNumbers);
 
-        assertThat(actualBonusNumber.getNumber()).isEqualTo(givenBonusNumber);
+        assertThat(actualBonusNumber.getNumber()).isEqualTo(bonusNumber);
     }
 
     @DisplayName("잘못된 입력값을 통해 객체 생성을 시도")

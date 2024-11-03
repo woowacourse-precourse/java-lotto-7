@@ -16,17 +16,17 @@ class WinningCriteriaTest {
     @DisplayName("올바른 입력으로 객체 생성")
     @Test
     void 올바른_입력으로_객체_생성() {
-        Lotto givenLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber givenBonusNumber = new BonusNumber(8, givenLotto.getNumbers());
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(8, lotto.getNumbers());
 
-        WinningCriteria actualCriteria = new WinningCriteria(givenLotto, givenBonusNumber);
+        WinningCriteria actualCriteria = new WinningCriteria(lotto, bonusNumber);
 
         assertThat(actualCriteria.getLotto())
                 .usingRecursiveComparison()
-                .isEqualTo(givenLotto);
+                .isEqualTo(lotto);
         assertThat(actualCriteria.getBonusNumber())
                 .usingRecursiveComparison()
-                .isEqualTo(givenBonusNumber);
+                .isEqualTo(bonusNumber);
     }
 
     @DisplayName("잘못된 입력으로 객체 생성")
@@ -39,11 +39,11 @@ class WinningCriteriaTest {
     }
 
     static Stream<Arguments> 잘못된_입력으로_객체_생성() {
-        Lotto givenLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber givenBonusNumber = new BonusNumber(8, givenLotto.getNumbers());
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(8, lotto.getNumbers());
         return Stream.of(
-                Arguments.of(givenLotto, null, WinningCriteria.NULL_BONUS_NUMBER_EXCEPTION_MESSAGE),
-                Arguments.of(null, givenBonusNumber, WinningCriteria.NULL_LOTTO_EXCEPTION_MESSAGE),
+                Arguments.of(lotto, null, WinningCriteria.NULL_BONUS_NUMBER_EXCEPTION_MESSAGE),
+                Arguments.of(null, bonusNumber, WinningCriteria.NULL_LOTTO_EXCEPTION_MESSAGE),
                 Arguments.of(null, null, WinningCriteria.NULL_LOTTO_EXCEPTION_MESSAGE)
         );
     }

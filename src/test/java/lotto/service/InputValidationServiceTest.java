@@ -78,8 +78,8 @@ class InputValidationServiceTest {
     @DisplayName("올바른 보너스 번호의 입력을 검증")
     @ParameterizedTest(name = "\"{0}\"가 입력된 경우")
     @ValueSource(strings = {"12", "12   ", "  12", "1    2"})
-    void 올바른_보너스_번호의_입력을_검증(String givenRawBonusNumber) {
-        assertThatCode(() -> inputValidationService.validateBonusNumber(givenRawBonusNumber))
+    void 올바른_보너스_번호의_입력을_검증(String rawBonusNumber) {
+        assertThatCode(() -> inputValidationService.validateBonusNumber(rawBonusNumber))
                 .doesNotThrowAnyException();
     }
 

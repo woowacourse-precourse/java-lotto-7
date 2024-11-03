@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -71,9 +72,9 @@ class LottoTest {
     @DisplayName("객체에 저장된 로또번호를 출력")
     @Test
     void 객체에_저장된_로또번호를_출력() {
-        Lotto givenLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        String actualPrintResult = givenLotto.printLottoNumbers();
+        String actualPrintResult = lotto.printLottoNumbers();
 
         assertThat(actualPrintResult).isEqualTo("1, 2, 3, 4, 5, 6");
     }
