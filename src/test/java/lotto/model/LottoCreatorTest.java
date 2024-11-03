@@ -1,0 +1,24 @@
+package lotto.model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class LottoCreatorTest {
+
+	private static final int LOTTO_NUMBER_COUNT = 6;
+
+	private final LottoCreator lottoCreator	= new LottoCreator();
+
+	@Test
+	@DisplayName("로또 번호의 개수가 6개인 구매 로또를 생성할 수 있다.")
+	void 로또_번호의_개수가_6개인_구매_로또를_생성한다() {
+		// when
+		Lotto purchasedLotto = lottoCreator.createPurchasedLotto();
+
+		// then
+		assertEquals(LOTTO_NUMBER_COUNT, purchasedLotto.getNumbers().size());
+	}
+
+}
