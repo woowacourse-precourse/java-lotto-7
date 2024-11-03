@@ -26,15 +26,18 @@ public class LottoSalesService {
     public List<LottoDto> getIssuedLottoNumbersOf(Customer customer) {
         List<Lotto> lottos = customer.getLottoTickets().stream()
                 .map(LottoTicket::getLotto).toList();
+
         return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
     private List<LottoTicket> issueLottoTickets(int amountOfLottoTicket) {
         List<LottoTicket> tickets = new ArrayList<>();
+
         for (int i = 0; i < amountOfLottoTicket; i++) {
             Lotto lotto = new Lotto(LottoNumberGenerator.generate());
             tickets.add(new LottoTicket(lotto));
         }
+
         return tickets;
     }
 

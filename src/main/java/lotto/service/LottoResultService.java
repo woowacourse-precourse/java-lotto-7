@@ -1,12 +1,10 @@
 package lotto.service;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import lotto.model.customer.Customer;
 import lotto.dto.ResultDto;
+import lotto.model.customer.Customer;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.Rank;
 import lotto.model.lotto.WinningLotto;
+import lotto.utils.RankCounter;
 
 public class LottoResultService {
     public WinningLotto registerWinningNumbers(Lotto lotto, int bonusNumber) {
@@ -14,23 +12,13 @@ public class LottoResultService {
     }
 
     public void determineRanks(Customer customer, WinningLotto winningLotto) {
-        customer.determineRanksOfLottoTickets(winningLotto);
+        customer.getLottoTickets().forEach(
+                lottoTicket -> lottoTicket.determineRank(winningLotto)
+        );
     }
 
     public ResultDto getResult(Customer customer) {
-        Map<Rank, Integer> rankCounts = initializeRankCounts();
-        return ResultDto.from(customer.countRank(rankCounts), customer.calculateProfitRate());
-    }
-
-    private Map<Rank, Integer> initializeRankCounts() {
-        Map<Rank, Integer> rankCounts = new LinkedHashMap<>();
-
-        for (Rank rank : Rank.values()) {
-            if (rank.equals(Rank.OUT_OF_RANK)) {
-                continue;
-            }
-            rankCounts.put(rank, 0);
-        }
-        return rankCounts;
+        return ResultDto.from(RankCounter.countRanks(customer.getLottoTickets())
+                , customer.calculateProfitRate());
     }
 }

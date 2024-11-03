@@ -18,9 +18,10 @@ public class CustomerTest {
     void returnValidProfitRate() {
         // given
         int paidAmount = 8_000;
-        LottoTicket lottoTicket = new LottoTicket(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        Customer customer = new Customer(paidAmount, List.of(lottoTicket));
-        customer.determineRanksOfLottoTickets(new WinningLotto(new Lotto(List.of(1, 2, 3, 9, 10, 11)), 12));
+        List<LottoTicket> lottoTickets = List.of(new LottoTicket(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+        Customer customer = new Customer(paidAmount, lottoTickets);
+        lottoTickets.forEach(lottoTicket -> lottoTicket.determineRank(
+                (new WinningLotto(new Lotto(List.of(1, 2, 3, 9, 10, 11)), 12))));
 
         // when
         double profitRate = customer.calculateProfitRate();
