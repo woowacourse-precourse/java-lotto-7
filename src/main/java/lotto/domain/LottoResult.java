@@ -18,6 +18,22 @@ public class LottoResult {
         }
     }
 
+    @Override
+    public String toString() {
+        StringJoiner lottoRankingResult = new StringJoiner("\n");
+
+        for (Entry<LottoRanking, Integer> entry : result.entrySet()) {
+            LottoRanking rank = entry.getKey();
+            int matchCount = entry.getValue();
+
+            if (rank != LottoRanking.NOTHING) {
+                lottoRankingResult.add(String.format(LOTTO_WINNING_STATUS_MESSAGE, rank.getStatus(), matchCount));
+            }
+        }
+
+        return lottoRankingResult.toString();
+    }
+
     public void addMatchCount(LottoRanking rank) {
         result.put(rank, result.getOrDefault(rank, DEFAULT_MATCH_COUNT_VALUE) + 1);
     }
@@ -39,21 +55,5 @@ public class LottoResult {
         }
 
         return totalPrize / purchaseAmount * 100;
-    }
-
-    @Override
-    public String toString() {
-        StringJoiner lottoRankingResult = new StringJoiner("\n");
-
-        for (Entry<LottoRanking, Integer> entry : result.entrySet()) {
-            LottoRanking rank = entry.getKey();
-            int matchCount = entry.getValue();
-
-            if (rank != LottoRanking.NOTHING) {
-                lottoRankingResult.add(String.format(LOTTO_WINNING_STATUS_MESSAGE, rank.getStatus(), matchCount));
-            }
-        }
-
-        return lottoRankingResult.toString();
     }
 }

@@ -16,6 +16,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public int countMatchNumbers(List<Integer> winningNumbers) {
+        int matchCount = 0;
+
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != MAX_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE.toString());
@@ -30,23 +46,7 @@ public class Lotto {
         }
     }
 
-    public int countMatchNumbers(List<Integer> winningNumbers) {
-        int matchCount = 0;
-
-        for (int number : numbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
     public boolean isMatchBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 }
