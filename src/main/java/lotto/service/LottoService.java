@@ -17,6 +17,21 @@ public class LottoService {
         this.lottoRepository = lottoRepository;
     }
 
+    public List<PrizeResponse> findWinningResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        List<PrizeResponse> prizeResponses = new ArrayList<>();
+
+        for (Lotto lotto : purchasedLottos) {
+            List<Integer> numbers = lotto.getNumbers(); // 발행된 각 로또의 번호들
+
+            PrizeResponse prizeResponse = calculatePrize(winningLotto, bonusNumber, numbers);
+            if (prizeResponse.prizeMoney() != 0) { // 당첨금이 있다면 결과에 추가
+                prizeResponses.add(prizeResponse);
+            }
+        }
+
+        return prizeResponses;
+    }
+
     private PrizeResponse calculatePrize(Lotto winningLotto, int bonusNumber, List<Integer> numbers) {
         int matchingNumberCount = (int) winningLotto.getNumbers().stream()
                 .filter(numbers::contains)
