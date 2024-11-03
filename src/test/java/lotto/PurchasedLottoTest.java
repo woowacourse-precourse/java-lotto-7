@@ -11,7 +11,7 @@ class PurchasedLottoTest {
     @Test
     void 천원당_로또_한장을_발행한다() {
         Payment payment = Payment.from("1000");
-        PurchasedLotto issuer = PurchasedLotto.from(payment);
-        assertEquals(issuer.getCount(), 1);
+        PurchasedLotto purchasedLotto = PurchasedLotto.from(payment);
+        assertEquals(purchasedLotto.getCount(), 1);
     }
 }
