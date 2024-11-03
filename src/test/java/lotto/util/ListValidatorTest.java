@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,9 +30,8 @@ class ListValidatorTest {
         //given
         final int size = 6;
         //should
-        assertThatThrownBy(() -> listValidator.validateSize(numbers, size))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_WINNING_NUMBER_SIZE);
+        assertThatIllegalArgumentException().isThrownBy(() -> listValidator.validateSize(numbers, size))
+                .withMessageContaining(ErrorType.INVALID_WINNING_NUMBER_SIZE);
     }
 
     static Stream<List<Integer>> exceededSizeList() {
@@ -49,10 +48,8 @@ class ListValidatorTest {
         //given
         final List<Integer> numbers = List.of(1, 1, 1);
         //should
-        assertThatThrownBy(() -> listValidator.validateDuplicate(numbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.DUPLICATED_WINNING_NUMBERS);
-
+        assertThatIllegalArgumentException().isThrownBy(() -> listValidator.validateDuplicate(numbers))
+                .withMessageContaining(ErrorType.DUPLICATED_WINNING_NUMBERS);
     }
 
     @DisplayName("리스트에 범위를 벗어나는 요소가 존재하여 예외가 발생한다.")
@@ -63,9 +60,9 @@ class ListValidatorTest {
         final int min = 3;
         final int max = 10;
         //should
-        assertThatThrownBy(
-                () -> listValidator.validateRange(numbers, number -> numberValidator.validateRange(number, min, max)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorType.EXCEEDED_NUMBER_RANGE);
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> listValidator.validateRange(numbers, number -> numberValidator.validateRange(number, min, max)))
+                .withMessageContaining(ErrorType.EXCEEDED_NUMBER_RANGE);
     }
 
     static Stream<List<Integer>> outOfRangeList() {

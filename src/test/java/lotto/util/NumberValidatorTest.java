@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
 import lotto.error.ErrorType;
@@ -27,9 +27,8 @@ class NumberValidatorTest {
         final int max = 45;
 
         //should
-        assertThatThrownBy(() -> numberValidator.validateRange(number, min, max))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.EXCEEDED_NUMBER_RANGE);
+        assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateRange(number, min, max))
+                .withMessageContaining(ErrorType.EXCEEDED_NUMBER_RANGE);
     }
 
     @DisplayName("숫자 단위가 맞지 않아 예외가 발생한다.")
@@ -40,9 +39,8 @@ class NumberValidatorTest {
         final int unit = 1000;
 
         //should
-        assertThatThrownBy(() -> numberValidator.validateUnit(number, unit))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.INVALID_MONEY_FORMAT);
+        assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateUnit(number, unit))
+                .withMessageContaining(ErrorType.INVALID_MONEY_FORMAT);
     }
 
     @DisplayName("숫자가 숫자 리스트의 요소에 포함되어 있어 예외가 발생한다.")
@@ -53,8 +51,7 @@ class NumberValidatorTest {
         final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         //should
-        assertThatThrownBy(() -> numberValidator.validateContains(numbers, number))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorType.DUPLICATED_BONUS_NUMBER);
+        assertThatIllegalArgumentException().isThrownBy(() -> numberValidator.validateContains(numbers, number))
+                .withMessageContaining(ErrorType.DUPLICATED_BONUS_NUMBER);
     }
 }
