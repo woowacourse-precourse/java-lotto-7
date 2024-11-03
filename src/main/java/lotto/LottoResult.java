@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int ROUNDING_FACTOR = 1000;
+    private static final double PRECISION = 10.0;
     private final Map<Rank, Integer> result = new HashMap<>();
 
     public LottoResult() {
@@ -42,6 +44,6 @@ public class LottoResult {
         int totalPrize = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-        return Math.round((totalPrize / (double) purchaseAmount) * 1000) / 10.0;
+        return Math.round((totalPrize / (double) purchaseAmount) * ROUNDING_FACTOR ) / PRECISION;
     }
 }

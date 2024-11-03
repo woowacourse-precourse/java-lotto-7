@@ -7,6 +7,11 @@ import java.util.List;
 
 public class LottoPurchase {
 
+    private static final int LOTTO_PRICE_UNIT = 1000;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+
     public int getPurchaseAmount() {
         while (true) {
             try {
@@ -26,8 +31,8 @@ public class LottoPurchase {
         return Integer.parseInt(Console.readLine().trim());
     }
 
-    protected  void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
+    protected void validateAmount(int amount) {
+        if (amount % LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
@@ -35,7 +40,7 @@ public class LottoPurchase {
     public List<Lotto> generateLottoTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
             numbers.sort(Integer::compareTo);
             tickets.add(new Lotto(numbers));
         }

@@ -3,6 +3,9 @@ package lotto;
 import java.util.List;
 
 public class Application {
+
+    private static final int LOTTO_PRICE_UNIT = 1000;
+
     public static void main(String[] args) {
         LottoPurchase lottoPurchase = new LottoPurchase();
         WinningNumberInput winningNumberInput = new WinningNumberInput();
@@ -19,7 +22,7 @@ public class Application {
     }
 
     private static List<Lotto> generateAndPrintTickets(LottoPurchase lottoPurchase, int purchaseAmount) {
-        int ticketCount = purchaseAmount / 1000;
+        int ticketCount = purchaseAmount / LOTTO_PRICE_UNIT;
         List<Lotto> purchasedLottos = lottoPurchase.generateLottoTickets(ticketCount);
         System.out.println(ticketCount + "개를 구매했습니다.");
         lottoPurchase.printLottoTickets(purchasedLottos);
