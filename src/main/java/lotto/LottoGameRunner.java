@@ -73,27 +73,8 @@ public class LottoGameRunner {
 
     private List<WinRank> calculateWinRank(List<Integer> winningHistoty) {
         return winningHistoty.stream()
-                .map(LottoGameRunner::calculateRank)
+                .map(WinRank::fromMatchNumberCount)
                 .toList();
-    }
-
-    private static WinRank calculateRank(Integer winCount) {
-        if(winCount == 6) {
-            return WinRank.FIRST;
-        }
-        if(winCount == 7) {
-            return WinRank.SECOND;
-        }
-        if(winCount == 5) {
-            return WinRank.THIRD;
-        }
-        if(winCount == 4) {
-            return WinRank.FOURTH;
-        }
-        if(winCount == 3) {
-            return WinRank.FIFTH;
-        }
-        return WinRank.NONE;
     }
 
     private List<Integer> matchLottoNumbers() {
