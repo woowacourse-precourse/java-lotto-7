@@ -94,11 +94,11 @@ class LottoMachineTest {
 
     private static Stream<Arguments> lottoArgsGenerate() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1, 20, 34, 5, 4, 3), 5, Rank.NO5),
-                Arguments.of(Arrays.asList(1, 20, 34, 42, 4, 3), 5, Rank.NO4),
-                Arguments.of(Arrays.asList(1, 20, 34, 42, 32, 3), 5, Rank.NO3),
+                Arguments.of(Arrays.asList(1, 20, 34, 5, 4, 3), 11, Rank.NO5),
+                Arguments.of(Arrays.asList(1, 20, 34, 42, 4, 3), 11, Rank.NO4),
+                Arguments.of(Arrays.asList(1, 20, 34, 42, 32, 3), 11, Rank.NO3),
                 Arguments.of(Arrays.asList(1, 20, 34, 42, 32, 3), 6, Rank.NO2),
-                Arguments.of(Arrays.asList(1, 20, 34, 42, 32, 6), 5, Rank.NO1)
+                Arguments.of(Arrays.asList(1, 20, 34, 42, 32, 6), 11, Rank.NO1)
         );
     }
 

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
+import java.util.Arrays;
+import lotto.converter.StringToIntConverter;
 import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+
+    private final StringToIntConverter converter = new StringToIntConverter();
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -34,10 +38,13 @@ class LottoTest {
     @Test
     void 로또_번호_사이에_공백이_있어도_정상_입력된다() {
         // given
-        String rawValue = "1,  2,  3   , 4  , 5   , 6";
-        String[] value = rawValue.split(",");
+        String[] rawNumbers = "1,  2,  3   , 4  , 5   , 6".split(",");
+        List<Integer> numbers = Arrays.stream(rawNumbers)
+                .map(String::trim)
+                .map(converter::convert)
+                .toList();
 
         // when, then
-        assertThat(new Lotto(value)).isInstanceOf(Lotto.class);
+        assertThat(new Lotto(numbers)).isInstanceOf(Lotto.class);
     }
 }
