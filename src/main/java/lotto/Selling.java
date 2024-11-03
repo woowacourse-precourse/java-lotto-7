@@ -17,16 +17,17 @@ public class Selling {
         validatePrice(amount);
         int lottoCount = amount / PRICE;
         Lotto[] lottos = new Lotto[lottoCount];
-
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = genetateLottoNumbers();
             lottos[i] = new Lotto(numbers);
         }
-
         System.out.printf("%d개를 구매했습니다.%n", lottoCount);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
         return lottos;
+    }
+    private List<Integer> genetateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 }
