@@ -3,13 +3,13 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 public class RevenueCalculatorTest {
 
-    @BeforeEach
-    void set_up() {
+    @AfterEach
+    void 테스트_후_당첨_현황_초기화() {
         Arrays.stream(WinningRank.values()).forEach(WinningRank::resetSuccessMatch);
     }
 

@@ -3,14 +3,14 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class WinningRankTest {
 
-    @BeforeEach
-    void set_up() {
+    @AfterEach
+    void 테스트_후_당첨_현황_초기화() {
         Arrays.stream(WinningRank.values()).forEach(WinningRank::resetSuccessMatch);
     }
 
