@@ -24,6 +24,13 @@ public class Validator {
         }
     }
 
+    public static String isEmpty(String input) {
+        if(input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT_VALUE);
+        }
+        return input;
+    }
+
     public static int validateLottoNumber(String input) {
         try {
             int number = Integer.parseInt(input);
