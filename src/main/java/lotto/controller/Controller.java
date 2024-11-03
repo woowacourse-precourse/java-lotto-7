@@ -1,30 +1,47 @@
 package lotto.controller;
 
+import lotto.Service.ParsingService;
 import lotto.Service.ValidService;
+import lotto.model.User;
 import lotto.view.Input;
 import lotto.view.Output;
 
 public class Controller {
-    ValidService validService=new ValidService();
+    ValidService validService = new ValidService();
+    ParsingService parsingService = new ParsingService();
+    User user1 = new User();
 
 
-    public void start(){
-        Output.requestPurchaseAmount();
-        while (true){
-            String money= Input.getInput();
-            try{
-                validService.validMoney(money);
+    public void start() {
+        getMoney();
+        Output.requestHowManyLottos(parsingService.getMoney());
+    }
 
+    private void getMoney(){
+        while (true) {
+            String money = promptMoney();
+            try {
+                validMoney(money);
+                parsingService.setMoney(money);
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-
-
-
-
     }
+
+    private String promptMoney(){
+        Output.requestPurchaseAmount();
+        return Input.getInput();
+    }
+
+    private void validMoney(String money){
+        validService.checkNull(money);
+        validService.checkBig(money);
+        validService.checkNum(money);
+        validService.check1000s(money);
+    }
+
+
 
 }
