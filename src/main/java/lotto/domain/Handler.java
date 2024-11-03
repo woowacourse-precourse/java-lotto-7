@@ -2,6 +2,11 @@ package lotto.domain;
 
 import static lotto.domain.MAGIC_NUMBER.SIZE;
 import static lotto.domain.MAGIC_NUMBER.START;
+import static lotto.domain.Message.FIFTH;
+import static lotto.domain.Message.FIRST;
+import static lotto.domain.Message.FOURTH;
+import static lotto.domain.Message.SECOND;
+import static lotto.domain.Message.THIRD;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -56,19 +61,41 @@ public class Handler {
   }
   // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
   public String compareNumbersResult(Lotto<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
-    return "";
+    String result = "";
+    // 6개 일치
+    if(first()) {
+      // 어떻게 비교할 것인가 -> 반복문 vs 스트림
+      result = FIRST.getMessage();
+    }
+    // 5개 일치, 보너스 볼 일치
+    if(second()) {
+      result = SECOND.getMessage();
+    }
+    // 5개 일치
+    if(third()) {
+      result = THIRD.getMessage();
+    }
+    // 4개 일치
+    if(fourth()) {
+      result = FOURTH.getMessage();
+    }
+    // 3개 일치
+    if(fifth()) {
+      result = FIFTH.getMessage();
+    }
+    return result;
   }
 
 
 
   // 6. 비교한 결과를 토대로 총 수익률 계산한다
   // 형식) x개 일치 - y개,  수익률 z%
-  private void calculateRevenue(List<Integer> bonusN) {
+  private void calculateRevenue(List<Integer> bonusNumber) {
 
   }
 
   public String getResult(double revenue) {
-    String.format("총 수익률은 revenue%입니다.", %d)
+    String.format("총 수익률은 revenue%f입니다.", revenue);
     return "총 수익률은 62.5%입니다.";
   }
 }
