@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.view.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -8,19 +10,20 @@ public class Controller {
     OutputView output = new OutputView();
     Service service = new Service();
 
-    int money = 0;
-    public int sheets = 0;
     public List<List<Integer>> lottos;
     int[] winningNum;
-    int bonusNum;
+    static int bonusNum;
+    ArrayList<Integer> winningScore;
 
     public void start (){
-        money = input.getMoney();
-        sheets = money / 1000;
+        int money = input.getMoney();
+        int sheets = money / 1000;
         lottos = service.generator(sheets);
         output.printGeneratedNum(lottos);
         winningNum = input.getWinningNum();
         bonusNum = input.getBonusNum();
+        winningScore = service.checkWinning(lottos, winningNum);
+        service.countWinning(winningScore);
     }
     // TODO: 당첨 여부 확인 및 금액 계산
     // TODO: 총 이익률 계산
