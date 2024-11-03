@@ -10,13 +10,12 @@ public enum ErrorMessage {
     BONUS_NUMBER_DUPLICATE_WIN_NUMBERS("보너스 번호가 당첨 번호와 중복됩니다");
 
     private final String message;
-    private static final String PREFIX = "[ERROR] ";
 
     ErrorMessage(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return PREFIX + message;
+        return message;
     }
 }
