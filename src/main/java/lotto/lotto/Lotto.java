@@ -1,6 +1,7 @@
 package lotto.lotto;
 
 import java.util.List;
+import lotto.io.output.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +24,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void validateNoDuplicateWithBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
