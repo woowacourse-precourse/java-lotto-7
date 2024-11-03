@@ -5,10 +5,17 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private final Map<LottoRank, Integer> rankCount = new EnumMap<LottoRank, Integer>(LottoRank.class);
+    private final Map<LottoRank, Integer> rankCount;
+
+    public LottoResult(){
+        rankCount = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            rankCount.put(rank, 0);
+        }
+    }
 
     public void addRank(LottoRank rank){
-        rankCount.merge(rank, 1, Integer::sum);
+        rankCount.put(rank, rankCount.get(rank) + 1);
     }
 
     public long getTotalPrize(){
