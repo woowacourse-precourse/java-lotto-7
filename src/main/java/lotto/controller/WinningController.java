@@ -13,5 +13,10 @@ public class WinningController {
         this.winningInputView = winningInputView;
     }
 
-    public
+    public void presentWinningLottoTickets() {
+        String inputWinningNumbers = winningInputView.getInputWinningNumbers();
+
+        String inputBonusNumber = winningInputView.getInputBonusNumber();
+    }
+
 }

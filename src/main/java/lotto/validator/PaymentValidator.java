@@ -1,6 +1,7 @@
 package lotto.validator;
 
 public class PaymentValidator {
+    // payment라는 model을 활용하는 방법 생각해보기
 
     public boolean validPayment(String inputPayment) {
         try {
