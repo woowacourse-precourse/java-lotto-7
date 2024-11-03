@@ -24,4 +24,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 값이어야 합니다.");
+            }
+        }
+    }
 }
