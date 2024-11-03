@@ -2,15 +2,16 @@ package lotto;
 
 public class LottoCost {
 
-    private final int LOTTO_COST_MAX = 100000;
-    private final int LOTTO_COST_MIN = 1000;
-    private final int LOTTO_COST_UNIT = 1000;
+    private final static int LOTTO_COST_MAX = 100000;
+    private final static int LOTTO_COST_MIN = 1000;
+    public final static int LOTTO_COST_UNIT = 1000;
 
     private int cost;
 
     public LottoCost(int cost) {
         validateRange(cost);
         validateUnit(cost);
+        this.cost = cost;
     }
 
     public static LottoCost valueOf(String input) {
