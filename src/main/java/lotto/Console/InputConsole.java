@@ -2,11 +2,7 @@ package lotto.Console;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import java.util.Collections;
-import java.util.List;
-import lotto.CheckWinning;
 import lotto.Lotto;
-import lotto.enums.WinningType;
 import lotto.exception.CheckInput;
 
 public class InputConsole {
