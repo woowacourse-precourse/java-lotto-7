@@ -1,5 +1,6 @@
 package lotto.mvc.view;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 import lotto.mvc.model.Lotto;
@@ -31,5 +32,9 @@ public class OutputView {
                     winningAmount.getAmount(),
                     winningCounts.getOrDefault(winningAmount, 0));
         }
+    }
+
+    public void showTotalReturn(BigInteger totalReturn) {
+
     }
 }

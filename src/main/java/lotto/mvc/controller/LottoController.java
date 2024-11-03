@@ -1,7 +1,9 @@
 package lotto.mvc.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,6 +61,8 @@ public class LottoController {
         outputView.showWinningStatistics(winningCounts);
 
         BigInteger totalWinningAmount = calculateWinningAmount(winningCounts);
+
+        BigDecimal totalReturn = calculateTotalReturn(totalWinningAmount, purchaseAmount);
     }
 
     private Map<LottoWinningAmount, Integer> checkLottoWinning(List<Lotto> lottos, Lotto winningLotto, int bonus) {
@@ -149,5 +153,12 @@ public class LottoController {
         }
 
         return winningAmount;
+    }
+
+    private BigDecimal calculateTotalReturn(BigInteger totalWinningAmount, String purchaseAmount) {
+        BigDecimal purchase = new BigDecimal(purchaseAmount);
+        BigDecimal totalWinning = new BigDecimal(totalWinningAmount);
+
+        return totalWinning.divide(purchase, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
     }
 }
