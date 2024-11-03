@@ -22,6 +22,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateUnique(numbers);
+        validateRange(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -39,6 +40,12 @@ public class Lotto {
     private void validateUnique(List<Integer> numbers){
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if(numbers.stream().anyMatch(integer -> integer < 0 || integer >45)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.");
         }
     }
 }

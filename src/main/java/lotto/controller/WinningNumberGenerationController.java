@@ -20,10 +20,12 @@ public class WinningNumberGenerationController {
         this.winningNumberGenerator = winningNumberGenerator;
     }
 
-    public Lotto createWinningNumber(){
+    public Lotto createWinningNumber() {
         inputView.printRequestWinningNumbers();
-        String rawWinningNumbers = repeatUntilValid(ioController::inputWinningNumbers);
-        return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
+        return repeatUntilValid(() -> {
+            String rawWinningNumbers = ioController.inputWinningNumbers();
+            return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
+        });
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
