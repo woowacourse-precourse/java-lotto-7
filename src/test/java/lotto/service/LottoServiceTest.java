@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.domains.Lotto;
+import lotto.enums.LottoRank;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -51,6 +52,16 @@ public class LottoServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             lottoService.setWinningLotto(inputValue);
         });
+    }
+
+    @Test
+    void 당첨_금액_테스트() {
+        int[] counts = {0, 2, 3, 1, 0, 0};
+        long cost = 0L;
+        for (LottoRank rank : LottoRank.values()) {
+            cost += (long)counts[rank.ordinal()] * rank.getGetPrize();
+        }
+        assertEquals(cost, lottoService.getWinningCost(counts));
     }
 
     @BeforeAll
