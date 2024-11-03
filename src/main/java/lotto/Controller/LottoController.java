@@ -45,7 +45,7 @@ public class LottoController {
                 gainPurchaseAmount(); return;
             }
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-            gainPurchaseAmount();
+            gainPurchaseAmount(); return;
         }
         this.myInfo.setPurchasePrice(purchasePrice);
     }
@@ -55,8 +55,8 @@ public class LottoController {
         if (purchasePrice % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
-        OutputView.printCount(lottoCount);
         OutputView.printBlank();
+        OutputView.printCount(lottoCount);
         this.myInfo.setLottoCount(lottoCount);
     }
 
