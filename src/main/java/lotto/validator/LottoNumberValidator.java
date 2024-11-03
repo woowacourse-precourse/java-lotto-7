@@ -9,20 +9,20 @@ public class LottoNumberValidator {
     private LottoNumberValidator() {
     }
 
-    public static void validateNumberCount(List<String> tokens) {
-        if (tokens.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
-        }
-    }
+//    public static void validateNumberCount(List<String> tokens) {
+//        if (tokens.size() != 6) {
+//            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
+//        }
+//    }
 
-    public static void validateDuplicatedNumber(List<Integer> numbers) {
-        boolean hasDuplicates = numbers.stream()
-                .anyMatch(number -> Collections.frequency(numbers, number) > 1);
-
-        if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 번호가 존재합니다.");
-        }
-    }
+//    public static void validateDuplicatedNumber(List<Integer> numbers) {
+//        boolean hasDuplicates = numbers.stream()
+//                .anyMatch(number -> Collections.frequency(numbers, number) > 1);
+//
+//        if (hasDuplicates) {
+//            throw new IllegalArgumentException("[ERROR] 중복되는 번호가 존재합니다.");
+//        }
+//    }
 
     public static void validateIntegers(List<String> tokens) {
         for (String token : tokens) {
@@ -39,11 +39,11 @@ public class LottoNumberValidator {
         }
     }
 
-    public static void validateRanges(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            validateNumberRange(number);
-        }
-    }
+//    public static void validateRanges(List<Integer> numbers) {
+//        for (Integer number : numbers) {
+//            validateNumberRange(number);
+//        }
+//    }
 
     public static void validateNumberRange(Integer number) {
         if (number < MIN || number > MAX) {
