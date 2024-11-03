@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoConstants;
+import lotto.util.ValidationUtil;
 
 public class WinningNumberInput {
 
@@ -24,7 +25,7 @@ public class WinningNumberInput {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
 
-        validateBonusNumber(bonusNumber, winningNumbers);
+        ValidationUtil.validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
@@ -40,36 +41,8 @@ public class WinningNumberInput {
     }
 
     private static void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
-        }
-
-        if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-        }
-
-        if (!areNumbersInRange(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-        }
-        if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER.getValue() || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private static boolean hasDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = Set.copyOf(numbers);
-        return uniqueNumbers.size() != numbers.size();
-    }
-
-    private static boolean areNumbersInRange(List<Integer> numbers) {
-        return numbers.stream()
-                .allMatch(number -> number >= LottoConstants.LOTTO_MIN_NUMBER.getValue() &&
-                        number <= LottoConstants.LOTTO_MAX_NUMBER.getValue());
+        ValidationUtil.validateNumberCount(numbers);
+        ValidationUtil.validateRange(numbers);
+        ValidationUtil.validateNoDuplicates(numbers);
     }
 }

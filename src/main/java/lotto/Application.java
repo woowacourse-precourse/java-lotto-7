@@ -12,6 +12,7 @@ import lotto.enums.Rank;
 import lotto.service.LottoGenerator;
 import lotto.service.WinningNumberInput;
 import lotto.service.WinningResultCalculator;
+import lotto.util.ValidationUtil;
 
 public class Application {
     public static void main(String[] args) {
@@ -49,28 +50,13 @@ public class Application {
             String input = Console.readLine();
 
             try {
-                amount = validateAmount(input);
+                amount = ValidationUtil.validateAmount(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         System.out.println();
-
-        return amount;
-    }
-
-    private static int validateAmount(final String input) {
-        int amount;
-        try {
-            amount = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
-        }
-
-        if (amount <= 0 || amount % LottoConstants.LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
-        }
 
         return amount;
     }
