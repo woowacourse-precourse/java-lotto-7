@@ -1,4 +1,4 @@
-package lotto.model.draw;
+package lotto.model.purchase;
 
 import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
@@ -6,8 +6,6 @@ import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.purchase.Lotto;
-import lotto.model.purchase.Purchase;
 import org.junit.jupiter.api.Test;
 
 class PurchaseTest {
