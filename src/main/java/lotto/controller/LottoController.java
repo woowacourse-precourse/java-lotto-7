@@ -4,6 +4,7 @@ import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
+import lotto.global.PrintMessage;
 import lotto.global.exception.CustomException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,6 +30,7 @@ public class LottoController {
     }
 
     private Amount requestAmount() {
+        outputView.printlnMessage(PrintMessage.INPUT_AMOUNT.getMessage());
         try {
             Amount amount = new Amount(inputView.enterAmount());
             outputView.printEmptyLine();
@@ -46,6 +48,7 @@ public class LottoController {
     }
 
     private Lotto requestWinningNumbers() {
+        outputView.printlnMessage(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
         try {
             Lotto lotto = new Lotto(inputView.enterWinningNumbers());
             outputView.printEmptyLine();
@@ -57,6 +60,7 @@ public class LottoController {
     }
 
     private int requestBonusNumber(Lotto winningNumbers) {
+        outputView.printlnMessage(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
         try {
             int number = inputView.enterBonusNumber();
             winningNumbers.validateNumber(number);

@@ -4,13 +4,11 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.global.PrintMessage;
 import lotto.global.exception.CustomException;
 import lotto.global.exception.ErrorMessage;
 
 public class InputView {
     public int enterAmount() {
-        System.out.println(PrintMessage.INPUT_AMOUNT.getMessage());
         String input = Console.readLine();
         validateStringFormat(input);
         validateNumberFormat(input);
@@ -18,7 +16,6 @@ public class InputView {
     }
 
     public List<Integer> enterWinningNumbers() {
-        System.out.println(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
         String input = Console.readLine();
         validateStringFormat(input);
         validateNumbersFormat(input);
@@ -26,7 +23,6 @@ public class InputView {
     }
 
     public int enterBonusNumber() {
-        System.out.println(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
         validateStringFormat(input);
         validateNumberFormat(input);
