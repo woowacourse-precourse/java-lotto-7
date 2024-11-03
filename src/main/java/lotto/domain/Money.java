@@ -15,7 +15,6 @@ public class Money {
     private void validateMoney(long money) {
         validateMinimumAmount(money);
         validateDivisibleByLottoPrice(money);
-
     }
 
     private void validateMinimumAmount(long money) {
@@ -25,15 +24,15 @@ public class Money {
     }
 
     private void validateDivisibleByLottoPrice(long money) {
-        if (money % LOTTO_PRICE_UNIT != 0) {
+        if (isNotDivisibleByUnit(money)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT);
         }
+    }
+    private boolean isNotDivisibleByUnit(long money) {
+        return money % LOTTO_PRICE_UNIT != 0;
     }
 
     public long getLottoQuantity() {
         return purchaseAmount / LOTTO_PRICE_UNIT;
     }
-
-
-
 }
