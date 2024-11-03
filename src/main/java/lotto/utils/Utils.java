@@ -35,11 +35,11 @@ public class Utils {
     }
 
     public Map<Rank, Integer> evaluateLottoRanks(Lotto winningNumber, int bonusNumber, List<Lotto> lottos) {
-        Map<Rank, Integer> map = new HashMap<>();
+        Map<Rank, Integer> resultCounts = new HashMap<>();
         for (Lotto lotto : lottos) {
-            matchLottoNumber(map, winningNumber, bonusNumber, lotto);
+            matchLottoNumber(resultCounts, winningNumber, bonusNumber, lotto);
         }
-        return map;
+        return resultCounts;
     }
 
     private void matchLottoNumber(Map<Rank, Integer> map, Lotto winningNumber, int bonusNumber, Lotto lotto) {
