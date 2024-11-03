@@ -40,18 +40,20 @@ public class UserView {
 
         try {
             int amount = Integer.parseInt(inputAmount);
-
-            if (amount < 1000) {
-                throw new LottoArgumentException(LottoErrorMessage.LESS_MIN_AMOUNT_ERROR);
-            }
-
-            if (amount % 1000 != 0) {
-                throw new LottoArgumentException(LottoErrorMessage.DIV_1_000_AMOUNT_ERROR);
-            }
-
+            isValidateAmount(amount);
             return amount;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
+        }
+    }
+
+    private static void isValidateAmount(int amount) {
+        if (amount < 1000) {
+            throw new LottoArgumentException(LottoErrorMessage.LESS_MIN_AMOUNT_ERROR);
+        }
+
+        if (amount % 1000 != 0) {
+            throw new LottoArgumentException(LottoErrorMessage.DIV_1_000_AMOUNT_ERROR);
         }
     }
 
@@ -88,25 +90,26 @@ public class UserView {
         try {
             List<Integer> winNumbers = Arrays
                     .stream(inputWinNumbers.split(","))
-                    .map(String::strip)
-                    .map(Integer::parseInt)
+                    .map(String::strip).map(Integer::parseInt)
                     .toList();
-
-            if (winNumbers.size() != 6) {
-                throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_COUNT_ERROR);
-            }
-
-            if (!checkValidRangeNumbers(winNumbers)) {
-                throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
-            }
-
-            if (checkDuplicateNumbers(winNumbers)) {
-                throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_DUPLICATE_ERROR);
-            }
-
+            isValidateWinNumbers(winNumbers);
             return winNumbers;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_CONTAINS_LETTER_ERROR);
+        }
+    }
+
+    private static void isValidateWinNumbers(List<Integer> winNumbers) {
+        if (winNumbers.size() != 6) {
+            throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_COUNT_ERROR);
+        }
+
+        if (!checkValidRangeNumbers(winNumbers)) {
+            throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
+        }
+
+        if (checkDuplicateNumbers(winNumbers)) {
+            throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_DUPLICATE_ERROR);
         }
     }
 
@@ -140,18 +143,20 @@ public class UserView {
 
         try {
             int bonusNumber = Integer.parseInt(inputBonusNumber);
-
-            if (bonusNumber < 1 || 45 < bonusNumber) {
-                throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
-            }
-
-            if (checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
-                throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_WIN_BONUS_NUMBER_ERROR);
-            }
-
+            isValidateBonusNumber(bonusNumber, winNumbers);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
+        }
+    }
+
+    private static void isValidateBonusNumber(int bonusNumber, List<Integer> winNumbers) {
+        if (bonusNumber < 1 || 45 < bonusNumber) {
+            throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
+        }
+
+        if (checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
+            throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_WIN_BONUS_NUMBER_ERROR);
         }
     }
 
