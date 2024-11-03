@@ -8,8 +8,14 @@ import lotto.model.LottoRank;
 public class OutputFormatter {
 
     private static final String NEXT_LINE = System.lineSeparator();
-    private static final String RATE_OF_RETURN_FORMAT = "%,.1f";
+    private static final String AMOUNT_QUANTITY_FORMAT = "%s%d개를 구매했습니다.";
+    private static final String LOTTO_WINNING_RESULT_FORMAT = "%s - %d개";
+    private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %,.1f%%입니다.";
     private static final long NO_LUCK_AMOUNT = 0L;
+
+    public static String formatingQuantity(int quantity) {
+        return String.format(AMOUNT_QUANTITY_FORMAT, NEXT_LINE, quantity);
+    }
 
     public static String formatingWinningResult(Map<LottoRank, Integer> winningResult) {
         return formatResult(winningResult);
@@ -32,8 +38,12 @@ public class OutputFormatter {
 
     private static String createFormat(Map<LottoRank, Integer> winningResult, LottoRank lottoRank) {
         String lottoDescription = lottoRank.getDescription();
-        Integer lottoWinningCount = winningResult.getOrDefault(lottoRank, 0);
+        Integer lottoWinningCount = getLottoWinningCount(winningResult, lottoRank);
 
-        return lottoDescription + " - " + lottoWinningCount + "개";
+        return String.format(LOTTO_WINNING_RESULT_FORMAT, lottoDescription, lottoWinningCount);
+    }
+
+    private static Integer getLottoWinningCount(Map<LottoRank, Integer> winningResult, LottoRank lottoRank) {
+        return winningResult.getOrDefault(lottoRank, 0);
     }
 }

@@ -7,13 +7,18 @@ import lotto.model.Lottos;
 public class OutputView {
 
     private static final String NEXT_LINE = System.lineSeparator();
+    private static final String WINNING_RESULT_INFORMATION_MESSAGE = NEXT_LINE + "당첨 통계" + NEXT_LINE + "---";
+    private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = NEXT_LINE + "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBER_MESSAGE = NEXT_LINE + "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = NEXT_LINE + "보너스 번호를 입력해 주세요.";
 
     public void printPurchaseAmountMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
 
     public void printQuantity(int quantity) {
-        System.out.println(NEXT_LINE + quantity + "개를 구매했습니다.");
+        String formatingQuantity = OutputFormatter.formatingQuantity(quantity);
+        System.out.println(formatingQuantity);
     }
 
     public void printLottos(Lottos lottos) {
@@ -21,11 +26,11 @@ public class OutputView {
     }
 
     public void printWinningNumbersMessage() {
-        System.out.println(NEXT_LINE + "당첨 번호를 입력해 주세요.");
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
     }
 
     public void printBonusNumberMessage() {
-        System.out.println(NEXT_LINE + "보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
     }
 
     public void printLottoWinningResult(Map<LottoRank, Integer> winningResult) {
@@ -36,7 +41,7 @@ public class OutputView {
 
     public void printRateOrReturn(double rateOfReturn) {
         String formatRateOfReturn = OutputFormatter.formatingRateOfReturn(rateOfReturn);
-        System.out.println("총 수익률은 " + formatRateOfReturn + "%입니다.");
+        System.out.println(formatRateOfReturn);
     }
 
     public void printErrorMessage(String exceptionMessage) {
@@ -44,7 +49,6 @@ public class OutputView {
     }
 
     private void printWinningResultMessage() {
-        System.out.println(NEXT_LINE + "당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_RESULT_INFORMATION_MESSAGE);
     }
 }
