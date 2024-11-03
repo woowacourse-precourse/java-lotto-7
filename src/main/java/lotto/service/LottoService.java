@@ -4,10 +4,7 @@ import lotto.Lotto;
 import lotto.util.ParseUtil;
 import lotto.util.RandomUtil;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,13 +24,15 @@ public class LottoService {
     public List<Lotto> generateLottos(int size) {
         List<Lotto> lottos = IntStream.range(0, size)
                 .mapToObj(i -> {
-                    Lotto lotto = new Lotto(RandomUtil.getSixRandomNumbers(1, 45));
-                    Collections.sort(lotto.getNumbers()); // Lotto의 numbers를 정렬
-                    return lotto;
+                    // 가변 리스트로 복사하여 생성
+                    List<Integer> numbers = new ArrayList<>(RandomUtil.getSixRandomNumbers(1, 45));
+                    Collections.sort(numbers); // 정렬
+                    return new Lotto(numbers);
                 })
                 .collect(Collectors.toList());
         return lottos;
     }
+
 
     public Map<String, Integer> getMatchCounts(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> matchCounts = new HashMap<>();
