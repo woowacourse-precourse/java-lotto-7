@@ -2,6 +2,7 @@ package validator;
 
 import lotto.validator.LottoPurchaseValidator;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoPurchaseValidatorTest {
@@ -25,10 +26,12 @@ class LottoPurchaseValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액이 너무 큽니다. 다시 입력해 주세요.");
     }
+
     @Test
     void 정상_입력_테스트() {
         LottoPurchaseValidator.validatePurchaseStringInput("5000");
     }
+
     @Test
     void 정상_금액_테스트() {
         LottoPurchaseValidator.validateAmount(3000);
