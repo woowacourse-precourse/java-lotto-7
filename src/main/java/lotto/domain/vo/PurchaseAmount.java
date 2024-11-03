@@ -17,7 +17,7 @@ public class PurchaseAmount {
     }
 
     private static void validate(Integer amount) {
-        if(amount < LOTTO_PRICE) {
+        if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_INSUFFICIENT.getFormattedMessage(LOTTO_PRICE));
         }
         if (isMoneyLeft(amount)) {
@@ -31,5 +31,9 @@ public class PurchaseAmount {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public Integer calculateLottoCount() {
+        return amount / LOTTO_PRICE;
     }
 }
