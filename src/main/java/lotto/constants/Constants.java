@@ -17,6 +17,7 @@ public class Constants {
     public static final int ZERO = 0;
     public static final int MAX_USER_MONEY = 100_000;
     public static final int MIN_USER_MONEY = 0;
+    public static final int BONUS_LOTTO_COUNT = 5;
 
 
     public static final String DELIMITER = ",";
