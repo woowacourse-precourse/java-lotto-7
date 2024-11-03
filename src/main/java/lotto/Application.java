@@ -17,12 +17,10 @@ public class Application {
         ArrayList<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        for (Lotto lottoTicket : lottoTickets) {
-            // 5.1 일치하는 번호의 개수를 확인하는 기능
-            int matchCount = lottoTicket.getMatchCount(winningNumbers);
-            // 5.2 보너스 번호의 일치 여부를 확인하는 기능
-            boolean hasBonusNumber = lottoTicket.hasBonusNumber(bonusNumber);
-        }
+        RankCount rankCount = new RankCount();
+        rankCount.checkLottoResult(lottoTickets, winningNumbers, bonusNumber);
+        // 5.3 당첨 내역을 출력하는 기능
+        rankCount.printResult();
     }
 
     private static String getInputString(String message) {
