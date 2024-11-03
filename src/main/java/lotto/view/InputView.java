@@ -30,16 +30,11 @@ public abstract class InputView {
     public static Bonus readBonus() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
-        checkIfBonusIsValid(input);
+        checkIfNumberIsValid(input);
         return new Bonus(Integer.parseInt(input));
     }
 
-    private static void checkIfBonusIsValid(String input) {
-        isInputEmpty(input);
-        isNumeric(input);
-    }
-
-    private static void checkIfPurchaseAmountIsValid(String input) {
+    private static void checkIfNumberIsValid(String input) {
         isInputEmpty(input);
         isNumeric(input);
     }
