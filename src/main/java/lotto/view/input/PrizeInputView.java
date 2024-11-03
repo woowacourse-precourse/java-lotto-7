@@ -2,6 +2,7 @@ package lotto.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.StringConverter.split;
+import static lotto.util.StringConverter.toInt;
 import static lotto.util.StringConverter.toInts;
 import static lotto.util.StringConverter.trim;
 
@@ -17,7 +18,7 @@ public class PrizeInputView {
         List<Integer> prizeNumber = toInts(split(trim(readLine())));
 
         System.out.println(INPUT_BONUS_NUMBER);
-
+        int bonusNumber = toInt(trim(readLine()));
     }
 
 }
