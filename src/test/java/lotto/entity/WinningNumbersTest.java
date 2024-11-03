@@ -33,4 +33,15 @@ class WinningNumbersTest {
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
         assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage(), exception.getMessage());
     }
+
+    @Test
+    @DisplayName("메인 숫자에 중복된 값이 있을 때 예외 발생")
+    void throwExceptionWhenMainNumbersHaveDuplicates() {
+        List<Integer> mainNumbers = List.of(1, 2, 3, 3, 4, 5); // 숫자 3이 중복
+        int bonusNumber = 7;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(mainNumbers, bonusNumber));
+        assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
+    }
 }
