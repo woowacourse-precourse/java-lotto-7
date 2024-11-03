@@ -17,9 +17,6 @@ public enum WinningType {
         this.count = count;
     }
 
-    public int getMatchCount(){
-        return matchCount;
-    }
 
     public int getPrizeMoney(){
         return prizeMoney;
@@ -31,5 +28,15 @@ public enum WinningType {
 
     public void countUp(){
         this.count += 1;
+    }
+
+    public static long getAllProfit(){
+        long allProfit = 0;
+
+        for(WinningType type : WinningType.values()){
+            allProfit += (long)type.getCount() * type.prizeMoney;
+        }
+
+        return allProfit;
     }
 }
