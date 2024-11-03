@@ -29,6 +29,10 @@ public enum Prize {
         return Prize.FAIL;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getMoney() {
         return money;
     }
