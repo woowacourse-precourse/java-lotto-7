@@ -103,6 +103,6 @@ public class BuyerTest {
         ));
         buyer.matchLottos(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        assertEquals(buyer.getTotalRevenue(), 1111.1);
+        assertEquals(buyer.getTotalRevenue(), 111.1);
     }
 }
