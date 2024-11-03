@@ -1,7 +1,18 @@
 package lotto.model;
 
 public class Purchase {
-    public int convertMoneyToTicket(int amount) {
-        return amount / 1000;
+    private final int ticketCount;
+
+    private Purchase(int ticketCount) {
+        this.ticketCount = ticketCount;
+    }
+
+    public static Purchase exchangeTickets(int money) {
+        int ticketCount = money / 1000;
+        return new Purchase(ticketCount);
+    }
+
+    public int getTicketCount() {
+        return ticketCount;
     }
 }
