@@ -155,9 +155,7 @@
 - isBonusNotInWinning
   - 보너스 번호가 당첨 번호와 동일하지 않은지 확인한다.
 - containsWinningNumber
-  - Lotto에 HashSet과 동일한 값이 있는지 확인한다.
-- removeWinningNumber
-  - Lotto에서 동일한 값 제거한다.
+  - Lotto에 HashSet과 동일한 값이 있는지 확인하여 제거한다.
 - containsBonusNumber
   - Lotto에 보너스 번호와 동일한 값이 있는지 확인한다.
 - checkBonusNumber
