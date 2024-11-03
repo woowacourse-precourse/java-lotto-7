@@ -1,11 +1,11 @@
 package lotto.dto;
 
-public class inputDto {
+public class InputDto {
     private String purchaseAmountStr;
     private String winningNumStr;
     private String bonusNumber;
 
-    public inputDto(String purchaseAmountStr, String winningNumStr, String bonusNumber) {
+    public InputDto(String purchaseAmountStr, String winningNumStr, String bonusNumber) {
         this.purchaseAmountStr = purchaseAmountStr;
         this.winningNumStr = winningNumStr;
         this.bonusNumber = bonusNumber;
