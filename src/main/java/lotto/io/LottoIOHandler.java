@@ -25,4 +25,9 @@ public class LottoIOHandler {
         outputHandler.askWinningNumbers();
         return inputHandler.getWinningNumbers();
     }
+
+    public int askBonusNumber() {
+        outputHandler.askBonusNumber();
+        return inputHandler.getBonusNumber();
+    }
 }

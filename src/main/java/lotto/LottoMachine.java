@@ -17,6 +17,7 @@ public class LottoMachine {
         lottoIOHandler.showLottos(lottoPool);
 
         Lotto winningNumbers = lottoIOHandler.askWinningNumbers();
+        int bonusNumber = lottoIOHandler.askBonusNumber();
     }
 
     private int calculateQuantity(int purchaseAmount) {

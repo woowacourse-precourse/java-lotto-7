@@ -26,6 +26,14 @@ public class InputHandler {
         return new Lotto(winningNumbers);
     }
 
+    public int getBonusNumber() {
+        String userInput = readLine();
+        int bonusNumber = parseStringToInt(userInput);
+        validateBonusNumber(bonusNumber);
+
+        return bonusNumber;
+    }
+
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
@@ -40,6 +48,12 @@ public class InputHandler {
         return Arrays.stream(splitedInput)
                 .map(this::parseStringToInt)
                 .toList();
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다.");
+        }
     }
 
     private int parseStringToInt(String userInput) {
