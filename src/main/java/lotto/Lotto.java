@@ -85,7 +85,7 @@ public class Lotto {
         public static void validateNumberRange(List<Integer> numbers) {
             for(Integer number : numbers) {
                 if (number < MIN.value || number > MAX.value) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
             }
         }

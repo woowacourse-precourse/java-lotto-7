@@ -105,6 +105,7 @@ public class Application {
                 String input = Console.readLine();
 
                 int bonusNumber = parseBonusNumber(input);
+                validateBonusNumber(bonusNumber);
 
                 System.out.println();
                 return bonusNumber;
@@ -120,6 +121,12 @@ public class Application {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 정수형이어야 합니다.");
+        }
+    }
+
+    private static void validateBonusNumber(int input) {
+        if(input < 1 || input > 45){
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }
