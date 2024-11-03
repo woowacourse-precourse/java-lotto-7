@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 import static lotto.exception.ErrorMessages.*;
 import static lotto.util.Validator.isInteger;
 import static lotto.util.Validator.isPositive;
@@ -29,5 +31,18 @@ public class Cost {
     public boolean isDividedThousand(String value){
         int castedValue = Integer.parseInt(value);
         return castedValue % 1000 == 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cost cost = (Cost) o;
+        return value == cost.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
