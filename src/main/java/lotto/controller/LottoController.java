@@ -5,12 +5,11 @@ import static lotto.validation.WinningNumberValidation.parseValidatedBonusNumber
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import lotto.model.Lotto;
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Map;
+import lotto.model.LottoPrizeCalculator;
 import lotto.model.LottoTickets;
+import lotto.model.Prize;
 import lotto.model.WinningLotto;
 import lotto.validation.WinningNumberValidation;
 
@@ -24,6 +23,11 @@ public class LottoController {
         LottoTickets lottoTickets = new LottoTickets(attemptCount);
         WinningLotto winningLotto = createWinningLotto();
 
+        Map<Prize,Integer> lottoResult = LottoPrizeCalculator.calculate(lottoTickets,winningLotto);
+        double profitRatio = LottoPrizeCalculator.calculateProfitRatio(attemptCount,LottoPrizeCalculator.getTotalAmount());
+        printWinningStatisticsMessage();
+        printResult(lottoResult);
+        printProfitRatio(profitRatio);
     }
 
     private WinningLotto createWinningLotto() {

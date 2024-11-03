@@ -28,4 +28,13 @@ public enum Prize {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
+    public static Prize valueOf(int matchCount, boolean matchBonus){
+        for (Prize prize: Prize.values()){
+            if(prize.matchCount == matchCount && prize.matchBonus==matchBonus){
+                return prize;
+            }
+        }
+        return null;
+    }
 }

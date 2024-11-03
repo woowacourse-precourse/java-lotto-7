@@ -2,7 +2,6 @@ package lotto.validation;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumberValidation {
     private final static String INVALID_WINNING_NUMBER_INPUT = "[ERROR] 올바른 당첨 번호를 입력해 주세요";
