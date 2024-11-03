@@ -7,6 +7,8 @@ import lotto.view.InputView;
 
 import java.util.List;
 
+import static lotto.util.message.Messages.*;
+
 public class LottoController {
     private final InputView inputView;
     private final LottoService lottoService;
@@ -27,7 +29,7 @@ public class LottoController {
     }
 
     private void printLottoStatus(List<Lotto> lottoTicket) {
-        System.out.println(lottoTicket.size() + "개를 구매했습니다.");
+        System.out.println(lottoTicket.size() + QUANTITY_OF_LOTTO_MESSAGE);
         for(Lotto lotto:lottoTicket){
             System.out.println(lotto);
         }

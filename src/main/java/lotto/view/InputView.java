@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.InputValidator;
 
+import static lotto.util.message.Messages.*;
+
 public class InputView {
     private final InputValidator inputValidator;
 
@@ -21,7 +23,7 @@ public class InputView {
     }
 
     private int getPriceInput() {
-        System.out.println("구매하실 금액을 입력해 주세요.");
+        System.out.println(INPUT_MESSAGE);
         String str = Console.readLine();
         return inputValidator.validatePrice(str);
     }
