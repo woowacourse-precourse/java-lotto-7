@@ -17,8 +17,22 @@ import java.util.function.Supplier;
 public class LottoConfig {
     private static final Integer MAX_RETRIES = 100;
 
-    public static void configure() {
+    public static void registerCoreServices() {
+        Container.register(LottoGenerator.class, retryOnFail(LottoGenerator::new));
+        Container.register(LottoResult.class, LottoResult::new);
 
+        Container.register(ProfitCalculator.class, () -> {
+            LottoResult result = Container.getInstance(LottoResult.class);
+            return new ProfitCalculator(result);
+        });
+
+        Container.register(WinningChecker.class, () -> {
+                    LottoResult result = Container.getInstance(LottoResult.class);
+                    return new WinningChecker(result);
+                });
+    }
+
+    public static void registerInputDependencies() {
         Container.register(Money.class,
                 retryOnFail(() -> new Money(Input.inputPrice())));
 
@@ -31,20 +45,6 @@ public class LottoConfig {
                                 Input.inputBonusNumber(),
                                 Container.getInstance(WinningNumber.class))
                 ));
-
-        Container.register(LottoGenerator.class, retryOnFail(LottoGenerator::new));
-
-        Container.register(LottoResult.class, LottoResult::new);
-
-        Container.register(ProfitCalculator.class, () -> {
-            LottoResult result = Container.getInstance(LottoResult.class);
-            return new ProfitCalculator(result);
-        });
-
-        Container.register(WinningChecker.class, () -> {
-                    LottoResult result = Container.getInstance(LottoResult.class);
-                    return new WinningChecker(result);
-                });
     }
 
     private static <T> Supplier<T> retryOnFail(Supplier<T> supplier) {
