@@ -7,6 +7,7 @@ public class LottoChecker {
     public void lottoCheckingProcess(List<Lotto> allLottos, List<Integer> winningNumbers, Integer bonusNumber, LottoResult lottoResult) {
         for (Lotto lotto : allLottos) {
             Map<String, Object> result = analyzeLottoResult(lotto, winningNumbers, bonusNumber);
+            lottoResult.recordResult((Integer) result.get("matchCount"), (Boolean) result.get("isBonusMatched"));
         }
     }
 
