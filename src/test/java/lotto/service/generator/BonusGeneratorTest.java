@@ -1,11 +1,13 @@
 package lotto.service.generator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -32,5 +34,16 @@ class BonusGeneratorTest {
     void 보너스_번호가_당첨_번호와_중복될_경우_예외가_발생한다(String input) {
         assertThatThrownBy(() -> BonusGenerator.create(winning, input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 올바르게 입력되었을 경우 결과를 반환한다.")
+    @Test
+    void 보너스_번호가_올바르게_입력되었을_경우_결과를_반환한다() {
+        String bonus = "7";
+        Integer correctBonus = 7;
+
+        BonusGenerator bonusGenerator = BonusGenerator.create(winning, bonus);
+
+        assertThat(bonusGenerator.getBonus().getNumber()).isEqualTo(correctBonus);
     }
 }
