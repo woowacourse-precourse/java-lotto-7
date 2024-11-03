@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.model.Computer;
 import lotto.model.Lotto;
@@ -18,6 +19,8 @@ public class MachineController {
 
         computer.compareLotto(user.getLotto());
         float rateOfReturn = computer.calculateRateOfReturn(user.getQuantity());
+
+        finish(computer.getResults(), rateOfReturn);
     }
 
     private User createUser() {
@@ -49,5 +52,12 @@ public class MachineController {
         for (Lotto oneOfLotto : lotto) {
             OutputView.printLottoNumbers(oneOfLotto.getNumbers());
         }
+    }
+
+    private void finish(HashMap<Integer, Integer> results, float rateOfReturn) {
+        OutputView.printBlankLine();
+
+        OutputView.printWinningStatistics();
+        OutputView.printResults(results);
     }
 }
