@@ -8,7 +8,7 @@ public class RandomNumberMachine {
 
     private RandomNumberMachine() {}
 
-    public static List<Integer> createLotto() {
+    public static List<Integer> createNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
