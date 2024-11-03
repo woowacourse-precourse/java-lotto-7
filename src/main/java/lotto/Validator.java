@@ -17,6 +17,7 @@ public class Validator {
 
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
+    private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력은 비어있을 수 없습니다.";
 
     private void checkIsNumber(String input) {
         try {
@@ -40,6 +41,9 @@ public class Validator {
 
     public void validatePurchaseAmount(String purchaseInput) {
         try {
+            if (purchaseInput.isEmpty()) {
+                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
+            }
             checkIsNumber(purchaseInput);
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
@@ -52,8 +56,11 @@ public class Validator {
     }
 
     public void validateWinningNumbers(String winningNumbersInput) {
-        String[] splitInputs = winningNumbersInput.split(WINNING_NUMBER_OPERATOR);
         try {
+            if (winningNumbersInput.isEmpty()) {
+                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
+            }
+            String[] splitInputs = winningNumbersInput.split(WINNING_NUMBER_OPERATOR);
             Arrays.stream(splitInputs).forEach(this::checkIsNumber);
 
             Set<Integer> winningDigits = new HashSet<>();
@@ -76,6 +83,9 @@ public class Validator {
 
     public void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
         try {
+            if (bonusNumberInput.isEmpty()) {
+                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
+            }
             checkIsNumber(bonusNumberInput);
             int num = Integer.parseInt(bonusNumberInput);
             checkIsPositiveNumber(num);
