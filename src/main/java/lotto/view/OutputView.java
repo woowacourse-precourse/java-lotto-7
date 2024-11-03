@@ -1,5 +1,13 @@
 package lotto.view;
 
+import static lotto.constant.OutputMessage.EARNING_RATE_FORMAT;
+import static lotto.constant.OutputMessage.LOTTO_COUNT_FORMAT;
+import static lotto.constant.OutputMessage.LOTTO_FORMAT;
+import static lotto.constant.OutputMessage.LOTTO_NUMBER_DELIMITER;
+import static lotto.constant.OutputMessage.NEW_LINE;
+import static lotto.constant.OutputMessage.PRIZE_FORMAT;
+import static lotto.constant.OutputMessage.PRIZE_START_MESSAGE;
+
 import lotto.constant.Prize;
 import lotto.model.Lotto;
 import lotto.model.LottoMatcher;
@@ -8,13 +16,6 @@ import lotto.model.Lottos;
 import lotto.model.Money;
 
 public class OutputView {
-    private static final String NEW_LINE = "%n";
-    private static final String LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.%n";
-    private static final String LOTTO_FORMAT = "[%s]%n";
-    private static final String LOTTO_NUMBER_DELIMITER = ", ";
-    private static final String PRIZE_START_MESSAGE = "당첨 통계%n---%n";
-    private static final String PRIZE_FORMAT = "%s - %s개%n";
-    private static final String EARNING_RATE_FORMAT = "총 수익률은 %.1f%%입니다.%n";
 
     private OutputView() {
     }
@@ -26,6 +27,7 @@ public class OutputView {
 
     public static void printLottos(Lottos lottos) {
         System.out.printf(LOTTO_COUNT_FORMAT, lottos.count());
+
         for (Lotto lotto : lottos.toList()) {
             System.out.printf(
                     LOTTO_FORMAT,
