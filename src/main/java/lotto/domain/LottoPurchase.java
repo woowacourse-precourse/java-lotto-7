@@ -5,14 +5,18 @@ import static lotto.constant.Error.MIN_AMOUNT_PURCHASE;
 import static lotto.constant.LottoConstant.MAX_PURCHASE_AMOUNT;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoPurchase {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public void add(Lotto lotto) {
-        lottos.add(lotto);
+    public Map<Lotto, Rank> rankLottos(Winning winning) {
+        Map<Lotto, Rank> result = new LinkedHashMap<>();
+        lottos.forEach(lotto -> result.put(lotto, winning.rank(lotto)));
+        return result;
     }
 
     public int count() {
@@ -25,6 +29,10 @@ public class LottoPurchase {
         LottoPurchase newLottoPurchase = new LottoPurchase();
         lottos.forEach(newLottoPurchase::add);
         return newLottoPurchase;
+    }
+
+    private void add(Lotto lotto) {
+        lottos.add(lotto);
     }
 
     private static void validate(List<Lotto> lottos) {
