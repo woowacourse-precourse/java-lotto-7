@@ -1,10 +1,9 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
+
 
     public void printLottoNumbers(List<List<Integer>> lottos) {
         System.out.println(lottos.size()+"개를 구매했습니다.");
@@ -21,15 +20,28 @@ public class OutputView {
     public void printPrizeResults() {
         for (int i = WinningPrize.values().length - 1; i >= 0; i--) {
             WinningPrize prize = WinningPrize.values()[i];
-            String pp = String.format("%,d",prize.prizeMoney);
-            String tt =String.format("%d개 일치 (%s원) - %d개",prize.winningCount,pp,prize.totalCount);
-            String yy =String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",prize.winningCount,pp,prize.totalCount);
             if (prize.bonusCount == 0) {
-                System.out.println(tt);
+                printPrizeMatch(prize);
             }
             if (prize.bonusCount == 1) {
-                System.out.println(yy);
+                printBonusMatch(prize);
             }
         }
+    }
+
+    public void printPrizeMatch(WinningPrize prize) {
+        System.out.printf("%d개 일치 (%s원) - %d개%n",prize.winningCount,printChangeMoneyBar(prize),prize.totalCount);
+
+
+    }
+
+    public void printBonusMatch(WinningPrize prize) {
+        System.out.printf(
+                "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",prize.winningCount,printChangeMoneyBar(prize),prize.totalCount);
+    }
+
+
+    public String printChangeMoneyBar(WinningPrize prize) {
+        return String.format("%,d",prize.prizeMoney);
     }
 }

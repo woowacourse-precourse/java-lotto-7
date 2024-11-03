@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class InputView {
 
@@ -18,8 +17,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
-
     }
 
     public List<Integer> inputWinningNumber() {
@@ -42,13 +39,10 @@ public class InputView {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String bonusNumber = Console.readLine();
                 InputBonusValidator inputBonusValidator = new InputBonusValidator(bonusNumber);
-
                 return inputBonusValidator.getBonusNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
-
         }
     }
 }

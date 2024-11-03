@@ -1,12 +1,11 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoDrawer {
-    LottoMachine lottoMachine;
-    List<Integer> winningLottoNumbers;
-    int bonusNumber;
+    private final LottoMachine lottoMachine;
+    private final List<Integer> winningLottoNumbers;
+    private final int bonusNumber;
 
 
     public LottoDrawer(LottoMachine lottoMachine, List<Integer> winningLottoNumbers, int bonusNumber) {
@@ -15,7 +14,7 @@ public class LottoDrawer {
         this.bonusNumber = bonusNumber;
     }
 
-    public void checkWinningNumbers() {
+    private void checkWinningNumbers() {
 
         for (List<Integer> lottos:lottoMachine.getLottoNumbers()){
             int winningCount=0;
@@ -27,7 +26,7 @@ public class LottoDrawer {
 
             }
             LottoResult lottoResult = new LottoResult(winningCount,bonusCount);
-            lottoResult.tt();
+            lottoResult.checkWinningLotto();
         }
     }
 

@@ -7,9 +7,9 @@ public enum WinningPrize {
     FORTH(4,0,50_000,0),
     FIFTH(3,0,5_000,0);
 
-    int winningCount;
-    int bonusCount;
-    int prizeMoney;
+    final int winningCount;
+    final int bonusCount;
+    final int prizeMoney;
     int totalCount;
 
 

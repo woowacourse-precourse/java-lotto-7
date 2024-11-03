@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    private int tickets;
+    private final int tickets;
     private List<List<Integer>> lottoNumbers;
 
     public LottoMachine(int tickets) {

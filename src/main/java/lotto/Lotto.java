@@ -1,8 +1,6 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,31 +11,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateNumberSize();
         validateNumberRepeat();
         validateNumberRange();
+    }
+
+    public void validateNumberSize() {
+        if (numbers.size() != 6) {
+            ErrorMessageUtil.WINNING_LOTTO_SIZE_ERROR_MESSAGE.errorException();
+        }
     }
 
     public void validateNumberRange() {
         for (int number : numbers) {
             if (number > 45 || number < 0) {
-                throw new IllegalArgumentException("range");
+                ErrorMessageUtil.WINNING_LOTTO_RANGE_ERROR_MESSAGE.errorException();
             }
         }
     }
     public void validateNumberRepeat(){
         if (numbers.stream().distinct().toList().size() != numbers.size()){
-            throw new IllegalArgumentException("중복");
+            ErrorMessageUtil.WINNING_LOTTO_REPEAT_ERROR_MESSAGE.errorException();
         }
     }
-
-//    public void validateNumberEmpty(){
-//        if (numbers.stream().anyMatch(Integer::)){
-//            throw new IllegalArgumentException("중복");
-//        }
-//    }
-
-    // TODO: 추가 기능 구현
 }

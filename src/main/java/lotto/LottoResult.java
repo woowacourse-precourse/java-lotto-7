@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
-
 public class LottoResult {
     int winningCount;
     int bonusCount;
@@ -20,15 +18,12 @@ public class LottoResult {
     }
 
 
-    public void tt() {
+    public void checkWinningLotto() {
         for (WinningPrize str:WinningPrize.values()){
             if (str.winningCount == getWinningCount() && str.bonusCount <= getBonusCount()){
-                System.out.println(winningCount+" "+bonusCount);
                 str.setTotalCount();
                 return;
             }
         }
-
-        Arrays.stream(WinningPrize.values()).filter(e -> e.winningCount == winningCount && e.bonusCount == bonusCount).count();
     }
 }

@@ -3,7 +3,6 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class InputLottoValidator {
     private static final String WINNING_NUMBER_REGEX_PATTERN = "\\d+";
