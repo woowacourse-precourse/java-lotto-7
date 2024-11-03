@@ -2,7 +2,6 @@ package lotto.domain.lotto;
 
 import static lotto.exception.message.LottoExceptionMessage.DUPLICATE_NUMBER_INPUT;
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_COUNT;
-import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,31 +10,24 @@ import lotto.ui.dto.LottoNumbersResponse;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    private Lotto(List<Integer> numbers) {
+    private Lotto(List<LottoNumber> numbers) {
         this.numbers = numbers;
     }
 
     public static Lotto from(List<Integer> numbers) {
         validateNumberCount(numbers);
-        validateNumberRange(numbers);
         validateDuplication(numbers);
 
-        return new Lotto(numbers);
+        return new Lotto(numbers.stream()
+                .map(LottoNumber::from)
+                .toList());
     }
 
     private static void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new LottoException(INVALID_NUMBER_COUNT);
-        }
-    }
-
-    private static void validateNumberRange(List<Integer> numbers) {
-        boolean hasInvalidNumber = numbers.stream().anyMatch(Lotto::checkRange);
-
-        if (hasInvalidNumber) {
-            throw new LottoException(INVALID_NUMBER_RANGE);
         }
     }
 
@@ -47,13 +39,9 @@ public class Lotto {
         }
     }
 
-    private static boolean checkRange(Integer number) {
-        return number < 1 || number > 45;
-    }
-
     public int match(Lotto otherLotto) {
         int count = 0;
-        for (int number: otherLotto.numbers) {
+        for (LottoNumber number: otherLotto.numbers) {
             if (contains(number)) {
                 count += 1;
             }
@@ -61,12 +49,12 @@ public class Lotto {
         return count;
     }
 
-    public boolean contains(Integer number) {
+    public boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
 
     public LottoNumbersResponse toResponse() {
-        return LottoNumbersResponse.from(this.numbers);
+        return LottoNumbersResponse.from(numbers);
     }
 
 }

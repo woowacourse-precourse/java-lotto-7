@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,21 +21,9 @@ class WinningNumberTest {
     @BeforeEach
     void setUp() {
         winningNumber = new WinningNumber(
-                Lotto.from(List.of(1, 2, 3, 4, 5, 6)), 7
+                Lotto.from(List.of(1, 2, 3, 4, 5, 6)),
+                LottoNumber.from(7)
         );
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1, 46})
-    @DisplayName("보너스 번호가 유효 범위(1-45)를 벗어나면 예외가 발생한다")
-    void givenOutOfRangeBonusNumber_whenCreate_thenThrowsException(int bonusNumber) {
-        // given
-        Lotto winningLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-
-        // when & then
-        assertThatThrownBy(() -> new WinningNumber(winningLotto, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
     @Test
@@ -42,7 +31,7 @@ class WinningNumberTest {
     void givenDuplicatedBonusNumber_whenCreate_thenThrowsException1() {
         // given
         Lotto winningLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 1;
+        LottoNumber bonusNumber = LottoNumber.from(6);
 
         // when & then
         assertThatThrownBy(() -> new WinningNumber(winningLotto, bonusNumber))

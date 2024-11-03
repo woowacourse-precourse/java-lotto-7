@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.machine.LottoMachine;
 import lotto.domain.machine.LottoMoney;
 import lotto.domain.machine.generator.LottoGenerator;
@@ -43,10 +44,11 @@ public class LottoController {
 
     private WinningNumber createWinningNumber() {
         LottoGenerator winningLottoGenerator = new LottoGenerator(inputView::displayReadWinningNumbers);
-        Lotto winningLotto = winningLottoGenerator.issueLotto();
-        int bonusNumber = inputView.displayReadBonusNumber();
 
-        return new WinningNumber(winningLotto, bonusNumber);
+        return new WinningNumber(
+                winningLottoGenerator.issueLotto(),
+                LottoNumber.from(inputView.displayReadBonusNumber())
+        );
     }
 
     private void displayResults(List<Lotto> lottos, LottoMoney lottoMoney, WinningNumber winningNumber) {
