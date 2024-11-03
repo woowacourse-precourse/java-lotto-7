@@ -8,11 +8,14 @@ import java.util.Set;
 
 public class InputValidator {
 
+    private static final int MAX_PURCHASE_AMOUNT = 100000;
+
     public static void validatePurchaseAmount(String input) {
         validateNotEmpty(input);
         validateIsNumeric(input);
         validatePositiveAmount(input);
         validateThousandUnit(input);
+        validateMaxPurchaseAmount(input);
     }
 
     public static void validateWinningNumber(String input) {
@@ -50,6 +53,13 @@ public class InputValidator {
         int amount = Integer.parseInt(input);
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT.message());
+        }
+    }
+
+    private static void validateMaxPurchaseAmount(String input) {
+        int amount = Integer.parseInt(input);
+        if (amount > MAX_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.MAX_PURCHASE_AMOUNT.message());
         }
     }
 
