@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lotto.domains.lotto.LottoPrizeNumbers;
-import lotto.domains.lotto.LottoTicket;
+import lotto.domains.lotto.domain.LottoPrizeNumbers;
+import lotto.domains.lotto.domain.LottoTicket;
 import lotto.exception.ExceptionMessage;
 
 public class Customer {
@@ -28,21 +28,17 @@ public class Customer {
 		return money / LOTTO_COST;
 	}
 
-	public List<Map<Integer, Boolean>> checkWinningStatus(LottoTicket lottoTickets,
+	public Map<Integer, Boolean> checkWinningStatus(LottoTicket lottoTickets,
 		LottoPrizeNumbers lottoPrizeNumbers) {
-		List<Map<Integer, Boolean>> matchingCount = new ArrayList<>();
+		Map<Integer, Boolean> matchingCount = new HashMap<>();
 		lottoTickets.getTickets().forEach(ticket -> {
 			int count = (int)ticket.getNumbers().stream()
 				.filter(lottoPrizeNumbers.getWinningNumbers()::contains).count();
-
-			Map<Integer, Boolean> countAndHasBonus = new HashMap<>();
 			if (count == FOUR_MATCH && ticket.getNumbers().contains(lottoPrizeNumbers.getBonusNumber())) {
-				countAndHasBonus.put(count + BONUS_COUNT, true);
-				matchingCount.add(countAndHasBonus);
+				matchingCount.put(count + BONUS_COUNT, true);
 				return;
 			}
-			countAndHasBonus.put(count, false);
-			matchingCount.add(countAndHasBonus);
+			matchingCount.put(count, false);
 		});
 		return matchingCount;
 	}
