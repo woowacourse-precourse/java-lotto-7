@@ -19,6 +19,9 @@ public class Application {
 
         // 3.1 당첨 번호를 입력 받는 기능
         String winningNumbersInput = getInputString("당첨 번호를 입력해 주세요.");
+
+        // 3.2 입력된 당첨 번호를 쉼표(,)를 기준으로 분리하는 기능
+        String[] winningNumbersInputSplits = winningNumbersInput.split(",");
     }
 
     private static String getInputString(String message) {
