@@ -29,7 +29,7 @@ public class LottoService {
 
     // 로또 번호 자동 생성하기
     private Lotto createLottoNumber(){
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN,LOTTO_MAX,LOTTO_COUNT);
+        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
         Collections.sort(lotto);
         return new Lotto(lotto);
     }
@@ -92,6 +92,6 @@ public class LottoService {
         for(Rank rank : Rank.values()){
             sum += (long) rank.amount * rankCount.get(rank);
         }
-        return (double) sum / purchaseAmount;
+        return (double) sum / purchaseAmount * 100;
     }
 }
