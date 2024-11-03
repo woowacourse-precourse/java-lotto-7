@@ -1,9 +1,10 @@
-package lotto.view;
+package lotto.view.input;
 
 import lotto.messages.InputMessage;
-import lotto.validator.PriceValidator;
+import lotto.validator.input.PriceValidator;
+import lotto.view.input.InputView;
 
-public class PriceInputView extends InputView{
+public class PriceInputView extends InputView {
     @Override
     protected void printInputMessage() {
         System.out.println(InputMessage.PRICE_INPUT_MESSAGE.getMessage());

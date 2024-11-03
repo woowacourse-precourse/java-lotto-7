@@ -1,9 +1,10 @@
-package lotto.view;
+package lotto.view.input;
 
 import lotto.messages.InputMessage;
-import lotto.validator.WinningNumberValidator;
+import lotto.validator.input.WinningNumberValidator;
+import lotto.view.input.InputView;
 
-public class WinningNumberInputView extends InputView{
+public class WinningNumberInputView extends InputView {
 
 
     @Override
