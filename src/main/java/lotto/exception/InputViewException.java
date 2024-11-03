@@ -111,6 +111,7 @@ public class InputViewException {
         validateIfInputContainsNullOrEmpty(inputBonusNumber);
         validateInputBonusFormat(inputBonusNumber);
         validateInputBonusNumberStartsWithZero(inputBonusNumber);
+        validateInputBonusInRange(inputBonusNumber);
     }
 
     private void validateInputBonusFormat(String inputBonusNumber) {
@@ -126,6 +127,13 @@ public class InputViewException {
         if (!inputBonusNumber.equals(String.valueOf(Integer.parseInt(inputBonusNumber)))) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBER_CANNOT_START_WITH_ZERO);
+        }
+    }
+
+    private void validateInputBonusInRange(String inputBonusNumber) {
+        if (Integer.parseInt(inputBonusNumber) <= 0 && Integer.parseInt(inputBonusNumber) > 45) {
+            throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
+                    + ExceptionsMessageConstants.INPUT_BONUS_NUMBER_MUST_BE_IN_ALLOWED_RANGE);
         }
     }
 

@@ -12,6 +12,7 @@ public final class ExceptionsMessageConstants {
     public static final String INPUT_NUMBERS_COUNT_MUST_BE_SIX = "숫자는 6개를 입력해주세요.";
     public static final String INPUT_NUMBERS_MUST_BE_IN_ALLOWED_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String INPUT_NUMBERS_CANNOT_BE_DUPLICATED = "숫자는 중복될 수 없습니다.";
+    public static final String INPUT_BONUS_NUMBER_MUST_BE_IN_ALLOWED_RANGE = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     private ExceptionsMessageConstants() {}
 }
