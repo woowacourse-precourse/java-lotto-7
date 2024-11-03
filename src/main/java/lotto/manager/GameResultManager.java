@@ -2,6 +2,8 @@ package lotto.manager;
 
 import lotto.domain.*;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class GameResultManager {
@@ -45,5 +47,14 @@ public class GameResultManager {
     private boolean matchBonusNumberWith(Lotto lotto) {
 
         return lotto.getImmutableNumbers().contains(winningLotto.getImmutableBonusNumber().getNumber());
+    }
+
+    private float getReturnRate(Player player, Map<Prize, Integer> prizeCount) {
+
+        int prizeMoneySum = prizeCount.entrySet().stream()
+                .mapToInt((e) -> e.getKey().getMoney() * e.getValue())
+                .sum();
+
+        return (float) prizeMoneySum / player.getMoney();
     }
 }
