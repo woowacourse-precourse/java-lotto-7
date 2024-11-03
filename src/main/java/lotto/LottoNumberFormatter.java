@@ -56,7 +56,7 @@ public class LottoNumberFormatter {
     }
 
     public void outOfBounds(int num) {
-        if(1 > num || num > 45) {
+        if (1 > num || num > 45) {
             throw new IllegalArgumentException("[ERROR] 해당 번호는 사용 불가합니다.");
         }
     }
