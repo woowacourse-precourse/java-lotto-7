@@ -2,7 +2,7 @@ package lotto.view.input;
 
 public class InputBonusNumberView extends InputView{
     public Integer getValue() {
-        System.out.println("보너스 번호를 입력해주세요.");
+        System.out.println(INPUT_MESSAGE);
         String bonusNumber = inputValue();
         validate(bonusNumber);
 
