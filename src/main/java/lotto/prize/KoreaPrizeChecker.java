@@ -14,6 +14,10 @@ public class KoreaPrizeChecker implements WinningStrategy {
 
         boolean bonusMatch = lottoNumbers.contains(winningLottoBonusNumber);
 
+        return getWinningStatus(matchCount, bonusMatch);
+    }
+
+    private static WinningStatus getWinningStatus(long matchCount, boolean bonusMatch) {
         if (matchCount == 6) {
             return WinningStatus.first;
         }
