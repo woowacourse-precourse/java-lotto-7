@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.NumberType.PURCHASE_UNIT;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +15,7 @@ public class Lottos {
     }
 
     public void issueByAmount(int price) {
-        int lottoQuantity = price / 1000;
+        int lottoQuantity = price / PURCHASE_UNIT;
 
         for (int i = 0; i < lottoQuantity; i++) {
             List<Integer> numbers = Utils.generateRandomNumbers();
