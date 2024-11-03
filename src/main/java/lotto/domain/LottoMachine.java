@@ -47,7 +47,7 @@ public class LottoMachine {
     }
 
     private List<Integer> sort(List<Integer> numbers) {
-        List<Integer> sortNumbers = new ArrayList<>(numbers); // 가변 리스트로 복사
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
         Collections.sort(sortNumbers);
         return sortNumbers;
     }
