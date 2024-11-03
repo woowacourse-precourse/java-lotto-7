@@ -23,8 +23,7 @@ public class Lottos {
     public static Lottos from(int amount) {
         List<Lotto> lottos = new ArrayList<>(amount);
         for (int i = 0; i < amount; i++) {
-            List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lotto.sort(Integer::compareTo);
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(lotto));
         }
         return new Lottos(lottos);
