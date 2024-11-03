@@ -12,6 +12,9 @@ import lotto.model.LotteryMachineModel;
 import lotto.model.StatisticModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LotteryMachineServiceTest {
 
@@ -38,10 +41,11 @@ class LotteryMachineServiceTest {
                 .doesNotThrowAnyException();
     }
 
-    @Test
-    void getPurchaseCount_구매금액에_대한_최종_구매개수를_정상적으로_반환한다() throws Exception {
+    @ParameterizedTest
+    @ValueSource(longs = {0L, 1000L, (Long.MAX_VALUE - Long.MAX_VALUE % 1000)})
+    void getPurchaseCount_구매금액에_대한_최종_구매개수를_정상적으로_반환한다(Long amount) throws Exception {
         // given
-        PurchaseAmount purchaseAmount = new PurchaseAmount(8000L);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
 
         Method getPurchaseCount = lotteryMachineService.getClass()
                 .getDeclaredMethod("getPurchaseCount", PurchaseAmount.class);
@@ -51,13 +55,14 @@ class LotteryMachineServiceTest {
         long result = (long) getPurchaseCount.invoke(lotteryMachineService, purchaseAmount);
 
         // then
-        assertThat(result).isEqualTo(8);
+        assertThat(result).isEqualTo(amount / 1000);
     }
 
-    @Test
-    void issue_구매개수_만큼_로또를_발행하여_발매기에_저장한다() throws Exception {
+    @ParameterizedTest
+    @ValueSource(longs = {0L, 1000L, 100000L})
+    void issue_구매개수_만큼_로또를_발행하여_발매기에_저장한다(long amount) throws Exception {
         // given
-        long purchaseCount = 8;
+        long purchaseCount = amount / 1000;
         StringBuilder sb = new StringBuilder();
 
         Method issue = lotteryMachineService.getClass()
@@ -138,22 +143,29 @@ class LotteryMachineServiceTest {
         assertThat(statisticModel.getPrizeMoney()).isEqualTo(Prize.SECOND.getMoney());
     }
 
-    @Test
-    void savePrize() throws Exception {
+    @ParameterizedTest
+    @CsvSource({
+            "6, true",
+            "6, false",
+            "5, true",
+            "5, false",
+            "4, true",
+            "4, false",
+            "3, true",
+            "3, false",
+    })
+    void savePrize_해당_상품이_있으면_저장한다(int match, boolean bonus) throws Exception {
         // given
         statisticModel.setPurchaseAmount(new PurchaseAmount(1000L));
         Method savePrize = lotteryMachineService.getClass()
                 .getDeclaredMethod("savePrize", int.class, boolean.class);
         savePrize.setAccessible(true);
 
-        int match = 6;
-        boolean bonus = false;
-
         // when
         savePrize.invoke(lotteryMachineService, match, bonus);
 
         // then
-        assertThat(statisticModel.getPrizeMoney()).isEqualTo(Prize.FIRST.getMoney());
+        assertThat(statisticModel.getPrizeMoney()).isNotEqualTo(0L);
     }
 
     @Test

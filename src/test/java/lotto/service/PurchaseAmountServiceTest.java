@@ -5,7 +5,8 @@ import lotto.parse.InputParser;
 import lotto.validation.InputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseAmountServiceTest {
 
@@ -19,10 +20,10 @@ class PurchaseAmountServiceTest {
         this.purchaseAmountService = new PurchaseAmountService(inputValidator, inputParser, lotteryMachineModel);
     }
 
-    @Test
-    void save_처리_로직이_정상_작동한다() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "10000000000000000"})
+    void save_처리_로직이_정상_작동한다(String purchaseAmountInput) {
         // given
-        String purchaseAmountInput = "10000";
 
         // when
 

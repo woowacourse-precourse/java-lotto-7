@@ -4,14 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class IssuedLottoTest {
 
-    @Test
-    void 정상적으로_생성된다() {
+    @ParameterizedTest
+    @MethodSource("lotto.parameterizedTest.MethodSource#provideLottoNumbers")
+    void 정상적으로_생성된다(List<Integer> numbers) {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(numbers);
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(lotto);
 

@@ -4,16 +4,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.constant.ExceptionMessage;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseAmountTest {
 
     private PurchaseAmount purchaseAmount;
 
-    @Test
-    void 모든_검증에_통과하여_정상적으로_생성된다() {
+    @ParameterizedTest
+    @ValueSource(longs = {0L, 1000L, (Long.MAX_VALUE - Long.MAX_VALUE % 1000)})
+    void 모든_검증에_통과하여_정상적으로_생성된다(Long number) {
         // given
-        Long number = 5000L;
 
         // when
         purchaseAmount = new PurchaseAmount(number);
@@ -22,10 +23,10 @@ class PurchaseAmountTest {
         Assertions.assertThat(purchaseAmount.purchaseAmount()).isEqualTo(number);
     }
 
-    @Test
-    void validateLottoPriceDivisibility_1000_으로_나누어떨어지지_않는다() {
+    @ParameterizedTest
+    @ValueSource(longs = {1L, 500L, 5500L, 231241L})
+    void validateLottoPriceDivisibility_1000_으로_나누어떨어지지_않는다(Long number) {
         // given
-        Long number = 5500L;
 
         // when
         // then
@@ -36,10 +37,10 @@ class PurchaseAmountTest {
 
     }
 
-    @Test
-    void validateNegative_구입금액은_음수가_될_수_없다() {
+    @ParameterizedTest
+    @ValueSource(longs = {-1000L, -1000000L, (Long.MIN_VALUE - Long.MIN_VALUE % 1000)})
+    void validateNegative_구입금액은_음수가_될_수_없다(Long number) {
         // given
-        Long number = -1000L;
 
         // when
         // then

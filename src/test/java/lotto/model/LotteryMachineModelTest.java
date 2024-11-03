@@ -13,6 +13,9 @@ import lotto.entity.PurchaseAmount;
 import lotto.entity.WinnerNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LotteryMachineModelTest {
 
@@ -33,10 +36,10 @@ class LotteryMachineModelTest {
         assertThat(lotteryMachineModel.getPurchaseAmount().purchaseAmount()).isEqualTo(0L);
     }
 
-    @Test
-    void insertPurchaseAmount_로또구매금액_저장에_성공한다() {
+    @ParameterizedTest
+    @ValueSource(longs = {1000L, (Long.MAX_VALUE - Long.MAX_VALUE % 1000)})
+    void insertPurchaseAmount_로또구매금액_저장에_성공한다(Long insertPurchaseAmount) {
         // given
-        Long insertPurchaseAmount = 1000L;
         PurchaseAmount purchaseAmount = new PurchaseAmount(insertPurchaseAmount);
 
         // when
@@ -61,10 +64,10 @@ class LotteryMachineModelTest {
                 .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_IS_POSITIVE);
     }
 
-    @Test
-    void settingWinnerNumber_당첨번호_저장에_성공한다() {
+    @ParameterizedTest
+    @MethodSource("lotto.parameterizedTest.MethodSource#provideLottoNumbers")
+    void settingWinnerNumber_당첨번호_저장에_성공한다(List<Integer> winnerNumbers) {
         // given
-        List<Integer> winnerNumbers = List.of(1, 5, 2, 25, 39, 12);
         WinnerNumber winnerNumber = new WinnerNumber(winnerNumbers);
 
         // when
@@ -74,10 +77,16 @@ class LotteryMachineModelTest {
         assertThat(lotteryMachineModel.getWinnerNumber().numbers()).isEqualTo(winnerNumbers);
     }
 
-    @Test
-    void settingBonusNumber_당첨번호_저장에_성공한다() {
+    @ParameterizedTest
+    @MethodSource("lotto.parameterizedTest.MethodSource#generateNormalLottoNumber")
+    void settingBonusNumber_당첨번호_저장에_성공한다(Integer number) {
         // given
-        Integer number = 7;
+        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 6);
+        lotteryMachineModel.settingWinnerNumber(new WinnerNumber(winnerNumbers));
+        if (winnerNumbers.contains(number)) {
+            return;
+        }
+
         BonusNumber bonusNumber = new BonusNumber(number);
 
         // when
@@ -87,14 +96,14 @@ class LotteryMachineModelTest {
         assertThat(lotteryMachineModel.getBonusNumber().number()).isEqualTo(number);
     }
 
-    @Test
-    void settingBonusNumber_당첨번호와_중복되어_실패한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void settingBonusNumber_당첨번호와_중복되어_실패한다(Integer number) {
         // given
         List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 6);
         WinnerNumber winnerNumber = new WinnerNumber(winnerNumbers);
         lotteryMachineModel.settingWinnerNumber(winnerNumber);
 
-        Integer number = 6;
         BonusNumber bonusNumber = new BonusNumber(number);
 
         // when
@@ -106,10 +115,11 @@ class LotteryMachineModelTest {
                 .isEqualTo(ExceptionMessage.BONUS_NUMBER_DUPLICATED);
     }
 
-    @Test
-    void settingIssuedLotto_발매된_로또_저장에_성공한다() {
+    @ParameterizedTest
+    @MethodSource("lotto.parameterizedTest.MethodSource#provideLottoNumbers")
+    void settingIssuedLotto_발매된_로또_저장에_성공한다(List<Integer> numbers) {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(numbers);
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(lotto);
         IssuedLotto issuedLotto = new IssuedLotto(lottos);
