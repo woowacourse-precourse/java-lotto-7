@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.helper.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

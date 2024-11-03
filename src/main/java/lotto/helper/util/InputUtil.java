@@ -1,8 +1,8 @@
-package lotto.util;
+package lotto.helper.util;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.valid.ValidInput;
+import lotto.helper.valid.ValidInput;
 
 public class InputUtil {
 
