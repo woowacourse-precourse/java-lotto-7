@@ -16,5 +16,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return null;
+    }
+
+    public int checkNumbers(Lotto winningLotto) {
+        return 0;
+    }
+
+    public int checkBonus(int bonusNumber) {
+        return 0;
+    }
 }
