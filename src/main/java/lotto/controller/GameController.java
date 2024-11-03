@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.ProfitCalculator;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 import lotto.util.InputValidator;
 import lotto.view.UserInputView;
 import lotto.view.UserOutputView;
@@ -16,16 +13,13 @@ public class GameController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-
-        LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> lottos = lottoMachine.purchaseLottos(purchaseAmount);
-        UserOutputView.outputLottos(lottos);
+        List<Lotto> lottos = purchaseLottos(purchaseAmount);
 
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        Map<String, Integer> lottoResult = winningLotto.calculateResult(lottos);
+        Map<Rank, Integer> lottoResult = winningLotto.calculateResult(lottos);
         double profitRate = ProfitCalculator.calculateProfitRate(lottoResult, purchaseAmount);
 
         UserOutputView.outputWinningStatistics(lottoResult);
@@ -43,6 +37,13 @@ public class GameController {
         }
 
         return Integer.parseInt(inputPurchaseAmount);
+    }
+
+    private List<Lotto> purchaseLottos(int purchaseAmount) {
+        LottoMachine lottoMachine = new LottoMachine();
+        List<Lotto> lottos = lottoMachine.purchaseLottos(purchaseAmount);
+        UserOutputView.outputLottos(lottos);
+        return lottos;
     }
 
     private List<Integer> getWinningNumbers() {
