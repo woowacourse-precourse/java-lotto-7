@@ -9,10 +9,6 @@ public class Lotto {
         this.numbers = new Numbers(numbers);
     }
 
-    public Numbers getNumbers() {
-        return numbers;
-    }
-
     public int countMatchNumbers(Numbers winNumbers) {
         return (int) numbers.getNumbers()
             .stream()
@@ -22,5 +18,10 @@ public class Lotto {
 
     public boolean checkHasBonusNumber(Number bonusNumber) {
         return numbers.contains(bonusNumber.value());
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

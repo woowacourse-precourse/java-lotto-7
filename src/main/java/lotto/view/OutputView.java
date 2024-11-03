@@ -17,7 +17,7 @@ public class OutputView {
 
     public static void printPurchasedLottoNumbers(List<Lotto> purchasedLotto) {
         for (Lotto lotto : purchasedLotto) {
-            System.out.println(lotto.getNumbers().toString());
+            System.out.println(lotto.toString());
         }
     }
     public static void printWinStatistics() {

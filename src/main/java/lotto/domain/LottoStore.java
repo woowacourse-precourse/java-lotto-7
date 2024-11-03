@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-//- 역할
-//  - 받은 금액만큼 로또를 발행한다
 public class LottoStore {
 
     public List<Lotto> buyLotto(int lottoAmount) {

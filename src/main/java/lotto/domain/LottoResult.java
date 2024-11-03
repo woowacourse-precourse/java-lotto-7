@@ -4,9 +4,6 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-//  - 로또 결과에서 발행된 로또들과 당첨 번호를 비교한다
-// 로또 결과 비교하기
-// 수익률 계산하기
 public class LottoResult {
     private Map<LottoRank, Integer> lottoResult = new EnumMap<>(LottoRank.class);
     private float profitRate;
