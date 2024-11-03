@@ -29,9 +29,9 @@
   - [x] `checkWinningStatus` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
 - [x] `Lottos`
   - [x] `getWinningLottos` : `List<Lotto>`를 순회하며 `List<Winning>`을 반환한다.
-- [ ] `WinningLotto` : 당첨 로또 클래스
-  - [ ] `Winning` 를 인스턴스 변수로 가진다. 
-- [ ] `WinningLottos` : `WinningLotto` 객체들을 `List` 형태로 저장한다.
+- [ ] `WinningLottos` : `List<Winning>`와 사용자가 입력한 가격을 인스턴스 변수로 가진다.
+  - [ ] `getWinningCountByLottoRank` : `LottoRank`에 따라 당첨된 로또의 개수를 반환한다.
+  - [ ] `getProfitRate` : 수익률을 계산하여 반환한다.
 ###### getter 는 생략
 ### View
 - [ ] `InputView`
