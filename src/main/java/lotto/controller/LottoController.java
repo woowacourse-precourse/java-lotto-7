@@ -21,9 +21,9 @@ public class LottoController {
     }
 
     public void startLottoSimulation() {
-        User user = purchaseLotto();
-        Lotto winningLotto = inputWinningNumbers();
-        WinningNumber winningNumber = inputBonusNumber(winningLotto);
+        final User user = purchaseLotto();
+        final Lotto winningLotto = inputWinningNumbers();
+        final WinningNumber winningNumber = inputBonusNumber(winningLotto);
 
         inputView.consoleClose();
 
