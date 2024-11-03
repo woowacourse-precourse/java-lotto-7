@@ -16,6 +16,7 @@ public class InputView {
         try {
             String rawPurchasePrice = Console.readLine();
             purchasePrice = parseInt(rawPurchasePrice);
+            checkPurchaseRange(purchasePrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
         }
@@ -32,7 +33,7 @@ public class InputView {
     public static int readBonus(Lotto answer) {
         String rawBonus = Console.readLine();
         int bonus = parseInt(rawBonus);
-        //checkBonus(bonus, answer);
+        checkBonus(bonus, answer);
         checkBonusRange(bonus);
         return bonus;
     }
