@@ -20,11 +20,11 @@ public class OutputView {
         System.out.println(FIFTH_PLACE.getValue() + "개 일치 (" + String.format("%,d",FIFTH_PLACE_PRIZE.getValue()) + "원) - " + rankCount[5] + "개");
         System.out.println(FOURTH_PLACE.getValue() + "개 일치 (" + String.format("%,d",FOURTH_PLACE_PRIZE.getValue()) + "원) - " + rankCount[4] + "개");
         System.out.println(THIRD_PLACE.getValue() + "개 일치 (" + String.format("%,d",THIRD_PLACE_PRIZE.getValue()) + "원) - " + rankCount[3] + "개");
-        System.out.println(SECOND_PLACE.getValue() + "개 일치, 보너스 불 일치 (" + String.format("%,d",SECOND_PLACE_PRIZE.getValue()) + "원) - " + rankCount[2] + "개");
+        System.out.println(SECOND_PLACE.getValue() + "개 일치, 보너스 볼 일치 (" + String.format("%,d",SECOND_PLACE_PRIZE.getValue()) + "원) - " + rankCount[2] + "개");
         System.out.println(FIRST_PLACE.getValue() + "개 일치 (" + String.format("%,d",FIRST_PLACE_PRIZE.getValue()) + "원) - " + rankCount[1] + "개");
     }
 
     public static void printProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다");
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
 }
