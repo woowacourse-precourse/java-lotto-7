@@ -15,7 +15,7 @@ public class LottoMachine {
     }
 
     public static LottoMachine of(Lotto lotto, BonusNumber bonus) {
-        validateBonusNumberDuplicate(lotto.getNumbers(), bonus.getBonusNumber());
+        validateBonusNumberDuplicate(lotto.getSortedNumbers(), bonus.getBonusNumber());
         return new LottoMachine(lotto, bonus);
     }
 
@@ -32,13 +32,13 @@ public class LottoMachine {
     }
 
     private int getMatchedCount(Lotto purchasedLotto) {
-        List<Integer> answer = lotto.getNumbers();
-        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        List<Integer> answer = lotto.getSortedNumbers();
+        List<Integer> purchasedNumbers = purchasedLotto.getSortedNumbers();
         return (int) purchasedNumbers.stream().filter(answer::contains).count();
     }
 
     private boolean isBonusMatched(Lotto purchasedLotto) {
-        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        List<Integer> purchasedNumbers = purchasedLotto.getSortedNumbers();
         return purchasedNumbers.contains(bonusNumber.getBonusNumber());
     }
 

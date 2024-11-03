@@ -5,6 +5,7 @@ import static lotto.exception.ErrorMessage.INVALID_LOTTO_DUPLICATE;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_RANGE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,7 +49,9 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+    public List<Integer> getSortedNumbers() {
+        List<Integer> numbers = new ArrayList<>(this.numbers);
+        Collections.sort(numbers);
+        return numbers;
     }
 }
