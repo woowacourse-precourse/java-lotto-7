@@ -22,10 +22,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
-                .stream()
-                .sorted()
-                .collect(Collectors.toList());
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {

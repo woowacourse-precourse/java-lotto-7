@@ -5,10 +5,10 @@ import java.util.List;
 
 import static lotto.view.OutputView.printEachLotto;
 
-public class LottoSimulator {
+public class LottoGenerator {
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public LottoSimulator(int amount) {
+    public LottoGenerator(int amount) {
         generateLottos(amount);
         printLottos(lottos);
     }
