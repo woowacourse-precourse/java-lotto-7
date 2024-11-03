@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoServiceImpl implements LottoService {
-    @Override
-    public int calculateLottoCount(String purchaseAmountInput) {
+    private int calculateLottoCount(String purchaseAmountInput) {
         PurchaseAmountValidator.validatePurchaseAmountInput(purchaseAmountInput);
         int purchaseAmount = parsePurchaseAmount(purchaseAmountInput);
         PurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.LottoTicket;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,9 +17,9 @@ class LottoServiceTest {
     private final LottoService lottoService = new LottoServiceImpl();
 
     @Test
-    void 로또_구입_정상_금액_입력_시_로또_장수_반환_테스트() {
-        int lottoCount = lottoService.calculateLottoCount(VALID_PURCHASE_AMOUNT);
-        assertThat(lottoCount).isEqualTo(EXPECTED_LOTTO_COUNT);
+    void 로또_티켓_생성_테스트() {
+        LottoTicket lottoTicket = lottoService.generateLottoTicket(VALID_PURCHASE_AMOUNT);
+        assertThat(lottoTicket.getLottos()).hasSize(EXPECTED_LOTTO_COUNT);
     }
 
     @ParameterizedTest
