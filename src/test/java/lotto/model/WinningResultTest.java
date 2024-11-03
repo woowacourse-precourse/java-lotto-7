@@ -40,4 +40,21 @@ class WinningResultTest {
         assertEquals(1,winningResult.winningResult.get(WinningResult.Result.FOURTH));
         assertEquals(1,winningResult.winningResult.get(WinningResult.Result.FIFTH));
     }
+
+    @Test
+    void 수익률_계산_테스트(){
+        winningResult.winningResult.put(WinningResult.Result.FIRST,1);
+        winningResult.winningResult.put(WinningResult.Result.SECOND,2);
+        winningResult.winningResult.put(WinningResult.Result.THIRD,3);
+        winningResult.winningResult.put(WinningResult.Result.FOURTH,4);
+        winningResult.winningResult.put(WinningResult.Result.FIFTH,5);
+
+        int purchaseMoney = 100000;
+
+        double returnResult = winningResult.getReturnResult(purchaseMoney);
+
+        double expected = (double) (2000000000 + 30000000 * 2 + 1500000 * 3 + 50000 * 4 + 5000 * 5) /100000*100;
+
+        assertEquals(expected,returnResult,0.1);
+    }
 }
