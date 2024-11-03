@@ -30,7 +30,7 @@ public class OutputView {
         purchasedLottoNumbers.forEach(System.out::println);
         System.out.println();
     }
-    
+
     public void printResults(LottoResult lottoResult) {
         String output = lottoResult.formatResults();
         double returnRate = lottoResult.getReturnRate();
