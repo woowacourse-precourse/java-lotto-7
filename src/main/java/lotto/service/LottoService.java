@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.LottoResultDto;
 import lotto.model.SoldLotto;
 import lotto.model.WinningLotto;
 import lotto.model.WinningResult;
@@ -16,7 +17,7 @@ public class LottoService {
     private final WinningLotto winningLotto;
     private final WinningResult winningResult;
 
-    public LottoService(SoldLotto soldLotto, WinningLotto winningLotto, WinningResult winningResult){
+    public LottoService(SoldLotto soldLotto, WinningLotto winningLotto, WinningResult winningResult) {
         this.soldLotto = soldLotto;
         this.winningLotto = winningLotto;
         this.winningResult = winningResult;
@@ -30,20 +31,23 @@ public class LottoService {
         return soldLotto.getLottoDetails().toString();
     }
 
-    public void saveWinningNumbers(List<Integer> winningNumbers){
+    public void saveWinningNumbers(List<Integer> winningNumbers) {
         winningLotto.addWinningLotto(winningNumbers);
     }
 
-    public void validateBonusNumber(int bonusNumber){
+    public void validateBonusNumber(int bonusNumber) {
         winningLotto.validateBonusNumber(bonusNumber, MAX_NUM, MIN_NUM);
     }
 
-    public List<Integer> winningResult(){
+    public void calculateWinningResult() {
         winningResult.calculateWinningResult(soldLotto.getSoldLotto(), winningLotto.getWinningLotto(), winningLotto.getBonusNumber());
-        return null;
     }
 
-    public double returnResult(int purchasePrice){
+    public double returnResult(int purchasePrice) {
         return winningResult.getReturnResult(purchasePrice);
+    }
+
+    public List<LottoResultDto> getWinningResult() {
+        return winningResult.getWinningResult();
     }
 }

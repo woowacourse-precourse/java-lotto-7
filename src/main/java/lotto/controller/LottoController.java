@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottoResultDto;
 import lotto.service.LottoService;
 import lotto.validation.LottoValidation;
 import lotto.view.InputView;
@@ -45,9 +46,12 @@ public class LottoController {
         getValidBonusNumber();
 
         //당첨 결과 처리
-        List<Integer> winningResult = lottoService.winningResult();
+        lottoService.calculateWinningResult();
+        List<LottoResultDto> winningResult = lottoService.getWinningResult();
         double returnResult = lottoService.returnResult(purchasePrice);
+
         //결과 출력
+        outputView.printResult(winningResult, returnResult);
     }
 
     private int getValidPurchasePrice() {
@@ -69,11 +73,11 @@ public class LottoController {
         return purchasePrice / LOTTO_PRICE;
     }
 
-    private void printLottoPurchasedDetail(String lottos){
+    private void printLottoPurchasedDetail(String lottos) {
         outputView.lottoPurchasedDetail(lottos);
     }
 
-    private void getValidWinningNumber(){
+    private void getValidWinningNumber() {
         while (true) {
             try {
                 String input = inputView.inputWinningNumber();
@@ -88,15 +92,15 @@ public class LottoController {
         }
     }
 
-    private void getValidBonusNumber(){
-        while(true){
-            try{
+    private void getValidBonusNumber() {
+        while (true) {
+            try {
                 String input = inputView.inputBonusNumber();
                 lottoValidation.validateBlank(input);
                 int bonusNumber = lottoValidation.validateParsing(input);
                 lottoService.validateBonusNumber(bonusNumber);
                 break;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
