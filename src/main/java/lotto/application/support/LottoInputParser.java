@@ -1,10 +1,10 @@
 package lotto.application.support;
 
 import static lotto.common.Consts.WINNING_NUMBER_NOT_DUPLICATED_ERROR;
-import static lotto.common.Consts.INPUT_MUST_BE_NUMBER;
-import static lotto.common.Consts.INPUT_MUST_BE_POSITIVE_NUMBER;
+import static lotto.common.Consts.INPUT_MUST_BE_NUMBER_ERROR;
+import static lotto.common.Consts.INPUT_MUST_BE_POSITIVE_NUMBER_ERROR;
 import static lotto.common.Consts.LOTTO_PRICE;
-import static lotto.common.Consts.PURCHASE_AMOUNT_1000_UNIT;
+import static lotto.common.Consts.PURCHASE_AMOUNT_1000_UNIT_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,18 +19,18 @@ public class LottoInputParser {
 
             return parsed;
         } catch (NumberFormatException e) {
-            Errors.IllegalArgumentException(INPUT_MUST_BE_NUMBER);
+            Errors.IllegalArgumentException(INPUT_MUST_BE_NUMBER_ERROR);
         }
         return -1;
     }
 
     private void validateAmount(int amount){
         if((amount % LOTTO_PRICE) != 0){
-            Errors.IllegalArgumentException(PURCHASE_AMOUNT_1000_UNIT);
+            Errors.IllegalArgumentException(PURCHASE_AMOUNT_1000_UNIT_ERROR);
         }
 
         if(amount < 0){
-            Errors.IllegalArgumentException(INPUT_MUST_BE_POSITIVE_NUMBER);
+            Errors.IllegalArgumentException(INPUT_MUST_BE_POSITIVE_NUMBER_ERROR);
         }
     }
 
