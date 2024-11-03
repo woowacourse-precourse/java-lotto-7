@@ -21,10 +21,6 @@ public class Lotto {
         }
     }
 
-    private void sortDesc () {
-        Collections.sort(numbers);
-    }
-
     public Integer size () {
         return numbers.size();
     }
@@ -35,5 +31,18 @@ public class Lotto {
         }
 
         return this.numbers.equals(numbers);
+    }
+
+    @Override
+    public String toString () {
+        List<String> numbersToString = numbers.stream()
+                .map(String::valueOf)
+                .toList();
+
+        return String.join(LOTTO_NUMBER_PRINT_DELIMITER, numbersToString);
+    }
+
+    private void sortDesc () {
+        Collections.sort(numbers);
     }
 }

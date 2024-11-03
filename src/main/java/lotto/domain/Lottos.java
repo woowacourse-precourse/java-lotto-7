@@ -13,4 +13,16 @@ public class Lottos {
     public Integer size() {
         return lottos.size();
     }
+
+    public List<String> lottosToString () {
+        List<String> lottosToString = new ArrayList<>();
+
+        for (Lotto lotto: lottos) {
+            String lottoToString = lotto.toString();
+
+            lottosToString.add(lottoToString);
+        }
+
+        return lottosToString;
+    }
 }

@@ -6,6 +6,7 @@ import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,14 @@ import static lotto.common.Constants.*;
 
 public class LottoMachine {
     private final InputView inputView;
+    private final OutputView outputView;
     private final PurchaseService purchaseService;
     private final LottoService lottoService;
 
-    public LottoMachine(InputView inputView, PurchaseService purchaseService,
-                        LottoService lottoService) {
+    public LottoMachine(InputView inputView, OutputView outputView,
+                        PurchaseService purchaseService, LottoService lottoService) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.purchaseService = purchaseService;
         this.lottoService = lottoService;
     }
@@ -30,7 +33,7 @@ public class LottoMachine {
         Lottos lottos = generateLottos(lottoTicketCount);
     }
 
-    public Lottos generateLottos (Integer lottoTicketCount) {
+    public Lottos createLottos (Integer lottoTicketCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoTicketCount; i ++ ) {
@@ -40,6 +43,14 @@ public class LottoMachine {
         }
 
         return lottoService.generateLottos(lottos);
+    }
+
+    private Lottos generateLottos (Integer lottoTicketCount) {
+        Lottos lottos = createLottos(lottoTicketCount);
+
+        outputView.printLottos(lottos);
+
+        return lottos;
     }
 
     private Integer lottoPurchase () {
