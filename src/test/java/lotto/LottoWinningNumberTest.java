@@ -1,12 +1,14 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.LottoWinningNumber;
 
 class LottoWinningNumberTest {
 

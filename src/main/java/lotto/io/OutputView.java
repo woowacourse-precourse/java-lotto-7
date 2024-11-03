@@ -1,6 +1,10 @@
-package lotto;
+package lotto.io;
 
 import java.util.List;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoResultCounter;
+import lotto.constant.OutputMessage;
 
 public class OutputView {
     public static void promptForAmount() {

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public class OutputMessage {
     public static final String LOTTO_NUMBER_FORMAT = "[%s]";

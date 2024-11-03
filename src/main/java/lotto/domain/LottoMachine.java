@@ -1,13 +1,20 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+
+import lotto.common.Validator;
+import lotto.io.InputView;
+import lotto.io.OutputView;
 
 public class LottoMachine {
     public void run() {
         int purchaseCount = getPurchaseCountFromUser();
+
         List<Lotto> lottos = Lotto.generateLottos(purchaseCount);
         OutputView.printLottos(lottos);
+
         LottoWinningNumber winningNumber = getWinningNumberFromUser();
+
         LottoResultCounter resultCounter = winningNumber.countMatchingNumbers(lottos);
         OutputView.printResult(resultCounter, purchaseCount * Lotto.LOTTO_PRICE);
     }

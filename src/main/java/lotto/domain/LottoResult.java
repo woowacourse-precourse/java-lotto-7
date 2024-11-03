@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.text.DecimalFormat;
+
+import lotto.constant.OutputMessage;
 
 public enum LottoResult {
     NO_MATCH("불일치", 0),

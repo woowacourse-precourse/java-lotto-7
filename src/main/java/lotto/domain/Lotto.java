@@ -1,9 +1,12 @@
-package lotto;
+package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lotto.common.Validator;
+import lotto.constant.OutputMessage;
 
 public class Lotto {
     public static final int LOTTO_PRICE = 1000;

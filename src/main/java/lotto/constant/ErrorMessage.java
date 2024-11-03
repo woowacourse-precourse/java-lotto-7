@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public class ErrorMessage {
     public static final String NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요.";

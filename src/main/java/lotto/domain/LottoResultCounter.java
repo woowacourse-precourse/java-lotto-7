@@ -1,10 +1,12 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.OutputMessage.*;
+import static lotto.constant.OutputMessage.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import lotto.domain.LottoResult;
 
 public class LottoResultCounter {
     private static final List<LottoResult> TARGET_LOTTO_RESULT_TYPES = List.of(

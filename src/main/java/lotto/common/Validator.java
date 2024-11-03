@@ -1,6 +1,9 @@
-package lotto;
+package lotto.common;
 
 import java.util.List;
+
+import lotto.constant.ErrorMessage;
+import lotto.domain.Lotto;
 
 public class Validator {
 

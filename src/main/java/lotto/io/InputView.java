@@ -1,8 +1,11 @@
-package lotto;
+package lotto.io;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 
 import java.util.List;
+
+import lotto.common.StringParser;
+import lotto.common.Validator;
 
 public class InputView {
     public static int getAmountFromUser() {
