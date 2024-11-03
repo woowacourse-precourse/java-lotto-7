@@ -74,7 +74,7 @@ public class LottoTest {
     }
 
     @Test
-    @DisplayName("lotto 번호와 bonus 번호를 비교해서 포함하면 1울 반환한다")
+    @DisplayName("lotto 번호와 bonus 번호를 비교해서 포함하면 1을 반환한다")
     public void containBonusNumber() {
         //given
         List<Integer> numbers = new ArrayList<>();
@@ -89,7 +89,7 @@ public class LottoTest {
     }
 
     @Test
-    @DisplayName("lotto 번호와 bonus 번호를 비교해서 포함하지 않으면 0울 반환한다")
+    @DisplayName("lotto 번호와 bonus 번호를 비교해서 포함하지 않으면 0을 반환한다")
     public void notContainBonusNumber() {
         //given
         List<Integer> numbers = new ArrayList<>();
