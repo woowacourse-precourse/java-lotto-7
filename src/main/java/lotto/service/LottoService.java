@@ -10,6 +10,7 @@ import lotto.util.TypeConverter;
 
 public class LottoService {
 	private static final String WINNING_NUMBER_REGEX = "^\\d+(,\\d+)*\\d$";
+
 	public List<Integer> drawWinningNumbers(String winningNumbers) {
 		validateWinningNumberRegex(winningNumbers);
 		return saveWinningNumbers(winningNumbers);

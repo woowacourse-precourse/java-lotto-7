@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,13 +44,13 @@ public class CustomerTest {
 		List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 		int bonusNumbers = 7;
 		List<Lotto> tickets = List.of(
-			new Lotto(List.of(1,2,3,8,9,10)),
-			new Lotto(List.of(2,4,6,1,12,13))
+			new Lotto(List.of(1, 2, 3, 8, 9, 10)),
+			new Lotto(List.of(2, 4, 6, 1, 12, 13))
 		);
 		LottoTicket lottoTickets = new LottoTicket(tickets);
 		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumbers);
 
-		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
+		List<Map<Integer, Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
 
 		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(3))).isTrue();
 		assertThat(winningStatus.stream().anyMatch(status -> status.containsKey(4))).isTrue();

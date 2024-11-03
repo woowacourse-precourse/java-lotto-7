@@ -11,8 +11,8 @@ public enum ExceptionMessage {
 	LOTTO_NUMBER_IS_OUT_OF_BOUND("로또 번호는 1~45까지만 발급가능합니다."),
 	BONUS_NUMBER_IS_DUPLICATED("보너스 번호는 로또 당첨 번호와 중복될 수 없습니다.");
 
-	private final String message;
 	private static final String ERROR_PREFIX = "[ERROR] ";
+	private final String message;
 
 	ExceptionMessage(String message) {
 		this.message = message;

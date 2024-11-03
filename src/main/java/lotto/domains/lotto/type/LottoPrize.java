@@ -1,6 +1,6 @@
 package lotto.domains.lotto.type;
 
-public enum  LottoPrize {
+public enum LottoPrize {
 	THREE(3, 5_000, false),
 	FOUR(4, 50_000, false),
 	FIVE(5, 1_500_000, false),
