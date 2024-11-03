@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.constant.Constants;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -11,17 +13,17 @@ public class InputValidator {
         return input == null || input.isBlank();
     }
     public static boolean isThousandUnit(int input){
-        return input % 1000 == 0;
+        return input % Constants.THOUSAND_UNIT == Constants.ZERO;
     }
     public static boolean isValidFormatForMoney(String input){
-        return input.matches("^\\d{4,}$");
+        return input.matches(Constants.MONEY_REGEX);
     }
 
     public static boolean isValidFormatForLottoNumber(String input){
-        return input.matches("^[0-9,]+$");
+        return input.matches(Constants.LOTTO_REGEX);
     }
     public static boolean isCountSix(String[] input){
-        return input.length == 6;
+        return input.length == Constants.MAX_LOTTO_COUNT;
     }
 
     public static boolean isUniqueNumbers(String[] numbers){
@@ -46,14 +48,14 @@ public class InputValidator {
     private static boolean isValidNumber(String number){
         try{
             int num = Integer.parseInt(number);
-            return num > 0 && num <= 45;
+            return num >= Constants.MIN_LOTTO_RANGE && num <= Constants.MAX_LOTTO_RANGE;
         }
         catch (NumberFormatException e){
             return false;
         }
     }
     public static boolean isNumeric(String number){
-        return number.matches("\\d+");
+        return number.matches(Constants.NUMBER_REGEX);
     }
 
     public static boolean isUnique(String number, List<Integer> lottoNumbers){

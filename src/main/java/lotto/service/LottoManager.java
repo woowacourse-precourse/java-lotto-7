@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.Constants;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class LottoManager {
     }
 
     private Lotto generateLotto() { //로또 자동선택
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_RANGE, Constants.MAX_LOTTO_RANGE, Constants.MAX_LOTTO_COUNT));
     }
 
     public void buyLottos(int lottoCount){

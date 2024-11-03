@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.Constants;
 import lotto.validation.InputValidator;
 
 import java.util.Arrays;
@@ -18,15 +19,15 @@ public class InputHandler {
 
     public void validateInputAmount(String input) throws IllegalArgumentException {
         if (InputValidator.isNullOrBlank(input)) {
-            throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
 
         }
         if (!InputValidator.isValidFormatForMoney(input)) {
-            throw new IllegalArgumentException("[ERROR] 천 이상의 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_MORE_THAN_THOUSAND);
         }
         int numericInput = parseInt(input);
         if (!InputValidator.isThousandUnit(numericInput)) {
-            throw new IllegalArgumentException("[ERROR] 천원단위로 입력해 주세요");
+            throw new IllegalArgumentException(Constants.ERROR_THOUSAND_UNIT);
         }
     }
 
@@ -42,21 +43,21 @@ public class InputHandler {
 
     private void validateLottoInput(String lottoNumber) {
         if (InputValidator.isNullOrBlank(lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
         }
         if (!InputValidator.isValidFormatForLottoNumber(lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 쉼표를 구분자로 한자리의 숫자씩만 입력해주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_COMMA_WITH_NUMBERS);
         }
-        String[] splitNumbers = lottoNumber.split(",");
+        String[] splitNumbers = lottoNumber.split(Constants.DELIMITER_COMMA);
 
         if (!InputValidator.isCountSix(splitNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 총 6개여야 합니다.");
+            throw new IllegalArgumentException(Constants.ERROR_NUMBER_MUST_BE_SIX);
         }
         if (!InputValidator.isUniqueNumbers(splitNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 중복되지 않게 입력해주세요");
+            throw new IllegalArgumentException(Constants.ERROR_NO_DUPLICATE);
         }
         if (!InputValidator.isInRange(splitNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_NUMBER_BETWEEN_ONE_TO_FORTY_FIVE);
         }
     }
 
@@ -69,21 +70,21 @@ public class InputHandler {
 
     private void validateBonusNumber(String bonusNumber, List<Integer> lottoNumber) {
         if (InputValidator.isNullOrBlank(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
         }
         if (!InputValidator.isNumeric(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요");
+            throw new NumberFormatException(Constants.ERROR_FORMAT_IS_NUMBER);
         }
         if (!InputValidator.isUnique(bonusNumber, lottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 다른 번호를 입력해 주세요");
+            throw new IllegalArgumentException(Constants.ERROR_DUPLICATED_BONUS_NUMBER);
         }
         if (!InputValidator.isInRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(Constants.ERROR_NUMBER_BETWEEN_ONE_TO_FORTY_FIVE);
         }
     }
 
     private List<Integer> convertToNumberList(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(Constants.DELIMITER_COMMA))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
@@ -92,7 +93,7 @@ public class InputHandler {
         try{
             return Integer.parseInt(number);
         }catch (NumberFormatException e){
-            throw new NumberFormatException("[ERROR] 숫자를 입력해주세요");
+            throw new NumberFormatException(Constants.ERROR_FORMAT_IS_NUMBER);
         }
     }
 }

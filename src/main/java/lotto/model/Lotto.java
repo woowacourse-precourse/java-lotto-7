@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.Constants;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -13,16 +15,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Constants.MAX_LOTTO_COUNT) {
+            throw new IllegalArgumentException(Constants.ERROR_NUMBER_MUST_BE_SIX);
         }
         Set<Integer> notDuplicateNumber = new HashSet<>(numbers);
         if(notDuplicateNumber.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호는 기입될수 없습니다.");
+            throw new IllegalArgumentException(Constants.ERROR_NO_DUPLICATE);
         }
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이의 숫자여야 합니다.");
+            if (number < Constants.MIN_LOTTO_RANGE || number > Constants.MAX_LOTTO_RANGE) {
+                throw new IllegalArgumentException(Constants.ERROR_NUMBER_BETWEEN_ONE_TO_FORTY_FIVE);
             }
         }
 
@@ -32,7 +34,7 @@ public class Lotto {
     }
 
     public int compareTo(Lotto other){
-        int count = 0;
+        int count = Constants.ZERO;
         for(int number : numbers){
             if(other.getNumbers().contains(number)){
                 count++;

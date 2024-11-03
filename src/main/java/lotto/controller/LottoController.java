@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.Constants;
 import lotto.model.Lotto;
 import lotto.service.LottoManager;
 import lotto.model.Prize;
@@ -66,7 +67,7 @@ public class LottoController {
 
 
     private int calculateLottoCount(int money) {
-        return money / 1000;
+        return money / Constants.THOUSAND_UNIT;
     }
 
     private List<Lotto> generateLottos(int count) {
@@ -104,7 +105,7 @@ public class LottoController {
                 outputHandler.promptForBonusNumber();
                 List<Integer> winningLottoNumbers = winningLotto.getNumbers();
                 return inputHandler.getBonusNumber(winningLottoNumbers);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

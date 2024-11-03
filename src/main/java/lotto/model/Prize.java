@@ -1,11 +1,11 @@
 package lotto.model;
 
 public enum Prize {
-    FIFTH(3, 5000),
-    FOURTH(4, 50000),
-    THIRD(5, 1500000),
-    SECOND(5, 30000000),
-    FIRST(6, 2000000000);
+    FIFTH(3, 5000L),
+    FOURTH(4, 50000L),
+    THIRD(5, 1500000L),
+    SECOND(5, 30000000L),
+    FIRST(6, 2000000000L);
 
     private final int ranking;
     private final long prizeMoney;

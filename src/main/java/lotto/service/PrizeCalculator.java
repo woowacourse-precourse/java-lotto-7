@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constant.Constants;
 import lotto.model.Lotto;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
@@ -18,7 +19,7 @@ public class PrizeCalculator {
     private EnumMap<Prize, Integer> initPrizes() {
         EnumMap<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
-            prizeCount.put(prize, 0);
+            prizeCount.put(prize, Constants.ZERO);
         }
         return prizeCount;
     }
@@ -45,7 +46,7 @@ public class PrizeCalculator {
                 return;
             }
 
-            prizeCount.put(prize, prizeCount.get(prize) + 1);
+            prizeCount.put(prize, prizeCount.get(prize) + Constants.INCREASE_VALUE_ONE);
         }
     }
     private boolean isNotThirdPrize(Lotto lotto, WinningLotto winningLotto, Prize prize){
@@ -57,7 +58,7 @@ public class PrizeCalculator {
         for (Prize prize : prizeCount.keySet()) {
             winningRate += (int) (prize.getPrizeMoney() * prizeCount.get(prize));
         }
-        return (double) winningRate / amountInput * 100;
+        return (double) winningRate / amountInput * Constants.GET_PERCENTAGE_BY_HUNDRED;
     }
 
 }
