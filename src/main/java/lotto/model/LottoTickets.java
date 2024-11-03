@@ -41,8 +41,12 @@ public class LottoTickets {
     }
 
     public Map<PrizeRank, Integer> getPrizeRankCountMap(WinningLotto winningLotto) {
-        return lottoTickets.stream()
+        Map<PrizeRank, Integer> prizeRankCountMap = lottoTickets.stream()
                 .map(lotto -> lotto.getPrizeRank(winningLotto))
                 .collect(Collectors.groupingBy(prizeRank -> prizeRank, Collectors.summingInt(rank -> 1)));
+
+        prizeRankCountMap.remove(PrizeRank.MATCH_FAIL);
+
+        return prizeRankCountMap;
     }
 }
