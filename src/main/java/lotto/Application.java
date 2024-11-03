@@ -67,9 +67,9 @@ public class Application {
         }
     }
 
-    public static int isNotNum(String inputForPrice) {
+    public static int isNotNum(String input) {
         try {
-            return Integer.parseInt(inputForPrice);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
