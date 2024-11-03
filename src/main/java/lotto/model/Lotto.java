@@ -1,7 +1,11 @@
 package lotto.model;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.constant.LottoConstants;
+import lotto.exception.InputException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,7 +17,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LottoConstants.ERROR_INVALID_LOTTO_NUMBER_COUNT);
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new InputException(LottoConstants.ERROR_DUPLICATE_LOTTO_NUMBER);
         }
     }
 

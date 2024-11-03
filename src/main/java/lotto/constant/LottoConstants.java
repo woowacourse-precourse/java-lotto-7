@@ -16,6 +16,8 @@ public class LottoConstants {
     public static final String ERROR_NON_INTEGER_BONUS_NUMBER = "[ERROR] 보너스 번호는 정수여야 합니다.";
     public static final String ERROR_BONUS_NUMBER_OUT_OF_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String ERROR_DUPLICATE_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
+    public static final String ERROR_DUPLICATE_LOTTO_NUMBER = "[ERROR] 로또 번호는 당첨 번호와 중복되지 않아야 합니다.";
+    public static final String ERROR_INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 당첨 번호는 6개의 숫자여야 합니다.";
 
     private LottoConstants() {
         // 인스턴스 생성 방지
