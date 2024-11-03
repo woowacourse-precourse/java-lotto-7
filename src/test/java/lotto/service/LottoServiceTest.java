@@ -44,4 +44,29 @@ class LottoServiceTest {
                 number -> number >= LottoConstants.MIN_LOTTO_NUMBER.getValue() &&
                         number <= LottoConstants.MAX_LOTTO_NUMBER.getValue()));
     }
+
+    @Test
+    @DisplayName("당첨 번호와 보너스 번호에 따른 당첨 결과 계산")
+    void calculateCorrectResultsBasedOnWinningNumbers() {
+        // 로또 번호와 당첨 번호 설정
+        Lottos lottos = new Lottos(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)), // 3등
+                new Lotto(List.of(1, 2, 3, 4, 9, 10)), // 4등
+                new Lotto(List.of(1, 2, 3, 11, 12, 13)) // 5등
+        ));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        // 당첨 결과 계산
+        List<Prize> results = lottoService.calculateResults(lottos, winningNumbers);
+
+        // 기대한 당첨 결과 검증
+        assertEquals(Prize.FIRST, results.get(0));
+        assertEquals(Prize.SECOND, results.get(1));
+        assertEquals(Prize.THIRD, results.get(2));
+        assertEquals(Prize.FOURTH, results.get(3));
+        assertEquals(Prize.FIFTH, results.get(4));
+    }
+
 }
