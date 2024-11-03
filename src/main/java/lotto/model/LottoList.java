@@ -33,6 +33,7 @@ public class LottoList {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
+    public List<Lotto> getLottoList(){return new ArrayList<>(lottoList);}
     // 각 로또 당첨 등수 계산
     public Map<LottoRank, Integer> calculateWinningStat()
     {
