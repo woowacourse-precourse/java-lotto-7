@@ -17,10 +17,8 @@ public class Application {
         ArrayList<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        RankCount rankCount = new RankCount();
-        rankCount.checkLottoResult(lottoTickets, winningNumbers, bonusNumber);
-        // 5.3 당첨 내역을 출력하는 기능
-        rankCount.printResult();
+        LottoResult lottoResult = new LottoResult(lottoTickets, winningNumbers, bonusNumber);
+        lottoResult.print();
     }
 
     private static String getInputString(String message) {

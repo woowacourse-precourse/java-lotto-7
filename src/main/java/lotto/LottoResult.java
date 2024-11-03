@@ -4,22 +4,40 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RankCount {
+public class LottoResult {
 
     private Map<Integer, Integer> rankCount;
+    private final ArrayList<Lotto> lottoTickets;
+    private final ArrayList<Integer> winningNumbers;
+    private final int bonusNumber;
 
-    public RankCount() {
+    public LottoResult(ArrayList<Lotto> lottoTickets, ArrayList<Integer> winningNumbers, int bonusNumber) {
+        this.lottoTickets = lottoTickets;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+        initRankCount();
+        checkResult();
+    }
+
+    private void initRankCount() {
         rankCount = new HashMap<>();
         for (int rank = 1; rank <= 5; rank++) {
             rankCount.put(rank, 0);
         }
     }
 
-    public void checkLottoResult(ArrayList<Lotto> lottoTickets, ArrayList<Integer> winningNumbers, int bonusNumber) {
+    public void checkResult() {
         for (Lotto lottoTicket : lottoTickets) {
             int matchCount = lottoTicket.getMatchCount(winningNumbers);
             boolean hasBonusNumber = lottoTicket.hasBonusNumber(bonusNumber);
             update(matchCount, hasBonusNumber);
+        }
+    }
+
+    public void update(int matchCount, boolean hasBonusNumber) {
+        int rank = getRank(matchCount, hasBonusNumber);
+        if (rank != -1) {
+            rankCount.put(rank, rankCount.get(rank) + 1);
         }
     }
 
@@ -37,14 +55,7 @@ public class RankCount {
         return -1;
     }
 
-    public void update(int matchCount, boolean hasBonusNumber) {
-        int rank = getRank(matchCount, hasBonusNumber);
-        if (rank != -1) {
-            rankCount.put(rank, rankCount.get(rank) + 1);
-        }
-    }
-
-    public void printResult() {
+    public void print() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + rankCount.get(5) + "개");
