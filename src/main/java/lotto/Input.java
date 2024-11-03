@@ -17,6 +17,8 @@ public class Input {
         }
     }
 
+
+
     public int readBonusNumber(){
         try {
             return Integer.parseInt(readLine());
