@@ -21,7 +21,6 @@ public class Lotto {
         this.numbers = sorted(numbers);
     }
 
-
     public static Lotto generate() {
         List<LottoNum> numbers = Lotto.generateRandomLottoNumbers();
         return new Lotto(numbers);
@@ -30,6 +29,7 @@ public class Lotto {
     public static Lotto create(List<LottoNum> numbers) {
         return new Lotto(numbers);
     }
+
 
     private static List<LottoNum> generateRandomLottoNumbers() {
         return convertToLottoNums(generateUniqueRandomNumbers());

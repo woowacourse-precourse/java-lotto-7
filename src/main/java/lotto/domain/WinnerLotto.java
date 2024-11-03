@@ -4,6 +4,7 @@ import static lotto.utils.ErrorMessage.INVALID_WINNER_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class WinnerLotto {
 
@@ -60,7 +61,19 @@ public class WinnerLotto {
     }
 
     @Override
-    public String toString() {
-        return winLotto.toString() + bonusNum.toString();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WinnerLotto that = (WinnerLotto) o;
+        return Objects.equals(winLotto, that.winLotto) && Objects.equals(bonusNum, that.bonusNum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(winLotto, bonusNum);
     }
 }

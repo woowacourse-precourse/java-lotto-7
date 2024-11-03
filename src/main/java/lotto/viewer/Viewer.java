@@ -1,20 +1,10 @@
 package lotto.viewer;
 
-import camp.nextstep.edu.missionutils.Console;
+public interface Viewer {
 
-public class Viewer {
+    String getInput();
 
-    public static final String ERROR_SIGN = "[ERROR] ";
+    void printError(Exception e);
 
-    public String getInput() {
-        return Console.readLine();
-    }
-
-    public void printError(Exception e) {
-        System.out.println(ERROR_SIGN + e.getMessage());
-    }
-
-    public void printMessage(String message) {
-        System.out.println(message);
-    }
+    void printMessage(String message);
 }

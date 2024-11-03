@@ -23,11 +23,16 @@ class WinnerLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6", "6,5,4,3,2,1"})
-    @DisplayName("정상 입력")
-    void test2(String input) {
-        new WinnerLotto(input);
+    @Test
+    @DisplayName("입력 순서가 달라도 숫자가 같으면 똑같이 반환한다.")
+    void test2() {
+        WinnerLotto winnerLotto1 = new WinnerLotto("1,2,3,4,5,6");
+        winnerLotto1.addBonusNum(new LottoNum("7"));
+
+        WinnerLotto winnerLotto2 = new WinnerLotto("6,5,4,3,2,1");
+        winnerLotto2.addBonusNum(new LottoNum("7"));
+
+        assertThat(winnerLotto1).isEqualTo(winnerLotto2);
     }
 
     @ParameterizedTest

@@ -1,6 +1,32 @@
 package lotto.controller;
 
-public class LottoControllerTest {
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-    // TODO createMoney가 IllegalState말고 다른 에러 던져서 정지하는지 테스트
+import lotto.dto.LottoListDto;
+import lotto.dto.MoneyDto;
+import lotto.service.LottoService;
+import lotto.viewer.MockViewer;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class LottoControllerTest {
+
+    @Test
+    @DisplayName("다른 에러로 동작이 정지되고 에러를 반환한다.")
+    void test1() {
+        LottoController lottoController = new LottoController(new LottoService() {
+            @Override
+            public MoneyDto createMoney(String money) {
+                throw new IllegalStateException();
+            }
+
+            @Override
+            public LottoListDto generateLottoList() {
+                return null;
+            }
+        }, new MockViewer());
+
+        assertThatThrownBy(lottoController::getMoney).isInstanceOf(IllegalStateException.class);
+    }
+
 }

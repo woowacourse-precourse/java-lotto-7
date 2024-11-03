@@ -1,7 +1,8 @@
-package lotto.repository;
+package lotto.repository.mock;
 
 import java.util.Optional;
 import lotto.domain.Money;
+import lotto.repository.SingleRepository;
 
 public class MockMoneyRepository implements SingleRepository<Money> {
 

@@ -13,6 +13,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    public static List<LottoNum> toLottoNumList(List<Integer> integerList) {
+        return integerList.stream().map(LottoNum::new).toList();
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6, 7));
@@ -124,10 +128,5 @@ class LottoTest {
         int matchedCount = lotto.matchCount(compareLotto);
 
         assertThat(matchedCount).isEqualTo(expected);
-    }
-
-
-    private List<LottoNum> toLottoNumList(List<Integer> integerList) {
-        return integerList.stream().map(LottoNum::new).toList();
     }
 }

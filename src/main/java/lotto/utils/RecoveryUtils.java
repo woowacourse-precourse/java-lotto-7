@@ -8,7 +8,7 @@ import lotto.viewer.Viewer;
 
 public class RecoveryUtils {
 
-    private static final Viewer viewer = LottoConfig.viewer();
+    private static final Viewer VIEWER = LottoConfig.viewer();
 
     private RecoveryUtils() {
     }
@@ -18,7 +18,7 @@ public class RecoveryUtils {
             try {
                 return processFunction.apply(inputSupplier.get());
             } catch (IllegalArgumentException e) {
-                viewer.printError(e);
+                VIEWER.printError(e);
             }
         }
     }
@@ -30,7 +30,7 @@ public class RecoveryUtils {
                 processFunction.accept(input);
                 return;
             } catch (IllegalArgumentException e) {
-                viewer.printError(e);
+                VIEWER.printError(e);
             }
         }
     }

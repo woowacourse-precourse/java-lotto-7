@@ -32,10 +32,6 @@ public class WinnerCountList {
         return counts;
     }
 
-    public void add(WinnerCount winnerCount) {
-        winnerCounts.add(winnerCount);
-    }
-
     protected Map<Integer, Integer> calculateAllReward() {
         for (WinnerCount winnerCount : winnerCounts) {
             Integer reward = winnerCount.calculateReward();

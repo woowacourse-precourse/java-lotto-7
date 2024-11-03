@@ -4,10 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.Money;
+import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.exception.EntityNotFoundException;
-import lotto.repository.MockMoneyRepository;
 import lotto.repository.impl.LottoListRepository;
+import lotto.repository.mock.MockMoneyRepository;
 import lotto.service.impl.LottoServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,19 +46,19 @@ class LottoServiceTest {
         assertThatThrownBy(service::generateLottoList).isInstanceOf(EntityNotFoundException.class);
     }
 
-//    @Test
-//    @DisplayName("get 호출 시 정상값을 반환")
-//    void test3() {
-//        // given
-//        Money money = Money.create("10000");
-//        MockMoneyRepository moneyRepository = new MockMoneyRepository(money);
-//        LottoListRepository lottoListRepository = new LottoListRepository();
-//        LottoService service = new LottoServiceImpl(moneyRepository, lottoListRepository);
-//
-//        // when
-//        MoneyDto result = service.generateLottoList();
-//
-//        // then
-//        assertThat(result).isEqualTo(money.toDto());
-//    }
+    @Test
+    @DisplayName("get 호출 시 정상값을 반환")
+    void test3() {
+        // given
+        Money money = Money.create("10000");
+        MockMoneyRepository moneyRepository = new MockMoneyRepository(money);
+        LottoListRepository lottoListRepository = new LottoListRepository();
+        LottoService service = new LottoServiceImpl(moneyRepository, lottoListRepository);
+
+        // when
+        LottoListDto result = service.generateLottoList();
+
+        // then
+        assertThat(result).isNotNull();
+    }
 }
