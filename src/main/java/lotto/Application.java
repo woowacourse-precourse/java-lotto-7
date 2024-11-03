@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Application {
@@ -31,6 +32,8 @@ public class Application {
             // 3.5 범위(1~45)에 맞지 않는 당첨 번호가 포함된 경우 예외 처리하는 기능
             ArrayList<Integer> winningNumbers = parseIntWinningNumbers(winningNumbersInputSplits);
             validateLottoNumbersInRange(winningNumbers);
+            // 3.6 중복되는 번호가 존재할 경우 예외 처리하는 기능
+            validateUniqueNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -143,5 +146,14 @@ public class Application {
             winningNumbers.add(Integer.parseInt(winningNumbersInputSplit));
         }
         return winningNumbers;
+    }
+
+    public static void validateUniqueNumbers(ArrayList<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int number : numbers) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+            }
+        }
     }
 }
