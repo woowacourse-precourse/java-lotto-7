@@ -15,7 +15,7 @@ public class LottoTicket {
     }
 
    public void showLottoTicket(){
-       System.out.println(lottos.size() + "개를 구매했습니다.");
+       System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
        for (Lotto lotto : lottos) {
            System.out.println(lotto);
        }
