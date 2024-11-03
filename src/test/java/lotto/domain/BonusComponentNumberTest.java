@@ -30,7 +30,9 @@ class BonusComponentNumberTest {
 
         assertThatThrownBy(() -> {
             new BonusComponentNumber(lotto, new ComponentNumber(bonusInput));
-        }).hasMessageContaining(InputError.DUPLICATE_BONUS_NUMBER.getInstance());
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(InputError.DUPLICATE_BONUS_NUMBER.getInstance());
 
     }
 

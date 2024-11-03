@@ -23,9 +23,10 @@ class ComponentNumberTest {
 
         //최소를 벗어난 경우
         assertThatThrownBy(() -> {
-                    new ComponentNumber(LottoRule.MINIMUM_NUMBER_RANGE.getInstance() - 1);
-                }
-        ).hasMessageContaining(RangeError.NUMBER.getInstance());
+            new ComponentNumber(LottoRule.MINIMUM_NUMBER_RANGE.getInstance() - 1);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(RangeError.NUMBER.getInstance());
 
     }
 

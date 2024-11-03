@@ -55,7 +55,9 @@ class LottoTest {
     void testLottoLengthValidation() {
         assertThatThrownBy(() -> {
             new Lotto(generateNumberLottoOfLength(LottoRule.COMBINATION_LENGTH.getInstance() + 1));
-        }).hasMessageContaining(RangeError.LOTTO_LENGTH.getInstance());
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(RangeError.LOTTO_LENGTH.getInstance());
     }
 
     @Test
@@ -74,7 +76,9 @@ class LottoTest {
 
         assertThatThrownBy(() -> {
             new Lotto(duplicateList);
-        }).hasMessageContaining(InputError.DUPLICATE_LOTTO_NUMBER.getInstance());
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(InputError.DUPLICATE_LOTTO_NUMBER.getInstance());
 
     }
 
