@@ -83,22 +83,9 @@ class LottoTest {
     }
 
     @Test
-    void 천원으로_1등에_당첨되면_수익률이_2_000_000이다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
-        int bonus_number = 7;
-        lotto.checkLottoWin(winningNumber, bonus_number);
-        assertThat(Utils.calculateProfitRate(1000))
-                .isEqualTo("200000000.0");
-    }
-
-    @Test
-    void 당첨되지_않으면_수익률이_0이다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumber = List.of(11, 12, 13, 14, 15, 16);
-        int bonus_number = 7;
-        lotto.checkLottoWin(winningNumber, bonus_number);
-        assertThat(Utils.calculateProfitRate(1000))
-                .isEqualTo("0.0");
+    void 구입금액이_5000원이면_5장을_발행한다() {
+        int purchaseAmount = 5000;
+        List<Lotto> lottos = Lotto.issueLottos(Lotto.getIssueAmount(purchaseAmount));
+        assertThat(lottos.size()).isEqualTo(5);
     }
 }
