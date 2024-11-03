@@ -4,7 +4,6 @@ import java.util.Map;
 import lotto.dto.MatchResult;
 import lotto.dto.MatchResults;
 import lotto.model.amount.ProfitRate;
-import lotto.service.lotto.constant.LottoConstant;
 import lotto.service.lotto.constant.MatchBonusEnum;
 
 /**

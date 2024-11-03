@@ -65,11 +65,30 @@ public abstract interface ValidateCommand extends Command<UserInput, String> {
     }
   }
 
-  default void validateLongRange(String input) {
+  default long validateLongRange(String input, long minimum, long maximum) {
     try {
       long value = Long.parseLong(input);
+      validateMinimum(value, minimum);
+      validateMaximum(value, maximum);
+      return value;
     } catch (NumberFormatException e) {
       throw new InputException(ExceptionEnum.INVALID_LONG_RANGE);
+    }
+  }
+
+  default void validateMinimum(long value, long minimum) {
+    if (value < minimum) {
+      String runtimeMessage = String.valueOf(minimum);
+      throw new InputException(ExceptionEnum.INPUT_LESS_THAN_MINIMUM,
+          runtimeMessage);
+    }
+  }
+
+  default void validateMaximum(long value, long maximum) {
+    if (value > maximum) {
+      String runtimeMessage = String.valueOf(maximum);
+      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MINIMUM,
+          runtimeMessage);
     }
   }
 }

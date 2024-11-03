@@ -1,13 +1,9 @@
 package lotto.command.output;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.dto.MatchResult;
-import lotto.dto.MatchResults;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.PurchasedLottos;
-import lotto.service.lotto.constant.MatchBonusEnum;
 
 /**
  * @author : jiffyin7@gmail.com

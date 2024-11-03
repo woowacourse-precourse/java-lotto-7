@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.command.validate.BonusCommand;
 import lotto.command.validate.LottoCommand;
-import lotto.command.validate.ValidateCommand;
 import lotto.dto.BonusUserInput;
 import lotto.dto.MatchResult;
 import lotto.dto.MatchResults;
@@ -34,7 +33,7 @@ public class LottoService {
     return LottoConstant.PRICE;
   }
 
-  public PurchasedLottos publishPurchaseLottos (int lottoCount) {
+  public PurchasedLottos publishPurchaseLottos (long lottoCount) {
     return PurchasedLottos.from(createLottos(lottoCount));
   }
 
@@ -42,9 +41,9 @@ public class LottoService {
     return this.lottoCommand;
   }
 
-  private List<Lotto> createLottos(int count) {
+  private List<Lotto> createLottos(long count) {
     List<Lotto> lottos = new ArrayList<>();
-    for (int i = 0; i < count; ++i) {
+    for (long i = 0; i < count; ++i) {
       lottos.add(createLotto(generateRandomNumbers()));
     }
     return lottos;

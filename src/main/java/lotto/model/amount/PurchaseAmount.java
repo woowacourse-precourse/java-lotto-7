@@ -6,10 +6,10 @@ import lotto.dto.PurchaseAmountUserInput;
  * @author : jiffyin7@gmail.com
  * @since : 24. 10. 31.
  */
-public class PurchaseAmount implements Amount<Integer> {
-  private int amount;
+public class PurchaseAmount implements Amount<Long> {
+  private long amount;
 
-  private PurchaseAmount (int amount) {
+  private PurchaseAmount (long amount) {
     this.amount = amount;
   }
 
@@ -18,11 +18,11 @@ public class PurchaseAmount implements Amount<Integer> {
   }
 
   @Override
-  public Integer getAmount() {
+  public Long getAmount() {
     return this.amount;
   }
 
-  public int calculatePurchasableCount(int price) {
+  public long calculatePurchasableCount(int price) {
     return getAmount() / price;
   }
 }

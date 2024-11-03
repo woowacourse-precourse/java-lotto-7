@@ -67,7 +67,7 @@ public class LottoController {
   
   private PurchasedLottos getPurchasedLottos (PurchaseAmount purchaseAmount) {
     int price = lottoService.getPrice();
-    int count = amountService.getPurchasableCount(purchaseAmount, price);
+    long count = amountService.getPurchasableCount(purchaseAmount, price);
     return lottoService.publishPurchaseLottos(count);
   }
 

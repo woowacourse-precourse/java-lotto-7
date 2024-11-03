@@ -5,17 +5,17 @@ package lotto.dto;
  * @since : 24. 10. 31.
  */
 public class PurchaseAmountUserInput implements UserInput {
-  private int amount;
+  private long amount;
 
-  private PurchaseAmountUserInput (int amount) {
+  private PurchaseAmountUserInput (long amount) {
     this.amount = amount;
   }
 
-  public static PurchaseAmountUserInput from(Integer amount) {
+  public static PurchaseAmountUserInput from(long amount) {
     return new PurchaseAmountUserInput(amount);
   }
 
-  public int getAmount () {
+  public long getAmount () {
     return this.amount;
   }
 }

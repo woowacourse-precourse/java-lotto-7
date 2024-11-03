@@ -28,7 +28,7 @@ public class AmountService {
     return PurchaseAmount.from(userInput);
   }
 
-  public int getPurchasableCount (PurchaseAmount amount, int price) {
+  public long getPurchasableCount (PurchaseAmount amount, int price) {
     return amount.calculatePurchasableCount(price);
   }
 
