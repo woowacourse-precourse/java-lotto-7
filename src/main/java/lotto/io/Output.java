@@ -57,7 +57,7 @@ public class Output {
     private void printWinningStatistic(RankCount rankCount) {
         int matchNumbersCount = rankCount.getRank().getMatchNumbersCount();
         int matchBonus = rankCount.getRank().getMatchBonus();
-        int prize = rankCount.getRank().getPrize();
+        String prize = rankCount.getRank().getFormattedPrize();
         int count = rankCount.getCount();
 
         if (matchBonus != 0) {
