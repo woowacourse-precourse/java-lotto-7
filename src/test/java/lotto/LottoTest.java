@@ -1,11 +1,15 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,5 +26,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @CsvSource(value = {
+            "5,true",
+            "9,false",
+            "10,false",
+            "44,false",
+            "1,true"
+    })
+    void 로또_번호에_인자로_받는_번호_존재여부_반환한다(int number, boolean expectedResult) {
+        // Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Number checkExistedNumber = new Number(number);
+
+        // When
+        boolean isContain = lotto.isContainNumber(checkExistedNumber);
+
+        // Then
+        assertThat(isContain).isEqualTo(expectedResult);
+    }
 }
