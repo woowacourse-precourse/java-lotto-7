@@ -35,15 +35,6 @@ public class LottoService {
         return results;
     }
 
-    private LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
-        List<Integer> winningNums = winningNumbers.getWinningLotto().getNumbers();
-        int matchCount = (int) lotto.getNumbers().stream()
-                .filter(winningNums::contains)
-                .count();
-        boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
-        return LottoRank.valueOf(matchCount, matchBonus);
-    }
-
     public int calculateTotalPrize(Map<LottoRank, Integer> results) {
         int totalPrize = 0;
         for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
@@ -57,5 +48,14 @@ public class LottoService {
     public double calculateYield(int purchaseAmount, int totalPrize) {
         double yield = ((double) totalPrize / purchaseAmount) * 100;
         return yield;
+    }
+
+    private LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
+        List<Integer> winningNums = winningNumbers.getWinningLotto().getNumbers();
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNums::contains)
+                .count();
+        boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+        return LottoRank.valueOf(matchCount, matchBonus);
     }
 }
