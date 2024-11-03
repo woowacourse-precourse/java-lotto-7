@@ -45,7 +45,7 @@ public enum Rank {
         if (isMatchingBonusNumber) {
             sb.append(", 보너스 볼 일치");
         }
-        sb.append(String.format("(%,d원)", prizeMoney));
+        sb.append(String.format(" (%,d원)", prizeMoney));
         return sb.toString();
     }
 }
