@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import validator.LottoValidator;
 
 public class Lotto {
@@ -20,7 +21,8 @@ public class Lotto {
 
         this.numbers = numbers.stream()
                 .sorted()
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
+        ;
     }
 
     public List<Integer> getNumbers() {

@@ -5,11 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import static constants.LottoException.*;
 
 public class LottoValidator {
     public static boolean isNumber(String targetString) {
-        try{
+        try {
             Integer.parseInt(targetString);
             return true;
         } catch (NumberFormatException e) {
