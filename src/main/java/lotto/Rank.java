@@ -28,4 +28,31 @@ public enum Rank {
     public boolean getBonusMatch() {
         return bonusMatch;
     }
+
+    public static Rank fromMatchValue(int matchCount) {
+        for(Rank constant : Rank.values()) {
+            if(constant.getMatchCount() == matchCount){
+                return constant;
+            }
+        }
+        throw new IllegalArgumentException("enum에 해당 값을 가진 상수가 없습니다.");
+    }
+
+    public static Rank fromPrizeValue(int prize) {
+        for(Rank constant : Rank.values()) {
+            if(constant.getPrize() == prize){
+                return constant;
+            }
+        }
+        throw new IllegalArgumentException("enum에 해당 값을 가진 상수가 없습니다.");
+    }
+
+    public static Rank fromBonusMatchValue(boolean bonusMatch) {
+        for(Rank constant : Rank.values()) {
+            if(constant.getBonusMatch() == bonusMatch){
+                return constant;
+            }
+        }
+        throw new IllegalArgumentException("enum에 해당 값을 가진 상수가 없습니다.");
+    }
 }
