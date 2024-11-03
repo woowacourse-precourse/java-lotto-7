@@ -65,26 +65,36 @@ public class Handler {
   // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
   public String compareNumbersResult(List<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
     String result = "";
+    int equals = 0;
+    for (int i = 0; i < actualLotto.size(); i++) {
+      if (actualLotto.get(i).contains(winningNumbers.get(i))){
+        equals += 1;
+      }
+      if (actualLotto.get(i).contains(bonus){
+        bonus = 0;
+      }
+    }
     // 6개 일치
-    if(first()) {
+    if(equals == 6) {
+
 
       // 어떻게 비교할 것인가 -> 반복문 vs 스트림
       result = FIRST.getMessage();
     }
     // 5개 일치, 보너스 볼 일치
-    if(second()) {
+    if(equals == 5 && bonus == 0) {
       result = SECOND.getMessage();
     }
     // 5개 일치
-    if(third()) {
+    if(equals == 5) {
       result = THIRD.getMessage();
     }
     // 4개 일치
-    if(fourth()) {
+    if(equals == 4) {
       result = FOURTH.getMessage();
     }
     // 3개 일치
-    if(fifth()) {
+    if(equals == 3) {
       result = FIFTH.getMessage();
     }
     return result;
