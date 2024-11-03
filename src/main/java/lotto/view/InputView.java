@@ -4,6 +4,11 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_INPUT;
 
 public class InputView {
+
+    private InputView() {
+        throw new IllegalStateException("InputView is utility class");
+    }
+
     public static int inputPurchaseAmount() {
         while (true) {
             try {
