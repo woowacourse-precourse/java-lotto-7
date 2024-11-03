@@ -34,7 +34,7 @@ public class InputValidate {
             return true;
         } catch (IllegalArgumentException e) {
             errorMessage = e.getMessage();
-            System.err.println(errorMessage);
+            System.out.println(errorMessage);
             return false;
         }
     }

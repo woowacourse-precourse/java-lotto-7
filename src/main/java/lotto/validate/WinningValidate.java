@@ -34,7 +34,7 @@ public class WinningValidate {
             }
 
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
             return false;
         }
 
@@ -52,7 +52,7 @@ public class WinningValidate {
             }
 
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
             return false;
         }
         return true;
