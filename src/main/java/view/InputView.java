@@ -1,5 +1,8 @@
 package view;
 
+import view.validation.InputValidator;
+
+import java.util.List;
 import java.util.function.Supplier;
 
 public class InputView {
@@ -10,28 +13,31 @@ public class InputView {
         this.reader = reader;
     }
 
-    public String chargeMoneyInput() {
+    public int chargeMoneyInput() {
         return repeatLoop(() -> {
             System.out.println("구입금액을 입력해 주세요.");
             String money = reader.get();
             System.out.println();
-            return money;
+            int charge = InputValidator.validateMoney(money);
+            return charge;
         });
     }
 
-    public String winningNumberInput() {
+    public List<Integer> winningNumberInput() {
         return repeatLoop(() -> {
             System.out.println("당첨 번호를 입력해 주세요.");
             String winningNumber = reader.get();
-            return winningNumber;
+            List<Integer> winningNumbers = InputValidator.validateWinningNumber(winningNumber);
+            return winningNumbers;
         });
     }
 
-    public String bonusNumberInput() {
+    public int bonusNumberInput() {
         return repeatLoop(() -> {
             System.out.println("보너스 번호를 입력해 주세요.");
             String bonusNumber = reader.get();
-            return bonusNumber;
+            int bonusNum = InputValidator.validateBonusNumber(bonusNumber);
+            return bonusNum;
         });
     }
 
