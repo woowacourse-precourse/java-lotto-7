@@ -13,7 +13,7 @@ public class LottoService {
     private final static Validator validator = new Validator();
 
     public int purchaseAmount(String input){
-        int amount = validator.validateAmountNumber(input);
+        int amount = validator.validateNumber(input);
         validator.validateAmountCount(amount);
         return amount;
     }
@@ -47,8 +47,9 @@ public class LottoService {
                 .toList();
     }
 
-    public int bonusNumber(Integer bonusNumber, Lotto lotto){
-        validator.validateEmpty(bonusNumber);
+    public int bonusNumber(String inputBonusNumber, Lotto lotto){
+        validator.validateEmpty(inputBonusNumber);
+        int bonusNumber = validator.validateNumber(inputBonusNumber);
         validator.validateDuplicatedBonusNumber(bonusNumber, lotto);
         return bonusNumber;
     }
