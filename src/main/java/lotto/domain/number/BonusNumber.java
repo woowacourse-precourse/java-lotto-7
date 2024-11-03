@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.number;
 
 import static lotto.LottoValue.MAX_NUMBER;
 import static lotto.LottoValue.MIN_NUMBER;

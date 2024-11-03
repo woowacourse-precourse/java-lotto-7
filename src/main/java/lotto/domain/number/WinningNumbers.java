@@ -1,4 +1,4 @@
-package lotto.domain.winner;
+package lotto.domain.number;
 
 import java.util.HashSet;
 import java.util.List;

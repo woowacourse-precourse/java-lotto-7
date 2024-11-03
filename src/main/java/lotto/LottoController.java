@@ -1,9 +1,9 @@
 package lotto;
 
 import lotto.domain.common.Price;
-import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.winner.WinningNumbers;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningNumbers;
 import lotto.domain.winner.WinningStatistic;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;

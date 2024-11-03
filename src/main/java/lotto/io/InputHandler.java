@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.Sign;
 import lotto.domain.common.Price;
-import lotto.domain.lotto.BonusNumber;
-import lotto.domain.winner.WinningNumbers;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningNumbers;
 
 public class InputHandler {
 

@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 import lotto.LottoValue;
 import lotto.domain.LottoErrorTemplate;
-import lotto.domain.winner.WinningNumbers;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningNumbers;
 
 public class Lotto {
 
