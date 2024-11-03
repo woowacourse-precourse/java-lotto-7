@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.controller;
 
 import java.util.EnumMap;
 import lotto.domain.Lotto;
