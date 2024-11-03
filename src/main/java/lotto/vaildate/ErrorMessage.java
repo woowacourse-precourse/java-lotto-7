@@ -9,5 +9,6 @@ public class ErrorMessage {
     public final static String INVALID_NUMBER_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
     public final static String INVALID_BONUS_NUMBER = "[ERROR] 올바른 보너스 번호를 입력해주세요.";
     public final static String DUPLICATE_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+    public final static String INPUT_PROMPT = "[ERROR] 값을 입력해주세요.";
 
 }
