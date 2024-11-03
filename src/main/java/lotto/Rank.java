@@ -23,6 +23,14 @@ public enum Rank {
         this.printMessage = printMessage;
     }
 
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+    public String getPrintMessage() {
+        return printMessage;
+    }
+
     public static Rank getRank(int matchingCount, boolean isBonusMatched) {
         return Arrays.stream(Rank.values())
                 .filter(type -> type.isMatched(matchingCount, isBonusMatched))
