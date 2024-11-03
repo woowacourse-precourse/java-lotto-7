@@ -26,7 +26,7 @@ public class LottoController {
         int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
         winningNumbers.checkBonusDuplicate(bonusNumber);
 
-        LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
+        LottoGame lottoGame = new LottoGame(purchasedLottos, winningNumbers, bonusNumber);
         lottoGame.process();
 
         outputResult(lottoGame, inputtedCost);
