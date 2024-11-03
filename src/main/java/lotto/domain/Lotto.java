@@ -9,6 +9,9 @@ public record Lotto(List<LottoNumber> numbers) {
 
     public Lotto {
         validate(numbers);
+        numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public static Lotto from(final List<Integer> intNumbers) {

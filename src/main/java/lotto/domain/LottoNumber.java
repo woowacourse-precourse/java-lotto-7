@@ -2,13 +2,18 @@ package lotto.domain;
 
 import lotto.exception.LottoException;
 
-public record LottoNumber(int number) {
+public record LottoNumber(int number) implements Comparable<LottoNumber> {
 
     public final static int MIN_NUMBER = 1;
     public final static int MAX_NUMBER = 45;
 
     public LottoNumber {
         validate(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber other) {
+        return Integer.compare(this.number, other.number);
     }
 
     public static LottoNumber from(final int number) {
