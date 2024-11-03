@@ -2,7 +2,7 @@ package lotto.config;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.controller.LottoInputController;
+import lotto.controller.LottoRetypingController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
@@ -34,11 +34,11 @@ class ApplicationConfigTests {
 
     @Test
     @DisplayName("LottoInputController 객체가 싱글톤 객체인지 확인")
-    void getInputControllerTest() {
-        LottoInputController expected = ApplicationConfig.lottoInputController;
+    void getRetypingControllerTest() {
+        LottoRetypingController expected = ApplicationConfig.lottoRetypingController;
 
         assertEquals(
-                ApplicationConfig.getInputController().hashCode(),
+                ApplicationConfig.getRetypingController().hashCode(),
                 expected.hashCode()
         );
     }

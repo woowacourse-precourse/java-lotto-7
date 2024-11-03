@@ -3,19 +3,19 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.dto.WinningLottoDTO;
-import lotto.model.BonusNumber;
+import lotto.model.LottoBonusNumber;
 import lotto.model.Lotto;
 import lotto.view.InputView;
 
-public class LottoInputController {
+public class LottoRetypingController {
 
     private final InputView inputView;
 
-    public LottoInputController(InputView inputView) {
+    public LottoRetypingController(InputView inputView) {
         this.inputView = inputView;
     }
 
-    public Long inputSingleValue(Supplier<Long> input) {
+    public Long retypeSingleInput(Supplier<Long> input) {
         while (true) {
             try {
                 return input.get();
@@ -25,22 +25,24 @@ public class LottoInputController {
         }
     }
 
-    public WinningLottoDTO inputWinningCondition() {
-        Lotto winningNumbers = inputLottoNumbers(inputView::inputWinningNumbers);
+    public Lotto retypeLottoNumberInput(Supplier<List<Integer>> input) {
         while (true) {
             try {
-                Long bonusNumber = inputSingleValue(inputView::inputBonusNumber);
-                return new WinningLottoDTO(winningNumbers, new BonusNumber(winningNumbers, bonusNumber.intValue()));
+                return new Lotto(input.get());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private Lotto inputLottoNumbers(Supplier<List<Integer>> input) {
+    public WinningLottoDTO retypeWinningCondition() {
+        Lotto winningNumbers = retypeLottoNumberInput(inputView::inputWinningNumbers);
+
         while (true) {
             try {
-                return new Lotto(input.get());
+                Long extraLottoNumber = retypeSingleInput(inputView::inputBonusNumber);
+                LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, extraLottoNumber.intValue());
+                return new WinningLottoDTO(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

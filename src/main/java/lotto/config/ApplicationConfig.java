@@ -1,6 +1,6 @@
 package lotto.config;
 
-import lotto.controller.LottoInputController;
+import lotto.controller.LottoRetypingController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -8,7 +8,7 @@ public final class ApplicationConfig {
 
     public static InputView inputView = getInputView();
     public static OutputView outputView = getOutputView();
-    public static LottoInputController lottoInputController = getInputController();
+    public static LottoRetypingController lottoRetypingController = getRetypingController();
 
     private ApplicationConfig() {
     }
@@ -27,10 +27,10 @@ public final class ApplicationConfig {
         return outputView;
     }
 
-    static LottoInputController getInputController() {
-        if (lottoInputController == null) {
-            lottoInputController = new LottoInputController(getInputView());
+    static LottoRetypingController getRetypingController() {
+        if (lottoRetypingController == null) {
+            lottoRetypingController = new LottoRetypingController(getInputView());
         }
-        return lottoInputController;
+        return lottoRetypingController;
     }
 }
