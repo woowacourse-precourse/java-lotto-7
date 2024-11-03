@@ -1,4 +1,11 @@
-package lotto;
+package lotto.controller;
+
+import lotto.util.LottoMachine;
+import lotto.util.Rank;
+import lotto.util.ResultCalculator;
+import lotto.view.UserInput;
+import lotto.model.Lotto;
+import lotto.view.UserView;
 
 import java.util.List;
 import java.util.Map;
