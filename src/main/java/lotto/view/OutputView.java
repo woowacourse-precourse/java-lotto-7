@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.domain.WinningCondition;
 import lotto.domain.WinningResult;
 
@@ -8,36 +9,45 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
     public void printlnMessageWithEmptyLine(String message) {
         printlnMessage(message);
         printEmptyLine();
     }
 
-    public void printEmptyLine() {
-        System.out.println();
+    public void printResult(WinningResult result, double profitRate) {
+        printlnMessage("당첨 통계");
+        printlnMessage("---");
+        printWinningResult(result);
+        printProfitRate(profitRate);
     }
 
-    public void printResult(WinningResult result, double profitRate) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (WinningCondition winningCondition : WinningCondition.getAllConditions().reversed()) {
-            String format = determineFormat(winningCondition);
+    private void printWinningResult(WinningResult result) {
+        List<WinningCondition> winningConditionPrintSequence = WinningCondition.getAllConditions().reversed();
+        for (WinningCondition winningCondition : winningConditionPrintSequence) {
+            String format = determinePrintFormat(winningCondition);
             String str = String.format(
                     format,
                     winningCondition.getWinningNumberCount(),
                     String.format("%,d", winningCondition.getRewardAmount()),
                     result.getResultMap().get(winningCondition).size()
             );
-            System.out.println(str);
+            printlnMessage(str);
         }
-        String str = String.format("총 수익률은 %s%%입니다.", profitRate);
-        System.out.println(str);
     }
 
-    private String determineFormat(WinningCondition winningCondition) {
+    private String determinePrintFormat(WinningCondition winningCondition) {
         if (winningCondition.mustIncludeBonusNumber()) {
             return "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
         }
         return "%d개 일치 (%s원) - %d개";
+    }
+
+    private void printProfitRate(double profitRate) {
+        String str = String.format("총 수익률은 %s%%입니다.", profitRate);
+        printlnMessage(str);
     }
 }
