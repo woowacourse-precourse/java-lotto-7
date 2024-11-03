@@ -66,7 +66,7 @@ public class LottoResultChecker {
         List<LottoWinningRank> resultList = new ArrayList<>();
 
         for (int i = 0; i < resultPrizeCountList.size(); i++) {
-            resultList.add(checkRankEnum(resultPrizeCountList.get(i),resultIsBonusCountList.get(i)));
+            resultList.add(checkRankEnum(resultPrizeCountList.get(i), resultIsBonusCountList.get(i)));
         }
 
         return resultList;
@@ -95,7 +95,9 @@ public class LottoResultChecker {
             allPrice += prizeEntry.getKey().getPrizePrice() * prizeEntry.getValue();
         }
 
-         return ((allPrice / buyPrice) * 100) + "%";
+        double parseAllPrice = (double) allPrice;
+
+        return ((double)(parseAllPrice / buyPrice) * 100) + "%";
     }
 
 
