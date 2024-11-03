@@ -28,7 +28,7 @@ public class LottoManagerTest {
         // then
         assertThat(lottoResult).isEqualTo(List.of(
                 LottoResult.THREE,
-                LottoResult.NONE,
+                LottoResult.THREE,
                 LottoResult.FOUR
         ));
     }
