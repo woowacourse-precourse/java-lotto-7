@@ -7,15 +7,18 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateCount(numbers);
-        validateDuplicate(numbers);
-        validateRange(numbers);
-
+        validate(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateCount(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
