@@ -22,43 +22,71 @@ public class LottoController {
     }
 
     public void run() {
+        TicketCount ticketCount = getTicketCount();
+        Tickets tickets = generateTickets(ticketCount);
+        Winning winning = getWinningNumbers();
+        Bonus bonus = getBonusNumber();
+
+        WinningResultCounter winningResultCounter = calculateWinningResults(tickets, winning, bonus);
+        displayResults(winningResultCounter, ticketCount);
+    }
+
+    private TicketCount getTicketCount() {
         String inputAmount = inputView.readPurchaseAmount();
-        TicketCount ticket = new TicketCount(inputAmount);
+        TicketCount ticketCount = new TicketCount(inputAmount);
+        outputView.printPurchaseTicketCount(ticketCount.getCount());
+        return ticketCount;
+    }
 
-        outputView.printTicketCount(ticket.getCount());
-        Tickets tickets = new Tickets(ticket);
+    private Tickets generateTickets(TicketCount ticketCount) {
+        Tickets tickets = new Tickets(ticketCount);
         List<String> ticketsInfo = tickets.getTicketsInfo();
-
         outputView.printTicketNumbers(ticketsInfo);
+        return tickets;
+    }
 
+    private Winning getWinningNumbers() {
         String winningNumber = inputView.readWinningNumber();
-        Winning winning = new Winning(winningNumber);
+        return new Winning(winningNumber);
+    }
 
+    private Bonus getBonusNumber() {
         String bonusNumber = inputView.readBonusNumber();
-        Bonus bonus = new Bonus(Integer.parseInt(bonusNumber));
+        return new Bonus(Integer.parseInt(bonusNumber));
+    }
 
+    private WinningResultCounter calculateWinningResults(Tickets tickets, Winning winning, Bonus bonus) {
         WinningResultCounter winningResultCounter = new WinningResultCounter();
-
         List<Lotto> lottos = tickets.getLottos();
-        for (Lotto lotto : lottos) {
-            int counted = lotto.countMatchingNumbers(winning.getLotto());
-            boolean containsBonusBall = bonus.isContainsBonusBall(lotto);
 
-            WinningResult result = WinningResult.findByMatchCountAndBonus(counted, containsBonusBall);
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.countMatchingNumbers(winning.getLotto());
+            boolean containsBonusBall = bonus.isContainsBonusBall(lotto);
+            WinningResult result = WinningResult.findByMatchCountAndBonus(matchCount, containsBonusBall);
             winningResultCounter.increment(result);
         }
 
-        Map<WinningResult, Integer> winningResult = winningResultCounter.getWinningResult();
-        int totalProfit = winningResult.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().calculateTotalWinningAmount(entry.getValue()))
-                .sum();
+        return winningResultCounter;
+    }
 
-        int purchaseAmount = Integer.parseInt(inputAmount);
-        double profitRate = (double) totalProfit / purchaseAmount * 100;
+    private void displayResults(WinningResultCounter winningResultCounter, TicketCount ticketCount) {
+        Map<WinningResult, Integer> winningResult = winningResultCounter.getWinningResult();
+        int totalProfit = calculateTotalProfit(winningResult);
+        double profitRate = calculateProfitRate(totalProfit, ticketCount);
 
         List<String> formattedResults = WinningResult.getFormattedResults(winningResult);
-
         outputView.printWinningStatistics(formattedResults);
         outputView.printProfitRate(profitRate);
+    }
+
+    private int calculateTotalProfit(Map<WinningResult, Integer> winningResult) {
+        return winningResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().calculateTotalWinningAmount(entry.getValue()))
+                .sum();
+    }
+
+    private double calculateProfitRate(int totalProfit, TicketCount ticketCount) {
+        int purchaseAmount = ticketCount.getPurchaseAmount();
+        return (double) totalProfit / purchaseAmount * 100;
     }
 }
