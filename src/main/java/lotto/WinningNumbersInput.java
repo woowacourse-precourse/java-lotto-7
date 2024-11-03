@@ -16,8 +16,8 @@ public class WinningNumbersInput{
                 checkNumbers(numbers);  // 범위 검사 & 중복 검사
                 return new Lotto(numbers);
             } catch (NumberFormatException e) {
-                System.out.println("[Error] 숫자를 입력해주세요.");
-            }catch (IllegalArgumentException e) {
+                System.out.println("[Error] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
