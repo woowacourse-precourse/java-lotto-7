@@ -1,10 +1,13 @@
 package lotto.lotto;
 
 import static lotto.service.LottoService.getRandomLottoNumber;
+import static lotto.service.LottoService.sortAscending;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.domain.Lottos;
@@ -56,5 +59,18 @@ public class LottoTest {
 
         // then
         assertNotEquals(Lotto.size(), LottoSet.size());
+    }
+
+    @Test
+    @DisplayName("로또 번호를 오름차순 정렬한다.")
+    public void testSortAscending() {
+        // given
+        List<Integer> Lotto = getRandomLottoNumber();
+
+        // when
+        sortAscending(Lotto);
+
+        // then
+        assertThat(Lotto).isSorted();
     }
 }
