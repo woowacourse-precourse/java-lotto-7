@@ -19,6 +19,7 @@ public class LottoView {
     public PurchaseAmount getPurchaseAmountFromUser() {
         System.out.println("구입금액을 입력해 주세요.");
         String amount = Console.readLine();
+        System.out.println();
         return PurchaseAmount.from(amount);
     }
 
@@ -28,7 +29,7 @@ public class LottoView {
         String[] split = input.split(",");
 
         List<Integer> numbers = toIntList(split);
-
+        System.out.println();
         return Lotto.of(numbers);
     }
     
@@ -36,6 +37,7 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         int intInput = toInt(input);
+        System.out.println();
         return new LottoNumber(intInput);
     }
 
@@ -59,6 +61,8 @@ public class LottoView {
     }
 
     public void showWinningResult(Map<LottoRank, Integer> ranks) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         List<LottoRank> lottoRanks = LottoRank.getRanksOrderByReward();
         for (LottoRank lottoRank : lottoRanks) {
             String message = rankMessageGenerator.getMessage(lottoRank, ranks);
