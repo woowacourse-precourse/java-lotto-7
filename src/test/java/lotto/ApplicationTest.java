@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.exception.LottoException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -51,6 +53,25 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    @DisplayName("로또 구입 금액을 잘못 입력하면 해당 부분만 다시 입력받는다")
+    void retryPurchaseAmountInput(){
+        assertSimpleTest(() -> {
+            run("7900", "8000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(LottoException.INVALID_PURCHASE_AMOUNT, "8개를 구매했습니다.");
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호를 잘못 입력하면 해당 부분만 다시 입력받는다")
+    void retryWinningLottoInput(){
+        assertSimpleTest(() -> {
+            run( "8000", "1,2,3,4,5,5","1,2,3,4,5,6", "7");
+            assertThat(output()).contains(LottoException.DUPLICATE_LOTTO_NUMBER);
         });
     }
 
