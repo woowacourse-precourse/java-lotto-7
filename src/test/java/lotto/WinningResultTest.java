@@ -8,6 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningRank;
 import lotto.domain.WinningResult;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -62,8 +63,21 @@ public class WinningResultTest {
     @ParameterizedTest
     @DisplayName("수익률 계산 테스트")
     @CsvSource(value = {"5000, 8000, 62.5", "0, 3000, 0.0"})
-    void 수익률_계산_테스트(int prizeMoney, int amount, String excepted) {
+    void 수익률_계산_테스트(long prizeMoney, int amount, String excepted) {
         winningResult.setPrizeMoney(prizeMoney);
         assertThat(winningResult.getRateOfReturn(amount)).contains(excepted);
+    }
+
+    @Test
+    @DisplayName("총 수익금 int형 범위 초과 테스트")
+    void 총_수익금_int형_범위_초과_테스트() {
+        winningResult.setPrizeMoney(4_000_000_000L);
+    }
+
+    @Test
+    @DisplayName("총 수익금 int형 범위 초과 시 수익률 계산 테스트")
+    void 총_수익금_int형_범위_초과_시_수익률_계산_테스트() {
+        winningResult.setPrizeMoney(4_000_000_000L);
+        assertThat(winningResult.getRateOfReturn(100_000_000)).contains("4000.0");
     }
 }
