@@ -76,4 +76,8 @@ public class WinningStatistics {
         }
         return winningCount;
     }
+
+    public Map<Rank, Integer> getWinningStatistics() {
+        return winningStatistics;
+    }
 }
