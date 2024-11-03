@@ -22,4 +22,12 @@ public class InputDto {
     public String getBonusNumber() {
         return bonusNumber;
     }
+
+    public boolean validateDto() {
+        return (
+                purchaseAmountStr != null && !purchaseAmountStr.isEmpty() &&
+                winningNumStr != null && !winningNumStr.isEmpty() &&
+                bonusNumber != null && !bonusNumber.isEmpty()
+        );
+    }
 }
