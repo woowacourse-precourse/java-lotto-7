@@ -25,8 +25,10 @@ public class ProfitCalculator {
                 .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
 
-        long size = lottoGradeCountMap.size();
+        long size = lottoGradeCountMap.values().stream()
+                .mapToLong(Integer::longValue)
+                .sum();
 
-        return sum / (size * LOTTO_PRICE);
+        return Math.round(sum / (size * LOTTO_PRICE) * 10) / 10.0;
     }
 }
