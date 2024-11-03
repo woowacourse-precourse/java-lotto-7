@@ -13,6 +13,9 @@ public class LottoPurchaseController {
     public LottoPurchaseController(Integer buyCount) {
         this.lottoTicketPurchase = new LottoTicketPurchase(buyCount);
         lottoTicketPurchaseView.printPurchaseCount(buyCount);
+    }
+
+    public void printPurchaseLotto() {
         lottoTicketPurchaseView.printLottoPurchase(lottoTicketPurchase.getLottoTickets());
     }
 
