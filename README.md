@@ -58,13 +58,14 @@
             └── lotto
                 ├── ApplicationTest.java
                 ├── model
-                │   └── LottoTest.java
+                │   ├── LottoTest.java
+                │   └── PrizeTableTest.java
                 ├── service
                 │   └── LottoServiceTest.java
                 └── validator
+                    ├── NumberParserTest.java
                     ├── NumberValidatorTest.java
                     └── PurchaseValidatorTest.java
-
 ├──README.md
 ├──build.gradle
 ```
