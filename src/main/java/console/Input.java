@@ -1,5 +1,11 @@
 package console;
 
+import static exception.Exception.BONUS_INPUT;
+import static exception.Exception.BONUS_NOT_EXIST_WINNING_NUMBER;
+import static exception.Exception.ERROR_PREFIX;
+import static exception.Exception.INPUT_UNITS;
+import static lotto.Lotto.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Console;
 import exception.Exception;
 import java.util.Arrays;
@@ -8,7 +14,13 @@ import java.util.stream.Collectors;
 import lotto.Lotto;
 
 public class Input {
-
+    public static final String BUY_MSG = "개를 구매했습니다.";
+    public static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요(콤마로 구분하여 공백없이 작성해주세요)";
+    public static final String WINNING_NUMBER_RULE = "1~45사이의 당첨번호를 콤마로 구분하여 입력해주세요.";
+    public static final String MATCH = "개 일치";
+    public static final String MATCH_BONUS_BALL = ", 보너스 볼 일치";
+    public static final String WON = "원";
+    public static final String NUMBER = "개";
     private final Exception exception = new Exception();
     private List<Integer> winningNumber;
 
@@ -22,12 +34,12 @@ public class Input {
 
     public long returnLottoCount() {
         try {
-            makeEmptyLine("1000원 단위로 구입금액을 입력해주세요(숫자만 입력해주세요)");
+            makeEmptyLine(INPUT_UNITS);
             String buyPriceInput = Console.readLine().trim();
             makeEmptyLine(null);
             long buyPrice = exception.verifyBuyPrice(buyPriceInput);
-            long lottoCount = buyPrice / 1000;
-            makeEmptyLine(lottoCount + "개를 구매했습니다.");
+            long lottoCount = buyPrice / LOTTO_PRICE;
+            makeEmptyLine(lottoCount + BUY_MSG);
             return lottoCount;
         } catch (IllegalArgumentException e) {
             makeEmptyLine(e.getMessage());
@@ -38,7 +50,7 @@ public class Input {
 
     public Lotto receiveWiningNumber() {
         try {
-            makeEmptyLine("당첨 번호를 입력해 주세요(콤마로 구분하여 공백없이 작성해주세요)");
+            makeEmptyLine(INPUT_WINNING_NUMBER);
             String winingNumberInput = Console.readLine().trim();
             List<Integer> winningNumber = changeStrToIntList(winingNumberInput);
             Lotto winningLotto = new Lotto(winningNumber);
@@ -58,17 +70,17 @@ public class Input {
                     .sorted()
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 1~45사이의 당첨번호를 콤마로 구분하여 입력해주세요.", e);
+            throw new IllegalArgumentException(ERROR_PREFIX + WINNING_NUMBER_RULE, e);
         }
     }
 
     public int receiveBonusNumber() {
         try {
-            makeEmptyLine("보너스 번호를 입력해 주세요(1~45 이내의 숫자만 입력해주세요)");
+            makeEmptyLine(BONUS_INPUT);
             String bonusNumberInput = Console.readLine().trim();
             int bonusNumber = exception.verifyBonusNumber(bonusNumberInput);
             if (winningNumber.contains(bonusNumber)) {
-                exception.throwException("보너스 번호는 당첨번호에 포함이 안된 숫자여야 합니다");
+                exception.throwException(BONUS_NOT_EXIST_WINNING_NUMBER);
             }
             return bonusNumber;
         } catch (IllegalArgumentException e) {

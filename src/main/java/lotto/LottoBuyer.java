@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Lotto.LOTTO_PRICE;
 import static lotto.LottoRank.LOTTO_RANKS;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -7,9 +8,10 @@ import java.util.ArrayList;
 
 public class LottoBuyer {
     private final ArrayList<Lotto> lottos = new ArrayList<>();
-
     private Lotto winningLotto;
     private int bonusLottoNumber;
+    private static final String WINNING_STATISTICS = "당첨 통계";
+    private static final String RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
 
     public LottoBuyer(long lottoCount) {
         buyLotto(lottoCount);
@@ -78,15 +80,15 @@ public class LottoBuyer {
     }
 
     public void printTotalPrize() {
-        System.out.printf("%n당첨 통계%n---%n");
+        System.out.printf("%n" + WINNING_STATISTICS + "%n---%n");
         long totalPrize = calculateTotalPrize();
         // 퍼센트(%) 계산을 위해 상금에 100을 곱한값을 전달한다
-        System.out.printf("총 수익률은 %s%%입니다.", prizeFormat(totalPrize * 100));
+        System.out.printf(RATE_OF_RETURN, prizeFormat(totalPrize * 100));
     }
 
     private String prizeFormat(long totalPrizeForPercent) {
         long buyPrice = lottos.size();
-        String format = String.format("%.1f", totalPrizeForPercent / (lottos.size() * (double) 1000));
+        String format = String.format("%.1f", totalPrizeForPercent / (lottos.size() * (double) LOTTO_PRICE));
         return format;
     }
 

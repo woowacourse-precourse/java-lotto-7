@@ -1,5 +1,10 @@
 package lotto;
 
+import static console.Input.MATCH;
+import static console.Input.MATCH_BONUS_BALL;
+import static console.Input.NUMBER;
+import static console.Input.WON;
+
 public enum LottoRank {
 
     FRIST(1, 2000000000, 6),
@@ -34,11 +39,11 @@ public enum LottoRank {
 
     public void printRank(long count) {
         StringBuilder message = new StringBuilder();
-        message.append("%d개 일치");
+        message.append("%d" + MATCH);
         if (this == SECOND) {
-            message.append(", 보너스 볼 일치");
+            message.append(MATCH_BONUS_BALL);
         }
-        message.append(" (%,d원) - %d개%n");
+        message.append(" (%,d" + WON + ") - %d" + NUMBER + "%n");
         System.out.printf(message.toString(), matchNumber, prizeAmount, count);
     }
 
