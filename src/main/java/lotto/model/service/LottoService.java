@@ -1,11 +1,14 @@
 package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.model.domain.Customer;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoManager;
+import lotto.model.dto.LottoStatisticsResponse;
 import lotto.model.dto.LottosResponse;
 import lotto.model.repository.LottoRepository;
 import lotto.model.service.parser.NumberParser;
@@ -52,5 +55,18 @@ public class LottoService {
         Integer number = NumberParser.parseBonusNumber(bonusNumber.trim());
         lottoManager.saveBonusNumber(number);
         return "success";
+    }
+
+    public LottoStatisticsResponse statisticsWinningOfCustomerLottos(Integer customerId) {
+        Customer customer = lottoRepository.findById(customerId);
+        List<Lotto> customerLottos = customer.getLottos();
+
+        Map<String, Integer> statistics = lottoManager.statisticsCustomerWinning(customerLottos);
+        BigDecimal revenueOfLottos = lottoManager.getRateOfRevenue(customer.getPayment());
+        LottoStatisticsResponse response = new LottoStatisticsResponse(statistics, revenueOfLottos);
+
+        lottoManager.clearCustomerWinningDetails();
+
+        return response;
     }
 }

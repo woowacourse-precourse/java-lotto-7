@@ -19,6 +19,7 @@ public class LottoController {
         issueLottos(customerId);
         recordWinningNumbers();
         recordBonusNumber();
+        checkWinnings(customerId);
     }
 
     public Integer recordPayment() {
@@ -68,4 +69,10 @@ public class LottoController {
         }
         return "success";
     }
+
+    public String checkWinnings(Integer customerId) {
+        lottoService.statisticsWinningOfCustomerLottos(customerId);
+        return "success";
+    }
+
 }
