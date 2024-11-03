@@ -21,8 +21,11 @@ public class LottoController {
 
     public void run() {
         LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
-        int money = inputMoney(lottoGame.getPrice());
+        initLottoGame(lottoGame);
+    }
 
+    private void initLottoGame(LottoGame lottoGame) {
+        int money = inputMoney(lottoGame.getPrice());
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
         printPurchaseHistory(lottoPurchaseHistory);
         lottoGame.enterWinningNumber(inputWinningNumber());
