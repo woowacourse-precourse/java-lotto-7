@@ -1,16 +1,19 @@
 package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
+import lotto.domain.lottoForm.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static lotto.LottoConstants.LOTTO_SIZE;
 import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
 
@@ -68,6 +71,49 @@ public class LottoTest {
         for (int i = 0; i < LOTTO_SIZE - 1; i++) {
             assertThat(lottoNumbers.get(i)).isLessThan(lottoNumbers.get(i + 1));
         }
+    }
+
+    @DisplayName("당첨번호와 일치하는 로또 번호들의 개수를 정확히 반환한다")
+    @ParameterizedTest
+    @CsvSource({
+            "'1,2,3,4,5,6', '6,7,8,9,10,21', 1",
+            "'11,12,13,14,15,45', '13,14,15,16,12,17', 4",
+            "'5,10,1,35,20,25', '30,37,40,39,45,11', 0"
+    })
+    void matchingNumbersSuccessTest(String lottoInput, String winningInput, int expected) {
+        // given
+        List<Integer> numbers = Arrays.stream(lottoInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
+        Lotto lotto = new Lotto(numbers);
+        WinningNumbers winningNumbers = new WinningNumbers(winningInput);
+
+        // when
+        int matchingNumbers = lotto.getMatchingNumbers(winningNumbers);
+
+        // then
+        assertThat(matchingNumbers).isEqualTo(expected);
+    }
+
+    @DisplayName("보너스 번호가 포함되어있는지 여부를 성공적으로 반환한다")
+    @ParameterizedTest
+    @CsvSource({
+            "'1,2,3,4,5,6', 1, true",
+            "'11,12,13,14,15,45', 4, false",
+            "'5,10,1,35,20,25', 44, false"
+    })
+    void bonusNumberSuccessTest(String lottoInput, int bonusNumber, boolean expected) {
+        // given
+        List<Integer> numbers = Arrays.stream(lottoInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        boolean bonus = lotto.hasBonusNumber(bonusNumber);
+
+        // then
+        assertThat(bonus).isEqualTo(expected);
     }
 
 }
