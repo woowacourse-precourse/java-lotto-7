@@ -1,5 +1,7 @@
 package lotto.view.output;
 
+import static lotto.util.LottoConstants.DEFAULT;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -10,8 +12,6 @@ import lotto.domain.Profit;
 import lotto.domain.Rank;
 
 public class OutputView {
-    private static final int DEFAULT = 0;
-    private static final String NEW_LINE = "%n";
 
     public static void printError(IllegalArgumentException e) {
         System.out.println(e.getMessage());
@@ -26,9 +26,9 @@ public class OutputView {
     }
 
     public static void printPurchasedLottery(LottoShop lottoShop, LottoCount lottoCount) {
-        System.out.println();
+        printLine();
         System.out.printf(OutputMessage.PURCHASED_COUNT.message, lottoCount.getCount());
-        System.out.println();
+        printLine();
         List<Lotto> lotteries = lottoShop.getLottoTickets().getLotteries();
 
         lotteries.stream().map(Lotto::getNumbers)
@@ -44,15 +44,16 @@ public class OutputView {
     }
 
     public static void printWinningStatics() {
-        System.out.println();
+        printLine();
         System.out.print(OutputMessage.WINNING_STATISTICS.message);
     }
 
     public static void printMatchNumber(LottoResult lottoResult, int bonusNumber) {
         Map<Rank, Integer> rankCount = lottoResult.getMatchNumber();
         for (Rank rank : Rank.values()) {
-            int matchCount = rankCount.getOrDefault(rank, DEFAULT);
-            System.out.printf(rank.getMessage() + NEW_LINE, matchCount);
+            int matchCount = rankCount.getOrDefault(rank, DEFAULT.getValue());
+            System.out.printf(rank.getMessage(), matchCount);
+            printLine();
         }
     }
 
