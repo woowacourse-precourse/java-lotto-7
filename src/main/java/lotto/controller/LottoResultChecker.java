@@ -20,24 +20,33 @@ public class LottoResultChecker {
 		OutputView.displayProfitRate(profitRate);
 	}
 
-	public Map<LottoRank, Integer> checkResults(List<LottoTicket> tickets, Lotto winningLotto, LottoBonus bonus) {
+	private Map<LottoRank, Integer> initializeResultCount() {
 		Map<LottoRank, Integer> resultCount = new EnumMap<>(LottoRank.class);
 		for (LottoRank rank : LottoRank.values()) {
 			resultCount.put(rank, 0);
 		}
-
+		return resultCount;
+	}
+	
+	public Map<LottoRank, Integer> checkResults(List<LottoTicket> tickets, Lotto winningLotto, LottoBonus bonus) {
+		Map<LottoRank, Integer> resultCount = initializeResultCount();
+		
 		for (LottoTicket ticket : tickets) {
-			int matchCount = countMatchingNumbers(ticket, winningLotto);
-			boolean bonusMatch = ticket.getNumbers().contains(bonus.getBonusNumber());
-
-			LottoRank rank = getRank(matchCount, bonusMatch);
-			if (rank != null) {
-				resultCount.put(rank, resultCount.get(rank) + 1);
-			}
+			updateResultCount(resultCount, ticket, winningLotto, bonus);
 		}
 		return resultCount;
 	}
+	
+	private void updateResultCount(Map<LottoRank, Integer> resultCount, LottoTicket ticket, Lotto winningLotto, LottoBonus bonus) {
+        int matchCount = countMatchingNumbers(ticket, winningLotto);
+        boolean bonusMatch = ticket.getNumbers().contains(bonus.getBonusNumber());
 
+        LottoRank rank = getRank(matchCount, bonusMatch);
+        if (rank != null) {
+            resultCount.put(rank, resultCount.get(rank) + 1);
+        }
+    }
+	
 	private int countMatchingNumbers(LottoTicket ticket, Lotto winningLotto) {
 		int matchCount = 0;
 		for (int number : ticket.getNumbers()) {
