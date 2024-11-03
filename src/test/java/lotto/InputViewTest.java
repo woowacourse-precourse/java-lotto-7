@@ -20,14 +20,14 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("parseInt 정상 작동 테스트")
-    void parseIntTest(){
+    void parseIntTest() {
         int actual = inputView.parseInt("123");
         assertThat(actual).isEqualTo(123);
     }
 
     @Test
     @DisplayName("parseInt 숫자가 아닌 것 테스트")
-    void parseIntErrorTest(){
+    void parseIntErrorTest() {
         assertThatThrownBy(() -> inputView.parseInt("123a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ONLY_NUMBER.getError());
@@ -35,17 +35,17 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("checkBonus 정상 작동 테스트")
-    void checkBonusTest(){
+    void checkBonusTest() {
         int bonusNumber = 7;
-        Lotto answer = new Lotto(List.of(1,2,3,4,5,6));
-        assertThatNoException().isThrownBy(()-> inputView.checkBonus(bonusNumber, answer));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatNoException().isThrownBy(() -> inputView.checkBonus(bonusNumber, answer));
     }
 
     @Test
     @DisplayName("checkBonus 당첨 번호와 보너스 번호가 중복될 때")
-    void checkBonusDuplicateTest(){
+    void checkBonusDuplicateTest() {
         int bonusNumber = 6;
-        Lotto answer = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> inputView.checkBonus(bonusNumber, answer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_DUPLICATE.getError());
@@ -53,14 +53,14 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("checkBonusRange 정상 작동 테스트")
-    void checkBonusRangeTest(){
+    void checkBonusRangeTest() {
         int bonusNumber = 6;
-        assertThatNoException().isThrownBy(()-> inputView.checkBonusRange(bonusNumber));
+        assertThatNoException().isThrownBy(() -> inputView.checkBonusRange(bonusNumber));
     }
 
     @Test
     @DisplayName("checkBonusRange 범위를 넘는 것 입력 시")
-    void checkBonusRangeErrorTest(){
+    void checkBonusRangeErrorTest() {
         int bonusNumber = 46;
         assertThatThrownBy(() -> inputView.checkBonusRange(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -69,29 +69,29 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("checkRangeListTest 정상 범위 테스트")
-    void checkRangeListTest(){
+    void checkRangeListTest() {
         boolean isInRange = true;
-        assertThat(isInRange).isEqualTo(InputView.checkRangeList(List.of(1,2,3,4,5,6)));
+        assertThat(isInRange).isEqualTo(InputView.checkRangeList(List.of(1, 2, 3, 4, 5, 6)));
     }
 
     @Test
     @DisplayName("checkRangeListTest 범위 벗어난 테스트")
-    void checkRangeListTest2(){
+    void checkRangeListTest2() {
         boolean isInRange = true;
-        assertThat(!isInRange).isEqualTo(InputView.checkRangeList(List.of(1,2,3,4,5,66)));
+        assertThat(!isInRange).isEqualTo(InputView.checkRangeList(List.of(1, 2, 3, 4, 5, 66)));
     }
 
     @Test
     @DisplayName("checkPurchaseRangeTest 정상 작동 테스트")
-    void checkPurchaseRangeTest(){
+    void checkPurchaseRangeTest() {
         int purchaseAmount = 1000;
-        assertThatNoException().isThrownBy(()-> inputView.checkPurchaseRange(purchaseAmount));
+        assertThatNoException().isThrownBy(() -> inputView.checkPurchaseRange(purchaseAmount));
     }
 
     @ParameterizedTest
     @DisplayName("checkPurchaseRangeTest 범위 벗어난 테스트")
     @ValueSource(ints = {999, 2000000010})
-    void checkPurchaseRangeErrorTest(int purchaseAmount){
+    void checkPurchaseRangeErrorTest(int purchaseAmount) {
         assertThatThrownBy(() -> inputView.checkPurchaseRange(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.AMOUNT_RANGE.getError());
