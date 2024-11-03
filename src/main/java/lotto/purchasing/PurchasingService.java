@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.purchasing;
 
 public class PurchasingService {
 

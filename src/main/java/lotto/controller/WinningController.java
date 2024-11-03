@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.view.InputPaymentView;
+import lotto.purchasing.view.InputPaymentView;
 
 public class WinningController {
     private InputPaymentView inputPaymentView;

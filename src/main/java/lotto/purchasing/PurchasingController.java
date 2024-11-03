@@ -1,8 +1,6 @@
-package lotto.controller;
+package lotto.purchasing;
 
-import lotto.service.PurchasingService;
-import lotto.validator.PaymentValidator;
-import lotto.view.InputPaymentView;
+import lotto.purchasing.view.InputPaymentView;
 
 public class PurchasingController {
     private final InputPaymentView inputPaymentView;

@@ -2,9 +2,9 @@ package lotto.config;
 
 import lotto.controller.WinningController;
 import lotto.controller.PublishingController;
-import lotto.controller.PurchasingController;
-import lotto.validator.PaymentValidator;
-import lotto.view.InputPaymentView;
+import lotto.purchasing.PurchasingController;
+import lotto.purchasing.PaymentValidator;
+import lotto.purchasing.view.InputPaymentView;
 
 public class LottoFactory {
     //유효성, 인풋, 아웃풋 뷰 생성해서 컨트롤러에 주입한다.

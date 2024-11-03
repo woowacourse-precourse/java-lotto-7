@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.purchasing.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
