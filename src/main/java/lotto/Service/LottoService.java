@@ -14,9 +14,11 @@ public class LottoService {
     private int bonusNumber;
     private static int payment;
 
+    private int lottoCount;
+
     public void buyLottos(int amount) {
         payment = amount;
-        int lottoCount = amount / 1000;
+        lottoCount = amount / 1000;
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
@@ -49,6 +51,10 @@ public class LottoService {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
     }
 
     public void checkResult() {

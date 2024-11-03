@@ -9,7 +9,7 @@ public class MarginService {
     private double value;
 
     public void calculateProfitMargin() {
-        value = (sellingPrice - costPrice) / costPrice * 100;
+        value = (sellingPrice / costPrice) * 100;
         if (sellingPrice == 0) {
             value = 0;
         }

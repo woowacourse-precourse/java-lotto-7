@@ -9,6 +9,10 @@ import lotto.View.ErrorMessage;
 public class InputValidator {
 
     public static void valid(List<Integer> numbers) {
+        for (int num : numbers) {
+            validNum(String.valueOf(num));
+            validEmpty(String.valueOf(num));
+        }
         validSize(numbers);
         validRange(numbers);
     }
@@ -28,15 +32,9 @@ public class InputValidator {
 
     public static void validBonus(String bonus) {
         validEmpty(bonus);
-        if (!isNumeric(bonus)) {
-            ErrorMessage.printError(ErrorMessage.NON_NUMERIC_ERROR);
-            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_ERROR);
-        }
+        isNumeric(bonus);
         int bonusNumber = Integer.parseInt(bonus.trim());
-        if (!isRange(bonusNumber)) {
-            ErrorMessage.printError(ErrorMessage.BONUS_RANGE_ERROR);
-            throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE_ERROR);
-        }
+        isRange(bonusNumber);
     }
 
     public static void bonusDuple(int bonusNumber, List<Integer> winningNumbers) {
@@ -59,10 +57,7 @@ public class InputValidator {
 
     private static void validEmpty(String input) {
         for (String number : parseInput(input)) {
-            if (isEmpty(number)) {
-                ErrorMessage.printError(ErrorMessage.EMPTY_VALUE_ERROR);
-                throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE_ERROR);
-            }
+            isEmpty(number);
         }
     }
 
@@ -90,24 +85,30 @@ public class InputValidator {
 
     private static void validRange(List<Integer> numbers) {
         for (int num : numbers) {
-            if (!isRange(num)) {
-                ErrorMessage.printError(ErrorMessage.RANGE_ERROR);
-                throw new IllegalArgumentException(ErrorMessage.RANGE_ERROR);
-            }
+            isRange(num);
         }
     }
 
-    private static boolean isRange(int num) {
-        return num >= 1 && num <= 45;
+    private static void isRange(int num) {
+        if (num < 1 || num > 45) {
+            ErrorMessage.printError(ErrorMessage.RANGE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.RANGE_ERROR);
+        }
     }
 
-    public static boolean isNumeric(String input) {
-        return input.matches("\\d+");
+    public static void isNumeric(String input) {
+        if (!input.matches("\\d+")) {
+            ErrorMessage.printError(ErrorMessage.NON_NUMERIC_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_ERROR);
+        }
     }
 
-    public static boolean isEmpty(String input) {
+    public static void isEmpty(String input) {
         String trimmedInput = input.trim();
-        return trimmedInput.isEmpty();
+        if (trimmedInput.isEmpty()) {
+            ErrorMessage.printError(ErrorMessage.EMPTY_VALUE_ERROR); // 메시지 출력
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE_ERROR); // 예외 발생
+        }
     }
 
 }

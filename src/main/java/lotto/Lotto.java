@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.Vaildator.InputValidator;
@@ -9,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = sorting(numbers);
+        this.numbers = sorting(new ArrayList<>(numbers));
     }
 
     private void validate(List<Integer> numbers) {
@@ -25,7 +26,7 @@ public class Lotto {
     }
 
     private List<Integer> sorting(List<Integer> numbers) {
-        Collections.sort(numbers); // 오름차순 정렬
+        Collections.sort(numbers);
         return numbers;
     }
 }

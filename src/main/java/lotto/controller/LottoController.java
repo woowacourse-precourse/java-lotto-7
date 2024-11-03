@@ -36,7 +36,7 @@ public class LottoController {
     }
 
     private static void displayLottos() {
-        OutputView.displayLottoNumbers(lottoService.getLottos());
+        OutputView.displayLottoNumbers(lottoService.getLottos(), lottoService.getLottoCount());
     }
 
     private static void checkResult() {
