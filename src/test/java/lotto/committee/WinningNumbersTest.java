@@ -16,12 +16,13 @@ public class WinningNumbersTest {
 
     @Test
     void 당첨번호_중_일반번호는_5개이다() {
-        assertThat()
+        assertThat(winningNumbers.getMainNumbers()).hasSize(5);
     }
 
     @Test
     void 당첨번호_중_일반번호가_5개가_아니면_예외가_발생한다() {
-
+        assertThatThrownBy(() -> winningNumbers.getMainSize().)
+//                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

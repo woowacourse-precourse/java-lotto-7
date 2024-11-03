@@ -2,49 +2,69 @@ package lotto.committee;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.MessageCenter;
 
 public class WinningNumbers {
 
-    private final List<List<Integer>> mainNumbers;
-    private final List<Integer> bonusNumbers;
+    private List<Integer> wonMainNumbers;
+    private Integer wonBonusNumber;
 
-    private WinningNumbers(List<List<Integer>> mainNumbers, List<Integer> bonusNumbers) {
-        this.mainNumbers = Collections.unmodifiableList(mainNumbers);
-        this.bonusNumbers = Collections.unmodifiableList(bonusNumbers);
-    }
+    private WinningNumbers() { }
 
-    static WinningNumbers forTest(List<List<Integer>> mainNumbers, List<Integer> bonusNumbers) {
-        return new WinningNumbers(mainNumbers, bonusNumbers);
+    static WinningNumbers forTest(List<Integer> mainNumbers, Integer bonusNumber) {
+        WinningNumbers objForTest = new WinningNumbers();
+        objForTest.wonMainNumbers = Collections.unmodifiableList(mainNumbers);
+        objForTest.wonBonusNumber = bonusNumber;
+
+        return objForTest;
     }
 
     public WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(mainNumbers, bonusNumbers);
+        validateBothNotNull();
+        return this;
     }
 
     public List<Integer> getMainNumbers() {
-        List<Integer> wonMainNumber = mainNumbers.getFirst();
-        return wonMainNumber;
+        validateMainNotNull();
+        return wonMainNumbers;
     }
 
     public Integer getBonusNumber() {
-        Integer wonBonusNumber = bonusNumbers.getFirst();
+        validateBothNotNull();
         return wonBonusNumber;
     }
 
     void addMainNumbers(List<Integer> mainNumbers) {
-        this.mainNumbers.add(mainNumbers);
+        validateMainNull();
+        this.wonMainNumbers = Collections.unmodifiableList(mainNumbers);
     }
 
     void addBonusNumber(Integer bonusNumber) {
-        bonusNumbers.add(bonusNumber);
+        validateBonusNull();
+        this.wonBonusNumber = bonusNumber;
     }
 
-    public Integer getMainSize() {
-        return mainNumbers.size();
+    private void validateMainNotNull() {
+        if (wonMainNumbers == null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+        }
     }
 
-    public Integer getBonusSize() {
-        return bonusNumbers.size();
+    private void validateBothNotNull() {
+        if (wonMainNumbers == null || wonBonusNumber == null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+        }
     }
 
+    private void validateMainNull() {
+        if (wonMainNumbers != null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+        }
+    }
+
+    private void validateBonusNull() {
+        if (wonBonusNumber != null) {
+            throw new IllegalArgumentException(MessageCenter.ERROR_MESSAGE.get());
+        }
+    }
 }
