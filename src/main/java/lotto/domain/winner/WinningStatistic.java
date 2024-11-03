@@ -27,6 +27,20 @@ public class WinningStatistic {
         return new WinningStatistic(results, price);
     }
 
+    public List<WinnerFrequency> getWinnerFrequency() {
+        List<WinnerFrequency> frequencies = new ArrayList<>();
+        for (WinningState state : stateFrequencyAccumulator.keySet()) {
+            Integer frequency = stateFrequencyAccumulator.get(state);
+            frequencies.add(new WinnerFrequency(state, frequency));
+        }
+
+        return frequencies;
+    }
+
+    public String getFormattedProfitRate() {
+        return String.format(PROFIT_MESSAGE_TEMPLATE, profitRate);
+    }
+
     private void initialize() {
         WinningState.stream()
                 .filter(WinningState::isWinner)
@@ -67,19 +81,5 @@ public class WinningStatistic {
                 winningState,
                 stateFrequencyAccumulator.get(winningState) + INCREASE_VALUE
         );
-    }
-
-    public List<WinnerFrequency> getWinnerFrequency() {
-        List<WinnerFrequency> frequencies = new ArrayList<>();
-        for (WinningState state : stateFrequencyAccumulator.keySet()) {
-            Integer frequency = stateFrequencyAccumulator.get(state);
-            frequencies.add(new WinnerFrequency(state, frequency));
-        }
-
-        return frequencies;
-    }
-
-    public String getFormattedProfitRate() {
-        return String.format(PROFIT_MESSAGE_TEMPLATE, profitRate);
     }
 }
