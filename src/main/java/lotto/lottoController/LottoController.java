@@ -3,23 +3,16 @@ package lotto.lottoController;
 import java.util.List;
 import lotto.lottoModel.HitLottoDTO;
 import lotto.lottoModel.LottoDTO;
-import lotto.lottoModel.Lotto;
 import lotto.lottoModel.StatisticsLottoDTO;
 import lotto.lottoView.InputView;
 import lotto.lottoView.OutputView;
 import lotto.lottoService.LottoMainService;
 
-import lotto.Utility.LottoNumberGenerator;
 
 public class LottoController {
 
-    private LottoDTO lottoDTO;
     private final InputView inputView;
     private final OutputView outputView;
-
-    private HitLottoDTO hitLottoDTO;
-
-    private StatisticsLottoDTO statisticsDTO;
     private final LottoMainService lottoMainService;
 
     public LottoController() {
