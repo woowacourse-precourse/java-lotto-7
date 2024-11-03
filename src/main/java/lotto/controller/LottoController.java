@@ -11,7 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    LottoMachine lottoMachine = new LottoMachine();
+    private final LottoMachine lottoMachine = new LottoMachine();
 
     public void run() {
         List<Lotto> tickets = buyLotto();
