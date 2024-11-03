@@ -1,5 +1,10 @@
 package lotto.controller;
 
-public class MainController {
+import lotto.view.OutputController;
 
+public class MainController {
+    public static void run() {
+        OutputController.purchasePrint();
+
+    }
 }
