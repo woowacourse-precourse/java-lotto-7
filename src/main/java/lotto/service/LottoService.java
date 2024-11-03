@@ -53,7 +53,7 @@ public class LottoService {
         for (int i : lotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(i)) matchCount++;
         }
-        if (matchCount == 5 && winningLotto.getNumbers().contains(bonusNumber)) return "5.5";
+        if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) return "5.5";
         return String.valueOf(matchCount);
     }
 
