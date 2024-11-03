@@ -84,4 +84,12 @@ public class LottoService {
 
         return totalPrize;
     }
+
+    public double calculateBenefitRate() {
+        long purchaseAmount = purchasedLottos.size() * LOTTO_PRICE;
+        long totalPrize = calculateTotalPrize();
+        double benefitRate = (double) totalPrize / purchaseAmount * 100;
+
+        return benefitRate;
+    }
 }
