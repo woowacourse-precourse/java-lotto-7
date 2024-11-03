@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.validator.LottoValidationMessage;
+import lotto.validator.InputValidationMessage;
 
 public class Amount {
 	private static final int DIVISIBLE_PRICE = 1000;
@@ -17,8 +17,12 @@ public class Amount {
 
 	private void validateDivisible(int amount) {
 		if (amount % DIVISIBLE_PRICE != 0) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
 		}
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 
 	public int getQuantity() {
