@@ -23,12 +23,12 @@ public class LottoCommittee {
         int matchingCount = 0;
         boolean isBonusNumberMatching = false;
         for (int i = 0; i < size; i++) {
-            if (numbers.get(i).equals(winningNumber.get(i))) {
+            if (numbers.contains(winningNumber.get(i))) {
                 matchingCount++;
             }
-            if (numbers.get(i).equals(bonusNumber)) {
-                isBonusNumberMatching = true;
-            }
+        }
+        if (numbers.contains(bonusNumber)) {
+            isBonusNumberMatching = true;
         }
 
         return Ranking.of(matchingCount, isBonusNumberMatching);
@@ -40,7 +40,7 @@ public class LottoCommittee {
         lottos.forEach(
                 lotto -> {
                     Ranking ranking = calculateRanking(lotto);
-                    rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0));
+                    rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0) + 1);
                 }
         );
         return rankingCountMap;
