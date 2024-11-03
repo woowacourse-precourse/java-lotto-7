@@ -3,7 +3,7 @@ package lotto.constant;
 public enum RegularExpression {
     INTEGER_PATTERN("-?\\d+");
 
-    private String expression;
+    private final String expression;
 
     RegularExpression(String regularExpression) {
         this.expression = regularExpression;
