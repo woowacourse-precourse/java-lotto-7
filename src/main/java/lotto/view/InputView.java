@@ -22,18 +22,8 @@ public class InputView {
     public List<Integer> readWinningNumber() {
         System.out.println(INPUT_WINNING_NUMBER);
         String input = Console.readLine();
-        List<Integer> winningNumbers = Collections.unmodifiableList(
-                Arrays.stream(input.split(","))
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList())
-        );
-
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_LENGTH.getMessage());
-        }
-
         new WinningNumberValidator().validate(input);
 
-        return winningNumbers;
+        return List.of(0, 0);
     }
 }
