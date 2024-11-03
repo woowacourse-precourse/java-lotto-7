@@ -10,6 +10,7 @@ public enum LottoConstant {
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),
     COUNT(6),
+    BONUS_MATCH_COUNT(5)
 
     ;
 

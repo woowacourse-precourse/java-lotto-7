@@ -23,23 +23,26 @@ public class UserWinningResultService {
     }
 
     public void getWinningResult(LottoResult lottoResult, int userId) {
+        User user = userService.findById(userId);
+
         OutputView.newLine();
         OutputView.printMessage(WINNING_STATISTICS);
-        generateStatistics(lottoResult,userId);
+        generateStatistics(lottoResult,user);
+
+        OutputView.printTotalReturn(user);
     }
 
-    private void generateStatistics(LottoResult lottoResult, int userId) {
-        int[][] lottoMatchCount = countMatchWinningNumber(lottoResult,userId);
+    private void generateStatistics(LottoResult lottoResult, User user) {
+        int[][] lottoMatchCount = countMatchWinningNumber(lottoResult,user);
         for (int match = 3; match <= LottoConstant.COUNT.getValue(); match++) {
             OutputView.printWinningResult(match, lottoMatchCount);
         }
+        user.addRevenue(lottoMatchCount);
     }
 
     //TODO: 하드 코딩 같아서 리팩토링 해야함
-    private int[][] countMatchWinningNumber(LottoResult lottoResult, int userId) {
+    private int[][] countMatchWinningNumber(LottoResult lottoResult, User user) {
         int[][] resultTable = new int[LottoConstant.COUNT.getValue()+1][2];
-
-        User user = userService.findById(userId);
         LottoTickets lottoTickets = user.getLottoTickets();
 
         for (Lotto lotto : lottoTickets.getTickets()) {
