@@ -1,5 +1,8 @@
 package exception;
 
+/**
+ * 예외 처리 관련 메시지를 담당
+ */
 public class Message {
     private final static String DEFAULT = "[ERROR] ";
     public final static String INVALID_MONEY = DEFAULT + "입력 금액은 %d원 단위로 입력 가능합니다. 사용자의 입력값: ".formatted(lotto.Lotto.Price.PRICE);

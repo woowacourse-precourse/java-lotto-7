@@ -1,5 +1,8 @@
 package io;
 
+/**
+ * print를 담당하는 클래스
+ */
 public class Print {
     public static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NUMBER_PRINT_MESSAGE = "개를 구매했습니다.";
