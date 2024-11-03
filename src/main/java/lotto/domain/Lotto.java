@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.message.LottoMessage;
+import lotto.validate.LottoValidate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +15,10 @@ public class Lotto {
     private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoMessage.OUT_OF_RANGE_LOTTO_NUMBER_AMOUNT.getMessage());
+        }
+
+        if (!LottoValidate.isNotDuplicateNumber(numbers)) {
+            throw new IllegalArgumentException(LottoMessage.IS_DUPLICATE_NUMBER.getMessage());
         }
     }
 
