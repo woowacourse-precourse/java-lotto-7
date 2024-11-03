@@ -37,7 +37,7 @@ public class LottoMachine {
 
     public LottoResult calculateLottoWins(PurchasedLottos purchasedLotto, WinningLotto winningLotto) {
         List<Rank> ranks = new ArrayList<>();
-        for (Lotto lotto : purchasedLotto.getLottos()) {
+        for (Lotto lotto : purchasedLotto.lottos()) {
             boolean bonus = false;
             List<Integer> lottoNums = lotto.numbers();
 

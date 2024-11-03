@@ -15,7 +15,7 @@ public class PurchasedLottos {
         return lottos.size();
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> lottos() {
         return Collections.unmodifiableList(lottos);
     }
 }
