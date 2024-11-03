@@ -5,14 +5,14 @@ import java.util.List;
 
 public class LottoManager {
     private List<Lotto> lottos;
-    private Lotto winningLotto;
+    private List<Integer> winningLotto;
     private int BonusNumber;
 
     public LottoManager() {
         this.lottos=new ArrayList<>();
     }
 
-    void setWinningLotto(Lotto winningLotto) {
+    void setWinningLotto(List<Integer> winningLotto) {
         this.winningLotto=winningLotto;
     }
 
@@ -28,7 +28,7 @@ public class LottoManager {
         return lottos;
     }
 
-    public int calculatePrices() {
-
-    }
+//    public int calculatePrices() {
+//
+//    }
 }
