@@ -5,11 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 public class TicketGeneratorTest {
 
     @Test
@@ -61,7 +59,7 @@ public class TicketGeneratorTest {
     @Test
     @DisplayName("각 티켓의 숫자들은 오름차순의 정렬 순서를 가져야함")
     void eachTicketShouldHaveNumbersIsAscendingOrder() {
-        int ticketCount = 3; // 원하는 티켓 수
+        int ticketCount = 3;
         TicketGenerator generator = new TicketGenerator();
 
         List<Lotto> tickets = generator.generateTickets(ticketCount);

@@ -3,11 +3,9 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 public class ProfitCalculatorTest {
 
     @DisplayName("당첨 내역이 없을 때 0.0%를 반환해야 한다.")

@@ -4,11 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 public class ResultAnalyzerTest {
 
     @DisplayName("3개 번호 일치할 때 5등 5000원")
@@ -88,9 +86,9 @@ public class ResultAnalyzerTest {
         List<Lotto> tickets = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)),
                 new Lotto(List.of(1, 2, 3, 4, 7, 8)),
                 new Lotto(List.of(1, 2, 3, 7, 8, 9)),
-                new Lotto(List.of(1, 2, 7, 8, 9, 10)),
                 new Lotto(List.of(1, 2, 7, 8, 9, 10)),
                 new Lotto(List.of(1, 7, 8, 9, 10, 11)),
                 new Lotto(List.of(7, 8, 9, 10, 11, 12))
@@ -105,10 +103,7 @@ public class ResultAnalyzerTest {
         assertThat(rankCount.get(LottoRank.THIRD)).isEqualTo(1);
         assertThat(rankCount.get(LottoRank.FOURTH)).isEqualTo(1);
         assertThat(rankCount.get(LottoRank.FIFTH)).isEqualTo(1);
-        assertThat(rankCount.get(LottoRank.NONE)).isEqualTo(1);
-        assertThat(rankCount.get(LottoRank.NONE)).isEqualTo(1);
-        assertThat(rankCount.get(LottoRank.NONE)).isEqualTo(1);
+        assertThat(rankCount.get(LottoRank.NONE)).isEqualTo(3);
         assertThat(LottoRank.NONE.getPrize()).isEqualTo(0);
-
     }
 }
