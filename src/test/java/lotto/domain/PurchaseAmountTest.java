@@ -32,7 +32,7 @@ class PurchaseAmountTest {
     public void test3(){
         String test = "test";
         assertThatThrownBy(() -> new PurchaseAmount(test))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.INVALID_NUMBER.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.INVALID_INPUT.getMessage());
     }
 
     @Test
@@ -40,7 +40,7 @@ class PurchaseAmountTest {
     public void test4(){
         String test = "t";
         assertThatThrownBy(() -> new PurchaseAmount(test))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.INVALID_NUMBER.getMessage());
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessage.INVALID_INPUT.getMessage());
     }
 
     @Test

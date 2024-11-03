@@ -2,7 +2,7 @@ package lotto.validation;
 
 import lotto.message.ErrorMessage;
 
-public class Validator {
+public class AmountValidator {
 
     private static final int LOTTO_PRICE = 1000;
 

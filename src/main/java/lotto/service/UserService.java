@@ -11,9 +11,9 @@ public class UserService {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public UserService(){
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public UserService(InputView inputView, OutputView outputView){
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public int inputAmount(){

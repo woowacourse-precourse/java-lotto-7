@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.message.ErrorMessage;
-import lotto.validation.Validator;
+import lotto.validation.AmountValidator;
 
 public class PurchaseAmount {
 
@@ -20,13 +20,13 @@ public class PurchaseAmount {
         try {
             return Integer.parseInt(strAmount);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
     }
 
     private int validateAmount(int amount){
-        Validator.isPositive(amount);
-        Validator.isDivisibleByThousand(amount);
+        AmountValidator.isPositive(amount);
+        AmountValidator.isDivisibleByThousand(amount);
         return amount;
     }
 }
