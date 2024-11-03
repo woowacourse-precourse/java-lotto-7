@@ -28,4 +28,35 @@ public class OutputView {
                 .map(number -> String.valueOf(number.lottoNumber()))
                 .collect(Collectors.joining(", ", "[", "]"));
     }
+
+    public void printWinningStatistic(LottoStatistic statistic) {
+        System.out.println(WINNING_STATISTIC_HEADER);
+        Map<WinningRank, Integer> rankCount = statistic.getRankCount();
+
+        WinningRank[] ranks = {
+                WinningRank.FIFTH_PLACE,
+                WinningRank.FOURTH_PLACE,
+                WinningRank.THIRD_PLACE,
+                WinningRank.SECOND_PLACE,
+                WinningRank.FIRST_PLACE
+        };
+
+        for (WinningRank rank : ranks) {
+            if (rank == WinningRank.SECOND_PLACE) {
+                System.out.printf(WINNING_STATISTIC_SECOND_FORMAT + "%n",
+                        rank.getPrize(), rankCount.get(rank));
+                continue;
+            }
+            System.out.printf(WINNING_STATISTIC_FORMAT + "%n",
+                    rank.getMatchCount(), rank.getPrize(), rankCount.get(rank));
+        }
+    }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE_FORMAT + "%n", profitRate);
+    }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }
