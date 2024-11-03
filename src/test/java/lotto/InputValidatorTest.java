@@ -1,9 +1,6 @@
 package lotto;
 
-import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_CONSECUTIVE_DELIMITERS;
-import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_DELIMITER_POSITION;
-import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_NUMBER;
-import static lotto.infrastructure.exception.ErrorCode.INVALID_NUMBER_FORMAT;
+import static lotto.infrastructure.exception.ErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -72,5 +69,16 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(INVALID_LOTTO_CONSECUTIVE_DELIMITERS.getMessage());
+    }
+
+    @Test
+    void 로또_번호가_1에서_45_사이를_벗어나면_예외를_발생한다() {
+        // given
+        String lottoNumbers = "1,2,3,4,5,47";
+
+        // when & then
+        assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 }
