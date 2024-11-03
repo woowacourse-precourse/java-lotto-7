@@ -25,7 +25,6 @@ public class IssuedRandomLotto implements IssuedLotto {
         this.lottoPurchaseAmount = lottoPurchaseAmount;
     }
 
-
     @Override
     public void generateIssuedLottos() {
         int quantity = calculateQuantity();
