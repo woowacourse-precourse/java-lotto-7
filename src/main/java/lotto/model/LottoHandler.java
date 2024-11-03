@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constants.Ranking;
 import lotto.utils.BonusNumberValidation;
 
 import java.util.ArrayList;
@@ -53,8 +54,18 @@ public class LottoHandler {
     }
 
 
-    public void checkedResult(Lotto winningLotto, Lottos buyLottos) {
+    public Ranking checkedResult(Lotto winningLotto, Lottos buyLottos) {
         int rankedNumber = checkSameNumber(winningLotto.getNumbers(), buyLottos.getLottoNumbers());
+        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), buyLottos);
+        Ranking ranking = Ranking.values()[rankedNumber];
+        if(ranking == Ranking.FIVE && checkedBonus) {
+            return Ranking.FIVE_BONUS;
+        }
+        return ranking;
+    }
+
+    private boolean checkedBonusNumber(int bonusNumber, Lottos buyLottos) {
+        return buyLottos.getLottoNumbers().contains(bonusNumber);
     }
 
     private int checkSameNumber(List<Integer> winningLottoNumbers, List<Integer> buyLottoNumbers) {
@@ -66,4 +77,5 @@ public class LottoHandler {
         }
         return count;
     }
+
 }
