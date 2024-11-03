@@ -10,6 +10,7 @@ import lotto.domain.LottoResult;
 public final class OutputView {
 
     public static void printLotto(List<Lotto> lottos) {
+        System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.print("[");
@@ -21,6 +22,7 @@ public final class OutputView {
     }
 
     public static void printResult(Map<LottoResult, Integer> result, int money) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         List<LottoResult> list = Arrays.stream(LottoResult.values())
