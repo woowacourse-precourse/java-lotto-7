@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.dto.entity.Lotto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.ReceiptAndLottoDto;
+import lotto.dto.entity.Lotto;
 import lotto.dto.entity.WinningLotto;
 import lotto.service.LottoGenerateManager;
 import lotto.service.LottoPurchaseManager;
@@ -23,12 +23,14 @@ public class LottoMachine {
         this.lottoGenerateManager = lottoGenerateManager;
         this.lottoResultManager = lottoResultManager;
     }
-    public void start(){
+
+    public void start() {
         ReceiptAndLottoDto receiptAndLottoDto = purchaseLottos();
         WinningLotto winningLotto = generateWinningLotto();
-        checkLottoResult(receiptAndLottoDto,winningLotto);
+        checkLottoResult(receiptAndLottoDto, winningLotto);
     }
-    private ReceiptAndLottoDto purchaseLottos(){
+
+    private ReceiptAndLottoDto purchaseLottos() {
         int purchaseAmount = inputOutputManager.receivePurchaseAmount();
         int numberOfLotto = lottoPurchaseManager.checkNumberOfLotto(purchaseAmount);
         inputOutputManager.printLottoCount(numberOfLotto);
@@ -39,7 +41,7 @@ public class LottoMachine {
         return lottoPurchaseManager.provideResultDto(purchaseAmount, lottos);
     }
 
-    private WinningLotto generateWinningLotto(){
+    private WinningLotto generateWinningLotto() {
         List<Integer> winningNumbers = inputOutputManager.receiveWinningNumbers();
         int bonusNumber = inputOutputManager.receiveBonusNumber();
 
@@ -47,7 +49,7 @@ public class LottoMachine {
     }
 
 
-    private void checkLottoResult(ReceiptAndLottoDto receiptAndLottoDto, WinningLotto winningLotto){
+    private void checkLottoResult(ReceiptAndLottoDto receiptAndLottoDto, WinningLotto winningLotto) {
         LottoResultDto lottoResultDto = lottoResultManager.checkLottoResult(receiptAndLottoDto, winningLotto);
         inputOutputManager.printLottoResult(lottoResultDto);
     }

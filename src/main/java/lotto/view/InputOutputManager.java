@@ -89,7 +89,7 @@ public class InputOutputManager {
     public void printLottoResult(LottoResultDto lottoResultDto){
         printOnTopic();
         printAllMatchResults(lottoResultDto.getLottoResult());
-        printProfitRate(lottoResultDto.getLottoResult(), lottoResultDto.getProfit());
+        printProfitRate(lottoResultDto.getProfit());
     }
 
     private void printOnTopic() {
@@ -115,7 +115,7 @@ public class InputOutputManager {
         });
     }
 
-    private void printProfitRate(HashMap<LottoMatchStatus, Integer> lottoResult, double profit){
+    private void printProfitRate(double profit){
         String message = LottoMessages.TOTAL_PROFIT_RATE.getMessage() +
                 String.format("%.1f", profit) + "%" +
                 LottoMessages.END_MESSAGE.getMessage();
