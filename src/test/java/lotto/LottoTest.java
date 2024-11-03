@@ -51,7 +51,7 @@ class LottoTest {
     void 입력된_금액_만큼_로또를_구매한다() {
 
         Lottos boughtLotto = Lotto.buyAsMoney(3000);
-        assertThat(boughtLotto.getLottos().size()).isEqualTo(3);
+        assertThat(boughtLotto.getLotto().size()).isEqualTo(3);
     }
 
     @DisplayName("입력된 금액이 1000원 단위로 떨어지지 않으면 예외가 발생한다. ")

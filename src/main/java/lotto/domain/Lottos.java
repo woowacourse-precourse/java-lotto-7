@@ -1,12 +1,9 @@
 package lotto.domain;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.domain.Lotto;
 
 public final class Lottos {
     private final List<Lotto> lottos;
@@ -15,13 +12,13 @@ public final class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> getLotto() {
         return Collections.unmodifiableList(lottos);
     }
 
-    public Map<String, Integer> getLottoResult(Lotto winningLotto, int bonusNumber) {
+    public Map<String, Integer> getResult(Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> lottosResult = new HashMap<>(Map.of(
-                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0));
+                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0, "총 상금",0));
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
@@ -30,6 +27,9 @@ public final class Lottos {
 
             lottosResult.computeIfPresent(rank, (key,value)-> value+1);
         }
+
+        lottosResult.put("총 상금", getTotalPrizeMoney(lottosResult));
+
         return lottosResult;
     }
 
@@ -54,12 +54,12 @@ public final class Lottos {
 
 
     public double calculateReturns(Map<String, Integer> lottoResult, int usingMoney) {
-        double value = getTotalPrizeMoney(lottoResult) / usingMoney * 100;
+        double value = getTotalPrizeMoney(lottoResult) / (double) usingMoney * 100;
 
         return Math.round(value*10)/10.0;
     }
-    public double getTotalPrizeMoney(Map<String, Integer> lottoResult) {
-        double totalPrize = 0.0;
+    public int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
+        int totalPrize = 0;
         totalPrize += lottoResult.get("1등") * 2000000000;
         totalPrize += lottoResult.get("2등") * 30000000;
         totalPrize += lottoResult.get("3등") * 1500000;
@@ -67,13 +67,5 @@ public final class Lottos {
         totalPrize += lottoResult.get("5등") * 5000;
 
         return totalPrize;
-    }
-
-    public void printLottoNumber() {
-        for (Lotto lotto : lottos)
-        System.out.println("["+lotto.getNumbers().stream()
-                        .sorted(Comparator.naturalOrder())
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", "))+"]");
     }
 }

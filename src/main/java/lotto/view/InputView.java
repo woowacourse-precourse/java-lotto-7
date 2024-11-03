@@ -18,7 +18,7 @@ public class InputView {
         }
     }
 
-    public static List<Integer> readAndSplitWinningNumber() {
+    public static List<Integer> readAndSplitNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> numbers = new ArrayList<>();
 
