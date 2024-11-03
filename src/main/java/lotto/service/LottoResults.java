@@ -10,6 +10,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumbers;
+import lotto.dto.LottoResultDto;
+import lotto.utils.RankMessages;
 
 public class LottoResults {
     private final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
@@ -52,6 +54,13 @@ public class LottoResults {
 
     private boolean isNotNoneRank(Map.Entry<Rank, Integer> entry) {
         return entry.getKey() != Rank.NONE;
+    }
+
+    private LottoResultDto toLottoResultDto(Map.Entry<Rank, Integer> entry) {
+        Rank rank = entry.getKey();
+        int count = entry.getValue();
+        String description = RankMessages.getMessage(rank.getMatchCount(), rank.isMatchBonus());
+        return new LottoResultDto(description, rank.getPrize(), count);
     }
 
 }
