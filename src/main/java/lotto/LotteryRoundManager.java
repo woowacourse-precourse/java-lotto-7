@@ -22,6 +22,7 @@ public class LotteryRoundManager {
         if (cost % UNIT_COST != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "금액은 1000원 단위로 입력되어야 합니다.");
         }
+        this.cost = cost;
         return PurchasedLotto.generateLottos(cost / UNIT_COST, () -> Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
@@ -42,5 +43,13 @@ public class LotteryRoundManager {
             throw new IllegalArgumentException(ERROR_MESSAGE + "보너스 번호는 1 이상 45 이하여야 합니다.");
         if (winningNumber.contains(bonusNumber))
             throw new IllegalArgumentException(ERROR_MESSAGE + "보너스 번호는 당첨 번호와 겹치지 않아야 합니다.");
+    }
+
+    public double calculateBenefit(Map<Prize, Integer> result) {
+        long prizeMoney = 0;
+        for (Prize prize : Prize.values()) {
+            prizeMoney += prize.calculateTotalPrizeMoney(result.getOrDefault(prize, 0));
+        }
+        return Math.round((double) prizeMoney / cost * 1000) / 10.0;
     }
 }
