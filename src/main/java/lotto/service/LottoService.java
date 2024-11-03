@@ -75,4 +75,7 @@ public class LottoService {
         return lottoNumbers.contains(bonusNumber);
     }
 
+    public double resultLotto(Consumer consumer) {
+        return consumer.calculateYield();
+    }
 }
