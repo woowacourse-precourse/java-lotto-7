@@ -34,7 +34,7 @@ public class Ticket {
                 .sum();
 
         double earningRate = (double) totalPrize / price;
-        return Math.round(earningRate * 10) / 10.0;
+        return Math.round(earningRate * 100) / 10.0;
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {

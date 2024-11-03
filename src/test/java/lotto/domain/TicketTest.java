@@ -44,7 +44,7 @@ class TicketTest {
         );
         Ticket ticket = new Ticket(lottos, 3000, List.of(1, 2, 3, 4, 5, 6), 7);
         double earningRate = ticket.getEarningRate();
-        assertThat(earningRate).isEqualTo(3.3); // 3.333...
+        assertThat(earningRate).isEqualTo(33.3); // 33.333...
     }
 
     @DisplayName("수익률은 소수점 두자리에서 반올림 한다.(올림)")
@@ -55,7 +55,7 @@ class TicketTest {
         );
         Ticket ticket = new Ticket(lottos, 7000, List.of(1, 2, 3, 4, 5, 6), 7);
         double earningRate = ticket.getEarningRate();
-        assertThat(earningRate).isEqualTo(214.3); // 214.285714286
+        assertThat(earningRate).isEqualTo(2142.9); // 2142.85714286
     }
 
     private List<Lotto> getLottos() {
