@@ -7,8 +7,8 @@ import lotto.LottoValue;
 
 public class Lotto {
 
-    private static final String INVALID_NUMBER_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String DUPLICATE_NUMBER = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    private static final String INVALID_NUMBER_SIZE = "로또 번호는 6개여야 합니다.";
+    private static final String DUPLICATE_NUMBER = "로또 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
