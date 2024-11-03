@@ -17,8 +17,10 @@ public class LottoVendingMachine {
         }
 
         int money = Integer.parseInt(userInput);
+        List<Lotto> lottos = createLottos(money);
+        printLottos(lottos);
 
-        return createLottos(money);
+        return lottos;
     }
 
     //Todo: 리팩토링 필요
@@ -61,5 +63,14 @@ public class LottoVendingMachine {
         }
 
         return lottos;
+    }
+
+    private void printLottos(List<Lotto> lottos){
+
+        System.out.println(lottos.size()+"개를 구매했습니다.");
+
+        for(Lotto lotto : lottos){
+            lotto.printNumbers();
+        }
     }
 }

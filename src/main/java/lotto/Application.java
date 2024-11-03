@@ -10,6 +10,9 @@ public class Application {
         LottoVendingMachine lottoVendingMachine = new LottoVendingMachine();
         lottos = lottoVendingMachine.purchaseLottos();
 
+        Drow drow = new Drow();
+        drow.inputDrowNumbers();
+        drow.inputBonusNumber();
 
 
     }
