@@ -16,4 +16,9 @@ public class InputView {
         String winningNumbers = Console.readLine();
         return Converter.toNumbers(winningNumbers);
     }
+
+    public int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return Converter.parse(bonusNumber);
+    }
 }
