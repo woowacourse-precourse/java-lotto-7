@@ -16,7 +16,6 @@ public class Ticket {
         this.price = price;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        validate(winningNumbers, bonusNumber);
         this.result = makeResult();
     }
 
@@ -35,12 +34,6 @@ public class Ticket {
 
         double earningRate = (double) totalPrize / price;
         return Math.round(earningRate * 100) / 10.0;
-    }
-
-    private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
     }
 
     private EnumMap<Prize, Integer> makeResult() {

@@ -10,6 +10,7 @@ public abstract class Validator {
     private static final String WINNING_NUMBER_RANGE_ERROR = "[ERROR] 당첨 번호는 1~45숫자만 가능합니다.";
     private static final String WINNING_NUMBER_DUPLICATE_ERROR = "[ERROR] 당첨 번호는 중복될 수 없습니다.";
     private static final String BONUS_NUMBER_RANGE_ERROR = "[ERROR] 보너스 번호는 1~45숫자만 가능합니다.";
+    private static final String BONUS_NUMBER_DUPLICATE_ERROR = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     public static void validatePrice(String input) {
         try {
@@ -43,7 +44,7 @@ public abstract class Validator {
         }
     }
 
-    public static void validateBonusNumber(String input) {
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -53,6 +54,10 @@ public abstract class Validator {
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < 0 || bonusNumber > 45) {
             throw new IllegalArgumentException(BONUS_NUMBER_RANGE_ERROR);
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR);
         }
     }
 }

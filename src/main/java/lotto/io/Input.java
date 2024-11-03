@@ -14,29 +14,43 @@ public abstract class Input {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static int price() {
-        System.out.println(INPUT_PRICE_MESSAGE);
-        String input = Console.readLine();
-        validatePrice(input);
-        System.out.println();
-        return Integer.parseInt(input);
+        try {
+            System.out.println(INPUT_PRICE_MESSAGE);
+            String input = Console.readLine();
+            validatePrice(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            return price();
+        }
     }
 
     public static List<Integer> winningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-        String input = Console.readLine();
-        validateWinningNumber(input);
-        System.out.println();
+        try {
+            System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+            String input = Console.readLine();
+            validateWinningNumber(input);
+            System.out.println();
 
-        return Stream.of(input.split(","))
-                .map(Integer::parseInt)
-                .toList();
+            return Stream.of(input.split(","))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            return winningNumbers();
+        }
     }
 
-    public static int bonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String input = Console.readLine();
-        validateBonusNumber(input);
-        System.out.println();
-        return Integer.parseInt(input);
+    public static int bonusNumber(List<Integer> winningNumber) {
+        try {
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+            String input = Console.readLine();
+            validateBonusNumber(input, winningNumber);
+            System.out.println();
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            return bonusNumber(winningNumber);
+        }
     }
 }

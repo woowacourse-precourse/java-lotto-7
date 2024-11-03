@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -9,13 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class TicketTest {
-    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
-    @Test
-    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Ticket(getLottos(), 1000, List.of(1, 2, 3, 4, 5, 6), 6))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("여러개의 당첨 내역 결과 검증")
     @Test
     void 여러개의_당첨_결과_검증() {
