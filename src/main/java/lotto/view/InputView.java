@@ -8,27 +8,19 @@ public class InputView implements InputViewInterface{
     @Override
     public String readPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        InputValidator.validateInputValue(input);
-        return input;
+        return Console.readLine();
     }
 
     @Override
     public String readWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        InputValidator.validateInputLottoValue(input);
-        return input;
-
+        return  Console.readLine();
     }
 
     @Override
     public String readBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        InputValidator.validateInputValue(input);
-        return input;
-
+        return Console.readLine();
     }
 
 }

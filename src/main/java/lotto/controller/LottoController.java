@@ -4,15 +4,16 @@ import lotto.model.domain.BonusNumber;
 import lotto.model.domain.Lottos;
 import lotto.model.domain.Money;
 import lotto.model.domain.WinningNumbers;
-import lotto.model.service.LottoService;
+import lotto.model.service.LottoCreationService;
 import lotto.util.parser.InputParser;
+import lotto.util.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.LottoView;
 
 public class LottoController {
     private InputView inputView;
     private LottoView lottoView;
-    private LottoService lottoService;
+    private LottoCreationService lottoCreationService;
     private Money money;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
@@ -21,10 +22,10 @@ public class LottoController {
     public LottoController(
             InputView inputView,
             LottoView lottoView,
-            LottoService lottoService) {
+            LottoCreationService lottoCreationService) {
         this.inputView = inputView;
         this.lottoView = lottoView;
-        this.lottoService = lottoService;
+        this.lottoCreationService = lottoCreationService;
     }
 
     public void run() {
@@ -38,18 +39,19 @@ public class LottoController {
         while (true) {
             try {
                 String inputAmount = inputView.readPurchaseAmount();
+                InputValidator.validateInputValue(inputAmount);
                 int amount = InputParser.parseNumber(inputAmount);
                 money = new Money(amount);
                 break;
             } catch (IllegalArgumentException iae) {
-                iae.printStackTrace();
+                System.out.println(iae.getMessage());
             }
         }
     }
 
     private void createAndPrintLottos() {
-        lottos = lottoService.createLottos(money.getAmount());
-        int lottoCount = lottoService.calculateLottoCount(money.getAmount());
+        lottos = lottoCreationService.createLottos(money.getAmount());
+        int lottoCount = lottoCreationService.calculateLottoCount(money.getAmount());
         lottoView.printTotalLottoCount(lottoCount);
         lottoView.printCreatedLotto(lottos);
     }
@@ -58,10 +60,11 @@ public class LottoController {
         while (true) {
             try {
                 String inputWinningNumbers = inputView.readWinningNumbers();
+                InputValidator.validateInputLottoValue(inputWinningNumbers);
                 winningNumbers = InputParser.parseWinningNumbers(inputWinningNumbers);
                 break;
             } catch (IllegalArgumentException iae) {
-                iae.printStackTrace();
+                System.out.println(iae.getMessage());
             }
         }
     }
@@ -70,11 +73,12 @@ public class LottoController {
         while (true) {
             try {
                 String inputBonus = inputView.readBonusNumber();
+                InputValidator.validateInputValue(inputBonus);
                 int bounusNumber = InputParser.parseNumber(inputBonus);
                 bonus = new BonusNumber(bounusNumber, winningNumbers);
                 break;
             } catch (IllegalArgumentException iae) {
-                iae.printStackTrace();
+                System.out.println(iae.getMessage());
             }
         }
     }
