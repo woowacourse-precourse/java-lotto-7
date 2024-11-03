@@ -4,6 +4,7 @@ import static lotto.NumberType.LOTTO_MAX_NUMBER;
 import static lotto.NumberType.LOTTO_MIN_NUMBER;
 import static lotto.NumberType.LOTTO_NUMBER_COUNT;
 import static lotto.NumberType.PURCHASE_UNIT;
+import static lotto.NumberType.ZERO;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
@@ -71,7 +72,7 @@ public class InputView {
     }
 
     private static void validateUnit(int amount) {
-        if ((amount % PURCHASE_UNIT) != NumberType.ZERO) {
+        if ((amount % PURCHASE_UNIT) != ZERO || amount == 0) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_INVALID_UNIT);
         }
     }
