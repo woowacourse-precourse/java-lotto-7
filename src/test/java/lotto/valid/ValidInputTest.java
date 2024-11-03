@@ -11,9 +11,11 @@ public class ValidInputTest {
     @Test
     void 구입금액의_입력값이_잘못된_경우_예외가_발생한다() {
         String emptyInput = "";
+        String positiveInput = "-1000";
         String stringInput = "abc";
         String notUnitInput = "1234";
         assertThrows(InputException.class, () -> ValidInput.checkInputMoney(emptyInput));
+        assertThrows(InputException.class, () -> ValidInput.checkInputMoney(positiveInput));
         assertThrows(InputException.class, () -> ValidInput.checkInputMoney(stringInput));
         assertThrows(InputException.class, () -> ValidInput.checkInputMoney(notUnitInput));
     }
@@ -32,7 +34,7 @@ public class ValidInputTest {
     void 보너스번호의_입력값이_잘못된_경우_예외가_발생한다() {
         String emptyInput = "";
         String stringInput = "abc";
-        assertThrows(InputException.class, () -> ValidInput.checkInputMoney(emptyInput));
-        assertThrows(InputException.class, () -> ValidInput.checkInputMoney(stringInput));
+        assertThrows(InputException.class, () -> ValidInput.checkInputBonusNumber(emptyInput));
+        assertThrows(InputException.class, () -> ValidInput.checkInputBonusNumber(stringInput));
     }
 }
