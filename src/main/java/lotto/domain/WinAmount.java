@@ -19,6 +19,7 @@ public enum WinAmount {
     public String getAmount() {
         return amount;
     }
+
     public int getAmountNum() {
         return amountNum;
     }
