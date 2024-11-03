@@ -20,9 +20,9 @@ class ApplicationTest extends NsTest {
         assertThat(Application.buyLotto("7000")).isEqualTo(7);
     }
 
-    @DisplayName("금액 입력이 1,000원 단위의 값이 아닌 경우")
+    @DisplayName("금액 입력이 1,000원 단위가 아닐 때 예외 처리")
     @Test
-    void buyLotto_1000원_단위() {
+    void buyLotto_예외_1000원_단위() {
         assertThatThrownBy(() -> Application.buyLotto("1001")).isInstanceOf(IllegalArgumentException.class);
     }
 
