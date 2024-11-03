@@ -26,8 +26,17 @@ public class LottoController {
 
     public void run() {
         // Step 1: 로또 구입 금액 입력
-        int purchaseAmount = lottoPurchase.purchaseAmount();
+        int purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = lottoPurchase.purchaseAmount();
+                break; // 올바른 값이 입력되면 루프 종료
 
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 금액은 숫자를 입력해주세요");
+            }
+        }
+        System.out.println(purchaseAmount);
         // Step 2: 개수에 맞게 로또 발행
         List<Lotto> issuedLotto = lottoIssuer.issueLotto(purchaseAmount);
 
