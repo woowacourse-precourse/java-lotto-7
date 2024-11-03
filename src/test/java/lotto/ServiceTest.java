@@ -69,9 +69,9 @@ class ServiceTest {
     List<Integer> winningResults = List.of(1, 0, 0, 0, 0);
     int investmentAmount = 8000;
 
-    float actualResult = lottosService.calculateYield(winningResults, investmentAmount);
+    double actualResult = lottosService.calculateYield(winningResults, investmentAmount);
 
-    float expectResult = 62.5F;
+    double expectResult = 62.5;
 
     assertThat(actualResult).isEqualTo(expectResult);
   }

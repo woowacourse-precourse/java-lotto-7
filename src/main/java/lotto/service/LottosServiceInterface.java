@@ -8,5 +8,5 @@ public interface LottosServiceInterface {
 
   List<Integer> checkWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber);
 
-  float calculateYield(List<Integer> winningCounts, int purchaseAmount);
+  double calculateYield(List<Integer> winningCounts, int purchaseAmount);
 }

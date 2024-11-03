@@ -51,7 +51,7 @@ public class LottoService implements LottosServiceInterface {
 
 
   @Override
-  public float calculateYield(List<Integer> winningCounts, int purchaseAmount) {
+  public double calculateYield(List<Integer> winningCounts, int purchaseAmount) {
 
     int totalPrize = (winningCounts.get(0) * Prize.FIFTH.getAmount()) +
         (winningCounts.get(1) * Prize.FOURTH.getAmount()) +
@@ -59,8 +59,8 @@ public class LottoService implements LottosServiceInterface {
         (winningCounts.get(3) * Prize.SECOND.getAmount()) +
         (winningCounts.get(4) * Prize.FIRST.getAmount());
 
-    float yield = (float) totalPrize / purchaseAmount * 100;
+    double yield = (double) totalPrize / purchaseAmount * 100;
 
-    return Math.round(yield * 10) / 10.0f; // 소수점 둘째 자리에서 반올림
+    return Math.round(yield * 10) / 10.0; // 소수점 둘째 자리에서 반올림
   }
 }
