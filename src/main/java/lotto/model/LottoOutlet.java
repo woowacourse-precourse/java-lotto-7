@@ -1,13 +1,10 @@
 package lotto.model;
 
-import static lotto.constants.LottoConstant.COUNT;
-import static lotto.constants.LottoConstant.MAX_LOTTO_NUMBER;
-import static lotto.constants.LottoConstant.MIN_LOTTO_NUMBER;
 import static lotto.constants.LottoConstant.WON_1000;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.randomNumberMaker.LottoNumberMaker;
 
 public class LottoOutlet {
 
@@ -24,15 +21,9 @@ public class LottoOutlet {
         List<Lotto> lottoNumbersTicket = new ArrayList<>();
 
         for (int i = 0; i < totalTickets; i++){
-            lottoNumbersTicket.add(makeRandomNumbers());
+            lottoNumbersTicket.add(LottoNumberMaker.makeRandomNumbers());
         }
 
         return new LottoTicket(lottoNumbersTicket);
-    }
-
-    private static Lotto makeRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT);
-
-        return new Lotto(randomNumbers);
     }
 }
