@@ -33,5 +33,6 @@ public class AppRunner {
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
         BigInteger totalPrize = Winning.tellTotalPrize(winningReport.getWinningCounts());
         BigDecimal rateOfReturn = lottoReceipt.calculateRateOfReturn(totalPrize);
+        outputView.printRateOfReturn(rateOfReturn.toString());
     }
 }

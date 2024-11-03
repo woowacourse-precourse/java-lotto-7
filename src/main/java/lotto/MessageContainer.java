@@ -10,6 +10,8 @@ public class MessageContainer {
     public static final String ENTER_WINNING_LOTTO_NUMBERS
             = String.format("당첨 번호를 입력해 주세요.(번호는 %s 기준으로 구분)", VIEW_DELIMITER_LABEL);
 
+    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
+
     public static final String ERROR_LABEL = "[ERROR]";
 
     public static final String NEITHER_DIGIT_NOR_DELIMITER_ERROR
