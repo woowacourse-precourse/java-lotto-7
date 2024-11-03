@@ -1,7 +1,11 @@
 package lotto.user;
 
+import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_COUNT;
 import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_LOWER_BOUND;
 import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_COUNT;
+import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_DUPLICATE;
+import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_RANGE;
 
 import java.util.List;
 
@@ -21,8 +25,8 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
     }
 
     private static void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage(LOTTO_NUMBER_COUNT));
         }
     }
 
@@ -34,14 +38,14 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
 
     private static void validateNumberRange(int number) {
         if (number < LOTTO_NUMBER_LOWER_BOUND || LOTTO_NUMBER_UPPER_BOUND < number) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d부터 %d사이의 숫자여야 합니다.",
-                    LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND));
+            throw new IllegalArgumentException(
+                    INVALID_NUMBER_RANGE.getMessage(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND));
         }
     }
 
     private static void validateNumberDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_DUPLICATE.getMessage());
         }
     }
 
