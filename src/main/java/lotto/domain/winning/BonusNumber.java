@@ -1,5 +1,6 @@
-package lotto.domain;
+package lotto.domain.winning;
 
+import lotto.domain.number.Number;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 

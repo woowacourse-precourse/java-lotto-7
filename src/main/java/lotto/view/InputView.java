@@ -2,10 +2,10 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Number;
 import lotto.domain.Payment;
-import lotto.domain.WinningLotto;
+import lotto.domain.number.Number;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.WinningLotto;
 import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;

@@ -2,11 +2,11 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Number;
-import lotto.domain.Rank;
-import lotto.domain.Result;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.number.Number;
+import lotto.domain.rank.Rank;
+import lotto.domain.rank.Result;
 import lotto.view.console.Writer;
 
 public class OutputView {

@@ -1,11 +1,16 @@
-package lotto.domain;
+package lotto.domain.rank;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Payment;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.number.Number;
+import lotto.domain.winning.AnswerNumbers;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.WinningLotto;
 import lotto.global.contents.LottoDetail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

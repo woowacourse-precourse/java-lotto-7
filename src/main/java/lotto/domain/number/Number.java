@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.number;
 
 import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;

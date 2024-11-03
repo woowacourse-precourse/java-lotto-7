@@ -1,10 +1,12 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.number.Number;
+import lotto.domain.rank.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

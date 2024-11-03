@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.Number;
+import lotto.domain.number.Number;
 import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;

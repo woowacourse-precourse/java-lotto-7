@@ -1,10 +1,12 @@
-package lotto.domain;
+package lotto.domain.rank;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.domain.Payment;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.winning.AnswerNumbers;
 
 public class Result {
 
