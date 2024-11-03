@@ -48,4 +48,10 @@ public class Lotto {
         return numbers.stream()
                 .sorted().toList();
     }
+
+    public List<Integer> getNumbersAsUnmodifiableList() {
+        return numbers.stream()
+                .map(LottoNumber::getValue)
+                .toList(); // unmodifiableList 반환
+    }
 }
