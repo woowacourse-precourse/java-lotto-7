@@ -38,6 +38,12 @@ public enum Winning {
 		return result;
 	}
 
+	public static long getTotalWinningPrize(Map<Winning, Integer> winningResult) {
+		return winningResult.entrySet().stream()
+				.mapToLong(winning -> winning.getKey().prize * winning.getValue())
+				.sum();
+	}
+
 	private static Winning checkIfSecond(Winning result, boolean hasBonusNumber) {
 		if (result.count == SECOND.count && result.hasBonusNumber == SECOND.hasBonusNumber) {
 			return SECOND;
