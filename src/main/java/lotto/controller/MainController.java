@@ -9,5 +9,6 @@ public class MainController {
     public static void run(){
         Integer lottoCount = viewController.getMoney();
         lottoController.buyLotto(lottoCount);
+        viewController.showNumber(lottoCount);
     }
 }

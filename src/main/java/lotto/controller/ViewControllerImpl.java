@@ -31,9 +31,15 @@ public class ViewControllerImpl implements ViewController {
     public void validateNumberSize(List<Integer> winningNumbers) {
 
     }
+
     public Integer getMoney(){
         outputView.printGuide();
         String money =  inputView.readLine();
         return this.validateMoney(Integer.parseInt(money));
+    }
+
+    public void showNumber(Integer lottoCount){
+        outputView.printCount(lottoCount);
+        outputView.printLottoNumber();
     }
 }
