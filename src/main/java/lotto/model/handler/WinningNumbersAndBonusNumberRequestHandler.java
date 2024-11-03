@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.utils.InputUtils;
 import lotto.validator.InputValidator;
 
-public class WinningLottoRequestHandler {
+public class WinningNumbersAndBonusNumberRequestHandler {
 
     public List<Integer> getWinningNumbers(List<String> lottoInput) {
         InputValidator.validateWinningNumbers(lottoInput);

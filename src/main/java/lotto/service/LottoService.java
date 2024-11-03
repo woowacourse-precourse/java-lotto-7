@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.model.handler.PurchaseRequestHandler;
-import lotto.model.handler.WinningLottoRequestHandler;
+import lotto.model.handler.WinningNumbersAndBonusNumberRequestHandler;
 import lotto.model.lotto.LottoResult;
 import lotto.model.lotto.Lottos;
 import lotto.model.winning.WinningNumbersAndBonusNumber;
@@ -10,12 +10,12 @@ import lotto.model.rank.RankResult;
 
 public class LottoService {
     private final PurchaseRequestHandler purchaseRequestHandler;
-    private final WinningLottoRequestHandler winningLottoRequestHandler;
+    private final WinningNumbersAndBonusNumberRequestHandler winningNumbersAndBonusNumberRequestHandler;
 
     public LottoService(PurchaseRequestHandler purchaseRequestHandler,
-                        WinningLottoRequestHandler winningLottoRequestHandler) {
+                        WinningNumbersAndBonusNumberRequestHandler winningNumbersAndBonusNumberRequestHandler) {
         this.purchaseRequestHandler = purchaseRequestHandler;
-        this.winningLottoRequestHandler = winningLottoRequestHandler;
+        this.winningNumbersAndBonusNumberRequestHandler = winningNumbersAndBonusNumberRequestHandler;
     }
 
     public int getPurchaseCount(String amount) {
@@ -23,11 +23,11 @@ public class LottoService {
     }
 
     public List<Integer> getWinningNumbers(List<String> lottoInput) {
-        return winningLottoRequestHandler.getWinningNumbers(lottoInput);
+        return winningNumbersAndBonusNumberRequestHandler.getWinningNumbers(lottoInput);
     }
 
     public int getBonusNumber(String bonusInput, List<Integer> winningNumbers) {
-        return winningLottoRequestHandler.getBonusNumber(bonusInput, winningNumbers);
+        return winningNumbersAndBonusNumberRequestHandler.getBonusNumber(bonusInput, winningNumbers);
     }
 
     public Lottos generateLottos(int count) {
