@@ -15,6 +15,13 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateNumbersRange(numbers);
+        validateNumberDuplicate(numbers);
+    }
+
+    private static void validateNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
     }
 
     private static void validateNumbersRange(List<Integer> numbers) {
@@ -30,9 +37,9 @@ public class Lotto { // 사용자 입력 로또 번호 검증 후 객체 생성
         }
     }
 
-    private static void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private static void validateNumberDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
