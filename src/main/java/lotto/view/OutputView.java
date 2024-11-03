@@ -26,7 +26,7 @@ public class OutputView {
     }
 
     public void outputLateOfReturn(double lateOfReturn) {
-        System.out.println("총 수익률은 " + lateOfReturn + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%,.1f", lateOfReturn) + "%입니다.");
     }
 
 }
