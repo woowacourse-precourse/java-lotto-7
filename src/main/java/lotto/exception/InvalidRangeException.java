@@ -1,4 +1,4 @@
-package lotto.io.exception;
+package lotto.exception;
 
 public class InvalidRangeException extends IllegalArgumentException {
     private InvalidRangeException(final String s) {

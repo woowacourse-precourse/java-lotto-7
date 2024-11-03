@@ -3,7 +3,7 @@ package lotto.io.validator.lotto;
 import static lotto.io.error.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.io.exception.InvalidRangeException;
+import lotto.exception.InvalidRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

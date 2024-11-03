@@ -1,7 +1,7 @@
 package lotto.io.validator.lotto;
 
+import static lotto.exception.InvalidRangeException.invalidLottoLength;
 import static lotto.io.error.ErrorMessage.INVALID_LOTTO_LENGTH_RANGE;
-import static lotto.io.exception.InvalidRangeException.invalidLottoLength;
 
 import java.util.List;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package lotto.io.validator.lotto;
 
+import static lotto.exception.InvalidRangeException.invalidLottoNumberRange;
 import static lotto.io.error.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.io.exception.InvalidRangeException.invalidLottoNumberRange;
 import static lotto.io.validator.regex.RegexPattern.NUMBER_RANGE;
 
 import java.util.List;

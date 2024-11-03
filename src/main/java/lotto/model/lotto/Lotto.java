@@ -3,14 +3,18 @@ package lotto.model.lotto;
 import static java.util.Objects.isNull;
 import static lotto.exception.DuplicatedNumberException.duplicatedLottoNumber;
 import static lotto.exception.ShouldNotBeNullException.nullArgument;
+import static lotto.io.error.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.InvalidRangeException;
 
 public class Lotto {
 
     public static final int MAX_NUMBER_COUNT = 6;
+    public static final int START_INCLUSIVE = 1;
+    public static final int END_INCLUSIVE = 45;
 
     private final List<Integer> numbers;
 
@@ -19,6 +23,7 @@ public class Lotto {
     }
 
     public static Lotto from(final List<Integer> numbers) {
+        validateRange(numbers);
         validateMaxLength(numbers);
         validateDuplicatedNumber(numbers);
         return new Lotto(numbers);
@@ -50,7 +55,7 @@ public class Lotto {
     }
 
     private static void validateMaxLength(final List<Integer> numbers) {
-        if (numbers.size() != MAX_NUMBER_COUNT) {
+        if (numbers.size() != Lotto.MAX_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -59,6 +64,14 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw duplicatedLottoNumber();
+        }
+    }
+
+    private static void validateRange(final List<Integer> numbers) {
+        boolean outOfRange = numbers.stream()
+                .anyMatch(number -> number < Lotto.START_INCLUSIVE || number > Lotto.END_INCLUSIVE);
+        if (outOfRange) {
+            throw InvalidRangeException.invalidLottoNumberRange(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 }
