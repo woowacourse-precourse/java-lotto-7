@@ -73,5 +73,6 @@ public class LottoController {
 
     private void handleWinningNumbers() {
         output.printWinningNumbersInputPrompt();
+        String winningNumbersInput = input.inputString();
     }
 }
