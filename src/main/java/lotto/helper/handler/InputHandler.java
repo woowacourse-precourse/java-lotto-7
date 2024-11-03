@@ -9,7 +9,7 @@ import lotto.view.input.InputView;
 
 public class InputHandler {
 
-    public static int inputMoney() {
+    public int inputMoney() {
         while (true) {
             String inputMoney = InputView.inputMoney();
             try {
@@ -20,7 +20,7 @@ public class InputHandler {
         }
     }
 
-    public static Lotto inputLottoNumbers() {
+    public Lotto inputLottoNumbers() {
         while (true) {
             String inputLottoNumbers = InputView.inputLottoNumbers();
             try {
@@ -32,7 +32,7 @@ public class InputHandler {
         }
     }
 
-    public static Bonus inputBonusNumber(List<Integer> numbers) {
+    public Bonus inputBonusNumber(List<Integer> numbers) {
         while (true) {
             String inputBonusNumber = InputView.inputBonusNumber();
             try {

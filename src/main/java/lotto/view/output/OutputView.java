@@ -7,7 +7,7 @@ import lotto.model.LottoTicket;
 
 public class OutputView {
 
-    public static void outputLottoNumbers(LottoTicket lottoTicket) {
+    public void outputLottoNumbers(LottoTicket lottoTicket) {
         System.out.println("\n" + lottoTicket.getLottos().size() + OutputViewMessage.PURCHASE_COUNT_VIEW);
         for (Lotto lotto : lottoTicket.getLottos()) {
             String numbers = lotto.getNumbers().stream()
@@ -20,7 +20,7 @@ public class OutputView {
         }
     }
 
-    public static void outputRankSummary(Map<LottoRank, Integer> resultRank, double profitRate) {
+    public void outputRankSummary(Map<LottoRank, Integer> resultRank, double profitRate) {
         System.out.println(OutputViewMessage.SUMMARY_VIEW);
 
         for (LottoRank rank : LottoRank.values()) {
