@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.List;
+
 public final class InputConverter {
 
     private InputConverter() {
@@ -10,6 +13,18 @@ public final class InputConverter {
             return Integer.parseInt(purchaseAmountInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다. 다시 입력해주세요.");
+        }
+    }
+
+    public static List<Integer> convertToWinningLottoNumbers(final String winningLottoNumbersInput) {
+        try {
+            final String[] splitedWinningLottoNumbers = winningLottoNumbersInput.split("\\s");
+            return Arrays.stream(splitedWinningLottoNumbers)
+                    .mapToInt(Integer::parseInt)
+                    .boxed()
+                    .toList();
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다. 다시 입력해주세요.");
         }
     }
 }

@@ -1,8 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public final class InputHandler {
+
+    private InputHandler() {
+    }
 
     public static int inputLottoPurchaseAmount() {
         try {
@@ -16,5 +20,11 @@ public final class InputHandler {
         }
 
         return 0;
+    }
+
+    public static WinningLotto inputWinningLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        final List<Integer> winningLottoNumbers = InputConverter.convertToWinningLottoNumbers(Console.readLine());
+        return new WinningLotto(winningLottoNumbers);
     }
 }
