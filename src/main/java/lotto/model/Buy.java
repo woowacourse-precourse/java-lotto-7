@@ -3,16 +3,22 @@ package lotto.model;
 public class Buy {
 
     private final Integer money;
+    private final Integer purchaseCount;
     public static final int MONEY_UNIT = 1000;
 
     public Buy(Integer money) {
-        this.money = money;
         validateUserMoneyUnit(money);
         validateUserMoneyNegative(money);
+        this.money = money;
+        this.purchaseCount = getUserPurchaseCount(money);
     }
 
     public Integer getMoney(){
         return money;
+    }
+
+    public Integer getPurchaseCount(){
+        return purchaseCount;
     }
 
     private Integer getUserPurchaseCount(Integer userMoney){
