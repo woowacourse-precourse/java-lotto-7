@@ -18,9 +18,13 @@ public class Application {
         	
             OutputView.printLottoPurchaseInfo(numberOfLottos, lottos);
         	
+            
+            
         	List<Integer> winningNumbers = InputView.requestWinningNumbers();
             int bonusNumber = InputView.requestBonusNumber();
                 
+            
+            WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
             
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 예외 메시지 출력
