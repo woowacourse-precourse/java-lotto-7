@@ -20,6 +20,6 @@ public class LottoPurchase {
     }
 
     public LottoPurchaseResult getLottoPurchaseResult() {
-        return new LottoPurchaseResult(getLottoTickets().getLottoTicketsNumbers(), money);
+        return new LottoPurchaseResult(getLottoTickets().getLottoTicketsNumbers(), money / LOTTO_PRICE);
     }
 }
