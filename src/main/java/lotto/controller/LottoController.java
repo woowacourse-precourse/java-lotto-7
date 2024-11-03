@@ -20,12 +20,7 @@ public class LottoController {
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(winNumbers), bonusNumber);
 
         int[] rankCount = calculateRankCounts(purchaseLottos, winningNumbers);
-
-        int totalPrize = 0;
-        for (int i = 0; i < rankCount.length; i++) {
-            totalPrize += rankCount[i] * LottoRank.ranks.get(i).getPrize();
-        }
-        double earningRate = ((double) totalPrize / (lottosAmount * 1000)) * 100;
+        double earningRate = calculateEarningRate(rankCount, lottosAmount * 1000);
 
         OutputView.printWinningStatistics(rankCount, earningRate);
     }
@@ -58,4 +53,13 @@ public class LottoController {
         boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
         return LottoRank.getRank(matchCount, matchBonus);
     }
+
+    public double calculateEarningRate(int[] rankCounts, int totalSpent) {
+        int totalPrize = 0;
+        for (int i = 0; i < rankCounts.length; i++) {
+            totalPrize += rankCounts[i] * LottoRank.ranks.get(i).getPrize();
+        }
+        return ((double) totalPrize / totalSpent) * 100;
+    }
+
 }
