@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class LotteryMachine {
-    private static final int LOTTO_TICKET_PRICE = 1000;
+    public static final int LOTTO_TICKET_PRICE = 1000;
 
     public void purchaseLottoTickets(User user) {
         int purchaseAmount = user.getPurchaseAmount();
@@ -28,11 +28,11 @@ public class LotteryMachine {
         int bonusNumber = result.getBonusNumber();
         LottoResult lottoResult = user.getLottoResult();
         user.getPurchasedLotto().forEach(lotto -> {
-            LottoRank lottoRank = findLottoRank(winningLotto, lotto, bonusNumber);
+            LottoRank lottoRank = getLottoRank(winningLotto, lotto, bonusNumber);
             lottoResult.addRank(lottoRank);
         });
     }
-    private LottoRank findLottoRank(Lotto winningLotto, Lotto purchasedLotto, int bonusNumber) {
+    private LottoRank getLottoRank(Lotto winningLotto, Lotto purchasedLotto, int bonusNumber) {
         List<Integer> winningLottoNumbers = winningLotto.getNumbers();
         List<Integer> purchasedLottoNumbers = purchasedLotto.getNumbers();
         int sameNumberCount = (int) getSameNumberCount(winningLottoNumbers,purchasedLottoNumbers);

@@ -20,7 +20,7 @@ public class Result {
             String[] split = inputWinningNumbers.split(",");
             return Arrays.stream(split).map(Integer::parseInt).sorted().toList();
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 문자열이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨번호 문자열 형식이 일치하지 않습니다.");
         }
     }
 

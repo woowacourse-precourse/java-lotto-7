@@ -5,6 +5,7 @@ import lotto.dto.Bag;
 import lotto.dto.Lotto;
 import lotto.util.LottoRank;
 
+import java.text.Format;
 import java.util.List;
 
 public class outputView {
@@ -19,11 +20,12 @@ public class outputView {
         System.out.println("---");
         for(LottoRank lottoRank : LottoRank.allLottoRank) {
             int sameNumberCount = lottoResult.getRankCount(lottoRank);
+            String msg = "%d개 일치 (%,d원) - %d개";
             if(lottoRank==LottoRank.SECOND) {
-
+                msg = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
             }
-            System.out.printf("%d개 일치 (%,d원) - %d개",lottoRank.getSameNumberCount(),lottoRank.getPrize(),sameNumberCount);
-            System.out.println();
+            String formatMSG = String.format(msg, lottoRank.getSameNumberCount(), lottoRank.getPrize(), lottoResult.getRankCount(lottoRank));
+            System.out.println(formatMSG);
         }
     }
 

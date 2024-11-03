@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.Bag;
 import lotto.dto.Lotto;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class User {
         bag.addLotto(lotto);
     }
     public List<Integer> pickNumbersSorted() {
-        List<Integer> pickNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> pickNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         pickNumbers.sort(Comparator.naturalOrder());
         return pickNumbers;
     }

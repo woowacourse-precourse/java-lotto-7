@@ -22,10 +22,13 @@ public class InputView {
     public static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputNumber = Console.readLine();
-        validateEmptyString(inputNumber);
-        int bonusNumber = Integer.parseInt(inputNumber);
-        validatePositiveNumber(bonusNumber);
-        return bonusNumber;
+        try {
+            validateEmptyString(inputNumber);
+            int bonusNumber = Integer.parseInt(inputNumber);
+            validatePositiveNumber(bonusNumber);
+            return bonusNumber;
+        }catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호 형식이 일치하지 않습니다.");
+        }
     }
-
 }

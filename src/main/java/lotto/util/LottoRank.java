@@ -38,7 +38,7 @@ public enum LottoRank {
 
     public static LottoRank fromSameNumberCount(int sameNumberCount, boolean haveBonusNumber) {
         if(sameNumberCount > 6)
-            throw new IllegalArgumentException("[ERROR] 로또는 최대 6자리 숫자까지 같을 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 번호는 최대 6개까지 같을 수 있습니다.");
         LottoRank rank = countToLottoRank.get(sameNumberCount);
         if(rank==LottoRank.THIRD && haveBonusNumber)
             rank = LottoRank.SECOND;
