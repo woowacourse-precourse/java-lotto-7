@@ -14,8 +14,8 @@ class LottoBundleTest {
         int expected = 14;
 
         //When
-        int actual = new LottoBundle(amount / LOTTO_PRICE).getBundleSize();
-
+        int actual = new LottoBundle(amount / LOTTO_PRICE).getBundle().size();
+        
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
     }

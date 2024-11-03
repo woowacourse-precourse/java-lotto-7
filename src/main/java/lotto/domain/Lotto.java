@@ -48,4 +48,8 @@ public class Lotto {
     public String retrieveLottoNumber() {
         return numbers.toString();
     }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
 }

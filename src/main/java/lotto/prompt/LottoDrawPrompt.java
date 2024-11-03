@@ -8,6 +8,7 @@ public class LottoDrawPrompt {
 
     private static final String WINNING_NUMBER_INPUT_MSG = "당첨 번호를 입력해 주세요.\n";
     private static final String BONUS_NUMBER_INPUT_MSG = "보너스 번호를 입력해 주세요.\n";
+    private static final String DRAW_OUTPUT_MSG = "당첨 통계\n---\n";
 
     public WinningNumber enterWinningNumber() {
         while (true) {
@@ -33,5 +34,13 @@ public class LottoDrawPrompt {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void printDrawResult() {
+        System.out.println(DRAW_OUTPUT_MSG);
+    }
+
+    public void printReturnRate(double returnRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
     }
 }
