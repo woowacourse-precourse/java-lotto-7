@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 
@@ -29,18 +30,26 @@ public class ConsoleView {
         return bonusNumber;
     }
 
-    public void printIssuedLotto(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+    public void printIssuedLotto(List<Lotto> lotteries) {
+        System.out.println(lotteries.size() + "개를 구매했습니다.");
 
-        for (Lotto lotto: lottos) {
+        for (Lotto lotto: lotteries) {
             System.out.println(lotto.getLottoNumbers().stream().sorted().toList());
         }
         System.out.println();
     }
 
-    public void printStatistics(List<LottoResult> lottoResults) {
+    public void printStatistics(Map<LottoResult, Integer> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        System.out.println(LottoResult.FIFTH.getResult() + " " + "(" + String.format("%,d", LottoResult.FIFTH.getPrice()) + "원) - " + lottoResults.get(LottoResult.FIFTH) + "개" );
+        System.out.println(LottoResult.FOURTH.getResult() + " " + "(" + String.format("%,d", LottoResult.FOURTH.getPrice()) + "원) - " + lottoResults.get(LottoResult.FOURTH) + "개" );
+        System.out.println(LottoResult.THIRD.getResult() + " " + "(" + String.format("%,d", LottoResult.THIRD.getPrice()) + "원) - " + lottoResults.get(LottoResult.THIRD) + "개" );
+        System.out.println(LottoResult.SECOND.getResult() + " " + "(" + String.format("%,d", LottoResult.SECOND.getPrice()) + "원) - " + lottoResults.get(LottoResult.SECOND) + "개" );
+        System.out.println(LottoResult.FIRST.getResult() + " " + "(" + String.format("%,d", LottoResult.FIRST.getPrice()) + "원) - " + lottoResults.get(LottoResult.FIRST) + "개" );
+    }
 
+    public void printRateOfReturn(Float rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

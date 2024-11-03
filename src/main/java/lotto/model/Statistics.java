@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toMap;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -23,9 +24,20 @@ public class Statistics {
         }
     }
 
-    public Map<LottoResult, Integer> getResult(List<Lotto> issuedLottos) {
+    public Float getRateOfReturn(Map<LottoResult, Integer> lottoResults) {
+        Float rateOfReturn;
+        int purchaseCount = 0;
+        int lotteryReturn = 0;
+        for(Entry<LottoResult, Integer> entryLottery : lottoResults.entrySet()) {
+            purchaseCount += entryLottery.getValue();
+            lotteryReturn += entryLottery.getKey().getPrice() * entryLottery.getValue();
+        }
+        rateOfReturn = Float.valueOf(lotteryReturn / (purchaseCount * 1000) * 100);
+        return (float) (Math.round(rateOfReturn * 10) / 10.0);
+    }
+    public Map<LottoResult, Integer> getResult(List<Lotto> issuedLotteries) {
         Map<LottoResult, Integer> lottoResults = initiateLottoResults();
-        for (Lotto lotto : issuedLottos) {
+        for (Lotto lotto : issuedLotteries) {
             List<Integer> lottoNumbers = lotto.getLottoNumbers();
             List<Integer> numbersOverlapped = findNumberOverlapped(lottoNumbers);
 
@@ -53,4 +65,5 @@ public class Statistics {
                 {LottoResult.NONE, 0}
         }).collect(toMap(data -> (LottoResult) data[0], data -> (Integer) data[1]));
     }
+
 }

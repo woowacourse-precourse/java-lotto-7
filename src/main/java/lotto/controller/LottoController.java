@@ -19,15 +19,18 @@ public class LottoController {
     public void run() {
         Integer purchaseAmount = consoleView.getPurchaseLottoAmount();
 
-        List<Lotto> issuedLottos = issuer.issueLotto(purchaseAmount);
-        consoleView.printIssuedLotto(issuedLottos);
+        List<Lotto> issuedLotteries = issuer.issueLotto(purchaseAmount);
+        consoleView.printIssuedLotto(issuedLotteries);
 
         List<Integer> winningNumbers = consoleView.getWinningNumbers();
         Integer bonusNumbers = consoleView.getBonusNumber();
 
         Statistics statistics = new Statistics(winningNumbers, bonusNumbers);
-        Map<LottoResult, Integer> lottoResults = statistics.getResult(issuedLottos);
-        System.out.println(lottoResults);
-//        consoleView.printStatistics(lottoResults);
+        Map<LottoResult, Integer> lottoResults = statistics.getResult(issuedLotteries);
+        consoleView.printStatistics(lottoResults);
+
+        Float rateOfReturn = statistics.getRateOfReturn(lottoResults);
+        consoleView.printRateOfReturn(rateOfReturn);
+
     }
 }
