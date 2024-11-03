@@ -32,6 +32,6 @@ public class BuyLottoValidate {
                 || amount == USE_ZERO.getValue()) {
             throw new IllegalArgumentException();
         }
-        return amount /= Thousand_Multi_Number.getValue();
+        return amount / Thousand_Multi_Number.getValue();
     }
 }
