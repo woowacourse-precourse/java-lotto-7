@@ -29,8 +29,9 @@ public class LottoCollection {
 
     private Lotto getRandomLotto() {
         List<Integer> randomNumbers = RandomNumbers.getRandomNumbers();
-        randomNumbers.sort(Integer::compareTo);
-        return new Lotto(randomNumbers);
+        List<Integer> sortedNumbers = new ArrayList<>();
+        randomNumbers.stream().sorted().forEach(sortedNumbers::add);
+        return new Lotto(sortedNumbers);
     }
 
     public String getState() {
