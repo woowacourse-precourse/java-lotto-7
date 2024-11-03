@@ -3,6 +3,7 @@ package lotto.model;
 public class Price {
 
 	private static final int PRICE_DIVISIBILITY_UNIT = 1000;
+	private static final int PERCENTAGE_MULTIPLIER = 100;
 
 	private final int price;
 
