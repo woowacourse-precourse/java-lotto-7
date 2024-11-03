@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class LottoBundle {
@@ -21,6 +22,10 @@ public class LottoBundle {
 
 	public int getCount() {
 		return price.getPrice() / SINGLE_LOTTO_PRICE;
+	}
+
+	public String getProfitRate(Map<Winning, Integer> winningResult) {
+		return price.getProfitRate(winningResult);
 	}
 
 	private List<Lotto> createLotto(int count, LottoCreator lottoCreator) {
