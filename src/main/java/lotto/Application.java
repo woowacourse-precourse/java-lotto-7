@@ -27,6 +27,6 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
         lotto.checkBonusNumber(bonusNumber);
-        lotto.printWinStatistics(lottos, bonusNumber);
+        lotto.printRateOfReturn(lottos, bonusNumber, cost);
     }
 }

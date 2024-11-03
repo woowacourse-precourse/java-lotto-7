@@ -90,7 +90,7 @@ public class Lotto {
         return winLotto;
     }
 
-    public void printWinStatistics(List<List<Integer>> lottos, int bounsNumber) {
+    public int[] printWinStatistics(List<List<Integer>> lottos, int bounsNumber) {
         int[] matchRank = new int[6];
         matchRank = getMatchRank(lottos, bounsNumber);
         System.out.println("\n당첨 통계");
@@ -100,6 +100,7 @@ public class Lotto {
         System.out.println("5개 일치 (1,500,000원) - " + matchRank[2] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchRank[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchRank[4] + "개");
+        return matchRank;
     }
 
     public void checkBonusNumber(int bonusNumber) {
@@ -151,4 +152,28 @@ public class Lotto {
         }
         return matchRank;
      }
+
+    public void printRateOfReturn(List<List<Integer>> lottos, int bounsNumber, int cost) {
+        int[] matchRank = new int[6];
+        double rateOfReturn = 0;
+        double returnCost = 0L;
+        matchRank = printWinStatistics(lottos, bounsNumber);
+        returnCost = getReturnCost(matchRank);
+        rateOfReturn = getRateOfReturn(cost, returnCost);
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+    }
+
+    public double getReturnCost(int[] matchRank) {
+        double returnCost = 0;
+        returnCost += matchRank[0] * 5000;
+        returnCost += matchRank[1] * 50000;
+        returnCost += matchRank[2] * 1500000;
+        returnCost += matchRank[3] * 30000000;
+        returnCost += matchRank[4] * 2000000000;
+        return returnCost;
+    }
+
+    public double getRateOfReturn(int cost, double returnCost) {
+        return returnCost / cost * 100;
+    }
 }
