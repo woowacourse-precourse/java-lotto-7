@@ -1,14 +1,15 @@
 package lotto.View;
 
+import java.sql.SQLOutput;
 import java.util.Map;
 import lotto.Model.Ranking;
+import lotto.constants.Constants;
 
 public class OutputView{
 
 
     public static void printWinningStatistics(){
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(Constants.WINNING_STATISTICS);
     }
     //각 Ranking 별 일치개수를 반환 로직
     public static void printResult(Map<Ranking,Integer> rankingCount){

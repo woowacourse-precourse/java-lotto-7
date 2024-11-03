@@ -3,9 +3,11 @@ package lotto.View;
 
 import static lotto.Model.ErrorCode.PARSING_INTEGER_ERROR;
 import static lotto.Model.ErrorCode.RETRY_MESSAGE;
+import static lotto.constants.Constants.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.Validation;
+import lotto.constants.Constants;
 
 public class InputView {
 
@@ -14,7 +16,7 @@ public class InputView {
 
     //사용자에게 구입금액 입력받는 메소드
     public int setPurchasePrice() {
-        System.out.println("구입 금액을 입력해 주세요");
+        System.out.println(Constants.SET_PURCHASE_PRICE);
         while (true){
             try{
                 int purchasePrice=Integer.parseInt(Console.readLine());
@@ -22,7 +24,7 @@ public class InputView {
                 return purchasePrice;
             }catch (NumberFormatException e){
                 System.out.println(PARSING_INTEGER_ERROR.getMessage());
-                System.out.println(RETRY_MESSAGE.getMessage());
+                System.out.println(OUTPUT_RETYPE);
             }
             catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -34,7 +36,7 @@ public class InputView {
 
     //사용자에게 당첨번호 받는 로직
     public String[] setWinningNumber() {
-        System.out.println("당첨 번호를 쉼표로 구분해 입력해 주세요 당첨번호는 1~45까지 6자리 수 입니다");
+        System.out.println(SET_WINNING_NUMBER);
         while (true){
             try{
                 String[] winningNumber=Console.readLine().split(",");
@@ -50,7 +52,7 @@ public class InputView {
 
     //사용자에게 보너스 번호 받는 로직
     public int setBonusNumber() {
-        System.out.println("보너스숫자를 입력해 주세요");
+        System.out.println(SET_BONUS_NUMBER);
         while (true){
             try{
                 int bonusNumber=Integer.parseInt(Console.readLine());

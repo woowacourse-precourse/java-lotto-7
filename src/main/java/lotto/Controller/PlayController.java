@@ -13,14 +13,15 @@ import lotto.View.OutputView;
 
 public class PlayController {
     private final int gameNumber;
-    private ArrayList<Integer> winningNumbers;
-    private List<Lotto> lottoNumberList;
-    private PlayLottoGame playLottoGame;
+    private final ArrayList<Integer> winningNumbers;
+    private final List<Lotto> lottoNumberList;
+    private final PlayLottoGame playLottoGame;
+    private final InputController inputController;
     private Map<Integer, Boolean> matchingNumber;
     private Map<Ranking, Integer> resultSet;
 
     public PlayController() {
-        InputController inputController = new InputController();
+        this.inputController = new InputController();
         gameNumber = inputController.setPurchasePrice();
         lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
         winningNumbers = inputController.setWinningNumber();
