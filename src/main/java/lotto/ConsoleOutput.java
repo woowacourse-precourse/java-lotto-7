@@ -10,7 +10,7 @@ public class ConsoleOutput {
 
     public static void printResults(LottoResult result) {
         System.out.println("당첨 통계\n---");
-        String[] prizeText = {"6개 일치 (2,000,000,000원) - ", "5개 + 보너스 일치 (30,000,000원) - ", "5개 일치 (1,500,000원) - ", "4개 일치 (50,000원) - ", "3개 일치 (5,000원) - "};
+        String[] prizeText = {"6개 일치 (2,000,000,000원) - ", "5개 일치, 보너스 볼 일치 (30,000,000원) - ", "5개 일치 (1,500,000원) - ", "4개 일치 (50,000원) - ", "3개 일치 (5,000원) - "};
         for (int i = 0; i < result.getResults().length; i++) {
             System.out.println(prizeText[i] + result.getResults()[i] + "개");
         }

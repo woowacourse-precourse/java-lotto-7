@@ -19,7 +19,7 @@ public class Application {
             LottoResult result = new LottoResult(purchasedLottos, winningNumbers, bonusNumber);
             ConsoleOutput.printResults(result);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
         }
     }
 }
