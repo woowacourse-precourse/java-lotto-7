@@ -30,4 +30,11 @@ public class InputView {
         System.out.println(PromptMessage.BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }
+
+    public void close(){
+        if(inputView != null){
+            inputView = null;
+        }
+        Console.close();
+    }
 }

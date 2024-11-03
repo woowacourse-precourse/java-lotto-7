@@ -39,6 +39,10 @@ public class LottoController {
         Map<RankType, RankResult> statistics = winningStatistics.getStatistics();
         String earningRate = winningStatistics.calculateEarningRate(purchaseAmount);
 
+        outputView.displayWinningStatistics(statistics, earningRate);
+
+        inputView.close();
+        outputView.close();
     }
 
     public int getPurchaseAmount(InputParser inputParser) {
