@@ -18,7 +18,7 @@ public class Payment {
         try {
             return new Payment(Integer.parseInt(input));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT);
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
         }
     }
 
