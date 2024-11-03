@@ -1,14 +1,17 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import lotto.Lotto;
+import lotto.constant.PrizeTier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -39,6 +42,28 @@ public class LottoModelTest {
 
         assertThat(lottoModel.readWinLotto().getNumbers()).isEqualTo(winLottoNumber);
         assertThat(lottoModel.readBonusNumber()).isEqualTo(bonusNumber);
+    }
+
+    @DisplayName("The winning Info should return number of each prize tier")
+    @Test
+    void testCheckPrizeTier(){
+
+            /*TODO
+            *  - assertRandomUniqueNumbersInRangeTest()를 사용하여 복수의 로또 번호 당첨을 확인해야함
+            * */
+
+            LottoModel lottoModel = new LottoModel();
+            List<Lotto> createdLottos = lottoModel.createLotto(1);
+
+            List<Integer> winLottoNumber = createdLottos.getFirst().getNumbers();
+            int bonusNumber = 7;
+
+
+            lottoModel.setWinLottoWithBonusNumber(winLottoNumber,bonusNumber);
+
+            Map<PrizeTier,Integer> result = lottoModel.getWinningInfo();
+            assertThat(result.get(PrizeTier.FIRST)).isEqualTo(1);
+
     }
 
 
