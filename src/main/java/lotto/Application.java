@@ -1,21 +1,20 @@
 package lotto;
 
-public class Application {
-    public static void main(String[] args) {
-        PrintManager printManager = new PrintManager();
-        InputHandler inputHandler = new InputHandler();
-       
-        int lottoPrice = processPrice(printManager, inputHandler);
- 
-    }
+import java.util.List;
 
-    public static int processPrice(PrintManager printManager, InputHandler inputHandler) {
-        while (true) {
-            printManager.printPriceNotice();
-            String inputPrice = inputHandler.getInput();
-            if (inputHandler.isValidInt(inputPrice)) {
-                return Integer.parseInt(inputPrice);
-            }
-        }
+public class Application {
+    static final int LOTTO_PRICE = 1000;
+
+    public static void main(String[] args) {
+        LottoPrice lottoPrice = new LottoPrice();
+        LottoGenerator lottoGenerator = new LottoGenerator();
+       
+        final int totalLottoPrice = lottoPrice.getLottoPrice();
+        final int numberOfLotto = totalLottoPrice / LOTTO_PRICE;
+
+        lottoGenerator.pickSortedLotto(numberOfLotto);
+        final List<Lotto> purchasedLotto = lottoGenerator.getpurchasedLotto();
+        lottoGenerator.printPurchasedLotto(numberOfLotto);
+        
     }
 }

@@ -10,7 +10,7 @@ public class InputHandler {
     public boolean isValidInt(String inputSequence) {
             try {
                 NumberValidator.validatePrice(inputSequence);
-                return true; //??                
+                return true;        
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
                 System.out.println("");
