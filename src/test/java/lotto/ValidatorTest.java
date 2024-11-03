@@ -47,4 +47,10 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
         }
     }
+
+    @Test
+    void checkWinningNumber_보너스_숫자와_당첨_숫자가_중복() {
+        assertThatThrownBy(() -> Validator.checkWinningNumber(List.of(1, 2, 3, 4, 5, 6), 1))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

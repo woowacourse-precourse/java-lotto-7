@@ -34,4 +34,13 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 1이상 45 이하의 수가 아닙니다.");
         }
     }
+
+    public static void checkWinningNumber(List<Integer> lottoNumbers, int bonusNumber) {
+        checkLottoNumbers(lottoNumbers);
+        checkLottoNumber(bonusNumber);
+
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
+        }
+    }
 }
