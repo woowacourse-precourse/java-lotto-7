@@ -30,5 +30,7 @@ public class LottoController {
     public Map<LottoRank, Integer> getStatistics() {
         return lottoList.calculateWinningStat();
     }
-
+    public double getProfitRate() {
+        return lottoList.calculateProfitRate();
+    }
 }
