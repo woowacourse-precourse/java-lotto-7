@@ -1,13 +1,14 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +53,35 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("ERROR 나면 여러개 받는지 테스트")
+    void 기능_테스트2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run(null, "900", "8000", "12,3,4,5,", null, "1,2,3,4,5,6", null, "a", "123asdf,", "6", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "3개 일치 (5,000원) - 2개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 125.0%입니다.",
+                            ERROR_MESSAGE
+                    );
+
+                },
+                List.of(3, 5, 14, 21, 23, 36),
+                List.of(2, 11, 14, 17, 20, 33),
+                List.of(4, 11, 14, 17, 18, 37),
+                List.of(2, 24, 31, 34, 43, 45),
+                List.of(2, 3, 6, 14, 32, 33),
+                List.of(4, 6, 17, 18, 28, 32),
+                List.of(4, 11, 14, 18, 20, 32),
+                List.of(1, 2, 5, 10, 19, 22)
+        );
     }
 
     @Override
