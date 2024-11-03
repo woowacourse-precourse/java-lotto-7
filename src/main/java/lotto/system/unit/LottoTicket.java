@@ -29,4 +29,9 @@ public class LottoTicket {
     public List<LottoNumber> getTicket() {
         return Collections.unmodifiableList(ticket);
     }
+
+    @Override
+    public String toString() {
+        return ticket.toString();
+    }
 }

@@ -34,4 +34,9 @@ public class LottoNumber { // 사용자가 입력 로또 번호 하나를 의미
     public int getValue() {
         return number;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
 }
