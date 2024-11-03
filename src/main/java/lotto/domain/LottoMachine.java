@@ -5,7 +5,6 @@ import static lotto.validator.LottoAmountValidator.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.Lotto;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
