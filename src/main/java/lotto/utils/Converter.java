@@ -1,5 +1,8 @@
 package lotto.utils;
 
+import static lotto.utils.Validator.EMPTY_STRING;
+import static lotto.utils.Validator.WHITESPACE_PATTERN;
+import static lotto.utils.Validator.checkForDuplicates;
 import static lotto.view.OutputView.LOTTO_NUMBER_DELIMITER;
 
 import java.util.Arrays;
@@ -10,7 +13,7 @@ public class Converter {
 
     public static int priceToLottoCount(String input) {
         int count = Integer.parseInt(input);
-        return count/1000;
+        return count / 1000;
     }
 
     public static int StringToPrice(String input) {
@@ -18,9 +21,15 @@ public class Converter {
     }
 
     public static List<Integer> StringToLottoNumbers(String input) {
-        return Arrays.stream(input.split(LOTTO_NUMBER_DELIMITER))
+        input = input.replaceAll(WHITESPACE_PATTERN, EMPTY_STRING);
+
+        List<Integer> numbers = Arrays.stream(input.split(LOTTO_NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+
+        checkForDuplicates(numbers);
+
+        return numbers;
     }
 
     public static int StringToBonusNumber(String input) {
