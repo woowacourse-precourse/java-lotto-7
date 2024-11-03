@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +11,9 @@ public enum LottoPrize {
     SECOND_PRIZE(5, true, 30_000_000L),
     THIRD_PRIZE(5, false, 1_500_000L),
     FOURTH_PRIZE(4, false, 50_000L),
-    FIFTH_PRIZE(3, false, 5_000L);
+    FIFTH_PRIZE(3, false, 5_000L),
+    NO_PRIZE(0, false, 0L),
+    ;
 
     private final int winningCount;
     private final boolean bonusExists;
@@ -28,13 +30,13 @@ public enum LottoPrize {
             .filter(prize -> prize.winningCount == matchingCount
                 && prize.bonusExists == hasBonus)
             .findFirst()
-            .orElse(null);
+            .orElse(NO_PRIZE);
     }
 
     public static Map<LottoPrize, Integer> createLottoPrizeResult(List<Lotto> lottoList,
         Lotto winningLotto, Integer bonusNumber) {
 
-        Map<LottoPrize, Integer> prizeCountMap = new HashMap<>();
+        Map<LottoPrize, Integer> prizeCountMap = new LinkedHashMap<>();
         for (LottoPrize prize : LottoPrize.values()) {
             prizeCountMap.put(prize, 0);
         }
@@ -43,6 +45,9 @@ public enum LottoPrize {
             LottoPrize prize = lotto.compareNumber(winningLotto, bonusNumber);
             prizeCountMap.put(prize, prizeCountMap.getOrDefault(prize, 0) + 1);
         }
+
+        prizeCountMap.remove(LottoPrize.NO_PRIZE);
+
         return prizeCountMap;
     }
 
@@ -50,11 +55,7 @@ public enum LottoPrize {
         return winningCount;
     }
 
-    public boolean isBonusExists() {
-        return bonusExists;
-    }
-
     public Long getPrize() {
         return prize;
     }
-    }
+}
