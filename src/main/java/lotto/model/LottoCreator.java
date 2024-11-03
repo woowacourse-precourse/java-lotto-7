@@ -18,6 +18,12 @@ public class LottoCreator {
 		return new Lotto(lottoNumbers);
 	}
 
+	public Lotto createWinningLotto(List<Integer> winningNumbers) {
+		List<LottoNumber> lottoNumbers = winningNumbers.stream()
+				.map(LottoNumber::from)
+				.toList();
+	}
+
 	private List<Integer> getRandomNumbers() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
 		numbers.sort(Integer::compareTo);
