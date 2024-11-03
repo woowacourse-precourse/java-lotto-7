@@ -9,7 +9,7 @@ import lotto.model.db.LottoRepository;
 public class LottoCalculationService {
 
     private static final Map<Integer, Long> PRIZE_MONEY = new HashMap<>();
-    private static final int[] RANK_MAPPER = {-1, -1, -1, 5, 4, 3, 1};
+    private static final Map<Integer, Integer> RANK_MAPPER = new HashMap<>();
 
     private final LottoRepository lottoRepository = LottoRepository.getInstance();
 
@@ -19,6 +19,11 @@ public class LottoCalculationService {
         PRIZE_MONEY.put(3, 1_500_000L);
         PRIZE_MONEY.put(4, 50_000L);
         PRIZE_MONEY.put(5, 5_000L);
+
+        RANK_MAPPER.put(6, 1);
+        RANK_MAPPER.put(5, 3);
+        RANK_MAPPER.put(4, 4);
+        RANK_MAPPER.put(3, 5);
     }
 
     public int[] getMatchCnts() {
@@ -27,7 +32,7 @@ public class LottoCalculationService {
 
         int[] matchCnts = new int[6];
         for (Lotto lotto : userLotties) {
-            int rank = RANK_MAPPER[lotto.getMatchCnt(winningLotto)];
+            int rank = RANK_MAPPER.getOrDefault(lotto.getMatchCnt(winningLotto), -1);
             if (rank == -1) {
                 continue;
             }
