@@ -17,7 +17,7 @@ public class BonusNumberErrors {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력해야 합니다.");
-        }
+        }ㅂ
     }
 
     // 45초과의 값을 입력했을 경우

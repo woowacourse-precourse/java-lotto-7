@@ -29,12 +29,22 @@ public class LottoInput {
         System.out.println("당첨 번호를 입력해 주세요.");
         scanner.nextLine();
         String winningNumbersInput = scanner.nextLine();
+
+        // 숫자 이외의 값을 입력했을 경우
+        if (!winningNumbersInput.matches("^(\\d+\\s*,\\s*)*\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자와 쉼표만 입력해 주세요.");
+        }
+
+        return makeWinningNumberListAndValidate(winningNumbersInput);
+    }
+
+    public List<Integer> makeWinningNumberListAndValidate(String winningNumbersInput) {
         List<Integer> winningNumbers = new ArrayList<>();
 
         winningNumbers = Arrays.stream(winningNumbersInput.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
         WinningNumbersErrors errorHandler = new WinningNumbersErrors();
         errorHandler.errorCheck(winningNumbers);
