@@ -3,25 +3,25 @@ package lotto.domain;
 import java.util.HashSet;
 
 public class Winning {
-    private HashSet<Integer> winningNumbers;
+    private HashSet<Integer> winningSet;
     private int bonusNumber;
 
     public Winning() {
-        this.winningNumbers = new HashSet<>();
+        this.winningSet = new HashSet<>();
         this.bonusNumber = 0;
     }
 
     public Winning(HashSet<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
+        this.winningSet = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public HashSet<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public HashSet<Integer> getWinningSet() {
+        return winningSet;
     }
 
     public HashSet<Integer> setHashSet(HashSet<Integer> winningNumberSet) {
-        return this.winningNumbers = winningNumberSet;
+        return this.winningSet = winningNumberSet;
     }
 
     public int setBonusNumber(int bonusNumber) {

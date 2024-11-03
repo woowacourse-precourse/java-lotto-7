@@ -59,7 +59,7 @@ public class WinningValidate {
     }
 
     public static boolean isBonusNotInWinning(int bonusNumber, Winning winning) {
-        HashSet<Integer> winningSet = winning.getWinningNumbers();
+        HashSet<Integer> winningSet = winning.getWinningSet();
 
         return !winningSet.contains(bonusNumber);
     }

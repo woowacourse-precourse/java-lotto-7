@@ -13,10 +13,11 @@ import lotto.view.LottosView;
 public class LottoService {
 
     private final User user;
-    private static final Lottos lottos = new Lottos();
+    private final Lottos lottos;
 
-    public LottoService(User user) {
+    public LottoService(User user, Lottos lottos) {
         this.user = user;
+        this.lottos = lottos;
     }
 
     public void run() {

@@ -20,6 +20,10 @@ public class Lotto {
         }
     }
 
+    public HashSet<Integer> getLottoSet() {
+        return lottoSet;
+    }
+
     public List<Integer> getNumber() {
         return numbers;
     }
