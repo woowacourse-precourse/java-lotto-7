@@ -131,7 +131,8 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
     - [x] 금액이 1,000 단위인지 확인하고 아니라면 IllegalArgumentException을 던진다
     - [x] 금액이 음수이면 IllegalArgumentException을 던진다
 - [ ] 1,000원 단위로 로또를 발급한다
-    - [ ] 중복되지 않는 6개의 숫자를 뽑는다
+    - [x] 중복되지 않는 6개의 숫자를 뽑는다
+    - [x] 숫자는 1 ~ 45 사이에 있는 숫자를 생성한다
 - [x] 발급한 숫자를 비내림차순으로 정렬한다
 - [ ] 발급한 숫자를 로또 단위로 출력한다
 
