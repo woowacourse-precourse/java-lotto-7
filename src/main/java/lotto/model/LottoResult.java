@@ -20,6 +20,17 @@ public class LottoResult {
         return resultRank.getOrDefault(lottoRank, 0);
     }
 
+    public Map<LottoRank, Integer> getResultRank() {
+        return resultRank;
+    }
+
+    public void recordResult(WinningLotto winningLotto, Lotto lotto) {
+        LottoRank rank = winningLotto.calculateRank(lotto);
+        if (!rank.equals(LottoRank.NONE)) {
+            resultRank.put(rank, resultRank.getOrDefault(rank, 0) + 1);
+        }
+    }
+
     public double calculateProfitRate() {
         Long totalPrize = resultRank.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getMoney() * entry.getValue())
