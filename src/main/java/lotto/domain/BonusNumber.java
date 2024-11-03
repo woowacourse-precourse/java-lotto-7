@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.LottoValue.MAX_NUMBER;
+import static lotto.LottoValue.MIN_NUMBER;
+
 import java.util.Objects;
 
 public class BonusNumber {
 
-    private static final int MIN_NUM = 1;
-    private static final int MAX_NUM = 45;
-    private static final String OUT_OF_RANGE = "보너스 넘버는 " + MIN_NUM + " ~ " + MAX_NUM + "사이어야 합니다.";
+    private static final String OUT_OF_RANGE = "보너스 넘버는 " + MIN_NUMBER + " ~ " + MAX_NUMBER + "사이어야 합니다.";
     private final int number;
 
     public BonusNumber(int number) {
@@ -35,7 +36,7 @@ public class BonusNumber {
     }
 
     private void validateOutOfRange(int number) {
-        if (number < MIN_NUM || number > MAX_NUM) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(OUT_OF_RANGE);
         }
     }

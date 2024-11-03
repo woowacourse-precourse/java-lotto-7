@@ -3,10 +3,10 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.LottoValue;
 
 public class Lotto {
 
-    private static final int NUMBER_SIZE = 6;
     private static final String INVALID_NUMBER_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String DUPLICATE_NUMBER = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
@@ -33,7 +33,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_SIZE) {
+        if (numbers.size() != LottoValue.NUMBER_SIZE) {
             throw new IllegalArgumentException(INVALID_NUMBER_SIZE);
         }
     }
