@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.input;
 
 import lotto.utils.validator.InputValidator;
 import lotto.utils.validator.Validator;
@@ -35,10 +35,6 @@ public class ManagerInputView extends InputView {
     }
 
     private Integer convertLottoNum(String lottoNum) {
-
-        if (!lottoNum.isEmpty() && Character.isWhitespace(lottoNum.charAt(lottoNum.length() - 1))) {
-        throw new IllegalArgumentException("뒤쪽의 공백은 허용되지 않습니다.");
-    }
         lottoNum = lottoNum.trim();
         validator.validate(lottoNum);
         return Integer.parseInt(lottoNum);
