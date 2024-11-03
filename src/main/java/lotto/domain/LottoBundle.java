@@ -28,6 +28,9 @@ public class LottoBundle {
         return lottoNumbers;
     }
 
+    /*
+     * Getter
+     * */
     public List<Lotto> getBundle() {
         return bundle;
     }

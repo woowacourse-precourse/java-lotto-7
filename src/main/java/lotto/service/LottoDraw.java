@@ -12,8 +12,6 @@ import lotto.domain.WinningNumber;
 
 public class LottoDraw {
 
-    private static final double PERCENTAGE = 100.0;
-    private static final double DECIMAL_PLACE = 10.0;
     private final LottoWinningStatistics statistics;
 
     public LottoDraw(LottoWinningStatistics statistics) {

@@ -4,8 +4,12 @@ import java.util.Objects;
 
 public class LottoNumber {
 
-    public static final String LOTTO_NUMBER_ERROR_MSG = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.";
-    
+
+    public static final int LOTTO_MIN_VALUE = 1;
+    public static final int LOTTO_MAX_VALUE = 45;
+    public static final String LOTTO_NUMBER_ERROR_MSG
+            = String.format("[ERROR] 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", LOTTO_MIN_VALUE, LOTTO_MAX_VALUE);
+
     private final int number;
 
     public LottoNumber(int number) {
@@ -31,10 +35,18 @@ public class LottoNumber {
         }
     }
 
+
+    /*
+     * Getter
+     * */
     public int getNumber() {
         return number;
     }
 
+
+    /*
+     * Override methods
+     * */
     @Override
     public boolean equals(Object o) {
         if (this == o) {

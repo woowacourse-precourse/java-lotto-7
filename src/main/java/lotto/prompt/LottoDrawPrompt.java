@@ -10,13 +10,19 @@ import lotto.domain.WinningNumber;
 
 public class LottoDrawPrompt {
 
+    public static final String WINNING_NUMBER_SPLIT_REGEX = ",";
     private static final String WINNING_NUMBER_INPUT_MSG = "당첨 번호를 입력해 주세요.\n";
     private static final String BONUS_NUMBER_INPUT_MSG = "보너스 번호를 입력해 주세요.\n";
+
     private static final String DRAW_RESULT_OUTPUT_MSG = "당첨 통계\n---\n";
     private static final String DRAW_WINNING_OUTPUT_MSG = "%d개 일치 (%s원) - %d개\n";
     private static final String DRAW_WINNING_BONUS_OUTPUT_MSG = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String RATE_OF_RETURN_OUTPUT_MSG = "총 수익률은 %s입니다.\n";
 
+
+    /*
+     * User Input
+     * */
     public WinningNumber enterWinningNumber() {
         while (true) {
             try {
@@ -43,16 +49,17 @@ public class LottoDrawPrompt {
         }
     }
 
-    private String formatInteger(long value) {
-        NumberFormat formatter = NumberFormat.getNumberInstance();
-        return formatter.format(value);
-    }
 
-    private String formatDecimal(double value) {
-        NumberFormat formatter = NumberFormat.getPercentInstance();
-        formatter.setMinimumFractionDigits(1);
-        formatter.setMaximumFractionDigits(1);
-        return formatter.format(value);
+    /*
+     * User Output
+     * */
+    public void printDrawResult(LottoWinningStatistics statistics) {
+        System.out.print(DRAW_RESULT_OUTPUT_MSG);
+        for (LottoRank rank : LottoRank.reverseValues()) {
+            if (rank != LottoRank.NONE) {
+                System.out.print(getDrawWinningResult(statistics, rank));
+            }
+        }
     }
 
     private String getDrawWinningResult(LottoWinningStatistics statistics, LottoRank rank) {
@@ -65,16 +72,19 @@ public class LottoDrawPrompt {
         return String.format(msg, rank.matches, formatInteger(prize), winningNumber);
     }
 
-    public void printDrawResult(LottoWinningStatistics statistics) {
-        System.out.print(DRAW_RESULT_OUTPUT_MSG);
-        for (LottoRank rank : LottoRank.reverseValues()) {
-            if (rank != LottoRank.NONE) {
-                System.out.print(getDrawWinningResult(statistics, rank));
-            }
-        }
-    }
-
     public void printReturnRate(double returnRate) {
         System.out.printf(RATE_OF_RETURN_OUTPUT_MSG, formatDecimal(returnRate));
+    }
+
+    private String formatInteger(long value) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        return formatter.format(value);
+    }
+
+    private String formatDecimal(double value) {
+        NumberFormat formatter = NumberFormat.getPercentInstance();
+        formatter.setMinimumFractionDigits(1);
+        formatter.setMaximumFractionDigits(1);
+        return formatter.format(value);
     }
 }
