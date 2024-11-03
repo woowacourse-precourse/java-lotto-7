@@ -27,7 +27,7 @@ public class InputView {
         try{
             return Integer.parseInt(Console.readLine());
         } catch(NumberFormatException e) {
-            throw new InputException(ErrorMessage.WRONG_TYPE_LOTTO_NUMBERS.getMessage());
+            throw new InputException(ErrorMessage.UNAVAILABLE_TYPE_LOTTO_NUMBERS.getMessage());
         }
     }
 }
