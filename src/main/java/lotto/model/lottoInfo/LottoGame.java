@@ -1,6 +1,7 @@
 package lotto.model.lottoInfo;
 
 import java.util.List;
+import lotto.model.enums.Rank;
 
 public class LottoGame {
     private WinningNumber winningNumbers;
@@ -31,5 +32,18 @@ public class LottoGame {
 
     public Integer getBonusNumber() {
         return bonusNumber.getBonusNumber();
+    }
+
+    public Rank calculateRank(List<Integer> numbers) {
+        long matchCount = numbers.stream()
+                .filter(winningNumbers
+                        .getWinningNumbers()::contains)
+                .count();
+
+        boolean hasBonus = numbers.contains(bonusNumber
+                .getBonusNumber()
+        );
+
+        return Rank.checkRank(matchCount, hasBonus);
     }
 }
