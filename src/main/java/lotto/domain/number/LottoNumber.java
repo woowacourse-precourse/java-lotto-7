@@ -23,7 +23,7 @@ public abstract class LottoNumber {
         return number;
     }
 
-    public boolean equals(LottoNumber lottoNumber) {
+    public boolean isSame(LottoNumber lottoNumber) {
         return number == lottoNumber.getNumber();
     }
 }

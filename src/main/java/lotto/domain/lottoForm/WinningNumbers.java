@@ -46,8 +46,8 @@ public class WinningNumbers extends LottoForm {
 //        }
     }
 
-    public boolean contains(int number) {
+    public boolean contains(LottoNumber number) {
         return numbers2.stream()
-                .anyMatch(number2 -> number2.equals(number));
+                .anyMatch(number2 -> number2.isSame(number));
     };
 }

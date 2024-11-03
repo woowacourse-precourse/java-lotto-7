@@ -33,7 +33,7 @@ public class Lotto extends LottoForm {
     }
 
     public int getMatchingNumbers(WinningNumbers winningNumbers) {
-        return Math.toIntExact(numbers.stream()
+        return Math.toIntExact(numbers2.stream()
                 .filter(winningNumbers::contains)
                 .count());
     }
