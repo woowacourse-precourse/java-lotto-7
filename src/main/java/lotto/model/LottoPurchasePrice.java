@@ -4,27 +4,20 @@ import java.util.List;
 
 public class LottoPurchasePrice {
     int LOTTO_PRICE = 1000;
-    private final String lottoPurchasePrice;
-    private final int lottoPurchaseCount;
+    private final int lottoPurchasePrice;
 
-    public LottoPurchasePrice(String lottoPurchasePrice) {
-        this.lottoPurchasePrice = lottoPurchasePrice;
+    public LottoPurchasePrice(int lottoPurchasePrice) {
         validateLottoPurchasePrice(lottoPurchasePrice);
-        this.lottoPurchaseCount = convertPriceToCount(lottoPurchasePrice);
-
+        this.lottoPurchasePrice = lottoPurchasePrice;
     }
 
-    private int convertPriceToCount(String lottoPurchasePrice) {
-        return Integer.parseInt(lottoPurchasePrice)/LOTTO_PRICE;
-    }
-
-    private void validateLottoPurchasePrice(String lottoPurchasePrice) {
-        if (Integer.parseInt(lottoPurchasePrice) % LOTTO_PRICE != 0) {
+    public void validateLottoPurchasePrice(int lottoPurchasePrice) {
+        if (lottoPurchasePrice % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
     public int getLottoPurchaseCount() {
-        return lottoPurchaseCount;
+        return lottoPurchasePrice/LOTTO_PRICE;
     }
 }
