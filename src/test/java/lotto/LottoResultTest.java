@@ -41,4 +41,16 @@ public class LottoResultTest {
         assertThat(Rank.FOURTH.getCount()).isEqualTo(1);
         assertThat(Rank.FIFTH.getCount()).isEqualTo(1);
     }
+
+    @Test
+    void 수익률을_올바르게_계산한다() {
+        Rank.FIFTH.increaseCount();   // 5등 1회 당첨
+
+        int purchaseAmount = 8000;
+
+        double rateOfReturn = lottoResult.calculateRateOfReturn(purchaseAmount);
+        assertThat(rateOfReturn).isEqualTo(62.5);
+
+    }
+
 }
