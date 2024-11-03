@@ -6,6 +6,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
+import lotto.message.LottoMessage;
+import lotto.validate.LottosValidate;
 import lotto.view.LottosView;
 
 public class LottoService {
@@ -19,7 +21,7 @@ public class LottoService {
 
     public void run() {
         makeLottoNumber(user, lottos);
-        LottosView.displayLottoNumbers(lottos);
+        loopLottos(lottos);
     }
 
     public static void makeLottoNumber(User user, Lottos lottos) {
@@ -37,6 +39,19 @@ public class LottoService {
 
     public static void sortAscending(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
+    }
+
+    public static void loopLottos(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            List<Integer> LottoNumbers = lotto.getNumber();
+            sortAscending(LottoNumbers);
+
+            if (!LottosValidate.isAscendingNumber(LottoNumbers)) {
+                throw new IllegalStateException(LottoMessage.IS_NOT_ASCENDING_NUMBER.getMessage());
+            }
+
+            LottosView.displayLottoNumbers(LottoNumbers);
+        }
     }
 
 
