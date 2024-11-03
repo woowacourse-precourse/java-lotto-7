@@ -36,4 +36,8 @@ public class LottosResultCalculator {
         LottoRank lottoRank = LottoRank.calculateLottoRank(numberMatchingCount, containsBonusNumber);
         lottosResult.plus(lottoRank);
     }
+
+    public LottosResult getLottosResult() {
+        return lottosResult;
+    }
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.LottoGenerator;
 import lotto.model.Lottos;
+import lotto.model.LottosResult;
 import lotto.model.LottosResultCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
@@ -33,6 +34,8 @@ public class LottoController {
     private LottosResultCalculator calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         LottosResultCalculator lottosResultCalculator = LottosResultCalculator.of(lottos, winningNumbers, bonusNumber);
         lottosResultCalculator.calculateLottosResult();
+        LottosResult lottosResult = lottosResultCalculator.getLottosResult();
+        outputView.showLottosResult(lottosResult);
         return lottosResultCalculator;
     }
 

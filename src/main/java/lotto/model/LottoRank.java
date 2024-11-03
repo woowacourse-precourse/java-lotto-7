@@ -4,25 +4,31 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum LottoRank {
-    FIRST(2000000000L),
-    SECOND(30000000L),
-    THIRD(1500000L),
-    FOURTH(50000L),
-    FIFTH(5000L),
-    OUT_OF_RANK(0L);
+    FIRST(2000000000L, "6개 일치 (2,000,000,000원) - "),
+    SECOND(30000000L, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+    THIRD(1500000L, "5개 일치 (1,500,000원) - "),
+    FOURTH(50000L, "4개 일치 (50,000원) - "),
+    FIFTH(5000L, "3개 일치 (5,000원) - "),
+    OUT_OF_RANK(0L, null);
 
     private final long winningAmount;
+    private final String description;
 
-    LottoRank(long winningAmount) {
+    LottoRank(long winningAmount, String description) {
         this.winningAmount = winningAmount;
+        this.description = description;
     }
 
     public long getWinningAmount() {
         return winningAmount;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public static List<LottoRank> getAllLottoRank() {
-        return Arrays.asList(FIRST, SECOND, THIRD, FOURTH, FIFTH, OUT_OF_RANK);
+        return Arrays.asList(OUT_OF_RANK, FIFTH, FOURTH, THIRD, SECOND, FIRST);
     }
 
     public static LottoRank calculateLottoRank(int numberMatchingCount, boolean containsBonusNumber) {
@@ -35,12 +41,12 @@ public enum LottoRank {
         if (numberMatchingCount == 4) {
             return FOURTH;
         }
-        if (numberMatchingCount == 5) {
-            return THIRD;
+        if (numberMatchingCount == 6) {
+            return FIRST;
         }
-        if (!containsBonusNumber) {
+        if (containsBonusNumber) {
             return SECOND;
         }
-        return FIRST;
+        return THIRD;
     }
 }
