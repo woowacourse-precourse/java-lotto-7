@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.view.InputView;
 import lotto.view.ResultView;
 
 public class LottoController {
