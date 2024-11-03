@@ -9,6 +9,7 @@ public class Application {
         InputView inputView = InputView.getInstance();
         System.out.println(inputView.enterPaymentForLottery());
         System.out.println("result: " + inputView.enterWinningLottery());
+        System.out.println(inputView.enterBonusLottery());
         LottoController lottoController = new LottoController();
 
     }

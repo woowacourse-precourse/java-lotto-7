@@ -76,6 +76,12 @@ public class Validator {
         }
     }
 
+    public static void isRightRange(long lottoNumber) {
+        if (lottoNumber < MINIMUM_LOTTERY_NUMBER || lottoNumber > MAXIMUM_LOTTERY_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_RANGE);
+        }
+    }
+
     public static void isDuplicated(List<Long> lottoNumbers) {
         if (lottoNumbers.size() != lottoNumbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATED);

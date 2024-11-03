@@ -11,6 +11,7 @@ public class LottoConverter {
     public static final int MAXIMUM_LOTTERY_NUMBER = 45;
 
     private List<Long> lottoNumbers = new ArrayList<>();
+    private long bonusNumber;
 
     public LottoConverter(List<Long> lottoNumbers) {
         validateSize(lottoNumbers);
@@ -20,9 +21,18 @@ public class LottoConverter {
         this.lottoNumbers = lottoNumbers;
     }
 
+    public LottoConverter(String bonusNumber) {
+        this.bonusNumber = Validator.isNumeric(bonusNumber);
+        Validator.isRightRange(this.bonusNumber);
+    }
+
     public List<Long> getLottoNumbers() {
         System.out.println("getLottoNumbers: " + lottoNumbers);
         return lottoNumbers;
+    }
+
+    public long getBonusNumber() {
+        return bonusNumber;
     }
 
     private void validateSize(List<Long> lottoNumbers) {

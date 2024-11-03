@@ -35,8 +35,15 @@ public class InputView {
         }
     }
 
-    public int enterBonusLottery() {
-        return 0;
+    public long enterBonusLottery() {
+        System.out.println(SystemMessage.ENTER_BONUS_LOTTERY);
+        try {
+            LottoConverter lottoConverter = new LottoConverter(Console.readLine());
+            return lottoConverter.getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            OutputView.getInstance().printErrorMessage(e.getMessage());
+            return enterBonusLottery();
+        }
     }
 
     public void close() {
