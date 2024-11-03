@@ -13,9 +13,7 @@ public class InputView {
     }
 
     public WinningNumberRequestDto getEntireNumber() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        return new WinningNumberRequestDto(winningNumbers, bonusNumber);
+        return new WinningNumberRequestDto(getWinningNumbers(), getBonusNumber());
     }
 
     private List<Integer> getWinningNumbers() {
