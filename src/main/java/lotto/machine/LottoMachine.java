@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.constants.LottoConstants.*;
+
 public class LottoMachine {
-    private static final int LOTTO_PRICE = 1000;
 
     public static List<Lotto> generateLottos(int purchaseAmount) {
         int count = purchaseAmount / LOTTO_PRICE;
@@ -23,7 +24,7 @@ public class LottoMachine {
     }
 
     public static List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
         Collections.sort(numbers);
         return numbers;
     }

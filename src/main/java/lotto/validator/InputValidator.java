@@ -2,12 +2,14 @@ package lotto.validator;
 
 import java.util.List;
 
+import static lotto.constants.LottoConstants.*;
+
 public class InputValidator {
 
     public static int validatePurchaseAmount(String input) {
         try {
             int amount = Integer.parseInt(input);
-            if (amount % 1000 != 0) {
+            if (amount % LOTTO_PRICE != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
             }
             return amount;
@@ -17,13 +19,13 @@ public class InputValidator {
     }
 
     public static void validateWinningNumber(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < LOTTO_NUMBER_MIN || num > LOTTO_NUMBER_MAX)) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이어야 합니다.");
         }
     }
 
     public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이어야 합니다.");
         }
         if (winningNumbers.contains(bonusNumber)) {
