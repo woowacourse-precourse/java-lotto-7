@@ -47,7 +47,7 @@ public class Application {
         while (true) {
             try {
                 return supplier.get();
-            } catch (RuntimeException exception) {
+            } catch (IllegalArgumentException exception) {
                 OutputView.printExceptionMessage(exception);
             }
         }
@@ -57,7 +57,7 @@ public class Application {
         while (true) {
             try {
                 return function.apply(argument);
-            } catch (RuntimeException exception) {
+            } catch (IllegalArgumentException exception) {
                 OutputView.printExceptionMessage(exception);
             }
         }
