@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.view.LottoInputView;
@@ -34,10 +35,10 @@ public class LottoController {
         }
 
         // 당첨 번호 입력 받기
-        System.out.println("\n당첨 번호를 입력해 주세요.\n");
         List<Integer> winningNumbers = executeWithRetry(this::inputWinningNumbers);
-        System.out.println(winningNumbers);
+
         // 보너스 번호 입력 받기
+        int bonusNumber = executeWithRetry(this::inputBonusNumber, winningNumbers);
 
         // 구매한 로또와 당첨 번호 비교
 
@@ -57,6 +58,16 @@ public class LottoController {
         while (true) {
             try {
                 return action.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private <T> T executeWithRetry(Function<List<Integer>, T> action, List<Integer> integerList) {
+        while (true) {
+            try {
+                return action.apply(integerList);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
@@ -84,6 +95,7 @@ public class LottoController {
     }
 
     private List<Integer> inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt)
@@ -102,6 +114,22 @@ public class LottoController {
         }
         if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
             throw new IllegalArgumentException("숫자는 중복되면 안됩니다.");
+        }
+    }
+
+    private int inputBonusNumber(List<Integer> lottoNumbers) {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        validateBonusNumber(bonusNumber, lottoNumbers);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("1~45 사이의 자연수를 입력해주세요.");
+        }
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("당첨 번호와 중복되는 보너스 번호입니다.");
         }
     }
 }
