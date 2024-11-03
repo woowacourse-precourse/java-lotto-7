@@ -9,4 +9,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요. (1부터 45사이의 수 6개를 콤마(,)로 구분해 입력)");
+        return Console.readLine();
+    }
+
 }

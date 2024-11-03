@@ -2,17 +2,20 @@ package lotto.controller;
 
 import lotto.exception.ValidationValues;
 import lotto.model.Lotto;
-import lotto.service.LottoService;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoResultManager;
 import lotto.view.InputView;
 
 import java.util.List;
 
 public class LottoController {
 
-    private final LottoService lottoService;
+    private final LottoGenerator lottoGenerator;
+    private final LottoResultManager lottoResultManager;
 
-    public LottoController(LottoService lottoService) {
-        this.lottoService = lottoService;
+    public LottoController(LottoGenerator lottoGenerator, LottoResultManager lottoResultManager) {
+        this.lottoGenerator = lottoGenerator;
+        this.lottoResultManager = lottoResultManager;
     }
 
     public void startLotto() {
@@ -20,9 +23,11 @@ public class LottoController {
         int purchaseAmount = ValidationValues.purchaseAmount(inputPurchaseAmount);
         int count = purchaseAmount / 1000;
 
-        List<Lotto> lottos = lottoService.generateLotto(count);
-        lottoService.printLottoCount(lottos);
-        lottoService.printLottos(lottos);
+        List<Lotto> lottos = lottoGenerator.generateLotto(count);
+        lottoGenerator.printLottoCount(lottos);
+        lottoGenerator.printLottos(lottos);
+
+        lottoResultManager.getWinningNumbers();
     }
 
 }

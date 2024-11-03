@@ -1,14 +1,15 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.exception.ValidationValues;
-import lotto.service.LottoService;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoResultManager;
 
 public class Application {
     public static void main(String[] args) {
-        LottoService lottoService = new LottoService();
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoResultManager lottoResultManager = new LottoResultManager();
 
-        LottoController lottoController = new LottoController(lottoService);
+        LottoController lottoController = new LottoController(lottoGenerator, lottoResultManager);
         lottoController.startLotto();
 
     }

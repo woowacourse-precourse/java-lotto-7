@@ -5,7 +5,7 @@ import lotto.model.Lotto;
 
 import java.util.*;
 
-public class LottoService {
+public class LottoGenerator {
 
     public List<Lotto> generateLotto(int count) {
         List<Lotto> lottos = new ArrayList<>();
