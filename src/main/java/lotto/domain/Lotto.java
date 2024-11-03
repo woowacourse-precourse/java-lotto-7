@@ -28,11 +28,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public LottoGrade match(Lotto targetLotto, int bonus) {
+    public LottoGrade match(TargetLotto targetLotto) {
+        List<Integer> targetNumbers = targetLotto.lotto().numbers;
         int targetCount = (int) numbers.stream()
-                .filter(num -> targetLotto.numbers.contains(num))
+                .filter(num -> targetNumbers.contains(num))
                 .count();
 
+        int bonus = targetLotto.bonus();
         int bonusCount = (int) numbers.stream()
                 .filter(num -> num == bonus)
                 .count();

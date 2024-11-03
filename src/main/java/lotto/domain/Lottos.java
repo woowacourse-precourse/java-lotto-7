@@ -10,9 +10,9 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<LottoGrade> convertGrades(Lotto target, int bonus) {
+    public List<LottoGrade> convertGrades(TargetLotto targetLotto) {
         return lottos.stream()
-                .map(lotto -> lotto.match(target, bonus))
+                .map(lotto -> lotto.match(targetLotto))
                 .toList();
     }
 }
