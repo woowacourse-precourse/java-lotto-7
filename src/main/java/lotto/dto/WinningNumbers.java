@@ -17,6 +17,7 @@ public class WinningNumbers {
         Validator.validateDuplicatedNumbers(selectedNumbers);
         Validator.validateNumberCount(selectedNumbers);
         Validator.validateNegativeNumbers(selectedNumbers);
+        Validator.validteNumbersInRange(selectedNumbers);
     }
 
     public int checkMatchingCount(List<Integer> numbers) {

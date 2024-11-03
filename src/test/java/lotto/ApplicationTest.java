@@ -156,6 +156,24 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+    @Test
+    void exception12() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+    @Test
+    void exception13() {
+        assertSimpleTest(() -> {
+            runException("8000", "0,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
