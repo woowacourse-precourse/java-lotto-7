@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.LinkedHashMap;
 
-public class WinningDetails {
+public class WinningInformation {
 
     private static final LinkedHashMap<WinningPrize, Integer> priceAndCount = new LinkedHashMap<>();
 
-    private static final WinningDetails instance = new WinningDetails();
+    private static final WinningInformation instance = new WinningInformation();
 
-    private WinningDetails() {
+    private WinningInformation() {
     }
 
     static {
@@ -20,7 +20,7 @@ public class WinningDetails {
         priceAndCount.put(WinningPrize.FIRST, 0);
     }
 
-    public static WinningDetails getInstance() {
+    public static WinningInformation getInstance() {
         return instance;
     }
 
