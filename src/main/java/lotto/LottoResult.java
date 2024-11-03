@@ -64,4 +64,21 @@ public class LottoResult {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.get(2) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.get(1) + "개");
     }
+
+    public double getEarningRate() {
+        int purchaseAmount = lottoTickets.size() * 1000;
+        int earning = getEarning();
+        double earningRate = (double) earning /purchaseAmount;
+        return Math.round(earningRate * 10) / 10.0;
+    }
+
+    public int getEarning() {
+        int earning = 0;
+        earning += 5000 * rankCount.get(5);
+        earning += 50000 * rankCount.get(4);
+        earning += 1500000 * rankCount.get(3);
+        earning += 30000000 * rankCount.get(2);
+        earning += 2000000000 * rankCount.get(1);
+        return earning;
+    }
 }
