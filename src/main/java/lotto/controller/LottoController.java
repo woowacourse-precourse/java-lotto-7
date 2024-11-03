@@ -13,6 +13,10 @@ public class LottoController {
     }
 
     public void playLotto() {
+        handlePurchasePrice();
+    }
 
+    private void handlePurchasePrice() {
+        output.printPurchasePriceInputPrompt();
     }
 }
