@@ -7,7 +7,7 @@ public class LottosResult {
 
     public LottosResult() {
         lottosResult = new HashMap<>();
-        for (LottoRank lottoRank : LottoRank.getAllLottoRank()) {
+        for (LottoRank lottoRank : LottoRank.getAllLottoRank(true)) {
             lottosResult.put(lottoRank, 0);
         }
     }
@@ -18,5 +18,16 @@ public class LottosResult {
 
     public void plus(LottoRank lottoRank) {
         lottosResult.put(lottoRank, get(lottoRank) + 1);
+    }
+
+    public double getRateOfReturn() {
+        double totalRevenue = 0;
+        int totalQuantity = 0;
+        for (LottoRank lottoRank : LottoRank.getAllLottoRank(true)) {
+            int quantity = get(lottoRank);
+            totalRevenue += lottoRank.getWinningAmount() * quantity;
+            totalQuantity += quantity;
+        }
+        return (totalRevenue / totalQuantity) / 10;
     }
 }

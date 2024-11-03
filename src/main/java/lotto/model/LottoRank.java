@@ -27,8 +27,11 @@ public enum LottoRank {
         return description;
     }
 
-    public static List<LottoRank> getAllLottoRank() {
-        return Arrays.asList(OUT_OF_RANK, FIFTH, FOURTH, THIRD, SECOND, FIRST);
+    public static List<LottoRank> getAllLottoRank(boolean containsOutOfRank) {
+        if (containsOutOfRank) {
+            return Arrays.asList(OUT_OF_RANK, FIFTH, FOURTH, THIRD, SECOND, FIRST);
+        }
+        return Arrays.asList(FIFTH, FOURTH, THIRD, SECOND, FIRST);
     }
 
     public static LottoRank calculateLottoRank(int numberMatchingCount, boolean containsBonusNumber) {
