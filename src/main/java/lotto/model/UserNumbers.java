@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +21,16 @@ public class UserNumbers {
 
     private void validatePurchaseAmount(String purchaseAmount) {
         try {
-            Integer.parseInt(purchaseAmount);
-        } catch (NumberFormatException e) {
+            int num = Integer.parseInt(purchaseAmount);
+            validateDivisible(num);
+        } catch (InvalidInputException e) {
             System.out.println("[ERROR] 숫자를 입력하세요.");
             validatePurchaseAmount(Console.readLine());
         }
+    }
 
-        if (Integer.parseInt(purchaseAmount) % LOTTO_PRICE != 0) {
+    private void validateDivisible(int num) {
+        if (num % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 한 장 가격은" + LOTTO_PRICE + "원 입니다. 올바른 금액을 입력해주세요.");
         }
     }
