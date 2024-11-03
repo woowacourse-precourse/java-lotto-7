@@ -1,8 +1,7 @@
-package lotto.model;
+package lotto.model.winningNumber;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import lotto.model.winningNumber.BonusNumber;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

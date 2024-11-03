@@ -1,9 +1,7 @@
-package lotto.model;
+package lotto.model.winningResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.winningResult.WinningRank;
-import lotto.model.winningResult.WinningResult;
 import org.junit.jupiter.api.Test;
 
 public class WinningResultTest {

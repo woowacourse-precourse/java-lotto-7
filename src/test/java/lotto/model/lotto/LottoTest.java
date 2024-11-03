@@ -1,9 +1,8 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
-import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
