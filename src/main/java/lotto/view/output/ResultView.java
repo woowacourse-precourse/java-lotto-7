@@ -11,7 +11,7 @@ public class ResultView {
     public static void printResult(WinningResultDto winningResult) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("당첨 통계\n---\n")
+        stringBuilder.append("\n당첨 통계\n---\n")
                 .append(RankCounts(winningResult.rankCounts()))
                 .append(ProfitRate(winningResult.profitRate()));
 

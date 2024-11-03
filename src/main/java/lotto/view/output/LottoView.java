@@ -1,6 +1,6 @@
 package lotto.view.output;
 
-import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
@@ -12,16 +12,21 @@ public class LottoView {
     }
 
     private static String createLottoDisplay(Lottos lottos) {
-        List<Lotto> lottoList = lottos.getLottos();
-        StringBuilder result = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        result.append(lottoList.size())
-                .append("개를 구매했습니다.\n");
+        stringBuilder.append("\n")
+                .append(lottos.getLottoCount())
+                .append("개를 구매했습니다.\n")
+                .append(lottoListDisplay(lottos))
+                .append("\n");
 
-        lottoList.forEach(lotto ->
-            result.append(lotto.toString()).append("\n")
-        );
-
-        return result.toString();
+        return stringBuilder.toString();
     }
+
+    private static String lottoListDisplay(Lottos lottos) {
+        return lottos.getLottos().stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+    }
+
 }
