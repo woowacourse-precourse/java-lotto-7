@@ -9,8 +9,8 @@ public class Lottos {
     private static final Lottos instance = new Lottos(); // 싱글톤 패턴 적용
 
     private final List<Lotto> lottoList = new ArrayList<>();
-    private final int[] winningLottoCounts = new int[7];
-    private List<Integer> inputLottoNumbers;
+    private final int[] winningLottoCounts = new int[8];
+    private Lotto inputLottoNumbers;
     private Integer bonusNumber;
 
     private Lottos() {
@@ -33,7 +33,7 @@ public class Lottos {
         return winningLottoCounts;
     }
 
-    public List<Integer> getInputLottoNumbers() {
+    public Lotto getInputLottoNumbers() {
         return inputLottoNumbers;
     }
 
@@ -41,7 +41,7 @@ public class Lottos {
         return bonusNumber;
     }
 
-    public void setInputLottoNumbers(List<Integer> inputLottoNumbers) {
+    public void setInputLottoNumbers(Lotto inputLottoNumbers) {
         this.inputLottoNumbers = inputLottoNumbers;
     }
 

@@ -1,14 +1,12 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.service.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Validator.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -18,11 +16,16 @@ public class Lotto {
         }
     }
 
-    // 보너스 볼 획득 및 5개 일치 시 0으로 리턴. 그 외에는 당첨된 숫자 개수 리턴.
-    public int getWinningNumberCount(List<Integer> inputNumbers, int bonusNumber) {
-        int count = (int) inputNumbers.stream().filter(numbers::contains).count();
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
-        if(inputNumbers.contains(bonusNumber) && count == 5) return 0;
+    // 보너스 볼 획득 및 5개 일치 시 7으로 리턴. 그 외에는 당첨된 숫자 개수 리턴.
+    public int getWinningNumberCount(Lotto userLotto, int bonusNumber) {
+        List<Integer> numbers = userLotto.getNumbers();
+        int count = (int) numbers.stream().filter(this.numbers::contains).count();
+
+        if(numbers.contains(bonusNumber) && count == 5) return 7;
         return count;
     }
 

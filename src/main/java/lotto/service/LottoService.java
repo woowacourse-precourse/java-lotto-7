@@ -17,22 +17,22 @@ public class LottoService {
     }
 
     // 수익률 계산
-    public double getRateOfReturn(Lottos lottoList) {
+    public double getRateOfReturn(Lottos lottoList, int price) {
         int[] counts = lottoList.getWinningLottoCounts();
-        int size = lottoList.getInputLottoNumbers().size();
 
-        long sum = counts[3] * 5000L + counts[4] * 50000L + counts[5] * 1500000L + counts[0] * 30000000L
+        long sum = counts[3] * 5000L + counts[4] * 50000L + counts[5] * 1500000L + counts[7] * 30000000L
                 + counts[6] * 2000000000L;
 
-        double rateOfReturn = (double) sum / (size * 1000);
+        double rateOfReturn = (double) sum / price;
 
         return Math.round(rateOfReturn * 100 * 100) / 100.0; // 소수점 둘째 자리에서 반올림
     }
 
-    public List<Integer> addLotto(Lottos lottos) {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        lottos.add(new Lotto(lotto));
-        return lotto;
+    public void addLotto(Lottos lottos, int price) {
+        for (int i = 0; i < price / 1000; i++) {
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(lotto));
+        }
     }
 
 }

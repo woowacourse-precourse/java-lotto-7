@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -37,8 +39,54 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         int bonus = 9;
 
-        int winningNumberCount = lotto.getWinningNumberCount(List.of(1, 2, 3, 4, 6, 9), bonus);
+        int winningNumberCount = lotto.getWinningNumberCount(lotto, bonus);
 
         Assertions.assertEquals(winningNumberCount, 0);
+    }
+
+    @Test
+    void 로또_당첨_개수_목록_확인_테스트() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 7;
+        int price = 8000;
+
+        Lottos lottos = Lottos.getInstance();
+        lottos.setBonusNumber(bonus);
+        lottos.setInputLottoNumbers(lotto);
+
+        LottoService lottoService = new LottoService();
+        lottoService.addLotto(lottos, price);
+
+        for (Lotto lotto1 : lottos.getLottoList()) {
+            System.out.println(lotto1.toString());
+        }
+
+        lottoService.setWinningLottoCount(lottos);
+
+        int[] counts = lottos.getWinningLottoCounts();
+        System.out.println(Arrays.toString(counts));
+    }
+
+    @Test
+    void 수익률_출력_테스트() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int bonus = 7;
+        int price = 8000;
+
+        Lottos lottos = Lottos.getInstance();
+        lottos.setBonusNumber(bonus);
+        lottos.setInputLottoNumbers(lotto);
+
+        LottoService lottoService = new LottoService();
+        lottoService.addLotto(lottos, price);
+
+        lottoService.setWinningLottoCount(lottos);
+
+        for (Lotto lotto1 : lottos.getLottoList()) {
+            System.out.println(lotto1.toString());
+        }
+
+        double rateOfReturn = lottoService.getRateOfReturn(lottos, price);
+        System.out.println("수익률 = " + rateOfReturn);
     }
 }
