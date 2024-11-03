@@ -4,11 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.dto.Lotto;
+import lotto.dto.entity.Lotto;
+import lotto.dto.LottoResultDto;
 import lotto.utils.ErrorMessages;
+import lotto.utils.LottoMatchStatus;
 import lotto.utils.LottoMessages;
 
 public class InputOutputManager {
@@ -81,5 +84,42 @@ public class InputOutputManager {
             numbers.sort(Comparator.naturalOrder());
             System.out.println(numbers);
         }
+    }
+
+    public void printLottoResult(LottoResultDto lottoResultDto){
+        printOnTopic();
+        printAllMatchResults(lottoResultDto.getLottoResult());
+        printProfitRate(lottoResultDto.getLottoResult(), lottoResultDto.getProfit());
+    }
+
+    private void printOnTopic() {
+        String message = Stream.of(
+                LottoMessages.ENTER.getMessage(),
+                LottoMessages.WINNING_STATISTICS.getMessage(),
+                LottoMessages.ENTER.getMessage(),
+                LottoMessages.LINE_SEPARATOR.getMessage().repeat(3)
+        ).collect(Collectors.joining(""));
+
+        System.out.println(message);
+    }
+
+    private void printAllMatchResults(HashMap<LottoMatchStatus, Integer> lottoResult) {
+        Stream.of(LottoMatchStatus.values()).forEach(status -> {
+            String message = Stream.of(
+                    LottoMessages.ENTER.getMessage(),
+                    status.getStatus(),
+                    LottoMessages.LINE_SEPARATOR.getMessage(),
+                    lottoResult.getOrDefault(status, 0) + "개"
+            ).collect(Collectors.joining(" "));
+            System.out.print(message.trim() + "\n");
+        });
+    }
+
+    private void printProfitRate(HashMap<LottoMatchStatus, Integer> lottoResult, double profit){
+        String message = LottoMessages.TOTAL_PROFIT_RATE.getMessage() +
+                String.format("%.1f", profit) + "%" +
+                LottoMessages.END_MESSAGE.getMessage();
+
+        System.out.print(message);
     }
 }

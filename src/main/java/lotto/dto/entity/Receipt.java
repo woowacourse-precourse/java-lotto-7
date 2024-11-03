@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.dto.entity;
 
 public class Receipt {
     private int purchaseAmount;

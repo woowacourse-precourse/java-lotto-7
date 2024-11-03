@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.dto.entity;
 
 import java.util.HashSet;
 import java.util.List;

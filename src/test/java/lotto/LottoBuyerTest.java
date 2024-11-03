@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
-import lotto.domain.LottoBuyer;
 import lotto.dto.LottoDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

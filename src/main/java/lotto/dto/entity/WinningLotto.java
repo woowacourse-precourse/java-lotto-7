@@ -1,11 +1,11 @@
-package lotto.dto;
+package lotto.dto.entity;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.utils.ErrorMessages;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
     private int bonusNumber;
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
         super(numbers);

@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.lottoGeneratir.LottoGenerator;
-import lotto.dto.WinningLotto;
+import lotto.dto.entity.WinningLotto;
 
 public class LottoGenerateManager {
     private LottoGenerator lottoGenerator;

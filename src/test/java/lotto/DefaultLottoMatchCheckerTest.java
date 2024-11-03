@@ -3,8 +3,8 @@ package lotto;
 import lotto.domain.lottoMatchChecker.DefaultLottoMatchChecker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import lotto.dto.Lotto;
-import lotto.dto.WinningLotto;
+import lotto.dto.entity.Lotto;
+import lotto.dto.entity.WinningLotto;
 import lotto.utils.LottoMatchStatus;
 
 import java.util.Arrays;

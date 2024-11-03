@@ -5,8 +5,8 @@ import lotto.domain.LottoDrawer;
 import lotto.domain.ResultDtoGenerator;
 import lotto.domain.calculator.Calculator;
 import lotto.domain.lottoGeneratir.LottoGenerator;
-import lotto.dto.Lotto;
-import lotto.dto.ResultDto;
+import lotto.dto.entity.Lotto;
+import lotto.dto.ReceiptAndLottoDto;
 
 public class LottoPurchaseManager {
     private Calculator calculator;
@@ -29,7 +29,7 @@ public class LottoPurchaseManager {
         return (List<Lotto>) lottoGenerator.generateLottos(lottoNumbers);
     }
 
-    public ResultDto provideResultDto(int purchaseAmount, List<Lotto> lottos){
+    public ReceiptAndLottoDto provideResultDto(int purchaseAmount, List<Lotto> lottos){
         return resultDtoGenerator.generateResultDto(purchaseAmount, lottos);
     }
 }

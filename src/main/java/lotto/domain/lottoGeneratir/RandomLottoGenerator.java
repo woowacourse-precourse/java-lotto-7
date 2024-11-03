@@ -2,8 +2,8 @@ package lotto.domain.lottoGeneratir;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.dto.Lotto;
-import lotto.dto.WinningLotto;
+import lotto.dto.entity.Lotto;
+import lotto.dto.entity.WinningLotto;
 
 public class RandomLottoGenerator implements LottoGenerator<List<Lotto>,WinningLotto> {
     @Override
