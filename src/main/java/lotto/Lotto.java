@@ -11,9 +11,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validator.validateNumberCount(numbers);
+        Validator.validateNumberCount(numbers, LottoConstant.NUMBER_COUNT);
         Validator.validateUniqueNumbers(numbers);
-        numbers.forEach(Validator::validateNumberRange);
+        numbers.forEach(Validator::validateLottoNumber);
     }
 
     // TODO: 추가 기능 구현
