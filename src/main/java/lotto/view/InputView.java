@@ -62,7 +62,7 @@ public class InputView {
             try {
                 int bonusNumber = stringParser.parseToInteger(Console.readLine());
                 return new Guess(winningNumbers, bonusNumber);
-            } catch (CommonException e) {
+            } catch (CommonException | FormatException e) {
                 System.out.println(e.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
