@@ -28,6 +28,11 @@ public class Application {
         List<Lotto> lottos = lottoService.purchaseLottos(purchaseAmount);
         outputHandler.printLottos(lottos);
 
+        Lotto successLotto = getWinningLotto();
+    }
+
+    private Lotto getWinningLotto() {
         List<Integer> winningNums = inputHandler.getWinningNums();
+        return lottoService.generateWinningLotto(winningNums);
     }
 }

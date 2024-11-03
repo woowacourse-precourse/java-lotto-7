@@ -24,4 +24,8 @@ public class LottoService {
         }
         return lottos;
     }
+
+    public Lotto generateWinningLotto(List<Integer> winningNums) {
+        return lottoGenerator.generateByNums(winningNums);
+    }
 }
