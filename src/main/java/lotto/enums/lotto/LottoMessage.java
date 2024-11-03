@@ -8,7 +8,8 @@ public enum LottoMessage {
 
     // exception
     EXCEPTION_NUMBER_VALID("[ERROR] 올바른 형식의 숫자가 아닙니다."),
-    EXCEPTION_PRICE_UNIT("[ERROR] 1,000원 단위가 아닙니다.");
+    EXCEPTION_PRICE_UNIT("[ERROR] 1,000원 단위가 아닙니다."),
+    EXCEPTION_NUMBER_RANGE("[ERROR] 숫자 범위를 초과했습니다.");
 
     private final String message;
 
