@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.dto.LottoDto;
+import lotto.dto.WinningDto;
 
 public class LottoView {
 
@@ -30,6 +31,10 @@ public class LottoView {
         return IntStream.range(0, count)
                 .mapToObj(i -> Lotto.createNumber())
                 .toList();
+    }
+
+    public void displayResults(WinningDto winningDto) {
+        outputView.winningStatisticsOutput(winningDto);
     }
 
 }
