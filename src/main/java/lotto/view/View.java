@@ -134,29 +134,42 @@ public class View {
 
 
 
-
-
     public static void printLottoResults(LottoResult lottoResult, double returnRate) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-
-        Map<WinningPrize, Integer> results = lottoResult.getResults();
-        for (WinningPrize winningPrize : WinningPrize.values()) {
-            if (winningPrize != WinningPrize.NONE_PRIZE) {
-                System.out.printf("%s (%,d원) - %d개%n",
-                        winningPrize.getDescription(),
-                        winningPrize.getPrize(),
-                        results.get(winningPrize));
-            }
-        }
-
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+        printResultHeader();
+        printPrizeStatistics(lottoResult.getResults());
+        printReturnRate(returnRate);
     }
 
+    private static void printResultHeader() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+    }
 
+    private static void printPrizeStatistics(Map<WinningPrize, Integer> results) {
+        for (WinningPrize prize : WinningPrize.values()) {
+            printValidPrizeResult(prize, results);
+        }
+    }
+    private static void printValidPrizeResult(WinningPrize prize, Map<WinningPrize, Integer> results) {
+        if (isValidPrize(prize)) {
+            printPrizeResult(prize, results.get(prize));
+        }
+    }
 
+    private static boolean isValidPrize(WinningPrize prize) {
+        return prize != WinningPrize.NONE_PRIZE;
+    }
 
+    private static void printPrizeResult(WinningPrize prize, int count) {
+        System.out.printf("%s (%,d원) - %d개%n",
+                prize.getDescription(),
+                prize.getPrize(),
+                count);
+    }
 
+    private static void printReturnRate(double returnRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+    }
 
 
 
