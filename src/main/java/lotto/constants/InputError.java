@@ -38,9 +38,6 @@ public enum InputError {
             + "~"
             + LottoInteger.LOTTO_END_NUMBER.getValue()
             + " 사이의 숫자를 입력하셔야 합니다."),
-    // 로또 예외
-    LOTTO_NUMBER_SHOULD_ONLY("중복된 번호가 존재합니다."),
-
     ;
     private final String message;
 

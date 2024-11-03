@@ -40,14 +40,14 @@ public class LottoController {
 
     public void run() {
         int validPurchasePrice = getValidInteger(validatePurchasePrice());
-        List<Lotto> lotties = lottoFactory.makeLotties(validPurchasePrice);
-        printLottoNumbers(lotties);
+        List<Lotto> lottoes = lottoFactory.makeLottoes(validPurchasePrice);
+        printLottoNumbers(lottoes);
 
         List<Integer> validWinningNumbers = getValidWinningNumbers(validateWinningNumbers());
         int validBonusNumber = getValidInteger(validateBonusNumber(validWinningNumbers));
         WinLotto winLotto = new WinLotto(validWinningNumbers, validBonusNumber);
 
-        LottoMatcher lottoMatcher = new LottoMatcher(lotties, winLotto);
+        LottoMatcher lottoMatcher = new LottoMatcher(lottoes, winLotto);
         printLottoMatchResult(lottoMatcher);
         printRatioOfBenefit(lottoMatcher, validPurchasePrice);
     }
@@ -96,9 +96,9 @@ public class LottoController {
         return rawPurchasePrice;
     }
 
-    private void printLottoNumbers(List<Lotto> lotties) {
-        outputView.println(lotties.size() + "개를 구매했습니다.");
-        lotties.stream()
+    private void printLottoNumbers(List<Lotto> lottoes) {
+        outputView.println(lottoes.size() + "개를 구매했습니다.");
+        lottoes.stream()
                 .map(Lotto::getNumbers)
                 .forEach(outputView::printList);
         outputView.newLine();
@@ -116,7 +116,7 @@ public class LottoController {
     }
 
     private void printLottoMatchResult(LottoMatcher lottoMatcher) {
-        lottoMatcher.matchLotties();
+        lottoMatcher.matchLottoes();
         outputView.println("당첨 통계");
         outputView.println("---");
         printDefaultMatchFormat(WinRank.FIFTH, lottoMatcher);

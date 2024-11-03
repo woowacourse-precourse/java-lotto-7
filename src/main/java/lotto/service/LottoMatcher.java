@@ -8,12 +8,12 @@ import lotto.domain.Lotto;
 import lotto.domain.WinLotto;
 
 public class LottoMatcher {
-    private final List<Lotto> lotties;
+    private final List<Lotto> lottoes;
     private final EnumMap<WinRank,List<Lotto>> map;
     private final WinLotto winLotto;
 
-    public LottoMatcher(List<Lotto> lotties, WinLotto winLotto) {
-        this.lotties = lotties;
+    public LottoMatcher(List<Lotto> lottoes, WinLotto winLotto) {
+        this.lottoes = lottoes;
         this.winLotto = winLotto;
         this.map = new EnumMap<>(WinRank.class);
         map.put(WinRank.FIRST,new LinkedList<>());
@@ -24,8 +24,8 @@ public class LottoMatcher {
         map.put(WinRank.ETC,new LinkedList<>());
     }
 
-    public void matchLotties() {
-        lotties.forEach(lotto->{
+    public void matchLottoes() {
+        lottoes.forEach(lotto->{
             map.get(lotto.matchWinLotto(winLotto)).add(lotto);
         });
     }

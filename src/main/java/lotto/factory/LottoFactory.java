@@ -7,7 +7,7 @@ import lotto.constants.LottoInteger;
 import lotto.domain.Lotto;
 
 public class LottoFactory {
-    public List<Lotto> makeLotties(int validPurchasePrice) {
+    public List<Lotto> makeLottoes(int validPurchasePrice) {
         int lottoCount = validPurchasePrice / LottoInteger.LOTTO_PRICE.getValue();
         return IntStream.range(0, lottoCount)
                 .mapToObj(it -> makeLotto())
