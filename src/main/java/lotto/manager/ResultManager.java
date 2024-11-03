@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-public class GameResultManager {
+public class ResultManager {
     private WinningLotto winningLotto;
 
     public void changeWinningLotto(Lotto lotto, int bonusNumber) {

@@ -15,12 +15,12 @@ import java.util.List;
 public class GameController {
     private final LottoNumberSupplier lottoNumberSupplier;
     private final LottoSeller lottoSeller;
-    private final GameResultManager gameResultManager;
+    private final ResultManager resultManager;
 
     public GameController(LottoNumberSupplier lottoNumberSupplier) {
         this.lottoNumberSupplier = lottoNumberSupplier;
         this.lottoSeller = new LottoSeller(lottoNumberSupplier);
-        this.gameResultManager = new GameResultManager();
+        this.resultManager = new ResultManager();
     }
 
     public void run() {
@@ -29,7 +29,7 @@ public class GameController {
 
         getWinningLotto();
 
-        Result result = gameResultManager.getResult(player);
+        Result result = resultManager.getResult(player);
 
         Writer.writeResult(result);
     }
@@ -57,7 +57,7 @@ public class GameController {
         while (true) {
             try {
                 int bonusNumber = getBonusNumer();
-                gameResultManager.changeWinningLotto(lotto, bonusNumber);
+                resultManager.changeWinningLotto(lotto, bonusNumber);
                 break;
             }
             catch (IllegalArgumentException e) {
