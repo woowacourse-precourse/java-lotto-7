@@ -37,7 +37,7 @@ public class GameController {
                 if (instance == null) {
                     SystemConfig config = SystemConfig.getInstance();
                     OutputView outPutView = new OutputView(config.getOutputMessageQueue());
-                    instance = new GameController(new InputController(outPutView), outPutView, config);
+                    instance = new GameController(new InputController(outPutView,config.getInputMessageQueue()), outPutView, config);
                 }
             }
         }

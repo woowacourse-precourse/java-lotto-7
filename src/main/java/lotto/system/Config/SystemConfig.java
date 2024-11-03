@@ -47,7 +47,9 @@ public class SystemConfig {
     public void startSystem() {
         if (!isSystemRunning) {
             isSystemRunning = true;
+            inputTask.start();
             outputTask.start();
+            inputThread.start();
             outputThread.start();
         }
     }
@@ -68,6 +70,7 @@ public class SystemConfig {
         return this.outputMessageQueue;
     }
     public void stopSystem() {
+        inputTask.stop();
         outputTask.stop();
         outputThread.interrupt();
         try {
