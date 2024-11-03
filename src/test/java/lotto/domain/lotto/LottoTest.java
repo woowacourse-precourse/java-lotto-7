@@ -2,7 +2,9 @@ package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.exception.lotto.InvalidLottoException;
@@ -77,6 +79,29 @@ class LottoTest {
                     .isExactlyInstanceOf(InvalidLottoException.class)
                     .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
+        }
+    }
+
+    @Nested
+    @DisplayName("로또 다중 생성 테스트")
+    class 로또_다중_생성_테스트 {
+
+        @Test
+        @DisplayName("로또를 여러개 생성한다")
+        void 성공_생성() {
+            // Given
+
+            // When
+            List<Lotto> lottos = Lotto.makeAsMuchAs(BigDecimal.TWO);
+
+            // Then
+            List<Integer> numbers = lottos.get(0).getNumbers().numbers();
+            assertAll(
+                    () -> assertThat(lottos.size()).isEqualTo(2),
+                    () -> assertThat(numbers.stream().distinct().count()).isEqualTo(6),
+                    () -> assertThat(numbers.stream().map(Number::intValue)
+                            .allMatch(i -> i >= 1 && i <= 45)).isTrue()
+            );
         }
     }
 

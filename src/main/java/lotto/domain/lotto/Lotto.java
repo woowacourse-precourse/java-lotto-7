@@ -1,5 +1,10 @@
 package lotto.domain.lotto;
 
+import static lotto.domain.lotto.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.domain.lotto.LottoNumber.MIN_LOTTO_NUMBER;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,7 +13,7 @@ import lotto.exception.lotto.InvalidLottoException;
 
 public class Lotto {
 
-    public static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -17,12 +22,16 @@ public class Lotto {
         this.numbers = new ArrayList<>(mapToSortedLottoNumber(numbers));
     }
 
-    public static List<Lotto> makeAsMuchAs(List<List<? extends Number>> numbers) {
+    public static List<Lotto> makeAsMuchAs(BigDecimal quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (List<? extends Number> list : numbers) {
-            lottos.add(new Lotto((List<Integer>) list));
+        for (BigDecimal count = BigDecimal.ZERO; count.compareTo(quantity) < 0; count = count.add(BigDecimal.ONE)) {
+            lottos.add(new Lotto(drawLotto()));
         }
         return lottos;
+    }
+
+    private static List<Integer> drawLotto() {
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
     }
 
     public int countMatchingNumber(final Lotto winningLotto) {

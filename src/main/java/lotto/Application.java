@@ -3,8 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
 import lotto.support.converter.IntegerConverter;
-import lotto.support.generator.NumberGenerator;
-import lotto.support.generator.RandomIntegerGenerator;
 import lotto.support.splitter.Splitter;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
@@ -19,10 +17,9 @@ public class Application {
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
         IntegerConverter converter = new IntegerConverter();
-        NumberGenerator<?> generator = new RandomIntegerGenerator();
         Splitter splitter = new Splitter(DELIMITER);
 
-        LottoController lottoController = new LottoController(inputView, outputView, converter, generator, splitter);
+        LottoController lottoController = new LottoController(inputView, outputView, converter, splitter);
         try {
             lottoController.process();
         } finally {

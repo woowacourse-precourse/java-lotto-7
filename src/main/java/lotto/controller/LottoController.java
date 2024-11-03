@@ -7,7 +7,6 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.LottoResult;
-import lotto.support.generator.NumberGenerator;
 import lotto.domain.price.PurchasePrice;
 import lotto.domain.quantity.Quantity;
 import lotto.support.converter.IntegerConverter;
@@ -20,15 +19,13 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final IntegerConverter converter;
-    private final NumberGenerator<?> generator;
     private final Splitter splitter;
 
     public LottoController(final InputView inputView, final OutputView outputView, final IntegerConverter converter,
-                           final NumberGenerator<?> generator, final Splitter splitter) {
+                           final Splitter splitter) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.converter = converter;
-        this.generator = generator;
         this.splitter = splitter;
     }
 
@@ -54,7 +51,7 @@ public class LottoController {
     }
 
     private List<Lotto> drawLottos(final Quantity quantity) {
-        List<Lotto> lottos = Lotto.makeAsMuchAs(generator.generateNumbersBy(quantity.getQuantity()));
+        List<Lotto> lottos = Lotto.makeAsMuchAs(quantity.getQuantity());
         for (Lotto lotto : lottos) {
             outputView.showLotto(lotto.getNumbers());
         }
