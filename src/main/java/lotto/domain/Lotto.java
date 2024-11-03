@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
@@ -35,5 +36,10 @@ public class Lotto {
 
     public boolean matchBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
