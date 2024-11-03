@@ -52,6 +52,10 @@ public class Lotto {
                 .count();
     }
 
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.stream()
