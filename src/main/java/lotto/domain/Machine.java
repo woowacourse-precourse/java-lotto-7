@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Machine {
 
+    public static final int TO_MAKE_PERCENTAGE = 100;
     private final int money;
     private final int ticketCount;
     private final List<Lotto> tickets;
@@ -88,12 +89,11 @@ public class Machine {
             return Match.THREE_MATCH.name();
         }
 
-        return "no prize";
+        return Match.NO_MATCH.name();
     }
 
     int checkPrizeNumberMatch(Lotto ticket, Lotto prizeNumber) {
-        List<Integer> matches = ticket.getNumbers()
-                .stream()
+        List<Integer> matches = ticket.getNumbers().stream()
                 .filter(num -> prizeNumber.getNumbers().contains(num))
                 .toList();
 
@@ -118,6 +118,6 @@ public class Machine {
 
         long totalSum = sixMatchPrize + fiveAndBonusMatchPrize + fiveMatchPrize + fourMatchPrize + threeMatchPrize;
 
-        return (totalSum / (double) money) * 100;
+        return (totalSum / (double) money) * TO_MAKE_PERCENTAGE;
     }
 }
