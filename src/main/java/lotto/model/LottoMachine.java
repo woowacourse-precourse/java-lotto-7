@@ -4,7 +4,7 @@ import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
-import static lotto.common.error.AppErrorType.DIVIDED_BY_PRICE_ERROR;
+import static lotto.common.AppErrorType.DIVIDED_BY_PRICE_ERROR;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

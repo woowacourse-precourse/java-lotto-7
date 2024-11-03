@@ -1,8 +1,8 @@
 package lotto.model;
 
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
-import static lotto.common.error.AppErrorType.NUMBER_DUPLICATE_ERROR;
-import static lotto.common.error.AppErrorType.NUMBER_SIZE_ERROR;
+import static lotto.common.AppErrorType.NUMBER_DUPLICATE_ERROR;
+import static lotto.common.AppErrorType.NUMBER_SIZE_ERROR;
 
 import java.util.Comparator;
 import java.util.HashSet;

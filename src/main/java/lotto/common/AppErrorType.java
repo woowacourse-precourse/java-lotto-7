@@ -1,4 +1,4 @@
-package lotto.common.error;
+package lotto.common;
 
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;

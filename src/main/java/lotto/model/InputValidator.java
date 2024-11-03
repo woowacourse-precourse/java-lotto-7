@@ -3,9 +3,9 @@ package lotto.model;
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
-import static lotto.common.error.AppErrorType.NEGATIVE_NUMBER_ERROR;
-import static lotto.common.error.AppErrorType.NUMBER_RANGE_ERROR;
-import static lotto.common.error.AppErrorType.PARSE_NUMBER_ERROR;
+import static lotto.common.AppErrorType.NEGATIVE_NUMBER_ERROR;
+import static lotto.common.AppErrorType.NUMBER_RANGE_ERROR;
+import static lotto.common.AppErrorType.PARSE_NUMBER_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
