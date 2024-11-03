@@ -7,7 +7,7 @@ import java.util.Locale;
 public class OutputView {
 
     public static void displayPurchasedTickets(List<Lotto> tickets) {
-        System.out.println(tickets.size() + "개를 구매했습니다.");
+        System.out.println("\n" + tickets.size() + "개를 구매했습니다.");
 
         for (Lotto ticket : tickets) {
             System.out.println(ticket.getNumbers());
@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public static void displayResults(int[] results, double profitRate) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         LottoRank[] ranks = LottoRank.values();
 
@@ -26,7 +26,7 @@ public class OutputView {
                 String formattedPrize = NumberFormat.getInstance(Locale.KOREA).format(rank.getPrize());
                 System.out.println(rank.getMatchCount() + "개 일치" +
                         (rank.isMatchBonus() ? ", 보너스 볼 일치" : "") +
-                        " (" + rank.getPrize() + "원) - " + results[i] +
+                        " (" + formattedPrize + "원) - " + results[i] +
                         "개");
             }
         }

@@ -26,7 +26,7 @@ public class InputView {
     public static List<String> getWinningNumber() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String inputWinningNumber = Console.readLine();
                 List<String> winningNumbers = Arrays.asList(inputWinningNumber.split(","));
 
@@ -41,7 +41,7 @@ public class InputView {
     public static int getBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine();
                 int bonusNumber = Integer.parseInt(inputBonusNumber);
 
