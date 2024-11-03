@@ -29,7 +29,7 @@ public class LottoServiceTest {
     void make_lotto_with_winning_input() {
         String winningInputs = "1,2,3,4,5,6";
         Lotto comparsionWinningLotto = new Lotto(testLotto);
-        Iterator<Integer> iterator = comparsionWinningLotto.getNumbers().iterator();
+        Iterator<LottoNumber> iterator = comparsionWinningLotto.getNumbers().iterator();
 
         Lotto winningLotto = lottoService.createWinningLottoNumbers(winningInputs);
 
