@@ -74,7 +74,7 @@ public class NumberLottoInputManger implements LottoInputManger {
      */
     public Lotto validateInputWinningNubmer(String winningNumber) {
 
-        winningNumberisNotBlanck(winningNumber);
+        winningNumberisNotBlank(winningNumber);
         validateNotAllowedNoneInteger(winningNumber);
         validateStartOrEndsWithDelimeter(winningNumber);
 
@@ -103,7 +103,7 @@ public class NumberLottoInputManger implements LottoInputManger {
         }
     }
 
-    private static void winningNumberisNotBlanck(String winningNumber) {
+    private static void winningNumberisNotBlank(String winningNumber) {
         if (winningNumber.isBlank()) {
             throw new IllegalArgumentException(InputError.BLANK_WINNING_NUMBER.getInstance());
         }
