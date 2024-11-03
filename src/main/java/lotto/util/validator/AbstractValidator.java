@@ -3,17 +3,17 @@ package lotto.util.validator;
 import java.util.regex.Pattern;
 import lotto.util.ExceptionMessage;
 
-public abstract class AbstractValidator implements Validator {
+public abstract class AbstractValidator<T> implements Validator<T> {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]+$");
 
     @Override
-    public void validate(String userInput) throws IllegalArgumentException {
+    public T validate(String userInput) throws IllegalArgumentException {
         String trimmedInput = Validator.removeSpace(userInput);
         validateNumber(trimmedInput);
-        performSpecificValidation(trimmedInput);
+        return convertAndValidate(trimmedInput);  // 검증된 값 반환
     }
 
-    protected abstract void performSpecificValidation(String input) throws IllegalArgumentException;
+    protected abstract T convertAndValidate(String input) throws IllegalArgumentException;
 
     protected void validateNumber(String input) {
         if (!NUMBER_REGEX.matcher(input).matches()) {

@@ -1,18 +1,18 @@
 package lotto.util.validator;
 
 import static lotto.util.Constants.LOTTO_PRICE;
-
 import lotto.util.ExceptionMessage;
 
-public class BudgetValidator extends AbstractValidator {
+public class BudgetValidator extends AbstractValidator<Integer> {
     private static final int MIN_BUDGET = 1_000;
     private static final int MAX_BUDGET = 100_000;
 
     @Override
-    protected void performSpecificValidation(String input) {
+    protected Integer convertAndValidate(String input) {
         int budgetValue = Integer.parseInt(input);
         validateInputRange(budgetValue);
         validateInputUnit(budgetValue);
+        return budgetValue;
     }
 
     private void validateInputRange(int budgetValue) {

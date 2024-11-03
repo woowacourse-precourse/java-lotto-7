@@ -11,10 +11,11 @@ public class WinningNumberValidator implements Validator {
     private static final int NUMBER_COUNT = 6;
 
     @Override
-    public void validate(String input) throws IllegalArgumentException {
+    public List<Integer> validate(String input) throws IllegalArgumentException {
         List<String> winningNumbers = splitAndValidateInput(input);
-        validateAndConvertToNumbers(winningNumbers);
+        return validateAndConvertToNumbers(winningNumbers);
     }
+
 
     private List<String> splitAndValidateInput(String input) {
         String trimmed = Validator.removeSpace(input);
