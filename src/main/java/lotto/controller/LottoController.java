@@ -14,17 +14,23 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        Money money = getMoney();
+        Money money = getValidMoney();
         List<Lotto> lottos = buyLottos(money);
         displayLottos(lottos);
-        WinningNumbers winningLotto = getWinningNumbers();
+        WinningNumbers winningLotto = getValidWinningNumbers();
         LottoResult lottoResult = new LottoResult(lottos, winningLotto);
         displayResult(money, lottoResult);
     }
 
-    private Money getMoney() {
-        int buyPrice = InputView.buyPrice();
-        return new Money(buyPrice);
+    private Money getValidMoney() {
+        while (true) {
+            try {
+                int buyPrice = InputView.buyPrice();
+                return new Money(buyPrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> buyLottos(Money money) {
@@ -40,10 +46,16 @@ public class LottoController {
         OutputView.showBuyLottos(lottos.size(), formattedLottos);
     }
 
-    private WinningNumbers getWinningNumbers() {
-        Set<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusNumber();
-        return new WinningNumbers(winningNumbers, bonusNumber);
+    private WinningNumbers getValidWinningNumbers() {
+        while (true) {
+            try {
+                Set<Integer> winningNumbers = InputView.inputWinningNumbers();
+                int bonusNumber = InputView.inputBonusNumber();
+                return new WinningNumbers(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void displayResult(Money money, LottoResult lottoResult) {
