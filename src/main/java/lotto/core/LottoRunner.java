@@ -72,13 +72,18 @@ public class LottoRunner {
     }
 
     private long countWinningLottoByRank(List<LottoMatchResult> matchResults, WinningStatistics stats) {
-        return matchResults.stream().filter(match -> {
-            boolean isCountMatch = match.matchCount() == stats.getMatchCount();
-            if (stats.getMatchBonus()) {
-                isCountMatch = isCountMatch && match.matchBonus();
-            }
-            return isCountMatch;
-        }).count();
+        return matchResults.stream().filter(match -> this.isCountMatch(match, stats)).count();
+    }
+
+    private boolean isCountMatch(LottoMatchResult match, WinningStatistics stats) {
+        boolean isCountMatch = match.matchCount() == stats.getMatchCount();
+
+        // 2등, 3등 구분
+        if (match.matchCount() == WinningStatistics.SECOND.getMatchCount()) {
+            boolean isBonusMatched = match.matchBonus();
+            isCountMatch = stats.getMatchBonus() && isBonusMatched;
+        }
+        return isCountMatch;
     }
 
     /**
@@ -116,7 +121,7 @@ public class LottoRunner {
     /**
      * 구매 수량만큼 무작위 로또 생성
      */
-    private List<Lotto> selection(int amount) {
+    public List<Lotto> selection(int amount) {
         List<Lotto> lotteries = new ArrayList<>();
         StringBuilder lottoSelectionOutput = new StringBuilder();
 
