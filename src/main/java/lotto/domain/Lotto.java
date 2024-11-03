@@ -10,7 +10,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUniqueNumber(numbers);
+        validateNumberInRange(numbers);
         this.numbers = numbers;
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
