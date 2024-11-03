@@ -1,14 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoEvaluator;
-import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,12 +36,12 @@ class LottoEvaluatorTest {
         LottoResult result = evaluator.evaluate(purchasedLotteries);
 
         // then
-        assertThat(result.getRankCount(LottoRank.FIRST)).isEqualTo(1);
-        assertThat(result.getRankCount(LottoRank.SECOND)).isEqualTo(1);
-        assertThat(result.getRankCount(LottoRank.THIRD)).isEqualTo(1);
-        assertThat(result.getRankCount(LottoRank.FOURTH)).isEqualTo(1);
-        assertThat(result.getRankCount(LottoRank.FIFTH)).isEqualTo(1);
-        assertThat(result.getRankCount(LottoRank.MISS)).isEqualTo(0);
+        assertThat(result.getRankCounts().get(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(result.getRankCounts().get(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(result.getRankCounts().get(LottoRank.THIRD)).isEqualTo(1);
+        assertThat(result.getRankCounts().get(LottoRank.FOURTH)).isEqualTo(1);
+        assertThat(result.getRankCounts().get(LottoRank.FIFTH)).isEqualTo(1);
+        assertThat(result.getRankCounts().get(LottoRank.MISS)).isEqualTo(0);
     }
 
     @ParameterizedTest

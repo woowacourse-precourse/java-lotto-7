@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigInteger;
-import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
+import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +19,8 @@ class LottoResultTest {
 
     @Test
     void 모든_등수의_초기_카운트는_0이다() {
-        assertThat(lottoResult.getRankCount(LottoRank.FIRST)).isZero();
-        assertThat(lottoResult.getRankCount(LottoRank.SECOND)).isZero();
-        assertThat(lottoResult.getRankCount(LottoRank.THIRD)).isZero();
-        assertThat(lottoResult.getRankCount(LottoRank.FOURTH)).isZero();
-        assertThat(lottoResult.getRankCount(LottoRank.FIFTH)).isZero();
-        assertThat(lottoResult.getRankCount(LottoRank.MISS)).isZero();
+        Arrays.stream(LottoRank.values())
+                .forEach(rank -> assertThat(lottoResult.getRankCounts().get(rank)).isZero());
     }
 
     @Test
@@ -35,8 +30,8 @@ class LottoResultTest {
         lottoResult.incrementRankCount(LottoRank.SECOND);
 
         // then
-        assertThat(lottoResult.getRankCount(LottoRank.FIRST)).isEqualTo(1);
-        assertThat(lottoResult.getRankCount(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(lottoResult.getRankCounts().get(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(lottoResult.getRankCounts().get(LottoRank.SECOND)).isEqualTo(1);
     }
 
     @Test

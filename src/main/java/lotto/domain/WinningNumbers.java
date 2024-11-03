@@ -30,15 +30,15 @@ public class WinningNumbers {
         validateBonusNumber(bonusNumber);
     }
 
-    private void validateBonusNumber(int bonusNumber) {
-        if (!LottoNumberValidator.isWithinRange(bonusNumber)) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
-        }
-    }
-
     private void validateBonusNumberIsExcluded(List<Integer> mainNumber, int bonusNumber) {
         if (mainNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBERS.getMessage());
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (!LottoNumberValidator.isWithinRange(bonusNumber)) {
+            throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 }

@@ -27,4 +27,8 @@ public class LottoBundle {
     public List<Lotto> getLotteries() {
         return lotteries;
     }
+
+    public int getLotteriesSize() {
+        return lotteries.size();
+    }
 }

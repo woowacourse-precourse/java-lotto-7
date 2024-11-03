@@ -15,7 +15,9 @@ public class LottoEvaluator {
     public LottoResult evaluate(List<Lotto> purchasedLotteries) {
         LottoResult lottoResult = new LottoResult();
 
-        purchasedLotteries.stream().map(this::determineRank).forEach(lottoResult::incrementRankCount);
+        purchasedLotteries.stream()
+                .map(this::determineRank)
+                .forEach(lottoResult::incrementRankCount);
 
         return lottoResult;
     }
@@ -24,12 +26,15 @@ public class LottoEvaluator {
         BigDecimal totalWinnings = new BigDecimal(results.calculateTotalWinnings());
 
         return totalWinnings.multiply(BigDecimal.valueOf(100))
-                .divide(BigDecimal.valueOf(purchaseAmount), 1, RoundingMode.HALF_UP).stripTrailingZeros();
+                .divide(BigDecimal.valueOf(purchaseAmount), 1, RoundingMode.HALF_UP)
+                .stripTrailingZeros();
 
     }
 
     private LottoRank determineRank(Lotto lotto) {
-        int matchCount = (int) lotto.getNumbers().stream().filter(winningNumbers::isWinningNumber).count();
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::isWinningNumber)
+                .count();
 
         boolean hasBonus = winningNumbers.isBonusNumber(lotto);
 
