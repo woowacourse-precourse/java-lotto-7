@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PriceValidatorTest {
+    // 구입 금액 검증 기능 ( PriceValidator ) 테스트
     @DisplayName("구입 금액에 숫자 외의 문자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @ValueSource(strings = {"asd", ",123", "12 12432", "@$%#!", "123@$12,./"})
