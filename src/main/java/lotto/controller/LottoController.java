@@ -29,13 +29,23 @@ public class LottoController {
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
-        InputView.printBonusNumbersPrompt();
-        return BonusNumber.of(winningNumbers, readInput()).getBonusNumber();
+        try {
+            InputView.printBonusNumbersPrompt();
+            return BonusNumber.of(winningNumbers, readInput()).getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            InputView.printMessage(e.getMessage());
+            return getBonusNumber(winningNumbers);
+        }
     }
 
     private List<Integer> getWinningNumbers() {
-        InputView.printWinningNumbersPrompt();
-        return WinningNumbers.from(readInput()).getNumbers();
+        try {
+            InputView.printWinningNumbersPrompt();
+            return WinningNumbers.from(readInput()).getNumbers();
+        } catch (IllegalArgumentException e) {
+            InputView.printMessage(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private List<Lotto> getLottos(int purchaseAmount) {
@@ -47,8 +57,13 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        InputView.printPurchaseAmountPrompt();
-        return LottoPurchaseAmount.from(readInput()).getPurchaseAmount();
+        try {
+            InputView.printPurchaseAmountPrompt();
+            return LottoPurchaseAmount.from(readInput()).getPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            InputView.printMessage(e.getMessage());
+            return getPurchaseAmount();
+        }
     }
 
 }
