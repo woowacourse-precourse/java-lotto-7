@@ -35,6 +35,10 @@ public class Money {
         return new Money(this.amount.divide(money.amount, 4, RoundingMode.HALF_UP));
     }
 
+     public boolean isLessThan(Money other) {
+        return amount.compareTo(other.amount) < ZERO_THRESHOLD;
+    }
+
     public boolean isGreaterThan(Money other) {
         return amount.compareTo(other.amount) > ZERO_THRESHOLD;
     }

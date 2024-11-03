@@ -8,8 +8,9 @@ import static lotto.exception.ExceptionMessage.INVALID_PURCHASING_UNIT;
 public class LottoStore {
 
     public int calculateLottoQuantity(Money money) {
-        validatePurchasingUnit(money);
+        validateMinimumPurchasePrice(money);
         validateMaximumPurchasePrice(money);
+        validatePurchasingUnit(money);
         return money.divide(Money.from(TICKET_PRICE.getNumber()))
                 .intValue();
     }
@@ -17,6 +18,12 @@ public class LottoStore {
     private void validatePurchasingUnit(Money money) {
         if (money.isNotMultipleOf(Money.from(TICKET_PRICE.getNumber()))) {
             throw new IllegalArgumentException(INVALID_PURCHASING_UNIT.getMessage());
+        }
+    }
+
+    private void validateMinimumPurchasePrice(Money money) {
+        if (money.isLessThan(Money.from(TICKET_PRICE.getNumber()))) {
+            throw new IllegalArgumentException(INVALID_PURCHASING_PRICE.getMessage());
         }
     }
 

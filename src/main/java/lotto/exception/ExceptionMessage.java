@@ -21,7 +21,7 @@ public enum ExceptionMessage {
             format("%d원 단위로 구매해주세요.", TICKET_PRICE.getNumber())
     ),
     INVALID_PURCHASING_PRICE(
-            format("최대 %d원까지 구매 가능합니다.", MAXIMUM_PURCHASE_PRICE.getNumber())
+            format("최소 %d원부터 최대 %d원까지 구매 가능합니다.", TICKET_PRICE.getNumber(), MAXIMUM_PURCHASE_PRICE.getNumber())
     ),
     INVALID_LOTTO_SIZE(
             format("로또 번호는 %d개여야 합니다.", LOTTO_SIZE.getNumber())

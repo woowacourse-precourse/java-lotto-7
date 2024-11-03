@@ -29,7 +29,7 @@ class LottoStoreTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {999, 1001, 10010, 50500})
+    @ValueSource(ints = {1001, 10010, 50500})
     void 구입금액이_천원단위가_아니면_예외가_발생한다(int amount) {
         //given
         Money money = Money.from(amount);
@@ -40,14 +40,27 @@ class LottoStoreTest {
                 .hasMessage("[ERROR] 1000원 단위로 구매해주세요.");
     }
 
-    @Test
-    void 구입금액이_최대금액을_넘어가면_예외가_발생한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {999, 0, -1000})
+    void 구입금액이_최소금액을_못채우면_예외가_발생한다(int amount) {
         //given
-        Money money = Money.from(101000);
+        Money money = Money.from(amount);
         //when
         //then
         assertThatThrownBy(() -> lottoStore.calculateLottoQuantity(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 최대 100000원까지 구매 가능합니다.");
+                .hasMessage("[ERROR] 최소 1000원부터 최대 100000원까지 구매 가능합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {100001, 101000})
+    void 구입금액이_최대금액을_넘어가면_예외가_발생한다(int amount) {
+        //given
+        Money money = Money.from(amount);
+        //when
+        //then
+        assertThatThrownBy(() -> lottoStore.calculateLottoQuantity(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 최소 1000원부터 최대 100000원까지 구매 가능합니다.");
     }
 }
