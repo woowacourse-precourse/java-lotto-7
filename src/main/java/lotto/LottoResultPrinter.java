@@ -29,7 +29,13 @@ public class LottoResultPrinter {
     }
 
     private static void printYield(int totalPrize, int totalAmountSpent) {
+        if (totalPrize == 0) {
+            System.out.printf("총 수익률은 0.0%%입니다.\n");
+            return; // 총 당첨금이 0일 때 바로 리턴
+        }
+
         double yield = (double) totalPrize / totalAmountSpent * 100;
+        yield = Math.round(yield * 10) / 10.0; // 소수점 반올림
         System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
 
