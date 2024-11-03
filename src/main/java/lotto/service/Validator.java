@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,17 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_LOTTO_NUMBER);
         }
+    }
+
+    public static int validateBonusNumber(List<Integer> numbers, String input) {
+        int number = validateLottoNumber(input);
+
+        List<Integer> hasBonusNumber = new ArrayList<>(numbers);
+        hasBonusNumber.add(number);
+
+        validateLottoNumbers(hasBonusNumber);
+
+        return number;
     }
 
     public static void validateLottoNumbers(List<Integer> numbers) {
