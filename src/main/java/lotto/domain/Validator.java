@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,19 +9,21 @@ public class Validator {
 
     public Validator() {}
 
-    public int validateLottoPrice(String input) {
+    public static int validateLottoPrice(String input) {
         try {
             int price = Integer.parseInt(input);
             if(price < 0) {
-                throw new IllegalArgumentException(ErrorMessage.PRICE_ERROR);
+                throw new IllegalArgumentException(ErrorMessage.ILLEGAL_PRICE_ERROR);
+            } else if(price % 1000 != 0) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_ERROR);
             }
             return price;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PRICE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.ILLEGAL_PRICE_ERROR);
         }
     }
 
-    public int validateBonusNumber(String input) {
+    public static int validateLottoNumber(String input) {
         try {
             int number = Integer.parseInt(input);
             if(number < 0 || number > 45) {
@@ -34,7 +35,7 @@ public class Validator {
         }
     }
 
-    public void validateLottoNumbers(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER);
