@@ -15,8 +15,8 @@ class NumberTest {
     @CsvSource(value = {
             "0", "-1", "100", "99", "46"
     })
-    @DisplayName("유효하지 않은 숫자 인자로 받을 시 예외 발생")
-    void testInvalidNumberException(int number) {
+    @DisplayName("유효하지 않은 범위의 숫자 인자로 받을 시 예외 발생")
+    void 유효하지_않은_범위의_숫자_예외_발생한다(int number) {
         //
         assertThatThrownBy(() -> new Number(number))
                 .hasMessageContainingAll(
@@ -27,8 +27,8 @@ class NumberTest {
     @CsvSource(value = {
             "1", "23", "45", "43", "2"
     })
-    @DisplayName("유효한 숫자 인자로 받으면 예외 발생 하지 않음")
-    void testValidNumber(int number) {
+    @DisplayName("유효한 범위의 숫자 인자로 받으면 예외 발생 하지 않음")
+    void 유효한_범위의_숫자_예외_발생하지_않는다(int number) {
         // When & Then
         assertThatNoException().isThrownBy(() -> new Number(number));
     }

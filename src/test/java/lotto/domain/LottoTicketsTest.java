@@ -14,7 +14,7 @@ class LottoTicketsTest {
 
     @Test
     @DisplayName("발행한 로또 번호 값 출력 포맷에 맞게 반환 테스트")
-    void testGetAllLottoNumbers() {
+    void 발행한_로또_번호_출력_포맷_테스트() {
         // Given
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
@@ -37,7 +37,7 @@ class LottoTicketsTest {
     @ParameterizedTest
     @MethodSource("lottoPrizeDataProvider")
     @DisplayName("로또 당첨 결과를 확인 테스트")
-    void testCheckLottoPrizesMap(WinningLotto winningLotto,
+    void 로또_당첨_결과_확인_테스트(WinningLotto winningLotto,
                                LottoTickets lottoTickets,
                                Map<LottoPrize, Integer> expectedResults) {
         // Given & When

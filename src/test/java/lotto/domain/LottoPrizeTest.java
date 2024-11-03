@@ -13,7 +13,7 @@ class LottoPrizeTest {
 
     @Test
     @DisplayName("당첨 Enum에 대해 각 등수별 설명이 제대로 나오는 지 테스트")
-    public void testLottoPrizeDescribe() {
+    public void 당첨_enum_설명_테스트() {
         // Given
         String expectedEnumString = """
                 3개 일치 (5,000원)

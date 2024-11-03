@@ -15,7 +15,7 @@ class LottoGeneratorTest {
             "1", "4", "5", "10", "100"
     })
     @DisplayName("생성된 로또 갯수 일치 여부 테스트")
-    void testGenerateLottosSize(int lottoAmount) {
+    void 로또_생성_갯수_일치_테스트(int lottoAmount) {
         // Given & When
         LottoTickets lottos = LottoGenerator.generateLottoTickets(BigDecimal.valueOf(lottoAmount));
 
