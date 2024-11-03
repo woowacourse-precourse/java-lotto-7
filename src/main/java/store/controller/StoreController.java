@@ -31,4 +31,17 @@ public class StoreController {
         //TODO: split과 parsing을 두번 호출? 아니면 어케 넘겨줄 방법? 리팩토링?
         storeService.modifyWeeklyNumbers(inputWeeklyNumbers);
     }
+
+    public void setBonusNumber() {
+        String inputBonusNumber = storeInputView.inputBonusNumber();
+
+        try {
+            validateBonusNumber(inputBonusNumber)
+        } catch(Exception e) {
+            setBonusNumber();
+            return;
+        }
+
+        storeService.modifyBonusNumber(inputBonusNumber);
+    }
 }

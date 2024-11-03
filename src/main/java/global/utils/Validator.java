@@ -49,6 +49,20 @@ public class Validator {
         validateParsedWeeklyNumbers(weeklyNumbers);
     }
 
+    public static void validateBonusNumber(String inputBonusNumber) {
+        /*
+        TODO
+        1. 공백 혹은 무입력 상태를 허용하지 않는다
+        2. 0으로 시작될 수 없다
+        3. 소수가 입력될 수 없다
+        4. 0보다 작거나 같은수가 될 수 없다
+        5. +기호가 포함될 수 없다
+        6. 앞 뒤에 공백이 포함될 수 없다
+        7. 1과 45 사이의 숫자여야 한다
+        8. 사전에 입력된 당첨 번호와 겹치지 않아야 한다
+         */
+    }
+
     private static void validateSplitWeeklyNumbers(List<String> splitWeeklyNumbers) {
 
         for (String input : splitWeeklyNumbers) {
