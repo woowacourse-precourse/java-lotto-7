@@ -32,8 +32,10 @@ public class Lotto {
                 bonusCount = true;
             }
         }
-
         return Grade.valueOf(count, bonusCount);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
