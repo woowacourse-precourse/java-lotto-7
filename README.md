@@ -119,6 +119,8 @@
   - 구매할 로또 수량을 구한다.
 - setLottoPurchaseAmount
   - 구매할 로또 수량을 저장한다.
+- isNotDuplicateNumber
+  - 중복된 로또 번호가 있는지 확인한다.
 - displayLottoPurchaseAmount
   - 구매한 로또 수량을 출력한다.
 - makeLottoNumber
