@@ -322,7 +322,7 @@ class ProfitReportTest {
         ProfitReport profitReport = new ProfitReport(lottoInputs, winningNumbers);
 
         // when
-        Map<Prize, Integer> actual = profitReport.calculateWinningCountsByRank();
+        Map<Prize, Integer> actual = profitReport.calculateWinningCountsByPrize();
 
         // then
         assertEquals(expected, actual);

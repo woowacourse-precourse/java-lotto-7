@@ -37,7 +37,7 @@ public class ProfitReport {
                 .sum();
     }
 
-    public Map<Prize, Integer> calculateWinningCountsByRank() {
+    public Map<Prize, Integer> calculateWinningCountsByPrize() {
         return purchasedLottos.stream()
                 .map(this::calculatePrize)
                 .collect(Collectors.toMap(
