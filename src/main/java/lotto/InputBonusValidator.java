@@ -20,8 +20,8 @@ public class InputBonusValidator {
         }
     }
 
-    private void checkSameNumberInWinningNumber(List<Integer> winningNumber, int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
+    public void checkSameNumberInWinningNumber(List<Integer> winningNumber) {
+        if (winningNumber.contains(Integer.parseInt(bonusNumber))) {
             ErrorMessageUtil.BONUS_NUMBER_REPEAT_ERROR_MESSAGE.errorException();
         }
     }
@@ -34,7 +34,7 @@ public class InputBonusValidator {
 
     public int getBonusNumber(List<Integer> winningNumber) {
         validateBonusNumber();
-        checkSameNumberInWinningNumber(winningNumber,Integer.parseInt(bonusNumber));
+        checkSameNumberInWinningNumber(winningNumber);
         validateNumberRange();
         return Integer.parseInt(bonusNumber);
     }
