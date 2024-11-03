@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -19,10 +18,7 @@ public class Application {
     static void readCost(LottoMachine lottoMachine) {
         System.out.println("구입금액을 입력해 주세요.");
         try {
-            lottoMachine.buy(Integer.parseInt(Console.readLine()));
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 구입 금액은 숫자 형태여야 합니다.");
-            readCost(lottoMachine);
+            lottoMachine.buy(stringToInt(Console.readLine()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readCost(lottoMachine);
@@ -43,12 +39,9 @@ public class Application {
         List<Integer> winningNumbers = new ArrayList<>();
         try {
             for (String substring : substrings) {
-                winningNumbers.add(Integer.parseInt(substring));
+                winningNumbers.add(stringToInt(substring));
             }
             lottoMachine.setWinningLotto(new Lotto(winningNumbers));
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 로또 번호는 숫자 형태여야 합니다.");
-            readWinningNumbers(lottoMachine);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readWinningNumbers(lottoMachine);
@@ -59,11 +52,8 @@ public class Application {
     static void readBonusNumber(LottoMachine lottoMachine) {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
+            int bonusNumber = stringToInt(Console.readLine());
             lottoMachine.setBonusNumber(bonusNumber);
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 로또 번호는 숫자 형태여야 합니다.");
-            readBonusNumber(lottoMachine);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readBonusNumber(lottoMachine);
@@ -76,6 +66,14 @@ public class Application {
         System.out.println("---");
         lottoMachine.getWinningResult()
                 .forEach((w, i) -> System.out.println(w.getDescription() + " - " + i + "개"));
-        System.out.printf("총 수익률은 %.1f%%입니다.", lottoMachine.calculateRate() * 100);
+        System.out.printf("총 수익률은 %,.1f%%입니다.", lottoMachine.calculateRate() * 100);
+    }
+
+    static int stringToInt(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자 형태여야 합니다.");
+        }
     }
 }

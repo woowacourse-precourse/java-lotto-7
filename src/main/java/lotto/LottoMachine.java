@@ -83,29 +83,26 @@ public class LottoMachine {
                 .stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
-        if (matchCount == 6) {
-            incrementWinningResult(Winning.FIRST);
-            return;
-        }
-        if (matchCount == 5) {
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                incrementWinningResult(Winning.SECOND);
-                return;
-            }
-            incrementWinningResult(Winning.THIRD);
-            return;
-        }
-        if (matchCount == 4) {
-            incrementWinningResult(Winning.FOURTH);
-            return;
-        }
-        if (matchCount == 3) {
-            incrementWinningResult(Winning.FIFTH);
-        }
+        boolean isMatchBonusNumber = lotto.getNumbers().contains(bonusNumber);
+        incrementWinningResult(matchCount, isMatchBonusNumber);
     }
 
-    private void incrementWinningResult(Winning winning) {
-        winningResult.put(winning, winningResult.get(winning) + 1);
+    private void incrementWinningResult(int matchCount, boolean isMatchBonusNumber) {
+        if (matchCount == 6) {
+            winningResult.put(Winning.FIRST, winningResult.get(Winning.FIRST) + 1);
+        }
+        if (matchCount == 5 && isMatchBonusNumber) {
+            winningResult.put(Winning.SECOND, winningResult.get(Winning.SECOND) + 1);
+        }
+        if (matchCount == 5 && !isMatchBonusNumber) {
+            winningResult.put(Winning.THIRD, winningResult.get(Winning.THIRD) + 1);
+        }
+        if (matchCount == 4) {
+            winningResult.put(Winning.FOURTH, winningResult.get(Winning.FOURTH) + 1);
+        }
+        if (matchCount == 3) {
+            winningResult.put(Winning.FIFTH, winningResult.get(Winning.FIFTH) + 1);
+        }
     }
 
     public double calculateRate() {

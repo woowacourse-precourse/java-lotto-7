@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,7 +16,10 @@ public class Lotto {
         validateSize(numbers);
         validateNoDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
+
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Integer::compareTo);
+        this.numbers = sortedNumbers;
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -33,7 +37,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
