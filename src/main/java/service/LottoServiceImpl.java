@@ -9,7 +9,7 @@ import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Lotto;
+import model.Lotto;
 import model.Money;
 import view.InputView;
 import view.InputViewImpl;
@@ -28,7 +28,12 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public Money inputLottoMoney() {
         String userInputMoney = inputView.inputMoney();
-        return new Money(userInputMoney);
+        try {
+            return new Money(userInputMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoMoney();
+        }
     }
 
     @Override
@@ -67,6 +72,7 @@ public class LottoServiceImpl implements LottoService {
         return inputView.inputLottoWinningResult();
     }
 
+    // TODO: 리팩토링 하기
     @Override
     public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers,
                                                    List<Lotto> issuedLotto) {
@@ -95,6 +101,7 @@ public class LottoServiceImpl implements LottoService {
                 lottoResult.get(4));
     }
 
+    // TODO: 리팩토링 하기
     public int getRank(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
         Lotto winningLotto = lottoWinningNumbers.winningLotto();
 
