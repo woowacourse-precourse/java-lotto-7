@@ -31,7 +31,7 @@ public class LottoGame {
 
         try {
             int amount = ValidationUtil.parseAndValidateNumber(input);
-            ValidationUtil.validateamount(amount);
+            ValidationUtil.validateAmount(amount);
             return amount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -52,7 +52,7 @@ public class LottoGame {
         String input = Console.readLine();
 
         try {
-            Set<Integer> numbers = ValidationUtil.parseAndValidateWinningNumbsers(input);
+            Set<Integer> numbers = ValidationUtil.parseAndValidateWinningNumbers(input);
             return new Lotto(List.copyOf(numbers));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -90,7 +90,7 @@ public class LottoGame {
     private int[] calculateMatchcounts() {
         int[] matchCounts = new int[5];
 
-        for (Lotto ticket : userTickets) {
+        for (LottoTicket ticket : userTickets) {
             int matchCount = ticket.matchCount(winningTicket);
             boolean bonusMatch = ticket.contains(bonusNumber);
 

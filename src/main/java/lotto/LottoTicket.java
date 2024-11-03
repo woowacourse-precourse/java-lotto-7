@@ -6,14 +6,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoTicket {
-    private final Set<Integer> numbers;
+    private final List<Integer> numbers;
 
     public LottoTicket(List<Integer> numbers) {
         ValidationUtil.validateLottoNumbers(Set.copyOf(numbers));
         this.numbers = List.copyOf(numbers);
     }
 
-    public List<Integer> getSortednumbers() {
+    public List<Integer> getSortedNumbers() {
         return numbers.stream().distinct().collect(Collectors.toList());
     }
 
