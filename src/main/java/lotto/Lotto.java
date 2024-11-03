@@ -21,7 +21,7 @@ public class Lotto {
         for (Integer e : numbers) {
             outputStirng = outputStirng + e + ", ";
         }
-        outputStirng = outputStirng.substring(0, outputStirng.length() - 1);
+        outputStirng = outputStirng.substring(0, outputStirng.length() - 2);
         return '[' + outputStirng + ']';
     }
 }
