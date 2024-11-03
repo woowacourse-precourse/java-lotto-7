@@ -1,6 +1,6 @@
 package lotto.temp;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.CommonIo;
 
 import java.util.ArrayList;

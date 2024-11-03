@@ -1,7 +1,7 @@
 package lotto.temp;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.CommonIo;
 
 import java.util.List;
