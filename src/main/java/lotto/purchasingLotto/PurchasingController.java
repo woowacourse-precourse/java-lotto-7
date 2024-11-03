@@ -17,7 +17,7 @@ public class PurchasingController {
     public int purchaseLottoTickets() {
         String inputPayment = inputPaymentView.getPayment();
         paymentValidator.validPayment(inputPayment);
-        PurchasingService purchasing = new PurchasingService();
+        PurchasingService purchasing = PurchasingService.getPurchasingService();
         int payment = purchasing.purchaseTickets(inputPayment);
         outputPurchasingView.printPurchasing(payment);
          return payment;

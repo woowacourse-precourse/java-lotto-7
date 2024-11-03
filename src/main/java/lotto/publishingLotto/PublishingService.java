@@ -6,18 +6,29 @@ import java.util.List;
 import lotto.publishingLotto.model.Lotto;
 
 public class PublishingService {
+    private static PublishingService publishingService;
 
-    public static Lotto publishLottoTicket() {
-        List<Integer> publishedNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(publishedNumber);
+    private PublishingService() {}
+
+    public static PublishingService getPublishingService() {
+        if (publishingService == null) {
+            publishingService = new PublishingService();
+            return publishingService;
+        }
+        return publishingService;
     }
 
-    public List<Lotto> purchasedLottoTickets(int numberOfTicket) {
-        List<Lotto> purchasedLottoTickets = new ArrayList<>();
+    public static Lotto publishLottoTicket() {
+        List<Integer> publishedTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(publishedTicket);
+    }
+
+    public List<Lotto> publishByNumberOfTicket (int numberOfTicket) {
+        List<Lotto> LottoTickets = new ArrayList<>();
         for (int i = 0; i < numberOfTicket; i++) {
-            purchasedLottoTickets.add(publishLottoTicket());
+            LottoTickets.add(publishLottoTicket());
         }
-        return purchasedLottoTickets;
+        return LottoTickets;
     }
 
 }
