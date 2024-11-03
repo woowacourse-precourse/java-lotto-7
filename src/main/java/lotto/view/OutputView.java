@@ -7,10 +7,24 @@ import lotto.domain.Prize;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.constant.NumberConstant.*;
+
 public class OutputView {
 
+    public void inputLottoMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public void inputWinningNumber() {
+        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
+    }
+
+    public void inputBonusNumber() {
+        System.out.printf("%n보너스 번호를 입력해 주세요.%n");
+    }
+
     public void purchaseLottoAmount(int amount) {
-        System.out.printf("%d개를 구매했습니다.%n", amount);
+        System.out.printf("%n%d개를 구매했습니다.%n", amount / LOTTO_PRICE);
     }
 
     public void purchaseLottoNumbers(Lottos lottos) {
@@ -19,6 +33,9 @@ public class OutputView {
     }
 
     public void winningDetails(Map<Prize, Integer> matchResult) {
+        System.out.printf("%n당첨 통계%n");
+        System.out.printf("---%n");
+
         matchResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != Prize.NOTHING)
                 .sorted(Map.Entry.comparingByKey())

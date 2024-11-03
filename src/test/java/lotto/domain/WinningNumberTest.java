@@ -26,7 +26,7 @@ class WinningNumberTest {
     void 보너스번호_예외_테스트1() {
         WinningNumber winningNumber = new WinningNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
-        Assertions.assertThatThrownBy(() -> winningNumber.addBonusNumber(1))
+        Assertions.assertThatThrownBy(() -> winningNumber.addBonusNumber(new BonusNumber(1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,8 +34,8 @@ class WinningNumberTest {
     @Test
     void 보너스번호_예외_테스트2() {
         WinningNumber winningNumber = new WinningNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        winningNumber.addBonusNumber(10);
-        Assertions.assertThatThrownBy(() -> winningNumber.addBonusNumber(45))
+        winningNumber.addBonusNumber(new BonusNumber(10));
+        Assertions.assertThatThrownBy(() -> winningNumber.addBonusNumber(new BonusNumber(45)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

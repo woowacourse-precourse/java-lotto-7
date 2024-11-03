@@ -3,7 +3,7 @@ package lotto.constant;
 public enum ErrorMessage {
     CAN_NOT_DIVIDE_MONEY("[ERROR] 금액은 로또 가격 단위로 입력해주세요."),
     ONLY_NUMBER_FORMAT("[ERROR] 숫자로만 입력해주세요."),
-    NOT_MATCHED_WINNING_NUMBER_COUNT("[ERROR] 당첨 번호는 %d개 입력해 주세요."),
+    NOT_MATCHED_NUMBER_COUNT("[ERROR] 번호는 중복 없이 %d개 입력해 주세요."),
     ONLY_POSITIVE_NUMBER("[ERROR] 양수만 입력 가능합니다."),
     JUST_FOR_FUN("[ERROR] 로또 구매 금액은 10만원을 초과할 수 없습니다. (사장님 재미로만 하세요)"),
     OUT_OF_LOTTO_RANGE("[ERROR] 번호는 로또 범위내로 입력해주세요."),
@@ -20,4 +20,7 @@ public enum ErrorMessage {
         return message;
     }
 
+    public String getMessageWithArgs(Object... args) {
+        return String.format(message, args);
+    }
 }

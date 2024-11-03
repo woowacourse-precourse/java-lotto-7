@@ -1,31 +1,27 @@
 package lotto.domain;
 
-import lotto.constant.ErrorMessage;
-import lotto.constant.NumberConstant;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.SequencedSet;
 
 import static lotto.constant.ErrorMessage.*;
-import static lotto.constant.NumberConstant.*;
 
 public class WinningNumber {
 
     List<Integer> winningNumber;
-    private Integer bonusNumber;
+    private BonusNumber bonusNumber;
 
     public WinningNumber(Lotto winningNumber) {
         this.winningNumber = winningNumber.getNumbers();
     }
 
-    public void addBonusNumber(final int number) {
+    public void addBonusNumber(final BonusNumber bonusNumber) {
         if (this.bonusNumber != null) {
             throw new IllegalArgumentException(ALREADY_IN_BONUS_NUMBER.getMessage());
         }
-        validateDuplicateNumber(number);
+        validateDuplicateNumber(bonusNumber.getBonusNumber());
 
-        this.bonusNumber = number;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validateDuplicateNumber(int number) {
@@ -39,6 +35,6 @@ public class WinningNumber {
     }
 
     public Integer getBonusNumber() {
-        return bonusNumber;
+        return bonusNumber.getBonusNumber();
     }
 }

@@ -23,7 +23,7 @@ class MatchCalculatorTest {
         lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 7, 8, 9))));
         lottos.add(new Lotto(new ArrayList<>(List.of(10, 11, 12, 13, 14, 15))));
         lottos.add(new Lotto(new ArrayList<>(List.of(10, 11, 12, 13, 14, 15))));
-        winningNumber.addBonusNumber(7);
+        winningNumber.addBonusNumber(new BonusNumber(7));
 
         MatchCalculator matchCalculator = new MatchCalculator(winningNumber, new Lottos(lottos, new PurchaseMoney(7000)));
         matchCalculator.calculatePrize();
@@ -45,7 +45,7 @@ class MatchCalculatorTest {
         WinningNumber winningNumber = new WinningNumber(winNum);
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 7, 11, 12))));
-        winningNumber.addBonusNumber(7);
+        winningNumber.addBonusNumber(new BonusNumber(7));
 
         MatchCalculator matchCalculator = new MatchCalculator(winningNumber, new Lottos(lottos, new PurchaseMoney(8000)));
         matchCalculator.calculatePrize();

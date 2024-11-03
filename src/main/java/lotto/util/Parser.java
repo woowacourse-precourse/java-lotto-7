@@ -1,8 +1,5 @@
 package lotto.util;
 
-import lotto.constant.ErrorMessage;
-import lotto.constant.StringConstant;
-
 import java.util.*;
 
 import static lotto.constant.ErrorMessage.*;
@@ -12,6 +9,7 @@ import static lotto.constant.StringConstant.*;
 public class Parser {
 
     public List<Integer> ParseWinningNumber(String number) {
+
         List<Integer> result = new ArrayList<>();
         String[] numbers = number.split(NUMBER_DELIMITER);
 

@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import lotto.constant.ErrorMessage;
-import lotto.constant.NumberConstant;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +20,17 @@ public class Lotto {
         validateNumberSize(numbers);
         validatePositiveNumber(numbers);
         validateNumberInRange(numbers);
+        validateDuplicateNumber(numbers);
+    }
+
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        long result = numbers.stream()
+                .distinct()
+                .count();
+
+        if (result != LOTTO_NUMBER_PICK_COUNT) {
+            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT.getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
+        }
     }
 
     private void validateNumberInRange(List<Integer> numbers) {
@@ -40,12 +50,8 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        long result = numbers.stream()
-                .distinct()
-                .count();
-
-        if (result != LOTTO_NUMBER_PICK_COUNT) {
-            throw new IllegalArgumentException(NOT_MATCHED_WINNING_NUMBER_COUNT.getMessage());
+        if (numbers.size() != LOTTO_NUMBER_PICK_COUNT) {
+            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT.getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
         }
     }
 
@@ -55,7 +61,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        numbers.sort(Integer::compareTo);
-        return numbers.toString();
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Integer::compareTo);
+        return sortedNumbers.toString();
     }
 }
