@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
+import lotto.model.UserLotto;
 import lotto.util.ErrorMessage;
 import lotto.util.InputValidator;
 import lotto.util.Separator;
@@ -20,7 +21,9 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        Lotto lotto = createLotto();
+        UserLotto userLotto = new UserLotto(purchaseAmount/LOTTO_PRICE);
+
+        Lotto lotto = createWinningLotto();
         int bonusNumber = getBonusNumber();
     }
 
@@ -36,7 +39,7 @@ public class LottoController {
         }
     }
 
-    private Lotto createLotto() {
+    private Lotto createWinningLotto() {
         while (true) {
             try {
                 List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());

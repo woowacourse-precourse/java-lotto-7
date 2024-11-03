@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.util.ErrorMessage;
 
@@ -13,6 +13,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
