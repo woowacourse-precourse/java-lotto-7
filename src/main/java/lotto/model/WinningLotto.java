@@ -20,17 +20,17 @@ public class WinningLotto {
         return Rank.of(matchCount, isMatchBonusNumber);
     }
 
+    private void validateDuplicateBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+        if (lotto.isContain(bonusNumber.getNumber())) {
+            throw new GameException(ErrorMessage.HAS_DUPLICATE_NUMBER);
+        }
+    }
+
     private int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers()
             .stream()
             .filter(this.lotto::isContain)
             .count();
-    }
-
-    private void validateDuplicateBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
-        if (lotto.isContain(bonusNumber.getNumber())) {
-            throw new GameException(ErrorMessage.HAS_DUPLICATE_NUMBER);
-        }
     }
 
 }

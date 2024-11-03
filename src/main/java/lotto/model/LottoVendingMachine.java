@@ -1,13 +1,14 @@
 package lotto.model;
 
-import lotto.exception.ErrorMessage;
 import lotto.exception.GameException;
 import lotto.provider.NumbersProvider;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.model.LottoOption.*;
+import static lotto.exception.ErrorMessage.INVALID_MONEY_UNIT;
+import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
+import static lotto.model.LottoOption.SALE_PRICE;
 
 public class LottoVendingMachine {
 
@@ -24,17 +25,17 @@ public class LottoVendingMachine {
             .toList();
     }
 
-    public int getAvailableQuantity() {
-        return cost / SALE_PRICE.value();
-    }
-
     private void validate(int cost) {
         if (cost < SALE_PRICE.value()) {
-            throw new GameException(ErrorMessage.NOT_ENOUGH_MONEY);
+            throw new GameException(NOT_ENOUGH_MONEY);
         }
         if (hasRemain(cost)) {
-            throw new GameException(ErrorMessage.INVALID_MONEY_UNIT);
+            throw new GameException(INVALID_MONEY_UNIT);
         }
+    }
+
+    private int getAvailableQuantity() {
+        return cost / SALE_PRICE.value();
     }
 
     private boolean hasRemain(int cost) {
