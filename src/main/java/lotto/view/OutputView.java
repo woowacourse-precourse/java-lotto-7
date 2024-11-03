@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.message.ExceptionMessage;
 import lotto.message.PrintMessage;
 
 public class OutputView implements Output {

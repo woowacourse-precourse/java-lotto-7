@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import lotto.factory.WinningGeneratorFactory;
+import lotto.message.PrintMessage;
 import lotto.service.generator.WinningGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.message.PrintMessage;
 
 public class WinningController {
 

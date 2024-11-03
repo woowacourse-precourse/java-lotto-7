@@ -2,7 +2,6 @@ package lotto.strategy;
 
 import java.util.List;
 import java.util.Map;
-import lotto.message.Place;
 
 public class SecondPlace implements PlaceAuction {
 

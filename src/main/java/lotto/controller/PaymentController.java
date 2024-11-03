@@ -2,11 +2,11 @@ package lotto.controller;
 
 import lotto.factory.PaymentFactory;
 import lotto.factory.WalletGeneratorFactory;
+import lotto.message.PrintMessage;
 import lotto.service.Payment;
 import lotto.service.generator.WalletGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.message.PrintMessage;
 
 public class PaymentController {
 

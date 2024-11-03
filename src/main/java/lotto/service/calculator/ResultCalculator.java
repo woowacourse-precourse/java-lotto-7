@@ -14,12 +14,12 @@ import lotto.strategy.SecondPlace;
 
 public class ResultCalculator {
 
+    private static final Integer START_PLACE = 1;
+    private static final Integer END_PLACE = 5;
+
     private final Map<Integer, Integer> placeMap = new HashMap<>();
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
     private final List<Integer> prize = Prize.getPrize();
-
-    private static final Integer START_PLACE = 1;
-    private static final Integer END_PLACE = 5;
 
     public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);

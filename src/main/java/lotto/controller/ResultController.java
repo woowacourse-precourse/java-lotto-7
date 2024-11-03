@@ -28,7 +28,8 @@ public class ResultController {
         ResultGenerator resultGenerator = ResultGeneratorFactory.create(lottoTicket, winning, bonus);
 
         outputView.printlnMessage(PrintMessage.LOTTO_WINNING_RESULT_MESSAGE);
-        ResultCalculator resultCalculator = ResultCalculatorFactory.create(resultGenerator.getWinningResult(), resultGenerator.getBonusResult());
+        ResultCalculator resultCalculator = ResultCalculatorFactory.create(resultGenerator.getWinningResult(),
+                resultGenerator.getBonusResult());
         outputView.printWinningDetail(resultCalculator.getDetail());
 
         outputView.printProfitRate(ProfitCalculator.calculate(payment, resultCalculator.getPrizeMoney()));

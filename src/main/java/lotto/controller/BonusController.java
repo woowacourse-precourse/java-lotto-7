@@ -2,10 +2,10 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.factory.BonusGeneratorFactory;
+import lotto.message.PrintMessage;
 import lotto.service.generator.BonusGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.message.PrintMessage;
 
 public class BonusController {
 

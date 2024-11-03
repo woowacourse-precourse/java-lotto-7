@@ -8,5 +8,4 @@ public class LottoFactory {
     public static Lotto create(List<Integer> number) {
         return new Lotto(number);
     }
-
 }

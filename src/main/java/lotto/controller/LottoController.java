@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.factory.LottoGeneratorFactory;
-import lotto.service.generator.LottoGenerator;
-import lotto.service.Payment;
-import lotto.view.OutputView;
 import lotto.message.PrintMessage;
+import lotto.service.Payment;
+import lotto.service.generator.LottoGenerator;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private final OutputView outputView;
-    private List<Lotto> lottoTicket = new ArrayList<>();
     private final Payment payment;
+    private List<Lotto> lottoTicket = new ArrayList<>();
 
     public LottoController(OutputView outputView, Payment payment) {
         this.outputView = outputView;
