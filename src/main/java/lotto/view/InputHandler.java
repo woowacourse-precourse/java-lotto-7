@@ -34,12 +34,18 @@ public class InputHandler {
                 String input = Console.readLine();
                 String[] splitInput = input.trim().split(",");
                 List<Integer> nums = Arrays.stream(splitInput)
-                        .map(this::parseToInt).toList();
+                        .map(this::validateAndParseNumInRange).toList();
                 return nums;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private int validateAndParseNumInRange(String input) {
+        int num = parseToInt(input);
+        inputValidator.checkInRange1To45(num);
+        return num;
     }
 
     private int parseToInt(String input) {
