@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_ERROR_MESSAGE;
+
 import lotto.dto.LottoResponse;
 import lotto.dto.LottoResultResponse;
 import lotto.model.*;
@@ -29,9 +31,11 @@ public class LottoController {
 
         Lotto lotto = processingWinningLottoNumber();
 
-        BonusNumber bonusNumber = processingBonusNumber();
+        BonusNumber bonusNumber = processingBonusNumber(lotto);
 
-        LottoEvaluator lottoEvaluator = createLottoManger(lotto, bonusNumber, money, lottos);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+
+        LottoEvaluator lottoEvaluator = createLottoManger(winningLotto, money, lottos);
 
         LottoResult lottoResult = processingLottoResult(lottoEvaluator);
 
@@ -45,18 +49,21 @@ public class LottoController {
         return lottoResult;
     }
 
-    private LottoEvaluator createLottoManger(Lotto lotto, BonusNumber bonusNumber, Money money, List<Lotto> lottos) {
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+    private LottoEvaluator createLottoManger(WinningLotto winningLotto, Money money, List<Lotto> lottos) {
         return new LottoEvaluator(money, lottos, winningLotto);
     }
 
-    private BonusNumber processingBonusNumber() {
+    private BonusNumber processingBonusNumber(Lotto lotto) {
+        outPutView.displayBonusNumberPrompt();
         while(true){
             try {
-                outPutView.displayBonusNumberPrompt();
                 String inputBonusNumber = inputView.requestWinningLottoBonusNumber();
                 ControllerValidation.inputBonusNumberValidation(inputBonusNumber);
-                return new BonusNumber(Integer.valueOf(inputBonusNumber));
+
+                Integer bonusNumber = Integer.valueOf(inputBonusNumber);
+
+                ControllerValidation.checkAlreadyExistNumber(lotto.getNumbers(), bonusNumber);
+                return new BonusNumber(bonusNumber);
             }catch (IllegalArgumentException e){
                 outPutView.displayExceptionMessage(e.getMessage());
             }
@@ -64,9 +71,9 @@ public class LottoController {
     }
 
     private Lotto processingWinningLottoNumber() {
+        outPutView.displayWinningNumberPrompt();
         while(true){
             try {
-                outPutView.displayWinningNumberPrompt();
                 String inputWinningNumber = inputView.requestWinningLottoNumbers();
                 List<Integer> winningNumbers = LottoUtils.generateWinningNumber(inputWinningNumber);
                 return new Lotto(winningNumbers);
