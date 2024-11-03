@@ -19,7 +19,7 @@ public class LottoTickets {
         return Stream.generate(() -> new Lotto(Randoms.pickUniqueNumbersInRange(
                 LOTTO_START.getUnit(),
                 LOTTO_END.getUnit(),
-                LOTTO_MAX_NUMBER.getUnit())))
+                LOTTO_NUMBER_LIMIT.getUnit())))
                 .limit(numberOfTickets)
                 .toList();
     }

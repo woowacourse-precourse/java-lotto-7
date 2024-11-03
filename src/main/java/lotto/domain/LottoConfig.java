@@ -3,7 +3,7 @@ package lotto.domain;
 public enum LottoConfig {
     LOTTO_START(1),
     LOTTO_END(45),
-    LOTTO_MAX_NUMBER(6);
+    LOTTO_NUMBER_LIMIT(6);
 
     private final int unit;
 

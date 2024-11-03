@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConfig.LOTTO_NUMBER_LIMIT;
 import static lotto.view.ErrorMessages.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLimit(numbers);
         validateDuplication(numbers);
         this.numbers = numbers;
     }
@@ -29,15 +29,15 @@ public class Lotto {
         return Rank.calculateRank(basicCount, bonusCount);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_MAX_NUMBER.getUnit()) {
+    private void validateLimit(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_LIMIT.getUnit()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
-        if (lottoNumbers.size() < LOTTO_MAX_NUMBER.getUnit()) {
+        if (lottoNumbers.size() < LOTTO_NUMBER_LIMIT.getUnit()) {
             throw new IllegalArgumentException(DUPLICATION_IN_BASIC_LOTTO_NUMBER.getMessage());
         }
     }
