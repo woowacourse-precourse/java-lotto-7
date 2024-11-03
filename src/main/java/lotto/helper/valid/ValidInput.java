@@ -1,6 +1,5 @@
 package lotto.helper.valid;
 
-import java.util.List;
 import lotto.config.exception.input.InputException;
 import lotto.config.exception.input.InputExceptionMessage;
 
@@ -11,6 +10,11 @@ public class ValidInput {
         if (input.isEmpty()) {
             throw new InputException(InputExceptionMessage.EMPTY_INPUT);
         }
+    }
+
+    public static void checkInputPositive(String input) {
+        if (Integer.parseInt(input) <= 0)
+            throw new InputException(InputExceptionMessage.POSITIVE_INPUT);
     }
 
     private static void checkInputNumber(String input) {
@@ -36,6 +40,7 @@ public class ValidInput {
 
     public static void checkInputMoney(String input) {
         checkInputEmpty(input);
+        checkInputPositive(input);
         checkInputNumber(input);
         checkInputUnit(input);
     }
