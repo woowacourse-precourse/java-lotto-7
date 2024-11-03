@@ -45,6 +45,10 @@ public class Lotto {
                 .anyMatch(lottoNumber -> lottoNumber.equals(bonusNumber));
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
     private void validateNumbers(final List<Integer> numbers) {
         if (countDistinctFrom(numbers) != LOTTO_SIZE) {
             throw new InvalidLottoException("로또 번호는 중복되지 않은 6개의 숫자여야 합니다");
@@ -58,12 +62,8 @@ public class Lotto {
     private List<LottoNumber> mapToSortedLottoNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
-                .map(LottoNumber::new)
+                .map(LottoNumber::valueOf)
                 .toList();
-    }
-
-    public boolean contains(LottoNumber lottoNumber) {
-        return numbers.contains(lottoNumber);
     }
 
     public LottoNumberDto getNumbers() {

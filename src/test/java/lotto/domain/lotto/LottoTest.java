@@ -115,7 +115,7 @@ class LottoTest {
         void 성공_포함확인(int number, boolean contains) {
             // Given
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber lottoNumber = new LottoNumber(number);
+            LottoNumber lottoNumber = LottoNumber.valueOf(number);
 
             // When & Then
             assertThat(lotto.contains(lottoNumber)).isEqualTo(contains);
@@ -151,7 +151,7 @@ class LottoTest {
         void 성공_일치개수(int number, boolean expected) {
             // Given
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber lottoNumber = new LottoNumber(number);
+            LottoNumber lottoNumber = LottoNumber.valueOf(number);
 
             // When
             boolean doesMatch = lotto.doesMatchBonusNumber(lottoNumber);

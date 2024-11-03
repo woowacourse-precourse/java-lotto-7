@@ -81,7 +81,7 @@ public class LottoNumberTest {
 
             // When & Then
             assertThatCode(() -> {
-                new LottoNumber(1);
+                LottoNumber.valueOf(1);
             }).doesNotThrowAnyException();
         }
 
@@ -92,7 +92,7 @@ public class LottoNumberTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new LottoNumber(number))
+            assertThatThrownBy(() -> LottoNumber.valueOf(number))
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
                     .hasMessageStartingWith("[ERROR] ")

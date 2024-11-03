@@ -25,7 +25,7 @@ public class LotteryTest {
         void 성공_생성() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber bonusNumber = new LottoNumber(10);
+            LottoNumber bonusNumber = LottoNumber.valueOf(10);
             List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
             // When & Then
@@ -39,7 +39,7 @@ public class LotteryTest {
         void 실패_생성() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber bonusNumber = new LottoNumber(1);
+            LottoNumber bonusNumber = LottoNumber.valueOf(1);
             List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
             // When & Then
@@ -60,7 +60,7 @@ public class LotteryTest {
         void 성공_계산() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber bonusNumber = new LottoNumber(10);
+            LottoNumber bonusNumber = LottoNumber.valueOf(10);
             List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 10)));
             Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);
@@ -89,7 +89,7 @@ public class LotteryTest {
         void 성공_계산() {
             // Given
             Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            LottoNumber bonusNumber = new LottoNumber(10);
+            LottoNumber bonusNumber = LottoNumber.valueOf(10);
             List<Lotto> drawnLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                     new Lotto(List.of(1, 2, 3, 4, 5, 10)));
             Lottery lottery = new Lottery(winningLotto, bonusNumber, drawnLottos);

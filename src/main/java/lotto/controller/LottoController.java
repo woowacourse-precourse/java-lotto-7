@@ -68,7 +68,7 @@ public class LottoController {
     private LottoNumber makeBonusNumber() {
         outputView.showCommentForBonusNumber();
         String inputBonusNumber = inputView.readLine();
-        return new LottoNumber(converter.convertFrom(inputBonusNumber));
+        return LottoNumber.valueOf(converter.convertFrom(inputBonusNumber));
     }
 
     private void getLottoResult(final LottoResult lottoResult) {
