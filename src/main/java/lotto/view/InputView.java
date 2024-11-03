@@ -41,7 +41,7 @@ public class InputView {
         return buffer;
     }
 
-    private static void validateInput(String buffer) {
+    public static void validateInput(String buffer) {
         if(buffer == null || buffer.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력이 비어있습니다.");
         }

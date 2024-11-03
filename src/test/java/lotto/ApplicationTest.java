@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.PurchasedPrice;
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +56,14 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("입력이 비어있으면 예외가 발생한다")
+    @Test
+    void inputEmptyTest() {
+        assertThatThrownBy(() -> InputView.validateInput(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("로또 구입 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다")
