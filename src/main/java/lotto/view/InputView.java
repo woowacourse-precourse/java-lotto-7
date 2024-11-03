@@ -30,8 +30,7 @@ public class InputView {
 
     public int RequestBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBER);
-        String input = Console.readLine();
-        return parseInt(input); // TODO: 검증 로직 추가
+        return TryGetBonusNumber();
     }
 
     private int TryGetPurchaseAmount() {
@@ -44,5 +43,13 @@ public class InputView {
         }
     }
 
-
+    private int TryGetBonusNumber() {
+        try{
+            String input = Console.readLine();
+            return parseInt(input);
+        }catch(NumberFormatException e){
+            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            return TryGetBonusNumber();
+        }
+    }
 }
