@@ -87,9 +87,10 @@
 |-----------|-----------------------------|-----------------------------------|----|
 | Prize 도메인 | Prize(당첨) 관리                | ID와 PrizeNumber로 당첨 생성            | ✅  |
 |           |                             | 당첨 결과 조회                          | ✅  |
-|           | Prize 번호(PrizeNumber) 관리    | Lotto 객체로 당첨 번호 설정                | ✅  |
+|           | Prize 번호(PrizeNumber) 관리    | WinnerNumbers 객체로 당첨 번호 설정        | ✅  |
 |           |                             | BonusNumber 객체로 보너스 번호 설정         | ✅  |
-|           |                             | 당첨 정보를 DTO(PrizeNumberResult)로 변환 | ⬜️ |
+|           |                             | 당첨 정보를 DTO(PrizeNumberResult)로 조회 | ✅️ |
+|           | 당첨 번호(WinnerNumbers) 관리     | Lotto 객체로 당첨 번호 설정                | ⬜️ |
 |           | 보너스 번호(BonusNumber) 관리      | 보너스 번호 생성                         | ⬜️ |
 |           |                             | 보너스 번호 범위 검증(1~45)                | ⬜️ |
 |           |                             | 당첨 번호와의 중복 검증                     | ⬜️ |
@@ -206,10 +207,10 @@ InputView-당첨 번호를 입력해 주세요.
         InputView-보너스 번호를 입력해 주세요.
 
         Long winNumId=CreateWinnerNumberUsecase.execute(
-        List<Integer> winnerNumber,
+        List<Integer> winnerNumbers,
         int bonus);
 
-        WinnerNumber winnerNumber=GetWinnerNumberUsecase().execute(Long winNumId);
+        WinnerNumber winnerNumbers=GetWinnerNumberUsecase().execute(Long winNumId);
 ```
 
 ### WinnerStatisticsController (당첨 통계 컨트롤러)
@@ -224,7 +225,7 @@ InputView-당첨 번호를 입력해 주세요.
 InputView-당첨 통계
         InputView- ---
 
-        Long winnerStatisticsId=CreateWinnerStatisticsUsecase.execute(lottos,winnerNumber);
+        Long winnerStatisticsId=CreateWinnerStatisticsUsecase.execute(lottos,winnerNumbers);
         WinnerStasticsResult winStatistics=GetWinnerStatisticsUsecase.execute(Long id);
 
         OutputView-{당첨 통계 결과}
@@ -254,7 +255,7 @@ Long winNumId=WinnerNumberService.generate(List<Integer> numbers,int bonus);
 - WinnerNumberService - 당첨 번호를 조회하라
 
 ```java
-WinnerNumber winnerNumber=WinnerNumber.getById(Long winNumId);
+WinnerNumber winnerNumbers=WinnerNumber.getById(Long winNumId);
 ```
 
 ### CreateWinnerStatisticsUsecase - 당첨 통계를 생성하라
