@@ -22,6 +22,10 @@ public class Money {
         return money / UNIT_PRICE;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private static void validate(int money) {
         validateNegativeNumber(money);
         validateLessThanUnitPrice(money);
