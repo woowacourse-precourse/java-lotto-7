@@ -44,5 +44,8 @@ public class Application {
         LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
         LottoNumbersInputParser.parseLottoNumbers(lottoNumbersInput.input());
 
+        //보너스 번호 입력
+        outputView.printBonusNumberInputPrompt();
+
     }
 }
