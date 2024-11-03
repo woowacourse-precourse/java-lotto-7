@@ -62,4 +62,25 @@ public class WinningNumbersTest {
             .hasMessageContaining("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
     }
 
+    @Test
+    void 당첨_번호에_보너스_번호가_중복되지_않으면_예외가_발생하지_않는다() {
+        //given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+
+        //when & then
+        assertDoesNotThrow(() -> winningNumbers.validateDuplicateByBonusNumber(7));
+    }
+
+    @Test
+    void 당첨_번호에_보너스_번호가_중복되어_있으면_예외가_발생한다() {
+        //given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+
+        //when & then
+        assertThatThrownBy(() -> winningNumbers.validateDuplicateByBonusNumber(6))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 당첨 번호에 포함되어 있는 숫자입니다.");
+    }
 }
