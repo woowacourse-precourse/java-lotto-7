@@ -8,16 +8,26 @@ public class InputView {
             try {
                 OutputView.notifyEnterMoneyToBuy();
                 String input = Console.readLine();
-                int amountToBuy = Integer.parseInt(input); // 숫자가 아닌 경우 NumberFormatException 발생
-                if (amountToBuy % 1000 != 0) {
-                    throw new IllegalArgumentException();
-                }
-                return amountToBuy;
-            } catch (NumberFormatException e) {
-                OutputView.printNumberFormatError();
-            } catch (IllegalArgumentException e) {
-                OutputView.printNotDivisibleByThousandError();
+                return validateMoneyToBuy(input);
+            } catch (Exception e) {
+                // 다시 재입력 받도록
             }
+        }
+    }
+
+    public int validateMoneyToBuy(String input) {
+        try {
+            int moneyToBuy = Integer.parseInt(input); // 숫자가 아닌 경우 NumberFormatException 발생
+            if (moneyToBuy % 1000 != 0) {
+                throw new IllegalArgumentException();
+            }
+            return moneyToBuy;
+        } catch (NumberFormatException e) {
+            OutputView.printNumberFormatError();
+            throw e;
+        } catch (IllegalArgumentException e) {
+            OutputView.printNotDivisibleByThousandError();
+            throw e;
         }
     }
 }
