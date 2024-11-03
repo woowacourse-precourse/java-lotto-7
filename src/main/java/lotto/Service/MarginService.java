@@ -1,5 +1,7 @@
 package lotto.Service;
 
+import lotto.View.OutputView;
+
 public class MarginService {
     private double costPrice;
     private double sellingPrice;
@@ -7,14 +9,17 @@ public class MarginService {
     private double value;
 
     public void calculateProfitMargin() {
+        value = (sellingPrice - costPrice) / costPrice * 100;
         if (sellingPrice == 0) {
             value = 0;
         }
-        value = (sellingPrice - costPrice) / sellingPrice * 100;
     }
 
     public double round() {
         double scale = Math.pow(10, DecimalPlaces);
+        if (value == 0) {
+            return 0;
+        }
         return Math.round(value * scale) / scale;
     }
 
@@ -27,6 +32,6 @@ public class MarginService {
     }
 
     public void displayResult() {
-        System.out.printf("총 수익률은 : %.2f%%입니다.\n", round());
+        OutputView.displayRounds(round());
     }
 }

@@ -1,6 +1,7 @@
 package lotto.Service;
 
 import java.util.List;
+import lotto.View.OutputView;
 import lotto.controller.MarginController;
 
 public class CheckerService {
@@ -45,13 +46,8 @@ public class CheckerService {
     }
 
     public void result() {
-        System.out.println(
-                "6개 일치 (2,000,000,000원) - " + firstPrizeCount + "개" +
-                        "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPrizeCount + "개" +
-                        "\n5개 일치 (1,500,000원) - " + thirdPrizeCount + "개" +
-                        "\n4개 일치 (50,000원) - " + fourthPrizeCount + "개" +
-                        "\n3개 일치 (5,000원) - " + fifthPrizeCount + "개"
-        );
+        OutputView.displayPrizeResults(firstPrizeCount, secondPrizeCount, thirdPrizeCount, fourthPrizeCount,
+                fifthPrizeCount);
         int money = getMoney();
         int payment = LottoService.getPayment();
         MarginController.run(money, payment);
