@@ -60,6 +60,10 @@ public class OutputView {
         printMessage(PRINT_RETURN_RATE.getMessage(), returnRate);
     }
 
+    public static void printErrorMessage(String message) {
+        printMessage(message);
+    }
+
     private static void printMessage() {
         System.out.println();
     }
