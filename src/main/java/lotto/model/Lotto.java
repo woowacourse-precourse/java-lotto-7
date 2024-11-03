@@ -31,7 +31,7 @@ public class Lotto {
                 .count();
     }
 
-    private boolean checkHit(int number) {
+    public boolean checkHit(int number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber == number);
     }
