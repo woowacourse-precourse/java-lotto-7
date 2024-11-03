@@ -9,11 +9,11 @@ import static service.Constants.*;
 
 public class Validator {
 
-    public int validateAmountNumber(String inputPurchaseAmount){
+    public int validateNumber(String inputPurchaseAmount){
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER.getErrorMessage());
         }
     }
 
