@@ -50,4 +50,14 @@ class RankTest {
             assertThat(groupByRankWithCount.get(Rank.FIRST)).isEqualTo(1);
         });
     }
+
+    @Test
+    @DisplayName("당첨금 반환")
+    void calcTotalPrize() {
+        assertSimpleTest(() -> {
+            List<Rank> ranks = List.of(Rank.FIFTH, Rank.MISS, Rank.FIFTH, Rank.FOURTH, Rank.FIRST);
+            long prizeSum = Rank.calcTotalPrize(ranks);
+            assertThat(prizeSum).isEqualTo(5000 + 0 + 5000 + 50000 + 2000000000);
+        });
+    }
 }
