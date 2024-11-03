@@ -31,6 +31,10 @@ public class LottoProcessor {
     }
 
     public void setBonusNumber(int number) {
+        // 보너스 번호가 당첨 번호에 있는지 확인
+        if (winningNumbers.getNumbers().contains(number)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
         bonusNumber = number;
     }
 
