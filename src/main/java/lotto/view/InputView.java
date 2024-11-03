@@ -22,10 +22,7 @@ public class InputView {
 
     public List<Integer> RequestWinningNumbers() {
         System.out.println(REQUEST_WINNING_NUMBERS);
-        String input = Console.readLine();
-        return Arrays.stream(input.split(COMMA_DELIMITER))
-                .map(number -> Integer.parseInt(number.trim()))
-                .collect(Collectors.toList()); // TODO: 검증 로직 추가
+        return TryGetWinningNumbers();
     }
 
     public int RequestBonusNumber() {
@@ -40,6 +37,18 @@ public class InputView {
         }catch(NumberFormatException e){
             System.out.println(LottoException.INVALID_NUMBER_FORMAT);
             return TryGetPurchaseAmount();
+        }
+    }
+
+    private List<Integer> TryGetWinningNumbers() {
+        try{
+            String input = Console.readLine();
+            return Arrays.stream(input.split(COMMA_DELIMITER))
+                    .map(number -> Integer.parseInt(number.trim()))
+                    .collect(Collectors.toList());
+        }catch(NumberFormatException e){
+            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            return TryGetWinningNumbers();
         }
     }
 
