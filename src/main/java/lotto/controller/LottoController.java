@@ -8,6 +8,7 @@ import lotto.domain.LottoRanks;
 import lotto.domain.Money;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
+import lotto.exception.LottoApplicationException;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -52,8 +53,8 @@ public class LottoController {
         while (true) {
             try {
                 return supplier.get();
-            } catch (IllegalArgumentException e) {
-                lottoView.showInvalidInputException(e);
+            } catch (LottoApplicationException e) {
+                lottoView.showLottoApplicationException(e);
             }
         }
     }

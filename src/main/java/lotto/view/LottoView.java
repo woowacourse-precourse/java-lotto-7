@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
 import lotto.domain.PurchaseAmount;
+import lotto.exception.LottoApplicationException;
 import lotto.view.io.InputHandler;
 import lotto.view.io.OutputHandler;
 
@@ -47,8 +48,8 @@ public class LottoView {
         outputHandler.showWinningStatistics(ranks, rateOfReturn);
     }
 
-    public void showInvalidInputException(IllegalArgumentException e) {
-        outputHandler.showInvalidInputException(e);
+    public void showLottoApplicationException(LottoApplicationException exception) {
+        outputHandler.showLottoApplicationException(exception);
     }
 
 }

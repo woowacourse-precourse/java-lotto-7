@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.LottoApplicationException;
+
 public class PurchaseAmount {
 
     public static final int UNIT = 1000;
@@ -12,24 +14,16 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
-    public static PurchaseAmount from(String amount) {
-        return new PurchaseAmount(toInt(amount));
+    public static PurchaseAmount from(int amount) {
+        return new PurchaseAmount(amount);
     }
 
     private void validate(int amount) {
         if (amount < MIN_AMOUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구입 금액은 %,d보다 작을 수 없습니다.", MIN_AMOUNT));
+            throw new LottoApplicationException(String.format("구입 금액은 %,d보다 작을 수 없습니다.", MIN_AMOUNT));
         }
         if (amount % UNIT != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구입 금액은 %,d원 단위여야 합니다.", UNIT));
-        }
-    }
-
-    private static int toInt(String amount) {
-        try {
-            return Integer.parseInt(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
+            throw new LottoApplicationException(String.format("구입 금액은 %,d원 단위여야 합니다.", UNIT));
         }
     }
 

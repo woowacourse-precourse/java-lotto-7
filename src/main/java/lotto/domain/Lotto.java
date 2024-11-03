@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.LottoApplicationException;
 
 public class Lotto {
 
@@ -43,15 +44,14 @@ public class Lotto {
 
     private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_SIZE));
+            throw new LottoApplicationException(String.format("로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_SIZE));
         }
     }
 
     private void validateDuplicate(List<LottoNumber> numbers) {
         if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new LottoApplicationException("로또 번호는 중복될 수 없습니다.");
         }
-
     }
 
     private boolean isDuplicated(List<LottoNumber> numbers) {

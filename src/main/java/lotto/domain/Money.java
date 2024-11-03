@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.LottoApplicationException;
+
 public record Money(int amount) {
 
     public Money {
@@ -8,7 +10,7 @@ public record Money(int amount) {
 
     private void validate(int amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 0보다 작을 수 없습니다.");
+            throw new LottoApplicationException("금액은 0보다 작을 수 없습니다.");
         }
     }
 
@@ -20,7 +22,7 @@ public record Money(int amount) {
         if (isEnoughToBuy(price)) {
             return new Money(amount - price);
         }
-        throw new IllegalArgumentException("[ERROR] 잔액이 충분하지 않습니다.");
+        throw new IllegalArgumentException("잔액이 충분하지 않습니다.");
     }
 
     public boolean isEmpty() {

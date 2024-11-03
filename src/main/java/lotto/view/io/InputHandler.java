@@ -6,12 +6,13 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
+import lotto.exception.LottoApplicationException;
 
 public class InputHandler {
 
     public PurchaseAmount getPurchaseAmount() {
         String amount = Console.readLine();
-        return PurchaseAmount.from(amount);
+        return PurchaseAmount.from(toInt(amount));
     }
 
     public Lotto getWinningNumbers() {
@@ -35,7 +36,7 @@ public class InputHandler {
                     .map(Integer::valueOf)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+            throw new LottoApplicationException("정수를 입력해주세요.");
         }
     }
 
@@ -43,7 +44,7 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+            throw new LottoApplicationException("정수를 입력해주세요.");
         }
     }
 

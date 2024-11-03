@@ -29,11 +29,11 @@ public class LottoRanks {
 
     private int getTotalReturn(Map<LottoRank, Integer> ranks) {
         return ranks.entrySet().stream()
-                .mapToInt(this::getReturn)
+                .mapToInt(this::calculateRewardAmount)
                 .sum();
     }
 
-    private int getReturn(Entry<LottoRank, Integer> rankEntry) {
+    private int calculateRewardAmount(Entry<LottoRank, Integer> rankEntry) {
         return rankEntry.getKey().getRewardAmount() * rankEntry.getValue();
     }
 

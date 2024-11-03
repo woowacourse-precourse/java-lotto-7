@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.exception.LottoApplicationException;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -31,7 +32,7 @@ class WinningLottoTest {
 
         // when & then
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(LottoApplicationException.class)
                 .hasMessage("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
     }
 

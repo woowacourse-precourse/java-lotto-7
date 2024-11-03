@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
+import lotto.exception.LottoApplicationException;
 import lotto.view.io.message.LottoMessageGenerator;
 import lotto.view.io.message.RankMessageGenerator;
 import lotto.view.io.message.RateOfReturnMessageGenerator;
@@ -68,7 +69,7 @@ public class OutputHandler {
         System.out.println(rateOfReturnMessage);
     }
 
-    public void showInvalidInputException(IllegalArgumentException exception) {
+    public void showLottoApplicationException(LottoApplicationException exception) {
         System.out.println(exception.getMessage());
     }
 
