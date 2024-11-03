@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.dto.GeneratedLottoInfo;
+import lotto.dto.GeneratedUserLottoInfo;
 import lotto.dto.WinningStatistics;
 
 public class UserLottoInfo {
@@ -14,7 +14,7 @@ public class UserLottoInfo {
         this.rankingStatus = new RankingStatus();
     }
 
-    public GeneratedLottoInfo getUserLottos() {
+    public GeneratedUserLottoInfo getUserLottos() {
         return lottos.getUserLottos();
     }
 

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.GeneratedLottoInfo;
+import lotto.dto.GeneratedUserLottoInfo;
 import lotto.dto.WinningStatistics;
 import lotto.model.Lotto;
 import lotto.model.UserLottoInfo;
@@ -22,8 +22,8 @@ public class LottoController {
 
     public void run() {
         UserLottoInfo userLottoInfo = generateUserLottoInfo();
-        GeneratedLottoInfo generatedLottoInfo = generateLottoInfo(userLottoInfo);
-        outputView.printCreateLottoInfo(generatedLottoInfo);
+        GeneratedUserLottoInfo generatedUserLottoInfo = generateLottoInfo(userLottoInfo);
+        outputView.printCreateLottoInfo(generatedUserLottoInfo);
 
         WinningStatistics winningStatistics = generatedWinningStatistics(userLottoInfo);
         outputView.printWinningStatics(winningStatistics);
@@ -43,7 +43,7 @@ public class LottoController {
         return inputView.readPurchaseAmount();
     }
 
-    private GeneratedLottoInfo generateLottoInfo(lotto.model.UserLottoInfo userLottoInfo) {
+    private GeneratedUserLottoInfo generateLottoInfo(lotto.model.UserLottoInfo userLottoInfo) {
         return lottoService.getGeneratedLottoInfo(userLottoInfo);
     }
 

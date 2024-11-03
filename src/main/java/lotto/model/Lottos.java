@@ -1,7 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.dto.GeneratedLottoInfo;
+import lotto.dto.GeneratedUserLottoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,11 @@ public class Lottos {
         }
     }
 
-    public GeneratedLottoInfo getUserLottos() {
+    public GeneratedUserLottoInfo getUserLottos() {
         StringBuilder userLottoNumbers = new StringBuilder();
         userLottos.forEach(lotto -> userLottoNumbers.append(lotto.getLottoNumbers()));
 
-        return new GeneratedLottoInfo(getUserLottoCount(), userLottoNumbers.toString());
+        return new GeneratedUserLottoInfo(getUserLottoCount(), userLottoNumbers.toString());
     }
 
     public long getUserLottoCount() {
