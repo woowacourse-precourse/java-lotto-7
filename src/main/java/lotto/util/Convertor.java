@@ -1,7 +1,7 @@
 package lotto.util;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.Separator;
+import lotto.util.constant.Separator;
 
 import java.util.Arrays;
 import java.util.List;
