@@ -8,4 +8,8 @@ public class LottoPurchase {
         this.lottoPrice = new LottoPrice(gameMoney);
         this.lottoCount = new LottoCount(lottoPrice);
     }
+
+    public LottoCount getLottoCount() {
+        return lottoCount;
+    }
 }
