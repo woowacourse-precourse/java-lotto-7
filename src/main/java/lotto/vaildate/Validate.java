@@ -1,5 +1,7 @@
 package lotto.vaildate;
 
+import java.util.List;
+
 public class Validate {
 
     public static int purchasePriceValidate(String price) {
@@ -18,6 +20,39 @@ public class Validate {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 형식으로만 입력해주세여");
         }
+    }
+
+    public static List<Integer> winningNumbersValidate(List<Integer> winningNumbers) {
+        validateWinningNumberCount(winningNumbers);
+        validateNumberInRange(winningNumbers);
+        validateUniqueNumber(winningNumbers);
+        return winningNumbers;
+    }
+
+    private static void validateWinningNumberCount(List<Integer> validNumbers) {
+        if (validNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void validateUniqueNumber(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복된 될수 없습니다.");
+        }
+    }
+
+    private static void validateNumberInRange(List<Integer> winningNumbers) {
+        if (numberIsRange(winningNumbers)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이여야 합니다.");
+        }
+    }
+
+    private static boolean numberIsRange(List<Integer> winningNumbers) {
+        return winningNumbers.stream().anyMatch(Validate::isLottoRange);
+    }
+
+    private static boolean isLottoRange(Integer number) {
+        return number < 0 || number > 45;
     }
 
 }
