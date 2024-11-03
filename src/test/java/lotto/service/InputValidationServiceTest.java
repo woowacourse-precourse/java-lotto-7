@@ -3,17 +3,14 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.util.List;
 import java.util.stream.Stream;
-import lotto.constant.LottoConfiguration;
-import lotto.generator.RawInputGenerator;
 import lotto.utility.CommonInputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidationServiceTest {
 
@@ -25,9 +22,9 @@ class InputValidationServiceTest {
     }
 
     @DisplayName("올바른 구매 금액의 입력을 검증")
-    @Test
-    void 올바른_구매_금액의_입력을_검증() {
-        String rawPurchasePrice = String.valueOf(LottoConfiguration.LOTTO_PRICE * 15);
+    @ParameterizedTest(name = "\"{0}\"가 입력된 경우")
+    @ValueSource(strings = {"15000", "15000   ", "  15000", "150  00"})
+    void 올바른_구매_금액의_입력을_검증(String rawPurchasePrice) {
         assertThatCode(() -> inputValidationService.validatePurchasePrice(rawPurchasePrice))
                 .doesNotThrowAnyException();
     }
@@ -51,10 +48,9 @@ class InputValidationServiceTest {
     }
 
     @DisplayName("올바른 당첨 번호의 입력을 검증")
-    @Test
-    void 올바른_당첨_번호의_입력을_검증() {
-        List<Integer> givenNumbers = List.of(1, 2, 3, 4, 5, 6);
-        String rawWinningNumbers = RawInputGenerator.makeRawWinningNumbers(givenNumbers);
+    @ParameterizedTest(name = "\"{0}\"가 입력된 경우")
+    @ValueSource(strings = {"1,2,3,4,5,6", "   1,2,3,4,5,6", "1,2,3,4,5,6   ", "1,2,3,4,5,   6"})
+    void 올바른_당첨_번호의_입력을_검증(String rawWinningNumbers) {
         assertThatCode(() -> inputValidationService.validateWinningNumber(rawWinningNumbers))
                 .doesNotThrowAnyException();
     }
@@ -80,9 +76,9 @@ class InputValidationServiceTest {
     }
 
     @DisplayName("올바른 보너스 번호의 입력을 검증")
-    @Test
-    void 올바른_보너스_번호의_입력을_검증() {
-        String givenRawBonusNumber = "10";
+    @ParameterizedTest(name = "\"{0}\"가 입력된 경우")
+    @ValueSource(strings = {"12", "12   ", "  12", "1    2"})
+    void 올바른_보너스_번호의_입력을_검증(String givenRawBonusNumber) {
         assertThatCode(() -> inputValidationService.validateBonusNumber(givenRawBonusNumber))
                 .doesNotThrowAnyException();
     }
