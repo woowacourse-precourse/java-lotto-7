@@ -1,13 +1,9 @@
-package lotto;
+package lotto.model;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 class LottosTest {
