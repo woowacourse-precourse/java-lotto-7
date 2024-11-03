@@ -53,10 +53,6 @@ public enum LottoRank {
         return matchCount;
     }
 
-    public boolean isMatchBonus() {
-        return matchBonus;
-    }
-
     private static boolean isNotRankNone(final LottoRank lottoRank) {
         return !Objects.equals(lottoRank, RANK_NONE);
     }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class WinningResult {
 
+    private static final int ZERO = 0;
     private final WinningNumbers winningNumbers;
     private final List<Lotto> lottos;
 
@@ -19,7 +20,7 @@ public class WinningResult {
         final Map<LottoRank, Integer> lottoRanks = initializeLottoRanks();
         for (Lotto lotto : lottos) {
             final LottoRank lottoRank = winningNumbers.matchWithLotto(lotto);
-            final Integer count = lottoRanks.getOrDefault(lottoRank, 0);
+            final Integer count = lottoRanks.getOrDefault(lottoRank, ZERO);
             lottoRanks.put(lottoRank, count + 1);
         }
         lottoRanks.remove(LottoRank.RANK_NONE);
@@ -30,7 +31,7 @@ public class WinningResult {
         final Map<LottoRank, Integer> lottoRanks = new LinkedHashMap<>();
         final List<LottoRank> allLottoRankWithOutRankNone = LottoRank.findAllLottoRankWithOutRankNone();
         for (LottoRank lottoRank : allLottoRankWithOutRankNone) {
-            lottoRanks.put(lottoRank, 0);
+            lottoRanks.put(lottoRank, ZERO);
         }
         return lottoRanks;
     }

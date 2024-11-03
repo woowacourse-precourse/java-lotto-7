@@ -30,7 +30,8 @@ public class Lotto {
         final ListValidator listValidator = ListValidator.getInstance();
         final NumberValidator numberValidator = NumberValidator.getInstance();
         listValidator.validateSize(numbers, LottoRule.WINNING_NUMBER_SIZE)
-                .validateRange(numbers, number -> numberValidator.validateRange(number, 1, 45))
+                .validateRange(numbers,
+                        number -> numberValidator.validateRange(number, LottoRule.MIN_NUMBER, LottoRule.MAX_NUMBER))
                 .validateDuplicate(numbers);
     }
 
