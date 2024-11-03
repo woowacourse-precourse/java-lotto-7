@@ -13,6 +13,7 @@ import lotto.view.constant.UserInterfaceMessage;
 public class LottoView {
 
     public static final String DELIMITERS = ",";
+    public static final int LOTTO_PRICE = 1000;
 
     public void guideInputMoney(){
         System.out.println(UserInterfaceMessage.GUIDE_INPUT_MONEY);
@@ -36,6 +37,14 @@ public class LottoView {
         validateIntString(money);
 
         return money;
+    }
+
+    public int readBuyingLottoCount(){
+
+        String rawMoney = this.readMoney();
+        int money = this.parseInt(rawMoney);
+
+        return money/ LottoView.LOTTO_PRICE;
     }
 
     public List<Integer> readWinningNumbers(){

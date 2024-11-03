@@ -34,7 +34,8 @@
   - [x] return winning info of created Lottos
 
 - provide user interface
-  - [ ] read input money from user
+  - [ ] read input money from user 
+  - [ ] calculate a number of Lotto user buy
   - [ ] read input winning number and bonus number from user
   - [ ] print bought Lotto info
   - [ ] print winning Lotto info from bough Lotto info
