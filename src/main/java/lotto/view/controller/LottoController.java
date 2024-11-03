@@ -22,6 +22,7 @@ public class LottoController {
         int bonusNumber = requestBonusNumber(winningNumbers);
 
         WinningResult result = new WinningResult(purchasedLottos, winningNumbers, bonusNumber);
+        double profitRate = result.getProfitRate(inputAmount);
     }
 
     private Amount requestAmount() {
