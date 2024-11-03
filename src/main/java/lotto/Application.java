@@ -10,12 +10,8 @@ public class Application {
         List <Integer> winNumbers = inputWinNumbers();
         Integer bonusNumber = inputBonusNumber(winNumbers);
 
-        LottoStatistics statistics = new LottoStatistics();
-
-        for (Lotto lotto : lottos) {
-            LottoResult result = lotto.checkWinning(winNumbers, bonusNumber);
-            statistics.recordWin(result);
-        }
+        LottoService lottoService = new LottoService();
+        LottoStatistics statistics = lottoService.calculateStatistics(lottos, winNumbers, bonusNumber);
 
         Print.printStatistics(statistics.getStatistics());
     }
