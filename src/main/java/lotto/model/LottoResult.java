@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.NumberFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -40,7 +41,8 @@ public class LottoResult {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (PrizeSheet prize : PrizeSheet.values()) {
-            System.out.println(prize.getMatchCount() + "개 일치 (" + prize.getPrize() + "원) - " + result.get(prize) + "개");
+            String formattedPrize = NumberFormat.getInstance().format(prize.getPrize());
+            System.out.println(prize.getMatchCount() + "개 일치 (" + formattedPrize + "원) - " + result.get(prize) + "개");
         }
     }
 
