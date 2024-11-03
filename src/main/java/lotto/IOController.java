@@ -7,7 +7,8 @@ public class IOController {
     private static String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    Validator validator = new Validator();
+    private static String OUTPUT_PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
+
 
     public String inputPurchaseAmount() {
         String purchaseAmountInput;
@@ -28,6 +29,14 @@ public class IOController {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         bonusNumberInput = Console.readLine();
         return bonusNumberInput;
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + OUTPUT_PURCHASE_COUNT_MESSAGE);
+        for (Lotto lotto : lottos) {
+            printLotto(lotto.getNumbers());
+        }
+        System.out.println();
     }
 
     public void printLotto(List<Integer> numbers) {
