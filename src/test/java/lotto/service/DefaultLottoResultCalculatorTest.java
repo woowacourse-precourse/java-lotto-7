@@ -14,9 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DefaultLottoResultCalculatorTest {
     private static final DefaultLottoResultCalculator defaultLottoResultCalculator = new DefaultLottoResultCalculator();
-    private List<Lotto> purchasedLottos;
-    private WinningLotto winningLotto;
-    private LottoResult lottoResult;
 
     @Test
     void 맵에_결과_저장_성공() {
@@ -28,12 +25,13 @@ class DefaultLottoResultCalculatorTest {
 
         Lotto winning = new Lotto(List.of(5, 6, 7, 8, 9, 10));
 
-        purchasedLottos = List.of(two_match, three_match, three_match_2, bonus_match, zero);
-        winningLotto = new WinningLotto(winning, new BonusNum(2, winning.getNumbers()));
+        List<Lotto> purchasedLottos = List.of(two_match, three_match, three_match_2, bonus_match, zero);
+        WinningLotto winningLotto = new WinningLotto(winning, new BonusNum(2, winning.getNumbers()));
 
-        lottoResult = defaultLottoResultCalculator.calculateResult(purchasedLottos, winningLotto);
+        LottoResult lottoResult = defaultLottoResultCalculator.calculateResult(purchasedLottos, winningLotto);
 
         Map<WinningResult, Integer> results = lottoResult.getResults();
+
         assertThat(results.get(WinningResult.THREE)).isEqualTo(2);
         assertThat(results.get(WinningResult.BONUS)).isEqualTo(1);
     }

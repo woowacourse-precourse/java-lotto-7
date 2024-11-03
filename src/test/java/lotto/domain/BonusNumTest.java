@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class BonusNumTest {
 
@@ -15,15 +15,15 @@ class BonusNumTest {
 
     @Test
     void 보너스번호가_당첨로또번호에_있는_번호() {
-        assertThatThrownBy(() -> new BonusNum(3, lotto.getNumbers()))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BonusNum(3, lotto.getNumbers()));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void 보너스번호가_로또_최대나_최소를_벗어남(int bonusNum) {
-        assertThatThrownBy(() -> new BonusNum(bonusNum, lotto.getNumbers()))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new BonusNum(bonusNum, lotto.getNumbers()));
     }
 
     @Test
