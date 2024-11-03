@@ -6,7 +6,7 @@ import java.util.List;
 public class TempLottos {
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-    public TempLottos(List<Integer> lottoNumber) {
+    public void add(List<Integer> lottoNumber) {
         this.lottoNumbers.add(lottoNumber);
     }
 
