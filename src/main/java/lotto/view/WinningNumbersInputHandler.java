@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbersInputHandler {
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     public static List<Integer> promptGetWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
@@ -23,14 +24,14 @@ public class WinningNumbersInputHandler {
     public static List<Integer> validateWinningNumbersAreInteger(String input) {
         List<String> inputConvertedBySplit = List.of(input.split(","));
         if (inputConvertedBySplit.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호들은 정수여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호들은 정수여야 합니다.");
         }
         List<Integer> winningNumbers = new ArrayList<>();
         for (String el : inputConvertedBySplit) {
-            try{
+            try {
                 winningNumbers.add(Integer.parseInt(el));
             } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호들은 정수여야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호들은 정수여야 합니다.");
             }
         }
         return winningNumbers;
@@ -39,7 +40,7 @@ public class WinningNumbersInputHandler {
     public static void validateWinningNumbersRange(List<Integer> winningNumbers) {
         for (Integer num : winningNumbers) {
             if (num < 1 || 45 < num) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 정수 값이어야 합니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 1에서 45 사이의 정수 값이어야 합니다.");
             }
         }
     }

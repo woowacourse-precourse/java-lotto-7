@@ -81,7 +81,7 @@ public class LottoServiceTest {
     }
 
     @Test
-    void 로또_당첨금_총합_계산이_올바른지_테스트() {
+    void 수익률_계산이_올바른지_테스트() {
         // given
         List<Rank> ranks = new ArrayList<>(List.of(
                 Rank.FIRST,
@@ -90,10 +90,10 @@ public class LottoServiceTest {
                 Rank.NONE
         ));
         int purchaseAmount = 5000;
-        int expected = (Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize()) / purchaseAmount * 100;
+        double expected = (Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize()) / purchaseAmount * 100;
 
         // when
-        int result = lottoService.calculateReturn(ranks, purchaseAmount);
+        double result = lottoService.calculateReturn(ranks, purchaseAmount);
 
         // then
         assertThat(result).isEqualTo(expected);

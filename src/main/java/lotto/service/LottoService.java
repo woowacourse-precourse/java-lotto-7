@@ -72,8 +72,8 @@ public class LottoService {
         return  result;
     }
 
-    public int calculateReturn(List<Rank> ranks, int purchaseAmount) {
-        int sum = 0;
+    public double calculateReturn(List<Rank> ranks, int purchaseAmount) {
+        double sum = 0.0;
         for (Rank rank : ranks) {
             sum += rank.getPrize();
         }
