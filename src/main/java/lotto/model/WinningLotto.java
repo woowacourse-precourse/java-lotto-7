@@ -15,4 +15,8 @@ public class WinningLotto {
 	private Lotto createWinningNumbers(List<Integer> winningNumbers, LottoCreator lottoCreator) {
 		return lottoCreator.createWinningLotto(winningNumbers);
 	}
+
+	private LottoNumber createBonusNumber(int number) {
+		return LottoNumber.from(number);
+	}
 }
