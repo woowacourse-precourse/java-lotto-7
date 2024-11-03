@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
 
-    @DisplayName("보너스 번호는 당첨 번호와 중복될 수 없다")
+    @DisplayName("보너스 번호는 당첨 번호와 중복될 수 없다.")
     @Test
     void should_ThrowException_When_BonusNumberDuplicatedWithWinningNumbers() {
         // given
@@ -22,10 +22,10 @@ class BonusNumberTest {
                 .hasMessage(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
     }
 
-    @DisplayName("보너스 번호는 1부터 45 사이의 숫자여야 한다")
+    @DisplayName("보너스 번호는 1부터 45 사이의 숫자여야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 46, -1, 100})
-    void should_ThrowException_When_BonusNumberOutOfRange(int number) {
+    void should_ThrowException_When_BonusNumberOutOfLottoRange(int number) {
         // given
         WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
 
