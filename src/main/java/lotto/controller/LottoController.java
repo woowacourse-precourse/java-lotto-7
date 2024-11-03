@@ -12,19 +12,9 @@ import java.util.List;
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final String REGEX = "^([^,]+,){5}[^,]+$";
     private static List<Lotto> myLottos;
     private static Lotto winningNumbers;
     private static int bonusNumber;
-
-    public void run(){
-        try{
-            start();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     // 메인 실행 부
     public void start(){
@@ -36,13 +26,18 @@ public class LottoController {
         WinningNumbers();
         bonusNumber();
         calculateLottoResult(purchaseAmount * LOTTO_PRICE);
-
     }
     // 로또 개수
     public int lottoAmount(){
-        String purchasePrice = InputView.inputPurchasePrice();
-        LottoAmount lottoAmount = new LottoAmount(purchasePrice);
-        return lottoAmount.getAmount();
+        while (true) {
+            try {
+                String purchasePrice = InputView.inputPurchasePrice();
+                LottoAmount lottoAmount = new LottoAmount(purchasePrice);
+                return lottoAmount.getAmount();
+            } catch (IllegalArgumentException e){
+                // 예외 메시지는 이미 LottoAmount 클래스에서 출력됨
+            }
+        }
     }
 
     // 구매 금액만큼 내 로또 번호 생성
@@ -58,15 +53,21 @@ public class LottoController {
 
     // 입력 우승 번호 처리
     public static void WinningNumbers(){
-        String inputWinningNumbers = InputView.inputWinningNumber();
-        List<Integer> splitWinningNumbers = splitWinningNumbers(inputWinningNumbers);
-        winningNumbers = new Lotto(splitWinningNumbers);
+        while(true){
+            try{
+                String inputWinningNumbers = InputView.inputWinningNumber();
+                List<Integer> splitWinningNumbers = splitWinningNumbers(inputWinningNumbers);
+                winningNumbers = new Lotto(splitWinningNumbers);
+                break;
+            } catch (IllegalArgumentException e){
+                // 예외 메시지는 이미 splitWinningNumbers 메서드에서 출력됨
+            }
+        }
+
     }
 
     // 우승번호 입력값 나누기
     private static List<Integer> splitWinningNumbers (String inputWinningNumbers){
-
-        validateDeliminator(inputWinningNumbers);
         String[] splitResult = inputWinningNumbers.split(",");
         List<Integer> numbers = new ArrayList<>();
 
@@ -74,14 +75,6 @@ public class LottoController {
             numbers.add(convertToInt(string));
         }
         return numbers;
-    }
-
-    // 구분자가 다른 특수문자일때
-    private static void validateDeliminator(String inputWinningNumbers) {
-        if(!inputWinningNumbers.matches(REGEX)){
-            ExceptionMessage.delimiterException();
-            throw new IllegalArgumentException();
-        }
     }
 
     // 입력 번호 정수로 바꾸기
@@ -96,9 +89,16 @@ public class LottoController {
 
     // 보너스 번호 입력 및 유효 검사
     private static void bonusNumber(){
-        int IntegerBonusNumber = convertToInt(InputView.inputBonusNumber());
-        Lotto.validateBonusNumbers(winningNumbers.getNumbers(), IntegerBonusNumber);
-        bonusNumber = IntegerBonusNumber;
+        while(true){
+            try {
+                int IntegerBonusNumber = convertToInt(InputView.inputBonusNumber());
+                Lotto.validateBonusNumbers(winningNumbers.getNumbers(), IntegerBonusNumber);
+                bonusNumber = IntegerBonusNumber;
+                break;
+            } catch (IllegalArgumentException e){
+                // 예외 메시지는 이미 convertToInt 및 validateBonusNumbers 메서드에서 출력됨
+            }
+        }
     }
 
     private static void calculateLottoResult(int purchaseCost){
