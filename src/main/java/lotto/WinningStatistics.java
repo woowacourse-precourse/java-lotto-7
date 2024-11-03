@@ -40,11 +40,10 @@ public class WinningStatistics {
     }
 
     private int getMatchCount(Lotto lotto) {
-        return lotto.getLottoNumbers().stream()
+        return (int) lotto.getLottoNumbers().stream()
                 .filter(number -> winningLotto.getLottoNumbers().stream()
                         .anyMatch(Predicate.isEqual(number)))
-                .toList()
-                .size();
+                .count();
     }
 
     private WinningCategory determineCategory(Lotto lotto, int matchCount, boolean hasBonus) {
