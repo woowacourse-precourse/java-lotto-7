@@ -5,8 +5,9 @@ public enum NotificationMessage {
     WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PURCHASED_LOTTOS("%d개를 구매했습니다."),
-    MATCH_COUNT("%d개 일치 (%d원) - %d개"),
     PROFIT_RATE("총 수익률은 %.1f%%입니다."),
+    MATCH_COUNT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),  // 보너스 일치 포함 포맷
+    MATCH_COUNT_NO_BONUS("%d개 일치 (%s원) - %d개"),  // 보너스 일치 미포함 포맷
     DIVIDER("");
 
     private final String message;
