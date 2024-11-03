@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record LottoTicket(List<Lotto> lottoTicket) {
-
+    // 구입한 로또들을 티켓으로 관리
     private static final String DELIMITER = "\n";
 
     public int getSize() {

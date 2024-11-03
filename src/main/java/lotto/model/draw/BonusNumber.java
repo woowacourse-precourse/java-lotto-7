@@ -1,5 +1,5 @@
 package lotto.model.draw;
-
+// 보너스 넘버를 관리하는 객체
 public class BonusNumber {
 
     private static final String INVALID_EMPTY_MESSAGE = "[ERROR] 보너스 번호가 빈 값입니다.";
@@ -24,7 +24,8 @@ public class BonusNumber {
         int number = Integer.parseInt(stripped);
         return new BonusNumber(number);
     }
-
+    // 만일 Lotto관련된 번호를 Number라는 객체로 포장 한다면 번호 관련된 검증 책임들을 해당 객체에서 모두 담당하기 때문에
+    // input값에 대한 변환 및 검증 책임만 BonusNumber가 지면 되지 않을까 생각 중... 이와 관련된 리펙토링 진행해 보는 것도 좋을 것 같음..
     private static void validateEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INVALID_EMPTY_MESSAGE);
@@ -48,7 +49,7 @@ public class BonusNumber {
             throw new IllegalArgumentException(INVALID_RANGE_MESSAGE);
         }
     }
-
+    // WinningLotto와 BonusNumber를 하나의 객체에서 한번 더 관리한다면... 아래 보너스 번호 중복 여부 확인에 대한 책임은 그쪽으로 위임할 수 있지 않을까?
     public void checkDuplicationNumber(WinningLotto winningLotto) {
         if (winningLotto.isContain(number)) {
             throw new IllegalArgumentException(INVALID_DUPLICATION_MESSAGE);
