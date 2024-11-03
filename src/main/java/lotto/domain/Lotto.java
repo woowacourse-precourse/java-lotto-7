@@ -19,14 +19,15 @@ public class Lotto {
         validateDuplicate(numbers);
     }
 
-    private void validateLength(List<Integer> numbers){
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    private void validateDuplicate(List<Integer> numbers){
+
+    private void validateDuplicate(List<Integer> numbers) {
         long nonDuplicateNumberCount = numbers.stream().distinct().count();
-        if(nonDuplicateNumberCount != numbers.size()){
+        if (nonDuplicateNumberCount != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다. ");
         }
     }

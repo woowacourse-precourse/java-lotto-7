@@ -1,41 +1,60 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.LotteryMachine;
+import lotto.domain.LottoResultChecker;
 import lotto.domain.Money;
 import lotto.service.GameService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
     private final GameService gameService = new GameService();
+    private final Validator validator = new Validator();
 
+    public void lottoGameStart() {
 
-    public Money getPurchaseMoney(){
-        InputView.requestPurchaseMoney();
-        return new Money(Integer.parseInt(Console.readLine()));
-    }
+        Money money = gameService.createMoney(getPurchaseMoney());
 
-    public Lotto getWinningLotto(){
+        LotteryMachine lotteryMachine = gameService.purchaseLotto(money);
+        OutputView.printPurchaseLotto(lotteryMachine);
+
         InputView.requestWinningNumber();
-        String winningNumber = Console.readLine();
-        List<Integer> lottoNumbers = Arrays.stream(winningNumber.split(","))
-                .map(Integer::parseInt)
-                .toList();
-        return new Lotto(lottoNumbers);
+        List<Integer> winningNumbers = getWinningNumbers();
+        InputView.requestBonusNumber();
+        int bonusBall = getBonusBall();
+
+        LottoResultChecker lottoResultChecker = gameService.lottoResult(winningNumbers, bonusBall, lotteryMachine);
+        OutputView.printLottoResult(lottoResultChecker);
+        OutputView.printLottoProfit(gameService.calculateProfitRate(lottoResultChecker, money));
     }
 
-    public int getBonusBall(){
-        InputView.requestBonusNumber();
-        String bonusBall = Console.readLine();
-        int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(bonusBall);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ ERROR ] 숫자를 입력해주세요");
+
+    public int getPurchaseMoney() {
+        boolean valid = false;
+        int money = 0;
+        while (!valid) {
+            try {
+                InputView.requestPurchaseMoney();
+                String input = Console.readLine();
+                money = validator.validateConvertToNumber(input);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + System.lineSeparator());
+            }
         }
-        return bonusNumber;
+        return money;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        String winningNumber = Console.readLine();
+        return validator.validateIsNumeric(winningNumber);
+    }
+
+    public int getBonusBall() {
+        String bonusBall = Console.readLine();
+        return validator.validateConvertToNumber(bonusBall);
     }
 
 }

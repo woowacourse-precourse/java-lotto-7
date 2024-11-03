@@ -8,10 +8,13 @@ public class Money {
         this.paymentAmount = paymentAmount;
     }
 
-    private void validateMoneyUnit(int money){
-        if(money % LotteryMachine.LOTTO_PRICE != 0){
-            throw new IllegalArgumentException("[ ERROR ] 로또는 1000원 단위로 구매가능합니다.");
-        }
+    public int getPaymentAmount() {
+        return paymentAmount;
     }
 
+    private void validateMoneyUnit(int money) {
+        if (money % LotteryMachine.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매가능합니다.");
+        }
+    }
 }

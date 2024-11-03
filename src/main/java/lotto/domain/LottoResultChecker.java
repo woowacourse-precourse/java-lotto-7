@@ -15,8 +15,8 @@ public class LottoResultChecker {
         this.lottos = lotto;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public Map<Rank, Integer> getRankCount() {
+        return rankCount;
     }
 
     public int findMatchCount(Lotto lotto) {
@@ -25,15 +25,16 @@ public class LottoResultChecker {
         lottoNumbers.retainAll(winningNumbers);
         return lottoNumbers.size();
     }
-    public boolean findBonusBallMatch(Lotto lotto){
-        int bonusBall = lottoRaffle.getBonusBall();
-        return lotto.getNumbers().stream().anyMatch( number -> number == bonusBall);
+
+    public boolean findBonusBallMatch(Lotto lotto) {
+        int bonusBall = lottoRaffle.getBonusNumber();
+        return lotto.getNumbers().stream().anyMatch(number -> number == bonusBall);
     }
 
-    public Map<Rank,Integer> findRank(){
-        for(Lotto lotto : lottos){
-            Rank rank = Rank.findRank(findMatchCount(lotto),findBonusBallMatch(lotto));
-            rankCount.put(rank, rankCount.getOrDefault(rank,0) + 1);
+    public Map<Rank, Integer> findRank() {
+        for (Lotto lotto : lottos) {
+            Rank rank = Rank.findRank(findMatchCount(lotto), findBonusBallMatch(lotto));
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
         }
         return rankCount;
     }

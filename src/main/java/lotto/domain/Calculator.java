@@ -18,18 +18,18 @@ public class Calculator {
         return profitRate;
     }
 
-    private void calculateProfitRate(){
+    private void calculateProfitRate() {
 
         int paymentAmount = money.getPaymentAmount();
-        lottoResultChecker.findRank();
+        //lottoResultChecker.findRank();
         Map<Rank, Integer> rankCount = lottoResultChecker.getRankCount();
 
         double totalProfit = 0;
-        for(Entry<Rank,Integer> entry : rankCount.entrySet()){
+        for (Entry<Rank, Integer> entry : rankCount.entrySet()) {
             int prize = entry.getKey().getPrize();
             Integer count = entry.getValue();
             totalProfit += (prize * count);
         }
-        profitRate = (totalProfit /paymentAmount) * 100;
+        profitRate = (totalProfit / paymentAmount) * 100;
     }
 }
