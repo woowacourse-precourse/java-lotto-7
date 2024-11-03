@@ -43,6 +43,16 @@ public class NumberValidator {
         }
     }
 
+    public boolean duplicateNumber(List<Integer> winningNumbers, int bonusNumber) {
+        try {
+            checkBonusNumberInWinningNumbers(winningNumbers, bonusNumber);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
     private void checkEmptyNumber(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 번호를 입력해주세요.");
@@ -79,6 +89,15 @@ public class NumberValidator {
     private void checkBonusNumberRange(int bonusNumber) {
         if (1 > bonusNumber || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수입니다.");
+        }
+    }
+
+    private void checkBonusNumberInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        Set<Integer> check = new HashSet<>(winningNumbers);
+        check.add(bonusNumber);
+
+        if (check.size() == winningNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다. " + winningNumbers);
         }
     }
 }

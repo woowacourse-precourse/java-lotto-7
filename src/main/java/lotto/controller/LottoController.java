@@ -25,7 +25,7 @@ public class LottoController {
         outputView.printAllLottoNumbers(lottos);
 
         List<Integer> winningNumbers = inputService.promptAndValidateWinningNumbers();
-        int bonusNumber = inputService.promptAndValidateBonusNumber();
+        int bonusNumber = inputService.promptAndValidateBonusNumber(winningNumbers);
         int totalPrizeMoney = lottoService.getTotalPrizeMoney(lottos, winningNumbers, bonusNumber);
 
         outputView.printWinningResult();

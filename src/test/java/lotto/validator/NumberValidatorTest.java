@@ -3,6 +3,7 @@ package lotto.validator;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,20 @@ class NumberValidatorTest {
         assertTrue(numberValidator.validateWinningNumbers("1,2,3,4,5,6,"));
     }
 
-    // Bonus Number Tests
+    @Test
+    @DisplayName("실패 - 보너스 번호가 당첨 번호와 중복되는 경우")
+    void 보너스_번호_중복_테스트() {
+        assertFalse(numberValidator.duplicateNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 6));
+        assertFalse(numberValidator.duplicateNumber(Arrays.asList(10, 15, 20, 25, 30, 35), 25));
+    }
+
+    @Test
+    @DisplayName("성공 - 보너스 번호가 당첨 번호와 중복되지 않는 경우")
+    void 보너스_번호_중복_아닐경우_테스트() {
+        assertTrue(numberValidator.duplicateNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 7));
+        assertTrue(numberValidator.duplicateNumber(Arrays.asList(10, 15, 20, 25, 30, 35), 40));
+    }
+
     @Test
     @DisplayName("실패 - 공백이거나 빈 값일 경우")
     void 보너스_번호_검증_테스트_공백_빈값() {

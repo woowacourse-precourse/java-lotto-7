@@ -36,11 +36,14 @@ public class InputService {
         return NumberParser.toNumbers(input);
     }
 
-    public int promptAndValidateBonusNumber() {
+    public int promptAndValidateBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
         do {
             input = inputView.promptBounusNumber();
             pass = numberValidator.validateBonusNumber(input);
+            bonusNumber = Integer.parseInt(input);
+            pass = numberValidator.duplicateNumber(winningNumbers, bonusNumber);
         } while (!pass);
-        return Integer.parseInt(input);
+        return bonusNumber;
     }
 }
