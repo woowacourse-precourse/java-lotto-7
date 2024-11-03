@@ -1,6 +1,7 @@
 package lotto;
 
-성import dto.Rank;
+import dto.Rank;
+import dto.Rank;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
