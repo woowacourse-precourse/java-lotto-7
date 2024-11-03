@@ -12,7 +12,6 @@ public class Application {
         List<Lotto> purchasedLottos = purchaseLottos(lottoCount);
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber(winningLotto.getNumbers());
-        //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
         showResult(purchasedLottos, winningLotto, bonusNumber);
     }
 
@@ -97,8 +96,22 @@ public class Application {
     }
 
     private static void showResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
-        int[] rankCount = new int[6];
+        int[] rankCount = calculateRank(purchasedLottos, winningLotto, bonusNumber);
+        printStatistics(rankCount);
+        calculateYield(rankCount,purchasedLottos.size()*1000);
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + rankCount[5] + "개");
+        System.out.println("4개 일치 (50,000원) - " + rankCount[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount[1] + "개");
+        calculateYield(rankCount, purchasedLottos.size()*1000);
+    }
+
+    private static int[] calculateRank(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        int[] rankCount = new int[6];
         for (Lotto lotto : purchasedLottos) {
             int matchCount = getMatchCount(lotto.getNumbers(), winningLotto.getNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
@@ -123,14 +136,7 @@ public class Application {
                 rankCount[5]++;
             }
         }
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + rankCount[5] + "개");
-        System.out.println("4개 일치 (50,000원) - " + rankCount[4] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount[1] + "개");
-        calculateYield(rankCount, purchasedLottos.size()*1000);
+        return rankCount;
     }
 
     private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
