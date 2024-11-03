@@ -82,7 +82,7 @@ class LottoDrawTest {
 
     @ParameterizedTest
     @MethodSource("returnRateFactory")
-    public void 수익률_테스트(double totalPrize, int amountValue, double expected) throws Exception {
+    public void 수익률_테스트(long totalPrize, int amountValue, double expected) throws Exception {
         //Given
         Amount amount = new Amount(amountValue);
 

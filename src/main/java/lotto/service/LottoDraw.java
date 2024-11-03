@@ -43,15 +43,15 @@ public class LottoDraw {
         }
     }
 
-    public double calcTotalPrize() {
-        double totalPrize = 0.0;
+    public long calcTotalPrize() {
+        long totalPrize = 0L;
         for (LottoRank key : LottoRank.values()) {
             totalPrize += LottoWinningRule.getPrize(key) * statistics.search(key);
         }
         return totalPrize;
     }
 
-    public double calcReturnRate(double totalPrize, Amount amount) {
-        return Math.round(totalPrize / amount.getValue() * PERCENTAGE * DECIMAL_PLACE) / DECIMAL_PLACE;
+    public double calcReturnRate(long totalPrize, Amount amount) {
+        return Math.round((double) totalPrize / amount.getValue() * PERCENTAGE * DECIMAL_PLACE) / DECIMAL_PLACE;
     }
 }
