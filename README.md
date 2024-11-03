@@ -23,9 +23,9 @@ src/main/java/lotto/
 │   └── 뷰(View)/
 │           ├── 입력                # 사용자 입력 처리
 │           └── 출력                # 결과 출력 처리
-└── test/java/lotto/ 
-            ├── ApplicationTest      # 통합 테스트
-            └── LottoTest            # 단위 테스트
+test/java/lotto/
+├── ApplicationTest      # 통합 테스트
+└── LottoTest            # 단위 테스트
 ```
 
 ## 예외 처리 목록 ✅
@@ -56,7 +56,7 @@ src/main/java/lotto/
 + Lotto의 패키지를 변경할 수 있다.
 
 ### 개인 목표(공통 피드백 및 요구 사항)
-- 하드코딩하지 않기
+- 하드코딩 줄이기
 - 명명에 자료형쓰지 않기
     * 메서드명도 포함인가..?
 - API 와 컬렉션 활용하기
