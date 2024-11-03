@@ -94,5 +94,42 @@ public class Application {
         if (Collections.frequency(winningNumbers, bonusNumber) != 1) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
         }
+
+        // 6. 당첨 여부 확인
+        int firstCount = 0;
+        int secondCount = 0;
+        int thirdCount = 0;
+        int fourthCount = 0;
+        int fifthCount = 0;
+
+        for (List<Integer> purchaseNumbers : purchaseLottos) {
+            int matchCount = 0;
+            boolean bonusMatch = false;
+
+            // 6-1. 구매한 로또 번호와 당첨 로또 번호가 몇 개 일치하는지 확인
+            for (int number : purchaseNumbers) {
+                if (winningNumbers.contains(number)) {
+                    matchCount++;
+                }
+            }
+
+            // 6-2. 만약 5개가 일치한다면 보너스 볼 일치 여부 확인
+            if (matchCount == 5 & purchaseNumbers.contains(bonusNumber)) {
+                bonusMatch = true;
+            }
+
+            // 6-3. 일치한 수에 따라 해당 등수 개수 추가
+            if (matchCount == 6) {
+                firstCount++;
+            } else if (matchCount == 5 & bonusMatch) {
+                secondCount++;
+            } else if (matchCount == 5) {
+                thirdCount++;
+            } else if (matchCount == 4) {
+                fourthCount++;
+            } else if (matchCount == 3) {
+                fifthCount++;
+            }
+        }
     }
 }
