@@ -12,12 +12,12 @@ public enum LottoRank {
     FIRST(6, 2000000000L, false);
 
     private final Integer sameNumberCount;
-    private final Long reward;
+    private final Long profit;
     private final Boolean isSecondRank;
 
-    LottoRank(Integer sameNumberCount, Long reward, Boolean isSecondRank) {
+    LottoRank(Integer sameNumberCount, Long profit, Boolean isSecondRank) {
         this.sameNumberCount = sameNumberCount;
-        this.reward = reward;
+        this.profit = profit;
         this.isSecondRank = isSecondRank;
     }
 
@@ -25,12 +25,16 @@ public enum LottoRank {
         return sameNumberCount;
     }
 
-    public Long getReward() {
-        return reward;
+    public Long getProfit() {
+        return profit;
     }
 
     public Boolean isSecondRank() {
         return isSecondRank;
+    }
+
+    public Long calculateProfitByCount(Long winningCount) {
+        return profit * winningCount;
     }
 
     public static LottoRank findRank(Integer sameNumberCount, Boolean isSecondRank) {
