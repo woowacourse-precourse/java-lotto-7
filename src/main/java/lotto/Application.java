@@ -52,6 +52,12 @@ public class Application {
             }
         }
 
+        try {
+            Lotto countOfWinningNumbers = new Lotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
 
         System.out.println("보너스 번호를 입력해 주세요.");
 
