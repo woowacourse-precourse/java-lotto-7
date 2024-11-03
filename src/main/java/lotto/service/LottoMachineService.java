@@ -1,14 +1,20 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.Member;
 import lotto.util.LottoParser;
 import lotto.util.LottoValidator;
 
 public class LottoMachineService {
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
+
     private final LottoMachine lottoMachine = LottoMachine.getInstance();
-    private Lotto winningLotto;
+    private final Member member = Member.getInstance();
 
     public void inputLottoPurchaseAmount(String purchaseAmount) {
         int validPrice = LottoValidator.validNumber(purchaseAmount);
@@ -26,7 +32,13 @@ public class LottoMachineService {
         lottoMachine.saveWinningNumbers(winningNumbers);
     }
 
-    // TODO: 로또 번호들을 발급한다.
+    public void issueLottos() {
+        int numberOfIssues = LottoParser.parsingPrice(lottoMachine.getPurchaseAmount());
+        for (int number = 0; number < numberOfIssues; number++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+            member.saveIssuedLotto(new Lotto(numbers));
+        }
+    }
 
     // TODO: 사용자의 로또 번호와 비교한다.
 
