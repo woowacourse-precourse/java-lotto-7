@@ -15,18 +15,18 @@ public class DefaultNumberGenerator implements NumberGenerator<String, WinningNu
     private static final int SPLIT_NO_LIMIT = -1;
 
     @Override
-    public MainNumber registerWinningNumber(String winningNumberInput) {
-        List<Integer> winningNumber = Arrays.stream(winningNumberInput.split(NUMBER_DELIMITER, SPLIT_NO_LIMIT))
+    public MainNumber registerMainNumber(String mainNumberInput) {
+        List<Integer> mainNumber = Arrays.stream(mainNumberInput.split(NUMBER_DELIMITER, SPLIT_NO_LIMIT))
                 .map(String::trim)
                 .map(Converter::toInteger)
                 .collect(Collectors.toList());
-        return new MainNumber(winningNumber);
+        return new MainNumber(mainNumber);
     }
 
     @Override
-    public BonusNumber registerBonusNumber(WinningNumbersDto allWinningNumber) {
-        int bonusNumber = Converter.toInteger(allWinningNumber.bonusNumber());
-        if (allWinningNumber.mainNumber().contains(bonusNumber)) {
+    public BonusNumber registerBonusNumber(WinningNumbersDto winningNumbers) {
+        int bonusNumber = Converter.toInteger(winningNumbers.bonusNumber());
+        if (winningNumbers.mainNumber().contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
         }
         return new BonusNumber(bonusNumber);

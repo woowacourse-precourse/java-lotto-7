@@ -11,12 +11,12 @@ public class InputView {
         return purchaseAmount;
     }
 
-    public String inputWinningNumber() {
+    public String inputMainNumber() {
         System.out.println(System.lineSeparator()
                 + "당첨 번호를 입력해 주세요.");
-        String winningNumbersInput = Console.readLine();
-        InputValidator.validateGeneralValueInput(winningNumbersInput);
-        return winningNumbersInput;
+        String mainNumbersInput = Console.readLine();
+        InputValidator.validateGeneralValueInput(mainNumbersInput);
+        return mainNumbersInput;
     }
 
     public String inputBonusNumber() {

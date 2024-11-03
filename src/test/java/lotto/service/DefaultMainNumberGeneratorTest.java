@@ -17,16 +17,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class DefaultMainNumberGeneratorTest {
     private final NumberGenerator numberGenerator = new DefaultNumberGenerator();
     @Test
-    @DisplayName("[success] 당첨번호를 split해 순서대로 저장하여 WinningNumber를 생성한다.")
-    void splitAndcreateWinningNumber() {
+    @DisplayName("[success] 당첨번호를 split해 순서대로 저장하여 MainNumber를 생성한다.")
+    void splitAndcreateMainNumber() {
         String testNumbers = "1,2,3,4,5,6";
 
-        MainNumber mainNumber = numberGenerator.registerWinningNumber(testNumbers);
-        List<Integer> winningNumberList = mainNumber.numbers();
+        MainNumber mainNumber = numberGenerator.registerMainNumber(testNumbers);
+        List<Integer> mainNumberList = mainNumber.numbers();
 
         for (int i = 0; i < 6; i++) {
-            int expectedWinningNumber = i + 1;
-            assertThat(winningNumberList.get(i)).isEqualTo(expectedWinningNumber);
+            int expectedMainNumber = i + 1;
+            assertThat(mainNumberList.get(i)).isEqualTo(expectedMainNumber);
         }
     }
 
@@ -35,7 +35,7 @@ public class DefaultMainNumberGeneratorTest {
     @ValueSource(strings = {" 45", "45 ", "    45", "45   "})
     void success_WhenBlankExistsBetweenNumberAndNumber(String numberWithBlank) {
         String testNumber = "1,2,3,4,5," + numberWithBlank;
-        assertThatCode(() -> numberGenerator.registerWinningNumber(testNumber))
+        assertThatCode(() -> numberGenerator.registerMainNumber(testNumber))
                 .doesNotThrowAnyException();
     }
 
@@ -44,7 +44,7 @@ public class DefaultMainNumberGeneratorTest {
     @ValueSource(strings = {"3 3", "33 3", "3   3", "3@3", "33@3", "3 @ 3"})
     void fail_IfNonIntegerExistsInsideNumber(String numberWithNonInteger) {
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> numberGenerator.registerWinningNumber(numberWithNonInteger))
+                        () -> numberGenerator.registerMainNumber(numberWithNonInteger))
                 .withMessage(Exceptions.NOT_POSITIVE_INTEGER.getMessage());
     }
 }

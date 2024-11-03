@@ -30,7 +30,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = purchaseLottos();
         Lottos lottos = issueLottos(purchaseAmount);
         outputIssuedLottos(lottos);
-        MainNumber mainNumber = pickWinningNumber();
+        MainNumber mainNumber = pickMainNumber();
         BonusNumber bonusNumber = pickBonusNumber(mainNumber);
         WinningResults winningResults = checkWinningResults(lottos, mainNumber, bonusNumber);
         outputWinningResults(winningResults, purchaseAmount);
@@ -54,13 +54,13 @@ public class LottoController {
         outputView.outputIssuedLottos(lottos);
     }
 
-    private MainNumber pickWinningNumber() {
+    private MainNumber pickMainNumber() {
         try {
-            String winningNumberInput = inputView.inputWinningNumber();
-            return numberGenerator.registerWinningNumber(winningNumberInput);
+            String mainNumberInput = inputView.inputMainNumber();
+            return numberGenerator.registerMainNumber(mainNumberInput);
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
-            return pickWinningNumber();
+            return pickMainNumber();
         }
     }
 
