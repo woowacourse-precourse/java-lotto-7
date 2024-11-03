@@ -7,9 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class ProfitCalculator {
-    private Map<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
+    private Map<LottoRank, Integer> rankCounts;
+    double profitRate;
 
     private void initializeRankCount() {
+        rankCounts = new EnumMap<>(LottoRank.class);
         for (LottoRank rank : LottoRank.values()) {
             rankCounts.put(rank, 0);
         }
@@ -35,7 +37,18 @@ public class ProfitCalculator {
         }
     }
 
-    public void calculateProfit(){
+    public void calculateProfit(int purchasePrice){
+        int profitPrice=0;
+        for (Map.Entry<LottoRank, Integer> rankCount : rankCounts.entrySet()) {
+            LottoRank lottoRank = rankCount.getKey();
+            int count = rankCount.getValue();
+            int lottoPrice = lottoRank.getPrize();
+            profitPrice = lottoPrice*count;
+        }
+        profitRate = (double)profitPrice/purchasePrice;
+    }
 
+    public double getProfitRate() {
+        return profitRate;
     }
 }
