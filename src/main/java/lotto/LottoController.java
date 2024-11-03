@@ -56,10 +56,10 @@ public class LottoController {
     }
 
     private List<Integer> createWinningNumbers(String numbers) {
-        String[] splitNumbers = numbers.split(",");
+        List<String> splitNumbers = Arrays.stream(numbers.split(","))
+            .map(String::trim).toList();
         try {
-            return Arrays.stream(splitNumbers)
-                .mapToInt(Integer::parseInt).boxed().toList();
+            return splitNumbers.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 정수여야 합니다.");
         }

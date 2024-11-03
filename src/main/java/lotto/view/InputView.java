@@ -16,7 +16,7 @@ public class InputView {
 
     public String readWinningNumbers() {
         String winningNumbers = readLine();
-        if (winningNumbers.matches("^(\\d+)(,\\d+)*$")) {
+        if (winningNumbers.matches("^(\\d+)(,( )*\\d+)*$")) {
             return winningNumbers;
         }
         throw new IllegalArgumentException("[ERROR] 당첨 번호는 정수이며 쉼표(,)로만 구분되어야 합니다.");
