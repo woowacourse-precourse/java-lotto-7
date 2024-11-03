@@ -16,8 +16,14 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> newNumbers=sortNumbers(numbers);
+        this.numbers = newNumbers;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> newNumbers = new ArrayList<>(numbers);
+        Collections.sort(newNumbers);
+        return newNumbers;
     }
 
     private void validate(List<Integer> numbers) {
