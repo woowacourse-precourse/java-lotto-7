@@ -13,6 +13,10 @@ public class Result {
         }
     }
 
+    public Map<Rank, Integer> getWinningLottos() {
+        return winningLottos;
+    }
+
     public void increaseWinningResult(Rank rank) {
         winningLottos.put(rank, winningLottos.get(rank) + 1);
     }

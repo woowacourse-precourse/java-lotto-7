@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Lotto {
@@ -18,5 +19,20 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public String toString() {
+        StringBuilder lottoNumberString = new StringBuilder("[");
+        Iterator <Integer> iterator = numbers.iterator();
+
+        while (iterator.hasNext()) {
+            lottoNumberString.append(iterator.next());
+            if (iterator.hasNext()) {
+                lottoNumberString.append(", ");
+            }
+        }
+        lottoNumberString.append("]");
+
+        return lottoNumberString.toString();
     }
 }
