@@ -1,7 +1,7 @@
 package lotto.lotto.infrastructure;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.lotto.domain.NumberGenerator;
+import lotto.lotto.service.NumberGenerator;
 
 import java.util.List;
 
