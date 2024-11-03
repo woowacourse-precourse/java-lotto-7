@@ -1,10 +1,12 @@
 package view;
 
-import dto.lottoWinningResultDto.LottoWinningResultRequest;
+import model.Lotto;
 
 public interface InputView {
 
     public String inputMoney();
 
-    public LottoWinningResultRequest inputLottoWinningResult();
+    public String inputWinningNumbers();
+
+    public String inputBonusNumber(Lotto lotto);
 }

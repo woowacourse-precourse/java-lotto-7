@@ -1,6 +1,6 @@
 package dto;
 
-import lotto.Lotto;
+import model.Lotto;
 
 public record LottoWinningNumbers(Lotto winningLotto, int bonusNumber) {
 }

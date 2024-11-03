@@ -2,7 +2,8 @@ package view;
 
 import dto.lottoDto.LottoResponse;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
-import lotto.Lotto;
+import java.text.NumberFormat;
+import model.Lotto;
 
 public class OutputViewImpl implements OutputView {
     @Override
@@ -15,11 +16,14 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printLottoResult(LottoWinningResultResponse lottoWinningResultResponse) {
+        NumberFormat f = NumberFormat.getInstance();
+        f.setGroupingUsed(false);
+
         System.out.println("당첨 통계");
         System.out.println(
                 "3개 일치 (5,000원) - " + lottoWinningResultResponse.lottoWinningResult().fifthPlaceNumber() + "개");
         System.out.println(
-                "4개 일치 (5,0000원) - " + lottoWinningResultResponse.lottoWinningResult().fourthPlaceNumber() + "개");
+                "4개 일치 (50,000원) - " + lottoWinningResultResponse.lottoWinningResult().fourthPlaceNumber() + "개");
         System.out.println(
                 "5개 일치 (1,500,000원) - " + lottoWinningResultResponse.lottoWinningResult().thirdPlaceNumber() + "개");
         System.out.println(

@@ -9,6 +9,7 @@ public class Money {
 
     public Money(String userInputMoney) {
         moneyPolicy = new MoneyPolicyImpl();
+
         moneyPolicy.checkMoneyPolicy(userInputMoney);
         this.money = userInputMoney;
     }

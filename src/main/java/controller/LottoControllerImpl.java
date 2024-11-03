@@ -7,13 +7,15 @@ import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import model.Lotto;
 import model.Money;
 import service.LottoService;
 import service.LottoServiceImpl;
 import view.InputView;
 import view.InputViewImpl;
 import view.OutputView;
+
+// TODO: 컨트롤러 리팩토링
 
 public class LottoControllerImpl implements LottoController {
     private final InputView inputView;
@@ -62,6 +64,7 @@ public class LottoControllerImpl implements LottoController {
 
     @Override
     public void runAnalyzeLotto(List<Lotto> issuedLotto) {
+
         LottoWinningNumbers lottoWinningNumbers = analyzeLottoStart();
         LottoWinningResultResponse lottoWinningResultResponse = analyzeLottoProgress(lottoWinningNumbers, issuedLotto);
         analyzeLottoEnd(lottoWinningResultResponse);

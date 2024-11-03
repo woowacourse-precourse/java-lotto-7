@@ -4,7 +4,7 @@ import dto.LottoWinningNumbers;
 import dto.lottoWinningResultDto.LottoWinningResult;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import model.Lotto;
 import model.Money;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,6 @@ class LottoServiceTest {
                 = new LottoWinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
 
         // when
-        // TODO: 로또 당첨 결과를 도출하는 메서드
         LottoWinningResult lottoWinningResult = lottoService.analyzeWinningResult(lottoWinningNumbers, lottos);
         LottoWinningResult expected = new LottoWinningResult(3, 2, 1, 1, 1);
 
@@ -81,8 +80,8 @@ class LottoServiceTest {
         // 로또 당첨 결과
         LottoWinningResult lottoWinningResult = new LottoWinningResult(1, 0, 0, 0, 0);
         int lottoCount = 2000000;
+        
         // when
-        // TODO: 당첨 결과를 가지고 무언가를 하는 친구와 예상 값
         double lottoRateOfReturn = lottoService.analyzeLottoRateOfReturn(lottoWinningResult, lottoCount);
         double expected = 100;
 

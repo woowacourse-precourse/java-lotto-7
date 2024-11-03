@@ -4,7 +4,7 @@ import dto.LottoWinningNumbers;
 import dto.lottoDto.LottoResponse;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.util.List;
-import lotto.Lotto;
+import model.Lotto;
 import model.Money;
 
 public interface LottoController {

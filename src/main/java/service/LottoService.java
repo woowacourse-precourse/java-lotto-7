@@ -6,7 +6,7 @@ import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.util.List;
-import lotto.Lotto;
+import model.Lotto;
 import model.Money;
 
 public interface LottoService {

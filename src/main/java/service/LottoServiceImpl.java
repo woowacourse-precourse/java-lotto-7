@@ -7,10 +7,13 @@ import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Lotto;
 import model.Money;
+import policy.BonusNumberPolicy;
+import policy.LottoPolicyImpl;
+import util.StringParser;
 import view.InputView;
 import view.InputViewImpl;
 import view.OutputView;
@@ -29,7 +32,8 @@ public class LottoServiceImpl implements LottoService {
     public Money inputLottoMoney() {
         String userInputMoney = inputView.inputMoney();
         try {
-            return new Money(userInputMoney);
+            Money money = new Money(userInputMoney);
+            return money;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLottoMoney();
@@ -38,9 +42,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public int calculatePurchasableLottoCount(Money _money) {
-
         int money = Integer.parseInt(_money.getMoney());
-
         return money / 1000;
     }
 
@@ -57,7 +59,7 @@ public class LottoServiceImpl implements LottoService {
 
     public Lotto issueOneLotto() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto);
+        lotto = lotto.stream().sorted().collect(Collectors.toList());
         return new Lotto(lotto);
     }
 
@@ -69,10 +71,34 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public LottoWinningResultRequest inputLottoWinningResult() {
-        return inputView.inputLottoWinningResult();
+        String winningNumbers = inputWinningNumbers();
+        String bonusNumber = inputBonusNumber(new Lotto(StringParser.parse(winningNumbers)));
+        return new LottoWinningResultRequest(winningNumbers, bonusNumber);
     }
 
-    // TODO: 리팩토링 하기
+    public String inputWinningNumbers() {
+        String winningNumbers = inputView.inputWinningNumbers();
+        try {
+            new LottoPolicyImpl().checkLottoPolicy(StringParser.parse(winningNumbers));
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    public String inputBonusNumber(Lotto lotto) {
+        String bonusNumber = inputView.inputBonusNumber(lotto);
+        try {
+            new BonusNumberPolicy().checkBonusNumberPolicy(bonusNumber, lotto);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber(lotto);
+        }
+
+    }
+
     @Override
     public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers,
                                                    List<Lotto> issuedLotto) {
@@ -80,61 +106,45 @@ public class LottoServiceImpl implements LottoService {
         List<Integer> lottoResult = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         for (Lotto lotto : issuedLotto) {
             int lottoRank = getRank(lottoWinningNumbers, lotto);
-            if (lottoRank == 1) {
-                lottoResult.set(0, lottoResult.get(0) + 1); // 1등 자리에 +1
+            if (lottoRank == 0) {
+                continue;
             }
-            if (lottoRank == 2) {
-                lottoResult.set(1, lottoResult.get(1) + 1); // 1등 자리에 +1
-            }
-            if (lottoRank == 3) {
-                lottoResult.set(2, lottoResult.get(2) + 1); // 1등 자리에 +1
-            }
-            if (lottoRank == 4) {
-                lottoResult.set(3, lottoResult.get(3) + 1); // 1등 자리에 +1
-            }
-            if (lottoRank == 5) {
-                lottoResult.set(4, lottoResult.get(4) + 1); // 1등 자리에 +1
-            }
+            lottoResult.set(lottoRank - 1, lottoResult.get(lottoRank - 1) + 1);
         }
 
         return new LottoWinningResult(lottoResult.get(0), lottoResult.get(1), lottoResult.get(2), lottoResult.get(3),
                 lottoResult.get(4));
     }
 
-    // TODO: 리팩토링 하기
-    public int getRank(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
-        Lotto winningLotto = lottoWinningNumbers.winningLotto();
+    private int getRank(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
+        int bonusNumber = lottoWinningNumbers.bonusNumber();
+        int result = compareWinningLotto(lottoWinningNumbers, lotto);
+        if (result == 6) {
+            return 1;
+        }
+        if (isContainedBonusNumber(lotto, bonusNumber) && result == 5) {
+            return 2;
+        }
+        if (result < 3) {
+            return 0;
+        }
 
+        return 8 - result;
+    }
+
+    private int compareWinningLotto(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
+        Lotto winningLotto = lottoWinningNumbers.winningLotto();
         int result = 0;
         for (Integer number : winningLotto.getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
                 result++;
             }
         }
+        return result;
+    }
 
-        if (result == 6) {
-            return 1;
-        }
-
-        if (lotto.getNumbers().contains(lottoWinningNumbers.bonusNumber())) {
-            if (result == 5) {
-                return 2;
-            }
-        }
-
-        if (!lotto.getNumbers().contains(lottoWinningNumbers.bonusNumber()) && result == 5) {
-            return 3;
-        }
-
-        if (result == 4) {
-            return 4;
-        }
-
-        if (result == 3) {
-            return 5;
-        }
-
-        return 0;
+    private boolean isContainedBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     @Override
@@ -145,7 +155,7 @@ public class LottoServiceImpl implements LottoService {
                 + lottoWinningResult.thirdPlaceNumber() * 1500000 + lottoWinningResult.fourthPlaceNumber() * 50000
                 + lottoWinningResult.fifthPlaceNumber() * 5000;
 
-        return lottoWinningAmount / money * 100;
+        return (double) Math.round(lottoWinningAmount / money * 1000) / 10;
     }
 
 
