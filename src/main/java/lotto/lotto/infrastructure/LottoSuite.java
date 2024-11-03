@@ -4,18 +4,18 @@ import lotto.lotto.service.LottoGenerator;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.service.PurchaseLottoTickets;
 import lotto.lotto.domain.BonusNumber;
-import lotto.lotto.service.BonusNumberCreatorService;
+import lotto.lotto.service.BonusNumberGenerator;
 import lotto.lotto.domain.WinningLotto;
-import lotto.lotto.service.WinningLottoCreatorService;
+import lotto.lotto.service.WinningLottoGenerator;
 
 public class LottoSuite implements LottoGenerator {
     private final PurchaseLottoTickets purchaseLottoTickets;
-    private final BonusNumberCreatorService bonusNumberCreator;
-    private final WinningLottoCreatorService winningLottoCreator;
+    private final BonusNumberGenerator bonusNumberCreator;
+    private final WinningLottoGenerator winningLottoCreator;
     public LottoSuite(
             PurchaseLottoTickets purchaseLottoTickets,
-            WinningLottoCreatorService winningLottoCreator,
-            BonusNumberCreatorService bonusNumberCreator
+            WinningLottoGenerator winningLottoCreator,
+            BonusNumberGenerator bonusNumberCreator
     ) {
         this.purchaseLottoTickets = purchaseLottoTickets;
         this.winningLottoCreator = winningLottoCreator;
