@@ -11,12 +11,12 @@ public enum Rank {
     ;
 
     private final Integer matchCount;
-    private final boolean requireBonusNumberMismatch;
+    private final boolean requireBonusNumberMatch;
     private final Integer prizeAmount;
 
-    Rank(Integer matchCount, boolean requireBonusNumberMismatch, Integer prizeAmount) {
+    Rank(Integer matchCount, boolean requireBonusNumberMatch, Integer prizeAmount) {
         this.matchCount = matchCount;
-        this.requireBonusNumberMismatch = requireBonusNumberMismatch;
+        this.requireBonusNumberMatch = requireBonusNumberMatch;
         this.prizeAmount = prizeAmount;
     }
 
@@ -24,8 +24,8 @@ public enum Rank {
         return matchCount;
     }
 
-    private boolean isRequireBonusNumberMismatch() {
-        return requireBonusNumberMismatch;
+    private boolean isRequireBonusNumberMatch() {
+        return requireBonusNumberMatch;
     }
 
     public Integer getPrizeAmount() {
@@ -42,10 +42,9 @@ public enum Rank {
     }
 
     private static boolean isRankMatched(Rank rank, Integer matchCount, boolean isBonusNumberMatched) {
-        if (rank.isRequireBonusNumberMismatch()) {
-            return rank.getMatchCount().equals(matchCount) && !isBonusNumberMatched;
+        if (rank.isRequireBonusNumberMatch()) {
+            return rank.getMatchCount().equals(matchCount) && isBonusNumberMatched;
         }
-        return rank.getMatchCount().equals(matchCount) ||
-                (rank.getMatchCount().equals(matchCount + 1) && isBonusNumberMatched);
+        return rank.getMatchCount().equals(matchCount);
     }
 }

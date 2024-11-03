@@ -108,8 +108,8 @@ class LottoServiceTest {
         WinningLotto winningTicket = lottoService.createWinningTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
         List<Lotto> lottoTickets = Arrays.asList(
                 Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
-                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 8)), // 2등
-                Lotto.of(Arrays.asList(1, 2, 3, 4, 7, 8)), // 3등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 7)), // 2등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 8)), // 3등
                 Lotto.of(Arrays.asList(1, 2, 3, 4, 8, 9)), // 4등
                 Lotto.of(Arrays.asList(1, 2, 3, 8, 9, 10)) // 5등
         );
@@ -132,7 +132,7 @@ class LottoServiceTest {
         // given
         WinningLotto winningTicket = lottoService.createWinningTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
         List<Lotto> lottoTickets = Arrays.asList(
-                Lotto.of(Arrays.asList(1, 2, 3, 4, 7, 8)), // 3등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 8)), // 3등
                 Lotto.of(Arrays.asList(1, 2, 3, 4, 8, 9)), // 4등
                 Lotto.of(Arrays.asList(1, 2, 3, 8, 9, 10)) // 5등
         );

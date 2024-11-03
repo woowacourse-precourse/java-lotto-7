@@ -8,7 +8,7 @@ public enum OutputMessage {
     PURCHASE_NUMBER_OUTPUT_MESSAGE("\n%d개를 구매했습니다."),
     WINNING_STATISTICS_OUTPUT_START_MESSAGE("\n당첨 통계\n---"),
     FIRST_PLACE_OUTPUT_MESSAGE("%d개 일치 (%,d원) - %d개"),
-    SECOND_PLACE_OUTPUT_MESSAGE("%d개 일치, 보너스 불 일치 (%,d원) - %d개"),
+    SECOND_PLACE_OUTPUT_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     THIRD_PLACE_OUTPUT_MESSAGE("%d개 일치 (%,d원) - %d개"),
     FOURTH_PLACE_OUTPUT_MESSAGE("%d개 일치 (%,d원) - %d개"),
     FIFTH_PLACE_OUTPUT_MESSAGE("%d개 일치 (%,d원) - %d개"),
