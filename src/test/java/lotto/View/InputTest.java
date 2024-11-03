@@ -43,4 +43,20 @@ public class InputTest {
                 .isThrownBy(() -> Input.NumberValidation(numbers))
                 .withMessage("당첨 번호는 1 이상 45 이하의 숫자이어야 합니다.");
     }
+
+    @Test
+    void 올바른_보너스_번호_입력() {
+        Input input = new Input();
+        int actual = input.BonusValidation(5);
+        Assertions.assertThat(actual).isEqualTo(5);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 50})
+    void 잘못된_보너스_번호_입력(int invalidBonus) {
+        Input input = new Input();
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> input.BonusValidation(invalidBonus))
+                .withMessage("보너스 번호는 1 이상 45 이하의 숫자이어야 합니다.");
+    }
 }

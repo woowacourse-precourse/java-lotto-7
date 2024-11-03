@@ -54,4 +54,22 @@ public class Input {
         }
         return numbers;
     }
+
+    public int InputBonus() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int Bonus = Integer.parseInt(Console.readLine());
+                return BonusValidation(Bonus);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int BonusValidation(int Bonus) {
+        if (1 <= Bonus && Bonus <= 45) {
+            return Bonus;
+        } throw new IllegalArgumentException("보너스 번호는 1 이상 45 이하의 숫자이어야 합니다.");
+    }
 }
