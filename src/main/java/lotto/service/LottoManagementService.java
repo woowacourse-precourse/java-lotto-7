@@ -141,5 +141,5 @@ public class LottoManagementService {
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue()) // 당첨금 * 당첨로또 수
                 .sum();
     }
-    
+
 }
