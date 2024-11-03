@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
+import lotto.model.Price;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
@@ -36,11 +38,16 @@ public class LottoController {
 
         // 당첨 번호 입력 받기
         List<Integer> winningNumbers = executeWithRetry(this::inputWinningNumbers);
-
+        System.out.println(winningNumbers);
         // 보너스 번호 입력 받기
         int bonusNumber = executeWithRetry(this::inputBonusNumber, winningNumbers);
 
         // 구매한 로또와 당첨 번호 비교
+        HashMap<Price, Integer> price = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            Price p = lotto.compareWithWinningNumber(winningNumbers, bonusNumber);
+            price.put(p, price.getOrDefault(p, 0) + 1);
+        }
 
         // 당첨 내역 출력
 
@@ -99,6 +106,7 @@ public class LottoController {
         String input = Console.readLine();
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt)
+                .sorted()
                 .boxed()
                 .toList();
         validateWinningNumbers(winningNumbers);
