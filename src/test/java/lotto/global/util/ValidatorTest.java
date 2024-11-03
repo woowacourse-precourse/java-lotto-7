@@ -4,6 +4,7 @@ import static lotto.global.constant.ErrorMessage.DIVISION_BY_ZERO;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
+import static lotto.global.constant.ErrorMessage.PRICE_CAN_NOT_BE_ZERO;
 import static lotto.global.util.Validator.validateBonusNumber;
 import static lotto.global.util.Validator.validatePrice;
 import static lotto.global.util.Validator.validateRateOfReturn;
@@ -92,5 +93,16 @@ class ValidatorTest {
         Assertions.assertThatThrownBy(() -> validateRateOfReturn(investmentMoney))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DIVISION_BY_ZERO);
+    }
+
+    @Test
+    void 구매_가격이_0일때_예외_발생() {
+        //given
+        String price = "0";
+
+        //then
+        Assertions.assertThatThrownBy(() -> validatePrice(price))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(PRICE_CAN_NOT_BE_ZERO);
     }
 }
