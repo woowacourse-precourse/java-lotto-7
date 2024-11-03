@@ -19,6 +19,7 @@ public class Customer {
 	private final int money;
 	private long prize;
 	private double profit;
+
 	private Customer(int money) {
 		validate(money);
 		this.money = money;
@@ -63,7 +64,7 @@ public class Customer {
 		return matchingCount;
 	}
 
-	private void validate(int money) {
+	private static void validate(int money) {
 		if (money < LOTTO_COST) {
 			throw new IllegalArgumentException(ExceptionMessage.LOWER_THAN_MINIMUM_LOTTO_PRICE.toString());
 		}
