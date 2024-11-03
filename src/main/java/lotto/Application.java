@@ -1,7 +1,14 @@
 package lotto;
 
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig config = new AppConfig();
+        LottoApp lottoApp = new LottoApp(
+            config.lottoGenerateController(),
+            config.lottoCheckController(),
+            config.lottoResultController());
+
+        lottoApp.run();
     }
 }
