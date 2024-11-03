@@ -2,7 +2,9 @@ package lotto.view;
 
 import static lotto.constants.LottoConstants.*;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 
@@ -30,6 +32,10 @@ public class OutputView {
         print(LINE_SPACE + BONUS_NUMBER_TEXT);
     }
 
+    public static void promptWinningResult() {
+        print(LINE_SPACE + WINNING_RESULT_TEXT + LINE_SPACE + DIVIDING_LINE);
+    }
+
     public static void printLottoTickets(List<Lotto> lottoTickets) {
         for (Lotto ticket : lottoTickets) {
             printTicket(ticket.getNumbers());
@@ -45,5 +51,28 @@ public class OutputView {
 
     public static void promptLottoCount(int lottoCount) {
         print(LINE_SPACE + lottoCount + LOTTO_COUNT_TEXT);
+    }
+
+    public static void printWinningResult(TreeMap<Integer, Integer> winningResult) {
+        winningResult.forEach((rank, winningCount) -> {
+            int matchCount = MATCH_COUNT_BY_RANK.get(rank);
+            String formattedPrizeAmount = formatPrizeAmount(rank);
+
+            if (matchCount == SECOND_RANK_MATCH_COUNT) {
+                print(String.format(SECOND_RANK_DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
+            }
+            if (matchCount != SECOND_RANK_MATCH_COUNT) {
+                print(String.format(DESCRIPTION, matchCount, formattedPrizeAmount, winningCount));
+            }
+        });
+    }
+
+    private static String formatPrizeAmount(int rank) {
+        int prizeAmount = PRIZE_AMOUNT_BY_RANK.get(rank);
+        return NumberFormat.getInstance().format(prizeAmount);
+    }
+
+    public static void printEarningRate(String earningRate) {
+        print(String.format(EARNING_RATE_TEXT, earningRate));
     }
 }

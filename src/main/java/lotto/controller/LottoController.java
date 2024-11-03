@@ -30,6 +30,16 @@ public class LottoController {
 
         Lotto winningNumbers = new Lotto(inputView.getInputWinningNumbers());
         Lotto bonusNumber = new Lotto(inputView.getInputBonusNumber());
+        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
+
+        lottoService.calculateWinningAmount();
+        TreeMap<Integer, Integer> winningResult = lottoService.getWinningResult();
+        promptWinningResult();
+        printWinningResult(winningResult);
+
+        lottoService.calculateEarningsRate();
+        String earningRate = lottoService.getEarningsRate();
+        printEarningRate(earningRate);
     }
 
     private int calculateLottoCount(int purchaseAmount) {
