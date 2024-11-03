@@ -9,7 +9,15 @@ import java.util.stream.Collectors;
 public class LottoView {
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+
+        int input = 0;
+
+        try{
+            input = Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 구매 금액은 숫자여야 합니다.");
+        }
+        return input;
     }
 
     public List<Integer> inputWinningNumbers() {
