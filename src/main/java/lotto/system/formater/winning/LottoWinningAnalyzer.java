@@ -1,4 +1,4 @@
-package lotto.system.formater;
+package lotto.system.formater.winning;
 
 import java.util.HashMap;
 import java.util.List;

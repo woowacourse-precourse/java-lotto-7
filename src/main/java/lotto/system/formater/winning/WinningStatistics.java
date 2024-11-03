@@ -1,6 +1,9 @@
-package lotto.system.formater;
+package lotto.system.formater.winning;
 
 import java.util.Map;
+import lotto.system.formater.profit.ProfitRateCalculator;
+import lotto.system.formater.profit.ProfitRateFormatter;
+import lotto.system.formater.winning.WinningFormatter;
 import lotto.system.utils.PrizeType;
 
 public class WinningStatistics {

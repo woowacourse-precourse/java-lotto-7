@@ -1,4 +1,4 @@
-package lotto.system.formater;
+package lotto.system.formater.profit;
 
 import java.util.Map;
 import lotto.system.utils.PrizeType;

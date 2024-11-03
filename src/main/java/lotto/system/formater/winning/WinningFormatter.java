@@ -1,4 +1,4 @@
-package lotto.system.formater;
+package lotto.system.formater.winning;
 
 import lotto.system.utils.PrizeType;
 

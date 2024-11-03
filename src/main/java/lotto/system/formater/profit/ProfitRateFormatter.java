@@ -1,4 +1,4 @@
-package lotto.system.formater;
+package lotto.system.formater.profit;
 
 public class ProfitRateFormatter { // 수익률을 환산
 
