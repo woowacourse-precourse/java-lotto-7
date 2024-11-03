@@ -1,6 +1,12 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
+import lotto.model.Calculator;
+import lotto.model.LotteryMachine;
+import lotto.model.LottoChecker;
+import lotto.model.WinningRank;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
 

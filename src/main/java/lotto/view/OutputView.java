@@ -1,6 +1,8 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.WinningRank;
 
 public class OutputView {
     private static final String PURCHASE_CONFIRM = "개를 구매했습니다.";
