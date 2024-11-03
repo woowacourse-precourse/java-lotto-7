@@ -52,4 +52,8 @@ public enum Rank {
                 .mapToLong(rank -> rank.prize)
                 .sum();
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.Map;
 import lotto.model.LottoTicket;
+import lotto.model.Rank;
 
 public class OutputView {
 
@@ -10,5 +12,14 @@ public class OutputView {
 
     public static void printLottoTicket(LottoTicket ticket) {
         System.out.println(ticket);
+    }
+
+    public static void printRankCounts(Map<Rank, Long> ranks) {
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.MISS) {
+                System.out.println(rank.getDescription() + " - " + ranks.getOrDefault(rank, 0L) + "개");
+            }
+        }
     }
 }
