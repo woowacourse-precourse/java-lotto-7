@@ -17,4 +17,13 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
     }
+
+    @Test
+    @DisplayName("당첨 번호에 중복된 값이 있는 경우 예외가 발생한다.")
+    void winningNumbersContainDuplicates() {
+        String input = "1,2,3,4,5,5";
+        assertThatThrownBy(() -> new WinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.DUPLICATE_WINNING_NUMBER);
+    }
 }
