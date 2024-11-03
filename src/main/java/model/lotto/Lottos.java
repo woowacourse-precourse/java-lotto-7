@@ -21,4 +21,8 @@ public class Lottos {
                 .map(Lotto::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

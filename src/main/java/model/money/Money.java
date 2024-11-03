@@ -25,4 +25,8 @@ public class Money {
     public int calculateLottoCount() {
         return (int) (value / LOTTO_PRICE.value);
     }
+
+    public long getValue() {
+        return value;
+    }
 }

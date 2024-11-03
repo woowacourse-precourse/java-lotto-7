@@ -15,8 +15,14 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public boolean isDuplicateBonus(Integer number) {
+    public boolean hasBonus(Integer number) {
         return numbers.contains(number);
+    }
+
+    public int countMatch(Lotto winning) {
+        return (int) numbers.stream()
+                .filter(winning.numbers::contains)
+                .count();
     }
 
     @Override

@@ -2,6 +2,7 @@ package config;
 
 import controller.LottoController;
 import service.LottoService;
+import service.ResultService;
 import view.InputView;
 import view.OutputView;
 
@@ -19,7 +20,7 @@ public class AppConfig {
 
     public LottoController lottoController() {
         return new LottoController(
-                inputView(), outputView(), lottoService()
+                inputView(), outputView(), lottoService(), resultService()
         );
     }
 
@@ -33,5 +34,9 @@ public class AppConfig {
 
     private LottoService lottoService() {
         return new LottoService();
+    }
+
+    private ResultService resultService() {
+        return new ResultService();
     }
 }
