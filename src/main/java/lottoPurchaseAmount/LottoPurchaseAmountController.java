@@ -9,7 +9,7 @@ public class LottoPurchaseAmountController {
         lottoPurchaseAmountValidator = new LottoPurchaseAmountValidator();
     }
 
-    public int runAndBringPurchaseAmount() {
+    public int getPurchaseAmount() {
         String lottoPurchaseAmount = lottoPurchaseAmountInputter.runAndBringInput();
         lottoPurchaseAmountValidator.validateAllThing(lottoPurchaseAmount);
 

@@ -13,7 +13,7 @@ public class LottoWinningNumberController {
         this.lottoWinningNumberValidator = new LottoWinningNumberValidator();
     }
 
-    public List<Integer> runAndBringWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         String lottoWinningNumber = lottoWinningNumberInputter.runAndBringInput();
         List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringSeperatedLottoWinningNumbers(
                 lottoWinningNumber);

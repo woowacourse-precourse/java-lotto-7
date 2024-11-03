@@ -1,13 +1,12 @@
 package lottoBonusNumber;
 
 import java.util.List;
+import utils.StaticFinalMessages;
 
 public class LottoBonusNumberValidator {
-    private final static int MINIMUM_LOTTO_NUMBER = 1;
-    private final static int MAXIMUM_LOTTO_NUMBER = 45;
-    private final static String ERROR_TEXT_INFRONT_OF_DETAILS = "[ERROR] ";
     private final static String RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_BONUS_NUMBER = "로또 보너스 번호로 1부터 45까지, 전에 입력한 로또 당첨 번호 6개와 중복되지 않는 숫자 한개를 입력해주세요";
-    private final static IllegalArgumentException EXCEPTION_LOTTO_BONUS_NUMBER = new IllegalArgumentException(ERROR_TEXT_INFRONT_OF_DETAILS + RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_BONUS_NUMBER);
+    private final static IllegalArgumentException EXCEPTION_LOTTO_BONUS_NUMBER = new IllegalArgumentException(
+            StaticFinalMessages.ERROR_TEXT_INFRONT_OF_DETAILS + RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_BONUS_NUMBER);
 
     public void validateAllThing(String bonusNumber, List<Integer> seperatedLottoWinningNumbers) {
         validateIsNumeric(bonusNumber);
@@ -27,7 +26,7 @@ public class LottoBonusNumberValidator {
     private void validateRangeOfNumbersGreaterThan1AndLessThan45(String bonusNumber) {
         int convertedBonusNumber = Integer.parseInt(bonusNumber);
 
-        if (convertedBonusNumber > MAXIMUM_LOTTO_NUMBER || convertedBonusNumber < MINIMUM_LOTTO_NUMBER) {
+        if (convertedBonusNumber > StaticFinalMessages.MAXIMUM_LOTTO_NUMBER || convertedBonusNumber < StaticFinalMessages.MINIMUM_LOTTO_NUMBER) {
             throw EXCEPTION_LOTTO_BONUS_NUMBER;
         }
     }
