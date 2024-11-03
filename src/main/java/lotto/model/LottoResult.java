@@ -22,27 +22,6 @@ public record LottoResult(List<LottoPrize> prizes, double rateOfReturn) {
         return new LottoResult(prizes, rateOfReturn);
     }
 
-    @Override
-    public List<LottoPrize> prizes() {
-        return List.copyOf(prizes);
-    }
-
-    public List<LottoPrize> getPrizeFor(int matchCount) {
-        return getPrizeFor(matchCount, false);
-    }
-
-    public List<LottoPrize> getPrizeFor(int matchCount, boolean isBonusBallMatched) {
-        return this.prizes.stream()
-                .filter(prize -> prize.isMatched(matchCount, isBonusBallMatched))
-                .toList();
-    }
-
-    public List<LottoPrize> getPrizeFor(LottoPrize prize) {
-        return prizes.stream()
-                .filter(prize::equals)
-                .toList();
-    }
-
     private static double rateOfReturn(List<LottoPrize> prizes, int cost) {
         return (revenue(prizes) / cost) * 100;
     }
@@ -51,5 +30,16 @@ public record LottoResult(List<LottoPrize> prizes, double rateOfReturn) {
         return prizes.stream()
                 .mapToDouble(LottoPrize::getMoney)
                 .sum();
+    }
+
+    @Override
+    public List<LottoPrize> prizes() {
+        return List.copyOf(prizes);
+    }
+
+    public List<LottoPrize> prizeOf(LottoPrize prize) {
+        return prizes.stream()
+                .filter(prize::equals)
+                .toList();
     }
 }

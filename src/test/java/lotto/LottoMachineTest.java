@@ -36,7 +36,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
         LottoResult result = lottoMachine.match(winningNumbers);
-        List<LottoPrize> prize = result.getPrizeFor(3);
+        List<LottoPrize> prize = result.prizeOf(LottoPrize.FIFTH);
 
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(5_000);
@@ -51,7 +51,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
         LottoResult result = lottoMachine.match(winningNumbers);
-        List<LottoPrize> prize = result.getPrizeFor(4);
+        List<LottoPrize> prize = result.prizeOf(LottoPrize.FOURTH);
 
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(50_000);
@@ -66,7 +66,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
         LottoResult result = lottoMachine.match(winningNumbers);
-        List<LottoPrize> prize = result.getPrizeFor(5);
+        List<LottoPrize> prize = result.prizeOf(LottoPrize.THIRD);
 
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(1_500_000);
@@ -81,7 +81,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
         LottoResult result = lottoMachine.match(winningNumbers);
-        List<LottoPrize> prize = result.getPrizeFor(5, true);
+        List<LottoPrize> prize = result.prizeOf(LottoPrize.SECOND);
 
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(30_000_000);
@@ -96,7 +96,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine(generatedLottos);
 
         LottoResult result = lottoMachine.match(winningNumbers);
-        List<LottoPrize> prize = result.getPrizeFor(6);
+        List<LottoPrize> prize = result.prizeOf(LottoPrize.JACKPOT);
 
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(2_000_000_000);

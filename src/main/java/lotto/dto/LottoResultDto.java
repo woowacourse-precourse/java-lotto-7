@@ -12,7 +12,7 @@ public record LottoResultDto(List<LottoPrizeDto> prizes, double rateOfReturn) {
 
     private static List<LottoPrizeDto> toPrizeDto(LottoResult result) {
         return Arrays.stream(LottoPrize.values())
-                .map(p -> new LottoPrizeDto(p, result.getPrizeFor(p)))
+                .map(p -> new LottoPrizeDto(p, result.prizeOf(p)))
                 .toList();
     }
 
