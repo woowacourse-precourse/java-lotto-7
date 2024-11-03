@@ -28,4 +28,16 @@ class RankTest {
         assertEquals(0, Rank.NONE.calculateTotalEarnings(5));
     }
 
+    @Test
+    @DisplayName("매치 카운트와 보너스 여부 확인")
+    void checkRankProperties() {
+        assertEquals(3, Rank.THREE.getMatchCount());
+        assertEquals(5_000, Rank.THREE.getPrize());
+        assertFalse(Rank.THREE.isMatchBonus());
+
+        assertEquals(5, Rank.FIVE_AND_BONUS.getMatchCount());
+        assertEquals(30_000_000, Rank.FIVE_AND_BONUS.getPrize());
+        assertTrue(Rank.FIVE_AND_BONUS.isMatchBonus());
+    }
+
 }
