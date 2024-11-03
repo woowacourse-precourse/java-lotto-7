@@ -32,10 +32,4 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.countMatchingNumbers(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
     }
-
-    @Test
-    void 로또_당첨금이_상금과_다르면_예외가_발생한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto.calculatePrize(List.of(1, 2, 3, 4, 5, 7), BONUS)).isEqualTo(1500000);
-    }
 }

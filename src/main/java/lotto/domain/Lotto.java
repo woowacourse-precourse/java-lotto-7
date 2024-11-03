@@ -50,7 +50,7 @@ public class Lotto {
                 .count();
     }
 
-    public int calculatePrize(List<Integer> winningNumbers, Integer bonusNumber) {
-        throw new IllegalArgumentException();
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
