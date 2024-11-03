@@ -1,8 +1,11 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -22,5 +25,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호의_개수가_6개_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void 범위밖에_있는_번호가_존재할시__예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 숫자 범위는 최소 1부터 최대 45까지 가능합니다.");
+    }
 }
