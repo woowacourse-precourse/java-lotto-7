@@ -65,18 +65,31 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber() {
-        OutputView.printBonusNumberInputMessage();
-        String bonusNumber = InputView.inputBonusNumber();
-        return BonusNumber.from(StringToIntegerConverter.convert(bonusNumber));
+        while (true) {
+            try {
+                OutputView.printBonusNumberInputMessage();
+                String bonusNumberInput = InputView.inputBonusNumber();
+                int bonusNumber = StringToIntegerConverter.convert(bonusNumberInput);
+                return BonusNumber.from(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto getWinningNumber() {
-        OutputView.printWinningNumberInputMessage();
-        String winningNumberInput = InputView.inputWinningNumber();
-        List<Integer> winningNumber = Arrays.stream(winningNumberInput.split(","))
-                .map(StringToIntegerConverter::convert)
-                .toList();
-        return new Lotto(winningNumber);
+        while (true) {
+            try {
+                OutputView.printWinningNumberInputMessage();
+                String winningNumberInput = InputView.inputWinningNumber();
+                List<Integer> winningNumbers = Arrays.stream(winningNumberInput.split(","))
+                        .map(StringToIntegerConverter::convert)
+                        .toList();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static List<LottoNumberDto> getLottoNumberDtos(List<Lotto> purchasedLotto) {
@@ -92,9 +105,15 @@ public class LottoController {
     }
 
     private Money getPurchaseAmount() {
-        OutputView.printPurchaseAmountInputMessage();
-        String purchaseAmountInput = InputView.inputPurchaseAmount();
-        int purchaseAmount = StringToIntegerConverter.convert(purchaseAmountInput);
-        return Money.from(purchaseAmount);
+        while (true) {
+            try {
+                OutputView.printPurchaseAmountInputMessage();
+                String purchaseAmountInput = InputView.inputPurchaseAmount();
+                int purchaseAmount = StringToIntegerConverter.convert(purchaseAmountInput);
+                return Money.from(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
