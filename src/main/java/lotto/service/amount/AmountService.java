@@ -32,8 +32,11 @@ public class AmountService {
     return amount.calculatePurchasableCount(price);
   }
 
-  public ProfitRate calculateProfitRate (PurchaseAmount purchaseAmount, MatchResults matchResults) {
-    ProfitAmount profitAmount = calculateProfit(matchResults);
+  public ProfitAmount calculateProfitAmount(MatchResults matchResults) {
+    return ProfitAmount.from(matchResults.getTotalPrizeAmount());
+  }
+
+  public ProfitRate calculateProfitRate (PurchaseAmount purchaseAmount, ProfitAmount profitAmount) {
     BigDecimal profitRate = BigDecimal.valueOf(profitAmount.getAmount())
         .divide(BigDecimal.valueOf(purchaseAmount.getAmount()), 4,
             RoundingMode.HALF_UP)
@@ -41,9 +44,4 @@ public class AmountService {
         .setScale(1, RoundingMode.HALF_UP);
     return ProfitRate.from(profitRate);
   }
-
-  private ProfitAmount calculateProfit(MatchResults matchResults) {
-    return ProfitAmount.from(matchResults.getTotalPrizeAmount());
-  }
-
 }
