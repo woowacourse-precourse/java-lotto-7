@@ -33,8 +33,4 @@ public class Lottos {
     public Integer size() {
         return lottos.size();
     }
-
-    public String toString() {
-        return StringMaker.make(lottos);
-    }
 }

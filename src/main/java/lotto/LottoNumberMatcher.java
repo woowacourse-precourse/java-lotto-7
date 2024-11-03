@@ -1,50 +1,37 @@
 package lotto;
 
-import lotto.console.ConsoleOutput;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoNumber;
 import lotto.enums.WinRank;
-import lotto.util.StringMaker;
+import lotto.util.LottoPrinter;
 
 import java.util.List;
 
-public class LottoGameRunner {
+public class LottoNumberMatcher {
 
     private final LottoGame lottoGame;
 
-    private LottoGameRunner(LottoGame lottoGame) {
+    private LottoNumberMatcher(LottoGame lottoGame) {
         this.lottoGame = lottoGame;
     }
 
-    public static LottoGameRunner from(LottoGame lottoGame) {
-        return new LottoGameRunner(lottoGame);
+    public static LottoNumberMatcher from(LottoGame lottoGame) {
+        return new LottoNumberMatcher(lottoGame);
     }
 
-    public void run() {
+    public void match() {
 
-        List<WinRank> wins = calculateWinRank(matchLottoNumbers());
+        List<WinRank> wins = matchLottos();
 
         Double earningRate = calculateEarningRate(wins);
 
-        printLottoGameResult(wins, earningRate);
+        LottoPrinter.print(earningRate, countPerRank(wins));
     }
 
-    private void printLottoGameResult(List<WinRank> winningWinRanks, Double earningRate) {
-        ConsoleOutput.print(makeWinStatusResult(winningWinRanks, earningRate));
-    }
-
-    private static String makeWinStatusResult(List<WinRank> winningWinRanks, Double earningRate) {
-
-        int[] countPerWinningRank = countRanks(winningWinRanks);
-
-        return StringMaker.make(earningRate, countPerWinningRank);
-    }
-
-    private static int[] countRanks(List<WinRank> winningWinRanks) {
+    private static int[] countPerRank(List<WinRank> wins) {
         int[] countPerWinningRank = new int[6];
-        winningWinRanks
-                .forEach(winRank -> {
+        wins.forEach(winRank -> {
                     countPerWinningRank[winRank.getValue()]++;
                 });
         return countPerWinningRank;
@@ -63,7 +50,7 @@ public class LottoGameRunner {
 
     private Integer calculateTotalEarning(List<WinRank> winningWinRanks) {
         return winningWinRanks.stream()
-                .mapToInt(LottoGameRunner::winPriceFromRank)
+                .mapToInt(LottoNumberMatcher::winPriceFromRank)
                 .sum();
     }
 
@@ -71,15 +58,10 @@ public class LottoGameRunner {
         return winRank.getPrize();
     }
 
-    private List<WinRank> calculateWinRank(List<Integer> winningHistoty) {
-        return winningHistoty.stream()
-                .map(WinRank::fromMatchNumberCount)
-                .toList();
-    }
-
-    private List<Integer> matchLottoNumbers() {
+    private List<WinRank> matchLottos() {
         return lottoGame.getPurchasedLottos().getValue().stream()
                 .map(this::countMatchedNumbers)
+                .map(WinRank::fromMatchNumberCount)
                 .toList();
     }
 
