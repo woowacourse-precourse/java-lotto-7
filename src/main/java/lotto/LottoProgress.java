@@ -1,12 +1,17 @@
 package lotto;
 
 import java.util.List;
+import lotto.Console.InputConsole;
+import lotto.Console.OutputConsole;
 
 public class LottoProgress {
 
     public static void lottoProgress(){
         int inputMoney = InputConsole.intputMoney();
         int lottoNum = buyLotto(inputMoney);
+
+        Lotto winningLottoNumbers = InputConsole.inputWinningNumbers();
+        int bonusNum = InputConsole.inputBonusNumbers(winningLottoNumbers);
 
 
 

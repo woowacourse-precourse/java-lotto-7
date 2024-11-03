@@ -1,9 +1,11 @@
-package lotto;
+package lotto.Console;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.CheckWinning;
+import lotto.Lotto;
 import lotto.enums.WinningType;
 import lotto.exception.CheckInput;
 
@@ -18,24 +20,24 @@ public class InputConsole {
         return inputMoney;
     }
 
-    public static void inputConsole() {
-
-        List<Lotto> lottoList;
-        lottoList = LottoList.drawingLotto(lottoNum);
-
-        for (Lotto lotto : lottoList) {
-            System.out.println(lotto.getNumbers());
-        }
-
+    public static Lotto inputWinningNumbers(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningLottoNum = readLine();
 
         Lotto winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
 
+        return winningLottoNumbers;
+    }
+
+    public static int inputBonusNumbers(Lotto winningLottoNumbers){
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(readLine());
 
         CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers);
+        return bonusNum;
+    }
+
+    public static void inputConsole() {
 
         System.out.println("\n당첨 통계");
         System.out.println("---");

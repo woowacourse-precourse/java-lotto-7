@@ -1,6 +1,7 @@
-package lotto;
+package lotto.Console;
 
 import java.util.List;
+import lotto.Lotto;
 
 public class OutputConsole {
 
