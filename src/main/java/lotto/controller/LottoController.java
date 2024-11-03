@@ -22,7 +22,7 @@ public class LottoController {
         ResultView.printLottoTickets(tickets);
 
         List<Integer> winningNumbers = getValidatedWinningNumbers();
-        int bonusNumber = getValidatedBonusNumber();
+        int bonusNumber = getValidatedBonusNumber(winningNumbers);
 
         Map<Rank, Integer> result = lottoChecker.checkWinningStatus(tickets, winningNumbers, bonusNumber);
         ResultView.printResult(result);
@@ -51,10 +51,10 @@ public class LottoController {
         }
     }
 
-    private int getValidatedBonusNumber() {
+    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                return InputView.getBonusNumber();
+                return InputView.getBonusNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
