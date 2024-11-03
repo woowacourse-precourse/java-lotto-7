@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import java.util.HashMap;
 import lotto.dto.LottoEvaluatedStatus;
 import lotto.model.Lotto;
 import lotto.model.LottoOutlet;
 import lotto.model.LottoEvaluator;
-import lotto.model.LottoPrize;
 import lotto.model.LottoTicket;
 import lotto.utils.parser.AmountsParser;
 import lotto.utils.parser.BonusNumberParser;
