@@ -1,7 +1,5 @@
 package lotto.model.lotto;
 
-import java.util.List;
-
 public class WinningLotto {
 
     private final Lotto lotto;
@@ -12,9 +10,9 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int countMatchingNumberWith(List<Integer> comparedNumbers) {
+    public int countMatchingNumberWith(Lotto lotto) {
         int matchCount = 0;
-        for (Integer number : comparedNumbers) {
+        for (Integer number : lotto.numbers) {
             if (this.lotto.numbers.contains(number)) {
                 matchCount++;
             }
@@ -22,7 +20,7 @@ public class WinningLotto {
         return matchCount;
     }
 
-    public boolean isBonusNumberMatchedWith(List<Integer> comparedNumbers) {
-        return comparedNumbers.contains(bonusNumber);
+    public boolean isBonusNumberMatchedWith(Lotto lotto) {
+        return lotto.numbers.contains(bonusNumber);
     }
 }

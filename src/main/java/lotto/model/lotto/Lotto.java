@@ -13,12 +13,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    public int countMatchingNumberWith(WinningLotto winningLotto) {
-        return winningLotto.countMatchingNumberWith(this.numbers);
-    }
-
-    public boolean isBonusNumberMatchedWith(WinningLotto winningLotto) {
-        return winningLotto.isBonusNumberMatchedWith(this.numbers);
-    }
 }
