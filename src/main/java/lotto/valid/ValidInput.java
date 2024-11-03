@@ -1,7 +1,9 @@
 package lotto.valid;
 
+import java.util.List;
 import lotto.config.exception.input.InputException;
 import lotto.config.exception.input.InputExceptionMessage;
+
 
 public class ValidInput {
 
