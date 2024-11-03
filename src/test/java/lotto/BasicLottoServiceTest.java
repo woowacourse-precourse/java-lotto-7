@@ -46,12 +46,27 @@ class BasicLottoServiceTest {
                     List<Lotto> issuedLotto = lottoService.issueLotto(issueCount);
 
                     assertThat(issuedLotto).hasSize(issueCount);
+                    System.out.println(issuedLotto.get(0).getNumbers());
                     assertThat(issuedLotto.get(0).getNumbers()).containsExactlyElementsOf(list1);
                 },
                 list1,
                 list2,
                 list3
         );
+    }
+
+    @DisplayName("발행된 로또가 오름차순으로 정렬되어 있는지 확인한다")
+    @Test
+    void issue_lotto_is_sorted() {
+        int issueCount = 3;
+        List<Lotto> issuedLotto = lottoService.issueLotto(issueCount);
+        List<Integer> numbers1 = issuedLotto.get(0).getNumbers();
+        List<Integer> numbers2 = issuedLotto.get(1).getNumbers();
+        List<Integer> numbers3 = issuedLotto.get(2).getNumbers();
+
+        assertThat(numbers1).isSorted();
+        assertThat(numbers2).isSorted();
+        assertThat(numbers3).isSorted();
     }
 
     @DisplayName("발행된 로또 목록과 당첨 번호에 따라 로또 랭크 목록을 반환한다")
