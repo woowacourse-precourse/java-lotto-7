@@ -15,9 +15,9 @@ public class LottoGenerator {
 
     private LottoGenerator() {}
 
-    public static int howManyLottos(int account) {
-        validate(account);
-        return account / PRICE;
+    public static int howManyLottos(int amount) {
+        validate(amount);
+        return amount / PRICE;
     }
 
     public static List<Lotto> getLottos(int count) {
