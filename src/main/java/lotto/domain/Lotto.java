@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -39,7 +40,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        numbers.sort(Integer::compareTo);
-        return numbers.toString();
+        return new ArrayList<>(numbers).toString();
     }
 }
