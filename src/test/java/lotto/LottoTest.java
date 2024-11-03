@@ -1,8 +1,11 @@
 package lotto;
 
+import lotto.controller.ResultJudging;
 import lotto.model.Price;
 import lotto.model.BonusLotto;
 import lotto.model.Lotto;
+import lotto.model.Result;
+import lotto.util.WinningRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -74,4 +77,47 @@ class LottoTest {
         assertEquals("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.", thrown.getMessage());
     }
 
+    @Test
+    @DisplayName("당첨 번호와 일치하는 등수 판정")
+    void 당첨번호와_일치하는_등수판정() {
+        ResultJudging resultJudging = new ResultJudging();
+        List<Integer> purchasedLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Result result = resultJudging.lottoResult(purchasedLotto, winningNumbers, bonusNumber);
+
+        assertEquals(1, result.getSixCount(), "6개 번호 일치 - 1등 당첨자가 예상대로 확인되어야 합니다.");
+        assertEquals(0, result.getBonusCount(), "보너스 번호 일치는 없으므로 보너스 등수는 0개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("수익률 계산 테스트")
+    void 수익률_계산_테스트() {
+        ResultJudging resultJudging = new ResultJudging();
+        Result result = new Result();
+
+        result.updateStatistics(WinningRank.THREE);
+        result.updateStatistics(WinningRank.FOUR);
+        result.updateStatistics(WinningRank.FIVE);
+
+        int totalCost = 10000;
+        double profitRate = resultJudging.returnRate(totalCost, result);
+
+        assertEquals(155.5, profitRate, 0.1, "수익률은 예상된 값과 일치해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("등수별 당첨 내역 출력")
+    void 등수별_당첨내역_출력() {
+        Result result = new Result();
+
+        result.updateStatistics(WinningRank.THREE);
+        result.updateStatistics(WinningRank.FOUR);
+        result.updateStatistics(WinningRank.SIX);
+
+        assertEquals(1, result.getThreeCount(), "3등 당첨 횟수가 예상과 일치해야 합니다.");
+        assertEquals(1, result.getFourCount(), "4등 당첨 횟수가 예상과 일치해야 합니다.");
+        assertEquals(1, result.getSixCount(), "1등 당첨 횟수가 예상과 일치해야 합니다.");
+    }
 }
