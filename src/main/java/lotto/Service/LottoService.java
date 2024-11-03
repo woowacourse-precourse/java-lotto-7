@@ -37,7 +37,7 @@ public class LottoService {
     public List<Integer> calculateResult() {
         results = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
-        for (UserNumber userNumber : userNumbers.getUserNumbers()) { //이 로직은 UserNumbers에서 실행되는 것보다 여기가 좋겠지?
+        for (UserNumber userNumber : userNumbers.getUserNumbers()) {
             long matchingCount = userNumber.getUserNumber().stream()
                     .filter(lotto.getNumbers()::contains)
                     .count();

@@ -12,5 +12,4 @@ public class UserNumber {
     public List<Integer> getUserNumber() {
         return userNumber;
     }
-
 }
