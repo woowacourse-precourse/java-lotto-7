@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumValidator;
@@ -28,8 +31,11 @@ public class LottoGameController {
         Lottos lottos = Lottos.randomFrom(Integer.parseInt(purchasePrice) / LOTTO_PRICE);
         outputView.showCreatedLottos(lottos.getLottos());
 
-        String winningNum = getWinningNum();
+        List<Integer> winningNum = getWinningNum();
+        Lotto winningLotto = new Lotto(winningNum);
+
         String bonusNum = getBonusNum();
+
     }
 
     private String getPurchasePrice() {
@@ -46,12 +52,12 @@ public class LottoGameController {
         return purchasePrice;
     }
 
-    private String getWinningNum() {
-        String winningNum = "";
+    private List<Integer> getWinningNum() {
+        List<Integer> winningNum = new ArrayList<>();
         while (true) {
             try {
-                winningNum = inputView.getWinningNum();
-                winningNumValidator.validate(winningNum);
+                String winningNumInput = inputView.getWinningNum();
+                winningNum = winningNumValidator.validateWinningNum(winningNumInput);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -65,7 +71,7 @@ public class LottoGameController {
         while (true) {
             try {
                 bonusNum = inputView.getBonusNum();
-                winningNumValidator.validate(bonusNum);
+                winningNumValidator.validateBonusNum(bonusNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
