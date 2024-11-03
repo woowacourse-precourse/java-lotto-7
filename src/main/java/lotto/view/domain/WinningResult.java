@@ -18,7 +18,8 @@ public class WinningResult {
     }
 
     public double getProfitRate(Amount purchasedAmount) {
-        long totalWinningAmount = resultMap.keySet().stream().map(key -> key.getRewardAmount() * resultMap.get(key).size())
+        long totalWinningAmount = resultMap.keySet().stream()
+                .map(key -> key.getRewardAmount() * resultMap.get(key).size())
                 .mapToLong(Integer::toUnsignedLong).sum();
         double profitRate = (double) totalWinningAmount / purchasedAmount.getValue() * 100;
         return Math.round(profitRate * 100.0) / 100.0;
