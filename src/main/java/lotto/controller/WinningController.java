@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
-import lotto.model.Winning;
+import lotto.model.WinningNumber;
+import lotto.model.WinningStatistics;
 import lotto.service.CheckingWinningService;
 import lotto.view.Winning_InputView;
 
@@ -10,25 +12,27 @@ public class WinningController {
     private final List<Lotto> LottoTickets;
     private final Winning_InputView winningInputView;
     private CheckingWinningService checkingWinningService;
-    private Winning winning;
+    private WinningNumber winningNumber;
+    private WinningStatistics winningStatistics;
 
     public WinningController(List<Lotto> LottoTickets, Winning_InputView winningInputView) {
         this.LottoTickets = LottoTickets;
         this.winningInputView = winningInputView;
         checkingWinningService = new CheckingWinningService();
-        winning = new Winning(checkingWinningService);
+        winningNumber = new WinningNumber();
+        winningStatistics = new WinningStatistics(checkingWinningService);
     }
 
     public void presentWinningLottoTickets() {
-        setWinningNumbers();
-        setBonusNumber();
-
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber();
+        Map<Integer, Integer> ranks = winningStatistics.getRanks(winningNumbers, bonusNumber, LottoTickets);
     }
 
     private List<Integer> setWinningNumbers() {
         try {
             String inputWinningNumbers = winningInputView.getInputWinningNumbers();
-            return winning.getWinningNumbers(inputWinningNumbers);
+            return winningNumber.getWinningNumbers(inputWinningNumbers);
         } catch (Exception exception) {
             System.out.println(exception.getMessage() + "/n");
             return setWinningNumbers();
@@ -38,10 +42,11 @@ public class WinningController {
     private int setBonusNumber() {
         try {
             String inputBonusNumber = winningInputView.getInputBonusNumber();
-            return winning.getBonusNumber(inputBonusNumber);
+            return winningNumber.getBonusNumber(inputBonusNumber);
         } catch (Exception exception) {
             System.out.println(exception.getMessage() + "/n");
             return setBonusNumber();
         }
     }
+
 }

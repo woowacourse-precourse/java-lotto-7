@@ -5,16 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import lotto.service.CheckingWinningService;
 
-public class Winning {
+public class WinningNumber {
     private static String DELIMITER = ",";
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
-    private final CheckingWinningService checkingWinningService;
-
-    public Winning(CheckingWinningService checkingWinningService) {
-        this.checkingWinningService = checkingWinningService;
-    }
 
     public List<Integer> getWinningNumbers(String inputWinningNumbers) {
         validateSplitting(inputWinningNumbers);
