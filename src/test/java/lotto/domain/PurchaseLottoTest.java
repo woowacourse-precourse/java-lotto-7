@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import lotto.mock.NumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
