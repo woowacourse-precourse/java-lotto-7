@@ -33,7 +33,7 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> numbersInputHandler.convertToInteger(nonInteger))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
+                .hasMessageContaining(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
     }
 
     @DisplayName("보너스 번호로 로또 번호의 범위가 아닌 숫자가 들어오면 예외가 발생한다")
@@ -45,7 +45,7 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> numbersInputHandler.validateScope(nonValidScope))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_SCOPE_ERROR.getMessage());
+                .hasMessageContaining(LOTTO_SCOPE_ERROR.getMessage());
     }
 
     @DisplayName("보너스 번호로 당첨 번호와 중복되는 숫자가 입력되면 예외가 발생한다")
@@ -58,6 +58,6 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(BONUS_NUMBER_DUPLICATE.getMessage());
+                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
     }
 }

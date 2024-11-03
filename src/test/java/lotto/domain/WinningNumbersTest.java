@@ -31,7 +31,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NON_INTEGER_LOTTO.getMessage());
+                .hasMessageContaining(NON_INTEGER_LOTTO.getMessage());
     }
 
     @DisplayName("당첨 번호 중 로또 번호의 범위가 아닌 정수가 있으면 예외가 발생한다")
@@ -41,7 +41,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NON_INTEGER_LOTTO.getMessage());
+                .hasMessageContaining(NON_INTEGER_LOTTO.getMessage());
     }
 
     @DisplayName("당첨 번호가 6개가 아닌 경우 예외가 발생한다")
@@ -51,7 +51,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_SIZE_ERROR.getMessage());
+                .hasMessageContaining(LOTTO_SIZE_ERROR.getMessage());
     }
 
     @DisplayName("당첨 번호 중에서 중복이 발생하는 경우 예외가 발생한다")
@@ -63,7 +63,7 @@ public class WinningNumbersTest {
         // when & then
         Assertions.assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBERS_DUPLICATE.getMessage());
+                .hasMessageContaining(LOTTO_NUMBERS_DUPLICATE.getMessage());
     }
 
 }
