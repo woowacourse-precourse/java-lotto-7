@@ -7,16 +7,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoPurchase {
+public class LottoBox {
 
     private final int buy;
     private final List<Lotto> lottoTickets = new ArrayList<>(); // 구입한 로또 티켓을 저장할 리스트
 
     // 구매 개수를 받아 로또 리켓 생성
-    public LottoPurchase(int buy) {
+    public LottoBox(int buy) {
 
         this.buy = buy; // 구입한 개수 저장
-        
+
         for (int i=0; i<buy; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers(); // 로또 번호 생성
             Collections.sort(lottoNumbers); // 정렬
