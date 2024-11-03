@@ -10,8 +10,6 @@ public class Application {
         int lottoCount = lottoPurchase.inputPurchaseAmount();
         List<List<Integer>> lottos = lottoNumberGenerator.generateLottoNumbers(lottoCount);
 
-        System.out.println();
-        System.out.println(lottoCount+"개를 구매했습니다.");
-        System.out.println(lottos);
+        lottoNumberGenerator.printLottos(lottos);
     }
 }
