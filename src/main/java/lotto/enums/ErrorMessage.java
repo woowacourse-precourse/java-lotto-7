@@ -7,7 +7,9 @@ public enum ErrorMessage {
             + LottoConstants.MAX_LOTTO_NUMBER.getValue() + " 사이의 숫자여야 합니다."),
     DUPLICATED_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다."),
     INVALID_WINNING_NUMBERS_RANGE("로또 번호는 " + LottoConstants.MIN_LOTTO_NUMBER.getValue() + "부터 "
-            + LottoConstants.MAX_LOTTO_NUMBER.getValue() + " 사이의 숫자여야 합니다.");
+            + LottoConstants.MAX_LOTTO_NUMBER.getValue() + " 사이의 숫자여야 합니다."),
+    INVALID_INTEGER("정수를 입력해야 합니다.");
+
 
 
     private static final String ERROR_TAG = "[ERROR]";
