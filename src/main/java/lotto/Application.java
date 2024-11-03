@@ -221,15 +221,11 @@ public class Application {
     private static void outputResult(LottoResult result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningCount("3개 일치 (5,000원)", result.getCountOf3Match());
-        printWinningCount("4개 일치 (50,000원)", result.getCountOf4Match());
-        printWinningCount("5개 일치 (1,500,000원)", result.getCountOf5Match());
-        printWinningCount("5개 일치, 보너스 볼 일치 (30,000,000원)", result.getCountOf5MatchAndBonus());
-        printWinningCount("6개 일치 (2,000,000,000원)", result.getCountOf6Match());
-    }
-
-    private static void printWinningCount(String message, int count) {
-        System.out.println(message + " - " + count + "개");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchCount() >= 3) {
+                System.out.println(rank.getDescription() + " - " + result.getCount(rank) + "개");
+            }
+        }
     }
 
     private static void profitRateResult(double money, double winningPrize) {

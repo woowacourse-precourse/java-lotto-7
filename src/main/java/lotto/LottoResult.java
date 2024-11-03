@@ -1,55 +1,41 @@
 package lotto;
 
-public class LottoResult {
-    private int countOf3Match = 0;
-    private int countOf4Match = 0;
-    private int countOf5Match = 0;
-    private int countOf5MatchAndBonus = 0;
-    private int countOf6Match = 0;
+import java.util.EnumMap;
+import java.util.Map;
 
-    public void winningResult(int matchCount, boolean bonusMatch) {
-        if (matchCount == 3) {
-            countOf3Match++;
-        } else if (matchCount == 4) {
-            countOf4Match++;
-        } else if (matchCount == 5) {
-            if (bonusMatch) { // 보너스 번호와 일치하는 경우
-                countOf5MatchAndBonus++;
-            } else { // 보너스 번호와 일치하지 않는 경우
-                countOf5Match++;
-            }
-        } else if (matchCount == 6) {
-            countOf6Match++;
+public class LottoResult {
+    private final Map<LottoRank, Integer> resultMap = new EnumMap<>(LottoRank.class);
+
+    public LottoResult() {
+        for (LottoRank rank : LottoRank.values()) {
+            resultMap.put(rank, 0);
         }
     }
 
-    public int getCountOf3Match() {
-        return countOf3Match;
+    public void winningResult(int matchCount, boolean bonusMatch) {
+        LottoRank rank = getRank(matchCount, bonusMatch);
+        if (rank != null) {
+            resultMap.put(rank, resultMap.get(rank) + 1);
+        }
     }
 
-    public int getCountOf4Match() {
-        return countOf4Match;
+    private LottoRank getRank(int matchCount, boolean bonusMatch) {
+        if (matchCount == 6) return LottoRank.MATCH_6;
+        if (matchCount == 5 && bonusMatch) return LottoRank.MATCH_5_WITH_BONUS;
+        if (matchCount == 5) return LottoRank.MATCH_5;
+        if (matchCount == 4) return LottoRank.MATCH_4;
+        if (matchCount == 3) return LottoRank.MATCH_3;
+        return null;
     }
-
-    public int getCountOf5Match() {
-        return countOf5Match;
-    }
-
-    public int getCountOf5MatchAndBonus() {
-        return countOf5MatchAndBonus;
-    }
-
-    public int getCountOf6Match() {
-        return countOf6Match;
+    public int getCount(LottoRank rank) {
+        return resultMap.getOrDefault(rank, 0);
     }
 
     public int totalWinningPrize() {
-        int winningPrize = 0;
-        winningPrize += countOf3Match * 5000;
-        winningPrize += countOf4Match * 50000;
-        winningPrize += countOf5Match * 1500000;
-        winningPrize += countOf5MatchAndBonus * 30000000;
-        winningPrize += countOf6Match * 2000000000;
-        return winningPrize;
+        int totalPrize = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalPrize += getCount(rank) * rank.getPrize();
+        }
+        return totalPrize;
     }
 }
