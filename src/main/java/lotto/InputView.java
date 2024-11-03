@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.global.ErrorCode.*;
+
 public class InputView {
 
     int money;
@@ -20,15 +22,15 @@ public class InputView {
         try {
             m = Integer.parseInt(Console.readLine());
             if (m <= 0) {
-                throw new InputException(ErrorCode.MINUS_NUMBER_ERROR);
+                throw new InputException(MINUS_NUMBER_ERROR);
             }
             if (m % 1000 != 0) {
-                throw new InputException(ErrorCode.DIVISION_ERROR);
+                throw new InputException(DIVISION_ERROR);
             }
         } catch (InputException e) {
             buyMoney();
         } catch (NumberFormatException e) {
-            System.out.println("숫자를 입력 해 주세요");
+            System.out.println(NUMBER_FORMAT_ERROR.getMessage());
             buyMoney();
         }
         this.money = m;
@@ -44,8 +46,10 @@ public class InputView {
                 numbers.add(Integer.parseInt(st.nextToken()));
             }
             winLotto = new Lotto(numbers);
+        } catch (NumberFormatException e) {
+            System.out.println(NUMBER_FORMAT_ERROR.getMessage());
+            winNumber();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             winNumber();
         }
 
@@ -59,10 +63,9 @@ public class InputView {
             number = Integer.parseInt(Console.readLine());
             winLotto.setBonusNumber(number);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println(NUMBER_FORMAT_ERROR.getMessage());
             bonus();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (InputException e) {
             bonus();
         }
 

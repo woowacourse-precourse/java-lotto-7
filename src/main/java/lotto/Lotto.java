@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.exception.InputException;
+
 import java.util.HashSet;
 import java.util.List;
+
+import static lotto.global.ErrorCode.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,18 +20,18 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new InputException(NUMBER_NOT_SIX);
         }
 
-        if(set.size() != 6) throw new IllegalArgumentException("[ERROR] 중복되는 수가 있습니다");
+        if(set.size() != 6) throw new InputException(HAS_NUMBER_EXIST);
     }
 
     // TODO: 추가 기능 구현
 
 
     public void setBonusNumber(int bonusNumber) {
-        if (bonusNumber <= 0) throw new IllegalArgumentException("[ERROR] 0보다 커야합니다.");
-        if (numbers.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 당첨 번호에 없는 번호여야 합니다.");
+        if (bonusNumber <= 0) throw new InputException(BONUS_NUMBER_ZERO_AND_LESS);
+        if (numbers.contains(bonusNumber)) throw new InputException(WIN_NOT_EXIST_NUMBER);
 
         this.bonusNumber = bonusNumber;
     }
