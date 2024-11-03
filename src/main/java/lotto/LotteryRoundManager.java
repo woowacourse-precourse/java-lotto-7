@@ -52,4 +52,8 @@ public class LotteryRoundManager {
         }
         return Math.round((double) prizeMoney / cost * 1000) / 10.0;
     }
+
+    public Map<Prize, Integer> checkWon(PurchasedLotto purchasedLotto) {
+        return purchasedLotto.checkWin(winningNumber, bonusNumber);
+    }
 }
