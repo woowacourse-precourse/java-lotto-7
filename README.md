@@ -127,9 +127,9 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 # 요구사항 정리
 1. 로또 발급하기
-- [ ] 금액을 입력받는다
-    - [ ] 금액이 1,000 단위인지 확인하고 아니라면 IllegalArgumentException을 던진다
-    - [ ] 금액이 음수이면 IllegalArgumentException을 던진다
+- [x] 금액을 입력받는다
+    - [x] 금액이 1,000 단위인지 확인하고 아니라면 IllegalArgumentException을 던진다
+    - [x] 금액이 음수이면 IllegalArgumentException을 던진다
 - [ ] 1,000원 단위로 로또를 발급한다
     - [ ] 중복되지 않는 6개의 숫자를 뽑는다
 - [ ] 발급한 숫자를 로또 단위로 출력한다
