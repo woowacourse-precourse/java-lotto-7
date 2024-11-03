@@ -6,8 +6,6 @@ import lotto.domain.model.PrizeCategory;
 
 import java.util.List;
 
-
-//사용자 출력을 담당하는 클래스
 public class LottoOutputView {
 
     public void displayErrorMessage(String message) {

@@ -3,7 +3,6 @@ package lotto.domain.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// 당첨 번호와 보너스 번호를 관리하는 클래스
 public class WinningNumbers {
     private final List<Integer> numbers;
     private final int bonusNumber;

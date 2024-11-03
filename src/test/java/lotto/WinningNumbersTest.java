@@ -22,9 +22,8 @@ public class WinningNumbersTest {
     @DisplayName("보너스 번호가 범위를 벗어나면 예외 발생")
     void 보너스번호가_범위를_벗어나면_예외_발생() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        String invalidBonusNumber = "46"; // 범위 초과
+        String invalidBonusNumber = "46";
 
-        // 표현식 람다로 수정
         assertThrows(IllegalArgumentException.class,
                 () -> ValidationService.validateBonusNumber(invalidBonusNumber, winningNumbers));
     }

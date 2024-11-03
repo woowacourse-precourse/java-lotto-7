@@ -8,13 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.service.ValidationService;
 
-//사용자 입력을 담당하는 클래스
 public class LottoInputView {
 
     public int getPurchaseAmount() {
         System.out.println(OutputMessages.REQUEST_PURCHASE_AMOUNT.getMessage());
         String input = Console.readLine();
-        return ValidationService.validatePurchaseAmount(input); // String -> int 변환 및 검증
+        return ValidationService.validatePurchaseAmount(input);
     }
 
     public WinningNumbers getWinningNumbers() {
@@ -22,11 +21,11 @@ public class LottoInputView {
 
         List<Integer> numbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt)
                 .collect(Collectors.toList());
-        ValidationService.validateWinningNumbers(numbers); // 당첨 번호 검증
+        ValidationService.validateWinningNumbers(numbers);
 
         System.out.println(OutputMessages.REQUEST_BONUS_NUMBER.getMessage());
         String bonusInput = Console.readLine();
-        int bonusNumber = ValidationService.validateBonusNumber(bonusInput, numbers); // 보너스 번호 검증
+        int bonusNumber = ValidationService.validateBonusNumber(bonusInput, numbers);
 
         return new WinningNumbers(numbers, bonusNumber);
     }

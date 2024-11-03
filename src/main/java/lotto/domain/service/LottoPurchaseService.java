@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.model.Lotto;
 
-
-//로또 티켓 생성 및 관리하는 클래스
 public class LottoPurchaseService {
     private static final int TICKET_PRICE = 1000;
 

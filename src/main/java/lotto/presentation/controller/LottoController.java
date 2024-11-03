@@ -10,8 +10,6 @@ import java.util.List;
 import lotto.presentation.view.LottoOutputView;
 import lotto.presentation.view.LottoInputView;
 
-
-//로또 게임을 제어하는 클래스
 public class LottoController {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
