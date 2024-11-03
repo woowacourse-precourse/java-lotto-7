@@ -4,6 +4,7 @@ import lotto.controller.LottoGame;
 
 public class Application {
     public static void main(String[] args) {
-        new LottoGame().run();
+        LottoGame game = new LottoGame();
+        game.start();
     }
 }
