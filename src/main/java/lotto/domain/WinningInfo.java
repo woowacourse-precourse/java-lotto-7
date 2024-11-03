@@ -21,6 +21,12 @@ public enum WinningInfo {
         this.prizeMoney = prizeMoney;
     }
 
+    public static void resetWinningTicketCount() {
+        for (WinningInfo info : WinningInfo.values()) {
+            info.winningTicketCount = 0;
+        }
+    }
+
     public void win() {
         winningTicketCount++;
     }
