@@ -3,11 +3,13 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.view.error.ErrorType;
+import lotto.view.error.InputErrorException;
 
 public class Lotto {
 
-    public static final String WHITE_SPACE_REGEX = "\\s";
-    public static final String EMPTY_STRING = "";
+    public static final String NEED_SIX_NUMBERS = "로또 번호는 6개여야 합니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +17,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getLottoNumbers(){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 
@@ -27,7 +29,7 @@ public class Lotto {
 
     private void checkLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new InputErrorException(NEED_SIX_NUMBERS);
         }
     }
 
@@ -37,14 +39,14 @@ public class Lotto {
 
         for (Integer lottoNumber : numbers) {
             if (!distinctLottoNumbers.add(lottoNumber)) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_DISTINCT_NUMBER);
             }
         }
     }
 
     private void checkIfEmpty(List<Integer> numbers) {
         if (numbers.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
     }
 }

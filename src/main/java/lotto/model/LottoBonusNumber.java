@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Objects;
+import lotto.view.error.ErrorType;
+import lotto.view.error.InputErrorException;
 
 public class LottoBonusNumber {
 
@@ -39,7 +41,7 @@ public class LottoBonusNumber {
     private void checkDuplicatedNumber(Integer bonusNumber) {
         lotto.getLottoNumbers().forEach(lottoNumber -> {
             if (lottoNumber.equals(bonusNumber)) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_DISTINCT_NUMBER);
             }
         });
     }
@@ -47,7 +49,7 @@ public class LottoBonusNumber {
 
     private static void checkValidRange(Integer bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NUMBER_IN_RANGE);
         }
     }
 
@@ -59,17 +61,17 @@ public class LottoBonusNumber {
 
     private void checkIfEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
         if (input.replaceAll(WHITE_SPACE_REGEX, EMPTY_STRING).isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
     }
 
     private void checkIfDigit(String bonusNumber) {
         for (int i = 0; i < bonusNumber.length(); i++) {
             if (!Character.isDigit(bonusNumber.charAt(i))) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_NUMBER);
             }
         }
     }
@@ -78,7 +80,7 @@ public class LottoBonusNumber {
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_INTEGER);
         }
     }
 }

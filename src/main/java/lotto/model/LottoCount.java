@@ -1,6 +1,9 @@
 package lotto.model;
 
 
+import lotto.view.error.ErrorType;
+import lotto.view.error.InputErrorException;
+
 public class LottoCount {
 
     public static final String WHITE_SPACE_REGEX = "\\s";
@@ -9,6 +12,9 @@ public class LottoCount {
 
     public static final int MAX_PURCHASE_AMOUNT = 100000;
     public static final String EMPTY_STRING = "";
+    public static final String NEED_NUMBER_IN_RANGE = "구매 금액은 1000이상 100000이하여야 합니다.";
+    public static final String NEED_THOUSAND_UNITS_OF_NUMBER = "구매 금액은 1000단위여야 합니다.";
+
 
     private final int lottoCount;
 
@@ -28,7 +34,7 @@ public class LottoCount {
 
     private static int calculateLottoCount(int parsedAmount) {
         if (parsedAmount % UNIT_PURCHASE_AMOUNT != 0) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(NEED_THOUSAND_UNITS_OF_NUMBER);
         }
         return parsedAmount / UNIT_PURCHASE_AMOUNT;
     }
@@ -43,7 +49,7 @@ public class LottoCount {
 
     private void checkValidRange(int parsedAmount) {
         if (parsedAmount < MIN_PURCHASE_AMOUNT || parsedAmount > MAX_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(NEED_NUMBER_IN_RANGE);
         }
     }
 
@@ -54,17 +60,17 @@ public class LottoCount {
 
     private void checkIfEmpty(String purchaseAmount) {
         if (purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
         if (purchaseAmount.replaceAll(WHITE_SPACE_REGEX, EMPTY_STRING).isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
     }
 
     private void checkIfDigit(String purchaseAmount) {
         for (int i = 0; i < purchaseAmount.length(); i++) {
             if (!Character.isDigit(purchaseAmount.charAt(i))) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_NUMBER);
             }
         }
     }
@@ -73,7 +79,7 @@ public class LottoCount {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_INTEGER);
         }
     }
 

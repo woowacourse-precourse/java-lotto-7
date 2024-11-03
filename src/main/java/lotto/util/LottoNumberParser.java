@@ -3,6 +3,8 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.view.error.ErrorType;
+import lotto.view.error.InputErrorException;
 
 public class LottoNumberParser {
 
@@ -39,7 +41,7 @@ public class LottoNumberParser {
     private static void checkValidRange(Lotto parsedLottoNumbers) {
         parsedLottoNumbers.getLottoNumbers().forEach(lottoNumber -> {
             if (lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_NUMBER_IN_RANGE);
             }
         });
     }
@@ -54,17 +56,17 @@ public class LottoNumberParser {
 
     private void checkIfEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
         if (input.replaceAll(WHITE_SPACE_REGEX, EMPTY_STRING).isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_NOT_EMPTY);
         }
     }
 
     private void checkIfDigit(String lottoNumber) {
         for (int i = 0; i < lottoNumber.length(); i++) {
             if (!Character.isDigit(lottoNumber.charAt(i))) {
-                throw new IllegalArgumentException();
+                throw new InputErrorException(ErrorType.NEED_NUMBER);
             }
         }
     }
@@ -76,7 +78,7 @@ public class LottoNumberParser {
                     .toList();
             return new Lotto(lotto);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new InputErrorException(ErrorType.NEED_INTEGER);
         }
     }
 
