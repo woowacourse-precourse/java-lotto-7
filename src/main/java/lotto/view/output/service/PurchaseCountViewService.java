@@ -1,4 +1,4 @@
-package lotto.view.output.domain;
+package lotto.view.output.service;
 
 public interface PurchaseCountViewService {
     void view(int count);

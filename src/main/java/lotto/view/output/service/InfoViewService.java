@@ -1,4 +1,4 @@
-package lotto.view.output.domain;
+package lotto.view.output.service;
 
 public interface InfoViewService {
     void view();

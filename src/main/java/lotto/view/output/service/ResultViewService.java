@@ -1,4 +1,4 @@
-package lotto.view.output.domain;
+package lotto.view.output.service;
 
 import lotto.money.domain.Money;
 import lotto.money.domain.Benefit;
