@@ -12,9 +12,10 @@ public class LottoGameDisplay {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public int inputMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
                 int money = inputNumber();
 
                 LottoGameValidator.checkMoneyValid(money);
@@ -27,11 +28,11 @@ public class LottoGameDisplay {
     }
 
     public List<Integer> inputWinnerNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+
         while (true) {
             try {
-                System.out.println();
-                System.out.println("당첨 번호를 입력해 주세요.");
-
                 List<Integer> winNumbers = inputNumbers(",");
                 LottoGameValidator.checkWinNumbersValid(winNumbers);
 
@@ -43,11 +44,11 @@ public class LottoGameDisplay {
     }
 
     public int inputBonusNumber(List<Integer> winnerNumbers) {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+
         while (true) {
             try {
-                System.out.println();
-                System.out.println("보너스 번호를 입력해 주세요.");
-
                 int bonus = inputNumber();
                 LottoGameValidator.checkBonusValid(bonus, winnerNumbers);
 
