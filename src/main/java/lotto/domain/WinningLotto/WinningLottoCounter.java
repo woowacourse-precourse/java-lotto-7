@@ -14,13 +14,15 @@ public class WinningLottoCounter {
         }
     }
 
+    public Map<WinningLotto, Integer> getCounts() {
+        return counts;
+    }
+
     public Map<WinningLotto, Integer> getAllCounts() {
         return Collections.unmodifiableMap(new EnumMap<>(counts));
     }
 
-
     public void incrementCount(WinningLotto winningLotto) {
         counts.put(winningLotto, counts.get(winningLotto) + 1);
     }
-
 }

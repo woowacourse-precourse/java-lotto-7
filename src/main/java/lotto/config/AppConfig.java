@@ -1,8 +1,8 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.domain.Lotto.LottoManager;
-import lotto.domain.Lotto.LottoNumbersGenerator;
+import lotto.domain.lotto.LottoManager;
+import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.LottoFormatter;
 import lotto.domain.WinningLotto.WinningLottoCalculate;
 import lotto.domain.WinningLotto.WinningLottoCounter;
@@ -22,7 +22,7 @@ public class AppConfig {
         LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator(lottoValidator);
         LottoManager lottoManager = new LottoManager(lottoNumbersGenerator);
         WinningLottoCalculate winningLottoCalculate = new WinningLottoCalculate(winningLottoCounter, lottoFormatter);
-        LottoService lottoService = new LottoService(lottoNumbersGenerator, lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate);
+        LottoService lottoService = new LottoService(lottoManager, lottoFormatter, winningLottoCounter, winningLottoCalculate);
         return new LottoController(inputView, outputView, lottoService);
     }
 }

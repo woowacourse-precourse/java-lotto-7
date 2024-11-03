@@ -12,7 +12,7 @@ public enum WinningLotto {
     private final int matchedCount;
     private final long prize;
 
-    WinningLotto(int matchedCount, int prize) {
+    WinningLotto(int matchedCount, long prize) {
         this.matchedCount = matchedCount;
         this.prize = prize;
     }

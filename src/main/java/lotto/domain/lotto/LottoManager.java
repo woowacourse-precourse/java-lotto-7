@@ -1,4 +1,4 @@
-package lotto.domain.Lotto;
+package lotto.domain.lotto;
 
 import lotto.utils.RandomNumbersSelector;
 import lotto.utils.SortUtils;

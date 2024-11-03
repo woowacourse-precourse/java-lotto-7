@@ -1,7 +1,5 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import lotto.domain.Lotto.LottoManager;
-import lotto.domain.Lotto.LottoNumbersGenerator;
 import lotto.validator.LottoValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +25,6 @@ public class LottoManagerTest {
 
         int size = lottoManager.getLottos().size();
 
-        Assertions.assertThat(8).isEqualTo(8);
+        Assertions.assertThat(size).isEqualTo(8);
     }
 }

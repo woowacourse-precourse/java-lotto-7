@@ -1,46 +1,43 @@
 package lotto.service;
 
-import lotto.domain.Lotto.Lotto;
-import lotto.domain.Lotto.LottoGenerator;
-import lotto.domain.Lotto.LottoManager;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoManager;
 import lotto.domain.LottoFormatter;
 import lotto.domain.WinningLotto.WinningLotto;
+import lotto.domain.WinningLotto.WinningLottoCalculate;
 import lotto.domain.WinningLotto.WinningLottoCounter;
 import lotto.dto.WinningLottoResultDTO;
 import lotto.parser.business.LottoParser;
 import lotto.parser.util.ParseUtils;
-import lotto.utils.RandomNumbersSelector;
-import lotto.utils.SortUtils;
 
 import java.util.*;
 
 public class LottoService {
-    private final LottoGenerator lottoGenerator;
     private final LottoManager lottoManager;
     private final LottoFormatter lottoFormatter;
     private final WinningLottoCounter winningLottoCounter;
+    private final WinningLottoCalculate winningLottoCalculate;
 
-    public LottoService(LottoGenerator lottoGenerator, LottoManager lottoManager, LottoFormatter lottoFormatter, WinningLottoCounter winningLottoCounter) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoService(LottoManager lottoManager, LottoFormatter lottoFormatter, WinningLottoCounter winningLottoCounter, WinningLottoCalculate winningLottoCalculate) {
         this.lottoManager = lottoManager;
         this.lottoFormatter = lottoFormatter;
         this.winningLottoCounter = winningLottoCounter;
+        this.winningLottoCalculate = winningLottoCalculate;
     }
 
-    public void createLottos(int buyLottoCount) {
-        for (int i = 0; i < buyLottoCount; i++) {
-            List<Integer> randomNumbers = RandomNumbersSelector.selectRandomNumbers();
-            List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers(randomNumbers);
-            List<Integer> sortedLottoNumbers = SortUtils.sortNumbers(lottoNumbers);
-            lottoManager.createLottosByRandomNumbers(sortedLottoNumbers);
-        }
+    public void callCreateLottos(int buyLottoCount) {
+        lottoManager.createLottos(buyLottoCount);
+    }
+
+    public int getCalculateBuyLottoCount(int buyLottoMoney) {
+        return winningLottoCalculate.calculateBuyLottoCount(buyLottoMoney);
     }
 
     public List<String> formatBuyLottoNumbersResult() {
         return lottoFormatter.formatLottoNumbers(lottoManager.getLottos());
     }
 
-    public void recordWinningLottoInfo(String winningNumbers, String bonusNumber) {
+    public void recordWinningLotto(String winningNumbers, String bonusNumber) {
         List<Integer> parsedWinNumbers = LottoParser.parseWinningNumbers(winningNumbers);
         int parsedBonusNumber = ParseUtils.convertToNumber(bonusNumber);
 
@@ -53,43 +50,11 @@ public class LottoService {
     }
 
     public List<WinningLottoResultDTO> formatWinningLottoResults() {
-        List<WinningLottoResultDTO> formatResults = new ArrayList<>();
-        Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
-
-        for (WinningLotto winningLotto : WinningLotto.values()) {
-            if (winningLotto != WinningLotto.NO_MATCH) {
-                formatResults.add(new WinningLottoResultDTO(
-                        winningLotto.getMatchedCount(),
-                        lottoFormatter.formatPrize(winningLotto.getPrize()),
-                        counts.get(winningLotto)
-                ));
-            }
-        }
-        return formatResults;
+        return lottoFormatter.formatWinningLottoResults();
     }
 
-    public double calculateLottoRateOfReturn(int buyLottoMoney) {
-        long totalAmount = calculateTotalPrize();
-        double rateOfReturn = calculateRateOfReturn(buyLottoMoney, totalAmount);
-        return formatRounding(rateOfReturn);
-    }
-
-    private double calculateRateOfReturn(int buyLottoMoney, long totalPrize) {
-        double rateOfReturn = ((double) totalPrize / buyLottoMoney) * 100;
-        return rateOfReturn;
-    }
-
-    private long calculateTotalPrize() {
-        Map<WinningLotto, Integer> counts = winningLottoCounter.getAllCounts();
-        long sum = 0;
-        for (Map.Entry<WinningLotto, Integer> entry : counts.entrySet()) {
-            sum += (long) entry.getValue() * entry.getKey().getPrize();
-        }
-        return sum;
-    }
-
-    private double formatRounding(double rateOfReturn) {
-        return Math.round(rateOfReturn * 10.0) / 10.0;
+    public double callCalculateLottoRateOfReturn(int buyLottoMoney) {
+        return winningLottoCalculate.calculateLottoRateOfReturn(buyLottoMoney);
     }
 
     private int calculateEqualWinningNumberBySingleLotto(List<Integer> winningNumbers, Lotto lotto) {
@@ -105,10 +70,5 @@ public class LottoService {
             return true;
         }
         return false;
-    }
-
-    public int calculateBuyLottoCount(int buyLottoMoney) {
-        int lottoCount = buyLottoMoney / 1000;
-        return lottoCount;
     }
 }

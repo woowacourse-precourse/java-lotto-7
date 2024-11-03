@@ -20,9 +20,9 @@ public class LottoController {
 
     public void run() {
         int buyLottoMoney = Integer.parseInt(inputView.inputBuyLottoMoney());
-        int buyLottoCount = lottoService.calculateBuyLottoCount(buyLottoMoney);
+        int buyLottoCount = lottoService.getCalculateBuyLottoCount(buyLottoMoney);
 
-        lottoService.createLottos(buyLottoCount);
+        lottoService.callCreateLottos(buyLottoCount);
         outputView.printBuyLottoCount(buyLottoCount);
 
         List<String> formattedLottoNumbers = lottoService.formatBuyLottoNumbersResult();
@@ -35,7 +35,7 @@ public class LottoController {
         outputView.printWhiteSpace();
         String bonusNumber = inputView.inputBonusNumber();
 
-        lottoService.recordWinningLottoInfo(winningNumbers, bonusNumber);
+        lottoService.recordWinningLotto(winningNumbers, bonusNumber);
         List<WinningLottoResultDTO> formatWinningLottoResults = lottoService.formatWinningLottoResults();
 
         outputView.printWhiteSpace();
@@ -44,7 +44,7 @@ public class LottoController {
             outputView.printWinningLottoInfo(winningLottoResultDTO.getMatchedCount(), winningLottoResultDTO.getPrize(), winningLottoResultDTO.getCount());
         }
 
-        double lottoRateOfReturn = lottoService.calculateLottoRateOfReturn(buyLottoMoney);
+        double lottoRateOfReturn = lottoService.callCalculateLottoRateOfReturn(buyLottoMoney);
         outputView.printRateOfReturn(lottoRateOfReturn);
     }
 }

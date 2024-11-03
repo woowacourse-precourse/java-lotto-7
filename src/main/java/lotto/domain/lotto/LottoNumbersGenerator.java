@@ -1,4 +1,4 @@
-package lotto.domain.Lotto;
+package lotto.domain.lotto;
 
 import lotto.validator.LottoValidator;
 
@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoGenerator {
+public class LottoNumbersGenerator {
     private final LottoValidator lottoValidator;
 
-    public LottoGenerator(LottoValidator lottoValidator) {
+    public LottoNumbersGenerator(LottoValidator lottoValidator) {
         this.lottoValidator = lottoValidator;
     }
 
