@@ -8,7 +8,7 @@
 사용자가 입력한 금액 만큼의 <span style="color:gold"> **로또** </span>를 랜덤 발급해주고 
 사용자가 입력한 당첨번호와 비교해 당첨 결과와 수익률을 출력해주는 프로그램입니다.
 
-{PREVIEW GIF}
+![java-lotto – Application java  java-lotto main  2024-11-03 14-57-09](https://github.com/user-attachments/assets/fb9f80ab-e9bd-4274-a744-8af3668961ad)
 
 ---
 
@@ -49,6 +49,7 @@
 - 구매한 장수를 출력한다
 - <span style="color:orange"> [에외처리] </span> 구입 금액이 양의 정수가 아닌 경우
 - <span style="color:orange"> [에외처리] </span> 구입 금액이 1000원 단위가 아닌 경우
+<span style="font-size:87%; color:gray"> *예외처리 후 해당 단계부터 다시 시행하도록 구현 </span>
 
 ### 당첨 번호와 보너스 번호 입력 받기
 
@@ -58,6 +59,7 @@
 - <span style="color:orange"> [에외처리] </span> 숫자 범위가 1~45가 아닌 경우
 - <span style="color:orange"> [에외처리] </span> 당첨 번호에 중복이 존재하는 경우
 - <span style="color:orange"> [에외처리] </span> 보너스 번호가 당첨 번호와 중복되는 경우
+<span style="font-size:87%; color:gray"> *예외처리 후 해당 단계부터 다시 시행하도록 구현 </span>
 
 ### 구매 금액만큼의 로또 발급하기
 
