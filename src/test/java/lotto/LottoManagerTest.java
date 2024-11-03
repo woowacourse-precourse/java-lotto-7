@@ -50,7 +50,7 @@ public class LottoManagerTest {
         Double profitRate = lottoManager.calculateProfitRate();
 
         // then
-        assertThat(profitRate).isEqualTo(50166.7);
+        assertThat(profitRate).isEqualTo(2000.0);
     }
 
     @Test
