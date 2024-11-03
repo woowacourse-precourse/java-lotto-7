@@ -21,7 +21,7 @@ public class PurchaseAmountValidator {
             if (parsedAmount % 1000 != 0) {
                 throw new IllegalArgumentException();
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException err) {
             System.out.println(ErrorMessage.NOT_INTEGER_STRING_ERROR);
             PurchaseAmountController.restart();
         } catch (IllegalArgumentException err) {
