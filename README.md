@@ -2,14 +2,19 @@
 
 ---
 ## 📌 패키지, 클래스 목록
+- [x] common
+  - [x] ErrorMessage : Error 발생시 사용자에게 안내 메세지 출력을 담당하는 클래스입니다.
+  - [x] Constant : 자주 사용하면 int, String 을 상수화 시켜놓은 클래스입니다.
 - [x] controller
-    - [x] Controller : try-catch문을 통해 로또 번호와 보너스 번호를 받는 메서드가 있습니다. service계층에서 구현한 게임의 로직과 view를 연결합니다.
+    - [x] Controller : InputHandler 클래스를 통해 입력을 받습니다. service 계층에서 구현한 게임의 로직과 view를 연결합니다.
+    - [x] InputHandler : try-catch문을 통해 로또 번호와 보너스 번호를 받는 메서드가 있습니다. 
 - [x] model
     - [x] BonusNumber : 보너스 번호를 담당하는 클래스입니다. 1~45 사이의 숫자인지 확인하는 검증하는 메서드가 있습니다.
     - [x] Lotto : 사용자가 입력하는 당첨 번호를 담당하는 클래스입니다. 1~45 사이인지, 6개인지, 중복이 있는지 검증하는 메서드가 있습니다.
     - [x] Money : 사용자가 입력한 구입 금액을 담당하는 클래스입니다. 1000원 단위인지 검증하는 메서드가 있습니다.
     - [x] PurchasedLottoNumbers : 사용자가 입력한 금액만큼 난수를 관리하는 클래스입니다.
     - [x] RandomNumbers : 1~45 사이의 중복되지 않은 숫자 6개를 생성하는 클래스입니다.
+    - [x] Rank : 맞은 개수, 금액, 안내 문자를 담당하는 enum 클래스입니다.
 - [x] service
     - [x] LottoRankingService : Lotto와 PurchasedLottoNumbers를 비교하여 등수를 산정하는 로직을 담당하는 클래스입니다.
     - [x] LottoBonusDuplicateCheckerService : BonusNumber가 Lotto와 중복되는지 검증하는 로직을 담당하는 클래스입니다.
@@ -17,7 +22,6 @@
 - [x] validation
     - [x] Parser : 사용자에게 입력받은 구입 금액이 문자열이 아니라면 이를 Int형으로 변환하는 로직을 담당하는 클래스입니다.
 - [x] view
-    - [x] ErrorMessage : Error 발생시 사용자에게 안내 메세지 출력을 담당하는 클래스입니다.
     - [x] InputView : 사용자에게 입력을 요구하는 안내 메세지를 출력하고, 입력을 받는 클래스입니다.
     - [x] OutputView : 사용자에게 결과에 해당하는 메세지를 출력하는 클래스입니다.
 ---
