@@ -4,7 +4,7 @@ import static lotto.constants.LottoConfig.NUMBER_RANGE_MAXIMUM;
 import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 
 import java.util.List;
-import lotto.constants.ErrorMessage;
+import lotto.constants.ExceptionMessage;
 
 public class BonusNumber {
 
@@ -17,7 +17,7 @@ public class BonusNumber {
 
     private void validate(int number) {
         if (isOutOfRange(number)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_OUT_OF_RANGE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_OUT_OF_RANGE_BONUS_NUMBER.getMessage());
         }
     }
 

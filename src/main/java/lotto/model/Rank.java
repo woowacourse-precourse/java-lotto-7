@@ -14,7 +14,6 @@ public enum Rank {
     SECOND(5, true, 30_000_000),
     FIRST(6, false, 2_000_000_000);
 
-
     private final int matchingNumber;
     private final boolean bonusNumber;
     private final int prize;

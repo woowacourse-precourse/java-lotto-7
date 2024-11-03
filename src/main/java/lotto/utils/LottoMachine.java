@@ -22,7 +22,7 @@ public class LottoMachine {
 
     private static void generateLotto(List<Lotto> lottos) {
         Lotto lotto = new Lotto(generateLottoNumbers());
-        if (isNotDuplicatedNumbers(lottos, lotto)) {
+        if (!isDuplicateNumbers(lottos, lotto)) {
             lottos.add(lotto);
         }
     }
@@ -31,7 +31,7 @@ public class LottoMachine {
         return Randoms.pickUniqueNumbersInRange(NUMBER_RANGE_MINIMUM, NUMBER_RANGE_MAXIMUM, NUMBERS_SIZE);
     }
 
-    private static boolean isNotDuplicatedNumbers(List<Lotto> lottos, Lotto lotto) {
-        return !lottos.contains(lotto);
+    private static boolean isDuplicateNumbers(List<Lotto> lottos, Lotto lotto) {
+        return lottos.contains(lotto);
     }
 }

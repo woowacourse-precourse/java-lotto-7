@@ -6,7 +6,7 @@ import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.constants.ErrorMessage;
+import lotto.constants.ExceptionMessage;
 
 public class Lotto {
 
@@ -19,13 +19,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (hasTooManyNumbers(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_TOO_MANY_NUMBERS.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_TOO_MANY_NUMBERS.getMessage());
         }
         if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER.getMessage());
         }
         if (hasOutOfRangeNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_OUT_OF_RANGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
 

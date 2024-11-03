@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constants.ErrorMessage;
+import lotto.constants.ExceptionMessage;
 
 public class WinningLotto {
 
@@ -15,7 +15,7 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, BonusNumber bonusNumber) {
         if (hasDuplicateNumber(lotto, bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER.getMessage());
         }
     }
 

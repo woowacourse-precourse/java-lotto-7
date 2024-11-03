@@ -5,7 +5,7 @@ import static lotto.constants.LottoConfig.PRICE_MINIMUM;
 import static lotto.constants.LottoConfig.TICKET_PRICE;
 
 import java.util.List;
-import lotto.constants.ErrorMessage;
+import lotto.constants.ExceptionMessage;
 
 public class Money {
 
@@ -18,10 +18,10 @@ public class Money {
 
     public void validate(int price) {
         if (isOutOfRange(price)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_OUT_OF_RANGE_PRICE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.IS_OUT_OF_RANGE_PRICE.getMessage());
         }
         if (isIndivisible(price)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_INDIVISIBLE_PRICE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.IS_INDIVISIBLE_PRICE.getMessage());
         }
     }
 

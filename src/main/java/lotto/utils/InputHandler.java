@@ -2,7 +2,7 @@ package lotto.utils;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constants.ErrorMessage;
+import lotto.constants.ExceptionMessage;
 
 public class InputHandler {
 
@@ -26,7 +26,7 @@ public class InputHandler {
 
     private static void validate(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_INPUT.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_FORMAT_INPUT.getMessage());
         }
     }
 
