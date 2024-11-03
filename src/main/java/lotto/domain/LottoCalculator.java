@@ -40,7 +40,8 @@ public class LottoCalculator {
         int winMoneySum = lottoWinResultList.stream()
                 .mapToInt((winResult) -> winResult.winMoney())
                 .sum();
-        return ((double) winMoneySum / buyMoney) * 100;
+        double rate = ((double) winMoneySum / buyMoney) * 100;
+        return Math.round(rate * 100) / 100.0;
     }
 
     public static Map<Integer,List<LottoWinResult>> getWinLottoResultMap(List<LottoWinResult> lottoWinResultList) {
