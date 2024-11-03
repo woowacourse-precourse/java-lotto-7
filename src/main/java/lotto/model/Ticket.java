@@ -1,15 +1,15 @@
 package lotto.model;
 
-public class Purchase {
+public class Ticket {
     private final int ticketCount;
 
-    private Purchase(int ticketCount) {
+    private Ticket(int ticketCount) {
         this.ticketCount = ticketCount;
     }
 
-    public static Purchase exchangeTickets(int money) {
+    public static Ticket purchaseTickets(int money) {
         int ticketCount = money / 1000;
-        return new Purchase(ticketCount);
+        return new Ticket(ticketCount);
     }
 
     public int getTicketCount() {
