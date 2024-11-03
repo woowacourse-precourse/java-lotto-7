@@ -4,6 +4,7 @@ import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoConstants;
 import lotto.model.LottoRank;
+import lotto.model.LottoResultChecker;
 import lotto.model.LottoRevenueCalculator;
 import lotto.model.PurchasedLottos;
 import lotto.model.WinningLotto;
@@ -32,7 +33,7 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
 
-        Map<LottoRank, Integer> lottoResult = purchasedLottos.lottoResultFrom(winningLotto);
+        Map<LottoRank, Integer> lottoResult = LottoResultChecker.lottoResultFrom(purchasedLottos, winningLotto);
         outputView.showLottoResult(lottoResult);
 
         double revenue = calculateLottoRevenue(lottoResult, purchaseMoney);
