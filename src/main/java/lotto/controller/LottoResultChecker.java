@@ -8,26 +8,36 @@ import lotto.model.Lotto;
 import lotto.model.LottoBonus;
 import lotto.model.LottoRank;
 import lotto.model.LottoTicket;
+import lotto.view.OutputView;
 
 public class LottoResultChecker {
+	public void displayResults(List<LottoTicket> tickets, Lotto winningLotto, LottoBonus bonus) {
+		Map<LottoRank, Integer> resultCount = checkResults(tickets, winningLotto, bonus);
+		OutputView.displayResult(resultCount);
+
+		int purchaseAmount = tickets.size() * LottoTicketGenerator.LOTTO_PRICE;
+		double profitRate = calculateProfitRate(resultCount, purchaseAmount);
+		OutputView.displayProfitRate(profitRate);
+	}
+
 	public Map<LottoRank, Integer> checkResults(List<LottoTicket> tickets, Lotto winningLotto, LottoBonus bonus) {
 		Map<LottoRank, Integer> resultCount = new EnumMap<>(LottoRank.class);
-		for(LottoRank rank : LottoRank.values()) {
+		for (LottoRank rank : LottoRank.values()) {
 			resultCount.put(rank, 0);
 		}
-		
-		for(LottoTicket ticket : tickets) {
+
+		for (LottoTicket ticket : tickets) {
 			int matchCount = countMatchingNumbers(ticket, winningLotto);
 			boolean bonusMatch = ticket.getNumbers().contains(bonus.getBonusNumber());
-			
+
 			LottoRank rank = getRank(matchCount, bonusMatch);
-			if(rank!=null) {
+			if (rank != null) {
 				resultCount.put(rank, resultCount.get(rank) + 1);
 			}
 		}
 		return resultCount;
 	}
-	
+
 	private int countMatchingNumbers(LottoTicket ticket, Lotto winningLotto) {
 		int matchCount = 0;
 		for (int number : ticket.getNumbers()) {
@@ -47,11 +57,13 @@ public class LottoResultChecker {
 		return null;
 	}
 	
-	public int calculateTotalPrize(Map<LottoRank, Integer> resultCount) {
+	public double calculateProfitRate(Map<LottoRank, Integer> resultCount, int purchaseAmount) {
 		int totalPrize = 0;
-		for(Map.Entry<LottoRank, Integer> entry : resultCount.entrySet()) {
+		for (Map.Entry<LottoRank, Integer> entry : resultCount.entrySet()) {
 			totalPrize += entry.getKey().getPrize() * entry.getValue();
 		}
-		return totalPrize;
+		double profitRate = (double) totalPrize / purchaseAmount * 100;
+		
+		return profitRate;
 	}
 }
