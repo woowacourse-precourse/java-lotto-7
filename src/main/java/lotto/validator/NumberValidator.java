@@ -24,12 +24,14 @@ public class NumberValidator {
         }
     }
 
-    public void checkNumberRange(List<Integer> winningNumbers) {
-        winningNumbers.forEach(number -> {
-            if (isNotInRange(number)) {
-                throw new IllegalArgumentException(NumberErrorCode.NUMBER_RANGE_ERROR.getMessage());
-            }
-        });
+    public void checkNumberRange(List<Integer> numbers) {
+        numbers.forEach(this::checkNumberRange);
+    }
+
+    public void checkNumberRange(Integer number) {
+        if (isNotInRange(number)) {
+            throw new IllegalArgumentException(NumberErrorCode.NUMBER_RANGE_ERROR.getMessage());
+        }
     }
 
     private boolean isNotInRange(int number) {
