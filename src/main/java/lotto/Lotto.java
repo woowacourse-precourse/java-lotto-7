@@ -1,6 +1,10 @@
 package lotto;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -8,22 +12,32 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    private void validate(final List<Integer> numbers) {
+        chkSize(numbers);
+        chkDuplicate(numbers);
     }
 
+    private static void seperateParagraph(){
+        System.out.println();
+    }
     // TODO: 추가 기능 구현
-    public static void run(){
-        System.out.println("구입금액을 입력해 주세요.");
-        inputPrice();
-        List<Integer> lottos = Randoms.pickUniqueNumbersInRange(1,45,6);
+    public static void run() throws IllegalArgumentException {
+
+        System.out.println( "구입금액을 입력해 주세요." );
+        int numLotto = divPriceBy1000(inputPrice());
+        seperateParagraph();
+
+        System.out.println( numLotto + "개를 구매했습니다." );
+        List<Lotto> lottos = new ArrayList<Lotto>();
+        inputRandomLottos(lottos, numLotto);
+        outputRandomLottos(lottos, numLotto);
+        seperateParagraph();
+
 
 
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -31,16 +45,85 @@ public class Lotto {
         //출력
     }
 
-    public static int inputPrice(){
-        final int price = Integer.parseInt(Console.readLine());
-        if (price%1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
+    private static void outputRandomLottos(final List<Lotto> lottos, final int numLotto) {
+        for(Lotto lotto : lottos) {
+            printNums(lotto);
         }
-        Console.close();
+    }
+
+    private static void printNums(final Lotto lotto) {
+        int lastNum = lotto.numbers.get(lotto.numbers.size() - 1);
+
+        System.out.print("[");
+        for(int num : lotto.numbers){
+            System.out.print(num);
+            if(num != lastNum){
+                System.out.print(", ");
+            }
+        }
+        System.out.print("]\n");
+
+    }
+
+    private static void inputRandomLottos(
+            List<Lotto> lottos,
+            final int numLotto
+    ) {
+        for(int i = 0; i < numLotto; i++){
+            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1,45,6);
+            lottos.add(new Lotto(lottoNums));
+        }
+    }
+
+    private static int inputPrice(){
+        final int price = Integer.parseInt(Console.readLine());
+        try{
+            if (price%1000 != 0){
+                throw new IllegalArgumentException("1,000원 단위로 입력해야 합니다.");
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println("[ERROR] " + e.getMessage());
+            inputPrice();
+        } finally{
+            Console.close();
+        }
         return price;
     }
 
-    public static List<String> splitNums(String nums){
+    private static List<String> splitNums(final String nums){
         return List.of(nums.split(","));
     }
+
+    private static int divPriceBy1000(final int price){
+        return price/1000;
+    }
+
+
+    private static List<Integer> parsing(final String nums){
+        List<Integer> lottoNums = new ArrayList<>();
+        List<String> splitNums = List.of(nums.split(","));
+        for(String num : splitNums){
+            lottoNums.add(Integer.parseInt(num));
+        }
+        return lottoNums;
+    }
+
+    private static void chkDuplicate(final List<Integer> numbers) throws IllegalArgumentException {
+        Set<Integer> set = new HashSet<>();
+        set.addAll(numbers);
+        if(set.size() != numbers.size()){
+            throw new IllegalArgumentException("숫자가 중복되지 않아야 합니다.");
+        }
+    }
+
+    private static void chkSize(final List<Integer> numbers) throws IllegalArgumentException {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void errorMessage(IllegalArgumentException e){
+        System.out.println("[ERROR] " + e.getMessage());
+    }
+
 }
