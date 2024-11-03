@@ -1,9 +1,12 @@
-package lotto;
+package lotto.service;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningNumbers;
 
 public class Calculator {
 
@@ -30,7 +33,7 @@ public class Calculator {
         });
         return results;
     }
-    
+
     public double calculateReturnRate(Map<Ranking, Long> results, int purchasedCount) {
         double totalPrize = results.entrySet().stream()
                 .mapToDouble(entry -> entry.getValue() * entry.getKey().getPrizeAmount())

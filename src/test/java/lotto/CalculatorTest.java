@@ -5,6 +5,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningNumbers;
+import lotto.service.Calculator;
 import org.junit.jupiter.api.Test;
 
 public class CalculatorTest {

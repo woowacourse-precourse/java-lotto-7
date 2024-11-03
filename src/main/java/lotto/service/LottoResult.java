@@ -1,8 +1,11 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningNumbers;
 
 public class LottoResult {
     private final Map<Ranking, Long> results;

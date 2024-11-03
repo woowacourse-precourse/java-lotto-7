@@ -1,8 +1,10 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumberGenerator;
 
 public class LottoStore {
 
