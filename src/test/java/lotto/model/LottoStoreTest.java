@@ -28,4 +28,12 @@ public class LottoStoreTest {
         assertThatThrownBy(() -> LottoStore.makeLottoTicket(purchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource( strings = {"12001" , "4242", "1234"})
+    @DisplayName("금액이 로또 한장 금액 단위로 나누어 떨어지지 않으면 예외 테스트")
+    void makeLottoTicket_notDivisibleByLottoPrice(String purchaseMoney) {
+        assertThatThrownBy(() -> LottoStore.makeLottoTicket(purchaseMoney))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
