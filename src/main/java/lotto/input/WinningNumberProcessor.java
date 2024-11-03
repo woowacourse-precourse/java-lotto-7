@@ -30,10 +30,12 @@ public class WinningNumberProcessor {
         try {
             return Stream.of(input.split(NUMBER_SEPARATOR))
                     .map(String::trim)
+                    .peek(InputUtil::validatePositiveInteger)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NON_NUMERIC_INPUT.getMessage(), e);
         }
     }
+
 }

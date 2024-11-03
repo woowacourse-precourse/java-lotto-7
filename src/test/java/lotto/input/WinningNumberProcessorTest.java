@@ -44,6 +44,15 @@ public class WinningNumberProcessorTest {
                 .withMessage(NON_NUMERIC_INPUT.getMessage());
     }
 
+    @DisplayName("음수, 0, 실수인 경우 - IllegalArgumentException 반환")
+    @ParameterizedTest
+    @ValueSource(strings = {"1, -2, 3, 4, 5", "0, 2, 3, 4, 5, 6", "1, 2, 3, 4, 5.0, 6", "1, 2, 3, 4, 5.2, 6"})
+    void testInvalidIntInput(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> processWinningNumbers(input))
+                .withMessage(ONLY_POSITIVE_INPUT.getMessage());
+    }
+
     @DisplayName("유효한 입력 - List<Integer> 반환")
     @ParameterizedTest
     @MethodSource("provideValidInput")
