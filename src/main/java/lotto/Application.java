@@ -11,6 +11,7 @@ public class Application {
     public static int bonusNumber;
     public static Lotto[] lottos;
     public static int[] correctDetail = new int[5];
+    public static int[] reward = {5000, 50000, 1500000, 30000000, 2000000000};
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -78,5 +79,8 @@ public class Application {
         Print.correct5();
         Print.correctBonus();
         Print.correct6();
+
+        // 총 수익률 출력
+        Print.totalReward((Correct.profit()/purchasePrice)*100.0);
     }
 }

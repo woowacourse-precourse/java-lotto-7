@@ -54,4 +54,8 @@ public class Print {
         System.out.println(correctDetail[4]+"개");
     }
 
+    public static void totalReward(double num) {
+        System.out.println("총 수익률은 " + num + "%입니다.");
+    }
+
 }
