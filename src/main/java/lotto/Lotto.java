@@ -21,7 +21,15 @@ public class Lotto {
     }
 
     public int checkNumbers(Lotto winningLotto) {
-        return 0;
+        int correctCnt = 0;
+
+        for (int num : numbers) {
+            if (winningLotto.numbers.contains(num)) {
+                correctCnt++;
+            }
+        }
+
+        return correctCnt;
     }
 
     public int checkBonus(int bonusNumber) {
