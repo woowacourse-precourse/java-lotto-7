@@ -21,15 +21,16 @@ public class CustomLottoIssueService implements LottoIssueService {
     }
 
     protected Lotto getCustomLotto(String prompt) {
-        List<Integer> numbers = null;
+        Lotto lotto = null;
         try {
             String inputNums = ConsoleInput.getStringWithQuestion(prompt);
-            numbers = parseLottoNums(inputNums);
+            List<Integer> numbers = parseLottoNums(inputNums);
             validateLottoNumRange(numbers);
+            lotto = new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return new Lotto(numbers);
+        return lotto;
     }
 
     protected void validateLottoNumRange(List<Integer> numbers) {
