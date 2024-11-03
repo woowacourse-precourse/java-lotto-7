@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomNumber {
-    public static Integer START_NUMBER = 1;
-    public static Integer END_NUMBER = 45;
-    public static Integer LOTTO_LENGTH = 6;
+    public static final int START_NUMBER = 1;
+    public static final int END_NUMBER = 45;
+    public static final int LOTTO_LENGTH = 6;
 
     private RandomNumber() {
     }
