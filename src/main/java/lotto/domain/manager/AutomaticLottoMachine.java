@@ -8,7 +8,9 @@ import static lotto.domain.constant.LottoConstraintProperties.LOTTO_PRICE_UNIT;
 import static lotto.domain.constant.LottoConstraintProperties.MAXIMUM_NUMBER_VALUE;
 import static lotto.domain.constant.LottoConstraintProperties.MINIMUM_NUMBER_VALUE;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.model.Lotto;
@@ -47,11 +49,25 @@ public class AutomaticLottoMachine {
     }
 
     private List<Lotto> issueAutomatic(int quantity) {
-        return Stream.generate(
-                        () -> pickUniqueNumbersInRange(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE, FIXED_LOTTO_SIZE))
+        Set<List<Integer>> uniqueLottos = new HashSet<>();
+
+        return Stream.generate(() -> {
+                    List<Integer> automaticLotto = getUniqueLotto(uniqueLottos);
+                    uniqueLottos.add(automaticLotto);
+                    return automaticLotto;
+                })
                 .limit(quantity)
                 .map(Lotto::new)
                 .toList();
+    }
+
+    private static List<Integer> getUniqueLotto(Set<List<Integer>> uniqueLottos) {
+        List<Integer> automaticLotto;
+        do {
+            automaticLotto = pickUniqueNumbersInRange(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE, FIXED_LOTTO_SIZE);
+        } while (uniqueLottos.contains(automaticLotto));
+
+        return automaticLotto;
     }
 
     private void verifyAmount(int amount) {
