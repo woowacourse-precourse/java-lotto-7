@@ -30,24 +30,6 @@ public enum WinningType {
     }
 
     public void countUp(){
-//        if(matchCount == 3){
-//            FIRST.count += 1;
-//        }
-//        if(matchCount == 4){
-//            SECOND.count += 1;
-//        }
-//        if(matchCount == 5){
-//            if(checkBonus){
-//                FOURTH_BONUS.count += 1;
-//            }
-//            if(!checkBonus){
-//                THIRD.count += 1;
-//            }
-//        }
-//        if(matchCount == 6){
-//            FIFTH.count += 1;
-//        }
-
         this.count += 1;
     }
 }
