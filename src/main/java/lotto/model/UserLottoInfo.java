@@ -1,7 +1,7 @@
 package lotto.model;
 
 import lotto.dto.CreateLottoInfo;
-import lotto.dto.LottoRateInfo;
+import lotto.dto.WinningStatistics;
 
 public class UserLottoInfo {
     private final Lottos lottos;
@@ -18,10 +18,14 @@ public class UserLottoInfo {
         return lottos.getUserLottos();
     }
 
-    public LottoRateInfo calculateReturnRate(WinningLotto winningLotto) {
+    public WinningStatistics getWinningStatistics(WinningLotto winningLotto) {
         lottos.makeWinningInfo(winningLotto, rankingStatus);
+
         long totalPrize = rankingStatus.getTotalPrize();
 
-        return null;
+        String matchComment = rankingStatus.makeMatchComment();
+        String returnRate = purchaseAmount.calculateReturnRate(totalPrize);
+
+        return new WinningStatistics(matchComment, returnRate);
     }
 }
