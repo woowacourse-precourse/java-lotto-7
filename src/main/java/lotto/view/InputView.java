@@ -26,7 +26,11 @@ public class InputView {
 	}
 
 	public int getBonusNumberInput() {
-		return Integer.parseInt(Console.readLine());
+		try {
+			return Integer.parseInt(Console.readLine());
+		} catch (NumberFormatException exception) {
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자이어야 합니다.");
+		}
 	}
 
 	private List<Integer> parseToNumbers(String input) {
