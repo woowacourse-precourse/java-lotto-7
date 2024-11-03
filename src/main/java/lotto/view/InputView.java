@@ -14,7 +14,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    private int getInputPurchaseAmount() {
+    public int getInputPurchaseAmount() {
         while (true) {
             promptPurchaseAmount();
             String purchaseAmountInput = getInput();
@@ -26,7 +26,7 @@ public class InputView {
         }
     }
 
-    private List<Integer> getInputWinningNumbers() {
+    public List<Integer> getInputWinningNumbers() {
         while (true) {
             promptWinningNumbers();
             String winningNumbersInput = getInput();
@@ -39,7 +39,7 @@ public class InputView {
         }
     }
 
-    private List<Integer> getInputBonusNumber() {
+    public List<Integer> getInputBonusNumber() {
         while (true) {
             promptBonusNumber();
             String bonusNumberInput = getInput();
