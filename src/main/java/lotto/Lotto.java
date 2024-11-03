@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+    public static final int LOTTO_PRICE = 1000;
+
+    public static final int LOTTO_NUMBER_MIN_VALUE = 1;
+    public static final int LOTTO_NUMBER_MAX_VALUE = 45;
+    public static final int LOTTO_NUMBER_LENGTH = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +21,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return "[%s]".formatted(String.join(", ", numbers.stream().sorted().map(Object::toString).toList()));
+        return OutputMessage.LOTTO_NUMBER_FORMAT.formatted(String.join(OutputMessage.LOTTO_NUMBER_DELIMITER,
+            numbers.stream().sorted().map(Object::toString).toList()));
     }
 
     public static List<Lotto> generateLottos(int purchaseCount) {
@@ -30,7 +37,8 @@ public class Lotto {
     }
 
     public static Lotto generateLotto() {
-        List<Integer> lottoNumbers = pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_VALUE, LOTTO_NUMBER_MAX_VALUE,
+            LOTTO_NUMBER_LENGTH);
         return new Lotto(lottoNumbers);
     }
 

@@ -3,19 +3,20 @@ package lotto;
 import java.util.List;
 
 public class Validator {
+
     public static void checkValidPurchaseCount(int amount) {
         checkPositiveNumber(amount);
 
-        if (amount % 1000 != 0)
-            throw new IllegalArgumentException("[ERROR] 입력이 1000으로 나누어 떨어지지 않습니다.");
+        if (amount % Lotto.LOTTO_PRICE != 0)
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT);
     }
 
     public static void checkLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Lotto.LOTTO_NUMBER_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE);
         }
-        if (numbers.stream().distinct().toList().size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복되는 숫자가 있습니다.");
+        if (numbers.stream().distinct().toList().size() != Lotto.LOTTO_NUMBER_LENGTH) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER);
         }
 
         for (Integer number : numbers) {
@@ -25,13 +26,13 @@ public class Validator {
 
     public static void checkPositiveNumber(int number) {
         if (!(number > 0)) {
-            throw new IllegalArgumentException("[ERROR] 양수가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NO_POSITIVE_NUMBER);
         }
     }
 
     public static void checkLottoNumber(int bonusNumber) {
-        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 1이상 45 이하의 수가 아닙니다.");
+        if (!(Lotto.LOTTO_NUMBER_MIN_VALUE <= bonusNumber && bonusNumber <= Lotto.LOTTO_NUMBER_MAX_VALUE)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
         }
     }
 
@@ -40,7 +41,7 @@ public class Validator {
         checkLottoNumber(bonusNumber);
 
         if (lottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_BONUS_NUMBER);
         }
     }
 }

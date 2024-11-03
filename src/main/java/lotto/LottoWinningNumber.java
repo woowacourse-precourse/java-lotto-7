@@ -3,8 +3,8 @@ package lotto;
 import java.util.List;
 
 public class LottoWinningNumber {
-    private List<Integer> lottoNumbers;
-    private int bonusNumber;
+    private final List<Integer> lottoNumbers;
+    private final int bonusNumber;
 
     public LottoWinningNumber(List<Integer> lottoNumbers, int bonusNumber) {
         this.lottoNumbers = lottoNumbers;

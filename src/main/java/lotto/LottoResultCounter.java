@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.OutputMessage.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +46,7 @@ public class LottoResultCounter {
         StringBuilder builder = new StringBuilder();
 
         for (LottoResult result : TARGET_LOTTO_RESULT_TYPES) {
-            builder.append(result);
-            builder.append(" - %d개\n".formatted(counter.get(result)));
+            builder.append(LOTTO_RESULT_COUNTER_FORMAT.formatted(result.toString(), counter.get(result)));
         }
 
         return builder.toString();

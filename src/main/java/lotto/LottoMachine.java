@@ -3,15 +3,13 @@ package lotto;
 import java.util.List;
 
 public class LottoMachine {
-    private static final int LOTTO_PRICE = 1000;
-
     public void run() {
         int purchaseCount = getPurchaseCountFromUser();
         List<Lotto> lottos = Lotto.generateLottos(purchaseCount);
         OutputView.printLottos(lottos);
         LottoWinningNumber winningNumber = getWinningNumberFromUser();
         LottoResultCounter resultCounter = winningNumber.countMatchingNumbers(lottos);
-        OutputView.printResult(resultCounter, purchaseCount * LOTTO_PRICE);
+        OutputView.printResult(resultCounter, purchaseCount * Lotto.LOTTO_PRICE);
     }
 
     private int getPurchaseCountFromUser() {
@@ -27,7 +25,7 @@ public class LottoMachine {
     private int tryGetPurchaseCountFromUser() {
         int amount = InputView.getAmountFromUser();
         Validator.checkValidPurchaseCount(amount);
-        return amount / LOTTO_PRICE;
+        return amount / Lotto.LOTTO_PRICE;
     }
 
     private LottoWinningNumber getWinningNumberFromUser() {

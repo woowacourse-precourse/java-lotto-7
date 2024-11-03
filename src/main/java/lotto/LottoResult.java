@@ -9,7 +9,7 @@ public enum LottoResult {
     FIVE_MATCH("5개 일치",  1500000),
     FIVE_MATCH_BONUS("5개 일치, 보너스 볼 일치",  30000000),
     SIX_MATCH("6개 일치",  2000000000);
-
+    
     final public String info;
     final public int price;
 
@@ -44,7 +44,7 @@ public enum LottoResult {
 
     @Override
     public String toString() {
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        return "%s (%s원)".formatted(info, formatter.format(price));
+        DecimalFormat formatter = new DecimalFormat(OutputMessage.PRICE_DECIMAL_FORMAT);
+        return OutputMessage.LOTTO_RESULT_TYPE_FORMAT.formatted(info, formatter.format(price));
     }
 }
