@@ -12,7 +12,7 @@ class LottoTest {
     void testLottoNumberCountExceedsSix() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.\n");
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -20,7 +20,7 @@ class LottoTest {
     void testLottoNumbersHaveDuplicates() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.\n");
     }
 
     @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
@@ -28,6 +28,6 @@ class LottoTest {
     void testLottoNumberOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.\n");
     }
 }

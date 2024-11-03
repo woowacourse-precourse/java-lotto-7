@@ -49,32 +49,35 @@ public class LottoController {
     }
 
     private static WinningLotto getWinningLotto() {
-        List<Integer> winningNumbers = null;
-        Integer bonus = null;
+        List<Integer> winningNumbers = getValidWinningNumbers();
+        Integer bonus = getValidBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonus);
+    }
 
-        while (winningNumbers == null) {
+    private static List<Integer> getValidWinningNumbers() {
+        while (true) {
             try {
                 String inputWinningNumbers = InputView.getWinningNumbers();
-                winningNumbers = convertWinningNumbers(inputWinningNumbers);
+                return convertWinningNumbers(inputWinningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-        while (bonus == null) {
+    private static Integer getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
             try {
                 String inputBonusNumber = InputView.getBonusNumber();
-                bonus = convertBonusNumber(inputBonusNumber);
+                Integer bonus = convertBonusNumber(inputBonusNumber);
                 if (winningNumbers.contains(bonus)) {
-                    System.out.println("[ERROR] 보너스 번호는 당첨 번호에 포함되지 않아야 합니다.");
-                    bonus = null;
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함되지 않아야 합니다.");
                 }
+                return bonus;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return new WinningLotto(winningNumbers, bonus);
     }
 
     static Integer convertBonusNumber(String inputBonusNumber) {
@@ -94,37 +97,33 @@ public class LottoController {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String number : inputNumbers) {
-            try {
-                int parsedNumber = Integer.parseInt(number.trim());
-                if (parsedNumber < 1 || parsedNumber > 45) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
-                }
-                if (winningNumbers.contains(parsedNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-                }
-                winningNumbers.add(parsedNumber);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
-            }
+            int parsedNumber = parseNumber(number);
+            validateNumber(parsedNumber, winningNumbers);
+            winningNumbers.add(parsedNumber);
         }
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-
         return winningNumbers;
     }
 
-    private static int parseWinningNumber(String number) {
+    private static int parseNumber(String number) {
         try {
-            int winningNumber = Integer.parseInt(number);
-            if (winningNumber < 1 || winningNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
-            }
-            return winningNumber;
+            return Integer.parseInt(number.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
+
+    private static void validateNumber(int number, List<Integer> winningNumbers) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+        }
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
 
     private static Lottos createLottoNumbers(int count) {
 
@@ -148,7 +147,7 @@ public class LottoController {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.\n");
         }
     }
 

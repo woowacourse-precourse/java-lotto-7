@@ -19,7 +19,7 @@ class LottoControllerTest {
     void testDuplicateLottoNumbers() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.\n");
     }
 
     @DisplayName("로또 번호가 6개가 아니면 예외가 발생한다.")
@@ -27,7 +27,7 @@ class LottoControllerTest {
     void testInvalidLottoNumberCount() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.\n");
     }
 
     @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
@@ -35,7 +35,7 @@ class LottoControllerTest {
     void testLottoNumberOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.\n");
     }
 
     @DisplayName("당첨 번호가 중복되면 예외가 발생한다.")
@@ -94,6 +94,7 @@ class LottoControllerTest {
                 .hasMessage("[ERROR] 숫자만 입력 가능합니다.");
     }
 
+    @DisplayName("당첨 통계 계산을 테스트한다.")
     @Test
     public void testCountWinnings() {
         List<Lotto> lottos = Arrays.asList(
@@ -113,6 +114,7 @@ class LottoControllerTest {
         assertEquals(0, winnings.get(4));
     }
 
+    @DisplayName("총 수익을 계산한다.")
     @Test
     public void testCalculateTotalEarnings() {
         List<Integer> result = Arrays.asList(1, 0, 0, 0, 1);
@@ -120,6 +122,7 @@ class LottoControllerTest {
         assertEquals(LottoRank.FIRST.getPrizeAmount() + LottoRank.FIFTH.getPrizeAmount(), totalEarnings);
     }
 
+    @DisplayName("수익률을 계산한다.")
     @Test
     public void testCalculateProfitRate() {
         double totalEarnings = 6000;
