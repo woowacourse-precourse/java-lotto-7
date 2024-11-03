@@ -16,7 +16,7 @@ import utils.WinningCalculator;
 public class WinningService {
 
     private Ticket ticket;
-    private Lottos lottos = new Lottos();
+    private Lottos lottos = Lottos.create();
     private LottoResult lottoResult = LottoResult.create();
     private Winning winning;
 

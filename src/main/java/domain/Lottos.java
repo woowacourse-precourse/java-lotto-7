@@ -1,14 +1,19 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos() {
-        this.lottos = new ArrayList<>();
+    public static Lottos create() {
+        return new Lottos();
+    }
+
+    private Lottos() {
+        lottos = new ArrayList<>();
     }
 
     public void addLotto(Lotto lotto) {
@@ -16,8 +21,7 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
-
 
 }
