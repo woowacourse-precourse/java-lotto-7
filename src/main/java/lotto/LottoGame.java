@@ -23,8 +23,7 @@ public class LottoGame {
         this.output = output;
     }
 
-    public void run() {
-
+    public void purchase() {
         String rawPurchaseAmount = input.readPurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
 
@@ -34,6 +33,11 @@ public class LottoGame {
         LottoTicket lottoTicket = new LottoTicket(lottoMachine.generateLottos());
 
         output.printLottoTicket(lottoTicket);
+
+        run(lottoTicket);
+    }
+
+    public void run(LottoTicket lottoTicket) {
 
         WinningLotto winningLotto = new WinningLotto(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7

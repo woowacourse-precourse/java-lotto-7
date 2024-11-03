@@ -10,6 +10,6 @@ public class Application {
         Output output = new Output();
 
         LottoGame lottoGame = new LottoGame(input, output);
-        lottoGame.run();
+        lottoGame.purchase();
     }
 }
