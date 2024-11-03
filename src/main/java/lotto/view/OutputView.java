@@ -47,4 +47,8 @@ public class OutputView {
     public static void printEarningsRate(Double earningRate) {
         System.out.println(EARNING_RATE_OUTPUT_MESSAGE.getMessage(earningRate));
     }
+
+    public static void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
