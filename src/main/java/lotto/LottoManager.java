@@ -48,6 +48,7 @@ public class LottoManager {
             validatePurchaseAmountExceedLimit(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getPurchaseAmount();
         }
     }
@@ -60,6 +61,7 @@ public class LottoManager {
             validateUniqueWinningNumber(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getWinningNumbers();
         }
     }
@@ -93,22 +95,19 @@ public class LottoManager {
 
     private static void validatePurchaseAmountEnough(final int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
-            System.out.println(NOT_ENOUGH_PURCHASE_AMOUNT.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_ENOUGH_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     private static void validatePurchaseAmountMultipleLottoPrice(final int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            System.out.println(PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE.getMessage());
         }
     }
 
     private static void validatePurchaseAmountExceedLimit(final int purchaseAmount) {
         if (purchaseAmount > MAX_PURCHASE_AMOUNT) {
-            System.out.println(PURCHASE_AMOUNT_EXCEED_LIMIT.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_EXCEED_LIMIT.getMessage());
         }
     }
 
@@ -118,8 +117,7 @@ public class LottoManager {
                 .count();
 
         if (distinctCount != WINNING_NUMBERS_COUNT) {
-            System.out.println(NOT_UNIQUE_WINNING_NUMBER.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_UNIQUE_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -131,15 +129,13 @@ public class LottoManager {
 
     private static void validateWinningNumberRange(int number) {
         if (number < MIN_WINNING_NUMBERS_RANGE || number > MAX_WINNING_NUMBERS_RANGE) {
-            System.out.println(INVALID_WINNING_NUMBER_RANGE.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
         }
     }
 
     private static void validateWinningNumbersCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() != WINNING_NUMBERS_COUNT) {
-            System.out.println(INVALID_WINNING_NUMBERS_COUNT.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
     }
 }

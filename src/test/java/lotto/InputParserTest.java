@@ -29,7 +29,7 @@ class InputParserTest {
         String input = "1,2,3,4,5";
 
         //when
-        List<Integer> result = InputParser.parseWinningNumber(input);
+        List<Integer> result = InputParser.parseWinningNumbers(input);
 
         //then
         assertThat(result).contains(1, 2, 3, 4, 5);

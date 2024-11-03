@@ -12,7 +12,7 @@ public class Input {
         return input();
     }
 
-    public static String inputWinningNumber() {
+    public static String inputWinningNumbers() {
         System.out.println(WINNING_NUMBER_MESSAGE);
         return input();
     }

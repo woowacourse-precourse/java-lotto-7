@@ -1,6 +1,7 @@
 package lotto;
 
 public enum ErrorMessage {
+    NOT_INTEGER("[ERROR] 정수를 입력해주세요.\n"),
 
     NOT_ENOUGH_PURCHASE_AMOUNT("[ERROR] 구입 금액은 최소 1000원 이상입니다.\n"),
     PURCHASE_AMOUNT_NOT_MULTIPLE_LOTTO_PRICE("[ERROR] 구입 금액은 1000원으로 나누어떨어져야합니다.\n"),
