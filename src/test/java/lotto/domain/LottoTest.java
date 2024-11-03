@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.lottoForm.Lotto;
 import lotto.domain.lottoForm.WinningNumbers;
+import lotto.domain.number.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -64,12 +65,12 @@ public class LottoTest {
 
         // when
         Lotto lotto = new Lotto(numbers);
-        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Number> lottoNumbers = lotto.getNumbers();
         System.out.println(lottoNumbers);
 
         // then
         for (int i = 0; i < LOTTO_SIZE - 1; i++) {
-            assertThat(lottoNumbers.get(i)).isLessThan(lottoNumbers.get(i + 1));
+            assertThat(lottoNumbers.get(i).getNumber()).isLessThan(lottoNumbers.get(i + 1).getNumber());
         }
     }
 

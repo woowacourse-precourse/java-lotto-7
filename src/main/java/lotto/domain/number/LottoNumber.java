@@ -18,4 +18,12 @@ public abstract class LottoNumber {
             throw new IllegalArgumentException(LOTTO_SCOPE_ERROR.getMessage());
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public boolean equals(LottoNumber lottoNumber) {
+        return number == lottoNumber.getNumber();
+    }
 }
