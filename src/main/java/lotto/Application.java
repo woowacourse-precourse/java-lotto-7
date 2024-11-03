@@ -18,6 +18,7 @@ public class Application {
     }
 
     public void run() {
+        System.out.println("구입금액을 입력해 주세요.");
         int price = inputHandler.priceInput();
         int purchasedLottoCount = price / 1000;
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
@@ -26,7 +27,9 @@ public class Application {
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = inputHandler.winningNumbersInput();
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = inputHandler.bonusNumberInput();
     }
 }
