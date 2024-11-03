@@ -11,6 +11,7 @@ public class InputView {
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String amount = readLine();
+        addBlankLine();
         validate(amount);
         return Integer.parseInt(amount);
     }
@@ -22,5 +23,9 @@ public class InputView {
         if (Integer.parseInt(amount) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.");
         }
+    }
+
+    private static void addBlankLine() {
+        System.out.println();
     }
 }
