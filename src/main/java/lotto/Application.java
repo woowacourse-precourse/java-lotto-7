@@ -8,10 +8,10 @@ public class Application {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
         int lottoCount = lottoPurchase.inputPurchaseAmount();
-        List<Integer> numbers = lottoNumberGenerator.generateUniqueNumbers();
+        List<List<Integer>> lottos = lottoNumberGenerator.generateLottoNumbers(lottoCount);
 
         System.out.println();
         System.out.println(lottoCount+"개를 구매했습니다.");
-        System.out.println(numbers);
+        System.out.println(lottos);
     }
 }
