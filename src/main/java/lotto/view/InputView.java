@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.validator.BonusValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningNumbersValidator;
 
@@ -30,7 +32,13 @@ public class InputView {
         }
     }
 
-    public static int readBonusNumber() {
-        return Integer.parseInt(readInput());
+    public static int readBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                return BonusValidator.validate(readInput(), winningLotto);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@ public class MachineController {
         OutputView.printBlankLine();
 
         OutputView.printInputBonusNumberMessage();
-        int bonusNumber = InputView.readBonusNumber();
+        int bonusNumber = InputView.readBonusNumber(computer.getWinningLotto());
         computer.setBonusNumber(bonusNumber);
 
         return computer;
