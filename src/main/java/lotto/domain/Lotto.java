@@ -2,11 +2,11 @@ package lotto.domain;
 
 import static lotto.global.error.LottoErrorMessages.*;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.global.LottoRank;
-import lotto.global.error.LottoErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,7 +27,6 @@ public class Lotto {
         }
     }
 
-
     public LottoRank checkWinningStatus(List<Integer> winningNumbers, int bonusNumber) {
 
         int matchCount = (int) winningNumbers.stream().filter(numbers::contains).count();
@@ -45,5 +44,9 @@ public class Lotto {
         }
 
         return LottoRank.THIRD;
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
