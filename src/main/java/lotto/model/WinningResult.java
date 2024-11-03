@@ -13,8 +13,11 @@ public class WinningResult {
         winningLottoAmount++;
     }
 
-    public WinningRank getWinningRank() {
-        return winningRank;
+    public boolean correspondsTo(WinningRank winningRank) {
+        if (this.winningRank.equals(winningRank)) {
+            return true;
+        }
+        return false;
     }
 
     public int getWinningLottoAmount() {

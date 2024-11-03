@@ -21,7 +21,7 @@ public class WinningResults{
 
     public void add(WinningRank winningRank) {
         for (WinningResult winningResult : winningResults) {
-            if (winningResult.getWinningRank().equals(winningRank)) {
+            if (winningResult.correspondsTo(winningRank)) {
                 winningResult.addLottoAmount();
             }
         }
@@ -29,7 +29,7 @@ public class WinningResults{
 
     public int findLottoAmountByRank(WinningRank winningRank) {
         for (WinningResult winningResult : winningResults) {
-            if (winningResult.getWinningRank().equals(winningRank)) {
+            if (winningResult.correspondsTo(winningRank)) {
                 return winningResult.getWinningLottoAmount();
             }
         }
