@@ -13,11 +13,17 @@ public class InputView {
     public static final int MAX_ATTEMPTS = 3;
 
     public int readBonusNumber(List<Integer> winningNumbers) {
-        String input = readInput();
-        if (isValidBonusNumber(winningNumbers, input)) {
-            return Integer.parseInt(input);
+        int attempts = 0;
+
+        while (attempts < MAX_ATTEMPTS) {
+            String input = readInput();
+            if (isValidBonusNumber(winningNumbers, input)) {
+                return parseBonusNumber(input);
+            }
+            attempts++;
         }
-        return -1;
+
+        throw new IllegalStateException(EXCEEDS_MAX_ATTEMPTS.getMessage());
     }
 
     private boolean isValidBonusNumber(List<Integer> winningNumbers, String input) {
@@ -28,6 +34,10 @@ public class InputView {
             alert(e.getMessage());
             return false;
         }
+    }
+
+    private static int parseBonusNumber(String input) {
+        return Integer.parseInt(input);
     }
 
     public List<Integer> readWinningNumbers() {
