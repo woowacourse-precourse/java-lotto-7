@@ -52,4 +52,18 @@ public class Controller {
             }
         }
     }
+
+    public int setBonusNumber() {
+        while (true) {
+            try {
+                String inputNumber = inputView.bonusLottoNumber();
+                validators.validateNumericInput(inputNumber);
+                int bonusNumber = utils.parseStringToInt(inputNumber);
+                validators.validateNumberRange(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException | InputMismatchException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
