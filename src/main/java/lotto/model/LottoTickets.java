@@ -16,6 +16,14 @@ public class LottoTickets {
         ticketCount = money / PRICE_PER_TICKET;
     }
 
+    public boolean hasTicketCount() {
+        return ticketCount > 0;
+    }
+
+    public void decreaseTicketCount() {
+        ticketCount--;
+    }
+
     public int getTicketCount() {
         return ticketCount;
     }
