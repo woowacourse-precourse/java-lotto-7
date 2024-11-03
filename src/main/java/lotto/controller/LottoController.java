@@ -1,21 +1,23 @@
 package lotto.controller;
 
+import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     public static void run() {
-        int purchaseMoneyAmount = requestPurchaseMoney();
+        final Money money = requestPurchaseMoneyAmount();
+        System.out.println(money.getLottoPurchasableCount());
     }
 
-    private static int requestPurchaseMoney() {
+    private static Money requestPurchaseMoneyAmount() {
         try {
-            OutputView.printRequestPurchaseMoney();
-            int purchaseMoney = InputView.readNumber();
-            return purchaseMoney;
+            OutputView.printRequestPurchaseMoneyAmount();
+            int purchaseMoneyAmount = InputView.readNumber();
+            return new Money(purchaseMoneyAmount);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
-            return requestPurchaseMoney();
+            return requestPurchaseMoneyAmount();
         }
     }
 }

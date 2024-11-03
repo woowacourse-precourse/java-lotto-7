@@ -5,7 +5,7 @@ import lotto.message.ExceptionMessage;
 public class OutputView {
     public static final String REQUEST_PURCHASE_MONEY_AMOUNT = "구입금액을 입력해 주세요.";
 
-    public static void printRequestPurchaseMoney() {
+    public static void printRequestPurchaseMoneyAmount() {
         printMessage(REQUEST_PURCHASE_MONEY_AMOUNT);
     }
 
