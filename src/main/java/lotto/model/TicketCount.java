@@ -1,15 +1,15 @@
 package lotto.model;
 
+import static lotto.constants.LottoCondition.ONE_LOTTO_TICKET_PRICE;
+
 import java.util.Objects;
 
 public class TicketCount {
 
-    private static final int ONE_TICKET_PRICE = 1000;
-
     private final int ticketCount;
 
     public TicketCount(InputAmount amount) {
-        this.ticketCount = amount.get() / ONE_TICKET_PRICE;
+        this.ticketCount = amount.get() / ONE_LOTTO_TICKET_PRICE.get();
     }
 
     @Override

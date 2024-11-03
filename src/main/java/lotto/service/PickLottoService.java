@@ -14,12 +14,14 @@ import lotto.model.TicketCount;
 
 public class PickLottoService {
 
+    private static final int INIT_IDX = 0;
+
     public PickLottoService() {
     }
 
     public PurchasedLottos auto(TicketCount ticketCount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
-        for (int nowIdx = 0; nowIdx < ticketCount.get(); nowIdx++) {
+        for (int nowIdx = INIT_IDX; nowIdx < ticketCount.get(); nowIdx++) {
             purchasedLottos.add(nowIdx, new Lotto(getRandomNumbers()));
         }
         return new PurchasedLottos(purchasedLottos);
