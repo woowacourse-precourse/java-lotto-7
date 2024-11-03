@@ -30,7 +30,8 @@ public class Utils {
     }
 
     public static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
-        Collections.sort(lottoNumbers);
+        List<Integer> sortLottoNumbers = new ArrayList<>(lottoNumbers);
+        Collections.sort(sortLottoNumbers);
         return lottoNumbers;
     }
 
