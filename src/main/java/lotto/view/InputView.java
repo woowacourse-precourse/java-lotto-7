@@ -14,9 +14,9 @@ public class InputView {
     }
 
     /**
-     * 사용자에게 로또 번호 입력 받기
+     * 사용자에게 당첨 로또 번호 입력 받기
      */
-    public static String getLottoNumbers() {
+    public static String getWinningLottoNumbers() {
         return Console.readLine();
     }
 

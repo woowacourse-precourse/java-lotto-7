@@ -7,7 +7,7 @@ public final class RandomNumberGenerator {
 
     private RandomNumberGenerator() {}
 
-    public static List<Integer> generateRandomNumber() {
+    public static List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
