@@ -1,6 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
@@ -28,11 +31,21 @@ public class LottoMachine {
 
     private Lottos makeLottos(int numberOfPurchases) {
         try {
-            Lottos lottos = new Lottos(numberOfPurchases);
+            Lottos lottos = new Lottos(makeLottoNumbers(numberOfPurchases));
             return lottos;
         } catch (IllegalStateException e) {
             return makeLottos(numberOfPurchases);
         }
+    }
+
+    private List<List<Integer>> makeLottoNumbers(int size) {
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            List<Integer> lottoCandidate = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoCandidate);
+            lottoNumbers.add(lottoCandidate);
+        }
+        return lottoNumbers;
     }
 
     private void showLottos(Lottos lottos) {

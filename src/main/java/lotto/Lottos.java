@@ -8,9 +8,8 @@ import java.util.List;
 public class Lottos {
     private List<Lotto> lottos;
 
-    public Lottos(int size) throws IllegalStateException {
-        this.lottos = new ArrayList<Lotto>(size);
-        List<List<Integer>> lottoNumbers = makeLottoNumbers(size);
+    public Lottos(List<List<Integer>> lottoNumbers) throws IllegalStateException {
+        this.lottos = new ArrayList<Lotto>();
         validate(lottoNumbers);
         for (int i = 0; i < lottoNumbers.size(); ++i) {
             this.lottos.add(new Lotto(lottoNumbers.get(i)));
@@ -29,16 +28,6 @@ public class Lottos {
         if (number1.containsAll(number2)) {
             throw new IllegalStateException();
         }
-    }
-
-    private List<List<Integer>> makeLottoNumbers(int size) {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            List<Integer> lottoCandidate = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoCandidate);
-            lottoNumbers.add(lottoCandidate);
-        }
-        return lottoNumbers;
     }
 
     public List<List<Integer>> showAllNumbersOfLottos() {
