@@ -29,13 +29,15 @@ public class MachineController {
     private Computer createComputer() {
         OutputView.printInputWinningNumbersMessage();
         List<Integer> winningNumbers = InputView.readWinningNumbers();
+        Computer computer = new Computer(winningNumbers);
 
         OutputView.printBlankLine();
-        
+
         OutputView.printInputBonusNumberMessage();
         int bonusNumber = InputView.readBonusNumber();
+        computer.setBonusNumber(bonusNumber);
 
-        return new Computer(winningNumbers);
+        return computer;
     }
 
     private void printLottoQuantityAndNumbers(int quantity, List<Lotto> lotto) {
