@@ -1,12 +1,13 @@
 package lotto.model;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class Winning {
-    List<Long> winNumbers;
-    Long bonusNumber;
+    List<BigInteger> winNumbers;
+    BigInteger bonusNumber;
 
-    public Winning(List<Long> winNumbers, Long bonusNumber) {
+    public Winning(List<BigInteger> winNumbers, BigInteger bonusNumber) {
         this.winNumbers = winNumbers;
         this.bonusNumber = bonusNumber;
     }

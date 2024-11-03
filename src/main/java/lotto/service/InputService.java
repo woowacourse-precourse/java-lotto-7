@@ -19,7 +19,7 @@ public class InputService {
         }
     }
 
-    public List<Long> getWinningNumbers() {
+    public List<BigInteger> getWinningNumbers() {
         InputView inputView = new InputView();
         Validator validator = new Validator();
 
@@ -32,7 +32,7 @@ public class InputService {
         }
     }
 
-    public Long getBonusNumber() {
-        return 0L;
+    public BigInteger getBonusNumber() {
+        return BigInteger.ZERO;
     }
 }

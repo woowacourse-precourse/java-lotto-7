@@ -16,21 +16,23 @@ public class Validator {
         return purchaseMoney;
     }
 
-    public boolean isNumber(String number) {
+    private boolean isNumber(String number) {
         return number.matches("\\d+");
     }
 
-    public boolean isDivisibleByThousand(BigInteger purchaseMoney) {
+    private boolean isDivisibleByThousand(BigInteger purchaseMoney) {
         return purchaseMoney.remainder(BigInteger.valueOf(1000)).equals(BigInteger.ZERO);
     }
 
-    public List<Long> validWinningNumbers(String winningNumbers) {
-        List<Long> winningNumberList = isNumbers(winningNumbers);
+    public List<BigInteger> validWinningNumbers(String winningNumbers) {
+        List<BigInteger> winningNumberList = isNumbers(winningNumbers);
 
+        if (!isBetweenOneAndFourtyFive(winningNumberList))
+            throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.INVALID_RANGE.getMessage());
         return winningNumberList;
     }
 
-    private List<Long> isNumbers(String winningNumbers) {
+    private List<BigInteger> isNumbers(String winningNumbers) {
         Splitter splitter = new Splitter();
 
         try {
@@ -38,5 +40,15 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.PREFIX.getMessage() + ErrorMessage.NONE_NUMBER.getMessage());
         }
+    }
+
+    private boolean isBetweenOneAndFourtyFive(List<BigInteger> winningNumbers) {
+        for (BigInteger winningNumber : winningNumbers) {
+            if (winningNumber.compareTo(BigInteger.ONE) < 0)
+                return false;
+            if (winningNumber.compareTo(BigInteger.valueOf(45L)) > 0)
+                return false;
+        }
+        return true;
     }
 }
