@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoGameValidator {
 
     /**
@@ -21,6 +23,22 @@ public class LottoGameValidator {
         }
         if (!Validator.isDivided(money, Lotto.LOTTO_PRICE)) {
             throw new IllegalArgumentException(ErrorMessage.INSERT_MONEY_NOT_DIVIDED_1000.getMessage());
+        }
+
+        return true;
+    }
+
+    public static boolean checkWinNumbersValid(List<Integer> winNumbers) {
+        if (winNumbers.size() != Lotto.TOTAL_LOTTO_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
+        }
+        if (Validator.hasDuplicateNumber(winNumbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
+        }
+        for (int winNum : winNumbers) {
+            if (!Validator.isBetween(Lotto.MIN_LOTTO_NUM, winNum, Lotto.MAX_LOTTO_NUM)) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
+            }
         }
 
         return true;

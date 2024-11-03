@@ -3,7 +3,10 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -73,5 +76,93 @@ public class LottoGameValidatorTest {
         assertThat(throwable)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.MONEY_CAN_NOT_MINUS.getMessage());
+    }
+
+    @Test
+    void checkWinNumbersValidTrue() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        boolean result = LottoGameValidator.checkWinNumbersValid(winNumbers);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("총 당첨 번호가 6개 미만")
+    void checkWinNumbersValidFalse_under6() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5);
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkWinNumbersValid(winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
+    }
+
+    @Test
+    @DisplayName("총 당첨 번호가 6개 초과")
+    void checkWinNumbersValidFalse_up6() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkWinNumbersValid(winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.WIN_NUMBER_SIZE_MUST_6.getMessage());
+    }
+
+    @Test
+    @DisplayName("중복된 당첨 번호")
+    void checkWinNumbersValidFalse_duplicate() {
+        // given
+        List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 5);
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkWinNumbersValid(winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-3, 0, 47})
+    @DisplayName("당첨 번호가 1~45 사이에 있지 않음")
+    void checkWinNumbersValidFalse_notBetween(int errorNum) {
+        // given
+        List<Integer> winNumbers = new ArrayList<>();
+        winNumbers.add(1);
+        winNumbers.add(2);
+        winNumbers.add(3);
+        winNumbers.add(4);
+        winNumbers.add(5);
+        winNumbers.add(errorNum);
+
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkWinNumbersValid(winNumbers);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
     }
 }
