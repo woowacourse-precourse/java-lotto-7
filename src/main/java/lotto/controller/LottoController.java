@@ -22,8 +22,9 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = inputView.inputPurchaseAmount();
-        int lottoCount = Integer.parseInt(purchaseAmount) / 1000;
+        String inputPurchaseAmount = inputView.inputPurchaseAmount();
+        int purchaseAmount = validatePurchaseAmount(inputPurchaseAmount);
+        int lottoCount = purchaseAmount / 1000;
         lottoService.generateLottos(lottoCount);
         outputView.printLottoCount(lottoCount);
 
