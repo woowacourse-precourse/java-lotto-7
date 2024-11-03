@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,16 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    public int getMatchCount(ArrayList<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     @Override

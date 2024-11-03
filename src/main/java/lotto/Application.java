@@ -9,20 +9,18 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-
-        // 1.5 형식에 맞는 구입 금액이 입력될 때까지 반복하여 입력을 받는 기능
         int purchaseAmount = getPurchaseAmount();
 
-        // 2.4 로또 번호를 통해 구매할 로또의 개수만큼 로또 객체를 생성하는 기능
         ArrayList<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
-        // 2.5 로또의 번호를 출력하는 기능
         printLottoTickets(lottoTickets);
 
-        // 3.7 형식에 맞는 당첨 번호가 입력될 때까지 반복하여 입력을 받는 기능
         ArrayList<Integer> winningNumbers = getWinningNumbers();
-
-        // 4.5 형식에 맞는 보너스 번호가 입력될 때까지 반복하여 입력을 받는 기능
         int bonusNumber = getBonusNumber(winningNumbers);
+
+        //5.1 일치하는 번호의 개수를 확인하는 기능
+        for (Lotto lottoTicket : lottoTickets) {
+            int matchCount = lottoTicket.getMatchCount(winningNumbers);
+        }
     }
 
     private static String getInputString(String message) {
