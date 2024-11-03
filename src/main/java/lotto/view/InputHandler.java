@@ -13,6 +13,18 @@ public class InputHandler {
     private static final String NEW_LINE = "\n";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
+    public static InputHandler instance;
+
+    private InputHandler() {}
+
+    // synchronized 키워드: 두개의 쓰레드가 동시에 인스턴스를 생성하는 상황 방지
+    public static synchronized InputHandler getInstance() {
+        if (instance == null) {
+            instance = new InputHandler();
+        }
+        return instance;
+    }
+
     public long getInputForPurchaseMoney() {
         while (true) {
             try {

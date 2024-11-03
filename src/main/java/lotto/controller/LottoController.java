@@ -30,8 +30,7 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        InputHandler inputHandler = new InputHandler();
-        long givenMoney = inputHandler.getInputForPurchaseMoney();
+        long givenMoney = InputHandler.getInstance().getInputForPurchaseMoney();
         return new Money(givenMoney);
     }
 
@@ -41,21 +40,21 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        InputHandler inputHandler = new InputHandler();
+        InputHandler inputHandler = InputHandler.getInstance();
         List<Integer> winningLottoNumbers = inputHandler.getInputForWinningNumber();
         Integer bonusNumber = inputHandler.getInputForBonusNumber();
         return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
     }
 
     private void printLottoStatus(Lottos lottos) {
-        new OutputHandler().printLottoStatus(lottos);
+        OutputHandler.getInstance().printLottoStatus(lottos);
     }
 
     private void printResult(PrizeResult prizeResult) {
-        new OutputHandler().printLottoResults(prizeResult.getPrizeResult());
+        OutputHandler.getInstance().printLottoResults(prizeResult.getPrizeResult());
     }
 
     private void printRateOfReturn(double rateOfReturn) {
-        new OutputHandler().printRateOfReturn(rateOfReturn);
+        OutputHandler.getInstance().printRateOfReturn(rateOfReturn);
     }
 }

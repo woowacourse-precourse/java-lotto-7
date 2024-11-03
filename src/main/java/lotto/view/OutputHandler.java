@@ -17,6 +17,18 @@ public class OutputHandler {
     private static final String CLOSE_ROUND_BRACKET = ")";
     private static final String AMOUNT_ENDING_SUFFIX = "개";
 
+    public static OutputHandler instance;
+
+    private OutputHandler() {}
+
+    // synchronized 키워드: 두개의 쓰레드가 동시에 인스턴스를 생성하는 상황 방지
+    public static synchronized OutputHandler getInstance() {
+        if (instance == null) {
+            instance = new OutputHandler();
+        }
+        return instance;
+    }
+
     public void printLottoStatus(Lottos lottos) {
         printNewLine();
         System.out.println(lottos.size() + PURCHASE_FINISH_MESSAGE);
