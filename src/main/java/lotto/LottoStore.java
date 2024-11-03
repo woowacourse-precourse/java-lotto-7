@@ -22,11 +22,17 @@ public class LottoStore {
     }
 
     public int inputAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        int amount = parseAmount(input);
-        validateAmount(amount);
-        return amount;
+        while(true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                String input = Console.readLine();
+                int amount = parseAmount(input);
+                validateAmount(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int parseAmount(String amount) {
