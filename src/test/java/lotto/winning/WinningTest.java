@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Winning;
@@ -150,7 +151,7 @@ public class WinningTest {
 
         WinningService.containsWinningNumber(lotto);
 
-        assertEquals(0, lotto.getLottoSet().size());
+        assertEquals(0, lotto.getNumber().size());
     }
 
     @Test
@@ -166,6 +167,6 @@ public class WinningTest {
 
         WinningService.containsWinningNumber(lotto);
 
-        assertEquals(6, lotto.getLottoSet().size());
+        assertEquals(6, lotto.getNumber().size());
     }
 }

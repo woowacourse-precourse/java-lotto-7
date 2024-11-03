@@ -2,11 +2,10 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
-import java.util.Iterator;
-import javax.print.attribute.IntegerSyntax;
+import java.util.LinkedList;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.User;
 import lotto.domain.Winning;
 import lotto.validate.WinningValidate;
 import lotto.view.WinningView;
@@ -30,24 +29,24 @@ public class WinningService {
     public void findWinningNumber(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             containsWinningNumber(lotto);
-            containsBonusNumber(lotto);
+            //containsBonusNumber(lotto);
         }
     }
 
-    public static void containsBonusNumber(Lotto lotto) {
-        HashSet<Integer> lottoSet = lotto.getLottoSet();
-
-        if (lottoSet.contains(winning.getBonusNumber())) {
-            lotto.checkBonusNumber();
-        }
-    }
+//    public static void containsBonusNumber(Lotto lotto) {
+//        List<Integer> lottoList = lotto.getNumber();
+//
+//        if (lottoList.contains(winning.getBonusNumber())) {
+//            lotto.checkBonusNumber();
+//        }
+//    }
 
     public static void containsWinningNumber(Lotto lotto) {
-        HashSet<Integer> lottoSet = lotto.getLottoSet();
+        List<Integer> lottoList = lotto.getNumber();
         HashSet<Integer> winningSet = winning.getWinningSet();
 
         for (int winningNumber : winningSet) {
-            lottoSet.remove(winningNumber);
+            lottoList.remove(Integer.valueOf(winningNumber));
         }
     }
 
