@@ -25,6 +25,11 @@ public class LottoController {
         lottoCount = makeLottoCount(lottoPrice);
         OutputView.printLottoCount(lottoCount);
         lottoList = makeLottoList(lottoCount);
+
+        List<Integer> winningNumbers = new InputView().winningNumbers();
+        int bonusNumber = new InputView().bonusNumber();
+        winningResult = new WinningResult(new Lotto(winningNumbers), bonusNumber);
+
         lottoResult(lottoList, winningResult, lottoCount);
     }
 
@@ -67,14 +72,14 @@ public class LottoController {
     }
 
     private void printEarningRate(Map<LottoRanking, Integer> result, int lottoAmount) {
-        double EarningRate = 0;
+        double earningRate = 0;
         for (LottoRanking rank : result.keySet()) {
-            EarningRate =
-                    EarningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * 1000) * (result.get(
+            earningRate =
+                    earningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * 1000) * (result.get(
                             rank)) * (PERCENTAGE));
 
         }
-        OutputView.printRevenueRate(EarningRate);
+        OutputView.printRevenueRate(earningRate);
     }
 
 
