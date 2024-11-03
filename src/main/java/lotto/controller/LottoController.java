@@ -1,92 +1,44 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.ApplicationConfig;
-import lotto.common.util.StringSplitter;
 import lotto.dto.LottoResult;
 import lotto.dto.LottoTickets;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
 import lotto.model.LottoIssuer;
 import lotto.model.LottoResultCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
-import lotto.view.InputValidator;
-import lotto.view.InputView;
+import lotto.view.InputHandler;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final ApplicationConfig applicationConfig;
-    private final InputView inputView;
+    private final InputHandler inputHandler;
     private final OutputView outputView;
+    private final LottoIssuer lottoIssuer;
 
     public LottoController(final ApplicationConfig applicationConfig) {
-        this.applicationConfig = applicationConfig;
-        this.inputView = applicationConfig.inputView();
+        this.inputHandler = applicationConfig.inputHandler();
         this.outputView = applicationConfig.outputView();
+        this.lottoIssuer = applicationConfig.lottoIssuer();
     }
 
     public void execute() {
-        PurchaseAmount purchaseAmount = getPurchaseAmount();
-        LottoTickets lottoTickets = getLottoTickets(purchaseAmount);
+        PurchaseAmount purchaseAmount = inputHandler.readPurchaseAmount();
+        LottoTickets lottoTickets = issueLottoTickets(purchaseAmount);
         printPurchaseResult(lottoTickets);
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = inputHandler.readWinningLotto();
         LottoResult lottoResult = getLottoResult(winningLotto, lottoTickets, purchaseAmount);
         printLottoResult(lottoResult);
+        inputHandler.closeConsole();
     }
 
-    private PurchaseAmount getPurchaseAmount() {
-        while (true) {
-            try {
-                String input = inputView.requestPurchaseAmount();
-                InputValidator.validateIsNumeric(input);
-                return new PurchaseAmount(Integer.parseInt(input));
-            } catch (IllegalArgumentException ex) {
-                outputView.printExceptionMessage(ex.getMessage());
-            }
-        }
-    }
-
-    private LottoTickets getLottoTickets(final PurchaseAmount purchaseAmount) {
-        LottoIssuer lottoIssuer = applicationConfig.lottoIssuer();
+    private LottoTickets issueLottoTickets(final PurchaseAmount purchaseAmount) {
         return lottoIssuer.issueLottoTickets(purchaseAmount);
     }
 
     private void printPurchaseResult(LottoTickets lottoTickets) {
         outputView.printCountOfLottoTickets(lottoTickets.size());
         outputView.printLottoTickets(lottoTickets);
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto lotto = getLotto();
-        outputView.printBlankLine();
-        while (true) {
-            try {
-                String input = inputView.requestBonusNumber();
-                outputView.printBlankLine();
-                InputValidator.validateIsNumeric(input);
-                BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(input));
-                return new WinningLotto(lotto, bonusNumber);
-            } catch (IllegalArgumentException ex) {
-                outputView.printExceptionMessage(ex.getMessage());
-            }
-        }
-    }
-
-    private Lotto getLotto() {
-        LottoIssuer lottoIssuer = applicationConfig.lottoIssuer();
-        while (true) {
-            try {
-                List<String> splitInput = StringSplitter.splitByComma(inputView.requestWinningNumbers());
-                List<Integer> numbers = splitInput.stream()
-                        .map(Integer::parseInt)
-                        .toList();
-                return lottoIssuer.issueLotto(numbers);
-            } catch (IllegalArgumentException ex) {
-                outputView.printExceptionMessage(ex.getMessage());
-            }
-        }
     }
 
     private LottoResult getLottoResult(
@@ -99,6 +51,7 @@ public class LottoController {
     }
 
     private void printLottoResult(final LottoResult lottoResult) {
+        OutputView.printBlankLine();
         outputView.printWinningStatistics(lottoResult);
     }
 }
