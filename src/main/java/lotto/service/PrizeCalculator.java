@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PrizeCalculator {
 
-    private EnumMap<Prize, Integer> prizeCount;
+    private final EnumMap<Prize, Integer> prizeCount;
 
     public PrizeCalculator() {
         this.prizeCount = initPrizes();
