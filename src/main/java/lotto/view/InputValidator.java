@@ -25,11 +25,6 @@ public class InputValidator {
         validateDivisibleByThousand(amount);
     }
 
-    // 당첨 번호 검증
-    // 1. 아무 것도 입력하지 않았는가?
-    // 2. 입력은 되었지만 공백만 입력되었는가?(띄어쓰기 여러 개)
-    // 3. 탭과 줄바꿈만 포함된 입력값인 경우인가?
-    // 4. 숫자와 콤마로만 입력되었는가?
     public static void validateWinningNumbers(String winningNumbers) {
         validateEmptyInput(winningNumbers);
         String sanitizedNumbers = NumberFormatter.removeAllWhiteSpaces(winningNumbers);
@@ -37,12 +32,18 @@ public class InputValidator {
         validateContainsOnlyCommaAndDigits(sanitizedNumbers);
     }
 
-    // 당첨 번호의 개수와 각각의 숫자에 대한 검증
-    // 1. 리스트에 담긴 숫자의 개수가 6개가 맞는가?
-    // 2. 리스트에 담긴 각각의 숫자는 1이상 45이하의 범위에 속하는가?
     public static void validateLottoNumbers(List<Integer> lottoNumbers) {
         validateLottoNumberCount(lottoNumbers);
         validateLottoNumberInRange(lottoNumbers);
+    }
+
+    public static void validateBonusNumber(String bonusNumber) {
+        validateEmptyInput(bonusNumber);
+        validateNoWhiteSpaceInBetween(bonusNumber);
+        validateContainsOnlyDigit(bonusNumber);
+
+        int parsedBonusNumber = NumberFormatter.parseToInt(bonusNumber);
+        validateBonusNumberInRange(parsedBonusNumber);
     }
 
     // 사용자가 아무 입력도 없이 엔터만 입력했는지 검증
@@ -63,6 +64,13 @@ public class InputValidator {
     private static void validateContainsOnlyCommaAndDigits(String input) {
         if (!input.matches(COMMA_DIGITS_REGEX.getValue())) {
             throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력값은 숫자와 콤마만 포함해야 합니다.");
+        }
+    }
+
+    // 입력된 문자에 오직 숫자만 담겨 있는지 검증한다.
+    private static void validateContainsOnlyDigit(String input) {
+        if (!input.matches(DIGIT_REGEX.getValue())) {
+            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "숫자만 입력해야 합니다.");
         }
     }
 
@@ -101,6 +109,12 @@ public class InputValidator {
             if (number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
                 throw new IllegalArgumentException(ERROR_HEADER.getValue() + "범위를 벗어난 번호입니다.");
             }
+        }
+    }
+
+    private static void validateBonusNumberInRange(int bonusNumber) {
+        if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_END_NUMBER) {
+            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "범위를 벗어난 번호입니다.");
         }
     }
 

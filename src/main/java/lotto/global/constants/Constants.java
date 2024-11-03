@@ -5,7 +5,9 @@ public enum Constants {
 
     IS_CONTAIN_WHITESPACE_REGEX(".*\\s+.*"),
     WHITE_SPACE("\\s+"),
-    COMMA_DIGITS_REGEX("^[0-9,]+$");
+    COMMA_DIGITS_REGEX("^[0-9,]+$"),
+    DIGIT_REGEX("^[0-9]+$")
+    ;
 
     private final String value;
 

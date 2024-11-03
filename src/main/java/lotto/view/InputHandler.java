@@ -28,10 +28,22 @@ public class InputHandler {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbers = Console.readLine();
 
-        InputValidator.validateStringTypeAmount(winningNumbers);
+        InputValidator.validateWinningNumbers(winningNumbers);
         List<Integer> lottoNumbers = NumberFormatter.parseToList(winningNumbers);
         InputValidator.validateLottoNumbers(lottoNumbers);
 
         return lottoNumbers;
+    }
+
+    /**
+     * 사용자로부터 1개의 보너스 번호를 입력 받는다.
+     * @return 1개의 1이상 45 이하의 정수
+     */
+    public static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        InputValidator.validateBonusNumber(bonusNumber);
+
+        return NumberFormatter.parseToInt(bonusNumber);
     }
 }
