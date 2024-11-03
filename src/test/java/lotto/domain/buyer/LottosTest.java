@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoFactory;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.lotto.LottosFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,8 +30,8 @@ class LottosTest {
         Lotto cloneCustomLotto2 = LottoFactory.createCustomLotto(Arrays.asList(11, 12, 13, 14, 15, 16));
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
 
-        BuyLottos lottos = BuyLottos.of(Arrays.asList(customLotto1, customLotto2, customLotto3));
-        BuyLottos cloneLottos = BuyLottos.of(
+        Lottos lottos = LottosFactory.createCustomLottos(Arrays.asList(customLotto1, customLotto2, customLotto3));
+        Lottos cloneLottos = LottosFactory.createCustomLottos(
                 Arrays.asList(cloneCustomLotto1, cloneCustomLotto2, cloneCustomLotto3));
 
         assertThat(lottos).isEqualTo(cloneLottos);
@@ -42,8 +44,8 @@ class LottosTest {
         Lotto cloneCustomLotto2 = LottoFactory.createCustomLotto(Arrays.asList(11, 12, 13, 14, 15, 16));
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
 
-        BuyLottos lottos = BuyLottos.of(Arrays.asList(customLotto1, customLotto2, customLotto3));
-        BuyLottos cloneLottos = BuyLottos.of(
+        Lottos lottos = LottosFactory.createCustomLottos(Arrays.asList(customLotto1, customLotto2, customLotto3));
+        Lottos cloneLottos = LottosFactory.createCustomLottos(
                 Arrays.asList(cloneCustomLotto3, cloneCustomLotto2, cloneCustomLotto1));
 
         assertThat(lottos).isNotEqualTo(cloneLottos);

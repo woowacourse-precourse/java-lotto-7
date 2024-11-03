@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoFactory;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.lotto.LottosFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +16,7 @@ class BuyerTest {
     Lotto customLotto1;
     Lotto customLotto2;
     Lotto customLotto3;
-    BuyLottos customLottos;
+    Lottos customLottos;
     Buyer testBuyer;
 
     @BeforeEach
@@ -23,7 +25,7 @@ class BuyerTest {
         customLotto2 = LottoFactory.createCustomLotto(Arrays.asList(11, 12, 13, 14, 15, 16));
         customLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
 
-        customLottos = BuyLottos.of(Arrays.asList(customLotto1, customLotto2, customLotto3));
+        customLottos = LottosFactory.createCustomLottos(Arrays.asList(customLotto1, customLotto2, customLotto3));
 
         testBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, customLottos);
     }
@@ -34,7 +36,8 @@ class BuyerTest {
         Lotto cloneCustomLotto1 = LottoFactory.createCustomLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto cloneCustomLotto2 = LottoFactory.createCustomLotto(Arrays.asList(11, 12, 13, 14, 15, 16));
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
-        BuyLottos cloneCustomLottos = BuyLottos.of(
+
+        Lottos cloneCustomLottos = LottosFactory.createCustomLottos(
                 Arrays.asList(cloneCustomLotto1, cloneCustomLotto2, cloneCustomLotto3));
 
         Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, cloneCustomLottos);
@@ -48,7 +51,8 @@ class BuyerTest {
         Lotto cloneCustomLotto1 = LottoFactory.createCustomLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto cloneCustomLotto2 = LottoFactory.createCustomLotto(Arrays.asList(11, 12, 13, 14, 15, 16));
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
-        BuyLottos cloneCustomLottos = BuyLottos.of(
+
+        Lottos cloneCustomLottos = LottosFactory.createCustomLottos(
                 Arrays.asList(cloneCustomLotto3, cloneCustomLotto2, cloneCustomLotto1));
 
         Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, cloneCustomLottos);

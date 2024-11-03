@@ -1,12 +1,13 @@
 package lotto.domain.buyer;
 
 import java.util.Objects;
+import lotto.domain.lotto.Lottos;
 
 public class Buyer {
     private final LottosCount LottosCount;
-    private final BuyLottos buyLottos;
+    private final Lottos buyLottos;
 
-    Buyer(final LottosCount LottosCount, BuyLottos buyLottos) {
+    Buyer(final LottosCount LottosCount, Lottos buyLottos) {
         this.LottosCount = LottosCount;
         this.buyLottos = buyLottos;
     }
@@ -15,7 +16,7 @@ public class Buyer {
         return LottosCount.getLottosCount();
     }
 
-    public BuyLottos getbuyLottos() {
+    public Lottos getbuyLottos() {
         return buyLottos;
     }
 
