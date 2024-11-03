@@ -1,4 +1,4 @@
-package lotto.view.input;
+package lotto.validation;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PurchasePriceInputTest extends NsTest {
+
+public class PurchasePriceValidatorTest extends NsTest {
 
     @DisplayName("로또 구입 금액이 공백일 때 예외 처리")
     @ParameterizedTest
