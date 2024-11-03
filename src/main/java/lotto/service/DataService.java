@@ -7,7 +7,11 @@ import lotto.service.lottoImpl.DataServiceImpl;
 import java.util.List;
 
 public class DataService implements DataServiceImpl {
-    private RandomNumberService randomNumberService;
+    private final RandomNumberService randomNumberService;
+
+    public DataService(RandomNumberService randomNumberService) {
+        this.randomNumberService = randomNumberService;
+    }
 
     @Override
     public LottoWinningNumber createWinningNumber(List<Integer> winningNumbers, int bonusNumber) {

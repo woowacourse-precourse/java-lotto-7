@@ -9,7 +9,7 @@ import lotto.util.Output;
 import java.util.List;
 
 public class ApplicationService implements ApplicationServiceImpl {
-    private final DataController dataController = new DataController(new DataService());
+    private final DataController dataController = new DataController(new DataService(new RandomNumberService()));
 
     @Override
     public List<Lotto> inputLottos(int tickets) {
