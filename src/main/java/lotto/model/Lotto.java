@@ -19,7 +19,7 @@ public class Lotto {
             isInRange(number);
         }
         for (int i = 0; i < numbers.size() - 1; i++) {
-            isDuplicate(i, numbers.subList(i + 1, numbers.size()));
+            isDuplicate(numbers.get(i), numbers.subList(i + 1, numbers.size()));
         }
     }
 
