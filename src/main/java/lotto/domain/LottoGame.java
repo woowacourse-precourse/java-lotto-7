@@ -9,16 +9,21 @@ public class LottoGame {
     private CustomLotto customLotto;
     private List<Integer> rank=new ArrayList<>(5);
     private Integer seedMoney;
-    private Integer profit;
 
-    private LottoGame(int money, CustomLotto customLotto) {
+    private LottoGame(int money) {
         this.seedMoney = money;
-        this.profit = 0;
         drawNewLottoNumber(money/1000);
-        this.customLotto = customLotto;
         for(int i=0;i<5;i++){
             rank.add(0);
         }
+    }
+    public static LottoGame of(int money) {
+        return new LottoGame(money);
+    }
+
+
+    public void setCustomLotto(CustomLotto customLotto){
+        this.customLotto = customLotto;
     }
 
     public List<Lotto> getLottos() {
@@ -27,10 +32,7 @@ public class LottoGame {
     public List<Integer> getRank(){
         return rank;
     }
-
-    public static LottoGame of(int money, CustomLotto customLotto) {
-        return new LottoGame(money, customLotto);
-    }
+    public Integer getSeedMoney(){return seedMoney;}
 
     private void drawNewLottoNumber(int count) {
         for (int i = 0; i < count; i++) {

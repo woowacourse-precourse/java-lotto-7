@@ -1,21 +1,25 @@
 package lotto.domain;
 
+import lotto.service.LottoService;
+import lotto.util.Parse;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 class LottoGameTest {
 
     @Test
-    @DisplayName("로또 랭킹 계산 테스트")
-    void lottoRankCalculateTest(){
-        //given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+    @DisplayName("금액만큼 로또가 만들어지는지 테스트")
+    void lottoGameConstructTest(){
+        Integer money = 100000;
 
-        CustomLotto customLotto = new CustomLotto(numbers,19);
-        LottoGame lottoGame = LottoGame.of(5000, customLotto);
+        LottoGame lottoGame = LottoGame.of(money);
 
-        lottoGame.calculateLottoRank();
+        Assertions.assertThat(lottoGame.getLottos().size()).isEqualTo(money/1000);
     }
 }

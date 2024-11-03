@@ -13,7 +13,7 @@ public class OutputView {
     private static final String RESULT_STATISTIC ="당첨 통계";
     private static final String RESULT_PER_WINNING_RANKING ="%d개 일치 (%,d원) - %d개";
     private static final String RANKING_BONUS ="%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String PROFIT_RANGE = "총 수익률은 %.1f%%입니다";
+    private static final String PROFIT_RANGE = "총 수익률은 %.1f%%입니다.";
     private static final String CONTOUR="---";
     public static void inputHowMuchBuy(){
         System.out.println(HOW_MUCH_WANT_BUY);
@@ -38,13 +38,14 @@ public class OutputView {
     }
     public static void outputResultOfWinning(List<Integer> result){
         List<Integer> winningMoney = List.of(5000,50000,1500000,30000000,2000000000);
-        for(int i=0;i<result.size();i++){
+        for(int i=0;i<result.size()-1;i++){
             if(i==3){
                 System.out.println(String.format(RANKING_BONUS,i+2,winningMoney.get(i),result.get(i)));
                 continue;
             }
             System.out.println(String.format(RESULT_PER_WINNING_RANKING,i+3,winningMoney.get(i),result.get(i)));
         }
+        System.out.println(String.format(RESULT_PER_WINNING_RANKING,result.size()+1,winningMoney.get(4),result.get(4)));
     }
     public static void outputProfit(BigDecimal profit){
         System.out.println(String.format(PROFIT_RANGE,profit));

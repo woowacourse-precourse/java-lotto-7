@@ -17,10 +17,10 @@ public class LottoService {
         this.validator = new Validator();
     }
 
-    public LottoGame constructLottoGame(String budget, CustomLotto customLotto) {
+    public LottoGame constructLottoGame(String budget) {
         try{
             int money = Parse.parseInteger(budget);
-            return LottoGame.of(money, customLotto);
+            return LottoGame.of(money);
         }catch(IllegalArgumentException err){
             throw err;
         }
@@ -44,8 +44,9 @@ public class LottoService {
         return new CustomLotto(parseNumbers, bonus);
     }
 
-    public BigDecimal calculateProfit(Integer seed, LottoGame lottoGame) {
+    public BigDecimal calculateProfit(LottoGame lottoGame) {
         List<Integer> rank = lottoGame.getRank();
+        Integer seed = lottoGame.getSeedMoney();
         List<Integer> prizeMoney = List.of(5000,50000,1500000,30000000,2000000000);
         Integer sumMoney = sumPrizeMoney(rank,prizeMoney);
         return calculate(seed,sumMoney);
@@ -54,7 +55,7 @@ public class LottoService {
     private BigDecimal calculate(Integer seed, Integer profit ){
         BigDecimal seedMoney = new BigDecimal(seed);
         BigDecimal pureProfit = new BigDecimal(profit);
-        BigDecimal divide = pureProfit.divide(seedMoney, 2, RoundingMode.HALF_UP);
+        BigDecimal divide = pureProfit.divide(seedMoney, 3, RoundingMode.HALF_UP);
         return divide.multiply(BigDecimal.valueOf(100));
     }
 

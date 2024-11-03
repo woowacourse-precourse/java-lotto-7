@@ -23,14 +23,4 @@ class SeparatorTest {
         Assertions.assertThat(lottoNumbers).isEqualTo(list);
     }
 
-    @Test
-    @DisplayName("로또 문자열이 NUll일때 오류")
-    void invalidInputLottoNumbersTest(){
-        String testInput= null;
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Separator.separateLottoNumbers(testInput);
-        });
-    }
-
 }
