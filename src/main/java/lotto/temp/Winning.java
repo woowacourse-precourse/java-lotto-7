@@ -13,10 +13,6 @@ public class Winning {
         this.io = io;
     }
 
-    public void printRequestWinningNumbers(){
-        io.printMessage("당첨 번호를 입력해 주세요.");
-    }
-
     public String inputWinningNumbers() {
         return io.receiveInput();
     }
@@ -28,10 +24,6 @@ public class Winning {
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .toList();
-    }
-
-    public void printRequestBonusNumber(){
-        io.printMessage("보너스 번호를 입력해 주세요.");
     }
 
     public String inputBonusNumber() {

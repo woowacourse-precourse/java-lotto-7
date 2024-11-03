@@ -15,11 +15,6 @@ public class Statics {
         this.io = io;
     }
 
-    public void printStaticsFormat(){
-        io.printMessage("당첨 통계");
-        io.printMessage("---");
-    }
-
     // TODO : 일치 숫자 계산과 결과를 리스트로 만드는 기능의 분리 필요
     public List<Integer> compareLottos(List<Lotto> lottos, List<Integer> winningNumbers) {
         List<Integer> matches = new ArrayList<>();

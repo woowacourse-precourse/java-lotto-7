@@ -15,10 +15,6 @@ public class Purchase {
         this.io = io;
     }
 
-    public void printRequestPurchase() {
-        io.printMessage("구입금액을 입력해 주세요.");
-    }
-
     public String inputPurchaseAmount() {
         return io.receiveInput();
     }
@@ -42,10 +38,6 @@ public class Purchase {
                 .toList();
 
         return lottos;
-    }
-
-    public void printTicketCount(int ticketCount){
-        io.printMessage(ticketCount + "개를 구매했습니다.");
     }
 
     public void printPurchaseLottoNumbers(List<Lotto> lottos){
