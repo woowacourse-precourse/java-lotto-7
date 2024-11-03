@@ -1,12 +1,12 @@
 package lotto.model.lottoInfo;
 
-public class LottoInfo {
+public class LottoGame {
     private WinningNumber winningNumbers;
     private BonusNumber bonusNumber;
     private final LottoPrice price;
     private final PriceData priceByRank;
 
-    public LottoInfo(LottoPrice price, PriceData priceByRank) {
+    public LottoGame(LottoPrice price, PriceData priceByRank) {
         this.price = price;
         this.priceByRank = priceByRank;
     }
