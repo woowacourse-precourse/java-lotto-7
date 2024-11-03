@@ -1,8 +1,11 @@
 package lotto.aop;
 
+import lotto.exception.OverMaxRetryException;
 import lotto.io.OutputHandler;
 
 public class RetryHandler {
+
+    private static final int MAX_RETRY = 10;
 
     private final OutputHandler outputHandler;
 
@@ -11,7 +14,8 @@ public class RetryHandler {
     }
 
     public <T> T tryUntilSuccess(final IllegalArgumentExceptionThrower<T> thrower) {
-        while (true) {
+        int attemps = 1;
+        while (attemps++ <= MAX_RETRY) {
             try {
                 return thrower.run();
             } catch (IllegalArgumentException illegalArgumentException) {
@@ -21,6 +25,9 @@ public class RetryHandler {
                 throw exception;
             }
         }
+        OverMaxRetryException overMaxRetryException = new OverMaxRetryException();
+        outputHandler.handleExceptionMessage(overMaxRetryException);
+        throw overMaxRetryException;
     }
 
     @FunctionalInterface
