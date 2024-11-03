@@ -1,6 +1,7 @@
 package lotto.repository;
 
 import lotto.domain.UserLotto;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -17,6 +18,13 @@ public class UserLottoRepositoryImplTest {
     void setUp() {
         userLottoRepository = new UserLottoRepositoryImpl();
         sampleUserLotto = new UserLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        userLottoRepository.clear();
+    }
+
+    @AfterEach
+    void tearDown() {
+        userLottoRepository.clear(); // 테스트 후 로또 저장소 초기화
     }
 
     @Test

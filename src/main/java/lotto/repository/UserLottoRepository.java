@@ -8,4 +8,5 @@ public interface UserLottoRepository {
     UserLotto save(UserLotto userLotto);
 
     List<UserLotto> findAll();
+    void clear();
 }

@@ -20,4 +20,9 @@ public class UserLottoRepositoryImpl implements UserLottoRepository {
         return userLottos;
     }
 
+    // 테스트를 위한 리포지토리 초기화
+    @Override
+    public void clear() {
+        userLottos.clear();
+    }
 }
