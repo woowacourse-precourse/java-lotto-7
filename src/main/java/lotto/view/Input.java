@@ -10,9 +10,15 @@ public class Input {
 
     public static int inputPurchaseAmount() {
         Output.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
-        String purchaseAmount = readInput();
-        inputValidator.validatePurchaseAmount(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        while (true) {
+            try {
+                String purchaseAmount = readInput();
+                inputValidator.validatePurchaseAmount(purchaseAmount);
+                return Integer.parseInt(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String inputWinningNumbers() {
