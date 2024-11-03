@@ -10,15 +10,19 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        int purchaseAmount = InputView.getPurchaseAmount();
-        List<Lotto> purchasedLottos = LottoMachine.purchaseLottos(purchaseAmount);
+        try {
+            int purchaseAmount = InputView.getPurchaseAmount();
+            List<Lotto> purchasedLottos = LottoMachine.purchaseLottos(purchaseAmount);
 
-        OutputView.printPurchasedLottos(purchasedLottos);
+            OutputView.printPurchasedLottos(purchasedLottos);
 
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber(winningNumbers);
+            List<Integer> winningNumbers = InputView.getWinningNumbers();
+            int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
-        LottoResult lottoResult = LottoMachine.getResult(purchasedLottos, winningNumbers, bonusNumber);
-        OutputView.printResult(lottoResult, purchaseAmount);
+            LottoResult lottoResult = LottoMachine.getResult(purchasedLottos, winningNumbers, bonusNumber);
+            OutputView.printResult(lottoResult, purchaseAmount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
