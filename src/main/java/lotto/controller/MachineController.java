@@ -30,6 +30,11 @@ public class MachineController {
         OutputView.printInputWinningNumbersMessage();
         List<Integer> winningNumbers = InputView.readWinningNumbers();
 
+        OutputView.printBlankLine();
+        
+        OutputView.printInputBonusNumberMessage();
+        int bonusNumber = InputView.readBonusNumber();
+
         return new Computer(winningNumbers);
     }
 
