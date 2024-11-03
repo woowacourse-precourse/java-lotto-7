@@ -23,6 +23,9 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
+    
+    // 매치된 개수 반환 메소드
+    public int getMatchCount() {return matchCount;}
 
     // 맞는 당첨 등수 반환 메서드
     public static LottoRank getRank(int matchCount, boolean matchBonus) {

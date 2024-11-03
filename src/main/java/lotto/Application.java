@@ -20,7 +20,10 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonus = Console.readLine(); // 보너스 번호 입력받기
 
-
+        LottoStatistics statics = new LottoStatistics(); // 통계 생성
+        statics.calculateStatistics(purchase.getLotto(), winNumber, Integer.parseInt(bonus)); // 통계 생성
+        statics.printStatistics(); // 당첨 통계 출력
+        statics.getTotalPrize(buy); // 총 수익률 출력
     }
 
     public static List<Integer> changeType(String numbers) {

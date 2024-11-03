@@ -26,7 +26,9 @@ public class LottoBox {
 
     // 랜덤으로 로또 생성
     private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)); // ArrayList로 복사
+        Collections.sort(numbers); // 정렬
+        return numbers; // 정렬된 리스트 반환
     }
 
     // 로또 티켓 print
