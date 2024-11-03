@@ -16,9 +16,7 @@ public class Lotto {
 
     public Lotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoInfo.startNumber, LottoInfo.endNumber, LottoInfo.count);
-        Collections.sort(numbers);
-
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     public List<Integer> getNumbers() {
