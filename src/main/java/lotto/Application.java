@@ -10,17 +10,20 @@ public class Application {
         int amount = getAmount();
         int lottoCount = amount /1000;
 
+        Lotto winningLotto = new Lotto();
+        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
+
+
         System.out.println(lottoCount + " 개를 구매했습니다.");
+        List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(generateRandomLottoNumbers());
+            purchasedLottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
 
-        Lotto winningLotto = new Lotto();
-
-        int bonusNumber = getBonusNumber(winningLotto.getNumbers());
-
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
+        showResult(purchasedLottos, winningLotto, bonusNumber);
     }
 
     public static int getAmount() {
@@ -67,4 +70,51 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 타입입니다");
         }
     }
+
+    private static void showResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+        int[] rankCount = new int[6];
+
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = getMatchCount(lotto.getNumbers(), winningLotto.getNumbers());
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            if (matchCount == 6) {
+                rankCount[1]++;
+                continue;
+            }
+            if (matchCount == 5 && bonusMatch) {
+                rankCount[2]++;
+                continue;
+            }
+            if (matchCount == 5) {
+                rankCount[3]++;
+                continue;
+            }
+            if (matchCount == 4) {
+                rankCount[4]++;
+                continue;
+            }
+            if (matchCount == 3) {
+                rankCount[5]++;
+            }
+        }
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5000원) -" + rankCount[5] + "개");
+        System.out.println("4개 일치 (50,000원) - " + rankCount[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankCount[3] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount[1] + "개");
+    }
+
+    private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
 }
