@@ -29,16 +29,16 @@ public final class InputValidator {
         winningLottoNumbers.forEach(InputValidator::validateInLottoNumberRange);
     }
 
-    private static void validateInLottoNumberRange(final int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45 사이의 숫자이어야 합니다.");
-        }
-    }
-
     public static void validateBonusNumber(final List<Integer> winningLottoNumbers, final int bonusNumber) {
         if (winningLottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다. 다시 입력해 주세요.");
         }
         validateInLottoNumberRange(bonusNumber);
+    }
+
+    private static void validateInLottoNumberRange(final int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45 사이의 숫자이어야 합니다.");
+        }
     }
 }
