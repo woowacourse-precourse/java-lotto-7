@@ -15,7 +15,7 @@ public class InputView {
     }
 
     public static List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
+        System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             String input = Console.readLine().trim();
             try {
