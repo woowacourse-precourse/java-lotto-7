@@ -75,7 +75,7 @@ public class LottoResult {
     public double getEarningRate() {
         int purchaseAmount = lottoTickets.size() * 1000;
         int earning = getEarning();
-        double earningRate = (double) earning /purchaseAmount;
+        double earningRate = (double) earning /purchaseAmount * 100;
         return Math.round(earningRate * 10) / 10.0;
     }
 
