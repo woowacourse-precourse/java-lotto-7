@@ -9,4 +9,8 @@ public class InputSystem {
     public static String[] inputLottoNumber(){
         return Console.readLine().split(",");
     }
+
+    public static int inputBonusNumber(){
+        return Integer.parseInt(Console.readLine());
+    }
 }

@@ -19,4 +19,13 @@ public class OutputSystem {
     public static void printMessageForLottoNumber() {
         System.out.println("\n당첨 번호를 입력해주세요.");
     }
+
+    public static void printMessageForBonusNumber(){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public static void printMessageForWinningStatistics(){
+        System.out.println("\n당첨 통계\n---");
+
+    }
 }
