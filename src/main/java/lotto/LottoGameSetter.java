@@ -27,7 +27,7 @@ public class LottoGameSetter {
                 bonusNumber = BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                LottoPrinter.printError(e);
             }
         }
 
@@ -42,7 +42,7 @@ public class LottoGameSetter {
                 lotto = Lotto.from(ConsoleInput.getWinningNumbers());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                LottoPrinter.printError(e);
             }
         }
 
@@ -50,7 +50,6 @@ public class LottoGameSetter {
     }
 
     private static LottoPrice setTotalPrice() {
-
         LottoPrice lottoPrice;
 
         while(true) {
@@ -58,7 +57,7 @@ public class LottoGameSetter {
                 lottoPrice = LottoPrice.valueOf(ConsoleInput.getTotalPrice());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                LottoPrinter.printError(e);
             }
         }
 
