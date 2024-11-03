@@ -8,6 +8,8 @@ import lotto.domain.lottoMachine.BonusNumber;
 import lotto.domain.lottoMachine.WinningLotto;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
 
@@ -25,15 +27,28 @@ class LottoTest {
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,50", "0,1,2,3,4,5"})
+        void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다(String numbers) {
+            assertThatThrownBy(() -> Lotto.from(numbers))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
         @Test
-        void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다() {
-            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
+        void 로또_번호의_개수가_6개보다_작으면_예외가_발생한다() {
+            assertThatThrownBy(() -> Lotto.from("1,2,3,4"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
         @Test
         void 로또_번호에_문자가_있으면_예외가_발생한다() {
             assertThatThrownBy(() -> Lotto.from("1,2,3,4,5,a"))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void 구분자가_콤마와_다를_경우_예외가_발생한다() {
+            assertThatThrownBy(() -> Lotto.from("1:2:3:4:5:6"))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
