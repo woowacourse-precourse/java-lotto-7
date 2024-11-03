@@ -3,13 +3,10 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import lotto.domains.customer.Customer;
-import lotto.domains.lotto.Lotto;
 
 public class CustomerTest {
 	@DisplayName("Customer 클래스가 올바르게 생성된다.")

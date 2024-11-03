@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
-import lotto.domains.lotto.Lotto;
+import lotto.domains.lotto.domain.Lotto;
 
 class LottoTest {
     @DisplayName("Lotto 클래스가 올바르게 생성된다.")
