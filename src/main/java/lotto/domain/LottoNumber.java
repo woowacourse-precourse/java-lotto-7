@@ -8,7 +8,7 @@ public class LottoNumber {
 
 	private final int number;
 
-	protected LottoNumber(int number) {
+	public LottoNumber(int number) {
 		validate(number);
 		this.number = number;
 	}
