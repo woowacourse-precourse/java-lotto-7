@@ -34,6 +34,7 @@ public class LottoController {
             try {
                 String bonusInput = inputView.inputBonusNumber();
                 Integer bonusNumber = ParseNumberUtil.parseNumberToInteger(bonusInput);
+                numberValidator.checkNumberRange(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
