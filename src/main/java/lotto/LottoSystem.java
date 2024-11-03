@@ -6,6 +6,7 @@ import lotto.domain.LottoResultDetails;
 import lotto.domain.Lottos;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLottoNumber;
+import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,7 +24,7 @@ public class LottoSystem {
 
         WinningLottoNumber winningLottoNumber = inputWinningLottoNumber();
         LottoResultDetails.count(lottos,winningLottoNumber);
-        LottoProfitRate lottoProfitRate = new LottoProfitRate(purchasePrice);
+        LottoProfitRate lottoProfitRate = LottoProfitRate.of(purchasePrice);
         OutputView.printLottoDetails(lottoProfitRate);
     }
 
@@ -47,7 +48,7 @@ public class LottoSystem {
         while (true) {
             try {
                 String winningNumber = InputView.readWinningNumber();
-                return WinningLottoNumber.parseWinningNumber(winningNumber);
+                return Parser.parseWinningNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -58,7 +59,7 @@ public class LottoSystem {
         while (true) {
             try {
                 String bonusNumber = InputView.readBonusNumber();
-                WinningLottoNumber.parseBonusNumber(bonusNumber, winningNumber);
+                Parser.parseBonusNumber(bonusNumber, winningNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
