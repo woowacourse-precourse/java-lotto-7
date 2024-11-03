@@ -9,7 +9,8 @@ import static lotto.view.InputView.getUserInputByList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
-import lotto.domain.Money;
+import lotto.domain.Prize;
+import lotto.domain.Purchase;
 import lotto.domain.Result;
 
 public class LottoController {
@@ -20,7 +21,8 @@ public class LottoController {
     }
 
     public void start() {
-        Money purchase = repeatInputUntilValid(() -> new Money(getUserInput()));
+        Purchase purchase = repeatInputUntilValid(() -> new Purchase(getUserInput()));
+
         List<Lotto> lottos = generateLotto(purchase);
 
         repeatInputUntilValid(() -> lottoMachine.assignWinningNumbers(getUserInputByList()));
@@ -28,6 +30,6 @@ public class LottoController {
 
         Result lottoResult = generateResult(lottoMachine, lottos);
 
-        long totalPrize = lottoResult.getTotalPrize();
+        Prize prize = lottoResult.getTotalPrize();
     }
 }

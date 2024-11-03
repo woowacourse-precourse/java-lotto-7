@@ -9,9 +9,11 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 
 public class LottoFactory {
+    private LottoFactory() {
+    }
     public static List<Lotto> generateLotto(Money money) {
         List<Lotto> lottos = new ArrayList<>();
-        int numberOfLotto = money.getMoney() / PRICE_OF_LOTTO;
+        long numberOfLotto = money.getMoney() / PRICE_OF_LOTTO;
 
         for (int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(generateRandomNumbers()));

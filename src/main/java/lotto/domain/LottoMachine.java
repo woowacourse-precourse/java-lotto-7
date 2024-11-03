@@ -8,8 +8,6 @@ import static lotto.config.ErrorMessageConstant.INVALID_RANGE_NUMBER_MESSAGE;
 import static lotto.config.GameConstant.LOWER_BOUND_WINNING_NUMBER;
 import static lotto.config.GameConstant.NUMBER_OF_WINNING_NUMBER;
 import static lotto.config.GameConstant.UPPER_BOUND_WINNING_NUMBER;
-import static lotto.util.Parser.parseToInteger;
-import static lotto.util.Parser.parseToIntegerList;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -23,17 +21,17 @@ public class LottoMachine {
         winningNumbers = new ArrayList<>();
     }
 
-    public LottoMachine assignWinningNumbers(List<String> winningNumbers) {
+    public LottoMachine assignWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbers(winningNumbers);
 
-        this.winningNumbers = parseToIntegerList(winningNumbers);
+        this.winningNumbers = winningNumbers;
         return this;
     }
 
-    public LottoMachine assignBonusNumber(String bonusNumber) {
+    public LottoMachine assignBonusNumber(int bonusNumber) {
         validateBonusNumber(bonusNumber);
 
-        this.bonusNumber = parseToInteger(bonusNumber);
+        this.bonusNumber = bonusNumber;
         return this;
     }
 
@@ -45,9 +43,7 @@ public class LottoMachine {
         return bonusNumber;
     }
 
-    private void validateWinningNumbers(List<String> winningNumbers) {
-        List<Integer> parsedWinningNumbers = parseToIntegerList(winningNumbers);
-
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != NUMBER_OF_WINNING_NUMBER) {
             throw new IllegalArgumentException(INSUFFICIENT_WINNING_NUMBERS_MESSAGE);
         }
@@ -56,21 +52,19 @@ public class LottoMachine {
             throw new IllegalArgumentException(DUPLICATED_WINNING_NUMBER_MESSAGE);
         }
 
-        for (int winningNumber : parsedWinningNumbers) {
+        for (int winningNumber : winningNumbers) {
             validateRangeNumber(winningNumber);
         }
     }
 
-    private void validateBonusNumber(String bonusNumber) {
-        int parsedBonusNumber = parseToInteger(bonusNumber);
-
+    private void validateBonusNumber(int bonusNumber) {
         if (winningNumbers.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_WINNGING_NUMBER_MESSAGE);
         }
 
-        validateRangeNumber(parsedBonusNumber);
+        validateRangeNumber(bonusNumber);
 
-        if (winningNumbers.contains(parsedBonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER_MESSAGE);
         }
     }

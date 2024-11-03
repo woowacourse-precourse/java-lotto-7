@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.util.Spliter.splitWinningNumbers;
+import static lotto.util.Spliter.splitStringByDelimiter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -12,7 +12,7 @@ class SpliterTest {
         String winningNumbers = "1,2,3,4,5,6";
         List<String> expectedResult =List.of("1", "2", "3", "4", "5", "6");
 
-        assertThat(splitWinningNumbers(winningNumbers))
+        assertThat(splitStringByDelimiter(winningNumbers))
                 .hasSize(expectedResult.size())
                 .isEqualTo(expectedResult);
     }

@@ -18,8 +18,8 @@ class ResultFactoryTest {
     @BeforeEach
     void setUp() {
         lottoMachine = new LottoMachine();
-        lottoMachine.assignWinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
-        lottoMachine.assignBonusNumber("7");
+        lottoMachine.assignWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        lottoMachine.assignBonusNumber(7);
 
         lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),        // 6개 일치 (1등)

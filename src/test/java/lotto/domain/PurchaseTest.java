@@ -6,19 +6,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-class MoneyTest {
+class PurchaseTest {
     @Test
     void 최소_주문금액_미충족() {
-        String purchase = "500";
-        assertThatThrownBy(() -> new Money(purchase))
+        long purchase = 500;
+        assertThatThrownBy(() -> new Purchase(purchase))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_TOO_LOW_MESSAGE);
     }
 
     @Test
     void 거스름돈_발생() {
-        String purchase = "1001";
-        assertThatThrownBy(() -> new Money(purchase))
+        long purchase = 1001;
+        assertThatThrownBy(() -> new Purchase(purchase))
                 .isExactlyInstanceOf(IllegalArgumentException.class)
                 .hasMessage(PURCHASE_REMINDER_MESSAGE);
     }

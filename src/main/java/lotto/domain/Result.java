@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class Result {
     private final Map<Rank, Integer> winningLottos;
 
     public Result() {
-        winningLottos = new HashMap<>();
+        winningLottos = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
             winningLottos.put(rank, 0);
         }
@@ -21,7 +21,7 @@ public class Result {
         return winningLottos.get(rank);
     }
 
-    public long getTotalPrize() {
+    public Prize getTotalPrize() {
         long totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : winningLottos.entrySet()) {
             long prize = entry.getKey().getPrize();
@@ -30,6 +30,6 @@ public class Result {
             totalPrize += prize * numberOfPrize;
         }
 
-        return totalPrize;
+        return new Prize(totalPrize);
     }
 }

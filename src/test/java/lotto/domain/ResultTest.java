@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,8 +15,8 @@ class ResultTest {
     @BeforeEach
     void setUp() {
         lottoMachine = new LottoMachine();
-        lottoMachine.assignWinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
-        lottoMachine.assignBonusNumber("7");
+        lottoMachine.assignWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        lottoMachine.assignBonusNumber(7);
 
         lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),        // 6개 일치 (1등)
@@ -40,6 +39,6 @@ class ResultTest {
                         + Rank.FOURTH_PRIZE.getPrize()
                         + Rank.FIFTH_PRIZE.getPrize();
 
-        assertThat(result.getTotalPrize()).isEqualTo(expectedPrize);
+        assertThat(result.getTotalPrize().getMoney()).isEqualTo(expectedPrize);
     }
 }
