@@ -1,15 +1,9 @@
 package lotto.controller;
 
 import lotto.Service.LottoService;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.UserNumber;
-import lotto.model.UserNumbers;
 import lotto.view.ViewFacade;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoController {
     private final ViewFacade viewFacade;
@@ -21,7 +15,8 @@ public class LottoController {
     }
 
     public void run() {
-        UserNumbers userNumbers = new UserNumbers(viewFacade.getPurchaseAmount());
-        viewFacade.printUserLotto(userNumbers);
+        service.generateUserNumbers(viewFacade.getPurchaseAmount());
+        viewFacade.printUserLotto(service.getUserNumbers()); //사용자에 입력한 값을 보여줘야 하네, service에게 요청할까 vs 바로 불러올까?
+
     }
 }
