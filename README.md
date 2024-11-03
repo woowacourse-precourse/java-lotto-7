@@ -27,7 +27,6 @@
 ---
 - [ ] Controller <br>
   - [X] MoneyController.java <br>
-    - [X] 입력 받은 로또 구매 금액 시행 횟수로 변환 <br>
     - [X] MoneyValidation에서 오류 확인 <br>
   - [X] LottoController.java <br>
     - [X] 입력 받은 당첨 번호 리스트로 변환 <br>
@@ -37,9 +36,9 @@
     - [ ] 시행 횟수 만큼 Model(Lotto) 반복 <br>
 ---
 - [ ] Model <br>
-  - [ ] Lotto.java <br>
+  - [X] Lotto.java <br>
     - [X] 당첨 번호 6개 아닐 시 예외 처리 <br>
-    - [ ] 랜덤한 번호 추출 <br>
+    - [X] 랜덤한 번호 추출 <br>
   - [ ] Statistics.java <br>
     - [ ] 당첨 등수 및 당첨 금액 통계 계산 <br>
   - [ ] Rate.java <br>
