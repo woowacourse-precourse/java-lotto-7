@@ -6,12 +6,12 @@ import lotto.exception.InvalidLottoNumberException;
 import lotto.exception.InvalidPurchaseAmountException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
 
-    // 구입 금액 입력 받기
     public static int requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         try {
@@ -29,9 +29,8 @@ public class InputView {
         }
     }
 
-    // 당첨 번호 입력 받기
     public static Set<Integer> requestWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분하여 입력)");
         String input = Console.readLine();
         String[] numberStrings = input.split(",");
 
@@ -63,7 +62,6 @@ public class InputView {
         }
     }
 
-    // 보너스 번호 입력 받기
     public static int requestBonusNumber(Set<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
