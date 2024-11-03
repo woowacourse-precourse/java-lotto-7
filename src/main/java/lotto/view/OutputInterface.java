@@ -7,7 +7,7 @@ public enum OutputInterface {
 
 	PURCHASE_AMOUNT("개를 구매했습니다."),
 
-	WINNING_STATISTICS_INFORMATION("당첨 통계\n---\n");
+	WINNING_STATISTICS_INFORMATION("당첨 통계\n---");
 	private final String message;
 
 	OutputInterface(String message) {
