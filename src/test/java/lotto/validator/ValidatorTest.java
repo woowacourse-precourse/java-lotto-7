@@ -15,5 +15,11 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @ParameterizedTest
+    @DisplayName("로또 번호가 양의 정수 형태가 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"", " ", "-1,1,2,3,4,5", "0.1,4,6,1"})
+    void throwExceptionIfWinningLottoNumbersInputIsNotPositiveInteger(String numbersInput) {
+        assertThatThrownBy(() -> Validator.validateNumbersInput(numbersInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
