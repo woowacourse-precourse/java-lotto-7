@@ -7,6 +7,9 @@ import lotto.dto.request.WinningNumbersRequest;
 
 public class InputView {
 
+    private InputView() {
+    }
+
     public static MoneyRequest money() {
         return MoneyRequest.from(input());
    }
@@ -21,5 +24,9 @@ public class InputView {
 
     private static String input() {
         return Console.readLine();
+    }
+
+    public static void close() {
+        Console.close();
     }
 }

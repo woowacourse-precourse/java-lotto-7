@@ -39,6 +39,7 @@ public class LottoController {
 
     private void result() {
         outputView.result(lottoService.result());
+        InputView.close();
     }
 
     private void process(Runnable action) {
