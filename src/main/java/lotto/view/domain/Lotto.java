@@ -1,7 +1,6 @@
 package lotto.view.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.view.global.exception.CustomException;
@@ -30,8 +29,7 @@ public class Lotto {
 
     private List<Integer> generateNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
