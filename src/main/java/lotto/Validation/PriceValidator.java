@@ -13,8 +13,8 @@ public class PriceValidator {
 
     public static boolean isOutOfIntegerRange(String paymentPrice) {
         try {
-            long value = Long.parseLong(paymentPrice);
-            return value < Integer.MIN_VALUE || value > Integer.MAX_VALUE;
+            Integer.parseInt(paymentPrice);
+            return false;
         } catch (NumberFormatException e) {
             return true;
         }
