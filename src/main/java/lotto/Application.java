@@ -58,7 +58,7 @@ public class Application {
         System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
         String winning[] = Console.readLine().split(",");
         for(int i = 0; i < numSize; i++){
-            lotto.numbers.add(validate_parsInt(winning[i]));
+            lotto.numbers.add(validate_parseInt(winning[i]));
         }
         lotto.validate(lotto.getNumbers());
         lotto.getNumbers().sort(Integer::compareTo);
@@ -93,7 +93,7 @@ public class Application {
 
     public void inputBonus(){
         System.out.println("\n"+PrintMsg.BONUS_NUM_MSG.getMessage());
-        bonus = validate_parsInt(Console.readLine());
+        bonus = validate_parseInt(Console.readLine());
     }
 
     public void matchCount(){
@@ -138,17 +138,16 @@ public class Application {
 
     public int purchase_amount(){
         System.out.println(PrintMsg.INPUT_MSG.getMessage());
-        int num = validate_parsInt(Console.readLine());
+        int num = validate_parseInt(Console.readLine());
         return validate_division(num);
     }
 
-    public int validate_parsInt(String str) {
+    public int validate_parseInt(String str) {
         int num = 0;
         try {
             num = Integer.parseInt(str);
         }catch(IllegalArgumentException e) {
-            System.out.println(PrintMsg.ERROR_MSG.getMessage());
-            throw e;
+            throw new IllegalArgumentException(PrintMsg.ERROR_MSG.getMessage());
         }
         return num;
     }
