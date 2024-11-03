@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
 import static lotto.constant.LottoConfig.LOTTO_COST;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -13,24 +12,22 @@ import lotto.random.LottoRandom;
 
 public class Wallet {
 
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final long initialMoney;
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
     private long money;
-    private long initalMoney;
+    private Lottos lottos;
 
     public Wallet(long money) {
         validateMoney(money);
         this.money = money;
-        initalMoney = money;
+        initialMoney = money;
     }
 
-    public void buyLottoTickets(LottoRandom strategy) {
-        long ticketCount = money / LOTTO_COST;
-        money -= ticketCount * LOTTO_COST;
-        while (ticketCount-- > 0) {
-            lottos.add(new Lotto(strategy.getLottoNumbers()));
-        }
+    public void buyLottoTickets(LottoRandom lottoRandom) {
+        long buyCount = money / LOTTO_COST;
+        money -= buyCount * LOTTO_COST;
+        lottos = Lottos.buy(lottoRandom, buyCount);
     }
 
     private void validateMoney(long money) {
@@ -40,7 +37,7 @@ public class Wallet {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return lottos.getAll();
     }
 
     public int getLottoTicketCounts() {
@@ -59,7 +56,7 @@ public class Wallet {
                 return rank.getPrice() * count;
             })
             .sum();
-        return (double)totalPrice / initalMoney;
+        return (double)totalPrice / initialMoney;
     }
 
     public Map<Rank, Integer> getRanks() {

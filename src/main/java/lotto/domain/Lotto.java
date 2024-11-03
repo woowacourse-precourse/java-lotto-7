@@ -7,6 +7,8 @@ import static lotto.constant.LottoConfig.DEFAULT_NUMBER_COUNT;
 import java.util.List;
 import java.util.Set;
 
+import lotto.random.LottoRandom;
+
 public class Lotto {
 
     private final List<Number> numbers;
@@ -16,6 +18,10 @@ public class Lotto {
         this.numbers = numbers.stream()
             .map(Number::new)
             .toList();
+    }
+
+    public Lotto(LottoRandom lottoRandom) {
+        this(lottoRandom.getLottoNumbers());
     }
 
     private void validate(List<Integer> numbers) {
