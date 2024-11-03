@@ -78,4 +78,12 @@ public class Input {
 			throw new IllegalArgumentException("[ERROR] 입력은 숫자로 끝나야 합니다.");
 		}
 	}
+
+	public void validateSeparator(String input) {
+		for (String s : input.split(",")) {
+			if (s == null || s.isEmpty()) {
+				throw new IllegalArgumentException("[ERROR] 입력은 숫자, 쉼표(,) 형식으로 작성해야 합니다.");
+			}
+		}
+	}
 }
