@@ -1,12 +1,11 @@
 package lotto.domain;
 
+import lotto.common.Constant;
 import lotto.common.error.CustomException;
 import lotto.common.error.ErrorMessage;
 import java.util.List;
 
 public class Winning {
-    private static final int LOTTO_SIZE = 6;
-
     private final List<Integer> numbers;
     private final int bonus;
 
@@ -27,15 +26,15 @@ public class Winning {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return this.numbers;
     }
 
     public int getBonus() {
-        return bonus;
+        return this.bonus;
     }
 
     private boolean isNonSize(List<Integer> numbers) {
-        return numbers.size() != LOTTO_SIZE;
+        return numbers.size() != Constant.LOTTO_SIZE;
     }
 
     private boolean isDuplicateBonus(List<Integer> numbers, int bonus) {

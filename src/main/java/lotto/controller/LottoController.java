@@ -9,7 +9,6 @@ import java.util.Map;
 import lotto.service.LottoService;
 
 public class LottoController {
-
     private final LottoService lottoService;
 
     public LottoController(LottoService lottoService) {
@@ -17,14 +16,14 @@ public class LottoController {
     }
 
     public void run() {
-        Lottos lottos = lottoService.getLottos();
+        final Lottos lottos = lottoService.getLottos();
         OutputView.printLottoNumber(lottos);
 
-        List<Integer> winningNumber = lottoService.getWinningNumber();
+        final List<Integer> winningNumber = lottoService.getWinningNumber();
         Winning winning = lottoService.getWinning(winningNumber);
 
-        Map<Rank, Long> detail = lottoService.getWinningDetails(lottos, winning);
-        double profitRate = lottoService.getProfitRate(lottos, winning);
+        final Map<Rank, Long> detail = lottoService.getWinningDetails(lottos, winning);
+        final double profitRate = lottoService.getProfitRate(lottos, winning);
 
         OutputView.printWinningHistory(detail, profitRate);
     }

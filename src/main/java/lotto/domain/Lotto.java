@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.common.Constant;
 import lotto.common.error.CustomException;
 import java.util.Arrays;
 import lotto.common.error.ErrorMessage;
@@ -7,8 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -46,12 +45,12 @@ public class Lotto {
     }
 
     private boolean isNonSize(List<Integer> numbers) {
-        return numbers.size() != LOTTO_SIZE;
+        return numbers.size() != Constant.LOTTO_SIZE;
     }
 
     private boolean isDuplicate(List<Integer> numbers) {
         HashSet<Integer> duplicate = new HashSet<>(numbers);
-        return duplicate.size() < LOTTO_SIZE;
+        return duplicate.size() < Constant.LOTTO_SIZE;
     }
 
     @Override
