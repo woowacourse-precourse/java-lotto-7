@@ -26,7 +26,8 @@ public class LottoManager {
                 .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
         Output.printWinningStatistics(winningRecord);
-        double returnRate = (double) calculateTotalWinningAmount() / purchaseAmount * PERCENTAGE_FACTOR;
+        double returnRate = (double) calculateTotalWinningAmount() * PERCENTAGE_FACTOR / purchaseAmount;
+        Output.printReturnRate(returnRate);
     }
 
     private void saveRankOnRecord(final Rank rank) {

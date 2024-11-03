@@ -17,7 +17,8 @@ public class Output {
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String RANK_STATISTIC_FORMAT = "%d개 일치 (%,d원) - %d개\n";
     private static final String FIFTH_STATISTIC_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
-    private static final int DEFAULT_RANK_COUNT = 0;
+    private static final String RETURN_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
+    private static final int DEFAULT_WINNING_RANK_COUNT = 0;
     private static final List<Rank> winningRanks = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
 
     public static void printPurchaseMessage(final int purchasedLottoesCount) {
@@ -34,7 +35,7 @@ public class Output {
         for (Rank rank : winningRanks) {
             int winningNumberMatchCount = rank.getWinningNumberMatchCount();
             int winningAmount = rank.getWinningAmount();
-            int rankCount = winningRecord.getOrDefault(rank, DEFAULT_RANK_COUNT);
+            int rankCount = winningRecord.getOrDefault(rank, DEFAULT_WINNING_RANK_COUNT);
             String rankStatisticFormat = getRankStatisticFormat(rank);
             printRankStatistic(rankStatisticFormat, winningNumberMatchCount, winningAmount, rankCount);
         }
@@ -50,5 +51,9 @@ public class Output {
     private static void printRankStatistic(final String rankStatisticFormat, final int winningNumberMatchCount,
                                            final int winningAmount, final int rankCount) {
         System.out.printf(rankStatisticFormat, winningNumberMatchCount, winningAmount, rankCount);
+    }
+
+    public static void printReturnRate(double returnRate) {
+        System.out.printf(RETURN_RATE_FORMAT, returnRate);
     }
 }
