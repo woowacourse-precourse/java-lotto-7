@@ -14,10 +14,7 @@ public class LottoService {
     public Lottos makeRandomLotto(Long money) {
         List<Lotto> createdLotto = new ArrayList<>();
         for (int i = 0; i < money / 1000; i++) {
-            List<Integer> numbers = pickRandomUniqueSixNumbers()
-                    .stream()
-                    .sorted()
-                    .toList();
+            List<Integer> numbers = pickRandomUniqueSixNumbers().stream().sorted().toList();
             createdLotto.add(new Lotto(numbers));
         }
 
@@ -112,7 +109,6 @@ public class LottoService {
 
     public Double calculateEarningRate(Money money, List<Integer> lottoMatchResults) {
         BigInteger sumAllResults = BigInteger.ZERO;
-
         for (LottoWinType winType : LottoWinType.values()) {
             if (!winType.getType().equals(LottoWinType.NO_MATCH.getType())) {
                 sumAllResults = sumAllResults.add(
@@ -123,9 +119,7 @@ public class LottoService {
 
         BigDecimal sumAsDecimal = new BigDecimal(sumAllResults.multiply(BigInteger.valueOf(100)));
         BigDecimal divisor = new BigDecimal(money.getMoney());
-
         BigDecimal divide = sumAsDecimal.divide(divisor, 2, RoundingMode.HALF_UP);
-
         return divide.doubleValue();
     }
 }
