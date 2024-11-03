@@ -15,7 +15,7 @@ public class Purchase {
     }
 
     public int calculateLottoCount() {
-        return payment.getPayment() / PRICE.getNumber();
+        return payment.getPayment() / PRICE;
     }
 
     public int getPayment() {

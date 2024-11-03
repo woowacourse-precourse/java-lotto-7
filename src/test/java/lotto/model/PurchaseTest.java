@@ -18,7 +18,7 @@ class PurchaseTest {
 
         // when
         Purchase purchase = new Purchase(paymentInput);
-        int lottoCount = purchase.getLottoCount();
+        int lottoCount = purchase.calculateLottoCount();
 
         // then
         assertThat(lottoCount).isEqualTo(8);
@@ -36,9 +36,9 @@ class PurchaseTest {
         // then
         for (Lotto lotto : lottoTickets) {
             List<Integer> numbers = lotto.getNumbers();
-            assertThat(numbers).hasSize(LOTTO_NUMBER_COUNT.getNumber());
+            assertThat(numbers).hasSize(LOTTO_NUMBER_COUNT);
             assertThat(numbers).allMatch(
-                    number -> number >= MIN_LOTTO_NUMBER.getNumber() && number <= MAX_LOTTO_NUMBER.getNumber());
+                    number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
             assertThat(numbers).doesNotHaveDuplicates();
         }
     }

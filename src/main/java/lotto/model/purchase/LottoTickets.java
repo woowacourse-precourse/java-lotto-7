@@ -19,8 +19,8 @@ public class LottoTickets {
 
     private void purchaseLottoTickets(final int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(),
-                            MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber())
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER,
+                            MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT)
                     .stream()
                     .sorted()
                     .collect(Collectors.toList());
