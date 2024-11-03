@@ -15,5 +15,11 @@ public class OutputView {
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ", "[", "]")))
         );
+
+        addBlankLine();
+    }
+
+    private static void addBlankLine() {
+        System.out.println();
     }
 }

@@ -12,5 +12,6 @@ public class Application {
         LottoService lottoService = new LottoService();
         List<Lotto> userLotto = lottoService.generateLotto(purchaseAmount);
         OutputView.printLotto(userLotto);
+        Lotto winningNumbers = InputView.inputWinningNumbers();
     }
 }
