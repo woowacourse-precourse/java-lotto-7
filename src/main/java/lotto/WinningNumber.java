@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class WinningNumber {
+    private static final String EMPTY_ELEMENT_ERROR = ERROR_HEADER + "쉼표 사이의 빈 문자가 입력되서는 안 됩니다.";
+    private static final String WINNING_NUMBER_PATTERN = "^(\\d+)(,\\d+)*$";
     private final List<Integer> numbers;
 
     private WinningNumber(List<Integer> numbers) {
@@ -18,11 +22,11 @@ public class WinningNumber {
     public static WinningNumber from(String input) {
         validate(input);
         try {
-            List<Integer> numbers = parseNumbers(input);
+            List<Integer> numbers = parse(input);
             return new WinningNumber(numbers);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] " + "문자가 입력됐거나 숫자 범위를 초과하였습니다.");
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
         }
     }
 
@@ -30,31 +34,15 @@ public class WinningNumber {
         return Collections.unmodifiableList(numbers);
     }
 
-    private static void validate(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호가 null이어서는 안 됩니다.");
-        }
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호가 빈 문자여서는 안 됩니다.");
-        }
-        if (isEmptyElementContained(input)) {
-            throw new IllegalArgumentException("[ERROR] " + "쉼표 사이의 빈 문자가 입력되서는 안 됩니다.");
-        }
-    }
-
-    private static boolean isEmptyElementContained(String input) {
-        return !input.matches("^(\\d+)(,\\d+)*$");
-    }
-
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호는 6개의 숫자여야 합니다.");
+        if (numbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE_ERROR);
         }
         if (isDuplicateExisted(numbers)) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
         }
         if (isNotInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR);
         }
     }
 
@@ -65,15 +53,31 @@ public class WinningNumber {
 
     private boolean isNotInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_VALUE || number > LOTTO_MAX_VALUE) {
                 return true;
             }
         }
         return false;
     }
 
-    private static List<Integer> parseNumbers(String input) {
-        return Stream.of(input.split(","))
+    private static void validate(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(NULL_INPUT_ERROR);
+        }
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
+        }
+        if (isEmptyElementContained(input)) {
+            throw new IllegalArgumentException(EMPTY_ELEMENT_ERROR);
+        }
+    }
+
+    private static boolean isEmptyElementContained(String input) {
+        return !input.matches(WINNING_NUMBER_PATTERN);
+    }
+
+    private static List<Integer> parse(String input) {
+        return Stream.of(input.split(NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
