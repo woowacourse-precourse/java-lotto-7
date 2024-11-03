@@ -1,5 +1,6 @@
 package lotto.domain.number;
 
+import lotto.global.validator.InputValidator;
 import lotto.global.validator.LottoValidator;
 
 import java.util.Arrays;
@@ -23,6 +24,8 @@ public class WinningNumbers {
     private List<Integer> parseWinningNumbers(final String input) {
         return Arrays.stream(input.split(DELIMITER))
                 .map(String::trim)
+                .filter(winningNumber -> !winningNumber.isBlank())
+                .peek(InputValidator::validate)
                 .map(Integer::parseInt)
                 .toList();
     }
