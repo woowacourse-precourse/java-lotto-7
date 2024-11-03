@@ -39,4 +39,9 @@ public class OutputView {
     public void printProfitRate(double profitRate) {
         System.out.printf(OUTPUT_PROFIT_RATE.getMessage(), decimalFormat.format(profitRate));
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+        System.out.printf(NEWLINE.getMessage());
+    }
 }
