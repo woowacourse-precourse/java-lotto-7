@@ -195,6 +195,54 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    public void 보너스_비정상_중복(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","6");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_음수(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","-1");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_경계벗어남(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","46");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 보너스_비정상_이상한값(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","a");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
