@@ -62,6 +62,7 @@ public class LottoStatistics {
     }
 
     public void printResult(){
+        System.out.println("\n당첨통계\n"+"---");
         System.out.println("3개 일치 (5,000원) - "+savePot.get(Rank.FIFTH)+"개");
         System.out.println("4개 일치 (50,000원) - "+savePot.get(Rank.FOURTH)+"개");
         System.out.println("5개 일치 (1,500,000원) - "+savePot.get(Rank.THIRD)+"개");
