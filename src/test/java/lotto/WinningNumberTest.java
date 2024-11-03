@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningNumberTest {
-    @DisplayName("당첨_번호의_개수가_6개가_넘어가면_예외가_발생한다는 경우 테스트")
+    @DisplayName("당첨_번호의_개수가_6개가_넘어가면_예외가_발생하는 경우 테스트")
     @Test
     void 당첨_번호의_개수가_6개가_넘어가면_예외가_발생하는_경우_테스트() {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -47,6 +47,6 @@ public class WinningNumberTest {
     @DisplayName("유효한 당첨 번호 리스트가 주어지면 WinningNumber 객체가 정상적으로 생성되는 경우 테스트.")
     void 유효한_당첨_번호_리스트가_주어지면_WinningNumber_객체가_정상적으로_생성되는_경우_테스트() {
         WinningNumber WinningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(WinningNumber.getNumberList()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(WinningNumber.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
