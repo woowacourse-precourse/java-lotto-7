@@ -5,8 +5,7 @@ import lotto.dto.LottoResultResponse;
 
 import java.util.List;
 
-public class ConsoleOutputView implements OutPutView{
-
+public class ConsoleOutputView implements OutPutView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
@@ -23,6 +22,7 @@ public class ConsoleOutputView implements OutPutView{
     public void displayPurchaseCount(Integer purchaseCount) {
         System.out.printf(PURCHASE_COUNT_MESSAGE, purchaseCount);
     }
+
     @Override
     public void displayPurchaseLotto(List<LottoResponse> lottoResponses) {
         for (LottoResponse lottoResponse : lottoResponses) {

@@ -20,11 +20,11 @@ public class LottoUtils {
                 .collect(Collectors.toList());
     }
 
-    private static List<Integer> lottoNumberGenerator(){
+    private static List<Integer> lottoNumberGenerator() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, LOTTO_NUMBER_SIZE);
     }
 
-    public static List<Integer> generateWinningNumber(String inputWinningNumber){
+    public static List<Integer> generateWinningNumber(String inputWinningNumber) {
         try {
             return Arrays.stream(inputWinningNumber.split(SPLIT_REGEX))
                     .map(Integer::valueOf)

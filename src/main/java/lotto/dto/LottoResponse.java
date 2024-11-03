@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public record LottoResponse(
         List<String> lottoNumber
 ) {
-    public static LottoResponse from(Lotto lotto){
+    public static LottoResponse from(Lotto lotto) {
         List<String> stringLottoNumber = lotto.getNumbers().stream()
                 .map(String::valueOf)
                 .sorted(Comparator.comparingInt(Integer::parseInt))

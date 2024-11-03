@@ -14,22 +14,22 @@ public class Money {
     }
 
     private void validationPurchaseMoneyDivisibility(Integer money) {
-        if (money % LOTTO_PRICE != 0){
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_DIVISIBILITY_ERROR_MESSAGE);
         }
     }
 
     private void validationPurchaseMoneyMinumum(Integer money) {
-        if (money < LOTTO_PRICE){
+        if (money < LOTTO_PRICE) {
             throw new IllegalArgumentException(MINIMUM_PURCHASE_AMOUNT_ERROR_MESSAGE);
         }
     }
 
-    public Integer getMoney(){
+    public Integer getMoney() {
         return money;
     }
 
-    public Integer getBuyLottoCount(){
+    public Integer getBuyLottoCount() {
         return money / LOTTO_PRICE;
     }
 }

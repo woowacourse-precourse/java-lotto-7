@@ -14,7 +14,7 @@ public class LottoEvaluator {
         this.winningLotto = winningLotto;
     }
 
-    public List<LottoRank> evaluateTicketsRank(){
+    public List<LottoRank> evaluateTicketsRank() {
         return lottos.stream()
                 .map(this::evaluateTicketRank)
                 .collect(Collectors.toList());
@@ -25,12 +25,12 @@ public class LottoEvaluator {
                 .filter(winningLotto.getWinningLotto()::contains)
                 .count();
 
-        boolean isBonusNumberMatching  = lotto.getNumbers().contains(winningLotto.getBonusNumber());
+        boolean isBonusNumberMatching = lotto.getNumbers().contains(winningLotto.getBonusNumber());
 
         return LottoRank.valueOf((int) lottoMatchingNumber, isBonusNumberMatching);
     }
 
-    public Double calculateRateOfReturn(Integer totalIncome){
-        return ((double)totalIncome / (money.getMoney())) * 100;
+    public Double calculateRateOfReturn(Integer totalIncome) {
+        return ((double) totalIncome / (money.getMoney())) * 100;
     }
 }

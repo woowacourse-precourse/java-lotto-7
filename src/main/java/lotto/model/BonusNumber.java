@@ -12,7 +12,7 @@ public class BonusNumber {
     }
 
     private void validationBonusNumberRange(Integer bonusNumber) {
-        if(bonusNumber < LOTTO_NUMBER_MIN_RANGE || bonusNumber > LOTTO_NUMBER_MAX_RANGE){
+        if (bonusNumber < LOTTO_NUMBER_MIN_RANGE || bonusNumber > LOTTO_NUMBER_MAX_RANGE) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }

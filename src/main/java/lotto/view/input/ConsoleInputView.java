@@ -2,7 +2,7 @@ package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class ConsoleInputView implements InputView{
+public class ConsoleInputView implements InputView {
     @Override
     public String requestLottoPurchaseAmount() {
         return consoleInput();
@@ -17,7 +17,8 @@ public class ConsoleInputView implements InputView{
     public String requestWinningLottoBonusNumber() {
         return consoleInput();
     }
-    private String consoleInput(){
+
+    private String consoleInput() {
         return Console.readLine();
     }
 }

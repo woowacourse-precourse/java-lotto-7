@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoController {
-
     private final InputView inputView;
     private final OutPutView outPutView;
 
@@ -22,7 +21,7 @@ public class LottoController {
         this.outPutView = outPutView;
     }
 
-    public void run(){
+    public void run() {
         Money money = processingPurchaseMoney();
 
         outPutView.displayPurchaseCount(money.getBuyLottoCount());
@@ -55,7 +54,7 @@ public class LottoController {
 
     private BonusNumber processingBonusNumber(Lotto lotto) {
         outPutView.displayBonusNumberPrompt();
-        while(true){
+        while (true) {
             try {
                 String inputBonusNumber = inputView.requestWinningLottoBonusNumber();
                 ControllerValidation.inputBonusNumberValidation(inputBonusNumber);
@@ -64,7 +63,7 @@ public class LottoController {
 
                 ControllerValidation.checkAlreadyExistNumber(lotto.getNumbers(), bonusNumber);
                 return new BonusNumber(bonusNumber);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outPutView.displayExceptionMessage(e.getMessage());
             }
         }
@@ -72,12 +71,12 @@ public class LottoController {
 
     private Lotto processingWinningLottoNumber() {
         outPutView.displayWinningNumberPrompt();
-        while(true){
+        while (true) {
             try {
                 String inputWinningNumber = inputView.requestWinningLottoNumbers();
                 List<Integer> winningNumbers = LottoUtils.generateWinningNumber(inputWinningNumber);
                 return new Lotto(winningNumbers);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outPutView.displayExceptionMessage(e.getMessage());
             }
         }
@@ -96,12 +95,12 @@ public class LottoController {
 
     private Money processingPurchaseMoney() {
         outPutView.displayPurchaseAmountPrompt();
-        while(true){
-            try{
+        while (true) {
+            try {
                 String inputPrice = inputView.requestLottoPurchaseAmount();
                 ControllerValidation.inputPurchaseMoneyValidation(inputPrice);
                 return new Money(Integer.valueOf(inputPrice));
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outPutView.displayExceptionMessage(e.getMessage());
             }
         }

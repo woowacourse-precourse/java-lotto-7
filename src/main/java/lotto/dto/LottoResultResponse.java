@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 public record LottoResultResponse(
         List<String> lottoResultResponse
 ) {
-
     public static final String LOTTO_RESULT_RESPONSE_FORMAT = "%s - %d개";
 
     public static LottoResultResponse from(LottoResult lottoResult) {
