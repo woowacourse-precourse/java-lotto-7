@@ -16,4 +16,8 @@ public class LottoService {
             purchasedLottos.add(lotto);
         }
     }
+
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
 }
