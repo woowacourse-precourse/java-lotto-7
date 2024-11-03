@@ -57,7 +57,10 @@ public enum Winning {
         return prizeMoney;
     }
 
-    private boolean isMatch(String winningNumberMatch, String bonusNumberMatch) {
-        return this.winningNumberMatch.equals(winningNumberMatch) && this.bonusNumberMatch.equals(bonusNumberMatch);
+    private boolean isMatch(String winningNumberMatch, boolean isMatchBonusNumber) {
+        return this.winningNumberMatch.equals(winningNumberMatch)
+                && this.isMatchBonusNumber == isMatchBonusNumber;
+    }
+
     }
 }
