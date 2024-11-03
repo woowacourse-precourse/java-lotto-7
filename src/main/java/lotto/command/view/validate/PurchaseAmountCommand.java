@@ -1,4 +1,4 @@
-package lotto.command.validate;
+package lotto.command.view.validate;
 
 import static lotto.service.lotto.constant.LottoConstant.MATCH_SIX_PRIZE;
 

@@ -2,7 +2,7 @@ package lotto.service.amount;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lotto.command.validate.PurchaseAmountCommand;
+import lotto.command.view.validate.PurchaseAmountCommand;
 import lotto.dto.MatchResults;
 import lotto.dto.PurchaseAmountUserInput;
 import lotto.model.amount.PurchaseAmount;

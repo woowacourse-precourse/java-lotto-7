@@ -1,4 +1,4 @@
-package lotto.command.validate;
+package lotto.command.view.validate;
 
 import lotto.common.exception.ExceptionEnum;
 import lotto.command.Command;

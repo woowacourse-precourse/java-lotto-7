@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.command.output.LottoProfitCommand;
-import lotto.command.output.PurchasedLottoCommand;
-import lotto.command.validate.ValidateCommand;
+import lotto.command.view.output.LottoProfitCommand;
+import lotto.command.view.output.PurchasedLottoCommand;
+import lotto.command.view.validate.ValidateCommand;
 import lotto.dto.BonusUserInput;
 import lotto.dto.MatchResults;
 import lotto.dto.PurchaseAmountUserInput;

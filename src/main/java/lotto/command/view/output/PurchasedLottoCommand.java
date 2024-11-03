@@ -1,4 +1,4 @@
-package lotto.command.output;
+package lotto.command.view.output;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package lotto.command.output;
+package lotto.command.view.output;
 
 import java.util.Map;
 import lotto.dto.MatchResult;

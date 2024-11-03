@@ -1,4 +1,4 @@
-package lotto.command.validate;
+package lotto.command.view.validate;
 
 import static lotto.service.lotto.constant.LottoConstant.LOTTO_MAXIMUM_NUMBER;
 import static lotto.service.lotto.constant.LottoConstant.LOTTO_MINIMUM_NUMBER;
