@@ -9,12 +9,7 @@ public class InputWinningNumberView extends InputView {
     public List<Integer> getValue() {
         System.out.println(INPUT_MESSAGE);
         String numbers = inputValue();
-        validate(numbers);
 
         return Parser.parseStringToList(numbers);
-    }
-
-    private void validate(String numbers) {
-        //숫자인지 검증
     }
 }

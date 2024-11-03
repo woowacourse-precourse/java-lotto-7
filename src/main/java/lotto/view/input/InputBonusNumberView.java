@@ -1,6 +1,12 @@
 package lotto.view.input;
 
-public class InputBonusNumberView extends InputView{
+import java.util.regex.Pattern;
+import lotto.exception.input.NotIntegerException;
+
+public class InputBonusNumberView extends InputView {
+    private static final String INPUT_MESSAGE = "보너스 번호를 입력해주세요.";
+    private static final Pattern PATTERN = Pattern.compile("\\d+");
+
     public Integer getValue() {
         System.out.println(INPUT_MESSAGE);
         String bonusNumber = inputValue();
@@ -10,6 +16,8 @@ public class InputBonusNumberView extends InputView{
     }
 
     private void validate(String s) {
-        //숫자인지 검증
+        if(!PATTERN.matcher(s).matches()) {
+            throw new NotIntegerException();
+        }
     }
 }
