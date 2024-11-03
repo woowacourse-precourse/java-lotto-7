@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.controller.TicketController;
-import lotto.controller.WinnerStatisticsController;
-import lotto.dto.TicketResponse;
-import lotto.service.prize.PrizeResponse;
+import lotto.application.prize.service.PrizeResponse;
+import lotto.application.statistics.controller.WinnerStatisticsController;
+import lotto.application.ticket.controller.TicketController;
+import lotto.application.ticket.dto.TicketResponse;
 import lotto.usecase.CreatePrizeUsecase;
 
 public class LottoTicketMachine {

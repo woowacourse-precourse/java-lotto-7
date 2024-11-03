@@ -1,11 +1,11 @@
 package lotto.usecase;
 
-import lotto.domain.common.ThousandWons.ThousandWons;
-import lotto.domain.payment.LottoQuantity;
-import lotto.domain.ticket.Lottos;
-import lotto.service.payment.PaymentWriteService;
-import lotto.service.ticket.LottoWriteService;
-import lotto.service.ticket.TicketWriteService;
+import lotto.application.common.ThousandWons.ThousandWons;
+import lotto.application.ticket.domain.payment.LottoQuantity;
+import lotto.application.ticket.domain.ticket.Lottos;
+import lotto.application.ticket.service.LottoWriteService;
+import lotto.application.ticket.service.TicketWriteService;
+import lotto.application.ticket.service.payment.PaymentWriteService;
 
 public class CreateLottoTicketUsecase {
     private final PaymentWriteService paymentWriteService;

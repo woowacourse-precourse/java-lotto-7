@@ -2,13 +2,13 @@ package lotto.usecase;
 
 
 import java.util.List;
-import lotto.domain.ticket.Lotto;
-import lotto.domain.ticket.Lottos;
-import lotto.domain.ticket.Ticket;
-import lotto.dto.TicketResponse;
-import lotto.repository.ticket.TicketReadRepository;
-import lotto.repository.ticket.TicketWriteRepository;
-import lotto.service.ticket.TicketReadService;
+import lotto.application.ticket.domain.ticket.Lotto;
+import lotto.application.ticket.domain.ticket.Lottos;
+import lotto.application.ticket.domain.ticket.Ticket;
+import lotto.application.ticket.dto.TicketResponse;
+import lotto.application.ticket.repository.TicketReadRepository;
+import lotto.application.ticket.repository.TicketWriteRepository;
+import lotto.application.ticket.service.TicketReadService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

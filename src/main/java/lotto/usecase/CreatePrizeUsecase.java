@@ -1,9 +1,9 @@
 package lotto.usecase;
 
-import lotto.controller.PrizeController;
-import lotto.service.prize.PrizeResponse;
-import lotto.view.input.PrizeInputView;
-import lotto.view.input.PrizeViewRequest;
+import lotto.application.prize.controller.PrizeController;
+import lotto.application.prize.service.PrizeResponse;
+import lotto.application.prize.view.input.PrizeInputView;
+import lotto.application.prize.view.input.PrizeViewRequest;
 
 public class CreatePrizeUsecase {
     private final PrizeInputView inputView;

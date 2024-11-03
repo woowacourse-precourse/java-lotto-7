@@ -1,7 +1,7 @@
 package lotto.usecase;
 
-import lotto.dto.TicketResponse;
-import lotto.service.ticket.TicketReadService;
+import lotto.application.ticket.dto.TicketResponse;
+import lotto.application.ticket.service.TicketReadService;
 
 public class GetLottoTicketUsecase {
     private final TicketReadService ticketReadService;

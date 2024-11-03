@@ -1,15 +1,15 @@
 package lotto.usecase;
 
-import lotto.domain.common.ThousandWons.ThousandWons;
-import lotto.repository.paymnet.PaymentWriteRepository;
-import lotto.repository.ticket.TicketWriteRepository;
-import lotto.service.payment.PaymentIdGenerator;
-import lotto.service.payment.PaymentWriteService;
-import lotto.service.ticket.LottoWriteService;
-import lotto.service.ticket.NumberGenerator;
-import lotto.service.ticket.TicketIdGenerator;
-import lotto.service.ticket.TicketWriteService;
-import lotto.service.ticket.UniqueNumberGenerator;
+import lotto.application.common.ThousandWons.ThousandWons;
+import lotto.application.prize.repository.paymnet.PaymentWriteRepository;
+import lotto.application.ticket.repository.TicketWriteRepository;
+import lotto.application.ticket.service.LottoWriteService;
+import lotto.application.ticket.service.NumberGenerator;
+import lotto.application.ticket.service.TicketIdGenerator;
+import lotto.application.ticket.service.TicketWriteService;
+import lotto.application.ticket.service.UniqueNumberGenerator;
+import lotto.application.ticket.service.payment.PaymentIdGenerator;
+import lotto.application.ticket.service.payment.PaymentWriteService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
