@@ -8,14 +8,14 @@ import lotto.validator.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningNumberTest {
+class CreateWinningNumberTest {
 
     @Test
     @DisplayName("당첨 번호를 입력받으면 List로 만드는지 테스트한다.")
     void createWinningNumberTest() {
         String inputWinningNumber = "1, 2, 3, 4, 5, 6";
 
-        List<Integer> winningNumber = WinningNumber.create(inputWinningNumber);
+        List<Integer> winningNumber = CreateWinningNumber.create(inputWinningNumber);
 
         assertThat(winningNumber).hasSize(6);
     }
@@ -25,7 +25,7 @@ class WinningNumberTest {
     void winningNumbersTest1() {
         String winningNumbers = "1,2,3,4,5";
 
-        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
+        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ class WinningNumberTest {
         Validator numberValidator = new NumberValidator();
         String winningNumbers = "1,2,3,4,5,5";
 
-        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
+        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ class WinningNumberTest {
     void winningNumbersTest3() {
         String winningNumbers = "1,2,3,a,5,6";
 
-        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
+        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,7 +53,7 @@ class WinningNumberTest {
     void winningNumbersTest4() {
         String winningNumbers = "0,2,3,4,5,6";
 
-        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
+        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

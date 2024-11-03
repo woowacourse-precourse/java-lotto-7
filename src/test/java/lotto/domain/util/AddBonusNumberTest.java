@@ -1,7 +1,6 @@
 package lotto.domain.util;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +15,9 @@ class AddBonusNumberTest {
     void bonusNumberTest() {
         String winningNumber = "1,2,3,4,5,6";
         String bonusNumber = "7";
-        List<Integer> winningNumbers = WinningNumber.create(winningNumber);
+        List<Integer> winningNumbers = CreateWinningNumber.create(winningNumber);
 
-        List<Integer> numbers = AddBonusNumber.create(winningNumbers, bonusNumber);
+        List<Integer> numbers = AddBonusNumber.add(winningNumbers, bonusNumber);
 
         assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6, 7);
     }
@@ -28,9 +27,9 @@ class AddBonusNumberTest {
     @ValueSource(strings = {"a", "?", "1.3", "가", "1a"})
     void bonusNumberTest1(String number) {
         String winningNumber = "1,2,3,4,5,6";
-        List<Integer> winningNumbers = WinningNumber.create(winningNumber);
+        List<Integer> winningNumbers = CreateWinningNumber.create(winningNumber);
 
-        assertThatThrownBy(() -> AddBonusNumber.create(winningNumbers, number))
+        assertThatThrownBy(() -> AddBonusNumber.add(winningNumbers, number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,9 +38,9 @@ class AddBonusNumberTest {
     void bonusNumberTest2() {
         String winningNumber = "1,2,3,4,5,6";
         String bonusNumber = "46";
-        List<Integer> winningNumbers = WinningNumber.create(winningNumber);
+        List<Integer> winningNumbers = CreateWinningNumber.create(winningNumber);
 
-        assertThatThrownBy(() -> AddBonusNumber.create(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> AddBonusNumber.add(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

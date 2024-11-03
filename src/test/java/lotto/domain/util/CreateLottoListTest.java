@@ -11,7 +11,7 @@ class CreateLottoListTest {
 
     @Test
     @DisplayName("로또 구입 금액에 맞는 로또를 생성하는지 테스트한다.")
-    void createLottoListTest() {
+    void createCreateListTest() {
         int amount = 8000;
         int count = amount / 1000;
 
