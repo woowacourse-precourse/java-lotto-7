@@ -35,7 +35,7 @@ public class BonusNumber {
     private void validateValue(final String number) {
         int parsedNumber = Integer.parseInt(number);
         if (parsedNumber < LOWER_LIMIT || parsedNumber > UPPER_LIMIT) {
-            throw new IllegalStateException(
+            throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_BONUS_NUMBER_VALUE.getMessage()
             );
         }

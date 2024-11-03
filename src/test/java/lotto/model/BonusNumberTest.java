@@ -37,7 +37,7 @@ class BonusNumberTest {
     void should_ThrowException_When_BonusNumberIsNotInRange(String number) {
         // when, then
         Assertions.assertThatThrownBy(() -> new BonusNumber(number))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_BONUS_NUMBER_VALUE.getMessage());
     }
 
