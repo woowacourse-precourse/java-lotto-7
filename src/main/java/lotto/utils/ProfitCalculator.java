@@ -8,7 +8,7 @@ public class ProfitCalculator {
         return ((double) (calculateTotalProfit(lottoTickets)) / paidAmount) * 100;
     }
 
-    private static int calculateTotalProfit(List<LottoTicket> lottoTickets) {
+    private static long calculateTotalProfit(List<LottoTicket> lottoTickets) {
         int totalProfit = 0;
 
         for (LottoTicket lottoTicket : lottoTickets) {
