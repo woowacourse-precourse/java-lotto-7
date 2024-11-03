@@ -41,4 +41,20 @@ public enum Rank {
         return this.prizeAmount;
     }
 
+    public boolean isPrizeRank() {
+        return this != NONE;
+    }
+
+    public int getMatchingCount() {
+        return this.matchingCount;
+    }
+
+    public BigInteger prizeAmount() {
+        return this.prizeAmount;
+    }
+
+    public boolean shouldSuccessBonus() {
+        return this.onlyHasBonus;
+    }
+
 }

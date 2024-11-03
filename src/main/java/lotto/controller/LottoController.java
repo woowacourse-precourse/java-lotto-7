@@ -29,6 +29,9 @@ public class LottoController {
         Lottos lottos = buyLottos();
         output.goToNext();
         Draw draw = inputDraw();
+        output.goToNext();
+        Ranks ranks = lottos.draw(draw);
+        output.showRanks(ranks);
     }
 
     private Lottos buyLottos() {

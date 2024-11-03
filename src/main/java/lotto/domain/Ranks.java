@@ -29,4 +29,10 @@ public class Ranks {
         return totalPrizeAmount.ratePercentage(purchaseAmount);
     }
 
+    public List<Rank> getPrizeRanks() {
+        return this.ranks.stream()
+                .filter(Rank::isPrizeRank)
+                .toList();
+    }
+
 }

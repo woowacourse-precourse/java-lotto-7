@@ -2,13 +2,18 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Rank;
+import lotto.domain.Ranks;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class ConsoleOutput implements Output {
 
     private static final String ERROR_PREFIX = "[ERROR]";
+    private static final DecimalFormat AMOUNT_FORMATTER = new DecimalFormat("#,###");
 
     @Override
     public void outputError(Exception exception) {
@@ -35,6 +40,45 @@ public class ConsoleOutput implements Output {
     @Override
     public void goToNext() {
         System.out.println();
+    }
+
+    @Override
+    public void showRanks(Ranks ranks) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        List<Rank> prizeRanks = ranks.getPrizeRanks();
+        Map<Rank, Long> countByRank = groupingByCount(prizeRanks);
+
+        for (Rank rank : sortPrintRanks()) {
+            printRank(rank, countByRank.getOrDefault(rank, 0L));
+        }
+    }
+
+    private Map<Rank, Long> groupingByCount(List<Rank> ranks) {
+        return ranks.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    private List<Rank> sortPrintRanks() {
+        return Arrays.stream(Rank.values())
+                .filter(Rank::isPrizeRank)
+                .sorted(Comparator.reverseOrder())
+                .toList();
+    }
+
+    private void printRank(Rank rank, Long count) {
+        String prizeAmount = AMOUNT_FORMATTER.format(rank.getPrizeAmount());
+
+        System.out.printf("%d개 일치%s (%s원) - %d개",
+                rank.getMatchingCount(), bonusPhrase(rank), prizeAmount, count);
+        System.out.println();
+    }
+
+    private String bonusPhrase(Rank rank) {
+        if (rank.shouldSuccessBonus()) {
+            return ", 보너스 볼 일치";
+        }
+        return "";
     }
 
 }
