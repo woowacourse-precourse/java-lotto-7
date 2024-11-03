@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 
@@ -114,7 +111,7 @@ public class LottoManagerTest {
     }
 
     private Map<LottoPrize, Integer> initializePrizeMap() {
-        Map<LottoPrize, Integer> prizeMap = new HashMap<>();
+        Map<LottoPrize, Integer> prizeMap = new LinkedHashMap<>();
         Arrays.stream(LottoPrize.values())
                 .forEach(prize -> prizeMap.put(prize, 0));
         return prizeMap;
