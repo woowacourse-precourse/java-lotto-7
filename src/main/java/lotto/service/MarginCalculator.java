@@ -19,11 +19,14 @@ public class MarginCalculator {
         int profit = calculateProfit();
         BigDecimal userMoneyForCalculate = new BigDecimal(userMoney.money());
         BigDecimal profitForCalculate = new BigDecimal(profit);
-        BigDecimal percentUnit = new BigDecimal(100);
+        BigDecimal percentUnit = new BigDecimal("100.0");
 
-        BigDecimal calculatedProfit = profitForCalculate.divide(userMoneyForCalculate, 2, RoundingMode.HALF_UP);
+        // 해당 반올림 방식은 Banker's rounding 이 아님.
+        BigDecimal calculatedProfit = profitForCalculate
+                .divide(userMoneyForCalculate)
+                .multiply(percentUnit);
 
-        return calculatedProfit.multiply(percentUnit);
+        return calculatedProfit.setScale(1, RoundingMode.HALF_UP);
     }
 
     private int calculateProfit() {
