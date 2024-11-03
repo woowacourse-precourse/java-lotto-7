@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.NumberValidator.validateNumberRange;
+
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.constants.ErrorMessages;
@@ -28,6 +30,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        numbers.forEach(number -> validateNumberRange(number, 45, 1));
         validateCount(numbers);
         validateDuplication(numbers);
     }
