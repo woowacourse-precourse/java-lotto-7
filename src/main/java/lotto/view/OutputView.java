@@ -44,7 +44,7 @@ public class OutputView extends View {
     public void printProfit(List<Lotto> lottos, Map<Integer, Integer> resultMap) {
         int totalPrize = calculateTotalPrize(resultMap);
         int totalAmount = lottos.size() * LOTTO_PRICE;
-        double profit = (double) totalPrize / totalAmount;
+        double profit = (double) totalPrize / totalAmount * 100;
 
         System.out.printf(PROFIT_PROMPT, profit);
     }
