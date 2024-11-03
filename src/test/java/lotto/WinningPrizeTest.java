@@ -35,6 +35,19 @@ public class WinningPrizeTest {
     }
 
     @Test
+    @DisplayName("3개 번호 일치 + 보너스 번호 일치하더라도 5등으로 처리")
+    void 세개번호_일치하면_5등_당첨() {
+        //given
+        Lotto userLottoTicket = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+
+        //when
+        LottoPrize prize = winningPrize.getPrize(userLottoTicket);
+
+        //then
+        assertThat(prize).isEqualTo(LottoPrize.FIFTH);
+    }
+
+    @Test
     @DisplayName("5개 번호 + 보너스 번호 일치하면 2등 당첨")
     void 다섯개번호_보너스번호_다_일치하면_2등_당첨() {
         //given
