@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.BonusException;
+import lotto.message.ExceptionMessage;
+
 public class Bonus {
 
     private static final Integer MIN_NUMBER_RANGE = 1;
@@ -18,7 +21,7 @@ public class Bonus {
 
     private void validateRange(Integer number) {
         if (IsNumberRangeIncorrect(number)) {
-            throw new IllegalArgumentException();
+            throw new BonusException(ExceptionMessage.INPUT_BONUS_RANGE_EXCEPTION);
         }
     }
 

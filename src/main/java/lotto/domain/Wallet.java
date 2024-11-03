@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.MoneyException;
+import lotto.message.ExceptionMessage;
+
 public class Wallet {
 
     private static final Integer MIN_MONEY_UNIT = 1000;
@@ -14,7 +17,7 @@ public class Wallet {
 
     private void validate(Integer money) {
         if (money % MIN_MONEY_UNIT != MIN_MONEY_UNIT_CHECK_NUMBER) {
-            throw new IllegalArgumentException();
+            throw new MoneyException(ExceptionMessage.INPUT_MONEY_UNIT_EXCEPTION);
         }
     }
 

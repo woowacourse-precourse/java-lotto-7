@@ -3,7 +3,10 @@ package lotto.service.generator;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.exception.LottoException;
 import lotto.factory.LottoFactory;
+import lotto.message.ExceptionMessage;
+import lotto.util.ValidateNumber;
 
 public class WinningGenerator {
 
@@ -14,7 +17,7 @@ public class WinningGenerator {
 
     public WinningGenerator(String winning) {
         validate(winning);
-        this.winning = LottoFactory.create(change(winning));
+        this.winning = LottoFactory.create(changeType(winning));
     }
 
     private boolean IsContainSeparator(String winning) {
@@ -23,7 +26,7 @@ public class WinningGenerator {
 
     private void validate(String winning) {
         if (IsContainSeparator(winning)) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionMessage.INPUT_LOTTO_SEPARATOR_EXCEPTION);
         }
     }
 
@@ -31,17 +34,9 @@ public class WinningGenerator {
         return Arrays.stream(winning.split(WINNING_SEPARATOR, SPLIT_LIMIT)).toList();
     }
 
-    private List<Integer> change(String winning) {
-        try {
-            return changeType(winning);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     private List<Integer> changeType(String winning) {
         return split(winning).stream()
-                .map(Integer::parseInt)
+                .map(ValidateNumber::change)
                 .toList();
     }
 

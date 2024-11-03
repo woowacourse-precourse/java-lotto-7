@@ -32,7 +32,7 @@ public class WinningController {
             String lottoWinning = inputView.inputUser();
             return WinningGeneratorFactory.create(lottoWinning);
         } catch (IllegalArgumentException e) {
-            System.out.println("ERROR");
+            outputView.printException(e.getMessage());
         }
         return null;
     }

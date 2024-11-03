@@ -33,7 +33,7 @@ public class BonusController {
             String lottoBonus = inputView.inputUser();
             return BonusGeneratorFactory.create(winning, lottoBonus);
         } catch (IllegalArgumentException e) {
-            System.out.println("ERROR");
+            outputView.printException(e.getMessage());
         }
         return null;
     }

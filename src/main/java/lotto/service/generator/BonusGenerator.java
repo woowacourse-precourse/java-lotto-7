@@ -2,7 +2,9 @@ package lotto.service.generator;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.exception.BonusException;
 import lotto.factory.BonusFactory;
+import lotto.message.ExceptionMessage;
 import lotto.util.ValidateNumber;
 
 public class BonusGenerator {
@@ -21,7 +23,7 @@ public class BonusGenerator {
 
     private void validate(Lotto winning, Integer bonus) {
         if (duplicateWinning(winning, bonus)) {
-            throw new IllegalArgumentException();
+            throw new BonusException(ExceptionMessage.INPUT_BONUS_DUPLICATION_EXCEPTION);
         }
     }
 

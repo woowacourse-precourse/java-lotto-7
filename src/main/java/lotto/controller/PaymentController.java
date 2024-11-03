@@ -32,7 +32,7 @@ public class PaymentController {
             String money = inputView.inputUser();
             return PaymentFactory.create(money);
         } catch (IllegalArgumentException e) {
-            System.out.println("ERROR");
+            outputView.printException(e.getMessage());
         }
         return null;
     }

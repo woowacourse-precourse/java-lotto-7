@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.LottoException;
+import lotto.message.ExceptionMessage;
 
 public class Lotto {
 
@@ -19,13 +21,13 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoException(ExceptionMessage.INPUT_LOTTO_COUNT_EXCEPTION);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::IsNumberRangeIncorrect)) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionMessage.INPUT_LOTTO_RANGE_EXCEPTION);
         }
     }
 
@@ -35,7 +37,7 @@ public class Lotto {
 
     private void validateNumberDuplication(List<Integer> numbers) {
         if (IsNumberDuplicate(numbers)) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionMessage.INPUT_LOTTO_DUPLICATION_EXCEPTION);
         }
     }
 
