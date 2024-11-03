@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashMap;
 import java.util.List;
+import lotto.view.Validator;
 
 public class LottoCommittee {
 
@@ -10,6 +12,8 @@ public class LottoCommittee {
     public LottoCommittee(List<Integer> winningNumber, int bonusNumber) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
+
+        Validator.validateDuplicateWith(winningNumber, bonusNumber);
     }
 
     public Ranking calculateRanking(Lotto lotto) {
