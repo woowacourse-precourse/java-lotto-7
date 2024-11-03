@@ -1,6 +1,10 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class OutputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
@@ -9,9 +13,14 @@ public class OutputView {
         System.out.println("\n"+count+PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public static void printUserLotto(List<List<Integer>> lottoNumbers){
-        for(List<Integer> lotto:lottoNumbers){
+    public static void printUserLotto(List<Lotto> lottoNumbers) {
+        for (Lotto lotto : lottoNumbers) {
             System.out.println(lotto);
         }
+    }
+
+    public static void printStatistics(Map<Rank, Integer> rankCount, long totalWinnings, double roi) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
     }
 }

@@ -71,4 +71,13 @@ class LottoTest {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         assertThat(lotto.containsNumber(7)).isFalse();
     }
+
+    @Test
+    @DisplayName("다른 로또와 일치하는 번호의 개수를 정확하게 반환해야 한다.")
+    void 다른_로또와_일치하는_번호의_개수를_정확하게_반환해야_한다() {
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
+        int matchCount = lotto1.matchNumber(lotto2);
+        assertThat(matchCount).isEqualTo(3);
+    }
 }

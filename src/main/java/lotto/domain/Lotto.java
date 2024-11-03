@@ -32,6 +32,11 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int matchNumber(Lotto other){
+        return (int) this.numbers.stream()
+                .filter(other::containsNumber).count();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
