@@ -104,17 +104,19 @@ public class Lotto {
 
 
     // 1. 로또 구입 금액 만큼의 로또 번호를 저장한다.
-    public static void purchaseLotto(int num) {
-        for (int i = 0; i < num; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            new Lotto(numbers);
-            numbers.sort(Integer::compareTo);
-            System.out.println(numbers);
-        }
+    public static List<Integer> purchaseLotto() {
+//        for (int i = 0; i < num; i++) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        new Lotto(numbers);
+        numbers.sort(Integer::compareTo);
+        System.out.println(numbers);
+
+//        }
+        return numbers;
     }
 
     // 3. 당첨 번호와 로또 번호를 비교해서 결과를 저장한다.
-    private static int calculateWinningStatus(List<Integer> lottoNumbers, String[] winningNumber) {
+    public static int calculateWinningStatus(List<Integer> lottoNumbers, String[] winningNumber) {
         int count = 0;
         for (int i = 0; i < lottoNumbers.size(); i++) {
             if (lottoNumbers.contains(Integer.parseInt(winningNumber[i]))) {
@@ -125,11 +127,11 @@ public class Lotto {
     }
 
     // 3-1. 보너스 번호와 로또 번호를 비교해서 결과를 저장한다.
-    private static boolean calculateBonusStatus(List<Integer> lottoNumbers, int bonusNumber) {
+    public static boolean calculateBonusStatus(List<Integer> lottoNumbers, int bonusNumber) {
         return lottoNumbers.contains(bonusNumber);
     }
 
-    private static int checkResult(int number, boolean bonus) {
+    public static int checkLottoResult(int number, boolean bonus) {
         Rank rank = Rank.getRank(number, bonus);
         if (rank == Rank.THREE) {
             return 5000;
@@ -157,6 +159,38 @@ public class Lotto {
         }
         if (rank == Rank.SIX_WITH_BONUS) {
             return 2000000000;
+        }
+        return 0; // 모든 조건에 맞지 않을 경우의 기본 반환값
+    }
+
+    public static int checkWinnerIndex(int number, boolean bonus) {
+        Rank rank = Rank.getRank(number, bonus);
+        if (rank == Rank.THREE) {
+            return 1;
+        }
+        if (rank == Rank.TWO_WITH_BONUS) {
+            return 1;
+        }
+        if (rank == Rank.FOUR) {
+            return 2;
+        }
+        if (rank == Rank.THREE_WITH_BONUS) {
+            return 2;
+        }
+        if (rank == Rank.FOUR_WITH_BONUS) {
+            return 3;
+        }
+        if (rank == Rank.FIVE) {
+            return 4;
+        }
+        if (rank == Rank.FIVE_WITH_BONUS) {
+            return 5;
+        }
+        if (rank == Rank.SIX) {
+            return 5;
+        }
+        if (rank == Rank.SIX_WITH_BONUS) {
+            return 5;
         }
         return 0; // 모든 조건에 맞지 않을 경우의 기본 반환값
     }

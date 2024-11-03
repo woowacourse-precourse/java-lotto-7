@@ -26,16 +26,30 @@ public class Application {
         }
 
         System.out.println("3보너스 번호를 입력해 주세요.");
+        int bonusNumInt;
         while (true) {
             String bonusNum = Console.readLine();
             if (lotto.Lotto.validateBonus(winningNumber, bonusNum)) {
-                Integer bonusNumInt = Integer.parseInt(bonusNum);
+                bonusNumInt = Integer.parseInt(bonusNum);
                 break;
             }
         }
-//        System.out.println(purchaseInt / 1000);
-        lotto.Lotto.purchaseLotto(purchaseInt / 1000);
 
+        Integer[] lottoStat = lottoStatistics(purchaseInt / 1000, winningNumber, bonusNumInt);
+
+    }
+
+    private static Integer[] lottoStatistics(int count, String[] winningNumber, int bonusNumInt) {
+        Integer[] result = new Integer[7];
+        int sum = 0;
+        for (int i = 0; i < count; i++) {
+            int number = lotto.Lotto.calculateWinningStatus(lotto.Lotto.purchaseLotto(), winningNumber);
+            boolean bonus = lotto.Lotto.calculateBonusStatus(lotto.Lotto.purchaseLotto(), bonusNumInt);
+            result[lotto.Lotto.checkWinnerIndex(number, bonus)] += 1;
+            sum += lotto.Lotto.checkLottoResult(number, bonus);
+        }
+        result[6] = sum;
+        return result;
     }
 
 
