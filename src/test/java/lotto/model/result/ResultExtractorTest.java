@@ -55,7 +55,7 @@ class ResultExtractorTest {
     @DisplayName("수익률 계산 테스트")
     void calculateProfitRate() {
         // given
-        Map<Rank, Integer> result = resultExtractor.extract();
+        resultExtractor.extract();
         int originalMoney = 6000;
 
         // when
