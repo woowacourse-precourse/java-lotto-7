@@ -8,16 +8,16 @@
 
 ## ✨ 과제 요구사항
 
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- [ ] 3항 연산자를 쓰지 않는다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
 - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다. 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] Enum을 적용하여 프로그램을 구현한다.
+- [x] else 예약어를 쓰지 않는다.
+- [x] Enum을 적용하여 프로그램을 구현한다.
 - [ ] UI(System.out, System.in, Scanner) 로직은 제외하고 단위테스트를 작성한다.
-- [ ] 제공된 Lotto 클래스를 사용하여 구현해야 한다.
-- [ ] Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다. 
-- [ ] numbers의 접근 제어자인 private은 변경할 수 없다.
-- [ ] Lotto의 패키지를 변경할 수 있다.
+- [x] 제공된 Lotto 클래스를 사용하여 구현해야 한다.
+- [x] Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다. 
+- [x] numbers의 접근 제어자인 private은 변경할 수 없다.
+- [x] Lotto의 패키지를 변경할 수 있다.
 
 <br/>
 
@@ -70,4 +70,4 @@
 
 - [x] 클래스를 도메인 별로 분리한다.
 - [x] 에러 처리 형식을 통일한다. ([ERROR] bla bla)
-- [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
