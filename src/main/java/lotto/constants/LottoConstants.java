@@ -14,16 +14,19 @@ public class LottoConstants {
     public static final int PLACE_TO_ROUND_TO = 1;
     public static final int NUMBER_OF_RANKS = 5;
     public static final int INITIAL_WINNING_COUNT = 0;
+
     public static final int FIRST_RANK = 1;
     public static final int SECOND_RANK = 2;
     public static final int THIRD_RANK = 3;
     public static final int FOURTH_RANK = 4;
     public static final int FIFTH_RANK = 5;
+
     public static final int FIRST_RANK_MATCH_COUNT = 6;
     public static final int SECOND_RANK_MATCH_COUNT = 5;
     public static final int THIRD_RANK_MATCH_COUNT = 5;
     public static final int FOURTH_RANK_MATCH_COUNT = 4;
     public static final int FIFTH_RANK_MATCH_COUNT = 3;
+
     public static final int FIRST_RANK_PRIZE_AMOUNT = 2000000000;
     public static final int SECOND_RANK_PRIZE_AMOUNT = 30000000;
     public static final int THIRD_RANK_PRIZE_AMOUNT = 1500000;
@@ -37,7 +40,7 @@ public class LottoConstants {
             THIRD_RANK_MATCH_COUNT, THIRD_RANK,
             FIRST_RANK_MATCH_COUNT, FIRST_RANK
     );
-    /* (a, b) a등 b개 일치 */
+    /* (n, m) n등은 m개 일치 */
     public static final Map<Integer, Integer> MATCH_COUNT_BY_RANK = Map.of(
             FIFTH_RANK, FIFTH_RANK_MATCH_COUNT,
             FOURTH_RANK, FOURTH_RANK_MATCH_COUNT,
@@ -45,7 +48,7 @@ public class LottoConstants {
             SECOND_RANK, SECOND_RANK_MATCH_COUNT,
             FIRST_RANK, FIRST_RANK_MATCH_COUNT
     );
-    /* (m, k) m등 상금 k원 */
+    /* (n, m) n등 상금 m원 */
     public static final Map<Integer, Integer> PRIZE_AMOUNT_BY_RANK = Map.of(
             FIFTH_RANK, FIFTH_RANK_PRIZE_AMOUNT,
             FOURTH_RANK, FOURTH_RANK_PRIZE_AMOUNT,
@@ -75,9 +78,11 @@ public class LottoConstants {
     public static final String PURCHASE_AMOUNT_TEXT = "구입금액을 입력해 주세요.";
     public static final String WINNING_NUMBERS_TEXT = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_TEXT = "보너스 번호를 입력해 주세요.";
+
     public static final String LOTTO_COUNT_TEXT = "%d개를 구매했습니다.";
     public static final String TICKET_START_TEXT = "[";
     public static final String TICKET_END_TEXT = "]";
+
     public static final String WINNING_RESULT_TEXT = "당첨 통계";
     public static final String DIVIDING_LINE = "---";
     public static final String JOIN_DELIMITER = ", ";
