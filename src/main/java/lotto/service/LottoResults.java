@@ -3,8 +3,6 @@ package lotto.service;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.SequencedMap;
 import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -27,9 +25,9 @@ public class LottoResults {
         }
     }
 
-
     public void calculateResults(LottoTickets lottoTickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
+        for (List<Integer> numbers : lottoTickets.getLottoTickets()) {
+            Lotto lottoTicket = Lotto.from(numbers);
             Rank rank = determineRank(winningNumbers, bonusNumber, lottoTicket);
             lottoResults.put(rank, lottoResults.get(rank) + 1);
         }
@@ -51,24 +49,6 @@ public class LottoResults {
         return lottoResults.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
-    }
-
-    public List<LottoResultDto> generateResultDtos() {
-        return lottoResults.entrySet().stream()
-                .filter(this::isNotNoneRank)
-                .map(this::toLottoResultDto)
-                .collect(Collectors.toList());
-    }
-
-    private boolean isNotNoneRank(Map.Entry<Rank, Integer> entry) {
-        return entry.getKey() != Rank.NONE;
-    }
-
-    private LottoResultDto toLottoResultDto(Map.Entry<Rank, Integer> entry) {
-        Rank rank = entry.getKey();
-        int count = entry.getValue();
-        String description = RankMessages.getMessage(rank.getMatchCount(), rank.isMatchBonus());
-        return new LottoResultDto(description, rank.getPrize(), count);
     }
 
 }
