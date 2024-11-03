@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.config.LottoConstants.LOTTO_PRICE;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -28,7 +30,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public void purchaseLotto(String purchaseAmount) {
-        int numericPurchaseAmount = parseNumeric(purchaseAmount);
+        int numericPurchaseAmount = safeParsePurchaseAmount(purchaseAmount);
 
         lottoRepository.generateRandomLottos(numericPurchaseAmount);
     }
@@ -50,7 +52,7 @@ public class LottoServiceImpl implements LottoService {
                 .map(LottoRule::getPrize)
                 .mapToInt(Integer::intValue)
                 .sum()
-                / parseNumeric(purchaseAmount);
+                / safeParsePurchaseAmount(purchaseAmount);
     }
 
     @Override
@@ -71,13 +73,39 @@ public class LottoServiceImpl implements LottoService {
                 .toList();
     }
 
-    private int parseNumeric(String stringInput) {
-        return Integer.parseInt(stringInput);
+    private int safeParsePurchaseAmount(String stringInput) {
+        validateNullInput(stringInput);
+        try {
+            int amount = Integer.parseInt(stringInput);
+            validatePositive(amount);
+            validateDivisibleByLottoPrice(amount);
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("유효하지 않은 입력입니다. 숫자를 입력해주세요.", e);
+        }
     }
 
     private List<Integer> parseIntegerList(String stringInput) {
         return Arrays.stream(stringInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void validateNullInput(String stringInput) {
+        if (stringInput == null || stringInput.isEmpty()) {
+            throw new IllegalArgumentException("구입 금액은 null 또는 빈 문자열일 수 없습니다.");
+        }
+    }
+
+    private void validatePositive(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000원 이상의 양수여야 합니다.");
+        }
+    }
+
+    private void validateDivisibleByLottoPrice(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 }
