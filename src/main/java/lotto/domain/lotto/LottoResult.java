@@ -12,7 +12,7 @@ public class LottoResult {
         return resultState.isWinner();
     }
 
-    public ResultState getWinningState() {
+    public ResultState getState() {
         return resultState;
     }
 }

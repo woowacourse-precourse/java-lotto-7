@@ -51,7 +51,7 @@ public class WinningStatistic {
     private void generateStatistic(List<LottoResult> lottoResults) {
         lottoResults.stream()
                 .filter(LottoResult::isWinner)
-                .map(LottoResult::getWinningState)
+                .map(LottoResult::getState)
                 .forEach(this::accumulateWinningState);
     }
 
