@@ -17,7 +17,7 @@ public class Utils {
     }
 
     public static boolean isInRange(int min, int max, int value) {
-        return (min >= value && max <= value);
+        return (min <= value && max >= value);
     }
 
     //문자열을 int로 바꾸는 메서드
