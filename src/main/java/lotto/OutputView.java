@@ -1,15 +1,9 @@
 package lotto;
 
 import lotto.message.NotifyMessage;
+import lotto.message.ResultMessage;
 
 public class OutputView {
-    private static final String THREE_MATCH_MESSAGE = "3개 일치 (5,000원) - %d개";
-    private static final String FOUR_MATCH_MESSAGE = "4개 일치 (50,000원) - %d개";
-    private static final String FIVE_MATCH_MESSAGE = "5개 일치 (1,500,000원) - %d개";
-    private static final String FIVE_WITH_BONUS_MATCH_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
-    private static final String SIX_MATCH_MESSAGE = "6개 일치 (2,000,000,000원) - %d개";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-
     private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
 
     public static void notifyEnterMoneyToBuy() {
@@ -32,13 +26,13 @@ public class OutputView {
                                        int sixMatches, double profitRate) {
         System.out.println(NotifyMessage.NOTIFY_RESULT_MESSAGE.getMessage());
         System.out.println(NotifyMessage.DIVIDER.getMessage());
-        System.out.printf((THREE_MATCH_MESSAGE) + "%n", threeMatches);
-        System.out.printf((FOUR_MATCH_MESSAGE) + "%n", fourMatches);
-        System.out.printf((FIVE_MATCH_MESSAGE) + "%n", fiveMatches);
-        System.out.printf((FIVE_WITH_BONUS_MATCH_MESSAGE) + "%n", fiveMatchesWithBonus);
-        System.out.printf((SIX_MATCH_MESSAGE) + "%n", sixMatches);
+        System.out.printf(ResultMessage.THREE_MATCH_MESSAGE.getMessage(), threeMatches);
+        System.out.printf(ResultMessage.FOUR_MATCH_MESSAGE.getMessage(), fourMatches);
+        System.out.printf(ResultMessage.FIVE_MATCH_MESSAGE.getMessage(), fiveMatches);
+        System.out.printf(ResultMessage.FIVE_WITH_BONUS_MATCH_MESSAGE.getMessage(), fiveMatchesWithBonus);
+        System.out.printf(ResultMessage.SIX_MATCH_MESSAGE.getMessage(), sixMatches);
         System.out.println();
-        System.out.printf((PROFIT_RATE_MESSAGE) + "%n", profitRate);
+        System.out.printf(ResultMessage.PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
 
     public static void printErrorMessage(String errorMassage) {
