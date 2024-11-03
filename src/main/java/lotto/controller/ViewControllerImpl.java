@@ -19,20 +19,21 @@ public class ViewControllerImpl implements ViewController {
 
 
     @Override
-    public void validateMoney(int money) {
-        if (money % 1000 != 0) {
+    public Integer validateMoney(int money) {
+        int lottoCount = money % 1000;
+        if (lottoCount != 0) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_NUMBER_ERROR);
         }
+        return money/1000;
     }
 
     @Override
     public void validateNumberSize(List<Integer> winningNumbers) {
 
     }
-    public String getMoney(){
+    public Integer getMoney(){
         outputView.printGuide();
         String money =  inputView.readLine();
-        this.validateMoney(Integer.parseInt(money));
-        return money;
+        return this.validateMoney(Integer.parseInt(money));
     }
 }

@@ -9,17 +9,17 @@ import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
 
-    LottoService lottoService;
+    LottoServiceImpl lottoService;
 
     @BeforeEach
     void setUp() {
+        lottoService = LottoServiceImpl.getInstance();
     }
 
     @Test
     void buyLotto() {
-        int money = 10000;
-        int lottoCount = money/1000;
-        List<Lotto> lottos = lottoService.buyLotto(money);
+        int lottoCount = 10;
+        List<Lotto> lottos = lottoService.buyLotto(lottoCount);
         assertEquals(lottoCount, lottos.size());
     }
 }
