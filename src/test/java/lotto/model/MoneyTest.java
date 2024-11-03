@@ -29,4 +29,17 @@ class MoneyTest {
         //then
         Assertions.assertThat(money1).isEqualTo(money2);
     }
+
+    @Test
+    @DisplayName("다른 값을 가진 Money는 다른 객체이다.")
+    void should_NotBeSameObject_When_DifferentValue() {
+        // given
+        String value1 = "1000";
+        String value2 = "2000";
+        // when
+        Money money1 = new Money(value1);
+        Money money2 = new Money(value2);
+        //then
+        Assertions.assertThat(money1).isNotEqualTo(money2);
+    }
 }
