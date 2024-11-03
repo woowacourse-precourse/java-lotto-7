@@ -1,5 +1,10 @@
 package lotto;
 
+import lotto.console.ConsoleOutput;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.domain.LottoNumber;
+
 import java.util.List;
 
 public class LottoGameRunner {
@@ -24,23 +29,33 @@ public class LottoGameRunner {
     }
 
     private void printLottoGameResult(List<Integer> winningRanks, Double earningRate) {
-        StringBuilder winStatsResult = new StringBuilder();
+        ConsoleOutput.print(makeWinStatusResult(winningRanks, earningRate));
+    }
+
+    private static String makeWinStatusResult(List<Integer> winningRanks, Double earningRate) {
+
+        int[] countPerWinningRank = countRanks(winningRanks);
+
+        return makeOutputString(earningRate, countPerWinningRank);
+    }
+
+    private static String makeOutputString(Double earningRate, int[] countPerWinningRank) {
+        return "\n당첨 통계\n---\n" +
+                "3개 일치 (5,000원) - " + countPerWinningRank[5] + "\n" +
+                "4개 일치 (50,000원) - " + countPerWinningRank[4] + "\n" +
+                "5개 일치 (1,500,000원) - " + countPerWinningRank[3] + "\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + countPerWinningRank[2] + "\n" +
+                "6개 일치 (2,000,000,000원) - " + countPerWinningRank[1] + "\n" +
+                "총 수익률은 " + earningRate + "%입니다.";
+    }
+
+    private static int[] countRanks(List<Integer> winningRanks) {
         int[] countPerWinningRank = new int[6];
         winningRanks
                 .forEach(rank -> {
                     countPerWinningRank[rank]++;
                 });
-
-        winStatsResult
-                .append("\n당첨 통계\n---\n")
-                .append("3개 일치 (5,000원) - ").append(countPerWinningRank[5]).append("\n")
-                .append("4개 일치 (50,000원) - ").append(countPerWinningRank[4]).append("\n")
-                .append("5개 일치 (1,500,000원) - ").append(countPerWinningRank[3]).append("\n")
-                .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(countPerWinningRank[2]).append("\n")
-                .append("6개 일치 (2,000,000,000원) - ").append(countPerWinningRank[1]).append("\n")
-                .append("총 수익률은 ").append(earningRate).append("%입니다.");
-
-        System.out.println(winStatsResult);
+        return countPerWinningRank;
     }
 
     private Double calculateEarningRate(List<Integer> winningRanks) {

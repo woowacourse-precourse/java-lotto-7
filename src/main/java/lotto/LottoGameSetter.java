@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.console.ConsoleInput;
 import lotto.console.ConsoleOutput;
+import lotto.domain.*;
 
 public class LottoGameSetter {
 
