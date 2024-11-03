@@ -15,7 +15,6 @@ public class Lottos {
     public Lottos(long count){
     lottos = new ArrayList<>();
     generateRandomNumber(count);
-
 }
 
     private void generateRandomNumber(long count) {

@@ -10,11 +10,11 @@ public class InputView {
     public static long inputNumber(String message) {
         System.out.println(message);
         String input = Console.readLine();
-        validate(input);
+        validateNumberInput(input);
         return Long.parseLong(input);
     }
 
-    private static void validate(String input){
+    private static void validateNumberInput(String input){
         validateEmpty(input);
         validateNumeric(input);
     }
@@ -39,7 +39,6 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
         }
     }
-
 
     public static List<Integer> inputWinningLotto(String message) {
         System.out.println(message);
@@ -80,6 +79,5 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.COMMA_SEPARATED_NUMBER);
         }
     }
-
 
 }
