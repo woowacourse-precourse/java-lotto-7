@@ -56,7 +56,15 @@ public class LottoController {
     }
 
     public void setBonusNumber() {
-        OutputView.printBonusNumber();
-        bonus = new Bonus(InputView.inputBonusNumber(), lotto.getNumbers());
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printBonusNumber();
+                bonus = new Bonus(InputView.inputBonusNumber(), lotto.getNumbers());
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
     }
 }
