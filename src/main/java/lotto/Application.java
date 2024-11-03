@@ -15,6 +15,7 @@ public class Application {
 
         Lotto[] lottos = Lotto.generateLottos(lottoCount);
         Lotto.printLottos(lottos);
+        System.out.println();
 
         Lotto winningNumbers = inputWinningNumbers();
         System.out.println(winningNumbers);

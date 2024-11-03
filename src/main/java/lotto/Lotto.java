@@ -10,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateUniqueNumbers(numbers);
+        LottoNumber.validateNumberRange(numbers);
         this.numbers = numbers;
         sortNumbers();
     }
@@ -69,5 +70,24 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+
+    public enum LottoNumber {
+        MIN(1), MAX(45);
+
+        private final int value;
+
+        LottoNumber(int value) {
+            this.value = value;
+        }
+
+        public static void validateNumberRange(List<Integer> numbers) {
+            for(Integer number : numbers) {
+                if (number < MIN.value || number > MAX.value) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45사이의 정수여야 합니다.");
+                }
+            }
+        }
     }
 }
