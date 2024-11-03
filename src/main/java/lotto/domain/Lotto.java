@@ -2,11 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
+import lotto.util.Constants;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -23,13 +21,15 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number < MIN_NUMBER || number > MAX_NUMBER)
+                .filter(number -> number < Constants.MIN_LOTTO_NUMBER || number > Constants.MIN_LOTTO_NUMBER)
                 .findAny()
-                .ifPresent(number -> { throw new IllegalArgumentException(); });
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException();
+                });
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
