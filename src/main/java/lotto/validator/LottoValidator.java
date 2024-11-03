@@ -30,26 +30,26 @@ public class LottoValidator {
         isMoneyBlank(money);
         isMoneyNotPositiveNumber(money);
         isMoneyUnder_1_000(money);
-        isMoneyNotIn_1_000(money);
         isMoneyOver_1_000_000(money);
+        isMoneyNotIn_1_000(money);
     }
 
     public void validateGeneratedLottoNumbers(List<Integer> lottoNumbers) {
         isNumbersSize6(lottoNumbers);
-        isNumbersDuplicated(lottoNumbers);
         isNumbersOutOfRange(lottoNumbers);
+        isNumbersDuplicated(lottoNumbers);
         isNumbersSorted(lottoNumbers);
     }
 
     public void validateWinnerLottoNumbers(String winnerNumbers) {
         isWinnerNumbersBlank(winnerNumbers);
-        isWinnerNumbersSize6(winnerNumbers);
         isWinnerNumbersContainComma(winnerNumbers);
+        isWinnerNumbersSize6(winnerNumbers);
 
         List<Integer> lottoNumbers = getLottoNumbersFromWinnerLottoNumbers(winnerNumbers);
 
-        isNumbersDuplicated(lottoNumbers);
         isNumbersOutOfRange(lottoNumbers);
+        isNumbersDuplicated(lottoNumbers);
     }
 
     public void validateBonusNumber(List<Integer> winnerNumbers, String bonusNumber) {
@@ -57,9 +57,8 @@ public class LottoValidator {
         isBonusNumNotOne(bonusNumber);
 
         int bonus = Integer.parseInt(bonusNumber);
-
-        isBonusNumDuplicated(winnerNumbers, bonus);
         isBonusNumOutOfRange(bonus);
+        isBonusNumDuplicated(winnerNumbers, bonus);
     }
 
     private static void isBonusNumOutOfRange(int bonus) {
@@ -112,7 +111,7 @@ public class LottoValidator {
     }
 
     private static void isNumbersSorted(List<Integer> lottoNumbers) {
-        if (lottoNumbers.stream().sorted().toList().equals(lottoNumbers)) {
+        if (!lottoNumbers.stream().sorted().toList().equals(lottoNumbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_NOT_SORTED.getMessage());
         }
     }
