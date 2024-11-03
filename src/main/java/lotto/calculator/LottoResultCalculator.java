@@ -1,4 +1,6 @@
-package lotto;
+package lotto.calculator;
+
+import lotto.lottos.Lotto;
 
 import java.util.*;
 

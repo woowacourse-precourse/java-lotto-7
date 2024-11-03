@@ -1,4 +1,4 @@
-package lotto;
+package lotto.calculator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,6 +1,4 @@
-package lotto;
-
-import java.util.List;
+package lotto.input;
 
 public class BonusNumber {
     private final int bonusNumber;

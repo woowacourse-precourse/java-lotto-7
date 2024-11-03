@@ -1,4 +1,4 @@
-package lotto;
+package lotto.input;
 
 public class LottoPriceValidator {
     private static final int MIN_PRICE = 0;
