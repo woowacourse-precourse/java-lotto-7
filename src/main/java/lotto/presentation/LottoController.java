@@ -25,10 +25,10 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputView.getValidPurchaseAmount();
         IssuedLotto issuedLotto = lottoService.createIssuedRandomLotto(purchaseAmount);
-//        outputView.printIssuedLottos(issuedLotto.getIssuedLottos());
+        outputView.printIssuedLottos(issuedLotto.getIssuedLottos());
 
         List<Integer> winningNumbers = inputView.getValidWinningNumbers();
-        int bonusNumber = inputView.getValidBonusNumber();
+        int bonusNumber = inputView.getValidBonusNumber(winningNumbers);
         LottoResult lottoResult = lottoService.createLottoResult(winningNumbers, bonusNumber);
 
         LottoProfitCalculator lottoProfitCalculator = lottoService.createLottoProfitCalculator(lottoResult,
