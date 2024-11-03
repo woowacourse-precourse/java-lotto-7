@@ -2,17 +2,34 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.Test;
 
 public class PurchaseAmountValidatorTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
     private PurchaseAmountValidator validator;
 
-    @ParameterizedTest
-    @ValueSource(longs = {-1000, 1300, 4611687000L})
-    void purchaseAmountValidateTest(long value) {
-        validator = new PurchaseAmountValidator(value);
+    @Test
+    void purchaseAmountNegativeTest() {
+        long negativeAmount = -1000;
+        validator = new PurchaseAmountValidator(negativeAmount);
+        assertThatThrownBy(() -> validator.validate())
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @Test
+    void purchaseAmountNotMultipleOfThousandTest() {
+        long notMultipleOfThousand = 1300;
+        validator = new PurchaseAmountValidator(notMultipleOfThousand);
+        assertThatThrownBy(() -> validator.validate())
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @Test
+    void purchaseAmountOverLimitTest() {
+        long overLimit = 4611687000L;
+        validator = new PurchaseAmountValidator(overLimit);
         assertThatThrownBy(() -> validator.validate())
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining(ERROR_MESSAGE);
