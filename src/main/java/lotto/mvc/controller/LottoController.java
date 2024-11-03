@@ -11,12 +11,15 @@ import lotto.mvc.validation.LottoBonusNumberValidator;
 import lotto.mvc.validation.LottoNumberValidator;
 import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
+import lotto.mvc.view.OutputView;
 
 public class LottoController {
     private InputView inputView;
+    private OutputView outputView;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -31,6 +34,9 @@ public class LottoController {
         int count = extractLottoCount(purchaseAmount);
 
         List<Lotto> lottos = makeLottos(count);
+
+        outputView.showNumberOfLottoPurchases(count);
+        outputView.showLottoDetails(lottos);
 
         inputView.showLottoWinningNumberMsg();
         String winningNumber = inputView.getUserInput();
@@ -47,6 +53,9 @@ public class LottoController {
         int bonus = Integer.parseInt(bonusNumber);
 
         Map<LottoWinningAmount, Integer> winningCounts = checkLottoWinning(lottos, winningLotto, bonus);
+
+        outputView.showWinningStatisticsMsg();
+        outputView.showWinningStatistics(winningCounts);
     }
 
     private Map<LottoWinningAmount, Integer> checkLottoWinning(List<Lotto> lottos, Lotto winningLotto, int bonus) {
@@ -71,8 +80,9 @@ public class LottoController {
 
             LottoWinningAmount[] winningAmounts = LottoWinningAmount.values();
 
+            //로직 확인 필요
             for (int j = 0; j < winningAmounts.length; j++) {
-                if (matchCount == winningAmounts[j].getCount() && matchBonus == winningAmounts[j].getBonus()) {
+                if (matchCount == winningAmounts[j].getCount() && matchBonus == winningAmounts[j].isBonus()) {
                     results.put(winningAmounts[j], results.getOrDefault(winningAmounts[j], 0) + 1);
                 }
             }
