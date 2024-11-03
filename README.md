@@ -71,7 +71,155 @@
   - [x] 당첨 번호와 로또 번호 비교
   - [x] 1등부터 5등까지 당첨 여부 확인
   - [x] 테스트
-- [ ] 결과 출력
+- [x] 결과 출력
   - [x] 로또 결과 출력
   - [x] 수익률 출력
-  - [ ] 테스트
+  - [x] 테스트
+
+### 코드 설명
+- generic을 사용하여 함수를 인자로 받아 에러를 처리하고 다시 실행하는 repeatUntilValid 함수를 구현
+```java
+public class Application {
+    private static <R> R repeatUntilValid(Supplier<R> function) {
+        try {
+            return function.get();
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.printf("%s\n\n", e.getMessage());
+            return repeatUntilValid(function);
+        }
+    }
+}
+```
+
+- 정수 타입 변경시 에러를 사용자 하기 위해 parseIntWithIllegalArgumentException 함수 구현
+```java
+public class Application {
+    private static int parseIntWithIllegalArgumentException(String value, String message) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+}
+```
+
+- 금액을 입력받아 정수로 변환하여 반환
+```java
+public class Application {
+    private static int readPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String purchaseAmountString = Console.readLine();
+        System.out.println();
+        int purchaseAmount = parseIntWithIllegalArgumentException(purchaseAmountString, "[ERROR] 구입 금액은 숫자여야 합니다.");
+        if (purchaseAmount % 1000 != 0) throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+        return purchaseAmount;
+    }
+}
+```
+
+- 사용자에게 총금액을 받아 구매 수량을 계산 후, 로또를 생성 (Lotto클래스에 Static 함수 create를 구현하여 간단하게 생성할 수 있도록 구현)
+```java
+public class Lotto {
+  ...
+    public static Lotto create() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                .stream()
+                .sorted()
+                .toList();
+        return new Lotto(numbers);
+    }
+  ...
+}
+
+public class Application {
+    private static List<Lotto> buyLottos(int lottoCount) {
+        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
+        List<Lotto> lottoList = IntStream.range(0, lottoCount)
+                .mapToObj(i -> Lotto.create())
+                .toList();
+        lottoList.forEach(System.out::println);
+        System.out.println();
+        return lottoList;
+    }
+}
+```
+
+- 당첨번호와 보너스 번호를 입력받고 당첨 번호를 저장하는 WinningLotto 객체를 생성
+```java
+public class Application {
+    private static WinningLotto readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbersString = Console.readLine();
+        System.out.println();
+        String[] winningNumberStringArray = winningNumbersString.replaceAll(" ", "").split(",");
+        List<Integer> winningNumbers = Stream.of(winningNumberStringArray)
+                .map(number -> parseIntWithIllegalArgumentException(number, "[ERROR] 당첨 번호는 숫자여야 합니다."))
+                .toList();
+        return new WinningLotto(winningNumbers);
+    }
+
+    private static WinningLotto readBonusNumber(WinningLotto winningLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumberString = Console.readLine();
+        System.out.println();
+        int bonusNumber = parseIntWithIllegalArgumentException(bonusNumberString, "[ERROR] 보너스 번호는 숫자여야 합니다.");
+        winningLotto.setBonusNumber(bonusNumber);
+        return winningLotto;
+    }
+}
+```
+
+- enum을 사용하여 LottoResult를 구현하여 등수를 객체로 반환받도록 구현
+```java
+public enum LottoResult {
+    FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
+    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    THIRD(5, 1_500_000, "5개 일치 (1,500,000원)"),
+    FOURTH(4, 50_000, "4개 일치 (50,000원)"),
+    FIFTH(3, 5_000, "3개 일치 (5,000원)"),
+    NONE(0, 0, "");
+  ...
+}
+public class Application {
+    private static List<LottoResult> getLottoResults(WinningLotto winningLotto, List<Lotto> lottoList) {
+        return lottoList.stream()
+                .map(winningLotto::match)
+                .toList();
+    }
+}
+```
+
+- lottoResult별 개수를 반환하는 함수 구현
+```java
+public class Application {
+    private static Map<LottoResult, Integer> getLottoResultCounts(List<LottoResult> lottoResults) {
+        return lottoResults.stream()
+                .collect(Collectors.groupingBy(result -> result))
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().size()));
+    }
+}
+```
+
+- 결과 출력하는 함수 구현
+```java
+public class Application {
+    private static void printLottoResult(int purchaseAmount, List<LottoResult> lottoResults) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        List<LottoResult> printSequence = LottoResult.values.stream()
+                .filter(result -> result != LottoResult.NONE)
+                .toList();
+        Map<LottoResult, Integer> lottoResultCount = getLottoResultCounts(lottoResults);
+        int totalPrize = printSequence.stream()
+                .mapToInt(result -> {
+                    int count = lottoResultCount.getOrDefault(result, 0);
+                    System.out.printf("%s - %d개\n", result.getDescription(), count);
+                    return result.getPrize() * count;
+                }).sum();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrize / purchaseAmount * 100);
+    }
+}
+```
