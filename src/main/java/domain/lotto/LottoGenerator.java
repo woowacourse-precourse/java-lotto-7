@@ -1,6 +1,7 @@
 package domain.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import constants.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,6 @@ public class LottoGenerator {
 
     private static final int NUMBER_LOWER_BOUND = 1;
     private static final int NUMBER_UPPER_BOUND = 45;
-    private static final int LOTTO_PICK_COUNT = 6;
 
     public Lottos createLottos(int purchaseCount) {
         List<Lotto> lottoGroup = new ArrayList<>();
@@ -27,7 +27,7 @@ public class LottoGenerator {
 
     public List<LottoNumber> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_LOWER_BOUND, NUMBER_UPPER_BOUND,
-                LOTTO_PICK_COUNT);
+                Constants.LOTTO_SIZE);
 
         return sortAscending(numbers).stream().map(LottoNumber::from).toList();
     }
