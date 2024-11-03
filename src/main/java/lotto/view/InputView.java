@@ -8,12 +8,12 @@ import lotto.constant.SystemMessage;
 
 public class InputView {
     public int inputPrice() {
-        System.out.println(SystemMessage.Input_Price.getMessage());
+        System.out.println(SystemMessage.INPUT_PRICE.getMessage());
         return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println(SystemMessage.Input_WinningNumbers.getMessage());
+        System.out.println(SystemMessage.INPUT_WINNING_NUMBERS.getMessage());
         String winningNumbers = Console.readLine();
 
         return Arrays.stream(winningNumbers.split(","))
@@ -22,7 +22,7 @@ public class InputView {
     }
 
     public int inputBonusNumber() {
-        System.out.println(SystemMessage.Input_BonusNumber.getMessage());
+        System.out.println(SystemMessage.INPUT_BONUS_NUMBER.getMessage());
         return Integer.parseInt(Console.readLine());
     }
 }

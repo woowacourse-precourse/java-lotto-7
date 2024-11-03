@@ -31,7 +31,6 @@ public class LottoController {
 
         int[] result = LottoService.matchLotto(winningNumbers, bonusNumber, generatedLottos, numberOfPurchasedLotto);
 
-
     }
 }
 
