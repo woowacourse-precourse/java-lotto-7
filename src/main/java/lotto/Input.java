@@ -86,4 +86,10 @@ public class Input {
 			}
 		}
 	}
+
+	public void validatePayment(String input) {
+		validateEmpty(input);
+		validateInteger(input);
+		validateRemainder(input);
+	}
 }
