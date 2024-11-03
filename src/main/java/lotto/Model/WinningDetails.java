@@ -14,8 +14,8 @@ public class WinningDetails {
         for(MyResults result : myResults){
             if(result.getMatches() == 3) this.third++;
             else if(result.getMatches() == 4) this.fourth++;
-            else if(result.getMatches() == 5 && result.getIsBonus()) this.fifth++;
-            else if(result.getMatches() == 5 && !result.getIsBonus()) this.fifthBonus++;
+            else if(result.getMatches() == 5 && !result.getIsBonus()) this.fifth++;
+            else if(result.getMatches() == 5 && result.getIsBonus()) this.fifthBonus++;
             else if(result.getMatches() == 6) this.sixth++;
         }
     }
