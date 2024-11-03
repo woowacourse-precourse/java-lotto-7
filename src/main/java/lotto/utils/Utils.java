@@ -11,6 +11,10 @@ import lotto.domain.Rank;
 
 public class Utils {
 
+    public int parseStringToInt(String inputPrice) {
+        return Integer.parseInt(inputPrice);
+    }
+
     public List<Lotto> generateRandomLottoNumbers(int price) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < price / 1000; i++) {
