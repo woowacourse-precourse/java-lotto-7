@@ -35,6 +35,7 @@ public class LottoController {
         LottoPurchasePrice lottoPurchasePrice = retryHandler.retry(this::requestLottoPurchasePrice);
         LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
         lottoOutputView.printLottoBundle(lottoBundle);
+
         WinningLotto winningLotto = retryHandler.retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retryHandler.retry(this::requestLottoBonusNumber, winningLotto);
         LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
