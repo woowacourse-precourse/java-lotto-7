@@ -5,9 +5,11 @@ import lotto.validation.LottoValidator;
 
 public class Attempt {
     private final int lottoAmount;
+    private final int cashAmount;
 
     public Attempt(int cashAmount) {
         validate(cashAmount);
+        this.cashAmount = cashAmount;
         this.lottoAmount = calLottoAmount(cashAmount);
 
     }
@@ -23,5 +25,9 @@ public class Attempt {
     //getter
     public int getLottoAmount() {
         return lottoAmount;
+    }
+
+    public int getCashAmount() {
+        return cashAmount;
     }
 }
