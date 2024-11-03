@@ -43,24 +43,28 @@ public final class Validator {
                 .collect(Collectors.toList());
 
         if(!winningsInBonus.isEmpty()) {
+            System.out.println(BONUS_IN_WINNINGS_ERROR_MESSAGE);
             throw new IllegalArgumentException(BONUS_IN_WINNINGS_ERROR_MESSAGE);
         }
     }
 
     private static void validateNegative(Integer number) throws IllegalArgumentException {
         if(number<ZERO_NUMBER) {
+            System.out.println(NEGATIVE_NUMBER_ERROR_MESSAGE);
             throw new IllegalArgumentException(NEGATIVE_NUMBER_ERROR_MESSAGE);
         }
     }
 
     private static void validateNumbersSize(List<Integer> winnings) throws IllegalArgumentException {
         if(winnings.size()!=LOTTO_NUMBER_SIZE) {
+            System.out.println(NUMBERS_SIZE_ERROR_MESSAGE);
             throw new IllegalArgumentException(NUMBERS_SIZE_ERROR_MESSAGE);
         }
     }
 
     private static void validateAmountInThousands(Integer amount) throws IllegalArgumentException {
         if(amount % LOTTO_PRICE!=ZERO_NUMBER){
+            System.out.println(AMOUNT_IN_THOUSNADS_ERROR_MESSAGE);
             throw new IllegalArgumentException(AMOUNT_IN_THOUSNADS_ERROR_MESSAGE);
         }
     }
@@ -68,6 +72,7 @@ public final class Validator {
     private static void validateDupliacation(List<Integer> winnings) throws IllegalArgumentException {
         Set<Integer> notDuplicatedNumbers = Set.copyOf(winnings);
         if(winnings.size() != notDuplicatedNumbers.size()){
+            System.out.println(DUPLICATED_NUMBER_ERROR_MESSAGE);
             throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR_MESSAGE);
         }
     }
@@ -76,6 +81,7 @@ public final class Validator {
         winnings.forEach(
                 number -> {
                     if(number < LOTTO_RANGE_START || number > LOTTO_RANGE_END){
+                        System.out.println(LOTTO_NUMBER_ERROR_MESSGAE);
                         throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSGAE);
                     }
                 });
@@ -83,6 +89,7 @@ public final class Validator {
 
     private static void validateLottoNumber(Integer number) throws IllegalArgumentException {
         if(number < LOTTO_RANGE_START || number > LOTTO_RANGE_END){
+            System.out.println(LOTTO_NUMBER_ERROR_MESSGAE);
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSGAE);
         }
     }

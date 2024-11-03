@@ -27,8 +27,7 @@ public class LottoController {
     }
 
     private void purchaseLotto(){
-        purchaseAmount = Parser.convertStringToInteger(inputView.readPurchaseAmount());
-        Validator.validatePurchaseAmount(purchaseAmount);
+        readPurchaseAmount();
 
         Integer lottoCount = purchaseAmount/ LOTTO_PRICE;
         outputView.printPurchaseLottoMessage(lottoCount);
@@ -39,23 +38,59 @@ public class LottoController {
         }
     }
 
+    private void readPurchaseAmount(){
+        while(true){
+            try {
+                purchaseAmount = Parser.convertStringToInteger(inputView.readPurchaseAmount());
+                Validator.validatePurchaseAmount(purchaseAmount);
+                return;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+    }
+
     private void setWinningLotto(){
-        List<Integer> winningNumbers = Parser.convertStringToList(inputView.readWinningNumber());
-        Integer bonusNumber = Parser.convertStringToInteger(inputView.readBonusNumber());
+        List<Integer> winningNumbers = readWinningNumber();
+        Integer bonusNumber = readBonusNumber();
 
-        Validator.validateBonusNumber(bonusNumber);
         Validator.validateBonusNumberInWinningNumber(winningNumbers, bonusNumber);
-
         lottoService.setNumbers(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumber(){
+        List<Integer> winningNumbers;
+
+        while(true) {
+            try {
+                winningNumbers = Parser.convertStringToList(inputView.readWinningNumber());
+                Validator.validateWinningNumber(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+            }
+        }
+    }
+
+    private Integer readBonusNumber(){
+        Integer bonusNumber;
+
+        while(true) {
+            try {
+                bonusNumber = Parser.convertStringToInteger(inputView.readBonusNumber());
+                Validator.validateBonusNumber(bonusNumber);
+                return bonusNumber;
+
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
 
     private void getLottoResult(){
         List<LottoResult> results = lottoService.calcLottoResults();
         double profitSum = (double) lottoService.getSumLottoProfits(results);
-        double profitRatio = (profitSum / purchaseAmount - 1) * 100;
+        double profitRatio = (profitSum / purchaseAmount) * 100;
 
-        outputView.printLottoResults(results,
-                String.format("%.1f", profitRatio));
+        outputView.printLottoResults(results);
+        outputView.printRateOfReturn(String.format("%.1f", profitRatio));
     }
 
 
