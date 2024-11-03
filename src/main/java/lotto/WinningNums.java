@@ -10,7 +10,7 @@ public enum WinningNums {
 
     private final int matchingCount;
     private final int prize;
-    private final String name;
+    private final String name; //일치 체크
 
     WinningNums(int matchingCount, int prize, String name) {
         this.matchingCount = matchingCount;
