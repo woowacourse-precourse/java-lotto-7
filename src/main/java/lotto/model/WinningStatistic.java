@@ -27,48 +27,38 @@ public class WinningStatistic {
     return new WinningStatistic(statistics);
   }
 
-  private static WinningType determineWinningType(
-      Lotto lotto, WinningNumbers winningNumbers) { // *이 메서드 길이 고민해보기 */
+  private static WinningType determineWinningType(Lotto lotto, WinningNumbers winningNumbers) {
     int quantityOfSameNumbers = lotto.compareWinningNumbers(winningNumbers.getWinningNumbers());
+    boolean bonusMatch = lotto.compareBonusNumber(winningNumbers.getBonusNumber());
 
-    if (isFirstPlace(quantityOfSameNumbers)) {
+    WinningType winningType = getTopWinningType(quantityOfSameNumbers, bonusMatch);
+    if (winningType != null) {
+      return winningType;
+    }
+    return getLowerWinningType(quantityOfSameNumbers);
+  }
+
+  private static WinningType getTopWinningType(int quantityOfSameNumbers, boolean bonusMatch) {
+    if (quantityOfSameNumbers == SIX_SAME_NUMBERS) {
       return WinningType.FIRST_PLACE;
     }
-    if (isSecondPlace(quantityOfSameNumbers, lotto, winningNumbers)) {
+    if (quantityOfSameNumbers == FIVE_SAME_NUMBERS && bonusMatch) {
       return WinningType.SECOND_PLACE;
     }
-    if (isThirdPlace(quantityOfSameNumbers)) {
+    if (quantityOfSameNumbers == FIVE_SAME_NUMBERS) {
       return WinningType.THIRD_PLACE;
-    }
-    if (isFourthPlace(quantityOfSameNumbers)) {
-      return WinningType.FOURTH_PLACE;
-    }
-    if (isFifthPlace(quantityOfSameNumbers)) {
-      return WinningType.FIFTH_PLACE;
     }
     return null;
   }
 
-  private static boolean isFirstPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == SIX_SAME_NUMBERS;
-  }
-
-  private static boolean isSecondPlace(
-      int quantityOfSameNumbers, Lotto lotto, WinningNumbers winningNumbers) {
-    return quantityOfSameNumbers == FIVE_SAME_NUMBERS
-        && lotto.compareBonusNumber(winningNumbers.getBonusNumber());
-  }
-
-  private static boolean isThirdPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == FIVE_SAME_NUMBERS;
-  }
-
-  private static boolean isFourthPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == FOUR_SAME_NUMBERS;
-  }
-
-  private static boolean isFifthPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == THREE_SAME_NUMBERS;
+  private static WinningType getLowerWinningType(int quantityOfSameNumbers) {
+    if (quantityOfSameNumbers == FOUR_SAME_NUMBERS) {
+      return WinningType.FOURTH_PLACE;
+    }
+    if (quantityOfSameNumbers == THREE_SAME_NUMBERS) {
+      return WinningType.FIFTH_PLACE;
+    }
+    return null;
   }
 
   public List<WinningType> getWinningStatistic() {
