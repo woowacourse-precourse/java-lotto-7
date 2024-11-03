@@ -26,7 +26,7 @@ public class LottoController {
         lottoOutputView.printLottoTicket(lottoTicket.getLottoTicketNumbers());
 
         WinningLotto winningLotto = makeWinningNumber();
-        addBunusNumber(winningLotto);
+        addBonusNumber(winningLotto);
 
         LottoResult lottoResult = compareLottoTicketWithWinningLotto(lottoTicket, winningLotto);
         double totalEarnings = lottoService.calculateEarnings(lottoResult.getRankResults(), lottoTicket);
@@ -37,7 +37,7 @@ public class LottoController {
         return lottoService.compareLotto(lottoTicket, winningLotto);
     }
 
-    private void addBunusNumber(WinningLotto winningLotto) {
+    private void addBonusNumber(WinningLotto winningLotto) {
         while (true) {
             try {
                 String bonusNumber = lottoInputView.getBonusNumber();
