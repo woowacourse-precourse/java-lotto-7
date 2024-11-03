@@ -20,5 +20,7 @@ public class LottoController {
 
         service.generateLotto(viewFacade.getLottoNumber());
         service.generateBonusNumber(viewFacade.getBonusNumber());
+
+        List<Integer> result = service.calculateResult();
     }
 }
