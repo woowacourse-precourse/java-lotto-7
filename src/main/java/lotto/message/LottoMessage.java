@@ -8,7 +8,8 @@ public enum LottoMessage {
     DISPLAY_LOTTO_RESULT_BOUNDARY("---"),
 
     // Error message
-    OUT_OF_RANGE_LOTTO_AMOUNT("구매 가능한 로또 수량을 초과했습니다.");
+    OUT_OF_RANGE_LOTTO_AMOUNT("[ERROR] 구매 가능한 로또 수량을 초과했습니다."),
+    OUT_OF_RANGE_LOTTO_NUMBER_AMOUNT("[ERROR] 로또 번호는 6개여야 합니다.");
 
     private final String message;
 

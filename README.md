@@ -127,8 +127,6 @@
   - Lotto 객체에 로또번호를 저장한다.
 - getRandomNumber
   - 1에서 45 사이의 중복되지 않은 정수 6개를 반환한다.
-- isLottoSizeSix
-  - Lotto 객체의 크기가 6인지 확인한다.
 - sortAscending
   - Lotto 번호를 오름차순 정렬한다.
 - printLottoNumbers

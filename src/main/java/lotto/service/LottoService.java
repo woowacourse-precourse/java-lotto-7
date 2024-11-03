@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -34,6 +35,11 @@ public class LottoService {
     }
 
     public void sortAscending() {
+        for (Lotto lotto : lottos.getLottos()) {
+            List<Integer> numbers = lotto.getNumber();
+
+            Collections.sort(numbers);
+        }
     }
 
 
