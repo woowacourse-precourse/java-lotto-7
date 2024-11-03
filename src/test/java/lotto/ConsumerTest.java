@@ -1,13 +1,25 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.Consumer.converToNumber;
+import static lotto.Consumer.getWinningNumbers;
+import static lotto.Consumer.validateCount;
+import static lotto.Consumer.validateDuplicate;
+import static lotto.Consumer.validateRange;
 import static lotto.Exception.DONT_NOT_ZERO;
+import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
 import static lotto.Exception.IS_NOT_1000_UNIT;
+import static lotto.Exception.SIX_WINNING_NUMBER;
+import static lotto.Exception.WINNING_NUMBER_RANGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ConsumerTest extends NsTest {
@@ -32,6 +44,51 @@ public class ConsumerTest extends NsTest {
                 assertThatThrownBy(() -> runException("0"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(DONT_NOT_ZERO)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "1,2,3,4,5,6,7"})
+    void 당첨번호_개수_테스트(String input) {
+        List<Integer> winningNumbers = converToNumber(input);
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> validateCount(winningNumbers))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(SIX_WINNING_NUMBER)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0","1,2,3,4,5,46"})
+    void 당첨번호_범위_테스트(String input) {
+        List<Integer> winningNumbers = converToNumber(input);
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> validateRange(winningNumbers))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(WINNING_NUMBER_RANGE)
+        );
+    }
+
+    @Test
+    void convertToNumberTest() {
+        //given
+        String input = "1,2,3,4,5,6";
+
+        //when
+        List<Integer> winningNumbers = converToNumber(input);
+
+        //then
+        assertThat(winningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,2,3,4,5", "1,2,1,3,2,3"})
+    void 당첨번호_중복_테스트(String input) {
+        List<Integer> winningNumbers = converToNumber(input);
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> validateDuplicate(winningNumbers))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(DUPLICATE_WINNING_NUMBER)
         );
     }
 }
