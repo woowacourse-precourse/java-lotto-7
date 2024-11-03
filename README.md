@@ -47,3 +47,21 @@
 
 
 ### 3. 프로젝트 폴더 구조
+
+```bash
+•
+├── Console
+│   └── InputConsole
+│   └── OutputConsole
+├── enums
+│   └── ErrorType
+│   └── PrizeComment
+│   └── WinningType
+├──exception
+│   └── CheckInput
+├── Application
+├── CheckWinning
+├── Lotto
+├── LottoList
+└──  LottoProgress
+```
