@@ -45,6 +45,9 @@ public class InputView {
 
     private static String askInput(String question) {
         System.out.println(question);
-        return readLine();
+        String result = readLine();
+        System.out.println();
+        return result;
+
     }
 }
