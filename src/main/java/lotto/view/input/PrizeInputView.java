@@ -16,6 +16,8 @@ public class PrizeInputView {
         System.out.println(INPUT_PRIZE_NUMBER);
         List<Integer> prizeNumber = toInts(split(trim(readLine())));
 
+        System.out.println(INPUT_BONUS_NUMBER);
+
     }
 
 }
