@@ -10,7 +10,6 @@ public class OperationManager {
     private final IO io = new IO();
     List<Lotto> lottos;
 
-
     public void buy() {
         // 입력 받기
         String payment = io.readPayment();
@@ -24,8 +23,6 @@ public class OperationManager {
             Collections.sort(lotto);
             lottos.add(new Lotto(lotto));
         }
-
-
 
 
     }
