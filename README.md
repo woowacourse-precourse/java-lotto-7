@@ -12,6 +12,7 @@ outputView
 - [ ] 구매한 로또 번호 출력(Lotto)
 - [ ] 당첨 통계 출력(Lottos)
 - [ ] 총 수익률 출력
+- [x] 싱글톤 구현
 
 LottoController
 - [ ] 구입 금액 검증
