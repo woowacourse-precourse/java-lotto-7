@@ -22,14 +22,14 @@ public class Controller {
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public void start() {
-        outputView.printResult(START.getMessage());
+        outputView.printMessage(START);
         List<Lotto> lottos = pickLotto();
         outputView.printLottos(lottos);
 
         Winning winning = createWinning();
 
         ScoreBoard scoreBoard = new ScoreBoard(lottos, winning);
-        outputView.printResult(STATISTICS.getMessage());
+        outputView.printMessage(STATISTICS);
         List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
         lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
         outputView.printResult(scoreBoard.getRate().getDescription());
@@ -57,12 +57,12 @@ public class Controller {
     }
 
     private List<Integer> getWinningNumber() {
-        outputView.printResult(WINNING_START.getMessage());
+        outputView.printMessage(WINNING_START);
         return parser.parseToIntList(inputView.inputString());
     }
 
     private int getBonusNumber() {
-        outputView.printResult(BONUS_START.getMessage());
+        outputView.printMessage(BONUS_START);
         return getIntValue();
     }
 
