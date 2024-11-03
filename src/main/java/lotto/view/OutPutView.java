@@ -1,36 +1,30 @@
 package lotto.view;
 
-public class OutPutView implements OutPutViewInterface {
+public class OutPutView {
 
     private OutPutView() {
         throw new IllegalStateException("OutPutView is utility class");
     }
 
-    public static final OutPutViewInterface INSTANCE = new OutPutView();
-
-    @Override
-    public void printMessageWithNewLine(String message) {
+    public static void printMessageWithNewLine(String message) {
         printMessage(message);
         printNewLine();
     }
 
-    @Override
-    public void printMessagesWithNewLine(String... messages) {
+    public static void printMessagesWithNewLine(String... messages) {
         printMessages(messages);
         printNewLine();
     }
 
-    @Override
-    public void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
-    @Override
-    public void printNewLine() {
+    public static void printNewLine() {
         System.out.println();
     }
 
-    private void printMessages(String... messages) {
+    private static void printMessages(String... messages) {
         for (String message : messages) {
             System.out.println(message);
         }

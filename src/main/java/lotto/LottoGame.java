@@ -10,13 +10,11 @@ import lotto.system.unit.LottoTicket;
 import lotto.system.utils.PrizeType;
 import lotto.user.Bonus;
 import lotto.user.Lotto;
-import lotto.view.InputView;
-import lotto.view.OutPutView;
 
 public class LottoGame {
 
     public static void start() {
-        PrintFormatter printFormatter = new PrintFormatter(OutPutView.INSTANCE, new InputView());
+        PrintFormatter printFormatter = new PrintFormatter();
         LottoTicketIssuer ticketIssuer = printFormatter.formatPurchaseInfo();
         List<LottoTicket> issuedTickets = ticketIssuer.issueLottoTickets();
         printFormatter.formatLottoTickets(issuedTickets, ticketIssuer.getQuantity());
