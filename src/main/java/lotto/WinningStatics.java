@@ -6,6 +6,7 @@ public class WinningStatics {
     public static final int THIRD_PLACE_PRIZE = 1_500_000;
     public static final int FOURTH_PLACE_PRIZE = 50_000;
     public static final int FIFTH_PLACE_PRIZE = 5_000;
+    public static final int PERCENTAGE_MULTIPLIER = 100;
     private int first;
     private int second;
     private int third;
@@ -64,6 +65,6 @@ public class WinningStatics {
 
     public double getRateOfReturn(int count) {
         int principal = count * Lotto.LOTTO_PRICE;
-        return (winnings / principal) * 100;
+        return (winnings / principal) * PERCENTAGE_MULTIPLIER;
     }
 }

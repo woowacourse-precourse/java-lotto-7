@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+
 public enum MatchResult {
     NO_MATCH(0, false) {
         @Override
@@ -49,11 +51,9 @@ public enum MatchResult {
         if (match == 5) {
             return bonus ? SECOND_PLACE : THIRD_PLACE;
         }
-        for (MatchResult result : values()) {
-            if (result.match == match) {
-                return result;
-            }
-        }
-        return NO_MATCH;
+        return Arrays.stream(values())
+                .filter(result -> result.match == match)
+                .findFirst()
+                .orElse(NO_MATCH);
     }
 }

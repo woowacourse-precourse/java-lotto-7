@@ -30,7 +30,7 @@ public class UserInput {
                 validateEmptyInput(input);
                 validateContainsSeparator(input);
                 return new Lotto(Arrays.stream(input.split(SEPARATOR))
-                        .map(UserInput::validateNumber)
+                        .map(UserInput::validateIsNumber)
                         .collect(Collectors.toCollection(ArrayList::new)));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -43,7 +43,7 @@ public class UserInput {
             try {
                 String input = Console.readLine().trim();
                 validateEmptyInput(input);
-                return validateNumber(input);
+                return validateIsNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -66,7 +66,7 @@ public class UserInput {
         return !input.contains(SEPARATOR);
     }
 
-    private static Integer validateNumber(String input) {
+    private static Integer validateIsNumber(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
