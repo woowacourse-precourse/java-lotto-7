@@ -1,8 +1,10 @@
 package lotto.app;
 
 import java.util.List;
+import java.util.Map;
 import lotto.config.AppConfig;
 import lotto.domain.Lotto;
+import lotto.domain.Score;
 import lotto.service.LottoService;
 import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
@@ -30,10 +32,18 @@ public class Application {
 
         Lotto successLotto = getWinningLotto();
         int bonusNum = inputHandler.getBonusNum();
+
+        List<Score> scores = lottoService.calculateScores(lottos, successLotto, bonusNum);
+        displayResult(scores);
     }
 
     private Lotto getWinningLotto() {
         List<Integer> winningNums = inputHandler.getWinningNums();
         return lottoService.generateWinningLotto(winningNums);
+    }
+
+    private void displayResult(List<Score> scores) {
+        Map<Score, Integer> scoreCount = lottoService.calculateScoreCount(scores);
+        outputHandler.printLottosResult(scoreCount);
     }
 }

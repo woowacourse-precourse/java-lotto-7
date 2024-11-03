@@ -13,4 +13,15 @@ public class OutputHandler {
             System.out.println(lotto.toString());
         }
     }
+
+    public void printLottosResult(Map<Score, Integer> scoreCount) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Score score : Score.getWinningScores()) {
+            int count = scoreCount.getOrDefault(score, 0);
+            System.out.printf("%s - %d개%n", score.getPrintMessage(), count);
+        }
+    }
 }

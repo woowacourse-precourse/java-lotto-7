@@ -1,8 +1,11 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Score;
 
 public class LottoService {
     private final LottoGenerator lottoGenerator;
@@ -27,5 +30,22 @@ public class LottoService {
 
     public Lotto generateWinningLotto(List<Integer> winningNums) {
         return lottoGenerator.generateByNums(winningNums);
+    }
+
+    public List<Score> calculateScores(List<Lotto> lottos, Lotto winningLotto, int bonusNum) {
+        List<Score> scores = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Score score = lottoResultChecker.calculateScore(lotto, winningLotto, bonusNum);
+            scores.add(score);
+        }
+        return scores;
+    }
+
+    public Map<Score, Integer> calculateScoreCount(List<Score> scores) {
+        Map<Score, Integer> scoreCount = new EnumMap<>(Score.class);
+        for (Score score : scores) {
+            scoreCount.put(score, scoreCount.getOrDefault(score, 0) + 1);
+        }
+        return scoreCount;
     }
 }
