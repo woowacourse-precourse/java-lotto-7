@@ -22,19 +22,29 @@ public class OutputView {
 
     public void outputRankSummary(Map<LottoRank, Integer> resultRank, double profitRate) {
         System.out.println(OutputViewMessage.SUMMARY_VIEW);
-
         for (LottoRank rank : LottoRank.values()) {
-            int count = resultRank.getOrDefault(rank, 0);
-            String bonusText = "";
-            if (rank.getRequireBonus()) {
-                bonusText = OutputViewMessage.BONUS_MATCH;
+            if (rank == LottoRank.NONE) {
+                continue;
             }
-            System.out.printf(OutputViewMessage.MATCH_COUNT + bonusText + OutputViewMessage.PRIZE_AMOUNT + "\n",
-                    rank.getMatchingNumberCount(),
-                    String.format("%,d", rank.getMoney()),
-                    count);
+            int count = resultRank.getOrDefault(rank, 0);
+            printRank(rank, count);
         }
+        printProfitRate(profitRate);
+    }
 
+    private void printRank(LottoRank rank, int count) {
+        String bonusText = "";
+        if (rank.getRequireBonus()) {
+            bonusText = OutputViewMessage.BONUS_MATCH;
+        }
+        System.out.printf(OutputViewMessage.MATCH_COUNT + bonusText + OutputViewMessage.PRIZE_AMOUNT + "\n",
+                rank.getMatchingNumberCount(),
+                String.format("%,d", rank.getMoney()),
+                count);
+    }
+
+    private void printProfitRate(double profitRate) {
         System.out.printf(OutputViewMessage.PROFIT_RATE + "\n", profitRate);
     }
+
 }
