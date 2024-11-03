@@ -15,17 +15,15 @@ import java.util.List;
 
 public class LottoController {
 
-    private final InputView inputView;
     private final LottoService lottoService;
 
     public LottoController(){
-        inputView= new InputView();
         lottoService=new LottoService();
     }
 
     public void run(){
         OutputView.inputHowMuchBuy();
-        String budget = inputView.input();
+        String budget = InputView.input();
         lottoService.validateBudgetMoney(budget);
         LottoGame lottoGame = lottoService.constructLottoGame(budget);
 
@@ -36,16 +34,17 @@ public class LottoController {
         }
 
         OutputView.inputLottoNumber();
-        String lottoNumbers = inputView.input();
+        String lottoNumbers = InputView.input();
         OutputView.inputBonusNumber();
-        String bonusNumber = inputView.input();
+        String bonusNumber = InputView.input();
 
         lottoService.validateLottoNumbers(lottoNumbers, bonusNumber);
         Integer bonus = Parse.parseInteger(bonusNumber);
         CustomLotto customLotto = lottoService.makeCustomLotto(lottoNumbers, bonus);
         lottoGame.setCustomLotto(customLotto);
 
-        lottoGame.calculateLottoRank();
+
+        lottoService.calculateLottoRank(lottoGame);
         BigDecimal profit = lottoService.calculateProfit(lottoGame);
 
         OutputView.outputResult();

@@ -10,6 +10,10 @@ public class LottoGame {
     private List<Integer> rank=new ArrayList<>(5);
     private Integer seedMoney;
 
+    public static LottoGame of(int money) {
+        return new LottoGame(money);
+    }
+
     private LottoGame(int money) {
         this.seedMoney = money;
         drawNewLottoNumber(money/1000);
@@ -17,10 +21,6 @@ public class LottoGame {
             rank.add(0);
         }
     }
-    public static LottoGame of(int money) {
-        return new LottoGame(money);
-    }
-
 
     public void setCustomLotto(CustomLotto customLotto){
         this.customLotto = customLotto;
