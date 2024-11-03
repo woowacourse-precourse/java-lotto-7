@@ -9,5 +9,7 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         lottoMachine.purchaseLottos(amount);
+        lottoMachine.inputWinningNumbers();
+        lottoMachine.inputBonusNumber();
     }
 }
