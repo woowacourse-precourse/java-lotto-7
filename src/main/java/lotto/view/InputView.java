@@ -18,8 +18,8 @@ public class InputView {
 
 	public List<Integer> getWinningNumbersInput() {
 		try {
-			String winningLotto = Console.readLine();
-			return parseToNumbers(winningLotto);
+			String winningNumbers = Console.readLine();
+			return parseToNumbers(winningNumbers);
 		} catch (NumberFormatException exception) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자이어야 합니다.");
 		}
