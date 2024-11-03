@@ -1,10 +1,14 @@
 # java-lotto-precourse
 
-## 🚀 미션 간단 설명
+<br>
+
+# 🚀 미션 간단 설명
 
 1~45까지 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑아 당첨 여부를 확인하고 수익률을 출력하는 로또 발매기 프로그램을 구현하는 미션입니다.
 
-### 🔒 제약사항 (1)
+<br>
+
+## 🔒 제약사항 (1)
 
 - JDK 21 버전에서 실행 가능해야 한다.
 - 프로그램 실행의 시작점은 `Application`의 `main()`이다.
@@ -14,7 +18,7 @@
 - 자바 코드 컨벤션을 지키면서 프로그래밍한다.
     - 기본적으로 [Java Style Guide](https://github.com/woowacourse/woowacourse-docs/blob/main/styleguide/java)를 원칙으로 한다.
 
-### 🔒 제약사항 (2)
+## 🔒 제약사항 (2)
 
 - indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
     - 예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
@@ -28,7 +32,7 @@
         - [AssertJ Exception Assertions](https://www.baeldung.com/assertj-exception-assertion)
         - [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
 
-### 🔒 제약사항(3)
+## 🔒 제약사항(3)
 
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
@@ -39,14 +43,14 @@
 - 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 단위 테스트 작성이 익숙하지 않다면 LottoTest를 참고하여 학습한 후 테스트를 작성한다.
 
-### 💡 라이브러리
+## 💡 라이브러리
 
 - `camp.nextstep.edu.missionutils`에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
     - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 
-### **🍀 Lotto 클래스**
+## **🍀 Lotto 클래스**
 
 - 제공된 Lotto 클래스를 사용하여 구현해야 한다.
 - Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
@@ -57,7 +61,7 @@
 
 <br>
 
-## 🛠️ 구현할 기능 목록
+# 🛠️ 구현할 기능 목록
 - 로또 구입 금액 입력 (한장당 1000원)
     - 로또 번호 오름차순으로 정렬
 - 당첨 번호 입력
@@ -92,7 +96,7 @@
 
 <br> 
 
-### 📋 구현 체크
+## 📋 구현 체크
 - [ ] 로또 구입 금액 입력 (한장당 1000원)
   - [ ] 로또 번호 오름차순으로 정렬
 - [ ] 당첨 번호 입력
