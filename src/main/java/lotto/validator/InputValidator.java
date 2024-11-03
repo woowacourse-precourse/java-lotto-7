@@ -1,4 +1,4 @@
-package lotto.io;
+package lotto.validator;
 
 import lotto.common.error.InputErrorMessage;
 
