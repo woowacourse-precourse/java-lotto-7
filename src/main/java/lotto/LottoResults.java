@@ -35,7 +35,7 @@ public class LottoResults {
         if (moneySpent == 0) {
             return 0;
         }
-        return (double) totalPrize / moneySpent * 100;
+        return ((double) totalPrize / moneySpent) * 100;
     }
 
     // 로또 번호를 형식에 맞게 출력
