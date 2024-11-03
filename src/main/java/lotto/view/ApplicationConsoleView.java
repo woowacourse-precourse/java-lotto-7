@@ -25,13 +25,13 @@ public class ApplicationConsoleView implements ApplicationView {
 
     @Override
     public String requestWinNumber() {
-        println(REQUEST_INPUT_WIN_NUMBER);
+        println(LINE_SEPARATOR + REQUEST_INPUT_WIN_NUMBER);
         return Console.readLine();
     }
 
     @Override
     public int requestBonusNumber() {
-        println(REQUEST_INPUT_BONUS_NUMBER);
+        println(LINE_SEPARATOR + REQUEST_INPUT_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
     }
 
