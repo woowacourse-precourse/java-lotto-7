@@ -42,4 +42,48 @@ class InputViewTest {
         assertEquals(InputView.isModZero(100000), true);
     }
 
+    @Test
+    void 당첨_번호_입력이_빈_문자열일_때_예외_발생(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("");
+        }, "[ERROR] 당첨 번호를 입력해 주세요.");
+    }
+
+    @Test
+    void 당첨_번호_입력이_쉼표로_구분된_6개의_숫자가_아닐_때_예외(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("1,2,3,4,5");
+        }, "[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("1,2,3,4,5,6,7");
+        }, "[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 당첨_번호_입력에_숫자가_아닌_값이_포함될_때_예외(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("1,2,3,4,5,a");
+        }, "[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 당첨_번호_입력이_범위를_벗어날_때_예외(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("0,2,3,4,5,6");
+        }, "[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("1,2,3,4,5,46");
+        }, "[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateWinningLottoInput("-1,2,3,4,5,45");
+        }, "[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 올바른_당첨_번호_입력_케이스(){
+        assertDoesNotThrow(() -> InputView.validateWinningLottoInput("1,2,3,4,5,6"));
+    }
 }
