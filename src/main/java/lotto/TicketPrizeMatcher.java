@@ -1,5 +1,7 @@
 package lotto;
 
+import static java.lang.Integer.sum;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.MatchCondition.FifthPrize;
@@ -10,7 +12,7 @@ import lotto.MatchCondition.ThirdPrize;
 
 // PrizeNumber와 LottoTicket의 List를 전달받아서 당첨 정보를 리턴하는 클래스
 public class TicketPrizeMatcher {
-    private static final List<MatchCondition> matchConditions = List.of(
+    public static final List<MatchCondition> matchConditions = List.of(
             new FirstPrize(),
             new SecondPrize(),
             new ThirdPrize(),
@@ -19,14 +21,17 @@ public class TicketPrizeMatcher {
     );
 
     private final PrizeNumber prizeNumber;
-    private final List<LottoTicket> lottoTickets;
+    private final List<LottoTicket> lottoTicketBundle;
+    private final Integer bonusNumber;
 
     public TicketPrizeMatcher(
             PrizeNumber prizeNumber,
-            List<LottoTicket> lottoTickets
+            List<LottoTicket> lottoTicketBundle,
+            Integer bonusNumber
     ) {
         this.prizeNumber = prizeNumber;
-        this.lottoTickets = lottoTickets;
+        this.lottoTicketBundle = lottoTicketBundle;
+        this.bonusNumber = bonusNumber;
     }
 
     public MatchResult matchAll() {
@@ -34,14 +39,14 @@ public class TicketPrizeMatcher {
 
         // 구체적으로는, matchConditions를 for-loop 돌면서 매칭되는지 확인.
         List<MatchCondition> matchedConditions = new ArrayList<>();
-        for (LottoTicket lottoTicket : lottoTickets) {
+        for (LottoTicket lottoTicket : lottoTicketBundle) {
             MatchCondition matchedCondition = match(lottoTicket);
             if (matchedCondition != null) {
                 matchedConditions.add(matchedCondition);
             }
         }
 
-        Double profitRatio = calculateProfitRatio(matchedConditions, 0);
+        Double profitRatio = calculateProfitRatio(matchedConditions, lottoTicketBundle.size());
         return new MatchResult(
                 matchedConditions,
                 profitRatio
@@ -55,7 +60,7 @@ public class TicketPrizeMatcher {
 
             List<Integer> ticketNumbers = lottoTicket.getNumbers();
             List<Integer> prizeNumbers = prizeNumber.getNumbers();
-            Integer bonusNumber = prizeNumber.getBonusNumber();
+            Integer bonusNumber = this.bonusNumber;
 
             List<Integer> matchedNumbers = ticketNumbers.stream()
                     .filter(prizeNumbers::contains)
@@ -81,8 +86,11 @@ public class TicketPrizeMatcher {
     // 수익률 계산하는 메서드
     private Double calculateProfitRatio(
             List<MatchCondition> matchedConditions,
-            Integer purchasingAmount
+            Integer ticketCount
     ) {
-        return 0.0;
+        int purchasingAmount = ticketCount * 1000;
+        int prizedAmount = matchedConditions.stream().mapToInt(MatchCondition::getPrizedAmount).sum();
+        double profitRatio = ( (double) (prizedAmount - purchasingAmount) / purchasingAmount ) * 100;
+        return Math.round(profitRatio * 100) / 100.0;
     }
 }
