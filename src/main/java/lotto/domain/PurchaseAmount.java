@@ -2,13 +2,17 @@ package lotto.domain;
 
 import lotto.exception.LottoException;
 
-public record Money(int amount) {
+public record PurchaseAmount(int amount) {
 
     private static final int MIN_AMOUNT = 0;
-    private static final int UNIT_AMOUNT = 1000;
+    public static final int UNIT_AMOUNT = 1000;
 
-    public Money {
+    public PurchaseAmount {
         validate(amount);
+    }
+
+    public static PurchaseAmount from(final int amount) {
+        return new PurchaseAmount(amount);
     }
 
     private void validate(final int amount) {
