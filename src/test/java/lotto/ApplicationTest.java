@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.common.error.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +53,66 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 당첨_번호_중복_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("3000", "1,2,3,4,5,5");
+                    assertThat(output()).contains(ErrorMessage.LOTTO_NUMBERS_DUPLICATE_ERROR_MESSAGE.toString());
+                }
+        );
+    }
+
+    @Test
+    void 당첨_번호와_보너스_번호_중복_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("3000", "1,2,3,4,5,6", "6");
+                    assertThat(output()).contains(ErrorMessage.BONUS_DUPLICATE_ERROR_MESSAGE.toString());
+                }
+        );
+    }
+
+    @Test
+    void 당첨_번호_내_번호_범위_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("3000", "1,27,3,4,5,56");
+                    assertThat(output()).contains(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE.toString());
+                }
+        );
+    }
+
+    @Test
+    void 보너스_번호_범위_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("3000", "1,27,3,4,5,11", "47");
+                    assertThat(output()).contains(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE.toString());
+                }
+        );
+    }
+
+    @Test
+    void 금액_단위_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("3500");
+                    assertThat(output()).contains(ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE.format(1000));
+                }
+        );
+    }
+
+    @Test
+    void 최대_구매_예외_테스트() {
+        assertSimpleTest(
+                () -> {
+                    runException("11000");
+                    assertThat(output()).contains(ErrorMessage.LOTTO_MAX_PURCHASE_ERROR_MESSAGE.toString());
+                }
+        );
     }
 
     @Override
