@@ -17,7 +17,7 @@ public class WinningStatisticsPrinter {
         System.out.print(getPrintout(winningRank));
     }
 
-    public static String getPrintout(WinningRank winningRank) {
+    private static String getPrintout(WinningRank winningRank) {
         EnumMap<Rank, Integer> ranks = winningRank.getWinningStatistics();
 
         loopScore(ranks);
