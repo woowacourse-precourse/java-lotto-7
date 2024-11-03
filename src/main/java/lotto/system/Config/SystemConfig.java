@@ -22,9 +22,9 @@ public class SystemConfig {
 
     private SystemConfig() {
         int coreCount = Runtime.getRuntime().availableProcessors();
-        int maxPoolSize = coreCount * 2;
+        int maxPoolSize = coreCount + 1;
         BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
-        this.threadPool = new ThreadPoolExecutor(coreCount, maxPoolSize, 60, TimeUnit.HOURS, queue);
+        this.threadPool = new ThreadPoolExecutor(3, 4, 60, TimeUnit.HOURS, queue);
         this.inputMessageQueue = new LinkedBlockingQueue<>();
         this.outputMessageQueue = new LinkedBlockingQueue<>();
         this.inputTask = new InputTask(inputMessageQueue);

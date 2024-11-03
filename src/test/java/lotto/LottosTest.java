@@ -32,7 +32,6 @@ public class LottosTest extends NsTest {
 
     @Test
     public void buy8LottosPickedNumberTest() {
-        lottos = new Lottos();
         assertRandomUniqueNumbersInRangeTest(
                 this::runMainAndCaptureNumbers,
                 List.of(8, 21, 23, 41, 42, 43),

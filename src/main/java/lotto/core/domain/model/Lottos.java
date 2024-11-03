@@ -3,7 +3,12 @@ package lotto.core.domain.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.system.Config.SystemConfig;
 
 public class Lottos {
     public List<Lotto> lottos;
@@ -25,11 +30,19 @@ public class Lottos {
     }
 
     public List<PrizeOption> matchUp(Lotto answerLotto, int bonusNumber) {
-        return lottos.stream()
-                .map(userLotto -> getResult(userLotto, answerLotto, bonusNumber))
-                .filter(PrizeOption::isNotUnderThree)
-                .toList();
+        ThreadPoolExecutor threadPool = SystemConfig.getInstance().getThreadPool();
+        try {
+            return CompletableFuture.supplyAsync(() ->
+                            lottos.stream()
+                                    .map(userLotto -> getResult(userLotto, answerLotto, bonusNumber))
+                                    .filter(PrizeOption::isNotUnderThree)
+                                    .collect(Collectors.toList()),threadPool).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
     }
+
     private PrizeOption getResult(Lotto userLotto, Lotto answerLotto, Integer bonusNumber) {
         int numberOfMatch = userLotto.matchUp(answerLotto);
         return PrizeOption.matchUp(numberOfMatch, userLotto, bonusNumber);
