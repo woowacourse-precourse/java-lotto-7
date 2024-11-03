@@ -46,4 +46,17 @@ class InputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨번호에 보너스번호와 중복된 숫자가 존재합니다.");
     }
+
+    @Test
+    void 보너스번호가_1부터_45사이가_아닐_경우_예외_발생() {
+        // Given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 55;
+        // When
+        InputHandler inputHandler = new InputHandler();
+        // Then
+        Assertions.assertThatThrownBy(() -> inputHandler.bonusNumberValidator(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스번호는 1~45사이의 정수여야 합니다.");
+    }
 }
