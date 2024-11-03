@@ -17,6 +17,7 @@ public class OutputView {
     private static final String PRINT_FORMAT_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private static final int DEFAULT_COUNT_ZERO = 0;
+    private static final int PERCENT_MAKER_NUMBER = 100;
 
     public static void printPurchasedLottoCountAndNumber(List<Lotto> lottos) {
         System.out.println(lottos.size() + PRINT_PURCHASED_LOTTO_COUNT_MESSAGE);
@@ -52,6 +53,6 @@ public class OutputView {
             totalPrizeMoney += (long) ranking.getPrice() * rankingCountMap.getOrDefault(ranking, DEFAULT_COUNT_ZERO);
         }
 
-        System.out.printf(PRINT_FORMAT_RATE_OF_RETURN_MESSAGE, ((double) totalPrizeMoney * 100) / purchaseAmount);
+        System.out.printf(PRINT_FORMAT_RATE_OF_RETURN_MESSAGE, ((double) totalPrizeMoney * PERCENT_MAKER_NUMBER) / purchaseAmount);
     }
 }
