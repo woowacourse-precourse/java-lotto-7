@@ -25,4 +25,8 @@ public class OutputView {
     public static void promptBonusNumber() {
         print(LINE_SPACE + BONUS_NUMBER_TEXT);
     }
+
+    public static void promptLottoCount(int lottoCount) {
+        print(LINE_SPACE + lottoCount + LOTTO_COUNT_TEXT);
+    }
 }
