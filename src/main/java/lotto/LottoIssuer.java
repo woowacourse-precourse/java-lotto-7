@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoIssuer {
-    public List<Lotto> issueLottos(int money) {
+    public static List<Lotto> issueLottos(int money) {
         checkMoney(money);
         int count = money / 1000;
         return IntStream.range(0, count)
@@ -14,7 +14,7 @@ public class LottoIssuer {
                 .toList();
     }
 
-    private void checkMoney(int money) {
+    private static void checkMoney(int money) {
         if (money <= 0 || money % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.format());
         }
