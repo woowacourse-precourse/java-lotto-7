@@ -24,21 +24,20 @@ public class InputView {
     private static String handleInput(InputMessage message) {
         while (true) { // TODO: 반복 재귀 이외 방법으로 구현할 수 있는지?
             try {
-                return readAndPrint(message);
-            } catch (IllegalArgumentException error) { // TODO: 적절한 Exception로 수정
-                System.out.println(error.getMessage());
+                return readAndValidate(message);
+            } catch (IllegalArgumentException e) { // TODO: 적절한 Exception로 수정
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private static String readAndPrint(InputMessage message) {
+    private static String readAndValidate(InputMessage message) {
         System.out.println(message.getMessage());
         String inputValue = Console.readLine();
         validate(inputValue);
         return inputValue;
     }
 
-    // TODO: mainNumber 외 정수 검증 ㄱㄱ
     private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
         if (inputValue == null || inputValue.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
