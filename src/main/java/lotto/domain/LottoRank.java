@@ -7,12 +7,12 @@ import java.util.EnumMap;
 import java.util.List;
 
 public enum LottoRank {
-    FIRST(1, 2_000_000_000, Arrays.asList(6), false),
-    SECOND(2, 30_000_000, Arrays.asList(5), true),
-    THIRD(3, 1_500_000, Arrays.asList(5), false),
-    FOURTH(4, 50_000, Arrays.asList(4), false),
+    NONE(0, 0, Arrays.asList(0, 1, 2), false),
     FIFTH(5, 5_000, Arrays.asList(3), false),
-    NONE(0, 0, Arrays.asList(0, 1, 2), false);
+    FOURTH(4, 50_000, Arrays.asList(4), false),
+    THIRD(3, 1_500_000, Arrays.asList(5), false),
+    SECOND(2, 30_000_000, Arrays.asList(5), true),
+    FIRST(1, 2_000_000_000, Arrays.asList(6), false);
 
 
     private final int matchRank;
@@ -29,8 +29,12 @@ public enum LottoRank {
 
     public static LottoRank matchRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchCounts().contains(matchCount) &&
-                        (rank.matchBonus == matchBonus || !rank.matchBonus))
+                .filter(rank -> {
+                    if (matchCount == 5) {
+                        return rank == LottoRank.SECOND && matchBonus || rank == LottoRank.THIRD && !matchBonus;
+                    }
+                    return rank.getMatchCounts().contains(matchCount);
+                })
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_MATCH_COUNT));
     }

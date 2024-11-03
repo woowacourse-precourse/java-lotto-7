@@ -31,4 +31,15 @@ public class LottoGame {
     public int getLottoCount() {
         return lottoPurchase.getLottoCount();
     }
+
+    public LottoResults makeLottoResult(WinningLotto winningLotto) {
+        for (Lotto lotto : lottos) {
+            lottoResults.addResult(winningLotto.getLottoResult(lotto));
+        }
+        return lottoResults;
+    }
+
+    public String getEarnRate() {
+        return lottoPurchase.calculateEarnRate(lottoResults.getPrizeMoney());
+    }
 }

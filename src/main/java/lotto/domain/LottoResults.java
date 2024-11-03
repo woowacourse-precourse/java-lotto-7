@@ -8,4 +8,20 @@ public class LottoResults {
     public LottoResults() {
         prizeCount = LottoRank.initializePrizeCount();
     }
+
+    public void addResult(LottoRank rank) {
+        prizeCount.put(rank, prizeCount.getOrDefault(rank, 0) + 1);
+    }
+
+    public int getPrizeCountByRank(LottoRank rank) {
+        return prizeCount.getOrDefault(rank, 0);
+    }
+
+    public int getPrizeMoney() {
+        int totalPrize = 0;
+        for (Map.Entry<LottoRank, Integer> entry : prizeCount.entrySet()) {
+            totalPrize += entry.getKey().getPrizeMoney() * entry.getValue();
+        }
+        return totalPrize;
+    }
 }
