@@ -142,4 +142,8 @@ public class LottoManagementService {
                 .sum();
     }
 
+    public List<UserLotto> getAllUserLottos() {
+        return userLottoRepository.findAll();
+    }
+
 }
