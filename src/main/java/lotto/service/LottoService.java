@@ -16,4 +16,10 @@ public class LottoService {
     public void saveLottos(List<Lotto> lottos) {
         lottoRepository.saveAll(lottos);
     }
+
+    private Lotto generateLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        return new Lotto(lottoNumbers);
+    }
 }
