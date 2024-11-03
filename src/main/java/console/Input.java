@@ -63,17 +63,6 @@ public class Input {
         }
     }
 
-    public List<Integer> changeStrToIntList(String string) {
-        try {
-            return Arrays.stream(string.split(","))
-                    .map(Integer::parseInt)
-                    .sorted()
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_PREFIX + WINNING_NUMBER_RULE, e);
-        }
-    }
-
     public int receiveBonusNumber() {
         try {
             makeEmptyLine(BONUS_INPUT);
@@ -87,6 +76,17 @@ public class Input {
             makeEmptyLine(e.getMessage());
             makeEmptyLine(null);
             return receiveBonusNumber();
+        }
+    }
+
+    public List<Integer> changeStrToIntList(String string) {
+        try {
+            return Arrays.stream(string.split(","))
+                    .map(Integer::parseInt)
+                    .sorted()
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_PREFIX + WINNING_NUMBER_RULE, e);
         }
     }
 
