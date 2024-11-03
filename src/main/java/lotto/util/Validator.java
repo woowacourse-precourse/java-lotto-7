@@ -6,4 +6,12 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
     }
+
+    public void validateNonNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMBER.getMessage());
+        }
+    }
 }
