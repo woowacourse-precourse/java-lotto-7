@@ -28,4 +28,8 @@ final public class Money {
             throw new MoneyUnitInvalidException(MONEY_UNIT);
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

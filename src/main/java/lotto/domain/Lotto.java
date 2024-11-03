@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import lotto.domain.numberPicker.NumberPicker;
 import lotto.domain.validator.ParamsValidator;
 import lotto.exception.lotto.LottoNumberCountInvalidException;
 import lotto.exception.lotto.LottoNumberDuplicatedException;
@@ -9,6 +11,7 @@ import lotto.exception.lotto.LottoNumberDuplicatedException;
 final public class Lotto {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int PRICE = 1000;
 
     private final List<Number> numbers;
 
@@ -34,6 +37,23 @@ final public class Lotto {
 
     private static boolean hasDuplicatedNumber(List<Number> numbers) {
         return new HashSet<>(numbers).size() != numbers.size();
+    }
+
+    public static List<Lotto> purchase(final Money money, final NumberPicker numberPicker) {
+        ParamsValidator.validateParamsNotNull(Lotto.class, money, numberPicker);
+
+        int purchaseAmount = calculatePurchaseAmount(money);
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; i++) {
+            List<Number> numbers = Number.createUniqueNumbers(LOTTO_NUMBER_COUNT, numberPicker);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+    private static int calculatePurchaseAmount(Money money) {
+        return money.getAmount() / PRICE;
     }
 
     public int getMatchCount(final Lotto otherLotto) {
