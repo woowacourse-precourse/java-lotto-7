@@ -1,6 +1,6 @@
 package lotto.utility;
 
-public enum LottoPrize {
+public enum LottoPrizeEnum {
     THREE_MATCHED("3개 일치 (5,000원)"),
     FOUR_MATCHED("4개 일치 (50,000원)"),
     FIVE_MATCHED("5개 일치 (1,500,000원)"),
@@ -9,7 +9,7 @@ public enum LottoPrize {
 
     private final String message;
 
-    LottoPrize(String message) {
+    LottoPrizeEnum(String message) {
         this.message = message;
     }
 
