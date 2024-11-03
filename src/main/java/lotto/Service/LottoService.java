@@ -2,8 +2,8 @@ package lotto.Service;
 
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.UserNumber;
-import lotto.model.UserNumbers;
+import lotto.model.UserLotto;
+import lotto.model.UserLottos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,14 +16,14 @@ public class LottoService {
     private final static int BONUS_MATCHING_INDEX = 3;
     private final static int SIX_MATCHING_INDEX = 4;
 
-    private UserNumbers userNumbers;
+    private UserLottos userLottos;
     private Lotto lotto;
     private BonusNumber bonusNumber;
     private List<Integer> results;
 
 
     public void generateUserNumbers(int purchaseAmount) {
-        userNumbers = new UserNumbers(purchaseAmount);
+        userLottos = new UserLottos(purchaseAmount);
     }
 
     public void generateLotto(Lotto lotto) {
@@ -37,16 +37,16 @@ public class LottoService {
     public List<Integer> calculateResult() {
         results = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
-        for (UserNumber userNumber : userNumbers.getUserNumbers()) {
-            long matchingCount = userNumber.getUserNumber().stream()
+        for (UserLotto userLotto : userLottos.getUserNumbers()) {
+            long matchingCount = userLotto.getUserNumber().stream()
                     .filter(lotto.getNumbers()::contains)
                     .count();
-            setResults(matchingCount, userNumber);
+            setResults(matchingCount, userLotto);
         }
         return results;
     }
 
-    private void setResults(long matchingCount, UserNumber userNumber) {
+    private void setResults(long matchingCount, UserLotto userLotto) {
         int bonus = this.bonusNumber.getNumber();
         if (matchingCount == 3) {
             results.set(THREE_MATCHING_INDEX, results.get(THREE_MATCHING_INDEX) + 1);
@@ -57,7 +57,7 @@ public class LottoService {
             return;
         }
         if (matchingCount == 5) {
-            if (userNumber.getUserNumber().contains(bonus)) {
+            if (userLotto.getUserNumber().contains(bonus)) {
                 results.set(BONUS_MATCHING_INDEX, results.get(BONUS_MATCHING_INDEX) + 1);
                 return;
             }
@@ -78,14 +78,14 @@ public class LottoService {
     }
 
     private long getInvestmentCost() {
-        return userNumbers.getPurchaseAmount();
+        return userLottos.getPurchaseAmount();
     }
 
     private long getProfit() {
         return 5000L * results.get(THREE_MATCHING_INDEX) + 50000L * results.get(FOUR_MATCHING_INDEX) + 1500000L * results.get(FIVE_MATCHING_INDEX) + 30000000L * results.get(BONUS_MATCHING_INDEX) + 2000000000L * results.get(SIX_MATCHING_INDEX);
     }
 
-    public UserNumbers getUserNumbers() {
-        return userNumbers;
+    public UserLottos getUserNumbers() {
+        return userLottos;
     }
 }

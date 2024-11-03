@@ -2,10 +2,10 @@ package lotto.model;
 
 import java.util.List;
 
-public class UserNumber {
+public class UserLotto {
     private final List<Integer> userNumber;
 
-    public UserNumber(List<Integer> userNumber) {
+    public UserLotto(List<Integer> userNumber) {
         this.userNumber = userNumber.stream().sorted().toList();
     }
 

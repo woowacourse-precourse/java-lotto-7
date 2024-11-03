@@ -1,15 +1,15 @@
 package lotto.view;
 
-import lotto.model.UserNumber;
-import lotto.model.UserNumbers;
+import lotto.model.UserLotto;
+import lotto.model.UserLottos;
 
 import java.util.List;
 
 public class OutputView {
-    public void printUserLotto(UserNumbers userNumbers) {
-        System.out.println("\n" + userNumbers.getPurchaseCount() + "개를 구매했습니다.");
-        for (UserNumber userNumber : userNumbers.getUserNumbers()) {
-            System.out.println(userNumber.getUserNumber());
+    public void printUserLotto(UserLottos userLottos) {
+        System.out.println("\n" + userLottos.getPurchaseCount() + "개를 구매했습니다.");
+        for (UserLotto userLotto : userLottos.getUserNumbers()) {
+            System.out.println(userLotto.getUserNumber());
         }
     }
 

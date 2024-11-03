@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.UserNumbers;
+import lotto.model.UserLottos;
 
 import java.util.List;
 
@@ -25,8 +25,8 @@ public class ViewFacade {
         return inputView.getBonusNumber();
     }
 
-    public void printUserLotto(UserNumbers userNumbers) {
-        outputView.printUserLotto(userNumbers);
+    public void printUserLotto(UserLottos userLottos) {
+        outputView.printUserLotto(userLottos);
     }
 
     public void printResult(List<Integer> results, double rate) {

@@ -5,13 +5,13 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserNumbers {
+public class UserLottos {
     private final static int LOTTO_PRICE = 1000;
 
-    private List<UserNumber> userNumbers;
+    private List<UserLotto> userLottos;
     private int purchaseCount;
 
-    public UserNumbers(int purchaseAmount) {
+    public UserLottos(int purchaseAmount) {
         validate(purchaseAmount);
         initField(purchaseAmount);
         makeUserNumbers();
@@ -25,19 +25,19 @@ public class UserNumbers {
 
     private void initField(int purchaseAmount) {
         purchaseCount = purchaseAmount / LOTTO_PRICE;
-        userNumbers = new ArrayList<>();
+        userLottos = new ArrayList<>();
     }
 
     private void makeUserNumbers() {
         int count = purchaseCount;
         while (count-- > 0) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            userNumbers.add(new UserNumber(lottoNumber));
+            userLottos.add(new UserLotto(lottoNumber));
         }
     }
 
-    public List<UserNumber> getUserNumbers() {
-        return userNumbers;
+    public List<UserLotto> getUserNumbers() {
+        return userLottos;
     }
 
     public int getPurchaseAmount() {
