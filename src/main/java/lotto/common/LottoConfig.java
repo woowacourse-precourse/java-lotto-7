@@ -11,8 +11,8 @@ import lotto.domain.repository.InMemoryLottoRepository;
 import lotto.domain.repository.LottoRepository;
 import lotto.view.ApplicationConsoleView;
 import lotto.view.ApplicationView;
-import lotto.view.converter.LottoMessageConverter;
-import lotto.view.converter.MessageConverter;
+import lotto.view.converter.LottoMessageParser;
+import lotto.view.converter.MessageParser;
 
 public final class LottoConfig {
 
@@ -34,8 +34,8 @@ public final class LottoConfig {
         return new ApplicationConsoleView();
     }
 
-    private MessageConverter<Lotto> messageConverter() {
-        return new LottoMessageConverter();
+    private MessageParser<Lotto> messageConverter() {
+        return new LottoMessageParser();
     }
 
     private PurchaseLottoUseCase purchaseLottoUseCase() {
