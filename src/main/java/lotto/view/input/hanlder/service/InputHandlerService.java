@@ -1,4 +1,4 @@
-package lotto.view.input.hanlder.domain;
+package lotto.view.input.hanlder.service;
 
 import java.util.function.Function;
 
