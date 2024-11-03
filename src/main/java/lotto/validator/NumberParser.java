@@ -8,6 +8,8 @@ public class NumberParser {
     public static final String DELIMITER = ",";
 
     public static List<Integer> toNumbers(String input) {
+        input = input.replaceAll(" ", "");
+        
         List<String> numbers = splitByDelimiter(input);
         List<Integer> toNumbers = new ArrayList<>();
 
