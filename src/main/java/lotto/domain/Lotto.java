@@ -5,8 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constant.ErrorMessage.INVALID_PICK_COUNT;
-import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_BOUND;
+import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
 
 public class Lotto {
@@ -41,7 +40,7 @@ public class Lotto {
     private void validateNonDuplicate(List<Integer> numbers) {
         for (int i = 1; i < numbers.size(); i++) {
             if(numbers.get(i) == numbers.get(i - 1)) {
-                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_BOUND);
+                throw new IllegalArgumentException(DUPLICATE_NUMBER_INPUT);
             }
         }
     }

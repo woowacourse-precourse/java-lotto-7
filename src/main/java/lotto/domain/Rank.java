@@ -9,12 +9,12 @@ public enum Rank {
     FAILURE(0, false, 0);
 
     private final int matchingNumbers;
-    private final boolean hasBonus;
+    private final boolean hasBonusNumber;
     private final int prize;
 
-    Rank(int matchingNumbers, boolean hasBonus, int prize) {
+    Rank(int matchingNumbers, boolean hasBonusNumber, int prize) {
         this.matchingNumbers = matchingNumbers;
-        this.hasBonus = hasBonus;
+        this.hasBonusNumber = hasBonusNumber;
         this.prize = prize;
     }
 
@@ -22,13 +22,13 @@ public enum Rank {
         return prize;
     }
 
-    public static Rank valueOfLotto(int matchingNumbers, boolean hasBonus) {
+    public static Rank valueOfLotto(int matchingNumbers, boolean hasBonusNumber) {
         if(matchingNumbers < SECOND.matchingNumbers) {
-            hasBonus = false;
+            hasBonusNumber = false;
         }
 
         for (Rank rank : values()) {
-            if (rank.matchingNumbers == matchingNumbers && rank.hasBonus == hasBonus) {
+            if (rank.matchingNumbers == matchingNumbers && rank.hasBonusNumber == hasBonusNumber) {
                 return rank;
             }
         }

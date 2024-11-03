@@ -23,4 +23,7 @@ public class ErrorMessage {
 
     public static final String LOTTO_NUMBER_OUT_OF_BOUND = "%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다."
             .formatted(PREFIX_ERROR_MESSAGE, LOTTO_LOWER_BOUNDARY, LOTTO_UPPER_BOUNDARY);
+
+    public static final String BONUS_NUMBER_OUT_OF_BOUND = "%s 보너스 번호는 %d부터 %d 사이의 숫자여야 합니다."
+            .formatted(PREFIX_ERROR_MESSAGE, LOTTO_LOWER_BOUNDARY, LOTTO_UPPER_BOUNDARY);
 }
