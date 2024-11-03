@@ -8,6 +8,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -51,6 +52,23 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000원으로_나누어떨어지지_않으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000원_미만이면_예외가_발생한다() {
+
+        assertSimpleTest(() -> {
+            runException("500");
+            assertThat(output()).contains("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         });
     }
 
