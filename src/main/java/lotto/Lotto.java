@@ -58,6 +58,7 @@ public class Lotto {
             myLottos.add(newLotto);
             OutputView.printLotto(newLotto);
         }
+        OutputView.printBlank();
         return myLottos;
     }
 

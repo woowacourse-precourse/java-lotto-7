@@ -22,7 +22,6 @@ public class LottoController {
         gainPurchaseAmount();
         myInfo.setLottoCount(myInfo.getLottoCount());
         myInfo.setMyLottos(Lotto.sortLottoList(myInfo.getLottoCount()));
-        System.out.println();
         myInfo.setAnswerLotto(gainWinningInput());
         myInfo.setBonusNumber(gainBonusInput(myInfo.getAnswerLotto()));
         List<MyResults> myResults = WinningDetails
@@ -41,6 +40,7 @@ public class LottoController {
             try {
                 OutputView.printPurchaseAmount();
                 purchasePrice = InputView.readPurchaseAmount();
+                InputView.checkPurchaseRange(purchasePrice);
                 this.countLotto(purchasePrice);
                 isValid = true;
             } catch (IllegalArgumentException e) {
@@ -49,7 +49,6 @@ public class LottoController {
         }
         this.myInfo.setPurchasePrice(purchasePrice);
     }
-
 
 
     public void countLotto(Integer purchasePrice) {

@@ -17,7 +17,6 @@ public class InputView {
         try {
             String rawPurchasePrice = Console.readLine();
             purchasePrice = parseInt(rawPurchasePrice);
-            checkPurchaseRange(purchasePrice);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
         }
@@ -69,7 +68,7 @@ public class InputView {
     }
 
     public static void checkPurchaseRange(int purchaseAmount) {
-        if (!(purchaseAmount >= 1000 && purchaseAmount <= 200000000)) {
+        if (!(purchaseAmount <= 200000000)) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_RANGE.getError());
         }
     }

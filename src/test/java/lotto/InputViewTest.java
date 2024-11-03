@@ -95,7 +95,7 @@ public class InputViewTest extends NsTest {
 
     @ParameterizedTest
     @DisplayName("checkPurchaseRangeTest 범위 벗어난 테스트")
-    @ValueSource(ints = {999, 2000000010})
+    @ValueSource(ints = {2000000010})
     void checkPurchaseRangeErrorTest(int purchaseAmount) {
         assertThatThrownBy(() -> inputView.checkPurchaseRange(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
