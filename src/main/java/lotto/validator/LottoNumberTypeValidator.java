@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.enums.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class LottoNumberTypeValidator {
             }
             return winningNumbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해주세요.\n");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_TYPE_ERROR.toString());
         }
     }
 
@@ -23,7 +25,7 @@ public class LottoNumberTypeValidator {
             int bonusNumber = Integer.parseInt(userInput);
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해주세요.\n");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_TYPE_ERROR.toString());
         }
     }
 }

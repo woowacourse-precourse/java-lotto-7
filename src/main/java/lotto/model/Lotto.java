@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.enums.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -13,20 +15,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.toString());
         }
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.toString());
         }
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.toString());
         }
     }
 
     public void addBonusNumber(int boundNumber) {
         this.numbers.add(boundNumber);
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.toString());
         }
     }
 

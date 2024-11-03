@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.enums.ErrorMessage;
+
 public class MoneyTypeValidator {
 
     public int validateMoneyType(String inputMoney) {
@@ -7,7 +9,7 @@ public class MoneyTypeValidator {
             int money = Integer.parseInt(inputMoney);
             return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해주세요.\n");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_TYPE_ERROR.toString());
         }
     }
 }

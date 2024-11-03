@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.enums.ErrorMessage;
+
 public class Money {
     int purchaseAmount;
 
@@ -10,7 +12,7 @@ public class Money {
 
     private void validate(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.\n");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR.toString());
         }
     }
 
