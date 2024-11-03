@@ -31,9 +31,9 @@ public class ResultJudging {
         return result; // 결과 반환
     }
 
-    public double returnRate(int count, Result result) {
-        return (double) ((result.getThreeCount() * 5000) + (result.getFourCount() * 50000)
+    public double returnRate(int price, Result result) {
+        return ((double) ((result.getThreeCount() * 5000) + (result.getFourCount() * 50000)
                 + (result.getFiveCount() * 1500000) + (result.getBonusCount() * 30000000)
-                + (result.getSixCount() * 2000000000)) / (count * 1000);
+                + (result.getSixCount() * 2000000000)) / price);
     }
 }
