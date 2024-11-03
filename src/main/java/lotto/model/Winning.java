@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum Winning {
-	NONE(0, 0, false),
-	FIFTH(3, 5000, false),
-	FOURTH(4, 50000, false),
-	THIRD(5, 1500000, false),
-	SECOND(5, 30000000, true),
-	FIRST(6, 2000000000, false);
+	NONE(0, 0L, false),
+	FIFTH(3, 5000L, false),
+	FOURTH(4, 50000L, false),
+	THIRD(5, 1500000L, false),
+	SECOND(5, 30000000L, true),
+	FIRST(6, 2000000000L, false);
 
 	private static final int INITIAL_VALUE = 0;
 
