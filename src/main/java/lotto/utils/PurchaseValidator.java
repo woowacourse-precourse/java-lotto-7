@@ -1,12 +1,13 @@
 package lotto.utils;
 
-public class AmountValidator {
+public class PurchaseValidator {
 
     public static void validateAmount(String input) {
         validateNotBlank(input);
         validateIsNumeric(input);
         validateMultipleOfThousand(input);
         validateNotZero(input);
+        validatePositiveAmount(input);
     }
 
     private static void validateNotBlank(String input) {
@@ -33,6 +34,13 @@ public class AmountValidator {
     private static void validateNotZero(String input) {
         if (Integer.parseInt(input) == 0) {
             throw new IllegalArgumentException("금액은 0일 수 없습니다.");
+        }
+    }
+
+    private static void validatePositiveAmount(String input) {
+        int amount = Integer.parseInt(input);
+        if (amount < 0) {
+            throw new IllegalArgumentException("금액은 0보다 커야 합니다.");
         }
     }
 
