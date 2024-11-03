@@ -1,7 +1,5 @@
 package lotto.domain.rank;
 
-import lotto.domain.LottoPrice;
-
 public class LottoRank {
 
     private final int lottoCount;

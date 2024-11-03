@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.LottoPrice;
+import lotto.domain.rank.LottoPrice;
 
 public class LottoStatistics {
 
