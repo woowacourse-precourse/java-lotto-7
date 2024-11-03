@@ -5,8 +5,11 @@ import lotto.io.Output;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoService;
+import lotto.util.Constants;
 import lotto.util.Validator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -75,15 +78,27 @@ public class LottoController {
         output.printWinningNumbersInputPrompt();
         String winningNumbersInput = input.inputString();
 
-        validateWinningNumbersInput(winningNumbersInput);
+        List<String> winningNumbersSplit = validateWinningNumbersInput(winningNumbersInput);
     }
 
-    private void validateWinningNumbersInput(String input) {
+    private List<String> validateWinningNumbersInput(String input) {
+        List<String> splitInputByComma = new ArrayList<>();
         try {
             validator.validateEmptyInput(input);
+
+            splitInputByComma = Arrays.asList(input.split(Constants.COMMA.getMessage()));
+            validateWinningNumbers(splitInputByComma);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             handleWinningNumbers();
+        }
+        return splitInputByComma;
+    }
+
+    private void validateWinningNumbers(List<String> winningNumbers) {
+        for (String number : winningNumbers) {
+            validator.validateNonNumber(number);
+            validator.validatePositiveNumber(number);
         }
     }
 }
