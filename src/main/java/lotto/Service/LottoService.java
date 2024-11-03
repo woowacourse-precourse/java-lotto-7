@@ -44,8 +44,31 @@ public class LottoService {
             long matchingCount = userNumber.getUserNumber().stream()
                     .filter(lotto.getNumbers()::contains)
                     .count();
-            
+            setResults(matchingCount, userNumber);
         }
         return results;
+    }
+
+    private void setResults(long matchingCount, UserNumber userNumber) {
+        int bonus = this.bonusNumber.getNumber();
+        if (matchingCount == 3) {
+            results.set(0, results.get(0) + 1);
+            return;
+        }
+        if (matchingCount == 4) {
+            results.set(1, results.get(1) + 1);
+            return;
+        }
+        if (matchingCount == 5) {
+            if (userNumber.getUserNumber().contains(bonus)) {
+                results.set(3, results.get(3) + 1);
+                return;
+            }
+            results.set(2, results.get(2) + 1);
+            return;
+        }
+        if (matchingCount == 6) {
+            results.set(4, results.get(4) + 1);
+        }
     }
 }
