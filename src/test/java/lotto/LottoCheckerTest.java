@@ -57,11 +57,11 @@ public class LottoCheckerTest {
     void 로또_매치_테스트() {
         lottoChecker.match(winningLotto, lottoes, bonusNumber);
 
-        Assertions.assertThat(lottoChecker.matching[3]).isEqualTo(1);
-        Assertions.assertThat(lottoChecker.matching[4]).isEqualTo(0);
-        Assertions.assertThat(lottoChecker.matching[5]).isEqualTo(0);
-        Assertions.assertThat(lottoChecker.bonusMatching[5]).isEqualTo(1);
-        Assertions.assertThat(lottoChecker.matching[6]).isEqualTo(0);
+        Assertions.assertThat(lottoChecker.matchingCount[3]).isEqualTo(1);
+        Assertions.assertThat(lottoChecker.matchingCount[4]).isEqualTo(0);
+        Assertions.assertThat(lottoChecker.matchingCount[5]).isEqualTo(0);
+        Assertions.assertThat(lottoChecker.bonusMatchingCount[5]).isEqualTo(1);
+        Assertions.assertThat(lottoChecker.matchingCount[6]).isEqualTo(0);
     }
 
     @Test
@@ -69,9 +69,9 @@ public class LottoCheckerTest {
     void 총_당첨_금액_계산() {
         lottoChecker.match(winningLotto, lottoes, bonusNumber);
         Assertions.assertThat(
-                lottoChecker.calculateTotalWinningPrice())
-                .isEqualTo(lottoChecker.winningPrice.get(3)
-                + lottoChecker.bonusWinningPrice.get(5));
+                lottoChecker.calculateTotalWinningPrizeMoney())
+                .isEqualTo(lottoChecker.prizeMoney.get(3)
+                + lottoChecker.bonusPrizeMoney.get(5));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LottoCheckerTest {
     void 총_수익률_계산() {
         lottoChecker.match(winningLotto, lottoes, bonusNumber);
         Assertions.assertThat(
-                lottoChecker.calculateProfitRate(lottoes.size(), lottoChecker.calculateTotalWinningPrice()))
+                lottoChecker.calculateProfitRate(lottoes.size(), lottoChecker.calculateTotalWinningPrizeMoney()))
                 .isEqualTo("375062.5");
     }
 }

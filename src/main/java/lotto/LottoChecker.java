@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoChecker {
-    public Map<Integer, Integer> winningPrice = new HashMap<>();
-    public Map<Integer, Integer> bonusWinningPrice = new HashMap<>();
+    public Map<Integer, Integer> prizeMoney = new HashMap<>();
+    public Map<Integer, Integer> bonusPrizeMoney = new HashMap<>();
 
-    public int[] matching = new int[7];;
-    public int[] bonusMatching = new int[7];;
+    public int[] matchingCount = new int[7];
+    public int[] bonusMatchingCount = new int[7];
 
-    public LottoChecker(Map<Integer, Integer> winningPrice, Map<Integer, Integer> bonusWinningPrice) {
-        this.winningPrice = winningPrice;
-        this.bonusWinningPrice = bonusWinningPrice;
+    public LottoChecker(Map<Integer, Integer> prizeMoney, Map<Integer, Integer> bonusWinningPrizeMoney) {
+        this.prizeMoney = prizeMoney;
+        this.bonusPrizeMoney = bonusWinningPrizeMoney;
     }
 
     public int numberMatch(List<Integer> winningNumbers, List<Integer> numbers) {
@@ -30,14 +30,14 @@ public class LottoChecker {
         return String.format("%,d", price);
     }
 
-    public int calculateTotalWinningPrice() {
-        int totalWinningPrice = 0;
-        totalWinningPrice += matching[3] * winningPrice.get(3);
-        totalWinningPrice += matching[4] * winningPrice.get(4);
-        totalWinningPrice += matching[5] * winningPrice.get(5);
-        totalWinningPrice += bonusMatching[5] * bonusWinningPrice.get(5);
-        totalWinningPrice += matching[6] * winningPrice.get(6);
-        return totalWinningPrice;
+    public int calculateTotalWinningPrizeMoney() {
+        int totalWinningPrizeMoney = 0;
+        totalWinningPrizeMoney += matchingCount[3] * prizeMoney.get(3);
+        totalWinningPrizeMoney += matchingCount[4] * prizeMoney.get(4);
+        totalWinningPrizeMoney += matchingCount[5] * prizeMoney.get(5);
+        totalWinningPrizeMoney += bonusMatchingCount[5] * bonusPrizeMoney.get(5);
+        totalWinningPrizeMoney += matchingCount[6] * prizeMoney.get(6);
+        return totalWinningPrizeMoney;
     }
 
     public String calculateProfitRate(int numberOfLottoes, int totalWinningPrice) {
@@ -46,7 +46,7 @@ public class LottoChecker {
         return String.format("%.1f", Math.round(profitRate * 100) / 100.0);
     }
 
-    public void printTotalReturnRate(int numberOfLottoes, int totalWinningPrice) {
+    public void printTotalProfitRate(int numberOfLottoes, int totalWinningPrice) {
         System.out.println("총 수익률은 "
                 + calculateProfitRate(numberOfLottoes, totalWinningPrice)
                 + "%입니다.");
@@ -54,14 +54,14 @@ public class LottoChecker {
 
     public void printWinningInfo() {
         for (int i = 0; i <= 6; i++) {
-            if (winningPrice.containsKey(i)) {
-                System.out.println(i + "개 일치 (" + formatPrice(winningPrice.get(i)) + "원) - "
-                        + matching[i] + "개");
+            if (prizeMoney.containsKey(i)) {
+                System.out.println(i + "개 일치 (" + formatPrice(prizeMoney.get(i)) + "원) - "
+                        + matchingCount[i] + "개");
             }
-            if (bonusWinningPrice.containsKey(i)) {
+            if (bonusPrizeMoney.containsKey(i)) {
                 System.out.println(i + "개 일치, 보너스 볼 일치 ("
-                        + formatPrice(bonusWinningPrice.get(i)) + "원) - "
-                        + bonusMatching[i] + "개");
+                        + formatPrice(bonusPrizeMoney.get(i)) + "원) - "
+                        + bonusMatchingCount[i] + "개");
             }
         }
     }
@@ -69,10 +69,10 @@ public class LottoChecker {
     public void match(Lotto winningLotto, List<Lotto> lottoes, int bonusNumber) {
         for (Lotto lotto : lottoes) {
             int matchCount = numberMatch(winningLotto.getNumbers(), lotto.getNumbers());
-            matching[matchCount]++;
+            matchingCount[matchCount]++;
             if (lotto.getNumbers().contains(bonusNumber) && matchCount == 5) {
-                bonusMatching[5]++;
-                matching[5]--;
+                bonusMatchingCount[5]++;
+                matchingCount[5]--;
             }
         }
     }
@@ -82,9 +82,9 @@ public class LottoChecker {
 
         printWinningInfo();
 
-        int totalWinningPrice = calculateTotalWinningPrice();
+        int totalWinningPrizeMoney = calculateTotalWinningPrizeMoney();
 
-        printTotalReturnRate(lottoes.size(), totalWinningPrice);
+        printTotalProfitRate(lottoes.size(), totalWinningPrizeMoney);
     }
 
 
