@@ -1,6 +1,8 @@
 package lotto.enums;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 
 public enum Prize {
     FIRST(6, 2_000_000_000),
@@ -10,12 +12,12 @@ public enum Prize {
     FIFTH(3, 5_000),
     NONE(0, 0);
 
-    private final int matchCount;     // 당첨 번호와 일치하는 숫자 개수
-    private final int prizeMoney;     // 상금
-    private final boolean requiresBonus;  // 보너스 번호 일치가 필요한지 여부
+    private final int matchCount;
+    private final int prizeMoney;
+    private final boolean requiresBonus;
 
     Prize(int matchCount, int prizeMoney) {
-        this(matchCount, prizeMoney, false);  // 보너스 번호 불필요
+        this(matchCount, prizeMoney, false);
     }
 
     Prize(int matchCount, int prizeMoney, boolean requiresBonus) {
@@ -24,25 +26,20 @@ public enum Prize {
         this.requiresBonus = requiresBonus;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }
 
-    public boolean requiresBonus() {
-        return requiresBonus;
+    public String getFormattedPrizeMoney() {
+        return NumberFormat.getNumberInstance(Locale.US).format(prizeMoney);
     }
 
-    /**
-     * 매칭 조건에 따라 해당하는 Prize 등수를 반환합니다.
-     *
-     * @param matchCount 당첨 번호와 일치하는 숫자 개수
-     * @param bonusMatch 보너스 번호 일치 여부
-     * @return 해당하는 Prize 등수
-     */
+    public String getDescription(long count) {
+        return requiresBonus
+                ? NotificationMessage.MATCH_COUNT_WITH_BONUS.format(matchCount, getFormattedPrizeMoney(), count)
+                : NotificationMessage.MATCH_COUNT_NO_BONUS.format(matchCount, getFormattedPrizeMoney(), count);
+    }
+
     public static Prize valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(values())
                 .filter(prize -> prize.matchCount == matchCount && (!prize.requiresBonus || bonusMatch))
