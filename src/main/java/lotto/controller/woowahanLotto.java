@@ -29,7 +29,7 @@ public class woowahanLotto implements LottoController {
         List<Integer> winningNumbers = getWinningNum();
         int bonusNumber = getBonusNumber();
 
-        WinningLottos winningLottos = getWinningLottos(lottos.getWinningLottos(winningNumbers,bonusNumber),price);
+        WinningLottos winningLottos = getWinningLottos(lottos.getWinningLottos(winningNumbers, bonusNumber), price);
         OutputView.printResult(winningLottos);
 
     }
@@ -76,6 +76,7 @@ public class woowahanLotto implements LottoController {
     }
 
     private WinningLottos getWinningLottos(List<LottoRank> winningLottos, int price) {
-        return new WinningLottos(winningLottos,price);
+        return new WinningLottos(winningLottos, price);
     }
+
 }
