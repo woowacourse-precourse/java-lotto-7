@@ -34,4 +34,17 @@ public class LottoResultTest {
 
         assertThat(lottoResult.getCountByRank(Rank.SECOND)).isEqualTo(1);
     }
+
+    @DisplayName("3등에 당첨된다.")
+    @Test
+    void 삼등에_당첨된다() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8));  // 3등
+
+        LottoResult lottoResult = new LottoResult(List.of(lotto), winningLotto);
+
+        assertThat(lottoResult.getCountByRank(Rank.THIRD)).isEqualTo(1);
+    }
 }
