@@ -1,6 +1,5 @@
 package lotto.domain.player;
 
-import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
 import static lotto.constant.LottoConfig.LOTTO_COST;
 
 import java.util.List;
@@ -12,28 +11,19 @@ import lotto.random.LottoRandom;
 
 public class Player {
 
-    private final long initialMoney;
-    private long money;
+    private Wallet wallet;
     private Lottos lottos;
     private RankCounts rankCounts;
 
     public Player(long money) {
-        validateMoney(money);
-        this.money = money;
-        initialMoney = money;
+        wallet = new Wallet(money);
     }
 
-    public void buyLottoTickets(LottoRandom lottoRandom) {
-        long buyCount = money / LOTTO_COST;
-        money -= buyCount * LOTTO_COST;
+    public void buyLottos(LottoRandom lottoRandom) {
+        long buyCount = wallet.getMoney() / LOTTO_COST;
+        wallet = wallet.useMoney(buyCount * LOTTO_COST);
         lottos = Lottos.buy(lottoRandom, buyCount);
         rankCounts = new RankCounts();
-    }
-
-    private void validateMoney(long money) {
-        if (money % LOTTO_COST != 0) {
-            throw new IllegalArgumentException(INVALID_MONEY_UNIT.getMessage());
-        }
     }
 
     public List<Lotto> getLottos() {
@@ -49,7 +39,7 @@ public class Player {
     }
 
     public double gain() {
-        return (double)rankCounts.totalPrice() / initialMoney;
+        return (double)rankCounts.totalPrice() / wallet.getInitialMoney();
     }
 
     public List<RankCounts.RankCount> getRanks() {

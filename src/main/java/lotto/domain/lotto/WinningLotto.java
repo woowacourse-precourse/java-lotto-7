@@ -6,11 +6,11 @@ import lotto.constant.Rank;
 
 public class WinningLotto {
 
-    private final Lotto winningLotto;
+    private Lotto winningLotto;
     private Number bonusNumber;
 
-    public WinningLotto(Lotto winningLotto) {
-        this.winningLotto = winningLotto;
+    public void setupLotto(Lotto lotto) {
+        winningLotto = lotto;
     }
 
     public void setupBonusNumber(int bonusNumber) {

@@ -24,7 +24,7 @@ class PlayerTest {
     @Test
     void 구입_금액에_맞는_로또를_발행한다() {
         Player player = new Player(3000);
-        player.buyLottoTickets(lottoRandom);
+        player.buyLottos(lottoRandom);
         assertThat(player.getLottoTicketCounts()).isEqualTo(3);
     }
 

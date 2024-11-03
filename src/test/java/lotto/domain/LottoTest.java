@@ -46,7 +46,8 @@ class LottoTest {
         numbers.removeLast();
         numbers.add(7);
         Lotto lotto = new Lotto(numbers);
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers));
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setupLotto(new Lotto(winningLottoNumbers));
         winningLotto.setupBonusNumber(8);
         Rank rank = winningLotto.getRank(lotto);
         assertThat(rank.getRank()).isEqualTo(3);
@@ -55,7 +56,7 @@ class LottoTest {
     @Test
     void 수익률을_계산한다() {
         Player player = new Player(5000);
-        player.buyLottoTickets(lottoRandom);
+        player.buyLottos(lottoRandom);
         player.addRank(Rank.THIRD);
         assertThat(player.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }

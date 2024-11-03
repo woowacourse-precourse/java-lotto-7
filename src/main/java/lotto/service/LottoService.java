@@ -20,25 +20,29 @@ public class LottoService {
     private final WinningLottoRepository winningLottoRepository = new WinningLottoRepository();
 
     public void setupMoney(MoneyRequest request) {
-        Player player = playerRepository.get();
-        playerRepository.addMoney(request.money());
+        playerRepository.createFrom(request.money());
     }
 
     public LottosResponse buyLottos() {
-        return LottosResponse.of(playerRepository.buyLottos(lottoRandom));
+        Player player = playerRepository.get();
+        player.buyLottos(lottoRandom);
+        return LottosResponse.of(player.getLottos());
     }
 
     public void setupWinningNumbers(WinningNumbersRequest request) {
-        winningLottoRepository.createLotto(new Lotto(request.winningNumbers()));
+        WinningLotto winningLotto = winningLottoRepository.get();
+        winningLotto.setupLotto(new Lotto(request.winningNumbers()));
     }
 
     public void setupBonusNumber(BonusNumberRequest request) {
-        winningLottoRepository.createBonusNumber(request.bonusNumber());
+        WinningLotto winningLotto = winningLottoRepository.get();
+        winningLotto.setupBonusNumber(request.bonusNumber());
     }
 
     public ResultResponse result() {
         Player player = playerRepository.get();
         WinningLotto winningLotto = winningLottoRepository.get();
+
         player.getLottos().stream()
             .map(winningLotto::getRank)
             .forEach(player::addRank);
