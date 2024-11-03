@@ -9,7 +9,7 @@ class LottoCommitteeTest {
     @Test
     public void 로또번호가_당첨번호와_전부_일치하면_1등() {
         // given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> lottoNumbers = List.of(6, 2, 3, 4, 5, 1);
         Lotto lotto = new Lotto(lottoNumbers);
 
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
@@ -26,7 +26,7 @@ class LottoCommitteeTest {
     @Test
     public void 로또번호가_당첨번호와_5개_일치하고_보너스번호가_하나_일치하면_2등() {
         // given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> lottoNumbers = List.of(6, 2, 3, 4, 5, 1);
         Lotto lotto = new Lotto(lottoNumbers);
 
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 7);
@@ -43,7 +43,7 @@ class LottoCommitteeTest {
     @Test
     public void 로또번호가_당첨번호와_3개_일치하면_5등() {
         // given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> lottoNumbers = List.of(6, 2, 3, 4, 5, 1);
         Lotto lotto = new Lotto(lottoNumbers);
 
         List<Integer> winningNumber = List.of(1, 2, 3, 7, 8, 9);
