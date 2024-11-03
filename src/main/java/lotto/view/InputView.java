@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String getPriceStr() {
+    public String getPurchaseStr() {
         System.out.println("구입금액을 입력해 주세요.");
-        String priceStr = Console.readLine();
-        return priceStr;
+        String purchaseStr = Console.readLine();
+        return purchaseStr;
     }
 
     public String getWinningNumStr() {
