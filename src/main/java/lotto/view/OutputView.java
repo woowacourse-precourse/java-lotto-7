@@ -15,6 +15,7 @@ public class OutputView {
                     .collect(Collectors.toList());
             System.out.println(numbers);
         }
+        System.out.println("");
     }
 
     public static void printWinningStatistics(int[] rankCounts, double earningRate) {
@@ -27,6 +28,6 @@ public class OutputView {
         System.out.println(
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCounts[LottoRank.ranks.indexOf(LottoRank.SECOND)] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankCounts[LottoRank.ranks.indexOf(LottoRank.FIRST)] + "개");
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
     }
 }
