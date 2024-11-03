@@ -13,13 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottosTest {
 
-    private Lotto winningLotto;
-    private BonusNumber bonusNumber;
+    private WinningLotto winningLotto;
 
     @BeforeEach
     void setUp() {
-        winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        bonusNumber = BonusNumber.of(7);
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        winningLotto = WinningLotto.of(winningNumbers, BonusNumber.of(7));
     }
 
     @DisplayName("당첨번호와 일치하는 Rank리스트를 반환한다.")
@@ -38,7 +37,7 @@ class LottosTest {
         );
         Lottos lottos = new Lottos(lottoList);
 
-        Map<Rank, Integer> result = lottos.countMatchesWith(winningLotto, bonusNumber);
+        Map<Rank, Integer> result = lottos.countMatchesWith(winningLotto);
 
         assertThat(result.get(Rank.SIX_MATCHES)).isEqualTo(2);
         assertThat(result.get(Rank.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);

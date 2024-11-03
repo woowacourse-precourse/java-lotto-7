@@ -13,12 +13,12 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Map<Rank, Integer> countMatchesWith(Lotto winningLotto, BonusNumber bonusNumber) {
+    public Map<Rank, Integer> countMatchesWith(WinningLotto winningLotto) {
         Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
         for (Lotto lotto : lottos) {
-            int matchCount = matchCount(lotto, winningLotto);
-            boolean bonusMatch = lotto.contains(bonusNumber.getNumber());
+            int matchCount = matchCount(lotto, winningLotto.getWinningNumbers());
+            boolean bonusMatch = lotto.contains(winningLotto.getBonusNumber().getNumber());
             Rank rank = Rank.valueOf(matchCount, bonusMatch);
 
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
