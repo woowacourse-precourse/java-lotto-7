@@ -77,14 +77,13 @@ src/
 │           └── OutputFormats.java    # 출력 형식 (enum)
 └── test/
     └── java/
-        ├── ApplicationTest.java      # 통합 테스트
-        ├── model/
-        │   ├── LottoTest.java
-        │   ├── LottoMatcherTest.java
-        │   ├── MyLottoTest.java
-        │   └── LottoResultTest.java
-        └── util/
-            └── ParserTest.java
+        └── lotto/
+            ├── ApplicationTest.java      # 통합 테스트
+            ├── LottoTest.java
+            ├── LottoMatcherTest.java
+            ├── MyLottoTest.java
+            ├── LottoResultTest.java
+            └── ParserTest.java 
 ```
 
 ## 주요 클래스 설명

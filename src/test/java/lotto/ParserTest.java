@@ -1,7 +1,9 @@
-package util;
+package lotto;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import util.Parser;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +12,7 @@ class ParserTest {
     @Test
     @DisplayName("올바른 구매 금액을 파싱한다")
     void 구매_금액_파싱() {
-        assertThat(Parser.parseCost("8000")).isEqualTo(8000);
+        Assertions.assertThat(Parser.parseCost("8000")).isEqualTo(8000);
     }
 
     @Test

@@ -1,5 +1,8 @@
-package model;
+package lotto;
 
+import model.Lotto;
+import model.LottoMatcher;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +18,7 @@ class LottoMatcherTest {
         Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
-        assertThat(LottoMatcher.compareNumbers(userLotto, winningLotto)).isEqualTo(3);
+        Assertions.assertThat(LottoMatcher.compareNumbers(userLotto, winningLotto)).isEqualTo(3);
     }
 
     @Test
