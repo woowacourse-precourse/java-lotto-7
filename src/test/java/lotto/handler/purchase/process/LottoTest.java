@@ -1,12 +1,10 @@
-package lotto;
+package lotto.handler.purchase.process;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.handler.purchase.process.Lotto;
-import lotto.handler.purchase.process.WinningRank;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,6 +1,8 @@
 package lotto.handler.purchase.process;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -59,7 +61,16 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        checkDuplication(numbers);
     }
+
+    private void checkDuplication(List<Integer> numbers) {
+        Set<Integer> checkedNumbers = new HashSet<>();
+        numbers.stream().filter(number -> !checkedNumbers.add(number)).findFirst().ifPresent(duplicate -> {
+            throw new IllegalArgumentException("[ERROR] 랜덤 숫자 생성 메서드에 문제가 있습니다.");
+        });
+    }
+
 
     private boolean isSameNumber(int winningNumber, int number) {
         return winningNumber == number;
