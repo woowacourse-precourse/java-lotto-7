@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    public static int purchaseAmount;
+    private static int purchaseAmount;
+
+    public static int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 
     public static int purchaseAmount() {
         OutputView.purchaseAmount();

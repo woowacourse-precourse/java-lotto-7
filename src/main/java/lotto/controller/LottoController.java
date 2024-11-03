@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.view.InputView.getPurchaseAmount;
 import static lotto.view.InputView.purchaseAmount;
 
 public class LottoController {
@@ -71,6 +72,7 @@ public class LottoController {
             totalPrize += rankResults.getOrDefault(i, 0) * prizeMoney[i - 1];
         }
 
+        int purchaseAmount = getPurchaseAmount();
         return purchaseAmount > 0 ? ((double) totalPrize / purchaseAmount) * 100 : 0;
     }
 }
