@@ -1,11 +1,11 @@
 package lotto.model.winningNumber;
 
-import static lotto.exception.Exceptions.*;
+import static lotto.common.Exceptions.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.exception.Converter;
+import lotto.common.Converter;
 
 public class NumberGenerator {
     private static final String NUMBER_DELIMITER = ",";

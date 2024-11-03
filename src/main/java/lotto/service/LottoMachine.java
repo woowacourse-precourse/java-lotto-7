@@ -31,7 +31,8 @@ public class LottoMachine {
         return winningResults;
     }
 
-    public double calculateEarningsRate(WinningResults winningResults, int expense) {
+    public double calculateEarningsRate(WinningResults winningResults, PurchaseAmount purchaseAmount) {
+        int expense = purchaseAmount.getPurchaseAmount();
         int earnings = 0;
         for (WinningRank winningRank : WinningRank.values()) {
             earnings += winningResults.findLottoAmountByRank(winningRank) * winningRank.getPrice();

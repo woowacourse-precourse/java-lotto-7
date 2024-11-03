@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.exception.Converter;
+import lotto.common.Converter;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
@@ -71,15 +71,14 @@ public class LottoController {
     }
 
     private WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber,
-                                                   BonusNumber bonusNumber) {
+                                               BonusNumber bonusNumber) {
         return lottoMachine.checkWinningResults(lottos, winningNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {
         outputView.outputWinningResultStartLine();
         outputView.outputWinningRanks(winningResults);
-        double earningsRate = lottoMachine.calculateEarningsRate(winningResults, purchaseAmount.getPurchaseAmount());
+        double earningsRate = lottoMachine.calculateEarningsRate(winningResults, purchaseAmount);
         outputView.outputEarningsRate(earningsRate);
     }
-
 }

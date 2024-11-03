@@ -1,7 +1,7 @@
 package lotto.model.validator;
 
 import static lotto.model.lotto.LotteryRule.*;
-import static lotto.exception.Exceptions.*;
+import static lotto.common.Exceptions.*;
 
 import java.util.HashSet;
 import java.util.List;

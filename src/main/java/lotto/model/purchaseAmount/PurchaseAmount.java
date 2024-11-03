@@ -1,6 +1,6 @@
 package lotto.model.purchaseAmount;
 
-import static lotto.exception.Exceptions.NOT_DIVISIBLE_BY_LOTTO_PRICE;
+import static lotto.common.Exceptions.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static lotto.model.lotto.LotteryRule.LOTTO_PRICE;
 
 public class PurchaseAmount {

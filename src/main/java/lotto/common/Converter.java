@@ -1,6 +1,6 @@
-package lotto.exception;
+package lotto.common;
 
-import static lotto.exception.Exceptions.NOT_POSITIVE_INTEGER;
+import static lotto.common.Exceptions.NOT_POSITIVE_INTEGER;
 
 public class Converter {
     public static int toInteger(String value) {

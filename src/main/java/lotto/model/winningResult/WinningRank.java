@@ -12,8 +12,7 @@ public enum WinningRank {
     THIRD(3, 5, false, 1500000),
     FOURTH(4, 4, false, 50000),
     FIFTH(5, 3, false, 5000),
-    FAIL(6, -1, false, 0)
-    ;
+    FAIL(6, -1, false, 0);
 
     private final int rank;
     private final int matchingAmount;
@@ -42,7 +41,8 @@ public enum WinningRank {
         return Collections.unmodifiableList(winningRanks);
     }
 
-    private static WinningRank fromMatchingAmountAndBonusNumber(WinningRank winningRank, int matchingAmount, boolean matchesBonusNumber) {
+    private static WinningRank fromMatchingAmountAndBonusNumber(WinningRank winningRank, int matchingAmount,
+                                                                boolean matchesBonusNumber) {
         if (matchingAmount == MATCHING_AMOUNT_WITH_BONUS) {
             if (matchesBonusNumber) {
                 return WinningRank.SECOND;
