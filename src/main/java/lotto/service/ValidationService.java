@@ -38,8 +38,8 @@ public class ValidationService {
         return amount;
     }
 
-    private void validateOverManualAmount(int amount, int enableAmount){
-        if (amount > enableAmount) {
+    private void validateOverManualAmount(int amount, int enableAmount) {
+        if (amount > enableAmount || amount < 0) {
             System.out.println(LottoErrorMessages.NOT_ENABLE_AMOUNT_START.text()
                     + enableAmount + LottoErrorMessages.NOT_ENABLE_AMOUNT_END.text());
             validateManualAmountIsInteger(enableAmount);
