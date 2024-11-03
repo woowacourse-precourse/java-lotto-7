@@ -18,12 +18,12 @@ public class IssuedRandomLottoTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 구입 금액이 10000을 초과하면 예외가 발생한다.")
+    @DisplayName("로또 구입 금액이 100000을 초과하면 예외가 발생한다.")
     @Test
     void 구입금액이_10000원을_초과하면_예외() {
         assertThatThrownBy(() -> {
             RandomNumberGenerator generator = new RandomNumberGenerator();
-            new IssuedRandomLotto(generator, 11000);
+            new IssuedRandomLotto(generator, 110000);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
