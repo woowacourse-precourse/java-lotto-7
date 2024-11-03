@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.staticenum.LottoStatic;
 import lotto.staticenum.WinningAmountEnum;
 
 import java.math.BigDecimal;
@@ -15,6 +14,10 @@ import static lotto.staticenum.LottoStatic.*;
  * 1. 5등부터 1등까지 각각 몇개인지
  * 2. 총 당첨금액은 얼마인지
  * 3. 수익률은 얼마인지
+ * README 기능
+ * 4. 번호 비교 후 당첨 기능
+ * 5. 수익률 계산 기능
+ * 6. 당첨 내역 및 수익률 출력 기능
  */
 public class LottoWinning {
 
@@ -38,11 +41,12 @@ public class LottoWinning {
         for (Lotto lotto : lottos) {
             int winningNumberCount = getWinningNumberCount(lotto); //당첨번호가 몇개인지 가져오기
             int ranking = getRanking(winningNumberCount, lotto); //해당 로또의 랭킹이 몇위인지 가져오기
-            addWinningAmount(ranking); //로또의 등수에 따라
+            addWinningAmount(ranking); //로또의 등수에 따라 당첨금 추가
         }
         showWinningDetails();
     }
 
+    //통계 출력
     private void showWinningDetails() {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -87,6 +91,7 @@ public class LottoWinning {
         }
     }
 
+     //5. 수익률 계산 기능
     public double getYield() {
         int money = lottos.size() * LOTTO_PRICE;
         double yield = (double) winningAmount / money;
