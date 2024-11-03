@@ -19,7 +19,6 @@ public class LottoController {
     private LottoWinningNumbers lottoWinningNumbers;
     private LottoWinningTierManager lottoWinningTierManager;
 
-    // 복권 구매
     public void setPurchaseLottoNumbers () {
         while (true) {
             try {
@@ -33,7 +32,6 @@ public class LottoController {
             }
         }
     }
-    // 구매한 복권 출력
     public void printPurchaseLottoNumbers () {
         outputView.printPurchasedLottoCount(purchaseLottoNumbers.size());
         for (Lotto lotto : purchaseLottoNumbers) {
@@ -41,7 +39,6 @@ public class LottoController {
         }
     }
 
-    // 당첨 번호, 보너스 번호 입력
     public void setWinningNumbers () {
         List<Integer> winningNumbers = initializeWinningNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(
