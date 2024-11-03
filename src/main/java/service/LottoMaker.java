@@ -13,8 +13,8 @@ public class LottoMaker {
     private static final List<Integer> winningNumbers = new ArrayList<>();
     private static final List<Integer> winningResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
     private static final int ONE_LOTTO_PRICE = 1000;
-    private static int purchaseAmount = 0;
-    private static int bonusNumber = 0;
+    private int purchaseAmount = 0;
+    private int bonusNumber = 0;
 
     private final LottoTransform lottoTransform = new LottoTransform(lottoNumbers, winningNumbers);
     private final LottoValidation lottoValidation = new LottoValidation(winningNumbers, winningResult);
