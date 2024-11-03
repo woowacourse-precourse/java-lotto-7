@@ -5,4 +5,5 @@ public class SystemMessage {
     public static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String NUMBER_OF_PURCHASED_LOTTOS = "%d개를 구매했습니다.";
+    public static final String TOTAL_BENEFIT_RATE = "총 수익률은 %.1f입니다.";
 }

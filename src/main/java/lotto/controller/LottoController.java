@@ -2,10 +2,13 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.service.LottoService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
@@ -120,5 +123,24 @@ public class LottoController {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    private void printResult() {
+        StringBuilder result = new StringBuilder();
+
+    }
+
+    private Map<Rank, Integer> countRanks() {
+        Map<Rank, Integer> counts = new HashMap<>();
+        for (Rank rank: Rank.values()) {
+            counts.put(rank, 0);
+        }
+
+        List<Rank> ranks = lottoService.calculateRankOfLottos();
+        for (Rank rank: ranks) {
+            counts.compute(rank, (key, value) -> value + 1);
+        }
+
+        return counts;
     }
 }
