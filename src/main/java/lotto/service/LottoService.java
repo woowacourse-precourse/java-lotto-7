@@ -11,6 +11,8 @@ import java.util.stream.IntStream;
 import lotto.model.Lotto;
 
 public class LottoService {
+    private static final String NUMBER_SEPARATOR = ",";
+
     public List<Lotto> generateLotto(String purchaseAmount) {
         int parsedPurchaseAmount = Integer.parseInt(purchaseAmount);
 
@@ -39,7 +41,7 @@ public class LottoService {
     }
 
     private List<Integer> parseWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+        return Arrays.stream(winningNumbers.split(NUMBER_SEPARATOR))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
