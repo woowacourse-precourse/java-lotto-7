@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 
@@ -15,6 +16,7 @@ public class Application {
 
         final int numOfLotto = price / 1000;
         System.out.println(numOfLotto + "개를 구매했습니다.");
+
 
         final List<List<Integer>> listOfLotto = new ArrayList<>();
 
@@ -28,8 +30,25 @@ public class Application {
             System.out.println(eachOfLotto);
         }
 
+
         System.out.println("당첨 번호를 입력해 주세요.");
 
+
+        final String inputForWinningNumbers = Console.readLine();
+
+        String[] arrayForWinningNumbers = inputForWinningNumbers.split(",");
+
+        List<String> listOfWinningNumbers = new ArrayList<>(Arrays.asList(arrayForWinningNumbers));
+
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String winningNumber : listOfWinningNumbers){
+            try {
+                winningNumbers.add(isNotNum(winningNumber));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
     }
 
