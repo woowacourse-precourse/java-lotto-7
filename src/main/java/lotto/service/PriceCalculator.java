@@ -1,13 +1,13 @@
 package lotto.service;
 
-import lotto.validation.InputValidator;
+import lotto.validation.LottoPurchaseValidator;
 
 public class PriceCalculator {
 
-    private final InputValidator inputValidator;
+    private final LottoPurchaseValidator lottoPurchaseValidator;
 
     public PriceCalculator() {
-        this.inputValidator = new InputValidator();
+        this.lottoPurchaseValidator = new LottoPurchaseValidator();
     }
 
     public void calculateLotto(String input) {
@@ -21,7 +21,7 @@ public class PriceCalculator {
     }
 
     private void validatePrice(String input){
-        inputValidator.validatePurchasePrice(input);;
+        lottoPurchaseValidator.validatePurchasePrice(input);;
     }
 
 }

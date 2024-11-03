@@ -2,7 +2,7 @@ package lotto.validation;
 
 import lotto.exception.ExceptionMessage;
 
-public class InputValidator {
+public class LottoPurchaseValidator {
 
     public void validatePurchasePrice(String input) {
         checkBlankInput(input);
