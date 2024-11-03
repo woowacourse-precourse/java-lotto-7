@@ -11,12 +11,11 @@ public enum Ranking {
     FOURTH(4, 50_000, false),
     FIFTH(3, 5_000, false);
 
-    private static final List<Ranking> rankings = List.of(FIRST, THIRD, FOURTH, FIFTH);
+    private static final List<Ranking> RANKING_WITHOUT_SECOND = List.of(FIRST, THIRD, FOURTH, FIFTH);
 
     private final int matchingCount;
     private final int prize;
     private final boolean hasBonusNumber;
-
 
     Ranking(int matchingCount, int prize, boolean hasBonusNumber) {
         this.matchingCount = matchingCount;
@@ -28,7 +27,7 @@ public enum Ranking {
         if (matchingCount == SECOND.matchingCount && hasBonusNumber) {
             return SECOND;
         }
-        return rankings.stream()
+        return RANKING_WITHOUT_SECOND.stream()
                 .filter(ranking -> ranking.matchingCount == matchingCount)
                 .findFirst()
                 .orElse(NONE);

@@ -13,7 +13,13 @@ public class LottoMachine {
 
     public static final int ZERO_QUANTITY = 0;
 
-    public PurchasedLottos issueTickets(NumberGenerator numberGenerator, int quantity) {
+    private final NumberGenerator numberGenerator;
+
+    public LottoMachine(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
+    public PurchasedLottos issueTickets(int quantity) {
         List<Lotto> purchasedLottos = IntStream.range(ZERO_QUANTITY, quantity)
                 .mapToObj(i -> new Lotto(numberGenerator.generateNumbers()))
                 .toList();
