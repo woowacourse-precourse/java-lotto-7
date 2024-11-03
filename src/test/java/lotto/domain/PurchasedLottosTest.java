@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PurchasedLottosTest {
-
 	@DisplayName("당첨번호를 받아 구매한 로또 목록과 비교하여 당첨 등수 목록을 반환한다.")
 	@MethodSource("compareWinningNumbersProvider")
 	@ParameterizedTest(name = "{0}")

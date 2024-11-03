@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoResultTest {
-
 	@DisplayName("구매 총액, 구매한 로또, 당첨 번호를 받아 당첨 결과를 생성한다.")
 	@MethodSource("lottoReportProvider")
 	@ParameterizedTest(name = "{0}")

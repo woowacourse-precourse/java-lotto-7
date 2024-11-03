@@ -14,7 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import lotto.validator.WinningNumbersValidationMessage;
 
 class WinningNumbersTest {
-
 	@DisplayName("당첨 번호와 보너스 번호를 받아 당첨번호 목록을 생성한다.")
 	@Test
 	void of() {

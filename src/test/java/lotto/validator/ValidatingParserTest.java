@@ -10,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class ValidatingParserTest {
-
 	@DisplayName("구입 금액을 숫자로 반환한다.")
 	@Test
 	void validatePurchaseAmount() {

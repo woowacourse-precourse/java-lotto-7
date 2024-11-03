@@ -9,7 +9,6 @@ import lotto.domain.Rank;
 import lotto.validator.ValidatingParser;
 
 public class IoHandler {
-
 	private final InputHandler inputHandler;
 	private final OutputHandler outputHandler;
 	private final ValidatingParser validatingParser;

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ValidatingParser {
-
 	private static final int MAX_NUMBER_LENGTH = 10;
 	private static final int MIN_POSITIVE_NUMBER = 1;
 	private static final String DELIMITER = ",";

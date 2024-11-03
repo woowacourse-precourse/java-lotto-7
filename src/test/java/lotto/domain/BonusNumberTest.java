@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import lotto.validator.WinningNumbersValidationMessage;
 
 class BonusNumberTest {
-
 	@DisplayName("번호를 받아 보너스 번호를 생성한다.")
 	@Test
 	void from() {

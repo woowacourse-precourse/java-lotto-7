@@ -7,7 +7,6 @@ import java.util.Set;
 import lotto.validator.WinningNumbersValidationMessage;
 
 public class WinningNumbers {
-
 	private static final int TOTAL_NUMBERS_COUNT = 7;
 
 	private final MainWinningNumbers mainWinningNumbers;

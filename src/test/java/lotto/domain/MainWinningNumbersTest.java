@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import lotto.validator.WinningNumbersValidationMessage;
 
 class MainWinningNumbersTest {
-
 	@DisplayName("당첨 번호를 받아 생성한다.")
 	@Test
 	void from() {
