@@ -13,7 +13,7 @@ class LottoEvaluatorTest {
     LottoEvaluator lottoEvaluator;
 
     @BeforeEach
-    void set_up(){
+    void set_up() {
         Money money = new Money(8000);
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(8, 21, 23, 41, 42, 43)),
@@ -27,7 +27,7 @@ class LottoEvaluatorTest {
         );
 
         WinningLotto winningLotto = new WinningLotto(
-                new Lotto(List.of(1,2,3,4,5,6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 new BonusNumber(7)
         );
 
@@ -36,7 +36,7 @@ class LottoEvaluatorTest {
 
     @Test
     @DisplayName("로또 결과 확인 가능 테스트")
-    void 로또_결과_확인_기능(){
+    void 로또_결과_확인_기능() {
         //when
         List<LottoRank> lottoRanks = lottoEvaluator.evaluateTicketsRank();
 
@@ -44,10 +44,10 @@ class LottoEvaluatorTest {
         assertThat(Collections.frequency(lottoRanks, LottoRank.FIFTH)).isEqualTo(1);
         assertThat(Collections.frequency(lottoRanks, LottoRank.NONE)).isEqualTo(7);
     }
-    
+
     @Test
     @DisplayName("수익률을 계산 할 수 있다.")
-    void 수익률_계산_기능(){
+    void 수익률_계산_기능() {
         Double rate = lottoEvaluator.calculateRateOfReturn(5000);
 
         assertThat(rate).isEqualTo(62.5);

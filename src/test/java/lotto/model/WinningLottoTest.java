@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
-
     @DisplayName("보너스 숫자가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void 보너수_숫자가_담청_번호와_중복_되면_예외가_발생한다() {

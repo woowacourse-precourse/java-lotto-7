@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MoneyTest {
-
     @ParameterizedTest
     @ValueSource(ints = {999, 0, -1})
     @DisplayName("로또 구입 금액이 1000원이하면 예외가 발생한다.")

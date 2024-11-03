@@ -13,7 +13,7 @@ class LottoResultTest {
     List<LottoRank> lottoRanks;
 
     @BeforeEach
-    void set_up(){
+    void set_up() {
         lottoRanks = List.of(
                 LottoRank.NONE,
                 LottoRank.NONE,
@@ -28,7 +28,7 @@ class LottoResultTest {
 
     @Test
     @DisplayName("로또 결과 취합 기능")
-    void 로또_결과_취합_기능(){
+    void 로또_결과_취합_기능() {
         //when
         LottoResult lottoResult = new LottoResult(lottoRanks);
 
@@ -39,7 +39,7 @@ class LottoResultTest {
 
     @Test
     @DisplayName("로또 총 수입 알려준다 기능")
-    void 로또_총_수입_알려준다_기능(){
+    void 로또_총_수입_알려준다_기능() {
         //when
         LottoResult lottoResult = new LottoResult(lottoRanks);
 

@@ -9,7 +9,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("1등 결과 출력 테스트")
-    void 일등_결과(){
+    void 일등_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(6, false);
 
@@ -20,7 +20,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("2등 결과 출력 테스트")
-    void 이등_결과(){
+    void 이등_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(5, true);
 
@@ -31,7 +31,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("3등 결과 출력 테스트")
-    void 삼등_결과(){
+    void 삼등_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(5, false);
 
@@ -42,7 +42,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("4등 결과 출력 테스트")
-    void 사등_결과(){
+    void 사등_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(4, false);
 
@@ -53,7 +53,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("5등 결과 출력 테스트")
-    void 오등_결과(){
+    void 오등_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(3, false);
 
@@ -64,7 +64,7 @@ class LottoRankTest {
 
     @Test
     @DisplayName("탈락 결과 출력 테스트")
-    void 탈락_결과(){
+    void 탈락_결과() {
         //given
         LottoRank lottoRank = LottoRank.valueOf(-1, true);
 

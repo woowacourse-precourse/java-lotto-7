@@ -10,9 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberTest {
-
     @ParameterizedTest
-    @ValueSource(ints = {0, -1 ,46})
+    @ValueSource(ints = {0, -1, 46})
     @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다.")
     void 보너스_번호가_범위를_벗어나면_예외가_발생한다(final Integer bonusNumber) {
         assertThatThrownBy(() -> new BonusNumber(bonusNumber))

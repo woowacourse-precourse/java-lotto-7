@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoUtilsTest {
-
     @DisplayName("입력 숫자만큼 로또 생성")
     @Test
     void 입력_숫자만큼_로또_생성() {
