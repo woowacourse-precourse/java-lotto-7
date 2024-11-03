@@ -38,4 +38,15 @@ final public class LottoStatics {
     public EnumMap<LottoPrize, Long> getPrizeCount() {
         return new EnumMap<>(this.prizeCount);
     }
+
+    public float getIncomeRate() {
+        return (float) calculateTotalIncome() / this.money.getAmount();
+    }
+
+    private long calculateTotalIncome() {
+        return prizeCount.keySet().stream()
+                .map(lottoPrize -> lottoPrize.prizeMoney * prizeCount.get(lottoPrize))
+                .reduce(Long::sum)
+                .orElse(0L);
+    }
 }
