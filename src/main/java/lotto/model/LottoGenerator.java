@@ -16,7 +16,7 @@ public class LottoGenerator {
         return createLotto(lottoNumbers);
     }
 
-    private static Lotto createLotto(List<Integer> numbers) {
+    public static Lotto createLotto(List<Integer> numbers) {
         return new Lotto(new ArrayList<>(numbers));
     }
 }

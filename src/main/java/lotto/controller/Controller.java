@@ -17,11 +17,7 @@ public class Controller {
         Lottos lottos = purchaseLottos(money);
         OutputView.printLottoNumbers(lottos);
 
-        // 당첨 번호 입력
-        System.out.println(getWinningNumbers());
-
-        // 보너스 번호 입력
-        System.out.println(getBonusNumber());
+        createWinningLotto();
     }
 
     private Lottos purchaseLottos(Money money) {
@@ -33,6 +29,13 @@ public class Controller {
         }
 
         return new Lottos(lottos);
+    }
+
+    private WinningLotto createWinningLotto() {
+        // String -> List<Integer> 변환하여 넣어줘야 함 (getWinningNumbers)
+        Lotto winningNumbers = LottoGenerator.createLotto();
+        BonusNumber bonusNumber = getBonusNumber();
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private String getWinningNumbers() {
