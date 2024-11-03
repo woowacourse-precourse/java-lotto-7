@@ -40,6 +40,19 @@ public enum Winning {
                 .orElse(Winning.NO_WIN);
     }
 
+    public String toString() {
+        if (this != Winning.NO_WIN) {
+            StringBuilder sb = new StringBuilder();
+            makeString(sb);
+            return sb.toString();
+        }
+        return "";
+    }
+
+    public void increaseCount() {
+        count += 1;
+    }
+
     public long getPrizeMoney() {
         return prizeMoney;
     }
