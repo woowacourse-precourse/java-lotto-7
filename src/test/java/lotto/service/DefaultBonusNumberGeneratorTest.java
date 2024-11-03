@@ -1,4 +1,4 @@
-package lotto.model.winningNumber;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import lotto.common.Exceptions;
 import lotto.dto.WinningNumbersDto;
+import lotto.model.winningNumber.MainNumber;
 import lotto.service.winningNumber.DefaultNumberGenerator;
 import lotto.service.winningNumber.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
