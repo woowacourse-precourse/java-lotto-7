@@ -27,17 +27,18 @@ public class LottoController {
             String price = inputView.getPurchasePrice();
             LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(price);
             lottoCount = lottoPurchaseService.getLottoCount();
-            if (!isError(lottoCount)) {
+            if (!isError(price, lottoPurchaseService.getPrice())) {
                 break;
             }
+            outputView.printErrorMessage(lottoPurchaseService.getPrice());
             outputView.printRetryGuide();
         }
         outputView.printLottoCount(lottoCount);
         return lottoCount;
     }
 
-    private static boolean isError(int lottoCount) {
-        return lottoCount < 1;
+    private static boolean isError(String price,String checkPrice) {
+        return price != checkPrice;
     }
 
     private void playLotto(int lottoCount) {

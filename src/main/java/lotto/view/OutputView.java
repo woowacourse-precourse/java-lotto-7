@@ -43,4 +43,8 @@ public class OutputView {
     public void printRetryGuide() {
         System.out.println(String.format(OutputMessage.RETRY_MESSAGE.getMessage()));
     }
+
+    public void printErrorMessage(String price) {
+        System.out.println(price);
+    }
 }
