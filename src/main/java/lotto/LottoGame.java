@@ -26,6 +26,10 @@ public class LottoGame {
         }
     }
 
+    public Map<LottoRank, Integer> getResult() {
+        return result;
+    }
+
     public double rateOfReturn(int lottoPurchase) {
 
         int total = 0;

@@ -19,6 +19,8 @@ public class LottoController {
         int bonusNumber = LottoInputView.lottoBonusNumber(winningNumbers);
         lottoGame.setLottoGame(new Lotto(winningNumbers), bonusNumber);
         lottoGame.calculateLotto(makePurchasedLottos);
+
+        LottoOutputView.printResult(lottoGame.getResult());
     }
 
     public int count (int lottoPurchase) {
