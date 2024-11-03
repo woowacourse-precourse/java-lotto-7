@@ -53,4 +53,12 @@ public class WinnerLotto {
 
         this.bonusNumber = bonusNumber;
     }
+
+    public List<Integer> getNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
