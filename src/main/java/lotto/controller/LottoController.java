@@ -27,38 +27,38 @@ public class LottoController {
     }
 
     public void run() {
-        LottoTickets lottoTickets = purchaseLotto();
-        LottoWinningSet winningSet = createWinningSetFromUserInput();
-        evaluateAndDisplayResults(winningSet, lottoTickets);
+        LottoTickets lottoTickets = purchaseAndShowLottoTickets();
+        LottoWinningSet winningSet = getWinningSetFromUserInput();
+        evaluateAndShowResults(winningSet, lottoTickets);
     }
 
-    private LottoTickets purchaseLotto() {
-        LottoTickets lottoTickets = InputUtil.retryIfError(this::purchaseLottoTicketsByUserRequest);
-        displayLotto(lottoTickets);
+    private LottoTickets purchaseAndShowLottoTickets() {
+        LottoTickets lottoTickets = InputUtil.retryIfError(this::getLottoTicketsFromUserInput);
+        showPurchasedTickets(lottoTickets);
         return lottoTickets;
     }
 
-    private LottoTickets purchaseLottoTicketsByUserRequest() {
-        int purchaseAmount = readPurchaseAmount();
-        return purchaseLottoTickets(purchaseAmount);
+    private LottoTickets getLottoTicketsFromUserInput() {
+        int purchaseAmount = getPurchaseAmountFromUser();
+        return generateLottoTickets(purchaseAmount);
     }
 
-    private int readPurchaseAmount() {
+    private int getPurchaseAmountFromUser() {
         String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
         return InputParser.validateAndParsePurchaseAmount(rawInputPurchaseAmount);
     }
 
-    private LottoTickets purchaseLottoTickets(int purchaseAmount) {
+    private LottoTickets generateLottoTickets(int purchaseAmount) {
         TicketSeller ticketSeller = lottoShop.findTicketSeller();
         return ticketSeller.exchangeMoneyForTickets(purchaseAmount);
     }
 
-    private void displayLotto(LottoTickets lottoTickets) {
+    private void showPurchasedTickets(LottoTickets lottoTickets) {
         outputView.printPurchasedQuantity(lottoTickets.getCount());
         outputView.printLottoTickets(lottoTickets.getAllNumbers());
     }
 
-    private LottoWinningSet createWinningSetFromUserInput() {
+    private LottoWinningSet getWinningSetFromUserInput() {
         WinningNumbers winningNumbers = InputUtil.retryIfError(this::readWinningNumbers);
         return InputUtil.retryIfError(() -> {
             BonusNumber bonusNumber = readBonusNumber();
@@ -78,9 +78,9 @@ public class LottoController {
         return new BonusNumber(bonusNumber);
     }
 
-    private void evaluateAndDisplayResults(LottoWinningSet winningSet, LottoTickets lottoTickets) {
+    private void evaluateAndShowResults(LottoWinningSet winningSet, LottoTickets lottoTickets) {
         WinningResult winningResult = evaluateLotto(winningSet, lottoTickets);
-        displayResult(winningResult);
+        showWinningResult(winningResult);
     }
 
     private WinningResult evaluateLotto(LottoWinningSet winningSet, LottoTickets lottoTickets) {
@@ -88,7 +88,7 @@ public class LottoController {
         return lottoResultEvaluator.evaluate(lottoTickets);
     }
 
-    private void displayResult(WinningResult winningResult) {
+    private void showWinningResult(WinningResult winningResult) {
         outputView.printWinningResult(winningResult);
     }
 }
