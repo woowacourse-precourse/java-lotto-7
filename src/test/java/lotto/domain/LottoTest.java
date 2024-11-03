@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import lotto.domain.Lotto;
 import lotto.validator.LottoValidationMessage;
 
 class LottoTest {
@@ -76,6 +76,34 @@ class LottoTest {
 			.hasMessage(LottoValidationMessage.INVALID_LOTTO_NUMBERS_DUPLICATION.getMessage());
 	}
 
+	@DisplayName("당첨 번호를 받아 일치하는 카운트를 반환한다.")
+	@MethodSource("winningNumbersProvider")
+	@ParameterizedTest
+	void getMatchCount(List<Integer> inputWinningNumbers, int expectCount) {
+		//given
+		Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+		//when
+		int result = lotto.getMatchCount(inputWinningNumbers);
+
+		//then
+		assertThat(result).isEqualTo(expectCount);
+	}
+
+	@DisplayName("보너스 번호를 받아 true / false를 반환한다.")
+	@MethodSource("bonusNumberProvider")
+	@ParameterizedTest
+	void getMatchBonus(int inputBonusNumber, boolean expect) {
+		//given
+		Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+		//when
+		boolean result = lotto.getMatchBonus(inputBonusNumber);
+
+		//then
+		assertThat(result).isEqualTo(expect);
+	}
+
 	static Stream<List<Integer>> invalidSizeProvider() {
 		return Stream.of(
 			List.of(1, 2, 3, 4, 5),
@@ -96,6 +124,22 @@ class LottoTest {
 			List.of(1, 1, 1, 1, 1, 1),
 			List.of(1, 2, 3, 4, 4, 5),
 			List.of(1, 1, 2, 3, 4, 3)
+		);
+	}
+
+	static Stream<Arguments> winningNumbersProvider() {
+		return Stream.of(
+			Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+			Arguments.of(List.of(2, 3, 4, 5, 6, 7), 5),
+			Arguments.of(List.of(1, 11, 12, 13, 4, 5), 3)
+		);
+	}
+
+	static Stream<Arguments> bonusNumberProvider() {
+		return Stream.of(
+			Arguments.of(1, true),
+			Arguments.of(7, false),
+			Arguments.of(13, false)
 		);
 	}
 }
