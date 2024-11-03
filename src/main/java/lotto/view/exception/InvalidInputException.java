@@ -8,8 +8,7 @@ public final class InvalidInputException extends IllegalArgumentException implem
         super(message);
     }
 
-    public static IllegalArgumentException invalidNumber(String... details) {
-        String message = CustomException.appendDetails("올바른 숫자를 입력해 주세요.", details);
-        return new InvalidInputException(message);
+    public static IllegalArgumentException invalidNumber() {
+        return new InvalidInputException("올바른 숫자를 입력해 주세요.");
     }
 }
