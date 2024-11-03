@@ -32,4 +32,8 @@ public class OutputView {
         });
         System.out.printf(TOTAL_PROFIT_RATE, totalRate);
     }
+
+    public static void printErrorMessage(Exception e){
+        System.out.println(e.getMessage());
+    }
 }
