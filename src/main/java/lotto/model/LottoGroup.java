@@ -34,6 +34,16 @@ public class LottoGroup {
         return generatedLottoGroup;
     }
 
+    private static boolean needsMoreLottos(long numLotto, List<Lotto> generatedLottoGroup) {
+        return generatedLottoGroup.size() < numLotto;
+    }
+
+    private static Lotto generateLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        Collections.sort(lottoNumbers);
+        return new Lotto(lottoNumbers);
+    }
+
     private static void addIfNotDuplicated(Set<Integer> lottoIds, Lotto newLotto, List<Lotto> generatedLottoGroup) {
         if (isNotDuplicateId(lottoIds, newLotto)) {
             generatedLottoGroup.add(newLotto);
@@ -43,15 +53,5 @@ public class LottoGroup {
 
     private static boolean isNotDuplicateId(Set<Integer> lottoIds, Lotto newLotto) {
         return !lottoIds.contains(newLotto.getId());
-    }
-
-    private static boolean needsMoreLottos(long numLotto, List<Lotto> generatedLottoGroup) {
-        return generatedLottoGroup.size() < numLotto;
-    }
-
-    private static Lotto generateLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
-        Collections.sort(lottoNumbers);
-        return new Lotto(lottoNumbers);
     }
 }
