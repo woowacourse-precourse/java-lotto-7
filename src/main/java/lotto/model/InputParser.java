@@ -8,6 +8,8 @@ import lotto.util.InputValidator;
 import lotto.util.message.ErrorMessage;
 
 public class InputParser {
+    private static final String SPLIT_DELIMITER = ",";
+    private static final int DIVIDE_NUMBER = 1000;
     public int parsePurchaseAmount(String input) {
         try {
             InputValidator.validateNonEmpty(input);
@@ -25,7 +27,7 @@ public class InputParser {
     public Lotto parseWinningNumbers(String input) {
         InputValidator.validateNoSpaces(input);
 
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(SPLIT_DELIMITER))
             .map(this::parseNumber)
             .collect(Collectors.toList());
 
@@ -39,7 +41,7 @@ public class InputParser {
     }
 
     private int divideByThousand(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / DIVIDE_NUMBER;
     }
 
     private int parseNumber(String input) {

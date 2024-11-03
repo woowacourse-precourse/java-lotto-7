@@ -8,6 +8,10 @@ import lotto.domain.RankResult;
 import lotto.domain.RankType;
 
 public class StatisticsCalculator {
+    private static final String FORMAT_DECIMAL = "%.1f";
+    private static final int MULTIPLE_NUMBER = 1000;
+    private static final int PERCENT = 100;
+    private static final int MINIMUM_MATCH_COUNT = 3;
     private final Map<RankType, RankResult> statistics;
 
     public StatisticsCalculator() {
@@ -28,7 +32,8 @@ public class StatisticsCalculator {
 
     public String calculateEarningRate(int purchaseAmount) {
         int totalPrize = calculateTotalPrize();
-        return String.format("%.1f", ((float) totalPrize / (purchaseAmount * 1000)) * 100);
+        return String.format(FORMAT_DECIMAL,
+            ((float) totalPrize / (purchaseAmount * MULTIPLE_NUMBER)) * PERCENT);
     }
 
     public int calculateTotalPrize() {
@@ -44,7 +49,7 @@ public class StatisticsCalculator {
     }
 
     private void incrementRankResult(int matchCount, boolean bonusMatched) {
-        if(matchCount >= 3) {
+        if(matchCount >= MINIMUM_MATCH_COUNT) {
             RankType rank = RankType.getRank(matchCount, bonusMatched);
             statistics.get(rank).increment();
         }
