@@ -11,9 +11,9 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(String bonusNumberInput, WinningNumbers winningNumbers) {
+    public BonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
         this.bonusNumber = parseBonusNumber(bonusNumberInput);
-        validateBonusNumber(this.bonusNumber, winningNumbers.get());
+        validateBonusNumber(this.bonusNumber, winningNumbers);
     }
 
     private int parseBonusNumber(String bonusNumberInput) {
