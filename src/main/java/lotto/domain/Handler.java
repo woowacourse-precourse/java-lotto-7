@@ -66,14 +66,16 @@ public class Handler {
   public String compareNumbersResult(List<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
     String result = "";
     int equals = 0;
-    for (int i = 0; i < actualLotto.size(); i++) {
-      if (actualLotto.get(i).contains(winningNumbers.get(i))){
-        equals += 1;
-      }
-      if (actualLotto.get(i).contains(bonus){
-        bonus = 0;
+    boolean containsBonus = false;
+    // 실제 로또값에 당첨번호가 포함된 경우 일치수 증가
+    for (Integer winning : winningNumbers) {
+      if (actualLotto.contains(winning)) {
+        equals++;
       }
     }
+    // 실제 로또값에 보너스번호가 포함된 경우
+    boolean hasBonus = actualLotto.contains(bonus);
+
     // 6개 일치
     if(equals == 6) {
 
@@ -82,7 +84,7 @@ public class Handler {
       result = FIRST.getMessage();
     }
     // 5개 일치, 보너스 볼 일치
-    if(equals == 5 && bonus == 0) {
+    if(equals == 5 && containsBonus) {
       result = SECOND.getMessage();
     }
     // 5개 일치
