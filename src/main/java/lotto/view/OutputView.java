@@ -44,9 +44,6 @@ public class OutputView {
         System.out.print(NotificationMessage.PROFIT_RATE.format(profitRate));
     }
 
-
-
-
     private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
         return (double) totalPrize / purchaseAmount * 100;
     }
