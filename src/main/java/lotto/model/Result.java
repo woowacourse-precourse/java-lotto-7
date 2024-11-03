@@ -37,4 +37,10 @@ public class Result {
 
         return resultView.toString();
     }
+
+    public long calculatePrize() {
+        return result.entrySet().stream()
+                .mapToLong(e -> (long) e.getValue() * e.getKey().getPrizeAmount())
+                .sum();
+    }
 }

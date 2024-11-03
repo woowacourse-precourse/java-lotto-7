@@ -10,6 +10,11 @@ public record Money (int amount) {
         return amount / 1000;
     }
 
+    public long calculatePrizeRate(Result result) {
+        long prize = result.calculatePrize();
+        return prize;
+    }
+
     private void validate(int input) {
         validateIsDivisible(input);
         validateBelowMinimum(input);
