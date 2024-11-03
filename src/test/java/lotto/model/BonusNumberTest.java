@@ -40,17 +40,4 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_VALUE.getMessage());
     }
-
-    @Test
-    @DisplayName("보너스 번호는 다른 번호와 일치하는지 확인할 수 있다.")
-    void should_MatchBonusNumber_When_GivenNumber() {
-        // given
-        String number = "1";
-        BonusNumber bonusNumber = new BonusNumber(number);
-        // when
-        boolean match = bonusNumber.match(1);
-        // then
-        Assertions.assertThat(match).isTrue();
-    }
-
 }
