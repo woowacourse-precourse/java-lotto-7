@@ -33,8 +33,8 @@ public class Application {
             int bonusNumber = getBonusNumber();
             Map<Rank, Integer> rankCount = lottoRankcalculation(lottoNumbers, winningNumbers, bonusNumber);
             statisticsOutput(rankCount, calculateProfit(rankCount, buyAmount));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
         }
     }
 
