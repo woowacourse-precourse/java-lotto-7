@@ -29,7 +29,7 @@ public class LottoResult {
         return lottoResult;
     }
 
-    private int matchNumber(Lotto lotto, List<Integer> winningNumbers) {
+    public int matchNumber(Lotto lotto, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (Integer winningNumber : winningNumbers) {
             if (isMatch(winningNumber, lotto)) matchCount++;
@@ -38,7 +38,7 @@ public class LottoResult {
         return matchCount;
     }
 
-    private boolean isMatch(int winningNumber, Lotto lotto) {
+    public boolean isMatch(int winningNumber, Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         for (Integer number : numbers) {
             if (number == winningNumber) return true;
@@ -47,7 +47,7 @@ public class LottoResult {
         return false;
     }
 
-    private boolean matchBonusNumber(Lotto lotto, int bonusNumber) {
+    public boolean matchBonusNumber(Lotto lotto, int bonusNumber) {
         for (Integer number : lotto.getNumbers()) {
             if (number == bonusNumber) {
                 return true;
@@ -69,5 +69,9 @@ public class LottoResult {
     public double getProfitRate(int purchase) {
         double result = ((double) totalPrice / purchase) * 100;
         return Math.round(result * 10) / 10.0;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
     }
 }
