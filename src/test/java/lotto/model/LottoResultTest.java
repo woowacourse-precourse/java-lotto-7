@@ -24,6 +24,17 @@ public class LottoResultTest {
     }
 
     @Test
+    @DisplayName("lottoResult getRankResult 테스트")
+    public void lottoResultCreateTest() {
+        Map<LottoRank, Integer> rankResults = lottoResult.getRankResults();
+
+        for (LottoRank rank : LottoRank.values()) {
+            assertThat(rankResults).containsKey(rank);
+            assertThat(rankResults.get(rank)).isEqualTo(0);
+        }
+    }
+
+    @Test
     @DisplayName("5등 당첨 테스트")
     public void winningLottoCompareTest_5th() {
         LottoTicket lottoTicket = new LottoTicket(List.of(
