@@ -17,19 +17,8 @@ public class Application {
         }
 
         int account = Integer.parseInt(inputAccount);
-        if (account < 1_000 || account > 100_000) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 최소 1000원부터 최대 10만원입니다.");
-        }
-
-        if (account % 1_000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력하세요.");
-        }
-
-        int lottoCount = account / 1_000;
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
+        int lottoCount = LottoGenerator.howManyLottos(account);
+        List<Lotto> lottos = LottoGenerator.getLottos(lottoCount);
 
         System.out.println(lottoCount + "개 구매했습니다.");
         for (Lotto lotto : lottos) {
