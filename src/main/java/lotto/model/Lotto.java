@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbers(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6 || hasDuplicates(numbers) || !isValidRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 1~45 사이의 6개 숫자여야 합니다.");
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -30,6 +30,12 @@ public class Lotto {
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
     }
 
     public boolean hasBonusNumber(int bonusNumber) {
