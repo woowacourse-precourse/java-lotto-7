@@ -16,19 +16,20 @@ public class LottoController {
         while (isRunning) {
             try {
                 int purchaseAmount = inputPurchaseAmount();
+                System.out.println();
+
                 LottoService lottoService = new LottoService();
                 lottoService.purchaseLottos(purchaseAmount);
-                System.out.println();
                 OutputView.printPurchasedLottos(lottoService.getPurchasedLottos());
-
                 System.out.println();
+
                 WinningNumbers winningNumbers = inputWinningNumbers();
+                System.out.println();
 
                 Map<LottoRank, Integer> results = lottoService.calculateResults(winningNumbers);
                 int totalPrize = lottoService.calculateTotalPrize(results);
                 double yield = lottoService.calculateYield(purchaseAmount, totalPrize);
 
-                System.out.println();
                 OutputView.printResults(results, yield);
                 isRunning = false;
             } catch (IllegalArgumentException e) {
@@ -49,6 +50,8 @@ public class LottoController {
 
     private WinningNumbers inputWinningNumbers() {
         List<Integer> winningNumbers = inputWinningNumberList();
+        System.out.println();
+
         int bonusNumber = inputBonusNumber(winningNumbers);
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
