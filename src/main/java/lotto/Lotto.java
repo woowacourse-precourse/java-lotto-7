@@ -1,6 +1,10 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import camp.nextstep.edu.missionutils.Console;
 
 import static java.lang.Integer.parseInt;
@@ -22,8 +26,9 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 숫자여야 합니다.");
             }
         }
-        for(int i=1;i<numbers.size()-1;i++){
-            if(numbers.get(i)==numbers.get(i+1)){
+        Collections.sort(numbers); // 리스트 정렬
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i).equals(numbers.get(i + 1))) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 불가능합니다.");
             }
         }
@@ -72,8 +77,11 @@ public class Lotto {
             System.out.println("보너스번호는 1~45의 정수 입니다.");
         }
 
-        //당첨확인, 수익률계산 메소드
+        //당첨확인 메소드
         LottoChecker lottoChecker = new LottoChecker();
+        lottoChecker.lottoChecker(randomTickets);
+
+//        수익률계산 메소드
         ProfitCalc profit = new ProfitCalc();
         float profit_ = profit.profitCalc(price);
 
