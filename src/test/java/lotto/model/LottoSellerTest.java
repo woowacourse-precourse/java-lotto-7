@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.model.Lotto.getLottoPrice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,7 +25,7 @@ class LottoSellerTest {
     void 로또_구입_금액은_1000원_단위이다() {
         long money = 10000;
         List<Lotto> lottos = lottoSeller.sell(MoneyDTO.from(money));
-        assertThat(lottos.size()).isEqualTo(money / 1000);
+        assertThat(lottos.size()).isEqualTo(money / getLottoPrice());
     }
 
     @ParameterizedTest
