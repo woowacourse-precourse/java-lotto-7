@@ -13,10 +13,10 @@ public class LottoResultDto {
     }
 
     public Map<Rank, Integer> getRankCounts() {
-        return rankCounts; // 랭크 카운트를 반환
+        return rankCounts;
     }
 
     public double getProfitRate() {
-        return profitRate; // 수익률 반환
+        return profitRate;
     }
 }
