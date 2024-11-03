@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.global.validator.InputValidator;
 
 public class InputView {
 
@@ -10,7 +11,9 @@ public class InputView {
 
     public int readPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
-        return Integer.parseInt(Console.readLine());
+        String purchaseAmount = Console.readLine();
+        InputValidator.validate(purchaseAmount);
+        return Integer.parseInt(purchaseAmount);
     }
 
     public String readWinningNumbers() {
@@ -20,6 +23,8 @@ public class InputView {
 
     public int readBonusNumber() {
         System.out.println(ASK_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        String bonusNumber = Console.readLine();
+        InputValidator.validate(bonusNumber);
+        return Integer.parseInt(bonusNumber);
     }
 }
