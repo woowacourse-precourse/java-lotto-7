@@ -1,10 +1,15 @@
 package lotto;
 
+import java.util.stream.Stream;
+import lotto.constant.PrizeTier;
 import lotto.utils.NumberList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -57,5 +62,29 @@ class LottoTest {
 
         assertThat(lotto.getNumbers().size()).as("Internal numbers is not cleared").isEqualTo(numberList.size());
 
+    }
+
+    @DisplayName("Lotto should return matched Prize tier")
+    @ParameterizedTest()
+    @MethodSource("verifyLottoPrizeTier")
+    void verifyLottoGetPrizeTier(List<Integer> userLottoNumbers, List<Integer> winLottoNumbers, int bonusNumber, PrizeTier result ){
+        Lotto userLotto = new Lotto(userLottoNumbers);
+        Lotto winLotto = new Lotto(winLottoNumbers);
+
+        assertThat(userLotto.checkPrizeTier(winLotto,bonusNumber)).isEqualTo(result);
+    }
+
+    static Stream<Arguments> verifyLottoPrizeTier(){
+        return Stream.of(
+                Arguments.arguments(List.of(1,2,3,4,5,6),List.of(1,2,3,4,5,6), 7 ,PrizeTier.FIRST),
+                Arguments.arguments(List.of(1,2,3,4,5,7),List.of(1,2,3,4,5,6), 7 ,PrizeTier.SECOND),
+                Arguments.arguments(List.of(1,2,3,4,5,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.THIRD),
+                Arguments.arguments(List.of(1,2,3,4,44,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.FORTH),
+                Arguments.arguments(List.of(1,2,3,4,7,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.FORTH),
+                Arguments.arguments(List.of(1,2,3,43,44,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.FIFTH),
+                Arguments.arguments(List.of(1,2,3,7,44,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.FIFTH),
+                Arguments.arguments(List.of(1,2,42,43,44,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.NONE),
+                Arguments.arguments(List.of(1,2,7,43,44,45),List.of(1,2,3,4,5,6), 7 ,PrizeTier.NONE)
+        );
     }
 }
