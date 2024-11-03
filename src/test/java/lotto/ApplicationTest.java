@@ -70,6 +70,87 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    //당첨 번호 및 보너스 번호 예외 테스트
+    @Test
+    void 당첨번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,6,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_길이_긴_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_길이_짧은_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_보너스번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_보너스번호_문자_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,a", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_보너스번호_문자_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_숫자범위초과_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_숫자범위초과_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,50");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_숫자범위초과_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "-3");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_숫자범위초과_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "50");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
