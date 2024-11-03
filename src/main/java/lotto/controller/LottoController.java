@@ -4,14 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.LottoSystemConstant.*;
-import static lotto.constant.SystemMessage.NUMBER_OF_PURCHASED_LOTTOS;
-import static lotto.constant.SystemMessage.PURCHASE_AMOUNT_INPUT;
+import static lotto.constant.SystemMessage.*;
 
 public class LottoController {
+    private static final String DELIMITER = ",";
     private final LottoService lottoService = new LottoService();
 
     public LottoController() {}
@@ -22,6 +23,8 @@ public class LottoController {
 
         List<Lotto> purchasedLottos = lottoService.getPurchasedLottos();
         printPurchasedLottos(purchasedLottos);
+
+        inputWinningNumbers();
     }
 
     private int inputPurchaseAmount() {
@@ -30,17 +33,17 @@ public class LottoController {
         while (true) {
             try {
                 String input = Console.readLine();
-                int amount = inputTypeConverse(input);
+                int amount = convertToNumber(input);
                 validateNonNegativeAmount(amount);
                 validateNoChangeAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }
 
-    private int inputTypeConverse(String input) {
+    private int convertToNumber(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -72,6 +75,35 @@ public class LottoController {
             message.append('\n');
         }
 
+        message.append('\n');
         System.out.println(message);
+    }
+
+    private void inputWinningNumbers() {
+        System.out.println(WINNING_NUMBER_INPUT);
+
+        while (true) {
+            try {
+                String input = Console.readLine();
+                List<Integer> winningNumbers = parseNumbers(input);
+                Lotto winningLotto = new Lotto(winningNumbers);
+                lottoService.setWinningLotto(winningLotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> parseNumbers(String input) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] splitNumbers = input.split(DELIMITER);
+
+        for (String splitNumber: splitNumbers) {
+            int converted = convertToNumber(splitNumber);
+            numbers.add(converted);
+        }
+
+        return numbers;
     }
 }

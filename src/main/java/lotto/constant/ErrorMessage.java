@@ -12,7 +12,7 @@ public class ErrorMessage {
     public static final String DUPLICATE_BONUS_NUMBER_INPUT = "%s 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."
             .formatted(PREFIX_ERROR_MESSAGE);
 
-    public static final String INVALID_NUMBER_INPUT = "%s 올바른 형태의 로또 번호가 아닙니다."
+    public static final String INVALID_NUMBER_INPUT = "%s 올바른 형태의 숫자가 아닙니다."
             .formatted(PREFIX_ERROR_MESSAGE);
 
     public static final String NEGATIVE_PURCHASE_AMOUNT = "%s 로또 구입 금액은 음수가 될 수 없습니다."
