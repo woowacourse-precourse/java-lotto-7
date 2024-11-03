@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.util.LottoValidate;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -18,7 +17,6 @@ public class Lotto {
     }
 
     public List<Integer> numbers() {
-        Collections.sort(numbers);
         return numbers;
     }
 
