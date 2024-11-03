@@ -29,12 +29,14 @@ public class InputHandler {
     private static int fetchAndValidatePaidAmount() {
         String rawPaidAmount = InputView.getPaidAmount();
         InputValidator.validatePaidAmount(rawPaidAmount);
+
         return Integer.parseInt(rawPaidAmount);
     }
 
     private static List<Integer> fetchAndValidateWinningNumbers() {
         String rawWinningNumbers = InputView.getWinningNumbers();
         InputValidator.validateWinningNumbers(rawWinningNumbers);
+
         return Arrays.stream(rawWinningNumbers.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
@@ -43,6 +45,7 @@ public class InputHandler {
     private static int fetchAndValidateBonusNumber() {
         String rawBonusNumber = InputView.getBonusNumber();
         InputValidator.validateBonusNumber(rawBonusNumber);
+
         return Integer.parseInt(rawBonusNumber);
     }
 

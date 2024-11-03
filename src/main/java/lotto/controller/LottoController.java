@@ -34,6 +34,7 @@ public class LottoController {
 
     private Customer sellLottoToNewCustomer() {
         int paidAmount = InputHandler.getPaidAmount();
+
         return lottoSalesService.sellLottoToNewCustomer(paidAmount);
     }
 
