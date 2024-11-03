@@ -14,6 +14,21 @@ public class WinningService {
         getWinningInput();
     }
 
+    public void getBonusInput() {
+        int bonusNumber = 0;
+
+        while (true) {
+            WinningView.requestBonusInput();
+            String bonusNumberString = Console.readLine();
+
+            if (!WinningValidate.runValidBonusString(bonusNumberString)) {
+                continue;
+            }
+
+            break;
+        }
+    }
+
     public void getWinningInput() {
         String winningString = null;
 
@@ -21,7 +36,7 @@ public class WinningService {
             WinningView.requestWinningInput();
             winningString = Console.readLine();
 
-            if (!WinningValidate.runValidString(winningString)) {
+            if (!WinningValidate.runValidWinningString(winningString)) {
                 continue;
             }
 

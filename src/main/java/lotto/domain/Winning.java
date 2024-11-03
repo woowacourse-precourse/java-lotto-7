@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class Winning {
     private HashSet<Integer> winningNumbers;
-    private final int bonusNumber;
+    private int bonusNumber;
 
     public Winning() {
         this.winningNumbers = new HashSet<>();
@@ -18,5 +18,9 @@ public class Winning {
 
     public HashSet<Integer> setHashSet(HashSet<Integer> winningNumberSet) {
         return this.winningNumbers = winningNumberSet;
+    }
+
+    public int setBonusNumber(int bonusNumber) {
+        return this.bonusNumber = bonusNumber;
     }
 }
