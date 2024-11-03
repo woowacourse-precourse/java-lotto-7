@@ -57,19 +57,25 @@ InputValidator 클래스
 - 보너스 번호 입력 값 검증
 
 Lotto 클래스 
-
-- ~로또 번호를 생성~
-- 로또가 제대로 생성됐는지 검증
-
- ~로또 번호를 생성하고, 생성 오류를 검증하는 로직은 같이 있으면 좋을 것 같다~
-
-→ 로또를 생성해왔더니 검증해보니 안된다 해서 다시 생성해서 검증하러 오는 건 이상함..
-
+- 로또가 제대로 생성됐는지 검증하는 역할
 ---> 근데 이미 코드 상에서 로또 번호를 생성 해온 상태로 Lotto 클래스로 와야 된다..
+<br>
+LottoMarket 클래스
+<br>
+- 사는 사람(입력 역할)이 금액을 입력하면 로또 가격에 맞게 List<Lotto>를 리턴하는 역할
+- 리턴하는 List<Lotto>는 LottoFactory에서 생성된 List<Lotto> 객체
+<br>
 
-Lottos 클래스 
+LottoFactory 클래스
+- List<Integer>로 넘버들이 오면 이걸 Lotto 객체로 만드는 역할
 
-- 로또들, 보너스 번호를 갖고 등수 판별
+LottoNumberGenerator 클래스 
+- LottoNumber를 랜덤으로 pick 하는 역할
+
+Lotto 통계 계산 클래스
+- List<Lotto>들의 등수를 계산하고, 수익률을 계산하는 역할
+ 
+
 
 주의할 점 
 
