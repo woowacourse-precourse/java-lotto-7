@@ -9,11 +9,9 @@ public class DrawNumbers {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public DrawNumbers(String winningNumbers, String bonusNumber) {
-        DrawNumbersValidator drawNumbersValidator = new DrawNumbersValidator();
-        this.winningNumbers = drawNumbersValidator.validateWinningNumbers(winningNumbers);
-        this.bonusNumber = drawNumbersValidator.validateBonusNumber(bonusNumber);
-        drawNumbersValidator.validateAssociateWinningAndBonusNumbers(this.winningNumbers, this.bonusNumber);
+    public DrawNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public int countMatch(List<Integer> numbers) {
