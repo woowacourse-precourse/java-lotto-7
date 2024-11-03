@@ -11,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream().sorted().toList();
+        this.numbers = numbers;
     }
 
     public static Lotto dtoOf(LottoDto dto) {
@@ -41,7 +41,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return this.numbers.stream().sorted().toList();
     }
 
     public int getMatchCount(Lotto other) {
