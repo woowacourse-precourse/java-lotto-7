@@ -34,5 +34,6 @@ public class LottoView {
         System.out.println(LottoRank.THIRD.getMatchCount() + "개 일치 (" + LottoRank.THIRD.getPrize() + "원) - " + resultCnt[2] + "개");
         System.out.println(LottoRank.SECOND.getMatchCount() + "개 일치 (" + LottoRank.SECOND.getPrize() + "원) - " + resultCnt[1] + "개");
         System.out.println(LottoRank.FIRST.getMatchCount() + "개 일치 (" + LottoRank.FIRST.getPrize() + "원) - " + resultCnt[0] + "개");
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
