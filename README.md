@@ -74,3 +74,9 @@
     - view는 사용자의 입력을 받아 controller에게 전달하고, controller로부터 결과를 받아 출력한다.
         - 대체 가능성이 많으므로 최대한 단순하게 구성한다.
     - main에서 구체 클래스를 생성해 controller에 전달하고, controller의 메소드를 호출하여 프로그램을 실행한다.
+
+## 테스트
+
+![coverage.png](coverage.png)
+
+- 인터페이스 기반 설계를 통해 구현체를 Mocking하여 테스트할 수 있도록 하였다.
