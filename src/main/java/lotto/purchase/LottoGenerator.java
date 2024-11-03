@@ -16,13 +16,14 @@ public class LottoGenerator {
     public List<MyLotto> createLotteries(int totalLotteryCount) {
         for (int i = 0; i < totalLotteryCount; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            manufactureRawNumbers(randomNumbers);
-            lotteries.add(new MyLotto(randomNumbers));
+            lotteries.add(new MyLotto(manufactureRawNumbers(randomNumbers)));
         }
         return lotteries;
     }
 
-    public void manufactureRawNumbers(List<Integer> rawNumbers) {
-        Collections.sort(rawNumbers);
+    public List<Integer> manufactureRawNumbers(List<Integer> rawNumbers) {
+        List<Integer> lottoNumbers = new ArrayList<>(rawNumbers);
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 }
