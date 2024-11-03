@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserNumbers {
-    private List<UserNumber> UserNumbers;
+    private List<UserNumber> userNumbers;
     private int purchaseCount;
 
     public UserNumbers(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
+        initField(purchaseAmount);
         makeUserNumbers();
     }
 
     private void initField(int purchaseAmount) {
         purchaseCount = purchaseAmount / 1000;
-        UserNumbers = new ArrayList<>();
+        userNumbers = new ArrayList<>();
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
@@ -33,7 +34,11 @@ public class UserNumbers {
     }
 
     public List<UserNumber> getUserNumbers() {
-        return UserNumbers;
+        return userNumbers;
+    }
+
+    public int getPurchaseCount() {
+        return purchaseCount;
     }
 
 }
