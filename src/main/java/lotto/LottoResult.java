@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
@@ -25,5 +27,11 @@ public class LottoResult {
         for (Rank rank : Rank.values()) {
             rankCounts.put(rank, INITIALIZE_RANK_COUNT);
         }
+    }
+
+    private int countMatches(final Lotto purchasedLotto, final Lotto userLotto) {
+        return (int) purchasedLotto.getNumbers().stream()
+                .filter(userLotto.getNumbers()::contains)
+                .count();
     }
 }
