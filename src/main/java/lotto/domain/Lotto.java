@@ -1,23 +1,17 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.util.ErrorMessage;
+import lotto.util.LottoGenerator;
 import lotto.util.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    public Lotto(String[] rawNumbers) {
-        List<Integer> numbers = convertToIntegerList(rawNumbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -35,7 +29,7 @@ public class Lotto {
     }
 
     private void validateLottoNumberSizeIn(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoGenerator.LOTTO_NUM_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
         }
     }
@@ -47,18 +41,9 @@ public class Lotto {
         }
     }
 
-    private List<Integer> convertToIntegerList(String[] numbers) {
-        try {
-            return Arrays.stream(numbers)
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_NOT_NUMBER.getMsg());
-        }
-    }
-
     public List<Integer> numbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public boolean contains(int num) { return numbers.contains(num); }
 }

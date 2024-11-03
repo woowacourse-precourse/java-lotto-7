@@ -27,13 +27,11 @@ public class LottoResult {
     }
 
     public double calculateProfit(int money) {
-        double sum = 0;
-        for (Rank rank : result.keySet()) {
-            sum += (rank.getPrize() * result.get(rank));
-        }
+        long sum = result.keySet().stream()
+                .mapToLong(rank -> rank.getPrize() * result.get(rank))
+                .sum();
 
-        sum = (sum / money) * 100.0;
-        return sum;
+        return ((double) sum / money) * 100.0;
     }
 
     public int countOf(Rank rank) {
