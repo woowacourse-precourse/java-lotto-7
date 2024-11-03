@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
 
-    @DisplayName("로또_머신은_주어진_수량만큼_로또를_발행할_수_있다")
+    @DisplayName("로또_머신은_구입금액에_해당하는_수량만큼_로또를_발행할_수_있다")
     @Test
-    public void issueLottoes() {
+    public void purchaseLottoes() {
         //given
-        int totalLottoCount = 4;
+        PurchaseAmount purchaseAmount = PurchaseAmount.of(4000);
 
         //when
-        List<Lotto> result = LottoMachine.issueLottoes(totalLottoCount);
+        List<Lotto> result = LottoMachine.purchaseLottoes(purchaseAmount);
 
         //then
-        assertThat(result.size()).isEqualTo(totalLottoCount);
+        assertThat(result.size()).isEqualTo(4);
     }
 }
