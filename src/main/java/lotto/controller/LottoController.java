@@ -4,6 +4,7 @@ import lotto.dto.LottoResultDto;
 import lotto.dto.LottoTicketsDto;
 import lotto.model.*;
 import lotto.service.LottoService;
+import lotto.utils.Converter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -43,9 +44,9 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumberInput = InputView.promptPurchaseBonusNumber();
-                return BonusNumber.from(Integer.parseInt(bonusNumberInput), winningNumbers);
+                return BonusNumber.from(Converter.stringToInt(bonusNumberInput), winningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -56,7 +57,7 @@ public class LottoController {
                 String winningNumbersInput = InputView.promptPurchaseWinningNumber();
                 return WinningNumbers.from(winningNumbersInput);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
 
@@ -72,10 +73,10 @@ public class LottoController {
         while (true) {
             try {
                 String input = InputView.promptPurchaseAmount();
-                LottoPurchase purchase = LottoPurchase.of(Integer.parseInt(input));
+                LottoPurchase purchase = LottoPurchase.of(Converter.stringToInt(input));
                 return purchase.getAmount();
-            } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }

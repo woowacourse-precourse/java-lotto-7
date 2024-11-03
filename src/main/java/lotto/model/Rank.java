@@ -47,4 +47,5 @@ public enum Rank {
     public boolean isMatchBonus() {
         return matchBonus;
     }
+
 }

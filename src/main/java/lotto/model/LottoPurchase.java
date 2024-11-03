@@ -1,10 +1,13 @@
 package lotto.model;
 
+import lotto.utils.AmountValidator;
+
 public class LottoPurchase {
     private final int amount;
     private final int ticketCount;
 
     private LottoPurchase(int amount) {
+        AmountValidator.validateAmount(String.valueOf(amount));
         this.amount = amount;
         this.ticketCount = amount / 1000;
     }

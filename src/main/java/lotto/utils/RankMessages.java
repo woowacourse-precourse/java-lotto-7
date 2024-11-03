@@ -1,10 +1,12 @@
 package lotto.utils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.SequencedMap;
 
 public class RankMessages {
-    private static final Map<Integer, String> messages = new HashMap<>();
+    private static final SequencedMap<Integer, String> messages = new LinkedHashMap<>();
 
     static {
         messages.put(3, "3개 일치");
@@ -19,4 +21,5 @@ public class RankMessages {
         }
         return messages.get(matchCount);
     }
+
 }
