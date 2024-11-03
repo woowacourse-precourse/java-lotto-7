@@ -13,6 +13,11 @@ public class WinningValidate {
             if (!isValidString(winningInput)) {
                 throw new IllegalArgumentException(WinningInputMessage.INVALID_WINNING_INPUT_STRING.getMessage());
             }
+
+            if (!isSixNumber(winningInput)) {
+                throw new IllegalArgumentException(WinningInputMessage.INVALID_WINNING_INPUT_STRING.getMessage());
+            }
+
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return false;
@@ -20,15 +25,15 @@ public class WinningValidate {
         return true;
     }
 
-    public static boolean isValidString(String winningInput) {
-        pattern = Pattern.compile(WINNITG_REGEX);
-
-        if (!pattern.matcher(winningInput).matches()) {
-            return false;
-        }
-
+    public static boolean isSixNumber(String winningInput) {
         String[] winningArray = winningInput.split(",");
 
         return winningArray.length == 6;
+    }
+
+    public static boolean isValidString(String winningInput) {
+        pattern = Pattern.compile(WINNITG_REGEX);
+
+        return pattern.matcher(winningInput).matches();
     }
 }
