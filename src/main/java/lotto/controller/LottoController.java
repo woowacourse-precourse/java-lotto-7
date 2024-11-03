@@ -13,7 +13,12 @@ public class LottoController {
 
     public void lotto() {
         processInputMoney();
+
         List<Lotto> lottos = lottoService.generateLottos();
+        outputView.printNumOfLottos(lottos.size());
+        for (Lotto lotto : lottos) {
+            outputView.printLotto(lotto.getNumbers());
+        }
     }
 
     private void processInputMoney() {
