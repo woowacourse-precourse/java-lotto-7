@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Cash;
-import lotto.model.Lotto;
-import lotto.model.LottoBonusNumber;
-import lotto.model.LottoBundle;
+import lotto.model.*;
 import lotto.service.LottoProvider;
 import lotto.service.LottoResultCalculator;
 import lotto.view.LottoInputView;
@@ -29,7 +26,8 @@ public class LottoController {
         lottoOutputView.printBonusNumberNotification();
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
 
-        lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto,cash);
+        LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto,cash);
+        lottoOutputView.printLottoPrizes(lottoResult.getLottoPrizes());
     }
 
     private Cash requestCashInput() {

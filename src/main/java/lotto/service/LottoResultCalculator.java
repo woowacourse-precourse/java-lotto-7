@@ -5,9 +5,10 @@ import lotto.model.*;
 import java.util.Map;
 
 public class LottoResultCalculator {
-    public void calculatePrizeResult(LottoBundle lottoBundle, LottoBonusNumber lottoBonusNumber, Lotto winningLotto, Cash cash) {
+    public LottoResult calculatePrizeResult(LottoBundle lottoBundle, LottoBonusNumber lottoBonusNumber, Lotto winningLotto, Cash cash) {
         Map<LottoPrizeType, Integer> lottoPrizes = lottoBundle.matchCountWithBonus(winningLotto, lottoBonusNumber);
         double benefit = calculateBenefit(lottoPrizes, lottoBundle, cash);
+        return new LottoResult(lottoPrizes, benefit);
     }
 
     private double calculateBenefit(Map<LottoPrizeType, Integer> lottoPrizes, LottoBundle lottoBundle, Cash cash) {

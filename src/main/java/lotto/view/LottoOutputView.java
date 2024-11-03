@@ -2,10 +2,14 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoBundle;
+import lotto.model.LottoPrizeType;
 
-import java.util.List;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Map;
 
 public class LottoOutputView {
+    private final NumberFormat koreaNumberFormatter = NumberFormat.getInstance(Locale.KOREA);
     public void printCashNotification(){
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -25,5 +29,17 @@ public class LottoOutputView {
     }
     public void printBonusNumberNotification(){
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+    public void printLottoPrizes(Map<LottoPrizeType, Integer> lottoPrizes){
+        for (Map.Entry<LottoPrizeType, Integer> lottoPrize : lottoPrizes.entrySet()) {
+            LottoPrizeType prizeType = lottoPrize.getKey();
+            int count = lottoPrize.getValue();
+            System.out.print(prizeType.getRequiredCorrectCount()+ "개 일치");
+            if (prizeType == LottoPrizeType.SECOND){
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.print(" ("+koreaNumberFormatter.format(prizeType.getPrizeAmount())+")");
+            System.out.println(" - "+count+"개");
+        }
     }
 }
