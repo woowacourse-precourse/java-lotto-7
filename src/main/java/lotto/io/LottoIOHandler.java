@@ -9,4 +9,8 @@ public class LottoIOHandler {
         outputHandler.askLottoPurchaseAmount();
         return inputHandler.getLottoPurchaseAmount();
     }
+
+    public void showLottoQuantity(int quantity) {
+        outputHandler.showLottoQuantity(quantity);
+    }
 }

@@ -8,5 +8,12 @@ public class LottoMachine {
 
     public void run() {
         int purchaseAmount = lottoIOHandler.askLottoPurchaseAmount();
+        int quantity = calculateQuantity(purchaseAmount);
+
+        lottoIOHandler.showLottoQuantity(quantity);
+    }
+
+    private int calculateQuantity(int purchaseAmount) {
+        return purchaseAmount / 1000;
     }
 }
