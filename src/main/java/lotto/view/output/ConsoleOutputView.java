@@ -55,6 +55,7 @@ public class ConsoleOutputView implements OutputView {
 
     private void printLotto(LottoNumberResponse response) {
         System.out.println(response.getLottoNumbers().stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LOTTO_NUMBERS_FORMAT, LOTTO_NUMBERS_PREFIX, LOTTO_NUMBERS_SUFFIX)));
     }
