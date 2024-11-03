@@ -43,4 +43,13 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
+    public void validateBonusNumber(Integer bonusNumber) {
+        if(bonusNumber<LottoConstant.LOTTO_MIN_NUMBER || LottoConstant.LOTTO_MAX_NUMBER<bonusNumber){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+        if(numbers.stream().anyMatch(number -> number.equals(bonusNumber))){
+            throw new IllegalArgumentException("[ERROR] 로또 보너스 번호는 당첨 번호와 중복일 수 없습니다.");
+        }
+    }
+
 }

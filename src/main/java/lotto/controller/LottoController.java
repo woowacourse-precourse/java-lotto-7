@@ -53,6 +53,18 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private Integer getBonusLottoNumber(Lotto winningLotto){
+        while (true) {
+            try {
+                outputView.enterBonusNumberForLotto();
+                Integer bonusNum = inputView.getBonnusLottoNum();
+                winningLotto.validateBonusNumber(bonusNum);
+                return bonusNum;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

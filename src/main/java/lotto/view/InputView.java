@@ -23,4 +23,10 @@ public class InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public Integer getBonnusLottoNum(){
+        String msg = Console.readLine();
+        InputValidator.validateInput(msg);
+        return Integer.parseInt(msg);
+    }
 }
