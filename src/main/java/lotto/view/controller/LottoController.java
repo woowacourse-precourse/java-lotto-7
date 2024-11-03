@@ -15,9 +15,9 @@ public class LottoController {
     }
 
     public void run() {
-        Amount amount = requestAmount();
-        Lottos lottos = createLottos(amount);
-        Lotto winningLottoNumber = requestWinningNumbers();
+        Amount inputAmount = requestAmount();
+        Lottos purchasedLottos = createLottos(inputAmount);
+        Lotto winningNumber = requestWinningNumbers();
     }
 
     private Amount requestAmount() {
