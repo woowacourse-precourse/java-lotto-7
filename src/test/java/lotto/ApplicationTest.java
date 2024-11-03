@@ -106,6 +106,46 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨_번호가_쉼표로_구분되지_않으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("3000", "1:2:3:4:5:6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호가_정수가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("3000", "당첨번호");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호가_1부터_45_사이의_값이_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("3000", "0,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호가_6개가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호가_서로_중복되면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
