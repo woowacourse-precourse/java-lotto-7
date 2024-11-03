@@ -7,7 +7,7 @@ import lotto.view.OutputView;
 
 import java.util.List;
 
-import static lotto.constants.ViewMessage.WINNING_STATISTICS;
+import static lotto.common.constants.ViewMessage.WINNING_STATISTICS;
 import static lotto.view.InputView.readInput;
 
 public class LottoController {

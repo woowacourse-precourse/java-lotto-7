@@ -8,7 +8,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
-import static lotto.constants.ViewMessage.*;
+import static lotto.common.constants.ViewMessage.*;
 import static lotto.domain.LottoRankType.*;
 
 public class OutputView {

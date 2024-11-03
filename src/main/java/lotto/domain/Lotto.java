@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.*;
 
-import static lotto.constants.LottoNumberType.*;
-import static lotto.constants.exception.ErrorMessage.*;
+import static lotto.common.constants.LottoNumberType.*;
+import static lotto.common.constants.exception.ErrorMessage.*;
 
 public class Lotto {
 

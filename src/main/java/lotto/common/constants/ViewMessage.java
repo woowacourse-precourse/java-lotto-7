@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.common.constants;
 
 public enum ViewMessage {
 

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constants.exception.ErrorMessage.*;
+import static lotto.common.constants.exception.ErrorMessage.*;
 
 public class LottoPurchaseAmount {
 

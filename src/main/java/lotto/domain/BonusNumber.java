@@ -2,8 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.constants.LottoNumberType.*;
-import static lotto.constants.exception.ErrorMessage.*;
+import static lotto.common.constants.LottoNumberType.MAXIMUM_LOTTO_NUMBER;
+import static lotto.common.constants.LottoNumberType.MINIMUM_LOTTO_NUMBER;
+import static lotto.common.constants.exception.ErrorMessage.*;
 
 public class BonusNumber {
 

@@ -1,4 +1,4 @@
-package lotto.constants.exception;
+package lotto.common.constants.exception;
 
 public enum ErrorMessage {
 

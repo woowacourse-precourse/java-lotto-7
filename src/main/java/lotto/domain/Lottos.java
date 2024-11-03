@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.constants.LottoNumberType.*;
+import static lotto.common.constants.LottoNumberType.*;
 
 public class Lottos {
 
