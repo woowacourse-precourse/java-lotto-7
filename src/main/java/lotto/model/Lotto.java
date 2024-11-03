@@ -1,20 +1,13 @@
-package lotto.domain;
+package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    private Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    public static Lotto from(List<Integer> numbers) {
-        return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -30,4 +23,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
+
 }
