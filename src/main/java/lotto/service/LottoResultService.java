@@ -1,10 +1,13 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.common.LottoRank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoPurchasePrice;
 import lotto.model.LottoResult;
+import lotto.model.ReturnRate;
 import lotto.model.WinningNumbers;
 
 public class LottoResultService {
@@ -18,6 +21,11 @@ public class LottoResultService {
         }
 
         return lottoResult;
+    }
+
+    public ReturnRate calculateReturnRate(LottoResult lottoResult, LottoPurchasePrice lottoPurchasePrice) {
+        int totalPrizeMoney = calculateTotalPrizeMoney(lottoResult);
+        return new ReturnRate((double) totalPrizeMoney / lottoPurchasePrice.price() * 100);
     }
 
     private LottoRank calculateLottoRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
@@ -35,5 +43,11 @@ public class LottoResultService {
 
     private boolean isMatchBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber.number());
+    }
+
+    private int calculateTotalPrizeMoney(LottoResult lottoResult) {
+        return Arrays.stream(LottoRank.values())
+                .mapToInt(rank -> lottoResult.getWinningCount(rank) * rank.getPrizeMoney())
+                .sum();
     }
 }
