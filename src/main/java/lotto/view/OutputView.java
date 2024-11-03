@@ -17,19 +17,19 @@ public class OutputView {
     public static void printLottoStatistics(Map<Score, Integer> resultCount, int purchaseAmount) {
         System.out.println("당첨 통계\n---");
         for (Score score : Score.values()) {
-            if (score != Score.ZERO) {
-                if (score == Score.SECONDPLACE) {
-                    System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
-                            score.getMatchCount(), score.getMoney(), resultCount.getOrDefault(score, 0));
-                } else {
-                    System.out.printf("%d개 일치 (%,d원) - %d개%n",
-                            score.getMatchCount(), score.getMoney(), resultCount.getOrDefault(score, 0));
-                }
+            if (score == Score.ZERO) {
+                continue;
             }
+            if (score == Score.SECONDPLACE) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", score.getMatchCount(), score.getMoney(), resultCount.getOrDefault(score, 0));
+                continue;
+            }
+                System.out.printf("%d개 일치 (%,d원) - %d개%n", score.getMatchCount(), score.getMoney(), resultCount.getOrDefault(score, 0));
+
+
         }
         printProfitRate(resultCount, purchaseAmount);
     }
-
     private static void printProfitRate(Map<Score, Integer> resultCount, int purchaseAmount) {
         double totalProfit = 0;
 
