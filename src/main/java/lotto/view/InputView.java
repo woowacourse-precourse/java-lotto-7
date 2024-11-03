@@ -35,7 +35,7 @@ public class InputView {
 
     private void validateNumberFormat(String str) {
         if (isNotPositiveInteger(str)) {
-            throw CustomException.of(ErrorMessage.INVALID_AMOUNT_TYPE_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_INPUT_NUMBER_ERROR);
         }
     }
 

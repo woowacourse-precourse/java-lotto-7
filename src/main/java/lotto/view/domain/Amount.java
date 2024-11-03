@@ -30,7 +30,7 @@ public class Amount {
 
     private void validateAmountRange(Integer amount) {
         if (amount < MINIMUM_AMOUNT || amount > MAXIMUM_AMOUNT) {
-            throw CustomException.of(ErrorMessage.INVALID_AMOUNT_TYPE_ERROR);
+            throw CustomException.of(ErrorMessage.INVALID_INPUT_NUMBER_ERROR);
         }
     }
 }
