@@ -21,7 +21,11 @@ public class InputView {
         String input = Console.readLine();
         validateEmpty(input);
         List<String> values = Utils.splitNumbers(input);
-        return Utils.convertNumbers(values);
+        List<Integer> numbers = Utils.convertNumbers(values);
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        validateRange(numbers);
+        return numbers;
     }
 
     private static void validateEmpty(String input) {
@@ -39,6 +43,28 @@ public class InputView {
     private static void validateUnit(int amount) {
         if ((amount % 1000) != 0) {
             throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
+        }
+    }
+
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> distinctedNumbers = new HashSet<>(numbers);
+
+        if (distinctedNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 안됩니다.");
+        }
+    }
+
+    private static void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }
