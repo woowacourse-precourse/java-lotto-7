@@ -35,8 +35,8 @@
 
 - 구입 금액이 정상적인지 확인한다.
     - [ ] 구입 금액이 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
-    - [ ] 구입 금액이 음수인 경우 `IllegalArgumentException`을 발생시킨다.
-    - [ ] 구입 금액이 1000으로 나눠 떨어지지 않는 경우 `IllegalArgumentException`을 발생시킨다.
+    - [x] 구입 금액이 음수 혹은 부족한 경우 `IllegalArgumentException`을 발생시킨다.
+    - [x] 구입 금액이 1000으로 나눠 떨어지지 않는 경우 `IllegalArgumentException`을 발생시킨다.
 - 로또가 정상적인지 확인한다. (구매 이후 랜덤 생성된 로또, 당첨 로또)
     - [x] 6개의 숫자를 가지고 있지 않은 경우 `IllegalArgumentException`을 발생시킨다. 
     - [x] 1~45 내의 수가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
