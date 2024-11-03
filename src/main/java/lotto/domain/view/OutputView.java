@@ -1,8 +1,8 @@
 package lotto.domain.view;
 
-import lotto.domain.model.lotto.Lotto;
-import lotto.domain.model.lotto.LottoRank;
-import lotto.domain.model.lotto.LottoSummary;
+import lotto.domain.model.user.Lotto;
+import lotto.domain.model.user.LottoRank;
+import lotto.domain.model.lotto.result.LottoSummary;
 import lotto.domain.model.user.User;
 
 import java.util.List;

@@ -1,8 +1,12 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.lotto.service;
 
 import lotto.common.config.Factory;
 import lotto.common.constant.LottoConst;
+import lotto.domain.model.lotto.result.LottoSummary;
+import lotto.domain.model.user.Lotto;
+import lotto.domain.model.user.LottoRank;
 import lotto.domain.model.user.User;
+import lotto.domain.model.user.UserPurchasedLotto;
 import lotto.domain.utils.TestLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,8 +64,9 @@ class LottoServiceTest {
             Lotto lotto5 = TestLotto.createTestLotto(List.of(4, 5, 6, 7, 8, 9)); //5등
 
             List<Lotto> lottos = TestLotto.createTestLottos(lotto1, lotto2, lotto3, lotto4, lotto5);
+            UserPurchasedLotto userPurchasedLotto = UserPurchasedLotto.create(lottos);
 
-            User user = User.create(amount, lottos);
+            User user = User.create(amount, userPurchasedLotto);
             Lotto winningLotto = TestLotto.createTestLotto(List.of(1, 2, 3, 4, 5, 6));
             int bonusNumber = 7;
 

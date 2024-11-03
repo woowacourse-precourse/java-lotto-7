@@ -2,7 +2,7 @@ package lotto.domain.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.exception.BusinessException;
-import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.user.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +13,12 @@ import static lotto.domain.view.InputValidator.*;
 
 public class InputView {
 
+    /**
+     * @param: 3가지의 Input Validator<br>
+     * 1) 가격 <br>
+     * 2) 당첨 번호 <br>
+     * 3) 보너스 번호 <br>
+     */
     private <T> T getInputUntilValid(InputValidator<T> validator) {
         while (true) {
             try {

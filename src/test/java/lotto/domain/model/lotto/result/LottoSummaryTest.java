@@ -1,6 +1,5 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.lotto.result;
 
-import lotto.domain.model.lotto.result.LottoSummary;
 import lotto.domain.model.user.LottoRank;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Percentage;

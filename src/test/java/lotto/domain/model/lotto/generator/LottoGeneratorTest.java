@@ -1,6 +1,7 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.lotto.generator;
 
 import lotto.common.config.Factory;
+import lotto.domain.model.user.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

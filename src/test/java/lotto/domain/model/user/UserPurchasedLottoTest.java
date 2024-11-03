@@ -1,7 +1,5 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.user;
 
-import lotto.domain.model.user.Lotto;
-import lotto.domain.model.user.UserPurchasedLotto;
 import lotto.domain.utils.TestLotto;
 import lotto.domain.utils.TestUserPurchasedLotto;
 import org.assertj.core.api.Assertions;

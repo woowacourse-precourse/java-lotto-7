@@ -1,4 +1,6 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.lotto.result;
+
+import lotto.domain.model.user.LottoRank;
 
 import java.util.Map;
 

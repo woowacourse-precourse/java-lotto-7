@@ -1,8 +1,8 @@
 package lotto.common.config;
 
 import lotto.domain.controller.LottoController;
-import lotto.domain.model.lotto.LottoAutoGenerator;
-import lotto.domain.model.lotto.LottoService;
+import lotto.domain.model.lotto.generator.LottoAutoGenerator;
+import lotto.domain.model.lotto.service.LottoService;
 import lotto.domain.view.InputView;
 import lotto.domain.view.OutputView;
 

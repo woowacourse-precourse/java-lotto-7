@@ -1,4 +1,4 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.user;
 
 import java.util.Arrays;
 import java.util.function.BiFunction;
@@ -37,9 +37,10 @@ public enum LottoRank {
     }
 
     public String getPrintFormat() {
-        return isBonus
-                ? String.format(LOTTO_RESULT_NORMAL_PRINT, matchCount, prize)
-                : String.format(LOTTO_RESULT_BONUS_PRINT, matchCount, prize);
+        if (isBonus) {
+            return String.format(LOTTO_RESULT_BONUS_PRINT, matchCount, prize);
+        }
+        return String.format(LOTTO_RESULT_NORMAL_PRINT, matchCount, prize);
     }
 
     public boolean win(int count, boolean bonus) {

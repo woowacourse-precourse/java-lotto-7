@@ -2,7 +2,7 @@ package lotto.domain.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.config.Factory;
-import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.user.Lotto;
 import lotto.domain.utils.TestLotto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;

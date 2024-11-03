@@ -1,12 +1,10 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.user;
 
-import lotto.common.constant.LottoConst;
 import lotto.common.exception.BusinessException;
 import lotto.common.exception.ErrorCode;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static lotto.common.constant.LottoConst.*;
@@ -50,18 +48,5 @@ public class Lotto {
                         .map(String::valueOf)
                         .collect(Collectors.joining(JOINING_DELIMITER))
         );
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lotto lotto = (Lotto) o;
-        return Objects.equals(numbers, lotto.numbers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(numbers);
     }
 }

@@ -1,6 +1,10 @@
-package lotto.domain.model.lotto;
+package lotto.domain.model.lotto.service;
 
 import lotto.common.constant.LottoConst;
+import lotto.domain.model.user.Lotto;
+import lotto.domain.model.user.LottoRank;
+import lotto.domain.model.lotto.generator.LottoGenerator;
+import lotto.domain.model.lotto.result.LottoSummary;
 import lotto.domain.model.user.User;
 
 import java.util.List;
@@ -25,9 +29,9 @@ public class LottoService {
     }
 
     public LottoSummary evaluateUserLotto(User user, Lotto winningLotto, int bonusNumber) {
-        List<LottoRank> results = convertUserLottoToRank(user, winningLotto, bonusNumber);
+        List<LottoRank> results = convertEvaluatedLottoRank(user, winningLotto, bonusNumber);
 
-        LottoSummary lottoSummary = groupingResult(results);
+        LottoSummary lottoSummary = convertGroupedLottoRank(results);
 
         int totalAmountPurchased = user.getTotalAmountPurchased();
         double calculatedProfitRate = lottoSummary.getProfitRate(totalAmountPurchased);
@@ -37,7 +41,7 @@ public class LottoService {
         return lottoSummary;
     }
 
-    private static List<LottoRank> convertUserLottoToRank(User user, Lotto winningLotto, int bonusNumber) {
+    private static List<LottoRank> convertEvaluatedLottoRank(User user, Lotto winningLotto, int bonusNumber) {
         return user.getLottos()
                 .stream()
                 .map(userLotto -> compareUserLottoWithWinningLotto(userLotto, winningLotto, bonusNumber))
@@ -55,7 +59,7 @@ public class LottoService {
         return LottoRank.getMatchedLotto(correctCount, isCorrectBonusNumber);
     }
 
-    private LottoSummary groupingResult(List<LottoRank> results) {
+    private static LottoSummary convertGroupedLottoRank(List<LottoRank> results) {
         Map<LottoRank, Long> rankCounts = results.stream()
                 .collect(Collectors.groupingBy(result -> result, Collectors.counting()));
         return LottoSummary.create(rankCounts);
