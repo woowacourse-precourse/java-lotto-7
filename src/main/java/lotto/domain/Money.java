@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.Money.DivideMoneyException;
+import lotto.exception.Money.NegativeMoneyException;
+
 public class Money {
     private final int money;
 
@@ -11,13 +14,13 @@ public class Money {
 
     private void validatePositive(int money) {
         if (money <= 0) {
-            throw new IllegalArgumentException("[Error] 금액은 양의 정수여야합니다 ");
+            throw new NegativeMoneyException();
         }
     }
 
     private void validateDivide(int money) {
         if (!(money % 1000 == 0)) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원으로 나누어 떨어져야 합니다.");
+            throw new DivideMoneyException();
         }
     }
 
