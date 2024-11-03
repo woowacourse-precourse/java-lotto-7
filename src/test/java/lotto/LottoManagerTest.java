@@ -12,11 +12,11 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberI
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
 class LottoManagerTest {
+    LottoManager lottoManager=new LottoManager();
 
     //총 당첨금액 계산
     @BeforeEach
     void 로또_매니저_세팅(){
-        LottoManager lottoManager=new LottoManager();
         Lotto winningLotto=new Lotto(List.of(1,2,3,4,5,6));
         lottoManager.setWinningLotto(winningLotto);
         lottoManager.setBonus(7);
@@ -32,9 +32,27 @@ class LottoManagerTest {
         lottoManager.makeLotto(List.of(1,2,3,4,5,6));
 
         final List<Lotto> expected=lottos;
-        final List<Lotto> actual=lottoManager.checkLottos();
+        final List<Lotto> actual=lottoManager.getLottos();
 
-        assertThat(actual).isEqualTo(expected);
+        for (int i = 0; i < actual.size(); i++) {
+            assertThat(actual.get(i).getNumbers()).isEqualTo(expected.get(i).getNumbers());
+        }
+    }
+    @Test
+    void 입력된_금액_나누기_1000만큼_로또를_발행한다(){
+        List<Lotto> lottos=new ArrayList<>();
+        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
+
+        lottoManager.makeLotto(List.of(1,2,3,4,5,6));
+        lottoManager.makeLotto(List.of(1,2,3,4,5,6));
+
+        final List<Lotto> expected=lottos;
+        final List<Lotto> actual=lottoManager.getLottos();
+
+        for (int i = 0; i < actual.size(); i++) {
+            assertThat(actual.get(i).getNumbers()).isEqualTo(expected.get(i).getNumbers());
+        }
     }
 
     @Test
@@ -46,6 +64,6 @@ class LottoManagerTest {
         final int expected=5000;
         final int actual=lottoManager.calculatePrices();
 
-        assertThat(1).isEqualTo(5000);
+        assertThat(actual).isEqualTo(5000);
     }
 }
