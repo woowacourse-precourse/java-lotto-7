@@ -8,6 +8,7 @@ import lotto.dto.WinnerLottoNumbersInput;
 import lotto.exception.LottoException;
 import lotto.model.Lotto;
 import lotto.model.LottoNumberGenerator;
+import lotto.model.LottoReport;
 import lotto.model.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -37,6 +38,10 @@ public class LottoController {
                 .toList();
 
         outPutView.printLottoList(purchasedLottoList);
+
+        LottoReport lottoReport = LottoReport.of(purchasedLottoList, winnerLotto);
+
+        outPutView.printReport(lottoReport.getMatchCountMap());
     }
 
     private Buyer processLottoPurchase() {
