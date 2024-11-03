@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
@@ -15,7 +14,6 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 import lotto.ui.dto.LottoStatisticsResponse;
 import lotto.ui.dto.PurchasedLottoResponse;
-import lotto.ui.dto.WinningCountByPrize;
 
 public class LottoController {
 
@@ -32,11 +30,9 @@ public class LottoController {
             LottoMoney lottoMoney = LottoMoney.from(inputView.displayReadPurchaseAmount());
             LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator(), lottoMoney);
             List<Lotto> lottos = lottoMachine.issueLottos();
+
             outputView.displayPurchasedLotto(PurchasedLottoResponse.of(lottoMoney.getDrawCount(), lottos));
-
-            WinningNumber winningNumber = createWinningNumber();
-
-            displayResults(lottos, lottoMoney, winningNumber);
+            displayResults(lottos, lottoMoney, createWinningNumber());
         } catch (IllegalArgumentException exception) {
             outputView.displayException(exception.getMessage());
         }
@@ -53,14 +49,11 @@ public class LottoController {
 
     private void displayResults(List<Lotto> lottos, LottoMoney lottoMoney, WinningNumber winningNumber) {
         WinningStatistics statistics = calculateStatistics(lottos, winningNumber);
-        List<WinningCountByPrize> winningCountByPrizes = createWinningCountByPrizes(statistics);
 
-        LottoStatisticsResponse response = LottoStatisticsResponse.of(
-                winningCountByPrizes,
+        outputView.displayWinningStatistics(LottoStatisticsResponse.of(
+                statistics.getWinningCountByPrizes(),
                 lottoMoney.getProfitRate(statistics.getTotalPrize())
-        );
-
-        outputView.displayWinningStatistics(response);
+        ));
     }
 
     private WinningStatistics calculateStatistics(List<Lotto> lottos, WinningNumber winningNumber) {
@@ -70,14 +63,6 @@ public class LottoController {
             statistics.addWinCountByRank(rank);
         }
         return statistics;
-    }
-
-    private List<WinningCountByPrize> createWinningCountByPrizes(WinningStatistics statistics) {
-        return Arrays.stream(LottoRank.values())
-                .filter(LottoRank::isWinning)
-                .sorted((r1, r2) -> Integer.compare(r2.getRank(), r1.getRank()))
-                .map(rank -> WinningCountByPrize.of(rank, statistics.getWinningCountByRank(rank)))
-                .toList();
     }
 
 }

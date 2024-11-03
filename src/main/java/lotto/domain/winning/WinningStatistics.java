@@ -1,8 +1,11 @@
 package lotto.domain.winning;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import lotto.ui.dto.WinningCountByPrize;
 
 public class WinningStatistics {
 
@@ -18,7 +21,7 @@ public class WinningStatistics {
         result.put(lottoRank, result.get(lottoRank) + 1);
     }
 
-    public int getWinningCountByRank(LottoRank lottoRank) {
+    private int getWinningCountByRank(LottoRank lottoRank) {
         return result.get(lottoRank);
     }
 
@@ -33,6 +36,14 @@ public class WinningStatistics {
     private BigDecimal calculateTotalPrizeByRank(LottoRank lottoRank) {
         return BigDecimal.valueOf(lottoRank.getPrizeMoney())
                 .multiply(BigDecimal.valueOf(getWinningCountByRank(lottoRank)));
+    }
+
+    public List<WinningCountByPrize> getWinningCountByPrizes() {
+        return Arrays.stream(LottoRank.values())
+                .filter(LottoRank::isWinning)
+                .sorted((r1, r2) -> Integer.compare(r2.getRank(), r1.getRank()))
+                .map(rank -> WinningCountByPrize.of(rank, getWinningCountByRank(rank)))
+                .toList();
     }
 
 }

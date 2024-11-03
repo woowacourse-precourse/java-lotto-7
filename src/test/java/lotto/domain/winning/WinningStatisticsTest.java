@@ -10,32 +10,6 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 class WinningStatisticsTest {
 
-    @ParameterizedTest
-    @EnumSource(LottoRank.class)
-    @DisplayName("맨 처음 통계 상태는 모두 0원이다.")
-    void givenCreatedStatistics_whenGetWinningCountByRank_thenAllZero(LottoRank lottoRank) {
-        // given
-        WinningStatistics winningStatistics = new WinningStatistics();
-        // when
-        int result = winningStatistics.getWinningCountByRank(lottoRank);
-        // then
-        assertThat(result).isZero();
-    }
-
-    @ParameterizedTest
-    @EnumSource(LottoRank.class)
-    @DisplayName("등수 별 당첨 수가 증가된다.")
-    void givenCreatedStatistics_whenAddWinCountByRank_thenIncrementedCountByRank(LottoRank lottoRank) {
-        // given
-        WinningStatistics winningStatistics = new WinningStatistics();
-
-        // when
-        winningStatistics.addWinCountByRank(lottoRank);
-
-        // then
-        assertThat(winningStatistics.getWinningCountByRank(lottoRank)).isOne();
-    }
-
     @Test
     @DisplayName("등수 별 당첨 수가 증가됐을 경우, 모두 합한 금액이 반환된다.")
     void givenAddWinCountByRank_whenGetTotalPrize_thenReturnExpected() {
