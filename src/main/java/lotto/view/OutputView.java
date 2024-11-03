@@ -47,7 +47,7 @@ public class OutputView {
                 .forEach(winning -> {
                     System.out.print(winning.getMessage());
                     long count = winnings.stream().filter(e -> e == winning).count();
-                    System.out.println(count);
+                    System.out.println(count+"개");
                     LottoRepository.revenue += winning.getPrizeMoney() * count;
                 });
     }
