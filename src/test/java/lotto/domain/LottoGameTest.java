@@ -1,22 +1,21 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
-class LottosTest {
+class LottoGameTest {
 
     @Test
-    @DisplayName("금액만큼 로또 개수 생성 테스트")
-    void constructLottos(){
+    @DisplayName("로또 랭킹 계산 테스트")
+    void lottoRankCalculateTest(){
         //given
-        int count = 5000;
-        //when
-        Lottos lottos = Lottos.of(count);
-        //then
-        Assertions.assertThat(lottos.lottos.size()).isEqualTo(count);
-    }
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
 
+        CustomLotto customLotto = new CustomLotto(numbers,19);
+        LottoGame lottoGame = LottoGame.of(5000, customLotto);
+
+        lottoGame.calculateLottoRank();
+    }
 }
