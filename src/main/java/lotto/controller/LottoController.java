@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import com.sun.source.tree.Tree;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,26 +22,14 @@ public class LottoController {
 
     public void start() {
         int purchaseAmount = inputView.getInputPurchaseAmount();
-
         int lottoCount = calculateLottoCount(purchaseAmount);
-        promptLottoCount(lottoCount);
 
+        promptLottoCount(lottoCount);
         List<Lotto> lottoTickets = generateLottoTickets(lottoCount);
         printLottoTickets(lottoTickets);
 
-        Lotto winningNumbers = new Lotto(inputView.getInputWinningNumbers());
-        Lotto bonusNumber = new Lotto(inputView.getInputBonusNumber());
-        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
-
-        lottoService.calculateWinningAmount();
-        TreeMap<Integer, Integer> winningResult = new TreeMap<>(Comparator.reverseOrder());
-        winningResult.putAll(lottoService.getWinningResult());
-        promptWinningResult();
-        printWinningResult(winningResult);
-
-        lottoService.calculateEarningsRate();
-        String earningRate = lottoService.getEarningsRate();
-        printEarningRate(earningRate);
+        initializeLottoService(lottoTickets);
+        displayResults();
     }
 
     private int calculateLottoCount(int purchaseAmount) {
@@ -54,7 +41,41 @@ public class LottoController {
         for (int i = 0; i < count; i++) {
             tickets.add(new Lotto(LottoGenerator.generateNumbers()));
         }
-
         return tickets;
+    }
+
+    private void initializeLottoService(List<Lotto> lottoTickets) {
+        Lotto winningNumbers = getWinningNumbers();
+        Lotto bonusNumber = getBonusNumber();
+        lottoService = new LottoService(lottoTickets, winningNumbers, bonusNumber);
+    }
+
+    private Lotto getWinningNumbers() {
+        return new Lotto(inputView.getInputWinningNumbers());
+    }
+
+    private Lotto getBonusNumber() {
+        return new Lotto(inputView.getInputBonusNumber());
+    }
+
+    private void displayResults() {
+        processWinningAmount();
+        processEarningRate();
+    }
+
+    private void processWinningAmount() {
+        lottoService.calculateWinningAmount();
+        TreeMap<Integer, Integer> winningResult = new TreeMap<>(Comparator.reverseOrder());
+        winningResult.putAll(lottoService.getWinningResult());
+
+        promptWinningResult();
+        printWinningResult(winningResult);
+    }
+
+    private void processEarningRate() {
+        lottoService.calculateEarningsRate();
+        String earningRate = lottoService.getEarningsRate();
+
+        printEarningRate(earningRate);
     }
 }
