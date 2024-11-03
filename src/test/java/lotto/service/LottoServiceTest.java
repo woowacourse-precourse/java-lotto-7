@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.application.LottoTicketsDto;
+import lotto.application.WinningNumbersDto;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,10 @@ class LottoServiceTest {
     @DisplayName("모든 구매한 로또와 당첨로또를 비교한다.")
     @ParameterizedTest
     @MethodSource("provideLottoTicketsAndWinningNumberAndBonusNumber")
-    void 모든_구매한_로또와_당첨로또를_비교한다(List<List<Integer>> lottoTickets, List<Integer> winningNumber, int bonusNumber, List<Rank> expectedRanks) {
+    void 모든_구매한_로또와_당첨로또를_비교한다(List<List<Integer>> lottoTickets, WinningNumbersDto winningNumbersDto, List<Rank> expectedRanks) {
         LottoService lottoService = new LottoService();
         LottoTicketsDto lottoTicketsDto = new LottoTicketsDto(lottoTickets);
-        List<Rank> ranks = lottoService.calculateRanks(lottoTicketsDto, winningNumber, bonusNumber);
+        List<Rank> ranks = lottoService.calculateRanks(lottoTicketsDto, winningNumbersDto);
 
         assertThat(ranks).containsExactlyElementsOf(expectedRanks);
     }
@@ -47,7 +48,7 @@ class LottoServiceTest {
                                 List.of(1, 2, 3, 8, 9, 10),
                                 List.of(1, 2, 8, 9, 10, 11),
                                 List.of(1, 2, 3, 4, 5, 6)),
-                        List.of(1, 2, 3, 4, 5, 6), 7,
+                        new WinningNumbersDto(List.of(1, 2, 3, 4, 5, 6), 7),
                         List.of(Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH, Rank.NONE, Rank.FIRST))
         );
     }

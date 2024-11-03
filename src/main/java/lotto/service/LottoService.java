@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.application.LottoDto;
 import lotto.application.LottoTicketsDto;
+import lotto.application.WinningNumbersDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
@@ -20,12 +21,12 @@ public class LottoService {
         return new LottoTicketsDto(new LottoTickets(numberOfTickets));
     }
 
-    public List<Rank> calculateRanks(LottoTicketsDto lottoTicketsDto, List<Integer> winningNumber, int bonusNumber) {
+    public List<Rank> calculateRanks(LottoTicketsDto lottoTicketsDto, WinningNumbersDto winningNumbersDto) {
         List<Rank> rankResult = new ArrayList<>();
-        Lotto winningLotto = new Lotto(winningNumber);
+        Lotto winningLotto = new Lotto(winningNumbersDto.getWinningLottoNumbers());
         for (LottoDto lottoTicketDto : lottoTicketsDto.getLottoTickets()) {
-            Lotto lotto = new Lotto(lottoTicketDto.getLotto());
-            rankResult.add(lotto.calculateRanks(winningLotto.getNumbers(), bonusNumber));
+            rankResult.add(new Lotto(lottoTicketDto.getLotto())
+                    .calculateRanks(winningLotto.getNumbers(), winningNumbersDto.getBonusNumber()));
         }
 
         return rankResult;
