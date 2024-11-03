@@ -1,8 +1,19 @@
 package lotto.domains.customer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import lotto.domains.lotto.LottoPrizeNumbers;
+import lotto.domains.lotto.LottoTicket;
+
 public class Customer {
 	private static final int LOTTO_COST = 1000;
+	private static final int BONUS_COUNT = 1;
+	private static final int FOUR_MATCH = 4;
 	private final int money;
+
 
 	private Customer(int money) {
 		this.money = money;
@@ -16,6 +27,21 @@ public class Customer {
 		return money / LOTTO_COST;
 	}
 
+	public List<Map<Integer,Boolean>> checkWinningStatus(LottoTicket lottoTickets, LottoPrizeNumbers lottoPrizeNumbers) {
+		List<Map<Integer,Boolean>> matchingCount = new ArrayList<>();
+		lottoTickets.getTickets().forEach(ticket -> {
+			int count = (int) ticket.getNumbers().stream()
+				.filter(lottoPrizeNumbers.getWinningNumbers()::contains).count();
 
-	//당첨 계산 메소드
+			Map<Integer,Boolean> countAndHasBonus= new HashMap<>();
+			if(count == FOUR_MATCH && ticket.getNumbers().contains(lottoPrizeNumbers.getBonusNumber())) {
+				countAndHasBonus.put(count + BONUS_COUNT, true);
+				matchingCount.add(countAndHasBonus);
+				return;
+			}
+			countAndHasBonus.put(count, false);
+			matchingCount.add(countAndHasBonus);
+		});
+		return matchingCount;
+	}
 }

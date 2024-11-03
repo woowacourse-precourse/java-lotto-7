@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.domains.customer.Customer;
 import lotto.domains.lotto.LottoPrizeNumbers;
@@ -22,8 +23,8 @@ public class Application {
 
 		LottoTicketMachine lottoTicketMachine = LottoTicketMachine.from(ticketAmount);
 
-		LottoTicket tickets = lottoTicketMachine.generateLottoTickets();
-		OutputInterface.printMessage(tickets.toString());
+		LottoTicket lottoTickets = lottoTicketMachine.generateLottoTickets();
+		OutputInterface.printMessage(lottoTickets.toString());
 		OutputInterface.printNewLine();
 
 		List<Integer> winningNumbers = drawWinningNumbers(inputInterface, lottoService);
@@ -35,6 +36,9 @@ public class Application {
 		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
 
 		OutputInterface.printMessage(OutputInterface.WINNING_STATISTICS_INFORMATION);
+		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
+		// winningStatus를 티켓머신에 가져가서 결과 받기 List<Map<LottoPrize, Integer>>
+		// 수익 계산하기
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
