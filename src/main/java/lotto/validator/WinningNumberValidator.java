@@ -33,6 +33,12 @@ public class WinningNumberValidator {
         return inputNumber;
     }
 
+    public static void validateBonusDuplication(List<Integer> mainNumber, Integer bonusNumber) throws IllegalArgumentException{
+        if(mainNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(WinningNumberRule.BONUS_DUPLICATION.getMessage());
+        }
+    }
+
     private static void validateDoubletComma(String input) throws IllegalArgumentException {
         if (input.contains(WinningNumberRule.COMMA.getMessage() + WinningNumberRule.COMMA.getMessage())) {
             throw new IllegalArgumentException(WinningNumberRule.DOUBLE_COMMA.getMessage());

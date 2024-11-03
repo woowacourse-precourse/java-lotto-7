@@ -62,19 +62,15 @@ public class LottoController {
     }
 
     private Integer getBonusNumber(List<Integer> mainNumber) {
-        Integer bonusNumber = CompareInteger.ZERO.getNumber();
         OutputView.printBonusNumberGuide();
         String inputBonus = InputView.readInput();
 
         try {
-            bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
-            mainNumber.add(bonusNumber);
-            WinningNumberValidator.validateDuplication(mainNumber);
-            mainNumber.remove(bonusNumber);
+            Integer bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
+            WinningNumberValidator.validateBonusDuplication(mainNumber, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            mainNumber.remove(bonusNumber);
             return getBonusNumber(mainNumber);
         }
     }
