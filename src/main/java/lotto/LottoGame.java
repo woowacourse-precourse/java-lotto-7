@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.input.InputHandler;
 
 public class LottoGame {
 
