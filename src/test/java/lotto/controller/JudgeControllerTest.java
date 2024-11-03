@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
 import lotto.model.Lotto;
@@ -48,5 +49,45 @@ public class JudgeControllerTest {
         Lotto lotto = lottos.get(lottoIndex);
         assertThat(judgeController.countMatchingDigits(lotto))
                 .isEqualTo(expectedCount);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "6, FIRST",
+            "4, FORTH",
+            "3, FIFTH"
+
+    })
+    void 일치개수에_따라_등급을_지정한다(int matchCount, Grade expectedGrade) {
+        assertThat(judgeController.assignGrade(matchCount, false))
+                .isEqualTo(expectedGrade);
+    }
+
+    @Test
+    void matchCount_5_일때_BONUS포함하면_SECOND_반환() {
+        assertThat(judgeController.assignGrade(5, true)).isEqualTo(Grade.SECOND);
+    }
+
+    @Test
+    void matchCount_5_일때_BONUS포함하지_않으면_THIRD_반환() {
+        assertThat(judgeController.assignGrade(5, false)).isEqualTo(Grade.THIRD);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "2",
+            "1",
+            "0"
+
+    })
+    void matchCount_0이상_3미만_일때_NULL_반환(int matchCount) {
+        assertThat(judgeController.assignGrade(matchCount, false)).isNull();
+    }
+
+    @Test
+    void 유효하지_않은_matchCount_입력시_예외_발생() {
+        assertThatThrownBy(() -> judgeController.assignGrade(-1, false))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 matchCount입니다.");
     }
 }
