@@ -15,8 +15,9 @@ public class MyWallet {
         return lottos;
     }
 
-    public void buyLottos(){
-
+    public void buyLottos(int money) {
+        List<Lotto> newLottos = LottoVendingMachine.issueNewLottos(money);
+        lottos.addAll(newLottos);
     }
 
 }

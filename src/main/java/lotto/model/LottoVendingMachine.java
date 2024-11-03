@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LottoVendingMachine {
 
-    public List<Lotto> issueNewLottos(int money) {
+    public static List<Lotto> issueNewLottos(int money) {
         checkMoney(money);
         List<Lotto> lottos = new ArrayList<>();
 
@@ -19,12 +19,12 @@ public class LottoVendingMachine {
         return lottos;
     }
 
-    private Lotto issueNewLotto() {
+    private static Lotto issueNewLotto() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
 
-    private void checkMoney(int money) {
+    private static void checkMoney(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 입력한 금액은 1000원 단위어야 합니다.");
         }
