@@ -8,6 +8,8 @@ import static lotto.resources.Constants.MATCH_SIX;
 import static lotto.resources.Constants.MATCH_THREE;
 import static lotto.resources.Constants.ZERO;
 
+import java.util.Arrays;
+
 public enum Rank {
     FIRST(MATCH_SIX, FAIL_MATCH_BONUS, 200000000),
     SECOND(MATCH_FIVE, MATCH_BONUS, 30000000),
@@ -27,15 +29,20 @@ public enum Rank {
     }
 
     public static Rank of(int matchCount, boolean matchBonus) {
-        for (Rank rank : values()) {
-            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
-                return rank;
-            }
-        }
-        return NOTHING;
+        return Arrays.stream(values())
+                .filter(rank -> rank.isMatchingRank(matchCount, matchBonus))
+                .findFirst()
+                .orElse(NOTHING);
     }
 
     public int getPrize() {
         return prize;
+    }
+
+    private boolean isMatchingRank(final int matchCount, final boolean matchBonus) {
+        if (!this.matchBonus) {
+            return this.matchCount == matchCount;
+        }
+        return this.matchCount == matchCount && this.matchBonus == matchBonus;
     }
 }
