@@ -1,19 +1,18 @@
 package lotto.strategy;
 
-import java.util.Map;
+import java.util.EnumMap;
+import lotto.message.Place;
 
 public class FourthPlace implements PlaceAuction {
 
-    private static final Integer FOURTH_PLACE = 4;
+    private final EnumMap<Place, Integer> placeMap;
 
-    private final Map<Integer, Integer> placeMap;
-
-    public FourthPlace(Map<Integer, Integer> placeMap) {
+    public FourthPlace(EnumMap<Place, Integer> placeMap) {
         this.placeMap = placeMap;
     }
 
     @Override
     public void add(Integer count) {
-        placeMap.put(FOURTH_PLACE, placeMap.get(FOURTH_PLACE) + 1);
+        placeMap.put(Place.FOURTH_PLACE, placeMap.get(Place.FOURTH_PLACE) + 1);
     }
 }

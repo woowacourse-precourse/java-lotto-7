@@ -1,9 +1,11 @@
 package lotto.service.calculator;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.message.Place;
 import lotto.message.PrintMessage;
 import lotto.message.Prize;
 import lotto.strategy.FifthPlace;
@@ -14,12 +16,9 @@ import lotto.strategy.SecondPlace;
 
 public class ResultCalculator {
 
-    private static final Integer START_PLACE = 1;
-    private static final Integer END_PLACE = 5;
-
-    private final Map<Integer, Integer> placeMap = new HashMap<>();
+    private final EnumMap<Place, Integer> placeMap = new EnumMap<>(Place.class);
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
-    private final List<Integer> prize = Prize.getPrize();
+    private final EnumMap<Place, Integer> prize = Prize.getPrize();
 
     public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
@@ -27,7 +26,7 @@ public class ResultCalculator {
     }
 
     private void init(List<Integer> bonusResult) {
-        for (int place = START_PLACE; place <= END_PLACE; place++) {
+        for (Place place : Place.values()) {
             placeMap.put(place, 0);
         }
         placeAuctionMap.put(6, new FirstPlace(placeMap));
@@ -51,24 +50,24 @@ public class ResultCalculator {
         }
     }
 
-    private String setDetail(PrintMessage printMessage, Integer place) {
+    private String setDetail(PrintMessage printMessage, Place place) {
         return String.format(printMessage.getMessage(), placeMap.get(place));
     }
 
     public List<String> getDetail() {
         List<String> printResult = new ArrayList<>();
-        printResult.add(setDetail(PrintMessage.LOTTO_FIFTH_PLACE_WINNING, 5));
-        printResult.add(setDetail(PrintMessage.LOTTO_FOURTH_PLACE_WINNING, 4));
-        printResult.add(setDetail(PrintMessage.LOTTO_THIRD_PLACE_WINNING, 3));
-        printResult.add(setDetail(PrintMessage.LOTTO_SECOND_PLACE_WINNING, 2));
-        printResult.add(setDetail(PrintMessage.LOTTO_FIRST_PLACE_WINNING, 1));
+        printResult.add(setDetail(PrintMessage.LOTTO_FIFTH_PLACE_WINNING, Place.FIFTH_PLACE));
+        printResult.add(setDetail(PrintMessage.LOTTO_FOURTH_PLACE_WINNING, Place.FOURTH_PLACE));
+        printResult.add(setDetail(PrintMessage.LOTTO_THIRD_PLACE_WINNING, Place.THIRD_PLACE));
+        printResult.add(setDetail(PrintMessage.LOTTO_SECOND_PLACE_WINNING, Place.SECOND_PLACE));
+        printResult.add(setDetail(PrintMessage.LOTTO_FIRST_PLACE_WINNING, Place.FIRST_PLACE));
         return printResult;
     }
 
     public Integer getPrizeMoney() {
         int prizeMoney = 0;
-        for (int place = START_PLACE; place <= END_PLACE; place++) {
-            prizeMoney += placeMap.get(place) * prize.get(place - 1);
+        for (Place place : Place.values()) {
+            prizeMoney += placeMap.get(place) * prize.get(place);
         }
         return prizeMoney;
     }
