@@ -2,6 +2,7 @@ package lotto.io;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.ErrorMessage;
 
 public class InputParser {
 
@@ -11,7 +12,7 @@ public class InputParser {
         try {
             return Long.parseLong(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("금액은 정수 형태로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_FORMAT_ERROR.getValue());
         }
     }
 
@@ -24,7 +25,7 @@ public class InputParser {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getValue());
         }
     }
 }
