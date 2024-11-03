@@ -1,7 +1,11 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -48,6 +52,30 @@ public class Lotto {
         if (cost % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.");
         }
-        System.out.println(cost/1000 + "개를 구매했습니다.");
+        System.out.println("\n" + cost/1000 + "개를 구매했습니다.");
+    }
+
+    public int getLottoCount(int cost) {
+        return cost / 1000;
+    }
+
+    public List getRandomNumber() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(randomNumbers);
+        return randomNumbers;
+    }
+
+    public List<List<Integer>> getLottos(int lottoCount) {
+        List<List<Integer>> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(getRandomNumber());
+        }
+        return lottos;
+    }
+
+    public void printLottos(List<List<Integer>> lottos) {
+        for (int i = 0; i < lottos.size(); i++) {
+            System.out.println(lottos.get(i));
+        }
     }
 }
