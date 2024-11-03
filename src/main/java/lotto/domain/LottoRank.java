@@ -5,7 +5,8 @@ public enum LottoRank {
     FOUR( 4, 50_000, "4개 일치 (50,000원)"),
     THREE( 5, 1_500_000, "5개 일치 (1,500,000원)"),
     TWO( 5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    ONE( 6, 2_000_000_000, "6개 일치 (2,000,000,000원)");
+    ONE( 6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
+    MISS(-1, 0, "3개 미만 일치 (0원)");
 
     private final String message;
     private final int prize;
@@ -22,7 +23,7 @@ public enum LottoRank {
         for (LottoRank rank : values()) {
             if (rank.getScore() == lottoScore) return rank;
         }
-        return null;
+        return MISS;
     }
 
     public int getScore() {

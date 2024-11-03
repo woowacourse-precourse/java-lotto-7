@@ -14,7 +14,7 @@ public class LottoResult {
 
     private void lottoResultInitialize() {
         for(LottoRank lottoRank : LottoRank.values()) {
-            lottoResult.put(lottoRank, 0);
+            if (lottoRank != LottoRank.MISS) lottoResult.put(lottoRank, 0);
         }
     }
 
@@ -24,7 +24,7 @@ public class LottoResult {
             boolean hasBonusNumber = lotto.checkHasBonusNumber(bonusNumber);
             LottoRank rank = LottoRank.evaluate(lottoScore, hasBonusNumber);
 
-            if (rank != null) {
+            if (rank != LottoRank.MISS) {
                 Integer i = lottoResult.get(rank);
                 lottoResult.put(rank, ++i);
             }
