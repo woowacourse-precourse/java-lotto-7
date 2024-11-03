@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.policy.LottoPricePolicy;
@@ -38,7 +39,25 @@ public class InputView {
     }
 
     public static List<Integer> winningNumbers(){
-        return stringToIntegerList(Console.readLine());
+        List<Integer> winningNumbers;
+        while (true){
+            try {
+                String input = Console.readLine();
+                validateString(input);
+                winningNumbers = stringToIntegerList(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    private static void validateString(String input){
+        String number = "^[0-9]*(,[0-9]*){5}";
+        if(!(input.matches(number))){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식 오류.");
+        }
     }
 
     private static List<Integer> stringToIntegerList(String input){
