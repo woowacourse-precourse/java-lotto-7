@@ -76,7 +76,7 @@ public class GameTest {
 
         // when
         int[] results1 = game.compareNumbers(winningLotto);
-        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results1);
+        double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results1);
 
         // then
         assertEquals(rateOfReturn, 500);
@@ -100,7 +100,7 @@ public class GameTest {
 
         // when
         int[] results = game.compareNumbers(winningLotto);
-        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
+        double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
         assertEquals(rateOfReturn, 100);
@@ -117,7 +117,7 @@ public class GameTest {
 
         // when
         int[] results = game.compareNumbers(winningLotto);
-        long rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
+        double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
         assertEquals(rateOfReturn, 0);
