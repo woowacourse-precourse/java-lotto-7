@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 public class LottoWinCalculatorTest {
 
-    private Lotto lotto;
     private LottoWinNumber lottoWinNumber;
     private Money budget;
     private List<Lotto> purchasedLotto;
@@ -25,19 +24,27 @@ public class LottoWinCalculatorTest {
 
     @BeforeEach
     public void 셋업() {
-        lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         lottoWinNumber = new LottoWinNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
         budget = new Budget(0);
-        purchasedLotto = Arrays.asList(lotto);
+        purchasedLotto = Arrays.asList(
+                new Lotto(Arrays.asList(1,2,3,4,5,6)),
+                new Lotto(Arrays.asList(1,2,3,4,5,7)),
+                new Lotto(Arrays.asList(1,2,3,4,5,10)),
+                new Lotto(Arrays.asList(1,2,3,4,11,10)),
+                new Lotto(Arrays.asList(1,2,3,12,11,10))
+        );
         lottoBuyer = new LottoBuyer(purchasedLotto,budget);
+
     }
 
     @Test
     public void 일등로또_반환_체크() {
         List<LottoReward> test = LottoWinCalculator.calculateReward(lottoBuyer,lottoWinNumber);
 
-        for(LottoReward lottoReward : test){
-            assertEquals(LottoReward.FIRST, lottoReward);
-        }
+//        for(LottoReward lottoReward : test){
+//            assertEquals(LottoReward.FIRST, lottoReward);
+//        }
+
+        assertTrue(test.contains(LottoReward.FIRST), "[ERROR] : 있어야할 LottoReward.FIRST가 없습니다.");
     }
 }
