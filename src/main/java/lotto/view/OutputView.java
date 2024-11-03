@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.dto.LottoNumbers;
 import lotto.dto.LottoBundle;
-import lotto.dto.LottoPrizeStatus;
+import lotto.dto.LottoEvaluatedStatus;
 import lotto.model.LottoPrize;
 import lotto.model.LottoTicket;
 
@@ -29,7 +29,7 @@ public class OutputView {
         printLottoTicketNumbers(lottoTicket);
     }
 
-    public void printPrizeResult(LottoPrizeStatus lottoPrizeStatus) {
+    public void printPrizeResult(LottoEvaluatedStatus lottoPrizeStatus) {
         printResultMessage();
 
         HashMap<LottoPrize, Integer> prizeStatus = lottoPrizeStatus.getPrizeStatus();
