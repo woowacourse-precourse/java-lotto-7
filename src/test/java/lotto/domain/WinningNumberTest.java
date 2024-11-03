@@ -19,4 +19,12 @@ class WinningNumberTest {
         Assertions.assertThat(winningNumber.contains(5)).isTrue();
         Assertions.assertThat(winningNumber.contains(6)).isTrue();
     }
+
+    @DisplayName("당첨 번호에 숫자가 아닌 값이 입력되었을 떄 예외 발생")
+    @Test
+    void contains() {
+        Assertions.assertThatThrownBy(() -> WinningNumber.from("invalid"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력값은 숫자여야 합니다.");
+    }
 }
