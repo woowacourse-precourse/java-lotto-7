@@ -47,21 +47,39 @@ public class LottoGameController {
     }
 
     private int getPurchaseAmountAndValidate() {
-        String purchaseAmount = InputView.getLottoPurchaseAmount();
-        purchaseAmountValidator.validate(purchaseAmount);
-        return Converter.integerConvert(purchaseAmount);
+        while (true) {
+            try {
+                String purchaseAmount = InputView.getLottoPurchaseAmount();
+                purchaseAmountValidator.validate(purchaseAmount);
+                return Converter.integerConvert(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> getWinningNumbersAndValidate() {
-        String winningNumbers = InputView.getWinningNumbers();
-        winningNumberValidator.validate(winningNumbers);
-        return Converter.winningNumbersConvert(winningNumbers);
+        while (true) {
+            try {
+                String winningNumbers = InputView.getWinningNumbers();
+                winningNumberValidator.validate(winningNumbers);
+                return Converter.winningNumbersConvert(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int getBonusNumberAndValidate(List<Integer> winningNumbers) {
-        String bonusNumber = InputView.getBonusNumber();
-        bonusNumberValidator.validate(winningNumbers, bonusNumber);
-        return Converter.integerConvert(bonusNumber);
+        while (true) {
+            try {
+                String bonusNumber = InputView.getBonusNumber();
+                bonusNumberValidator.validate(winningNumbers, bonusNumber);
+                return Converter.integerConvert(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
