@@ -1,18 +1,18 @@
 package lotto.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
 
@@ -50,18 +50,18 @@ class LottoTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("lottoMatchingCounts")
-    void 로또_여러장_일치_개수_확인(List<Integer> lottoNumbers, int expectedCount, List<Integer> winningNumbers) {
-        Lotto lotto = new Lotto(lottoNumbers);
-        assertEquals(expectedCount, lotto.getMatchingCount(winningNumbers));
+    @Test
+    void 로또_번호_5개_일치_시_보너스_번호_확인() {
+        assertTrue(purchasedLotto.hasBonusNumber(Arrays.asList(1, 2, 7, 8, 9, 11), 10));
     }
 
-    private static Stream<Arguments> lottoMatchingCounts() {
-        return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 7, 8, 9, 10), 2, Arrays.asList(1, 2, 3, 4, 5, 6)),
-                Arguments.of(Arrays.asList(3, 4, 5, 6, 7, 8), 4, Arrays.asList(1, 2, 3, 4, 5, 6)),
-                Arguments.of(Arrays.asList(1, 3, 5, 7, 9, 11), 3, Arrays.asList(1, 2, 3, 4, 5, 6))
-        );
+    @Test
+    void 로또_번호_5개_일치하지_않으면_보너스_번호_확인_실패() {
+        assertFalse(purchasedLotto.hasBonusNumber(Arrays.asList(1, 2, 7, 8, 5, 4), 6));
+    }
+
+    @Test
+    void 로또_번호_5개_일치하나_보너스_번호_없음() {
+        assertFalse(purchasedLotto.hasBonusNumber(Arrays.asList(1, 2, 7, 8, 9, 13), 12));
     }
 }
