@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.utils.Utils;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +38,20 @@ public class Validator {
             if (!duplicateCheck.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력했습니다.");
             }
+        }
+    }
+
+    public static List<Integer> validateWinningNumberSeparatorAndNotNumber(String lottoWinningNumbers){
+
+        try{
+            if(!lottoWinningNumbers.contains(",")){
+                throw new IllegalArgumentException("쉼표를 이용해서 번호를 구분해 주세요.");
+            }
+
+            return Utils.splitWinningNumber(lottoWinningNumbers);
+
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("숫자를 입력해 주세요.");
         }
     }
 }

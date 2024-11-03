@@ -51,4 +51,24 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateDuplicateWinningNumbers(lottoWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨번호_구분자가_쉼표가_아닌_경우_예외_테스트(){
+        //given
+        String lottoWinningNumbers = "41,42,43,44,45.1";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateWinningNumberSeparatorAndNotNumber(lottoWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_숫자가_아닌_경우_예외_테스트(){
+        //given
+        String lottoWinningNumbers = "41,42,43,44,이,1";
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateWinningNumberSeparatorAndNotNumber(lottoWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
