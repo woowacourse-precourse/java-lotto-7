@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.view.OutputMessage.ASK_BONUS_NUMBER;
+import static lotto.view.OutputMessage.ASK_PURCHASE_PRICE;
+import static lotto.view.OutputMessage.ASK_WINNING_NUMBER;
 import static lotto.view.OutputMessage.SHOW_PURCHASE_COUNT;
 import static lotto.view.OutputMessage.SHOW_SEPARATOR_LINE;
 import static lotto.view.OutputMessage.SHOW_STATISTICS_INTRO;
@@ -13,6 +16,18 @@ import lotto.domain.Profit;
 import lotto.exception.InputException;
 
 public class OutputView {
+    public static void askPurchasePrice() {
+        System.out.println(ASK_PURCHASE_PRICE.getMessage());
+    }
+
+    public static void askWinningNumber() {
+        System.out.println(ASK_WINNING_NUMBER.getMessage());
+    }
+
+    public static void askBonusNumber() {
+        System.out.println(ASK_BONUS_NUMBER.getMessage());
+    }
+
     public static void printPurchasedResult(Money money, List<Lotto> lottos) {
         printPurchasedCount(money.calculateTicketCount());
         printNewLine();
