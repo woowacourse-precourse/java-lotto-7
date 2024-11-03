@@ -57,7 +57,7 @@ public class Application {
             }
             return price;
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] Lotto number should have number formats");
+            throw new IllegalArgumentException("[ERROR] Lotto number must have number formats/2 billions as max price");
         }
     }
 
