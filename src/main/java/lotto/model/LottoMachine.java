@@ -38,7 +38,10 @@ public class LottoMachine {
         return new WinningLotto(lotto, winningBonusNumber);
     }
 
-    public LottoHistory generateLottoHistory(WinningLotto winningLotto, List<Lotto> lottoList) {
-        return new LottoHistory(winningLotto, lottoList);
+    public LottoStatistic generateLottoStatistic(WinningLotto winningLotto, List<Lotto> lottoList) {
+        List<LottoRank> rankList = lottoList.stream()
+                .map(lotto -> lotto.getRankFrom(winningLotto))
+                .toList();
+        return new LottoStatistic(rankList);
     }
 }

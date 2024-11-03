@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.InputValidator;
 import lotto.model.Lotto;
-import lotto.model.LottoHistory;
 import lotto.model.LottoMachine;
 import lotto.model.LottoStatistic;
 import lotto.model.WinningLotto;
@@ -35,8 +34,7 @@ public class LottoController {
         outputView.printBoughtLottoList(boughtLottoList);
 
         WinningLotto winningLotto = attempt(this::generateWinningLotto);
-        LottoHistory lottoHistory = lottoMachine.generateLottoHistory(winningLotto, boughtLottoList);
-        LottoStatistic lottoStatistic = lottoHistory.getLottoStatistic();
+        LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
         outputView.printLottoStatistic(lottoStatistic);
     }
 
