@@ -38,13 +38,22 @@ public class MatchNumber {
     }
 
     private Prize getPrizeByMatch(int matchCount, boolean matchBonus) {
-        return switch (matchCount) {
-            case 6 -> Prize.FIRST;
-            case 5 -> matchBonus ? Prize.SECOND : Prize.THIRD;
-            case 4 -> Prize.FOURTH;
-            case 3 -> Prize.FIFTH;
-            default -> null;
-        };
+        if (matchCount == 6) {
+            return Prize.FIRST;
+        }
+        if (matchCount == 5 && matchBonus) {
+            return Prize.SECOND;
+        }
+        if (matchCount == 5) {
+            return Prize.THIRD;
+        }
+        if (matchCount == 4) {
+            return Prize.FOURTH;
+        }
+        if (matchCount == 3) {
+            return Prize.FIFTH;
+        }
+        return null;
     }
 
     public Map<Prize, Integer> getPrizeCount() {
