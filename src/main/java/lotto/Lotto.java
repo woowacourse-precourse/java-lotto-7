@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers.sort(Integer::compareTo);
         this.numbers = numbers;
     }
 
