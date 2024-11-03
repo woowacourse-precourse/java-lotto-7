@@ -24,6 +24,13 @@ public class Executor {
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
         WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
+
+        WinningStatisticsDto winningStatisticsDto = issuedLottos.calculateWinningResults(winningLotto);
+        ioController.printWinningResults(winningStatisticsDto.getWinningStatistics());
+
+        double lottoYield = winningStatisticsDto.getLottoYield(purchaseAmount);
+        ioController.printWinningStatistics(lottoYield);
+
     }
 
     private int getPurchaseAmount() {
