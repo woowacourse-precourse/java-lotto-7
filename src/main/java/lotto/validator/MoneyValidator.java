@@ -28,4 +28,10 @@ public class MoneyValidator {
             throw new IllegalArgumentException(MoneyErrorCode.MONEY_MIN_ERROR.getMessage());
         }
     }
+
+    public void validateDivideWithLottoPrice(int money, int lottoPrice) {
+        if (money % lottoPrice != 0) {
+            throw new IllegalArgumentException(MoneyErrorCode.MONEY_DIVIDE_ERROR.getMessage());
+        }
+    }
 }
