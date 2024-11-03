@@ -38,7 +38,7 @@ public class LottoController {
         List<Integer> lottoWinningCounts = lottoMatchEvaluator.getLottoWinningCounts();
         outputView.printOrderdLottoResult(lottoWinningCounts);
         EarningRate earningRate = new EarningRate(lottoWinningCounts,validAmount);
-
+        outputView.printEarningRate(earningRate.getEarningRate());
     }
 
     public Amount handleAmountInputError() { //얘네들이 15줄을 넘는 이유는 기능이 3가지임 인풋 아웃풋 컨트롤 , 타당성 체크, 형변환
