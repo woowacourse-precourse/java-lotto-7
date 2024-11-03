@@ -23,7 +23,8 @@ public class LottoMakeTest {
 
         assertAll(
                 () -> assertThat(numbers.size()).isEqualTo(6),
-                () -> assertThat(uniqueNumbers.size()).isEqualTo(6)
+                () -> assertThat(uniqueNumbers.size()).isEqualTo(6),
+                ()-> assertThat(numbers).allMatch(number -> number >= 1 && number <= 45)
 
         );
     }
