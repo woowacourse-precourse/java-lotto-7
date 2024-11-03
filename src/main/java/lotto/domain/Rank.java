@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Rank {
     FIRST_RANK(6, false, 2_000_000_000),
     SECOND_RANK(5, true, 30_000_000),
@@ -16,5 +18,14 @@ public enum Rank {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.prize = prize;
+    }
+
+    public static Rank getRank(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(values())
+                .filter(rank ->
+                        rank.matchCount == matchCount && rank.bonusMatch == bonusMatch
+                )
+                .findFirst()
+                .orElse(NO_RANK);
     }
 }
