@@ -25,15 +25,12 @@ class LottoServiceTest {
     @Test
     void 유효한_금액_문자열_입력() {
         int result = lottoService.purchaseAmount("8000");
-
         assertThat(result).isEqualTo(8000);
     }
 
     @Test
     void 숫자가_아닌_문자열_입력_예외() {
-        String invalidInput = "1000j"; // 숫자가 아닌 문자열
-
-        assertThatThrownBy(() -> lottoService.purchaseAmount(invalidInput))
+        assertThatThrownBy(() -> lottoService.purchaseAmount("1000j"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
@@ -50,18 +47,14 @@ class LottoServiceTest {
 
     @Test
     void 유효하지_않은_구분자_예외_발생() {
-        String invalidWinningNumber = "1,,2,3,4,5";
-
-        assertThatThrownBy(() -> lottoService.inputWinningNumber(invalidWinningNumber))
+        assertThatThrownBy(() -> lottoService.inputWinningNumber("1/2/3/4/5/6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test
     void 올바른_당첨_번호() {
-        String winningNumber = "1,2,3,4,5,6";
-
-        Lotto result = lottoService.inputWinningNumber(winningNumber);
+        Lotto result = lottoService.inputWinningNumber("1,2,3,4,5,6");
 
         assertThat(result.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
@@ -69,9 +62,8 @@ class LottoServiceTest {
     @Test
     void 보너스_번호가_유효하지_않은_경우_예외_발생() {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int invalidBonusNumber = 3;
 
-        assertThatThrownBy(() -> lottoService.bonusNumber(invalidBonusNumber, winningLotto))
+        assertThatThrownBy(() -> lottoService.bonusNumber("3", winningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
     }
