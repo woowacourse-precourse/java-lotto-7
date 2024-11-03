@@ -8,7 +8,7 @@ import lotto.domain.money.Money;
 public class LottoRanks {
 
     private static final int DEFAULT_RATE_OF_RETURN = 0;
-    private static final int RATE = 100;
+    private static final double RATE = 100.0;
 
     private final Map<LottoRank, Integer> ranks = new EnumMap<>(LottoRank.class);
 
@@ -24,18 +24,18 @@ public class LottoRanks {
         if (money.isEmpty()) {
             return DEFAULT_RATE_OF_RETURN;
         }
-        int totalReturn = getTotalReturn(ranks);
+        long totalReturn = getTotalReturn(ranks);
         return (double) totalReturn / money.amount() * RATE;
     }
 
-    private int getTotalReturn(Map<LottoRank, Integer> ranks) {
+    private long getTotalReturn(Map<LottoRank, Integer> ranks) {
         return ranks.entrySet().stream()
-                .mapToInt(this::calculateRewardAmount)
+                .mapToLong(this::calculateRewardAmount)
                 .sum();
     }
 
-    private int calculateRewardAmount(Entry<LottoRank, Integer> rankEntry) {
-        return rankEntry.getKey().getRewardAmount() * rankEntry.getValue();
+    private long calculateRewardAmount(Entry<LottoRank, Integer> rankEntry) {
+        return (long) rankEntry.getKey().getRewardAmount() * rankEntry.getValue();
     }
 
 }
