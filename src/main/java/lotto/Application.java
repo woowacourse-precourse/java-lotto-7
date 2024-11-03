@@ -55,11 +55,15 @@ public class Application {
 
         for (Lotto lotto : lottos) {
             Set<Integer> set2 = new HashSet<>(lotto.getNumbers());
+            boolean isBonusMatched = set2.contains(bonusNumber);
             set1.retainAll(set2);
 
             if (set1.size() == 6) {
                 rankCount.put(LottoRank.FIRST, rankCount.get(LottoRank.FIRST) + 1);
                 totalPrize += LottoRank.FIRST.getPrize();
+            } else if (set1.size() == 5 && isBonusMatched) {
+                rankCount.put(LottoRank.SECOND, rankCount.get(LottoRank.SECOND) + 1);
+                totalPrize += LottoRank.SECOND.getPrize();
             } else if (set1.size() == 5) {
                 rankCount.put(LottoRank.THIRD, rankCount.get(LottoRank.THIRD) + 1);
                 totalPrize += LottoRank.THIRD.getPrize();
