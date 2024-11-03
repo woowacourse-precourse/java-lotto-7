@@ -2,15 +2,15 @@ package lotto.factory;
 
 import lotto.controller.LottoController;
 import lotto.domain.LottoResult;
-import lotto.service.WinningService;
+import lotto.service.LottoService;
 
 public class LottoFactory {
 
     private LottoFactory(){
     }
 
-    public static WinningService WinningServiceCreate() {
-        return new WinningService(LottoResult.create());
+    public static LottoService WinningServiceCreate() {
+        return new LottoService(LottoResult.create());
     }
 
     public static LottoController createLottoController() {

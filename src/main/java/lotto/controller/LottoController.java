@@ -1,17 +1,17 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.service.WinningService;
+import lotto.service.LottoService;
 import lotto.utils.NumberValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final WinningService winningService;
+    private final LottoService lottoService;
 
-    public LottoController(WinningService winningService) {
-        this.winningService = winningService;
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
     }
 
     public void start() {
@@ -24,8 +24,8 @@ public class LottoController {
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
-        winningService.calculateWinningStatistics(winningNumbers, lottos, bonusNumber);
-        OutputView.printResult(winningService.getLottoResult());
+        lottoService.calculateWinningStatistics(winningNumbers, lottos, bonusNumber);
+        OutputView.printResult(lottoService.getLottoResult());
     }
 
     private List<List<Integer>> processTicketPurchase() {
@@ -35,13 +35,13 @@ public class LottoController {
     }
 
     private void calculateAndPrintProfit() {
-        String profit = winningService.getProfit();
+        String profit = lottoService.getProfit();
         OutputView.printProfit(profit);
     }
 
     private List<List<Integer>> lottoPurchaseResult(int ticketQuantity) {
         OutputView.printTicketQuantity(ticketQuantity);
-        List<List<Integer>> lottos = winningService.generateLottoNumber(ticketQuantity);
+        List<List<Integer>> lottos = lottoService.generateLottoNumber(ticketQuantity);
         OutputView.printLottos(lottos);
         return lottos;
     }
@@ -93,7 +93,7 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = InputView.purchasePriceInput();
-                ticketQuantity = winningService.calculateTicketQuantity(purchaseAmount);
+                ticketQuantity = lottoService.calculateTicketQuantity(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

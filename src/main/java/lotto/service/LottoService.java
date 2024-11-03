@@ -13,12 +13,12 @@ import java.util.Map;
 import lotto.utils.RandomNumber;
 import lotto.utils.WinningCalculator;
 
-public class WinningService {
+public class LottoService {
 
     private final LottoResult lottoResult;
     private Ticket ticket;
 
-    public WinningService(LottoResult lottoResult) {
+    public LottoService(LottoResult lottoResult) {
         this.lottoResult = lottoResult;
     }
 
