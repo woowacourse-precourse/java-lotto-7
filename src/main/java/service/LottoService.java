@@ -12,13 +12,12 @@ public class LottoService {
 
     private final static Validator validator = new Validator();
 
-    // 로또 구입 금액을 입력 받아서 로또 발행 횟수를 반환
-    public int lottoCount(int amount){
-        validator.validateAmount(amount);
-        return amount/1000;
+    public int purchaseAmount(String input){
+        int amount = validator.validateAmountNumber(input);
+        validator.validateAmountCount(amount);
+        return amount;
     }
 
-    // 구입한 금액만큼 로또 발행하기
     public List<Lotto> publishLotto(int count){
         List<Lotto> lottoList = new ArrayList<>(count);
         for(int i = 0; i < count; i++){
@@ -27,23 +26,20 @@ public class LottoService {
         return lottoList;
     }
 
-    // 로또 번호 자동 생성하기
     private Lotto createLottoNumber(){
         List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
         Collections.sort(lotto);
         return new Lotto(lotto);
     }
 
-    // 당첨 번호 입력 받기
     public Lotto inputWinningNumber(String winningNumber){
         validator.validateEmpty(winningNumber);
         validator.validateDelimiter(winningNumber);
         List<Integer> numbers = splitWinningNumber(winningNumber);
-        validator.validateWinningNumber(numbers);
+        validator.validateDuplicatedWinningNumber(numbers);
         return new Lotto(numbers);
     }
 
-    // 당첨 번호 분리하기
     public List<Integer> splitWinningNumber(String winningNumber){
         return Arrays.stream(winningNumber.split(","))
                 .map(String::trim)
@@ -51,14 +47,12 @@ public class LottoService {
                 .toList();
     }
 
-    // 보너스 번호 입력 받기
     public int bonusNumber(Integer bonusNumber, Lotto lotto){
         validator.validateEmpty(bonusNumber);
-        validator.validateBonusNumber(bonusNumber, lotto);
+        validator.validateDuplicatedBonusNumber(bonusNumber, lotto);
         return bonusNumber;
     }
 
-    // 당첨 통계 내기
     public Map<Rank, Integer> calculateStatistics(List<Lotto> lottoList,  Lotto winningLotto, int bonusNumber){
         Map<Rank, Integer> rankCount = new HashMap<>();
         for(Rank rank : Rank.values()){
@@ -71,7 +65,6 @@ public class LottoService {
         return rankCount;
     }
 
-    // 등수 결정
     private Rank determineRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
         int matchCount = (int) lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
@@ -86,7 +79,6 @@ public class LottoService {
         return Rank.MISS;
     }
 
-    // 총 수익률 계산하기
     public double totalReturn(Map<Rank, Integer> rankCount, int purchaseAmount){
         long sum = 0;
         for(Rank rank : Rank.values()){
