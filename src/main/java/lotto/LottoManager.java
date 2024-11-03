@@ -26,8 +26,12 @@ public class LottoManager {
 		this.randomNumberGenerator = RandomNumberGenerator.getInstance();
 	}
 
-	public static LottoManager create() {
-		return new LottoManager();
+	private static class Holder {
+		private static final LottoManager INSTANCE = new LottoManager();
+	}
+
+	public static LottoManager getInstance() {
+		return Holder.INSTANCE;
 	}
 
 	public void run() {
