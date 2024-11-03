@@ -31,7 +31,31 @@ public class OutputView {
     }
 
     public void printLottoResults(List<LottoResult> results, String returns){
-        // todo.
+        System.out.println(LOTTO_RESULT_STATISTICS_MESSAGE);
+        List<LottoResult> resultValues = Arrays.stream(LottoResult.values())
+                .collect(Collectors.toList())
+                .reversed();
+
+        for(LottoResult result : resultValues){
+            Integer count = Math.toIntExact(results.stream()
+                    .filter(number -> number == result)
+                    .count());
+
+            printLottoResult(result, count);
+        }
+        printRateOfReturn(returns);
+    }
+
+    private void printLottoResult(LottoResult result,Integer count){
+        Integer matchCount = result.getMatchCount();
+        String priceText = result.getPriceText();
+
+        if(result == LottoResult.FIVE_MATCH_BONUS){
+            printMatchBonusResult(matchCount,priceText,count);
+            return;
+        }
+
+        printMatchLottoResult(matchCount, priceText,count);
     }
 
     private void printMatchLottoResult(Integer count, String amount, Integer quantity){

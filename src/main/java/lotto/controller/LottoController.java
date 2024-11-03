@@ -50,7 +50,12 @@ public class LottoController {
     }
 
     private void getLottoResult(){
-        // todo.
+        List<LottoResult> results = lottoService.calcLottoResults();
+        double profitSum = (double) lottoService.getSumLottoProfits(results);
+        double profitRatio = (profitSum / purchaseAmount - 1) * 100;
+
+        outputView.printLottoResults(results,
+                String.format("%.1f", profitRatio));
     }
 
 

@@ -43,6 +43,13 @@ public class LottoService {
         return results;
     }
 
+    public Integer getSumLottoProfits(List<LottoResult> results) {
+        return results.stream()
+                .filter(lottoResult -> lottoResult.getMatchCount() > ZERO_NUMBER)
+                .mapToInt(LottoResult::getPrice)
+                .sum();
+    }
+
     private Integer checkLottoMatched(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getSortedNumbers();
 
