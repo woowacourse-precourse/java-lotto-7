@@ -78,4 +78,13 @@ class WinningNumberValidatorTest {
             WinningNumberValidator.validateWinningNumber(input);
         });
     }
+
+    @DisplayName("쉼표와 숫자 이외의 문자가 입력된 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3a,4,5,6", "1, 2, 3, 4, 5, 6"})
+    void validateOnlyNumbersAndCommas(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            WinningNumberValidator.validateWinningNumber(input);
+        });
+    }
 }

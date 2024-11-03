@@ -28,6 +28,6 @@ public class Converter {
     public static String convertListToString(List<Integer> input) {
         return input.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(","));
     }
 }

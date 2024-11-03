@@ -5,6 +5,7 @@ import java.util.Set;
 import lotto.enums.Delimiter;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
+import lotto.enums.RegexPattern;
 
 public class WinningNumberValidator {
 
@@ -13,6 +14,7 @@ public class WinningNumberValidator {
         validateSeparatorNotComma(input);
         validateSeparatorContinue(input);
         validateNoEmptyBetweenCommas(input);
+        validateOnlyNumbersAndCommas(input);
         validateSixNumbers(input);
         validateStartWithZero(input);
         validateNumberDuplicate(input);
@@ -87,6 +89,12 @@ public class WinningNumberValidator {
                     || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
             }
+        }
+    }
+
+    private static void validateOnlyNumbersAndCommas(String input) {
+        if (!RegexPattern.ONLY_NUMBER_AND_COMMA.matches(input)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER_AND_COMMA.getErrorMessage());
         }
     }
 

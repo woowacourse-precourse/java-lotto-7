@@ -16,7 +16,8 @@ public enum ErrorMessage {
     NOT_ALLOW_DUPLICATE_NUMBER("숫자는 중복을 허용하지 않습니다."),
     ALLOW_ONE_TO_FORTY_FIVE("입력된 수에 1~45 범위의 수가 포함되어 있습니다."),
     NOT_ALLOW_WITHOUT_NUMBER("숫자 이외의 값은 입력할 수 없습니다."),
-    ALREADY_DUPLICATE_NUMBER("이미 당첨 번호와 중복되는 번호입니다.");
+    ALREADY_DUPLICATE_NUMBER("이미 당첨 번호와 중복되는 번호입니다."),
+    NOT_ALLOW_WITHOUT_NUMBER_AND_COMMA("숫자와 쉼표 이외의 값은 입력할 수 없습니다.");
 
     private final String errorMessage;
 

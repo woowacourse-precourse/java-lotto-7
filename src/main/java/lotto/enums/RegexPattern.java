@@ -6,7 +6,7 @@ public enum RegexPattern {
 
     START_WITH_ZERO(Pattern.compile("^0\\d+")),
     ONLY_NUMBER(Pattern.compile("^\\d+$")),
-    ;
+    ONLY_NUMBER_AND_COMMA(Pattern.compile("^\\d+(,\\d+)*$"));
 
     private final Pattern pattern;
 
