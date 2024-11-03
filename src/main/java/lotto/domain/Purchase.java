@@ -4,15 +4,21 @@ import lotto.util.enums.ValidateMessage;
 
 public class Purchase {
     private final int priceAmount;
+    private final int ticketCount;
 
     public Purchase(int priceAmount) {
         validatePriceAmountThousandMultiple(priceAmount);
         validatePriceAmountUnderHundredThousand(priceAmount);
         this.priceAmount = priceAmount;
+        this.ticketCount = priceAmount / 1000;
     }
 
     public int getPriceAmount() {
         return priceAmount;
+    }
+
+    public int getTicketCount() {
+        return ticketCount;
     }
 
     private void validatePriceAmountThousandMultiple(int amount) {
