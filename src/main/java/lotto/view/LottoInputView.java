@@ -21,15 +21,19 @@ public class LottoInputView {
             printInputMoney();
             try {
                 int money = Integer.parseInt(Console.readLine());
-                if (money % LOTTO_PRICE.getValue() != 0) {
-                    throw new IllegalArgumentException(INPUT_MONEY_DIVIDE_ERROR.getMessage());
-                }
+                validateMoney(money);
                 return money;
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_MONEY_ERROR.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void validateMoney(int money) {
+        if (money % LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(INPUT_MONEY_DIVIDE_ERROR.getMessage());
         }
     }
 
@@ -42,19 +46,21 @@ public class LottoInputView {
             printWinNumber();
             try {
                 List<Integer> winNumber = parseToIntegers(split(Console.readLine()));
-
-                if (isNotRange(winNumber)) {
-                    throw new IllegalArgumentException(INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
-                }
-
-                if (isDuplicated(winNumber)) {
-                    throw new IllegalArgumentException(INPUT_WIN_NUMBER_DUPLICATE_ERROR.getMessage());
-                }
-
+                validateWinNumber(winNumber);
                 return winNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validateWinNumber(List<Integer> winNumber) {
+        if (isNotRange(winNumber)) {
+            throw new IllegalArgumentException(INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
+        }
+
+        if (isDuplicated(winNumber)) {
+            throw new IllegalArgumentException(INPUT_WIN_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
@@ -98,19 +104,21 @@ public class LottoInputView {
                 } catch (Exception e) {
                     throw new IllegalArgumentException(INPUT_BONUS_NUMBER_ERROR.getMessage());
                 }
-
-                if (isContain(winNumber, bonusNumber)) {
-                    throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR.getMessage());
-                }
-
-                if (isNotRange(bonusNumber)) {
-                    throw new IllegalArgumentException(INPUT_BONUS_NUMBER_RANGE_ERROR.getMessage());
-                }
-
+                validateBonusNumber(winNumber, bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validateBonusNumber(List<Integer> winNumber, int bonusNumber) {
+        if (isContain(winNumber, bonusNumber)) {
+            throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR.getMessage());
+        }
+
+        if (isNotRange(bonusNumber)) {
+            throw new IllegalArgumentException(INPUT_BONUS_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
