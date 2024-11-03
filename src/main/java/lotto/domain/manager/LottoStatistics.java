@@ -11,7 +11,7 @@ import lotto.domain.model.Lotto;
 
 public class LottoStatistics {
     private static final String DEFAULT_DELIMITER = " - ";
-    public static final int SPECIAL_MATCH_COUNT_CASE = 4;
+    private static final int SPECIAL_MATCH_COUNT_CASE = 4;
 
     private final Map<Rank, Integer> statistics;
 
@@ -43,7 +43,7 @@ public class LottoStatistics {
     private Rank toRank(WinningLottos winningNumbers, Lotto lotto) {
         boolean isPromiseWithBonusMatch = winningNumbers.match(lotto) == SPECIAL_MATCH_COUNT_CASE;
         if (isPromiseWithBonusMatch) {
-            return Rank.calculate(winningNumbers.match(lotto), winningNumbers.isBonusMatched(lotto));
+            return Rank.calculate(winningNumbers.match(lotto), winningNumbers.isMatchBonus(lotto));
         }
 
         return Rank.calculate(winningNumbers.match(lotto), false);

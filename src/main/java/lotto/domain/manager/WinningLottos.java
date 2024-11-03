@@ -14,18 +14,18 @@ public class WinningLottos {
         this.bouns = bouns;
     }
 
-    private static void validates(Lotto lotto, LottoNumber bouns) {
-        boolean exist = lotto.isExist(bouns);
-        if (exist) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호화 보너스번호는 중복되지 않아야합니다.");
-        }
-    }
-
-    public int match(Lotto lotto) {
+    int match(Lotto lotto) {
         return this.lotto.match(lotto);
     }
 
-    public boolean isBonusMatched(Lotto lotto) {
-        return lotto.isExist(bouns);
+    boolean isMatchBonus(Lotto lotto) {
+        return lotto.isContain(bouns);
+    }
+
+    private static void validates(Lotto lotto, LottoNumber bouns) {
+        boolean exist = lotto.isContain(bouns);
+        if (exist) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호화 보너스번호는 중복되지 않아야합니다.");
+        }
     }
 }

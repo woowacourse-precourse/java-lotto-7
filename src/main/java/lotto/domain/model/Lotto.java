@@ -16,13 +16,13 @@ public class Lotto {
         this.numbers = numbers.stream().map(LottoNumber::new).toList();
     }
 
-    public boolean isExist(LottoNumber bonus) {
-        return this.numbers.stream().anyMatch(v -> v.equals(bonus));
+    public boolean isContain(LottoNumber number) {
+        return this.numbers.stream().anyMatch(v -> v.equals(number));
     }
 
     public int match(Lotto other) {
         return (int) this.numbers.stream().
-                filter(number -> other.isExist(number))
+                filter(number -> other.isContain(number))
                 .count();
     }
 

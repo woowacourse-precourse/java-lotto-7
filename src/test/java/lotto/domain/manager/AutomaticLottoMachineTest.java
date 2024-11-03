@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.manager;
 
-import static lotto.domain.constant.LottoConstraint.LOTTO_PRICE_UNIT;
+import static lotto.domain.constant.LottoConstraintProperties.LOTTO_PRICE_UNIT;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
