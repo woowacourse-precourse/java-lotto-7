@@ -13,4 +13,12 @@ class LottoPriceTest {
             new LottoPrice(0);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 금액 1000단위 아닌 에러")
+    @Test
+    void 로또_금액_1000단위_에러() {
+        assertThatThrownBy(() -> {
+            new LottoPrice(1001);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
