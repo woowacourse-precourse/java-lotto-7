@@ -31,11 +31,11 @@ public class MatchNumbers {
     }
 
     private void updateCounts(final int matchCount, final boolean bonusMatch) {
-        if (matchCount == Match.THREE.getMatchCount()) threeMatch++;
-        if (matchCount == Match.FOUR.getMatchCount()) fourMatch++;
-        if (matchCount == Match.FIVE.getMatchCount() && !(bonusMatch)) fiveMatch++;
-        if (matchCount == Match.BONUS.getMatchCount() && bonusMatch) fiveAndBonusMatch++;
-        if (matchCount == Match.SIX.getMatchCount()) sixMatch++;
+        if (matchCount == Match.THREE.getCount()) threeMatch++;
+        if (matchCount == Match.FOUR.getCount()) fourMatch++;
+        if (matchCount == Match.FIVE.getCount() && !(bonusMatch)) fiveMatch++;
+        if (matchCount == Match.BONUS.getCount() && bonusMatch) fiveAndBonusMatch++;
+        if (matchCount == Match.SIX.getCount()) sixMatch++;
     }
 
     public int getThreeMatch() {
