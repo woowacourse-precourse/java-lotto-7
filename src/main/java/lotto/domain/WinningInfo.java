@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.LottoInfo.PICK_COUNT;
-
 public enum WinningInfo {
 
     FIFTH(5, 3, 5_000),
