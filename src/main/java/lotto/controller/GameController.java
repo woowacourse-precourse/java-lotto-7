@@ -41,9 +41,8 @@ public class GameController {
 
     public void calculateAndViewResult() {
         lottoResult = new LottoResult(lottoTicket.getPrice());
-        for (Lotto lotto : lottoTicket.getLottos()) {
-            lottoResult.recordResult(winningLotto, lotto);
-        }
+        lottoTicket.getLottos().stream()
+                        .forEach(lotto -> lottoResult.recordResult(winningLotto, lotto));
         OutputView.outputRankSummary(lottoResult.getResultRank(), lottoResult.calculateProfitRate());
     }
 
