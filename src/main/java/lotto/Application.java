@@ -28,6 +28,7 @@ public class Application {
             }
 
             ResultView.printPrize(prizes);
+            ResultView.printProfit(LottoManager.calculateProfit(prizes, money));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -37,4 +37,11 @@ public class LottoManager {
         return LottoPrize.valueOf(matchCount, matchBonus);
     }
 
+    public static Float calculateProfit(List<LottoPrize> prizes, int money) {
+        int totalPrize = prizes.stream()
+                .mapToInt(LottoPrize::getPrize)
+                .sum();
+
+        return (float) totalPrize / money * 100;
+    }
 }
