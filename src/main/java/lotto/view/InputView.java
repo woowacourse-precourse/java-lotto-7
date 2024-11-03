@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.domain.Lotto;
 import lotto.utils.Validator;
 
 public class InputView {
@@ -17,16 +18,45 @@ public class InputView {
         return parseAmount;
     }
 
-    public static void winningNumbers() {
+    public static Lotto winningLotto() {
+        System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS);
         String numbers = read();
 
-        String cleanedNumbers = trimSpaces(numbers);
-        List<String> splitNumbers = splitByComma(cleanedNumbers);
+        List<String> splitNumbers = splitByCommaAndValidateLength(numbers);
+        List<Integer> parsedNumbers = convertToIntegerAndValidate(splitNumbers);
 
-        Validator.numbersLength(splitNumbers);
+        return new Lotto(parsedNumbers);
     }
 
+    private static List<String> splitByCommaAndValidateLength(String numbers) {
+        String cleanedNumbers = trimSpaces(numbers);
+        List<String> splitNumbers = splitByComma(cleanedNumbers);
+        Validator.numbersLength(splitNumbers);
+
+        return splitNumbers;
+    }
+
+    private static List<Integer> convertToIntegerAndValidate(List<String> numbers) {
+        List<Integer> parsedNumbers = convertToInteger(numbers);
+        validateInRange(parsedNumbers);
+        Validator.numberDuplicate(parsedNumbers);
+
+        return parsedNumbers;
+    }
+
+    private static void validateInRange(List<Integer> numbers) {
+        numbers.forEach(Validator::numberInRange);
+    }
+
+    private static List<Integer> convertToInteger(List<String> numbers) {
+        for (String number : numbers) {
+            Validator.isNumber(number);
+        }
+        return numbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 
     private static List<String> splitByComma(String cleanedNumbers) {
         return Stream.of(cleanedNumbers.split(","))
