@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -13,17 +14,8 @@ public class Application {
         // 1.5 형식에 맞는 구입 금액이 입력될 때까지 반복하여 입력을 받는 기능
         int purchaseAmount = getPurchaseAmount();
 
-        // 2.1 구매할 로또의 개수를 계산하는 기능
-        int lottoCount = calculateLottoCount(purchaseAmount);
-
-        //2.2 로또의 번호를 생성하는 기능
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
-        // 2.3 로또 번호를 오름차순으로 정렬하는 기능
-        Collections.sort(lottoNumbers);
-
-
-
+        // 2.4 로또 번호를 통해 구매할 로또의 개수만큼 로또 객체를 생성하는 기능
+        ArrayList<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
     }
 
     private static String getInputString(String message) {
@@ -72,6 +64,18 @@ public class Application {
 
     private static int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / 1000;
+    }
+
+    private static ArrayList<Lotto> generateLottoTickets(int purchaseAmount) {
+        int lottoCount = calculateLottoCount(purchaseAmount);
+        ArrayList<Lotto> lottoTickets = new ArrayList<>();
+
+        for (int count = 0; count < lottoCount; count++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumbers);
+            lottoTickets.add(new Lotto(lottoNumbers));
+        }
+        return lottoTickets;
     }
 
 
