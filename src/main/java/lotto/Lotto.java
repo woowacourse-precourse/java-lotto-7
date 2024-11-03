@@ -23,7 +23,7 @@ public class Lotto {
     private void checkUniqueNumbers(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.")
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 

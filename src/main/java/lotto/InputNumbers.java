@@ -6,22 +6,40 @@ import java.util.List;
 
 public class InputNumbers {
     public Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. : ");
-        String input = Console.readLine().trim();
-        List<Integer> winningNumbers = parseInputToList(input);
-        return new Lotto(winningNumbers);
+        while(true){
+            try{
+                System.out.println("당첨 번호를 입력해 주세요. : ");
+                String input = Console.readLine().trim();
+                List<Integer> numbers = parseInputToList(input);
+                return new Lotto(numbers);
+            }catch (IllegalArgumentException e){
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요. : ");
-        String input = Console.readLine().trim();
-        int bonusNumber = Integer.parseInt(input);
-        return bonusNumber;
+        while(true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요. : ");
+                String input = Console.readLine().trim();
+                int bonusNumber = Integer.parseInt(input);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> parseInputToList(String input) {
-        // winningNumbers를 리스트로 변환 기능 구현
-        return new ArrayList<>();
-    }
+        List<Integer> numbers = new ArrayList<>();
+        String[] splitNumbers = input.split(",");
 
+        for (String num : splitNumbers){
+            num = num.trim();
+            int parseNumbers = Integer.parseInt(num);
+            numbers.add((parseNumbers));
+        }
+        return numbers;
+    }
 }
