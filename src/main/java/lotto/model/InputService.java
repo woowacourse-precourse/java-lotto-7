@@ -34,7 +34,7 @@ public class InputService {
             return Integer.parseInt(value);
         } catch (IllegalArgumentException e) {
             System.out.println(CONVERT_ERROR_MESSAGE);
-            throw new IllegalArgumentException(CONVERT_ERROR_MESSAGE);
+            throw new InvalidNumericException(CONVERT_ERROR_MESSAGE);
         }
     }
 
