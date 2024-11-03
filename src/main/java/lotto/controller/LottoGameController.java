@@ -34,7 +34,7 @@ public final class LottoGameController {
 
     private void play() {
         LottoPurchase lottoPurchase = buyLotto();
-        // LottoGame lottoGame = playLottoGame(lottoPurchase);
+//        LottoGame lottoGame = playLottoGame(lottoPurchase);
     }
 
     private LottoPurchase buyLotto() {
@@ -47,7 +47,7 @@ public final class LottoGameController {
 
     private void playLottoGame(LottoPurchase lottoPurchase) {
         List<Integer> WinningLottoNumbers = readWinningLottoNumbers();
-
+        int bonusNumber = readBonusNumber();
 
     }
 
@@ -67,5 +67,13 @@ public final class LottoGameController {
         return Arrays.stream(numbersInput.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private int readBonusNumber() {
+        String bonusNumberInput = inputView.getBonusInput();
+
+        Validator.validateBonusNumberInput(bonusNumberInput);
+
+        return Integer.parseInt(bonusNumberInput);
     }
 }

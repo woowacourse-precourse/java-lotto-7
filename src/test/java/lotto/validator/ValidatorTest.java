@@ -22,4 +22,12 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateNumbersInput(numbersInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호가 유효한 범위 내의 양의 정수 형채ㅏ 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"-1", "0", "46", "0.2"})
+    void throwExceptionIfBonusNumberInputIsNotPositiveIntegerInValidRange(String bonusNumber) {
+        assertThatThrownBy(() -> Validator.validateBonusNumberInput(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

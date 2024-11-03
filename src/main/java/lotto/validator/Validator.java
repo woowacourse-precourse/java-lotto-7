@@ -21,6 +21,13 @@ public final class Validator {
         }
     }
 
+    public static void validateBonusNumberInput(String numberInput) {
+        validateNotBlank(numberInput);
+        validateIsInteger(numberInput);
+        validateIsPositive(numberInput);
+        validateIsValidBonusNumber(numberInput);
+    }
+
     private static void validateNotBlank(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_EMPTY.getMessage());
@@ -44,6 +51,14 @@ public final class Validator {
     private static void validateIsValidMoney(String input) {
         if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_VALID_MONEY.getMessage());
+        }
+    }
+
+    private static void validateIsValidBonusNumber(String input) {
+        int number = Integer.parseInt(input);
+
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.getMessage());
         }
     }
 }
