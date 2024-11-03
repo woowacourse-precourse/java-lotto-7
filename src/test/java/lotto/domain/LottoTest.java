@@ -22,4 +22,12 @@ class LottoTest {
         assertEquals("[ERROR] 로또 번호에 중복된 값이 있습니다.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("Lotto 객체 생성 시 숫자가 1~45 범위를 벗어나는 경우 예외 발생")
+    void createLottoWithOutOfRangeNumbers() {
+        List<Integer> outOfRangeNumbers = List.of(1, 2, 3, 4, 5, 46);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Lotto(outOfRangeNumbers));
+        assertEquals("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.", exception.getMessage());
+    }
+
 }
