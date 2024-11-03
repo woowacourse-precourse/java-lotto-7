@@ -14,9 +14,11 @@ public class Application {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinningNumbers = Console.readLine();
+        System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
+        System.out.println();
 
         LottoNumberFormatter formatter = new LottoNumberFormatter();
         List<Integer> winningNums = formatter.convertToNums(inputWinningNumbers);
@@ -24,7 +26,6 @@ public class Application {
         formatter.hasDuplicateNum(winningNums, bonusNum);
 
         LottoChecker lottoChecker = new LottoChecker(winningNums, bonusNum);
-
         lottoChecker.lottoCheck(customer);
     }
 }
