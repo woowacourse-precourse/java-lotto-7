@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 class LottoServiceTest {
 
     private static final String VALID_PAYMENT = "8000";
+    private static final String VALID_WINNING_NUMBERS = "1,2,3,4,5,6";
 
     private final LottoService lottoService = new LottoService();
 
@@ -33,5 +34,16 @@ class LottoServiceTest {
         // then
         assertThat(generatedLottos).isNotNull();
         assertThat(generatedLottos.lottos()).hasSize(8);
+    }
+
+    @Test
+    void 당첨번호_저장_성공_테스트() {
+        // given
+
+        // when
+        String result = lottoService.saveWinningLottos(VALID_WINNING_NUMBERS);
+
+        // then
+        assertThat(result).isEqualTo("success");
     }
 }
