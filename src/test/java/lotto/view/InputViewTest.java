@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -85,5 +87,47 @@ class InputViewTest {
     @Test
     void 올바른_당첨_번호_입력_케이스(){
         assertDoesNotThrow(() -> InputView.validateWinningLottoInput("1,2,3,4,5,6"));
+    }
+
+    @Test
+    void 보너스_번호_입력이_빈_문자열인_경우_예외(){
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateBonusNumberInput("", winningNumbers);
+        }, "[ERROR] 보너스 번호를 입력해 주세요.");
+    }
+
+    @Test
+    void 보너스_번호_입력이_숫자가_아닌_경우_예외(){
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateBonusNumberInput("abc", winningNumbers);
+        }, "[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+
+    @Test
+    void 보너스_번호_입력이_범위를_벗어난_경우_예외(){
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateBonusNumberInput("0", winningNumbers);
+        }, "[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateBonusNumberInput("46", winningNumbers);
+        }, "[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 보너스_번호_입력이_당첨_번호와_중복인_경우_예외(){
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputView.validateBonusNumberInput("3", winningNumbers); // 3은 당첨 번호에 포함됨
+        }, "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
+
+    @Test
+    void 보너스_번호_올바른_입력(){
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertDoesNotThrow(() -> InputView.validateBonusNumberInput("10", winningNumbers));
     }
 }
