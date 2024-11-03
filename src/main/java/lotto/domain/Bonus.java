@@ -8,7 +8,7 @@ public class Bonus {
     private static final String LEFT_PARENTHESIS = "(";
     private static final String RIGHT_PARENTHESIS = ")";
 
-    private int number;
+    private final int number;
 
     public Bonus(int number, List<Integer> lottoNumbers) {
         validateOverThanFortyFive(number);
