@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.enums.ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION;
+
 import java.util.List;
+import lotto.enums.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }
     }
 
