@@ -14,9 +14,7 @@ public class LottoResultCalculator {
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
             PrizeRank rank = determinePrizeRank(matchCount, bonusMatch);
-            if (rank != null) {
-                resultCounts.put(rank, resultCounts.get(rank) + 1);
-            }
+            if (rank != null) { resultCounts.put(rank, resultCounts.get(rank) + 1); }
         }
 
         return resultCounts;
@@ -25,9 +23,7 @@ public class LottoResultCalculator {
     private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : lottoNumbers) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
+            if (winningNumbers.contains(number)) { matchCount++; }
         }
         return matchCount;
     }

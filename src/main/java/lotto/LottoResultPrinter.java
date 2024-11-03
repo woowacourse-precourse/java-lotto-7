@@ -1,5 +1,8 @@
 package lotto;
+
 import java.util.Map;
+import java.util.stream.Stream;
+import java.util.Comparator;
 
 public class LottoResultPrinter {
 
@@ -13,10 +16,18 @@ public class LottoResultPrinter {
     }
 
     private static void printPrizeCounts(Map<PrizeRank, Integer> resultCounts) {
-        for (PrizeRank rank : PrizeRank.values()) {
-            int count = resultCounts.getOrDefault(rank, 0);
-            System.out.printf("%s - %d개\n", rank.getLabel(), count);
+        Stream.of(PrizeRank.values())
+                .sorted(Comparator.comparingInt(PrizeRank::getMatchCount))
+                .forEach(rank -> printRankCount(resultCounts, rank));
+    }
+
+    private static void printRankCount(Map<PrizeRank, Integer> resultCounts, PrizeRank rank) {
+        int count = resultCounts.getOrDefault(rank, 0);
+        if (rank == PrizeRank.SECOND) {
+            System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", rank.getPrize(), count);
+            return;
         }
+        System.out.printf("%d개 일치 (%,d원) - %d개\n", rank.getMatchCount(), rank.getPrize(), count);
     }
 
     private static int calculateTotalPrize(Map<PrizeRank, Integer> resultCounts) {
@@ -29,9 +40,9 @@ public class LottoResultPrinter {
     }
 
     private static void printYield(int totalPrize, int totalAmountSpent) {
-        if (totalPrize == 0) {
+        if (totalAmountSpent == 0) {
             System.out.printf("총 수익률은 0.0%%입니다.\n");
-            return; // 총 당첨금이 0일 때 바로 리턴
+            return;
         }
 
         double yield = (double) totalPrize / totalAmountSpent * 100;
@@ -44,6 +55,6 @@ public class LottoResultPrinter {
         for (int count : resultCounts.values()) {
             totalTickets += count;
         }
-        return totalTickets * 1000;
+        return totalTickets * 1000; // 로또 한 장당 1,000원
     }
 }

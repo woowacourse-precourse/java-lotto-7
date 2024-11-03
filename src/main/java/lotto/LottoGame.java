@@ -1,5 +1,7 @@
 package lotto;
+
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +18,8 @@ public class LottoGame {
             System.out.println();
 
             Map<PrizeRank, Integer> resultCounts = getResultCounts(purchasedLottos);
-            LottoResultPrinter.printResults(resultCounts);
             System.out.println();
+            LottoResultPrinter.printResults(resultCounts);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
