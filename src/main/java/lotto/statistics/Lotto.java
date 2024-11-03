@@ -1,5 +1,6 @@
 package lotto.statistics;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +11,16 @@ public class Lotto {
         checkDuplicateNumber(numbers);
         checkLottoRange(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatches(List<Integer> myLotto) {
+        List<Integer> matchedCount = new ArrayList<>(numbers);
+        matchedCount.retainAll(myLotto);
+        return matchedCount.size();
     }
 
     private void validate(List<Integer> numbers) {
