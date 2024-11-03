@@ -1,24 +1,28 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static java.util.Collections.sort;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sameNumberInLotto(numbers);
         List<Integer> sortNumbers = new ArrayList<>(numbers);
         sortLotto(sortNumbers);
         this.numbers = sortNumbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void sameNumberInLotto(List<Integer> numbers) {
+        Set<Integer> setLottoNumbers = new HashSet<>(numbers);
+        if(setLottoNumbers.size() < numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.");
         }
     }
 
