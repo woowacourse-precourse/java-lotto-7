@@ -6,14 +6,13 @@ import lotto.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoRank;
 import lotto.model.LottoResultCalculator;
-import lotto.model.strategy.NumberGenerationStrategy;
 
 public class LottoService {
 
     private final LottoMachine lottoMachine;
 
-    public LottoService(NumberGenerationStrategy strategy) {
-        this.lottoMachine = new LottoMachine(strategy);
+    public LottoService(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
     }
 
     /**
