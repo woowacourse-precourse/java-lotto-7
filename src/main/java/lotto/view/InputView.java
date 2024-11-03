@@ -13,29 +13,46 @@ public class InputView {
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static int purchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        String amount = read();
-        int parseAmount = parseAndValidateAmount(amount);
-        return parseAmount;
+        while (true) {
+            try {
+                System.out.println(INPUT_PURCHASE_AMOUNT);
+                String amount = read();
+                return parseAndValidateAmount(amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     public static Lotto winningLotto() {
-        System.out.println();
-        System.out.println(INPUT_WINNING_NUMBERS);
-        String numbers = read();
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println(INPUT_WINNING_NUMBERS);
+                String numbers = read();
 
-        List<String> splitNumbers = splitByCommaAndValidateLength(numbers);
-        List<Integer> parsedNumbers = convertToIntegerAndValidate(splitNumbers);
+                List<String> splitNumbers = splitByCommaAndValidateLength(numbers);
+                List<Integer> parsedNumbers = convertToIntegerAndValidate(splitNumbers);
 
-        return new Lotto(parsedNumbers);
+                return new Lotto(parsedNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int bonusNumber(List<Integer> winningNumbers) {
-        System.out.println();
-        System.out.println(INPUT_BONUS_NUMBER);
-        String bonusNumber = read();
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println(INPUT_BONUS_NUMBER);
+                String bonusNumber = read();
 
-        return parseAndValidateDuplication(winningNumbers, bonusNumber);
+                return parseAndValidateDuplication(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int parseAndValidateDuplication(List<Integer> winningNumbers, String bonusNumber) {
