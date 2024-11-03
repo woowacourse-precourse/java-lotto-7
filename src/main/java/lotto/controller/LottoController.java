@@ -45,6 +45,8 @@ public class LottoController {
         WinningCriteria winningCriteria = inputWinningCriteria();
         WinningResult winningResult = calculateWinningResult(issuedLotto, winningCriteria);
         double rateOfReturn = calculateRateOfReturn(purchasePrice, winningResult);
+        printWinningResult(winningResult);
+        printRateOfReturn(rateOfReturn);
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -85,5 +87,13 @@ public class LottoController {
 
     private double calculateRateOfReturn(PurchasePrice purchasePrice, WinningResult winningResult) {
         return lottoCalculationService.calculationRateOfReturn(purchasePrice, winningResult);
+    }
+
+    private void printWinningResult(WinningResult winningResult) {
+        outputView.printWinningResult(winningResult);
+    }
+
+    private void printRateOfReturn(double rateOfReturn) {
+        outputView.printRateOfReturn(rateOfReturn);
     }
 }
