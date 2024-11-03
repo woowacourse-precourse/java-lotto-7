@@ -25,6 +25,10 @@ public class BonusNumber {
         }
     }
 
+    public boolean isBonusNumber(Integer number) {
+        return bonusNumber == number;
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

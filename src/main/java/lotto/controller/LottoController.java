@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.dto.BonusNumberRequestDTO;
 import lotto.dto.PurchaseMoneyRequestDTO;
 import lotto.dto.PurchaseResultDTO;
 import lotto.dto.WinningNumberRequestDTO;
 import lotto.model.BonusNumber;
+import lotto.model.LottoRank;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;
@@ -30,6 +32,8 @@ public class LottoController {
         Lottos lottos = buyLottos(money);
         WinningNumbers winningNumbers = retryIfHasError(this::getWinningNumbers);
         BonusNumber bonusNumber = retryIfHasError(this::getBonusNumber);
+        Map<LottoRank, Integer> ranks = lottos.getLottoResults(winningNumbers, bonusNumber);
+        outputView.showLottoResults(ranks);
     }
 
     private Lottos buyLottos(Money money) {

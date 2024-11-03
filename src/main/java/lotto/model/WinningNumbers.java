@@ -51,4 +51,8 @@ public class WinningNumbers {
             throw new IllegalArgumentException(OVER_RANGE_MESSAGE);
         }
     }
+
+    public boolean isWinningNumber(Integer number) {
+        return winningNumbers.contains(number);
+    }
 }

@@ -7,6 +7,9 @@ import static lotto.model.LottoRule.NUMBER_COUNT;
 import java.util.List;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.OverRangeException;
+import lotto.model.BonusNumber;
+import lotto.model.LottoRank;
+import lotto.model.WinningNumbers;
 
 public class Lotto {
     private static final String INVALID_COUNT_MESSAGE = "[ERROR] 로또 번호는 6개이어야 합니다.";
@@ -50,5 +53,26 @@ public class Lotto {
                 .anyMatch(number -> number < MIN_NUMBER.getConstant() || number > MAX_NUMBER.getConstant())) {
             throw new OverRangeException(OVER_RANGE_MESSAGE);
         }
+    }
+
+    public LottoRank calculateRank(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        long winningCount = calculateWinning(winningNumbers);
+        boolean isBonus = calculateBonus(bonusNumber);
+        return matchRank(winningCount, isBonus);
+    }
+
+    private long calculateWinning(WinningNumbers winningNumbers) {
+        return this.numbers.stream()
+                .filter(winningNumbers::isWinningNumber)
+                .count();
+    }
+
+    private boolean calculateBonus(BonusNumber bonusNumber) {
+        return this.numbers.stream()
+                .anyMatch(bonusNumber::isBonusNumber);
+    }
+
+    private LottoRank matchRank(long winningCount, boolean isBonus) {
+        return LottoRank.getRank(winningCount, isBonus);
     }
 }

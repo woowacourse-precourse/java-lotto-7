@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.model.LottoRule.MAX_PURCHASE_COUNT;
 import static lotto.model.LottoRule.PRICE;
 
+import java.util.List;
 import lotto.dto.PurchaseMoneyRequestDTO;
 
 public class Money {
@@ -14,6 +15,13 @@ public class Money {
     public Money(PurchaseMoneyRequestDTO request) {
         validate(request.getMoney());
         this.money = request.getMoney();
+    }
+
+    public Money(List<LottoRank> ranks) {
+        this.money = 0;
+        for (LottoRank rank : ranks) {
+            this.money += rank.getPrize();
+        }
     }
 
     public int getMoney() {
