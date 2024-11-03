@@ -15,6 +15,9 @@ public class LottoList {
         this.winningLotto = winningLotto;
         this.bonusNum = bonusNum;
     }
-
+    // 발행 로또 추가 메서드
+    public void add(Lotto lotto){
+        lottoList.add(lotto);
+    }
 
 }
