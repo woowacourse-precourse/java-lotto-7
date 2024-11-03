@@ -28,7 +28,7 @@ public class LottoConfig {
     }
 
     public LottoService lottoService() {
-        return new LottoServiceImpl(lottoRepository(),lottoFactory());
+        return new LottoServiceImpl(lottoRepository(), lottoFactory());
     }
 
     private LottoFactory lottoFactory() {
