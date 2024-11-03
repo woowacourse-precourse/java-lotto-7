@@ -7,7 +7,12 @@ public class Input {
         System.out.println("구입금액을 입력해 주세요.");
         return getInputValue();
     }
-    
+
+    public String winningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return getInputValue();
+    }
+
     private String getInputValue() {
         return Console.readLine();
     }
