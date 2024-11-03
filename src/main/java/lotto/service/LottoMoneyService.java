@@ -26,6 +26,6 @@ public class LottoMoneyService {
         for (WinRank w : rankWithMoneyMap.keySet()) {
             sum += lottoMatcher.getResult(w) * rankWithMoneyMap.get(w).getValue();
         }
-        return (double) sum / validPurchasePrice;
+        return (double) sum / validPurchasePrice * 100;
     }
 }
