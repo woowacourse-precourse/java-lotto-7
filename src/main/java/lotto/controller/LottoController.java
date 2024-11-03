@@ -16,7 +16,7 @@ public class LottoController {
 
     public void run() {
         service.generateUserNumbers(viewFacade.getPurchaseAmount());
-        viewFacade.printUserLotto(service.getUserNumbers()); //사용자에 입력한 값을 보여줘야 하네, service에게 요청할까 vs 바로 불러올까?
+        viewFacade.printUserLotto(service.getUserNumbers());
 
         service.generateLotto(viewFacade.getLottoNumber());
         service.generateBonusNumber(viewFacade.getBonusNumber());

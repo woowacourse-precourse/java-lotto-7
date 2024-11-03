@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserNumbers {
@@ -30,6 +31,7 @@ public class UserNumbers {
         int count = purchaseCount;
         while (count-- > 0) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoNumber.sort(Comparator.naturalOrder());
             userNumbers.add(new UserNumber(lottoNumber));
         }
     }
