@@ -12,6 +12,7 @@ public class Application {
 
         // 1. 로또 구입 금액 입력
         int money;
+        System.out.println("구입금액을 입력해 주세요.");
         try {
             money = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
