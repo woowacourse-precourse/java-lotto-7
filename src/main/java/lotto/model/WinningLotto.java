@@ -25,23 +25,23 @@ public class WinningLotto {
         return lotto.containsLottoNumber(bonusLottoNumber);
     }
 
-    private void validate(LottoNumbers numbers, LottoNumber bonusNumber) {
-        validateNumbers(numbers);
-        validateBonusNumber(numbers, bonusNumber);
+    private void validate(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
+        validateNumbers(lottoNumbers);
+        validateBonusNumber(lottoNumbers, bonusLottoNumber);
     }
 
-    private void validateNumbers(LottoNumbers numbers) {
-        if (!numbers.hasSize(WINNING_LOTTO_NUMBER_SIZE)) {
+    private void validateNumbers(LottoNumbers lottoNumbers) {
+        if (!lottoNumbers.hasSize(WINNING_LOTTO_NUMBER_SIZE)) {
             String detail = String.format("당첨 로또 번호의 개수는 %d 개여야 합니다.", WINNING_LOTTO_NUMBER_SIZE);
             throw LottoNumberInvalidException.lottoNumberSize(detail);
         }
-        if (!numbers.hasUniqueElements()) {
+        if (!lottoNumbers.hasUniqueElements()) {
             throw LottoNumberInvalidException.lottoNumberDuplicate();
         }
     }
 
-    private void validateBonusNumber(LottoNumbers numbers, LottoNumber bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
+    private void validateBonusNumber(LottoNumbers lottoNumbers, LottoNumber bonusLottoNumber) {
+        if (lottoNumbers.contains(bonusLottoNumber)) {
             throw LottoNumberInvalidException.bonusNumberDuplicate();
         }
     }
