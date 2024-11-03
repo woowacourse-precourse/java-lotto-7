@@ -39,6 +39,7 @@ class LottoTest {
         boolean containsBonus = lotto.getNumbers().contains(6);
         assertThat(containsBonus).isTrue();
     }
+
     @DisplayName("수익률에 대한 계산이 맞는지 확인한다.")
     @Test
     void 수익률에_대한_계산이_맞는지_확인한다() {
@@ -51,5 +52,19 @@ class LottoTest {
         double profitRate = (winningPrize / money) * 100;
 
         assertThat(profitRate).isEqualTo(winningPrize / money * 100);
+    }
+
+    @DisplayName("당첨금 총합 계산을 확인한다.")
+    @Test
+    void 당첨금_총합_계산을_확인한다() {
+        LottoResult result = new LottoResult();
+
+        result.winningResult(3, false);
+        result.winningResult(5, false);
+
+        double expectedWinningPrize = 5000 + 1500000;
+        double actualWinningPrize = result.totalWinningPrize();
+
+        assertThat(actualWinningPrize).isEqualTo(expectedWinningPrize);
     }
 }
