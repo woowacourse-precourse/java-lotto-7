@@ -18,7 +18,7 @@ public class InputView {
         return parseMoney(money);
     }
 
-    public Long parseMoney(String money) {
+    private Long parseMoney(String money) {
         try {
             return Long.parseLong(money);
         } catch (NumberFormatException e) {
