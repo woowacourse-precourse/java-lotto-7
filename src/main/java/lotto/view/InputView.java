@@ -1,12 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.InputValidator;
 
 public class InputView {
+
     private InputView() {
     }
 
     public static String inputPurchaseAmount() {
-        return Console.readLine().trim();
+        String input = Console.readLine().trim();
+        InputValidator.validateInteger(input);
+        return input;
     }
 }
