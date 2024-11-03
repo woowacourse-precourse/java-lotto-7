@@ -37,13 +37,13 @@ public class Lotto {
                 .collect(joining(delimiter));
     }
 
-    public Rank getRank(final List<Integer> winningNumbers, final int bonusNumber) {
+    public Rank getRank(final WinningNumbers winningNumbers, final int bonusNumber) {
         int winningNumberMatchCount = countMatchedWinningNumber(winningNumbers);
         boolean isBonusNumberMatched = numbers.contains(bonusNumber);
         return RankRule.checkRank(winningNumberMatchCount, isBonusNumberMatched);
     }
 
-    private int countMatchedWinningNumber(List<Integer> winningNumber) {
+    private int countMatchedWinningNumber(final WinningNumbers winningNumber) {
         return (int) numbers.stream()
                 .filter(winningNumber::contains)
                 .count();
