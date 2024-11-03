@@ -84,6 +84,6 @@ public class Application {
         }
 
         // 수익률 계산 및 출력
-        System.out.printf("수익률: %.2f%%%n", (double) totalPrize / inputCash * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.", (double) totalPrize / inputCash * 100);
     }
 }
