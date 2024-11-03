@@ -74,5 +74,12 @@ public enum Winning {
                 .append(count)
                 .append("개\n");
     }
+
+    public void clear() {
+        count = 0;
+    }
+
+    public long getCount() {
+        return count;
     }
 }
