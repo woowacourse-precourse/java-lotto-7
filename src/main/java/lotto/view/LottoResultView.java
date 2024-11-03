@@ -12,7 +12,7 @@ public class LottoResultView implements View {
 
     @Override
     public String render() {
-        return "당첨 통계" +
+        return "\n당첨 통계" +
                 "\n---" +
                 "\n3개 일치 (5,000원) - " + matchCnts[5] + "개" +
                 "\n4개 일치 (50,000원) - " + matchCnts[4] + "개" +
