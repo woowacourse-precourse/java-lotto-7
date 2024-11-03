@@ -6,6 +6,7 @@ import java.util.List;
 import static lotto.Controller.bonusNum;
 
 public class Service {
+    public int BonusScore = 0;
 
     List<List<Integer>> generator(int sheets) {
         List<List<Integer>> lottos = new ArrayList<>();
@@ -24,7 +25,7 @@ public class Service {
                     count+=1;
                 }
                 if (count == 5){
-                    count += checkBonusNum(lotto,bonusNum);
+                    checkBonusNum(lotto,bonusNum);
                 }
             }
             score.add(count);
@@ -32,12 +33,12 @@ public class Service {
         return score;
     }
 
-    int checkBonusNum(List<Integer> lotto,int bonusNum){
-        return (lotto.contains(bonusNum)) ? 1 : 0;
+    void checkBonusNum(List<Integer> lotto,int bonusNum){
+        int BonusScore = (lotto.contains(bonusNum)) ? 1 : 0;
     }
 
     void countWinning(ArrayList<Integer> score){
-        int[] resultWinning = new int[7];
+        int[] resultWinning = new int[8];
         for (int i=0;i<score.size();i++) {
 
             if (score.get(i) == 3) {
@@ -47,10 +48,15 @@ public class Service {
                 resultWinning[4] += 1;
             }
             if (score.get(i) == 5) {
-                resultWinning[5] += 1;
+                if(BonusScore == 1){
+                    resultWinning[6] += 1;
+                }
+                else{
+                    resultWinning[5] += 1;
+                }
             }
             if (score.get(i) == 6) {
-                resultWinning[6] += 1;
+                resultWinning[7] += 1;
             }
         }
     }
