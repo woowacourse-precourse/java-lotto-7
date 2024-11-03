@@ -8,17 +8,17 @@ import java.util.Set;
 public class FindWinningLotto {
 
     public enum LottoRank {
-        THREE(3, 5000),
-        FOUR(4, 50000),
-        FIVE(5, 1500000),
-        FIVE_WITH_BONUS(5, 30000000),
-        SIX(6, 2000000000);
+        THREE(3, "5,000"),
+        FOUR(4, "50,000"),
+        FIVE(5, "1,500,000"),
+        FIVE_WITH_BONUS(5, "30,000,000"),
+        SIX(6, "2,000,000,000");
 
         private final int matchCount;
-        private final int prize;
+        private final String prize;
         private int count;
 
-        LottoRank(int matchCount, int prize) {
+        LottoRank(int matchCount, String prize) {
             this.matchCount = matchCount;
             this.prize = prize;
             this.count = 0;
@@ -32,7 +32,7 @@ public class FindWinningLotto {
             return matchCount;
         }
 
-        public int getPrize() {
+        public String getPrize() {
             return prize;
         }
 
