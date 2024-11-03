@@ -11,10 +11,25 @@ public class LottoGameDisplay {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
 
     public int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String rawMoney = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String rawMoney = Console.readLine();
 
-        return Integer.parseInt(rawMoney);
+                checkMoneyValid(rawMoney);
+
+                return Integer.parseInt(rawMoney);
+            } catch (Exception e) {
+                printErrorMessage(e);
+            }
+        }
+    }
+
+    private void checkMoneyValid(String rawMoney) {
+        if (!Validator.isNumeric(rawMoney)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_MUST_NUMERIC.getMessage());
+        }
+        // 1000으로 나눠떨이지지 않는 경우
     }
 
     public List<Integer> inputWinnerNumbers() {
