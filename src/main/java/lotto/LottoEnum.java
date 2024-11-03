@@ -8,7 +8,7 @@ public enum LottoEnum {
     FIFTH(3, new BigDecimal(5000), new BigDecimal(0)),
     FOURTH(4, new BigDecimal(50000), new BigDecimal(0)),
     THIRD(5, new BigDecimal(1500000), new BigDecimal(0)),
-    SECOND(LOTTO_BONUS_CORRECT, new BigDecimal(30000000), new BigDecimal(0)),
+    SECOND(LOTTO_BONUS_HIT, new BigDecimal(30000000), new BigDecimal(0)),
     FIRST(6, new BigDecimal(2000000000), new BigDecimal(0)),
     NONE(0, new BigDecimal(0), new BigDecimal(0));
 

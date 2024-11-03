@@ -23,8 +23,8 @@ public class Lotto {
     // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>();
-        for(Integer item: numbers) {
-            if(!set.add(item)) {
+        for (Integer item : numbers) {
+            if (!set.add(item)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
             }
         }
@@ -34,18 +34,18 @@ public class Lotto {
         return this.numbers;
     }
 
-    public void search(List<Integer> intList, int bonus) {
-        int count = 0;
-        for (int i = 0; i < intList.size(); i++) {
-            if (numbers.contains(intList.get(i))) {
-                count++;
+    public void search(List<Integer> winNumbers, int bonus) {
+        int matchCount = 0;
+        for (Integer winNumber : winNumbers) {
+            if (numbers.contains(winNumber)) {
+                matchCount++;
             }
         }
 
-        if (count == LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
-            count = LOTTO_BONUS_CORRECT;
+        if (matchCount == LOTTO_FIVE_HIT && numbers.contains(bonus)) {
+            matchCount = LOTTO_BONUS_HIT;
         }
 
-        LottoEnum.increaseWinnerCount(count);
+        LottoEnum.increaseWinnerCount(matchCount);
     }
 }

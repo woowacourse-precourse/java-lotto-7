@@ -9,8 +9,8 @@ public class Lottos {
         this.values = values;
     }
 
-    public void searchAll(List<Integer> list, int bonus) {
-        values.forEach(lotto -> lotto.search(list, bonus));
+    public void searchAll(List<Integer> winNumbers, int bonus) {
+        values.forEach(lotto -> lotto.search(winNumbers, bonus));
     }
 
 }

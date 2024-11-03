@@ -9,11 +9,11 @@ public class Application {
         List<Lotto> lottoPaper = (new Generate(cost)).getLottoPaper();
         Output.printLottoPaper(lottoPaper);
 
-        final List<Integer> winningNumbers = Input.getWinNumbers();
-        final int bonus = Input.getBonusNumber(winningNumbers);
+        final List<Integer> winNumbers = Input.getWinNumbers();
+        final int bonus = Input.getBonusNumber(winNumbers);
 
         Lottos lottos = new Lottos(lottoPaper);
-        lottos.searchAll(winningNumbers, bonus);
+        lottos.searchAll(winNumbers, bonus);
 
         Output.printWinningList(cost);
     }
