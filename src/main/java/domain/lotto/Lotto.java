@@ -1,6 +1,6 @@
 package domain.lotto;
 
-import domain.winningLotto.WinningLotto;
+import domain.winning.WinningLotto;
 import java.util.List;
 import java.util.Objects;
 

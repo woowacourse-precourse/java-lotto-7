@@ -2,9 +2,9 @@ package domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.winningLotto.BonusNumber;
-import domain.winningLotto.WinningLotto;
-import domain.winningLotto.WinningNumbers;
+import domain.winning.BonusNumber;
+import domain.winning.WinningLotto;
+import domain.winning.WinningNumbers;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 

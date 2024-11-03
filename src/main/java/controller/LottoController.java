@@ -1,12 +1,12 @@
 package controller;
 
-import domain.winningLotto.BonusNumber;
 import domain.lotto.LottoGenerator;
 import domain.lotto.Lottos;
 import domain.lotto.PurchaseAmount;
 import domain.statistics.RevenueCalculator;
-import domain.winningLotto.WinningLotto;
-import domain.winningLotto.WinningNumbers;
+import domain.winning.BonusNumber;
+import domain.winning.WinningLotto;
+import domain.winning.WinningNumbers;
 import view.InputView;
 import view.ResultView;
 

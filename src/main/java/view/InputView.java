@@ -2,8 +2,8 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import domain.lotto.PurchaseAmount;
-import domain.winningLotto.BonusNumber;
-import domain.winningLotto.WinningNumbers;
+import domain.winning.BonusNumber;
+import domain.winning.WinningNumbers;
 
 public class InputView {
 
@@ -42,6 +42,7 @@ public class InputView {
 
     public BonusNumber createBonusNumber(String input, WinningNumbers winningNumbers) {
         try {
+            Console.close();
             return new BonusNumber(input, winningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());

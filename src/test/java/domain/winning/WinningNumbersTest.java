@@ -1,4 +1,4 @@
-package domain.winningLotto;
+package domain.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -15,7 +15,7 @@ public class WinningNumbersTest {
     @Test
     void 당첨번호_생성() {
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
-        
+
         assertThat(winningNumbers).isEqualTo(new WinningNumbers("1,2,3,4,5,6"));
     }
 
