@@ -15,6 +15,9 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+
+        Lotto lotto = Lotto.generateLotto();
+        System.out.println("생성된 로또 번호: " + lotto.getNumbers());
     }
 
     public static int calculateTicketCount(int purchaseAmount) {
