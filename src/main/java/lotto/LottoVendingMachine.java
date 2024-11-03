@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.handler.InputHandler;
@@ -24,6 +23,17 @@ public class LottoVendingMachine {
 
 
 
+
+
+
+    }
+
+    private WinningLottoNumberSelector getWinningLottoNumber(){
+
+        Lotto winningLotto = inputHandler.inputWinningLottoNumber();
+        SpecialNumber specialNumber = inputHandler.inputSpecialNumber();
+
+        return new WinningLottoNumberSelector(winningLotto,specialNumber);
     }
 
     private List<Lotto> makeLottos(int ticket){
