@@ -28,7 +28,7 @@ public class TicketRandomGenerator implements TicketGenerator {
     }
 
     public Ticket getTicket() {
-        List<Integer> numbers = generateRandomNumbers();
+        List<Integer> numbers = new ArrayList<>(generateRandomNumbers());
         Collections.sort(numbers);
         return new Ticket(numbers);
     }
