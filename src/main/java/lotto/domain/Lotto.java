@@ -8,7 +8,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         Validator.validateLotto(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public List<Integer> getNumbers() {
