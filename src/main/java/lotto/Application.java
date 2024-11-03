@@ -9,6 +9,7 @@ public class Application {
         // TODO: 프로그램 구현
     	List<Lotto> lottos = purchaseLottos();
         WinningNumber winningNumber = inputWinningNumber();
+        BonusNumber bonusNumber = inputBonusNumber(winningNumber);
         
     	
     	
@@ -44,6 +45,18 @@ public class Application {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 return new WinningNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    private static BonusNumber inputBonusNumber(WinningNumber winningNumber) {
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                return new BonusNumber(input, winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
