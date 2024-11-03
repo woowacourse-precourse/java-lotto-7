@@ -15,19 +15,19 @@ import java.util.Map;
 public class LottoController {
 
     public void run() {
-        List<Lotto> lottos = initializeLottos();
-        OutputView.printLottos(lottos);
+        List<Lotto> lotto = initializeLottos();
+        OutputView.printLottos(lotto);
 
         List<Integer> winningNumbers = InputView.winningNumber();
         int bonusNumber = InputView.bonusNumber();
 
-        LottoResult result = calculateLottoResult(lottos, winningNumbers, bonusNumber);
+        LottoResult result = calculateLottoResult(lotto, winningNumbers, bonusNumber);
         OutputView.printResults(result.getRankResults());
         OutputView.printProfitRate(result.getProfitRate());
     }
 
     private List<Lotto> initializeLottos() {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lotto = new ArrayList<>();
         int lottoCount = InputView.purchaseAmount();
         if (lottoCount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
@@ -36,9 +36,9 @@ public class LottoController {
         OutputView.purchaseCount(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(new Lotto(lottoNumbers));
+            lotto.add(new Lotto(lottoNumbers));
         }
-        return lottos;
+        return lotto;
     }
 
     private LottoResult calculateLottoResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
@@ -60,6 +60,11 @@ public class LottoController {
         for (Prize prize : Prize.values()) {
             totalPrize += rankResults.getOrDefault(prize.ordinal(), 0) * prize.getPrizeMoney();
         }
-        return purchaseAmount > 0 ? ((double) totalPrize / purchaseAmount) * 100 : 0;
+
+        if (purchaseAmount == 0) {
+            return 0.0;
+        }
+
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 }
