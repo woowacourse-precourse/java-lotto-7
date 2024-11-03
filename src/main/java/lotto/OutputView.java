@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -9,6 +10,27 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+    
+    
+    public static void printWinningStatistics(LottoResult result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Map<Rank, Integer> rankCounts = result.getRankCounts();
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) continue; // NONE 등수는 출력하지 않음
+            int count = rankCounts.getOrDefault(rank, 0);
+            System.out.printf("%d개 일치", rank.getMatchCount());
+            if (rank.isMatchBonus()) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(" (%d원) - %d개\n", rank.getPrize(), count);
+        }
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
 
 }

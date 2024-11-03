@@ -36,6 +36,14 @@ public enum Rank {
     public int getPrize() {
         return prize;
     }
+    
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
 
     public static Rank calculateRank(int matchCount, boolean matchBonus) {
         return RANK_MAP.getOrDefault(List.of(matchCount, matchBonus), NONE);

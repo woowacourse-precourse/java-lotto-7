@@ -28,6 +28,9 @@ public class Application {
             
             LottoResult result = new LottoResult(lottos, winningLotto);
             
+            OutputView.printWinningStatistics(result);
+            OutputView.printRateOfReturn(result.calculateProfitRate(purchaseAmount));
+            
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage()); // 예외 메시지 출력
         }
