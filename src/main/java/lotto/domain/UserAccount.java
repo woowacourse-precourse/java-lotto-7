@@ -7,15 +7,15 @@ public class UserAccount {
     private static final int LOTTO_PRICE = 1000;
 
     private UserAccount(int inputMoney) {
-        this.inputMoney =  inputMoney;
+        this.inputMoney = inputMoney;
         validate(inputMoney);
     }
 
-    public static UserAccount of(String rawInput){
+    public static UserAccount of(String rawInput) {
         return new UserAccount(Integer.parseInt(rawInput));
     }
 
-    public int getTicketCount(){
+    public int getTicketCount() {
         return inputMoney / LOTTO_PRICE;
     }
 

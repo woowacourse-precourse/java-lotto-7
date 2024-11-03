@@ -16,7 +16,7 @@ public class LottoController {
         this.lottoGenerateStrategy = lottoGenerateStrategy;
     }
 
-    public void run(){
+    public void run() {
         UserAccount userAccount = UserAccount.of(InputView.getMoney());
         LottoTicketBundle ticketBundle = purchaseTickets(userAccount.getTicketCount());
         WinningTicket winningTicket = getWinningTicketFromInput();
