@@ -23,6 +23,6 @@ public class LottoController {
 
         List<Integer> result = service.calculateResult();
         double rate = service.calculateRate();
-
+        viewFacade.printResult(result, rate);
     }
 }

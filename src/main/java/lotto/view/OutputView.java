@@ -1,13 +1,17 @@
 package lotto.view;
 
+import lotto.model.UserNumber;
+
 import java.util.List;
 
 public class OutputView {
-    public void printUserLotto(List<Integer> userLotto) {
-        System.out.println(userLotto);
+    public void printUserLotto(List<UserNumber> userNumbers) {
+        for (UserNumber userNumber : userNumbers) {
+            System.out.println(userNumber);
+        }
     }
 
-    public void printResult(List<Integer> results, int rate) {
+    public void printResult(List<Integer> results, double rate) {
         System.out.println("당첨 통계\n" + "---");
         System.out.println("3개 일치 (5,000원) - " + results.get(0) + "개");
         System.out.println("4개 일치 (50,000원) - " + results.get(1) + "개");

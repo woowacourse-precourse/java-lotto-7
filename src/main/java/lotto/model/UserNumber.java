@@ -12,4 +12,8 @@ public class UserNumber {
         this.userNumber = userNumber;
     }
 
+    public List<Integer> getUserNumber() {
+        return userNumber;
+    }
+
 }

@@ -26,13 +26,11 @@ public class ViewFacade {
         return inputView.getBonusNumber();
     }
 
-    public void printUserLotto(UserNumbers userNumbers) {
-        for (UserNumber userNumber : userNumbers.getUserNumbers()) {
-            System.out.println(userNumber);
-        }
+    public void printUserLotto(List<UserNumber> userNumbers) {
+        outputView.printUserLotto(userNumbers);
     }
 
-    public void printResult(List<Integer> results, int rate) {
+    public void printResult(List<Integer> results, double rate) {
         outputView.printResult(results, rate);
     }
 }
