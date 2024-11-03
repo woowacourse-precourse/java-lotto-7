@@ -55,6 +55,7 @@ public class Application {
         }
     }
 
+
     private static int getLottoCount(int input) {
         int lottoCount = input / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
@@ -62,11 +63,19 @@ public class Application {
     }
 
     private static Lotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> numbers = parseWinningNumbers(input);
-        Lotto winningNumbers = new Lotto(numbers);
-        return winningNumbers;
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+
+                List<Integer> numbers = parseWinningNumbers(input);
+                Lotto winningNumbers = new Lotto(numbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
     private static List<Integer> parseWinningNumbers(String input) {
