@@ -14,7 +14,7 @@ import static lotto.domain.LottoRankType.*;
 public class OutputView {
 
     private static final String NUMBER_FORMAT = "%,d";
-    private static final String DELIMITER = ",";
+    private static final String DELIMITER = ", ";
     private static final String PREFIX = "[";
     private static final String SUFFIX = "]";
     private static final int DEFAULT_VALUE = 0;
