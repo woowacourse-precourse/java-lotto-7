@@ -4,6 +4,10 @@ import java.util.List;
 import message.ErrorMessage;
 
 public record WinningNumbers(List<Integer> winningNumbers) {
+    private static final int WINNING_NUMBERS_COUNT = 6;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+
     public WinningNumbers {
         validateWinningNumber(winningNumbers);
     }
@@ -20,7 +24,7 @@ public record WinningNumbers(List<Integer> winningNumbers) {
     }
 
     private void validateWinningNumbersCount(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != WINNING_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.message());
         }
     }
@@ -49,6 +53,6 @@ public record WinningNumbers(List<Integer> winningNumbers) {
     }
 
     private boolean isNumberOutOfRange(int number) {
-        return number < 1 || number > 45;
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 }

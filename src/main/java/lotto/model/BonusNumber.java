@@ -4,6 +4,9 @@ import java.util.List;
 import message.ErrorMessage;
 
 public class BonusNumber {
+    private static final int MIN_BONUS_NUMBER = 1;
+    private static final int MAX_BONUS_NUMBER = 45;
+
     private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {
@@ -33,7 +36,7 @@ public class BonusNumber {
     }
 
     private static boolean isNumberOutOfRange(int number) {
-        return number < 1 || number > 45;
+        return number < MIN_BONUS_NUMBER || number > MAX_BONUS_NUMBER;
     }
 
     public int getBonusNumber() {
