@@ -90,7 +90,10 @@ public class LottoController {
             throw new IllegalArgumentException("빈 칸은 입력할 수 없습니다.");
         }
         int intAmount = Integer.parseInt(amount);
-        if (intAmount % 1000 != 0 || intAmount == 0) {
+        if (intAmount <= 0) {
+            throw new IllegalArgumentException("로또 금액은 1,000 이상의 값을 입력해주세요.");
+        }
+        if (intAmount % 1000 != 0) {
             throw new IllegalArgumentException("로또 금액은 1,000 단위로 입력해주세요.");
         }
     }
