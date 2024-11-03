@@ -11,22 +11,11 @@ public class OutPutView {
         printNewLine();
     }
 
-    public static void printMessagesWithNewLine(String... messages) {
-        printMessages(messages);
-        printNewLine();
-    }
-
     public static void printMessage(String message) {
         System.out.println(message);
     }
 
     public static void printNewLine() {
         System.out.println();
-    }
-
-    private static void printMessages(String... messages) {
-        for (String message : messages) {
-            System.out.println(message);
-        }
     }
 }
