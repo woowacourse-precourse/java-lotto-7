@@ -7,12 +7,8 @@ public class StringParser {
     static final int UNIT_AMOUNT = 1000;
 
     public Integer findAmount(String rawAmount) {
-        try {
-            int amount = Integer.parseInt(rawAmount);
-            return validateAmount(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INTEGER_ERROR.getMessage());
-        }
+        int amount = validateInteger(rawAmount);
+        return validateAmount(amount);
     }
 
     private Integer validateAmount(int amount) {
@@ -20,5 +16,13 @@ public class StringParser {
             return amount / UNIT_AMOUNT;
         }
         throw new IllegalArgumentException(THOUSANDS_ERROR.getMessage());
+    }
+
+    private int validateInteger(String rawAmount) {
+        try {
+            return Integer.parseInt(rawAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INTEGER_ERROR.getMessage());
+        }
     }
 }
