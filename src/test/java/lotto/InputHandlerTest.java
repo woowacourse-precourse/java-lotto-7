@@ -11,14 +11,27 @@ class InputHandlerTest {
     @Test
     void 로또_구입금액이_1000단위가_아닐경우_예외_발생() {
         // Given
-        int price = 5500;
+        int budget = 5500;
 
         // When
         InputHandler inputHandler = new InputHandler();
         // Then
-        Assertions.assertThatThrownBy(() -> inputHandler.priceInputValidator(price))
+        Assertions.assertThatThrownBy(() -> inputHandler.budgetInputValidator(budget))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입금액은 1000단위만 가능합니다.");
+    }
+
+    @Test
+    void 로또_구입금액이_1000미만일_경우_예외_발생() {
+        // Given
+        int budget = 0;
+
+        // When
+        InputHandler inputHandler = new InputHandler();
+        // Then
+        Assertions.assertThatThrownBy(() -> inputHandler.budgetInputValidator(budget))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입금액은 1000 이상부터 가능합니다.");
     }
 
     @Test
