@@ -1,6 +1,11 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.LottoTicket;
+import lotto.domain.PurchaseAmount;
+import lotto.input.Input;
 
 public class LottoMachine {
     public static final int PRICE_OF_ONE_LOTTERY_TICKET = 1000;

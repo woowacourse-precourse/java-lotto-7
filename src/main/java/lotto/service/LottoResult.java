@@ -1,4 +1,10 @@
-package lotto;
+package lotto.service;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.LottoTicket;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.Rank;
 
 public class LottoResult {
 
