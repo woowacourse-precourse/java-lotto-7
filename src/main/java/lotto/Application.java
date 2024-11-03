@@ -75,5 +75,13 @@ public class Application {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        // 5. 보너스 번호 입력
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
+        }
     }
 }
