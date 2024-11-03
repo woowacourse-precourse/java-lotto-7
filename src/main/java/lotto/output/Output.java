@@ -46,7 +46,7 @@ public class Output {
     }
 
     private static void profitRateOutput(LottoResultEvaluator lottoResultEvaluator) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
         System.out.printf(TOTAL_PROFIT_RATE.getMessage(), decimalFormat.format(lottoResultEvaluator.getReturnRate()));
     }
 
