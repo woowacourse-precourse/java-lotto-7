@@ -13,15 +13,11 @@ public class LottoGameController {
     private final LottoInputHandler inputHandler;
     private final ResultHandler resultHandler;
 
-
-    private final OutputView outputView;
-
     public LottoGameController(LottoService lottoService, InputView inputView, ErrorView errorView,
                                OutputView outputView) {
         this.lottoService = lottoService;
         this.inputHandler = new LottoInputHandler(inputView, errorView);
         this.resultHandler = new ResultHandler(lottoService, outputView);
-        this.outputView = outputView;
     }
 
     public void run() {
@@ -29,7 +25,9 @@ public class LottoGameController {
             // 1. 사용자로부터 구매 금액 입력 및 로또 티켓 생성
             int purchaseAmount = inputHandler.getPurchaseAmount();
             lottoService.generateLottoTickets(purchaseAmount);
-            outputView.printLottoPurchase(lottoService.getLottoTickets());
+
+            // 로또 구매 내역 출력
+            resultHandler.displayLottoPurchase();
 
             // 2. 사용자로부터 당첨 번호와 보너스 번호 입력 받기
             List<Integer> winningNumbers = inputHandler.getWinningNumbers();
@@ -43,4 +41,5 @@ public class LottoGameController {
             inputHandler.close();
         }
     }
+
 }
