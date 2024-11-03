@@ -4,6 +4,7 @@ import lotto.dto.LottoPurchasedAmountInput;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.model.Buyer;
 
 public class LottoController {
 
@@ -16,10 +17,14 @@ public class LottoController {
     }
 
     public void start() {
+        Buyer buyer = processLottoPurchase();
+    }
+
+    private Buyer processLottoPurchase() {
         while (true) {
             try {
                 LottoPurchasedAmountInput lottoPurchasedAmountInput = inputView.readLottoPurchasedAmount();
-                return;
+                return Buyer.from(lottoPurchasedAmountInput.rawAmount());
             } catch (LottoException e) {
                 outPutView.printErrorMessage(e.getMessage());
             }
