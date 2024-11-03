@@ -44,11 +44,18 @@ public class NumberLottoInputManger implements LottoInputManger {
      */
 
     private int validateInputPrice(String inputprice) {
+        inputPriceIsNotBlank(inputprice);
         inputPriceIsInteger(inputprice);
         int inputMoney = Integer.parseInt(inputprice);
         validateEnoughPrice(inputMoney);
         validateDividableByLottoPrice(inputMoney);
         return inputMoney;
+    }
+
+    private static void inputPriceIsNotBlank(String inputprice) {
+        if(inputprice.isBlank()){
+            throw new IllegalArgumentException(InputError.BLANK_INPUT_PRICE.getInstance());
+        }
     }
 
     private static void validateDividableByLottoPrice(int inputMoney) {
