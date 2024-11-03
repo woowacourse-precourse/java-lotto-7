@@ -13,7 +13,7 @@ public class LottoWinningNumberInputter {
     }
 
     private void noticeInputLottoWinningNumber() {
-        System.out.println(NOTICE_TO_INPUT_LOTTO_WINNING_NUMBER);
+        System.out.println(System.lineSeparator() + NOTICE_TO_INPUT_LOTTO_WINNING_NUMBER);
     }
 
     private String extractInputLottoWinningNumber() {

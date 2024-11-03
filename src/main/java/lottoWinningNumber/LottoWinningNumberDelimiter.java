@@ -2,7 +2,6 @@ package lottoWinningNumber;
 
 import java.util.Arrays;
 import java.util.List;
-import validate.LottoPurchaseAmountValidator;
 
 public class LottoWinningNumberDelimiter {
     private final static String LOTTO_WINNING_NUMBER_SEPERATOR = ",";
