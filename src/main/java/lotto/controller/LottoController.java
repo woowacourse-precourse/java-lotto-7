@@ -24,7 +24,7 @@ public class LottoController {
         lottoOutputView.outputMakeRandomLottos(purchasedLottos);
 
         List<Integer> winningNumberList = lottoInputView.inputWinningNumbers().lottoNumbers();
-        int bonusNumber = lottoInputView.inputBonusNumber();
+        int bonusNumber = lottoInputView.inputBonusNumber(winningNumberList);
 
         LottoResultStatistics statistics = new LottoResultStatistics();
         statistics.setTotalExpense(lottoAmount);

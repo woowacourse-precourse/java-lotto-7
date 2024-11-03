@@ -45,7 +45,7 @@ public class LottoValidator {
         }
     }
 
-    public static void validateBonusNumberInput(String input) {
+    public static void validateBonusNumberInput(String input, List<Integer> winningNumbers) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
@@ -56,6 +56,9 @@ public class LottoValidator {
         try {
             int bonusNumber = Integer.parseInt(numbers[0]);
             validateBonusNumber(bonusNumber);
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.");
         }
