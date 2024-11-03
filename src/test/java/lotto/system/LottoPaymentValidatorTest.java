@@ -1,11 +1,12 @@
 package lotto.system;
 
-import static lotto.system.LottoPaymentValidator.ERROR_INSUFFICIENT_PAYMENT;
-import static lotto.system.LottoPaymentValidator.ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE;
+import static lotto.system.lottoGetter.LottoPaymentValidator.ERROR_INSUFFICIENT_PAYMENT;
+import static lotto.system.lottoGetter.LottoPaymentValidator.ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.system.lottoGetter.LottoPaymentValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,15 +1,16 @@
-package lotto.system;
+package lotto.system.lottoGetter;
 
-import static lotto.user.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.user.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.system.unit.LottoTicket;
 
-public class LottoTicketFactory { // 로또를 사면 로또 번호를 생성하는 객체
+public class LottoTicketFactory { // 로또 수량 만큼 로또 티켓들을 생성하는 객체
 
     private static final int VALID_SIZE = 6;
 
@@ -20,7 +21,7 @@ public class LottoTicketFactory { // 로또를 사면 로또 번호를 생성하
         return generateTickets(quantity);
     }
 
-    static List<LottoTicket> generateTickets(int quantity) {
+    private static List<LottoTicket> generateTickets(int quantity) {
         return IntStream.range(0, quantity)
                 .mapToObj(i -> LottoTicket.of(generateUniqueNumbersInRange()))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -31,7 +32,7 @@ public class LottoTicketFactory { // 로또를 사면 로또 번호를 생성하
     }
 
 
-    static List<Integer> generateUniqueNumbersInRange() {
+    private static List<Integer> generateUniqueNumbersInRange() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND, VALID_SIZE);
     }
 }

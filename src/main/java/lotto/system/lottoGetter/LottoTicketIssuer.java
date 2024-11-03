@@ -1,8 +1,9 @@
-package lotto.system;
+package lotto.system.lottoGetter;
 
 import java.util.List;
+import lotto.system.unit.LottoTicket;
 
-public class LottoTicketIssuer { // 로또 구매 금액을 입력받아 로또 티켓을 발급하는 객체
+public class LottoTicketIssuer { // 로또 구매 금액을 입력 받아 로또 티켓을 발급하는 객체
 
     private static final int TICKET_PRICE = 1000;
     private final int quantity;
@@ -14,5 +15,9 @@ public class LottoTicketIssuer { // 로또 구매 금액을 입력받아 로또 
 
     public List<LottoTicket> issueLottoTickets() {
         return LottoTicketFactory.generate(quantity);
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

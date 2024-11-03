@@ -1,12 +1,12 @@
-package lotto.system;
+package lotto.system.lottoGetter;
 
 public class LottoPaymentValidator { // 로또 구매 금액을 검증하는 객체
 
-    protected static final String ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE = "[ERROR] 로또 구매 금액은 로또 한 장의 가격의 배수여야 합니다.";
-    protected static final String ERROR_INSUFFICIENT_PAYMENT = "[ERROR] 로또 구매 금액은 로또 한 장의 가격보다 커야 합니다.";
+    public static final String ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE = "[ERROR] 로또 구매 금액은 로또 한 장의 가격의 배수여야 합니다.";
+    public static final String ERROR_INSUFFICIENT_PAYMENT = "[ERROR] 로또 구매 금액은 로또 한 장의 가격보다 커야 합니다.";
     private static final int TICKET_PRICE = 1000;
 
-    protected static void validate(int totalPayment) {
+    public static void validate(int totalPayment) {
         validateSufficientPayment(totalPayment);
         validateMultipleOfTicketPrice(totalPayment);
     }

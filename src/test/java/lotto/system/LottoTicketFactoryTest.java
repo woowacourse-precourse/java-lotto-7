@@ -1,12 +1,14 @@
 package lotto.system;
 
-import static lotto.user.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
-import static lotto.user.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
+import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
+import static lotto.system.unit.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.system.lottoGetter.LottoTicketFactory;
+import lotto.system.unit.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
