@@ -3,7 +3,7 @@ package lotto.view.validator.bonus;
 import static lotto.error.ErrorMessage.DUPLICATE_BONUS;
 
 import lotto.model.lotto.Lotto;
-import lotto.view.PreProcessor;
+import lotto.utils.PreProcessor;
 import lotto.view.validator.InputValidator;
 
 public class BonusDuplicateValidator extends InputValidator {

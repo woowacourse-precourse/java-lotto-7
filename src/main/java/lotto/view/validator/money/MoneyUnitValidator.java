@@ -3,12 +3,13 @@ package lotto.view.validator.money;
 import static lotto.error.ErrorMessage.INVALID_AMOUNT;
 
 import lotto.model.money.Money;
-import lotto.view.PreProcessor;
+import lotto.utils.PreProcessor;
 import lotto.view.validator.InputValidator;
 
 public class MoneyUnitValidator extends InputValidator {
 
-    private MoneyUnitValidator() { }
+    private MoneyUnitValidator() {
+    }
 
     public static MoneyUnitValidator initiate() {
         return new MoneyUnitValidator();

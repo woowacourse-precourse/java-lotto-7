@@ -3,7 +3,7 @@ package lotto.view.validator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lotto.view.PreProcessor;
+import lotto.utils.PreProcessor;
 
 public class RangeValidator extends InputValidator {
 
