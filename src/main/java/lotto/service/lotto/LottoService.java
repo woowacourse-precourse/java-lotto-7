@@ -20,13 +20,9 @@ import lotto.service.lotto.constant.LottoConstant;
  */
 public class LottoService {
   private LottoCommand lottoCommand;
-  private BonusCommand bonusCommand;
 
-  public LottoService (LottoCommand lottoCommand,
-      BonusCommand bonusCommand
-      ) {
+  public LottoService (LottoCommand lottoCommand) {
     this.lottoCommand = lottoCommand;
-    this.bonusCommand = bonusCommand;
   }
 
   public int getPrice() {
@@ -65,8 +61,8 @@ public class LottoService {
     return winningLotto.addBonus(userInput);
   }
 
-  public BonusCommand getBonusCommand() {
-    return this.bonusCommand;
+  public BonusCommand getBonusCommand(WinningLotto winningLotto) {
+    return BonusCommand.from(winningLotto);
   }
 
   public MatchResults matchWinningLotto(WinningLotto winningLotto, PurchasedLottos purchasedLottos) {

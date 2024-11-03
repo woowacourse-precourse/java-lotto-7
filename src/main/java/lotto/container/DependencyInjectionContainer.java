@@ -33,8 +33,7 @@ public class DependencyInjectionContainer {
     container.put(AmountService.class, amountService);
 
     LottoCommand lottoCommand = new LottoCommand();
-    BonusCommand bonusCommand = new BonusCommand();
-    LottoService lottoService = new LottoService(lottoCommand, bonusCommand);
+    LottoService lottoService = new LottoService(lottoCommand);
     container.put(LottoService.class, lottoService);
 
     LottoController lottoController = new LottoController(consoleView, lottoService, amountService);
