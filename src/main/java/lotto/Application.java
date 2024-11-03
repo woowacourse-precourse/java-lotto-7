@@ -28,7 +28,7 @@ public class Application {
         allLottos.stream()
                         .forEach(lotto -> {
                             lottoPurchaseResult.append("[");
-                            lottoPurchaseResult.append(String.join(",", lotto.stream().toString()));
+                            lottoPurchaseResult.append(lotto.stream().map(String::valueOf).collect(Collectors.joining(", ")));
                             lottoPurchaseResult.append("]\n");
                         });
 
