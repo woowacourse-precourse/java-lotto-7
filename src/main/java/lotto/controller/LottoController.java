@@ -29,6 +29,7 @@ public class LottoController {
         printLottoTickets(lottoTickets);
 
         Lotto winningNumbers = new Lotto(inputView.getInputWinningNumbers());
+        Lotto bonusNumber = new Lotto(inputView.getInputBonusNumber());
     }
 
     private int calculateLottoCount(int purchaseAmount) {
