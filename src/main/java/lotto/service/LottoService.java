@@ -1,9 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.Lotto;
 import lotto.model.SoldLotto;
 import lotto.model.WinningLotto;
+import lotto.model.WinningResult;
 
 import java.util.List;
 
@@ -22,8 +22,7 @@ public class LottoService {
 
     public String buyLotto(int lottoCount) {
         for (int index = 0; index < lottoCount; index++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER_COUNT).stream().sorted().toList());
-            soldLotto.addLottoSold(lotto);
+            soldLotto.addLottoSold(Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER_COUNT).stream().sorted().toList());
         }
 
         return soldLotto.getLottoDetails().toString();
@@ -35,5 +34,11 @@ public class LottoService {
 
     public void validateBonusNumber(int bonusNumber){
         winningLotto.validateBonusNumber(bonusNumber, MAX_NUM, MIN_NUM);
+    }
+
+    public List<Integer> winningResult(){
+        WinningResult winningResult = new WinningResult();
+        winningResult.calculateResult(soldLotto.getSoldLotto(), winningLotto.getWinningLotto(), winningLotto.getBonusNumber());
+        return null;
     }
 }
