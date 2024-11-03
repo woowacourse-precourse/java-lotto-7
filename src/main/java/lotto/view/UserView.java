@@ -66,10 +66,7 @@ public class UserView {
 
     private static void getNumbersList(List<Lotto> lottoList) {
         for(Lotto lotto : lottoList) {
-            System.out.println(lotto.getNumbers()
-                    .stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(", ", "[", "]")));
+            System.out.println(lotto.toString());
         }
     }
 
