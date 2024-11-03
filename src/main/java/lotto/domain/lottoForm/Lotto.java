@@ -4,6 +4,7 @@ import lotto.domain.number.LottoNumber;
 import lotto.domain.number.Number;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto extends LottoForm {
     private final String DELIMITER = ", ";
@@ -20,9 +21,11 @@ public class Lotto extends LottoForm {
     @Override
     public String toString() {
 //        return String.join(DELIMITER, numbers.toString());
-        return numbers2.stream()
+        String result = numbers2.stream()
                 .map(LottoNumber::getNumber)
-                .toString();
+                .map(String::valueOf)
+                .collect(Collectors.joining(DELIMITER));
+        return String.format("[%s]", result);
     }
 
     public List<Number> getNumbers() {
