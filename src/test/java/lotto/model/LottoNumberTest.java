@@ -55,4 +55,15 @@ class LottoNumberTest {
                 .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_VALUE.getMessage());
     }
 
+    @Test
+    @DisplayName("입력된 값의 공백을 삭제한다.")
+    void should_RemoveWhiteSpace_When_GivenNumber() {
+        //given
+        String number = " 1 ";
+        //when
+        LottoNumber lottoNumber = new LottoNumber(number);
+        //then
+        Assertions.assertThat(lottoNumber).isNotNull();
+    }
+
 }

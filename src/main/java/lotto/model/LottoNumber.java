@@ -11,8 +11,9 @@ public class LottoNumber {
     private final int number;
 
     public LottoNumber(final String number) {
-        validate(number);
-        this.number = Integer.parseInt(number);
+        String strip = number.strip();
+        validate(strip);
+        this.number = Integer.parseInt(strip);
     }
 
     @Override
