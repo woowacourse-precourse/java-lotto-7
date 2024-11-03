@@ -21,6 +21,10 @@ public enum LottoRanking {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return this.prize;
+    }
+
     public String getMessage() {
         return message;
     }
