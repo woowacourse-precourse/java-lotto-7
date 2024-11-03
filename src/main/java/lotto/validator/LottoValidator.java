@@ -11,6 +11,9 @@ import static lotto.constants.LottoValue.LOTTO_NUMBER_COUNT;
 
 public class LottoValidator {
 
+    private LottoValidator(){
+    }
+
     public static void validateLotto(final List<Integer> numbers){
         checkNumberCount(numbers);
         checkNumberDuplicate(numbers);

@@ -19,6 +19,9 @@ public class OutputView {
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 {0}%입니다.";
     private static final String pattern = "#,##0.0";
 
+    private OutputView(){
+    }
+
     public static void printLottoTicketInformation(final List<List<Integer>> lottos, final int lottoCount) {
         System.out.println(MessageFormat.format(BUY_LOTTO_COUNT_MESSAGE, lottoCount));
         lottos.forEach(numbers -> System.out.println(formatLottoNumbers(numbers)));
