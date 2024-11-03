@@ -1,13 +1,15 @@
 package lotto.controller;
 
+import lotto.model.LottoCollection;
 import lotto.model.LottoDispenser;
 import lotto.model.LottoHolder;
 import lotto.view.InputView;
 
 public class LottoSimulator {
     
-    LottoDispenser lottoDispenser = new LottoDispenser();
-    LottoHolder lottoHolder = new LottoHolder();
+    private LottoDispenser lottoDispenser = new LottoDispenser();
+    private LottoHolder lottoHolder;
+
     
     public LottoSimulator() {
     }
@@ -20,7 +22,8 @@ public class LottoSimulator {
     
     private void purchaseLottoTickets() {
         String inputMoney = InputView.receiveLottoPayment();
-        lottoDispenser.executeTransactionAndDispense(inputMoney);
+        LottoCollection lottoCollection = lottoDispenser.executeTransactionAndDispense(inputMoney);
+        lottoHolder = new LottoHolder(lottoCollection);
     }
     
     private void verifyLottoWins() {
