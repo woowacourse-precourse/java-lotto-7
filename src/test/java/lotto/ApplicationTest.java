@@ -47,11 +47,44 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구매_금액_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 당점_번호_범위_예외_테스트() {
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6,7", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            ERROR_MESSAGE
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
+    }
+
+    @Test
+    void 보너스_당첨_번호_포함_예외_테스트() {
+
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "6", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            "[8, 21, 23, 41, 42, 43]",
+                            "보너스 번호",
+                            ERROR_MESSAGE
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
     }
 
     @Override
