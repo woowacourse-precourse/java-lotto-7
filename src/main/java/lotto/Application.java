@@ -9,6 +9,7 @@ import lotto.domain.LottoManager;
 import lotto.domain.LottoPrize;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.ResultView;
 
 public class Application {
     public static void main(String[] args) {
@@ -25,6 +26,8 @@ public class Application {
                 LottoPrize lottoPrize = LottoManager.matchLotto(winningLotto, lotto);
                 prizes.add(lottoPrize);
             }
+
+            ResultView.printPrize(prizes);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
