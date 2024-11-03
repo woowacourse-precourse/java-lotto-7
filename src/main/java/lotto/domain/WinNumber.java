@@ -26,4 +26,11 @@ public class WinNumber {
             throw InputException.from(ErrorMessage.BONUS_NUMBER_IS_IN_LOTTO_NUMBER);
         }
     }
+
+    private int matchWithLotto(Lotto otherLotto) {
+        return (int) lotto.getNumbers()
+                .stream()
+                .filter(otherLotto.getNumbers()::contains)
+                .count();
+    }
 }
