@@ -4,7 +4,7 @@ import lotto.model.*;
 
 import java.util.Map;
 
-public class LottoResultCalculator {
+public class LottoResultService {
     public LottoResult calculatePrizeResult(LottoBundle lottoBundle, LottoBonusNumber lottoBonusNumber, Lotto winningLotto, Cash cash) {
         Map<LottoPrizeType, Integer> lottoPrizes = lottoBundle.matchCountWithBonus(winningLotto, lottoBonusNumber);
         double benefit = calculateBenefit(lottoPrizes, lottoBundle, cash);

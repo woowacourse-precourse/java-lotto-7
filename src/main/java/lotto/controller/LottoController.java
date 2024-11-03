@@ -1,16 +1,16 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.service.LottoProvider;
-import lotto.service.LottoResultCalculator;
+import lotto.service.LottoProvideService;
+import lotto.service.LottoResultService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
     private final LottoOutputView lottoOutputView = new LottoOutputView();
     private final LottoInputView lottoInputView = new LottoInputView();
-    private final LottoProvider lottoProvider = new LottoProvider();
-    private final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
+    private final LottoProvideService lottoProvideService = new LottoProvideService();
+    private final LottoResultService lottoResultService = new LottoResultService();
 
     public void start() {
         lottoOutputView.printCashNotification();
@@ -24,7 +24,7 @@ public class LottoController {
         lottoOutputView.printBonusNumberNotification();
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
 
-        LottoResult lottoResult = lottoResultCalculator.calculatePrizeResult(lottoBundle, lottoBonusNumber, winningLotto, cash);
+        LottoResult lottoResult = lottoResultService.calculatePrizeResult(lottoBundle, lottoBonusNumber, winningLotto, cash);
         printLottoPrizeDetails(lottoResult);
         printLottoBenefit(lottoResult.getTotalBenefit());
     }
@@ -41,7 +41,7 @@ public class LottoController {
     }
 
     private LottoBundle buyLottoBundle(Cash cash) {
-        LottoBundle lottoBundle = lottoProvider.buyLottoBundle(cash);
+        LottoBundle lottoBundle = lottoProvideService.buyLottoBundle(cash);
         lottoOutputView.printLottoBundleAmount(lottoBundle.getLottoAmount());
         lottoOutputView.printLottoInBundle(lottoBundle);
         return lottoBundle;
@@ -51,7 +51,7 @@ public class LottoController {
         while (true) {
             try {
                 String winningLottoNumbers = lottoInputView.getUserInput();
-                return lottoProvider.publishWinningLotto(winningLottoNumbers);
+                return lottoProvideService.publishWinningLotto(winningLottoNumbers);
             } catch (IllegalArgumentException e) {
                 lottoOutputView.printErrorMessage(e.getMessage());
             }

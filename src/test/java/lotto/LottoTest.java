@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
-import lotto.service.LottoProvider;
+import lotto.service.LottoProvideService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private final LottoProvider lottoProvider = new LottoProvider();
+    private final LottoProvideService lottoProvideService = new LottoProvideService();
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -31,7 +31,7 @@ class LottoTest {
     @ValueSource(strings = {"", " ", "1,2,3,4,5,3000", "0,1,2,3,4,5", "-1,1,2,3,4,5"})
     void 로또_번호는_1과_45_사이의_숫자가_아니면_실패한다(String input) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            lottoProvider.publishWinningLotto(input);
+            lottoProvideService.publishWinningLotto(input);
         });
     }
 }

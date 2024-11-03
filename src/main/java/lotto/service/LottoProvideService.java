@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoProvider {
+public class LottoProvideService {
     LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
     public LottoBundle buyLottoBundle(Cash cash) {
