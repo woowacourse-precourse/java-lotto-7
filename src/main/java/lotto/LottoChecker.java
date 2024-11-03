@@ -41,7 +41,6 @@ public class LottoChecker {
             totalRanks[rank]++;
         }
 
-        showLottoResult(totalRanks);
         return totalRanks;
     }
 
