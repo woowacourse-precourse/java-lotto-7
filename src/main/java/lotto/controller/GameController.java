@@ -33,9 +33,7 @@ public class GameController {
         outputView.printNumberOfLotto(numberOfLotto);
         List<List<Integer>> lottoNumbers = generateNumbers(numberOfLotto);
         outputView.printNumbersCollections(lottoNumbers);
-        List<Integer> winningNumbers = readWinningNumbers();
-        Integer bonusNumber = readBonusNumber();
-        LotteryVendor vendor = new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+        LotteryVendor vendor = new LotteryVendor(lottoNumbers, readWinningNumbers(), readBonusNumber());
         Result result = vendor.calculateResult();
         outputView.printResult(result.returnCounts(), result.returnRate());
     }
