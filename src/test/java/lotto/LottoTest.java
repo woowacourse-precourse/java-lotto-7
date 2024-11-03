@@ -57,7 +57,7 @@ class LottoTest {
         LottoService lottoService = new LottoService();
         lottoService.addLotto(lottos, price);
 
-        for (Lotto lotto1 : lottos.getLottoList()) {
+        for (Lotto lotto1 : lottos.getLottos()) {
             System.out.println(lotto1.toString());
         }
 
@@ -82,7 +82,7 @@ class LottoTest {
 
         lottoService.setWinningLottoCount(lottos);
 
-        for (Lotto lotto1 : lottos.getLottoList()) {
+        for (Lotto lotto1 : lottos.getLottos()) {
             System.out.println(lotto1.toString());
         }
 

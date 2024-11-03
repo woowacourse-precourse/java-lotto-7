@@ -8,7 +8,7 @@ public class Lottos {
 
     private static final Lottos instance = new Lottos(); // 싱글톤 패턴 적용
 
-    private final List<Lotto> lottoList = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     private final int[] winningLottoCounts = new int[8];
     private Lotto inputLottoNumbers;
     private Integer bonusNumber;
@@ -22,11 +22,11 @@ public class Lottos {
     }
 
     public void add(Lotto lotto) {
-        lottoList.add(lotto);
+        lottos.add(lotto);
     }
 
-    public List<Lotto> getLottoList() {
-        return lottoList;
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     public int[] getWinningLottoCounts() {

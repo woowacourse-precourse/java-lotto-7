@@ -8,17 +8,17 @@ import lotto.domain.Lottos;
 public class LottoService {
 
     // 당첨 통계 설정
-    public void setWinningLottoCount(Lottos lottoList) {
-        for (Lotto lotto : lottoList.getLottoList()) {
-            int winningNumberCount = lotto.getWinningNumberCount(lottoList.getInputLottoNumbers(),
-                    lottoList.getBonusNumber());
-            lottoList.countUp(winningNumberCount);
+    public void setWinningLottoCount(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            int winningNumberCount = lotto.getWinningNumberCount(lottos.getInputLottoNumbers(),
+                    lottos.getBonusNumber());
+            lottos.countUp(winningNumberCount);
         }
     }
 
     // 수익률 계산
-    public double getRateOfReturn(Lottos lottoList, int price) {
-        int[] counts = lottoList.getWinningLottoCounts();
+    public double getRateOfReturn(Lottos lottos, int price) {
+        int[] counts = lottos.getWinningLottoCounts();
 
         long sum = counts[3] * 5000L + counts[4] * 50000L + counts[5] * 1500000L + counts[7] * 30000000L
                 + counts[6] * 2000000000L;

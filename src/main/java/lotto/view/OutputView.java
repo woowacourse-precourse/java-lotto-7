@@ -20,7 +20,7 @@ public class OutputView {
 
     public void printPurchaseLottos(Lottos lottos) {
         sb.setLength(0);
-        for (Lotto lotto : lottos.getLottoList()) {
+        for (Lotto lotto : lottos.getLottos()) {
             sb.append(lotto.toString()).append("\n");
         }
         System.out.println(sb);
