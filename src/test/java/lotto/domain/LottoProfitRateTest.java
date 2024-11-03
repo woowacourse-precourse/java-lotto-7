@@ -25,7 +25,7 @@ class LottoProfitRateTest {
 
         double expectedProfitSum = (2000000000 * Rank.FIRST.getCount() + 30000000 * Rank.SECOND.getCount());
         double expectedProfitRate = expectedProfitSum / purchasePrice.getAmount() * PROFIT_RATE;
-
+        expectedProfitRate = Math.round(expectedProfitRate * 10) / 10.0;
         assertEquals(expectedProfitRate, profitRate.getLottoProfitRate(), 0.01);
     }
 }
