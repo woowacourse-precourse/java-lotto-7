@@ -47,6 +47,10 @@ public class Money {
         return this.value == 0L;
     }
 
+    public Long getValue() {
+        return this.value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

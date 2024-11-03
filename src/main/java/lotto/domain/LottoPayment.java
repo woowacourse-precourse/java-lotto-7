@@ -31,7 +31,7 @@ public class LottoPayment {
 
     private void validatePurchaseWithoutChange(Money amount) {
         if (!amount.isDivisibleBy(SINGLE_TICKET_PRICE)) {
-            throw new IllegalArgumentException(INVALID_PAYMENT_AMOUNT.format(SINGLE_TICKET_PRICE));
+            throw new IllegalArgumentException(INVALID_PAYMENT_AMOUNT.format(SINGLE_TICKET_PRICE.getValue()));
         }
     }
 
