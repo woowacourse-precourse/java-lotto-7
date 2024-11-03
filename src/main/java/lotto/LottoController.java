@@ -21,6 +21,7 @@ public class LottoController {
         lottoGame.calculateLotto(makePurchasedLottos);
 
         LottoOutputView.printResult(lottoGame.getResult());
+        LottoOutputView.printrateOfReturn(lottoGame.rateOfReturn(lottoPurchase));
     }
 
     public int count (int lottoPurchase) {
