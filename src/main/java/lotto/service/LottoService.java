@@ -50,11 +50,7 @@ public class LottoService {
 
     public Integer getBonusNumber(String number) {
         try {
-            int convertedNumber = convertStringToInt(number);
-            if (convertedNumber > 45 || convertedNumber < 0) {
-                throw new IllegalArgumentException(LottoServiceErrorConfig.LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
-            }
-            return convertedNumber;
+            return convertStringToInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoServiceErrorConfig.STRING_TO_INT_CONVERT_ERROR.getErrorMessage());
         }
