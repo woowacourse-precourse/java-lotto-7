@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.model.LottoModel;
 import lotto.validation.Constant;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class LottoService {
@@ -39,6 +40,7 @@ public class LottoService {
         long sum = winningCount[Constant.WIN_THREE] * 5000L + winningCount[Constant.WIN_FOUR] * 50000L
                 + winningCount[Constant.WIN_FIVE] * 1500000L + winningCount[Constant.WIN_FIVE_BONUS] * 30000000L
                 + winningCount[Constant.WIN_SIX] * 2000000000L;
+
         return ((double) sum / price) * 100;
     }
 }

@@ -23,8 +23,6 @@ public class Output {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ans[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + ans[4] + "개");
 
-        String value = Double.toString(Math.round(rate * 10) / 10.0);
-        BigDecimal bigDecimal = new BigDecimal(value);
-        System.out.println("총 수익률은 " + bigDecimal.toString() + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f",rate) + "%입니다.");
     }
 }
