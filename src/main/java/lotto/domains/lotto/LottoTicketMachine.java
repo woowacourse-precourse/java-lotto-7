@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 import lotto.util.LottoNumberGenerator;
 
 public class LottoTicketMachine {
-
 	private final int amount;
 
 	private LottoTicketMachine(int amount) {
@@ -24,6 +23,4 @@ public class LottoTicketMachine {
 			.mapToObj(i -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
 			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
-
-
 }
