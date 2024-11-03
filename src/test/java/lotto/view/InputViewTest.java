@@ -92,4 +92,15 @@ class InputViewTest {
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
         assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
     }
+
+    @Test
+    @DisplayName("메인 숫자가 범위를 벗어날 때 예외 메시지 출력")
+    void displayErrorMessageWhenMainNumbersOutOfRange() {
+        List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 50);
+        int bonusNumber = 7;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(mainNumbers, bonusNumber));
+        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
+    }
 }
