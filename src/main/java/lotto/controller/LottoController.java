@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -28,8 +29,7 @@ public class LottoController {
             int bonusNumber = InputView.getBonusNumbers();
 
             WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-
-
+            Result result = lottoService.calculateResult(userLottos, winningLotto);
 
 
         } catch (IllegalArgumentException e) {

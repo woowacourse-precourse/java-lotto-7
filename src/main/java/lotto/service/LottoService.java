@@ -2,9 +2,14 @@ package lotto.service;
 
 import lotto.factory.LottoFactory;
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.Result;
+import lotto.model.WinningLotto;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -28,5 +33,25 @@ public class LottoService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
         }
+    }
+
+    public Result calculateResult(List<Lotto> userLottos, WinningLotto winningLotto){
+        Map<Rank, Integer>  result = setResult();
+
+        for(Lotto lotto : userLottos){
+            Rank rank = Rank.valueOf(lotto, winningLotto);
+            result.put(rank, result.get(rank)+1);
+        }
+
+        return new Result(result, 0);
+    }
+
+    public Map<Rank, Integer> setResult(){
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+        for(Rank rank : Rank.values()){
+            result.put(rank, 0);
+        }
+
+        return result;
     }
 }

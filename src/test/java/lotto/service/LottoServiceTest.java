@@ -1,8 +1,12 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.Result;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -58,4 +62,29 @@ class LottoServiceTest {
         assertThrows(IllegalArgumentException.class, () -> lottoService.parseLotto(invalidInput), "[ERROR] 숫자가 아닌 값이 포함되어있습니다.");
     }
 
+    @Test
+    void 결과_계산_테스트() {
+        List<Lotto> userLottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)), // 3등
+                new Lotto(List.of(1, 2, 3, 4, 10, 11)), // 4등
+                new Lotto(List.of(1, 2, 3, 20, 21, 22)) // 5등
+        );
+
+        // 당첨 로또 번호 및 보너스 번호 설정
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
+
+        // 결과 계산
+        Result result = lottoService.calculateResult(userLottos, winningLotto);
+
+        // 예상 결과 검증
+        Map<Rank, Integer> matchCount = result.getMatchCount();
+        assertEquals(1, matchCount.get(Rank.FIRST));
+        assertEquals(1, matchCount.get(Rank.SECOND));
+        assertEquals(1, matchCount.get(Rank.THIRD));
+        assertEquals(1, matchCount.get(Rank.FOURTH));
+        assertEquals(1, matchCount.get(Rank.FIFTH));
+        assertEquals(0, matchCount.get(Rank.NONE));
+    }
 }
