@@ -30,6 +30,10 @@ public class ConsoleOutput {
         ));
     }
 
+    public void printException(Exception e) {
+        ConsoleUtils.printError(e.getMessage());
+    }
+
     // private methods
 
     private Map<Prize, Integer> getCompletePrizeMap(ProfitStatisticsDto input) {

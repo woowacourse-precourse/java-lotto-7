@@ -13,4 +13,8 @@ public class ConsoleUtils {
     public static void printNewLine() {
         System.out.println();
     }
+
+    public static void printError(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }
