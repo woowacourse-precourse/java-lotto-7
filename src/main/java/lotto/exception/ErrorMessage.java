@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import static lotto.domain.constants.LottoConstants.*;
+
 public enum ErrorMessage {
     LOTTO_NUMBER_DUPLICATE("로또 번호에 중복된 번포가 포함되어 있습니다."),
     INVALID_LOTTO_SIZE("로또 번호의 개수가 맞지 않습니다."),
@@ -21,7 +23,7 @@ public enum ErrorMessage {
         return ERROR_MESSAGE_PREFIX + message;
     }
 
-    public String getFormattedMessage(Object... args) {
-        return ERROR_MESSAGE_PREFIX + String.format(message, args);
+    public String getLottoPriceIncludeMessage() {
+        return ERROR_MESSAGE_PREFIX + String.format(message, LOTTO_PRICE);
     }
 }
