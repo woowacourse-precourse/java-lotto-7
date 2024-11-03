@@ -3,7 +3,6 @@ package lotto.controller;
 import java.util.List;
 import lotto.dto.LottoControllerInputDto;
 import lotto.dto.ProfitStatisticsDto;
-import lotto.entity.Lotto;
 import lotto.entity.LottoMachine;
 import lotto.entity.ProfitReport;
 import lotto.seirvce.LottoService;
@@ -41,11 +40,6 @@ public class LottoController {
         consoleOutput.printProfitStatistics(profitStatisticsDto);
     }
 
-    private void displayLottoResults(List<Lotto> purchaseLottos, ProfitStatisticsDto dto) {
-        consoleOutput.printPurchasedLottos(purchaseLottos);
-        consoleOutput.printProfitStatistics(dto);
-    }
-
     private LottoControllerInputDto getUserInputs() {
         int purchaseAmount = getPurchaseAmount();
         List<Integer> winningNumbers = getWinningNumbers();
@@ -67,8 +61,8 @@ public class LottoController {
                 paymentAmount = InputParser.parseInteger(userInput);
                 PurchaseValidator.validate(paymentAmount);
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+            } catch (IllegalArgumentException error) {
+                consoleOutput.printException(error);
             }
         }
         return paymentAmount;
@@ -83,8 +77,8 @@ public class LottoController {
                 numbers = InputParser.parseIntegers(userInput);
                 LottoValidator.validate(numbers);
                 break;
-            } catch (Exception e) {
-                System.err.println("[ERROR] " + e.getMessage());
+            } catch (IllegalArgumentException error) {
+                consoleOutput.printException(error);
             }
         }
         return numbers;
@@ -99,8 +93,8 @@ public class LottoController {
                 bonusNumber = InputParser.parseInteger(input);
                 WinningNumbersValidator.bonusNumber(winningNumbers, bonusNumber);
                 break;
-            } catch (Exception e) {
-                System.err.println("[ERROR] " + e.getMessage());
+            } catch (IllegalArgumentException error) {
+                consoleOutput.printException(error);
             }
         }
         return bonusNumber;
