@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,11 +33,23 @@ public class Validator {
         }
     }
 
+    public static void validateCommaSeparated(String input) {
+        if (!input.matches("^(\\d+)(,(\\d+))*$")) { // 숫자와 쉼표 패턴 검증
+            throw new IllegalArgumentException(ValidatorErrorMessage.SEPARATER_EXCEPTION.getErrorMessage());
+        }
+    }
+
     // 중복값 예외
     public static void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> testNumbers = new HashSet<>(numbers);
         if (testNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ValidatorErrorMessage.DUPLICATTE_EXCEPTION.getErrorMessage());
+        }
+    }
+
+    public static void validateDuplicateNumber(List<Integer> numbers, int bouns) {
+        if (numbers.contains(bouns)) {
+            throw new IllegalArgumentException(ValidatorErrorMessage.BONUS_DUPLICATTE_EXCEPTION.getErrorMessage());
         }
     }
 

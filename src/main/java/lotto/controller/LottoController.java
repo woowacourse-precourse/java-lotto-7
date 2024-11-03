@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Player;
+import lotto.model.WinningNumbers;
 import lotto.model.service.LottoService;
 import lotto.model.service.WinningNumbersService;
 import lotto.util.Validator;
@@ -16,6 +17,7 @@ public class LottoController {
 
     private Player player;
     private int purchaseAmount;
+    private List<Integer> winningNumbers;
 
     LottoService lottoService;
     WinningNumbersService winningNumbersService;
@@ -62,7 +64,6 @@ public class LottoController {
         outputView.printLottoNumbers(player.getLottoNumbers());
 
         // 당첨 번호 입력 및 검증
-        List<Integer> winningNumbers;
         while (true) {
             try {
                 outputView.enterWinningNumbers();
@@ -83,6 +84,7 @@ public class LottoController {
         player.setWinningNumbers(winningNumbersService.getWinningNumbers());
     }
 
+
     private void generateBonusNumber() {
         while (true) {
             try {
@@ -90,11 +92,10 @@ public class LottoController {
                 int bonusNumber = winningNumbersService.inputBonusNumber();
 
                 Validator.validateRange(bonusNumber);
-                Validator.validateDuplicateNumber(new ArrayList<>(List.of(bonusNumber)));
-
+                Validator.validateDuplicateNumber(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage("[ERROR] " + e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
