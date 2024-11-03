@@ -12,10 +12,6 @@ public class LottoIssuer {
         this.lottoNumbersGenerator = lottoNumbersGenerator;
     }
 
-    public Lotto issueLotto(final List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
     public LottoTickets issueLottoTickets(final PurchaseAmount amount) {
         final int countOfLotto = amount.calculateLottoCount();
         List<Lotto> lottoTickets = IntStream.range(0, countOfLotto)
