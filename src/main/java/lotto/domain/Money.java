@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import lotto.constants.Constants;
-import lotto.validator.exception.ErrorMessage;
-import lotto.validator.exception.LottoException;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 
 public class Money {
     private final int money;
@@ -32,6 +32,4 @@ public class Money {
             throw LottoException.from(ErrorMessage.LOTTO_PURCHASE_IS_NOT_THOUSAND_UNIT);
         }
     }
-
-
 }

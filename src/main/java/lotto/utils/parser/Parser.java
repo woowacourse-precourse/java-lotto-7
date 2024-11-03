@@ -2,8 +2,8 @@ package lotto.utils.parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.validator.exception.ErrorMessage;
-import lotto.validator.exception.LottoException;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 
 public class Parser {
     private final static String COMMA = ",";
@@ -42,7 +42,7 @@ public class Parser {
         for (int accordCount : result) {
             convertedResult.add(String.valueOf(accordCount));
         }
-        convertedResult.add(String.format("%.1f", profit));
+        convertedResult.add(String.format("%,.1f", profit));
         return convertedResult;
     }
 }

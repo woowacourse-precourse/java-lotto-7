@@ -2,6 +2,7 @@ package lotto.utils.Calculator;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.Constants;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -9,6 +10,11 @@ import lotto.domain.User;
 import lotto.domain.WinningNumber;
 
 public class StatisticCalculator {
+    private final static int NO_MATCH = -1;
+    private final static int THREE_MATCHES = 3;
+    private final static int FOUR_MATCHES = 4;
+    private final static int FIVE_MATCHES = 5;
+    private final static int SIX_MATCHES = 6;
 
     public static List<Integer> calculateStatistics(User user, WinningNumber winningNumber) {
         List<Integer> accords = initializeAccords();
@@ -17,7 +23,7 @@ public class StatisticCalculator {
         for (Lotto lotto : userLottos.getLottos()) {
             int matchCount = calculateMatchCount(lotto, winningNumber.getWinningLotto());
             int index = determineIndex(matchCount, lotto, winningNumber.getBonusNumber());
-            if (index != -1) {
+            if (index != NO_MATCH) {
                 updateAccords(accords, index);
             }
         }
@@ -25,11 +31,12 @@ public class StatisticCalculator {
     }
 
     private static List<Integer> initializeAccords() {
-        return new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        return new ArrayList<>(List.of(Constants.ZERO.getValue(), Constants.ZERO.getValue(), Constants.ZERO.getValue(),
+                Constants.ZERO.getValue(), Constants.ZERO.getValue()));
     }
 
     private static int calculateMatchCount(Lotto userLotto, Lotto winningLotto) {
-        int count = 0;
+        int count = Constants.ZERO.getValue();
         for (int number : userLotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(number)) {
                 count++;
@@ -39,19 +46,19 @@ public class StatisticCalculator {
     }
 
     private static int determineIndex(int matchCount, Lotto userLotto, BonusNumber bonusNumber) {
-        if (matchCount == 3) {
+        if (matchCount == THREE_MATCHES) {
             return 0;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOUR_MATCHES) {
             return 1;
         }
-        if (matchCount == 6) {
+        if (matchCount == SIX_MATCHES) {
             return 4;
         }
-        if (matchCount == 5) {
+        if (matchCount == FIVE_MATCHES) {
             return handleFiveMatches(userLotto, bonusNumber);
         }
-        return -1;
+        return NO_MATCH;
     }
 
     private static int handleFiveMatches(Lotto userLotto, BonusNumber bonusNumber) {

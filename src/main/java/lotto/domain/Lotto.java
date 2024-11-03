@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constants.Constants;
-import lotto.validator.exception.ErrorMessage;
-import lotto.validator.exception.LottoException;
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +13,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -43,9 +47,5 @@ public class Lotto {
                 throw LottoException.from(ErrorMessage.WINNING_LOTTO_DUPLICATE_ERROR);
             }
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

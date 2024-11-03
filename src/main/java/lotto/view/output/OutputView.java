@@ -3,12 +3,13 @@ package lotto.view.output;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.User;
-import lotto.validator.exception.LottoException;
+import lotto.exception.LottoException;
 
 public class OutputView {
     public void displayMessage(String message) {
         System.out.println(message);
     }
+
     public void displayLottos(User user) {
         int lottosCount = user.getLottos().getLottoCount();
         System.out.printf(OutputMessage.PURCHASED_COUNT_MESSAGE.getOutputMessage(), lottosCount);
@@ -34,6 +35,7 @@ public class OutputView {
             System.out.printf(messages.get(i).getOutputMessage(), result.get(i));
         }
     }
+
     public void displayErrorMessage(LottoException lottoException) {
         System.out.println(lottoException.getMessage());
     }
