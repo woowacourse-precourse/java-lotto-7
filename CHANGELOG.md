@@ -1,12 +1,19 @@
-#### 2024-11-01
+#### 2024-11-03
 
 ##### Documentation Changes
 
+*  update README.md (a8dc4005)
+*  Update README.md (76c15666)
+*  update README.md (85484d8e)
+*  create CHANGELOG.md (dd0444f4)
 *  update gitignore (034618bb)
 *  update README.md (421dbbdf)
 
 ##### New Features
 
+*  의존성 추가 (ac1bf1c6)
+*  NumberFormat 예외 처리를 위한 클래스 구현 (774ff791)
+*  콘솔 출력용 문자열 상수 추가 (4c23d877)
 *  input시 유효성 검증을 위한 메서드 추가 (52092b26)
 *  수익률 계산 서비스 클래스 구현 (c0a3c6e4)
 *  사용자 출력 뷰 클래스 구현 (84a01af9)
@@ -40,6 +47,9 @@
 
 ##### Refactors
 
+*  컨트롤러 메서드 서비스로 분리 (3435b5ca)
+*  stream API로 수정 (d77784f7)
+*  커스텀 exception을 catch 하도록 변경 (33042b4a)
 *  메인 애플리케이션 구현 (9947be1d)
 *  컨트롤러 클래스 구현 (a728ba33)
 *  Rank 판별 방식 변경 (b0a95962)
@@ -49,5 +59,18 @@
 
 ##### Code Style Changes
 
+*  IDEA 자동 포맷팅 (138cd604)
+*  IDEA 자동 포맷팅 (72339b6a)
+*  IDEA 자동 포맷팅 (27177808)
+*  불필요한 import문 삭제 (7096c85d)
 *  순위 순서 변경 (76f7bdea)
+
+##### Tests
+
+*  ProfitCalculatorService 테스트 구현 (762b6719)
+*  validatorService 테스트 구현 (f010620e)
+*  custom exception handler 테스트 구현 (899012fe)
+*  LottoResultService 테스트 클래스 구현 (c0e40660)
+*  LottoService 테스트 클래스 구현 (cd4be060)
+*  Guess domain 테스트 클래스 구현 (a8042542)
 
