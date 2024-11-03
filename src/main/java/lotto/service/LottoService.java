@@ -20,7 +20,7 @@ public class LottoService {
         Lotto[] issuedLottos = new Lotto[lottoCount];
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             issuedLottos[i] = new Lotto(numbers);
         }
