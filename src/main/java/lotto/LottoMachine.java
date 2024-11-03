@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import lotto.Lotto;
 
 public class LottoMachine {
@@ -92,7 +93,8 @@ public class LottoMachine {
 
     private void displayYield(int totalPrize, int purchaseAmount) {
         double yield = (double) totalPrize / purchaseAmount * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(yield * 10) / 10.0);
+        DecimalFormat df = new DecimalFormat("#, ##0.0");
+        System.out.printf("총 수익률은 %s%%입니다.%n", df.format(yield));
     }
 
 
