@@ -28,9 +28,7 @@ public class LottoService {
         WinningCount winningCount = new WinningCount();
         for (Lotto issuedLotto : issuedLottos.getLottos()) {
             boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
-            int matchCount = (int) issuedLotto.getNumbers().stream()
-                    .filter(winningLotto.getNumbers()::contains)
-                    .count();
+            int matchCount = getMatchCount(issuedLotto, winningLotto);
             calculateWinningCount(winningCount, matchCount, isBonusMatch);
         }
         return winningCount;
@@ -53,6 +51,12 @@ public class LottoService {
 
     private boolean isBonusMatch(Lotto issuedLotto, Bonus bonusNumber) {
         return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
+    }
+
+    private int getMatchCount(Lotto issuedLotto, Lotto winningLotto) {
+        return (int) issuedLotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
     }
 
     private void calculateWinningCount(WinningCount winningCount, int matchCount, boolean isBonusMatch) {
