@@ -23,8 +23,8 @@ public class LottoGame {
         Lotto lotto = printFormatter.formatWinningNumbers();
         Bonus bonus = printFormatter.formatBonusNumber();
 
-        Map<PrizeType, Integer> prizeTypeIntegerMap = LottoWinningAnalyzer.analyzeWinningStatistics(issuedTickets,
-                lotto.getNumbers(), bonus.getNumber());
+        LottoWinningAnalyzer LottoWinningAnalyzer = new LottoWinningAnalyzer(lotto.getNumbers(), bonus.getNumber());
+        Map<PrizeType, Integer> prizeTypeIntegerMap = LottoWinningAnalyzer.analyzeWinningStatistics(issuedTickets);
         printFormatter.formatResult(
                 WinningStatisticsFormatter.formatStatistics(prizeTypeIntegerMap, ticketIssuer.getPurchaseAmount()));
     }

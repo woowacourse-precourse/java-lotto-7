@@ -9,11 +9,15 @@ import lotto.system.unit.LottoNumber;
 
 public class LottoWinningAnalyzer {
 
-    public static Map<PrizeType, Integer> analyzeWinningStatistics(
-            List<LottoTicket> issueTickets,
-            List<Integer> winningNumbers,
-            int bonusNumber) {
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
+    public LottoWinningAnalyzer(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
+    public Map<PrizeType, Integer> analyzeWinningStatistics(List<LottoTicket> issueTickets) {
         Map<PrizeType, Integer> statistics = new HashMap<>();
 
         for (PrizeType prizeType : PrizeType.values()) {
@@ -21,7 +25,7 @@ public class LottoWinningAnalyzer {
         }
 
         for (LottoTicket issueTicket : issueTickets) {
-            PrizeType prizeType = match(issueTicket, winningNumbers, bonusNumber);
+            PrizeType prizeType = match(issueTicket);
             if (prizeType == null) {
                 continue;
             }
@@ -31,39 +35,32 @@ public class LottoWinningAnalyzer {
         return statistics;
     }
 
-    public static PrizeType match(
-            LottoTicket issueTicket,
-            List<Integer> winningNumbers,
-            int bonusNumber) {
-
-        int count = matchLotto(issueTicket, winningNumbers);
-        boolean matchBonus = matchBonus(issueTicket, bonusNumber);
+    private PrizeType match(LottoTicket issueTicket) {
+        int count = matchLotto(issueTicket);
+        boolean matchBonus = matchBonus(issueTicket);
 
         if (matchBonus && count == 5) {
             return PrizeType.getTypeByCode(6);
-        }
-        else if (count == 6) {
+        } else if (count == 6) {
             return PrizeType.getTypeByCode(7);
-        }
-        else if (count >= 3) {
+        } else if (count >= 3) {
             return PrizeType.getTypeByCode(count);
         } else {
             return null;
         }
     }
 
-    public static int matchLotto(LottoTicket issueTicket, List<Integer> winningNumbers) {
+    private int matchLotto(LottoTicket issueTicket) {
         int count = 0;
         for (LottoNumber number : issueTicket.getTicket()) {
             if (winningNumbers.contains(number.getValue())) {
                 count++;
             }
         }
-
         return count;
     }
 
-    public static boolean matchBonus(LottoTicket issueTicket, int bonusNumber) {
+    private boolean matchBonus(LottoTicket issueTicket) {
         return issueTicket.getTicket().stream().anyMatch(number -> number.getValue() == bonusNumber);
     }
 }
