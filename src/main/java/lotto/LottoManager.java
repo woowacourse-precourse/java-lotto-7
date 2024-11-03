@@ -30,4 +30,5 @@ public class LottoManager {
     public List<Lotto> getLottos() {
         return lottoRepository;
     }
+
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoRankInit {
-
     public static final int statisticalInitialValue = 0;
 
     public static Map<LottoRank, Integer> getLottoRank() {

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoProcess {
-
     public static void statisticalWork(LottoManager manager, List<Integer> winningNumber, int bonusNumber, Map<LottoRank, Integer> winningStatistics) {
         for (Lotto lotto : manager.getLottos()) {
             int count = intersectionCalculation(lotto, winningNumber);
@@ -34,6 +33,5 @@ public class LottoProcess {
         intersection.retainAll(lotto.getNumbers());
         return intersection.size();
     }
-
 
 }
