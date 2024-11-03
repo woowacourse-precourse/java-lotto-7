@@ -9,8 +9,7 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(String number) {
-        int userInput = validate(number);
-        this.number = userInput;
+        this.number = validate(number);
     }
 
     public int getNumber() {
