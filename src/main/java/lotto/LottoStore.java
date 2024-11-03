@@ -12,6 +12,10 @@ public class LottoStore {
         outputView.printLottoTickets(lottoMachine);
 
         WinningNumbers winningNumbers = inputHandler.inputWinningNumbers();
+        BonusNumber bonusNumber = inputHandler.inputBonusNumber(winningNumbers);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+
     }
 
 }
