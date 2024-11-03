@@ -45,7 +45,7 @@ public class LottoProfitCommand implements OutputCommand {
       }
       builder.append(String.format(" (%,d원)", prize.get(matchResult)))
           .append(" - ")
-          .append(dashboard.get(matchResult))
+          .append(String.format("%,d", dashboard.get(matchResult)))
           .append("개\n");
     }
     builder.append(String.format("총 수익률은 %.1f%%입니다.", profitRate.getRate()));

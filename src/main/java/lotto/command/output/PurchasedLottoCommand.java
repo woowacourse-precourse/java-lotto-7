@@ -28,7 +28,7 @@ public class PurchasedLottoCommand implements OutputCommand {
   @Override
   public String toString() {
     List<Lotto> lottos = purchasedLottos.getLottos();
-    return String.format("\n%d개를 구매했습니다.%s%s",
+    return String.format("\n%,d개를 구매했습니다.%s%s",
         lottos.size(),
         System.lineSeparator(),
         printLottosNumbers(lottos));
