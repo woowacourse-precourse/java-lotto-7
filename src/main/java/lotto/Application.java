@@ -9,15 +9,6 @@ import lotto.model.Lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // 당첨 확인
-
-        // 보너스 당첨 확인
-        for (int i = 0; i < numberOfTicket; i++) {
-            if(numberOfMatches.get(i) == 5) {
-                numberOfMatches.set(i, matchBonusNumber(PurchasedLottoTickets.get(i), inputWinningBonusNumber));
-            }
-        }
-
         // 당첨 통계 확인
         System.out.println();
         Map<Integer, Integer> ranks = checkWinningRank(numberOfMatches);
@@ -26,13 +17,7 @@ public class Application {
     }
 
 
-    public static int matchBonusNumber(Lotto fiveMatchesTicket, int inputBonusNumber) {
-        boolean isMatchedWithBonus = fiveMatchesTicket.getNumbers().stream().anyMatch(number -> number == inputBonusNumber);
-        if(isMatchedWithBonus) {
-            return 10;
-        }
-        return 5;
-    }
+
 
     public static Map<Integer, Integer> checkWinningRank(List<Integer> numberOfMatches) {
         int firstRank = Collections.frequency(numberOfMatches, 6);
