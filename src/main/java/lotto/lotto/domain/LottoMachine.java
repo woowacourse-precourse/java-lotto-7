@@ -3,7 +3,7 @@ package lotto.lotto.domain;
 import lotto.money.service.LottoPurchaseCalculator;
 import lotto.lotto.service.LottoGenerator;
 import lotto.money.domain.Money;
-import lotto.view.output.domain.PurchaseCountViewService;
+import lotto.view.output.service.PurchaseCountViewService;
 
 public class LottoMachine {
     private final LottoPurchaseCalculator lottoPurchaseCalculator;
