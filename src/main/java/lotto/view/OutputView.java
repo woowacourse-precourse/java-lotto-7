@@ -6,6 +6,7 @@ import static lotto.constants.OutputMessage.LINE_SEPARATOR;
 import static lotto.constants.OutputMessage.PERCENT_IS;
 import static lotto.constants.OutputMessage.PRIZE_SEPARATOR;
 import static lotto.constants.OutputMessage.RETURN_ON_INVESTMENT_IS;
+import static lotto.constants.OutputMessage.UNIT_COUNT;
 
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +66,7 @@ public class OutputView {
         for (LottoPrize prize : prizes) {
             if (LottoPrize.FAIL == prize)
                 continue;
-            System.out.println(prize.getPrizeDetails() + PRIZE_SEPARATOR.getMessage() + prizeStatus.get(prize));
+            System.out.println(prize.getPrizeDetails() + PRIZE_SEPARATOR.getMessage() + prizeStatus.get(prize) + UNIT_COUNT.getMessage());
         }
 
     }
