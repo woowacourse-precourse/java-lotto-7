@@ -20,7 +20,7 @@ public class LottoService {
         }
     }
 
-    public void validateBudgetMoney(String budget){
+    public void validateBudget(String budget){
         Validator.validateBudget(budget);
     }
 
@@ -33,7 +33,7 @@ public class LottoService {
             throw err;
         }
     }
-    public CustomLotto makeCustomLotto(String lottoNumbers, Integer bonus) {
+    public CustomLotto constructCustomLotto(String lottoNumbers, Integer bonus) {
         List<Integer> parseNumbers = Parse.parseLottoStringToInteger(lottoNumbers);
         return new CustomLotto(parseNumbers, bonus);
     }

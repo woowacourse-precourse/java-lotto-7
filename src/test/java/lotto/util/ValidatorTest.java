@@ -1,6 +1,5 @@
 package lotto.util;
 
-import lotto.domain.CustomLotto;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -82,7 +81,7 @@ class ValidatorTest {
         LottoService lottoService = new LottoService();
 
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            lottoService.makeCustomLotto(lottoNumbers, bonus);
+            lottoService.constructCustomLotto(lottoNumbers, bonus);
         });
 
         assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
@@ -100,7 +99,7 @@ class ValidatorTest {
         LottoService lottoService = new LottoService();
 
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            lottoService.makeCustomLotto(lottoNumbers, bonus);
+            lottoService.constructCustomLotto(lottoNumbers, bonus);
         });
 
         assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
