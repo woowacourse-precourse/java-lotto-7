@@ -18,35 +18,32 @@ public class InputView {
     }
 
     public int getPurchasedMoney() {
-        while (true) {
-            try {
-                System.out.println(OutputMessage.INPUT_MONEY_MESSAGE.getMessage());
-                return this.moneyTypeValidator.validateMoneyType(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(OutputMessage.INPUT_MONEY_MESSAGE.getMessage());
+            return this.moneyTypeValidator.validateMoneyType(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getPurchasedMoney();
         }
     }
 
     public List<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                System.out.println(OutputMessage.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
-                return this.lottoNumberTypeValidator.validateWinningNumbersType(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(OutputMessage.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
+            return this.lottoNumberTypeValidator.validateWinningNumbersType(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
         }
     }
 
     public int getBonusNumber() {
-        while (true){
-            try {
-                System.out.println(OutputMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
-                return this.lottoNumberTypeValidator.validateBonusNumberType(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(OutputMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
+            return this.lottoNumberTypeValidator.validateBonusNumberType(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
         }
     }
 }
