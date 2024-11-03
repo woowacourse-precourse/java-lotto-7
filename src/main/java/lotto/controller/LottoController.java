@@ -11,7 +11,7 @@ import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoMachine {
+public class LottoController {
 
     public void run() {
         Budget budget = inputBudget();
