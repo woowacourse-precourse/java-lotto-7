@@ -42,19 +42,44 @@ public class Application {
             // 유효성 검증 필요
 
         // 당첨 여부 확인
-        int[] winningCounts = new int[7];
         Set<Integer> set1 = new HashSet<>(winningNumbers);
+
+        // 등수 계산
+        Map<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
+        int totalPrize = 0;
+
+        // 각 등수의 개수를 0으로 초기화
+        for (LottoRank rank : LottoRank.values()) {
+            rankCount.put(rank, 0);
+        }
+
         for (Lotto lotto : lottos) {
             Set<Integer> set2 = new HashSet<>(lotto.getNumbers());
             set1.retainAll(set2);
-            winningCounts[set1.size()]++;
+
+            if (set1.size() == 6) {
+                rankCount.put(LottoRank.FIRST, rankCount.get(LottoRank.FIRST) + 1);
+                totalPrize += LottoRank.FIRST.getPrize();
+            } else if (set1.size() == 5) {
+                rankCount.put(LottoRank.THIRD, rankCount.get(LottoRank.THIRD) + 1);
+                totalPrize += LottoRank.THIRD.getPrize();
+            } else if (set1.size() == 4) {
+                rankCount.put(LottoRank.FOURTH, rankCount.get(LottoRank.FOURTH) + 1);
+                totalPrize += LottoRank.FOURTH.getPrize();
+            } else if (set1.size() == 3) {
+                rankCount.put(LottoRank.FIFTH, rankCount.get(LottoRank.FIFTH) + 1);
+                totalPrize += LottoRank.FIFTH.getPrize();
+            }
             set1.addAll(winningNumbers);
         }
 
         // 당첨 내역 출력
         System.out.println("당첨 통계\n---");
-        for (int i = 0; i < 7; i++) {
-            System.out.println(i + "개 일치 (5,000원) - " + winningCounts[i] + "개");
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.println(rank.getDescription() + rankCount.get(rank) + "개");
         }
+
+        // 수익률 계산 및 출력
+        System.out.printf("수익률: %.2f%%%n", (double) totalPrize / inputCash * 100);
     }
 }
