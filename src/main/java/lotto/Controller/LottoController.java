@@ -34,21 +34,25 @@ public class LottoController {
     }
 
     public void gainPurchaseAmount() {
+        boolean isValid = false;
         int purchasePrice = 0;
-        try {
-            OutputView.printPurchaseAmount();
-            purchasePrice = InputView.readPurchaseAmount();
-        } catch (IllegalArgumentException e) {
-            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
-                OutputView.printError(ErrorMessage.NOT_DIV.getError());
-                gainPurchaseAmount(); return;
+        while (!isValid) {
+            try {
+                OutputView.printPurchaseAmount();
+                purchasePrice = InputView.readPurchaseAmount();
+                isValid = true; // 입력이 유효할 경우 루프 종료
+            } catch (IllegalArgumentException e) {
+                if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
+                    OutputView.printError(ErrorMessage.NOT_DIV.getError());
+                } else {
+                    OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
+                }
             }
-            OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-            gainPurchaseAmount(); return;
         }
         this.countLotto(purchasePrice);
         this.myInfo.setPurchasePrice(purchasePrice);
     }
+
 
 
     public void countLotto(Integer purchasePrice) {
