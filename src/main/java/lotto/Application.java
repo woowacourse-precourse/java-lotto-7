@@ -26,6 +26,8 @@ public class Application {
         try {
             // 3.3 분리한 문자열의 개수가 맞지 않는 경우 예외 처리하는 기능
             validateWinningNumbersCount(winningNumbersInputSplits);
+            // 3.4 당첨 번호 중에 정수로 변환할 수 없는 문자열이 있는 경우 예외 처리하는 기능
+            validateNumericStrings(winningNumbersInputSplits);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -101,6 +103,16 @@ public class Application {
     private static void validateWinningNumbersCount(String[] winningNumbersInputSplits) {
         if (winningNumbersInputSplits.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
+        }
+    }
+
+    private static void validateNumericStrings(String[] winningNumbersInputSplits) {
+        for (String winningNumberInputSplit : winningNumbersInputSplits) {
+            try {
+                validateNumericString(winningNumberInputSplit);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자로 변환할 수 없는 문자열이 포함되어 있습니다.");
+            }
         }
     }
 }
