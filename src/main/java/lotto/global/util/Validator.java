@@ -1,6 +1,7 @@
 package lotto.global.util;
 
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
+import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
 
 import lotto.Lotto;
 import lotto.UniqueNumber;
@@ -10,9 +11,21 @@ public class Validator {
         validateDuplicateNumber(lotto);
     }
 
-    public static void validateDuplicateNumber(UniqueNumber uniqueNumber) {
+    private static void validateDuplicateNumber(UniqueNumber uniqueNumber) {
         if (uniqueNumber.hasDuplicateNumber()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_EXIST);
+        }
+    }
+
+    public static void validatePrice(String price) {
+        validateNumberFormat(price);
+    }
+
+    private static void validateNumberFormat(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_PROBLEM);
         }
     }
 }
