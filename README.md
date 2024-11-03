@@ -23,3 +23,30 @@
 
 ## 클래스 다이어그램
 <img src="https://github.com/user-attachments/assets/5d8328a9-2bd9-4c20-bf6c-a48f8c99d9ac"/>
+
+## 주요 클래스 설명
+- InputValidator
+  - 구입 금액(Budget) 입력은 수인지 검사한다. 
+  - 당첨 번호(WinningNumber) 입력의 개수, 범위 초과 여부, 중복 여부를 검사한다.
+  - 보너스 번호(bonusNumber) 입력이 수인지, 범위 안에 존재하는지, winningNumber와 중복되는지 검사한다.
+- Budget
+  - 구입 금액(value)이 로또 1장의 가격보다 적거나, 로또 1장의 가격으로 나누어 떨어지지 않으면 객체가 생성되지 않는다.
+  - 객체를 생성할 때 구입 금액을 인자로 받아 도메인 규칙 관련 검사를 진행한 후 발급할 로또의 장수를 자동으로 계산하여 저장한다.
+- LotteryResult
+  - 로또 번호 컬렉션과 당첨 번호, 보너스 번호를 인자로 받아, 당첨 번호와 보너스 번호로 WinningNumber 객체를 생성하고, 로또 번호들로 로또 객체들을 생성한 후 WinningNumber와 비교하여 각 로또 객체들에 대응하는 Rank 모음을 만들어 저장한다.
+  - returnCounts()는 각 Rank를 집계한 결과를 보여주는 Map을 반환한다. 
+  - returnRate()는 총 수익률을 반환한다.
+- Lotto
+  - 6자리 수의 모음을 가진다. 
+  - 수의 개수가 6개가 아니거나, 중복되는 수가 있으면 객체가 생성되지 않는다.
+- Rank
+  - 등수별 상금과 일치하는 수의 개수, 일치 조건 함수를 저장한다.
+  - 당첨 번호와 일치하는 수의 개수와 보너스 번호 일치 여부를 사용하여 조건에 맞는 Rank를 반환할 수 있도록 한다.
+- WinningNumber
+  - Lotto를 합성하여 당첨 번호를 표현한다. (Lotto와 도메인 규칙이 동일하여 합성을 사용하였다.)
+  - bonusNumber의 범위와 당첨 번호에 포함되는지 여부를 먼저 검사 후 객체를 생성한다.
+- GameController
+  - 로또 구입 금액, 당첨 번호, 보너스 번호 등 입력값은 readValidXXX() 함수로 분리하여 입력을 받고 유효성 검사를 진행하였다.
+  - InputValidator를 사용한 유효성 검사는 Controller에서 처리한다.
+  - generateNumbers(numberOfLotto)는 Budget 인스턴스를 생성할 때 계산한 numberOfLotto를 인자로 넣어 로또 번호 6자리씩 numberOfLotto 크기의 컬렉션을 생성하여 반환한다. NumberGenerator는 외부로부터 주입받은 Generator를 사용한다.
+  - 로또 번호 컬렉션과 당첨 번호, 보너스 번호를 모두 입력받으면 LotteryResult를 생성한다.
