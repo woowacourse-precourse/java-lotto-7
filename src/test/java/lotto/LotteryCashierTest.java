@@ -2,8 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.domain.Lottos;
-import lotto.domain.Price;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.price.Price;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

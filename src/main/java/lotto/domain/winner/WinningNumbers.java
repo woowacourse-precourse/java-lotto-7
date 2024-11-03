@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.winner;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.LottoValue;
+import lotto.domain.LottoErrorTemplate;
 
 public class WinningNumbers {
 

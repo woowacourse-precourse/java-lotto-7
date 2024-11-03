@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.LottoValue.MAX_NUMBER;
 import static lotto.LottoValue.MIN_NUMBER;
 
 import java.util.Objects;
+import lotto.domain.LottoErrorTemplate;
 
 public class BonusNumber {
 

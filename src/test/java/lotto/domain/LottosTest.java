@@ -7,6 +7,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

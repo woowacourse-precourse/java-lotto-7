@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Price;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.price.Price;
 
 public class LotteryCashier {
 

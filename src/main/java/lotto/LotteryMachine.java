@@ -2,13 +2,13 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
-import lotto.domain.Lottos;
-import lotto.domain.Price;
-import lotto.domain.WinningNumbers;
-import lotto.domain.WinningStatistic;
+import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoResult;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.price.Price;
+import lotto.domain.winner.WinningNumbers;
+import lotto.domain.winner.WinningStatistic;
 
 public class LotteryMachine {
 

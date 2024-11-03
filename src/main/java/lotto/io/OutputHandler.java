@@ -1,8 +1,8 @@
 package lotto.io;
 
-import lotto.domain.Lottos;
-import lotto.domain.WinnerFrequency;
-import lotto.domain.WinningStatistic;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.winner.WinnerFrequency;
+import lotto.domain.winner.WinningStatistic;
 
 public class OutputHandler {
 
