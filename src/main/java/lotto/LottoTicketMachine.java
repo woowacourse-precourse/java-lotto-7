@@ -25,6 +25,7 @@ public class LottoTicketMachine {
     public void run() {
         TicketResponse ticketResponse = createTicketUsecase.execute();
         PrizeResponse prizeResponse = createPrizeUsecase.execute();
+        
         compileStatisticsUsecase.execute(ticketResponse, prizeResponse);
     }
 
