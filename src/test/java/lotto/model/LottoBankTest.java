@@ -47,4 +47,15 @@ class LottoBankTest {
                         Prize.NO_PRIZE, Prize.NO_PRIZE));
     }
 
+    @DisplayName("복권 5개 중 1개가 1등에 당첨됬을 경우")
+    @Test
+    void 복권_5개중_1개가_1등에_당첨됬을_경우() {
+        LottoResult lottoResult = new LottoResult(
+                List.of(Prize.FIRST_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE));
+        LottoBank lottoBank = new LottoBank();
+        double profitRate = lottoBank.calculateProfitRate(lottoResult);
+        double expectedProfitRate =
+                (Prize.FIRST_PRIZE.getMoney() / (Lotto.getLottoPrice() * lottoResult.getLottoCount())) * 100;
+        assertThat(profitRate).isEqualTo(Math.round(expectedProfitRate * 100) / 100.0);
+    }
 }
