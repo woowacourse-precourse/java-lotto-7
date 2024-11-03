@@ -7,6 +7,7 @@ import static lotto.domain.Rank.FOURTH;
 import static lotto.domain.Rank.SECOND;
 import static lotto.domain.Rank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.Rank;
 import lotto.domain.Winning;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,7 +27,7 @@ class WinningServiceImplTest {
     @ParameterizedTest
     @MethodSource("provideLottosCaseA")
     void 당첨_결과_테스트케이스_A(List<Lotto> lottos) throws Exception {
-        WinningServiceImpl winningService = new WinningServiceImpl();
+        WinningService winningService = new WinningServiceImpl();
         Winning winning = new Winning(List.of(1, 9, 18, 27, 36, 45), 7);
         LottoPurchase purchase = LottoPurchase.purchase(lottos);
 
@@ -58,7 +61,7 @@ class WinningServiceImplTest {
     @ParameterizedTest
     @MethodSource("provideLottosCaseB")
     void 당첨_결과_테스트케이스_B(List<Lotto> lottos) throws Exception {
-        WinningServiceImpl winningService = new WinningServiceImpl();
+        WinningService winningService = new WinningServiceImpl();
         Winning winning = new Winning(List.of(1, 2, 3, 4, 5, 6), 7);
         LottoPurchase purchase = LottoPurchase.purchase(lottos);
 
@@ -89,5 +92,21 @@ class WinningServiceImplTest {
             // 투자 비용 8천원
             // 수익률 62.5%
         ));
+    }
+
+    @DisplayName("당첨 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_1보다_작으면_예외가_발생한다() throws Exception {
+        WinningService winningService = new WinningServiceImpl();
+
+        assertThatThrownBy(() -> winningService.createWinning(List.of(0, 2, 3, 4, 5, 6), 7))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨_번호가_45보다_크면_예외가_발생한다() throws Exception {
+        WinningService winningService = new WinningServiceImpl();
+        assertThatThrownBy(() -> winningService.createWinning(List.of(1, 2, 3, 4, 5, 46), 7))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -64,19 +64,6 @@ class WinningTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨 번호가 1보다 작으면 예외가 발생한다.")
-    @Test
-    void 당첨_번호가_1보다_작으면_예외가_발생한다() throws Exception {
-        assertThatThrownBy(() -> new Winning(List.of(0, 2, 3, 4, 5, 6), 7))
-            .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호가_45보다_크면_예외가_발생한다() throws Exception {
-        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 46), 7))
-            .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() throws Exception {
         assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 6), 6))

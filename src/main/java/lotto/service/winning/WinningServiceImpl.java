@@ -1,5 +1,9 @@
 package lotto.service.winning;
 
+import static lotto.constant.Error.RANGE_BONUS_NUMBER;
+import static lotto.constant.Error.RANGE_WINNING_NUMBER;
+import static lotto.constant.LottoConstant.MAX_NUMBER;
+import static lotto.constant.LottoConstant.MIN_NUMBER;
 import static lotto.constant.LottoConstant.PRICE;
 
 import java.util.Arrays;
@@ -15,6 +19,8 @@ public class WinningServiceImpl implements WinningService {
 
     @Override
     public Winning createWinning(List<Integer> numbers, int bonusNumber) {
+        validateNumbers(numbers);
+        validateBonusNumber(bonusNumber);
         return new Winning(numbers, bonusNumber);
     }
 
@@ -43,5 +49,18 @@ public class WinningServiceImpl implements WinningService {
         lottoRanks.values()
             .forEach(rank -> rankCounts.put(rank, rankCounts.get(rank) + 1));
         return rankCounts;
+    }
+
+    private static void validateNumbers(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(
+            number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
+            throw new IllegalArgumentException(RANGE_WINNING_NUMBER);
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(RANGE_BONUS_NUMBER);
+        }
     }
 }

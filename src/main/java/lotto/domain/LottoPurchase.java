@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constant.Error.MAX_AMOUNT_PURCHASE;
 import static lotto.constant.Error.MIN_AMOUNT_PURCHASE;
 import static lotto.constant.LottoConstant.MAX_PURCHASE_AMOUNT;
+import static lotto.constant.LottoConstant.MIN_PURCHASE_AMOUNT;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -36,7 +37,7 @@ public class LottoPurchase {
     }
 
     private static void validate(List<Lotto> lottos) {
-        if (lottos == null || lottos.isEmpty()) {
+        if (lottos == null || lottos.size() < MIN_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(MIN_AMOUNT_PURCHASE);
         }
 

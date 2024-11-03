@@ -1,8 +1,6 @@
 package lotto.service.purchase;
 
 import static lotto.constant.Error.INVALID_UNIT_PURCHASE;
-import static lotto.constant.Error.MAX_AMOUNT_PURCHASE;
-import static lotto.constant.Error.MIN_AMOUNT_PURCHASE;
 import static lotto.constant.LottoConstant.PRICE;
 
 import java.util.List;
@@ -26,16 +24,8 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     private static void validatePayAmount(int payAmount) {
-        if (payAmount == 0) {
-            throw new IllegalArgumentException(MIN_AMOUNT_PURCHASE);
-        }
-
         if (payAmount % PRICE != 0) {
             throw new IllegalArgumentException(INVALID_UNIT_PURCHASE);
-        }
-
-        if (payAmount / PRICE > 1000) {
-            throw new IllegalArgumentException(MAX_AMOUNT_PURCHASE);
         }
     }
 }
