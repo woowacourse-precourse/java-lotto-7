@@ -13,8 +13,9 @@ public class ValidInput {
     }
 
     public static void checkInputPositive(String input) {
-        if (Integer.parseInt(input) <= 0)
+        if (Integer.parseInt(input) <= 0) {
             throw new InputException(InputExceptionMessage.POSITIVE_INPUT);
+        }
     }
 
     private static void checkInputNumber(String input) {

@@ -25,19 +25,19 @@ class LottoTest {
 
     @Test
     void 로또_번호가_1에서_45사이의_숫자가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(0,123,2,3,4,5)))
+        assertThatThrownBy(() -> new Lotto(List.of(0, 123, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 해당_번호가_로또에_있으면_true를_반환한다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.hasNumber(1)).isTrue();
     }
 
     @Test
     void 해당_번호가_로또에_없으면_false를_반환한다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.hasNumber(10)).isFalse();
     }
 }

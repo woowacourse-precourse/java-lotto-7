@@ -8,15 +8,17 @@ import lotto.config.exception.lotto.LottoExceptionMessage;
 
 public class ValidLotto {
     public static void checkCountNumber(List<Integer> numbers) {
-        if (numbers.size() != 6)
+        if (numbers.size() != 6) {
             throw new LottoException(LottoExceptionMessage.MORE_COUNT_LOTTO_NUMBER);
+        }
     }
 
     public static void checkDuplicateNumber(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>();
         for (Integer number : numbers) {
-            if (!numberSet.add(number))
+            if (!numberSet.add(number)) {
                 throw new LottoException(LottoExceptionMessage.HAS_DUPLICATE_LOTTO_NUMBER);
+            }
         }
     }
 

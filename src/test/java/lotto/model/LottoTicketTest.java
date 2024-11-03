@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import lotto.model.Lotto;
-import lotto.model.LottoTicket;
 import org.junit.jupiter.api.Test;
 
 public class LottoTicketTest {

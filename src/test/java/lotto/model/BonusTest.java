@@ -13,7 +13,7 @@ public class BonusTest {
 
     @BeforeEach
     void init() {
-        lotto = new Lotto(List.of(1,2,3,4,5,6));
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test

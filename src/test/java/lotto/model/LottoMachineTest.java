@@ -2,8 +2,6 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.model.LottoMachine;
-import lotto.model.LottoTicket;
 import org.junit.jupiter.api.Test;
 
 public class LottoMachineTest {
