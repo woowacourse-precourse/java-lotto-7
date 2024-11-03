@@ -30,7 +30,7 @@ public class InputView {
         return Console.readLine().split(COMMA);
     }
 
-    public static List<Integer> getLotto(String[] splitInput) {
+    public static List<Integer> makeArrayToList(String[] splitInput) {
         List<Integer> numbers = new ArrayList<>();
         for(String i: splitInput){
             numbers.add(Integer.parseInt(i));
