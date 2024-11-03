@@ -2,12 +2,14 @@ package lotto.view;
 
 import lotto.dto.LottoMatchDTO;
 import lotto.io.Output;
+import lotto.message.IOMessage;
 import lotto.model.Lotto;
 import lotto.model.NumberMatchType;
 import lotto.model.WinningStatistic;
 
 public final class WinningStatisticView {
     public static void winningStatistic(LottoMatchDTO lottoMatchDTO) {
+        Output.printlnMessage(IOMessage.OUTPUT_WINNING_STATISTIC.getMessage());
         getWinningStatistic(lottoMatchDTO);
         Output.printlnMessage(WinningStatistic.getWinningStatistics());
     }
