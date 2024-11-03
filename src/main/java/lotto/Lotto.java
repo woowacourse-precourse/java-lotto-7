@@ -5,8 +5,6 @@ import static lotto.model.LottoRule.MIN_NUMBER;
 import static lotto.model.LottoRule.NUMBER_COUNT;
 
 import java.util.List;
-import lotto.exception.DuplicateNumberException;
-import lotto.exception.OverRangeException;
 import lotto.model.BonusNumber;
 import lotto.model.LottoRank;
 import lotto.model.WinningNumbers;
