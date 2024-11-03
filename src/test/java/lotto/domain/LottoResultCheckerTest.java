@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.utils.FixedNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,9 +37,24 @@ class LottoResultCheckerTest {
     }
 
     @Test
-    void 로또_결과_확인() {
+    void 로또번호가_당첨번호와같으면_개수를반환한다() {
         lottoResultChecker = new LottoResultChecker(lottoRaffle, lottos);
         int matchCount = lottoResultChecker.findMatchCount(lottos.getFirst());
-        Assertions.assertThat(matchCount).isEqualTo(6);
+        assertThat(matchCount).isEqualTo(6);
+    }
+
+    @Test
+    void 당첨결과를_등수로_구분한다() {
+        lottoResultChecker = new LottoResultChecker(lottoRaffle, lottos);
+
+        Map<Rank, Integer> rank = lottoResultChecker.findRank();
+
+        assertThat(rank.get(Rank.FIRST)).isEqualTo(1);
+        assertThat(rank.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(rank.get(Rank.THIRD)).isEqualTo(1);
+        assertThat(rank.get(Rank.FOURTH)).isEqualTo(1);
+        assertThat(rank.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(rank.get(Rank.NONE)).isEqualTo(1);
+
     }
 }
