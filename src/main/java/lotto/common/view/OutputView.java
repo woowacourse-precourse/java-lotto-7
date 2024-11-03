@@ -37,4 +37,7 @@ public class OutputView {
         System.out.println(messageOfRateOfReturnPrefix + rateOfReturn + messageOfRateOfReturnSuffix);
     }
 
+    public static void printMessage(final String message){
+        System.out.println(message);
+    }
 }
