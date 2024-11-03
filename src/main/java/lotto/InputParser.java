@@ -17,8 +17,8 @@ public class InputParser {
         return Integer.parseInt(input);
     }
 
-    public static void parseIntList(String input) {
-        parseIntList(input, DEFAULT_DELIMITER);
+    public static List<Integer> parseIntList(String input) {
+        return parseIntList(input, DEFAULT_DELIMITER);
     }
 
     public static List<Integer> parseIntList(String input, String delimiter) {
@@ -27,7 +27,7 @@ public class InputParser {
             throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER.format(delimiter));
         }
 
-        String[] inputs = input.split(regex);
+        String[] inputs = input.split(delimiter);
         return Arrays.stream(inputs)
                 .map(InputParser::parseInt)
                 .toList();
