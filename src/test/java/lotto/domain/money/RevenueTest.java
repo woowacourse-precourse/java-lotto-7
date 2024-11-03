@@ -17,9 +17,9 @@ class RevenueTest {
         lottoResult.addLottoResult(LottoPrize.SECOND_PRIZE);
         lottoResult.addLottoResult(LottoPrize.THIRD_PRIZE);
         lottoResult.addLottoResult(LottoPrize.FOURTH_PRIZE);
-        Revenue revenue = new Revenue(lottoResult, new Money(5000));
+        Revenue revenue = new Revenue(lottoResult, new LottoMoney(5000));
         assertAll(() -> assertThat(revenue.getReturns()).isEqualTo(6310.0),
-                () -> assertThat(revenue.getRevenue().getMoney()).isEqualTo(31550000)
+                () -> assertThat(revenue.getRevenue()).isEqualTo(31550000)
         );
     }
 }

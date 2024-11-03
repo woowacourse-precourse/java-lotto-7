@@ -1,12 +1,12 @@
 package lotto.common.exception;
 
-public class InvalidMoneyException extends LottoException{
+public class InvalidLottoMoneyException extends LottoException{
 
-    public InvalidMoneyException(long money) {
+    public InvalidLottoMoneyException(int money) {
         super(ErrorMessage.MONEY_OUT_OF_RANGE.getMessage() + "(금액: " + money + ")");
     }
 
-    public InvalidMoneyException(long money, Exception e) {
+    public InvalidLottoMoneyException(int money, Exception e) {
         super(ErrorMessage.MONEY_OUT_OF_RANGE.getMessage() + "(금액: " + money + ")", e);
     }
 }

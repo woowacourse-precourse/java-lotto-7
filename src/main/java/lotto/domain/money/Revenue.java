@@ -4,15 +4,15 @@ import lotto.domain.prize.LottoResult;
 
 public class Revenue {
 
-    private final Money revenue;
+    private final long revenue;
     private final double returns;
 
-    public Revenue(LottoResult lottoResult, Money cost) {
-        revenue = new Money(calculateRevenue(lottoResult));
-        returns = calculateReturns(revenue, cost);
+    public Revenue(LottoResult lottoResult, LottoMoney purchasedAmount) {
+        revenue = calculateRevenue(lottoResult);
+        returns = calculateReturns(revenue, purchasedAmount);
     }
 
-    public Money getRevenue() {
+    public long getRevenue() {
         return revenue;
     }
 
@@ -26,7 +26,7 @@ public class Revenue {
                 .sum();
     }
 
-    private double calculateReturns(Money revenue, Money money) {
-        return (double) revenue.getMoney() / money.getMoney();
+    private double calculateReturns(long revenue, LottoMoney lottoMoney) {
+        return (double) revenue / lottoMoney.getPurchasedAmount();
     }
 }
