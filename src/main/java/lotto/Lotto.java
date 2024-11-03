@@ -51,4 +51,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 값 입니다.");
         }
     }
+    public int lottoSize() {
+        return numbers.size();
+    }
+    public int getNumber(int num) {
+        return numbers.get(num);
+    }
 }
