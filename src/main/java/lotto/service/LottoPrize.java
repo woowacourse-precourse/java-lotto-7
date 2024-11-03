@@ -25,8 +25,8 @@ public class LottoPrize {
         this.bonus = bonus;
     }
 
-    public Double calculateRateOfReturn(Map<Rank, Integer> rankCount, Purchase purchase) {
-        long totalPrize = calculateTotalPrize(rankCount);
+    public Double calculateRateOfReturn(Map<Rank, Integer> prizeCountForRanks, Purchase purchase) {
+        long totalPrize = calculateTotalPrize(prizeCountForRanks);
         int cost = purchase.getCost();
         double rateOfReturn = ((double) totalPrize / cost) * HUNDRED_PERCENT;
         return roundToFirstDecimal(rateOfReturn);
@@ -36,9 +36,9 @@ public class LottoPrize {
         return Math.round(rateOfReturn * ROUND_TO_FIRST_DECIMAL) / ROUND_TO_FIRST_DECIMAL;
     }
 
-    private long calculateTotalPrize(Map<Rank, Integer> rankCount) {
+    private long calculateTotalPrize(Map<Rank, Integer> pizeCountForRanks) {
         return Stream.of(values())
-                .mapToLong(rank -> calculateTotalPrizeForRank(rankCount.getOrDefault(rank, DEFAULT_VALUE), rank))
+                .mapToLong(rank -> calculateTotalPrizeForRank(pizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE), rank))
                 .sum();
     }
 
@@ -47,22 +47,22 @@ public class LottoPrize {
     }
 
     public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {
-        Map<Rank, Integer> rankCount = new HashMap<>();
+        Map<Rank, Integer> prizeCountForRanks = new HashMap<>();
 
         for(Lotto ticket : lottos.getTickets()) {
             Rank rank = determineRank(lotto.getNumbers(), ticket.getNumbers());
-            rankCount.put(rank, rankCount.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
+            prizeCountForRanks.put(rank, prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE) + COUNT_INCREMENT_VALUE);
         }
-        return rankCount;
+        return prizeCountForRanks;
     }
 
     private Rank determineRank(List<Integer> prizeNumbers, List<Integer> userNumbers) {
-        int matchedCount = getMatchedCount(prizeNumbers, userNumbers);
+        int matchCount = checkMatchCount(prizeNumbers, userNumbers);
         BonusCheck bonusCheck = checkBonusMatch(userNumbers);
-        return checkRank(matchedCount, bonusCheck);
+        return matchRank(matchCount, bonusCheck);
     }
 
-    private int getMatchedCount(List<Integer> prizeNumbers, List<Integer> userNumbers) {
+    private int checkMatchCount(List<Integer> prizeNumbers, List<Integer> userNumbers) {
         return (int) prizeNumbers.stream()
                 .filter(userNumbers::contains)
                 .count();
@@ -75,9 +75,9 @@ public class LottoPrize {
         return BonusCheck.FALSE;
     }
 
-    private Rank checkRank(int matchedCount, BonusCheck bonusCheck) {
+    private Rank matchRank(int matchCount, BonusCheck bonusCheck) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> findMatchedRank(matchedCount, bonusCheck, rank))
+                .filter(rank -> findMatchedRank(matchCount, bonusCheck, rank))
                 .findFirst()
                 .orElse(NOTHING);
     }

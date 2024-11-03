@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.constant.SystemConfig;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
@@ -9,17 +10,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Parser {
-    private static final String DELIMITER = ",";
+import static lotto.constant.SystemConfig.DELIMITER;
 
+public class Parser {
     public static Bonus parseBonusNumber(String input) {
         int number = Parser.parseNumber(input);
         return new Bonus(number);
     }
 
     public static Purchase parsePurchase(String input) {
-        int number = Parser.parseNumber(input);
-        return new Purchase(number);
+        int cost = Parser.parseNumber(input);
+        return new Purchase(cost);
     }
 
     public static Lotto parseLotto(String input) {

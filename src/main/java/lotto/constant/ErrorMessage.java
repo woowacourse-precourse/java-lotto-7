@@ -1,5 +1,6 @@
 package lotto.constant;
 
+import static lotto.constant.LottoConfig.*;
 import static lotto.constant.PurchaseConfig.*;
 
 public enum ErrorMessage {
@@ -7,8 +8,8 @@ public enum ErrorMessage {
     INVALID_NUMBER_FORMAT("올바른 숫자를 입력해주세요."),
 
 
-    INVALID_LOTTO_COUNT("로또 번호는 6개여야 합니다."),
-    INVALID_LOTTO_RANGE("로또 숫자 범위는 1~45 사이입니다."),
+    INVALID_LOTTO_COUNT(String.format("로또 번호는 %d개여야 합니다.", LOTTO_COUNT)),
+    INVALID_LOTTO_RANGE(String.format("로또 숫자 범위는 %d~%d 사이입니다.", MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)),
     INVALID_LOTTO_NUMBER_DUPLICATION("중복된 번호가 존재합니다."),
     INVALID_BONUS_NUMBER_DUPLICATION("로또 번호와 중복된 번호가 존재합니다."),
 

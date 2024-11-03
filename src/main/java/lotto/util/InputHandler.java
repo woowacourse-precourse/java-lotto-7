@@ -33,7 +33,7 @@ public class InputHandler {
         return repeatInput(Parser::parseLotto, LOTTO_NUMBER_INPUT_MESSAGE);
     }
 
-    public static Purchase repeatInputOrderPrice() {
+    public static Purchase repeatInputOrderCost() {
         return repeatInput(Parser::parsePurchase, ORDER_AMOUNT_INPUT_MESSAGE);
     }
 
