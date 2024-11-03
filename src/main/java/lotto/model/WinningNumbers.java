@@ -26,8 +26,8 @@ public class WinningNumbers {
         return lottoSet.size();
     }
 
-    public boolean containAt(int bonusNumber) {
-        return isContained(bonusNumber);
+    public boolean containAt(int number) {
+        return isContained(number);
     }
 
     private void getCommonNumber(HashSet<Integer> lottoSet, HashSet<Integer> winningNumberSet) {
@@ -38,9 +38,9 @@ public class WinningNumbers {
         return new HashSet<>(lotto);
     }
 
-    private boolean isContained(int bonusNumber) {
+    private boolean isContained(int number) {
         return numbers.stream()
-                .anyMatch(number -> isBonusNumber(bonusNumber, number));
+                .anyMatch(i -> isBonusNumber(number, i));
     }
 
     private void validateSize(List<Integer> numbers) {
