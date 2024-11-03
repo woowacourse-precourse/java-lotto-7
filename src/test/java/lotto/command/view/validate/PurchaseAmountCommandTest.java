@@ -36,9 +36,9 @@ class PurchaseAmountCommandTest {
       "1000",
       "65000",
       "7000"})
-  @DisplayName("[success]execute : 유효한 로또 구매 금액")
-  void execute_shouldReturnCorrectUserInput(String input) {
-    UserInput result = command.execute(input);
+  @DisplayName("[success]validate : 유효한 로또 구매 금액")
+  void validate_shouldReturnCorrectUserInput(String input) {
+    UserInput result = command.validate(input);
     assertThat(result)
         .isInstanceOf(PurchaseAmountUserInput.class);
     assertThat(((PurchaseAmountUserInput) result)
@@ -48,59 +48,63 @@ class PurchaseAmountCommandTest {
 
   @ParameterizedTest
   @MethodSource("invalidWhiteSpace")
-  @DisplayName("[fail]execute : 공백 입력 처리")
-  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+  @DisplayName("[fail]validate : 공백 입력 처리")
+  void validate_shouldThrowExceptionWithWhiteSpace(String blankInput,
       ExceptionEnum exceptionEnum) {
 
-    assertThatThrownBy(() -> command.execute(blankInput))
+    assertThatThrownBy(() -> command.validate(blankInput))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("ERROR")
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(exceptionEnum.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
-  void execute_shouldThrowExceptionWithSpace() {
+  @DisplayName("[fail]validate : 공백이 포함된 입력 처리")
+  void validate_shouldThrowExceptionWithSpace() {
     String inputWithSpace = "1000 ";
-    assertThatThrownBy(() -> command.execute(inputWithSpace))
+    assertThatThrownBy(() -> command.validate(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessageContaining("ERROR")
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최소 단위 보다 작은 값 입력")
-  void execute_shouldThrowExceptionWhenAmountLessThanMinimum() {
+  @DisplayName("[fail]validate : 최소 단위 보다 작은 값 입력")
+  void validate_shouldThrowExceptionWhenAmountLessThanMinimum() {
     long lessThanMinimum = LottoConstant.AMOUNT_UNIT - 1;
-    assertThatThrownBy(() -> command.execute(String.valueOf(lessThanMinimum)))
+    assertThatThrownBy(() -> command.validate(String.valueOf(lessThanMinimum)))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_LESS_THAN_MINIMUM.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최대값 보다 큰 값 입력")
-  void execute_shouldThrowExceptionWhenAmountGreaterThanMaximum() {
+  @DisplayName("[fail]validate : 최대값 보다 큰 값 입력")
+  void validate_shouldThrowExceptionWhenAmountGreaterThanMaximum() {
     long greaterThanMaximum = (Long.MAX_VALUE / MATCH_SIX_PRIZE) * LottoConstant.AMOUNT_UNIT + 1;
-    assertThatThrownBy(() -> command.execute(String.valueOf(greaterThanMaximum)))
+    assertThatThrownBy(() -> command.validate(String.valueOf(greaterThanMaximum)))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 정수가 아닌 값 입력")
-  void execute_shouldThrowExceptionWhenAmountNotInteger() {
+  @DisplayName("[fail]validate : 정수가 아닌 값 입력")
+  void validate_shouldThrowExceptionWhenAmountNotInteger() {
     String decimalInput = "5000.5";
-    assertThatThrownBy(() -> command.execute(decimalInput))
+    assertThatThrownBy(() -> command.validate(decimalInput))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INVALID_INTEGER_RANGE.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 입력값 단위로 나누어 떨어지지 않는 입력")
-  void execute_shouldThrowExceptionWhenAmountNotInUnit() {
+  @DisplayName("[fail]validate : 입력값 단위로 나누어 떨어지지 않는 입력")
+  void validate_shouldThrowExceptionWhenAmountNotInUnit() {
     long inputNotInRange = LottoConstant.AMOUNT_UNIT + 1;
-    assertThatThrownBy(() -> command.execute(String.valueOf(inputNotInRange)))
+    assertThatThrownBy(() -> command.validate(String.valueOf(inputNotInRange)))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.PURCHASE_AMOUNT_NOT_IN_UNIT.getMessage());
   }
 

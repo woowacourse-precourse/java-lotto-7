@@ -39,9 +39,9 @@ class BonusCommandTest {
       "10",
       "45"
   })
-  @DisplayName("[success]execute : 유효한 보너스 번호")
-  void execute_shouldReturnCorrectUserInput(String input) {
-    UserInput result = command.execute(input);
+  @DisplayName("[success]validate : 유효한 보너스 번호")
+  void validate_shouldReturnCorrectUserInput(String input) {
+    UserInput result = command.validate(input);
     assertThat(result)
         .isInstanceOf(BonusUserInput.class);
 
@@ -51,9 +51,9 @@ class BonusCommandTest {
 
   @ParameterizedTest
   @MethodSource("provideInvalidBonusInputs")
-  @DisplayName("[fail]execute : 유효하지 않은 보너스 번호")
-  void execute_shouldThrowExceptionWhenInvalidInput(String input, ExceptionEnum expectedException) {
-    assertThatThrownBy(() -> command.execute(input))
+  @DisplayName("[fail]validate : 유효하지 않은 보너스 번호")
+  void validate_shouldThrowExceptionWhenInvalidInput(String input, ExceptionEnum expectedException) {
+    assertThatThrownBy(() -> command.validate(input))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(expectedException.getMessage());
@@ -61,20 +61,20 @@ class BonusCommandTest {
 
   @ParameterizedTest
   @MethodSource("invalidWhiteSpace")
-  @DisplayName("[fail]execute : 공백 입력 처리")
-  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+  @DisplayName("[fail]validate : 공백 입력 처리")
+  void validate_shouldThrowExceptionWithWhiteSpace(String blankInput,
       ExceptionEnum exceptionEnum) {
-    assertThatThrownBy(() -> command.execute(blankInput))
+    assertThatThrownBy(() -> command.validate(blankInput))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(exceptionEnum.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
-  void execute_shouldThrowExceptionWithSpace() {
+  @DisplayName("[fail]validate : 공백이 포함된 입력 처리")
+  void validate_shouldThrowExceptionWithSpace() {
     String inputWithSpace = "1,4,3,4,5,6 ";
-    assertThatThrownBy(() -> command.execute(inputWithSpace))
+    assertThatThrownBy(() -> command.validate(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());

@@ -31,9 +31,9 @@ class LottoCommandTest {
 
   @ParameterizedTest
   @MethodSource("provideValidLottoInputs")
-  @DisplayName("[success]execute : 유효한 로또 번호")
-  void execute_shouldReturnCorrectUserInput(String input, List<Integer> expectedNumbers) {
-    UserInput result = command.execute(input);
+  @DisplayName("[success]validate : 유효한 로또 번호")
+  void validate_shouldReturnCorrectUserInput(String input, List<Integer> expectedNumbers) {
+    UserInput result = command.validate(input);
     assertThat(result)
         .isInstanceOf(WinningLottoUserInput.class);
     assertThat(((WinningLottoUserInput) result)
@@ -43,67 +43,63 @@ class LottoCommandTest {
 
   @ParameterizedTest
   @MethodSource("invalidWhiteSpace")
-  @DisplayName("[fail]execute : 공백 입력 처리")
-  void execute_shouldThrowExceptionWithWhiteSpace(String blankInput,
+  @DisplayName("[fail]validate : 공백 입력 처리")
+  void validate_shouldThrowExceptionWithWhiteSpace(String blankInput,
       ExceptionEnum exceptionEnum) {
-    assertThatThrownBy(() -> command.execute(blankInput))
+    assertThatThrownBy(() -> command.validate(blankInput))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(exceptionEnum.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
-  void execute_shouldThrowExceptionWithSpace() {
+  @DisplayName("[fail]validate : 공백이 포함된 입력 처리")
+  void validate_shouldThrowExceptionWithSpace() {
     String inputWithSpace = "1,2,3,4,5,6 ";
-    assertThatThrownBy(() -> command.execute(inputWithSpace))
+    assertThatThrownBy(() -> command.validate(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.CONTAIN_WHITESPACE.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최소 번호보다 작은 값 입력")
-  void execute_shouldThrowExceptionWhenNumberLessThanMinimum() {
+  @DisplayName("[fail]validate : 최소 번호보다 작은 값 입력")
+  void validate_shouldThrowExceptionWhenNumberLessThanMinimum() {
     String inputLessThanMinimum = "0,1,2,3,4,5";
-    assertThatThrownBy(() -> command.execute(inputLessThanMinimum))
+    assertThatThrownBy(() -> command.validate(inputLessThanMinimum))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_LESS_THAN_MINIMUM.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 최대 번호보다 큰 값 입력")
-  void execute_shouldThrowExceptionWhenNumberGreaterThanMaximum() {
+  @DisplayName("[fail]validate : 최대 번호보다 큰 값 입력")
+  void validate_shouldThrowExceptionWhenNumberGreaterThanMaximum() {
     String inputGreaterThanMaximum = "1,2,3,4,5,50";
-    assertThatThrownBy(() -> command.execute(inputGreaterThanMaximum))
+    assertThatThrownBy(() -> command.validate(inputGreaterThanMaximum))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM.getMessage());
   }
 
   @ParameterizedTest
   @MethodSource("provideInputsWithDuplicates")
-  @DisplayName("[fail]execute : 중복된 번호 입력")
-  void execute_shouldThrowExceptionWhenNumbersNotDistinct(String input) {
-    assertThatThrownBy(() -> command.execute(input))
+  @DisplayName("[fail]validate : 중복된 번호 입력")
+  void validate_shouldThrowExceptionWhenNumbersNotDistinct(String input) {
+    assertThatThrownBy(() -> command.validate(input))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT.getMessage());
   }
 
   @Test
-  @DisplayName("[fail]execute : 잘못된 숫자 형식 입력")
-  void execute_shouldThrowExceptionWhenInvalidNumberFormat() {
+  @DisplayName("[fail]validate : 잘못된 숫자 형식 입력")
+  void validate_shouldThrowExceptionWhenInvalidNumberFormat() {
     String invalidInput = "1,two,3,four,five,six";
-    assertThatThrownBy(() -> command.execute(invalidInput))
+    assertThatThrownBy(() -> command.validate(invalidInput))
         .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR]")
         .hasMessageContaining(ExceptionEnum.INVALID_INTEGER_RANGE.getMessage());
-  }
-
-  @Test
-  void execute() {
-  }
-
-  @Test
-  void ask() {
   }
 
   private static Stream<Arguments> provideValidLottoInputs() {
