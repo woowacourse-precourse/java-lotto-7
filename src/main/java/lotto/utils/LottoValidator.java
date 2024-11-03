@@ -60,15 +60,16 @@ public class LottoValidator {
 
     private void purchaseAmountUnitValidate(BigInteger purchaseAmount) {
         if (!purchaseAmount.remainder(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT)).equals(BigInteger.ZERO)) {
-            throw new IllegalArgumentException(ERROR_MSG_PREFIX + PURCHASE_AMOUNT_UNIT + "원 단위의 입력만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX
+                    + "%d원 단위의 입력만 가능합니다.".formatted(PURCHASE_AMOUNT_UNIT));
         }
     }
 
     public static void numbersDuplicateValidate(List<Integer> numbers) {
         //FIXME: 이름에 자료형을 쓰지 말 것(Set)
-        Set<Integer> numberSet = new HashSet<>(numbers);
+        Set<Integer> numberSet = new HashSet<>(numbers);    //set을 통하면 중복이 제거됨 -> 사이즈가 다르면 중복이 있다는 뜻
 
-        if(numberSet.size() != numbers.size()) {
+        if (numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException(ERROR_MSG_PREFIX + "중복된 값은 불가합니다.");
         }
     }

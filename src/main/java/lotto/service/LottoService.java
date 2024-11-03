@@ -1,6 +1,9 @@
 package lotto.service;
 
+import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
+import static lotto.constant.LottoStatic.RANDOM_END_NUMBER;
+import static lotto.constant.LottoStatic.RANDOM_START_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigInteger;
@@ -25,8 +28,7 @@ public class LottoService {
     }
 
     public void create(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
-        lottoRepository.save(lotto);
+        lottoRepository.save(new Lotto(numbers));
     }
 
     public BigInteger count() {
@@ -34,6 +36,6 @@ public class LottoService {
     }
 
     public List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(RANDOM_START_NUMBER, RANDOM_END_NUMBER, LOTTO_NUMBER_COUNTS);
     }
 }

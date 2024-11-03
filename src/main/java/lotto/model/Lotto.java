@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
+import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
+
 import java.util.List;
 import lotto.utils.LottoValidator;
 
@@ -11,9 +14,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    //FIXME: validate 수정 가능?
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNTS) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX +
+                    "로또 번호는 %d개여야 합니다.".formatted(LOTTO_NUMBER_COUNTS));
         }
 
         //FIXME: 여기 이렇게 있는게 맞을까?
