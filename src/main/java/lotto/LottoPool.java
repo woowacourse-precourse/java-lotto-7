@@ -1,9 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class LottoPool {
+public class LottoPool implements Iterable<Lotto>{
     private List<Lotto> lottos;
 
     public LottoPool() {
@@ -22,5 +23,10 @@ public class LottoPool {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    @Override
+    public Iterator<Lotto> iterator() {
+        return lottos.iterator();
     }
 }

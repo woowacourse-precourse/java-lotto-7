@@ -8,7 +8,6 @@ public class LottoMachine {
 
     public void run() {
         int purchaseAmount = lottoIOHandler.askLottoPurchaseAmount();
-
         int quantity = calculateQuantity(purchaseAmount);
         lottoIOHandler.showLottoQuantity(quantity);
 
@@ -18,6 +17,25 @@ public class LottoMachine {
         Lotto winningLotto = lottoIOHandler.askWinningNumbers();
         int bonusNumber = lottoIOHandler.askBonusNumber(winningLotto);
 
+        LottoStatistics winningStatistics = calculateWinningStatistics(lottoPool, winningLotto, bonusNumber);
+        lottoIOHandler.showWinningStatistics(winningStatistics, purchaseAmount);
+    }
+
+    private LottoStatistics calculateWinningStatistics(LottoPool lottoPool, Lotto winningLotto, int bonusNumber) {
+        LottoStatistics lottoStatistics = new LottoStatistics();
+
+        for (Lotto userLotto : lottoPool) {
+            LottoRank lottoRank = LottoRank.checkWinningRank(userLotto, winningLotto, bonusNumber);
+            incrementWinningCount(lottoRank, lottoStatistics);
+        }
+
+        return lottoStatistics;
+    }
+
+    private void incrementWinningCount(LottoRank lottoRank, LottoStatistics lottoStatistics) {
+        if (lottoRank != null) {
+            lottoStatistics.incrementWinningCount(lottoRank);
+        }
     }
 
     private int calculateQuantity(int purchaseAmount) {

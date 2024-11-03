@@ -2,6 +2,7 @@ package lotto.io;
 
 import lotto.Lotto;
 import lotto.LottoPool;
+import lotto.LottoStatistics;
 
 public class LottoIOHandler {
 
@@ -29,5 +30,9 @@ public class LottoIOHandler {
     public int askBonusNumber(Lotto winningLotto) {
         outputHandler.askBonusNumber();
         return inputHandler.getBonusNumber(winningLotto);
+    }
+
+    public void showWinningStatistics(LottoStatistics lottoStatistics, int purchaseAmount) {
+        outputHandler.showWinningStatistics(lottoStatistics, purchaseAmount);
     }
 }
