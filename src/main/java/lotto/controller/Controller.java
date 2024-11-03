@@ -17,13 +17,13 @@ public class Controller {
         printView.printStatistic(lottoManager.calculateEarnRate().toString(), lottoManager.getWinLottiesCount());
     }
 
-    public void issueLotties() {
+    private void issueLotties() {
         lottoManager = new LottoManager(inputValidation.getValidatedMoney());
         List<List<Integer>> lottisNumber = lottoManager.getLotties().stream().map(Lotto::getNumbers).collect(Collectors.toList());
         printView.printLotties(lottisNumber);
     }
 
-    public void checkWinPrizes() {
+    private void checkWinPrizes() {
         lottoManager.setWinningNumbers(inputValidation.getValidatedWinningNumbers());
         lottoManager.setBonusNumber(inputValidation.getValidatedBonusNumber(lottoManager.getWinningNumbers()));
         lottoManager.checkLottiesWin();
