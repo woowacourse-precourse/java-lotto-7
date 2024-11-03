@@ -1,18 +1,18 @@
 package lotto.domain;
 
 public enum Rank {
-    NO_MATCH(0, false, 0),
-    THREE_MATCH(3, false, 5_000),
-    FOUR_MATCH(4, false, 50_000),
-    FIVE_MATCH(5, false, 1_500_000),
-    FIVE_MATCH_WITH_BONUS(5, true, 30_000_000),
-    SIX_MATCH(6, false, 2_000_000_000);
+    NO_MATCH(0, false, Prize.NO_MATCH),
+    THREE_MATCH(3, false, Prize.THREE_MATCH),
+    FOUR_MATCH(4, false, Prize.FOUR_MATCH),
+    FIVE_MATCH(5, false, Prize.FIVE_MATCH),
+    FIVE_MATCH_WITH_BONUS(5, true, Prize.FIVE_MATCH_WITH_BONUS),
+    SIX_MATCH(6, false, Prize.SIX_MATCH);
 
     private final int matchCount;
     private final boolean hasBonus;
-    private final int prize;
+    private final Prize prize;
 
-    Rank(int matchCount, boolean hasBonus, int prize) {
+    Rank(int matchCount, boolean hasBonus, Prize prize) {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
         this.prize = prize;
@@ -26,7 +26,7 @@ public enum Rank {
         return hasBonus;
     }
 
-    public int getPrize() {
+    public Prize getPrize() {
         return prize;
     }
 

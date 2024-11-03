@@ -12,7 +12,9 @@ public class RankCounter {
         Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
         for (Rank rank : Rank.values()) {
-            rankCounts.put(rank, 0);
+            if (rank != Rank.NO_MATCH) {
+                rankCounts.put(rank, 0);
+            }
         }
 
         for (MatchResult result : matchResults.results()) {
