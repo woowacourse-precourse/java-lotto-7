@@ -32,10 +32,62 @@
 ## 채택한 디자인 패턴
 
 - Factory 패턴 : 객체 생성 로직을 별도의 클래스로 분리하여 캡슐화하는 패턴
+   - 정적 팩토리 패턴을 사용해 생성자를 캡슐화했습니다. 
+- Strategy 패턴 : 객체의 행위를 동적으로 변경하고 싶을 때 직접 행위를 수정하지 않고 전략을 변경해 행위를 유연하게 확장하는 패턴
+   - 로또 당첨 개수를 합산할 때 당첨 개수에 따라 각기 다른 값을 가지도록 구현했습니다.
 
 ## 프로젝트 구조
 
-추가 예정
+```
+- controller
+    |- BonusController : 보너스 번호 입력
+    |- LottoController : 로또 구입 금액에 따른 로또 발행 및 출력 
+    |- PaymentController : 로또 구입 금액 입력 
+    |- ResultController : 로또 당첨 통계, 수익률 계산 및 출력
+    |- WinningController : 당첨 번호 입력
+- domain
+    |- Bonus : 보너스 번호 값 검증 및 예외 처리
+    |- Lotto : 로또 번호 값 검증 및 예외 처리
+    |- Wallet : 로또 구입 금액 값 검증 및 예외 처리
+- exception
+    |- BonusExcpetion : 보너스 번호 예외
+    |- LottoException : 로또 번호 예외
+    |- MoneyException : 로또 구입 금액 예외
+- factory
+    |- BonusFactory : 보너스 객체 생성 
+    |- LottoFactory : 로또 객체 생성
+    |- WalletFactory : 지갑 객체 생성
+- message
+    |- ExceptionMessage : 예외 메시지 정의
+    |- Place : 등수 정의
+    |- PrintMessage : 출력 메시지 정의
+    |- Prize : 등수 별 상금 정의
+- service
+    |- calculator
+        |- ResultCalculator : 당첨 결과 합산 및 당첨 통계 계산
+    |- generator
+        |- BonusGenerator : 사용자로부터 입력받은 보너스 번호 검증 및 생성
+        |- LottoGenerator : 로또 번호 생성 및 로또 티켓 발행
+        |- ResultGenerator : 로또 티켓의 당첨 여부(당첨 번호, 보너스 번호) 판단 및 결과 반환 
+        |- WalletGenerator : 사용자로부터 입력받은 돈 검증 및 지갑 생성
+        |- WinningGenerator : 사용자로부터 입력받은 당첨 번호 값 검증 및 로또 생성
+    |- Payment : 지갑 관련 로직 정의(돈, 구입 로또 개수)
+- strategy
+    |- PlaceAuction : 등수 별 동작 정의(interface)
+    |- FirstPlace : 1등일 경우 동작 구현
+    |- SecondPlace : 2등, 3등일 경우 동작 구현
+    |- FourthPlace : 4등일 경우 동작 구현
+    |- FifthPlace : 5등일 경우 동작 구현
+- util
+    |- ProfitCalculator : 수익률 계산
+    |- NumberValidator : 수 검증 및 예외 처리(공통 로직)
+- view
+    |- Input : InputView의 interface
+    |- InputView : 입력 정의
+    |- Output : OutputView의 interface
+    |- OutputView : 출력 정의
+- Application : 로또 발행기 동작
+```
 
 <br>
 
@@ -51,7 +103,6 @@
 - [구현 리스트](#-구현-리스트)
     - [기능 구현 리스트](#기능-구현-리스트)
     - [입출력 구현 리스트](#입출력-구현-리스트)
-    - [예외 처리 구현 리스트](#예외-처리-구현-리스트)
 - [프로젝트 구현 후기](#프로젝트-구현-후기)
 
 <br>
@@ -166,7 +217,7 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 
 ### 실행 결과 예시
 
-```java
+```
 구입금액을 입력해 주세요.
 8000
 
@@ -202,7 +253,15 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 
 ---
 
-설명 추가 예정
+- `Lotto` : 발행한 로또 혹은 당첨 번호를 의미한다.
+- `LottoTicket` : 구입 금액에 따라 발행한 로또들을 의미한다.
+- `Winning` : 당첨 번호를 의미한다.
+- `Bonus` : 보너스 번호를 의미한다.
+- `Wallet` : 구입 금액을 가지는 지갑을 의미한다.
+- `Factory` : 생성자를 외부에서 생성하는 역할을 수행한다.
+- `Generator` : 입력에 대한 값을 생성하는 로직을 수행한다.
+- `Calculator` : 입력에 대한 결과를 계산하는 로직을 수행한다.
+- `PlaceAuction` : 등수에 따른 결과를 합산하기 위한 전략이다.
 
 <br>
 
@@ -285,4 +344,12 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 
 ## 프로젝트 구현 후기
 
-추가 작성 예정
+- 이번 미션을 통해 `정적 팩토리 패턴`을 사용해 외부에서 `new` 키워드를 사용하지 않고 객체를 생성하도록 했습니다. 
+  - 하지만 테스트를 위해 생성자를 `public`으로 설정했고, 이는 추후 보완해야할 사항으로 보입니다. 
+  - 이와 관련해서 지적할 사항이 있다면 지적해주세요. 🍀
+- `enumMap`을 활용해 `enum`을 키 값으로 활용해 등수 계산에 사용하였습니다. 
+  - `Map`이 아닌 `enumMap`을 사용해 데이터 관리를 더 효율적으로 하도록 구현했습니다. 
+- 전략 패턴을 사용해 등수에 따라 다른 동작(`PlaceAuction`)을 하도록 구현했습니다.
+- 시간 분배의 중요성을 깨닫게 되었습니다.
+  - 이전 미션을 진행한 방식대로 `구현 전 계획 -> 공부 -> 구현 -> 테스트` 순으로 진행하니 테스트 코드에 시간을 들이지 못해 시간이 부족하다고 느꼈습니다.
+  - 다음 미션을 진행할 때는 `구현 전 계획 -> 구현 + 공부 -> 테스트` 순으로 진행해 태스트 코드를 작성하는 시간을 늘리고 싶습니다. 
