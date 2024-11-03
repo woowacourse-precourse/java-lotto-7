@@ -14,7 +14,7 @@ public class Application {
 
         LottoDomainFactory lottoDomainFactory = new LottoDomainFactory();
 
-        LottoService lottoService = new LottoService();
+        LottoService lottoService = new LottoService(lottoDomainFactory);
 
         LottoGameController lottoGameController = new LottoGameController(lottoService, inputView, outputView);
 
