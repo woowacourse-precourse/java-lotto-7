@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -33,5 +34,12 @@ class LottoTest {
     @Test
     void 유효한_로또_번호가_주어지면_예외가_발생하지_않는다() {
         assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    }
+
+    @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인한다.")
+    @Test
+    void 로또_번호가_오름차순으로_정렬되는지_확인한다() {
+        Lotto lotto = new Lotto(List.of(45, 1, 23, 10, 5, 33));
+        assertThat(lotto.get()).containsExactly(1, 5, 10, 23, 33, 45);
     }
 }
