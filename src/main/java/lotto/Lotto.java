@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_COUNT;
+import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_DUPLICATED;
 import static lotto.ExceptionMessages.ERROR_LOTTO_NUMBER_RANGE;
 
 import java.util.HashSet;
@@ -16,10 +18,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT.getMessage());
         }
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 값을 가질 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_DUPLICATED.getMessage());
         }
         if (!isNumberInRange(numbers)) {
             throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_RANGE.getMessage());
