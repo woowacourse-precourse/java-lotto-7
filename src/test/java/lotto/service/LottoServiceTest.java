@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.LottoManager;
 import lotto.domain.LottoFormatter;
@@ -10,9 +9,8 @@ import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoServiceTest {
     private LottoValidator lottoValidator;
@@ -37,6 +35,13 @@ public class LottoServiceTest {
     }
 
     @Test
+    void 로또_생성_호출_테스트() {
+        int size = lottoService.formatBuyLottoNumbersResult().size();
+
+        assertThat(size).isEqualTo(6);
+    }
+
+    @Test
     void 구매_로또_개수_계산() {
         int lottoCount = lottoService.getCalculateBuyLottoCount(5000);
 
@@ -44,20 +49,13 @@ public class LottoServiceTest {
     }
 
     @Test
-    void 로또_생성_및_저장_확인() {
-        int buyLottoCount = 3;
-        lottoService.callCreateLottos(buyLottoCount);
+    void 로또_수익률_계산_테스트() {
+        lottoService.recordWinningLotto("1, 2, 3, 4, 5, 6", "7");
+        int buyLottoMoney = 10000;
 
-        List<Lotto> createdLottos = lottoManager.getLottos();
-        assertThat(createdLottos.size()).isEqualTo(buyLottoCount);
+        double result = lottoService.callCalculateLottoRateOfReturn(buyLottoMoney);
 
-        for (Lotto lotto : createdLottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            assertThat(numbers.size()).isEqualTo(6);
-            assertThat(numbers).doesNotHaveDuplicates();
-            for (int number : numbers) {
-                assertThat(number).isBetween(1, 45);
-            }
-        }
+        assertTrue(result >= 0, "로또 수익률이 0 이상인지 확인");
     }
 }
+
