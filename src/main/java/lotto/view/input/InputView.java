@@ -1,7 +1,7 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.common.ViewConstants;
+import lotto.view.constant.ViewConstants;
 
 import java.util.Scanner;
 

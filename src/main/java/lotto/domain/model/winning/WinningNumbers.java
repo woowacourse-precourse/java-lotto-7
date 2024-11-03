@@ -1,7 +1,7 @@
-package lotto.domain.winning;
+package lotto.domain.model.winning;
 
-import lotto.common.LottoConstants;
-import lotto.exception.winningNumbers.WinningNumbersErrorMessages;
+import lotto.domain.constant.LottoConstants;
+import lotto.exception.winning.WinningNumbersErrorMessages;
 
 import java.util.Arrays;
 import java.util.HashSet;

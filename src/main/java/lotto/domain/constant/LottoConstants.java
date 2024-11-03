@@ -1,4 +1,4 @@
-package lotto.common;
+package lotto.domain.constant;
 
 public class LottoConstants {
     public static final int LOTTO_NUMBER_COUNT = 6;

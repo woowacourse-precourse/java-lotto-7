@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import lotto.domain.winning.WinningNumbers;
-import lotto.exception.winningNumbers.WinningNumbersErrorMessages;
+import lotto.domain.model.winning.WinningNumbers;
+import lotto.exception.winning.WinningNumbersErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

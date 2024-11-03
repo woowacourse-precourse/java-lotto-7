@@ -1,12 +1,12 @@
-package lotto.service.lotto;
+package lotto.service;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.winning.WinningContext;
-import lotto.domain.winning.WinningResult;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.winning.WinningContext;
+import lotto.domain.model.winning.WinningResult;
 
 import java.util.List;
 
-public interface LottoService {
+public interface LottoApplicationService {
     boolean validateAmount(String input);
     WinningResult checkResult(List<Lotto> lottos, WinningContext context);
     double calculateEarningsRate(int totalPrize, int amount);

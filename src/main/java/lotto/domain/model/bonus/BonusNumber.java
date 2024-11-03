@@ -1,6 +1,6 @@
-package lotto.domain.bonus;
+package lotto.domain.model.bonus;
 
-import lotto.common.LottoConstants;
+import lotto.domain.constant.LottoConstants;
 import lotto.exception.bonus.BonusErrorMessages;
 
 import java.util.List;

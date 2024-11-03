@@ -1,6 +1,6 @@
-package lotto.domain.winning;
+package lotto.domain.model.winning;
 
-import lotto.domain.bonus.BonusNumber;
+import lotto.domain.model.bonus.BonusNumber;
 
 public class WinningContext {
     private final WinningNumbers winningNumbers;

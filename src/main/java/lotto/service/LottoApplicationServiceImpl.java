@@ -1,19 +1,18 @@
-package lotto.service.lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.common.LottoConstants;
-import lotto.domain.bonus.BonusNumber;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.winning.WinningContext;
-import lotto.domain.winning.WinningNumbers;
-import lotto.domain.winning.Rank;
-import lotto.domain.winning.WinningResult;
+import lotto.domain.constant.LottoConstants;
+import lotto.domain.model.bonus.BonusNumber;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.winning.WinningContext;
+import lotto.domain.model.winning.Rank;
+import lotto.domain.model.winning.WinningResult;
 import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoServiceImpl implements LottoService {
+public class LottoApplicationServiceImpl implements LottoApplicationService {
     private static final int FULL_MATCH_COUNT = 6;
     private static final int FIVE_MATCH_COUNT = 5;
     private static final int FOUR_MATCH_COUNT = 4;

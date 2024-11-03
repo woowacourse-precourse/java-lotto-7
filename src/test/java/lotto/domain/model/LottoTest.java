@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import lotto.domain.lotto.Lotto;
+import lotto.domain.model.lotto.Lotto;
 import lotto.exception.lotto.LottoErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

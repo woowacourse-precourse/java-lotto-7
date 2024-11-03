@@ -1,4 +1,4 @@
-package lotto.common;
+package lotto.view.constant;
 
 public class ViewConstants {
     public static final String INPUT_PURCHASE_AMOUNT = "구입 금액을 입력해 주세요.";

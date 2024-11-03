@@ -1,6 +1,6 @@
-package lotto.domain.lotto;
+package lotto.domain.model.lotto;
 
-import lotto.common.LottoConstants;
+import lotto.domain.constant.LottoConstants;
 import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.*;

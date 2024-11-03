@@ -1,4 +1,4 @@
-package lotto.exception.winningNumbers;
+package lotto.exception.winning;
 
 
 public enum WinningNumbersErrorMessages {

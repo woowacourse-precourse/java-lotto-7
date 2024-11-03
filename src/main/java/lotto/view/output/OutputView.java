@@ -1,9 +1,9 @@
 package lotto.view.output;
 
-import lotto.common.ViewConstants;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.winning.Rank;
-import lotto.domain.winning.WinningResult;
+import lotto.view.constant.ViewConstants;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.winning.Rank;
+import lotto.domain.model.winning.WinningResult;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;

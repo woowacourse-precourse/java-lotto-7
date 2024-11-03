@@ -1,11 +1,11 @@
 package lotto.view.input;
 
-import lotto.domain.bonus.BonusNumber;
-import lotto.domain.winning.WinningNumbers;
+import lotto.domain.model.bonus.BonusNumber;
+import lotto.domain.model.winning.WinningNumbers;
 import lotto.exception.bonus.BonusErrorMessages;
 import lotto.exception.lotto.LottoErrorMessages;
-import lotto.exception.winningNumbers.WinningNumbersErrorMessages;
-import lotto.service.lotto.LottoServiceImpl;
+import lotto.exception.winning.WinningNumbersErrorMessages;
+import lotto.service.LottoApplicationServiceImpl;
 
 import java.util.function.Supplier;
 
@@ -14,7 +14,7 @@ public class InputHandler {
     public static int getValidatedAmount() {
         return handleInput(() -> {
             String input = InputView.getAmount();
-            new LottoServiceImpl().validateAmount(input);
+            new LottoApplicationServiceImpl().validateAmount(input);
             return Integer.parseInt(input);
         }, LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }

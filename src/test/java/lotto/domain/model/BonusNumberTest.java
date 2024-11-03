@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import lotto.domain.bonus.BonusNumber;
+import lotto.domain.model.bonus.BonusNumber;
 import lotto.exception.bonus.BonusErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

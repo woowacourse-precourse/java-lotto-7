@@ -1,14 +1,13 @@
 package lotto.service;
 
 import lotto.exception.lotto.LottoErrorMessages;
-import lotto.service.lotto.LottoServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoServiceImplTest {
-    private final LottoServiceImpl lottoService = new LottoServiceImpl();
+public class LottoApplicationServiceImplTest {
+    private final LottoApplicationServiceImpl lottoService = new LottoApplicationServiceImpl();
 
     @Test
     @DisplayName("로또 구입 금액이 공백일 경우 예외가 발생한다.")

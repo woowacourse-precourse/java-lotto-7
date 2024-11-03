@@ -1,4 +1,4 @@
-package lotto.domain.winning;
+package lotto.domain.model.winning;
 
 public enum Rank {
     FIRST(2_000_000_000, "6개 일치"),
