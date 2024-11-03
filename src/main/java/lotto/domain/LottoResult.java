@@ -1,12 +1,16 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.INITIAL_COUNT;
+import static lotto.constants.Constants.LOTTO_RESULT_SIZE;
+import static lotto.constants.Constants.ONE;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import lotto.constants.Prizes;
 
 public class LottoResult {
-    private static HashMap<String, Integer> lottoResult = new LinkedHashMap<>(5);
+    private static HashMap<String, Integer> lottoResult = new LinkedHashMap<>(LOTTO_RESULT_SIZE);
 
     private LottoResult() {
 
@@ -16,7 +20,7 @@ public class LottoResult {
         for (String prizeName : Arrays.stream(Prizes.values())
                 .map(Prizes::name)
                 .toList()) {
-            lottoResult.put(prizeName, 0);
+            lottoResult.put(prizeName, INITIAL_COUNT);
         }
 
         return new LottoResult();
@@ -24,14 +28,14 @@ public class LottoResult {
 
     public void addResult(int count, boolean isBonus) {
         for (Prizes prize : Arrays.stream(Prizes.values()).toList()) {
-            if (count != 5) {
+            if (count != LOTTO_RESULT_SIZE) {
                 if (prize.getCount() == count) {
-                    lottoResult.merge(prize.name(), 1, Integer::sum);
+                    lottoResult.merge(prize.name(), ONE, Integer::sum);
                 }
             }
-            if (count == 5) {
+            if (count == LOTTO_RESULT_SIZE) {
                 if (prize.getCount() == count && prize.getBonus() == isBonus) {
-                    lottoResult.merge(prize.name(), 1, Integer::sum);
+                    lottoResult.merge(prize.name(), ONE, Integer::sum);
                 }
             }
         }

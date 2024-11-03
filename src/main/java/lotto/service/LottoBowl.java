@@ -1,5 +1,9 @@
 package lotto.service;
 
+import static lotto.constants.Constants.LOTTO_MAX;
+import static lotto.constants.Constants.LOTTO_MIN;
+import static lotto.constants.Constants.LOTTO_SIZE;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotties;
@@ -30,7 +34,7 @@ public class LottoBowl {
     }
 
     private Lotto pickBalls() {
-        List<Integer> numbers = RandomNumbersGenerator.getNumbers(1, 45, 6);
+        List<Integer> numbers = RandomNumbersGenerator.getNumbers(LOTTO_MIN, LOTTO_MAX, LOTTO_SIZE);
         return new Lotto(numbers);
     }
 }

@@ -1,12 +1,14 @@
 package lotto.utils;
 
+import static lotto.constants.Constants.PROFIT_FORMAT;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class UnitConverter {
     private static final NumberFormat numberFormatter = NumberFormat.getInstance();
-    private static final NumberFormat decimalFormatter = new DecimalFormat("#,##0.0");
+    private static final NumberFormat decimalFormatter = new DecimalFormat(PROFIT_FORMAT);
 
 
     public static String convertUnit(int money) {

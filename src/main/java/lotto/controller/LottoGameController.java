@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.constants.Constants.DELIMITER;
 import static lotto.utils.UnitConverter.convertUnit;
 
 import java.math.BigDecimal;
@@ -93,7 +94,7 @@ public class LottoGameController {
                 OutputView.printInsertUserLotto();
                 String rawUserLotto = InputView.getUserLotto();
                 OutputView.printEnter();
-                List<String> splittedRawInput = StringSplitter.splitByDelimiter(rawUserLotto, ",");
+                List<String> splittedRawInput = StringSplitter.splitByDelimiter(rawUserLotto, DELIMITER);
 
                 splittedRawInput.forEach(NumberValidator::validateInt);
 

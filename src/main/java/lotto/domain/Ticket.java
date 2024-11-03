@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.MONEY_UNIT;
+
 import lotto.vo.Money;
 
 public class Ticket {
@@ -18,6 +20,6 @@ public class Ticket {
     }
 
     private static int publishTicket(Money money) {
-        return money.money() / 1_000;
+        return money.money() / MONEY_UNIT;
     }
 }

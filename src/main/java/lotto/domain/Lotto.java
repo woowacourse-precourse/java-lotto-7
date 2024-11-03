@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.LOTTO_MAX;
+import static lotto.constants.Constants.LOTTO_MIN;
+import static lotto.constants.Constants.LOTTO_SIZE;
 import static lotto.utils.NumberValidator.validateNumberRange;
 
 import java.util.List;
@@ -37,13 +40,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        numbers.forEach(number -> validateNumberRange(number, 45, 1));
+        numbers.forEach(number -> validateNumberRange(number, LOTTO_MAX, LOTTO_MIN));
         validateCount(numbers);
         validateDuplication(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_COUNT.getMessage());
         }
     }
