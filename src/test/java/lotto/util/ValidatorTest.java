@@ -42,4 +42,13 @@ class ValidatorTest {
             validator.validateNonNumber(input);
         }, "int 범위를 벗어난 경우 예외 발생");
     }
+
+    @Test
+    void 양수가_아닐_경우_예외_발생() {
+        String input = "-1";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validatePositiveNumber(input);
+        }, "양수가 아닐 경우 예외 발생");
+    }
 }
