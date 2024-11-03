@@ -29,7 +29,17 @@ class InputViewTest {
 
     @Test
     void 구매_금액이_올바른_입력일_때(){
-        assertDoesNotThrow(() -> InputView.validateAmountInput("1234"));
+        assertDoesNotThrow(() -> InputView.validateAmountInput("1000"));
+    }
+
+    @Test
+    void 구매_금액이_1000원_단위가_아닐떄(){
+        assertEquals(InputView.isModZero(1123), false);
+    }
+
+    @Test
+    void 구매_금액이_1000원_단위일_때(){
+        assertEquals(InputView.isModZero(100000), true);
     }
 
 }
