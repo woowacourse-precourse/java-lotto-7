@@ -19,4 +19,8 @@ public class OutputView {
         System.out.println(DIVIDE_LINE);
         System.out.println(result.getResult());
     }
+
+    public static void printPrizeRate(String result) {
+        System.out.printf("총 수익률은 %s입니다.", result);
+    }
 }
