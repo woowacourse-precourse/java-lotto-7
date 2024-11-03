@@ -1,13 +1,13 @@
 package lotto.domain.lotto;
 
-import lotto.domain.winner.WinningState;
+import lotto.domain.winner.ResultState;
 
 public class LottoResult {
 
-    private final WinningState winningState;
+    private final ResultState resultState;
 
     private LottoResult(int countMatchNumbers, boolean matchBonus) {
-        this.winningState = WinningState.from(countMatchNumbers, matchBonus);
+        this.resultState = ResultState.from(countMatchNumbers, matchBonus);
     }
 
     public static LottoResult createResult(int countMatchNumbers, boolean matchBonus) {
@@ -19,10 +19,10 @@ public class LottoResult {
     }
 
     public boolean isWinner() {
-        return winningState.isWinner();
+        return resultState.isWinner();
     }
 
-    public WinningState getWinningState() {
-        return winningState;
+    public ResultState getWinningState() {
+        return resultState;
     }
 }

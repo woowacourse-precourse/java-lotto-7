@@ -14,7 +14,7 @@ public class WinningStatistic {
     private static final String PROFIT_MESSAGE_TEMPLATE = "총 수익률은 %.1f%%입니다.";
     private static final int INIT_FREQUENCY = 0;
     private static final int INCREASE_VALUE = 1;
-    private final Map<WinningState, Integer> stateFrequencyAccumulator = new EnumMap<>(WinningState.class);
+    private final Map<ResultState, Integer> stateFrequencyAccumulator = new EnumMap<>(ResultState.class);
     private final double profitRate;
 
     private WinningStatistic(List<LottoResult> lottoResults, Price price) {
@@ -29,7 +29,7 @@ public class WinningStatistic {
 
     public List<WinnerFrequency> getWinnerFrequency() {
         List<WinnerFrequency> frequencies = new ArrayList<>();
-        for (WinningState state : stateFrequencyAccumulator.keySet()) {
+        for (ResultState state : stateFrequencyAccumulator.keySet()) {
             Integer frequency = stateFrequencyAccumulator.get(state);
             frequencies.add(new WinnerFrequency(state, frequency));
         }
@@ -42,8 +42,8 @@ public class WinningStatistic {
     }
 
     private void initialize() {
-        WinningState.stream()
-                .filter(WinningState::isWinner)
+        ResultState.stream()
+                .filter(ResultState::isWinner)
                 .forEach(state -> stateFrequencyAccumulator.put(state, INIT_FREQUENCY));
     }
 
@@ -71,15 +71,15 @@ public class WinningStatistic {
                 .sum();
     }
 
-    private int calculatePrize(WinningState state) {
+    private int calculatePrize(ResultState state) {
         Integer frequency = stateFrequencyAccumulator.get(state);
         return state.calculatePrize(frequency);
     }
 
-    private void accumulateWinningState(WinningState winningState) {
+    private void accumulateWinningState(ResultState resultState) {
         this.stateFrequencyAccumulator.put(
-                winningState,
-                stateFrequencyAccumulator.get(winningState) + INCREASE_VALUE
+                resultState,
+                stateFrequencyAccumulator.get(resultState) + INCREASE_VALUE
         );
     }
 }

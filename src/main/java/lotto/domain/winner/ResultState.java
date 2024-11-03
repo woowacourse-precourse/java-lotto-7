@@ -2,7 +2,7 @@ package lotto.domain.winner;
 
 import java.util.stream.Stream;
 
-public enum WinningState implements MessageProvider {
+public enum ResultState implements MessageProvider {
 
     UNKNOWN(0, false, 0),
     THREE(3, false, 5_000),
@@ -22,14 +22,14 @@ public enum WinningState implements MessageProvider {
     private final boolean hasBonus;
     private final int prize;
 
-    WinningState(int matchCount, boolean hasBonus, int prize) {
+    ResultState(int matchCount, boolean hasBonus, int prize) {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
         this.prize = prize;
     }
 
-    public static WinningState from(int matchCount, boolean hasBonus) {
-        return WinningState.stream()
+    public static ResultState from(int matchCount, boolean hasBonus) {
+        return ResultState.stream()
                 .filter(state -> state.matchCount == matchCount)
                 .filter(state -> state.hasBonus == hasBonus)
                 .findFirst()
@@ -37,7 +37,7 @@ public enum WinningState implements MessageProvider {
     }
 
     public boolean isWinner() {
-        return this != WinningState.UNKNOWN;
+        return this != ResultState.UNKNOWN;
     }
 
     public int calculatePrize(int count) {
@@ -52,8 +52,8 @@ public enum WinningState implements MessageProvider {
         return this.prize;
     }
 
-    public static Stream<WinningState> stream() {
-        return Stream.of(WinningState.values());
+    public static Stream<ResultState> stream() {
+        return Stream.of(ResultState.values());
     }
 
     @Override
