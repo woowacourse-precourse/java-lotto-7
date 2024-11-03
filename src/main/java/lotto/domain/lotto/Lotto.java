@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Number;
+import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
@@ -42,18 +43,18 @@ public class Lotto {
 
     private static class Validator {
         private static void validate(List<Integer> numbers) {
-            validateSize(numbers);
+            validateSize(numbers, LottoDetail.NUMBER_COUNT);
             validateDuplicate(numbers);
         }
 
-        private static void validateSize(List<Integer> numbers) {
-            if (isNotCorrectSize(numbers)) {
+        private static void validateSize(List<Integer> numbers, LottoDetail threshold) {
+            if (isNotCorrectSize(numbers, threshold)) {
                 throw new LottoException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE);
             }
         }
 
-        private static boolean isNotCorrectSize(List<Integer> numbers) {
-            return numbers.size() != 6;
+        private static boolean isNotCorrectSize(List<Integer> numbers, LottoDetail threshold) {
+            return numbers.size() != threshold.getValue();
         }
 
         private static void validateDuplicate(List<Integer> numbers) {
