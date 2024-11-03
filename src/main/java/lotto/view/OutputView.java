@@ -28,23 +28,23 @@ public class OutputView {
         System.out.print(NEW_LINE);
     }
 
-    public void requestWinningLottoNumbers(){
+    public void requestWinningLottoNumbers() {
         System.out.println(REQUEST_WINNING_LOTTO);
     }
 
-    public void requestBonusLottoNumbers(){
+    public void requestBonusLottoNumbers() {
         System.out.print(NEW_LINE);
         System.out.println(REQUEST_BONUS_LOTTO);
     }
 
-    public void displayWinningResults(Map<LottoRank,Long>lottoResults){
+    public void displayWinningResults(Map<LottoRank, Long> lottoResults) {
         System.out.print(NEW_LINE);
         System.out.println(STARTING_WINNING_RESULT_MESSAGE + NEW_LINE + "---" + NEW_LINE);
-        for(LottoRank rank : LottoRank.values()){
-            if(rank == LottoRank.MISS){
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.MISS) {
                 continue;
             }
-            long count = lottoResults.getOrDefault(rank,0L);
+            long count = lottoResults.getOrDefault(rank, 0L);
             System.out.println(rank.getMessage() + count);
         }
     }

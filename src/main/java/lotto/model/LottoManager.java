@@ -23,7 +23,7 @@ public class LottoManager {
         return new Lotto(numberList);
     }
 
-    public Map<LottoRank,Long> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
+    public Map<LottoRank, Long> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
         List<LottoRank> lottoRankResults = new ArrayList<>();
         for (Lotto currentLottoNumbers : lottoSets) {
             boolean hasBonusNumber = false;
@@ -34,7 +34,7 @@ public class LottoManager {
             lottoRankResults.add(getLottoRank(hitCount, hasBonusNumber));
         }
         return lottoRankResults.stream()
-                .collect(Collectors.groupingBy(rank->rank,Collectors.counting()));
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 
     private boolean checkHasBonusNumber(List<Integer> lotto, int bonusNumber) {

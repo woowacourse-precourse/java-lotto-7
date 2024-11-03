@@ -24,10 +24,10 @@ public class LottoGame {
 
     public void start() {
         int lottoCount = purchaseLotto();
-        List<Lotto>lottoSets = lottoGenerator(lottoCount);
+        List<Lotto> lottoSets = lottoGenerator(lottoCount);
         Lotto winningNumbers = setUpWinningNumbers();
         int bonusNumber = setUpBonusNumber(winningNumbers);
-        processLottoResults(lottoSets,winningNumbers,bonusNumber);
+        processLottoResults(lottoSets, winningNumbers, bonusNumber);
 
     }
 
@@ -46,7 +46,7 @@ public class LottoGame {
         return lottoManager.parseWinningNumbersToLotto(inputView.getWinningNumbers());
     }
 
-    private List<Lotto>lottoGenerator(int lottoCount) {
+    private List<Lotto> lottoGenerator(int lottoCount) {
         List<Lotto> lottoSets = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottoSets.add(lottoManager.generateLottoNumbers());
