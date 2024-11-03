@@ -1,15 +1,15 @@
 package lotto.lotto.infrastructure;
 
 import lotto.lotto.domain.BonusNumber;
-import lotto.lotto.service.BonusNumberCreatorService;
+import lotto.lotto.service.BonusNumberGenerator;
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.validator.LottoValidator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 import lotto.view.output.infrastructure.ErrorOutput;
 
-public class BonusNumberCreator implements BonusNumberCreatorService {
+public class UserInputBonusNumberGenerator implements BonusNumberGenerator {
     private final InputHandlerService inputHandlerService;
-    public BonusNumberCreator(InputHandlerService inputHandlerService) {
+    public UserInputBonusNumberGenerator(InputHandlerService inputHandlerService) {
         this.inputHandlerService = inputHandlerService;
     }
     @Override
