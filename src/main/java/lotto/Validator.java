@@ -20,6 +20,9 @@ public class Validator {
     }
 
     public static void validateWinningNumbers(List<String> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
         for (String number : winningNumbers) {
             validateWinningNumber(number);
         }
