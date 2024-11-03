@@ -45,13 +45,17 @@ public class InputValidator {
     }
     
     private static void validateIsDigit(String uncheckedInput) {
-        if(uncheckedInput.isBlank()){
-            throw new NullPointerException(BLANK_MONEY.getMessage());
-        }
+        validateIsBlank(uncheckedInput);
         for(char c: uncheckedInput.toCharArray()){
             if(!Character.isDigit(c)){
                 throw new IllegalArgumentException(NOT_DIGIT_FORMAT.getMessage());
             }
+        }
+    }
+
+    private static void validateIsBlank(String uncheckedInput) {
+        if(uncheckedInput.isBlank()){
+            throw new NullPointerException(BLANK_MONEY.getMessage());
         }
     }
 
