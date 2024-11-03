@@ -64,6 +64,6 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
 
-        return "[ " + collected + " ]";
+        return "[" + collected + "]";
     }
 }
