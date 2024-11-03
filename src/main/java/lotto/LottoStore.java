@@ -1,10 +1,10 @@
 package lotto;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoStore {
+    private static final int MINIMUM_MONEY_UNIT = 1000;
+
     private final int money;
     private int tickets;
     private List<Integer> winningNumbers;
@@ -18,7 +18,6 @@ public class LottoStore {
     public List<Integer> getLottoNumbers() {
         this.winningNumbers = inputView.inputWinningNumber();
         return winningNumbers;
-        //return Stream.of(inputView.inputWinningNumber().split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
     public int getMoney() {
@@ -26,7 +25,7 @@ public class LottoStore {
     }
 
     public void changeTickets() {
-        this.tickets = money/1000;
+        this.tickets = money/MINIMUM_MONEY_UNIT;
     }
 
     public int getTickets() {

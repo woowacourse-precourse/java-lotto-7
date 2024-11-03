@@ -5,12 +5,10 @@ import java.util.regex.Pattern;
 
 public class InputBonusValidator {
     private static final String BONUS_NUMBER_REGEX_PATTERN = "\\d+";
+    private static final int BONUS_NUMBER_MAX = 45;
+    private static final int BONUS_NUMBER_MINIMUM = 1;
 
     String bonusNumber;
-
-    public void validate() {
-
-    }
 
     public InputBonusValidator(String bonusNumber) {
         this.bonusNumber = bonusNumber;
@@ -29,7 +27,7 @@ public class InputBonusValidator {
     }
 
     public void validateNumberRange() {
-        if (Integer.parseInt(bonusNumber) > 45 || Integer.parseInt(bonusNumber) < 0) {
+        if (Integer.parseInt(bonusNumber) > BONUS_NUMBER_MAX || Integer.parseInt(bonusNumber) < BONUS_NUMBER_MINIMUM) {
             ErrorMessageUtil.BONUS_NUMBER_RANGE_ERROR_MESSAGE.errorException();
         }
     }

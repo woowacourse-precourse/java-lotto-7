@@ -15,27 +15,29 @@ public class LottoDrawer {
     }
 
     private void checkWinningNumbers() {
-
         for (List<Integer> lottos:lottoMachine.getLottoNumbers()){
             int winningCount=0;
             int bonusCount=0;
 
-            bonusCount += (int)lottos.stream().filter(e -> e.equals(bonusNumber)).distinct().count();
-            for (Integer lotto:lottos){
-                winningCount += (int)winningLottoNumbers.stream().filter(e -> e.equals(lotto)).distinct().count();
-
-            }
-            LottoResult lottoResult = new LottoResult(winningCount,bonusCount);
+            LottoResult lottoResult =
+                    new LottoResult(winningCountResult(lottos,winningCount),bonusCountResult(lottos,bonusCount));
             lottoResult.checkWinningLotto();
         }
+    }
+
+    public int winningCountResult(List<Integer> lottos, int winningCount) {
+        for (Integer lotto : lottos) {
+            winningCount += (int) winningLottoNumbers.stream().filter(e -> e.equals(lotto)).distinct().count();
+        }
+        return winningCount;
+    }
+
+    public int bonusCountResult(List<Integer> lottos, int bonusCount) {
+        bonusCount += (int)lottos.stream().filter(e -> e.equals(bonusNumber)).distinct().count();
+        return bonusCount;
     }
 
     public void getWinningCount() {
         checkWinningNumbers();
     }
-
-
-
-
-
 }

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
+    private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_NUMBER_MINIMUM = 1;
+    private static final int LOTTO_NUMBER_SIZE = 6;
+
     private final int tickets;
     private List<List<Integer>> lottoNumbers;
 
@@ -17,7 +21,8 @@ public class LottoMachine {
     private void generateLottoNumbers() {
         this.lottoNumbers = new ArrayList<>();
         for (int i = 0; i < tickets; i++) {
-            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6)
+            lottoNumbers.add(Randoms
+                    .pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIZE)
                     .stream().sorted().toList());
         }
     }

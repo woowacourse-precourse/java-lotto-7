@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 public class InputMoneyValidator {
     private static final String MONEY_REGEX_PATTERN = "\\d+";
+    private static final int MINIMUM_MONEY_UNIT = 1000;
 
 
     public void validate(String money) {
@@ -18,7 +19,7 @@ public class InputMoneyValidator {
     }
 
     public void validateTicketPrice(String money) {
-        if (Integer.parseInt(money)%1000 != 0 || Integer.parseInt(money)/1000 == 0) {
+        if (Integer.parseInt(money)%MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money)/MINIMUM_MONEY_UNIT == 0) {
             ErrorMessageUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }
     }

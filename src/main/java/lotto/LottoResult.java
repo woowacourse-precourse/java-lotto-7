@@ -17,11 +17,10 @@ public class LottoResult {
         return bonusCount;
     }
 
-
     public void checkWinningLotto() {
-        for (WinningPrize str:WinningPrize.values()){
-            if (str.winningCount == getWinningCount() && str.bonusCount <= getBonusCount()){
-                str.setTotalCount();
+        for (WinningPrize prize:WinningPrize.values()){
+            if (prize.winningCount == getWinningCount() && prize.bonusCount <= getBonusCount()){
+                prize.setTotalCount();
                 return;
             }
         }

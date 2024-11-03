@@ -3,6 +3,10 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+    private static final int WINNING_NUMBER_MAX = 45;
+    private static final int WINNING_NUMBER_MINIMUM = 1;
+    private static final int WINNING_NUMBER_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,14 +21,14 @@ public class Lotto {
     }
 
     public void validateNumberSize() {
-        if (numbers.size() != 6) {
+        if (numbers.size() != WINNING_NUMBER_SIZE) {
             ErrorMessageUtil.WINNING_LOTTO_SIZE_ERROR_MESSAGE.errorException();
         }
     }
 
     public void validateNumberRange() {
         for (int number : numbers) {
-            if (number > 45 || number < 0) {
+            if (number > WINNING_NUMBER_MAX || number < WINNING_NUMBER_MINIMUM) {
                 ErrorMessageUtil.WINNING_LOTTO_RANGE_ERROR_MESSAGE.errorException();
             }
         }
