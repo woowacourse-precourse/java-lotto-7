@@ -5,6 +5,7 @@ import lotto.model.domain.Lottos;
 import lotto.model.domain.Money;
 import lotto.model.domain.WinningNumbers;
 import lotto.model.service.LottoCreationService;
+import lotto.model.service.LottoRateService;
 import lotto.util.parser.InputParser;
 import lotto.util.validator.InputValidator;
 import lotto.view.InputView;
@@ -14,6 +15,7 @@ public class LottoController {
     private InputView inputView;
     private LottoView lottoView;
     private LottoCreationService lottoCreationService;
+    private LottoRateService lottoRateService;
     private Money money;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
@@ -22,10 +24,12 @@ public class LottoController {
     public LottoController(
             InputView inputView,
             LottoView lottoView,
-            LottoCreationService lottoCreationService) {
+            LottoCreationService lottoCreationService,
+            LottoRateService lottoRateService) {
         this.inputView = inputView;
         this.lottoView = lottoView;
         this.lottoCreationService = lottoCreationService;
+        this.lottoRateService = lottoRateService;
     }
 
     public void run() {
@@ -33,6 +37,7 @@ public class LottoController {
         createAndPrintLottos();
         createWinningNumbers();
         createBonusNumber();
+        calculateRateStatus(lottos,winningNumbers,bonus);
     }
 
     private void createMoney() {
@@ -82,4 +87,9 @@ public class LottoController {
             }
         }
     }
+
+    private void calculateRateStatus(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
+        lottoRateService.calculateRate(lottos, winningNumbers, bonus);
+    }
+
 }
