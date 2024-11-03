@@ -52,6 +52,8 @@ public class LottoResultService {
     }
 
     public double calculateProfitRate(int purchaseAmount) {
+        if (purchaseAmount <= 0)
+            throw new IllegalArgumentException();
         long totalPrize = lottoResult.calculateTotalPrize();
         return (double) totalPrize / purchaseAmount;
     }

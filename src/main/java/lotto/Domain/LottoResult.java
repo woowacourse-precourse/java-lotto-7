@@ -2,6 +2,9 @@ package lotto.Domain;
 
 import lotto.Constants.Prize;
 
+/**
+ * 로또의 당첨 정보를 저장하는 클래스
+ */
 public class LottoResult {
     private int firstPrizeCnt;
     private int secondPrizeCnt;

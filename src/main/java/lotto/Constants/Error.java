@@ -11,7 +11,8 @@ public enum Error {
     LOTTO_NUMBERS_SIZE_NOT_6("로또 번호는 6개여야 합니다."),
     LOTTO_NUMBERS_DUPLICATED("로또 번호는 중복되면 안됩니다."),
     LOTTO_NUMBERS_OUT_OF_RANGE("로또 번호는 1부터 45 사이여야 합니다."),
-    LACK_OF_FUNDS("금액이 부족합니다."),;
+    LACK_OF_FUNDS("금액이 부족합니다."),
+    TOO_MANY_ERRORS("너무 많은 잘못된 입력입니다. 프로그램을 종료합니다."),;
 
     private final String text;
 
@@ -20,6 +21,6 @@ public enum Error {
     }
 
     public String getText() {
-        return "[Error] " + text;
+        return "[ERROR] " + text;
     }
 }

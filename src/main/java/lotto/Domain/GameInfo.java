@@ -8,16 +8,17 @@ public class GameInfo {
     public static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
     private Lotto winningLotto;
-    private ArrayList<Lotto> purchasedLottos = new ArrayList<>();
-    private int remainingAmount;
+    private final ArrayList<Lotto> purchasedLottos = new ArrayList<>();
+    private int remainingLottoAmount;
     private int bonusNumber;
 
     public GameInfo(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        this.remainingAmount = purchaseAmount / 1000;
+        this.remainingLottoAmount = purchaseAmount / 1000;
     }
 
-    public static void validatePurchaseAmount(int amount) {
+    public void validatePurchaseAmount(int amount) {
         if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(lotto.Constants.Error.PURCHASE_AMOUNT_LT_MINIMUM.getText());
         }
@@ -38,6 +39,10 @@ public class GameInfo {
         this.bonusNumber = bonusNumber;
     }
 
+    public void decreaseRemainingAmount() {
+        remainingLottoAmount--;
+    }
+
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
@@ -48,6 +53,10 @@ public class GameInfo {
 
     public Lotto getWinningLotto() {
         return winningLotto;
+    }
+
+    public int getRemainingLottoAmount() {
+        return remainingLottoAmount;
     }
 
     public ArrayList<Lotto> getPurchasedLottos() {

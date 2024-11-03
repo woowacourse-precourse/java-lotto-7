@@ -49,9 +49,13 @@ public class OutputView {
         printPrize(Prize.FIFTH, result.getFifthPrizeCnt());
         printPrize(Prize.FOURTH, result.getFourthPrizeCnt());
         printPrize(Prize.THIRD, result.getThirdPrizeCnt());
-        printPrize(Prize.SECOND, result.getSecondPrizeCnt());
+        printNoFlush(
+                Prize.SECOND.getMatchCount()
+                + "개 일치, 보너스 볼 일치 (" + Prize.SECOND.getPrizeStr()
+                        + "원) - "
+                        + result.getSecondPrizeCnt() + "개");
         printPrize(Prize.FIRST, result.getFirstPrizeCnt());
-        print("총 수익률은 " + profitRate + "입니다.");
+        print("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
 
     public void printPrize(Prize prize, int count) {
