@@ -21,6 +21,7 @@ public class Price {
 
 	public String getProfitRate(Map<Winning, Integer> winningResult) {
 		long totalWinningPrize = Winning.getTotalWinningPrize(winningResult);
+		double profitRate = (double)totalWinningPrize / price * PERCENTAGE_MULTIPLIER;
 	}
 
 	private void validatePrice(int price) {
