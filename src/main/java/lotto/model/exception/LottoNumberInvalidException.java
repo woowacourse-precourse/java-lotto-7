@@ -13,6 +13,11 @@ public final class LottoNumberInvalidException extends IllegalArgumentException 
         return new LottoNumberInvalidException(message);
     }
 
+    public static IllegalArgumentException tooManyLottoNumbersSize(String... details) {
+        String message = CustomException.appendDetails("생성 가능한 로또 번호의 개수를 초과했습니다.", details);
+        return new LottoNumberInvalidException(message);
+    }
+
     public static IllegalArgumentException lottoNumberSize(String... details) {
         String message = CustomException.appendDetails("로또 번호의 개수가 잘못되었습니다.", details);
         return new LottoNumberInvalidException(message);
