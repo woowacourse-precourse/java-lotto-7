@@ -2,10 +2,9 @@ package lotto.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
-public class InMemoryLottoRepository implements LottoRepository{
+public class InMemoryLottoRepository implements LottoRepository {
 
     // 상수 & 클래스 변수
     private final List<Lotto> repository = new ArrayList<>();
