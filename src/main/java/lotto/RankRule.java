@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.Rank.SECOND;
 import static lotto.Rank.NONE;
+import static lotto.Rank.THIRD;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,13 +23,16 @@ public class RankRule {
     }
 
     public static Rank checkRank(final int winningNumberMatchCount, final boolean isBonusNumberMatched) {
-        if (isSecondRanking(winningNumberMatchCount, isBonusNumberMatched)) {
-            return SECOND;
+        if (winningNumberMatchCount == SECOND.getWinningNumberMatchCount()) {
+            return checkSecondOrThird(isBonusNumberMatched);
         }
         return rankRule.getOrDefault(winningNumberMatchCount, NONE);
     }
 
-    private static boolean isSecondRanking(final int winningNumberMatchCount, final boolean isBonusNumberMatched) {
-        return winningNumberMatchCount == SECOND.getWinningNumberMatchCount() && isBonusNumberMatched;
+    private static Rank checkSecondOrThird(boolean isBonusNumberMatched) {
+        if (isBonusNumberMatched) {
+            return SECOND;
+        }
+        return THIRD;
     }
 }

@@ -27,7 +27,7 @@ public class LottoManager {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber();
         lottoes.stream()
-                .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
+                .map(lotto -> lotto.getRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
         Output.printWinningStatistics(winningRecord);
         double returnRate = (double) calculateTotalWinningAmount() * PERCENTAGE_FACTOR / purchaseAmount;

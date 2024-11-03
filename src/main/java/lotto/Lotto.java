@@ -25,7 +25,7 @@ public class Lotto {
                 .collect(joining(delimiter));
     }
 
-    public Rank checkRank(final List<Integer> winningNumber, final int bonusNumber) {
+    public Rank getRank(final List<Integer> winningNumber, final int bonusNumber) {
         int winningNumberMatchCount = countMatchedWinningNumber(winningNumber);
         boolean isBonusNumberMatched = numbers.contains(bonusNumber);
         return RankRule.checkRank(winningNumberMatchCount, isBonusNumberMatched);
