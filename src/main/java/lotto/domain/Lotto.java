@@ -1,30 +1,48 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final Set<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    private Lotto(Set<LottoNumber> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
-    public static Lotto of(List<Integer> numbers) {
-        return new Lotto(numbers);
+    public static Lotto from(Set<LottoNumber> lottoNumbers) {
+        validate(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    public static Lotto from(String value) {
+        String[] inputNumbers = value.split(",");
+
+        Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .map(LottoNumber::valueOf)
+                .collect(Collectors.toSet());
+
+        return from(winningNumbers);
+    }
+
+    private static void validate(Set<LottoNumber> lottoNumbers) {
+        validateLottoNumberCount(lottoNumbers);
+    }
+
+    private static void validateLottoNumberCount(Set<LottoNumber> lottoNumbers) {
+        if(lottoNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 정수여야 합니다.");
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public Set<LottoNumber> getValue() {
+        return lottoNumbers;
     }
 
-    public boolean contains(Integer number) {
-        return numbers.contains(number);
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 }

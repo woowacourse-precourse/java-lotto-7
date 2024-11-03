@@ -13,18 +13,18 @@ public class LottoGameSetter {
 
         printDrawingResult(lottos);
 
-        LottoNumbers lottoNumbers = setLottoNumbers();
-        BonusNumber bonusNumber = setBonusNumber(lottoNumbers);
+        Lotto lotto = setLottoNumbers();
+        BonusNumber bonusNumber = setBonusNumber(lotto);
 
-        return LottoGame.of(totalPrice, lottos, lottoNumbers, bonusNumber);
+        return LottoGame.of(totalPrice, lottos, lotto, bonusNumber);
     }
 
-    private BonusNumber setBonusNumber(LottoNumbers winningNumbers) {
+    private BonusNumber setBonusNumber(Lotto winningNumbers) {
         return BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
     }
 
-    private LottoNumbers setLottoNumbers() {
-        return LottoNumbers.from(ConsoleInput.getWinningNumbers());
+    private Lotto setLottoNumbers() {
+        return Lotto.from(ConsoleInput.getWinningNumbers());
     }
 
     private void printDrawingResult(Lottos lottos) {

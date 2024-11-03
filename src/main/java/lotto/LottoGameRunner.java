@@ -60,7 +60,7 @@ public class LottoGameRunner {
 
     private Double calculateEarningRate(List<Integer> winningRanks) {
 
-        double earnRate = ((double) calculateTotalEarning(winningRanks) / lottoGame.getTotalPrice()) * 100;
+        double earnRate = ((double) calculateTotalEarning(winningRanks) / lottoGame.getTotalPrice().getValue()) * 100;
 
         return roundToSecondDecimalPlace(earnRate);
     }
@@ -125,7 +125,7 @@ public class LottoGameRunner {
     }
 
     private List<Integer> matchLottoNumbers() {
-        return lottoGame.getLottos().stream()
+        return lottoGame.getLottos().getValue().stream()
                 .map(this::countMatchedNumbers)
                 .toList();
     }
@@ -133,14 +133,14 @@ public class LottoGameRunner {
     private int countMatchedNumbers(Lotto lotto) {
         int correctCount = 0;
 
-        for(Integer value : lotto.getNumbers()) {
-            if(lottoGame.getWinningNumbers().contains(LottoNumber.valueOf(value))) {
+        for(LottoNumber value : lotto.getValue()) {
+            if(lottoGame.getWinningNumbers().contains(value)) {
                 correctCount++;
             }
         }
 
         if (correctCount == 5) {
-            if (lotto.contains(lottoGame.getBonusNumber())) {
+            if (lotto.contains(lottoGame.getBonusNumber().getValue())) {
                 correctCount = 7;
             }
         }

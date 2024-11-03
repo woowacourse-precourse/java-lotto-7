@@ -2,11 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoNumberGenerator {
 
@@ -21,7 +21,11 @@ public class LottoNumberGenerator {
     private static Lotto generateLottoNumber() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lotto);
-        return Lotto.of(lotto);
+        Set<LottoNumber> result = lotto.stream()
+                .map(LottoNumber::valueOf)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        return Lotto.from(result);
     }
 
 }

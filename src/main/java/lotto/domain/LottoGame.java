@@ -7,33 +7,33 @@ public class LottoGame {
 
     private final LottoPrice totalPrice;
     private final Lottos lottos;
-    private final LottoNumbers winningNumbers;
+    private final Lotto winningNumbers;
     private final BonusNumber bonusNumber;
 
-    private LottoGame(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, BonusNumber bonusNumber) {
+    private LottoGame(LottoPrice totalPrice, Lottos lottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         this.totalPrice = totalPrice;
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, BonusNumber bonusNumber) {
+    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         return new LottoGame(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
-    public Integer getTotalPrice() {
-        return totalPrice.getValue();
+    public LottoPrice getTotalPrice() {
+        return totalPrice;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos.getValue();
+    public Lottos getLottos() {
+        return lottos;
     }
 
-    public Set<LottoNumber> getWinningNumbers() {
-        return winningNumbers.getValue();
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
     }
 
-    public Integer getBonusNumber() {
-        return bonusNumber.getValue().getValue();
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

@@ -38,7 +38,7 @@ public class Lottos {
         lottoPurchaseResult.append("\n").append(this.size()).append("개를 구매했습니다.\n");
         lottos.forEach(lotto -> {
                     lottoPurchaseResult.append("[");
-                    lottoPurchaseResult.append(lotto.getNumbers().stream().map(String::valueOf).collect(Collectors.joining(", ")));
+                    lottoPurchaseResult.append(lotto.getValue().stream().map(LottoNumber::getValue).map(String::valueOf).collect(Collectors.joining(", ")));
                     lottoPurchaseResult.append("]\n");
                 });
         return String.valueOf(lottoPurchaseResult);
