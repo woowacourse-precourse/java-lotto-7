@@ -5,6 +5,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+
+    static final int PRICE = 1000;
+    static final int MIN_NUM = 1;
+    static final int MAX_NUM = 45;
+    static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,34 +25,34 @@ public class Lotto {
     }
 
     private void isValidNumberSize(List<Integer> numbers) {
-        final int LOTTO_SIZE = 6;
-        if(numbers.size() != LOTTO_SIZE){
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void isValidNumberRange(List<Integer> numbers){
-        final Integer LOTTO_MIN_NUM = 1;
-        final Integer LOTTO_MAX_NUM = 45;
-
-        for(Integer Number: numbers){
-            if((Number < LOTTO_MIN_NUM) || (Number > LOTTO_MAX_NUM)){
+    private void isValidNumberRange(List<Integer> numbers) {
+        for (Integer Number : numbers) {
+            if ((Number < MIN_NUM) || (Number > MAX_NUM)) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
             }
         }
     }
 
-    private void isDuplicate(List<Integer> numbers){
+    private void isDuplicate(List<Integer> numbers) {
         List<Integer> duplicateNumbers = new ArrayList<>();
-        for(Integer Number: numbers){
-            if(duplicateNumbers.contains(Number)){
+        for (Integer Number : numbers) {
+            if (duplicateNumbers.contains(Number)) {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
             duplicateNumbers.add(Number);
         }
     }
 
-    protected List<Integer> getLottoNumber(){
+    public boolean haveNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    protected List<Integer> getLottoNumber() {
         return numbers;
     }
 }
