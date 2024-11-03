@@ -162,6 +162,8 @@
   - 당첨 번호가 5개인지 확인한다.
 - hasBonusNumber
   - 보너스 번호가 있는지 확인한다.
+- calculateProfitability
+  - 로또 수익률을 계산한다.
 
 ## 로직
 
