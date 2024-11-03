@@ -32,6 +32,7 @@ public class Controller {
         outputView.printResult(STATISTICS.getMessage());
         List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
         lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
+        outputView.printResult(scoreBoard.getRate().getDescription());
     }
 
     private List<Lotto> pickLotto() {

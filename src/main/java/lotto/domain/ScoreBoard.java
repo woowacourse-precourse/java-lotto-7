@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.constant.LottoRank;
+import lotto.dto.LottoRateDto;
 import lotto.dto.LottoResultDto;
 
 public class ScoreBoard {
@@ -59,6 +60,10 @@ public class ScoreBoard {
 
         int totalSpent = lottos.size() * LOTTO_PRICE;
         return (double) totalPrize / totalSpent * 100;
+    }
+
+    public LottoRateDto getRate() {
+        return LottoRateDto.from(calculateRate());
     }
 
 }
