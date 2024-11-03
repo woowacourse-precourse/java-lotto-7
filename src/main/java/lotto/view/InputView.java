@@ -1,9 +1,9 @@
 package lotto.view;
 
 import static lotto.exception.ErrorMessage.INPUT_ONLY_NUMBER;
-import static lotto.utils.NumberValidation.validateDuplicateNumber;
-import static lotto.utils.NumberValidation.validateNumberRange;
-import static lotto.utils.NumberValidation.validateNumberSize;
+import static lotto.validation.NumberValidation.validateDuplicateNumber;
+import static lotto.validation.NumberValidation.validateNumberRange;
+import static lotto.validation.NumberValidation.validateNumberSize;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;

@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.service.LottoService;
-import lotto.utils.NumberValidation;
+import lotto.validation.NumberValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
