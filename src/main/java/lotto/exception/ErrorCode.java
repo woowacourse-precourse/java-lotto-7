@@ -8,7 +8,9 @@ public enum ErrorCode {
 
     LOTTO_SIZE_MUST_BE_SIX("로또 번호는 6개여야 합니다."),
 
-    LOTTO_NUMBER_MUST_BE_IN_CORRECT_RANGE("로또 숫자의 범위는 1이상 45이하 입니다");
+    LOTTO_NUMBER_MUST_BE_IN_CORRECT_RANGE("로또 숫자의 범위는 1이상 45이하 입니다"),
+
+    LOTTO_NUMBER_MUST_NOT_DUPLICATE("로또 숫자는 중복될 수 없습니다");
     private final String message;
 
     private final String ERROR_PREFIX = "[ERROR] ";
