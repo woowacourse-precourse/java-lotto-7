@@ -9,7 +9,7 @@ public class Pos {
     int divider = 1000;
 
     public Integer checkMoney() {
-        while(money == null) {
+        while (money == null) {
             String textWon = read();
             validateNumber(textWon);
             money = parse(textWon);
@@ -25,7 +25,7 @@ public class Pos {
         return Console.readLine();
     }
 
-    private Integer parse(String textWon) {
+    Integer parse(String textWon) {
         String trimmedWon = trim(textWon);
         return Integer.parseInt(trimmedWon);
     }
@@ -35,11 +35,11 @@ public class Pos {
     }
 
     void validateNumber(String textWon) {
-        try{
-        validateBlank(textWon);
-        Integer parsedWon = parse(textWon);
-        validatePositive(parsedWon);
-        validateCount(parsedWon);
+        try {
+            validateBlank(textWon);
+            Integer parsedWon = parse(textWon);
+            validatePositive(parsedWon);
+            validateCount(parsedWon);
         } catch (IllegalArgumentException e) {
             throwException();
         }
