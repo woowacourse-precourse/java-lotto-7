@@ -25,7 +25,7 @@ public class Application {
         }
 
         StringBuilder lottoPurchaseResult = new StringBuilder();
-        lottoPurchaseResult.append(totalLottoCount).append("개를 구매했습니다.\n");
+        lottoPurchaseResult.append("\n").append(totalLottoCount).append("개를 구매했습니다.\n");
         allLottos.stream()
                         .forEach(lotto -> {
                             lottoPurchaseResult.append("[");
@@ -55,7 +55,7 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되지 않는 1~45 사이의 6가지 수여야 합니다.");
         }
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumberInput = readLine();
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
         if(bonusNumber > 45 || bonusNumber <1) {
@@ -146,7 +146,7 @@ public class Application {
                         });
 
         winStatsResult
-                .append("당첨 통계\n---\n")
+                .append("\n당첨 통계\n---\n")
                 .append("3개 일치 (5,000원) - ").append(countPerWinningRank[5]).append("\n")
                 .append("4개 일치 (50,000원) - ").append(countPerWinningRank[4]).append("\n")
                 .append("5개 일치 (1,500,000원) - ").append(countPerWinningRank[3]).append("\n")
