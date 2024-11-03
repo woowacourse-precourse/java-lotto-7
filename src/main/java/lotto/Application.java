@@ -38,7 +38,7 @@ public class Application {
         return buyLottoAmount / 1000;
     }
 
-    public static List<List<Integer>> randomLottoNumberPick(int buyLottoAmount) {
+    public static List<List<Integer>> randomLottoNumberPick(int buyLottoAmount) { //랜덤 로또 넘버 생성
         List<List<Integer>> buyLottoNumbers = new ArrayList<>();
         for (int i = 0; i < buyLottoAmount; ++i) {
             List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)); //불변 객체 복사본 생성
