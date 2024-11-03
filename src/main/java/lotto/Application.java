@@ -129,4 +129,14 @@ public class Application {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    private int countMatches(List<Integer> lottos, List<Integer> winningNumbers) {
+        int count = 0;
+        for (int lotto : lottos) {
+            if (winningNumbers.contains(lotto)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
