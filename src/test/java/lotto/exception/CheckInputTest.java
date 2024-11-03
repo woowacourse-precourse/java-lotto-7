@@ -20,18 +20,16 @@ class CheckInputTest {
 
     @Test
     void 로또_당첨번호_포맷이_잘못되었을때_예외가_발생한다(){
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkLottoNumbers("strange format")
-        );
-        assertEquals(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage(), exception.getMessage());
+        Lotto checkLotto = CheckInput.checkLottoNumbers("strange format");
+
+        assertEquals(checkLotto, null);
     }
 
     @Test
     void 로또_당첨번호_범위가_잘못되었을때_예외가_발생한다(){
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkLottoNumbers("1,2,3,4,5,48")
-        );
-        assertEquals(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage(), exception.getMessage());
+        Lotto checkLotto = CheckInput.checkLottoNumbers("1,2,3,4,5,78");
+
+        assertEquals(checkLotto, null);
     }
 
     @Test
@@ -48,10 +46,8 @@ class CheckInputTest {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto inputLotto = new Lotto(list);
 
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(48, inputLotto)
-        );
-        assertEquals(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage(), exception.getMessage());
+        boolean checkBonus = CheckInput.checkBonusNumber(48, inputLotto);
+        assertEquals(checkBonus, false);
     }
 
     @Test
@@ -60,9 +56,7 @@ class CheckInputTest {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto inputLotto = new Lotto(list);
 
-        IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(6, inputLotto)
-        );
-        assertEquals(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage(), exception.getMessage());
+        boolean checkBonus = CheckInput.checkBonusNumber(6, inputLotto);
+        assertEquals(checkBonus, false);
     }
 }

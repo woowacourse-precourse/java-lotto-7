@@ -36,11 +36,14 @@ public class CheckInput {
 
                 tmpLottoNumber.add(tmpNumber);
             } catch (NumberFormatException e){
-                throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage());
+                System.out.println(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage());
+                return null;
             } catch (IllegalArgumentException e){
-                throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+                System.out.println(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+                return null;
             } catch (Exception e){
-                throw new IllegalArgumentException(ErrorType.UNEXPECTED_ERROR.getErrorMessage());
+                System.out.println(ErrorType.UNEXPECTED_ERROR.getErrorMessage());
+                return null;
             }
         }
 
@@ -50,14 +53,18 @@ public class CheckInput {
         return tmpLotto;
     }
 
-    public static void checkBonusNumber(int bonusNum, Lotto winningLottoNumbers){
+    public static boolean checkBonusNumber(int bonusNum, Lotto winningLottoNumbers){
         if(bonusNum < 1 || bonusNum > 45){
-            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+            System.out.println(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+            return false;
         }
 
         if(winningLottoNumbers.checkDuplicateWithBonusNumber(bonusNum)){
-            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage());
+            System.out.println(ErrorType.INVALID_LOTTO_BONUS_NUMBER_DUPLICATE.getErrorMessage());
+            return false;
         }
+
+        return true;
     }
 
 }

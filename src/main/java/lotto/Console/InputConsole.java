@@ -30,7 +30,18 @@ public class InputConsole {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningLottoNum = readLine();
 
-        Lotto winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
+        boolean isValid = false;
+        Lotto winningLottoNumbers = null;
+        while(!isValid){
+
+            winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
+            if(winningLottoNumbers != null){
+                isValid = true;
+            }
+
+            System.out.println("\n당첨 번호를 다시 입력해 주세요.");
+            winningLottoNum = readLine();
+        }
 
         return winningLottoNumbers;
     }
@@ -39,7 +50,12 @@ public class InputConsole {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNum = Integer.parseInt(readLine());
 
-        CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers);
+        while(!CheckInput.checkBonusNumber(bonusNum, winningLottoNumbers)){
+
+            System.out.println("\n보너스 번호를 다시 입력해 주세요.");
+            bonusNum = Integer.parseInt(readLine());
+        }
+
         return bonusNum;
     }
 }
