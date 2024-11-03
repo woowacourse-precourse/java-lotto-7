@@ -2,8 +2,8 @@ package lotto.repository;
 
 import java.util.List;
 
-import lotto.domain.Lotto;
 import lotto.domain.Wallet;
+import lotto.domain.lotto.Lotto;
 import lotto.random.LottoRandom;
 
 public class WalletRepository {

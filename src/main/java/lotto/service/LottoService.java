@@ -1,8 +1,8 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
+import lotto.domain.lotto.Lotto;
 import lotto.dto.request.BonusNumberRequest;
 import lotto.dto.request.MoneyRequest;
 import lotto.dto.request.WinningNumbersRequest;

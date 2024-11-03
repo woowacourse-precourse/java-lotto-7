@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.LongStream;
 
+import lotto.domain.lotto.Lotto;
 import lotto.random.LottoRandom;
 
 public class Lottos {

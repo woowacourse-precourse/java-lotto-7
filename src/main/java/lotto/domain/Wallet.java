@@ -6,6 +6,7 @@ import static lotto.constant.LottoConfig.LOTTO_COST;
 import java.util.List;
 
 import lotto.constant.Rank;
+import lotto.domain.lotto.Lotto;
 import lotto.random.LottoRandom;
 
 public class Wallet {

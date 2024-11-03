@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_NUMBER;
 import static lotto.constant.LottoConfig.LOTTO_NUMBER_END_INCLUSIVE;
