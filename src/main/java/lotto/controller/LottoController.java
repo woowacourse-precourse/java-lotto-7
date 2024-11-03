@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.enums.DelimiterConstants;
 import lotto.manager.LottoManager;
 import lotto.domain.UserLotto;
 import lotto.util.LottoValidator;
@@ -31,7 +32,7 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumbers() {
-        return Arrays.stream(getWinningNumbersAsString().split(","))
+        return Arrays.stream(getWinningNumbersAsString().split(DelimiterConstants.DELIMITER))
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();

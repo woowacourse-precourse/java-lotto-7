@@ -1,16 +1,19 @@
 package lotto.util;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.PriceConstants;
 
-public final class MoneyValidator {
-    private static final String NUMBER_PATTERN = "^[0-9]+$";
-
-    public static void validate(String input){
-        if(input == null || input.isEmpty() || !input.matches(NUMBER_PATTERN))
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORM.format());
+public final class MoneyValidator extends Validator {
+    public static void validate(String input) {
+        checkNumberForm(input);
 
         int money = Integer.parseInt(input);
-        if(money < 1000 || money % 1000 != 0)
+        checkThousandUnit(money);
+    }
+
+    private static void checkThousandUnit(int money) {
+        if (money < PriceConstants.LOTTO_PRICE || money % PriceConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_THOUSAND.format());
+        }
     }
 }
