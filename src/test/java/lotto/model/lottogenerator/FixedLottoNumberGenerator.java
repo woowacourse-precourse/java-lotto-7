@@ -1,6 +1,5 @@
 package lotto.model.lottogenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 
@@ -18,9 +17,5 @@ public class FixedLottoNumberGenerator implements LottoGenerateStrategy {
     @Override
     public List<Integer> generate() {
         return fixedLottoNumbers.get(sequence++).getNumbers();
-    }
-
-    public List<Lotto> getFixedLottos() {
-        return new ArrayList<>(fixedLottoNumbers);
     }
 }
