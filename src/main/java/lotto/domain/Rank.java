@@ -4,18 +4,20 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    FOURTH(4, false, 50_000),
-    FIFTH(3, false, 5_000),
-    MISS(0, false, 0);
+    FIRST(0, 6, false, 2_000_000_000),
+    SECOND(1, 5, true, 30_000_000),
+    THIRD(2, 5, false, 1_500_000),
+    FOURTH(3, 4, false, 50_000),
+    FIFTH(4, 3, false, 5_000),
+    MISS(5, 0, false, 0);
 
+    private final int index;
     private final int matchedCount;
     private final boolean hasBonus;
     private final BigDecimal prize;
 
-    Rank(int matchedCount, boolean bonus, long prize) {
+    Rank(int index, int matchedCount, boolean bonus, long prize) {
+        this.index = index;
         this.matchedCount = matchedCount;
         this.hasBonus = bonus;
         this.prize = BigDecimal.valueOf(prize);
@@ -32,7 +34,7 @@ public enum Rank {
         return prize;
     }
 
-    public boolean hasBonus() {
-        return hasBonus;
+    public int getIndex() {
+        return index;
     }
 }
