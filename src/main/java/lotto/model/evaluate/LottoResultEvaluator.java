@@ -11,16 +11,15 @@ public class LottoResultEvaluator {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
     private final LottoNumbersMatchCounter lottoNumbersMatchCounter;
-    private final LottoResultCollector lottoResultCollector;
 
     public LottoResultEvaluator(LottoWinningSet lottoWinningSet) {
         this.winningNumbers = lottoWinningSet.getWinningNumbers();
         this.bonusNumber = lottoWinningSet.getBonusNumber();
         this.lottoNumbersMatchCounter = new LottoNumbersMatchCounter();
-        this.lottoResultCollector = new LottoResultCollector();
     }
 
     public WinningResult evaluate(LottoTickets lottoTickets) {
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
         for (List<Integer> lottoNumbers : lottoTickets.getAllNumbers()) {
             MatchInfo matchInfo = evaluateMatch(lottoNumbers);
             lottoResultCollector.increment(matchInfo);
