@@ -40,7 +40,7 @@ public class LottoController {
     }
 
     private Lottos purchaseLottos(int purchaseAmount) {
-        int lottoCount = purchaseAmount / 1000; // 로또 한 장당 1000원이라고 가정
+        int lottoCount = purchaseAmount / 1000;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(Lotto.generateRandomLotto());
