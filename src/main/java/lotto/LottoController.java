@@ -16,7 +16,7 @@ public class LottoController {
         int bonusNumber = lottoView.inputBonusNumber();
         Lotto winningLotto = new Lotto(winningNumbers);
 
-        int[] resultCnt = lottoResult.calculateResult(lottos, winningLotto, bonusNumber);
+        int[] resultCnt = lottoResult.calculateRank(lottos, winningLotto, bonusNumber);
         double profitRate = lottoResult.calculateProfitRate(resultCnt, purchaseAmount);
 
         lottoView.printResult(resultCnt, profitRate);
