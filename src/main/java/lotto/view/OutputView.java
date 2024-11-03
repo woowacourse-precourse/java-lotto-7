@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.util.EnumMap;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public interface OutputView {
 
@@ -9,7 +11,7 @@ public interface OutputView {
 
     void printPurchasedLottos(List<Lotto> purchasedLotto);
 
-    void printWinningStatistics();
+    void printWinningStatistics(EnumMap<LottoRank, Integer> winningLottos);
 
-    void printTotalProfitRate();
+    void printTotalProfitRate(double profitRate);
 }

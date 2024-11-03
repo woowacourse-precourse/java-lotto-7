@@ -1,4 +1,4 @@
-package lotto.parse;
+package lotto.utils;
 
 import static lotto.constants.LottoConstants.DELIMITER;
 import static lotto.constants.LottoConstants.PURCHASE_UNIT_WON;

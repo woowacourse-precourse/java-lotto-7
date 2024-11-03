@@ -1,13 +1,12 @@
-package lotto.model;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.constants.LottoConstants;
 
-public class LottoNumberGenerator implements NumberGenerator {
+public class LottoNumberGenerator {
 
-    @Override
-    public List<Integer> generateNumber() {
+    public static List<Integer> generateNumber() {
         return Randoms.pickUniqueNumbersInRange(
                  LottoConstants.LOTTO_START_INCLUSIVE
                 ,LottoConstants.LOTTO_END_INCLUSIVE
