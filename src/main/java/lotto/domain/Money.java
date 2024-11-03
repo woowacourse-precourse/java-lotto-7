@@ -13,7 +13,11 @@ public class Money {
         this.money = Integer.parseInt(money);
     }
 
-    public void validateMoney(String money) {
+    public int getMoney() {
+        return this.money;
+    }
+
+    private void validateMoney(String money) {
         int parsedMoney = parseToInteger(money);
 
         if (parsedMoney < PRICE_OF_LOTTO) {
