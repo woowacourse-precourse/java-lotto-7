@@ -1,5 +1,6 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.io.InputHandler;
@@ -7,30 +8,41 @@ import lotto.io.OutputHandler;
 
 public class ApplicationLauncher {
     public static void run(){
-        try(InputHandler inputHandler = new InputHandler()){
-            OutputHandler.print(OutputHandler.ENTER_PURCHASE_AMOUNT);
-            String firstLine = inputHandler.readline();
+        InputHandler inputHandler = new InputHandler();
 
-            LottoGenerator lottoGenerator = new LottoGenerator();
-            Lotto[] userLotto = lottoGenerator.generate(firstLine);
+        while(true){
+            try {
+                OutputHandler.print(OutputHandler.ENTER_PURCHASE_AMOUNT);
+                String firstLine = inputHandler.readline();
 
-            OutputHandler.printPurchasedQuantity(lottoGenerator);
-            OutputHandler.printPurchasedLotto(lottoGenerator);
+                LottoGenerator lottoGenerator = new LottoGenerator();
+                Lotto[] userLotto = lottoGenerator.generate(firstLine);
 
-            OutputHandler.print(OutputHandler.ENTER_WINNING_NUMBERS);
-            String secondLine = inputHandler.readline();
+                OutputHandler.printPurchasedQuantity(lottoGenerator);
+                OutputHandler.printPurchasedLotto(lottoGenerator);
 
-            OutputHandler.print(OutputHandler.ENTER_BONUS_NUMBER);
-            String thirdLine = inputHandler.readline();
+                OutputHandler.print(OutputHandler.ENTER_WINNING_NUMBERS);
+                String secondLine = inputHandler.readline();
 
-            LottoWinningNumbers winningLotto = new LottoWinningNumbers(secondLine, thirdLine);
-            winningLotto.generate();
+                OutputHandler.print(OutputHandler.ENTER_BONUS_NUMBER);
+                String thirdLine = inputHandler.readline();
 
-            LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
-            lottoResultAnalyzer.analyze(userLotto, winningLotto);
+                LottoWinningNumbers winningLotto = new LottoWinningNumbers(secondLine, thirdLine);
+                winningLotto.generate();
 
-            OutputHandler.printCompareResult(lottoResultAnalyzer);
-            OutputHandler.printTotalYield(lottoResultAnalyzer, lottoGenerator);
+                LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+                lottoResultAnalyzer.analyze(userLotto, winningLotto);
+
+                OutputHandler.printCompareResult(lottoResultAnalyzer);
+                OutputHandler.printTotalYield(lottoResultAnalyzer, lottoGenerator);
+
+                break;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
+        Console.close();
     }
 }
