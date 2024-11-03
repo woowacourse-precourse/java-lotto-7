@@ -2,7 +2,8 @@ package lotto.model.winningResult;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.WinningResult;
+import lotto.model.lotto.winningResult.rank.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

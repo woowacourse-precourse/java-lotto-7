@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.rank.Rank;
 import lotto.view.output.Messages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,12 +1,12 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.model.lotto.RandomNumberPicker;
-import lotto.model.rank.DefaultRankDeterminer;
-import lotto.model.winningNumber.DefaultNumberGenerator;
-import lotto.model.winningNumber.NumberGenerator;
-import lotto.service.DefaultLottoMachine;
-import lotto.service.LottoMachine;
+import lotto.model.lotto.lottoNumber.RandomNumberPicker;
+import lotto.model.lotto.winningResult.rank.DefaultRankDeterminer;
+import lotto.service.winningNumber.DefaultNumberGenerator;
+import lotto.service.winningNumber.NumberGenerator;
+import lotto.service.lotto.DefaultLottoMachine;
+import lotto.service.lotto.LottoMachine;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 

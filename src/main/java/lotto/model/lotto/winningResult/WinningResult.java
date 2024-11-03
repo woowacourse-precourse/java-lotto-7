@@ -1,6 +1,6 @@
-package lotto.model.winningResult;
+package lotto.model.lotto.winningResult;
 
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.rank.Rank;
 
 public class WinningResult {
     private final Rank rank;

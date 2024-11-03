@@ -3,7 +3,7 @@ package lotto.view.output;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.rank.Rank;
 
 public class Sorter {
     public static List<Rank> sortDescending(List<Rank> ranks) {

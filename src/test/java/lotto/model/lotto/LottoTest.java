@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import lotto.model.lotto.lottoNumber.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

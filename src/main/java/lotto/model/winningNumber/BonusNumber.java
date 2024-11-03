@@ -1,9 +1,9 @@
 package lotto.model.winningNumber;
 
-import static lotto.model.lotto.LotteryRule.MAX_LOTTERY_NUMBER;
+import static lotto.model.lotto.lottoNumber.LotteryRule.MAX_LOTTERY_NUMBER;
 import static lotto.common.Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE;
 
-import lotto.model.lotto.LotteryRule;
+import lotto.model.lotto.lottoNumber.LotteryRule;
 
 public record BonusNumber(int number) {
 

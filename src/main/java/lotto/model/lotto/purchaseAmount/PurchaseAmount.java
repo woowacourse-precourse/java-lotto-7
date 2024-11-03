@@ -1,7 +1,7 @@
-package lotto.model.purchaseAmount;
+package lotto.model.lotto.purchaseAmount;
 
 import static lotto.common.Exceptions.NOT_DIVISIBLE_BY_LOTTO_PRICE;
-import static lotto.model.lotto.LotteryRule.LOTTO_PRICE;
+import static lotto.model.lotto.lottoNumber.LotteryRule.LOTTO_PRICE;
 
 public record PurchaseAmount(int purchaseAmount) {
     public PurchaseAmount {

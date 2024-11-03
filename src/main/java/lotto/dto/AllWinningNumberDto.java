@@ -1,4 +1,4 @@
-package lotto.model.dto;
+package lotto.dto;
 
 import lotto.model.winningNumber.WinningNumber;
 

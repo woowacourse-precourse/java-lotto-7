@@ -1,10 +1,10 @@
-package lotto.service;
+package lotto.service.lotto;
 
-import lotto.model.lotto.Lottos;
-import lotto.model.purchaseAmount.PurchaseAmount;
+import lotto.model.lotto.lottoNumber.Lottos;
+import lotto.model.lotto.purchaseAmount.PurchaseAmount;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.winningNumber.WinningNumber;
-import lotto.model.winningResult.WinningResults;
+import lotto.model.lotto.winningResult.WinningResults;
 
 public interface LottoMachine {
     Lottos issueLottos(PurchaseAmount purchaseAmount);

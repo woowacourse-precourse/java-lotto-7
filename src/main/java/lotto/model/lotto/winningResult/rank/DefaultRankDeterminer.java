@@ -1,6 +1,6 @@
-package lotto.model.rank;
+package lotto.model.lotto.winningResult.rank;
 
-import lotto.model.dto.MatchingResultDto;
+import lotto.dto.MatchingResultDto;
 
 public class DefaultRankDeterminer implements RankDeterminer<MatchingResultDto> {
     @Override

@@ -1,4 +1,4 @@
-package lotto.model.lotto;
+package lotto.model.lotto.lottoNumber;
 
 import java.util.Collections;
 import java.util.List;

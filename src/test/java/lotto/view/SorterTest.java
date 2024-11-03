@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.lotto.NumberPicker;
-import lotto.model.lotto.RandomNumberPicker;
-import lotto.model.rank.Rank;
+import lotto.model.lotto.lottoNumber.NumberPicker;
+import lotto.model.lotto.lottoNumber.RandomNumberPicker;
+import lotto.model.lotto.winningResult.rank.Rank;
 import lotto.view.output.Sorter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

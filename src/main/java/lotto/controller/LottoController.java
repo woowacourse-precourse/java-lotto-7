@@ -1,14 +1,14 @@
 package lotto.controller;
 
 import lotto.common.Converter;
-import lotto.model.dto.AllWinningNumberDto;
+import lotto.dto.AllWinningNumberDto;
 import lotto.model.winningNumber.BonusNumber;
-import lotto.model.purchaseAmount.PurchaseAmount;
-import lotto.model.lotto.Lottos;
-import lotto.model.winningNumber.NumberGenerator;
+import lotto.model.lotto.purchaseAmount.PurchaseAmount;
+import lotto.model.lotto.lottoNumber.Lottos;
+import lotto.service.winningNumber.NumberGenerator;
 import lotto.model.winningNumber.WinningNumber;
-import lotto.model.winningResult.WinningResults;
-import lotto.service.LottoMachine;
+import lotto.model.lotto.winningResult.WinningResults;
+import lotto.service.lotto.LottoMachine;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 

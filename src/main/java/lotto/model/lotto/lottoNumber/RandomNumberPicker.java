@@ -1,6 +1,6 @@
-package lotto.model.lotto;
+package lotto.model.lotto.lottoNumber;
 
-import static lotto.model.lotto.LotteryRule.*;
+import static lotto.model.lotto.lottoNumber.LotteryRule.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

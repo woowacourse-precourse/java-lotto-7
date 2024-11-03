@@ -1,4 +1,4 @@
-package lotto.model.winningNumber;
+package lotto.service.winningNumber;
 
 import static lotto.common.Exceptions.DUPLICATED_BONUS_NUMBER;
 
@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.common.Converter;
-import lotto.model.dto.AllWinningNumberDto;
+import lotto.dto.AllWinningNumberDto;
+import lotto.model.winningNumber.BonusNumber;
+import lotto.model.winningNumber.WinningNumber;
 
 public class DefaultNumberGenerator implements NumberGenerator<String, AllWinningNumberDto>{
     private static final String NUMBER_DELIMITER = ",";

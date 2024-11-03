@@ -1,4 +1,4 @@
-package lotto.model.lotto;
+package lotto.model.lotto.lottoNumber;
 
 public class LotteryRule {
     public static final int LOTTO_PRICE = 1000;

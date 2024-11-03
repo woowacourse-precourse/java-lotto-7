@@ -1,4 +1,4 @@
-package lotto.model.rank;
+package lotto.model.lotto.winningResult.rank;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,9 +1,9 @@
 package lotto.view.output;
 
-import static lotto.model.lotto.LotteryRule.LOTTERY_NUMBER_COUNT;
+import static lotto.model.lotto.lottoNumber.LotteryRule.LOTTERY_NUMBER_COUNT;
 
 import java.util.List;
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.rank.Rank;
 
 public class Messages {
     private static final String NUMBER_SEPERATOR = ", ";

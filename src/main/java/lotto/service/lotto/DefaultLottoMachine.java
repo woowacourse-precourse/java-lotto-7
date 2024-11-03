@@ -1,18 +1,18 @@
-package lotto.service;
+package lotto.service.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.model.dto.MatchingResultDto;
-import lotto.model.lotto.NumberPicker;
-import lotto.model.rank.RankDeterminer;
+import lotto.dto.MatchingResultDto;
+import lotto.model.lotto.lottoNumber.NumberPicker;
+import lotto.model.lotto.winningResult.rank.RankDeterminer;
 import lotto.model.winningNumber.BonusNumber;
-import lotto.model.lotto.Lotto;
-import lotto.model.purchaseAmount.PurchaseAmount;
-import lotto.model.lotto.Lottos;
+import lotto.model.lotto.lottoNumber.Lotto;
+import lotto.model.lotto.purchaseAmount.PurchaseAmount;
+import lotto.model.lotto.lottoNumber.Lottos;
 import lotto.model.winningNumber.WinningNumber;
-import lotto.model.rank.Rank;
-import lotto.model.winningResult.WinningResults;
+import lotto.model.lotto.winningResult.rank.Rank;
+import lotto.model.lotto.winningResult.WinningResults;
 
 public class DefaultLottoMachine implements LottoMachine{
     private static final int PERCENTAGE_MULIPLIER = 100;

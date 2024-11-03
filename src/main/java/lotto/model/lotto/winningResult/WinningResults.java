@@ -1,9 +1,9 @@
-package lotto.model.winningResult;
+package lotto.model.lotto.winningResult;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.rank.Rank;
+import lotto.model.lotto.winningResult.rank.Rank;
 
 public class WinningResults{
     private final List<WinningResult> winningResults;
