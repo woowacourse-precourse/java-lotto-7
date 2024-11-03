@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Splitter.CustomSplitter;
+import lotto.domain.converter.Converter;
 import lotto.domain.generator.RandomIntegerListGenerator;
 import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.LottoBundle;
@@ -22,12 +23,13 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final CustomSplitter splitter;
+    private final Converter converter;
 
-    public LottoController(InputView inputView, OutputView outputView, CustomSplitter splitter) {
+    public LottoController(InputView inputView, OutputView outputView, CustomSplitter splitter, Converter converter) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.splitter = splitter;
-
+        this.converter = converter;
     }
 
 
@@ -50,15 +52,11 @@ public class LottoController {
             outputView.printPurchaseGuide();
             String input = inputView.readLine();
             validateInput(input);
-            int cost = Integer.parseInt(input);
+            int cost = converter.convertToInteger(input);
 
             outputView.printNewLine();
 
             return new Investment(BigInteger.valueOf(cost));
-        } catch (NumberFormatException e) {
-            outputView.printErrorMessage("[ERROR] 입력은 숫자만 가능합니다.");
-            return purchaseLotto();
-
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return purchaseLotto();
@@ -101,16 +99,21 @@ public class LottoController {
         String[] splitInput = splitter.splitFrom(input);
         List<LottoNumber> numbers = new ArrayList<>();
         for (String splitNumber : splitInput) {
-            numbers.add(new LottoNumber(Integer.parseInt(splitNumber)));
+            numbers.add(new LottoNumber(converter.convertToInteger(splitNumber)));
         }
         return numbers;
     }
 
     private LottoNumber inputBonusNumber() {
-        outputView.printBonusNumberGuide();
-        LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(inputView.readLine()));
-        outputView.printNewLine();
-        return bonusNumber;
+        try {
+            outputView.printBonusNumberGuide();
+            LottoNumber bonusNumber = new LottoNumber(converter.convertToInteger(inputView.readLine()));
+            outputView.printNewLine();
+            return bonusNumber;
+        } catch (IllegalStateException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 
     private LottoResult calculateResults(LottoBundle lottoBundle, WinningNumbers winningNumbers) {
