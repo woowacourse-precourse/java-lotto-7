@@ -2,21 +2,25 @@ package lotto.validator;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class NumberValidator implements Validator {
 
     private static final String ERROR = "[ERROR] ";
     private static final String DELIMITER = ",";
-    private static final int LOTTO_NUMBER_RANGE_MIN = 1;
-    private static final int LOTTO_NUMBER_RANGE_MAX = 45;
-    private static final int LOTTO_LENGTH = 6;
+    private static final int WINNING_NUMBER_RANGE_MIN = 1;
+    private static final int WINNING_NUMBER_RANGE_MAX = 45;
+    private static final int WINNING_LENGTH = 6;
+    private static final int BONUS_LENGTH = 7;
+
+    private Set<String> winningNumbers;
 
     @Override
     public void validate(String input) {
         if (isWinningNumbers(input)) {
             String[] values = input.split(DELIMITER);
-            if (values.length != LOTTO_LENGTH) {
+            if (values.length != WINNING_LENGTH) {
                 throw new IllegalArgumentException(ERROR + "당첨 번호는 6자리 입니다.");
             }
             if (isDuplication(values)) {
@@ -34,10 +38,18 @@ public class NumberValidator implements Validator {
     private void bonusNumberValidate(String input) {
         isNumber(input);
         isOneBetweenFortyFive(Integer.parseInt(input));
+        winningNumbersDuplication(input);
+    }
+
+    private void winningNumbersDuplication(String input) {
+        winningNumbers.add(input);
+        if (winningNumbers.size() != BONUS_LENGTH) {
+            throw new IllegalArgumentException(ERROR + "당첨 번호와 중복되면 안됩니다.");
+        }
     }
 
     private void isOneBetweenFortyFive(int number) {
-        if (number < LOTTO_NUMBER_RANGE_MIN || number > LOTTO_NUMBER_RANGE_MAX) {
+        if (number < WINNING_NUMBER_RANGE_MIN || number > WINNING_NUMBER_RANGE_MAX) {
             throw new IllegalArgumentException(ERROR + "1 ~ 45 사이의 숫자만 입력 가능합니다.");
         }
     }
@@ -55,9 +67,9 @@ public class NumberValidator implements Validator {
     }
 
     private boolean isDuplication(String[] values) {
-        Set<String> set = new HashSet<>();
-        Collections.addAll(set, values);
-        return set.size() != values.length;
+        winningNumbers = new HashSet<>();
+        Collections.addAll(winningNumbers, values);
+        return winningNumbers.size() != values.length;
     }
 
 
