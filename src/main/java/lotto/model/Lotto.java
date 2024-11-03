@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.constant.LottoConstants;
@@ -52,6 +50,17 @@ public class Lotto {
         if (number < 1 || number > 45) {
             throw new LottoNumberNotInRangeException();
         }
+    }
+
+    public int matchLottoCount(Lotto purchaseLotto) {
+        int matchCount = (int) purchaseLotto.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+        return matchCount;
+    }
+
+    public boolean matchBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     @Override
