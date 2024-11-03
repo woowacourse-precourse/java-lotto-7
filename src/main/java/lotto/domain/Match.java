@@ -5,7 +5,8 @@ public enum Match {
     FIVE_AND_BONUS_MATCH(30_000_000),
     FIVE_MATCH_ONLY(1_500_000),
     FOUR_MATCH(50_000),
-    THREE_MATCH(5_000);
+    THREE_MATCH(5_000),
+    NO_MATCH(0);
 
     private final long prizeAmount;
 
