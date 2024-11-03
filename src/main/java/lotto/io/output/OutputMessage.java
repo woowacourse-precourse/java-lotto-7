@@ -6,9 +6,9 @@ public enum OutputMessage {
     ENTER_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS_HEADER("당첨 통계\n---"),
-    MATCH_COUNT("%d개 일치 (%d원) - %d개"),
-    MATCH_COUNT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n"),
-    TOTAL_RETURN_RATE("총 수익률은 %,.2lf%%입니다.");
+    MATCH_COUNT("%d개 일치 (%,d원) - %d개\n"),
+    MATCH_COUNT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
+    TOTAL_RETURN_RATE("총 수익률은 %,.1f%%입니다.");
 
     private final String message;
 

@@ -11,7 +11,8 @@ class WinnerServiceTest {
     @Test
     void announceWinner() {
         // given
-        Winner winner = new Winner(List.of(1, 2, 3, 4, 5, 6), 7);
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
+        Winner winner = new Winner(new Lotto(integers), 7);
         WinnerService winnerService = new WinnerService(winner);
 
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),

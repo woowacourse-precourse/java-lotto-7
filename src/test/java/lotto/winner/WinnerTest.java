@@ -3,6 +3,7 @@ package lotto.winner;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import lotto.io.input.Input;
+import lotto.lotto.Lotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ class WinnerTest {
         List<Integer> winningNumbersInput = Input.getWinningNumbersInput();
 
         // when
-        Winner winner = new Winner(winningNumbersInput, 1);
+        Winner winner = new Winner(new Lotto(winningNumbersInput), 1);
 
         // then
         Assertions.assertEquals(winner.getWinningNumbers(), List.of(1, 2, 3, 4, 5, 6));

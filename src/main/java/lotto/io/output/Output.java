@@ -8,6 +8,8 @@ import static lotto.io.output.OutputMessage.PURCHASED_COUNT;
 import static lotto.io.output.OutputMessage.TOTAL_RETURN_RATE;
 import static lotto.io.output.OutputMessage.WINNING_STATISTICS_HEADER;
 
+import java.util.List;
+import lotto.lotto.Lotto;
 import lotto.lotto.LottoWinning;
 
 public class Output {
@@ -21,6 +23,17 @@ public class Output {
 
     public static void displayPurchasedCount(int count) {
         System.out.printf(PURCHASED_COUNT.getMessage(), count);
+    }
+
+    public static void displayLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+        System.out.println();
+    }
+
+    public static void promptEnterWinningNumber() {
+        System.out.println(OutputMessage.ENTER_WINNING_NUMBER.getMessage());
     }
 
     public static void promptEnterBonusNumber() {

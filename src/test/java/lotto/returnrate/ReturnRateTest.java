@@ -16,7 +16,8 @@ class ReturnRateTest {
         // given
         int purchaseAmount = 8000;
 
-        Winner winner = new Winner(List.of(1, 2, 3, 4, 5, 6), 7);
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
+        Winner winner = new Winner(new Lotto(integers), 7);
         WinnerService winnerService = new WinnerService(winner);
         ReturnRate returnRate = new ReturnRate();
 

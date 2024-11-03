@@ -4,13 +4,13 @@ import lotto.lotto.LottoWinning;
 
 public class ReturnRate {
 
-    public double calculateReturnRate(int purchaseAmount) {
+    public static double calculateReturnRate(int purchaseAmount) {
         int totalWinningAmount = calculateTotalWinningAmount();
 
         return ((double) totalWinningAmount / purchaseAmount) * 100;
     }
 
-    private int calculateTotalWinningAmount() {
+    private static int calculateTotalWinningAmount() {
         int totalAmount = 0;
 
         for (LottoWinning winning : LottoWinning.values()) {
