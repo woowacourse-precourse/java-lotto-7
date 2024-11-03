@@ -1,16 +1,32 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * InputView 클래스
- * 사용자로부터 당첨 번호와 보너스 번호를 입력받고 유효성을 검증하는 클래스
+ * 사용자로부터 구입 금액, 당첨 번호, 보너스 번호를 입력받고 유효성을 검증하는 클래스
  */
 public class InputView {
+
+    /**
+     * 구입 금액 입력을 받아 반환
+     *
+     * @return 구입 금액
+     * @throws IllegalArgumentException 유효하지 않은 금액일 경우 예외 발생
+     */
+    public int inputPurchaseAmount() {
+        System.out.println("구입 금액을 입력해 주세요:");
+        try {
+            int amount = Integer.parseInt(Console.readLine().trim());
+            validatePurchaseAmount(amount);
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해 주세요.");
+        }
+    }
 
     /**
      * 당첨 번호 입력을 받아 리스트로 반환
@@ -38,6 +54,18 @@ public class InputView {
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수로 입력해 주세요.");
+        }
+    }
+
+    /**
+     * 구입 금액의 유효성을 검증
+     *
+     * @param amount 구입 금액
+     * @throws IllegalArgumentException 유효하지 않은 금액일 경우
+     */
+    private void validatePurchaseAmount(int amount) {
+        if (amount <= 0 || amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
