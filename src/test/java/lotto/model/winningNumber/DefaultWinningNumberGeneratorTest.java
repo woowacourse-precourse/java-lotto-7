@@ -11,13 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class WinningNumberGeneratorTest {
+public class DefaultWinningNumberGeneratorTest {
+    private final NumberGenerator numberGenerator = new DefaultNumberGenerator();
     @Test
     @DisplayName("[success] 당첨번호를 split해 순서대로 저장하여 WinningNumber를 생성한다.")
     void splitAndcreateWinningNumber() {
         String testNumbers = "1,2,3,4,5,6";
 
-        WinningNumber winningNumber = NumberGenerator.registerWinningNumber(testNumbers);
+        WinningNumber winningNumber = numberGenerator.registerWinningNumber(testNumbers);
         List<Integer> winningNumberList = winningNumber.numbers();
 
         for (int i = 0; i < 6; i++) {
@@ -31,7 +32,7 @@ public class WinningNumberGeneratorTest {
     @ValueSource(strings = {" 45", "45 ", "    45", "45   "})
     void success_WhenBlankExistsBetweenNumberAndNumber(String numberWithBlank) {
         String testNumber = "1,2,3,4,5," + numberWithBlank;
-        assertThatCode(() -> NumberGenerator.registerWinningNumber(testNumber))
+        assertThatCode(() -> numberGenerator.registerWinningNumber(testNumber))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +41,7 @@ public class WinningNumberGeneratorTest {
     @ValueSource(strings = {"3 3", "33 3", "3   3", "3@3", "33@3", "3 @ 3"})
     void fail_IfNonIntegerExistsInsideNumber(String numberWithNonInteger) {
         assertThatIllegalArgumentException().isThrownBy(
-                        () -> NumberGenerator.registerWinningNumber(numberWithNonInteger))
-                .withMessage(Exceptions.NON_INTEGER_INCLUDED.getMessage());
+                        () -> numberGenerator.registerWinningNumber(numberWithNonInteger))
+                .withMessage(Exceptions.NOT_POSITIVE_INTEGER.getMessage());
     }
 }

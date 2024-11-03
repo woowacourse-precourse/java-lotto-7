@@ -5,7 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.rank.RankDeterminer;
+import lotto.model.lotto.RandomNumberPicker;
+import lotto.model.rank.DefaultRankDeterminer;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.lotto.Lotto;
 import lotto.model.purchaseAmount.PurchaseAmount;
@@ -18,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class LottoMachineImplTest {
-    private final LottoMachineImpl lottoMachineImpl = new LottoMachineImpl(new RankDeterminer());
+public class DefaultLottoMachineTest {
+    private final DefaultLottoMachine defaultLottoMachine = new DefaultLottoMachine(new DefaultRankDeterminer(), new RandomNumberPicker());
 
     WinningResults setUpDefaultWinningResults() {
         Lottos lottos = new Lottos(new ArrayList<>(Arrays.asList(
@@ -36,7 +37,7 @@ public class LottoMachineImplTest {
                 List.of(1, 2, 3, 4, 5, 6)
         ));
         BonusNumber bonusNumber = new BonusNumber(7);
-        WinningResults winningResults = lottoMachineImpl.checkWinningResults(
+        WinningResults winningResults = defaultLottoMachine.checkWinningResults(
                 lottos, winningNumber, bonusNumber
         );
         return winningResults;
@@ -47,7 +48,7 @@ public class LottoMachineImplTest {
     void createLottosByPurchaseAmount() {
         PurchaseAmount lottoAmount = new PurchaseAmount(2000);
 
-        Lottos lottos = lottoMachineImpl.issueLottos(lottoAmount);
+        Lottos lottos = defaultLottoMachine.issueLottos(lottoAmount);
 
         assertThat(lottos.lottos().size()).isEqualTo(2);
     }
@@ -65,13 +66,13 @@ public class LottoMachineImplTest {
 
     @ParameterizedTest
     @DisplayName("[success] 총 당첨 금액을 계산하여 수익률을 계산한다.")
-    @CsvSource(value = {"1000000000:203.1555", "55283055:3674.8240487071494", "180000:1128641.6666666665"}
+    @CsvSource(value = {"1000000000:203.1555", "55283000:3674.8277047193533", "180000:1128641.6666666665"}
             , delimiter = ':')
     void calculateEarningsRate(int expense, double expectedEarningsRate) {
         PurchaseAmount purchaseAmount = new PurchaseAmount(expense);
         WinningResults winningResults = setUpDefaultWinningResults();
 
-        assertThat(lottoMachineImpl.calculateEarningsRate(winningResults, purchaseAmount))
+        assertThat(defaultLottoMachine.calculateEarningsRate(winningResults, purchaseAmount))
                 .isEqualTo(expectedEarningsRate);
     }
 }

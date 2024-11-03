@@ -1,25 +1,29 @@
 package lotto.controller;
 
 import lotto.common.Converter;
+import lotto.model.dto.AllWinningNumberDto;
 import lotto.model.winningNumber.BonusNumber;
 import lotto.model.purchaseAmount.PurchaseAmount;
 import lotto.model.lotto.Lottos;
-import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningNumber.NumberGenerator;
+import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningResult.WinningResults;
-import lotto.service.LottoMachineImpl;
+import lotto.service.DefaultLottoMachine;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoMachineImpl lottoMachineImpl;
+    private final DefaultLottoMachine defaultLottoMachine;
+    private final NumberGenerator numberGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoMachineImpl lottoMachineImpl) {
+    public LottoController(InputView inputView, OutputView outputView, DefaultLottoMachine defaultLottoMachine,
+                           NumberGenerator numberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoMachineImpl = lottoMachineImpl;
+        this.defaultLottoMachine = defaultLottoMachine;
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
@@ -43,7 +47,7 @@ public class LottoController {
     }
 
     private Lottos issueLottos(PurchaseAmount purchaseAmount) {
-        return lottoMachineImpl.issueLottos(purchaseAmount);
+        return defaultLottoMachine.issueLottos(purchaseAmount);
     }
 
     private void outputIssuedLottos(Lottos lottos) {
@@ -53,7 +57,7 @@ public class LottoController {
     private WinningNumber pickWinningNumber() {
         try {
             String winningNumberInput = inputView.inputWinningNumber();
-            return NumberGenerator.registerWinningNumber(winningNumberInput);
+            return numberGenerator.registerWinningNumber(winningNumberInput);
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return pickWinningNumber();
@@ -63,7 +67,7 @@ public class LottoController {
     private BonusNumber pickBonusNumber(WinningNumber winningNumber) {
         try {
             String bonusNumberInput = inputView.inputBonusNumber();
-            return NumberGenerator.registerBonusNumber(bonusNumberInput, winningNumber);
+            return numberGenerator.registerBonusNumber(new AllWinningNumberDto(bonusNumberInput, winningNumber));
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return pickBonusNumber(winningNumber);
@@ -72,13 +76,13 @@ public class LottoController {
 
     private WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber,
                                                BonusNumber bonusNumber) {
-        return lottoMachineImpl.checkWinningResults(lottos, winningNumber, bonusNumber);
+        return defaultLottoMachine.checkWinningResults(lottos, winningNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {
         outputView.outputWinningResultStartLine();
         outputView.outputWinningRanks(winningResults);
-        double earningsRate = lottoMachineImpl.calculateEarningsRate(winningResults, purchaseAmount);
+        double earningsRate = defaultLottoMachine.calculateEarningsRate(winningResults, purchaseAmount);
         outputView.outputEarningsRate(earningsRate);
     }
 }

@@ -3,8 +3,7 @@ package lotto.common;
 public enum Exceptions {
     EMPTY_VALUE("값을 입력해주세요.", Type.GENERAL),
 
-    NON_INTEGER_INCLUDED("숫자값만 입력해주세요.", Type.INTEGER),
-    NOT_POSITIVE_INTEGER("양의 정수를 입력해주세요.", Type.INTEGER),
+    NOT_POSITIVE_INTEGER("양의 정수로만 입력해주세요.", Type.INTEGER),
     OUT_OF_INTEGER_RANGE("10자리 이하의 금액을 입력해주세요.", Type.INTEGER),
 
     NOT_DIVISIBLE_BY_LOTTO_PRICE("1000 단위의 금액을 입력해주세요.", Type.LOTTERY),

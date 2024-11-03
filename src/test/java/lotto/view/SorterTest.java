@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.NumberPicker;
 import lotto.model.lotto.RandomNumberPicker;
 import lotto.model.rank.Rank;
 import lotto.view.output.Sorter;
@@ -26,7 +27,8 @@ public class SorterTest {
     @Test
     @DisplayName("[success] 숫자를 오름차순 정렬한다.")
     void sortAscendingNumbers() {
-        List<Integer> randomNumbers = RandomNumberPicker.pick();
+        NumberPicker numberPicker = new RandomNumberPicker();
+        List<Integer> randomNumbers = numberPicker.pick();
 
         List<Integer> sortedRandomNumbers = Sorter.sortAscending(randomNumbers);
 

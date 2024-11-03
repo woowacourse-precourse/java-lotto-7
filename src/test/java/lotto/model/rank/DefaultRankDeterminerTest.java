@@ -3,24 +3,27 @@ package lotto.model.rank;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.model.dto.MatchingResultDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class RankDeterminerTest {
+public class DefaultRankDeterminerTest {
     @ParameterizedTest
     @DisplayName("[success] 일치 개수와 보너스 번호 일치 여부를 확인하고 해당하는 당첨 등수를 반환한다.")
     @MethodSource("lottoWithWinningRankProvider")
     void findWinningRankByMatchingAmountAndBonusNumber(Rank expectedRank, int matchingAmount,
                                                        List<Integer> numbers) {
-        RankDeterminer rankDeterminer = new RankDeterminer();
+        DefaultRankDeterminer defaultRankDeterminer = new DefaultRankDeterminer();
         int bonusNumber = 7;
         boolean matchesBonusNumber = numbers.contains(bonusNumber);
 
-        Assertions.assertThat(rankDeterminer.determine(matchingAmount, matchesBonusNumber))
+        Assertions.assertThat(
+                        defaultRankDeterminer.determine(new MatchingResultDto(matchingAmount, matchesBonusNumber)))
                 .isEqualTo(expectedRank);
     }
+
     static Stream<Object[]> lottoWithWinningRankProvider() {
         return Stream.of(
                 new Object[]{Rank.FIRST, 6, Arrays.asList(1, 2, 3, 4, 5, 6)},
