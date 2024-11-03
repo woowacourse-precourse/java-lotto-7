@@ -1,6 +1,5 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.common.ErrorMessage;
@@ -43,9 +42,9 @@ public class Lotto {
         }
     }
 
-    public static List<Lotto> createLottos(final int quantity) {
-        return IntStream.range(0, quantity)
-                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE)))
+    public static List<Lotto> createLottos(List<List<Integer>> numbers) {
+        return IntStream.range(0, numbers.size())
+                .mapToObj(i -> new Lotto(numbers.get(i)))
                 .toList();
     }
 
@@ -57,7 +56,21 @@ public class Lotto {
         return numbers.stream().toList();
     }
 
+    public static int getMaxNumber() {
+        return MAX;
+    }
+
+    public static int getMinNumber() {
+        return MIN;
+    }
+
+    public static int getLottoSize() {
+        return LOTTO_SIZE;
+    }
+
     public static int getLottoPrice() {
         return LOTTO_PRICE;
     }
+
+
 }
