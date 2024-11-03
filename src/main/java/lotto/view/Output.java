@@ -11,9 +11,9 @@ public class Output {
         System.out.printf("[ERROR] %s \n", error);
     }
 
-    public static void printPurchasedLottoList(Wallet wallet, RandomLottos randomLottos) {
+    public static void printPurchasedLottoList(RandomLottos randomLottos) {
         System.out.println();
-        System.out.printf("%s개를 구매했습니다.\n", wallet.getTicket());
+        System.out.printf("%s개를 구매했습니다.\n", randomLottos.getRandomLottoCount());
         System.out.print(randomLottos);
     }
 

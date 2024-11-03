@@ -16,13 +16,12 @@ public class RandomLottoMarket {
     }
 
     public void createRandomLottos() {
-        buyTicket();
-        int ticket = wallet.getTicket();
+        int ticket = buyTicket();
         randomLottos.makeLottos(ticket);
     }
 
-    private void buyTicket() {
-        wallet.calculateNumberOfTicket(ticketCalculator);
+    private int buyTicket() {
+        return wallet.calculateNumberOfTicket(ticketCalculator);
     }
 
 }

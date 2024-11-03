@@ -50,6 +50,10 @@ public class RandomLottos {
         return lottos.isEmpty();
     }
 
+    public int getRandomLottoCount() {
+        return lottos.size();
+    }
+
 
     @Override
     public String toString() {
