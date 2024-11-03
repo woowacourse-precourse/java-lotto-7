@@ -28,7 +28,7 @@ public class Writer {
         System.out.println();
     }
 
-    public void printMatchingResults(List<String> matchingResults) {
+    public void printMatchingResults(final List<String> matchingResults) {
         for (String matchingResult : matchingResults) {
             simplePrint(matchingResult);
         }

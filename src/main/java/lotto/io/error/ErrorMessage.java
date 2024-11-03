@@ -1,6 +1,10 @@
 package lotto.io.error;
 
 public class ErrorMessage {
+
+    private ErrorMessage() {
+    }
+
     public static final String EMPTY_INPUT_PURCHASE_AMOUNT = "[ERROR] 구매 금액이 Null이여서는 안됩니다.";
     public static final String EMPTY_INPUT_LOTTO_NUMBER = "[ERROR] 당첨 번호가 Null이여서는 안됩니다.";
     public static final String EMPTY_INPUT_BONUS_NUMBER = "[ERROR] 보너스 번호가 Null이여서는 안됩니다.";

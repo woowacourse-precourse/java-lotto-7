@@ -32,7 +32,7 @@ public class StatisticView {
         return new StatisticView(messages, recoveryRatio.toString());
     }
 
-    private static String generateMessageFrom(String rankCondition, String prizeCount) {
+    private static String generateMessageFrom(final String rankCondition, final String prizeCount) {
         return String.format("%s - %s", rankCondition, prizeCount);
     }
 

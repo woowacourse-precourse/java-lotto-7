@@ -4,6 +4,6 @@ import lotto.model.lotto.Lottos;
 
 public interface LottoGenerator {
 
-    Lottos generate(int purchaseAmount);
+    Lottos generate(final int purchaseAmount);
 
 }

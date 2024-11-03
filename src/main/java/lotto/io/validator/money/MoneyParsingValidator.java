@@ -20,7 +20,7 @@ public class MoneyParsingValidator extends InputValidator {
         super.check(source);
     }
 
-    private void tryParseToLongFrom(String source) {
+    private void tryParseToLongFrom(final String source) {
         try {
             Long.parseLong(source);
         } catch (IllegalArgumentException e) {

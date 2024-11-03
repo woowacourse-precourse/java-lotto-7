@@ -32,14 +32,14 @@ public enum RankCondition {
         this.prizeAmount = prizeAmount;
     }
 
-    public static RankCondition getRankBy(int matchingCount, boolean bonusNumberMatched) {
+    public static RankCondition getRankBy(final int matchingCount, final boolean bonusNumberMatched) {
         return Arrays.stream(RankCondition.values())
                 .filter(rank -> rank.predicate.test(matchingCount, bonusNumberMatched))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    public static boolean hasEnoughCountToBeSecondRank(int matchingCount) {
+    public static boolean hasEnoughCountToBeSecondRank(final int matchingCount) {
         return SECOND.matchingCount == matchingCount;
     }
 
@@ -50,7 +50,7 @@ public enum RankCondition {
                 .toList();
     }
 
-    public Money calculateReceivableTotalPrizeAmountBy(int prizeCount) {
+    public Money calculateReceivableTotalPrizeAmountBy(final int prizeCount) {
         return prizeAmount.multiply(prizeCount);
     }
 
@@ -63,7 +63,10 @@ public enum RankCondition {
         return generateMessageFrom(template, matchingCount, prizeAmount.toString());
     }
 
-    private String generateMessageFrom(String template, int matchingCount, String prizeAmount) {
+    private String generateMessageFrom(
+            final String template,
+            final int matchingCount,
+            final String prizeAmount) {
         return String.format(template, matchingCount, prizeAmount);
     }
 }

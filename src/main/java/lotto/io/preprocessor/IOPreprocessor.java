@@ -14,16 +14,16 @@ public class IOPreprocessor {
     private IOPreprocessor() {
     }
 
-    public static String cleanWhiteBlanks(String source) {
+    public static String cleanWhiteBlanks(final String source) {
         return source.strip();
     }
 
-    public static Money stringToMoney(String source) {
+    public static Money stringToMoney(final String source) {
         long purchaseAmount = Long.parseLong(source);
         return Money.from(purchaseAmount);
     }
 
-    public static Lotto stringToLotto(String source) {
+    public static Lotto stringToLotto(final String source) {
         List<Integer> enteredNumbers = Arrays.stream(source.split(","))
                 .map(String::strip)
                 .map(Integer::valueOf)
@@ -32,19 +32,19 @@ public class IOPreprocessor {
         return Lotto.from(enteredNumbers);
     }
 
-    public static List<String> stringToListString(String source) {
+    public static List<String> stringToListString(final String source) {
         return Arrays.stream(source.split(","))
                 .map(String::strip)
                 .toList();
     }
 
-    public static Set<String> stringToSetString(String source) {
+    public static Set<String> stringToSetString(final String source) {
         return Arrays.stream(source.split(","))
                 .map(String::strip)
                 .collect(Collectors.toSet());
     }
 
-    public static Integer stringToInteger(String source) {
+    public static Integer stringToInteger(final String source) {
         return Integer.valueOf(source);
     }
 

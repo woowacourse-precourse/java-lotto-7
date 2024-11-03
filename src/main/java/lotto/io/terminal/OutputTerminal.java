@@ -25,14 +25,14 @@ public class OutputTerminal {
         return TerminalHolder.INSTANCE;
     }
 
-    public void writeLottos(LottosView view) {
+    public void writeLottos(final LottosView view) {
         String message = generateFormattedMessageBy(PURCHASED_NOTICE, view.getLottoCount());
 
         writer.printWithNewLineBefore(message);
         writer.simplePrint(view.getLottos());
     }
 
-    public void writeStatistics(StatisticView view) {
+    public void writeStatistics(final StatisticView view) {
         String message = generateFormattedMessageBy(TOTAL_RECOVERY_RATIO, view.getRecoveryRatio());
 
         writer.printWithNewLineBefore(STATISTIC);
@@ -43,7 +43,7 @@ public class OutputTerminal {
         close();
     }
 
-    private <T> String generateFormattedMessageBy(String message, T source) {
+    private <T> String generateFormattedMessageBy(final String message, final T source) {
         return String.format(message, source);
     }
 

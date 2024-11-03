@@ -14,7 +14,7 @@ public class AlreadyPickedNumberValidator extends InputValidator {
         this.lotto = lotto;
     }
 
-    public static AlreadyPickedNumberValidator from(Lotto lotto) {
+    public static AlreadyPickedNumberValidator from(final Lotto lotto) {
         return new AlreadyPickedNumberValidator(lotto);
     }
 

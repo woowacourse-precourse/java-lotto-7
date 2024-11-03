@@ -20,8 +20,11 @@ public class LottoService {
         return lottoGenerator.generate(lottoCount);
     }
 
-    public DrawResultRankTable rankMyLottos(final Lottos lottos, final Lotto drawResult, final Integer bonusNumber) {
-
+    public DrawResultRankTable rankMyLottos(
+            final Lottos lottos,
+            final Lotto drawResult,
+            final Integer bonusNumber
+    ) {
         DrawResultRankTable rankTable = DrawResultRankTable.initiate();
 
         lottos.initiateReadOnlyStream()
@@ -33,8 +36,11 @@ public class LottoService {
         return rankTable;
     }
 
-    private RankCondition rankEachLotto(final Lotto myLotto, final Lotto drawResult, final Integer bonusNumber) {
-
+    private RankCondition rankEachLotto(
+            final Lotto myLotto,
+            final Lotto drawResult,
+            final Integer bonusNumber
+    ) {
         int matchedCount = myLotto.countMatchedNumbersFrom(drawResult);
         boolean hasBonusNumber = false;
 

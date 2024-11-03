@@ -4,8 +4,8 @@ import static lotto.io.error.ErrorMessage.HAS_SMALL_CHANGE;
 
 public class SmallChangeException extends IllegalArgumentException {
 
-    private SmallChangeException(final String s) {
-        super(s);
+    private SmallChangeException(final String message) {
+        super(message);
     }
 
     public static SmallChangeException invalidUnit() {

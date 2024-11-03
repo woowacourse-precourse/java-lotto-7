@@ -23,7 +23,7 @@ public class Money implements Comparable<Money> {
 
     private static final DecimalFormat FORMATTER = new DecimalFormat("###,###");
 
-    public static final Money ZERO = new Money(0L);
+    public static final Money ZERO = Money.from(0L);
     public static final Money LOTTO_PRICE = Money.from(1000L);
     public static final Money FIRST_RANK_PRIZE = Money.from(2000000000L);
     public static final Money SECOND_RANK_PRIZE = Money.from(30000000L);
@@ -37,23 +37,23 @@ public class Money implements Comparable<Money> {
         this.value = value;
     }
 
-    public static Money from(long value) {
+    public static Money from(final long value) {
         validateIsMinus(value);
         return new Money(value);
     }
 
-    public static Money addAll(List<Money> monies) {
+    public static Money addAll(final List<Money> monies) {
         long addedMoney = monies.stream()
                 .mapToLong(money -> money.value)
                 .sum();
         return Money.from(addedMoney);
     }
 
-    public Money plus(Money money) {
+    public Money plus(final Money money) {
         return Money.from(this.value + money.value);
     }
 
-    public Money multiply(int source) {
+    public Money multiply(final long source) {
         return Money.from(this.value * source);
     }
 
@@ -71,7 +71,7 @@ public class Money implements Comparable<Money> {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

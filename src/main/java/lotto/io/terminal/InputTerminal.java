@@ -56,7 +56,7 @@ public class InputTerminal {
         }
     }
 
-    public Integer readBonusNumber(Lotto lotto) {
+    public Integer readBonusNumber(final Lotto lotto) {
         while (true) {
             try {
                 writer.printWithNewLineBefore(ENTER_BONUS_NUMBER);

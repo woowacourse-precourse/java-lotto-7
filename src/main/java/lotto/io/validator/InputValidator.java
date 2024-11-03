@@ -6,12 +6,12 @@ public class InputValidator {
 
     private InputValidator next;
 
-    public InputValidator doChain(InputValidator validator) {
+    public InputValidator doChain(final InputValidator validator) {
         this.next = validator;
         return validator;
     }
 
-    public void check(String source) {
+    public void check(final String source) {
         if (nonNull(next)) {
             next.check(source);
         }

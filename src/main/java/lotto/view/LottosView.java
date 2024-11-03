@@ -12,7 +12,7 @@ public class LottosView {
         this.lottoCount = lottoCount;
     }
 
-    public static LottosView from(Lottos lottos, int lottoCount) {
+    public static LottosView from(final Lottos lottos, final int lottoCount) {
         return new LottosView(lottos.toString(), lottoCount);
     }
 

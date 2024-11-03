@@ -19,7 +19,7 @@ public class RecoveryRatio {
         this.value = value;
     }
 
-    public static RecoveryRatio from(BigDecimal value) {
+    public static RecoveryRatio from(final BigDecimal value) {
         return new RecoveryRatio(value);
     }
 
@@ -31,7 +31,7 @@ public class RecoveryRatio {
     }
 
     @Override
-    public boolean equals(Object that) {
+    public boolean equals(final Object that) {
         if (this == that) {
             return true;
         }

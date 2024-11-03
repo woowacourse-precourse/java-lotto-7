@@ -24,13 +24,13 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public int countMatchedNumbersFrom(Lotto lotto) {
+    public int countMatchedNumbersFrom(final Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::has)
                 .count();
     }
 
-    public boolean has(Integer number) {
+    public boolean has(final Integer number) {
         validateIsNull(number);
         return this.numbers.contains(number);
     }
@@ -43,19 +43,19 @@ public class Lotto {
         return String.join(", ", strNumbers);
     }
 
-    public void validateIsNull(Integer source) {
+    public void validateIsNull(final Integer source) {
         if (isNull(source)) {
             throw nullArgument();
         }
     }
 
-    private static void validateMaxLength(List<Integer> numbers) {
+    private static void validateMaxLength(final List<Integer> numbers) {
         if (numbers.size() != MAX_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private static void validateDuplicatedNumber(List<Integer> numbers) {
+    private static void validateDuplicatedNumber(final List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw duplicatedLottoNumber();
