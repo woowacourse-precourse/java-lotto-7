@@ -1,15 +1,14 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -53,6 +52,32 @@ class LottoResultAnalysisServiceTest {
 
         //then
         assertThat(lottoProfitRate).isEqualTo(expected);
+    }
+
+    @DisplayName("로또의 당첨 유무가 제공되면 당첨 통계를 제공한다.")
+    @ParameterizedTest
+    @MethodSource("provideWinningResults")
+    public void shouldReturnWinningStatistics_givenWinningResults(List<Rank> winningResults, List<Integer> expected) {
+        //given
+
+        //when
+        List<Integer> winningStatistics = resultAnalysisService.getWinningStatistics(winningResults);
+
+        //then
+        assertEquals(winningStatistics, expected);
+    }
+
+    private static Stream<Arguments> provideWinningResults() {
+        return Stream.of(
+            Arguments.of(List.of(Rank.FIFTH, Rank.MISS, Rank.MISS, Rank.MISS),
+                List.of(0, 0, 0, 0, 1, 3)),
+            Arguments.of(List.of(Rank.FIFTH, Rank.FOURTH, Rank.MISS, Rank.MISS),
+                List.of(0, 0, 0, 1, 1, 2)),
+            Arguments.of(List.of(Rank.FIFTH, Rank.FIFTH, Rank.FOURTH, Rank.MISS),
+                List.of(0, 0, 0, 1, 2, 1)),
+            Arguments.of(List.of(Rank.FIFTH, Rank.FIFTH, Rank.FOURTH, Rank.THIRD),
+                List.of(0, 0, 1, 1, 2, 0))
+        );
     }
 
     private static Stream<Arguments> provideValidLottoNumbers() {

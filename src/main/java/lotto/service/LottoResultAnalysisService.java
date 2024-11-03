@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,5 +56,14 @@ public class LottoResultAnalysisService {
         BigDecimal profit = lottoProfitCalculator.getProfit(winningResults);
         BigDecimal profitRate = lottoProfitCalculator.getProfitRate(profit, payment);
         return profitRate.toPlainString();
+    }
+
+    public List<Integer> getWinningStatistics(List<Rank> ranks) {
+        List<Integer> statistics = new ArrayList<>(Collections.nCopies(Rank.values().length, 0));
+        for (Rank rank : ranks) {
+            int index = rank.getIndex();
+            statistics.set(index, statistics.get(index) + 1);
+        }
+        return statistics;
     }
 }
