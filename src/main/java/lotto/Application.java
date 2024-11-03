@@ -17,9 +17,8 @@ public class Application {
         // 당첨 번호 및 보너스 번호 입력
         List<Integer> winningNumbers = getValidWinningNumbers();
         Lotto winningLotto = getValidWinningLotto(winningNumbers);
+        int bonusNumber = getValidBonusNumber(winningLotto);
 
-        //int bonusNumber = getValidBonusNumber(winningLotto);
-        System.out.println("보너스 번호를 입력해 주세요.");
 
 
         System.out.println("당첨 통계");
@@ -82,6 +81,19 @@ public class Application {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 winningNumbers = getValidWinningNumbers();
+            }
+        }
+    }
+
+    private static int getValidBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(bonusNumber, winningLotto);
+                return bonusNumberValidator.getBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
