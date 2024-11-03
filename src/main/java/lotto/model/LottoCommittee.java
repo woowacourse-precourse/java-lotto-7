@@ -23,15 +23,12 @@ public class LottoCommittee {
         int size = numbers.size();
 
         int matchingCount = INITIAL_COUNT;
-        boolean isBonusNumberMatching = false;
         for (int i = LOOP_START_INDEX; i < size; i++) {
             if (numbers.contains(winningNumber.get(i))) {
                 matchingCount++;
             }
         }
-        if (numbers.contains(bonusNumber)) {
-            isBonusNumberMatching = true;
-        }
+        boolean isBonusNumberMatching = numbers.contains(bonusNumber);
 
         return Ranking.of(matchingCount, isBonusNumberMatching);
     }
