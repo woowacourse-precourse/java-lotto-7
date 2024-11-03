@@ -28,7 +28,7 @@ public class WinningService {
 
     public List<List<Integer>> generateLottoNumber(int ticketQuantity) {
         List<List<Integer>> tmpLottos = new ArrayList<>();
-        for(int i=0; i<ticketQuantity; i++) {
+        for (int i = 0; i < ticketQuantity; i++) {
             Lotto lotto = new Lotto(RandomNumber.create());
             lottos.addLotto(lotto);
             tmpLottos.add(lotto.getNumbers());
@@ -40,13 +40,13 @@ public class WinningService {
         return ticket.getQuantity();
     }
 
-    public void winningStatistics(List<Integer> winningNumbers, List<Integer> lottoNumbers, int bonusNumber) {
-        winning = Winning.of(winningNumbers, bonusNumber);
-        int matchCount = WinningCalculator.countMatchingNumber(winning.getNumbers(), lottoNumbers);
-        boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lottoNumbers,
-                winning.getBonusNumber());
-        WinningPrice winningPrice = WinningPrice.of(matchCount, bonusNumberMatched);
-        lottoResult.countWinningPrice(winningPrice);
+    public void winningStatistics(List<Integer> winningNumbers, List<List<Integer>> lottos, int bonusNumber) {
+        for (List<Integer> lotto : lottos) {
+            int matchCount = WinningCalculator.countMatchingNumber(winningNumbers, lotto);
+            boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lotto, bonusNumber);
+            WinningPrice winningPrice = WinningPrice.of(matchCount, bonusNumberMatched);
+            lottoResult.countWinningPrice(winningPrice);
+        }
     }
 
     public Map<WinningPrice, Integer> getLottoResult() {

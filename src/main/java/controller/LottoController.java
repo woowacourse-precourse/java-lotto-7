@@ -17,13 +17,8 @@ public class LottoController {
 
         List<Integer> winningNumbers = createWinningNumber();
         int bonusNumber = createBonusNumber(winningNumbers);
-/*
-        for (Lotto lotto : lottos.getLottos()) {
-            winningService.winningStatistics(winningNumbers, lotto.getNumbers(), bonusNumber);
-        }
 
-
- */
+        winningService.winningStatistics(winningNumbers, lottos, bonusNumber);
         OutputView.printResult(winningService.getLottoResult());
         //String profit = winningService.getProfit(purchaseAmount);
         //OutputView.printProfit(profit);
