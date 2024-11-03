@@ -27,5 +27,7 @@ public class LottoGame {
 
         LottoNumberProvider lottoNumberProvider = new LottoNumberProvider();
         List<Set<Integer>> totalLottoNumbers = lottoNumberProvider.generateAndStoreLottoNumbers(lottoCount);
+
+        outputWriter.printLottoNumbers(lottoCount, totalLottoNumbers);
     }
 }
