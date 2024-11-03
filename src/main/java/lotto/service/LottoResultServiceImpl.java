@@ -1,7 +1,10 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.domain.MatchResults;
 import lotto.domain.WinningLotto;
+import lotto.dto.FinalResultDto;
+import lotto.dto.LottosDto;
 import lotto.utils.parser.Parser;
 import lotto.utils.validator.ComparisonValidator;
 import lotto.utils.validator.Validator;
@@ -19,12 +22,14 @@ public class LottoResultServiceImpl implements LottoResultService {
             , ComparisonValidator bonusNumberValidator
             , Parser<List<Integer>>  stringToIntListParser
             , Parser<Integer> stringToIntParser) {
+
         this.winningNumbersValidator = winningNumbersValidator;
         this.bonusNumberValidator = bonusNumberValidator;
         this.stringToIntListParser = stringToIntListParser;
         this.stringToIntParser = stringToIntParser;
 
     }
+
 
 
     @Override
@@ -39,10 +44,16 @@ public class LottoResultServiceImpl implements LottoResultService {
         bonusNumber = stringToIntParser.parse(rawBonusNumber);
 
         buildWinningLotto();
+    }
 
+    @Override
+    public FinalResultDto getFinalResultDto(LottosDto lottosDto) {
+        MatchResults matchResults = MatchResults.createMatchResults(lottosDto, winningLotto);
+        return new FinalResultDto(matchResults.getRankResults());
     }
 
     private void buildWinningLotto(){
         winningLotto =   WinningLotto.create(winningNumbers,bonusNumber);
     }
+
 }

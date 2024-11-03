@@ -1,4 +1,6 @@
 package lotto.dto;
 
-public record FinalResultDto() {
+import java.util.HashMap;
+
+public record FinalResultDto(HashMap<Integer, Integer> rankResults) {
 }
