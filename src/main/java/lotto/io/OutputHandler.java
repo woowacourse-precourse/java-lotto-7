@@ -48,7 +48,10 @@ public class OutputHandler {
     }
 
     private void displayProfitMargin(LottoStatistics lottoStatistics, int purchaseAmount) {
-        String profitMargin = lottoStatistics.calculateProfitMargin(purchaseAmount);
-        System.out.println("총 수익률은 " + profitMargin + "%입니다.");
+        int prizeAmount = lottoStatistics.calculatePrizeMoney();
+        double profitMargin = lottoStatistics.calculateProfitMargin(purchaseAmount, prizeAmount);
+        String fomattedProfitMargin = String.format("%.1f", profitMargin);
+
+        System.out.println("총 수익률은 " + fomattedProfitMargin + "%입니다.");
     }
 }

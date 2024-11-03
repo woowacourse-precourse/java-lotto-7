@@ -16,20 +16,25 @@ public class LottoStatistics {
     }
 
     public void incrementWinningCount(LottoRank lottoRank) {
-        int currentCount = statistics.get(lottoRank);
-        statistics.put(lottoRank, currentCount + 1);
+        int currentWinningCount = statistics.get(lottoRank);
+        statistics.put(lottoRank, currentWinningCount + 1);
     }
 
-    public String calculateProfitMargin(int purchaseAmount) {
+    public int calculatePrizeMoney() {
         int prizeMoney = 0;
 
         for (LottoRank lottoRank : LottoRank.values()) {
-            prizeMoney += lottoRank.getPrizeMoney() * statistics.get(lottoRank);
+            int rankPrizeMoney = lottoRank.getPrizeMoney();
+            int winningCount = statistics.get(lottoRank);
+
+            prizeMoney += rankPrizeMoney * winningCount;
         }
 
-        double profitMargin = (double) prizeMoney / purchaseAmount * 100;
+        return prizeMoney;
+    }
 
-        return String.format("%.1f", profitMargin);
+    public double calculateProfitMargin(int purchaseAmount, double prizeMoney) {
+        return prizeMoney / purchaseAmount * 100;
     }
 
     public int size() {
