@@ -14,7 +14,6 @@ public class Lotto {
         validateDuplicate(numbers);
         validateRange(numbers);
         this.numbers = numbers;
-        sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -44,10 +43,6 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED.getMessage());
             }
         }
-    }
-
-    private void sort(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
     }
 
     public List<Integer> getNumbers() {

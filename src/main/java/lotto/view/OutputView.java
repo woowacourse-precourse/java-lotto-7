@@ -16,10 +16,10 @@ public class OutputView {
         System.out.println(INPUT_PURCHASE_AMOUNT);
     }
 
-    public static void printPurchaseLottoNumbers(List<LottoNumberDto> purchasedLottoNumberSets) {
-        System.out.printf(PURCHASE_NUMBER_MESSAGE + "%n", purchasedLottoNumberSets.size());
+    public static void printPurchaseLottoNumbers(List<LottoNumberDto> purchasedLottoNumbers) {
+        System.out.printf(PURCHASE_NUMBER_MESSAGE + "%n", purchasedLottoNumbers.size());
 
-        purchasedLottoNumberSets.forEach(lottoNumberDto ->
+        purchasedLottoNumbers.forEach(lottoNumberDto ->
                 System.out.println(lottoNumberDto.numbers())
         );
 
