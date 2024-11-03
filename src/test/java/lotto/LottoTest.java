@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 //import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.Arrays;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,25 +29,11 @@ class LottoTest {
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
-    @DisplayName("당첨 등수가 0~5 범위에 해당하는 숫자가 아니면 예외가 발생한다")
-    void failSetPrizeTierTest() {
+    @DisplayName("로또 번호 가져오기")
+    void getLottoNumbers(){
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        assertThatThrownBy(()-> lotto.setPrizeTier(-1))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(()-> lotto.setPrizeTier(6))
-                .isInstanceOf(IllegalArgumentException.class);
+        ArrayList<Integer> list = new ArrayList<Integer>(Arrays.asList(1,2,3,4,5,6));
+        Assertions.assertThat(lotto.getNumbers()).isEqualTo(list);
     }
-
-    @Test
-    @DisplayName("당첨 등수가 0~5 범위의 정수일 경우 등수 필드에 저장된다")
-    void passSetPrizeTierTest() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lotto.setPrizeTier(0);
-
-        assertThat(lotto.getPrizeTier()).isEqualTo(0);
-    }
-
-
 
 }
