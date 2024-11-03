@@ -8,8 +8,6 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Ticket;
 import lotto.util.BonusCondition;
-import lotto.util.Errors;
-import lotto.util.MessageParser;
 import lotto.util.Ranks;
 
 /*
@@ -64,15 +62,11 @@ public class RankCounter {
     }
 
     private BonusCondition getBonusCondition(Ticket ticket) {
-        if (ticket.getNumbers().stream().anyMatch(Predicate.isEqual(bonus.getNumber()))) {
+        if (ticket.getNumbers().stream().anyMatch(n -> n.equals(bonus.getNumber()))) {
             return BonusCondition.WIN;
         }
 
-        if (ticket.getNumbers().stream().noneMatch(Predicate.isEqual(bonus.getNumber()))) {
-            return BonusCondition.LOSE;
-        }
-
-        throw new IllegalArgumentException(MessageParser.getErrorMessage(Errors.BONUS_UNDETERMINED.getMessage()));
+        return BonusCondition.LOSE;
     }
 
 
