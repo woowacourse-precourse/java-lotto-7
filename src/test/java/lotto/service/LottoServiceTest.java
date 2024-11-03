@@ -22,7 +22,7 @@ class LottoServiceTest {
     @Test
     void 발행한_로또를_반환() {
         LottoService lottoService = new LottoService();
-        LottoTicketsDto lottoTicketsDto = lottoService.createUserLottoTickets(USER_MONEY.getUnit());
+        LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(USER_MONEY.getUnit());
 
         assertThat(lottoTicketsDto.getLottoTickets()).hasSize(USER_MONEY.getUnit() / USER_MONEY_PRICE.getUnit());
     }
@@ -33,7 +33,7 @@ class LottoServiceTest {
     void 모든_구매한_로또와_당첨로또를_비교한다(List<List<Integer>> lottoTickets, List<Integer> winningNumber, int bonusNumber, List<Rank> expectedRanks) {
         LottoService lottoService = new LottoService();
         LottoTicketsDto lottoTicketsDto = new LottoTicketsDto(lottoTickets);
-        List<Rank> ranks = lottoService.calculateUserLottoTicketsRank(lottoTicketsDto, winningNumber, bonusNumber);
+        List<Rank> ranks = lottoService.calculateRanks(lottoTicketsDto, winningNumber, bonusNumber);
 
         assertThat(ranks).containsExactlyElementsOf(expectedRanks);
     }

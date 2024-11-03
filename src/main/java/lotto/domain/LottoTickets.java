@@ -14,10 +14,10 @@ public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(int numberOfTickets) {
-        this.lottoTickets = createUserLottoTickets(numberOfTickets);
+        this.lottoTickets = createLottoTickets(numberOfTickets);
     }
 
-    private List<Lotto> createUserLottoTickets(int numberOfTickets) {
+    private List<Lotto> createLottoTickets(int numberOfTickets) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
             List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_START.getUnit(), LOTTO_END.getUnit(), LOTTO_MAX_NUMBER.getUnit());

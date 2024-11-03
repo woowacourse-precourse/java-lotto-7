@@ -14,16 +14,16 @@ public class LottoController {
 
     public void run() {
         int userMoney = readUserMoneyWithValidation();
-        LottoTicketsDto lottoTicketsDto = lottoService.createUserLottoTickets(userMoney);
+        LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(userMoney);
         printLottoTickets(lottoTicketsDto);
 
-        List<Rank> userRanks = calculateUserLottoTicketsRank(lottoTicketsDto);
+        List<Rank> userRanks = calculateRanks(lottoTicketsDto);
         printUserRanks(userRanks);
 
         printRateOfReturn(lottoService.calculateRateOfReturn(userMoney, userRanks));
     }
 
-    private List<Rank> calculateUserLottoTicketsRank(LottoTicketsDto lottoTicketsDto) {
+    private List<Rank> calculateRanks(LottoTicketsDto lottoTicketsDto) {
         List<Integer> winningLottoNumbers;
         int bonusNumber;
         List<Rank> userRanks;
@@ -32,7 +32,7 @@ public class LottoController {
                 winningLottoNumbers = readWinningLotto();
                 bonusNumber = readBonusNumber();
                 validateDuplicationOfLottoNumber(winningLottoNumbers, bonusNumber);
-                userRanks = lottoService.calculateUserLottoTicketsRank(lottoTicketsDto, winningLottoNumbers, bonusNumber);
+                userRanks = lottoService.calculateRanks(lottoTicketsDto, winningLottoNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

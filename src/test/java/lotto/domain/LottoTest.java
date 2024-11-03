@@ -33,7 +33,7 @@ class LottoTest {
     void 구매한_로또_하나와_당첨_로또를_비교한다(List<Integer> winningLotto, int bonusNumber, Rank expectedRank) {
         Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        Rank rank = userLotto.calculateRank(winningLotto, bonusNumber);
+        Rank rank = userLotto.calculateRanks(winningLotto, bonusNumber);
 
         assertThat(rank).isEqualTo(expectedRank);
     }

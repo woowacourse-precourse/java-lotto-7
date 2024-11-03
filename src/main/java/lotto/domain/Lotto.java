@@ -18,17 +18,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Rank calculateRank(List<Integer> winningLottoNumbers, int bonusNumber) {
-        int basicCount = 0;
-        int bonusCount = 0;
-        for (int winningLottoNumber : winningLottoNumbers) {
-            if (numbers.contains(winningLottoNumber)) {
-                basicCount++;
-            }
-        }
-        if (numbers.contains(bonusNumber)) {
-            bonusCount++;
-        }
+    public Rank calculateRanks(List<Integer> winningLottoNumbers, int bonusNumber) {
+        int basicCount = (int) winningLottoNumbers.stream()
+                .filter(numbers::contains)
+                .count();
+
+        int bonusCount = (int) numbers.stream()
+                .filter(number -> number == bonusNumber)
+                .count();
 
         return Rank.calculateRank(basicCount, bonusCount);
     }
