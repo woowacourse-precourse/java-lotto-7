@@ -24,11 +24,6 @@ public class LottoResults {
         }
     }
 
-    public long calculateTotalEarnings() {
-        return lottoResults.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-    }
 
     public void calculateResults(LottoTickets lottoTickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
@@ -44,17 +39,15 @@ public class LottoResults {
     }
 
     private int calculateMatchCount(WinningNumbers winningNumbers, Lotto lotto) {
-        int matchCount = 0;
-        List<Integer> winningNumber = winningNumbers.getWinningNumbers();
-        for (Integer number : winningNumber) {
-            if (winningNumber.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) winningNumbers.getWinningNumbers().stream()
+                .filter(lotto::contains)
+                .count();
     }
 
-    public Map<Rank, Integer> getLottoResults() {
-        return Map.copyOf(lottoResults);
+    public long calculateTotalEarnings() {
+        return lottoResults.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
+
 }
