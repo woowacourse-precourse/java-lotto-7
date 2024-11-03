@@ -1,4 +1,4 @@
-package lotto.custom.service.LottoDrawingService;
+package lotto.custom.service.LottoDrawingServiceTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -51,7 +51,7 @@ public class WinningNumberServiceTest {
     void 서비스_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트() {
         assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3, 4 5 6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.SPACES_BETWEEN_NUMBERS);
     }
 
     @DisplayName("서비스_당첨번호입력_숫자가6개가아닐때_테스트")

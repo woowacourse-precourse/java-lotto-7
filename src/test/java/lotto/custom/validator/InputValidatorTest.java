@@ -100,7 +100,7 @@ public class InputValidatorTest {
     void 유효성검증_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbersInput("1, 2, 3, 4 5 6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.SPACES_BETWEEN_NUMBERS);
     }
 
     @DisplayName("유효성검증_당첨번호입력_숫자가6개가아닐때_테스트")
@@ -169,7 +169,7 @@ public class InputValidatorTest {
     void 유효성검증_보너스번호입력_숫자와숫자사이에공백이존재할때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("1 2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.SPACES_BETWEEN_NUMBERS);
     }
 
     @DisplayName("유효성검증_보너스번호입력_보너스번호와당첨번호가같을때_테스트") // 고칠 것

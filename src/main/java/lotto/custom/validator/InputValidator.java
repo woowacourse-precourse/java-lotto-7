@@ -38,7 +38,7 @@ public class InputValidator {
     public void validateWinningNumbersInput(String input) {
         exceptions.emptyInput(input);
         exceptions.invalidCharacters(input, DIGIT_COMMA_SPACE_ONLY_REGEX);
-        exceptions.SpacesBetweenNumbers(input);
+        exceptions.spacesBetweenNumbers(input);
     }
 
     public void validateWinningNumbers(List<Integer> numbers) {
@@ -71,7 +71,7 @@ public class InputValidator {
     public void validateBonusNumberInput(String input) {
         exceptions.emptyInput(input);
         exceptions.invalidCharacters(input, DIGITS_SPACE_ONLY_REGEX);
-        exceptions.SpacesBetweenNumbers(input);
+        exceptions.spacesBetweenNumbers(input);
     }
 
     public void validateBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {

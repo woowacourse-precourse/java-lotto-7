@@ -4,18 +4,49 @@
 
 ## 프로그래밍 요구 사항
 
-- [ ] 3항 연산자, else 예약어, switch/case 는 쓰지 않는다.
+- [x] 3항 연산자, else 예약어, switch/case 는 쓰지 않는다.
 - [ ] indent(인덴트, 들여쓰기)는 2까지만 허용한다. (while문 안에 if문이 있으면 들여쓰기는 2이다.)
 - [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- [x] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - [x] Java Enum을 적용하여 프로그램을 구현한다.
 - [x] 제공된 Lotto 클래스를 사용하여 구현해야 한다.
 - [x] 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 
 ## 패키지 목록
 
-```
+- 자주 처리해야하는 예외사항은 common 패키지를 만들어 분리시켰습니다.
 
+```
+lotto
+├───Application.java                      // 실행파일
+└───custom                                
+    ├───common                      
+    │   ├───ErrorMessages.java            // 공통 예외메시지 상수 처리
+    │   └───Exceptions.java               // 공통 예외처리
+    ├───constants
+    │   ├───NumberConstants.java          // 숫자 상수 처리
+    │   └───RegexConstants.java           // 정규표현식 상수 처리
+    ├───controller
+    │   └───LottoController.java          // 컨트롤러
+    ├───model
+    │   ├───Lotto.java                    // 로또 관리
+    │   ├───LottoMaker.java               // 로또 발행 기능
+    │   ├───LottoPrize.java               // 로또 상금 정의 열거형 클래스
+    │   ├───Lottos.java                   // 여러 장의 로또 관리
+    │   ├───LottoWinningChecker.java      // 로또 당첨 확인 기능
+    │   └───LottoYieldCalculator.java     // 로또 수익률 계산 기능
+    ├───service
+    │   ├───CalculateYieldService.java    // 수익률 관련 서비스
+    │   ├───LottoDrawingService.java      // 번호 추첨 관련 서비스
+    │   ├───LottoPurchaseService.java     // 구입 관련 서비스
+    │   └───LottoResultCheckerService.java// 당첨 여부 확인 관련 서비스
+    ├───validator
+    │   ├───CustomErrorMessages.java      // 예외 메시지 상수 처리
+    │   └───InputValidator.java           // 유효성 검사 기능
+    └───view
+        ├───InputView.java                // 입력 기능
+        ├───OutputView.java               // 출력 기능
+        └───PromptMessages.java           // 입출력 관련 메시지 상수 처리
 ```
 
 ## 기능 목록
@@ -61,6 +92,8 @@
 1에서 45 사이의 중복되지 않은 정수 6개 반환
 Randoms.pickUniqueNumbersInRange(1, 45, 6);
 ```
+
+- **출력예시**:
 
 ```출력 예시
 8개를 구매했습니다.
@@ -111,6 +144,8 @@ Randoms.pickUniqueNumbersInRange(1, 45, 6);
 - 기능 요구사항 2) 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다.
 - 프로그래밍 요구사항) 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
+- **입력예시**:
+
 ```입력예시
 보너스 번호를 입력해 주세요.
 7
@@ -140,6 +175,8 @@ Randoms.pickUniqueNumbersInRange(1, 45, 6);
     - 5개 일치, 보너스 볼 일치 (30,000,000원) - N개
     - 6개 일치 (2,000,000,000원) - N개
 
+- **출력예시**:
+
 ```출력예시
 당첨 통계
 ---
@@ -154,6 +191,8 @@ Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
 - 기능 요구사항 1) 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%)
 - 기능 요구사항 2) 수익률을 출력한다.
+
+- **출력예시**:
 
 ```출력예시
 총 수익률은 62.5%입니다.

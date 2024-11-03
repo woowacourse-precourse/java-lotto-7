@@ -11,5 +11,5 @@ public class ErrorMessages {
 
     public static final String INT_OUT_OF_BOUNDS = "[ERROR] 입력된 숫자가 int 타입의 범위를 초과합니다.";
 
-    public static final String SPACE_BETWEEN_NUMBERS = "[ERROR] 숫자와 숫자 사이에 공백이 존재합니다.";
+    public static final String SPACES_BETWEEN_NUMBERS = "[ERROR] 숫자와 숫자 사이에 공백이 존재합니다.";
 }

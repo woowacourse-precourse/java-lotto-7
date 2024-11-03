@@ -28,10 +28,10 @@ public class Exceptions {
             throw new IllegalArgumentException(ErrorMessages.INT_OUT_OF_BOUNDS);
         }
     }
-    
-    public void SpacesBetweenNumbers(String input) {
+
+    public void spacesBetweenNumbers(String input) {
         if (input.matches(DIGIT_SPACE_DIGIT_REGEX)) {
-            throw new IllegalArgumentException(ErrorMessages.SPACE_BETWEEN_NUMBERS);
+            throw new IllegalArgumentException(ErrorMessages.SPACES_BETWEEN_NUMBERS);
         }
     }
 
