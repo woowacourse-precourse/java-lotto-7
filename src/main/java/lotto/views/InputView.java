@@ -1,28 +1,22 @@
 package lotto.views;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Messages;
 
-public class InputView {
+public class InputView extends LottoView {
 
-    public enum promptForInput {
-        Purchase("구입금액을 입력해 주세요."),
-        LottoNumbers("당첨 번호를 입력해 주세요."),
-        BonusNumber("보너스 번호를 입력해 주세요.")
-        ;
-
-        private final String inputPrompt;
-
-        promptForInput(String inputPrompt) {
-            this.inputPrompt = inputPrompt;
-        }
-
-        public String getInputPrompt() {
-            return inputPrompt;
-        }
+    public void requestPurchaseAmount() {
+        displayMessage(Messages.INPUT_PURCHASE_AMOUNT);
     }
 
-    public String requestUserInput(promptForInput prompt) {
-        System.out.println(prompt.getInputPrompt());
-        return Console.readLine();
+    public void requestWinningNumbers() {
+        System.out.println();
+        displayMessage(Messages.INPUT_WINNING_NUMBERS);
     }
+
+    public void requestBonusNumber() {
+        System.out.println();
+        displayMessage(Messages.INPUT_BONUS_NUMBER);
+    }
+
 }
