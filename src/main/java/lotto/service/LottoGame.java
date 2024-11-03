@@ -32,7 +32,7 @@ public class LottoGame {
     }
 
     private List<Lotto> purchaseLottos(int amount){
-        return IntStream.rangeClosed(0, amount / LOTTO_PRICE)
+        return IntStream.rangeClosed(0, amount / LOTTO_PRICE - 1)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
                 .collect(Collectors.toList());
     }
