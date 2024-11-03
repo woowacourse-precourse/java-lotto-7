@@ -13,5 +13,7 @@ public class InputView {
         if (price < 0) {
             throw new IllegalArgumentException("음이 아닌 정수여야 합니다");
         }
+        
+        return price;
     }
 }
