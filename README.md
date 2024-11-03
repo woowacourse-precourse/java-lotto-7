@@ -15,4 +15,5 @@
     - 메서드는 한 가지 역할
     - 메서드 길이 <= 15 line
     - else 예약어 사용X(if에서 return)
+    - JAVA Enum 적용
     - 테스트 코드 작성
