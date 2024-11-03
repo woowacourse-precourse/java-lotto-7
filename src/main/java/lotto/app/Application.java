@@ -29,6 +29,7 @@ public class Application {
         outputHandler.printLottos(lottos);
 
         Lotto successLotto = getWinningLotto();
+        int bonusNum = inputHandler.getBonusNum();
     }
 
     private Lotto getWinningLotto() {

@@ -42,6 +42,20 @@ public class InputHandler {
         }
     }
 
+    public int getBonusNum() {
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                int bonusNum = validateAndParseNumInRange(input);
+                return bonusNum;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private int validateAndParseNumInRange(String input) {
         int num = parseToInt(input);
         inputValidator.checkInRange1To45(num);
