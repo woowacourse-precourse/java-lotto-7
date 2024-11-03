@@ -26,7 +26,7 @@ public class LottoVendingMachine {
 
     private void checkMoney(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 입력한 금액은 1000원 단위어야 합니다.");
         }
     }
 }
