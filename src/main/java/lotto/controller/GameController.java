@@ -27,16 +27,15 @@ public class GameController {
     }
 
     private int getPurchaseAmount() {
-        String inputPurchaseAmount = UserInputView.inputPurchaseAmount();
-
-        try {
-            InputValidator.validatePurchaseAmount(inputPurchaseAmount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getPurchaseAmount();
+        while (true) {
+            try {
+                String inputPurchaseAmount = UserInputView.inputPurchaseAmount();
+                InputValidator.validatePurchaseAmount(inputPurchaseAmount);
+                return Integer.parseInt(inputPurchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return Integer.parseInt(inputPurchaseAmount);
     }
 
     private List<Lotto> purchaseLottos(int purchaseAmount) {
@@ -47,17 +46,16 @@ public class GameController {
     }
 
     private List<Integer> getWinningNumbers() {
-        String inputWinningNumbers = UserInputView.inputWinningNumbers();
-        List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers);
-
-        try {
-            InputValidator.validateWinningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getWinningNumbers();
+        while (true) {
+            try {
+                String inputWinningNumbers = UserInputView.inputWinningNumbers();
+                List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers);
+                InputValidator.validateWinningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return winningNumbers;
     }
 
     private List<Integer> parseWinningNumbers(String inputWinningNumbers) {
@@ -72,16 +70,15 @@ public class GameController {
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
-        String inputBonusNumber = UserInputView.inputBonusNumber();
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-
-        try {
-            InputValidator.validateBonusNumber(bonusNumber, winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getBonusNumber(winningNumbers);
+        while (true) {
+            try {
+                String inputBonusNumber = UserInputView.inputBonusNumber();
+                int bonusNumber = Integer.parseInt(inputBonusNumber);
+                InputValidator.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return bonusNumber;
     }
 }
