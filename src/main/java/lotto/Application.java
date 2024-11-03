@@ -34,7 +34,7 @@ public class Application {
         lottoCount = money / LOTTO_PRICE;
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNumbers = RandomMaker.getRandomNumbers(NUMBER_COUNT);
+            List<Integer> randomNumbers = RandomMaker.generateLottoNumbers(NUMBER_COUNT);
             Lotto lotto = new Lotto(randomNumbers);
             lottos.add(lotto);
         }
