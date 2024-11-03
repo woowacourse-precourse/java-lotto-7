@@ -19,7 +19,7 @@ class WinnerTest {
         List<Integer> winningNumbersInput = Input.getWinningNumbersInput();
 
         // when
-        Winner winner = new Winner(winningNumbersInput);
+        Winner winner = new Winner(winningNumbersInput, 1);
 
         // then
         Assertions.assertEquals(winner.getWinningNumbers(), List.of(1, 2, 3, 4, 5, 6));

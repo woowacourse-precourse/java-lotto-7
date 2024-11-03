@@ -6,9 +6,11 @@ import lotto.lotto.Lotto;
 public class Winner {
 
     private final Lotto winningNumber;
+    private final int bonusNumber;
 
-    public Winner(List<Integer> winningNumber) {
+    public Winner(List<Integer> winningNumber, int bonusNumber) {
         this.winningNumber = new Lotto(winningNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public int determineLottoRank(Lotto lotto) {
@@ -23,5 +25,9 @@ public class Winner {
 
     public List<Integer> getWinningNumbers() {
         return winningNumber.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
