@@ -27,6 +27,9 @@ public class Application {
         try {
             // 4.2 입력된 보너스 번호를 정수로 변환할 수 없는 경우 예외 처리하는 기능
             validateNumericString(bonusNumberInput);
+            // 4.3 입력된 보너스 번호가 범위(1~45)에 맞지 않는 경우 예외 처리하는 기능
+            int bonusNumber = Integer.parseInt(bonusNumberInput);
+            validateLottoNumberInRange(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
