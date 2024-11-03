@@ -1,11 +1,10 @@
 package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Player;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Player;
 
 public class LottoService {
     public Lotto generateLotto() {
@@ -20,7 +19,7 @@ public class LottoService {
     public List<Lotto> generateLottoTickets(Player player) {
         int ticketCount = calculateTicketCount(player.getPurchaseAmount());
         List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < ticketCount; i ++) {
+        for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = generateLotto();
             player.addLotto(lotto);
         }
@@ -28,9 +27,6 @@ public class LottoService {
     }
 
     public int calculateTicketCount(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            //TODO: 예외처리
-        }
         return purchaseAmount / 1000;
     }
 

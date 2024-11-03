@@ -1,10 +1,7 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.Player;
-import lotto.model.WinningNumbers;
+import lotto.model.domain.Player;
 import lotto.model.service.LottoService;
 import lotto.model.service.WinningNumbersService;
 import lotto.util.Validator;
@@ -14,13 +11,11 @@ import lotto.view.OutputView;
 public class LottoController {
     OutputView outputView;
     InputView inputView;
-
+    LottoService lottoService;
+    WinningNumbersService winningNumbersService;
     private Player player;
     private int purchaseAmount;
     private List<Integer> winningNumbers;
-
-    LottoService lottoService;
-    WinningNumbersService winningNumbersService;
 
     public LottoController(InputView inputView,
                            OutputView outputView,
@@ -63,7 +58,6 @@ public class LottoController {
     private void generateLottos() {
         outputView.printLottoNumbers(player.getLottoNumbers());
 
-        // 당첨 번호 입력 및 검증
         while (true) {
             try {
                 outputView.enterWinningNumbers();
@@ -83,7 +77,6 @@ public class LottoController {
         }
         player.setWinningNumbers(winningNumbersService.getWinningNumbers());
     }
-
 
     private void generateBonusNumber() {
         while (true) {

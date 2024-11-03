@@ -1,10 +1,8 @@
-package lotto.model;
+package lotto.model.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
-
-import lotto.model.WinningMatch;
 
 public class Player {
     private final int purchaseAmount;
@@ -21,12 +19,10 @@ public class Player {
         return purchaseAmount;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
     public int getWinningMoney() {
         return winningMoney;
     }
+
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
@@ -43,10 +39,6 @@ public class Player {
         this.winningNumbers = winningNumbers; // WinningNumbers 설정
     }
 
-    public WinningNumbers getWinningNumbers() {
-        return winningNumbers; // WinningNumbers 반환
-    }
-
     public List<Integer> checkWinning() {
         List<Integer> winningRank = new ArrayList<>(Collections.nCopies(WinningMatch.values().length, 0));
         for (Lotto lotto : lottos) {
@@ -61,8 +53,6 @@ public class Player {
 
     public String getRateOfReturn(int winning) {
         String roundFormat = "%.".concat(Integer.toString(1).concat("f"));
-        System.out.println("winningAmount >>>>>" + winning);
-        System.out.println("purchaseAmount >>>>>" + purchaseAmount);
-        return String.format(roundFormat, (double)winning * 100 / purchaseAmount).concat("%");
+        return String.format(roundFormat, (double) winning * 100 / purchaseAmount).concat("%");
     }
 }

@@ -10,7 +10,7 @@ public enum ValidatorErrorMessage {
     MONEY_UNIT_EXCEPTION("1000원 단위로 입력해야 합니다.");
 
     private final String errorMessage;
-    private final static String prefix = "[ERROR]";
+    private final static String prefix = "[ERROR] ";
 
     ValidatorErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;

@@ -2,11 +2,11 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
-import lotto.model.Lotto;
+import lotto.model.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -22,6 +22,8 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
@@ -46,6 +48,8 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    //TODO: 각종 입력(로또번호, 보너스번호, 금액 등)이 공백일경우 추가하기
 
     // 로또의 범위(1-45 사이)
     // 로또 정수 이외의 값
@@ -72,27 +76,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 금액
-    // 금액의 단위(1,000원 단위)
-    @DisplayName("로또 번호가 중복되면 예외가 발생한다.")
-    @Test
-    void 금액의_단위_확인() {
 
-    }
-    
-    // 금액 정수 이외의 값(문자열, 정수 이외의 수 등)
-    // 금액이 0원 이하인 경우
-
-    // TODO: 당첨번호
-    // 당첨 번호의 개수
-    // 당첨 번호의 범위
-    // 당첨 번호의 중복
-    // 당첨 번호가 정수 이외의 값
-
-    // TODO: 보너스 번호
-    // 보너스 번호가 당첨 번호와 중복
-    // 보너스 번호의 범위
-    // 보너스 번호가 정수 이외의 값
 
     // TODO: 수익률 계산
     // 수익률이 정상적으로 계산되는지

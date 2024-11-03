@@ -1,7 +1,7 @@
 package lotto.model.service;
 
 import java.util.List;
-import lotto.model.WinningNumbers;
+import lotto.model.domain.WinningNumbers;
 import lotto.view.InputView;
 
 public class WinningNumbersService {
@@ -18,9 +18,11 @@ public class WinningNumbersService {
         winningNumbers.setWinningNumbers(numbers);
     }
 
-    public void inputBonusNumber() {
+    public int inputBonusNumber() {
         int bounsNumber = inputView.getBonusNumber();
         winningNumbers.setBonusNumber(bounsNumber);
+
+        return bounsNumber;
     }
 
     public WinningNumbers getWinningNumbers() {
