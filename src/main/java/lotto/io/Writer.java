@@ -8,6 +8,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Writer {
+    public static void writeResult(Result result) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Map<Prize, Integer> prizeCount = result.getImmutablePrizeCount();
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.FAIL)
+                continue;
+
+            String matchMessage = constructMessageFrom(prize);
+            int count = getCount(prizeCount, prize);
+
+            System.out.printf(matchMessage + " - %d개%n", count);
+        }
+    }
 
     public static void writeMessage(String message) {
         System.out.println(message);
