@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningKind;
+import lotto.util.LottoUtil;
 import lotto.view.Error;
 import lotto.util.Util;
 import lotto.view.InputGuide;
