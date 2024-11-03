@@ -25,4 +25,12 @@ public class LottoService {
         return userNumbers.getUserNumbers();
     }
 
+    public void generateLotto(String inputValue) {
+        String[] lottoNumber = inputValue.split(",");
+        List<Integer> lottoNumberList = Arrays.stream(lottoNumber)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        lotto = new Lotto(lottoNumberList);
+    }
+
 }
