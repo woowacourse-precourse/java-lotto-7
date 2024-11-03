@@ -46,7 +46,7 @@ public class OutputView {
             stringBuilder.append(DISPLAY_RESULT_INFO.formatWith(
                     rankDTO.matchCount(),
                     isFiveRank(rankDTO),
-                    rankDTO.price() + "",
+                    rankDTO.price(),
                     lottoStatistics.statistics().get(rankDTO)
             ));
             stringBuilder.append('\n');
@@ -60,9 +60,9 @@ public class OutputView {
     }
 
     private String isFiveRank(RankDTO rankDTO) {
-        if (rankDTO.rank() == 5 && rankDTO.containsBonus()) {
-            return ", 보너스 볼 일치";
+        if (rankDTO.rank() == 2 && rankDTO.containsBonus()) {
+            return ", 보너스 볼 일치 ";
         }
-        return "";
+        return " ";
     }
 }

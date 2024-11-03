@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.constant.LottoConstants.NUMBER_COUNT;
 
-import java.util.Objects;
 import lotto.exception.DuplicateLottoNumberException;
 
 public class WinningLotto {
@@ -40,7 +39,7 @@ public class WinningLotto {
     private int matchCount(Lotto lotto) {
         int matchCount = 0;
         for (int i = 0; i < NUMBER_COUNT; i++) {
-            if (Objects.equals(this.lotto.getNumber(i), lotto.getNumber(i))) {
+            if (this.lotto.getNumbers().contains(lotto.getNumber(i))) {
                 matchCount++;
             }
         }

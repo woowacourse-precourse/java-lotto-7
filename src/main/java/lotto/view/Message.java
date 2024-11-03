@@ -9,8 +9,8 @@ public enum Message {
     INPUT_LOTTO_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
     DISPLAY_RESULT_TITLE_MESSAGE("당첨 통계"),
     DISPLAY_RESULT_TITLE_DIVIDER("---"),
-    DISPLAY_RESULT_INFO("%d개 일치 %s(%s원) - %d개"),
-    DISPLAY_PROFIT("총 수익률은 %s입니다.")
+    DISPLAY_RESULT_INFO("%d개 일치%s(%,d원) - %d개"),
+    DISPLAY_PROFIT("총 수익률은 %s%%입니다.")
     ;
 
     private final String message;
