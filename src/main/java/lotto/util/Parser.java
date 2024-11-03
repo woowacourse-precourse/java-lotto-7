@@ -1,16 +1,20 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Parser {
-    public static int parseStringToInt(String inputValue) {
+    private static final String SEPARATOR = ",";
+
+    // TODO: 정적 메서드로 갈지? DI 할지?
+    public static int parseStringToInt(final String inputValue) {
         long number = Long.parseLong(inputValue);
-        checkRange(number);
+        Validator.checkIntegerRange(number);
         return (int) number;
     }
-    private static void checkRange(long value) {
-        if (value < Integer.MIN_VALUE || value > Integer.MAX_VALUE) {
-            // TODO: 알맞은 Exception으로 변환
-            throw new IllegalArgumentException();
-        }
+
+    public static List<String> parseElements(final String inputValue) {
+        return Arrays.stream(inputValue.split(SEPARATOR)).toList();
     }
 
 }
