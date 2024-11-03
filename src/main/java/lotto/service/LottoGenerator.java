@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -25,7 +26,7 @@ public class LottoGenerator {
         lotto = new Lotto[numberOfLottoTickets];
 
         for (int i = 0; i < numberOfLottoTickets; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBERS_COUNT);
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBERS_COUNT));
             Collections.sort(randomNumbers);
 
             lotto[i] = new Lotto(randomNumbers);
