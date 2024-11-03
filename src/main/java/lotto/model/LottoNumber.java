@@ -1,6 +1,10 @@
 package lotto.model;
 
+import java.util.regex.Pattern;
+import lotto.model.exception.DomainExceptionMessage;
+
 public class LottoNumber {
+    private static final Pattern numberPattern = Pattern.compile("^[0-9]+$");
 
     private final int number;
 
@@ -22,5 +26,13 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Integer.hashCode(number);
+    }
+
+    private void validateNumberPattern(final String number) {
+        if (!numberPattern.matcher(number).matches()) {
+            throw new IllegalArgumentException(
+                    DomainExceptionMessage.INVALID_NUMBER_FORMAT.getMessage()
+            );
+        }
     }
 }
