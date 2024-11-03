@@ -12,11 +12,13 @@ public class LottoInput {
     }
 
     public static List<String> inputCorrectNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         return Arrays.stream(Console.readLine().split(",")).toList();
     }
 
     public static String inputBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }

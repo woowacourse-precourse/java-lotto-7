@@ -40,4 +40,13 @@ public enum Rank {
     public int getPrize() {
         return prize;
     }
+
+    public String getRankResult(int count) {
+        String rankResultFormat = String.format("%,d", prize);
+
+        if(this == _2ND_WINNER) {
+            return matchCount + "개 일치, 보너스 볼 일치 ("+rankResultFormat+"원) - "+count+"개";
+        }
+        return matchCount + "개 일치 ("+rankResultFormat+"원) - "+count+"개";
+    }
 }
