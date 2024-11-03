@@ -60,18 +60,7 @@ public class LottoScoreboard {
         sixMatches++;
         totalWinnings += 2000000000;
     }
-
-    public void printScoreboard() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-        System.out.println(threeMatches + "개 일치 (5,000원) - " + threeMatches + "개");
-        System.out.println(fourMatches + "개 일치 (50,000원) - " + fourMatches + "개");
-        System.out.println(fiveMatches + "개 일치 (1,500,000원) - " + fiveMatches + "개");
-        System.out.println(fiveBonusMatches + "개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveBonusMatches + "개");
-        System.out.println(sixMatches + "개 일치 (2,000,000,000원) - " + sixMatches + "개");
-        System.out.println("총 수익률은 " + calculateTotalProfit() + "입니다.");
-    }
-
+    
     public String calculateTotalProfit() {
         double profit = ((double) totalWinnings / totalSpent) * 100; // 수익률 계산
         return String.format("%.1f%%", Math.round(profit * 10.0) / 10.0); // 소수점 둘째 자리 반올림
