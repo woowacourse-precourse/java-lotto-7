@@ -15,4 +15,14 @@ class ComputerTest {
 
         assertEquals(winningNumbers, winningLotto.getNumbers());
     }
+
+    @Test
+    void 보너스_번호_설정() {
+        int bonusNumber = 7;
+
+        Computer computer = new Computer(List.of(1, 2, 3, 4, 5, 6));
+        computer.setBonusNumber(bonusNumber);
+
+        assertEquals(bonusNumber, computer.getBonusNumber());
+    }
 }
