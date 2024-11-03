@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +14,8 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    @DisplayName("로또가 정상적으로 동작한다.")
+    void processLotto() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -47,9 +49,32 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("금액 입력이 올바르지 않을 경우 예외가 발생한다.")
+    void throwExceptionAmountInput() {
         assertSimpleTest(() -> {
             runException("1000j");
+            runException("500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 올바르지 않을 경우 예외가 발생한다.")
+    void throwExceptionWinningNumbersInput() {
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6,7");
+            runException("8000","1,2,3,4,i,7");
+            runException("8000","");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 올바르지 않을 경우 예외가 발생한다.")
+    void throwExceptionBonusNumberInput() {
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6","46");
+            runException("8000","1,2,3,4,5,6","6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
@@ -58,4 +83,5 @@ class ApplicationTest extends NsTest {
     public void runMain() {
         Application.main(new String[]{});
     }
+
 }
