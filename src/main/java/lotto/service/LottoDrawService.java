@@ -17,7 +17,7 @@ public class WinningManager {
         for (LottoRank rank : LottoRank.values()) {
             sum += rank.getPrize() * matchingResult.get(rank.name());
         }
-        double result = sum / lottoRepository.getLottoNumbers().size();
+        double result = sum / (lottoRepository.getLottoNumbers().size() * 1000) * 100;
         return result;
     }
 }

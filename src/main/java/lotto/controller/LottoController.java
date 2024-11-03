@@ -3,37 +3,35 @@ package lotto.controller;
 import java.util.Map;
 import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
-import lotto.service.BonusNumberManager;
+import lotto.service.LottoDrawService;
 import lotto.service.LottoTicketService;
 import lotto.service.WininngNumberManager;
-import lotto.service.WinningManager;
 import lotto.view.OutputView;
 
 public class LottoController {
     OutputView outputView = new OutputView();
     LottoRepository lottoRepository = new InMemoryLottoRepository();
+    private int numberOfLotto;
 
     public void createLottoNumber(int price) {
         LottoTicketService lottoTicketService = new LottoTicketService();
-        int numberOfLotto = lottoTicketService.purchaseLottoTickets(price);
+        numberOfLotto = lottoTicketService.purchaseLottoTickets(price);
         lottoTicketService.generateLottoNumbers(numberOfLotto, lottoRepository);
-        outputView.result(lottoTicketService.getRandomLottoNumbers(lottoRepository));
+        outputView.result(lottoTicketService.getLottoNumbers(lottoRepository));
     }
 
-    public void createWinningNumber(String s) {
-        WininngNumberManager wininngNumberManager = new WininngNumberManager(s, lottoRepository);
-        wininngNumberManager.createWinningNumber();
+    public void createWinningNumber(String[] inputWinningNumber) {
+        new WininngNumberManager().createWinningNumber(inputWinningNumber, lottoRepository);
     }
 
     public void createBonusNumber(int bonusNumber) {
-        new BonusNumberManager().createBonusNumber(bonusNumber, lottoRepository);
-
+        new WininngNumberManager().createBonusNumber(bonusNumber, lottoRepository);
     }
 
     public void calculateRate() {
-        WinningManager winningManager = new WinningManager();
-        Map<String, Integer> resultMap = winningManager.checkWinning(lottoRepository);
+        LottoDrawService lottoDrawService = new LottoDrawService();
+        Map<String, Integer> resultMap = lottoDrawService.checkWinning(lottoRepository);
         outputView.printresult(resultMap);
-        outputView.printRate(winningManager.calculateRate(resultMap, lottoRepository));
+        outputView.printRate(lottoDrawService.calculateRate(resultMap, numberOfLotto));
     }
 }
