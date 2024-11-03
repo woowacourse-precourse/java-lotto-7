@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoResultTest {
 
     private LottoResult lottoResult;
-    private WinningNumbers winningNumbers;
+    private LottoNumbers lottoNumbers;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -27,7 +27,7 @@ public class LottoResultTest {
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        winningNumbers = new WinningNumbers(numbers, bonusNumber);
+        lottoNumbers = new LottoNumbers(numbers, bonusNumber);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LottoResultTest {
         );
         LottoTicket lottoTicket = new LottoTicket(lottos);
 
-        lottoResult.evaluateLottoResults(lottoTicket, winningNumbers);
+        lottoResult.evaluateLottoResults(lottoTicket, lottoNumbers);
 
         assertThat(Rank.FIRST.getCount()).isEqualTo(1);
         assertThat(Rank.SECOND.getCount()).isEqualTo(1);
@@ -52,9 +52,9 @@ public class LottoResultTest {
 
     @Test
     void 수익률을_올바르게_계산한다() {
-        Rank.FIFTH.increaseCount();   // 5등 1회 당첨
+        Rank.FIFTH.increaseCount();// 5등 1회 당첨
 
-        int purchaseAmount = 8000;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000);
 
         double rateOfReturn = lottoResult.calculateRateOfReturn(purchaseAmount);
         assertThat(rateOfReturn).isEqualTo(62.5);
