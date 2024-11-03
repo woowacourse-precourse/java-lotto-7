@@ -1,16 +1,16 @@
 package lotto;
 
-import lotto.service.ApplicationService;
+import lotto.service.LottoApplicationProcessor;
 
 public class Application {
-    private final ApplicationService applicationService;
+    private final LottoApplicationProcessor lottoApplicationProcessor;
 
     public Application() {
-        this.applicationService = new ApplicationService();
+        this.lottoApplicationProcessor = new LottoApplicationProcessor();
     }
 
     public void run() {
-        this.applicationService.run();
+        this.lottoApplicationProcessor.run();
     }
 
     public static void main(String[] args) {

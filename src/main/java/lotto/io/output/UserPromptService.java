@@ -1,6 +1,6 @@
-package lotto.service;
+package lotto.io.output;
 
-public class Prompter {
+public class UserPromptService {
     private static final String INPUT_PURCHASE_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBER_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
@@ -8,7 +8,7 @@ public class Prompter {
     private static final String OUTPUT_WINNING_STATISTICS_NOTICE = "당첨 통계\n---";
     private static final String OUTPUT_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
 
-    public Prompter() {
+    public UserPromptService() {
     }
 
     public void showMessage(String message) {

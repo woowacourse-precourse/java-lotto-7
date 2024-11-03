@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.Set;
 public class Lotto {
     private static final int START_VALUE = 1;
     private static final int END_VALUE = 45;
-    private static final int COUNT = 6; // 이건 LottoService의 상수와 중복됨
+    private static final int COUNT = 6;
     private static final String ERROR_NUMBER_OUT_OF_RANGE = String.format("[ERROR] 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.",
             START_VALUE, END_VALUE);
     private static final String ERROR_NUMBER_COUNT = String.format("[ERROR] 로또 번호는 %d개여야 합니다.", COUNT);

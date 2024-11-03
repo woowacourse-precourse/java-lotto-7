@@ -3,20 +3,21 @@ package lotto.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTicket;
+import lotto.domain.lotto.LottoBonusNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoTicket;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.lotto.LottoWinningCriteria;
 
 public class LottoResultCalculator {
     private final Lotto winningNumber;
-    private final BonusNumber bonusNumber;
+    private final LottoBonusNumber lottoBonusNumber;
     private final LottoTicket lottoTicket;
     private final Map<String, Integer> winningLottos;
 
-    public LottoResultCalculator(Lotto winningNumber, BonusNumber bonusNumber, LottoTicket lottoTicket) {
+    public LottoResultCalculator(Lotto winningNumber, LottoBonusNumber lottoBonusNumber, LottoTicket lottoTicket) {
         this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+        this.lottoBonusNumber = lottoBonusNumber;
         this.lottoTicket = lottoTicket;
         this.winningLottos = new HashMap<>();
     }
@@ -29,7 +30,7 @@ public class LottoResultCalculator {
         double totalPrize = 0;
         for (String key : winningLottos.keySet()) {
             int count = winningLottos.get(key);
-            int prize = LottoRank.valueOf(key).getPrizeMoney();
+            int prize = LottoWinningCriteria.valueOf(key).getPrizeMoney();
             totalPrize += count * prize;
         }
         return (totalPrize / purchaseAmount.getValue()) * 100;
@@ -38,7 +39,7 @@ public class LottoResultCalculator {
     public void run() {
         List<Lotto> lottos = this.lottoTicket.getLottos();
         for (Lotto lotto : lottos) {
-            LottoRank lottoResult = checkWinning(lotto);
+            LottoWinningCriteria lottoResult = checkWinning(lotto);
             if (lottoResult != null) {
                 int count = this.winningLottos.getOrDefault(lottoResult.name(), 0);
                 this.winningLottos.put(lottoResult.name(), count + 1);
@@ -46,10 +47,10 @@ public class LottoResultCalculator {
         }
     }
 
-    private LottoRank checkWinning(Lotto lotto) {
+    private LottoWinningCriteria checkWinning(Lotto lotto) {
         int matchCount = matchingWinningNumberCount(lotto);
         boolean matchBonus = matchBonusNumber(lotto);
-        return LottoRank.findRank(matchCount, matchBonus);
+        return LottoWinningCriteria.findRank(matchCount, matchBonus);
     }
 
     private int matchingWinningNumberCount(Lotto lotto) {
@@ -63,6 +64,6 @@ public class LottoResultCalculator {
     }
 
     private boolean matchBonusNumber(Lotto lotto) {
-        return lotto.contains(bonusNumber.getValue());
+        return lotto.contains(lottoBonusNumber.getValue());
     }
 }

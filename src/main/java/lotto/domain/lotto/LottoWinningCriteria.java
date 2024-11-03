@@ -1,6 +1,6 @@
-package lotto.service;
+package lotto.domain.lotto;
 
-public enum LottoRank {
+public enum LottoWinningCriteria {
     FIRST(6, false, 2000000000),
     SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
@@ -11,14 +11,14 @@ public enum LottoRank {
     private final boolean checkBonus;
     private final int prizeMoney;
 
-    LottoRank(int matchCount, boolean checkBonus, int prizeMoney) {
+    LottoWinningCriteria(int matchCount, boolean checkBonus, int prizeMoney) {
         this.matchCount = matchCount;
         this.checkBonus = checkBonus;
         this.prizeMoney = prizeMoney;
     }
 
-    public static LottoRank findRank(int matchCount, boolean matchBonus) {
-        for (LottoRank rank : LottoRank.values()) {
+    public static LottoWinningCriteria findRank(int matchCount, boolean matchBonus) {
+        for (LottoWinningCriteria rank : LottoWinningCriteria.values()) {
             if (rank.checkBonus && matchBonus && rank.matchCount == matchCount) {
                 return rank;
             }
