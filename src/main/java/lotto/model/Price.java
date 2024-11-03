@@ -4,6 +4,7 @@ public class Price {
 
 	private static final int PRICE_DIVISIBILITY_UNIT = 1000;
 	private static final int PERCENTAGE_MULTIPLIER = 100;
+	private static final String DECIMAL_FORMAT = "#.#";
 
 	private final int price;
 
