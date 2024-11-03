@@ -1,25 +1,25 @@
 package lotto.controller.domain;
 
 import lotto.buyer.domain.Buyer;
-import lotto.money.domain.BenefitCreatorService;
+import lotto.money.service.BenefitCalculator;
 import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
 import lotto.money.domain.Benefit;
 import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.WinningLotto;
-import lotto.view.output.domain.ResultViewService;
+import lotto.view.output.service.ResultViewService;
 
 public class LottoController {
     private final Buyer buyer;
     private final LottoMachine lottoMachine;
-    private final BenefitCreatorService benefitCreator;
+    private final BenefitCalculator benefitCreator;
     private final ResultViewService resultViewService;
 
     public LottoController(
             Buyer buyer,
             LottoMachine lottoMachine,
-            BenefitCreatorService benefitCreator,
+            BenefitCalculator benefitCreator,
             ResultViewService resultViewService) {
         this.buyer = buyer;
         this.lottoMachine = lottoMachine;
