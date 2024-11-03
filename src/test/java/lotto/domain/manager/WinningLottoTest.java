@@ -35,7 +35,7 @@ class WinningLottoTest {
         //given
         Lotto automaticLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto wininigLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
+        var winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
         int expectedMatchCount = wininigLotto.match(automaticLotto);
         //when
         int matchCount = winningLotto.match(automaticLotto);
@@ -61,7 +61,7 @@ class WinningLottoTest {
         //given
         Lotto automaticLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto wininigLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
+        var winningLotto = new WinningLotto(wininigLotto, new LottoNumber(45));
         //when
         boolean isMatchBonus = winningLotto.isMatchBonus(automaticLotto);
         //then

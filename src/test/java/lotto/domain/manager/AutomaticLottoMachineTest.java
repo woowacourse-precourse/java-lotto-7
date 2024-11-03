@@ -15,7 +15,7 @@ class AutomaticLottoMachineTest {
         //given
         int expectedQuantity = amount / LOTTO_PRICE_UNIT;
         //when
-        AutomaticLottoMachine automaticLottoMachine = new AutomaticLottoMachine(amount);
+        var automaticLottoMachine = new AutomaticLottoMachine(amount);
         //then
         Assertions.assertThat(automaticLottoMachine).isNotNull();
         Assertions.assertThat(automaticLottoMachine.getQuantity()).isEqualTo(expectedQuantity);

@@ -17,8 +17,8 @@ import lotto.domain.model.Lotto;
 
 public class AutomaticLottoMachine {
 
-    public static final String ERROR_THE_AMOUNT_IN_WON_UNITS_TEMPLATE = "[ERROR] %d 원 단위의 금액을 입력해야 합니다.";
-    public static final String ERROR_LIMITED_IN_SIZE = "[ERROR] 인당 최대 %d 개 까지만 구입 가능합니다.";
+    private static final String ERROR_THE_AMOUNT_IN_WON_UNITS_TEMPLATE = "[ERROR] %d 원 단위의 금액을 입력해야 합니다.";
+    private static final String ERROR_LIMITED_IN_SIZE = "[ERROR] 인당 최대 %d 개 까지만 구입 가능합니다.";
 
     private final List<Lotto> lottos;
 

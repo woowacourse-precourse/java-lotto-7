@@ -18,7 +18,7 @@ class LottoNumberTest {
         //given
         int expectedSize = MAXIMUM_NUMBER_VALUE - MINIMUM_NUMBER_VALUE + 1;
         //when
-        List<LottoNumber> lottoNumbers = IntStream.rangeClosed(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE)
+        var lottoNumbers = IntStream.rangeClosed(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE)
                 .boxed()
                 .map(number -> new LottoNumber(number))
                 .toList();

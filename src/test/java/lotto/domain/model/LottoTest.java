@@ -61,7 +61,7 @@ class LottoTest {
     void 로또에_해당번호가_포함되면_TRUE를_반환한다(int candidateNumber) {
         /// given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber candidate = new LottoNumber(candidateNumber);
+        var candidate = new LottoNumber(candidateNumber);
         // when
         boolean hasElement = lotto.isContain(candidate);
         // then
@@ -73,7 +73,7 @@ class LottoTest {
     void 로또에_해당번호가_포함되지_않으면_FALSE를_반환한다(int notContainNumber) {
         /// given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber candidate = new LottoNumber(notContainNumber);
+        var candidate = new LottoNumber(notContainNumber);
         // when
         boolean hasElement = lotto.isContain(candidate);
         // then
