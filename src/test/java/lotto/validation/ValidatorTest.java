@@ -29,5 +29,19 @@ public class ValidatorTest {
         }).isInstanceOf(NumberFormatException.class);
     }
 
+    @Test
+    @DisplayName("문자열배열이 모두 숫자가 아니면 예외 발생 테스트")
+    void allDigits() {
+        String[] numbers = new String[3];
+
+        numbers[0] = "race";
+        numbers[1] = "1";
+        numbers[2] = "2";
+
+        assertThatThrownBy(() -> {
+            Validator.allDigits(numbers);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     }
 }
