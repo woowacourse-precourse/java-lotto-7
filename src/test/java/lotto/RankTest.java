@@ -14,7 +14,7 @@ class RankTest {
         boolean bonus = false;
 
         //When
-        Rank rank = Rank.getRank(numberMatch,bonus);
+        Rank rank = Rank.getRank(numberMatch, bonus);
 
         //Then
         Assertions.assertThat(rank).isEqualTo(Rank.FIRST);
@@ -27,7 +27,7 @@ class RankTest {
         boolean bonus = true;
 
         //When
-        Rank rank = Rank.getRank(numberMatch,bonus);
+        Rank rank = Rank.getRank(numberMatch, bonus);
 
         //Then
         Assertions.assertThat(rank).isEqualTo(Rank.SECOND);
