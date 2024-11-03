@@ -5,21 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
 
-        // 1.1 로또 구입 금액을 입력 받는 기능
-        System.out.println("구입 금액을 입력해 주세요.");
-        String purchaseAmountInput = Console.readLine();
-
-        try {
-            // 1.2 입력된 구입 금액을 정수로 변환할 수 없는 경우 예외 처리하는 기능
-            validateNumericString(purchaseAmountInput);
-            int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-            // 1.3 구입 금액이 양수가 아닌 경우 예외 처리하는 기능
-            validatePositiveNumber(purchaseAmount);
-            // 1.4 구입 금액이 1000원으로 나누어 떨어지지 않는 경우 예외 처리하는 기능
-            validateThousandUnit(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        // 1.5 형식에 맞는 구입 금액이 입력될 때까지 반복하여 입력을 받는 기능
+        int purchaseAmount = getPurchaseAmount();
 
 
     }
@@ -43,5 +30,22 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지지 않는 금액입니다.");
         }
     }
+
+    private static int getPurchaseAmount() {
+        while (true) {
+            System.out.println("구입 금액을 입력해 주세요.");
+            String purchaseAmountInput = Console.readLine();
+            try {
+                validateNumericString(purchaseAmountInput);
+                int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+                validatePositiveNumber(purchaseAmount);
+                validateThousandUnit(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 
 }
