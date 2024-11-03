@@ -29,7 +29,7 @@ class LottoTest {
 
     @Test
     void 로또_번호_음수_입력_예외발생() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, -3, 4, 5, 60)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, -3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

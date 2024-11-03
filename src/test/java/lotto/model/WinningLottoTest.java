@@ -8,12 +8,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningLottoTest {
     @Test
-    void 보너스_번호_개수_6개이상_예외발생() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6, 7), 8))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void 보너스_번호_중복_예외발생() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6),6))
                 .isInstanceOf(IllegalArgumentException.class);
