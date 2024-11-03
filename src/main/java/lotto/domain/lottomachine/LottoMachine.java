@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
 
-    public static final int ZERO_QUANTITY = 0;
+    private static final int ZERO_QUANTITY = 0;
 
     private final NumberGenerator numberGenerator;
 
