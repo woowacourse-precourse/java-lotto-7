@@ -18,6 +18,7 @@ public class DrowTest {
         @Test
         void 당첨_번호는_숫자가_반드시_6개로_구분되어야_한다() {
 
+
         }
 
         @Test

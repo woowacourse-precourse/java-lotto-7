@@ -47,7 +47,7 @@ public class Drow {
         bonusNumber = Integer.parseInt(userInput);
     }
 
-    private boolean validateDrowNumbers(String userInput){
+     boolean validateDrowNumbers(String userInput){
 
         List<Integer> checkNumbers = new ArrayList<>(); // 중복 확인을 위한 숫자 리스트
 
@@ -80,7 +80,7 @@ public class Drow {
 
     }
 
-    private boolean validateBonusNumber(String userInput){
+    boolean validateBonusNumber(String userInput){
         try{
             int bonusNumber = Integer.parseInt(userInput);
 
@@ -99,7 +99,7 @@ public class Drow {
         }
     }
 
-    private void validateInputNumber(int drowNumber){
+    void validateInputNumber(int drowNumber){
 
         if (drowNumber < 1){
             throw new IllegalArgumentException("당첨 번호는 1보다 커야합니다.");
@@ -111,7 +111,7 @@ public class Drow {
 
     }
 
-    private void validateDuplicationNumber(List<Integer> checkNumbers, int drowNumber){
+    void validateDuplicationNumber(List<Integer> checkNumbers, int drowNumber){
 
         for(int checkNumber : checkNumbers){
 
