@@ -37,10 +37,7 @@ public class LottoController {
     public void gainPurchaseAmount() {
         boolean isValid = false;
         int purchasePrice = 0;
-        int attempts = 0;
-        final int maxAttempts = 3; // 최대 시도 횟수
-
-        while (!isValid && attempts < maxAttempts) {
+        while (!isValid) {
             try {
                 OutputView.printPurchaseAmount();
                 purchasePrice = InputView.readPurchaseAmount();
@@ -52,11 +49,6 @@ public class LottoController {
                 } else {
                     OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
                 }
-                attempts++; // 시도 횟수 증가
-                if (attempts == maxAttempts) {
-                    System.out.println("[ERROR] 최대 시도 횟수를 초과했습니다. 프로그램을 종료합니다.");
-                    System.exit(1); // 프로그램 종료 또는 다른 적절한 처리
-                }
             }
         }
         this.myInfo.setPurchasePrice(purchasePrice);
@@ -64,11 +56,10 @@ public class LottoController {
 
 
 
-
     public void countLotto(Integer purchasePrice) {
         int lottoCount = purchasePrice / 1000;
         if (purchasePrice % 1000 != 0) {
-            //OutputView.printError(ErrorMessage.NOT_DIV.getError());
+            OutputView.printError(ErrorMessage.NOT_DIV.getError());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printBlank();
@@ -79,21 +70,14 @@ public class LottoController {
     public Lotto gainWinningInput() {
         Lotto answer = null;
         boolean isValid = false;
-        int attempts = 0;
-        final int maxAttempts = 3; // 최대 시도 횟수
 
-        while (!isValid && attempts < maxAttempts) {
+        while (!isValid) {
             try {
                 OutputView.printWinning();
                 answer = InputView.readWinningNum();
                 isValid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(ErrorMessage.WIN_INPUT.getError());
-                attempts++; // 시도 횟수 증가
-                if (attempts == maxAttempts) {
-                    System.out.println("[ERROR] 최대 시도 횟수를 초과했습니다. 프로그램을 종료합니다.");
-                    System.exit(1); // 프로그램 종료 또는 다른 적절한 처리
-                }
             }
         }
         OutputView.printBlank();
@@ -103,21 +87,13 @@ public class LottoController {
     public int gainBonusInput(Lotto answer) {
         int bonus = 0;
         boolean isValid = false;
-        int attempts = 0;
-        final int maxAttempts = 3; // 최대 시도 횟수
-
-        while (!isValid && attempts < maxAttempts) {
+        while (!isValid) {
             try {
                 OutputView.printBonus();
                 bonus = InputView.readBonus(answer);
                 isValid = true;
             } catch (IllegalArgumentException e) {
                 OutputView.printError(ErrorMessage.BONUS.getError());
-                attempts++; // 시도 횟수 증가
-                if (attempts == maxAttempts) {
-                    System.out.println("[ERROR] 최대 시도 횟수를 초과했습니다. 프로그램을 종료합니다.");
-                    System.exit(1); // 프로그램 종료 또는 다른 적절한 처리
-                }
             }
         }
         OutputView.printBlank();
