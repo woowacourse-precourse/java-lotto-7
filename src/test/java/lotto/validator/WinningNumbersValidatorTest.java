@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.exception.ExceptionMessage.BLANK_WINNING_LOTTO_NUMBERS;
+import static lotto.exception.ExceptionMessage.DUPLICATE_WINNING_NUMBERS;
 import static lotto.exception.ExceptionMessage.INVALID_WINNING_LOTTO_NUMBERS_PATTERN;
 import static lotto.exception.ExceptionMessage.OUT_OF_LOTTO_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -64,4 +65,15 @@ class WinningNumbersValidatorTest {
                 .hasMessage(OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
     }
 
+    @Test
+    void 당첨번호가_중복되면_예외가_발생한다() {
+        // Given
+        String winningNumbers = "1, 2, 3, 4, 5, 5";
+
+        // When & Then
+        assertThatThrownBy(() -> {
+            WinningNumbersValidator.validate(winningNumbers);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_WINNING_NUMBERS.getMessage());
+    }
 }
