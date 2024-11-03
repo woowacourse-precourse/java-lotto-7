@@ -40,5 +40,21 @@ public class Application {
             Collections.sort(purchaseNumbers);
             System.out.println(purchaseNumbers);
         }
+
+        // 4. 로또 당첨 번호 입력
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<String> numbers = List.of(Console.readLine().split(","));
+
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        // 4-1. 먼저 숫자로 변환할 수 있는지를 확인
+        for (String number : numbers) {
+            try {
+                int winningNumber = Integer.parseInt(number);
+                winningNumbers.add(winningNumber);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }
