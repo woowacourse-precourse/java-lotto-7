@@ -15,8 +15,10 @@ public class InputView {
     }
 
     public int getInputPurchaseAmount() {
+        boolean isFirstPrompt = true;
         while (true) {
-            promptPurchaseAmount();
+            promptPurchaseAmount(isFirstPrompt);
+            isFirstPrompt = false;
             String purchaseAmountInput = getInput();
             try {
                 return PurchaseAmountValidator.validateAndParse(purchaseAmountInput);

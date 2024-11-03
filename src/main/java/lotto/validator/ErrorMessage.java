@@ -18,14 +18,14 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return String.format(message, ERROR_MESSAGE_BEGINNING);
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING);
     }
 
     public String getMessage(String input) {
-        return String.format(message, ERROR_MESSAGE_BEGINNING, input);
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING, input);
     }
 
     public String getMessage(String type, int length) {
-        return String.format(message, ERROR_MESSAGE_BEGINNING, type, length);
+        return String.format(LINE_SPACE + message, ERROR_MESSAGE_BEGINNING, type, length);
     }
 }
