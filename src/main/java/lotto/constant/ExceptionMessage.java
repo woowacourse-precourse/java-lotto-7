@@ -8,7 +8,10 @@ public enum ExceptionMessage {
     AMOUNT_MUST_BE_NON_NEGATIVE("금액은 0 이상이어야 합니다."),
     INSUFFICIENT_BALANCE("잔액이 부족합니다. 로또 티켓을 더 이상 구매할 수 없습니다."),
     INVALID_PAYMENT_AMOUNT("입력된 금액은 로또 티켓 가격(%d원) 단위어야 합니다."),
-    MINIMUM_PURCHASE_AMOUNT_REQUIRED("구입 금액은 1원 이상이어야 합니다");
+    MINIMUM_PURCHASE_AMOUNT_REQUIRED("구입 금액은 1원 이상이어야 합니다"),
+    NUMBER_OUT_OF_RANGE("로또 번호는 %d부터 %d까지어야 합니다."),
+    DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
+    INVALID_SIZE("로또 번호는 %d개여야 합니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
