@@ -18,4 +18,11 @@ public class InputView {
         return Utils.splitWinningNumber(Console.readLine());
     }
 
+    public static List<Integer> inputLottoBonusNumber(List<Integer> lottoWinningNumber){
+
+        lottoWinningNumber.add(Integer.parseInt(Console.readLine()));
+
+        return lottoWinningNumber;
+    }
+
 }
