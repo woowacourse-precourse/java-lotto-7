@@ -1,5 +1,6 @@
 package lotto.unit;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.constants.ErrorMessages;
@@ -18,7 +19,7 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_PURCHASE_AMOUNT);
     }
-    
+
     @Test
     @DisplayName("구입 금액이 1000원 미만인 경우 예외가 발생한다.")
     void purchaseAmountLessThanThousand() {
@@ -27,5 +28,14 @@ class LottoGeneratorTest {
         assertThatThrownBy(() -> generator.purchaseLottos(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_PURCHASE_AMOUNT);
+    }
+
+    @Test
+    @DisplayName("로또가 정상적으로 생성된다.")
+    void purchaseLottosSuccessfully() {
+        LottoGenerator generator = new LottoGenerator();
+        int purchaseAmount = 8000;
+        generator.purchaseLottos(purchaseAmount);
+        assertThat(generator.getLottos()).hasSize(8);
     }
 }
