@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.generator.LottoGenerator;
-import lotto.view.LottoInfoMessages;
 
 public class LottoService {
     ValidationService validationService = ValidationService.createValidationService();
@@ -31,16 +30,10 @@ public class LottoService {
         return pay / 1000;
     }
 
-    public void printNoticeBuyAmount(int amount, int change) {
-        System.out.println(
-                amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text()
-                        + change + LottoInfoMessages.NOTICE_BUY_AMOUNT_END.text());
-    }
-
-    public List<Set<Integer>> generateManualNumberSet(int manualAmount) {
+    public List<Set<Integer>> generateManualNumberSet(int manualAmount, String manualMode) {
         List<Set<Integer>> manualNumberList = new ArrayList<>();
         while (manualAmount>0){
-            manualNumberList.add(validationService.validateCorrectManualNumber(manualAmount));
+            manualNumberList.add(validationService.validateCorrectManualNumber(manualAmount, manualMode));
             manualAmount--;
         }
         return manualNumberList;
