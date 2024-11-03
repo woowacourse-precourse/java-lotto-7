@@ -2,13 +2,11 @@ package lotto.controller;
 
 import static lotto.view.OutputView.printMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
-import lotto.domain.LottoInfo;
-import lotto.domain.LottoNumbersGenerator;
+import lotto.domain.Purchaser;
 import lotto.domain.WinningInfo;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
@@ -16,21 +14,15 @@ import lotto.view.OutputView;
 
 public class LottoMachine {
 
-    private List<Lotto> purchasedLotto;
-
-    public LottoMachine() {
-        purchasedLotto = new ArrayList<>();
-    }
-
     public void run() {
         Budget budget = inputBudget();
-        purchaseLotto(budget);
-        OutputView.displayPurchasedLottoNumbers(purchasedLotto);
+        Purchaser purchaser = new Purchaser(budget);
+        OutputView.displayPurchasedLottoNumbers(purchaser.getPurchasedLotto());
 
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
-        checkWinningResult(winningNumbers, bonusNumber);
+        checkWinningResult(purchaser, winningNumbers, bonusNumber);
         double earningRate = calculateEarningRate(budget);
         OutputView.displayWinningStatistics(earningRate);
     }
@@ -42,14 +34,6 @@ public class LottoMachine {
             } catch (IllegalArgumentException e) {
                 printMessage(e.getMessage());
             }
-        }
-    }
-
-    private void purchaseLotto(Budget budget) {
-        int lottoQuantity = budget.getAmount() / LottoInfo.PRICE;
-        for (int i = 0; i < lottoQuantity; i++) {
-            List<Integer> numbers = LottoNumbersGenerator.generate();
-            purchasedLotto.add(new Lotto(numbers));
         }
     }
 
@@ -73,7 +57,8 @@ public class LottoMachine {
         }
     }
 
-    private void checkWinningResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    private void checkWinningResult(Purchaser purchaser, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<Lotto> purchasedLotto = purchaser.getPurchasedLotto();
         for (Lotto lotto : purchasedLotto) {
             int place = lotto.findPlace(winningNumbers, bonusNumber);
             updateWinningTicketCount(place);
