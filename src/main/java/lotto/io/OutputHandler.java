@@ -6,15 +6,8 @@ import lotto.domain.WinningStatistic;
 
 public class OutputHandler {
 
-    private static final String PRICE_INPUT_NAVIGATE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASED_MESSAGE_TEMPLATE = "%d개를 구매했습니다.";
-    private static final String WINNING_NUMBERS_INPUT_NAVIGATE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT_NAVIGATE = "보너스 번호를 입력해 주세요.";
-    private static final String WINNING_STATISTIC_BANNER = "당첨 통계";
-    private static final String WINNING_STATISTIC_DELIMITER = "---";
-
     public void showPriceInputNavigateMessage() {
-        System.out.println(PRICE_INPUT_NAVIGATE);
+        System.out.println(IOMessageTemplate.PRICE_NAVIGATE.format());
     }
 
     public void showPurchasedLottos(Lottos lottos) {
@@ -25,12 +18,12 @@ public class OutputHandler {
     }
 
     public void showWinningNumbersNavigateMessage() {
-        System.out.println(WINNING_NUMBERS_INPUT_NAVIGATE);
+        System.out.println(IOMessageTemplate.WINNING_NUMBERS_NAVIGATE.format());
     }
 
     public void showBonusNumberNavigateMessage() {
         showNewLine();
-        System.out.println(BONUS_NUMBER_INPUT_NAVIGATE);
+        System.out.println(IOMessageTemplate.BONUS_NUMBER_NAVIGATE.format());
     }
 
     public void showWinningStatistic(WinningStatistic statistic) {
@@ -41,7 +34,7 @@ public class OutputHandler {
     }
 
     private void showLottoCountMessage(Lottos lottos) {
-        System.out.println(String.format(PURCHASED_MESSAGE_TEMPLATE, lottos.size()));
+        System.out.println(IOMessageTemplate.PURCHASED.format(lottos.size()));
     }
 
     private void showEachLottoNumbers(Lottos lottos) {
@@ -49,8 +42,8 @@ public class OutputHandler {
     }
 
     private void showWinningStatisticBanner() {
-        System.out.println(WINNING_STATISTIC_BANNER);
-        System.out.println(WINNING_STATISTIC_DELIMITER);
+        System.out.println(IOMessageTemplate.WINNING_STATISTIC_BANNER.format());
+        System.out.println(IOMessageTemplate.WINNING_STATISTIC_HORIZONTAL_RULE.format());
     }
 
     private void showEachWinner(WinningStatistic statistic) {
