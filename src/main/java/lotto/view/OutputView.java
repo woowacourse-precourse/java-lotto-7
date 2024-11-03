@@ -15,6 +15,7 @@ import lotto.exception.InputException;
 public class OutputView {
     public static void printPurchasedResult(Money money, List<Lotto> lottos) {
         printPurchasedCount(money.calculateTicketCount());
+        printNewLine();
         lottos.forEach(OutputView::printLottoNumbers);
     }
 
@@ -24,7 +25,7 @@ public class OutputView {
     }
 
     private static void printLottoNumbers(Lotto lotto) {
-        System.out.println(lotto);
+        System.out.println(lotto.getNumbers());
     }
 
     public static void printLottoResult(LottoResult lottoResult, Profit profit) {
