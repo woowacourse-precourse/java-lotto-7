@@ -23,4 +23,29 @@ public class LottoGenerator {
 
         return new Lottos(lottos);
     }
+
+    public static Lotto generate(String numbers) {
+        return new Lotto(parseNumbers(numbers));
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] splitNumbers = input.split(", ");
+        return convertToIntegerList(splitNumbers);
+    }
+
+    private static List<Integer> convertToIntegerList(String[] numbers) {
+        List<Integer> integerList = new ArrayList<>();
+        for (String number : numbers) {
+            integerList.add(parseInteger(number));
+        }
+        return integerList;
+    }
+
+    private static int parseInteger(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로만 입력해 주세요.");
+        }
+    }
 }
