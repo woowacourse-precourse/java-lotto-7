@@ -34,6 +34,9 @@ public class WinningNumber {
         if (input == null) {
             throw new IllegalArgumentException("[ERROR] " + "당첨 번호가 null이어서는 안 됩니다.");
         }
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] " + "당첨 번호가 빈 문자여서는 안 됩니다.");
+        }
         if (isEmptyElementContained(input)) {
             throw new IllegalArgumentException("[ERROR] " + "쉼표 사이의 빈 문자가 입력되서는 안 됩니다.");
         }
