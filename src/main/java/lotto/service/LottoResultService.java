@@ -24,7 +24,7 @@ public class LottoResultService {
         results.put(KEY_5TH, 0);
 
         for (Lotto purchasedLotto : purchasedLottos) {
-            int matchingCount = countMatchingNumbers(purchasedLotto.getNumbers(), lottery.getWinningNumbers());
+            int matchingCount = countMatchingNumbers(purchasedLotto.getNumbers(), lottery.getWinningLotto().getNumbers());
             boolean bonusMatch = purchasedLotto.getNumbers().contains(lottery.getBonusNumber());
 
             String prize = getPrize(matchingCount, bonusMatch);

@@ -211,4 +211,4 @@ _Implementing functionality in a bottom-up approach_
     -  [x] 당첨 통계 출력 뷰 구현 
     -  [x] 수익률 출력 뷰 구현
     
-15.[ ] 로또 컨트롤러 구현 
+15.[x] 로또 컨트롤러 구현 
