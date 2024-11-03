@@ -16,7 +16,6 @@ public class LottoGameController {
     private LottoShop lottoShop;
     private Lotto winningLotto;
     private int bonusNumber;
-    private LottoResult lottoResult;
 
     public void run() {
         prepareMoney();
@@ -71,8 +70,8 @@ public class LottoGameController {
 
     private void drawLottery() {
         OutputView.printWinningStatics();
-        lottoResult = new LottoResult(lottoShop, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottoShop, winningLotto, bonusNumber);
         printMatchNumber(lottoResult, bonusNumber);
+        OutputView.printTotalProfit(lottoResult, lottoCount);
     }
-
 }
