@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.util.InputValidator;
 import lotto.view.InputView;
 
@@ -9,6 +10,7 @@ public class LottoControllerFactory {
     public static LottoController createLottoController() {
         InputValidator inputValidator = new InputValidator();
         InputView inputView = new InputView(inputValidator);
-        return new LottoController(inputView);
+        LottoService lottoService = new LottoService();
+        return new LottoController(inputView, lottoService);
     }
 }

@@ -1,22 +1,35 @@
 package lotto.controller;
 
 
+import lotto.Lotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
+    private final LottoService lottoService;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, LottoService lottoService) {
         this.inputView = inputView;
+        this.lottoService = lottoService;
     }
 
     public void handle() {
         int price = inputView.getInput();
-
         // 로또 발행하기
-
+        List<Lotto> lottoTicket = lottoService.issueLotto(price);
+        printLottoStatus(lottoTicket);
         // 당첨번호 및 보너스번호 입력받기
 
         // 당첨 통계 및 수익률 출력
+    }
+
+    private void printLottoStatus(List<Lotto> lottoTicket) {
+        System.out.println(lottoTicket.size() + "개를 구매했습니다.");
+        for(Lotto lotto:lottoTicket){
+            System.out.println(lotto);
+        }
     }
 }
