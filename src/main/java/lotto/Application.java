@@ -13,7 +13,7 @@ public class Application {
 
     public static List<Lotto> lottos = new ArrayList<>();
     public static Lotto winningLotto;
-    public static int bonus;
+    public static int bonusNumber;
 
     public static int stringToNum(String input) {
         try {
@@ -74,6 +74,19 @@ public class Application {
                 String input = readLine();
                 Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(input.split(",")));
                 checkSetVaild(uniqueNumbers);
+                break;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void makeBonusNum() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int n = stringToNum(readLine());
+
             } catch (Exception e) {
                 System.out.println(e);
             }
@@ -82,6 +95,7 @@ public class Application {
 
     public static void inputWinningLotto() {
         makeWinningLotto();
+        makeBonusNum();
     }
 
     public static void main(String[] args) {
