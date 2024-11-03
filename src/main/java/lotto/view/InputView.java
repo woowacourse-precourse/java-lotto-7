@@ -18,24 +18,41 @@ public class InputView {
     }
 
     public int inputPurchaseAmount() {
-        System.out.println(PrintMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-        return purchaseValidator.validate(Console.readLine());
+        while (true) {
+            try {
+                System.out.println(PrintMessage.INPUT_PURCHASE_AMOUNT.getMessage());
+                return purchaseValidator.validate(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println();
-        System.out.println(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
-        String input = Console.readLine();
-        List<Integer> winningNumbers = StringParsingUtil.parseNumbers(input);
-        LottoValidator.validateLottoNumbers(winningNumbers);
-        return winningNumbers;
+        while (true) {
+            try {
+                System.out.println(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
+                String input = Console.readLine();
+                List<Integer> winningNumbers = StringParsingUtil.parseNumbers(input);
+                LottoValidator.validateLottoNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println();
-        System.out.println(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
-        int bonusNumber = basicNumberValidator.validate(Console.readLine());
-        LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
+        while (true) {
+            try {
+                System.out.println(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
+                int bonusNumber = basicNumberValidator.validate(Console.readLine());
+                LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
+
