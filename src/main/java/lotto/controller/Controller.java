@@ -32,7 +32,6 @@ public class Controller {
     }
 
     private WinningLotto createWinningLotto() {
-        // String -> List<Integer> 변환하여 넣어줘야 함 (getWinningNumbers)
         Lotto winningNumbers = LottoGenerator.createLotto(getWinningNumbers());
         BonusNumber bonusNumber = getBonusNumber();
         return new WinningLotto(winningNumbers, bonusNumber);
