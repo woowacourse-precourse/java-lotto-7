@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.message.OutputMessage;
 import lotto.model.domain.Lotto;
@@ -29,7 +30,9 @@ public class OutputView {
         printMatchStatistics("5B", response);
         printMatchStatistics("6", response);
 
-        System.out.printf(OutputMessage.REVENUE_RATE.getMessage(), response.rateOfRevenue());
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        String formattedRateOfRevenue = df.format(response.rateOfRevenue());
+        System.out.printf(OutputMessage.REVENUE_RATE.getMessage(), formattedRateOfRevenue);
     }
 
     private static void printMatchStatistics(String matchCountKey, LottoStatisticsResponse response) {
