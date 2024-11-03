@@ -19,4 +19,9 @@ public class LottoRepositoryImpl implements LottoRepository {
         //FIXME: storage.size의 반환 값이 int인 것에 대해
         return BigInteger.valueOf(storage.size());
     }
+
+    @Override
+    public List<Lotto> findAll() {
+        return new ArrayList<>(storage);
+    }
 }

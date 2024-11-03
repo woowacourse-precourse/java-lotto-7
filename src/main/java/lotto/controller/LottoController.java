@@ -22,8 +22,9 @@ public class LottoController {
     }
 
     public void payingForLotto() {
-        BigInteger purcharseAmount = paying();
-        generateLotto(purcharseAmount);
+        BigInteger purchaseAmount = paying();
+        generateLotto(purchaseAmount);
+        lottoOutputView.printLottoNumbers(lottoService.getAll());
     }
 
     //FIXME: BigInteger로 변환하는 것, Controller에서 처리하는 것이 맞는가?
@@ -41,10 +42,6 @@ public class LottoController {
     }
 
     private void generateLotto(BigInteger purchaseAmount) {
-        /*
-        1. 지불을 완료한 만큼 새로운 로또의 발급을 요청한다.
-         */
-
         lottoService.generateByPurchaseAmount(purchaseAmount);
     }
 
