@@ -68,4 +68,17 @@ class InputViewTest {
         assertEquals(expectedMainNumbers, winningNumbers.getMainNumbers());
         assertEquals(expectedBonusNumber, winningNumbers.getBonusNumber());
     }
+
+    @Test
+    @DisplayName("메인 숫자가 6개가 아닐 때 예외 메시지 출력")
+    void displayErrorMessageWhenMainNumbersCountIsInvalid() {
+        setInput("1,2,3,4,5\n1,2,3,4,5,6\n7\n");
+
+        InputView.getWinningNumbers();
+        String output = outputStreamCaptor.toString().trim();
+
+        String[] messages = output.split("\n");
+        String lastMessage = messages[messages.length - 4];
+        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage(), lastMessage);
+    }
 }
