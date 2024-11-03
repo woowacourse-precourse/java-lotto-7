@@ -25,6 +25,12 @@ public class Lotto {
         if (Validator.hasDuplicateNumber(numbers)) {
             throw new IllegalArgumentException("[ERROR] " + ErrorMessage.DUPLICATE_WIN_NUMBERS.getMessage());
         }
+        for (int num : numbers) {
+            if (!Validator.isBetween(MIN_LOTTO_NUM, num, MAX_LOTTO_NUM)) {
+                throw new IllegalArgumentException(
+                        "[ERROR] " + ErrorMessage.LOTTO_NUMBER_BETWEEN_1_AND_45.getMessage());
+            }
+        }
     }
 
     public LottoRank checkRank(List<Integer> winnerNumbers, int bonus) {
