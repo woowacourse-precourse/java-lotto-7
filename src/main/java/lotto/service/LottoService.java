@@ -11,7 +11,7 @@ import lotto.utils.LottoNumbersGenerator;
 public class LottoService {
     public Lottos createLottos(int lottoQuantity) {
         List<Lotto> LottoGroup = generateLottoGroup(lottoQuantity);
-        return new Lottos(LottoGroup, lottoQuantity);
+        return new Lottos(LottoGroup);
     }
 
     public LottoGame createLottoGame(Lottos lottos, Lotto winningLotto, BonusNumber bonusNumber) {

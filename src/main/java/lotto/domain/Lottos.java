@@ -6,9 +6,9 @@ public class Lottos {
     private final List<Lotto> lottoGroup;
     private final int lottoQuantity;
 
-    public Lottos(List<Lotto> lottoGroup, int lottoQuantity) {
+    public Lottos(List<Lotto> lottoGroup) {
         this.lottoGroup = lottoGroup;
-        this.lottoQuantity = lottoQuantity;
+        this.lottoQuantity = lottoGroup.size();
     }
 
     public List<Lotto> getLottoGroup() {
