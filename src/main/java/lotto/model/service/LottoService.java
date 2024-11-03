@@ -11,7 +11,6 @@ public class LottoService {
         List<Integer> numbers = generateRandomNumbers();
 
         Lotto lotto = new Lotto(numbers);
-        lotto.sortNumbers();
 
         return lotto;
     }
@@ -21,6 +20,7 @@ public class LottoService {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             Lotto lotto = generateLotto();
+            tickets.add(lotto);
             player.addLotto(lotto);
         }
         return tickets;

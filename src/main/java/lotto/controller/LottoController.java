@@ -37,10 +37,9 @@ public class LottoController {
 
     private void setupLotto() {
         purchaseAmount = 0;
-
+        outputView.purchaseLottoAmountMesssage();
         while (true) {
             try {
-                outputView.purchaseLottoAmountMesssage();
                 String input = inputView.getPurchaseAmount();
                 Validator.validateInteger(input);
                 purchaseAmount = Integer.parseInt(input);
@@ -58,10 +57,9 @@ public class LottoController {
 
     private void generateLottos() {
         outputView.printLottoNumbers(player.getLottoNumbers());
-
+        outputView.enterWinningNumbers();
         while (true) {
             try {
-                outputView.enterWinningNumbers();
                 winningNumbersService.inputWinningNumbers();
                 winningNumbers = winningNumbersService.getWinningNumbers().getNumbers();
 
@@ -80,13 +78,15 @@ public class LottoController {
     }
 
     private void generateBonusNumber() {
+        outputView.enterBonusNumber();
         while (true) {
             try {
-                outputView.enterBonusNumber();
+
                 int bonusNumber = winningNumbersService.inputBonusNumber();
 
                 Validator.validateRange(bonusNumber);
                 Validator.validateDuplicateNumber(winningNumbers, bonusNumber);
+                //TODO: bonusNumaber가 정수인지 검증 필요, a 이런게 들어올 수도 있잖아
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

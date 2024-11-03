@@ -51,6 +51,7 @@ public class Validator {
         }
     }
 
+
     public static void validateMoneyUnit(int money) {
         if (money % 1000 != 0 || money <= 0) {
             throw new IllegalArgumentException(ValidatorErrorMessage.MONEY_UNIT_EXCEPTION.getErrorMessage());
