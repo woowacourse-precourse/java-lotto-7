@@ -8,8 +8,8 @@ import lotto.dto.WinningStat;
 import lotto.dto.WinningSummary;
 
 public class WinningSummaryGenerator {
-    private final static String NORMAL_STAT = "%d개 일치 (%s)원 - %d개";
-    private final static String BONUS_STAT = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
+    private final static String NORMAL_STAT = "%d개 일치 (%s원) - %d개";
+    private final static String BONUS_STAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
 
     public static WinningSummary generate(List<WinningStat> winningStats) {
         return new WinningSummary(getSummaryDetails(winningStats), winningStats);
