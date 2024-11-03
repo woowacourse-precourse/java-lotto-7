@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.function.BiFunction;
 
 public enum Rank {
-    NOT_WIN(0, false, 0, (matchCount, isBonusMatch) -> matchCount < 3),
     FIFTH(3, false, 5_000, (matchCount, isBonusMatch) -> matchCount == 3),
     FOURTH(4, false, 50_000, (matchCount, isBonusMatch) -> matchCount == 4),
     THIRD(5, false, 1_500_000, (matchCount, isBonusMatch) -> matchCount == 5 && !isBonusMatch),
