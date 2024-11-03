@@ -4,7 +4,6 @@ import static lotto.constant.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConfig.DEFAULT_NUMBER_COUNT;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,8 +23,7 @@ public class Lotto {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
 
-        Set<Integer> filteredNumbers = new HashSet<>();
-        filteredNumbers.addAll(numbers);
+        Set<Integer> filteredNumbers = Set.copyOf(numbers);
         if (filteredNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
