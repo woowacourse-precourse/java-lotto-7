@@ -1,29 +1,29 @@
 package lotto.domain;
 
 public enum WinAmount {
-    Three("5,000원", 3, 5000), Four("50,000원", 4, 50000),
-    Five("1,500,000원", 5, 1500000), FiveBonus("30,000,000원", 5, 30000000),
-    Six("2,000,000,000원", 6, 2000000000);
+    Three("5,000원", 5000, 3), Four("50,000원", 50000, 4),
+    Five("1,500,000원", 1500000, 5), FiveBonus("30,000,000원", 30000000, 5),
+    Six("2,000,000,000원", 2000000000, 6);
 
     private final String amount;
-    private final int number;
     private final int amountNum;
+    private final int number;
 
-    WinAmount(String amount, int number, int amountNum) {
+    WinAmount(String amount, int amountNum, int number) {
         this.amount = amount;
-        this.number = number;
         this.amountNum = amountNum;
+        this.number = number;
+
     }
 
     public String getAmount() {
         return amount;
     }
+    public int getAmountNum() {
+        return amountNum;
+    }
 
     public int getNumber() {
         return number;
-    }
-
-    public int getAmountNum() {
-        return amountNum;
     }
 }
