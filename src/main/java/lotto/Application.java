@@ -17,7 +17,7 @@ public class Application {
         LottoMachine lottoMachine = new LottoMachine(numberProvider, rangeValidator);
 
         LottoController controller =
-                new LottoController(consoleInput, consoleOutput, lottoMachine);
+                new LottoController(consoleInput, consoleOutput, lottoMachine, rangeValidator);
         controller.start();
     }
 }
