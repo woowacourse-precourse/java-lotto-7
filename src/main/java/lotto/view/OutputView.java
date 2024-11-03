@@ -10,11 +10,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String STATISTICS_START_MESSAGE = "당첨 통계\n---";
     private static final String SIZE_MESSAGE = "%d개를 구매했습니다.";
     private static final String BRACKET_FORMAT = "[%s]";
     private static final String COMMA = ", ";
     private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
+    private static final String DECIMAL_FORMAT = "0.##";
+
+    public static void printError(String errorMessage) {
+        System.out.println(ERROR_MESSAGE + errorMessage);
+    }
 
     public static void printResult(List<Lotto> lottoTickets, LottoSummary lottoSummary) {
         printStartMessage();
@@ -52,7 +58,7 @@ public class OutputView {
 
     private static void printRateOfReturnString(LottoSummary lottoSummary) {
         double rateOfReturn = lottoSummary.getRateOfReturn();
-        DecimalFormat df = new DecimalFormat("0.##");
+        DecimalFormat df = new DecimalFormat(DECIMAL_FORMAT);
         String formattedRate = df.format(rateOfReturn);
         System.out.println(String.format(TOTAL_RATE_OF_RETURN_MESSAGE, formattedRate));
     }

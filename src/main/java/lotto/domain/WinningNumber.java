@@ -1,6 +1,8 @@
 package lotto.domain;
 
 public class WinningNumber {
+    private static final String BONUS_NUMBER_CONFLICT_MESSAGE = "당첨 번호에 없는 보너스 번호를 입력하셔야 합니다.";
+
     private final Lotto winningNumbers;
     private int bonusNumber;
 
@@ -33,7 +35,7 @@ public class WinningNumber {
 
     private void isAlreadyInWinningNumber(int bonusNumber) {
         if (this.winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호에 없는 보너스 번호를 입력하셔야 합니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_CONFLICT_MESSAGE);
         }
     }
 }

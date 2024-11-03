@@ -42,7 +42,7 @@ public class LottoSummary {
         return this.rankCounts;
     }
 
-    public double getRateOfReturn(){
+    public double getRateOfReturn() {
         return this.rateOfReturn;
     }
 }
