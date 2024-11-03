@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +14,9 @@ public class Application {
 
         // 2.4 로또 번호를 통해 구매할 로또의 개수만큼 로또 객체를 생성하는 기능
         ArrayList<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
+
+        // 2.5 로또의 번호를 출력하는 기능
+        printLottoTickets(lottoTickets);
     }
 
     private static String getInputString(String message) {
@@ -78,5 +79,10 @@ public class Application {
         return lottoTickets;
     }
 
-
+    private static void printLottoTickets(ArrayList<Lotto> lottoTickets) {
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+        for (Lotto lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
+        }
+    }
 }
