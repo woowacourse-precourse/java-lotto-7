@@ -13,4 +13,12 @@ class LottoInputValidatorTest {
             .hasMessage(ExceptionMessage.INVALID_INPUT_FORMAT.getErrorMessage());
     }
 
+    @DisplayName("입력값이 비어 있으면 예외가 발생한다.")
+    @Test
+    void 입력값이_비어_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new LottoInputValidator(" "))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.EMPTY_INPUT.getErrorMessage());
+    }
+
 }
