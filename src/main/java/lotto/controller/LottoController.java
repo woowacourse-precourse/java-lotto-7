@@ -26,9 +26,7 @@ public class LottoController {
         LottoGame game = new LottoGame(amount, new RandomLottoGenerator());
         outputView.printPurchaseAmount(game.getLottoCount());
         outputView.printLotto(game.getLottoScreen());
-        Lotto winningNumber = readWinningNumber();
-        BonusNumber bonusNumber = readBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+        WinningLotto winningLotto = readWinningLotto();
         outputView.printLottoResult(game.getResultScreen(winningLotto));
     }
 
@@ -36,6 +34,14 @@ public class LottoController {
         return attemptedRead(() -> {
             outputView.printPurchaseGuide();
             return inputView.readPurchasePrice();
+        });
+    }
+
+    private WinningLotto readWinningLotto() {
+        return attemptedRead(() -> {
+            Lotto winningLotto = readWinningNumber();
+            BonusNumber bonusNumber = readBonusNumber();
+            return new WinningLotto(winningLotto, bonusNumber);
         });
     }
 
