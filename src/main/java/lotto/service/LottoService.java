@@ -25,4 +25,8 @@ public class LottoService {
         }
         return new Lottos(lottos);
     }
+
+    public List<Prize> calculateResults(Lottos lottos, WinningNumbers winningNumbers) {
+        return lottos.calculateResults(winningNumbers);
+    }
 }
