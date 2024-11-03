@@ -15,9 +15,18 @@ public class LottoController {
 
     public void start() {
         int lottoCount = purchaseLottos();
-        playLotto(lottoCount);
+        createLottos(lottoCount);
+        makeWinningNumbers();
         calculateResults(lottoCount * lottoPrice);
         displayResults();
+    }
+
+    private void makeWinningNumbers() {
+        outputView.printWinningNumbersGuide();
+        String winningNumber = inputView.getWinningNumbers();
+        outputView.printBonusNumberGuide();
+        String bonusNumber = inputView.getBonusNumber();
+        winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
     }
 
     private int purchaseLottos() {
@@ -27,7 +36,7 @@ public class LottoController {
             String price = inputView.getPurchasePrice();
             LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(price);
             lottoCount = lottoPurchaseService.getLottoCount();
-            if (!isError(price, lottoPurchaseService.getPrice())) {
+            if (!isPriceInputError(price, lottoPurchaseService.getPrice())) {
                 break;
             }
             outputView.printErrorMessage(lottoPurchaseService.getPrice());
@@ -37,18 +46,13 @@ public class LottoController {
         return lottoCount;
     }
 
-    private static boolean isError(String price,String checkPrice) {
+    private static boolean isPriceInputError(String price, String checkPrice) {
         return price != checkPrice;
     }
 
-    private void playLotto(int lottoCount) {
+    private void createLottos(int lottoCount) {
         lottos.createLottos(lottoCount);
         outputView.printLottos(lottos.getLottos());
-        outputView.printWinningNumbersGuide();
-        String winningNumber = inputView.getWinningNumbers();
-        outputView.printBonusNumberGuide();
-        String bonusNumber = inputView.getBonusNumber();
-        winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
     }
 
     private void calculateResults(int price) {
