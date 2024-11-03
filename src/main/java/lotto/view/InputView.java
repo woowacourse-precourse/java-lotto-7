@@ -37,19 +37,30 @@ public class InputView {
     public List<Integer> getWinningNumber() {
         System.out.println();
         System.out.println(WINNING_NUMBER_MESSAGE);
-        String input = Console.readLine();
-        String trimmedInput = input.replaceAll(" ", "");
-        validator.validateDelimiter(trimmedInput);
-        return splitNumbers(trimmedInput);
+        while (true) {
+            try {
+                String input = Console.readLine();
+                String trimmedInput = input.replaceAll(" ", "");
+                validator.validateDelimiter(trimmedInput);
+                return splitNumbers(trimmedInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> splitNumbers(String input) {
         return Optional.of(input)
                 .filter(number -> number.contains(NUMBER_DELIMITER))
                 .map(number -> Arrays.stream(number.split(NUMBER_DELIMITER))
-                        .map(Integer::parseInt)
+                        .map(this::validateAndParse)
                         .toList())
                 .orElseGet(() -> List.of(Integer.parseInt(input)));
+    }
+
+    private int validateAndParse(String input) {
+        validator.isNumberInRange(input);
+        return Integer.parseInt(input);
     }
 
     public String getBonusNumber() {

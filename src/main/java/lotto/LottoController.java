@@ -33,8 +33,7 @@ public class LottoController {
 
         List<Lotto> lottos = generateLottoNumbers(quantity);
         List<Integer> winningNumbers = inputView.getWinningNumber();
-        int bonusNumber = getBonusNumberFromUser();
-        validator.isUniqueBonusNumber(winningNumbers, bonusNumber);
+        int bonusNumber = getBonusNumber(winningNumbers);
 
         LottoDrawMachine lottoDrawMachine = lottoService.makeLottoDrawMachine(lottos, winningNumbers, bonusNumber);
         lottoService.compareWinning(lottoDrawMachine);
@@ -44,16 +43,38 @@ public class LottoController {
     }
 
     private int getPriceFromUser() {
-        String input = inputView.getPrice();
-        int price = validator.isNumber(input);
-        validator.validatePrice(price);
-        return price;
+        while (true) {
+            String input = inputView.getPrice();
+            try {
+                int price = validator.isNumber(input);
+                validator.validatePrice(price);
+                return price;
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> generateLottoNumbers(int quantity) {
         List<Lotto> lottos = makeLottos(quantity);
         printLottos(lottos);
         return lottos;
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String input = inputView.getBonusNumber();
+                int bonusNumber = validator.isNumber(input);
+                validator.isNumberInRange(input);
+                validator.isUniqueBonusNumber(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> makeLottos(int quantity) {
@@ -69,13 +90,6 @@ public class LottoController {
                         .sorted()
                         .toList())
                 .forEach(inputView::printLottos);
-    }
-
-    private int getBonusNumberFromUser() {
-        String input = inputView.getBonusNumber();
-        int bonusNumber = validator.isNumber(input);
-        validator.isNumberInRange(input);
-        return bonusNumber;
     }
 
     private void announceLottoPrize(LottoDrawMachine lottoDrawMachine) {
