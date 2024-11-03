@@ -14,6 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countMatching(Lotto other) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        return (int) other.numbers.stream()
+                .filter(uniqueNumbers::contains)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
