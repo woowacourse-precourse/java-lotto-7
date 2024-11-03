@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.util.Constants;
 
-public interface inputValidator {
+public interface InputValidator {
     public void validateCostForm(int price);
 
     public int validateNumber(String string);

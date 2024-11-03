@@ -2,10 +2,11 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningNumbers;
 import lotto.service.LottoService;
+import lotto.service.LottoServiceImpl;
 import lotto.service.LottoValidateService;
+import lotto.service.LottoValidateServiceImpl;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,8 +20,8 @@ public class LottoController {
     private OutputView outputView;
 
     public LottoController() {
-        lottoService = new LottoService();
-        lottoValidateService = new LottoValidateService();
+        lottoService = new LottoServiceImpl();
+        lottoValidateService = new LottoValidateServiceImpl();
         inputView = new InputView();
         outputView = new OutputView();
     }

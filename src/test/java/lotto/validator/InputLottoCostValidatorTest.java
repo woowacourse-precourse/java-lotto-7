@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.service.LottoValidateService;
+import lotto.service.LottoValidateServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class InputLottoCostValidatorTest {
     @BeforeEach
     void setUp() {
         // 객체를 초기화
-        lottoValidateService = new LottoValidateService();
+        lottoValidateService = new LottoValidateServiceImpl();
     }
 
     @Test

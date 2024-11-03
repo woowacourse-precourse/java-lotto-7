@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.util.Constants;
 
-public class InputValidatorImpl implements inputValidator {
+public class InputValidatorImpl implements InputValidator {
 
     public void validateCostForm(int price) {
         if(price % Constants.PURCHASE_FORM != 0)

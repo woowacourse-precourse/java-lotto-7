@@ -1,28 +1,9 @@
 package lotto.service;
 
-import lotto.validator.InputValidatorImpl;
+public interface LottoValidateService {
+    public void validateLottoCost(String lottoPrice);
 
-public class LottoValidateService {
-    InputValidatorImpl inputValidator;
+    public void validateWinningNumbers(String lottoWinningNumbers);
 
-    public LottoValidateService() {
-        inputValidator = new InputValidatorImpl();
-    }
-
-    public void validateLottoCost(String lottoPrice) {
-        inputValidator.validateEmpty(lottoPrice);
-        int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
-        inputValidator.validateNumberRange(lottoPriceInt);
-        inputValidator.validateCostForm(lottoPriceInt);
-    }
-
-    public void validateWinningNumbers(String lottoWinningNumbers) {
-        inputValidator.validateEmpty(lottoWinningNumbers);
-        inputValidator.validateNumbersForm(lottoWinningNumbers);
-    }
-
-    public void validateBonusNumbers(String bonusNumber) {
-        inputValidator.validateEmpty(bonusNumber);
-        inputValidator.validateNumber(bonusNumber);
-    }
+    public void validateBonusNumbers(String bonusNumber);
 }
