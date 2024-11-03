@@ -35,7 +35,7 @@ public class ResultService {
     }
 
     public int hasBonusNumber(List<Integer> lottoNumbers, int winningNumber) {
-        if (lottoNumbers.contains(winning)) {
+        if (lottoNumbers.contains(winning.getBonusNumber())) {
             return winningNumber + 10;
         }
         return winningNumber;

@@ -62,4 +62,15 @@ public class ResultTest {
 
         assertTrue(resultService.isFiveWinningNumber(winningCount));
     }
+
+    @Test
+    @DisplayName("보너스 번호를 확인한다.")
+    public void testHashBonusNumber() {
+        Lotto lotto = new Lotto(new LinkedList<>(Arrays.asList(1,2,3,4,7,9)));
+        winning.setBonusNumber(9);
+
+        int winningCount = resultService.hasBonusNumber(lotto.getNumber(), winning.getBonusNumber());
+
+        assertEquals(19, winningCount);
+    }
 }
