@@ -152,15 +152,17 @@
 - camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
 - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
 - 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
-- 사용 예시
+# 사용 예시
+- 1에서 45 사이의 중복되지 않은 정수 6개 반환
 ```
-1에서 45 사이의 중복되지 않은 정수 6개 반환
 Randoms.pickUniqueNumbersInRange(1, 45, 6);
-Lotto 클래스
-제공된 Lotto 클래스를 사용하여 구현해야 한다.
-Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
-numbers의 접근 제어자인 private은 변경할 수 없다.
-Lotto의 패키지를 변경할 수 있다.
+```
+# Lotto 클래스
+- 제공된 Lotto 클래스를 사용하여 구현해야 한다.
+- Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
+- numbers의 접근 제어자인 private은 변경할 수 없다.
+- Lotto의 패키지를 변경할 수 있다.
+```
 public class Lotto {
 private final List<Integer> numbers;
 
@@ -181,13 +183,13 @@ private final List<Integer> numbers;
 # 기능 요구 조건
 1. buyer 클래스를 통해 money 를 반환 (하루 최대 구입 금액은 10만원이다) 
 2. 로또 머신을 이용하여 로또들을 반환한다
-   1. LottoTickets 을 반환
-   2. 당첨 번호를 입력한다 (WinningLotto) : Lotto
+   1. LottoTickets 을 반환 (오름차 순 정렬)
+   2. 당첨 번호를 입력한다 (WinningLotto: Lotto)
    3. 보너스 번호를 입력한다 이때 WinningLotto 랑 중복된 값이 있는지 확인해야함
-3. 결과 반환 (최고 금액은 200,000,000,000, 최고 수익률은 200,000,000.0% 이다)
+3. 결과 반환 (최고 금액은 200,000,000,000, 최고 수익률은 200,000,000.0% 이다) 수익률은 3자리마다 콤마로 구분한다
 
 # Validator
-# Lotto
+# Lotto && WinningLotto
    - [x] 1 ~ 45까지 범위의 중복되지 않은 랜덤한 번호 6개를 생성한다.
    - [x] 중복된 수가 있을 경우
    - [x] 6개의 수로 이뤄지지 않았을 경우
@@ -201,11 +203,5 @@ private final List<Integer> numbers;
    - [x] RegexPattern 에 맞지 않을 경우
 # 기능 테스트
    - [x] Convertor overflow 테스트
-   - [x] 당첨에 따른 금액 테스트
-   - [x] 수익률 테스트
-
-# 내일 할 목록 작성
-1. 리팩토링
-2. 예외처리 한 번 더 찾아보자
-3. 인터페이스 분리가 확실한지 확인
-4. 위 과정들을 준수했는지 재차 확인하자
+   - [x] 당첨에 따른 금액 테스트 (WinningPlace class)
+   - [x] 수익률 테스트 (Benefit class)
