@@ -18,7 +18,7 @@ public class UserNumbers {
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("로또 한 장 가격은 1000원 입니다. 올바른 금액을 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 로또 한 장 가격은 1000원 입니다. 올바른 금액을 입력해주세요.");
         }
     }
 
