@@ -1,7 +1,6 @@
-package lotto;
+package lotto.handler.purchase.process;
 
 import java.util.List;
-import lotto.service.WinningRank;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,22 +10,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public String displayNumbers() {
+    public String getDisplayNumbers() {
         return numbers.toString();
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    public static Lotto create(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
     }
 
     public WinningRank getRank(List<Integer> winningNumbers, int bonusNumber) {
@@ -70,7 +55,17 @@ public class Lotto {
         return sameNumberCount == 3;
     }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
     private boolean isSameNumber(int winningNumber, int number) {
         return winningNumber == number;
+    }
+
+    public static Lotto create(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 }
