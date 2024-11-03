@@ -38,7 +38,7 @@ public class LottoController {
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                 OutputView.printError(ErrorMessage.NOT_DIV.getError());
                 gainPurchaseAmount(); return;
@@ -67,7 +67,7 @@ public class LottoController {
         OutputView.printWinning();
         try {
             answer = InputView.readWinningNum();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printError(ErrorMessage.WIN_INPUT.getError());
             return gainWinningInput();
         }
