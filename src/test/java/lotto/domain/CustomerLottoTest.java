@@ -19,12 +19,12 @@ class CustomerLottoTest {
     @DisplayName("고객의 로또와 당첨로또를 비교하면 해당하는 결과들이 나온다")
     void compareWinningLottoTest() {
         // given
-        int bonusNumber = 10;
+        int number = 10;
         List<Lotto> tickets = new ArrayList<>(List.of(
                 //1등 로또
                 Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
                 //2등 로또
-                Lotto.of(List.of(2, 3, 4, 5, 6, bonusNumber)),
+                Lotto.of(List.of(2, 3, 4, 5, 6, number)),
                 //3등 로또
                 Lotto.of(List.of(2, 3, 4, 5, 6, 7)),
                 //4등 로또
@@ -34,6 +34,7 @@ class CustomerLottoTest {
         ));
         CustomerLotto customerLotto = CustomerLotto.of(tickets);
 
+        BonusNumber bonusNumber = BonusNumber.of(number, winningTicket);
         WinningLotto winningLotto = WinningLotto.of(winningTicket, bonusNumber);
         // when
         LottoResults lottoResults = customerLotto.compareWinningLotto(winningLotto);

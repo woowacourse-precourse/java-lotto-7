@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -9,36 +8,11 @@ import lotto.constant.Rank;
 import lotto.dto.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningLottoTest {
-    @Nested
-    @DisplayName("당첨 로또를 생성할때")
-    class winningLottoInitErrorTest {
-        private final List<Integer> ticket = List.of(1, 2, 3, 4, 5, 6);
-
-        @ParameterizedTest
-        @CsvSource(value = {"0", "46"})
-        @DisplayName("보너스 번호가 1보다 작거나 45보다 크면 예외가 발생한다")
-        void winningLottoInitErrorTest(String outOfRangeNumber) {
-            assertThatThrownBy(() -> WinningLotto.of(ticket, Integer.parseInt(outOfRangeNumber)))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 보너스 번호는 1와 45사이 숫자여야합니다.");
-        }
-
-        @Test
-        @DisplayName("보너스 번호가 당첨로또 번호와 중복이 있다면 예외가 발생한다")
-        void winningLottoDuplicateErrorTest() {
-            assertThatThrownBy(() -> WinningLotto.of(ticket, 1))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
-        }
-    }
-
     @Nested
     @DisplayName("당첨 로또 체크 테스트")
     class WinningLottoCheckLottoTest {
@@ -84,7 +58,8 @@ class WinningLottoTest {
         @DisplayName("로또 결과를 검증시")
         void rankingTest(String description, List<Integer> numbers, int bonusNumber, Rank expectedRank) {
             // given
-            WinningLotto winningLotto = WinningLotto.of(ticket, bonusNumber);
+            BonusNumber bonusNum = BonusNumber.of(bonusNumber, ticket);
+            WinningLotto winningLotto = WinningLotto.of(ticket, bonusNum);
             Lotto newTicket = Lotto.of(numbers);
 
             // when
