@@ -36,11 +36,15 @@ public class Application {
         }
 
         Integer[] lottoStat = lottoStatistics(purchaseInt / 1000, winningNumber, bonusNumInt);
-
+        finalResult(lottoStat, purchaseInt);
     }
 
     private static Integer[] lottoStatistics(int count, String[] winningNumber, int bonusNumInt) {
         Integer[] result = new Integer[7];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = 0;
+        }
+
         int sum = 0;
         for (int i = 0; i < count; i++) {
             int number = lotto.Lotto.calculateWinningStatus(lotto.Lotto.purchaseLotto(), winningNumber);
@@ -50,6 +54,29 @@ public class Application {
         }
         result[6] = sum;
         return result;
+    }
+
+    private static void finalResult(Integer[] lottoStat, int purchaseInt) {
+        System.out.println("당첨 통계\n---");
+        for (int i = 1; i < lottoStat.length - 1; i++) {
+            if( i == 1 ) {
+                System.out.println("3개 일치 (5,000원) - " + lottoStat[i] + "개");
+            }
+            if( i == 2 ) {
+                System.out.println("4개 일치 (50,000원) - " + lottoStat[i] + "개");
+            }
+            if( i == 3 ) {
+                System.out.println("5개 일치, 보너스 불 일치 (1,500,000원) - " + lottoStat[i] + "개");
+            }
+            if( i == 4 ) {
+                System.out.println("5개 일치 (30,000,000원) - " + lottoStat[i] + "개");
+            }
+            if( i == 5 ) {
+                System.out.println("6개 일치 (2,000,000,000원) - " + lottoStat[i] + "개");
+            }
+        }
+        String message = String.format("총 수익률은 %.2f%%입니다.", lottoStat[6]/(double)purchaseInt);
+        System.out.println(message);
     }
 
 
