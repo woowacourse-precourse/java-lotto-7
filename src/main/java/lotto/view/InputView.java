@@ -25,6 +25,10 @@ public class InputView {
 		}
 	}
 
+	public int getBonusNumberInput() {
+		return Integer.parseInt(Console.readLine());
+	}
+
 	private List<Integer> parseToNumbers(String input) {
 		return Arrays.stream(input.split(","))
 				.map(Integer::parseInt)
