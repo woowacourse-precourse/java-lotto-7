@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
-import lotto.LottoDraw;
-import lotto.LottoWinning;
+import lotto.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +14,10 @@ public class LottoController {
         Lotto winningNumbers = new Lotto(InputView.inputLottoPrizeNumbers());
         int bonusNumber = InputView.inputLottoBonusNumber();
         LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber, lottoDraw);
-        OutputView.outputWinningResult(lottoWinning);
+        LottoPrizeMap lottoPrizeMap = new LottoPrizeMap();
+        OutputView.outputWinningResult(lottoWinning, lottoPrizeMap);
+
+        CalculateRateOfReturn calculateRateOfReturn
+                = new CalculateRateOfReturn(purchaseAmount, lottoWinning, lottoPrizeMap);
     }
 }
