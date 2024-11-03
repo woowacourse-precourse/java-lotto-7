@@ -10,7 +10,7 @@ public class Application {
         System.out.println("");
 
         int numberOfLottos = purchaseAmount / 1000;
-        System.out.println(numberOfLottos + "개를 구매했습니다.");
+        System.out.println("");
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
@@ -28,6 +28,8 @@ public class Application {
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateResults(lottos, winningNumbers, bonusNumber);
         lottoResult.printResults();
+        lottoResult.printEarningsRate(purchaseAmount);
+
     }
 
     private static int getValidPurchaseAmount() {
