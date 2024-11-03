@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Sign;
+import lotto.domain.common.Price;
 import lotto.domain.lotto.BonusNumber;
-import lotto.domain.price.Price;
 import lotto.domain.winner.WinningNumbers;
 
 public class InputHandler {

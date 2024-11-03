@@ -1,4 +1,4 @@
-package lotto.domain.price;
+package lotto.domain.common;
 
 import java.util.Objects;
 

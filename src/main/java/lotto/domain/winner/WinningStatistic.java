@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.common.Price;
 import lotto.domain.lotto.LottoResult;
-import lotto.domain.price.Price;
 
 public class WinningStatistic {
 

@@ -2,11 +2,11 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.common.Price;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoResult;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.price.Price;
 import lotto.domain.winner.WinningNumbers;
 import lotto.domain.winner.WinningStatistic;
 
