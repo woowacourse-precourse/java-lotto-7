@@ -5,11 +5,13 @@ import lotto.model.exception.DomainExceptionMessage;
 
 public class Money {
     private static final Pattern numberPattern = Pattern.compile("^[0-9]+$");
+    private static final int MONEY_UNIT_VALUE = 1000;
+
     private final int value;
 
     public Money(final String value) {
-        validateNumberPattern(value);
-        this.value = Integer.parseInt(value);
+        validate(value);
+        this.value = getParsedInt(value);
     }
 
     @Override
@@ -23,11 +25,28 @@ public class Money {
         return this.value == money.value;
     }
 
+    private void validate(final String money) {
+        validateNumberPattern(money);
+        validateMoneyUnit(money);
+    }
+
     private void validateNumberPattern(final String money) {
         if (!numberPattern.matcher(money).matches()) {
             throw new IllegalArgumentException(
                     DomainExceptionMessage.INVALID_MONEY_FORMAT.getMessage()
             );
         }
+    }
+
+    private void validateMoneyUnit(final String money) {
+        if (getParsedInt(money) % MONEY_UNIT_VALUE != 0) {
+            throw new IllegalArgumentException(
+                    DomainExceptionMessage.INVALID_MONEY_UNIT.getMessage()
+            );
+        }
+    }
+
+    private int getParsedInt(String money) {
+        return Integer.parseInt(money);
     }
 }
