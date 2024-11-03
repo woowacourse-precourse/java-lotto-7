@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.validator.NumberParser.delimiter;
+import static lotto.validator.NumberParser.DELIMITER;
 
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +49,7 @@ public class NumberValidator {
     }
 
     private void checkDelimiter(String winningNumbers) {
-        if (!winningNumbers.contains(delimiter)) {
+        if (!winningNumbers.contains(DELIMITER)) {
             throw new NullPointerException("[ERROR] 구분자는 쉼표(,)로 구분해주세요");
         }
     }

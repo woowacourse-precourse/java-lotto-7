@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final int PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

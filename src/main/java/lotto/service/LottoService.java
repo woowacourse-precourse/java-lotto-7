@@ -23,7 +23,7 @@ public class LottoService {
     }
 
     public List<Lotto> getLottos(int purchaseMoney) {
-        int purchaseLottoQuantity = purchaseMoney / 1000;
+        int purchaseLottoQuantity = purchaseMoney / Lotto.PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < purchaseLottoQuantity; i++) {

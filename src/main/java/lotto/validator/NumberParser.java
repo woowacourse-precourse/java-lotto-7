@@ -6,7 +6,7 @@ import java.util.List;
 
 public class NumberParser {
 
-    public static final String delimiter = ",";
+    public static final String DELIMITER = ",";
 
     public static List<Integer> toNumbers(String input) {
         List<String> numbers = splitByDelimiter(input);
@@ -23,6 +23,6 @@ public class NumberParser {
     }
 
     private static List<String> splitByDelimiter(String winningNumbers) {
-        return Arrays.asList(winningNumbers.split(delimiter));
+        return Arrays.asList(winningNumbers.split(DELIMITER));
     }
 }

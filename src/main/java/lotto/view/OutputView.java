@@ -9,7 +9,7 @@ import lotto.model.PrizeTable;
 public class OutputView {
 
     public void printPurchaseQuantity(int purchaseMoney) {
-        System.out.printf("\n%d개를 구매했습니다.\n", purchaseMoney / 1000);
+        System.out.printf("\n%d개를 구매했습니다.\n", purchaseMoney / Lotto.PRICE);
     }
 
     public void printAllLottoNumbers(List<Lotto> lottos) {
