@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.constant.ErrorMessage;
 
 public class LottoValidator {

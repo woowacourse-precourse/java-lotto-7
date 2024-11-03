@@ -1,8 +1,4 @@
-package lotto.enumerate;
-
-import java.util.HashMap;
-import java.util.Map;
-import lotto.view.InputView;
+package lotto.domain;
 
 public enum Prize {
 

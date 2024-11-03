@@ -1,11 +1,10 @@
 package lotto.view;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.enumerate.Prize;
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 public class OutputView {
 

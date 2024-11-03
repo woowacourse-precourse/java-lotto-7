@@ -3,10 +3,6 @@ package lotto.view;
 import static lotto.constant.LottoConstant.LOTTO_NUM_DELIMITER;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.List;
-import lotto.Lotto;
-import lotto.validator.LottoValidator;
 
 public class InputView {
 

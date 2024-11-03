@@ -5,13 +5,12 @@ import static lotto.constant.LottoConstant.BONUS_NUMBER_CHECK_CRITERIA;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.dto.LottoMatchResult;
-import lotto.enumerate.Prize;
+import lotto.domain.Prize;
 
 public class LottoService {
 
