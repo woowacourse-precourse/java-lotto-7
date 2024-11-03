@@ -7,11 +7,13 @@ import lotto.domain.ProfitCalculator;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.input.InputBonusNumberView;
+import lotto.view.input.InputMoneyView;
+import lotto.view.input.InputView;
+import lotto.view.input.InputWinningNumberView;
+import lotto.view.output.OutputView;
 
 public class LottoController {
-    InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
     public void start() {
@@ -31,12 +33,12 @@ public class LottoController {
     }
 
     private Money getMoney() {
+        InputMoneyView inputMoneyView = new InputMoneyView();
         while (true) {
             try {
-                int moneyInput = inputView.inputMoney();
+                int moneyInput = inputMoneyView.getValue();
                 return new Money(moneyInput);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
         }
     }
@@ -54,9 +56,11 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
+        InputWinningNumberView inputWinningNumberView = new InputWinningNumberView();
+        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
         while (true) {
-            List<Integer> winningNumbers = inputView.inputWinningNumber();
-            int bonusNumber = inputView.inputBonusNumber();
+            List<Integer> winningNumbers = inputWinningNumberView.getValue();
+            int bonusNumber = inputBonusNumberView.getValue();
 
             try {
                 return new WinningLotto(winningNumbers, bonusNumber);
