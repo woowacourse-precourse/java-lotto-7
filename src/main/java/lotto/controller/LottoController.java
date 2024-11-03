@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.CreateLottoInfo;
+import lotto.dto.GeneratedLottoInfo;
 import lotto.dto.WinningStatistics;
 import lotto.dto.WinningLottoInfo;
 import lotto.model.UserLottoInfo;
@@ -21,10 +21,9 @@ public class LottoController {
     }
 
     public void run() {
-        UserLottoInfo userLottoInfo = new UserLottoInfo(readPurchaseAmount());
-        CreateLottoInfo createLottoInfo = lottoService.getCreateLottoInfo(userLottoInfo);
-
-        outputView.printCreateLottoInfo(createLottoInfo);
+        UserLottoInfo userLottoInfo = generateUserLottoInfo();
+        GeneratedLottoInfo generatedLottoInfo = generateLottoInfo(userLottoInfo);
+        outputView.printCreateLottoInfo(generatedLottoInfo);
 
         WinningLotto winningLotto = new WinningLotto(readWinningLottoInfo());
         WinningStatistics winningStatistics = lottoService.getLottoRateInfo(winningLotto, userLottoInfo);
@@ -32,8 +31,29 @@ public class LottoController {
         outputView.printWinningStatics(winningStatistics);
     }
 
+    private GeneratedLottoInfo generateLottoInfo(lotto.model.UserLottoInfo userLottoInfo) {
+        return lottoService.getGeneratedLottoInfo(userLottoInfo);
+    }
+
+    private UserLottoInfo generateUserLottoInfo() {
+        while (true) {
+            try {
+                return new UserLottoInfo(readPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
+    }
+
     private long readPurchaseAmount() {
-        return inputView.readPurchaseAmount();
+        while (true) {
+            try {
+                return inputView.readPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
+
     }
 
     private WinningLottoInfo readWinningLottoInfo() {

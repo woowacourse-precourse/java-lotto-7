@@ -7,7 +7,7 @@ public class InputView {
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public long readPurchaseAmount() {
+    public long readPurchaseAmount() throws IllegalArgumentException{
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String userPurchaseAmount = Console.readLine();
         checkUserInputIsNull(userPurchaseAmount);
@@ -31,7 +31,7 @@ public class InputView {
         return checkBonusNumberIsNum(bonusNumber);
     }
 
-    private void checkUserInputIsNull(String userInput) {
+    private void checkUserInputIsNull(String userInput) throws IllegalArgumentException{
         if (userInput == null || userInput.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백입니다.");
         }
