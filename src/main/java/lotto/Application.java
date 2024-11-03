@@ -9,10 +9,12 @@ public class Application {
         // TODO: 프로그램 구현
         int purchaseAmount = inputPurchaseAmount();
         int lottoCount = getLottoCount(purchaseAmount);
+        Lotto[] lottos = new Lotto[lottoCount];
+
     }
 
 
-    public static int inputPurchaseAmount() {
+    private static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int purchaseAmount = parsePurchaseAmount(input);
@@ -20,7 +22,7 @@ public class Application {
         return purchaseAmount;
     }
 
-    public static int parsePurchaseAmount(String input) {
+    private static int parsePurchaseAmount(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -29,7 +31,7 @@ public class Application {
         }
     }
 
-    public static void validatePurchaseAmount(int input) {
+    private static void validatePurchaseAmount(int input) {
         if (input == -1) {
             throw new IllegalArgumentException();
         }
@@ -41,7 +43,7 @@ public class Application {
         }
     }
 
-    public static int getLottoCount(int input) {
+    private static int getLottoCount(int input) {
         return input / 1000;
     }
 }
