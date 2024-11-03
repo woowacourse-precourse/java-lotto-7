@@ -13,14 +13,19 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 public class LottoService {
 
     private Money money;
+    private final int MONEY_UNIT = 1000;
+    private final int START_NUMBER = 1;
+    private final int END_NUMBER = 45;
+    private final int COUNT = 6;
+
 
     public Lotto[] issueLotto(Money money) {
         this.money = money;
-        int lottoCount = money.getPurchaseAmount() / 1000;
+        int lottoCount = money.getPurchaseAmount() / MONEY_UNIT;
         Lotto[] issuedLottos = new Lotto[lottoCount];
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT));
             Collections.sort(numbers);
             issuedLottos[i] = new Lotto(numbers);
         }
@@ -42,7 +47,7 @@ public class LottoService {
     }
 
     private void checkBonusNumber(Lotto lotto, Lotto winningLotto) {
-        if (lotto.getNumbers().contains(winningLotto.getNumbers().get(6))) {
+        if (lotto.getNumbers().contains(winningLotto.getNumbers().get(COUNT))) {
             WinningStatistics.SECOND.setCount(WinningStatistics.SECOND.getCount() + 1);
             return;
         }

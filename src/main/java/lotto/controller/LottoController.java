@@ -14,6 +14,7 @@ import java.util.List;
 public class LottoController {
     private final InputView inputView;
     private final LottoService lottoService;
+    private final int MONEY_UNIT = 1000;
 
     public LottoController() {
         this.inputView = new InputView();
@@ -29,7 +30,7 @@ public class LottoController {
             return purchaseLotto();
         }
 
-        System.out.printf(OutputMessage.NOTICE_PURCHASE_COUNT.getMessage(), money.getPurchaseAmount() / 1000);
+        System.out.printf(OutputMessage.NOTICE_PURCHASE_COUNT.getMessage(), money.getPurchaseAmount() / MONEY_UNIT);
         Lotto[] purchasedLotto = lottoService.issueLotto(money);
         showPurchaseLotto(purchasedLotto);
 
