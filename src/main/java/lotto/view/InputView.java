@@ -1,7 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.NumberValidator;
 import lotto.validator.PurchaseAmountValidator;
+
+import java.util.Arrays;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
@@ -17,11 +20,13 @@ public class InputView {
         return Long.parseLong(inputAmount);
     }
 
-    public static void inputWinningNumbers() {
+    public static int[] inputWinningNumbers() {
         String inputWinningNumbers;
         do {
             System.out.println(WINNING_NUMBERS_PROMPT);
-        } while ()
+            inputWinningNumbers = Console.readLine().trim();
+        } while (!NumberValidator.checkValidWinningNumbers(inputWinningNumbers));
+        return Arrays.stream(inputWinningNumbers.split(",")).mapToInt(Integer::valueOf).toArray();
     }
 
     public static void inputBonusNumber() {
