@@ -166,7 +166,7 @@ public class Lotto {
 - [ ] 로또 구입 금액 입력 시
     - `IllegalArgumentException`
         - [x] `빈 문자열` 또는 `Null` 또는 `공백으로만 이루어진 문자열` 값이 들어온 경우
-        - [ ] 양의 정수가 아닌 값이 들어온 경우
+        - [x] 양의 정수가 아닌 값이 들어온 경우
         - [x] 구매 금액이 1,000원 단위가 아닌 경우
 - [ ] 당첨 번호 입력 시
     - `IllegalArgumentException`

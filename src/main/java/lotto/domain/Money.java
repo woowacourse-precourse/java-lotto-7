@@ -17,12 +17,20 @@ public class Money {
     }
 
     private void validate(int amount) {
+        validatePositiveInteger(amount);
         validateUnit(amount);
     }
 
+    private void validatePositiveInteger(int amount) {
+        boolean isValid = (0 < amount);
+        if (!isValid) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT_NOT_ALLOWED.getMessage());
+        }
+    }
+
     private void validateUnit(int amount) {
-        boolean valid = amount % UNIT_OF_PURCHASE_AMOUNT == 0;
-        if (!valid) {
+        boolean isValid = (amount % UNIT_OF_PURCHASE_AMOUNT == 0);
+        if (!isValid) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
         }
     }
