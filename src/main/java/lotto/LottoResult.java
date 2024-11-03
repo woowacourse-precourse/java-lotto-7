@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static constant.Message.*;
+
 public class LottoResult {
 
     private Map<Integer, Integer> rankCount;
@@ -56,18 +58,18 @@ public class LottoResult {
     }
 
     public void print() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + rankCount.get(5) + "개");
-        System.out.println("4개 일치 (50,000원) - " + rankCount.get(4) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rankCount.get(3) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.get(2) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.get(1) + "개");
+        System.out.println("\n" + PRINT_LOTTO_STATICS.getMessage());
+        System.out.println(PRINT_LINE.getMessage());
+        System.out.println(FIFTH_RANK.getMessage() + rankCount.get(5) + SUFFIX_RANK_COUNT.getMessage());
+        System.out.println(FOURTH_RANK.getMessage() + rankCount.get(4) + SUFFIX_RANK_COUNT.getMessage());
+        System.out.println(THIRD_RANK.getMessage() + rankCount.get(3) + SUFFIX_RANK_COUNT.getMessage());
+        System.out.println(SECOND_RANK.getMessage() + rankCount.get(2) + SUFFIX_RANK_COUNT.getMessage());
+        System.out.println(FIRST_RANK.getMessage() + rankCount.get(1) + SUFFIX_RANK_COUNT.getMessage());
         printEarningRate();
     }
 
     public void printEarningRate() {
-        System.out.println("총 수익률은 " + getEarningRate() + "%입니다.");
+        System.out.println(PREFIX_EARNING_RATE.getMessage() + getEarningRate() + SUFFIX_EARNING_RATE.getMessage());
     }
 
     public double getEarningRate() {

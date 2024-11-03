@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import static constant.Message.*;
+
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
@@ -30,25 +32,25 @@ public class Application {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수로 변환할 수 없는 문자열입니다.");
+            throw new IllegalArgumentException(ERROR_NON_NUMERIC_STRING.getMessage());
         }
     }
 
     private static void validatePositiveNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException("[ERROR] 양의 정수가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_NON_POSITIVE_STRING.getMessage());
         }
     }
 
     private static void validateThousandUnit(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지지 않는 금액입니다.");
+            throw new IllegalArgumentException(ERROR_NON_THOUSAND_UNIT.getMessage());
         }
     }
 
     private static int getPurchaseAmount() {
         while (true) {
-            String purchaseAmountInput = getInputString("구입 금액을 입력해 주세요.");
+            String purchaseAmountInput = getInputString(INPUT_REQUEST_PURCHASE_AMOUNT.getMessage());
             try {
                 return getValidatedPurchaseAmount(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
@@ -86,7 +88,7 @@ public class Application {
     }
 
     private static void printLottoTickets(ArrayList<Lotto> lottoTickets) {
-        System.out.println("\n" + lottoTickets.size() + "개를 구매했습니다.");
+        System.out.println("\n" + lottoTickets.size() + PRINT_LOTTO_TICKETS_SIZE.getMessage());
         for (Lotto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
         }
@@ -94,7 +96,7 @@ public class Application {
 
     private static void validateWinningNumbersCount(String[] winningNumbersInputSplits) {
         if (winningNumbersInputSplits.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_COUNT.getMessage());
         }
     }
 
@@ -103,14 +105,14 @@ public class Application {
             try {
                 validateNumericString(winningNumberInputSplit);
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("[ERROR] 정수로 변환할 수 없는 문자열이 포함되어 있습니다.");
+                throw new IllegalArgumentException(ERROR_INCLUDING_NON_NUMERIC_NUMBER.getMessage());
             }
         }
     }
 
     private static void validateLottoNumberInRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자의 범위를 벗어나는 값입니다.");
+            throw new IllegalArgumentException(ERROR_OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -119,7 +121,7 @@ public class Application {
             try {
                 validateLottoNumberInRange(number);
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("[ERROR] 로또 숫자의 범위를 벗어나는 값이 포함되어 있습니다.");
+                throw new IllegalArgumentException(ERROR_INCLUDING_OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
             }
         }
     }
@@ -136,7 +138,7 @@ public class Application {
         HashSet<Integer> set = new HashSet<>();
         for (int number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+                throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBERS.getMessage());
             }
         }
     }
@@ -156,7 +158,7 @@ public class Application {
 
     private static ArrayList<Integer> getWinningNumbers() {
         while (true) {
-            String winningNumbersInput = getInputString("당첨 번호를 입력해 주세요.");
+            String winningNumbersInput = getInputString(INPUT_REQUEST_WINNING_NUMBERS.getMessage());
             String[] winningNumbersInputSplits = winningNumbersInput.split(",");
             try {
                 return getValidatedWinningNumbers(winningNumbersInputSplits);
@@ -168,7 +170,7 @@ public class Application {
 
     private static void validateNewNumber(ArrayList<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 기존에 중복되는 값이 있습니다.");
+            throw new IllegalArgumentException(ERROR_NON_NEW_NUMBER.getMessage());
         }
     }
 
