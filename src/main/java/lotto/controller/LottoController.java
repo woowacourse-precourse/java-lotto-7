@@ -44,7 +44,7 @@ public class LottoController {
             try {
                 String winningInput = inputView.inputWinningNumber();
                 List<Integer> winningNumbers = ParseNumberUtil.parseNumber(winningInput);
-                validateNumber(winningNumbers);
+                validateWinningNumber(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -52,7 +52,7 @@ public class LottoController {
         }
     }
 
-    private void validateNumber(List<Integer> winningNumbers) {
+    private void validateWinningNumber(List<Integer> winningNumbers) {
         numberValidator.checkNumberSize(winningNumbers);
         numberValidator.checkNumberRange(winningNumbers);
         numberValidator.checkNumberDuplicated(winningNumbers);
