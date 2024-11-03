@@ -19,6 +19,11 @@ public class ConsoleOutput {
     public void printPrizeStatistics(WinningResult result) {
         System.out.println("당첨통계");
         System.out.println("---");
+        renderPrizeStatistics(result);
+        System.out.println("총 수익률은 " + result.calculateTotalPrizeRate() + "%입니다.");
+    }
+
+    private void renderPrizeStatistics(WinningResult result) {
         Map<Rank, Integer> counts = result.getCounts();
         Set<Map.Entry<Rank, Integer>> entries = counts.entrySet();
         for (Map.Entry<Rank, Integer> entry : entries) {
@@ -31,6 +36,5 @@ public class ConsoleOutput {
             }
             System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
         }
-        System.out.println("총 수익률은 " + result.calculateTotalPrizeRate() + "%입니다.");
     }
 }

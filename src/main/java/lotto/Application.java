@@ -9,11 +9,15 @@ public class Application {
         ConsoleInput input = new ConsoleInput();
         ConsoleOutput output = new ConsoleOutput();
 
-        try {
-            LottoGame lottoGame = new LottoGame(input, output);
-            lottoGame.play();
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+        while(true) {
+            try {
+                LottoGame lottoGame = new LottoGame(input, output);
+                lottoGame.play();
+                break;
+            } catch (RuntimeException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
+
 }
