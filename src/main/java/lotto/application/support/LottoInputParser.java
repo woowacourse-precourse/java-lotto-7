@@ -7,6 +7,7 @@ import static lotto.common.Consts.LOTTO_PRICE;
 import static lotto.common.Consts.PURCHASE_AMOUNT_1000_UNIT_ERROR;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.common.Errors;
 
@@ -35,9 +36,13 @@ public class LottoInputParser {
     }
 
     public List<Integer> parseWinningNumber(String winningNumber){
-        List<Integer> winningNumbers = winningNumbertoList(winningNumber);
-        validateWinningNumber(winningNumbers);
-        return winningNumbers;
+        try {
+            List<Integer> winningNumbers = winningNumbertoList(winningNumber);
+            validateWinningNumber(winningNumbers);
+            return winningNumbers;
+        } catch (IllegalArgumentException e){
+            return Collections.emptyList();
+        }
     }
 
     private List<Integer> winningNumbertoList(String winningNumber){
