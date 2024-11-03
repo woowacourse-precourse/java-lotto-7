@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Rank;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -20,11 +22,28 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
+
     public void printWinningStatistics() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
-    public void printRankResult(String rankContent, Long number) {
+    public OutputView() {
+    }
+
+    public void printResult(Map<Rank, Long> rankCount) {
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {  // NONE 등급은 제외
+                continue;
+            }
+
+            Long count = rankCount.getOrDefault(rank, 0L);
+            String rankContent = rank.getRankContent();
+
+            printRankResult(rankContent, count);
+        }
+    }
+
+    private void printRankResult(String rankContent, Long number) {
         System.out.printf(RANK_RESULT_MESSAGE, rankContent, number);
     }
 

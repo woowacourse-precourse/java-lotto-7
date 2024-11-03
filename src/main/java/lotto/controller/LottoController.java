@@ -36,9 +36,9 @@ public class LottoController {
         WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
 
         List<Rank> ranks = lottoService.checkWinning(issuedLotto, winningCombination);
-        Map<Rank, Long> rankMap = issuedLotto.calculateResults(winningCombination);
+        Map<Rank, Long> rankCount = issuedLotto.calculateResults(winningCombination);
 
-        printResult(rankMap);
+        printResult(rankCount);
         printProfitRate(lottoService.calculateProfitRate(ranks, purchaseAmount));
     }
 
@@ -82,18 +82,9 @@ public class LottoController {
         outputView.printLottoNumber(issuedLotto.getLottoTickets());
     }
 
-    private void printResult(Map<Rank, Long> rankMap) {
+    private void printResult(Map<Rank, Long> rankCount) {
         outputView.printWinningStatistics();
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) {  // NONE 등급은 제외
-                continue;
-            }
-
-            Long count = rankMap.getOrDefault(rank, 0L);
-            String rankContent = rank.getRankContent();
-
-            outputView.printRankResult(rankContent, count);
-        }
+        outputView.printResult(rankCount);
     }
 
     private void printProfitRate(double profitRate) {
