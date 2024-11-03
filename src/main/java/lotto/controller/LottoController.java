@@ -35,6 +35,7 @@ public class LottoController {
                 String bonusInput = inputView.inputBonusNumber();
                 Integer bonusNumber = ParseNumberUtil.parseNumberToInteger(bonusInput);
                 numberValidator.checkNumberRange(bonusNumber);
+                numberValidator.checkNumberDuplicatedWithWinningNumber(bonusNumber, winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -62,8 +63,8 @@ public class LottoController {
     }
 
     private int inputMoney(int lottoPrice) {
-        while(true) {
-            try{
+        while (true) {
+            try {
                 String money = inputView.inputMoney();
                 moneyValidator.validateNumeric(money);
                 moneyValidator.validateDivideWithLottoPrice(Integer.parseInt(money), lottoPrice);

@@ -34,6 +34,12 @@ public class NumberValidator {
         }
     }
 
+    public void checkNumberDuplicatedWithWinningNumber(Integer bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WINNING_NUMBER.getMessage());
+        }
+    }
+
     private boolean isNotInRange(int number) {
         return number < LottoConstant.START_INDEX || number > LottoConstant.END_INDEX;
     }
