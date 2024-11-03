@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningNumbersTest {
 
-    @DisplayName("당첨 번호는 쉼표로 구분된 문자열을 파싱하여 생성된다")
+    @DisplayName("당첨 번호는 쉼표로 구분된 문자열을 파싱하여 생성된다.")
     @Test
     void should_CreateWinningNumbers_When_InputString() {
         // given
@@ -25,7 +25,7 @@ class WinningNumbersTest {
         assertThat(winningNumbers.countMatchedNumbers(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
     }
 
-    @DisplayName("당첨 번호에 빈 문자열이 있으면 무시한다")
+    @DisplayName("당첨 번호에 빈 문자열이 있으면 무시한다.")
     @Test
     void should_IgnoreEmptyString_When_ParsingWinningNumbers() {
         // given
@@ -38,7 +38,7 @@ class WinningNumbersTest {
         assertThat(winningNumbers.countMatchedNumbers(List.of(1, 2, 3, 4, 5, 6))).isEqualTo(6);
     }
 
-    @DisplayName("당첨 번호가 숫자가 아닌 경우 예외가 발생한다")
+    @DisplayName("당첨 번호가 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void should_ThrowException_When_NotNumber() {
         assertThatThrownBy(() -> WinningNumbers.from("1,2,3,4,5,a"))
