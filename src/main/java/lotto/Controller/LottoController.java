@@ -45,6 +45,7 @@ public class LottoController {
                 OutputView.printPurchaseAmount();
                 purchasePrice = InputView.readPurchaseAmount();
                 isValid = true; // 입력이 유효할 경우 루프 종료
+                this.countLotto(purchasePrice);
             } catch (IllegalArgumentException e) {
                 if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                     OutputView.printError(ErrorMessage.NOT_DIV.getError());
@@ -58,7 +59,6 @@ public class LottoController {
                 }
             }
         }
-        this.countLotto(purchasePrice);
         this.myInfo.setPurchasePrice(purchasePrice);
     }
 
@@ -68,7 +68,7 @@ public class LottoController {
     public void countLotto(Integer purchasePrice) {
         int lottoCount = purchasePrice / 1000;
         if (purchasePrice % 1000 != 0) {
-            OutputView.printError(ErrorMessage.NOT_DIV.getError());
+            //OutputView.printError(ErrorMessage.NOT_DIV.getError());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printBlank();
