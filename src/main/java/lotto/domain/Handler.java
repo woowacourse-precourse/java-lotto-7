@@ -21,6 +21,7 @@ public class Handler {
   private int generateRequest;
   private Lotto lotto;
 
+
   public Handler(int request) {
 
     this.generateRequest = request;
@@ -89,9 +90,21 @@ public class Handler {
 
 
   // 6. 비교한 결과를 토대로 총 수익률 계산한다
-  // 형식) x개 일치 - y개,  수익률 z%
-  private void calculateRevenue(List<Integer> bonusNumber) {
-
+  public double calculateRevenue(String result, Input input) {
+    double revenue = 0;
+    // 수익률 = 당첨 금액 / 투입 금액 * 100
+    // 결과 문자열에서 당첨 금액 추출
+    int winningAmount = 0;
+    // "3개 일치 (5,000원) - 1개" 에서 5000만 추출
+    for(int i = 0; i < result.length(); i++) {
+      if(result.charAt(i) =='원') {
+        // 쉼표를 제외한 정수를 winningAmount에 할당
+        Arrays.stream(r)
+      }
+    }
+    revenue = (winningAmount / input.readAmount()) * 100;
+    // 입력값에서 투입 금액 추출
+    return revenue;
   }
 
   public String getResult(double revenue) {
