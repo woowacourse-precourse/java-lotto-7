@@ -47,13 +47,82 @@ public class Drow {
         bonusNumber = Integer.parseInt(userInput);
     }
 
-    boolean validateDrowNumbers(String userInput){
-        return true;
+    private boolean validateDrowNumbers(String userInput){
+
+        List<Integer> checkNumbers = new ArrayList<>(); // 중복 확인을 위한 숫자 리스트
+
+        try {
+            String[] inputNumbers = userInput.split(",");
+
+            if(inputNumbers.length!=6){
+                throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+            }
+
+            for(String inputNumber : inputNumbers){
+
+                int drowNumber = Integer.parseInt(inputNumber);
+                validateInputNumber(drowNumber);
+                validateDuplicationNumber(checkNumbers, drowNumber);
+                checkNumbers.add(drowNumber);
+
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            return false;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] "+e.getMessage());
+            return false;
+
+        }
+
+
     }
 
-    boolean validateBonusNumber(String userInput){
-        return true;
+    private boolean validateBonusNumber(String userInput){
+        try{
+            int bonusNumber = Integer.parseInt(userInput);
+
+            validateInputNumber(bonusNumber);
+            validateDuplicationNumber(drowNumbers, bonusNumber);
+
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
+            return false;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] "+e.getMessage());
+            return false;
+
+        }
     }
+
+    private void validateInputNumber(int drowNumber){
+
+        if (drowNumber < 1){
+            throw new IllegalArgumentException("당첨 번호는 1보다 커야합니다.");
+        }
+
+        if (drowNumber > 45){
+            throw new IllegalArgumentException("당첨 번호는 45보다 작아야합니다.");
+        }
+
+    }
+
+    private void validateDuplicationNumber(List<Integer> checkNumbers, int drowNumber){
+
+        for(int checkNumber : checkNumbers){
+
+            if(checkNumber == drowNumber){
+                throw new IllegalArgumentException("중복되는 당첨 번호가 있습니다");
+            }
+
+        }
+    }
+
+
 
 
 }
