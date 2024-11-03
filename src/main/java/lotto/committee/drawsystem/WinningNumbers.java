@@ -1,4 +1,4 @@
-package lotto.committee;
+package lotto.committee.drawsystem;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,14 +9,14 @@ public class WinningNumbers {
     private List<Integer> wonMainNumbers;
     private Integer wonBonusNumber;
 
-    private WinningNumbers() { }
+    private WinningNumbers() {}
 
-    static WinningNumbers forTest(List<Integer> mainNumbers, Integer bonusNumber) {
-        WinningNumbers objForTest = new WinningNumbers();
-        objForTest.wonMainNumbers = Collections.unmodifiableList(mainNumbers);
-        objForTest.wonBonusNumber = bonusNumber;
+    static WinningNumbers create() {
+        return new WinningNumbers();
+    }
 
-        return objForTest;
+    static WinningNumbers forTest() {
+        return new WinningNumbers();
     }
 
     public WinningNumbers getWinningNumbers() {

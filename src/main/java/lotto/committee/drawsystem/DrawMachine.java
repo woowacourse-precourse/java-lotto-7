@@ -1,11 +1,21 @@
-package lotto.committee;
+package lotto.committee.drawsystem;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class DrawMachine {
 
-    WinningNumbers winningNumbers;
+    private final WinningNumbers winningNumbers;
+
+    private DrawMachine(WinningNumbers winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+    static DrawMachine forTest(WinningNumbers winningNumbers) {
+        DrawMachine objForTest = new DrawMachine(winningNumbers);
+        objForTest.runDraw();
+        return objForTest;
+    }
 
     void runDraw() {
         List<Integer> mainNumbers = drawMainNumbers();
