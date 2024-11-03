@@ -7,6 +7,7 @@ import lotto.domain.validator.RangeValidator;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -26,24 +27,18 @@ public class LottoController {
     }
 
     public void start() {
-        Lottos lottos = buyLottos();
-        output.goToNext();
-        Draw draw = inputDraw();
-        output.goToNext();
-        Ranks ranks = lottos.draw(draw);
-        output.showRanks(ranks);
-    }
-
-    private Lottos buyLottos() {
         try {
             Money money = getPurchaseMoney();
-            Lottos lottos = lottoMachine.purchase(money);
+            Lottos lottos = buyLottos(money);
             output.goToNext();
-            output.showLottos(lottos);
-            return lottos;
+            Draw draw = inputDraw();
+            output.goToNext();
+            Ranks ranks = lottos.draw(draw);
+            output.showRanks(ranks);
+            BigDecimal profitPercentage = ranks.calculateProfitRate(money);
+            output.showProfitPercentage(profitPercentage);
         } catch (IllegalArgumentException ex) {
-            output.outputError(ex);
-            return buyLottos();
+            start();
         }
     }
 
@@ -54,6 +49,18 @@ public class LottoController {
         } catch (IllegalArgumentException ex) {
             output.outputError(ex);
             return getPurchaseMoney();
+        }
+    }
+
+    private Lottos buyLottos(Money money) {
+        try {
+            Lottos lottos = lottoMachine.purchase(money);
+            output.goToNext();
+            output.showLottos(lottos);
+            return lottos;
+        } catch (IllegalArgumentException ex) {
+            output.outputError(ex);
+            throw ex;
         }
     }
 

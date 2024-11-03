@@ -5,6 +5,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.Ranks;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.Function;
@@ -52,6 +53,11 @@ public class ConsoleOutput implements Output {
         for (Rank rank : sortPrintRanks()) {
             printRank(rank, countByRank.getOrDefault(rank, 0L));
         }
+    }
+
+    @Override
+    public void showProfitPercentage(BigDecimal profitPercentage) {
+        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
     }
 
     private Map<Rank, Long> groupingByCount(List<Rank> ranks) {
