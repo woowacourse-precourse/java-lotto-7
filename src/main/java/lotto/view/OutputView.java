@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
@@ -23,19 +22,19 @@ public class OutputView {
         }
     }
 
-    public void printOrderdLottoResult(List<LottoResult> lottoResult) {
+    public void printOrderdLottoResult(List<Integer> lottoResult) {
         System.out.println(LOTTO_RESULT_START_MESSAGE);
 
         for (int i = ranks.length - 1; i >= 0; i--) {
-                int rankMatchingcount = ranks[i].getMatchingCount();
-                int lottoWinnigCount = (int) lottoResult.stream().filter(lotto -> lotto.getMatchingCount() == rankMatchingcount).count();
-
                 if(ranks[i].getMatchingBonus() == true){
-                    int bonusWinnigCount = (int) lottoResult.stream().filter(lotto -> lotto.isMatchingBonus() && lotto.getMatchingCount() == rankMatchingcount).count();
-                    System.out.println(ranks[i].getMatchingCount()+MATCHING_COUNT_MESSAGE+BONUS_LOTTO_MATCHING_MESSAGE+ranks[i].getPrizeNotice()+COUNT_DELIMITER_MESSAGE+bonusWinnigCount+COUNT_UNIT);
+                    System.out.println(ranks[i].getMatchingCount()+MATCHING_COUNT_MESSAGE+BONUS_LOTTO_MATCHING_MESSAGE+ranks[i].getPrizeNotice()+COUNT_DELIMITER_MESSAGE+lottoResult.get(i)+COUNT_UNIT);
                     continue;
                 }
-                System.out.println(ranks[i].getMatchingCount()+MATCHING_COUNT_MESSAGE+" "+ranks[i].getPrizeNotice()+COUNT_DELIMITER_MESSAGE+lottoWinnigCount+COUNT_UNIT);
+                System.out.println(ranks[i].getMatchingCount()+MATCHING_COUNT_MESSAGE+" "+ranks[i].getPrizeNotice()+COUNT_DELIMITER_MESSAGE+lottoResult.get(i)+COUNT_UNIT);
         }
+    }
+
+    public void printEarningRate() {
+
     }
 }

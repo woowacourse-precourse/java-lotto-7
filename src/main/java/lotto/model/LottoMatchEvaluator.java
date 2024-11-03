@@ -5,12 +5,13 @@ import java.util.List;
 
 public class LottoMatchEvaluator {
     private List<LottoResult> lottoResults = new ArrayList<LottoResult>();
+    private final List<Integer> lottoWinningCounts = new ArrayList<Integer>();
 
     public LottoMatchEvaluator(List<Integer> lottoNumber, int bonusNumber, LottoPublisher lottoPublisher) {
-        evaluateLottoResults(lottoNumber, bonusNumber, lottoPublisher);
+        matchLottoNumbers(lottoNumber, bonusNumber, lottoPublisher);
     }
 
-    public void evaluateLottoResults(List<Integer> lottoNumber, int bonusNumber, LottoPublisher lottoPublisher) {
+    public void matchLottoNumbers(List<Integer> lottoNumber, int bonusNumber, LottoPublisher lottoPublisher) {
         List<List<Integer>> publishedLottos = lottoPublisher.getPublishedLotto();
         List<Integer> publishedBonus = lottoPublisher.getPublishedBonusLotto();
         boolean matchedBonus = false;
@@ -28,7 +29,21 @@ public class LottoMatchEvaluator {
         }
     }
 
-    public List<LottoResult> getLottoResults() {
-        return lottoResults;
+    public List<Integer> getLottoWinningCounts() {
+        LottoRank[] ranks = LottoRank.values();
+
+        for (int i = 0; i < ranks.length ; i--) {
+            int rankMatchingcount = ranks[i].getMatchingCount();
+            int lottoWinningCount = (int) lottoResults.stream().filter(lotto -> lotto.getMatchingCount() == rankMatchingcount).count();
+
+            if(ranks[i].getMatchingBonus() == true){
+                int bonusWinnigCount = (int) lottoResults.stream().filter(lotto -> lotto.isMatchingBonus() && lotto.getMatchingCount() == rankMatchingcount).count();
+                lottoWinningCounts.add(bonusWinnigCount);
+                continue;
+            }
+
+            lottoWinningCounts.add(lottoWinningCount);
+        }
+        return lottoWinningCounts;
     }
 }
