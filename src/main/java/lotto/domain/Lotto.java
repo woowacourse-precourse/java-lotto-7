@@ -9,12 +9,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNumberRange(numbers);
-        validateNumber(numbers);
         this.numbers = numbers;
     }
 
     public int getIndex(int numbers) {
-        return this.numbers.indexOf(numbers);
+        return this.numbers.get(numbers);
     }
 
     public boolean matchNumber(int number) {
@@ -38,13 +37,4 @@ public class Lotto {
             }
         }
     }
-
-    private void validateNumber(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (this.matchNumber(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 일치합니다.");
-            }
-        }
-    }
-
 }
