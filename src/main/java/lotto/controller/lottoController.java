@@ -1,55 +1,97 @@
 package lotto.controller;
 
-import static lotto.view.input.printWhiteSpace;
+import static lotto.constants.Error_Messages.DUPLICATE_ERROR;
 import static lotto.view.input.readBonusNumber;
+import static lotto.view.input.readTotalAmount;
 import static lotto.view.input.readWinningNumbers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.model.CalculateResult;
 import lotto.model.Lotto;
 import lotto.constants.Error_Messages;
-import lotto.model.SingleResult;
+import lotto.model.WinningLotto;
 
 public class lottoController {
-    public static int checkTotalAmountIfValid(int totalAmount){
+    public static int checkTotalAmountIfValid(int totalAmount) {
         if (totalAmount <= 0)
             throw new IllegalArgumentException(Error_Messages.INPUT_NOT_POSITIVE_INT);
         else if (totalAmount < 1000) {
             throw new IllegalArgumentException(Error_Messages.INPUT_TOTAL_AMOUNT_NOT_LARGER_THAN_1000);
         } else if (totalAmount % 1000 == 0) {
             return totalAmount / 1000;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException(Error_Messages.INPUT_ERROR);
         }
     }
 
-    public static List<Integer> changeStringListToIntList(List<String> stringList){
+    public static int totalCount(){
+        int totalCount = readTotalAmount();
+        try{
+            checkTotalAmountIfValid(totalCount);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            totalCount();
+        }
+        return totalCount;
+    }
+
+    public static List<Integer> changeStringListToIntList(List<String> stringList) {
         List<Integer> intList = new ArrayList<>();
-        for(String s : stringList) intList.add(Integer.valueOf(s));
+        for (String s : stringList)
+            intList.add(Integer.valueOf(s));
         return intList;
     }
 
-    public static Lotto makeWinningLotto(List<String> numbers){
+    public static WinningLotto makeWinningLotto(List<String> numbers) {
         List<Integer> winningNumbers = changeStringListToIntList(numbers);
-        return new Lotto(winningNumbers);
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setNumbers(winningNumbers);
+        return winningLotto;
     }
 
-    public static Lotto winningLotto(){
+    public static void checkNoDuplicate(List<String> number){
+        Set<String> set = new HashSet<>(number);
+        if (set.size() != number.size()){
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
+    }
+
+    public static WinningLotto winningLotto() {
         List<String> number = readWinningNumbers();
-        printWhiteSpace();
+        try {
+            checkNoDuplicate(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winningLotto();
+        }
         return makeWinningLotto(number);
     }
 
-    public static int bonusNumber(){
-        return readBonusNumber();
+    private static void checkBonusNumber(WinningLotto winningLotto, int number){
+        if (winningLotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR);
+        }
     }
 
-    public static List<SingleResult> getSummary(List<Lotto> lottos, Lotto winningLotto, int bonusNumber){
+    public static void bonusNumber(WinningLotto winningLotto){
+        int bonusNumber = readBonusNumber();
+        try{
+            checkBonusNumber(winningLotto, bonusNumber);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            bonusNumber(winningLotto);
+        }
+        winningLotto.setBonusNumber(bonusNumber);
+    }
+
+    public static void getSummary(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         CalculateResult calculator = new CalculateResult(winningLotto, bonusNumber);
         calculator.calculateMatches(lottos);
-        return calculator.getResults();
+//        calculator.getTotalResult();
     }
-
 }
+
+

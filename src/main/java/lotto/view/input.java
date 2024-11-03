@@ -1,7 +1,5 @@
 package lotto.view;
 
-import static lotto.controller.lottoController.checkTotalAmountIfValid;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.constants.Request_Messages;
@@ -25,21 +23,18 @@ public class input {
 
     public static int readTotalAmount() {
         printInputTotalAmount();
-        int totalAmount = Integer.parseInt(Console.readLine());
-        printWhiteSpace();
-        return checkTotalAmountIfValid(totalAmount);
+        return Integer.parseInt(Console.readLine());
     }
 
-
     public static List<String> readWinningNumbers(){
+        printWhiteSpace();
         printInputWinningNumbers();
         return List.of(Console.readLine().split(","));
     }
 
     public static int readBonusNumber(){
-        printInputBonusNumber();
-        int bonusNumber = Integer.parseInt(Console.readLine());
         printWhiteSpace();
-        return bonusNumber;
+        printInputBonusNumber();
+        return Integer.parseInt(Console.readLine());
     }
 }
