@@ -6,12 +6,13 @@ import java.util.List;
 
 public class Lotto {
     private static final int REQUIRED_NUMBERS_LENGTH = 6;
+    private static final int MAX_LOTTO_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateUnderZero(numbers);
+        validateSize(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -22,12 +23,17 @@ public class Lotto {
         }
     }
 
-    private void validateUnderZero(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         boolean hasZero = numbers.stream()
                 .anyMatch(num -> num < MIN_NUMBER);
-
         if (hasZero) {
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());
+        }
+
+        boolean overFourtyFive = numbers.stream()
+                .anyMatch(num -> num > MAX_LOTTO_NUMBER);
+        if (overFourtyFive) {
+            throw new IllegalArgumentException(ExceptionEnum.CANNOT_OVER_FOURTY_SIX.getMessage());
         }
     }
 

@@ -54,6 +54,12 @@ public class ProfitCalculatorTest {
     }
 
     @Test
+    void 하나의_5등이_당첨됐을_경우() {
+        matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), 1);
+        assertThat(ProfitCalculator.calculate(5000, matchedCount)).isEqualTo("100.0");
+    }
+
+    @Test
     void 여러_개의_경우_1() {
         matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), 1);
         matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), 1);
@@ -102,6 +108,12 @@ public class ProfitCalculatorTest {
 
     @Test
     void 여러_개의_경우_6() {
+        matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), 1);
+        assertThat(ProfitCalculator.calculate(2000000000, matchedCount)).isEqualTo("100.0");
+    }
+
+    @Test
+    void 수익이_없을_경우() {
         assertThat(ProfitCalculator.calculate(2147483000, matchedCount)).isEqualTo("0.0");
     }
 }
