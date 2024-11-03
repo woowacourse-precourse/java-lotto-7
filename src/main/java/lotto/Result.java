@@ -29,12 +29,12 @@ public class Result {
         return result.toString();
     }
 
-    public void calculate(WinningNumber winning, BonusNumber bonus, LottoIssuer issuer) {
+    public void calculate(WinningNumber winning, BonusNumber bonus, PurchasedLotto purchasedLotto) {
         List<Integer> winningNumbers = winning.getNumbers();
         int bonusNumber = bonus.getValue();
-        Lotto[] lottos = issuer.getLottos();
+        List<Lotto> purchasedLottos = purchasedLotto.get();
 
-        for(Lotto lotto : lottos) {
+        for(Lotto lotto : purchasedLottos) {
             List<Integer> lottoNumbers = new ArrayList<>(lotto.getNumbers());
             boolean isBonusContained = lottoNumbers.contains(bonusNumber);
 
