@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import lotto.dto.LottoResult;
 import lotto.dto.LottoTickets;
-import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
 public class OutputView {
@@ -24,9 +23,8 @@ public class OutputView {
     }
 
     public void printLottoTickets(final LottoTickets lottoTickets) {
-        for (Lotto lotto : lottoTickets.tickets()) {
-            System.out.println(lotto.getAllNumbers().toString());
-        }
+        lottoTickets.tickets()
+                .forEach(lotto -> System.out.println(lotto.getAllNumbers().toString()));
         printBlankLine();
     }
 
@@ -36,12 +34,12 @@ public class OutputView {
         printTotalProfitRate(lottoResult.profitRate());
     }
 
-    public void printExceptionMessage(final String message) {
+    public static void printExceptionMessage(final String message) {
         System.out.println(message);
         printBlankLine();
     }
 
-    public void printBlankLine() {
+    public static void printBlankLine() {
         System.out.println();
     }
 
