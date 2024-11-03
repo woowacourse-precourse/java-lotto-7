@@ -6,7 +6,9 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -77,5 +79,83 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Map<LottoResult, Integer> totalMatchCount = new HashMap<>();
+        for (LottoResult result : LottoResult.values()) {
+            totalMatchCount.put(result, 0);
+        }
+
+        for (Lotto lotto : numbersLines) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            int matchCount = 0;
+            for (Integer number : lottoNumbers) {
+                if (winningNumbers.contains(number)) {
+                    matchCount++;
+                }
+            }
+
+            boolean bonusMatched = lottoNumbers.contains(bonusNumber);
+            LottoResult result = LottoResult.fromMatchCount(matchCount, bonusMatched);
+            totalMatchCount.put(result, totalMatchCount.get(result) + 1);
+        }
+
+        for (LottoResult result : LottoResult.values()) {
+            System.out.printf("%d개 일치 (%,d원) - %d개%n", result.getMatchCount(), result.getPrize(), totalMatchCount.getOrDefault(result, 0));
+        }
+
+        long totalWinningAmount = 0;
+        for (LottoResult result : LottoResult.values()) {
+            totalWinningAmount += result.getPrize() * totalMatchCount.getOrDefault(result, 0);
+        }
+
+        double winningRate = (double) totalWinningAmount / purchasePrice * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningRate);
     }
 }
+
+enum LottoResult {
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    NONE(0, 0);
+
+    private final int matchCount;
+    private final long prize;
+
+    LottoResult(int matchCount, long prize) {
+        this.matchCount = matchCount;
+        this.prize = prize;
+    }
+
+    public static LottoResult fromMatchCount(int matchCount, boolean bonusMatched) {
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5) {
+            if (bonusMatched) return SECOND;
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return NONE;
+    }
+
+    public long getPrize() {
+        return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+}
+
+
