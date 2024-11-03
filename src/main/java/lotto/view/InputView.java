@@ -10,7 +10,11 @@ import java.util.List;
 public class InputView {
     public static int readPurchasePrice() {
         String purchasePrice = Console.readLine();
-        if (!purchasePrice.matches(GameConfig.VALID_AMOUNT_PATTERN)) {
+        if (!purchasePrice.matches(GameConfig.VALID_DIGIT_LENGTH_PATTERN)) {
+            throw new IllegalArgumentException(ExceptionMessage.MAX_AMOUNT_ERROR);
+        }
+
+        if (!purchasePrice.matches(GameConfig.VALID_UNIT_PATTERN)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_AMOUNT_ERROR);
         }
         return Integer.parseInt(purchasePrice);

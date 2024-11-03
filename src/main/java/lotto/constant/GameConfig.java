@@ -10,7 +10,8 @@ public class GameConfig {
     public static final int LOTTO_PRICE = 1000;
 
     //정규식
-    public static final String VALID_AMOUNT_PATTERN = "^[1-9]\\d{0,5}000$";
+    public static final String VALID_DIGIT_LENGTH_PATTERN = "^\\d{1,8}$";
+    public static final String VALID_UNIT_PATTERN = ".*000$";
     public static final String VALID_LOTTO_NUMBERS_PATTERN = "^(\\d{1,2},){5}\\d{1,2}$";
     public static final String VALID_BONUS_NUMBER_PATTERN = "^\\d{1,2}$";
 
