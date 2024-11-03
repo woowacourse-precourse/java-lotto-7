@@ -55,4 +55,16 @@ public class LottoDraw {
             }
         }
     }
+
+    private static List<Integer> makeBonusNumberToList(String input, Lotto winningNumbers) {
+        try {
+            List<Integer> bonusNumber = splitAndTrimInput(input);
+            if (validateBonusNumber(bonusNumber, winningNumbers)) {
+                return bonusNumber;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
