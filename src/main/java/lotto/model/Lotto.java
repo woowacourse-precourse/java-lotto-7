@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.RandomNumbersGenerator;
 
 public class Lotto {
     public static final int LOTTO_NUMBER_MIN = 1;
@@ -34,7 +35,6 @@ public class Lotto {
         validateOnlyInteger(numbers);
         validateRange(numbers);
     }
-
 
     private static void validateRange(List<Integer> numbers) throws IllegalArgumentException {
         boolean hasInvalidNumber = numbers.stream()

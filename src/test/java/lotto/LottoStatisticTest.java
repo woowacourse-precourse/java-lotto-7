@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.model.LottoStatistic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,6 @@ class LottoStatisticTest {
         lottoStatistic.update(MatchType.SIX_MATCHES);
         int result = lottoStatistic.calculateScore();
         //then
-        assertThat(result).isEqualTo(5+50+1500+2000+2000000);
+        assertThat(result).isEqualTo(5_000+50_000+1_500_000+30_000_000+ 2_000_000_000);
     }
 }

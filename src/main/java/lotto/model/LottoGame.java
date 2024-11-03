@@ -1,7 +1,10 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.InputType;
+import lotto.RandomNumbersGenerator;
+import lotto.view.InputView;
 
 public class LottoGame {
     public static final String ERROR_PURCHASE_INPUT_NOT_NUMBER = "[ERROR] 구입금액 입력이 숫자가 아닙니다.";

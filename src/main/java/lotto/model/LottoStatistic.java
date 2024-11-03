@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.EnumMap;
+import lotto.MatchType;
 
 public class LottoStatistic {
     private static final int INITIAL_SETTING = 0;
@@ -20,7 +21,7 @@ public class LottoStatistic {
     public int calculateScore() {
         int total = 0;
         for (MatchType type : MatchType.values()) {
-            total += statistics.get(type) * type.getWeight();
+            total += statistics.get(type) * type.getPrise();
         }
         return total;
     }
