@@ -1,18 +1,14 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashMap;
 import java.util.stream.Stream;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.WinningLotto;
-import lotto.model.dummy.LottoDummy;
+import lotto.dummy.LottoDummy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
