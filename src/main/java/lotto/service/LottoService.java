@@ -1,9 +1,12 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import lotto.view.LottoInfoMessages;
 
 public class LottoService {
+    ValidationService validationService = ValidationService.createValidationService();
     public int countMatches(List<Integer> winnerNumbers, List<Integer> numbers) {
         winnerNumbers.retainAll(numbers);
         return winnerNumbers.size();
@@ -29,5 +32,14 @@ public class LottoService {
         System.out.println(
                 amount + LottoInfoMessages.NOTICE_BUY_AMOUNT_START.text()
                         + change + LottoInfoMessages.NOTICE_BUY_AMOUNT_END.text());
+    }
+
+    public List<Set<Integer>> generateManualNumberSet(int manualAmount) {
+        List<Set<Integer>> manualNumberList = new ArrayList<>();
+        while (manualAmount>0){
+            manualNumberList.add(validationService.validateCorrectManualNumber(manualAmount));
+            manualAmount--;
+        }
+        return manualNumberList;
     }
 }
