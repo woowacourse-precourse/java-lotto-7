@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
@@ -22,10 +21,7 @@ public class Application {
         }
 
         // 3 . 로또 번호 출력
-        System.out.println(lottoQuantity + "개를 구매했습니다.");
-        for (Lotto lotto : lottoRepository) {
-            System.out.println(lotto.getNumbers());
-        }
+        LottoPrint.purchaseNumber(lottoQuantity, lottoRepository);
 
         // 4 . 당첨 & 보너스 번호 입력
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -53,15 +49,12 @@ public class Application {
         }
 
         // 7 . 통계 출력 및 수익률 계산 & 출력
-        int totalPrize = 0;
-        for (LottoRank rank : LottoRank.values()) {
-            int count = winningStatistics.get(rank);
-            System.out.printf(rank.getPrintFormat() + "\n", rank.getMatchCount(), rank.getPrize(), count);
-            totalPrize += count * rank.getPrize();
-        }
+        LottoPrint.getTotalPrize(winningStatistics);
 
-        double grossMargin = (double) totalPrize / purchasePrice * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", grossMargin);
+        LottoPrint.extracted(purchasePrice);
     }
+
+
+
 
 }
