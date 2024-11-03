@@ -22,6 +22,37 @@ public class View {
         return Long.parseLong(amountInput);
     }
 
+    private static void validatePurchaseAmount(String inputValue) {
+        validateEmpty(inputValue);
+        validateNumeric(inputValue);
+    }
+
+    private static void validateEmpty(String inputValue) {
+        if (inputValue == null || inputValue.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+        }
+    }
+
+    private static void validateNumeric(String inputValue) {
+        try {
+            long amount = Long.parseLong(inputValue);
+            validateNegative(amount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자 형식이 아닙니다.");
+        }
+    }
+    private static void validateNegative(long amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 음수가 될 수 없습니다.");
+        }
+    }
+
+
+
+
+
+
+
     public static void promptForWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
@@ -102,38 +133,13 @@ public class View {
 
 
 
-
-    private static void validatePurchaseAmount(String inputValue) {
-        validateEmpty(inputValue);
-        validateNumeric(inputValue);
-
-    }
-
-    private static void validateEmpty(String inputValue) {
-        if (inputValue == null || inputValue.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
-        }
-    }
-
     public static void printException(IllegalArgumentException e) {
         System.out.println("[ERROR] : " + e.getMessage());
     }
 
 
-    private static void validateNumeric(String inputValue) {
-        try {
-            long amount = Long.parseLong(inputValue);
-            validateNegative(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자 형식이 아닙니다.");
-        }
-    }
 
-    private static void validateNegative(long amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 음수가 될 수 없습니다.");
-        }
-    }
+
     public static void printPurchaseResult(Lottos purchasedLottos) {
         printPurchaseCount(purchasedLottos);
         printLottoNumbers(purchasedLottos);

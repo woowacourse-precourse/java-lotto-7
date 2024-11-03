@@ -18,9 +18,14 @@ public class LottoController {
     }
 
     private Lottos initLotts(){
-        View.promptForPurchaseAmount();
-        Money money =  new Money(View.inputLottoPurchaseAmount());
-        return new Lottos(money.getLottoQuantity());
+        try {
+            View.promptForPurchaseAmount();
+            Money money = new Money(View.inputLottoPurchaseAmount());
+            return new Lottos(money.getLottoQuantity());
+        }catch (IllegalArgumentException e) {
+            View.printException(e);
+            return initLotts();
+        }
     }
 
     private void printPurchaseResult(Lottos purchasedLottos) {
