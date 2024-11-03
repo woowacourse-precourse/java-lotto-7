@@ -7,13 +7,20 @@ public class LottoRank {
     private final boolean requiresBonus;
     private int winningCount;
 
-
     public LottoRank(String rankName, int prize, int requiredMatchCount, boolean requiresBonus) {
         this.rankName = rankName;
         this.prize = prize;
         this.requiredMatchCount = requiredMatchCount    ;
         this.requiresBonus = requiresBonus;
         this.winningCount = 0;
+    }
+
+    public LottoRank(String rankName, int prize, int requiredMatchCount, boolean requiresBonus, int winningCount) {
+        this.rankName = rankName;
+        this.prize = prize;
+        this.requiredMatchCount = requiredMatchCount    ;
+        this.requiresBonus = requiresBonus;
+        this.winningCount = winningCount;
     }
 
     public void increaseWinningCount() {

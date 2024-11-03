@@ -23,6 +23,10 @@ public class LottoRanks {
         );
     }
 
+    public LottoRanks(List<LottoRank> ranks) {
+        this.ranks = ranks;
+    }
+
     public void updateWinningCounts(int matchCount, boolean bonusMatch) {
         for(LottoRank rank : ranks) {
             if(rank.getRequiredMatchCount() == matchCount && rank.getRequiresBonus() == bonusMatch) {

@@ -10,7 +10,7 @@ public class Calculate {
         return (double) totalPrize / purchasedPrice.getPurchasedPrice() * 100;
     }
 
-    private static long totalPrize(LottoRanks lottoRanks) {
+    public static long totalPrize(LottoRanks lottoRanks) {
         long totalPrize = 0;
         for(LottoRank lottoRank : lottoRanks.getRanks()) {
             totalPrize += (long) lottoRank.getPrize() * lottoRank.getWinningCount();
