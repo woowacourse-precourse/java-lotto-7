@@ -20,8 +20,7 @@ public class LottoMachine {
         WinningNumbers winningNumbers = makeWinningNumbers();
         BonusNumber bonusNumber = makeBonusNumber(winningNumbers);
         calculateResults(lottos, winningNumbers, bonusNumber);
-        System.out.println(Result.totalPrize());
-
+        showResult(purchase);
     }
 
     private Purchase makePurchase() {
@@ -112,5 +111,11 @@ public class LottoMachine {
             }
         }
         return Result.getRank(count);
+    }
+
+    private void showResult(Purchase purchase) {
+        outputView.updateResults(Result.values());
+        double prizeRate = ((double)Result.totalPrize() / (double)purchase.money()) * 100;
+        outputView.updatePrizeRate(prizeRate);
     }
 }

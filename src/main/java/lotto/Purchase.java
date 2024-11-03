@@ -20,6 +20,10 @@ public class Purchase {
         }
     }
 
+    public int money() {
+        return money;
+    }
+
     public int numberOfPurchases() {
         return money / 1000;
     }
