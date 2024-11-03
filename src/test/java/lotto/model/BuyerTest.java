@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.exception.ErrorMessage;
-import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ public class BuyerTest {
     void 입력된_로또_구입_금액에_숫자가_아닌_문자열이_포홤되면_예외가_발생한다() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> Buyer.from("1200$"))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_NUMBER.getMessage());
         });
     }
@@ -24,7 +23,7 @@ public class BuyerTest {
     void 입력된_로또_구입_금액이_1000원_미만이면_예외가_발생한다() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> Buyer.from("900"))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_AT_LEAST_1000.getMessage());
         });
     }
@@ -34,7 +33,7 @@ public class BuyerTest {
     void 입력된_로또_구입_금액이_1000원으로_나누어떨어지지_않으면_예외가_발생한다() {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> Buyer.from("1200"))
-                    .isInstanceOf(LottoException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000.getMessage());
         });
     }
@@ -42,7 +41,7 @@ public class BuyerTest {
     @Test
     void 입력된_로또_구입_금액이_int의_범위가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> Buyer.from(String.valueOf((long) Integer.MAX_VALUE + 1)))
-                .isInstanceOf(LottoException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.PURCHASE_AMOUNT_TOO_LARGE.getMessage());
     }
 }
