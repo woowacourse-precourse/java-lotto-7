@@ -1,13 +1,16 @@
 package lotto.view;
 
+import lotto.util.Validator;
+
 public class MoneyInputView extends InputView {
 
     private static final String REQUEST_INPUT_MONEY = "구입금액을 입력해 주세요.";
 
-    public String inputMoney() {
+    public static int inputMoney() {
         System.out.println(REQUEST_INPUT_MONEY);
         String input = inputValue();
 
-        return input;
+        Validator.validateIsNumeric(input);
+        return Integer.parseInt(input);
     }
 }

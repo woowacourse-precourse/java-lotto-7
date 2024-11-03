@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.util.Validator;
+import lotto.view.MoneyInputView;
 import lotto.view.NumberInputView;
 import lotto.view.OutputView;
 
@@ -10,10 +10,8 @@ import java.util.List;
 
 public class Controller {
 
-    private final LottoService lottoService = new LottoService();
-
     public void run() {
-        Money money = lottoService.getMoney();
+        Money money = getMoney();
 
         Lottos lottos = purchaseLottos(money);
         OutputView.printLottoNumbers(lottos);
@@ -24,6 +22,11 @@ public class Controller {
 
         PrizeRate prizeRate = money.calculatePrizeRate(result);
         OutputView.printPrizeRate(prizeRate.getPrizeRate());
+    }
+
+    private Money getMoney() {
+        int money = MoneyInputView.inputMoney();
+        return new Money(money);
     }
 
     private Lottos purchaseLottos(Money money) {
@@ -48,9 +51,9 @@ public class Controller {
     }
 
     private BonusNumber getBonusNumber(Lotto winningNumbers) {
-        int bonusNumber = NumberInputView.getBonusNumber();
-        Validator.validateIsDuplicate(winningNumbers, bonusNumber);
-        Validator.validateLottoRange(bonusNumber);
-        return new BonusNumber(bonusNumber);
+        int number = NumberInputView.getBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(number);
+        bonusNumber.validate(winningNumbers);
+        return bonusNumber;
     }
 }
