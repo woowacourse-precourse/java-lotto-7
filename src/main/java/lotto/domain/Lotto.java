@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     public boolean matchBonusNumber(BonusNumber bonusNumber) {
-        return true;
+        return numbers.contains(bonusNumber.getNumber());
     }
 
     private void validate(List<Integer> numbers) {
