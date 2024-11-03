@@ -10,13 +10,13 @@ public class LottoCheck {   // 로또 당첨 및 등수확인
         if (match == 5 && bonus) {
             return 2;
         }
-        if (match == 4) {
+        if (match == 5) {
             return 3;
         }
-        if (match == 3) {
+        if (match == 4) {
             return 4;
         }
-        if (match == 2) {
+        if (match == 3) {
             return 5;
         }
         return 0;
