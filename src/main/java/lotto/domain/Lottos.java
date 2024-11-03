@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Lottos {
     private final List<Lotto> lottos;
+    private final int price;
 
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+        this.price = lottos.size() * 1000;
     }
 
     public static Lottos from(int count) {
@@ -22,5 +24,9 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return List.copyOf(lottos);
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
