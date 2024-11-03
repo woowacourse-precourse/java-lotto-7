@@ -6,7 +6,6 @@ import static lotto.view.constant.Message.STATISTICS;
 import static lotto.view.constant.Message.WINNING_START;
 
 import java.util.List;
-import lotto.domain.CashRegister;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Parser;
@@ -36,8 +35,7 @@ public class Controller {
     }
 
     private List<Lotto> pickLotto() {
-        int money = getIntValue();
-        int count = getCount(money);
+        int count = inputView.inputCountFromCash();
         return lottoMachine.generateLottos(count);
     }
 
@@ -48,13 +46,13 @@ public class Controller {
         return new Winning(winningNumber, bonus);
     }
 
-    private int getCount(int money) {
-        CashRegister cashRegister = new CashRegister(money);
-        return cashRegister.calculateLottoCount();
-    }
-
     private int getIntValue() {
-        return parser.parseToInt(inputView.inputString());
+        try {
+            return parser.parseToInt(inputView.inputString());
+        } catch (IllegalArgumentException e) {
+            outputView.printResult(e.getMessage());
+            return getIntValue();
+        }
     }
 
     private List<Integer> getWinningNumber() {

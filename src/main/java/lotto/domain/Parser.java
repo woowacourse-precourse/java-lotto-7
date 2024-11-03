@@ -5,7 +5,12 @@ import java.util.List;
 
 public class Parser {
     public int parseToInt(String input) {
-        return Integer.parseInt(input);
+        try {
+            String inputWithoutSpace = input.replaceAll("\\s+", "");
+            return Integer.parseInt(inputWithoutSpace);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[error] 정수만 입력할 수 있습니다.");
+        }
     }
 
     public List<Integer> parseToIntList(String input) {
