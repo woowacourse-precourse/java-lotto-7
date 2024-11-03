@@ -19,6 +19,12 @@ public class UserView {
     private static final String PRINT_RESULT_SUFFIX = "개";
     private static final String PRINT_TOTAL_PRIZE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
+    private static final int MINIMUM_NUMBER = 1;
+    private static final int MAXIMUM_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
+    private static final int MINIMUM_BUY = 1_000;
+    private static final int LOTTO_UNIT = 1_000;
+
     public static int printAndGetAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
         return getAmount();
@@ -48,11 +54,11 @@ public class UserView {
     }
 
     private static void isValidateAmount(int amount) {
-        if (amount < 1000) {
+        if (amount < MINIMUM_BUY) {
             throw new LottoArgumentException(LottoErrorMessage.LESS_MIN_AMOUNT_ERROR);
         }
 
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_UNIT != 0) {
             throw new LottoArgumentException(LottoErrorMessage.DIV_1_000_AMOUNT_ERROR);
         }
     }
@@ -100,7 +106,7 @@ public class UserView {
     }
 
     private static void isValidateWinNumbers(List<Integer> winNumbers) {
-        if (winNumbers.size() != 6) {
+        if (winNumbers.size() != LOTTO_SIZE) {
             throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_COUNT_ERROR);
         }
 
@@ -114,7 +120,7 @@ public class UserView {
     }
 
     private static boolean checkValidRangeNumbers(List<Integer> winNumbers) {
-        return winNumbers.stream().allMatch(number -> 1 <= number && number <= 45);
+        return winNumbers.stream().allMatch(number -> MINIMUM_NUMBER <= number && number <= MAXIMUM_NUMBER);
     }
 
     private static boolean checkDuplicateNumbers(List<Integer> winNumbers) {
@@ -151,7 +157,7 @@ public class UserView {
     }
 
     private static void isValidateBonusNumber(int bonusNumber, List<Integer> winNumbers) {
-        if (bonusNumber < 1 || 45 < bonusNumber) {
+        if (bonusNumber < MINIMUM_NUMBER || MAXIMUM_NUMBER < bonusNumber) {
             throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
         }
 
