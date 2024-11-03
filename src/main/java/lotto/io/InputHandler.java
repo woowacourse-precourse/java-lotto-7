@@ -24,8 +24,17 @@ public class InputHandler {
 
     public Buyer getBuyer() {
         WinningNumbers winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        return new Buyer(winningNumbers, bonusNumber);
+        while (true) {
+            try {
+                String input = getBonusNumber();
+                Validator.validateEmptyInput(input);
+                Validator.validateNumber(input);
+                int bonusNumber = Integer.parseInt(input);
+                return new Buyer(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println();
+            }
+        }
     }
 
     private WinningNumbers getWinningNumbers() {
@@ -42,12 +51,9 @@ public class InputHandler {
         }
     }
 
-    private int getBonusNumber() {
+    private String getBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        Validator.validateEmptyInput(input);
-        Validator.validateNumber(input);
-        return Integer.parseInt(input);
+        return Console.readLine();
     }
 }

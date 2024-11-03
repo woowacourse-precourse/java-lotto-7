@@ -174,6 +174,71 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    // =====================================================
+
+    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+    @Test
+    void exception14() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외 발생")
+    @Test
+    void exception20() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복이면 예외 발생")
+    @Test
+    void exception15() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 음수면 예외 발생")
+    @Test
+    void exception16() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 빈 값이면 예외 발생")
+    @Test
+    void exception17() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 공백이면 예외 발생")
+    @Test
+    void exception18() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외 발생")
+    @Test
+    void exception19() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "d");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

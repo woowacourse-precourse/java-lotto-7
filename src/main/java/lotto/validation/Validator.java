@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.dto.WinningNumbers;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -72,9 +74,16 @@ public class Validator {
         }
     }
 
-    private static void validteNumberInRange(Integer selectedNumber) {
+    public static void validteNumberInRange(Integer selectedNumber) {
         if (selectedNumber > LOTTO_MAX_RANGE || selectedNumber < LOTTO_MIN_RANGE) {
             System.out.printf("[ERROR] 당첨 번호는 %d~%d 사이의 숫자여야 합니다.", LOTTO_MIN_RANGE, LOTTO_MAX_RANGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateDuplicatedBonusNumber(WinningNumbers winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            System.out.print("[ERROR] 보너스 번호와 중복되는 당첨 번호가 있습니다.");
             throw new IllegalArgumentException();
         }
     }

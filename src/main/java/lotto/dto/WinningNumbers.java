@@ -13,16 +13,20 @@ public class WinningNumbers {
         validateNumbers();
     }
 
-    private void validateNumbers() {
-        Validator.validateDuplicatedNumbers(selectedNumbers);
-        Validator.validateNumberCount(selectedNumbers);
-        Validator.validateNegativeNumbers(selectedNumbers);
-        Validator.validteNumbersInRange(selectedNumbers);
+    public boolean contains(Integer number) {
+        return selectedNumbers.contains(number);
     }
 
     public int checkMatchingCount(List<Integer> numbers) {
         return  (int) numbers.stream()
                 .filter(selectedNumbers::contains)
                 .count();
+    }
+
+    private void validateNumbers() {
+        Validator.validateDuplicatedNumbers(selectedNumbers);
+        Validator.validateNumberCount(selectedNumbers);
+        Validator.validateNegativeNumbers(selectedNumbers);
+        Validator.validteNumbersInRange(selectedNumbers);
     }
 }
