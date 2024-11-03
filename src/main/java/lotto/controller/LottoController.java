@@ -2,10 +2,12 @@ package lotto.controller;
 
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoReceipt;
+import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
 import lotto.service.LottoService;
@@ -24,6 +26,8 @@ public class LottoController {
         WinningLotto winningLotto = lottoService.createWinningLotto(
                 extractNumbers(inputView.requestWinningLottoNumbers(), inputValidator));
         WinningReport winningReport = lottoService.createWinningReport(lottoReceipt, winningLotto);
+        BigInteger totalPrize = Winning.tellTotalPrize(winningReport.getWinningCounts());
+        BigDecimal rateOfReturn = lottoReceipt.calculateRateOfReturn(totalPrize);
     }
 
     public BigInteger toBigInteger(String input) {
