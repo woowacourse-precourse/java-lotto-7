@@ -35,14 +35,12 @@ public class LottoInputView {
         }
     }
 
-
-
     public int inputBonusNumber(List<Integer> winningNumbers) {
         try {
             System.out.println();
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
-            LottoBonusNumbersValidator.validateBonusNumberInput(input, winningNumbers);
+            LottoBonusNumbersValidator.validateBonusNumber(input, winningNumbers);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

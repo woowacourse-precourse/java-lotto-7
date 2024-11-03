@@ -3,7 +3,7 @@ package lotto.validator;
 import java.util.List;
 
 public class LottoBonusNumbersValidator {
-    public static void validateBonusNumberInput(String input, List<Integer> winningNumbers) {
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
         validateInputNotEmpty(input);
         int bonusNumber = parseBonusNumber(input);
         validateBonusNumber(bonusNumber);

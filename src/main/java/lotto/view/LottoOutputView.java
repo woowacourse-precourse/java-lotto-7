@@ -30,5 +30,4 @@ public class LottoOutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + statistics.getResultCount(LottoResult.SIX_NUMBER_MATCH) + "개");
         System.out.println("총 수익률은 " + statistics.calculateProfitRate() + "%입니다.");
     }
-
 }
