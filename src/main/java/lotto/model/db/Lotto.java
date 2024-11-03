@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model.db;
 
 import java.util.List;
 import lotto.exception.BusinessException;
@@ -8,11 +8,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers.stream().sorted().toList();
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateDuplication(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != 6) {
             throw new BusinessException("로또 번호는 중복되지 않는 번호 6개여야 합니다.");
         }

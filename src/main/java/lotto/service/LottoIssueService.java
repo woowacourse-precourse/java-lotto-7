@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.db.Lotto;
 
 public interface LottoIssueService {
 

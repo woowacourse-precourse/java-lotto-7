@@ -2,7 +2,6 @@ package lotto.model.db;
 
 import static lotto.constant.UserId.OWNER;
 
-import lotto.Lotto;
 import lotto.constant.UserId;
 
 public class Owner implements User {

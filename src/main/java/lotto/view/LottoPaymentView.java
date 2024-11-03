@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.model.db.Lotto;
 
 public class LottoPaymentView implements View {
 

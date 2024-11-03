@@ -6,7 +6,7 @@ import static lotto.constant.UserId.OWNER;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
-import lotto.Lotto;
+import lotto.model.db.Lotto;
 import lotto.model.db.Buyer;
 import lotto.model.db.Owner;
 import lotto.model.db.UserRepository;

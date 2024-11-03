@@ -3,7 +3,6 @@ package lotto.model.db;
 import static lotto.constant.UserId.BUYER;
 
 import java.util.List;
-import lotto.Lotto;
 import lotto.constant.UserId;
 
 public class Buyer implements User {

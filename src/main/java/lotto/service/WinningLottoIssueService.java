@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Lotto;
+import lotto.model.db.Lotto;
 import lotto.exception.BusinessException;
 import lotto.model.db.Owner;
 import lotto.util.ConsoleInput;
