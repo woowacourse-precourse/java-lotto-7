@@ -80,7 +80,7 @@ public class LottoManagerTest {
         List<Integer> sixMatch = List.of(1,2,3,4,5,6);
 
         int earn = LottoPrize.FIVE_MATCH_BONUS.getPrize() + LottoPrize.SIX_MATCH.getPrize();
-        double expected = (double)(earn - usedMoney) / usedMoney * 100;
+        double expected = (double) earn / usedMoney * 100;
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {

@@ -69,7 +69,7 @@ public class LottoManager {
     }
 
     /**
-     * 수익룰 = (총 수익 - 투자 비용) / 투자 비용 * 100
+     * 수익룰 = 총 수익 / 투자 비용 * 100
      */
     public double getROI(Map<LottoPrize, Integer> prizeMap) {
         int usedCash = attempt.getCashAmount();
@@ -78,7 +78,7 @@ public class LottoManager {
                 .map(entry -> entry.getKey().getPrize() * entry.getValue())
                 .reduce(0, Integer::sum);
 
-        return (double) (totalPrize - usedCash) / usedCash * 100.0;
+        return (double) totalPrize / usedCash * 100.0;
     }
 
     public int getLottoAmount() {
