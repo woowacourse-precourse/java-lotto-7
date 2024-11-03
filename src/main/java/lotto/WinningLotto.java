@@ -14,4 +14,12 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean isBonus(Lotto lotto){
+        return lotto.hasValue(bonusNumber);
+    }
+
+    public int equalSize(Lotto lotto){
+        return mainNumbers.equalSize(lotto);
+    }
+
 }

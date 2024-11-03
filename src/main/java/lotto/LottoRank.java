@@ -28,5 +28,17 @@ public enum LottoRank {
     public String toString(){
         return condition+String.format(" (%,d원)",prize);
     }
+
+    public static LottoRank getLottoRank(Lotto lotto, WinningLotto winningLotto){
+        if(winningLotto.equalSize(lotto) == 6) return RANK_1;
+        if(winningLotto.equalSize(lotto) == 5){
+            if(winningLotto.isBonus(lotto)) return RANK_2;
+            return RANK_3;
+        }
+        if(winningLotto.equalSize(lotto)==4) return RANK_4;
+        if(winningLotto.equalSize(lotto)==3) return RANK_5;
+
+        return null;
+    }
 }
 
