@@ -62,7 +62,7 @@ public class OutputView {
 
     public void printRevenuePercent(float revenuePercent) {
         System.out.println(Outputs.TOTAL_REVENUE_PERCENT.getMessage() +
-                revenuePercent +
+                MessageParser.roundToTenth(revenuePercent) +
                 Outputs.PERCENT.getMessage() +
                 Outputs.DESU.getMessage());
     }
