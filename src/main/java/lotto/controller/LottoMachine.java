@@ -1,16 +1,19 @@
-package lotto;
+package lotto.controller;
 
 
 import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
+import lotto.domain.WinningLotto;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 
 public class LottoMachine {
-    private static int totalSpent;
 
-    public static List<Lotto> makeLotto() {
-        totalSpent = InputView.getInputMoney();
+    private List<Lotto> makeLotto(int totalSpent) {
         int count = InputView.getLottoNumber(totalSpent);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -22,7 +25,7 @@ public class LottoMachine {
         return lottos;
     }
 
-    public static WinningLotto makeWinningLotto() {
+    private WinningLotto makeWinningLotto() {
         List<Integer> winLottoNumbers = InputView.getInputWinLottoNumbers();
         int bonus = InputView.getInputBonusNumber(winLottoNumbers);
 
@@ -30,27 +33,19 @@ public class LottoMachine {
     }
 
 
-    public static Map<Lotto,Prize> compareWin2Lotto(List<Lotto> lottos, WinningLotto winningLotto) {
+    private Map<Lotto, Prize> compareWin2Lotto(List<Lotto> lottos, WinningLotto winningLotto) {
         Map<Lotto,Prize> lottoPrizeMap = new HashMap<>();
         for (Lotto lotto : lottos) {
             int machCount = winningLotto.getMatchCount(lotto);
             boolean bonusMatch = winningLotto.isBonusMatch(lotto);
-            Prize prize = selectPrize(machCount, bonusMatch);
+            Prize prize = Prize.getPrize(machCount, bonusMatch);
             lottoPrizeMap.put(lotto, prize);
         }
         return lottoPrizeMap;
     }
 
-    private static Prize selectPrize(int matchCount, boolean bonusMatch) {
-        for(Prize prize : Prize.values()) {
-            if(prize.getNormalNumber() == matchCount && prize.getBonusNumber() == bonusMatch) {
-                return prize;
-            }
-        }
-        return null;
-    }
 
-    public static Map<Prize, Integer> calculatePrizeCounts(Map<Lotto, Prize> lottoPrizeMap) {
+    private Map<Prize, Integer> calculatePrizeCounts(Map<Lotto, Prize> lottoPrizeMap) {
         Map<Prize, Integer> prizeCountMap = new HashMap<>();
         for (Prize prize : Prize.values()) {
             prizeCountMap.put(prize, 0);
@@ -64,7 +59,7 @@ public class LottoMachine {
         return prizeCountMap;
     }
 
-    public static double calculateTotalReturnRate(Map<Prize, Integer> prizeCountMap) {
+    private double calculateTotalReturnRate(Map<Prize, Integer> prizeCountMap, int totalSpent) {
         int totalPrize = 0;
         for (Map.Entry<Prize, Integer> entry : prizeCountMap.entrySet()) {
             Prize prize = entry.getKey();
@@ -75,16 +70,23 @@ public class LottoMachine {
         return ((double) totalPrize / totalSpent) * 100;
     }
 
-    public static void run() {
+    public void run() {
+        List<Lotto> lottos;
+        WinningLotto winningLotto;
+        int totalSpent;
         try {
-            List<Lotto> lottos = makeLotto();
-            WinningLotto winningLotto = makeWinningLotto();
-            Map<Lotto, Prize> lottoPrizeMap = compareWin2Lotto(lottos, winningLotto);
-            Map<Prize, Integer> prizeCountMap = calculatePrizeCounts(lottoPrizeMap);
-            OutputView.printResult(prizeCountMap,calculateTotalReturnRate(prizeCountMap));
+            totalSpent = InputView.getInputMoney();
+            lottos = makeLotto(totalSpent);
+            winningLotto = makeWinningLotto();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return;
         }
+
+        Map<Lotto, Prize> lottoPrizeMap = compareWin2Lotto(lottos, winningLotto);
+        Map<Prize, Integer> prizeCountMap = calculatePrizeCounts(lottoPrizeMap);
+        double totalReturnRate = calculateTotalReturnRate(prizeCountMap, totalSpent);
+        OutputView.printResult(prizeCountMap, totalReturnRate);
     }
 
 }
