@@ -3,6 +3,8 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
@@ -20,21 +22,21 @@ public class LottoController {
 
     public void run() {
         // 로또 구입 금액 입력받기
-        int money = executeWithRetry(() -> {
-            System.out.println("구입금액을 입력해 주세요.");
-            String amount = Console.readLine();
-            validateAmount(amount);
-            return Integer.parseInt(amount);
-        });
+        int money = executeWithRetry(this::inputLottoMoney);
+
         // 구입한 개수만큼 로또 발행
         List<Lotto> lottos = issueLottos(money);
+
         // 발행한 로또 수량 및 번호 출력
         System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
         for (Lotto lotto : lottos) {
             lotto.print();
         }
-        // 당첨 번호 입력 받기
 
+        // 당첨 번호 입력 받기
+        System.out.println("\n당첨 번호를 입력해 주세요.\n");
+        List<Integer> winningNumbers = executeWithRetry(this::inputWinningNumbers);
+        System.out.println(winningNumbers);
         // 보너스 번호 입력 받기
 
         // 구매한 로또와 당첨 번호 비교
@@ -42,6 +44,13 @@ public class LottoController {
         // 당첨 내역 출력
 
         // 수익률 출력
+    }
+
+    private int inputLottoMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String amount = Console.readLine();
+        validateAmount(amount);
+        return Integer.parseInt(amount);
     }
 
     private <T> T executeWithRetry(Supplier<T> action) {
@@ -54,7 +63,7 @@ public class LottoController {
         }
     }
 
-    void validateAmount(String amount) {
+    private void validateAmount(String amount) {
         if (amount == null || amount.isBlank()) {
             throw new IllegalArgumentException("빈 칸은 입력할 수 없습니다.");
         }
@@ -72,5 +81,27 @@ public class LottoController {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        String input = Console.readLine();
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+        validateWinningNumbers(winningNumbers);
+        return winningNumbers;
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("6개의 숫자를 쉼표로 구분하여 입력해주세요");
+        }
+        if (winningNumbers.stream().anyMatch(m -> m < 1 || m > 45)) {
+            throw new IllegalArgumentException("1~45 사이의 자연수를 입력해주세요.");
+        }
+        if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
+            throw new IllegalArgumentException("숫자는 중복되면 안됩니다.");
+        }
     }
 }
