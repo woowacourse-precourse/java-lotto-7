@@ -18,6 +18,12 @@ public class WinningLotto {
         return new WinningLotto(Lotto.of(ticket), bonusNumber);
     }
 
+    /**
+     * 고객의 로또를 당첨 번호와 비교하여 결과를 확인합니다.
+     *
+     * @param customerLotto 고객이 제출한 로또 티켓
+     * @return 고객의 티켓 순위를 나타내는 LottoResult 객체
+     */
     public LottoResult checkLotto(Lotto customerLotto) {
         int matchedCount = getMatchedCount(customerLotto);
         boolean containsBonus = hasContainsBonusNumber(customerLotto);

@@ -16,6 +16,12 @@ public class CustomerLotto {
         return new CustomerLotto(tickets);
     }
 
+    /**
+     * 주어진 당첨 로또를 고객의 로또 티켓들과 비교합니다.
+     *
+     * @param winningLotto 고객의 티켓과 비교할 당첨 로또
+     * @return 비교 결과를 포함하는 LottoResults 객체
+     */
     public LottoResults compareWinningLotto(WinningLotto winningLotto) {
         List<LottoResult> lottoResults = tickets.stream()
                 .map(winningLotto::checkLotto)
