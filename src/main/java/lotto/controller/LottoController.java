@@ -26,6 +26,7 @@ public class LottoController {
         generateLotto(purcharseAmount);
     }
 
+    //FIXME: BigInteger로 변환하는 것, Controller에서 처리하는 것이 맞는가?
     private BigInteger paying() {
 
         String input = lottoInputView.inputPurchaseAmount();
