@@ -12,8 +12,15 @@ public class LottoValue {
     private final int lottoCount;
 
     public LottoValue(BigDecimal lottoPrice) {
+        validatePrice(lottoPrice);
         this.lottoPrice = lottoPrice;
         this.lottoCount = calculateCount();
+    }
+
+    private static void validatePrice(BigDecimal lottoPrice) {
+        if (!lottoPrice.remainder(valueOf(1000)).equals(ZERO)) {
+            throw new IllegalArgumentException("구입금액은 1000 단위여야합니다.");
+        }
     }
 
     private int calculateCount() {

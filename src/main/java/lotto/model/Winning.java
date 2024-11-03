@@ -25,15 +25,27 @@ public enum Winning {
         this.price = price;
     }
 
+    public static void initCount() {
+        Arrays.stream(values()).forEach(winning -> winning.count = 0);
+    }
+
     public int getValue() {
         return value;
     }
 
-    public static Winning getFromValue(int value) {
-        return Arrays.stream(values())
+    public static Winning getFromValue(int value, boolean isBonus) {
+        Winning getWinning = Arrays.stream(values())
                 .filter(winning -> winning.getValue() == value)
-                .findFirst()
+                .findAny()
                 .orElse(NONE);
+        if (validateFiveWithBonus(isBonus, value)) {
+            return FIVE_BONUS;
+        }
+        return getWinning;
+    }
+
+    private static boolean validateFiveWithBonus(boolean isBonus, int value) {
+        return value == FIVE.value && isBonus;
     }
 
     public int increaseCount() {
@@ -53,7 +65,7 @@ public enum Winning {
         return sb.append(message)
                 .append(" - ")
                 .append(count)
-                .append("개");
+                .append("개\n");
     }
     
     public BigDecimal multiplyCount() {

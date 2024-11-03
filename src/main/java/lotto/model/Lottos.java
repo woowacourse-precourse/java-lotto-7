@@ -47,11 +47,8 @@ public class Lottos {
 
     private Winning setByWinningNumber(List<Integer> winningNumber, int bonusNumber, Lotto lotto) {
         int correctCount = lotto.correctCount(winningNumber);
-        Winning winning = getFromValue(correctCount);
+        Winning winning = getFromValue(correctCount, lotto.isBonus(bonusNumber));
 
-        if (lotto.isBonus(bonusNumber) && winning == FIVE) {
-            winning = FIVE_BONUS;
-        }
         lottos.put(lotto, winning);
 
         return winning;
