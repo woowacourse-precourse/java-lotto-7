@@ -7,6 +7,7 @@ import static lotto.constant.LottoConstants.MAXIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoConstants.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoConstants.NUMBERS_PER_TICKET;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,6 +18,7 @@ public class Lotto {
         validateNoDuplicate(numbers);
         validateNumbersInRange(numbers);
 
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
