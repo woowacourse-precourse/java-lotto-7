@@ -1,4 +1,4 @@
-package lotto.interfaces.view;
+package lotto.interfaces.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
