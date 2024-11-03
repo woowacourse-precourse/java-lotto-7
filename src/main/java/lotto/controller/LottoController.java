@@ -3,9 +3,11 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoList;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.type.LottoRank;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final LottoList lottoList;
@@ -25,6 +27,8 @@ public class LottoController {
     public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         lottoList.setWinningNumber(new Lotto(winningNumbers), bonusNumber);
     }
-
+    public Map<LottoRank, Integer> getStatistics() {
+        return lottoList.calculateWinningStat();
+    }
 
 }
