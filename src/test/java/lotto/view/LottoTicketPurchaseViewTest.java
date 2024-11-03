@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTicketPurchaseViewTest {
     private final LottoTicketPurchaseView lottoTicketPurchaseView = new LottoTicketPurchaseView();
@@ -34,11 +34,11 @@ class LottoTicketPurchaseViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 3000, 5000, 6000, 8000})
+    @ValueSource(ints = {1, 3, 5, 6, 8})
     @DisplayName("정확한 구매 개수가 출력되어야한다.")
     void 정확한_구매_개수가_출력_돼야함(Integer price) {
         lottoTicketPurchaseView.printPurchaseCount(price);
-        String expect = (price / 1000) + "개를 구입하였습니다.";
+        String expect = price + "개를 구매했습니다.";
         assertThat(expect).isEqualTo(outputStreamCaptor.toString().trim());
     }
 
@@ -54,9 +54,7 @@ class LottoTicketPurchaseViewTest {
 
     static Stream<Arguments> provideLottoPurchaseList() {
         List<Lotto> lottoList = new ArrayList<>();
-        lottoList.add(new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6))));
-
-
+        lottoList.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
 
         return Stream.of(
                 Arguments.of(lottoList)

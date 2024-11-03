@@ -11,18 +11,11 @@ public class LottoTicketPurchase {
     public LottoTicketPurchase(Integer buyCount) {
         buyCountValidation(buyCount);
         this.lottoTickets = makeBuyLottoList(buyCount);
-        validationTicketNullCheck(lottoTickets);
     }
 
     private void buyCountValidation(Integer buyCount) {
         if (buyCount == null || buyCount == 0) {
             throw new IllegalArgumentException("[ERROR] 구매 개수가 0개입니다.");
-        }
-    }
-
-    private void validationTicketNullCheck(List<Lotto> lottoTickets) {
-        if (lottoTickets == null || lottoTickets.isEmpty()) {
-           throw new IllegalArgumentException("[ERROR] 로또 티켓이 발급되지 않았습니다!");
         }
     }
 
