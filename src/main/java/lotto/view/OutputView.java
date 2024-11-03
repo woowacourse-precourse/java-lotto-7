@@ -17,7 +17,7 @@ public class OutputView {
     private static final String THIRD_PRIZE_FORMAT = "5개 일치 (1,500,000원) - %d개\n";
     private static final String SECOND_PRIZE_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_PRIZE_FORMAT = "6개 일치 (2,000,000,000원) - %d개\n";
-    private static final String EARNING_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
+    private static final String EARNING_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.\n";
 
     public void printLottos(Lottos lottos) {
         System.out.println("\n" + lottos.size() + BUY_AMOUNT_MESSAGE_POSTFIX);
