@@ -3,20 +3,25 @@ import lotto.exceptions.LottoException;
 import lotto.model.Lotto;
 import lotto.model.LottoStatistics;
 import lotto.services.LottoServices;
-import lotto.view.InputView;
 import lotto.view.ErrorView;
-import lotto.view.OutputView;
+import lotto.view.InputViewer;
+import lotto.view.OutputViewer;
 import java.util.List;
 
 public class LottoController {
     private final LottoServices services;
+    private final InputViewer  inputViewer;
+    private final OutputViewer outputViewer;
     private LottoStatistics statistics;
+
     private Lotto userLotto;
     private List<Lotto> randomLotteries;
     private int bonusNumber;
 
-    public LottoController(LottoServices services) {
+    public LottoController(LottoServices services, InputViewer inputViewer, OutputViewer outputViewer) {
         this.services = services;
+        this.inputViewer = inputViewer;
+        this.outputViewer = outputViewer;
     }
 
     public void start() {
@@ -43,12 +48,12 @@ public class LottoController {
     }
 
     private void initUserLotto() {
-        userLotto = services.createLotto(InputView.readUserLotto());
+        userLotto = services.createLotto(inputViewer.readUserLotto());
         bonusNumber = readValidBonusNumber();
     }
 
     private void printInitState() {
-        OutputView.printLottoInitSummary(statistics.toDTO(), randomLotteries);
+        outputViewer.printLottoInitSummary(statistics.toDTO(), randomLotteries);
     }
 
     private void startLottoCheck() {
@@ -57,14 +62,14 @@ public class LottoController {
     }
 
     private void printLottoResult() {
-        OutputView.printLottoResult(statistics);
+        outputViewer.printLottoResult(statistics.toDTO());
     }
 
     private int readValidPurchaseAmount() {
         LottoValidator validator = new LottoValidator();
         while (true) {
             try {
-                int amount = InputView.readPurchaseAmount();
+                int amount = inputViewer.readPurchaseAmount();
                 validator.isValidAmount(amount);
                 return amount;
             } catch(LottoException e) {
@@ -77,7 +82,7 @@ public class LottoController {
         LottoValidator validator = new LottoValidator();
         while (true) {
             try {
-                int bonusNumber = InputView.readBonusNumber();
+                int bonusNumber = inputViewer.readBonusNumber();
                 validator.isValidBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch(LottoException e) {

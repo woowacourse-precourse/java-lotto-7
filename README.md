@@ -156,3 +156,12 @@
 ### 24.11.02.(토).3
 - **Statistics 자료구조 변경**
   - 당첨통계 관리 시 enum 클래스를 정의하여 Statistic 클래스 내 메서드 로직 가독성을 높일 수 있도록 수정합니다.
+
+### 24.11.03.(일)
+- **View 리팩토링**
+  - InputView 클래스의 print 내 문자열 양식을 util.LottoPrintMessages 클래스 내 상수 멤버로 분리하여 유지보수성을 확보합니다.
+  - OutputViewer 및 InputViewer 인터페이스를 추가하여 Controller에 Viewer에 대한 의존성을 주입합니다.
+  
+- **outputView 메서드 호출 파라미터 수정**
+  - Controller에서 메서드 호출 시 DTO 객체를 전달하도록 수정하여 View 내에서 DTO 객체로 전환하는 불필요한 로직을 제거합니다.
+  - 생성된 랜덤로또 N장을 출력하는 로직을 별도 메서드로 분리합니다.
