@@ -13,7 +13,7 @@ public class OutputView {
     private static final String LINE = "---";
     private static final String LOTTO_RESULT = "%d개 일치 (%s원) - %d개";
     private static final String LOTTO_RESULT_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String RETURN_RATE = "총 수익률은 %s%%입니다.";
+    private static final String RETURN_RATE = "총 수익률은 %.1f%%입니다.";
 
     public static void printLotties(List<List<Integer>> lottoNums) {
         System.out.printf(COUNT_LOTTO + "\n", lottoNums.size());
@@ -37,5 +37,9 @@ public class OutputView {
 
     public static void printReturnRate(double returnRate) {
         System.out.printf(RETURN_RATE, returnRate);
+    }
+
+    public static void printErrorMessage(String message){
+        System.out.println("[ERROR] " + message);
     }
 }
