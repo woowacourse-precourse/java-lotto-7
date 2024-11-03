@@ -56,5 +56,12 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
             }
         }
+
+        // 4-2. 숫자가 1-45 사이에 있는 숫자인지 확인
+        for (int winningNumber : winningNumbers) {
+            if (winningNumber > 45 || winningNumber < 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1-45 사이의 정수여야 합니다.");
+            }
+        }
     }
 }
