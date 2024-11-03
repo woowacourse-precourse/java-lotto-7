@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class constants {
     public static class Request_Messages{
         public static final String INPUT_TOTAL_AMOUNT = "구입금액을 입력해 주세요.";

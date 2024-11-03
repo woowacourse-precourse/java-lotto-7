@@ -19,7 +19,7 @@ public class LottoController {
 
     public LottoController() {
         this.totalCount = 0;
-        this.lottos = new ArrayList<Lotto>();
+        this.lottos = new ArrayList<>();
     }
 
     public void setLottos(List<Lotto> lottos) {

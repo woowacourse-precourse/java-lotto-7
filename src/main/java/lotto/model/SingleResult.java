@@ -10,13 +10,7 @@ public class SingleResult {
         this.bonusCount = 0;
         this.rank = 0;
     }
-    
-    public int getCount(){
-        return this.count;
-    }
-    public int getBonusCount(){
-        return this.bonusCount;
-    }
+
     public void countUp() {this.count++;}
     public void bonusCountUp() {this.bonusCount++;}
 
