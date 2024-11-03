@@ -59,7 +59,7 @@ public class LottoChecker {
 
         for (int i = 0; i < 6; i++) {
             int num = lotto.getNumbers().get(i);
-            isWinningLotto(count, num);
+            count = isWinningLotto(count, num);
         }
 
         return count;
