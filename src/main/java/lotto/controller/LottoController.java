@@ -33,8 +33,14 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        return validatePurchaseAmount(inputPurchaseAmount);
+        while (true) {
+            try {
+                String inputPurchaseAmount = inputView.inputPurchaseAmount();
+                return validatePurchaseAmount(inputPurchaseAmount);
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private void generateAndDisplayLottos(int purchaseAmount) {
@@ -58,13 +64,25 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumbers() {
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        return validateWinningNumbers(inputWinningNumbers);
+        while (true) {
+            try {
+                String inputWinningNumbers = inputView.inputWinningNumbers();
+                return validateWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
-        String inputBonusNumber = inputView.inputBonusNumber();
-        return validateBonusNumber(winningNumbers, inputBonusNumber);
+        while (true) {
+            try {
+                String inputBonusNumber = inputView.inputBonusNumber();
+                return validateBonusNumber(winningNumbers, inputBonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     private void printResults(Rank rank, Map<Rank, Integer> results) {
