@@ -50,4 +50,10 @@ public class LottoNumberValidator {
             throw new IllegalArgumentException("[ERROR] 1~45 범위의 번호가 아닙니다.");
         }
     }
+
+    public static void validateDuplicatedBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+    }
 }

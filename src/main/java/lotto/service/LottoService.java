@@ -91,10 +91,11 @@ public class LottoService {
         return totalPrizeMoney;
     }
 
-    public int getBonusNumber(String bonusNumberInput) {
+    public int getBonusNumber(String bonusNumberInput, List<Integer> winningLottoNumbers) {
         LottoNumberValidator.validateInteger(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         LottoNumberValidator.validateNumberRange(bonusNumber);
+        LottoNumberValidator.validateDuplicatedBonusNumber(winningLottoNumbers, bonusNumber);
         return bonusNumber;
     }
 
