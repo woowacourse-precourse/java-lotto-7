@@ -22,7 +22,7 @@ class ValidatorTest {
     }
 
     @Test
-    void 당첨_번호가_1에서_45_사이가_아닌_꼉우_예외_테스트(){
+    void 당첨_번호가_1에서_45_사이가_아닌_경우_예외_테스트(){
         //given
         List<Integer> lottoWinningNumbers = Arrays.asList(8, 21, 23, 41, 42, 46);
 
@@ -30,5 +30,15 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLottoNumberInRangeOneToFortyFive(lottoWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @Test
+    void 당첨_번호가_6개가_아닌_경우_예외_테스트(){
+        //given
+        List<Integer> lottoWinningNumbers = Arrays.asList(8, 21, 23, 41, 42);
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateLottoWinningNumbersCount(lottoWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
