@@ -53,21 +53,11 @@ public class LottoController {
 
     private WinningNumbers requestWinningNumbers() {
         outputView.displayWinningNumbersRequest();
-        List<Integer> winningNumbers = parseNumbers(inputView.getString());
-        Lotto numbers = new Lotto(winningNumbers);
-
+        String numbers = inputView.getString();
         outputView.displayBonusNumberRequest();
         int bonusNumber = inputView.getInteger();
 
-        return new WinningNumbers(numbers, bonusNumber);
-    }
-
-    private List<Integer> parseNumbers(final String input) {
-        List<String> numbers = List.of(input.split(","));
-        // TODO: List<String> validate 필요함
-        return numbers.stream()
-                .map(Integer::parseInt)
-                .toList();
+        return lottoService.createWinningNumbers(numbers, bonusNumber);
     }
 
     private void respondWinningResult(
@@ -76,18 +66,7 @@ public class LottoController {
             final PurchasePrice purchasePrice
     ) {
         Map<Prize, Integer> result = lottoTickets.aggregateWinningResult(winningNumbers);
-        double rateOfReturn = calculateRateOfReturn(result, purchasePrice);
+        double rateOfReturn = lottoService.calculateRateOfReturn(result, purchasePrice);
         outputView.displayWinningResult(result, rateOfReturn);
-    }
-
-    private double calculateRateOfReturn(final Map<Prize, Integer> result, final PurchasePrice purchasePrice) {
-        int totalPrizeMoney = calculateTotalPrizeMoney(result);
-        return ((double) totalPrizeMoney / purchasePrice.value()) * 100;
-    }
-
-    private int calculateTotalPrizeMoney(final Map<Prize, Integer> result) {
-        return result.entrySet().stream()
-                .mapToInt(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
-                .sum();
     }
 }
