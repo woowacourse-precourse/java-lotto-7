@@ -21,17 +21,20 @@ public class WinningNumbers {
         numberValidator.validateContains(numbers, value);
     }
 
-    public int countMatchNumber(final List<Integer> numbers) {
-        int count = 0;
-        for (Integer number : numbers) {
-            if (winningLotto.isContainsNumber(number)) {
-                count++;
-            }
-        }
-        return count;
+    public LottoRank matchWithLotto(final Lotto lotto) {
+        final int matchCount = countMatchNumber(lotto);
+        final boolean matchBonusNumber = isMatchBonusNumber(lotto);
+        return LottoRank.findByMatchCountAndMatchBonus(matchCount, matchBonusNumber);
     }
 
-    public boolean isMatchBonusNumber(final List<Integer> numbers) {
-        return bonusNumber.isMatchNumber(numbers);
+    private boolean isMatchBonusNumber(final Lotto lotto) {
+        return bonusNumber.isMatchNumber(lotto);
     }
+
+    private int countMatchNumber(final Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto::isContainsNumber)
+                .count();
+    }
+
 }

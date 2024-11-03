@@ -18,7 +18,7 @@ public class WinningResult {
     public Map<LottoRank, Integer> getLottoRanks() {
         final Map<LottoRank, Integer> lottoRanks = initializeLottoRanks();
         for (Lotto lotto : lottos) {
-            final LottoRank lottoRank = calculateLottoRank(lotto);
+            final LottoRank lottoRank = winningNumbers.matchWithLotto(lotto);
             final Integer count = lottoRanks.getOrDefault(lottoRank, 0);
             lottoRanks.put(lottoRank, count + 1);
         }
@@ -35,10 +35,4 @@ public class WinningResult {
         return lottoRanks;
     }
 
-    private LottoRank calculateLottoRank(final Lotto lotto) {
-        final List<Integer> numbers = lotto.getNumbers();
-        final int matchCount = winningNumbers.countMatchNumber(numbers);
-        final boolean matchBonusNumber = winningNumbers.isMatchBonusNumber(numbers);
-        return LottoRank.findByMatchCountAndMatchBonus(matchCount, matchBonusNumber);
-    }
 }

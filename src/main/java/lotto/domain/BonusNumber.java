@@ -13,7 +13,8 @@ public class BonusNumber {
         this.value = value;
     }
 
-    public boolean isMatchNumber(List<Integer> numbers) {
+    public boolean isMatchNumber(final Lotto lotto) {
+        final List<Integer> numbers = lotto.getNumbers();
         return numbers.contains(value);
     }
 
