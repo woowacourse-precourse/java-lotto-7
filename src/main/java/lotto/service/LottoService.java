@@ -17,6 +17,13 @@ public class LottoService {
         lottoRepository.saveAll(lottos);
     }
 
+    public void generateLottos(int count) {
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = generateLotto();
+            lottoRepository.save(lotto);
+        }
+    }
+
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
