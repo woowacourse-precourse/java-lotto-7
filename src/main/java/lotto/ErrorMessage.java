@@ -9,7 +9,7 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         // 구입 금액은 양수인 1000원 단위
         @Override
         public void validateAmount(int amount) {
-            if (amount > 0 || amount % 1000 != 0) {
+            if (amount <= 0 || amount % 1000 != 0) {
                 throw new IllegalArgumentException(getMessage());
             }
         }
