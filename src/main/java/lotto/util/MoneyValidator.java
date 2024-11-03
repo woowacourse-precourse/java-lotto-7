@@ -1,24 +1,15 @@
-package lotto.model;
+package lotto.util;
 
 import static lotto.message.ErrorMessage.INVALID_MONEY_TYPE;
 
-public class PurchaseLotto {
+public class MoneyValidator {
 
     private static final String INT_REGEX = "\\d+";
 
     private static final int MONEY_UNIT = 1000;
     private static final int ZERO = 0;
 
-    private final int money;
-//    private final List<Lotto> lottoList;
-
-    public PurchaseLotto(String moneyTemp) {
-        int money = validate(moneyTemp);
-        this.money = money;
-//        this.lottoList = lottoList;
-    }
-
-    private static int validate(final String moneyTemp) {
+    public static int validate(final String moneyTemp) {
         intValidate(moneyTemp);
         int money = Integer.parseInt(moneyTemp);
         unitValidate(money);
@@ -36,4 +27,5 @@ public class PurchaseLotto {
             throw new IllegalArgumentException(INVALID_MONEY_TYPE.getMessage());
         }
     }
+
 }
