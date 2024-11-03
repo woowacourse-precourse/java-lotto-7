@@ -4,6 +4,11 @@ import java.util.Map;
 
 public class Profit {
 
+    private static final String FORMAT_LENGTH = "%.1f";
+
+    private Profit() {
+    }
+
     public static String calculate(Map<WinningPrice, Integer> winningPrice, int purchaseAmount) {
         double totalPrice = 0;
         for (WinningPrice price : winningPrice.keySet()) {
@@ -12,7 +17,7 @@ public class Profit {
         double percentage = (totalPrice / purchaseAmount) * 100;
         percentage = Math.round(percentage * 100.0) / 100.0;
 
-        return String.format("%.1f", percentage);
+        return String.format(FORMAT_LENGTH, percentage);
     }
 
 }
