@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,7 +8,6 @@ import lotto.constant.LottoWinInfo;
 import lotto.model.draw.BonusNumber;
 import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Lotto;
-import lotto.model.result.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
