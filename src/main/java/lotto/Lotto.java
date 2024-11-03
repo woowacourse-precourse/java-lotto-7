@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto implements Iterable<Integer> {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -30,12 +31,12 @@ public class Lotto implements Iterable<Integer> {
         return numbers.iterator();
     }
 
-    public int size() {
-        return numbers.size();
-    }
-
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int size() {
+        return numbers.size();
     }
 
     private void validate(List<Integer> numbers) {

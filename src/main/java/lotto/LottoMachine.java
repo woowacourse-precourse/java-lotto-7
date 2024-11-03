@@ -21,23 +21,6 @@ public class LottoMachine {
         lottoIOHandler.showWinningStatistics(winningStatistics, purchaseAmount);
     }
 
-    private LottoStatistics calculateWinningStatistics(LottoPool lottoPool, Lotto winningLotto, int bonusNumber) {
-        LottoStatistics lottoStatistics = new LottoStatistics();
-
-        for (Lotto userLotto : lottoPool) {
-            LottoRank lottoRank = LottoRank.checkWinningRank(userLotto, winningLotto, bonusNumber);
-            incrementWinningCount(lottoRank, lottoStatistics);
-        }
-
-        return lottoStatistics;
-    }
-
-    private void incrementWinningCount(LottoRank lottoRank, LottoStatistics lottoStatistics) {
-        if (lottoRank != null) {
-            lottoStatistics.incrementWinningCount(lottoRank);
-        }
-    }
-
     private int calculateQuantity(int purchaseAmount) {
         return purchaseAmount / 1000;
     }
@@ -51,5 +34,22 @@ public class LottoMachine {
         }
 
         return lottoPool;
+    }
+
+    private LottoStatistics calculateWinningStatistics(LottoPool lottoPool, Lotto winningLotto, int bonusNumber) {
+        LottoStatistics lottoStatistics = new LottoStatistics();
+
+        for (Lotto userLotto : lottoPool) {
+            LottoRank lottoRank = LottoRank.checkWinningRank(userLotto, winningLotto, bonusNumber);
+            incrementWinningCountIfLottoRankIsNotNull(lottoRank, lottoStatistics);
+        }
+
+        return lottoStatistics;
+    }
+
+    private void incrementWinningCountIfLottoRankIsNotNull(LottoRank lottoRank, LottoStatistics lottoStatistics) {
+        if (lottoRank != null) {
+            lottoStatistics.incrementWinningCount(lottoRank);
+        }
     }
 }
