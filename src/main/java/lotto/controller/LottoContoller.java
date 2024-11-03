@@ -31,8 +31,13 @@ public class LottoContoller {
     }
 
     public void run() {
+        String purchaseAmount = inputView.inputPurchaseAmount();
+        lottoService.purchaseLotto(purchaseAmount);
+
+        outputView.printLottoLogs(lottoService.generateLottoLogs());
+
         double profitRate = lottoService.computeProfitRate(
-                inputView.inputPurchaseAmount(),
+                purchaseAmount,
                 inputView.inputWinningNumbers(),
                 inputView.inputBonusNumber()
         );

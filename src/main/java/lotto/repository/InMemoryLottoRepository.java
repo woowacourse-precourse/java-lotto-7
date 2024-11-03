@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
 
-public class InMemoryLottoRepository implements LottoRepository{
+public class InMemoryLottoRepository implements LottoRepository {
     private final List<Lotto> lottoStore;
 
     private InMemoryLottoRepository() {
@@ -37,5 +37,10 @@ public class InMemoryLottoRepository implements LottoRepository{
                 .map(LottoRule::getPrize)
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    @Override
+    public List<Lotto> findAll() {
+        return lottoStore;
     }
 }

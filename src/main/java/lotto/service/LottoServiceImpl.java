@@ -2,10 +2,11 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
 
-public class LottoServiceImpl implements LottoService{
+public class LottoServiceImpl implements LottoService {
     private final LottoRepository lottoRepository;
 
     private LottoServiceImpl(LottoRepository lottoRepository) {
@@ -22,14 +23,26 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
+    public void purchaseLotto(String purchaseAmount) {
         int numericPurchaseAmount = parseNumeric(purchaseAmount);
 
         lottoRepository.generateRandomLottos(numericPurchaseAmount);
+    }
+
+    @Override
+    public List<String> generateLottoLogs() {
+        return lottoRepository.findAll()
+                .stream()
+                .map(Lotto::toString)
+                .toList();
+    }
+
+    @Override
+    public double computeProfitRate(String purchaseAmount, String winningNumbers, String bonusNumber) {
         return (double) lottoRepository.findTotalPrizeByWinningNumbersAndBonusNumber(
                 parseIntegerList(winningNumbers),
                 Integer.parseInt(bonusNumber)
-        ) / numericPurchaseAmount;
+        ) / parseNumeric(purchaseAmount);
     }
 
     private int parseNumeric(String stringInput) {
