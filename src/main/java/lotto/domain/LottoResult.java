@@ -6,7 +6,7 @@ import lotto.constant.Rank;
 
 public class LottoResult {
     private final Map<Rank, Integer> winningCount = new EnumMap<>(Rank.class);
-    private int totalWinnings = 0;
+    private long totalWinnings = 0;
 
     public LottoResult() {
         for (Rank rank : Rank.values()) {
@@ -23,7 +23,7 @@ public class LottoResult {
         return winningCount;
     }
 
-    public int getTotalWinnings() {
+    public long getTotalWinnings() {
         return totalWinnings;
     }
 }
