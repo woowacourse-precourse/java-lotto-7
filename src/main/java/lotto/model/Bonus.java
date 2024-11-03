@@ -12,6 +12,7 @@ public class Bonus {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
         validateDuplicationBonus(bonusNumber);
+        validateNumbersRange(bonusNumber);
     }
 
     public Integer getBonusNumber(){
