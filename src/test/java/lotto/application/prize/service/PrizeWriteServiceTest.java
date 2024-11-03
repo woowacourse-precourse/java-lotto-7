@@ -30,7 +30,7 @@ class PrizeWriteServiceTest {
         int bonusNum = 7;
 
         // when
-        Long savedId = service.create(bonusNum, winNums);
+        Long savedId = service.create(winNums, bonusNum);
 
         // then
         Assertions.assertThat(savedId).isEqualTo(1L);
@@ -55,7 +55,7 @@ class PrizeWriteServiceTest {
         int bonusNum = 10;
 
         // expect
-        assertThatThrownBy(() -> service.create(bonusNum, invalidWinNums))
+        assertThatThrownBy(() -> service.create(invalidWinNums, bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
@@ -78,7 +78,7 @@ class PrizeWriteServiceTest {
         int bonusNum = 10;
 
         // expect
-        assertThatThrownBy(() -> service.create(bonusNum, invalidWinNums))
+        assertThatThrownBy(() -> service.create(invalidWinNums, bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
@@ -101,7 +101,7 @@ class PrizeWriteServiceTest {
         int bonusNum = 6;
 
         // expect
-        assertThatThrownBy(() -> service.create(bonusNum, invalidWinNums))
+        assertThatThrownBy(() -> service.create(invalidWinNums, bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
@@ -124,7 +124,7 @@ class PrizeWriteServiceTest {
         int bonusNum = 100;
 
         // expect
-        assertThatThrownBy(() -> service.create(bonusNum, invalidWinNums))
+        assertThatThrownBy(() -> service.create(invalidWinNums, bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
