@@ -31,7 +31,7 @@ public class WinningNumbers {
     private static class Validator {
 
         private static final String COMMA = ",";
-        private static final String BONUS_NUMBER_NUMERIC_REGEX = "-?\\d+";
+        private static final String WINNING_NUMBER_NUMERIC_REGEX = "-?\\d+";
 
         private static List<Integer> validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
@@ -65,7 +65,7 @@ public class WinningNumbers {
 
         private static List<Integer> validateWinningNumbersIsNumeric(List<String> delimitedWinningNumbers) {
             for (String delimitedWinningNumber : delimitedWinningNumbers) {
-                if (!delimitedWinningNumber.matches(BONUS_NUMBER_NUMERIC_REGEX)) {
+                if (!delimitedWinningNumber.matches(WINNING_NUMBER_NUMERIC_REGEX)) {
                     throw new IllegalArgumentException(NON_NUMERIC_WINNING_NUMBER.getMessage());
                 }
             }
