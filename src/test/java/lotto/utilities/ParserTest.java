@@ -24,7 +24,7 @@ class ParserTest {
         String invalidNumber = "123a";
 
         assertThatThrownBy(() -> Parser.parseNumberToInt(invalidNumber))
-            .isInstanceOf(NumberFormatException.class)
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.INVALID_INT_NUMBER.getMessage());
     }
 
@@ -43,7 +43,7 @@ class ParserTest {
         List<String> invalidNumbers = Arrays.asList("1", "two", "3");
 
         assertThatThrownBy(() -> Parser.parseNumbersToInt(invalidNumbers))
-            .isInstanceOf(NumberFormatException.class)
+            .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ErrorMessage.INVALID_INT_NUMBER.getMessage());
     }
 }
