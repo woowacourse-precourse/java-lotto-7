@@ -7,20 +7,20 @@ public class LottoResult {
         rank.increaseCount();
     }
 
-    public void evaluateLottoResults(LottoTicket lottoTicket, WinningNumbers winningNumbers) {
+    public void evaluateLottoResults(LottoTicket lottoTicket, LottoNumbers lottoNumbers) {
         for (Lotto lotto : lottoTicket.getLottos()) {
-            int mathCount = winningNumbers.countMatchingNumbers(lotto);
-            boolean matchBonus = winningNumbers.isBonusMatched(lotto);
+            int mathCount = lottoNumbers.countMatchingNumbers(lotto);
+            boolean matchBonus = lottoNumbers.isBonusMatched(lotto);
             recordMatchResult(mathCount, matchBonus);
         }
     }
 
-    public double calculateRateOfReturn(int amount) {
+    public double calculateRateOfReturn(PurchaseAmount purchaseAmount) {
         int total = 0;
         for (Rank rank : Rank.values()) {
             total += rank.getCount() * rank.getPrize();
         }
-        double rateOfReturn = ((double) total / amount) * 100;
+        double rateOfReturn = ((double) total / purchaseAmount.getAmount()) * 100;
         return Math.round(rateOfReturn * 100) / 100.0;
     }
 
