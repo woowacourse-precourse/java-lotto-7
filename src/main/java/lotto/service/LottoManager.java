@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LottoManager {
 
-    private List<Lotto> lottos;
+    private final gList<Lotto> lottos;
 
     public LottoManager() {
         this.lottos = new ArrayList<>();
