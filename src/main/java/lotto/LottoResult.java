@@ -44,11 +44,12 @@ public class LottoResult {
                 .sum();
     }
 
-    private  CorrectStatus getCorrectStatus(WinningLottoNumberSelector winningLottoNumberSelector,
-                                            int matchNumber,Lotto purchasedLotto) {
-        boolean containSpecialNumber = winningLottoNumberSelector.containSpecialNumber(purchasedLotto);
+    private  CorrectStatus getCorrectStatus(final WinningLottoNumberSelector winningLottoNumberSelector,
+                                            final int matchNumber,final Lotto purchasedLotto) {
 
+        boolean containSpecialNumber = winningLottoNumberSelector.containSpecialNumber(purchasedLotto);
         CorrectStatus correctStatus = findByMatchCountAndSpecialNumber(matchNumber,containSpecialNumber);
+
         return correctStatus;
     }
 }

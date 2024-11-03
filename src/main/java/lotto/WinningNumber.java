@@ -17,7 +17,7 @@ public class WinningNumber {
 
     private void validateSpecialNumber(final SpecialNumber specialNumber){
 
-        if(winningRegularLotto.getNumbers().contains(specialNumber.getSpecialNumber())){
+        if(winningRegularLotto.getNumbers().contains(specialNumber.getNumber())){
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_MUST_NOT_DUPLICATE.getMessage());
         }
     }

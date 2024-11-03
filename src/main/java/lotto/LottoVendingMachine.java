@@ -26,7 +26,7 @@ public class LottoVendingMachine {
         List<Lotto> purchasedLottos = makeLottos(purchaseAmount.getTicket());
         outputHandler.printPurchasedLotto(purchaseAmount.getTicket(),purchasedLottos);
 
-        WinningLottoNumberSelector winningLottoNumberSelector = getWinningLottoNumber(purchasedLottos);
+        WinningLottoNumberSelector winningLottoNumberSelector = getWinningLottoNumberSelector(purchasedLottos);
         LottoResult lottoResult = new LottoResult();
         lottoResult.adjustLottoResult(winningLottoNumberSelector);
 
@@ -35,7 +35,7 @@ public class LottoVendingMachine {
 
     }
 
-    private WinningLottoNumberSelector getWinningLottoNumber(List<Lotto> purchasedLottos){
+    private WinningLottoNumberSelector getWinningLottoNumberSelector(final List<Lotto> purchasedLottos){
 
         WinningNumber winningNumber = inputHandler.inputWinningLottoNumber();
 

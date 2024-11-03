@@ -22,7 +22,7 @@ public class WinningLottoNumberSelector {
 
         int correctNumber = 0;
 
-        for(int i=0; i<purchasedLotto.getNumbers().size();i++){
+        for(int i=0; i< purchasedLotto.getNumbers().size(); i++){
             if(winningNumber.getWinningRegularLotto().getNumbers().contains(purchasedLotto.getNumbers().get(i))){
                 correctNumber++;
             }
@@ -35,7 +35,7 @@ public class WinningLottoNumberSelector {
 
         return purchasedLotto.getNumbers()
                 .stream()
-                .anyMatch(i->i== getSpecialNumber().getSpecialNumber());
+                .anyMatch(i->i == getSpecialNumber().getNumber());
 
     }
 

@@ -4,21 +4,21 @@ import lotto.exception.ErrorCode;
 
 public class SpecialNumber {
 
-    private int specialNumber;
+    private int number;
 
     private static final int LOTTO_START_NUM = 1;
     private static final int LOTTO_FINAL_NUM = 45;
 
-    public SpecialNumber(String specialNumber){
-        validate(specialNumber);
-        this.specialNumber = Integer.valueOf(specialNumber);
+    public SpecialNumber(String number){
+        validate(number);
+        this.number = Integer.valueOf(number);
     }
 
-    private void validate(String specialNumber){
+    private void validate(String number){
         try{
-            int specialNum = Integer.valueOf(specialNumber);
+            int num = Integer.valueOf(number);
 
-            if(specialNum>LOTTO_FINAL_NUM || specialNum < LOTTO_START_NUM){
+            if(num>LOTTO_FINAL_NUM || num < LOTTO_START_NUM){
                 throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_MUST_BE_IN_CORRECT_RANGE.getMessage());
             }
         } catch (Exception e){
@@ -27,7 +27,7 @@ public class SpecialNumber {
 
     }
 
-    public int getSpecialNumber(){
-        return this.specialNumber;
+    public int getNumber(){
+        return this.number;
     }
 }
