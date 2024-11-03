@@ -54,7 +54,7 @@ public class Application {
         }
     }
 
-    public static int checkRange(int bonusNumber) {
+    public static int checkRange(int bonusNumber) { //보너스 넘버 범위 체크
         if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException("");
         return bonusNumber;
     }
