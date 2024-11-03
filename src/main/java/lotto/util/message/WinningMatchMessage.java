@@ -4,17 +4,19 @@ import lotto.rule.Prize;
 
 public enum WinningMatchMessage implements Message {
 
-    FIFTH("3개 일치 (%s원)"),
-    FOURTH("4개 일치 (%s원)"),
-    THIRD("5개 일치 (%s원)"),
-    SECOND("5개 일치, 보너스 볼 일치 (%s원)"),
-    FIRST("6개 일치 (%s원)"),
+    FIRST("6개 일치 (%s원)", Prize.FIRST),
+    SECOND("5개 일치, 보너스 볼 일치 (%s원)", Prize.SECOND),
+    THIRD("5개 일치 (%s원)", Prize.THIRD),
+    FOURTH("4개 일치 (%s원)", Prize.FOURTH),
+    FIFTH("3개 일치 (%s원)", Prize.FIFTH),
     ;
 
     private final String message;
+    private final Prize prize;
 
-    WinningMatchMessage(String message) {
+    WinningMatchMessage(String message, Prize prize) {
         this.message = message;
+        this.prize = prize;
     }
 
     @Override
@@ -24,21 +26,6 @@ public enum WinningMatchMessage implements Message {
 
     private String formatPrizeAmount() {
         String currencyFormatPattern = "%,d";
-        if (this.equals(FIRST)) {
-            return String.format(currencyFormatPattern, Prize.FIRST.getPrizeAmount());
-        }
-        if (this.equals(SECOND)) {
-            return String.format(currencyFormatPattern, Prize.SECOND.getPrizeAmount());
-        }
-        if (this.equals(THIRD)) {
-            return String.format(currencyFormatPattern, Prize.THIRD.getPrizeAmount());
-        }
-        if (this.equals(FOURTH)) {
-            return String.format(currencyFormatPattern, Prize.FOURTH.getPrizeAmount());
-        }
-        if (this.equals(FIFTH)) {
-            return String.format(currencyFormatPattern, Prize.FIFTH.getPrizeAmount());
-        }
-        throw new IllegalStateException(LottoErrorMessage.NOT_ALLOWED_PRIZE_TYPE.get());
+        return String.format(currencyFormatPattern, prize.getPrizeAmount());
     }
 }
