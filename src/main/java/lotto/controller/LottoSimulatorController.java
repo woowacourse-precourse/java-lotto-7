@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Draw;
 import lotto.model.LottoSimulator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,6 +17,7 @@ public class LottoSimulatorController {
 
     public void run(){
         issueLotto();
+        drawNumbers();
     }
 
     private void issueLotto() {
@@ -28,5 +30,7 @@ public class LottoSimulatorController {
     private void drawNumbers() {
         String winningNumbers = inputView.readWinningNumbers();
         String bonusNumber = inputView.readBonusNumber();
+        Draw draw = new Draw(winningNumbers, bonusNumber);
+        lottoSimulator.countPrize(draw);
     }
 }

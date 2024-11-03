@@ -21,4 +21,14 @@ public class Lotto {
         numbers.sort(Integer::compareTo);
         return numbers.toString();
     }
+
+    public int checkLotto(List<Integer> winningNumbers) {
+        return (int) winningNumbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    public boolean checkBonus(int bonus) {
+        return numbers.contains(bonus);
+    }
 }
