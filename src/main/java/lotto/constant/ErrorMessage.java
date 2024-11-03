@@ -3,7 +3,9 @@ package lotto.constant;
 public enum ErrorMessage {
     INVALID_LOTTO_LENGTH("로또 번호는 6개여야 합니다."),
     INVALID_NULL_OR_BLANK("입력값이 NULL 혹은 공백일 수 없습니다."),
-    INVALID_NON_NUMERIC_INPUT("숫자만 입력 가능합니다.");
+    INVALID_NON_NUMERIC_INPUT("숫자만 입력 가능합니다."),
+    INVALID_ZERO_AMOUNT("구입금액은 0원일 수 없습니다."),
+    INVALID_AMOUNT_UNIT("구입금액의 단위는 1,000원 단위입니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
