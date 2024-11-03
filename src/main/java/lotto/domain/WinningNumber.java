@@ -7,7 +7,6 @@ public class WinningNumber {
 
     private final List<Integer> numbers;
 
-
     public WinningNumber(List<Integer> numbers) {
         this.numbers = numbers;
     }

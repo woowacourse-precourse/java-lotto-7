@@ -11,6 +11,14 @@ public class RateOfReturn {
     }
 
     public double getRateOfReturn() {
-        return (lottoResult.calculateTotalPrize() / (double) lottoResult.getPurchasePrice() * PERCENTAGE);
+        return (getCalculateTotalPrize() / getPurchasePrice() * PERCENTAGE);
+    }
+
+    private double getPurchasePrice() {
+        return (double) lottoResult.getPurchasePrice();
+    }
+
+    private int getCalculateTotalPrize() {
+        return lottoResult.calculateTotalPrize();
     }
 }
