@@ -2,6 +2,9 @@ package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.view.message.ErrorMessage;
@@ -14,9 +17,17 @@ class LottoMachineTest {
 
     @Test
     void 로또_생성_테스트() {
-        Integer moneyAmount = 10000;
+        String moneyAmount = "10000";
+        System.setIn(new ByteArrayInputStream(moneyAmount.getBytes()));
+
         List<Lotto> lotteries = lottoMachine.getLotteries();
-        Assertions.assertThat(lotteries).isInstanceOf(Lotto.class);
+        Assertions.assertThat(lotteries).hasSize(10);
+    }
+
+    @Test
+    void 로또_구매_장수_계산_테스트() {
+        int number = lottoMachine.calculateNumberLotto(10000);
+        Assertions.assertThat(number).isEqualTo(10);
     }
 
     @Test
@@ -29,14 +40,13 @@ class LottoMachineTest {
     @Test
     void 구입_금액_검증_예외_테스트() {
         String moneyAmount = "999";
-        Assertions.assertThatThrownBy(() -> lottoMachine.validateMoneyAmount(moneyAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_MONEY_AMOUNT_ERROR);
-    }
 
-    @Test
-    void generateLotto() {
-        Lotto lotto = lottoMachine.generateLotto();
-        Assertions.assertThat(lotto).isInstanceOf(Lotto.class);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        boolean result = lottoMachine.validateMoneyAmount(moneyAmount);
+
+        Assertions.assertThat(result).isEqualTo(false);
+        Assertions.assertThat(outputStream.toString().trim()).isEqualTo("[ERROR] 최소 구매 금액은 1000원부터 입니다.");
     }
 }
