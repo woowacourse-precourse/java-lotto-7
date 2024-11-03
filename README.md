@@ -237,7 +237,7 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
    - [x] `로또 당첨금 / 로또 구입 금액 * 100`으로 로또 수익률을 계산한다.
 
 - 예외 처리
-   - [ ] 예외 발생 시 `IllegalArgumentException`을 발생시킨다.
+   - [x] 예외 발생 시 `IllegalArgumentException`을 발생시킨다.
    - [x] 예외를 발생시킨 후 해당 값을 다시 입력받는다.
 
 ### 입출력 구현 리스트
@@ -281,7 +281,7 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
      ```
    - [x] 총 수익률을 출력한다. `총 수익률은 n.m%입니다.`
       - [x] 소수점 둘째 자리에서 반올림한다. 
-   - [ ] 예외 처리 시 `[ERROR]` 문구로 시작하도록 출력한다.
+   - [x] 예외 처리 시 `[ERROR]` 문구로 시작하도록 출력한다.
 
 ## 프로젝트 구현 후기
 
