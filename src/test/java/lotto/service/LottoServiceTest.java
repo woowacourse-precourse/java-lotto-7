@@ -51,10 +51,10 @@ class LottoServiceTest {
 
         //then
         assertThat(winningCount.getWinningCount()).hasSize(5);
-        assertThat(winningCount.getWinningCount().get(Profit.SIX_MATCHES.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.FIVE_MATCHES_BONUS_MATCH.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.FIVE_MATCHES.name())).isEqualTo(0);
-        assertThat(winningCount.getWinningCount().get(Profit.FOUR_MATCHES.name())).isEqualTo(2);
-        assertThat(winningCount.getWinningCount().get(Profit.THREE_MATCHES.name())).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_6.name())).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_5_BONUS_MATCH.name())).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_5.name())).isEqualTo(0);
+        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_4.name())).isEqualTo(2);
+        assertThat(winningCount.getWinningCount().get(Profit.MATCHES_3.name())).isEqualTo(0);
     }
 }

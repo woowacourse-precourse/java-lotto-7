@@ -47,10 +47,8 @@ public class LottoService {
     private Lotto issueLotto() {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(
                 Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER, Constant.LOTTO_NUMBER_COUNT
-        );
-        return new Lotto(lotto.stream()
-                .sorted()
-                .collect(Collectors.toList()));
+        ).stream().sorted().toList();
+        return new Lotto(lotto);
     }
 
     private boolean isBonusMatch(Lotto issuedLotto, Bonus bonusNumber) {
@@ -61,25 +59,11 @@ public class LottoService {
         if (matchCount < 3) {
             return;
         }
-        if (matchCount == 6) {
-            winningCount.increaseCount(Profit.SIX_MATCHES.name());
-            return;
-        }
+        String key = Constant.WINNING_COUNT_KEY_PREFIX + matchCount;
         if (matchCount == 5 && isBonusMatch) {
-            winningCount.increaseCount(Profit.FIVE_MATCHES_BONUS_MATCH.name());
-            return;
+            key += Constant.WINNING_COUNT_BONUS_MATCH_KEY_SUFFIX;
         }
-        if (matchCount == 5) {
-            winningCount.increaseCount(Profit.FIVE_MATCHES.name());
-            return;
-        }
-        if (matchCount == 4) {
-            winningCount.increaseCount(Profit.FOUR_MATCHES.name());
-            return;
-        }
-        if (matchCount == 3) {
-            winningCount.increaseCount(Profit.THREE_MATCHES.name());
-        }
+        winningCount.increaseCount(key);
     }
 
     private int getTotalProfit(Map<String, Integer> winningCount) {
