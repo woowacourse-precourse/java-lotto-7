@@ -24,4 +24,8 @@ public class OutputView {
             System.out.println(numbers); // [ ] 안에 출력되도록 toString 형태로 출력
         }
     }
+
+    public void promptWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

@@ -18,6 +18,7 @@ public class LottoController {
         outputView.printPriceInputPrompt();
         List<Lotto> lottoes = lottoGame.purchase();
         outputView.printLottoes(lottoes);
+        outputView.promptWinningNumbers();
 
     }
 }
