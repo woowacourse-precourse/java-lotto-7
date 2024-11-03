@@ -44,4 +44,40 @@ public class LottoMachine {
     public int getBonusNumber() {
         return bonusNumber;
     }
+    public void calculateResult() {
+        int[] matchCounts = new int[6];
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
+
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                matchCounts[5]++;
+                continue;
+            }
+            if (matchCount >= 3) {
+                matchCounts[matchCount - 3]++;
+            }
+        }
+        displayResult(matchCounts);
+    }
+
+    private int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void displayResult(int[] matchCounts) {
+        System.out.println("당첨 통계\n---");
+        System.out.printf("3개 일치 (5,000원) - %d개%n", matchCounts[0]);
+        System.out.printf("4개 일치 (50,000원) - %d개%n", matchCounts[1]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", matchCounts[2]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", matchCounts[5]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", matchCounts[3]);
+    }
+
+
 }

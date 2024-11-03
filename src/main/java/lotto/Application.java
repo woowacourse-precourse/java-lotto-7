@@ -11,5 +11,7 @@ public class Application {
         lottoMachine.purchaseLottos(amount);
         lottoMachine.inputWinningNumbers();
         lottoMachine.inputBonusNumber();
+
+        lottoMachine.calculateResult();
     }
 }
