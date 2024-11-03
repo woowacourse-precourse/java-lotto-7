@@ -20,6 +20,12 @@ public class WinningLotto {
 		return LottoNumber.from(number);
 	}
 
+	private long getWinningCount(List<LottoNumber> lottoNumbers) {
+		return lottoNumbers.stream()
+				.filter(this::drawLottoNumber)
+				.count();
+	}
+
 	private boolean drawLottoNumber(LottoNumber lottoNumber) {
 		return winningNumbers.getNumbers().contains(lottoNumber);
 	}
