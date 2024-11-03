@@ -1,0 +1,33 @@
+package lotto.domain;
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LottoManager {
+
+    public static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_MIN_NUMBER = 1;
+    public static final int LOTTO_MAX_NUMBER = 45;
+
+
+    private static Lotto createLotto() {
+        List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .toList();
+        return new Lotto(numbers);
+    }
+
+    public static ArrayList<Lotto> createLottos(int money) {
+        int lottoCount = money / LOTTO_PRICE;
+        ArrayList<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(createLotto());
+        }
+        return lottos;
+    }
+
+}
