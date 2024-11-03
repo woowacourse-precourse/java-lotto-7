@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.Lotto;
 import lotto.Messages.ErrorMessage;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,5 +72,10 @@ public class InputView {
         if (!(purchaseAmount >= 1000 && purchaseAmount <= 200000000)) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_RANGE.getError());
         }
+    }
+
+    public static String parseReturntoStr(double myReturn) {
+        DecimalFormat df = new DecimalFormat("#,##0.0");
+        return df.format(myReturn); // 포맷팅된 문자열 반환
     }
 }
