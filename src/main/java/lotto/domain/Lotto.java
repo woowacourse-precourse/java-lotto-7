@@ -5,14 +5,14 @@ import java.util.Set;
 import lotto.common.validator.LottoValidator;
 
 public class Lotto {
-    private final Set<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        this.numbers = Set.copyOf(numbers);
+        this.numbers = List.copyOf(numbers);
     }
 
-    public Set<Integer> getNumbers() {
-        return Set.copyOf(numbers);
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 }
