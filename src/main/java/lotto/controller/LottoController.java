@@ -16,22 +16,22 @@ import lotto.validation.WinningNumberValidation;
 
 
 public class LottoController {
-//    private static final List<Lotto> lottoTickets = new ArrayList<Lotto>();
 
     public void run() {
         int attemptCount = getAttemptCount();
         printPurchaseLottoCount(attemptCount);
 
         LottoTickets lottoTickets = new LottoTickets(attemptCount);
-        WinningLotto winningLotto = new WinningLotto(getWinningNumber(),getBonusNumber());
+        List<Integer> winningNumber = getWinningNumber();
+        int bonusNumber = getBonusNumber(winningNumber);
+        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumber) {
         printBonusNumberInputMessage();
         String bonusNumber = UserInput();
-        return parseValidatedBonusNumber(bonusNumber);
+        return parseValidatedBonusNumber(bonusNumber, winningNumber);
     }
-
 
     private int getAttemptCount() {
         printPurchaseAmountInputMessage();

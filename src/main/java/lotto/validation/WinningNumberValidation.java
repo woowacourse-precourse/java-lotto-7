@@ -28,7 +28,7 @@ public class WinningNumberValidation {
         return numbers;
     }
 
-    public static int parseValidatedBonusNumber(String input) {
+    public static int parseValidatedBonusNumber(String input, List<Integer> winningNumber) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT);
         }
@@ -37,6 +37,9 @@ public class WinningNumberValidation {
         }
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT);
+        }
+        if(winningNumber.contains(bonusNumber)){
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_INPUT);
         }
         return bonusNumber;
