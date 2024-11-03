@@ -22,4 +22,9 @@ public class LottoDrawController {
 		outputView.printWinningLottoInputMessage();
 		return inputView.getWinningNumbersInput();
 	}
+
+	private int getBonusNumber() {
+		outputView.printBonusNumberInputMessage();
+		return inputView.getBonusNumberInput();
+	}
 }
