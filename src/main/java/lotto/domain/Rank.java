@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public enum Rank {
@@ -12,12 +13,12 @@ public enum Rank {
 
     private final int matchedCount;
     private final boolean bonus;
-    private final long prize;
+    private final BigDecimal prize;
 
     Rank(int matchedCount, boolean bonus, long prize) {
         this.matchedCount = matchedCount;
         this.bonus = bonus;
-        this.prize = prize;
+        this.prize = BigDecimal.valueOf(prize);
     }
 
     // TODO: MISS를 반환하는게 맞는지
@@ -25,5 +26,13 @@ public enum Rank {
         return Arrays.stream(Rank.values())
             .filter(rank -> rank.matchedCount == count)
             .findAny().orElse(MISS);
+    }
+
+    public BigDecimal getPrize() {
+        return prize;
+    }
+
+    public boolean hasBonus() {
+        return bonus;
     }
 }
