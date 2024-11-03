@@ -59,4 +59,17 @@ class AnswerTest {
         Assertions.assertThatThrownBy(() -> answer.getAnswerNumbers().add(7))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
+
+    @Test
+    @DisplayName("보너스 번호를 반환 받을 수 있다.")
+    void should_GetBonusNumber() {
+        // given
+        List<Integer> answerNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        BonusNumber bonusNumber = new BonusNumber("7");
+        Answer answer = new Answer(answerNumbers, bonusNumber);
+        // when
+        BonusNumber actual = answer.getBonusNumber();
+        // then
+        Assertions.assertThat(actual).isEqualTo(bonusNumber);
+    }
 }

@@ -16,4 +16,8 @@ public class Answer {
     public List<Integer> getAnswerNumbers() {
         return List.copyOf(answerNumbers);
     }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }
