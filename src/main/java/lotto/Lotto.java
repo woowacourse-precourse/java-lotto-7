@@ -44,14 +44,14 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctCount != NUMBER_COUNT.getConstant()) {
-            throw new DuplicateNumberException(DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_MESSAGE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(number -> number < MIN_NUMBER.getConstant() || number > MAX_NUMBER.getConstant())) {
-            throw new OverRangeException(OVER_RANGE_MESSAGE);
+            throw new IllegalArgumentException(OVER_RANGE_MESSAGE);
         }
     }
 

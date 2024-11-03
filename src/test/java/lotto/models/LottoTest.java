@@ -1,12 +1,10 @@
 package lotto.models;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.exception.DuplicateNumberException;
-import lotto.exception.OverRangeException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +30,7 @@ public class LottoTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 46);
 
         // WHEN - THEN
-        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(OverRangeException.class);
+        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -42,7 +40,7 @@ public class LottoTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
 
         // WHEN - THEN
-        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(DuplicateNumberException.class);
+        assertThatThrownBy(() -> new Lotto(numbers)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
