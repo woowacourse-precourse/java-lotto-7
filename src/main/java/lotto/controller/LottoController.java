@@ -25,6 +25,7 @@ public class LottoController {
         List<Integer> parsedWinningNumbers = inputWinningNumbers();
         WinningNumbers winningNumbers = new WinningNumbers(parsedWinningNumbers);
         int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
+        winningNumbers.checkBonusDuplicate(bonusNumber);
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
         lottoGame.process();

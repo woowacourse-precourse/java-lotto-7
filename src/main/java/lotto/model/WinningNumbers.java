@@ -33,6 +33,12 @@ public class WinningNumbers {
         }
     }
 
+    public void checkBonusDuplicate(int bonusNumber) {
+        if (this.winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 포함되는 수는 보너스 번호로 입력할 수 없습니다.");
+        }
+    }
+
     public List<Integer> getWinningNumbers() {
         return this.winningNumbers;
     }
