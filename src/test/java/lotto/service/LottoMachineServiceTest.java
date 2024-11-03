@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import lotto.domain.LottoMachine;
+import lotto.domain.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,11 +14,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LottoMachineServiceTest {
 
     private LottoMachine lottoMachine;
+    private Member member;
     private LottoMachineService lottoMachineService;
 
     @BeforeEach
     public void setup() {
         lottoMachine = LottoMachine.getInstance();
+        member = Member.getInstance();
         lottoMachineService = new LottoMachineService();
     }
 
@@ -56,6 +59,19 @@ class LottoMachineServiceTest {
 
         // then
         assertEquals(List.of(1, 2, 3, 4, 5, 6), lottoMachine.getWinningLotto().getNumbers());
+    }
+
+    @Test
+    void 로또를_발행한다() {
+        // given
+        String purchaseAmount = "8000";
+
+        // when
+        lottoMachineService.inputLottoPurchaseAmount(purchaseAmount);
+        lottoMachineService.issueLottos();
+
+        // then
+        assertEquals(8, member.getIssuedLottos().size());
     }
 
     // EXCEPTION
