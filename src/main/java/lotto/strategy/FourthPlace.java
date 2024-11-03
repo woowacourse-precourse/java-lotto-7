@@ -5,14 +5,14 @@ import lotto.message.Place;
 
 public class FourthPlace implements PlaceAuction {
 
-    private final EnumMap<Place, Long> placeMap;
+    private final EnumMap<Place, Long> places;
 
-    public FourthPlace(EnumMap<Place, Long> placeMap) {
-        this.placeMap = placeMap;
+    public FourthPlace(EnumMap<Place, Long> places) {
+        this.places = places;
     }
 
     @Override
     public void add(Integer count) {
-        placeMap.put(Place.FOURTH_PLACE, placeMap.get(Place.FOURTH_PLACE) + 1);
+        places.put(Place.FOURTH_PLACE, places.get(Place.FOURTH_PLACE) + 1);
     }
 }

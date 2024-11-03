@@ -8,21 +8,21 @@ public class SecondPlace implements PlaceAuction {
 
     private static final Integer TRUE = 1;
 
-    private final EnumMap<Place, Long> placeMap;
+    private final EnumMap<Place, Long> places;
     private final List<Integer> bonusResult;
 
-    public SecondPlace(EnumMap<Place, Long> placeMap, List<Integer> bonusResult) {
-        this.placeMap = placeMap;
+    public SecondPlace(EnumMap<Place, Long> places, List<Integer> bonusResult) {
+        this.places = places;
         this.bonusResult = bonusResult;
     }
 
     @Override
     public void add(Integer count) {
         if (IsEqualToTrue(bonusResult.get(count))) {
-            placeMap.put(Place.SECOND_PLACE, placeMap.get(Place.SECOND_PLACE) + 1);
+            places.put(Place.SECOND_PLACE, places.get(Place.SECOND_PLACE) + 1);
             return;
         }
-        placeMap.put(Place.THIRD_PLACE, placeMap.get(Place.THIRD_PLACE) + 1);
+        places.put(Place.THIRD_PLACE, places.get(Place.THIRD_PLACE) + 1);
     }
 
     private boolean IsEqualToTrue(Integer bonus) {

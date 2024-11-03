@@ -16,8 +16,8 @@ import lotto.strategy.SecondPlace;
 
 public class ResultCalculator {
 
-    private final EnumMap<Place, Long> placeMap = new EnumMap<>(Place.class);
-    private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
+    private final EnumMap<Place, Long> places = new EnumMap<>(Place.class);
+    private final Map<Integer, PlaceAuction> placeAuctions = new HashMap<>();
     private final EnumMap<Place, Long> prize = Prize.getPrize();
 
     private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
@@ -31,12 +31,12 @@ public class ResultCalculator {
 
     private void init(List<Integer> bonusResult) {
         for (Place place : Place.values()) {
-            placeMap.put(place, 0L);
+            places.put(place, 0L);
         }
-        placeAuctionMap.put(6, new FirstPlace(placeMap));
-        placeAuctionMap.put(5, new SecondPlace(placeMap, bonusResult));
-        placeAuctionMap.put(4, new FourthPlace(placeMap));
-        placeAuctionMap.put(3, new FifthPlace(placeMap));
+        placeAuctions.put(6, new FirstPlace(places));
+        placeAuctions.put(5, new SecondPlace(places, bonusResult));
+        placeAuctions.put(4, new FourthPlace(places));
+        placeAuctions.put(3, new FifthPlace(places));
     }
 
     private void calculate(List<Integer> winningResult, List<Integer> bonusResult) {
@@ -48,14 +48,14 @@ public class ResultCalculator {
     }
 
     private void update(Integer winning, Integer count) {
-        if (placeAuctionMap.containsKey(winning)) {
-            PlaceAuction placeAuction = placeAuctionMap.get(winning);
+        if (placeAuctions.containsKey(winning)) {
+            PlaceAuction placeAuction = placeAuctions.get(winning);
             placeAuction.add(count);
         }
     }
 
     private String setDetail(PrintMessage printMessage, Place place) {
-        return String.format(printMessage.getMessage(), placeMap.get(place));
+        return String.format(printMessage.getMessage(), places.get(place));
     }
 
     public List<String> getDetail() {
@@ -71,7 +71,7 @@ public class ResultCalculator {
     public Long getPrizeMoney() {
         long prizeMoney = 0;
         for (Place place : Place.values()) {
-            prizeMoney += placeMap.get(place) * prize.get(place);
+            prizeMoney += places.get(place) * prize.get(place);
         }
         return prizeMoney;
     }
