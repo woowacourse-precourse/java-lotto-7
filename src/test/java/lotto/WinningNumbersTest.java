@@ -17,7 +17,7 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호 6개와 로또 번호를 비교하여 몇 개가 맞는지 센다.")
     @Test
     void test1() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.with((List.of(1, 2, 3, 4, 5, 6)));
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
 
         int matchCount = winningNumbers.countMatch(lotto);
@@ -28,7 +28,7 @@ public class WinningNumbersTest {
     @DisplayName("보너스 번호가 로또 번호에 포함되어 있는지 확인한다.")
     @Test
     void test2() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.with((List.of(1, 2, 3, 4, 5, 6)));
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
         WinningNumbers winningNumbers2 = new WinningNumbers(List.of(1, 2, 3, 4, 5, 7), 6);
 
@@ -43,7 +43,7 @@ public class WinningNumbersTest {
     @ParameterizedTest
     @MethodSource("generateData")
     void test3(List<Integer> numbers, Rank expected) {
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = Lotto.with((numbers));
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 9), 6);
 
         Rank rank = winningNumbers.judgeRank(lotto);
@@ -68,14 +68,14 @@ public class WinningNumbersTest {
     @Test
     void test4() {
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 9)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 4, 15, 16)),
-                new Lotto(List.of(1, 2, 3, 14, 15, 16)),
-                new Lotto(List.of(1, 2, 13, 14, 15, 16)),
-                new Lotto(List.of(1, 12, 13, 14, 15, 16)),
-                new Lotto(List.of(11, 12, 13, 14, 15, 16))
+                Lotto.with((List.of(1, 2, 3, 4, 5, 9))),
+                Lotto.with((List.of(1, 2, 3, 4, 5, 6))),
+                Lotto.with((List.of(1, 2, 3, 4, 5, 7))),
+                Lotto.with((List.of(1, 2, 3, 4, 15, 16))),
+                Lotto.with((List.of(1, 2, 3, 14, 15, 16))),
+                Lotto.with((List.of(1, 2, 13, 14, 15, 16))),
+                Lotto.with((List.of(1, 12, 13, 14, 15, 16))),
+                Lotto.with((List.of(11, 12, 13, 14, 15, 16)))
         );
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 9), 6);
 

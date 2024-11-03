@@ -6,52 +6,51 @@ import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_NUMBER_QUANTITY = 6;
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
 
-    private final List<Integer> numbers;
+    private final List<Ball> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public static Lotto with(List<Integer> numbers) {
+        List<Ball> balls = numbers.stream().map(Ball::new).toList();
+        return new Lotto(balls);
+    }
+
+    public Lotto(List<Ball> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Ball> numbers) {
         if (numbers.size() != LOTTO_NUMBER_QUANTITY) {
             throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_QUANTITY));
-        }
-        for (Integer number : numbers) {
-            if (!(START_NUMBER <= number && number <= END_NUMBER)) {
-                throw new IllegalArgumentException(
-                        String.format("[ERROR] 당첨 번호는 %d~%d사이의 번호여야 합니다.", START_NUMBER, END_NUMBER)
-                );
-            }
         }
         isDuplicate(numbers);
     }
 
-    private void isDuplicate(List<Integer> numbers) {
-        Set<Integer> s = new HashSet<>();
-        for (Integer number : numbers) {
-            if (!s.add(number)) {
+    private void isDuplicate(List<Ball> balls) {
+        Set<Ball> s = new HashSet<>();
+        for (Ball ball : balls) {
+            if (!s.add(ball)) {
                 throw new IllegalArgumentException(
-                        String.format("[ERROR] 중복된 로또 번호가 있습니다: (%d).", number)
+                        String.format("[ERROR] 중복된 로또 번호가 있습니다: (%s).", ball)
                 );
             }
         }
     }
 
-    public boolean hasNumber(int number) {
-        return numbers.contains(number);
+    public boolean hasBall(Ball ball) {
+        return numbers.contains(ball);
     }
 
     public int countMatch(Lotto lotto) {
         return (int) numbers.stream()
-                .filter(lotto::hasNumber)
+                .filter(lotto::hasBall)
                 .count();
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return numbers.stream()
+                .map(Ball::getNumber)
+                .toList();
     }
 }
+

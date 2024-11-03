@@ -20,6 +20,7 @@ public class WinningResult {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    // TODO: Money 한테 책임 주기
     public BigDecimal calculatePrizeRate() {
         BigDecimal totalPrize = calculateTotalPrize();
         return totalPrize.multiply(BigDecimal.valueOf(100)).divide(money.getAmount(), 1, RoundingMode.HALF_UP);

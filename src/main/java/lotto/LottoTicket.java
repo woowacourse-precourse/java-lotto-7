@@ -26,7 +26,7 @@ public class LottoTicket {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
             List<Integer> result = new ArrayList<>(randomNumbers);
             Collections.sort(result);
-            lottos.add(new Lotto(result));
+            lottos.add(Lotto.with(result));
         }
         return lottos;
     }

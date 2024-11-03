@@ -5,23 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningNumbers {
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
-
     private final Lotto lotto;
-    private final int bonusNumber;
+    private final Ball bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        this(new Lotto(numbers), bonusNumber);
+        this(Lotto.with(numbers), new Ball(bonusNumber));
     }
 
-    public WinningNumbers(Lotto lotto, int bonusNumber) {
-        if (!(START_NUMBER <= bonusNumber && bonusNumber <= END_NUMBER)) {
-            throw new IllegalArgumentException(
-                    String.format("[ERROR] 보너스 번호는 %d~%d사이의 번호여야 합니다.", START_NUMBER, END_NUMBER));
-        }
-
-        if (lotto.hasNumber(bonusNumber)) {
+    public WinningNumbers(Lotto lotto, Ball bonusNumber) {
+        if (lotto.hasBall(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안됩니다.");
         }
         this.lotto = lotto;
@@ -57,7 +49,7 @@ public class WinningNumbers {
     }
 
     public boolean hasMatchNumber(Lotto lotto) {
-        return lotto.hasNumber(bonusNumber);
+        return lotto.hasBall(bonusNumber);
     }
 
 }

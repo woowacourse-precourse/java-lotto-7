@@ -22,11 +22,11 @@ public class Money {
         this.amount = amount;
     }
 
-    private static boolean isNotLottoPriceUnit(BigDecimal amount) {
+    private boolean isNotLottoPriceUnit(BigDecimal amount) {
         return !BigDecimal.ZERO.equals(amount.remainder(BigDecimal.valueOf(LOTTO_PRICE)));
     }
 
-    private static boolean isLessThanSingleLottoPrice(BigDecimal amount) {
+    private boolean isLessThanSingleLottoPrice(BigDecimal amount) {
         return amount.compareTo(BigDecimal.valueOf(LOTTO_PRICE)) == -1;
     }
 
