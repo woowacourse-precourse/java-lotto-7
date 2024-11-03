@@ -5,7 +5,8 @@ public class User {
 
     private int money;
 
-    public User(int money) {
+    public User(String inputMoney) {
+        int money = Integer.parseInt(inputMoney);
         validateMoney(money);
         this.money = money;
     }
@@ -16,7 +17,7 @@ public class User {
         }
     }
 
-    public int getMoney() {
-        return money;
+    public int getPurchaseQuantity() {
+        return money / STANDARD_UNIT;
     }
 }
