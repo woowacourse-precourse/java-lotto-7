@@ -54,11 +54,29 @@ class LottoMachineTest {
         Assertions.assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
     }
 
+    @DisplayName("당첨 번호와 보너스 번호가 중복되면 에러가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateDuplicatedWinningAndBonusNumber")
+    void 당첨_번호와_보너스_번호가_중복되면_에러가_발생한다(Lotto lotto, int bonusNumber) {
+        Assertions.assertThatThrownBy(() -> {
+            lottoMachine.generateWinningLotto(lotto, bonusNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<Arguments> generatePriceAndCountList() {
         return Stream.of(
                 Arguments.of(1000, 1),
                 Arguments.of(3000, 3),
                 Arguments.of(226000, 226)
+        );
+    }
+
+    private static Stream<Arguments> generateDuplicatedWinningAndBonusNumber() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(List.of(3, 5, 11, 22, 31, 44)), 22),
+                Arguments.of(new Lotto(List.of(1, 6, 28, 31, 35, 36)), 31),
+                Arguments.of(new Lotto(List.of(16, 18, 33, 34, 44, 45)), 44)
         );
     }
 }
