@@ -41,4 +41,10 @@ public class InputView {
                 .toList();
         return new Lotto(winningNumberTokens);
     }
+
+    public int getInputBonusNumber() {
+        System.out.println(Message.BONUS_NUMBER.getMessage());
+        String inputBonusNumber = Console.readLine();
+        return Integer.parseInt(inputBonusNumber);
+    }
 }
