@@ -4,8 +4,8 @@ import lotto.exception.LottoException;
 
 public record LottoNumber(int number) {
 
-    private final static int MIN_NUMBER = 1;
-    private final static int MAX_NUMBER = 45;
+    public final static int MIN_NUMBER = 1;
+    public final static int MAX_NUMBER = 45;
 
     public LottoNumber {
         validate(number);

@@ -5,7 +5,7 @@ import lotto.exception.LottoException;
 
 public record Lotto(List<LottoNumber> numbers) {
 
-    private final static int LOTTO_SIZE = 6;
+    public final static int LOTTO_SIZE = 6;
 
     public Lotto {
         validate(numbers);
