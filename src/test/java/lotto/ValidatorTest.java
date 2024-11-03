@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -76,6 +78,32 @@ public class ValidatorTest {
 
         // when
         boolean result = Validator.isBetween(min, num, max);
+
+        // then
+        assertThat(result)
+                .isFalse();
+    }
+
+    @Test
+    void hasDuplicateNumberTrue() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        // when
+        boolean result = Validator.hasDuplicateNumber(numbers);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @Test
+    void hasDuplicateNumberFalse() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+        // when
+        boolean result = Validator.hasDuplicateNumber(numbers);
 
         // then
         assertThat(result)
