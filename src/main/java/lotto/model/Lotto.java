@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.dto.MatchInfo;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -67,11 +68,11 @@ public class Lotto {
     }
 
     private String formatLottoNumber() {
-        sortLottoNumbers();
-        return String.join(", ", Arrays.toString(numbers.toArray()));
+        List<Integer> sortLottoNumbers = sortLottoNumbers();
+        return String.join(", ", Arrays.toString(sortLottoNumbers.toArray()));
     }
 
-    private void sortLottoNumbers() {
-        numbers.sort(Comparator.naturalOrder());
+    private List<Integer> sortLottoNumbers() {
+        return numbers.stream().sorted().toList();
     }
 }

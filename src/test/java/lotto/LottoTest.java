@@ -4,7 +4,6 @@ import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,14 +27,7 @@ class LottoTest {
     @Test
     void 로또번호가_포매팅될때_오름차순으로_정렬된다() {
         // given
-        List<Integer> lottos = new ArrayList<>();
-        lottos.add(3);
-        lottos.add(2);
-        lottos.add(1);
-        lottos.add(4);
-        lottos.add(6);
-        lottos.add(5);
-        Lotto lotto = new Lotto(lottos);
+        Lotto lotto = new Lotto(List.of(3, 2, 1, 4, 6, 5));
         String expectedLottoNumbers = "[1, 2, 3, 4, 5, 6]\n";
 
         // when

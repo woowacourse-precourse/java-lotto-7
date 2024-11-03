@@ -10,7 +10,7 @@ public class LottoService {
         return userLottoInfo.getUserLottos();
     }
 
-    public WinningStatistics getLottoRateInfo(WinningLotto winningLotto, lotto.model.UserLottoInfo userLottoInfo) {
+    public WinningStatistics getWinningStatistics(WinningLotto winningLotto, lotto.model.UserLottoInfo userLottoInfo) {
         return userLottoInfo.getWinningStatistics(winningLotto);
     }
 }
