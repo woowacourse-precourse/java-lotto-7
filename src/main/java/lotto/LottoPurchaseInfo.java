@@ -1,7 +1,7 @@
 package lotto;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.List;
 
 public class LottoPurchaseInfo {
 
@@ -15,16 +15,8 @@ public class LottoPurchaseInfo {
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoPurchaseInfo of(String totalPurchase, String numbers, String number) {
-        BigDecimal purchaseAmount = new BigDecimal(totalPurchase);
-        Lotto lottoNumbers = new Lotto(
-                Arrays.stream(numbers.split(","))
-                      .map(Integer::parseInt)
-                      .toList()
-        );
-        int bonusNumber = Integer.parseInt(number);
-
-        return new LottoPurchaseInfo(purchaseAmount, lottoNumbers, bonusNumber);
+    public static LottoPurchaseInfo of(BigDecimal totalPurchase, List<Integer> lottoNumbers, int bonusNumber) {
+        return new LottoPurchaseInfo(totalPurchase, new Lotto(lottoNumbers), bonusNumber);
     }
 
     public BigDecimal getPurchaseAmount() {

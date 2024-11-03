@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static java.lang.Integer.parseInt;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import lotto.Lotto;
@@ -32,13 +30,13 @@ public class LottoService {
         return lottoResult;
     }
 
-    private LottoRank calculateLottoRank(Lotto lotto, Lotto userLotto, int bonusNumber) {
-        int matchCount = lotto.countMatchingNumbers(userLotto);
-        boolean bonusMatch = lotto.containsNumber(bonusNumber);
-        return LottoRank.findRankByMatches(matchCount, bonusMatch);
+    private LottoRank calculateLottoRank(Lotto generatedLotto, Lotto userLotto, int bonusNumber) {
+        int matchCount = generatedLotto.countMatchingNumbers(userLotto);
+        boolean isBonusMatched = generatedLotto.containsNumber(bonusNumber);
+        return LottoRank.findRankByMatches(matchCount, isBonusMatched);
     }
 
-    public int calculatePurchaseQuantity(String purchaseAmount) {
-        return parseInt(purchaseAmount) / 1000;
+    public BigDecimal calculatePurchaseQuantity(BigDecimal purchaseAmount) {
+        return purchaseAmount.divide(BigDecimal.valueOf(1000));
     }
 }

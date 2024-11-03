@@ -11,11 +11,19 @@ import lotto.LottoResult;
 
 public class OutputView {
 
-    public static String MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
-    public static String MESSAGE_LOTTO_NUMBER = "\n당첨 번호를 입력해 주세요.";
-    public static String MESSAGE_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+    public static void printPurchaseAmountMessage() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
 
-    public void printPurchaseQuantity(int purchaseQuantity) {
+    public static void printLottoNumbersMessage() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
+    public static void printBonusNumberMessage() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void printPurchaseQuantity(BigDecimal purchaseQuantity) {
         System.out.println("\n" + purchaseQuantity + "개를 구매했습니다.");
     }
 

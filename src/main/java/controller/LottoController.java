@@ -1,6 +1,7 @@
 package controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 import lotto.LottoPurchaseInfo;
 import lotto.LottoResult;
 import lotto.Lottos;
@@ -25,8 +26,8 @@ public class LottoController {
     }
 
     public void startLottoGame() {
-        String purchaseAmount = readPurchaseAmount();
-        int purchaseQuantity = calculateAndPrintPurchaseQuantity(purchaseAmount);
+        BigDecimal purchaseAmount = readPurchaseAmount();
+        BigDecimal purchaseQuantity = calculateAndPrintPurchaseQuantity(purchaseAmount);
 
         Lottos lottos = generateAndPrintLottos(purchaseQuantity);
 
@@ -37,26 +38,29 @@ public class LottoController {
         calculateAndPrintReturnOnInvestment(lottoPurchaseInfo, lottoResult);
     }
 
-    private String readPurchaseAmount() {
-        return inputView.readInput(OutputView.MESSAGE_PURCHASE_AMOUNT);
+    private BigDecimal readPurchaseAmount() {
+        OutputView.printPurchaseAmountMessage();
+        return InputView.readPurchaseAmount();
     }
 
-    private int calculateAndPrintPurchaseQuantity(String purchaseAmount) {
-        int purchaseQuantity = lottoService.calculatePurchaseQuantity(purchaseAmount);
+    private BigDecimal calculateAndPrintPurchaseQuantity(BigDecimal purchaseAmount) {
+        BigDecimal purchaseQuantity = lottoService.calculatePurchaseQuantity(purchaseAmount);
         outputView.printPurchaseQuantity(purchaseQuantity);
         return purchaseQuantity;
     }
 
-    private Lottos generateAndPrintLottos(int purchaseQuantity) {
+    private Lottos generateAndPrintLottos(BigDecimal purchaseQuantity) {
         Lottos lottos = Lottos.of(purchaseQuantity, randomNumberGenerator);
         outputView.printLottos(lottos.getLottos());
         return lottos;
     }
 
-    private LottoPurchaseInfo createLottoPurchaseInfo(String purchaseAmount) {
-        String userLottoNumbers = inputView.readInput(OutputView.MESSAGE_LOTTO_NUMBER);
-        String userBonusNumber = inputView.readInput(OutputView.MESSAGE_BONUS_NUMBER);
-        return LottoPurchaseInfo.of(purchaseAmount, userLottoNumbers, userBonusNumber);
+    private LottoPurchaseInfo createLottoPurchaseInfo(BigDecimal purchaseAmount) {
+        OutputView.printLottoNumbersMessage();
+        List<Integer> lottoNumbers = InputView.readLottoNumbers();
+        OutputView.printBonusNumberMessage();
+        int bonusNumber = InputView.readBonusNumber();
+        return LottoPurchaseInfo.of(purchaseAmount, lottoNumbers, bonusNumber);
     }
 
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,9 +14,9 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos of(int purchaseQuantity, NumberGenerator generator) {
+    public static Lottos of(BigDecimal purchaseQuantity, NumberGenerator generator) {
         return new Lottos(
-                IntStream.range(0, purchaseQuantity)
+                IntStream.range(0, purchaseQuantity.intValue())
                          .mapToObj(i -> new Lotto(generator.generateNumber()))
                          .collect(Collectors.toSet())
         );
