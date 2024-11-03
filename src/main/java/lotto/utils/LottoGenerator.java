@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.Number;
 
 public class LottoGenerator {
 

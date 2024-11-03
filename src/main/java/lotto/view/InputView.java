@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrice;
+import lotto.domain.Number;
 import lotto.exception.LottoException;
 
 public class InputView {
@@ -52,12 +53,12 @@ public class InputView {
         }
     }
 
-    public static Integer inputBonusNumber() {
+    public static Number inputBonusNumber() {
         OutputView.printLottoBonusNumberInputPrefix();
         String stringNumber = readLine();
         validateNumber(stringNumber);
 
-        return Integer.parseInt(stringNumber);
+        return new Number(Integer.parseInt(stringNumber));
     }
 
     private static void validateNumber(String stringNumber) {

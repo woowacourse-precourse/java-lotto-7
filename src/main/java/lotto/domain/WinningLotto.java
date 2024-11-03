@@ -5,9 +5,9 @@ import static lotto.domain.LottoPrize.FIRST_PRIZE;
 public class WinningLotto {
 
     private final Lotto lotto;
-    private final Integer number;
+    private final Number number;
 
-    public WinningLotto(Lotto lotto, Integer number) {
+    public WinningLotto(Lotto lotto, Number number) {
         this.lotto = lotto;
         this.number = number;
     }

@@ -52,7 +52,7 @@ class LottoTicketsTest {
                 new Object[]{
                     new WinningLotto(
                             new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 당첨 번호
-                            10)
+                            new Number(10))
                     ,
                     new LottoTickets(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
                             new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 3등
@@ -71,7 +71,7 @@ class LottoTicketsTest {
                 new Object[]{
                         new WinningLotto(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                                10),
+                                new Number(10)),
                         new LottoTickets(List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등 (보너스 포함)

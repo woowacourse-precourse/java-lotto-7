@@ -7,11 +7,11 @@ import java.util.List;
 import lotto.exception.LottoException;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().map(Number::new).toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -36,11 +36,14 @@ public class Lotto {
     }
 
     public long countSameNumbers(Lotto comparisonLotto) {
-        return comparisonLotto.numbers.stream().filter(numbers::contains).count();
+        return comparisonLotto.numbers.stream()
+                .filter(this::isContainNumber)
+                .count();
     }
 
-    public boolean isContainNumber(Integer number) {
-        return numbers.contains(number);
+    public boolean isContainNumber(Number number) {
+        return numbers.stream()
+                .anyMatch(n -> n.getNumber().equals(number.getNumber()));
     }
 
     @Override
