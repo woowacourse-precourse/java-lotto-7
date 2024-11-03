@@ -19,20 +19,20 @@ public class Money {
         return new Money(money);
     }
 
+    public Lottos buyLottos() {
+        return Lottos.of(money / LOTTO_PRICE, LottoNumberGenerator.create());
+    }
+
+    public GetProfitRateDto caluteProfitRate(final int reward) {
+        return new GetProfitRateDto(reward / (double) money * 100);
+    }
+
     private int validateMoney(final String inputMoney) {
         return ValidatorBuilder.from(inputMoney)
                 .validateIsInteger()
                 .validateInteger(money -> money < LOTTO_PRICE, Exception.INVALID_MONEY_FORMAT)
                 .validateInteger(money -> money % LOTTO_PRICE != 0, Exception.INDIVISIBLE_MONEY)
                 .getNumericValue();
-    }
-
-    public Lottos buyLottos() {
-        return Lottos.of(money / LOTTO_PRICE, LottoNumberGenerator.create());
-    }
-
-    public GetProfitRateDto caluteProfitRate(int reward) {
-        return new GetProfitRateDto(reward / (double) money * 100);
     }
 }
 

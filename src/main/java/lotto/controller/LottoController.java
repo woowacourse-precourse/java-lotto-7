@@ -13,7 +13,7 @@ import lotto.view.View;
 public class LottoController {
     private final View view;
 
-    public LottoController(View view) {
+    public LottoController(final View view) {
         this.view = view;
     }
 
@@ -31,7 +31,7 @@ public class LottoController {
         return getValidInput(() -> Money.from(view.inputMoney()));
     }
 
-    private Lottos buyLottos(Money money) {
+    private Lottos buyLottos(final Money money) {
         Lottos lottos = money.buyLottos();
         view.outputLottos(lottos.getLottos());
 
@@ -40,26 +40,26 @@ public class LottoController {
 
     private WinningLotto createWinningLottoFromLottoAndBonusNumber() {
         Lotto lotto = getValidInput(this::createLottoFromUserInput);
-        return getValidInput(() -> createWinningLottoFromUserInput(lotto));
+        return getValidInput(() -> createBonusNumberFromUserInput(lotto));
     }
 
     private Lotto createLottoFromUserInput() {
         return Lotto.from(view.inputWinningLotto());
     }
 
-    private WinningLotto createWinningLottoFromUserInput(Lotto lotto) {
+    private WinningLotto createBonusNumberFromUserInput(final Lotto lotto) {
         BonusNumber bonusNumber = BonusNumber.from(view.inputBonusNumber());
         return WinningLotto.of(lotto, bonusNumber);
     }
 
-    private Result getResults(Lottos lottos, WinningLotto winningLotto) {
+    private Result getResults(final Lottos lottos, final WinningLotto winningLotto) {
         Result result = Result.of(lottos, winningLotto);
         view.outputResult(result.getResults());
 
         return result;
     }
 
-    private void getProfitRate(Money money, Result result) {
+    private void getProfitRate(final Money money, final Result result) {
         view.outputProfitRate(money.caluteProfitRate(result.getReward()));
     }
 

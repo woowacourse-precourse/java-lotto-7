@@ -20,22 +20,21 @@ public class Lottos {
         return new Lottos(count, lottoNumberGenerator);
     }
 
-    private List<Lotto> createLottos(int count) {
-        return IntStream.range(0, count)
-                .mapToObj(i -> Lotto.from(lottoNumberGenerator.generate()))
-                .toList();
-    }
-
     public GetLottosDto getLottos() {
         return new GetLottosDto(lottos.stream()
                 .map(Lotto::getLotto)
                 .toList());
     }
 
-    public List<Rank> getRanks(WinningLotto winningLotto) {
+    public List<Rank> getRanks(final WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::getRank)
                 .toList();
     }
 
+    private List<Lotto> createLottos(final int count) {
+        return IntStream.range(0, count)
+                .mapToObj(i -> Lotto.from(lottoNumberGenerator.generate()))
+                .toList();
+    }
 }

@@ -14,14 +14,14 @@ public class ValidatorBuilder<T> {
         return new ValidatorBuilder<>(value);
     }
 
-    public ValidatorBuilder<T> validate(Predicate<T> condition, Exception exception) {
+    public ValidatorBuilder<T> validate(final Predicate<T> condition, final Exception exception) {
         if (condition.test(value)) {
             throw new IllegalArgumentException(exception.message);
         }
         return this;
     }
 
-    public ValidatorBuilder<T> validateInteger(Predicate<Integer> condition, Exception exception) {
+    public ValidatorBuilder<T> validateInteger(final Predicate<Integer> condition, final Exception exception) {
         if (condition.test(numericValue)) {
             throw new IllegalArgumentException(exception.message);
         }

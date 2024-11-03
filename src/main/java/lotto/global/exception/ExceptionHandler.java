@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class ExceptionHandler {
 
-    public static <T> T getValidInput(Supplier<T> supplier) {
+    public static <T> T getValidInput(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

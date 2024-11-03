@@ -16,11 +16,38 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         this.numbers = validateLotto(numbers);
     }
 
-    private List<Integer> validateLotto(List<Integer> inputNumbers) {
+    public static Lotto from(final String numbers) {
+        return new Lotto(parseNumbers(numbers));
+    }
+
+    public static Lotto from(final List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    public boolean isContains(final BonusNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::isDuplicate);
+    }
+
+    public boolean isContains(final int number) {
+        return numbers.contains(number);
+    }
+
+    public GetLottoDto getLotto() {
+        return new GetLottoDto(numbers);
+    }
+
+    public int getMatchCount(final WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContains)
+                .count();
+    }
+
+    private List<Integer> validateLotto(final List<Integer> inputNumbers) {
         return ValidatorBuilder.from(inputNumbers)
                 .validate(numbers -> numbers.size() != LOTTO_SIZE, Exception.INVALID_LOTTO_SIZE)
                 .validate(numbers -> numbers.size() != numbers.stream().distinct().count(),
@@ -31,40 +58,11 @@ public class Lotto {
                 .get();
     }
 
-    public static Lotto from(String numbers) {
-        return new Lotto(parseNumbers(numbers));
-    }
-    public static Lotto from(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
-
-    private static List<Integer> parseNumbers(String numbers) {
+    private static List<Integer> parseNumbers(final String numbers) {
         return Arrays.stream(numbers.split(SPLIT_DELIMITER))
                 .map(number -> ValidatorBuilder.from(number)
                         .validateIsInteger()
                         .getNumericValue())
                 .toList();
     }
-
-    public boolean isContains(BonusNumber bonusNumber) {
-        return numbers.stream()
-                .anyMatch(bonusNumber::isDuplicate);
-    }
-
-    public boolean isContains(int number) {
-        return numbers.contains(number);
-
-    }
-
-    public GetLottoDto getLotto() {
-        return new GetLottoDto(numbers);
-    }
-
-    public int getMatchCount(WinningLotto winningLotto) {
-        return (int) numbers.stream()
-                .filter(winningLotto::isContains)
-                .count();
-    }
-
 }

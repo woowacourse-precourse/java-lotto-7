@@ -15,12 +15,12 @@ public enum Rank {
     private final int matchCount;
     private final int reward;
 
-    Rank(int matchCount, int reward) {
+    Rank(final int matchCount, final int reward) {
         this.matchCount = matchCount;
         this.reward = reward;
     }
 
-    public static Rank getRank(int matchCount, boolean isContainsBonusNumber) {
+    public static Rank getRank(final int matchCount, final boolean isContainsBonusNumber) {
         if (matchCount == SECOND.matchCount && isContainsBonusNumber) {
             return SECOND;
         }

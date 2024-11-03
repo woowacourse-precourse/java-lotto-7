@@ -18,20 +18,20 @@ public class WinningLotto {
         return new WinningLotto(winningLotto, bonusNumber);
     }
 
-    private BonusNumber validateDuplicate(BonusNumber bonusNumber) {
-        return ValidatorBuilder.from(bonusNumber)
-                .validate(number -> lotto.isContains(bonusNumber), Exception.DUPLICATE_BONUS_NUMBER)
-                .get();
-    }
-
-    public boolean isContains(int userLottoNumber) {
+    public boolean isContains(final int userLottoNumber) {
         return lotto.isContains(userLottoNumber);
     }
 
-    public Rank getRank(Lotto lotto) {
+    public Rank getRank(final Lotto lotto) {
         int matchCount = lotto.getMatchCount(this);
         boolean isContainsBonusNumber = lotto.isContains(bonusNumber);
 
         return Rank.getRank(matchCount, isContainsBonusNumber);
+    }
+
+    private BonusNumber validateDuplicate(final BonusNumber bonusNumber) {
+        return ValidatorBuilder.from(bonusNumber)
+                .validate(number -> lotto.isContains(bonusNumber), Exception.DUPLICATE_BONUS_NUMBER)
+                .get();
     }
 }

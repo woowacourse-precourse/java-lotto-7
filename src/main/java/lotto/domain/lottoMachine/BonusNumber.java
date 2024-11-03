@@ -17,7 +17,7 @@ public class BonusNumber {
         return new BonusNumber(bonusNumber);
     }
 
-    public boolean isDuplicate(Integer number) {
+    public boolean isDuplicate(final Integer number) {
         return bonusNumber == number;
     }
 
