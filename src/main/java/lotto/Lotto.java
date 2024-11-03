@@ -2,10 +2,12 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.LottoMachine.LOTTO_NUMBER_COUNT;
+import static lotto.LottoMachine.LOTTO_MIN_RANGE;
+import static lotto.LottoMachine.LOTTO_MAX_RANGE;
+
 public class Lotto {
     private final List<Integer> numbers;
-    private static final int LOTTO_MIN_RANGE = 1;
-    private static final int LOTTO_MAX_RANGE = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
