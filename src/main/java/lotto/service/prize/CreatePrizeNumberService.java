@@ -15,4 +15,5 @@ public class CreatePrizeNumberService {
 
         return prizeNumber;
     }
+
 }

@@ -27,8 +27,8 @@ class PrizeTest {
         assertThat(prize.getId()).isEqualTo(id);
     }
 
-    @Test
     @DisplayName("PrizeNumberResult 조회 성공")
+    @Test
     void PrizeNumberResult_조회_성공() {
         // given
         Long id = 1L;
