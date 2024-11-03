@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Cash;
 import lotto.model.Lotto;
+import lotto.model.LottoBonusNumber;
 import lotto.model.LottoBundle;
 import lotto.service.LottoProvider;
 import lotto.view.LottoInputView;
@@ -24,6 +25,7 @@ public class LottoController {
         Lotto winningLotto = requestWinningLottoInput();
 
         lottoOutputView.printBonusNumberNotification();
+        LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
     }
 
     private Cash requestCashInput() {
@@ -46,6 +48,17 @@ public class LottoController {
             try {
                 String winningLottoNumbers = lottoInputView.getUserInput();
                 return lottoProvider.publishWinningLotto(winningLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                lottoOutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private LottoBonusNumber requestBonusNumberInput(){
+        while (true) {
+            try {
+                String bonusNumber = lottoInputView.getUserInput();
+                return new LottoBonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 lottoOutputView.printErrorMessage(e.getMessage());
             }
