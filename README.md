@@ -1,4 +1,7 @@
 # java-lotto-precourse
+> ### 리뷰 전 읽어주세요! 읽은 후 리뷰하시면 훨씬 편합니다!!
+> ### 리드미 작성법도 리뷰해주시면 정말 감사하겠습니다ㅎㅎ
+
 ## 전체 클래스 다이어그램
 ![classDiagram.png](classDiagram.png)
 ## 각 패키지 및 클래스 설명
