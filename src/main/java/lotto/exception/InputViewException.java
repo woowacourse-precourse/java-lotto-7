@@ -50,4 +50,17 @@ public class InputViewException {
         }
     }
 
+    public void validateInputNumbers(String inputNumbers) {
+        validateIfInputContainsNullOrEmpty(inputNumbers);
+
+    }
+
+    private void validateIfInputContainsNullOrEmpty(String inputNumbers) {
+        if (inputNumbers == null || inputNumbers.isEmpty()) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_CANNOT_BE_EMPTY_OR_NULL);
+        }
+    }
+
+
 }

@@ -30,6 +30,7 @@ public class InputView {
     public String inputNumbers() {
         System.out.println(IOMessageConstants.INPUT_LOTTO_NUMBERS);
         String inputNumbers = Console.readLine();
+        inputViewException.validateInputNumbers(inputNumbers);
         return inputNumbers;
     }
 }
