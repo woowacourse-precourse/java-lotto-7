@@ -4,7 +4,8 @@ import java.util.List;
 
 public enum LottoRange {
     MIN_LOTTO_RANGE(1),
-    MAX_LOTTO_RANGE(45);
+    MAX_LOTTO_RANGE(45),
+    LOTTO_SIZE(6);
 
     private final Integer value;
 
@@ -19,5 +20,9 @@ public enum LottoRange {
             }
         }
         return true;
+    }
+
+    public Integer getValue() {
+        return value;
     }
 }
