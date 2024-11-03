@@ -14,7 +14,7 @@ public class LottoFactory {
     }
 
     public Lottos generateLottos(long payment) {
-        int count = (int) (payment / 1000);
+        int count = (int) (payment / LOTTO_PRICE);
         List<Lotto> lottos = IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(numberMachine.get()))
                 .toList();

@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class ProfitCalculator {
 
+    public static final int LOTTO_PRICE = 1000;
     private final Lottos lottos;
     private final TargetLotto targetLotto;
 
@@ -24,8 +25,8 @@ public class ProfitCalculator {
                 .mapToDouble(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
 
-        int size = lottoGradeCountMap.size();
+        long size = lottoGradeCountMap.size();
 
-        return sum / size;
+        return sum / (size * LOTTO_PRICE);
     }
 }
