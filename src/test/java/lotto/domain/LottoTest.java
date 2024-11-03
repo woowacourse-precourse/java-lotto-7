@@ -52,4 +52,16 @@ class LottoTest {
         }
     }
 
+    @Nested
+    class 로또_번호_범위_검증 {
+
+        @Test
+        void 로또_번호가_1에서_45_사이가_아니면_Lotto_객체_생성에_실패한다() {
+            List<Integer> outOfRangeNumbers = List.of(0, 2, 3, 4, 5, 46);
+            assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
+    }
+
 }
