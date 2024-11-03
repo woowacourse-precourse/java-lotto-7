@@ -63,6 +63,15 @@ class LottoMachineTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호의 보너스 번호가 범위를 벗어나면 에러가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateInvalidRangeBonusNumber")
+    void 당첨_번호의_보너스_번호가_범위를_벗어나면_에러가_발생한다(Lotto lotto, int bonusNumber) {
+        Assertions.assertThatThrownBy(() -> {
+            lottoMachine.generateWinningLotto(lotto, bonusNumber);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<Arguments> generatePriceAndCountList() {
         return Stream.of(
                 Arguments.of(1000, 1),
@@ -77,6 +86,15 @@ class LottoMachineTest {
                 Arguments.of(new Lotto(List.of(3, 5, 11, 22, 31, 44)), 22),
                 Arguments.of(new Lotto(List.of(1, 6, 28, 31, 35, 36)), 31),
                 Arguments.of(new Lotto(List.of(16, 18, 33, 34, 44, 45)), 44)
+        );
+    }
+
+    private static Stream<Arguments> generateInvalidRangeBonusNumber() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 4),
+                Arguments.of(new Lotto(List.of(3, 5, 11, 22, 31, 44)), 11),
+                Arguments.of(new Lotto(List.of(1, 6, 28, 31, 35, 36)), 35),
+                Arguments.of(new Lotto(List.of(16, 18, 33, 34, 44, 45)), 16)
         );
     }
 }
