@@ -22,25 +22,29 @@ public class LottoController {
     private final LottoNumberGenerator lottoNumberGenerator;
     private final YieldAnalyst yieldAnalyst;
 
-    public LottoController(InputView inputView, OutputView outPutView, LottoNumberGenerator lottoNumberGenerator) {
+    public LottoController(InputView inputView, OutputView outPutView, LottoNumberGenerator lottoNumberGenerator,
+                           YieldAnalyst yieldAnalyst) {
         this.inputView = inputView;
         this.outPutView = outPutView;
         this.lottoNumberGenerator = lottoNumberGenerator;
-        this.yieldAnalyst = new YieldAnalyst();
+        this.yieldAnalyst = yieldAnalyst;
     }
 
     public void start() {
+        outPutView.printPurchaseAmountPrompt();
         Buyer buyer = processLottoPurchase();
-        WinnerLotto winnerLotto = processWinnerLotto();
-        processBonusNumber(winnerLotto);
 
         outPutView.printNumberOfPurchasedLottos(buyer.getNumberOfLottos());
-
         List<Lotto> purchasedLottoList = IntStream.range(0, buyer.getNumberOfLottos())
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
                 .toList();
-
         outPutView.printLottoList(purchasedLottoList);
+
+        outPutView.printWinningNumbersPrompt();
+        WinnerLotto winnerLotto = processWinnerLotto();
+
+        outPutView.printBonusNumberPrompt();
+        processBonusNumber(winnerLotto);
 
         LottoReport lottoReport = LottoReport.of(purchasedLottoList, winnerLotto);
         outPutView.printReport(lottoReport.getMatchCountMap());
