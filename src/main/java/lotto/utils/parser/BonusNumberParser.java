@@ -13,13 +13,16 @@ import lotto.model.Lotto;
 public class BonusNumberParser {
     public static int getBonusNumber(Lotto winningNumbers, String userBonusNumber) {
         int bonusNumber = 0;
+
         try {
             bonusNumber = Integer.parseInt(userBonusNumber);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ONLY_INTEGER_ALLOWED.getMessage());
         }
+
         checkBonusNumberRange(bonusNumber);
         checkDuplicatedCheck(winningNumbers, bonusNumber);
+
         return bonusNumber;
     }
 
