@@ -1,15 +1,18 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 import lotto.exception.LottoErrorMessages;
+import lotto.generator.LottoGenerator;
 import lotto.view.LottoInfoMessages;
 
 public class ValidationService {
+    LottoGenerator lottoGenerator = LottoGenerator.createLottoGenerator();
     private ValidationService() {
 
     }
@@ -31,7 +34,7 @@ public class ValidationService {
     }
 
     private int validateUnderThousand(String payInput) {
-        if(Integer.parseInt(payInput)<1000){
+        if (Integer.parseInt(payInput) < 1000) {
             System.out.println(LottoErrorMessages.NOT_THOUSAND.addErrorText());
             return validatePayInput();
         }
@@ -61,10 +64,13 @@ public class ValidationService {
     }
 
     public Set<Integer> validateCorrectManualNumber(int manualAmount) {
-        if(manualAmount!=0){
+        if (manualAmount != 0) {
             System.out.println(LottoInfoMessages.INSERT_MANUAL_NUMBERS_START.text()
                     + manualAmount + LottoInfoMessages.INSERT_MANUAL_NUMBERS_END.text());
             String numbers = Console.readLine();
+            if (numbers.isEmpty()) {
+                return new HashSet<>(lottoGenerator.getLottoNumbers());
+            }
             return validateCorrectPattern(numbers, manualAmount);
         }
         return new HashSet<>();
@@ -83,13 +89,18 @@ public class ValidationService {
     private Set<Integer> validateDuplicatedNumbers(String[] numberList, int manualAmount) {
         try {
             List<Integer> newNumberList = new ArrayList<>();
-            for (String s : numberList) newNumberList.add(Integer.parseInt(s));
-            if(newNumberList.size()!=6) throw new IllegalArgumentException();
+            for (String s : numberList) {
+                newNumberList.add(Integer.parseInt(s));
+            }
+            if (newNumberList.size() != 6) {
+                throw new IllegalArgumentException();
+            }
             Set<Integer> newNumberSet = new HashSet<>(newNumberList);
-            if (newNumberSet.size() != numberList.length) throw new IllegalArgumentException();
+            if (newNumberSet.size() != numberList.length) {
+                throw new IllegalArgumentException();
+            }
             return newNumberSet;
-        } catch (IllegalArgumentException e){
-            System.out.println(LottoErrorMessages.SYNTAX_NUMBER_ERROR.text());
+        } catch (IllegalArgumentException e) {
             return validateCorrectManualNumber(manualAmount);
         }
     }
