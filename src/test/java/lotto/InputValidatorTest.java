@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.ErrorCode.INVALID_LOTTO_DELIMITER_POSITION;
 import static lotto.ErrorCode.INVALID_LOTTO_NUMBER;
 import static lotto.ErrorCode.INVALID_NUMBER_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -35,13 +36,24 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호에_숫자가_아닌_값이_포함되어_있으면_예외를_발생한다() {
+    void 로또_번호에_숫자가_아닌_값이_포함되어_있으면_예외를_발생한다() {
         // given
-        String winningNumbers = "1,2,3,4,5,a";
+        String lottoNumbers = "1,2,3,4,5,a";
 
         // when & then
-        assertThatThrownBy(() -> inputValidator.validateLotto(winningNumbers))
+        assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(INVALID_LOTTO_NUMBER.getMessage());
+    }
+
+    @Test
+    void 로또_번호에_구분자가_앞_뒤에_포함되어_있다면_예외를_발생한다() {
+        // given
+        String lottoNumbers = ",1,2,3,4,5,6";
+
+        // when & then
+        assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(INVALID_LOTTO_DELIMITER_POSITION.getMessage());
     }
 }
