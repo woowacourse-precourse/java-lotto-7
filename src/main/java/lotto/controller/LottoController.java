@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.service.CommonWinningStrategy;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,7 +28,15 @@ public class LottoController {
     public void start() {
         System.out.println(SystemMessage.WINNING_STATISTICS);
         lottoService.getStatistics(winningLottery, bonusLottery);
-        OutputView.getInstance().printWinningStatistics(lottoService.getWinningCounts());
+
+        for (Map.Entry<CommonWinningStrategy, Integer> entry : lottoService.getWinningCounts().entrySet()) {
+            OutputView.getInstance().printWinningStatistics(entry.getKey(), entry.getValue());
+        }
         OutputView.getInstance().printRateOfReturn(lottoService.getWinningCounts(), numberOfLottery);
+
+    }
+
+    public void end() {
+        InputView.getInstance().close();
     }
 }

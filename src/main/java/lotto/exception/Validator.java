@@ -28,7 +28,6 @@ public class Validator {
 
     public static List<Integer> isNumeric(List<String> inputElements) {
         List<Integer> inputNumbers = new ArrayList<>();
-        System.out.println(inputElements);
         for (String element : inputElements) {
             try {
                 inputNumbers.add(isNumeric(element));

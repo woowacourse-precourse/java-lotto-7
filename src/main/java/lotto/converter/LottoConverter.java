@@ -14,7 +14,6 @@ public class LottoConverter {
         validateSize(lottoNumbers);
         validateRange(lottoNumbers);
         validateDuplicate(lottoNumbers);
-        System.out.println("constructor: " + lottoNumbers);
         this.lottoNumbers = lottoNumbers;
     }
 
@@ -24,7 +23,6 @@ public class LottoConverter {
     }
 
     public List<Integer> getLottoNumbers() {
-        System.out.println("getLottoNumbers: " + lottoNumbers);
         return lottoNumbers;
     }
 
