@@ -9,6 +9,11 @@ public class LottoBonusNumber {
         this.number = parseNumber(number);
         validate();
     }
+
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(){
         if (isOutOfRangeNumber()){
             throw new IllegalArgumentException("1 ~ 45 사이의 중복되지 않은 자연수이어야 합니다.");

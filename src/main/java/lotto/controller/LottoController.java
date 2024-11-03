@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoBundle;
 import lotto.service.LottoProvider;
+import lotto.service.LottoResultCalculator;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
@@ -12,6 +13,7 @@ public class LottoController {
     private final LottoOutputView lottoOutputView = new LottoOutputView();
     private final LottoInputView lottoInputView = new LottoInputView();
     private final LottoProvider lottoProvider = new LottoProvider();
+    private final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
 
     public void start() {
         lottoOutputView.printCashNotification();
@@ -26,6 +28,8 @@ public class LottoController {
 
         lottoOutputView.printBonusNumberNotification();
         LottoBonusNumber lottoBonusNumber = requestBonusNumberInput();
+
+        lottoResultCalculator.calculatePrizeResult(lottoBundle,lottoBonusNumber,winningLotto);
     }
 
     private Cash requestCashInput() {

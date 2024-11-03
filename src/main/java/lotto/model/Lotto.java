@@ -15,6 +15,22 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+    public int matchCountWithBonus(Lotto anotherLotto, LottoBonusNumber bonusNumber){
+        Set<Integer> lottoNumbers = new HashSet<>(numbers);
+        int matchCount = 0;
+        for (Integer number : anotherLotto.getNumbers()) {
+            if (lottoNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        if (lottoNumbers.contains(bonusNumber.getNumber())) {
+            matchCount++;
+        }
+        return matchCount;
+    }
+    public boolean isBonusMatched(LottoBonusNumber lottoBonusNumber){
+        return numbers.contains(lottoBonusNumber.getNumber());
+    }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || containsOutOfRangeNumber(numbers) || hasDuplicationNumbers(numbers)) {
