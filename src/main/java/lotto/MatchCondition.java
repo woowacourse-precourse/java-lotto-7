@@ -20,9 +20,8 @@ public interface MatchCondition {
         @Override
         public String prizeDescription() {
             return String.format(
-                    "%d개 일치 (%s원)",
-                    getNumberCount(),
-                    getPrizedAmount()
+                    "%d개 일치 (2,000,000,000원)",
+                    getNumberCount()
             );
         }
 
@@ -46,9 +45,8 @@ public interface MatchCondition {
         @Override
         public String prizeDescription() {
             return String.format(
-                    "%d개 일치, 보너스 볼 일치 (%s원)",
-                    getNumberCount(),
-                    getPrizedAmount()
+                    "%d개 일치, 보너스 볼 일치 (30,000,000원)",
+                    getNumberCount()
             );
         }
 
@@ -72,9 +70,8 @@ public interface MatchCondition {
         @Override
         public String prizeDescription() {
             return String.format(
-                    "%d개 일치 (%s원)",
-                    getNumberCount(),
-                    getPrizedAmount()
+                    "%d개 일치 (1,500,000원)",
+                    getNumberCount()
             );
         }
 
@@ -98,9 +95,8 @@ public interface MatchCondition {
         @Override
         public String prizeDescription() {
             return String.format(
-                    "%d개 일치 (%s원)",
-                    getNumberCount(),
-                    getPrizedAmount()
+                    "%d개 일치 (50,000원)",
+                    getNumberCount()
             );
         }
 
@@ -124,9 +120,8 @@ public interface MatchCondition {
         @Override
         public String prizeDescription() {
             return String.format(
-                    "%d개 일치 (%s원)",
-                    getNumberCount(),
-                    getPrizedAmount()
+                    "%d개 일치 (5,000원)",
+                    getNumberCount()
             );
         }
 
