@@ -12,6 +12,8 @@ public class LottoController {
 
         List<Integer> winningNumbers = requestWinningNumbers();
         int bonusNumber = requestBonusNumber(winningNumbers);
+
+        Map<LottoRanking, Integer> compareResult = lottos.compareWinningNumbers(winningNumbers, bonusNumber);
     }
 
     private int requestPurchaseAmount() {
