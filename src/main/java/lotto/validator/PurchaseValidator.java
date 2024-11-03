@@ -1,7 +1,6 @@
 package lotto.validator;
 
 public class PurchaseValidator {
-
     private static final int lottoPrice = 1000;
 
     public boolean validatePurchaseMoney(String purchaseAmount) {

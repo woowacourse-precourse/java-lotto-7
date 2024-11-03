@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class NumberValidator {
+
     public boolean validateWinningNumbers(String input) {
         try {
             List<Integer> numbers;

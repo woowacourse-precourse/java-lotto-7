@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NumberParser {
-
     public static final String DELIMITER = ",";
 
     public static List<Integer> toNumbers(String input) {

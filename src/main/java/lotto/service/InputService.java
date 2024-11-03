@@ -11,14 +11,14 @@ public class InputService {
     private final PurchaseValidator purchaseValidator;
     private final NumberValidator numberValidator;
 
+    private String input;
+    private boolean pass;
+
     public InputService(InputView inputView, PurchaseValidator purchaseValidator, NumberValidator numberValidator) {
         this.inputView = inputView;
         this.purchaseValidator = purchaseValidator;
         this.numberValidator = numberValidator;
     }
-
-    private String input;
-    private boolean pass;
 
     public int promptAndValidatePurchaseMoney() {
         do {

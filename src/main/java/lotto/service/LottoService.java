@@ -42,6 +42,11 @@ public class LottoService {
         int matchNumbers = countMatchNumbers(lotto, winningNumbers);
         boolean isBonusNumber = existBonusNumber(lotto, bonusNumber);
 
+        validateMatchNumbers(matchNumbers, isBonusNumber);
+    }
+
+    //15라인 이하 유지 어떻게???
+    private void validateMatchNumbers(int matchNumbers, boolean isBonusNumber) {
         if (matchNumbers == 3) {
             PrizeTable.THREE_MATCHES.addWinningCount();
         }

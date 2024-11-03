@@ -9,6 +9,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class AppConfig {
+
     public LottoController lottoController() {
         return new LottoController(lottoService(), inputService(), outputView());
     }
