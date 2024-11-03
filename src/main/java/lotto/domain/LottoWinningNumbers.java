@@ -22,6 +22,10 @@ public class LottoWinningNumbers {
         return bonusNumber;
     }
 
+    private void init(){
+        lottoWinningNumbers.clear();
+    }
+
     private void validate(List<Integer> numbers, int bonusNumber){
         validateNum(numbers);
         validateRangeScope(numbers);

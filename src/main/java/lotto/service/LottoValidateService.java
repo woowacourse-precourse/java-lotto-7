@@ -23,6 +23,6 @@ public class LottoValidateService {
 
     public void validateBonusNumbers(String bonusNumber) {
         inputValidator.validateEmpty(bonusNumber);
-        int bonusNumberInt = inputValidator.validateNumber(bonusNumber);
+        inputValidator.validateNumber(bonusNumber);
     }
 }

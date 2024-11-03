@@ -28,11 +28,19 @@ public class LottoService {
 
     public List<Lotto> generateRandomLottoNumbers(int ticketCount) {
         for(int i=0; i<ticketCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = sortRandomLottoNumbers();
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
         }
         return lottoList;
+    }
+
+    private static List<Integer> sortRandomLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        return sortedNumbers;
     }
 
     public List<String> splitWinningNumbers(String winningNumbers) {
