@@ -15,7 +15,6 @@ public class LottoController {
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final LottoManager lottoManager;
-    private WinningLotto winningLotto;
     private final PrizeCalculator prizeCalculator;
 
     public LottoController(InputHandler inputHandler, OutputHandler outputHandler, LottoManager lottoManager, PrizeCalculator prizeCalculator) {
@@ -35,7 +34,7 @@ public class LottoController {
 
         displayLottos(generatedLottos);
 
-        winningLotto = generateWinningLotto();
+        WinningLotto winningLotto = generateWinningLotto();
 
         EnumMap<Prize, Integer> prizeResult = calculatePrizes(generatedLottos, winningLotto);
 
