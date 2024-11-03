@@ -6,28 +6,16 @@ import lotto.io.View;
 
 
 public class Application {
-    private final LottoGenerator lottoGenerator;
-    private final LottoResult lottoResult;
-    private final WinningChecker winningChecker;
-    private final Integer price;
-
-    public Application() {
-        Input input = new Input();
-        this.price = input.getPrice();
-        this.lottoGenerator = new LottoGenerator();
-        this.lottoResult = new LottoResult();
-        this.winningChecker = new WinningChecker(input.getWinningNumber(), input.getBonusNumber(), lottoResult);
-    }
 
     public static void main(String[] args) {
-        Application lottoMachine = new Application();
+        LottoConfig.configure();
 
-        LottoGenerator lottoGenerator = lottoMachine.getLottoGenerator();
-        LottoResult lottoResult = lottoMachine.getLottoResult();
+        Input input = Container.getInstance(Input.class);
+        LottoGenerator lottoGenerator = Container.getInstance(LottoGenerator.class);
+        LottoResult lottoResult = Container.getInstance(LottoResult.class);
+        WinningChecker winningChecker = Container.getInstance(WinningChecker.class);
 
-        Lottos lottos = lottoGenerator.generateLottos(lottoMachine.getPrice());
-
-        WinningChecker winningChecker = lottoMachine.getWinningChecker();
+        Lottos lottos = lottoGenerator.generateLottos(input.getPrice());
         winningChecker.calculate(lottos);
 
         printIssuedLottos(lottos);
@@ -41,22 +29,6 @@ public class Application {
     private static void printResult(Lottos lottos, LottoResult lottoResult) {
         View.printWinningResult(lottoResult.toString());
         View.printProfit(lottoResult.getProfitRate(lottos));
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    private LottoResult getLottoResult() {
-        return lottoResult;
-    }
-
-    private LottoGenerator getLottoGenerator() {
-        return lottoGenerator;
-    }
-
-    private WinningChecker getWinningChecker() {
-        return winningChecker;
     }
 
 }
