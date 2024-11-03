@@ -7,5 +7,7 @@ public class Application {
         LottoMachine lottoMachine = new LottoMachine(Integer.parseInt(Console.readLine()));
         lottoMachine.makeLottos();
         lottoMachine.printLottos();
+        lottoMachine.inputWinnigNumbers(Console.readLine());
+        lottoMachine.inputBonusNumbers(Console.readLine());
     }
 }

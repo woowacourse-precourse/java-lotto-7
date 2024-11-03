@@ -1,6 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoMachine {
@@ -8,8 +11,7 @@ public class LottoMachine {
     int inputMoney;
     int count;
 
-    ArrayList<Integer> winnigNumbers;
-
+    List<Integer> winnigNumbers = new ArrayList<>();
     ArrayList<Lotto> lottoNumbers = new ArrayList<>();
 
     public LottoMachine(int inputMoney){
@@ -30,10 +32,37 @@ public class LottoMachine {
         }
 
     }
+
     public void printLottos(){
         System.out.println(String.format("%d개를 구매했습니다.",this.count));
         for(int i = 0;i < this.count; i++){
             System.out.println(lottoNumbers.get(i).getNumbers());
         }
     }
+
+    public void inputWinnigNumbers(String winnigNumbers){
+
+        int[] intNumbers = covertToInt(winnigNumbers.split(","));
+        for(int i=0; i<intNumbers.length;i++){
+            this.winnigNumbers.add(intNumbers[i]);
+        }
+
+    }
+
+    public void inputBonusNumbers(String bonusNumber){
+
+        this.winnigNumbers.add(Integer.parseInt(bonusNumber));
+
+    }
+
+
+    private int[] covertToInt(String[] strArr){
+        int[] convertedArr = new int[strArr.length];
+        for(int i=0; i< strArr.length;i++){
+            convertedArr[i] = Integer.parseInt(strArr[i]);
+        }
+        return convertedArr;
+    }
+
+
 }
