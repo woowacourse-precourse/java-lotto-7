@@ -23,7 +23,7 @@ public class LottoMachine {
     }
 
     public static List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return numbers;
     }
