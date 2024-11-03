@@ -19,5 +19,5 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
     }
-    
+
 }
