@@ -41,5 +41,13 @@ public class OutputView {
         }
     }
 
-    // TODO: 수익률을 출력한다.
+    public void printReturnOfRate() {
+        double returnOfRate = member.getReturnOfRate();
+        System.out.println(
+                LottoParser.parsingMessage(
+                        LottoMessage.PRINT_OUTPUT_RETURN_OF_RATE,
+                        returnOfRate
+                )
+        );
+    }
 }
