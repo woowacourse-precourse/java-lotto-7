@@ -4,7 +4,8 @@ public enum ExceptionMessage {
 
     NULL_OR_EMPTY_INPUT("값을 입력해주세요."),
     INPUT_TOO_LONG("값이 너무 큽니다."),
-    INVALID_NUMBER_FORMAT("숫자만 입력 가능합니다.");
+    INVALID_NUMBER_FORMAT("숫자만 입력 가능합니다."),
+    AMOUNT_MUST_BE_NON_NEGATIVE("금액은 0 이상이어야 합니다.");
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
