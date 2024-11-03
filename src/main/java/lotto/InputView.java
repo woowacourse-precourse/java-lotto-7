@@ -11,7 +11,9 @@ public class InputView {
         String value = Console.readLine();
         validateEmpty(value);
         validateNumber(value);
-        return Integer.parseInt(value);
+        int amount = Integer.parseInt(value);
+        validateUnit(amount);
+        return amount;
     }
 
     private static void validateEmpty(String input) {
@@ -23,6 +25,12 @@ public class InputView {
     private static void validateNumber(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
+        }
+    }
+
+    private static void validateUnit(int amount) {
+        if ((amount % 1000) != 0) {
+            throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해주세요.");
         }
     }
 }
