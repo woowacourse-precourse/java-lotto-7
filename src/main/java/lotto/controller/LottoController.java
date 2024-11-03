@@ -36,13 +36,12 @@ public class LottoController {
         return customerId;
     }
 
-    public String issueLottos(Integer customerId) {
+    public void issueLottos(Integer customerId) {
         LottosResponse response = lottoService.issueLottos(customerId);
         OutputView.printCustomerLottos(response);
-        return "success";
     }
 
-    public String recordWinningNumbers() {
+    public void recordWinningNumbers() {
         boolean isValid = false;
         while (!isValid) {
             try {
@@ -53,10 +52,9 @@ public class LottoController {
                 ErrorView.printErrorMessage(e.getMessage());
             }
         }
-        return "success";
     }
 
-    public String recordBonusNumber() {
+    public void recordBonusNumber() {
         OutputView.printBlankLine();
         boolean isValid = false;
         while (!isValid) {
@@ -68,13 +66,11 @@ public class LottoController {
                 ErrorView.printErrorMessage(e.getMessage());
             }
         }
-        return "success";
     }
 
-    public String checkWinnings(Integer customerId) {
+    public void checkWinnings(Integer customerId) {
         LottoStatisticsResponse response = lottoService.statisticsWinningOfCustomerLottos(customerId);
         OutputView.printWinningStatistics(response);
-        return "success";
     }
 
 }

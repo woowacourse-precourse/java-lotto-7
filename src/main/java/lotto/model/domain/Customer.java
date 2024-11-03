@@ -12,12 +12,10 @@ public class Customer {
     private final List<Lotto> lottos;
     private Integer id;
     private Integer payment;
-    private Integer revenue;
 
     public Customer(String payment) {
         validatePayment(payment);
         this.payment = parsePayment(payment);
-        this.revenue = 0;
         lottos = new ArrayList<>();
     }
 
@@ -56,18 +54,6 @@ public class Customer {
 
     public Integer getPayment() {
         return payment;
-    }
-
-    public void updatePayment(Integer payment) {
-        this.payment = payment;
-    }
-
-    public Integer getRevenue() {
-        return revenue;
-    }
-
-    public void updateRevenue(Integer revenue) {
-        this.revenue = revenue;
     }
 
     public List<Lotto> getLottos() {
