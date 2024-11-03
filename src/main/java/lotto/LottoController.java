@@ -3,6 +3,7 @@ package lotto;
 public class LottoController {
     private static final LottoInput LOTTO_INPUT = new LottoInput();
     private static final LottoProcessor LOTTO_PROCESSOR = new LottoProcessor();
+    private static final LottoOutput LOTTO_OUTPUT = new LottoOutput();
 
     public void play() {
         int purchaseAmount = inputAmount();
@@ -12,7 +13,9 @@ public class LottoController {
         LOTTO_PROCESSOR.createLotto(lottoCount);
         inputWinningNumbers();
         inputBonusNumber();
-        LOTTO_PROCESSOR.result(purchaseAmount);
+        LOTTO_PROCESSOR.matchLotto();
+        LOTTO_OUTPUT.showWinningLotto(LOTTO_PROCESSOR.getRewardCounts());
+        LOTTO_OUTPUT.showReturnPrice(LOTTO_PROCESSOR.calculateReturnPrice(purchaseAmount));
     }
 
     // 구입 금액 검증 후 옳바른 구입 금액까지 루프

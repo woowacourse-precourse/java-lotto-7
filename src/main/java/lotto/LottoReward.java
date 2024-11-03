@@ -1,12 +1,12 @@
 package lotto;
 
 public enum LottoReward {
-    FIRST(6, false, 2000000000),    // 1등
-    SECOND(5, true, 30000000),      // 2등
-    THIRD(5, false, 1500000),       // 3등
-    FOURTH(4, false, 50000),        // 4등
+    BOOM(0, false, 0),              // 꽝
     FIFTH(3, false, 5000),          // 5등
-    BOOM(0, false, 0);              // 꽝
+    FOURTH(4, false, 50000),        // 4등
+    THIRD(5, false, 1500000),       // 3등
+    SECOND(5, true, 30000000),      // 2등
+    FIRST(6, false, 2000000000);    // 1등
 
     private final int match;
     private final boolean bonus;
@@ -16,6 +16,14 @@ public enum LottoReward {
         this.match = match;
         this.bonus = bonus;
         this.prize = prize;
+    }
+
+    public int getMatch() {
+        return match;
+    }
+
+    public boolean isBonus() {
+        return bonus;
     }
 
     public int getPrize() {
