@@ -28,4 +28,8 @@ public enum CommonWinningStrategy {
     public boolean getBonusMatch() {
         return bonusMatch;
     }
+
+    public boolean winningMatch(int match, boolean isBonus) {
+        return this.match == match && (!getBonusMatch() || isBonus);
+    }
 }

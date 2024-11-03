@@ -33,16 +33,14 @@ public class LottoService {
     }
 
     private void countWinning(Lotto lotto, List<Integer> winningLottery, int bonusLottery) {
+        List<Integer> checkMatchCount = new ArrayList<>(lotto.getNumbers());
+        checkMatchCount.retainAll(winningLottery);
+
+        int match = checkMatchCount.size();
+        boolean isBonus = lotto.getNumbers().contains(bonusLottery);
+
         for (CommonWinningStrategy strategy : CommonWinningStrategy.values()) {
-            List<Integer> checkMatchCount = new ArrayList<>(lotto.getNumbers());
-            checkMatchCount.retainAll(winningLottery);
-
-            if (checkMatchCount.size() == 5 && lotto.getNumbers().contains(bonusLottery)) {
-                winningCounts.put(strategy, winningCounts.get(strategy) + 1);
-                break;
-            }
-
-            if (checkMatchCount.size() == strategy.getMatch()) {
+            if (strategy.winningMatch(match, isBonus)) {
                 winningCounts.put(strategy, winningCounts.get(strategy) + 1);
                 break;
             }
