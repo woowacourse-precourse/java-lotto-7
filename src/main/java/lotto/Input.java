@@ -26,7 +26,7 @@ public class Input {
     }
 
     // 구입 금액이 유효한지 검증
-    private static void validateAmount(String input) {
+    public static void validateAmount(String input) {
 
         try {
             int amount = Integer.parseInt(input); // 숫자로 변환
