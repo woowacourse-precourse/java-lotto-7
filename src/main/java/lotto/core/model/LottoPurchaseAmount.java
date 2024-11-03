@@ -7,8 +7,6 @@ import lotto.core.dto.LottoPurchaseAmountDto;
 
 public class LottoPurchaseAmount {
 
-    private static final int BASE_AMOUNT = 1000;
-
     private final Integer value;
 
     private final Integer lottoCount;
@@ -20,7 +18,7 @@ public class LottoPurchaseAmount {
     public LottoPurchaseAmount(Integer value) {
         validate(value);
         this.value = value;
-        this.lottoCount = this.value / BASE_AMOUNT;
+        this.lottoCount = this.value / LottoRule.LOTTO_BASE_AMOUNT;
     }
 
     public static LottoPurchaseAmount dtoOf(LottoPurchaseAmountDto dto) {
@@ -28,7 +26,7 @@ public class LottoPurchaseAmount {
     }
 
     public static LottoPurchaseAmount lottosOf(List<Lotto> lottos) {
-        Integer value = lottos.size() * BASE_AMOUNT;
+        Integer value = lottos.size() * LottoRule.LOTTO_BASE_AMOUNT;
         return new LottoPurchaseAmount(value);
     }
 
@@ -43,10 +41,10 @@ public class LottoPurchaseAmount {
         if (value == null) {
             throw new IllegalArgumentException(Error.LottoPurchaseAmount.REQUIRED_AMOUNT);
         }
-        if (value < BASE_AMOUNT) {
+        if (value < LottoRule.LOTTO_BASE_AMOUNT) {
             throw new IllegalArgumentException(Error.LottoPurchaseAmount.BELOW_BASE_AMOUNT);
         }
-        if (value % BASE_AMOUNT != 0) {
+        if (value % LottoRule.LOTTO_BASE_AMOUNT != 0) {
             throw new IllegalArgumentException(Error.LottoPurchaseAmount.INVALID_BASE_AMOUNT_UNIT);
         }
     }

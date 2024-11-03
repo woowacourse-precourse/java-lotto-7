@@ -5,10 +5,6 @@ import lotto.core.dto.LottoNumberDto;
 
 public record LottoNumber(Integer value) {
 
-    private static final Integer MIN_VALUE = 1;
-
-    private static final Integer MAX_VALUE = 45;
-
     public LottoNumber {
         if (!LottoNumber.isNumber(value)) {
             throw new IllegalArgumentException(Error.LottoNumber.INVALID_NUMBER_RANGE);
@@ -20,6 +16,8 @@ public record LottoNumber(Integer value) {
     }
 
     public static boolean isNumber(Integer value) {
-        return value != null && value >= MIN_VALUE && value <= MAX_VALUE;
+        return value != null &&
+                value >= LottoRule.LOTTO_NUM_MIN_VALUE &&
+                value <= LottoRule.LOTTO_NUM_MAX_VALUE;
     }
 }

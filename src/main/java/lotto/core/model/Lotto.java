@@ -25,19 +25,22 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoRule.LOTTO_NUMBERS_LENGTH) {
             throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBERS_LENGTH);
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != numbers.size()) {
+        if (new HashSet<>(numbers).size() != LottoRule.LOTTO_NUMBERS_LENGTH) {
             throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBER_DUPLICATED);
         }
     }
 
     private void validateLottoNumber(List<Integer> numbers) {
-        numbers.forEach(LottoNumber::new);
+        boolean anyNotLottoNumber = numbers.stream().anyMatch(it -> !LottoNumber.isNumber(it));
+        if (anyNotLottoNumber) {
+            throw new IllegalArgumentException(Error.LottoNumber.INVALID_NUMBER_RANGE);
+        }
     }
 
     public List<Integer> getNumbers() {
@@ -55,7 +58,10 @@ public class Lotto {
     }
 
     public static Lotto newRandomNumbers() {
-        List<Integer> numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        int startInclusive = LottoRule.LOTTO_NUM_MIN_VALUE;
+        int endInclusive = LottoRule.LOTTO_NUM_MAX_VALUE;
+        int count = LottoRule.LOTTO_NUMBERS_LENGTH;
+        List<Integer> numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
         return new Lotto(numbers);
     }
 }
