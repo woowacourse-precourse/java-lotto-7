@@ -12,17 +12,17 @@ import lotto.model.lotto.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lotto.model.winning.WinningNumbersAndBonusNumber;
+import lotto.model.winning.WinningNumbers;
 
 public class LottoResultCheckerTest {
 
-    private WinningNumbersAndBonusNumber winningNumbersAndBonusNumber;
+    private WinningNumbers winningNumbers;
     private LottoResultChecker lottoResultChecker;
 
     @BeforeEach
     void setUp() {
-        winningNumbersAndBonusNumber = new WinningNumbersAndBonusNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
-        lottoResultChecker = new LottoResultChecker(winningNumbersAndBonusNumber);
+        winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        lottoResultChecker = new LottoResultChecker(winningNumbers);
     }
 
     @Test

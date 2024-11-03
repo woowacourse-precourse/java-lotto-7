@@ -16,7 +16,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static List<String> readLottoNumbers() {
+    public static List<String> readNumbers() {
         System.out.println();
         System.out.println(INPUT_LOTTO);
         String input = Console.readLine();

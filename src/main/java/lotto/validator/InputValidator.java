@@ -27,21 +27,21 @@ public class InputValidator {
         validateDivisibleByUnit(parsedAmount);
     }
 
-    public static void validateWinningNumbers(List<String> winningNumbers) {
-        validateBlank(winningNumbers);
-        winningNumbers.forEach(number -> validatePositiveNumber(InputUtils.convertToInt(number)));
-        List<Integer> parsedNumbers = InputUtils.convertToIntList(winningNumbers);
+    public static void validateNumbers(List<String> numbers) {
+        validateBlank(numbers);
+        numbers.forEach(number -> validatePositiveNumber(InputUtils.convertToInt(number)));
+        List<Integer> parsedNumbers = InputUtils.convertToIntList(numbers);
         validateLength(parsedNumbers);
         validateRange(parsedNumbers);
         validateDuplicates(parsedNumbers);
     }
 
-    public static void validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+    public static void validateBonusNumber(String bonusNumber, List<Integer> numbers) {
         validateBlank(bonusNumber);
         int parsedBonus = InputUtils.convertToInt(bonusNumber);
         validatePositiveNumber(parsedBonus);
         validateRange(List.of(parsedBonus));
-        validateDuplicateInList(parsedBonus, winningNumbers);
+        validateDuplicateInList(parsedBonus, numbers);
     }
 
     private static void validateBlank(String input) {

@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.lotto.LottoResult;
 import lotto.model.lotto.Lottos;
-import lotto.model.winning.WinningNumbersAndBonusNumber;
+import lotto.model.winning.WinningNumbers;
 import lotto.model.rank.RankResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -22,11 +22,11 @@ public class LottoController {
         Lottos lottos = lottoService.generateLottos(count);
         OutputView.printLottos(count, lottos);
 
-        List<Integer> winningNumbers = getWinningNumbersInput();
-        int bonusNumber = getBonusNumberInput(winningNumbers);
+        List<Integer> numbers = getNumbersInput();
+        int bonusNumber = getBonusNumberInput(numbers);
 
-        WinningNumbersAndBonusNumber winningNumbersAndBonusNumber = new WinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-        List<LottoResult> lottoResults = lottoService.createResultChecker(winningNumbersAndBonusNumber).check(lottos);
+        WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNumber);
+        List<LottoResult> lottoResults = lottoService.createResultChecker(winningNumbers).check(lottos);
 
         RankResult rankResult = lottoService.checkRanks(lottoResults);
         OutputView.printRankResult(rankResult);
@@ -47,22 +47,22 @@ public class LottoController {
         }
     }
 
-    private List<Integer> getWinningNumbersInput() {
+    private List<Integer> getNumbersInput() {
         while (true) {
             try {
-                List<String> lottoInput = InputView.readLottoNumbers();
-                return lottoService.getWinningNumbers(lottoInput);
+                List<String> lottoInput = InputView.readNumbers();
+                return lottoService.getNumbers(lottoInput);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private int getBonusNumberInput(List<Integer> winningNumbers) {
+    private int getBonusNumberInput(List<Integer> numbers) {
         while (true) {
             try {
                 String bonusInput = InputView.readBonusNumber();
-                return lottoService.getBonusNumber(bonusInput, winningNumbers);
+                return lottoService.getBonusNumber(bonusInput, numbers);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

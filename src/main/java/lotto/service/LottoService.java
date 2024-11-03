@@ -2,40 +2,40 @@ package lotto.service;
 
 import java.util.List;
 import lotto.model.handler.PurchaseRequestHandler;
-import lotto.model.handler.WinningNumbersAndBonusNumberRequestHandler;
+import lotto.model.handler.WinningNumbersRequestHandler;
 import lotto.model.lotto.LottoResult;
 import lotto.model.lotto.Lottos;
-import lotto.model.winning.WinningNumbersAndBonusNumber;
+import lotto.model.winning.WinningNumbers;
 import lotto.model.rank.RankResult;
 
 public class LottoService {
     private final PurchaseRequestHandler purchaseRequestHandler;
-    private final WinningNumbersAndBonusNumberRequestHandler winningNumbersAndBonusNumberRequestHandler;
+    private final WinningNumbersRequestHandler winningNumbersRequestHandler;
 
     public LottoService(PurchaseRequestHandler purchaseRequestHandler,
-                        WinningNumbersAndBonusNumberRequestHandler winningNumbersAndBonusNumberRequestHandler) {
+                        WinningNumbersRequestHandler winningNumbersRequestHandler) {
         this.purchaseRequestHandler = purchaseRequestHandler;
-        this.winningNumbersAndBonusNumberRequestHandler = winningNumbersAndBonusNumberRequestHandler;
+        this.winningNumbersRequestHandler = winningNumbersRequestHandler;
     }
 
     public int getPurchaseCount(String amount) {
         return purchaseRequestHandler.getPurchaseAmount(amount);
     }
 
-    public List<Integer> getWinningNumbers(List<String> lottoInput) {
-        return winningNumbersAndBonusNumberRequestHandler.getWinningNumbers(lottoInput);
-    }
-
-    public int getBonusNumber(String bonusInput, List<Integer> winningNumbers) {
-        return winningNumbersAndBonusNumberRequestHandler.getBonusNumber(bonusInput, winningNumbers);
-    }
-
     public Lottos generateLottos(int count) {
         return Lottos.generate(count);
     }
 
-    public LottoResultChecker createResultChecker(WinningNumbersAndBonusNumber winningNumbersAndBonusNumber) {
-        return new LottoResultChecker(winningNumbersAndBonusNumber);
+    public List<Integer> getNumbers(List<String> numbersInput) {
+        return winningNumbersRequestHandler.getNumbers(numbersInput);
+    }
+
+    public int getBonusNumber(String bonusInput, List<Integer> numbers) {
+        return winningNumbersRequestHandler.getBonusNumber(bonusInput, numbers);
+    }
+
+    public LottoResultChecker createResultChecker(WinningNumbers winningNumbers) {
+        return new LottoResultChecker(winningNumbers);
     }
 
     public RankResult checkRanks(List<LottoResult> lottoResults) {
