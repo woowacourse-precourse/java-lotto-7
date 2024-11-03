@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.List;
 
 public class CheckLotto {
+    public static final int PERSENT = 100;
     private int threeMatched = 0;
     private int fourMatched = 0;
     private int fiveMatched = 0;
@@ -53,7 +54,7 @@ public class CheckLotto {
 
     public String getEarningRatio(int cost) {
         int totalWinnings = calculateTotalWinnings();
-        double earningRatio = ((double) totalWinnings / cost) * 100;
+        double earningRatio = ((double) totalWinnings / cost) * PERSENT;
         return String.format("%,.1f", earningRatio);
     }
 
@@ -74,13 +75,13 @@ public class CheckLotto {
     }
 
     private void isLottoThreeMatched(int lottoCount) {
-        if (lottoCount == 3) {
+        if (lottoCount == WinningStatus.FIFTH_PRIZE.getMatchCount()) {
             this.threeMatched++;
         }
     }
 
     private boolean isLottoFourMatched(int lottoCount) {
-        if (lottoCount == 4) {
+        if (lottoCount == WinningStatus.FOURTH_PRIZE.getMatchCount()) {
             this.fourMatched++;
             return true;
         }
@@ -88,7 +89,7 @@ public class CheckLotto {
     }
 
     private boolean isLottoFiveMatched(int lottoCount) {
-        if (lottoCount == 5) {
+        if (lottoCount == WinningStatus.THIRD_PRIZE.getMatchCount()) {
             this.fiveMatched++;
             return true;
         }
@@ -96,7 +97,7 @@ public class CheckLotto {
     }
 
     private boolean isLottoBonusMatched(int lottoCount, boolean isBonusMatched) {
-        if (lottoCount == 5 && isBonusMatched) {
+        if (lottoCount == WinningStatus.SECOND_PRIZE.getMatchCount() && isBonusMatched) {
             this.bonusMatched++;
             return true;
         }
@@ -104,7 +105,7 @@ public class CheckLotto {
     }
 
     private boolean isLottoAllMatched(int lottoCount) {
-        if (lottoCount == 6) {
+        if (lottoCount == WinningStatus.FIRST_PRIZE.getMatchCount()) {
             this.allMatched++;
             return true;
         }
@@ -121,8 +122,10 @@ public class CheckLotto {
     }
 
     private int calculateTotalWinnings() {
-        return (5000 * threeMatched) + (50000 * fourMatched) +
-                (1500000 * fiveMatched) + (30000000 * bonusMatched) +
-                (2000000000 * allMatched);
+        return (WinningStatus.FIFTH_PRIZE.getPrizeAmount() * threeMatched) + (
+                WinningStatus.FOURTH_PRIZE.getPrizeAmount() * fourMatched) +
+                (WinningStatus.THIRD_PRIZE.getPrizeAmount() * fiveMatched) + (
+                WinningStatus.SECOND_PRIZE.getPrizeAmount() * bonusMatched) +
+                (WinningStatus.FIRST_PRIZE.getPrizeAmount() * allMatched);
     }
 }
