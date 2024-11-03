@@ -5,7 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import javax.management.openmbean.OpenDataException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static lotto.constant.*;
@@ -17,11 +19,10 @@ public class Application {
         printLottos(lottoTickets, lottos);
         List<Integer> winningNumbers =  setWinningNumbers();
         int bonusNumber = setBonusNumber(winningNumbers);
-        List<LottoRank> lottoRanks = new ArrayList<>(matchLottos(lottos, winningNumbers, bonusNumber));
+        Map<LottoRank, Integer> rankCounts = matchLottos(lottos, winningNumbers, bonusNumber);
 
-        for(LottoRank lottoRank : lottoRanks) {
-            System.out.println(lottoRank);
-            System.out.println(lottoRank.getPrize());
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.println(rank + " (" + rank.getPrize() + "원) - " + rankCounts.get(rank) + "개");
         }
 
 
@@ -125,17 +126,27 @@ public class Application {
         return number;
     }
 
-    public static List<LottoRank> matchLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        List<LottoRank> lottoRanks = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            lottoRanks.add(matchRank(lotto, winningNumbers, bonusNumber));
+    public static Map<LottoRank, Integer> matchLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> rankCounts = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            rankCounts.put(rank, 0);
         }
-        return lottoRanks;
+
+        for (Lotto lotto : lottos){
+            LottoRank rank = matchRank(lotto, winningNumbers, bonusNumber);
+            rankCounts.put(rank, rankCounts.get(rank) + 1);
+        }
+        return rankCounts;
     }
 
     public static LottoRank matchRank(Lotto lotto,List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = lotto.countMatchingNumbers(winningNumbers);
         boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
         return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    public static void printResult (List<LottoRank> lottoRanks) {
+        System.out.println("당첨 통계");
+
     }
 }
