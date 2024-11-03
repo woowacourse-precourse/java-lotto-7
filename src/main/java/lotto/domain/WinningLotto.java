@@ -16,6 +16,12 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank determineRank(Lotto lotto) {
+        int matchCount = calculateMatchCount(lotto);
+        boolean hasBonus = checkHasBonus(lotto);
+        return Rank.of(matchCount, hasBonus);
+    }
+
     private void validateBonusNumber(int bonusNumber, Lotto winningNumbers) {
         validateRange(bonusNumber);
         validateNotDuplicate(bonusNumber, winningNumbers);
@@ -31,5 +37,15 @@ public class WinningLotto {
         if (winningNumbers.get().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
+    }
+
+    private int calculateMatchCount(Lotto lotto) {
+        return (int) lotto.get().stream()
+                .filter(winningNumbers.get()::contains)
+                .count();
+    }
+
+    private boolean checkHasBonus(Lotto lotto) {
+        return lotto.get().contains(bonusNumber);
     }
 }
