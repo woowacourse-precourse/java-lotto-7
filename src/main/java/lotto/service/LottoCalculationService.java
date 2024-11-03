@@ -1,7 +1,7 @@
 package lotto.service;
 
 import static lotto.constant.UserId.BUYER;
-import static lotto.constant.UserId.SYSTEM;
+import static lotto.constant.UserId.OWNER;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +32,7 @@ public class LottoCalculationService {
 
     public int[] getMatchCnts() {
         Buyer buyer = (Buyer) userRepository.findById(BUYER);
-        Owner owner = (Owner) userRepository.findById(SYSTEM);
+        Owner owner = (Owner) userRepository.findById(OWNER);
 
         int[] matchCnts = new int[6];
         for (Lotto lotto : buyer.getLotties()) {

@@ -1,6 +1,6 @@
 package lotto.model.db;
 
-import static lotto.constant.UserId.SYSTEM;
+import static lotto.constant.UserId.OWNER;
 
 import lotto.Lotto;
 import lotto.constant.UserId;
@@ -18,7 +18,7 @@ public class Owner implements User {
     }
 
     public static Owner from(Lotto lotto, int bonus) {
-        return new Owner(SYSTEM, lotto, bonus);
+        return new Owner(OWNER, lotto, bonus);
     }
 
     @Override
