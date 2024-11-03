@@ -1,6 +1,8 @@
 package lotto.util;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.enums.lotto.LottoMessage;
 
@@ -12,6 +14,7 @@ public class LottoValidator {
 
     public static void validatePriceUnit(int price) {
         if (price % PRICE_UNIT != 0) {
+            System.out.println(LottoMessage.EXCEPTION_PRICE_UNIT.getMessage());
             throw new IllegalArgumentException(LottoMessage.EXCEPTION_PRICE_UNIT.getMessage());
         }
 
@@ -24,6 +27,7 @@ public class LottoValidator {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
+            System.out.println(LottoMessage.EXCEPTION_NUMBER_VALID.getMessage());
             throw new IllegalArgumentException(LottoMessage.EXCEPTION_NUMBER_VALID.getMessage());
         }
     }
@@ -31,14 +35,24 @@ public class LottoValidator {
     public static void validateLottoNumber(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                System.out.println(LottoMessage.EXCEPTION_NUMBER_RANGE.getMessage());
                 throw new IllegalArgumentException(LottoMessage.EXCEPTION_NUMBER_RANGE.getMessage());
             }
         }
     }
 
-    public static void validateDuplicateNumber(Lotto lotto, int bonusNumber) {
+    public static void validateDuplicateLottoNumber(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            System.out.println(LottoMessage.EXCEPTION_DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(LottoMessage.EXCEPTION_DUPLICATE_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateDuplicateBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException(LottoMessage.EXCEPTION_DUPLICATE_NUMBER.getMessage());
+            System.out.println(LottoMessage.EXCEPTION_DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(LottoMessage.EXCEPTION_DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }
