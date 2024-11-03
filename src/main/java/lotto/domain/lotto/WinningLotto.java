@@ -1,10 +1,8 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.constant.ExceptionMessage.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER;
 
 import lotto.constant.Rank;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.Number;
 
 public class WinningLotto {
 

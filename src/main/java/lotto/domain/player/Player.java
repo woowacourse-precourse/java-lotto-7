@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.player;
 
 import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
 import static lotto.constant.LottoConfig.LOTTO_COST;
@@ -7,16 +7,17 @@ import java.util.List;
 
 import lotto.constant.Rank;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import lotto.random.LottoRandom;
 
-public class Wallet {
+public class Player {
 
     private final long initialMoney;
     private long money;
     private Lottos lottos;
     private RankCounts rankCounts;
 
-    public Wallet(long money) {
+    public Player(long money) {
         validateMoney(money);
         this.money = money;
         initialMoney = money;

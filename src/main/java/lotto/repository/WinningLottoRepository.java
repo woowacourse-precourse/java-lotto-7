@@ -1,7 +1,7 @@
 package lotto.repository;
 
-import lotto.domain.WinningLotto;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinningLotto;
 
 public class WinningLottoRepository {
 

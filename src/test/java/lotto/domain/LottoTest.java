@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import lotto.constant.Rank;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinningLotto;
+import lotto.domain.player.Player;
 import lotto.random.LottoRandom;
 
 class LottoTest {
@@ -52,9 +54,9 @@ class LottoTest {
 
     @Test
     void 수익률을_계산한다() {
-        Wallet wallet = new Wallet(5000);
-        wallet.buyLottoTickets(lottoRandom);
-        wallet.addRank(Rank.THIRD);
-        assertThat(wallet.gain()).isEqualTo((double) 1_500_000 / 5_000 );
+        Player player = new Player(5000);
+        player.buyLottoTickets(lottoRandom);
+        player.addRank(Rank.THIRD);
+        assertThat(player.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }
 }

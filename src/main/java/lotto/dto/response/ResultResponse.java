@@ -2,7 +2,7 @@ package lotto.dto.response;
 
 import java.util.List;
 
-import lotto.domain.RankCounts;
+import lotto.domain.player.RankCounts;
 
 public record ResultResponse(
     List<InnerRankCountResponse> rankCounts,
