@@ -14,10 +14,10 @@ public class LottoIssuingServiceImpl implements LottoIssuingService {
     }
 
     @Override
-    public Lottos issueLottos(int count) {
+    public Lottos issueLottos(int purchaseAmount) {
         List<List<Integer>> allNumbers = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < purchaseAmount; i++) {
             allNumbers.add(lottoNumberGenerator.generate());
         }
 
