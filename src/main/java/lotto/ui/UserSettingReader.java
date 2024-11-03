@@ -24,7 +24,11 @@ public class UserSettingReader {
 
     public int readSeedMoney() {
         printer.print(BUYER_SEEDMONEY_PROMPT);
-        return Integer.parseInt(reader.readLine());
+        try {
+            return Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 입력입니다.", e);
+        }
     }
 
     public WinningNumberSettings readWinningNumbers() {
@@ -36,14 +40,22 @@ public class UserSettingReader {
 
     private List<Integer> readWinningNumbersElements() {
         printer.print(WINNING_NUMBERS_PROMPT);
-        return Arrays.stream(reader.readLine().split(NUMBERS_DELIMITER_REGEX))
-                .mapToInt(Integer::valueOf)
-                .boxed()
-                .toList();
+        try {
+            return Arrays.stream(reader.readLine().split(NUMBERS_DELIMITER_REGEX))
+                    .mapToInt(Integer::valueOf)
+                    .boxed()
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 입력입니다.", e);
+        }
     }
 
     private int readBonusNumber() {
         printer.print(BONUS_NUMBER_PROMPT);
-        return Integer.parseInt(reader.readLine());
+        try {
+            return Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("잘못된 입력입니다.", e);
+        }
     }
 }
