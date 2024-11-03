@@ -37,12 +37,12 @@ public class LottoResult {
         return this.winningStatistics;
     }
 
-//    public int profit(){
-//
-//        return winningStatistics.keySet().stream()
-//                .mapToInt(correctStatus -> correctStatus.getReward() * winningStatistics.get(correctStatus))
-//                .sum();
-//    }
+    public int profit(){
+
+        return winningStatistics.keySet().stream()
+                .mapToInt(correctStatus -> correctStatus.getReward() * winningStatistics.get(correctStatus))
+                .sum();
+    }
 
     private  CorrectStatus getCorrectStatus(WinningLottoNumberSelector winningLottoNumberSelector,
                                             int matchNumber,Lotto purchasedLotto) {

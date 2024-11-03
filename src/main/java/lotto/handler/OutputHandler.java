@@ -25,7 +25,7 @@ public class OutputHandler {
         });
     }
 
-//    public void printProfitRate(final int profit,final int money){
-//        System.out.println("총 수익률은 "+(double)profit/money *100 + "%입니다");
-//    }
+    public void printProfitRate(final int profit,final int money){
+        System.out.println("총 수익률은 "+(double)profit/money *100 + "%입니다");
+    }
 }
