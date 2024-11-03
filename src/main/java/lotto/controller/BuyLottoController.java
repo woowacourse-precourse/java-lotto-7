@@ -10,11 +10,29 @@ public class BuyLottoController {
 
     public BuyLottoController() {
         this.buyPriceView = new BuyPriceView();
-        buyPriceView.printPriceInputView();
-        this.buyPrice = new BuyPrice(Console.readLine());
     }
 
-    public BuyLottoController(String price){
+    public void checkExcepForInputPrice() {
+        while (true) {
+            if (getInputPrice()) {
+                break;
+            }
+        }
+    }
+
+    public boolean getInputPrice() {
+        try {
+            buyPriceView.printPriceInputView();
+            this.buyPrice = new BuyPrice(Console.readLine());
+            return true;
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae.getMessage());
+            return false;
+        }
+    }
+
+    // 테스트용 생성자
+    public BuyLottoController(String price) {
         this.buyPriceView = new BuyPriceView();
         buyPriceView.printPriceInputView();
         this.buyPrice = new BuyPrice(price);
