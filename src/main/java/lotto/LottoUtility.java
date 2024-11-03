@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoUtility {
-    public static List<Integer> stringToWinningNumbers(String input) {
+    public List<Integer> stringToWinningNumbers(String input) {
         List<Integer> numbers = new ArrayList<>();
         try {
             numbers = Arrays.stream(input.split(","))
@@ -20,7 +20,7 @@ public class LottoUtility {
         return numbers;
     }
 
-    public static String getWinningInfo(LottoWinningStandard standard, int matchedCount) {
+    public String getWinningInfo(LottoWinningStandard standard, int matchedCount) {
         if(standard.equals(LottoWinningStandard.SECOND_PRIZE)) {
             return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedCount + "개";
         }
@@ -31,6 +31,7 @@ public class LottoUtility {
     }
 
     public static void printMessage(String message) {
+    public void printMessage(String message) {
         System.out.println(message);
     }
 }
