@@ -1,6 +1,8 @@
 package lotto.controller;
 
-import java.util.Arrays;
+import static lotto.util.Validator.validatePurchaseAmount;
+import static lotto.util.Validator.validateWinningNumbers;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -31,13 +33,11 @@ public class LottoController {
         List<Lotto> lottos = lottoService.getLottos();
         lottos.forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
 
-        List<Integer> winningNumbers =
-                Arrays.stream(inputView.inputWinningNumbers().split(","))
-                        .map(Integer::parseInt)
-                        .toList();
-        String bonusNumber = inputView.inputBonusNumber();
+        String inputWinningNumbers = inputView.inputWinningNumbers();
+        List<Integer> winningNumbers = validateWinningNumbers(inputWinningNumbers);
+        String inputBonusNumber = inputView.inputBonusNumber();
 
-        lottoService.saveLottoRanks(winningNumbers, Integer.parseInt(bonusNumber));
+        lottoService.saveLottoRanks(winningNumbers, Integer.parseInt(inputBonusNumber));
         Map<Rank, Integer> results = lottoService.getResults();
 
         outputView.printWinningStatisticsHeader();
@@ -61,7 +61,7 @@ public class LottoController {
         }
 
         long winningAmount = lottoService.calculateWinningAmount();
-        double profitRate = lottoService.calculateProfitRate(winningAmount, Long.parseLong(purchaseAmount));
+        double profitRate = lottoService.calculateProfitRate(winningAmount, Long.parseLong(inputPurchaseAmount));
         outputView.printProfitRate(profitRate);
     }
 }
