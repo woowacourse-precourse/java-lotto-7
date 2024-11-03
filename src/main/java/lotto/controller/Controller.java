@@ -56,11 +56,11 @@ public class Controller {
                 input::readBonusNumber,
                 new NumberValidator()
         );
-        model.setBonusNumber(bonusNumber);
+        model.appendBonusNumber(bonusNumber);
     }
 
     private void printResult(Model model) {
-        output.printWinningDetail(model.getWinningMap());
+        output.printWinningDetail(model.getWinningDetail());
         output.printResult(model.calculate());
     }
 }

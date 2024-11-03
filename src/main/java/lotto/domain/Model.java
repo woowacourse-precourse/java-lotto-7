@@ -7,8 +7,6 @@ import lotto.domain.util.CalculateRoi;
 import lotto.domain.util.CreateLottoList;
 import lotto.domain.util.CreateWinningMap;
 import lotto.domain.util.CreateWinningNumber;
-import lotto.validator.AmountValidator;
-import lotto.validator.Validator;
 
 public class Model {
 
@@ -18,31 +16,32 @@ public class Model {
     private final int count;
     private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
-    private final Map<String, Integer> winningMap;
+    private final Map<String, Integer> winningDetail;
     private long winningAmount;
 
     public Model(String amount) {
-        validate(amount);
         this.amount = Integer.parseInt(amount);
         count = this.amount / LOTTO_PRICE;
         lottos = CreateLottoList.create(count);
-        winningMap = CreateWinningMap.create();
+        winningDetail = CreateWinningMap.create();
     }
 
-    private void totalWinningAmount() {
+    private void checkWinning() {
         for (Lotto lotto : lottos) {
-            winningAmount += lotto.winningCount(winningNumbers, winningMap);
-
+            winningAmount += lotto.winningCount(winningNumbers, winningDetail);
         }
-    }
-
-    private void validate(String amount) {
-        Validator validator = new AmountValidator();
-        validator.validate(amount);
     }
 
     public String calculate() {
         return CalculateRoi.calculate(winningAmount, amount);
+    }
+
+    public void setWinningNumbers(String winningNumbers) {
+        this.winningNumbers = CreateWinningNumber.create(winningNumbers);
+    }
+
+    public void appendBonusNumber(String bonusNumber) {
+        AddBonusNumber.add(winningNumbers, bonusNumber);
     }
 
     public List<Lotto> getLottos() {
@@ -53,17 +52,8 @@ public class Model {
         return count;
     }
 
-    public Map<String, Integer> getWinningMap() {
-        totalWinningAmount();
-        return winningMap;
+    public Map<String, Integer> getWinningDetail() {
+        checkWinning();
+        return winningDetail;
     }
-
-    public void setWinningNumbers(String winningNumbers) {
-        this.winningNumbers = CreateWinningNumber.create(winningNumbers);
-    }
-
-    public void setBonusNumber(String bonusNumber) {
-        AddBonusNumber.add(winningNumbers, bonusNumber);
-    }
-
 }
