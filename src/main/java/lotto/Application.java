@@ -24,13 +24,25 @@ public class Application {
 
             LottoValidator.validateWinningNumbers(winningNumbers, bonusNumber);
 
-            Lotto lotto = Lotto.generateLotto();
-            System.out.println("생성된 로또 번호: " + lotto.getNumbers());
+            List<Lotto> userLottos = generateUserLottos(ticketCount);
+            printLottoNumbers(userLottos);
+
+            int[] matchCounts = LottoResultCalculator.calculateResults(userLottos, winningNumbers, bonusNumber);
+            printResults(matchCounts);
 
         } catch (NumberFormatException e) {
             System.out.println(ErrorMessages.INVALID_INPUT.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static void printResults(int[] matchCounts) {
+        System.out.println("당첨 통계\n---");
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.MISS) {
+                System.out.printf("%d개 일치 (%d원) - %d개%n", rank.getMatchCount(), rank.getPrize(), matchCounts[rank.ordinal()]);
+            }
         }
     }
 
@@ -40,5 +52,15 @@ public class Application {
             throw new IllegalArgumentException(ErrorMessages.INVALID_AMOUNT.getMessage());
         }
         return purchaseAmount / TICKET_PRICE;
+    }
+
+    private static List<Lotto> generateUserLottos(int ticketCount) {
+        return java.util.stream.IntStream.range(0, ticketCount)
+                .mapToObj(i -> Lotto.generateLotto())
+                .collect(Collectors.toList());
+    }
+
+    private static void printLottoNumbers(List<Lotto> lottos) {
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 }
