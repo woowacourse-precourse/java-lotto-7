@@ -24,6 +24,15 @@ public class Controller {
         this.utils = utils;
     }
 
+    public void start() {
+        int price = inputPurchaseAmount();
+        List<Lotto> lotto = generateLottos(price);
+        Lotto winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
+        Map<Rank, Integer> resultCounts = compareWithWinningNumbers(winningNumbers, bonusNumber, lotto);
+        displayLottoYield(resultCounts, price);
+    }
+
     public int inputPurchaseAmount() {
         while (true) {
             try {
