@@ -23,7 +23,8 @@ public class ResultCalculator {
     private final Map<Integer, PlaceAuction> placeAuctions = new HashMap<>();
 
     private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
-        init(bonusResult);
+        initPlace();
+        initPlaceAuction(bonusResult);
         calculate(winningResult, bonusResult);
     }
 
@@ -31,10 +32,13 @@ public class ResultCalculator {
         return new ResultCalculator(winningResult, bonusResult);
     }
 
-    private void init(List<Integer> bonusResult) {
+    private void initPlace() {
         for (Place place : Place.values()) {
             places.put(place, INIT_PLACE_NUMBER);
         }
+    }
+
+    private void initPlaceAuction(List<Integer> bonusResult) {
         placeAuctions.put(SIX_MATCH, new FirstPlace(places));
         placeAuctions.put(FIVE_MATCH, new SecondPlace(places, bonusResult));
         placeAuctions.put(FOUR_MATCH, new FourthPlace(places));
