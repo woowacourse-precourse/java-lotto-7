@@ -1,10 +1,12 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 
 public class LottoView {
     public int inputPurchaseAmount() {
-        return 0;
+        System.out.println("구입금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> inputWinningNumbers() {
