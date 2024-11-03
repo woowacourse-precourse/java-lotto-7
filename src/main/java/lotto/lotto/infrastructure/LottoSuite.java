@@ -8,11 +8,11 @@ import lotto.lotto.service.BonusNumberCreatorService;
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.service.WinningLottoCreatorService;
 
-public class LottoCreator implements LottoGenerator {
+public class LottoSuite implements LottoGenerator {
     private final PurchaseLottoTickets purchaseLottoTickets;
     private final BonusNumberCreatorService bonusNumberCreator;
     private final WinningLottoCreatorService winningLottoCreator;
-    public LottoCreator(
+    public LottoSuite(
             PurchaseLottoTickets purchaseLottoTickets,
             WinningLottoCreatorService winningLottoCreator,
             BonusNumberCreatorService bonusNumberCreator
