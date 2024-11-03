@@ -58,23 +58,14 @@ public class Application {
 
         for (Lotto lotto : lottos) {  // `lottos`는 구입한 로또 목록
             int matchCount = host.countResult(lotto);
-            boolean bonusMatch = false;
+            boolean bonus = false;
             if (host.isBonus(lotto)) {
                 matchCount++;
-                bonusMatch = true;
+                bonus = true;
             }
 
-            if (matchCount == 6) {
-                lottoResult.put(WinningKind.MATCH_6, lottoResult.get(WinningKind.MATCH_6) + 1);
-            } else if (matchCount == 5 && bonusMatch) {
-                lottoResult.put(WinningKind.MATCH_5_BONUS, lottoResult.get(WinningKind.MATCH_5_BONUS) + 1);
-            } else if (matchCount == 5) {
-                lottoResult.put(WinningKind.MATCH_5, lottoResult.get(WinningKind.MATCH_5) + 1);
-            } else if (matchCount == 4) {
-                lottoResult.put(WinningKind.MATCH_4, lottoResult.get(WinningKind.MATCH_4) + 1);
-            } else if (matchCount == 3) {
-                lottoResult.put(WinningKind.MATCH_3, lottoResult.get(WinningKind.MATCH_3) + 1);
-            }
+            WinningKind kind = WinningKind.getWinningKind(matchCount, bonus);
+            lottoResult.put(kind, lottoResult.get(kind) + 1);
         }
 
         System.out.println("당첨 통계\n---");
