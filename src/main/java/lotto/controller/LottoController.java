@@ -4,6 +4,7 @@ import lotto.io.Input;
 import lotto.io.Output;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.RankCount;
 import lotto.service.LottoService;
 import lotto.util.Constants;
 import lotto.util.Validator;
@@ -32,9 +33,10 @@ public class LottoController {
     public void playLotto() {
         int purchasePrice = handlePurchasePrice();
         int count = handleLottoCount(purchasePrice);
-        handleCreatedLottos(count);
+        Lottos lottos = handleCreatedLottos(count);
         lottoWinningNumbers = handleWinningNumbers();
         lottoBonusNumber = handleBonusNumber();
+        List<RankCount> winningStatistics = handleWinningStatistics(lottos);
     }
 
     private int handlePurchasePrice() {
@@ -64,9 +66,10 @@ public class LottoController {
         return count;
     }
 
-    private void handleCreatedLottos(int count) {
+    private Lottos handleCreatedLottos(int count) {
         Lottos lottos = createLottosWithCount(count);
         output.printLottoNumbers(lottos);
+        return lottos;
     }
 
     private Lottos createLottosWithCount(int count) {
@@ -132,5 +135,10 @@ public class LottoController {
             System.out.println(e.getMessage());
             handleBonusNumber();
         }
+    }
+
+    private List<RankCount> handleWinningStatistics(Lottos lottos) {
+        List<RankCount> winningStatistics = lottoService.calculateWinningStatistics(lottos, lottoWinningNumbers, lottoBonusNumber);
+        return winningStatistics;
     }
 }
