@@ -13,16 +13,24 @@ public class LottoInputHandler {
         System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
         String input = Console.readLine();
         System.out.println();
-        List<Integer> numbers = parseNumbers(input);
-        LottoValidator.validateWinningNumbers(numbers);
-        return numbers;
+        try {
+            List<Integer> numbers = parseNumbers(input);
+            LottoValidator.validateWinningNumbers(numbers);
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        }
     }
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        }
     }
 
     private static List<Integer> parseNumbers(String input) {
