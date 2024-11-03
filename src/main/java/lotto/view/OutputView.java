@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    private static String formatWinnings(int winnings) {
+    private static String formatWinnings(long winnings) {
         return String.format(WINNINGS_FORMAT, winnings);
     }
 
