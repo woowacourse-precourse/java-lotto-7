@@ -8,7 +8,7 @@ public class PurchasePrice {
     public static final String EXIST_CHANGE_EXCEPTION_MESSAGE =
             String.format("거스름돈이 남는 금액은 허용하지 않습니다. (로또 금액 : %d)", LottoConfiguration.LOTTO_PRICE);
 
-    private int price;
+    private final int price;
 
     public PurchasePrice(int price) {
         validatePositivePrice(price);
