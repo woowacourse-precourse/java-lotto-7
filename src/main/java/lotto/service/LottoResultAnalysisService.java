@@ -6,16 +6,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoProfitCalculator;
 import lotto.domain.Rank;
 
 public class LottoResultAnalysisService {
 
+
     private final Lotto winningNumbers;
+    private final LottoNumber bonusNumber;
     private final LottoProfitCalculator lottoProfitCalculator;
 
-    public LottoResultAnalysisService(List<Integer> winningNumbers) {
+    public LottoResultAnalysisService(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = new Lotto(winningNumbers);
+        this.bonusNumber = LottoNumber.valueOf(bonusNumber);
         this.lottoProfitCalculator = new LottoProfitCalculator();
     }
 
@@ -25,7 +29,7 @@ public class LottoResultAnalysisService {
         for (Lotto lotto : lottos) {
             int matchedCount = countDuplicate(lotto);
 
-            results.add(Rank.findByMatchedCount(matchedCount));
+            results.add(Rank.findByCountAndBonusNumber(matchedCount, hasBonusNumber(lotto)));
         }
         return results;
     }
@@ -40,6 +44,10 @@ public class LottoResultAnalysisService {
             }
         }
         return count;
+    }
+
+    private boolean hasBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber.toInteger());
     }
 
     // TODO: payment를 wrapping.?
