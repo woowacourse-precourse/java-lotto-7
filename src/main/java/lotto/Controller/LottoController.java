@@ -4,7 +4,7 @@ import lotto.Messages.ErrorMessage;
 import lotto.Model.Lotto;
 import lotto.Model.MyResults;
 import lotto.Model.WinningDetails;
-import lotto.MyInfo;
+import lotto.Model.MyInfo;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -17,7 +17,7 @@ public class LottoController {
         myInfo = new MyInfo();
     }
 
-    public void run(){
+    public void run() {
         WinningDetails winningDetails = new WinningDetails();
         gainPurchaseAmount();
         myInfo.setLottoCount(myInfo.getLottoCount());
@@ -34,15 +34,14 @@ public class LottoController {
     }
 
     //함수 길이 문제
-    public void gainPurchaseAmount(){
+    public void gainPurchaseAmount() {
         int purchasePrice = 0;
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
             this.countLotto(purchasePrice);
-        }
-        catch(IllegalArgumentException e){
-            if(e.getMessage().equals(ErrorMessage.NOT_DIV.getError())){
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                 OutputView.printError(ErrorMessage.NOT_DIV.getError());
                 gainPurchaseAmount();
                 return;
@@ -53,8 +52,8 @@ public class LottoController {
         this.myInfo.setPurchasePrice(purchasePrice);
     }
 
-    public void countLotto(Integer purchasePrice){
-        int lottoCount = purchasePrice/1000;
+    public void countLotto(Integer purchasePrice) {
+        int lottoCount = purchasePrice / 1000;
         if (purchasePrice % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
@@ -63,13 +62,12 @@ public class LottoController {
         this.myInfo.setLottoCount(lottoCount);
     }
 
-    public Lotto gainWinningInput(){
+    public Lotto gainWinningInput() {
         Lotto answer;
         OutputView.printWinning();
         try {
             answer = InputView.readWinningNum();
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             OutputView.printError(ErrorMessage.WIN_INPUT.getError());
             return gainWinningInput();
         }
@@ -77,13 +75,12 @@ public class LottoController {
         return answer;
     }
 
-    public int gainBonusInput(Lotto answer){
+    public int gainBonusInput(Lotto answer) {
         int bonus = 0;
         OutputView.printBonus();
-        try{
-            bonus  = InputView.readBonus(answer);
-        }
-        catch (IllegalArgumentException e){
+        try {
+            bonus = InputView.readBonus(answer);
+        } catch (IllegalArgumentException e) {
             OutputView.printError(ErrorMessage.BONUS.getError());
             return gainBonusInput(answer);
         }
@@ -91,7 +88,7 @@ public class LottoController {
         return bonus;
     }
 
-    public int gainMyRevenue(WinningDetails grades){
+    public int gainMyRevenue(WinningDetails grades) {
         int revenue = 0;
         revenue += grades.getThird() * 5000;
         revenue += grades.getFourth() * 50000;
@@ -101,8 +98,8 @@ public class LottoController {
         return revenue;
     }
 
-    public double gainReturn(int purchasePrice, int revenue){
-        double myReturn = (double)revenue / (double)purchasePrice * 100;
-        return Math.round(myReturn * 100)/100.0;
+    public double gainReturn(int purchasePrice, int revenue) {
+        double myReturn = (double) revenue / (double) purchasePrice * 100;
+        return Math.round(myReturn * 100) / 100.0;
     }
 }
