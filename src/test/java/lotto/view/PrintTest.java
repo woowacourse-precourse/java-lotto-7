@@ -76,18 +76,27 @@ class PrintTest {
     // 수익률 결과 예시
     String givenRevenue = "총 수익률은 62.5%입니다.";
 
+    // when
+    int amount = input.readAmount();
+    int lottoCounts = input.getLottoCounts(amount);
+    // 입력 값에 기반하여 요청을 전달하고
+    List<Integer> actualLotto = handler.generateLotto(lottoCounts);
+
+    List<Integer> winning = handler.getWinning();
+    int bonus = handler.getBonus();
     // 실제 일치성 결과 조회
     String actualResult = handler.compareNumbersResult(actualLotto, winning, bonus);
+
     // 실제 수익률 결과 조회
-    String actualRevenue = handler.getResult(handler.calculateRevenue());
+    double revenue = handler.calculateRevenue(actualResult, amount);
+    String actual = handler.getResult(revenue);
 
     // 실제 일치성 결과 출력
-    print.printResult(actualResult);
+//    print.printResult(actualResult);
     // 실제 수익률 결과 출력
-    print.printRevenue(actualRevenue);
+//    print.printRevenue(actualRevenue);
 
-    assertEquals(getOutput(), actualResult);
-    assertEquals(getOutput(), actualRevenue);
+    assertEquals(givenRevenue, actualResult);
   }
 
 

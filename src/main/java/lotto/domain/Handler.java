@@ -105,7 +105,7 @@ public class Handler {
 
 
   // 6. 비교한 결과를 토대로 총 수익률 계산한다
-  public double calculateRevenue(String result, Input input) {
+  public double calculateRevenue(String result, int amount) {
     double revenue = 0;
     // 수익률 = 당첨 금액 / 투입 금액 * 100
     // 결과 문자열에서 당첨 금액 추출
@@ -119,7 +119,7 @@ public class Handler {
       String amountString = matcher.group(1).replaceAll(",", "");
       winningAmount = Integer.parseInt(amountString);
     }
-    revenue = (winningAmount / (double) input.readAmount()) * 100;
+    revenue = (winningAmount / (double) amount) * 100;
     // 입력값에서 투입 금액 추출
     return revenue;
   }

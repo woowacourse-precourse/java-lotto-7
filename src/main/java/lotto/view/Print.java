@@ -28,8 +28,8 @@ public class Print {
   }
 
   // 메서드 분리 : 수익률 출력
-  public void printRevenue(String result, Input input) {
-    double revenue = handler.calculateRevenue(result, input);
+  public void printRevenue(String result, int amount) {
+    double revenue = handler.calculateRevenue(result, amount);
     System.out.println(revenue);
   }
 

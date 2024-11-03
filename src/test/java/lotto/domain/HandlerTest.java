@@ -87,12 +87,12 @@ class HandlerTest {
     // 로또 수 만큼 로또 발행 후 전달
     List<Integer> generated = handler.generateLotto(lottoCounts);
     // 전달된 로또 결과 조회
-    Lotto<Integer> actualLotto = new Lotto(generated);
+//    List<Integer> actualLotto = new Lotto(generated);
     // 당첨 번호와 보너스 번호 조회
     List<Integer> winning = handler.getWinning();
     int bonus = handler.getBonus();
     // 실제 일치성 횟수 계산 결과 조회
-    String actualResult = handler.compareNumbersResult(actualLotto, winning, bonus);
+    String actualResult = handler.compareNumbersResult(generated, winning, bonus);
     // 예시와 실제값 일치 여부 검증
 
 
@@ -112,7 +112,7 @@ class HandlerTest {
         "6개 일치 (2,000,000,000원) - 0개";
 
     // 수익률 계산
-    double revenue = handler.calculateRevenue(resultExam, input);
+    double revenue = handler.calculateRevenue(resultExam, input.readAmount());
     // 수익률 계산 결과 조회
     String actual = handler.getResult(revenue);
     // 검증
