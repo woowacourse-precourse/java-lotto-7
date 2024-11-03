@@ -11,7 +11,6 @@ public enum ExceptionMessage {
     ERROR_MESSAGE_IS_NOT_VALID_CORRECT_COUNT("로또 번호 당첨 개수가 유효하지 않습니다."),
     ;
 
-
     private final String ERROR_MESSAGE_HEAD = "[ERROR] ";
     private final String message;
 
@@ -24,7 +23,4 @@ public enum ExceptionMessage {
         return ERROR_MESSAGE_HEAD + message;
     }
 
-    public static void throwException(ExceptionMessage exception) {
-        throw new IllegalArgumentException(exception.toString());
-    }
 }
