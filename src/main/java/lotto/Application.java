@@ -33,8 +33,16 @@ public class Application {
     }
 
     private static void printAllLottosNumbers(List<Lotto> allLottos) {
+        for (Lotto lotto : allLottos) {
+            lotto.printLottoNumbers();
+        }
+
+        System.out.println();
     }
 
     public static List<Integer> generateLottoNumbers() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+        return lottoNumbers;
     }
 }
