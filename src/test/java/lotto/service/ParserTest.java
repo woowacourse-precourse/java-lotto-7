@@ -102,11 +102,19 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ㅁ","a","/","-","\\","a3","\3"," ",""})
+    @ValueSource(strings = {"ㅁ","a","/","-","\\","a3"})
     public void 보너스번호_숫자가_아닌_경우_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자를 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ","","    ","\3"})
+    public void 보너스번호에_빈문자열이_입력된_경우_예외테스트(String input) throws Exception {
+        Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 빈 문자열을 입력하였습니다.");
     }
 
     @ParameterizedTest

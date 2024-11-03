@@ -17,6 +17,7 @@ public class Parser {
     }
 
     public static int parseBonusNum(String inputBonusNumber) {
+        LottoValidator.validateEmptyString(inputBonusNumber);
         int bonusNumber = Utils.changeStringToNum(inputBonusNumber);
 
         LottoValidator.isLottoNumInRange(bonusNumber);
