@@ -13,8 +13,7 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        LottoCollection lottoCollection = new LottoCollection();
-        LottoController lottoController = new LottoController(inputView, outputView, lottoCollection);
+        LottoController lottoController = new LottoController(inputView, outputView);
         lottoController.run();
         Console.close();
     }

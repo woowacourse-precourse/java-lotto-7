@@ -16,17 +16,16 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoCollection lottoCollection;
+    private LottoCollection lottoCollection;
     private Amount purchaseAmount;
     private LottoAmount lottoAmount;
     private WinningLottoNum winningLottoNum;
     private BonusNumber bonusNumber;
     private ResultFactory resultFactory;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoCollection lottoCollection) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoCollection = lottoCollection;
     }
 
     public void run() {
@@ -82,6 +81,7 @@ public class LottoController {
     }
 
     private void makeLotto() {
+        lottoCollection = new LottoCollection();
         for (int i = 0; i < lottoAmount.getCount(); i++) {
             lottoCollection.add(LottoFactory.make());
         }
