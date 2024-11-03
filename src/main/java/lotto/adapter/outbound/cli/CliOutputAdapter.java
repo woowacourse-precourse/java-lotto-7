@@ -1,4 +1,4 @@
-package lotto.adapter.outbound;
+package lotto.adapter.outbound.cli;
 
 import lotto.application.port.outbound.OutputPort;
 
