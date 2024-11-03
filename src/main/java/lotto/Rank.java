@@ -14,7 +14,7 @@ public enum Rank {
     final private long prize;
     final private String convertedPrize;
 
-    private Rank(String content, long prize, String convertPrize) {
+    Rank(String content, long prize, String convertPrize) {
         this.content = content;
         this.prize = prize;
         this.convertedPrize = convertPrize;
