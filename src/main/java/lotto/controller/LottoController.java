@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.LottoPurchaseHistory;
 import lotto.model.lottoInfo.LottoGame;
 import lotto.model.lottoInfo.PriceDataImpl;
@@ -7,6 +8,7 @@ import lotto.model.lottoInfo.StandardLottoPrice;
 import lotto.service.LottoService;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
+import lotto.util.ParseNumberUtil;
 import lotto.validator.MoneyValidator;
 
 public class LottoController {
@@ -18,8 +20,23 @@ public class LottoController {
     public void run() {
         LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
         int money = inputMoney(lottoGame.getPrice());
+
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
         printPurchaseHistory(lottoPurchaseHistory);
+
+        lottoGame.enterWinningNumber(inputWinningNumber());
+    }
+
+    private List<Integer> inputWinningNumber() {
+        while (true) {
+            try {
+                String winningInput = inputView.inputWinningNumber();
+                List<Integer> winningNumbers = ParseNumberUtil.parseNumber(winningInput);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private int inputMoney(int lottoPrice) {

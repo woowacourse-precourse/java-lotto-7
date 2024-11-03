@@ -10,6 +10,11 @@ public class InputView {
         return input();
     }
 
+    public String inputWinningNumber() {
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        return input();
+    }
+
     private String input() {
         return readLine().trim();
     }
