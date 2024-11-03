@@ -27,7 +27,6 @@ public class LottoInput {
 
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        scanner.nextLine();
         String winningNumbersInput = scanner.nextLine();
 
         // 숫자 이외의 값을 입력했을 경우
