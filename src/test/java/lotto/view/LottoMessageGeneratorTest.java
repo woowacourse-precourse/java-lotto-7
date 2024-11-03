@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.view.io.message.LottoMessageGenerator;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("NonAsciiCharacters")
 class LottoMessageGeneratorTest {
 
     LottoMessageGenerator lottoMessageGenerator = new LottoMessageGenerator();

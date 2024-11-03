@@ -6,6 +6,7 @@ import lotto.view.io.message.RateOfReturnMessageGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+@SuppressWarnings("NonAsciiCharacters")
 class RateOfReturnMessageGeneratorTest {
 
     RateOfReturnMessageGenerator rateOfReturnMessageGenerator = new RateOfReturnMessageGenerator();
