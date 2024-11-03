@@ -114,4 +114,16 @@ class InputViewTest {
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
         assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
     }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어날 때 예외 메시지 출력")
+    void displayErrorMessageWhenBonusNumberOutOfRange() {
+        List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 50;
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(mainNumbers, bonusNumber));
+        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
+    }
+
 }
