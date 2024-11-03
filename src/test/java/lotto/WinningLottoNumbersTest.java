@@ -80,12 +80,12 @@ public class WinningLottoNumbersTest {
     void 성공_보너스번호_당첨번호생성_유효한파라미터() {
         // given
         String winningNumbers = "1, 2, 3, 4, 5, 6";
-        String duplicateNumber = "7";
+        String bonusNumber = "7";
 
         // when & then
         assertThatCode(() ->
                 new WinningNumbers(WinningLottoNumbers.from(winningNumbers),
-                        BonusNumber.from(duplicateNumber)))
+                        BonusNumber.from(bonusNumber)))
                 .doesNotThrowAnyException();
     }
 }
