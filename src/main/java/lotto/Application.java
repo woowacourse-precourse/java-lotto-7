@@ -8,5 +8,7 @@ public class Application {
         String purchaseInput = Console.readLine();
 
         LottoMachine lottoMachine = new LottoMachine(purchaseInput);
+
+        lottoMachine.generateLottos();
     }
 }
