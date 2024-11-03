@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
 
 public class LottoCreateService {
 
@@ -53,4 +54,7 @@ public class LottoCreateService {
         );
     }
 
+    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+    }
 }

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -60,5 +61,19 @@ public class LottoCreateServiceTest {
         //when & then
         assertThatThrownBy(() -> lottoCreateService.createLottosWithMoney(money))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨로또를_생성한다(){
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        //when
+        WinningLotto winningLotto = lottoCreateService.createWinningLotto(winningNumbers, bonusNumber);
+
+        //then
+        assertThat(winningLotto.getWinningLottoNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(winningLotto.getBonusNumber()).isEqualTo(7);
     }
 }
