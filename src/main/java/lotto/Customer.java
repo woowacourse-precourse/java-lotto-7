@@ -11,6 +11,10 @@ public class Customer {
         lottos = new ArrayList<>();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public void buyLotto(String money) {
         int count = LottoTicketFactory.getLottoTicketCount(money);
 
