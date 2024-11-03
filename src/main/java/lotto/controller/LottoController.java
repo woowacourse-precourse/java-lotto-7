@@ -1,5 +1,13 @@
 package lotto.controller;
 
+import static lotto.domain.Lotto.MAX_LOTTO_NUMBER;
+import static lotto.domain.Lotto.MAX_LOTTO_NUMBER_COUNT;
+import static lotto.domain.Lotto.MIN_LOTTO_NUMBER;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
@@ -9,8 +17,12 @@ public class LottoController {
 
     public void draw() {
         int purchaseAmount = makeLottoPurchaseAmountRecursion();
+
+        List<Lotto> autoLottos = makeAutoLottos(purchaseAmount);
+
         Lotto winningNumbers = makeWinningNumbersRecursion();
         WinningLotto winningLotto = addBonusNumbersToWinningNumbersRecursion(winningNumbers);
+
     }
 
     private int makeLottoPurchaseAmountRecursion() {
@@ -44,5 +56,26 @@ public class LottoController {
             System.out.println(e.getMessage());
             return addBonusNumbersToWinningNumbersRecursion(winningNumbers);
         }
+    }
+
+    private List<Lotto> makeAutoLottos(int purchaseAmount) {
+        int lottoCnt = purchaseAmount / 1000;
+        List<Lotto> autoLottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoCnt; i++) {
+            autoLottos.add(makeAutoLotto());
+        }
+
+        return autoLottos;
+    }
+
+    private Lotto makeAutoLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                        MAX_LOTTO_NUMBER_COUNT)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
+
+        return new Lotto(numbers);
     }
 }
