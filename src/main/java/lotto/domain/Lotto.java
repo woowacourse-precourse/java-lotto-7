@@ -7,7 +7,9 @@ import static lotto.common.exception.ExceptionMessages.DUPLICATED_LOTTO_NUMBER;
 import static lotto.common.exception.ExceptionMessages.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.common.exception.ExceptionMessages.OUT_OF_LOTTO_NUMBER_RANGE;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -45,5 +47,12 @@ public class Lotto {
 
     public boolean containsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public long countMatchNumbers(Lotto otherLotto) {
+        Set<Integer> otherNumbers = new HashSet<>(otherLotto.numbers);
+        return this.numbers.stream()
+                .filter(otherNumbers::contains)
+                .count();
     }
 }
