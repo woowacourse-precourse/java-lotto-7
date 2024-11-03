@@ -8,6 +8,7 @@ public final class ExceptionsMessageConstants {
     public static final String INPUT_NUMBER_CANNOT_START_WITH_ZERO = "숫자의 맨 앞은 0으로 시작할 수 없습니다.";
     public static final String INPUT_CONTAINS_WHITE_SPACE = "입력값에 공백이 존재합니다.";
     public static final String INPUT_CANNOT_BE_EMPTY_OR_NULL = "빈 문자열이나 null값이면 안됩니다.";
+    public static final String INPUT_CONTAINS_NUMBER_AND_COMMA_ONLY = "입력값은 숫자와 콤마(,)만 포함해야 합니다.";
 
     private ExceptionsMessageConstants() {}
 }

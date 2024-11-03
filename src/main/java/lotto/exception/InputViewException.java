@@ -52,6 +52,8 @@ public class InputViewException {
 
     public void validateInputNumbers(String inputNumbers) {
         validateIfInputContainsNullOrEmpty(inputNumbers);
+        validateIfInputContainsWhitespace(inputNumbers);
+        validateIfInputContainsOtherThanNumbersAndComma(inputNumbers);
 
     }
 
@@ -59,6 +61,13 @@ public class InputViewException {
         if (inputNumbers == null || inputNumbers.isEmpty()) {
             throw new IllegalArgumentException(
                     ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_CANNOT_BE_EMPTY_OR_NULL);
+        }
+    }
+
+    private void validateIfInputContainsOtherThanNumbersAndComma(String inputNumbers) {
+        if (!inputNumbers.matches("[0-9,]+")) {
+            throw new IllegalArgumentException(
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_CONTAINS_NUMBER_AND_COMMA_ONLY);
         }
     }
 
