@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto implements Item {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,9 +11,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != 6
+                || numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int match(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
+    @Override
+    public String toString() {
+        return "[" +
+                String.join(", ",
+                        numbers.stream().map(String::valueOf).toList()) +
+                ']';
     }
 
     // TODO: 추가 기능 구현
