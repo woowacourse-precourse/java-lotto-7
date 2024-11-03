@@ -61,7 +61,7 @@ public class LottoController {
         while (true) {
             try {
                 return retryable.execute();
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 outputView.showErrorMessage(e);
             }
         }
