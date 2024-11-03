@@ -8,7 +8,6 @@ import java.util.List;
 
 public class LottoMachine {
     private static final int COUNTS_OF_LOTTO = 6;
-    private static final int COUNTS_OF_RANK = 5;
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
@@ -21,7 +20,8 @@ public class LottoMachine {
         WinningNumbers winningNumbers = makeWinningNumbers();
         BonusNumber bonusNumber = makeBonusNumber(winningNumbers);
         calculateResults(lottos, winningNumbers, bonusNumber);
-        
+        System.out.println(Result.totalPrize());
+
     }
 
     private Purchase makePurchase() {
@@ -94,7 +94,7 @@ public class LottoMachine {
         }
     }
 
-    private void calculateResults(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public void calculateResults(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (int i = 0; i < lottos.size(); i++) {
             Result rank = decideRank(lottos.lottoAt(i), winningNumbers, bonusNumber);
             rank.winningCountsUp();
@@ -103,11 +103,11 @@ public class LottoMachine {
 
     private Result decideRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         double count = 0;
-        if(lotto.contains(bonusNumber.number())) {
+        if (lotto.contains(bonusNumber.number())) {
             count += 0.5;
         }
         for (int i = 0; i < COUNTS_OF_LOTTO; i++) {
-            if(lotto.contains(winningNumbers.numberAt(i))) {
+            if (lotto.contains(winningNumbers.numberAt(i))) {
                 count += 1;
             }
         }
