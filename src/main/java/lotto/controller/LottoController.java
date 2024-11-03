@@ -120,7 +120,7 @@ public class LottoController {
 
     private void printTotalRateOfReturn() {
         double rateOfReturn = getTotalRateOfReturn();
-        outputView.printRateOfReturn(rateOfReturn);
+        outputView.printTotalRateOfReturn(rateOfReturn);
     }
 
     private void printFinalStatistics() {
