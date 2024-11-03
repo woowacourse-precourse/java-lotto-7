@@ -1,9 +1,11 @@
 package lotto.rank;
 
+import static lotto.constants.CommonConstants.UNUSED;
+
 import java.util.function.Predicate;
 
 public enum Ranking {
-    NONE(matchCount -> (matchCount <= 2), -1, true, false, 0L),
+    NONE(matchCount -> (matchCount <= 2), UNUSED, true, false, 0L),
     FIFTH(matchCount -> (matchCount == 3), 3, true, false, 5_000L),
     FOURTH(matchCount -> (matchCount == 4), 4, true, false, 50_000L),
     THIRD(matchCount -> (matchCount == 5), 5, false, false, 1_500_000L),
