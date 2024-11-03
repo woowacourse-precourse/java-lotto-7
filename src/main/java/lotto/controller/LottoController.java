@@ -32,6 +32,7 @@ public class LottoController {
         OutputView.printLottoTicketMessage(balance.getTicket());
         for (int i = 0; i < balance.getTicket(); i++) {
             user.addLotto(LottoService.createLottoNumbers());
+            OutputView.printLottoNumbers(user.getLottos().get(i));
         }
     }
 }

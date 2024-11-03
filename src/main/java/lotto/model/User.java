@@ -13,4 +13,8 @@ public class User {
     public void addLotto(List<Integer> lotto) {
         this.lottos.add(lotto);
     }
+
+    public List<List<Integer>> getLottos() {
+        return this.lottos;
+    }
 }
