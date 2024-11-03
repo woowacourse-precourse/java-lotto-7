@@ -23,34 +23,21 @@ public class LottoResult {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-
-        // 3개 일치
-        result.append("3개 일치 (5,000원) - ")
-                .append(rankCount.getOrDefault(Rank.FIFTH, 0))
-                .append("개\n");
-
-        // 4개 일치
-        result.append("4개 일치 (50,000원) - ")
-                .append(rankCount.getOrDefault(Rank.FOURTH, 0))
-                .append("개\n");
-
-        // 5개 일치
-        result.append("5개 일치 (1,500,000원) - ")
-                .append(rankCount.getOrDefault(Rank.THIRD, 0))
-                .append("개\n");
-
-        // 5개 일치 + 보너스
-        result.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(rankCount.getOrDefault(Rank.SECOND, 0))
-                .append("개\n");
-
-        // 6개 일치
-        result.append("6개 일치 (2,000,000,000원) - ")
-                .append(rankCount.getOrDefault(Rank.FIRST, 0))
-                .append("개\n");
-
+        appendRank(result, Rank.FIFTH, "3개 일치 (5,000원)");
+        appendRank(result, Rank.FOURTH, "4개 일치 (50,000원)");
+        appendRank(result, Rank.THIRD, "5개 일치 (1,500,000원)");
+        appendRank(result, Rank.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)");
+        appendRank(result, Rank.FIRST, "6개 일치 (2,000,000,000원)");
         return result.toString();
     }
+
+    private void appendRank(StringBuilder result, Rank rank, String description) {
+        result.append(description)
+                .append(" - ")
+                .append(rankCount.getOrDefault(rank, 0))
+                .append("개\n");
+    }
+
 
 
 }
