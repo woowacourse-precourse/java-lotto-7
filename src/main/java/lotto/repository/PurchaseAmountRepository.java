@@ -15,8 +15,8 @@ public class PurchaseAmountRepository {
         return PURCHASE_AMOUNT_REPOSITORY;
     }
 
-    public void save(final int value) {
-        this.value = value;
+    public void save(PurchaseAmount purchaseAmount) {
+        this.value = purchaseAmount.getValue();
     }
 
     public PurchaseAmount find() {
