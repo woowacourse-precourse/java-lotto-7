@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class ConsoleInput implements Input {
             validateNumbersInput(input);
 
             return Arrays.stream(input.split(","))
-                    .map(String::trim)
+                    .map(String::strip)
                     .map(this::parseInt)
                     .toList();
         } catch (IllegalArgumentException ex) {
@@ -63,7 +62,7 @@ public class ConsoleInput implements Input {
     }
 
     private boolean isInvalidInput(String input) {
-        return input == null || input.trim().isEmpty();
+        return input == null || input.isBlank();
     }
 
     private boolean isInvalidAmount(String input) {
