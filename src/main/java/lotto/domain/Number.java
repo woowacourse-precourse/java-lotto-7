@@ -16,7 +16,7 @@ final public class Number implements Comparable<Number> {
 
     private final int value;
 
-    private Number(int value) {
+    public Number(int value) {
         validateValueInRange(value);
         this.value = value;
     }
