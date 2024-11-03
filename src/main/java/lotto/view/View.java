@@ -6,7 +6,7 @@ import java.util.List;
 public class View {
 
     // inputView Prompt
-    protected final String PRICE_PROMPT = "구입금액을 입력해 주세요.";
+    protected final String AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
     protected final String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
     protected final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
 

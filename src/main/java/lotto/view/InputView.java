@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.AmountValidate;
 import lotto.util.BonusNumberValidate;
-import lotto.util.PriceValidate;
 import lotto.util.WinningNumberValidate;
 
 import java.util.Arrays;
@@ -12,11 +12,11 @@ public class InputView extends View {
 
     private final String SPLIT_DELIMITER = ",";
 
-    public int getPrice() {
-        System.out.println(PRICE_PROMPT);
-        String price = Console.readLine().trim();
-        PriceValidate.validate(price);
-        return stringToInt(price);
+    public int getAmount() {
+        System.out.println(AMOUNT_PROMPT);
+        String amount = Console.readLine().trim();
+        AmountValidate.validate(amount);
+        return stringToInt(amount);
     }
 
     public List<Integer> getWinningNumber() {

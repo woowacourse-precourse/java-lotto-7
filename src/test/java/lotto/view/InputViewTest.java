@@ -24,10 +24,10 @@ class InputViewTest {
         System.setIn(in);
 
         // when
-        int price = inputView.getPrice();
+        int amount = inputView.getAmount();
 
         // then
-        assertThat(price).isEqualTo(Integer.parseInt(input));
+        assertThat(amount).isEqualTo(Integer.parseInt(input));
     }
 
     @Test

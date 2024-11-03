@@ -2,7 +2,7 @@ package lotto.util;
 
 import lotto.exception.ErrorMessages;
 
-public class PriceValidate {
+public class AmountValidate {
 
     public static void validate(String input) {
         checkType(input);
@@ -20,16 +20,16 @@ public class PriceValidate {
 
     // 입력값 최소값 검사
     private static void checkMinRange(String input) {
-        int price = Integer.parseInt(input);
-        if (price < 1000) {
+        int amount = Integer.parseInt(input);
+        if (amount < 1000) {
             throw new IllegalArgumentException(ErrorMessages.MIN_RANGE.getMessage());
         }
     }
 
     // 입력값 유효성 검사
     private static void checkThousandUnit(String input) {
-        int price = Integer.parseInt(input);
-        if (price % 1000 != 0) {
+        int amount = Integer.parseInt(input);
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessages.THOUSAND_UNIT.getMessage());
         }
     }

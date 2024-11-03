@@ -5,38 +5,38 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class PriceValidateTest {
+class AmountValidateTest {
 
-    PriceValidate priceValidate = new PriceValidate();
+    AmountValidate amountValidate = new AmountValidate();
 
     @Test
     @DisplayName("구입금액_예외처리_테스트")
-    void priceValidateTest() {
+    void amountValidateTest() {
         String input = "5000";
-        priceValidate.validate(input);
+        amountValidate.validate(input);
     }
 
     @Test
     @DisplayName("구입금액_예외처리_자료형_테스트")
-    void priceCheckTypeTest() {
+    void amountCheckTypeTest() {
         String input = "String";
-        assertThatThrownBy(() -> priceValidate.validate(input))
+        assertThatThrownBy(() -> amountValidate.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("구입금액_예외처리_최솟값_테스트")
-    void priceCheckThousandUnit() {
+    void amountCheckThousandUnit() {
         String input = "-5000";
-        assertThatThrownBy(() -> priceValidate.validate(input))
+        assertThatThrownBy(() -> amountValidate.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("구입금액_예외처리_천원_단위_테스트")
-    void priceCheckMinRangeTest() {
+    void amountCheckMinRangeTest() {
         String input = "5100";
-        assertThatThrownBy(() -> priceValidate.validate(input))
+        assertThatThrownBy(() -> amountValidate.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

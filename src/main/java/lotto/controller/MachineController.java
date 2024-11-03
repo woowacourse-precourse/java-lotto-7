@@ -27,8 +27,8 @@ public class MachineController {
     }
 
     private List<Lotto> purchaseLotto() {
-        int price = inputView.getPrice();
-        List<Lotto> lottos = lottoMachine.generateLotto(price);
+        int amount = inputView.getAmount();
+        List<Lotto> lottos = lottoMachine.generateLotto(amount);
         outputView.printLottos(lottos);
         return lottos;
     }
