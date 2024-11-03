@@ -63,32 +63,36 @@ public class LottoController {
         return intList;
     }
 
-    public static WinningLotto makeWinningLotto(List<String> numbers) {
-        List<Integer> winningNumbers = changeStringListToIntList(numbers);
-        WinningLotto winningLotto = new WinningLotto();
-        winningLotto.setNumbers(winningNumbers);
-        return winningLotto;
+    public static void checkRange(List<Integer> numbers){
+        for (Integer number : numbers) {
+            if (number > 45 || number < 1) {
+                throw new IllegalArgumentException(Error_Messages.NUMBER_RANGE_ERROR);
+            }
+        }
     }
 
-    public static void checkWinningLotto(List<String> numbers){
-        Set<String> set = new HashSet<>(numbers);
-        if (set.size() != numbers.size()){
+    public static void checkWinningLotto(WinningLotto winningLotto){
+        List<Integer> numbers = winningLotto.getNumbers();
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != numbers.size()) {
             throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
         }
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(Error_Messages.LOTTO_COUNT_ERROR);
-        }
+        checkRange(numbers);
     }
 
-    public static WinningLotto winningLotto() {
-        List<String> numbers = readWinningNumbers();
+    public static WinningLotto makeWinningLotto() {
+        List<String> inputNumbers = readWinningNumbers();
+        List<Integer> numbers = changeStringListToIntList(inputNumbers);
         try {
-            checkWinningLotto(numbers);
+            Lotto lotto = new Lotto(numbers);
+            WinningLotto winningLotto = new WinningLotto(lotto);
+            checkWinningLotto(winningLotto);
+            return winningLotto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            winningLotto();
+            makeWinningLotto();
         }
-        return makeWinningLotto(numbers);
+        return null;
     }
 
     private static void checkBonusNumber(WinningLotto winningLotto, int number){

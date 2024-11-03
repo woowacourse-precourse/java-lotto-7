@@ -15,7 +15,7 @@ public class Application {
         drawAndSetLottos(lottoController);
         printBoughtLottos(lottoController);
 
-        WinningLotto winningLotto = LottoController.winningLotto();
+        WinningLotto winningLotto = LottoController.makeWinningLotto();
         LottoController.bonusNumber(winningLotto);
         getSummary(lottoController, winningLotto);
     }
