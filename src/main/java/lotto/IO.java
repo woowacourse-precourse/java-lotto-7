@@ -17,4 +17,10 @@ public class IO {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
+
+    public void printResult(double result) {
+        System.out.println("당첨통계\n---");
+        // TODO: 당첨 통계 출력 (n개 일치)
+        System.out.printf("총 수익률은 %f입니다", result);
+    }
 }
