@@ -1,4 +1,4 @@
-package lotto.model.exception;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.List;
