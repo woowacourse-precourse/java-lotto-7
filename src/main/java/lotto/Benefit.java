@@ -10,4 +10,5 @@ public class Benefit {
         }
         return (double) totalPrize/purchaseAmount*100;
     }
+
 }
