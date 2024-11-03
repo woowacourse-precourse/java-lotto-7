@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.LinkedHashMap;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
@@ -10,7 +11,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResults {
-    Map<Rank, Integer> lottoResultMap = new EnumMap<>(Rank.class);
+    Map<Rank, Integer> lottoResultMap = new LinkedHashMap<>();
 
     public Map<Rank, Integer> calculateResult(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         refineValue(lottoResultMap);
