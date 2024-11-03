@@ -1,13 +1,13 @@
 package lotto.domain;
 
-public enum CalculationUnit {
+public enum MonetaryUnit {
     USER_MONEY_PRICE(1000),
     PERCENTAGE(100),
-    ROUND_UP_TO_TWO_DECIMAL_PLACES(100);
+    ROUND_UP_TO_TWO_DECIMAL_PLACES(10);
 
     private final int unit;
 
-    CalculationUnit(int unit) {
+    MonetaryUnit(int unit) {
         this.unit = unit;
     }
 

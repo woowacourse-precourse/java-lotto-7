@@ -43,7 +43,7 @@ public class LottoController {
     }
 
     private int readUserMoney() {
-        int userMoney = 0;
+        int userMoney;
         while (true) {
             try {
                 userMoney = InputView.readUserMoney();

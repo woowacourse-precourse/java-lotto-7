@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 
 import static lotto.domain.DefaultUserMoney.USER_MONEY;
 import static lotto.domain.DefaultUserMoney.USER_MONEY_TEN_THOUSAND;
-import static lotto.domain.CalculationUnit.PERCENTAGE;
-import static lotto.domain.CalculationUnit.USER_MONEY_PRICE;
+import static lotto.domain.MonetaryUnit.PERCENTAGE;
+import static lotto.domain.MonetaryUnit.USER_MONEY_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {

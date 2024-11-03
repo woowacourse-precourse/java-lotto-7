@@ -8,6 +8,6 @@ public class UserMoney {
     }
 
     public int calculateNumberOfLotto() {
-        return this.userMoney / CalculationUnit.USER_MONEY_PRICE.getUnit();
+        return this.userMoney / MonetaryUnit.USER_MONEY_PRICE.getUnit();
     }
 }

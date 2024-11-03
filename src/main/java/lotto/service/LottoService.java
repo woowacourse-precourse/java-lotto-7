@@ -7,8 +7,8 @@ import lotto.domain.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.domain.CalculationUnit.PERCENTAGE;
-import static lotto.domain.CalculationUnit.ROUND_UP_TO_TWO_DECIMAL_PLACES;
+import static lotto.domain.MonetaryUnit.PERCENTAGE;
+import static lotto.domain.MonetaryUnit.ROUND_UP_TO_TWO_DECIMAL_PLACES;
 
 public class LottoService {
     public LottoTicketsDto createLottoTickets(int money) {

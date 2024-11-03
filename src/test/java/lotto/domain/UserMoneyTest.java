@@ -3,7 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.domain.CalculationUnit.USER_MONEY_PRICE;
+import static lotto.domain.MonetaryUnit.USER_MONEY_PRICE;
 import static lotto.domain.DefaultUserMoney.USER_MONEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

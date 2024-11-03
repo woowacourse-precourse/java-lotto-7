@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.CalculationUnit;
+import lotto.domain.MonetaryUnit;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public class InputView {
     }
 
     private static void validateDivisibilityByThousand(int userMoney) {
-        if (userMoney % CalculationUnit.USER_MONEY_PRICE.getUnit() != 0) {
+        if (userMoney % MonetaryUnit.USER_MONEY_PRICE.getUnit() != 0) {
             throw new IllegalArgumentException("[ERROR] 1000단위로 나누어 떨어지지 않습니다.");
         }
     }
