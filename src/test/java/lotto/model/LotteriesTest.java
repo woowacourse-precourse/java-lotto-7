@@ -49,8 +49,8 @@ class LotteriesTest {
     void 로또_번호와_당첨_번호_매칭_개수를_계산() {
         TicketCount ticketCount = new TicketCount(2);
         Lotteries lotteries = Lotteries.createLotteries(ticketCount, testGenerator);
-        Lotto winningLottoEx1 = new Lotto(List.of(1, 2, 3, 4, 8, 9));
-        Lotto winningLottoEx2 = new Lotto(List.of(1, 2, 3, 45, 8, 9));
+        Lotto winningLottoEx1 = Lotto.createWinningLotto(List.of(1, 2, 3, 4, 8, 9));
+        Lotto winningLottoEx2 = Lotto.createWinningLotto(List.of(1, 2, 3, 45, 8, 9));
 
         List<Integer> matchedCount1 = lotteries.countMatchedNumbers(winningLottoEx1);
         List<Integer> matchedCount2 = lotteries.countMatchedNumbers(winningLottoEx2);

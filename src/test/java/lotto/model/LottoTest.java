@@ -17,30 +17,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class LottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 로또_번호가_지정된_숫자_범위를_벗어나면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+        assertThatThrownBy(() -> Lotto.createWinningLotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(LottoNumberOutOfRangeException.class);
 
-        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
+        assertThatThrownBy(() -> Lotto.createWinningLotto(List.of(1,2,3,4,5,46)))
                 .isInstanceOf(LottoNumberOutOfRangeException.class);
     }
 
     @DisplayName("정상적인 로또 당첨 번호 생성")
     @Test
     void 정상적인_로또_당첨_번호를_생성한다() {
-        assertDoesNotThrow(() -> new Lotto(List.of(1,2,3,4,5,6)));
+        assertDoesNotThrow(() -> Lotto.createWinningLotto(List.of(1,2,3,4,5,6)));
     }
 
     @DisplayName("구매한 로또 번호를 생성합니다.")
@@ -50,7 +50,7 @@ class LottoTest {
 
         Lotto lotto = Lotto.createLottoNumber(testGenerator);
 
-        assertDoesNotThrow(() -> new Lotto(lotto.getNumbers()));
+        assertDoesNotThrow(() -> Lotto.createWinningLotto(lotto.getNumbers()));
     }
 
     @Test

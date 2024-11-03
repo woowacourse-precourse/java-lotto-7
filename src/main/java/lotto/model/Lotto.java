@@ -18,7 +18,7 @@ import lotto.vo.BonusNumber;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateLottoNumber(numbers);
         this.numbers = numbers;
     }
