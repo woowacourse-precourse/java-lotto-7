@@ -1,9 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.application.LottoResultUseCase;
-import lotto.application.PurchaseLottoUseCase;
-import lotto.application.RetrieveLottoUseCase;
+import lotto.application.FacadeLottoUseCase;
 import lotto.domain.Lotto;
 import lotto.domain.WinResult;
 import lotto.view.ApplicationView;
@@ -14,22 +12,17 @@ public class LottoApplication {
 
     private final ApplicationView applicationView;
     private final MessageParser<Lotto> messageParser;
-    private final PurchaseLottoUseCase purchaseLottoUseCase;
-    private final RetrieveLottoUseCase retrieveLottoUseCase;
-    private final LottoResultUseCase lottoResultUseCase;
+    private final FacadeLottoUseCase facadeLottoUseCase;
+
 
     public LottoApplication(
             ApplicationView applicationView,
             MessageParser<Lotto> messageParser,
-            PurchaseLottoUseCase purchaseLottoUseCase,
-            RetrieveLottoUseCase retrieveLottoUseCase,
-            LottoResultUseCase lottoResultUseCase
+            FacadeLottoUseCase facadeLottoUseCase
     ) {
         this.applicationView = applicationView;
         this.messageParser = messageParser;
-        this.purchaseLottoUseCase = purchaseLottoUseCase;
-        this.retrieveLottoUseCase = retrieveLottoUseCase;
-        this.lottoResultUseCase = lottoResultUseCase;
+        this.facadeLottoUseCase = facadeLottoUseCase;
     }
 
     public void execute() {
@@ -44,23 +37,23 @@ public class LottoApplication {
 
     private void purchaseLotto() {
         int money = applicationView.requestMoney();
-        purchaseLottoUseCase.purchase(money);
+        facadeLottoUseCase.purchase(money);
     }
 
     private void showPurchasedLotto() {
-        List<Lotto> purchasedLotto = retrieveLottoUseCase.retrieveAll();
+        List<Lotto> purchasedLotto = facadeLottoUseCase.retrieveAll();
         applicationView.printPurchasedLotto(messageParser.toMessages(purchasedLotto));
     }
 
     private void drawWinner() {
         String winNumber = applicationView.requestWinNumber();
         int bonusNumber = applicationView.requestBonusNumber();
-        lottoResultUseCase.createWinLotto(messageParser.toNumbers(winNumber), bonusNumber);
-        lottoResultUseCase.checkWinning();
+        facadeLottoUseCase.createWinLotto(messageParser.toNumbers(winNumber), bonusNumber);
+        facadeLottoUseCase.checkWinning();
     }
 
     private void showResult() {
-        WinResult winResult = lottoResultUseCase.getWinResult();
+        WinResult winResult = facadeLottoUseCase.getWinResult();
         applicationView.printWinningResult(WinningInfo.from(winResult));
     }
 }

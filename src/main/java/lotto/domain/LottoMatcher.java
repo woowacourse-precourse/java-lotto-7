@@ -1,9 +1,7 @@
-package lotto.application.service;
+package lotto.domain;
 
 import java.util.List;
 import lotto.application.service.vo.MatchingInfo;
-import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
 
 public class LottoMatcher {
 

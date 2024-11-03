@@ -2,9 +2,11 @@ package lotto.common;
 
 import lotto.LottoApplication;
 import lotto.application.LottoResultUseCase;
+import lotto.application.FacadeLottoUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
-import lotto.application.service.LottoMatcher;
+import lotto.application.service.FacadeLottoService;
+import lotto.domain.LottoMatcher;
 import lotto.application.service.LottoResultService;
 import lotto.application.service.PurchaseLottoService;
 import lotto.application.service.RetrieveLottoService;
@@ -33,7 +35,7 @@ public final class LottoConfig {
     }
 
     public LottoApplication lottoApplication() {
-        return new LottoApplication(applicationView(), messageConverter(), purchaseLottoUseCase(), retrieveLottoUseCase(),lottoResultUseCase());
+        return new LottoApplication(applicationView(), messageConverter(), lottoUseCase());
     }
 
     private ApplicationView applicationView() {
@@ -42,6 +44,10 @@ public final class LottoConfig {
 
     private MessageParser<Lotto> messageConverter() {
         return new LottoMessageParser();
+    }
+
+    private FacadeLottoUseCase lottoUseCase() {
+        return new FacadeLottoService(purchaseLottoUseCase(), retrieveLottoUseCase(), lottoResultUseCase());
     }
 
     private PurchaseLottoUseCase purchaseLottoUseCase() {

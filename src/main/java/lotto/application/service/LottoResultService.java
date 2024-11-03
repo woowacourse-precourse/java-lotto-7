@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.application.LottoResultUseCase;
 import lotto.application.service.vo.MatchingInfo;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMatcher;
 import lotto.domain.LottoRank;
 import lotto.domain.WinLotto;
 import lotto.domain.WinResult;
