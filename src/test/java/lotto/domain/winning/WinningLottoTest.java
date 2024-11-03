@@ -8,6 +8,7 @@ import lotto.domain.number.Number;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningLottoTest {
@@ -84,5 +85,21 @@ class WinningLottoTest {
         WinningLotto winningLotto = WinningLotto.of(numbers);
 
         assertThat(winningLotto.contains(Number.of(number))).isFalse();
+    }
+
+    @DisplayName("contains 메서드 테스트")
+    @ParameterizedTest
+    @CsvSource({
+            "1, true",
+            "6, true",
+            "9, false",
+            "45, false"
+    })
+    void 오버로딩_된_포함_여부_테스트(int bonusNumber, boolean expected) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        WinningLotto winningLotto = WinningLotto.of(numbers);
+
+        assertThat(winningLotto.contains(bonusNumber)).isEqualTo(expected);
     }
 }
