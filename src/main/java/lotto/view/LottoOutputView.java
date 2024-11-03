@@ -18,8 +18,12 @@ public class LottoOutputView {
         System.out.println("---");
         for (int i = rankCounts.length - FOR_PRINT_FROM_SECOND; i >= 0 ; i--) {
             LottoRank lottoRank = LottoRank.values()[i];
+            if (lottoRank.hasBonusNumber()) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",lottoRank.getWinningCount(),lottoRank.getPrize(),rankCounts[i]);
+                continue;
+            }
             System.out.printf("%d개 일치 (%,d원) - %d개\n",lottoRank.getWinningCount(),lottoRank.getPrize(),rankCounts[i]);
         }
-        System.out.printf("총 수익률은 %f%%입니다.",rateOfRevenue);
+        System.out.printf("총 수익률은 %.1f%%입니다.",rateOfRevenue);
     }
 }
