@@ -18,6 +18,7 @@ public class OutputView {
     public void printResult(List<LottoResultDto> dtos) {
         System.out.println();
         System.out.println("당첨 통계");
+        System.out.println("---");
         for (LottoResultDto dto : dtos) {
             System.out.printf("%d개 일치 (%d원) - %d개%n",
                 dto.correctNumber(),
