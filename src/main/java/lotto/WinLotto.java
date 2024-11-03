@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import java.util.Objects;
 
 public class WinLotto {
@@ -25,5 +26,13 @@ public class WinLotto {
         if (bonus < 1 || bonus > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45 사이입니다.");
         }
+    }
+
+    public List<Integer> getWinLottoNumbers() {
+        return lotto.getNumbers();
+    }
+
+    public Integer getBonus() {
+        return bonus;
     }
 }

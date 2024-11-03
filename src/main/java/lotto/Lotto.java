@@ -42,4 +42,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public Integer compareWithWinLotto(List<Integer> winLottoNumbers) {
+        int matched = 0;
+        for (Integer number : numbers) {
+            if (winLottoNumbers.contains(number)) {
+                matched++;
+            }
+        }
+        return matched;
+    }
 }

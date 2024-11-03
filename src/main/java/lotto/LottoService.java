@@ -16,5 +16,4 @@ public class LottoService {
                         .mapToObj(i -> lottoGenerator.createLotto())
                         .collect(Collectors.toList()));
     }
-
 }

@@ -1,5 +1,9 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Application {
     public static void main(String[] args) {
         Input input = new Input(new InputValidator());
@@ -9,5 +13,7 @@ public class Application {
 
         LottoService lottoService = new LottoService(new LottoGenerator(new LottoStrategyRandom()));
         Lottos lottos = lottoService.createLottos(amount);
+
+        List<Rank> ranks = lottos.compareWithWinLotto(winLotto);
     }
 }
