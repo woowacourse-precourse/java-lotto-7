@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,9 +22,14 @@ public class LottoController {
             List<Lotto> userLottos = lottoService.purchase(amount);
             OutputView.purchase(userLottos);
 
-            // 당첨 번호를 입력 받음
+            // 당첨 번호와 보너스 번호를 입력 받음
             String winningNumbersInput = InputView.getWinningNumbers();
             Lotto winningNumbers = lottoService.parseLotto(winningNumbersInput);
+            int bonusNumber = InputView.getBonusNumbers();
+
+            WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+
 
 
         } catch (IllegalArgumentException e) {

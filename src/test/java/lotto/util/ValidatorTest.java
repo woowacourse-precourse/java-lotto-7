@@ -20,7 +20,7 @@ class ValidatorTest {
     @Test
     void 구입_금액이_숫자가_아닌_경우() {
         assertThrows(IllegalArgumentException.class, () -> Validator.purchaseAmount("일이삼사"),
-                "[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+                "[ERROR] 숫자를 입력해 주세요.");
     }
 
     @Test
