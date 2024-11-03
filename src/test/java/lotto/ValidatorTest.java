@@ -44,6 +44,6 @@ class ValidatorTest {
         String price = "오천원";
         assertThatThrownBy(() -> validator.isNumber(price))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 구입 금액은 숫자로 입력해주세요.");
+                .hasMessageContaining("[ERROR] 숫자로 입력해주세요.");
     }
 }

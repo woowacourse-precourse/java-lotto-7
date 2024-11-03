@@ -53,7 +53,7 @@ class LottoDrawMachineTest {
         // when
         lottoDrawMachine.compareLottoToWinning();
         Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        Double result = (double) (Rank.FIRST.price() / 1000);
+        Double result = (double) Rank.FIRST.price() / 1000 * 100;
 
         // then
         assertThat(earningsRate).isEqualTo(result);
@@ -73,7 +73,7 @@ class LottoDrawMachineTest {
         // when
         lottoDrawMachine.compareLottoToWinning();
         Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        Double result = (double) ((Rank.FIRST.price() + Rank.SECOND.price()) / 2000);
+        Double result = (double) (Rank.FIRST.price() + Rank.SECOND.price()) / 2000 * 100;
 
         // then
         assertThat(earningsRate).isEqualTo(result);
@@ -108,8 +108,8 @@ class LottoDrawMachineTest {
         // when
         lottoDrawMachine.compareLottoToWinning();
         Double earningsRate = lottoDrawMachine.calculateEarningsRate();
-        int winningSum = 5000;
-        int purchaseAmount = 8000;
+        long winningSum = 5000L;
+        long purchaseAmount = 1000L;
         Double result = (double) winningSum / purchaseAmount * 100;
 
         // then

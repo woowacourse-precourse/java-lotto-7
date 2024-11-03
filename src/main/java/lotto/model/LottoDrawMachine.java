@@ -42,7 +42,7 @@ public class LottoDrawMachine {
         for (Map.Entry<Rank, Integer> entry : winningResult.entrySet()) {
             Rank rank = entry.getKey();
             int count = entry.getValue();
-            if (count == 0 || rank.equals(Rank.NONE)) continue;;
+            if (count == 0 || rank.equals(Rank.NONE)) continue;
             total += rank.price() * count;
         }
         return total;
