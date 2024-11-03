@@ -8,6 +8,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int money = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         // 로또 구매 및 출력
         Buy buy = new Buy();
@@ -17,17 +18,20 @@ public class Application {
         for (Lotto l : lottos) {
             System.out.println(l.getNumbers());
         }
+        System.out.println();
 
         // 당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputWinNumbers = Console.readLine();
         WinNumber winNumber = new WinNumber();
         winNumber.inputWinNumber(inputWinNumbers);
+        System.out.println();
 
         // 보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         winNumber.inputBonusNumber(bonusNumber);
+        System.out.println();
 
         // 당첨 결과 확인
         MatchNumber matchNumber = new MatchNumber(winNumber, bonusNumber);
