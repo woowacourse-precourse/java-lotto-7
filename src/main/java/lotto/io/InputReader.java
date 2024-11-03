@@ -46,6 +46,9 @@ public class InputReader {
     }
 
     private String readInput() {
-        return Console.readLine();
+        String input = Console.readLine();
+        Validator.validateEmptyString(input);
+
+        return input;
     }
 }

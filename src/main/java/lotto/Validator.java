@@ -48,4 +48,10 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_ERROR.getValue());
         }
     }
+
+    public static void validateEmptyString(String input){
+        if(input == null || input.isBlank()){
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_STRING_ERROR.getValue());
+        }
+    }
 }
