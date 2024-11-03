@@ -12,7 +12,7 @@ public class Validator {
     public static final String INVALID_NUMBER_MESSAGE = "[ERROR] 숫자 입력하셔야 합니다.";
     public static final String INVALID_AMOUNT_MESSAGE = "[ERROR] 1000원 단위로 입력하셔야 합니다.";
     public static final String INVALID_NUMBER_RANGE_MESSAGE = "[ERROR] 1~45 사이의 숫자여야합니다.";
-    public static final String INVALID_NUMBER_LENGTH_MESSAGE = "[ERROR] 로또 번호 6개 입력하셔야 합니다.";
+    public static final String INVALID_NUMBER_LENGTH_MESSAGE = "[ERROR] 쉼표를 기준으로 로또 번호 6개 입력하셔야 합니다.";
     public static final String INVALID_NUMBERS_DUPLICATE_MESSAGE = "[ERROR] 중복된 숫자가 포함되어 있습니다.";
     public static final String INVALID_NUMBERS_CONTAIN_DUPLICATE = "[ERROR] 당첨 번호와 중복된 숫자가 포함되어 있습니다.";
 
