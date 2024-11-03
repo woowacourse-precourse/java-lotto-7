@@ -103,4 +103,11 @@ public class Input {
 		validateLuckyNumberRange(input);
 		validateNumberCount(input);
 	}
+
+	public void validateBonusNumber(List<Integer> numbers, String input) {
+		validateEmpty(input);
+		validateInteger(input);
+		validateNumberRange(Integer.parseInt(input));
+		validateDuplicateBonusNumber(numbers, input);
+	}
 }
