@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchaseLotto;
 import lotto.domain.User;
+import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -30,7 +31,7 @@ public class UserService {
         User user = new User();
 
         for(int i=0; i<lottoTickets; i++) {
-            user.AddPurchaseLottos(new PurchaseLotto());
+            user.AddPurchaseLottos(new PurchaseLotto(LottoNumberGenerator.lottoNumbers()));
         }
 
         outputView.purchaseLottoView(lottoTickets, user.getPurchaseLottos());
