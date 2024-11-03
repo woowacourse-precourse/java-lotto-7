@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.domain.factory.LottoFactory.generateLotto;
 import static lotto.domain.factory.ResultFactory.generateResult;
 import static lotto.handler.Handler.repeatInputUntilValid;
+import static lotto.util.ProfitCalculator.calculateProfit;
 import static lotto.view.InputView.getUserInput;
 import static lotto.view.InputView.getUserInputByList;
 
@@ -31,5 +32,7 @@ public class LottoController {
         Result lottoResult = generateResult(lottoMachine, lottos);
 
         Prize prize = lottoResult.getTotalPrize();
+
+        double profit = calculateProfit(prize, purchase);
     }
 }
