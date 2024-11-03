@@ -37,6 +37,14 @@ public class LottoMachine {
         return this;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateWinningNumbers(List<String> winningNumbers) {
         List<Integer> parsedWinningNumbers = parseToIntegerList(winningNumbers);
 
