@@ -398,7 +398,7 @@
 <img src="https://github.com/user-attachments/assets/c684dc4a-6ecb-41ca-89d6-682cd28d1561" alt="WinningNumbers클래스와 WinningStatistic클래스의 관계" width="800"/>
 
 ### Money클래스와 TotalPrice클래스의 관계
-<img src="https://github.com/user-attachments/assets/9f7bec60-53fa-45cb-987e-1bc22cc91068" alt="Money클래스와 TotalPrice클래스의 관계" width="800"/>
+<img src="https://github.com/user-attachments/assets/b534d764-3bf6-482d-95f0-1ae7861c80a3" alt="Money클래스와 TotalPrice클래스의 관계" width="800"/>
 
 ### Model클래스들과 메인Controller 클래스와의 관계
 <img src="https://github.com/user-attachments/assets/77417b10-1d5e-4836-90f7-58a1a8696b2e" alt="Model클래스들과 메인Controller 클래스와의 관계" width="700"/>
