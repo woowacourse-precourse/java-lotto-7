@@ -1,13 +1,15 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.domain.LottoConstants.IS_DUPLICATE_NUMBER;
+import static lotto.domain.LottoConstants.IS_NOT_LOTTO_SIZE;
+import static lotto.domain.LottoConstants.LOTTO_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    public static final int LOTTO_SIZE = 6;
-    private static final String IS_NOT_LOTTO_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String IS_DUPLICATE_NUMBER = "[ERROR] 중복된 번호가 있습니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
