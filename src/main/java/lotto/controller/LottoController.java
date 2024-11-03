@@ -26,17 +26,17 @@ public class LottoController {
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
         printPurchaseHistory(lottoPurchaseHistory);
         lottoGame.enterWinningNumber(inputWinningNumber());
-        inputBonusNumber(lottoGame.getWinningNumbers());
+        lottoGame.enterBonusNumber(inputBonusNumber(lottoGame.getWinningNumbers()));
     }
 
-    private void inputBonusNumber(List<Integer> winningNumbers) {
+    private int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 String bonusInput = inputView.inputBonusNumber();
                 Integer bonusNumber = ParseNumberUtil.parseNumberToInteger(bonusInput);
                 numberValidator.checkNumberRange(bonusNumber);
                 numberValidator.checkNumberDuplicatedWithWinningNumber(bonusNumber, winningNumbers);
-                break;
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

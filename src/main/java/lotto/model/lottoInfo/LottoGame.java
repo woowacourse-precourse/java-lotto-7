@@ -17,6 +17,10 @@ public class LottoGame {
         this.winningNumbers = new WinningNumber(integers);
     }
 
+    public void enterBonusNumber(int bonusNumber) {
+        this.bonusNumber = new BonusNumber(bonusNumber);
+    }
+
     public Integer getPrice() {
         return price.getPrice();
     }
