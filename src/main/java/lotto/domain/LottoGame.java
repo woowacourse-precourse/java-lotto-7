@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class LottoGame {
     private static final Integer LOTTO_PRICE = 1000;
     private static final Integer LOTTO_RANGE_START = 1;
-    private static final Integer LOTTO_RANGE_END = 46;
+    private static final Integer LOTTO_RANGE_END = 45;
     private static final Integer LOTTO_LENGTH = 6;
 
     private final List<Lotto> generatedLottos;
