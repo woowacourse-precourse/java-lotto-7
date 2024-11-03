@@ -12,6 +12,14 @@ public class GameResultManager {
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
 
+    private Prize getPrizeOf(Lotto lotto) {
+
+        int matchCount = countMatchNumberWith(lotto);
+        boolean bonusFlag = matchBonusNumberWith(lotto);
+
+        return Prize.getMatchPrize(matchCount, bonusFlag);
+    }
+
     private int countMatchNumberWith(Lotto lotto) {
         int count = 0;
 
