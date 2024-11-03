@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstants.LOTTO_DEFAULT_COUNT;
+import static lotto.exception.ErrorMessage.*;
+
 import java.util.List;
 import lotto.domain.vo.LottoNumber;
 import lotto.exception.ErrorMessage;
@@ -27,14 +30,14 @@ public class Lotto {
     }
 
     private static void validateLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
+        if (numbers.size() != LOTTO_DEFAULT_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private static void validateDuplicateLottoNumbers(List<Integer> numbers) {
         if(hasDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
 

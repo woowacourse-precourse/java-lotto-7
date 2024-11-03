@@ -1,10 +1,9 @@
 package lotto.domain.vo;
 
-import lotto.exception.ErrorMessage;
+import static lotto.domain.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.exception.ErrorMessage.*;
 
 public class PurchaseAmount {
-    private static final Integer LOTTO_PRICE = 1000;
-
     private final Integer amount;
 
     private PurchaseAmount(Integer amount) {
@@ -18,10 +17,10 @@ public class PurchaseAmount {
 
     private static void validate(Integer amount) {
         if (amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_INSUFFICIENT.getFormattedMessage(LOTTO_PRICE));
+            throw new IllegalArgumentException(MONEY_INSUFFICIENT.getLottoPriceIncludeMessage());
         }
         if (isMoneyLeft(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_LEFT.getFormattedMessage(LOTTO_PRICE));
+            throw new IllegalArgumentException(MONEY_LEFT.getLottoPriceIncludeMessage());
         }
     }
 

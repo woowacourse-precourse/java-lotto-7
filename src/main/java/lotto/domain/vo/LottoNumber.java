@@ -1,11 +1,10 @@
 package lotto.domain.vo;
 
+import static lotto.domain.constants.LottoConstants.*;
+
 import lotto.exception.ErrorMessage;
 
 public class LottoNumber {
-    private static final Integer MIN_LOTTO_NUMBER = 1;
-    private static final Integer MAX_LOTTO_NUMBER = 45;
-
     private final Integer number;
 
     private LottoNumber(Integer number) {
