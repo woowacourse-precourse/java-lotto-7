@@ -21,6 +21,18 @@ public class ApplicationConsoleView implements ApplicationView {
         lottos.forEach(this::println);
     }
 
+    @Override
+    public String requestWinNumber() {
+        println(REQUEST_INPUT_WIN_NUMBER);
+        return Console.readLine();
+    }
+
+    @Override
+    public int requestBonusNumber() {
+        println(REQUEST_INPUT_BONUS_NUMBER);
+        return Integer.parseInt(Console.readLine());
+    }
+
     private void println(String message) {
         System.out.println(message);
     }

@@ -7,4 +7,8 @@ public interface ApplicationView {
     int requestMoney();
 
     void printPurchasedLotto(List<String> lottos);
+
+    String requestWinNumber();
+
+    int requestBonusNumber();
 }

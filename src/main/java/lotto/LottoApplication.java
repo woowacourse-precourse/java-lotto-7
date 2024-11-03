@@ -27,6 +27,7 @@ public class LottoApplication {
 
         showPurchasedLotto();
 
+        drawWinner();
 
     }
 
@@ -37,6 +38,11 @@ public class LottoApplication {
 
     private void showPurchasedLotto() {
         List<Lotto> purchasedLotto = retrieveLottoUseCase.retrieveAll();
-        applicationView.printPurchasedLotto(messageConverter.convert(purchasedLotto));
+        applicationView.printPurchasedLotto(messageConverter.toMessages(purchasedLotto));
+    }
+
+    private void drawWinner() {
+        String winNumber = applicationView.requestWinNumber();
+        int BonusNumber = applicationView.requestBonusNumber();
     }
 }
