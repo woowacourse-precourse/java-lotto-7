@@ -23,4 +23,8 @@ public class OutputView {
                 dto.amount());
         }
     }
+
+    public void printInvestment(double investment) {
+        System.out.printf("총 수익률은 %.1f%%입니다%n", Math.round(investment * 100) / 100.0);
+    }
 }
