@@ -16,5 +16,4 @@ public class Parser {
     public static List<String> parseElements(final String inputValue) {
         return Arrays.stream(inputValue.split(SEPARATOR)).toList();
     }
-
 }
