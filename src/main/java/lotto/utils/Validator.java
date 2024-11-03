@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static lotto.global.error.InputErrorMessages.*;
+import static lotto.view.OutputView.LOTTO_NUMBER_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 public class Validator {
 
     public static final String WINNING_NUM_PATTERN = "^(\\d+,)+\\d+$";
+    public static final int MINIMAL_LOTTO_NUMBER = 1;
+    public static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     public static void priceValidator(String input) {
         nullAndEmptyValidator(input);
@@ -36,7 +39,7 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.getMessage());
         }
 
-        List<String> numbers = Arrays.asList(input.split(","));
+        List<String> numbers = Arrays.asList(input.split(LOTTO_NUMBER_DELIMITER));
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_WINNING_NUM_COUNT.getMessage());
         }
@@ -49,15 +52,15 @@ public class Validator {
     public static void lottoNumValidator(String input) {
         nullAndEmptyValidator(input);
 
-        int price;
+        int lottoNumber;
 
         try {
-            price = Integer.parseInt(input);
+            lottoNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
 
-        if (price <= 0 || 46 <= price) {
+        if (lottoNumber < MINIMAL_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
