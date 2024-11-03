@@ -22,6 +22,8 @@ public class Application {
         // 2.3 로또 번호를 오름차순으로 정렬하는 기능
         Collections.sort(lottoNumbers);
 
+
+
     }
 
     private static String getInputString(String message) {
