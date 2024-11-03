@@ -12,7 +12,7 @@ import static lotto.domain.WinningKind.MATCH_5_BONUS;
 public class Output {
 
     public static void purchaseCount(int count) {
-        print(count + "개 구매했습니다.");
+        print(count + "개를 구매했습니다.");
     }
 
     public static void purchasedLottos(List<Lotto> lottos) {
