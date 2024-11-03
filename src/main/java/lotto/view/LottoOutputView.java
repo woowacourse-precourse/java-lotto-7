@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,8 @@ public class LottoOutputView {
     private static final String LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
-    private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %s입니다.";
+    private static final DecimalFormat PROFIT_RATE_FORMAT = new DecimalFormat("0.0'%'");
 
     public void printLottoPurchasePrice() {
         System.out.println(LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE);
@@ -72,6 +74,6 @@ public class LottoOutputView {
     }
 
     private void printLottoProfitRate(double lottoProfitRate) {
-        System.out.println(String.format(LOTTO_PROFIT_RATE_MESSAGE, lottoProfitRate));
+        System.out.println(String.format(LOTTO_PROFIT_RATE_MESSAGE, PROFIT_RATE_FORMAT.format(lottoProfitRate)));
     }
 }
