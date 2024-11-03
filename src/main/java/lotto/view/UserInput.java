@@ -1,9 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.service.Bonus;
-import lotto.service.Lotto;
-import lotto.service.Money;
+import lotto.service.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,8 +16,9 @@ public class UserInput {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
-                nullCheck(input);
-                isNumber(input);
+                new InputNullCheck(input);
+                new InputNumberCheck(input);
+
                 int number = Integer.parseInt(input);
 
                 return new Money(number);
@@ -34,8 +33,8 @@ public class UserInput {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 winningInput = List.of(Console.readLine().split(","));
-                nullCheck(winningInput);
-                isNumber(winningInput);
+                new InputListNullCheck(winningInput);
+                new InputListNumberCheck(winningInput);
                 winningNumbers = winningInput.stream().map(Integer::parseInt).collect(Collectors.toList());
 
                 Lotto lotto = new Lotto(winningNumbers);
@@ -53,8 +52,8 @@ public class UserInput {
                 System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
-                nullCheck(input);
-                isNumber(input);
+                new InputNullCheck(input);
+                new InputNumberCheck(input);
 
                 int number = Integer.parseInt(input);
 
@@ -62,38 +61,6 @@ public class UserInput {
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void nullCheck(String input) {
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력하지 않았습니다. 입력해 주세요.");
-        }
-    }
-
-    private void nullCheck(List<String> input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력하지 않았습니다. 입력해 주세요.");
-        }
-    }
-
-
-    private void isNumber(String input) {
-        boolean isNum = input.matches("[+-]?\\d*(\\.\\d+)?");
-
-        if (!isNum) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
-        }
-    }
-
-
-    private void isNumber(List<String> winningInput) {
-        for (String input : winningInput) {
-            boolean num = input.matches("[+-]?\\d*(\\.\\d+)?");
-
-            if (!num) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
             }
         }
     }
