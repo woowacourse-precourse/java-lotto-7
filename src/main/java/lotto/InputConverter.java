@@ -18,7 +18,7 @@ public final class InputConverter {
 
     public static List<Integer> convertToWinningLottoNumbers(final String winningLottoNumbersInput) {
         try {
-            final String[] splitedWinningLottoNumbers = winningLottoNumbersInput.split("\\s");
+            final String[] splitedWinningLottoNumbers = winningLottoNumbersInput.split(",");
             return Arrays.stream(splitedWinningLottoNumbers)
                     .mapToInt(Integer::parseInt)
                     .boxed()

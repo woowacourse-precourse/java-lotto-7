@@ -23,8 +23,15 @@ public final class InputHandler {
     }
 
     public static WinningLotto inputWinningLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        final List<Integer> winningLottoNumbers = InputConverter.convertToWinningLottoNumbers(Console.readLine());
-        return new WinningLotto(winningLottoNumbers);
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                final List<Integer> winningLottoNumbers = InputConverter.convertToWinningLottoNumbers(Console.readLine());
+                InputValidator.validateWinningLottoNumbersCount(winningLottoNumbers);
+                return new WinningLotto(winningLottoNumbers);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
