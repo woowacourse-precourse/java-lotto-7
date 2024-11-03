@@ -26,8 +26,7 @@ public enum PrizeGrade {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
     }
-    
-    
+
     public static PrizeGrade get(int matchCountInput, boolean isBonusMatch) {
         PrizeGrade gradeToReturn = null;
         for (PrizeGrade grade : PrizeGrade.values()) {
