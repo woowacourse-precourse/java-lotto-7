@@ -1,10 +1,19 @@
 package lotto.repository;
+
 import java.util.List;
-public class LottoRepository {
-    private final List<List<Integer>> userLotto;
+import lotto.domain.Bonus;
+import lotto.domain.Lotto;
 
-    public LottoRepository(List<List<Integer>> userLotto){
-        this.userLotto = userLotto;
-    }
+public interface LottoRepository {
+    void saveLottoNumbers(List<List<Integer>> lottoNumbers);
 
+    List<List<Integer>> getLottoNumbers();
+
+    void saveWinningNumbers(Lotto winningLotto);
+
+    void saveBonusNumbers(Bonus Bonus);
+
+    Lotto getWinningNumbers();
+
+    Bonus getBonusNumber();
 }
