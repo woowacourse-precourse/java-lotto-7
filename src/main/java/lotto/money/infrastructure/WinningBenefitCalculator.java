@@ -4,10 +4,10 @@ import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.WinningLotto;
 import lotto.money.domain.Benefit;
-import lotto.money.domain.BenefitCreatorService;
+import lotto.money.domain.BenefitCalculator;
 import lotto.money.domain.Money;
 
-public class BenefitCreator implements BenefitCreatorService {
+public class BenefitCreator implements BenefitCalculator {
     private final WinningAmountCalculator winningAmountCalculator;
     public BenefitCreator(WinningAmountCalculator winningAmountCalculator) {
         this.winningAmountCalculator = winningAmountCalculator;

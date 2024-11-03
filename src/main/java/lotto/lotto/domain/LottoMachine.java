@@ -1,24 +1,24 @@
 package lotto.lotto.domain;
 
-import lotto.calculator.domain.Calculator;
+import lotto.money.service.LottoPurchaseCalculator;
 import lotto.lotto.service.LottoGenerator;
 import lotto.money.domain.Money;
 import lotto.view.output.domain.PurchaseCountViewService;
 
 public class LottoMachine {
-    private final Calculator divideThousandCalculator;
+    private final LottoPurchaseCalculator lottoPurchaseCalculator;
     private final LottoGenerator lottoGenerator;
     private final PurchaseCountViewService purchaseCountOutput;
     public LottoMachine(
-            Calculator divideThousandCalculator,
+            LottoPurchaseCalculator lottoPurchaseCalculator,
             LottoGenerator lottoGenerator,
             PurchaseCountViewService purchaseCountOutput) {
-        this.divideThousandCalculator = divideThousandCalculator;
+        this.lottoPurchaseCalculator = lottoPurchaseCalculator;
         this.lottoGenerator = lottoGenerator;
         this.purchaseCountOutput =purchaseCountOutput;
     }
     private int purchaseCount(Money money) {
-        int count = divideThousandCalculator.calculate(money);
+        int count = lottoPurchaseCalculator.calculate(money);
         purchaseCountOutput.view(count);
         return count;
     }

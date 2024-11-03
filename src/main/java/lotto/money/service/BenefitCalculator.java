@@ -4,7 +4,7 @@ import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.WinningLotto;
 
-public interface BenefitCreatorService {
+public interface BenefitCalculator {
     Benefit create(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber);
 
 }
