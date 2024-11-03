@@ -7,6 +7,7 @@ import lotto.viewHandler.validator.validatorImpl.LottoNumberSplit;
 import lotto.viewHandler.validator.validatorImpl.LottoPurchaseUnitValidator;
 import lotto.viewHandler.validator.validatorImpl.ParseInt;
 import lotto.viewHandler.validator.ValidatorImpl;
+import lotto.viewHandler.validator.validatorImpl.RemoveWhiteSpace;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,11 +20,21 @@ class ValidatorImplTest {
 
     public ValidatorImplTest() {
         this.validator = new ValidatorImpl(
+                new RemoveWhiteSpace(),
                 new ParseInt(),
                 new LottoNumberRangeValidator(),
                 new LottoPurchaseUnitValidator(),
                 new LottoNumberSplit()
         );
+    }
+
+    @Test
+    void 로또_합격_번호_스페이스_확인() {
+        String input = "1, 2, 3, 4, 5, 6";
+        List<Integer> expect = List.of(1,2,3,4,5,6);
+        List<Integer> result = validator.validateLottoNumbers(input);
+
+        assertThat(result).isEqualTo(expect);
     }
 
     @Test

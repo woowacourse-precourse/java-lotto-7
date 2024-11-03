@@ -1,5 +1,6 @@
 package lotto.viewHandler;
 
+import lotto.util.CallBackTemplate;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.viewHandler.api.Api;
@@ -16,47 +17,43 @@ import java.util.Objects;
 import static lotto.viewHandler.exception.MyExceptionConstant.SERVER_SUCCESS_CODE;
 
 public class ViewHandler {
+    private final CallBackTemplate retry;
     private final ApiHandler apiHandler;
     private final Input input;
     private final Output output;
 
-    public ViewHandler(ApiHandler apiHandler, Input input, Output output) {
+    public ViewHandler(CallBackTemplate retry, ApiHandler apiHandler, Input input, Output output) {
+        this.retry = retry;
         this.apiHandler = apiHandler;
         this.input = input;
         this.output = output;
     }
 
     public Api<MoneyDto> purchaseMoney() {
-        while (true) {
-            try {
-                String money = input.getPurchaseMoney();
-                return apiHandler.transformMoneyDto(money);
-            } catch (MyException e) {
-                output.viewExceptionMessage(e.getMessage());
-            }
-        }
+        return retry.retry(() -> {
+                    String money = input.getPurchaseMoney();
+                    return apiHandler.transformMoneyDto(money);
+                },
+                e -> output.viewExceptionMessage(e.getMessage())
+        );
     }
 
     public Api<WinningLottoNumbersDto> getWinningNumbers() {
-        while (true) {
-            try {
-                String lottoNumbers = input.getWinningLottoNumbers();
-                return apiHandler.transformLottoNumbers(lottoNumbers);
-            } catch (MyException e) {
-                output.viewExceptionMessage(e.getMessage());
-            }
-        }
+        return retry.retry(() -> {
+                    String lottoNumbers = input.getWinningLottoNumbers();
+                    return apiHandler.transformLottoNumbers(lottoNumbers);
+                },
+                e -> output.viewExceptionMessage(e.getMessage())
+        );
     }
 
     public Api<BonusNumberDto> getBonusNumber() {
-        while (true) {
-            try {
-                String bonusNumber = input.getBonusNumber();
-                return apiHandler.transformLottoBonusNumber(bonusNumber);
-            } catch (MyException e) {
-                output.viewExceptionMessage(e.getMessage());
-            }
-        }
+        return retry.retry(() -> {
+                    String bonusNumber = input.getBonusNumber();
+                    return apiHandler.transformLottoBonusNumber(bonusNumber);
+                },
+                e -> output.viewExceptionMessage(e.getMessage())
+        );
     }
 
     public void outputHandler(Api api) {
@@ -66,27 +63,21 @@ public class ViewHandler {
         resultAmountHandler(api);
     }
 
-    private void exceptionHandler(Api api) {
+    private void exceptionHandler(Api<?> api) {
         if (!Objects.equals(api.getCode(), SERVER_SUCCESS_CODE)) {
             output.viewExceptionMessage(api.getMessage());
         }
     }
 
     private void purchaseHandler(Api api) {
-        if (api.getData() instanceof PurchaseLottosDto) {
-            output.viewPurchaseLottos(api);
-        }
+        retry.handleApiResponse(api, PurchaseLottosDto.class, output::viewPurchaseLottos);
     }
 
     private void resulLottoHandler(Api api) {
-        if (api.getData() instanceof ResultLottosDto) {
-            output.viewResultLottos(api);
-        }
+        retry.handleApiResponse(api, ResultLottosDto.class, output::viewResultLottos);
     }
 
     private void resultAmountHandler(Api api) {
-        if (api.getData() instanceof ResultAmountDto) {
-            output.viewResultAmount(api);
-        }
+        retry.handleApiResponse(api, ResultAmountDto.class, output::viewResultAmount);
     }
 }

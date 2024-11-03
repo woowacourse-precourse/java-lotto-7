@@ -10,6 +10,7 @@ import lotto.viewHandler.validator.validatorImpl.LottoNumberSplit;
 import lotto.viewHandler.validator.validatorImpl.LottoPurchaseUnitValidator;
 import lotto.viewHandler.validator.validatorImpl.ParseInt;
 import lotto.viewHandler.validator.ValidatorImpl;
+import lotto.viewHandler.validator.validatorImpl.RemoveWhiteSpace;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -20,7 +21,8 @@ class ApiHandlerTest {
     private final ApiHandler apiHandler;
 
     public ApiHandlerTest() {
-        ValidatorImpl validator = new ValidatorImpl(new ParseInt(),
+        ValidatorImpl validator = new ValidatorImpl(new RemoveWhiteSpace(),
+                new ParseInt(),
                 new LottoNumberRangeValidator(),
                 new LottoPurchaseUnitValidator(),
                 new LottoNumberSplit());
@@ -34,6 +36,15 @@ class ApiHandlerTest {
         Api<MoneyDto> result = apiHandler.transformMoneyDto(input);
 
         assertThat(result.getData().getMoney()).isEqualTo(expect.getData().getMoney());
+    }
+
+    @Test
+    void 로또_당첨_번호_스페이스_확인() {
+        String input = "1, 2, 3, 4, 5, 6";
+        Api<WinningLottoNumbersDto> expect = new Api<>(ServerMessage.클라이언트_성공, new WinningLottoNumbersDto(List.of(1,2,3,4,5,6)));
+        Api<WinningLottoNumbersDto> result = apiHandler.transformLottoNumbers(input);
+
+        assertThat(result.getData().getNumbers()).isEqualTo(expect.getData().getNumbers());
     }
 
     @Test

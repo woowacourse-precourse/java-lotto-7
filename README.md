@@ -33,6 +33,7 @@
 - 숫자로 입력되었는지 확인하는 코드
 - 로또 6자리 숫자 중 중복되는 것이 있는지 확인하는 코드
 - 보너스 숫자가 당첨 번호와 중복되는지 확인하는 코드
+- 숫자 입력 중 맨 앞에 스페이스가 있다면, 삭제해주는 코드
 
 ## View
 - 로또 구입 돈 입력 받기 
@@ -41,6 +42,10 @@
 - 보너스 번호 입력 받기
 - 당첨된 통계 보여주기
 - 수익율 보여주기
+
+## Util
+- 중복되는 Try-Catch 코드를 하나로 통일
+- 중복되는 if(Object isInstance api.getData) 코드 하나로 통일
 
 # 의존 관계
 - UserRequest
@@ -55,3 +60,4 @@
         - LottoNumberSplit
         - LottoPurchaseUnitValidator
         - ParseInt
+        - RemoveWhiteSpace
