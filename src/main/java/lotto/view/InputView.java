@@ -22,7 +22,7 @@ public class InputView {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 long price = Long.parseLong(Console.readLine());
-                inputValidator.isDivisibleByThousand(price);
+                inputValidator.validateDivisibleByThousand(price);
                 return new PositiveNumber(price);
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessage.INVALID_DATA_TYPE.get());
@@ -44,7 +44,7 @@ public class InputView {
                 List<Integer> numbers = Arrays.stream(Console.readLine().split(DELIMITER))
                     .map(Integer::parseInt)
                     .toList();
-                inputValidator.isSizeSix(numbers);
+                inputValidator.validateIsSizeSix(numbers);
                 return numbers;
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessage.INVALID_DATA_TYPE.get());
@@ -61,7 +61,8 @@ public class InputView {
                 System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
-                inputValidator.isExistsIn(winningNumbers, bonusNumber);
+                inputValidator.validateIsIn(winningNumbers, bonusNumber);
+                inputValidator.validateIsInBound(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
