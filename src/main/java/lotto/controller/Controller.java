@@ -78,4 +78,10 @@ public class Controller {
         outputView.printLottoWinningDetails(resultCounts);
         return resultCounts;
     }
+
+    public void displayLottoYield(Map<Rank, Integer> resultCounts, int price) {
+        int sum = utils.totalPrize(resultCounts);
+        double yieldRate = utils.calculateYieldRate(sum, price);
+        outputView.printLottoYield(yieldRate);
+    }
 }
