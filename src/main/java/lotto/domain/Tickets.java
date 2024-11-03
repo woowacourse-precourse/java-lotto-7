@@ -10,8 +10,8 @@ public class Tickets {
 
     private final List<Lotto> lottos;
 
-    public Tickets(TicketCount count) {
-        this.lottos = generateLottoTickets(count);
+    public Tickets(int ticketCount) {
+        this.lottos = generateLottoTickets(ticketCount);
     }
 
     public List<String> getTicketsInfo() {
@@ -28,10 +28,10 @@ public class Tickets {
         return lottos;
     }
 
-    private List<Lotto> generateLottoTickets(TicketCount count) {
+    private List<Lotto> generateLottoTickets(int ticketCount) {
         Set<Lotto> uniqueLottos = new HashSet<>();
 
-        while (uniqueLottos.size() < count.getCount()) {
+        while (uniqueLottos.size() < ticketCount) {
             uniqueLottos.add(new Lotto(RandomUtil.generateLottoNumbers()));
         }
 
