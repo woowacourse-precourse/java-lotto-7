@@ -74,18 +74,17 @@ class LottoServiceTest {
     }
 
 
-    @DisplayName("보너스 번호와 당첨 번호 4개가 일치할 때")
+    @DisplayName("보너스 번호와 당첨 번호 5개가 일치할 때")
     @Test
     void matchBonusNumbers() {
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)));
+        lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 6, 7)));
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 6, 8);
         LottoDto lottoDto = LottoDto.of(lottos, winningNumbers, 7);
         WinningDto winningDto = lottoService.statisticsNumbers(lottoDto);
 
         Map<WinningResult, Integer> winningCount = winningDto.getWinningCount();
-        System.out.println(winningCount.values());
         assertThat(winningCount.values()).containsExactly(0, 0, 0, 1, 0);
         assertThat(winningCount.get(FIVE_AND_BONUS)).isEqualTo(1);
         assertThat(winningDto.getPrice()).isEqualTo(calculateWinningPrice(FIVE_AND_BONUS.prizeMoney));
@@ -111,4 +110,5 @@ class LottoServiceTest {
     private double calculateWinningPrice(int totalPrize) {
         return ((double) totalPrize / 1000) * 100;
     }
+    
 }
