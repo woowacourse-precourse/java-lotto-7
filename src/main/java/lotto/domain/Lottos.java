@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.wrapper.BonusNumber;
 
 public class Lottos {
@@ -12,16 +13,22 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Rank> countMatchesWith(Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Rank> ranks = new ArrayList<>();
+    public Map<Rank, Integer> countMatchesWith(Lotto winningLotto, BonusNumber bonusNumber) {
+        Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
-        lottos.forEach(lotto -> {
+        for (Lotto lotto : lottos) {
             int matchCount = matchCount(lotto, winningLotto);
             boolean bonusMatch = lotto.contains(bonusNumber.getNumber());
-            ranks.add(Rank.valueOf(matchCount, bonusMatch));
-        });
+            Rank rank = Rank.valueOf(matchCount, bonusMatch);
 
-        return ranks;
+            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
+        }
+
+        for (Rank rank : Rank.values()) {
+            rankCounts.putIfAbsent(rank, 0);
+        }
+
+        return rankCounts;
     }
 
     private int matchCount(Lotto lotto, Lotto winningLotto) {

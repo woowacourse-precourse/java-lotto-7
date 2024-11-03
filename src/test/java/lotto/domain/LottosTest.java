@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Map;
 import lotto.wrapper.BonusNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,22 +26,26 @@ class LottosTest {
     @Test
     void 당첨번호와_보너스번호_일치_테스트() {
         List<Lotto> lottoList = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)),
-                new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15))
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 6
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 6
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 5 + bonus
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 5 + bonus
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 5 + bonus
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)), // 5
+                new Lotto(Arrays.asList(1, 2, 3, 4, 9, 10)), // 4
+                new Lotto(Arrays.asList(1, 2, 40, 41, 42, 43)), // 2
+                new Lotto(Arrays.asList(1, 2, 40, 41, 43, 44)) // 2
         );
         Lottos lottos = new Lottos(lottoList);
 
-        List<Rank> ranks = lottos.countMatchesWith(winningLotto, bonusNumber);
+        Map<Rank, Integer> result = lottos.countMatchesWith(winningLotto, bonusNumber);
 
-        assertThat(ranks).hasSize(5);
-        assertThat(ranks.get(0)).isEqualTo(Rank.SIX_MATCHES);
-        assertThat(ranks.get(1)).isEqualTo(Rank.THREE_MATCHES);
-        assertThat(ranks.get(2)).isEqualTo(Rank.FIVE_MATCHES_WITH_BONUS);
-        assertThat(ranks.get(3)).isEqualTo(Rank.FIVE_MATCHES);
-        assertThat(ranks.get(4)).isEqualTo(Rank.NO_MATCH);
+        assertThat(result.get(Rank.SIX_MATCHES)).isEqualTo(2);
+        assertThat(result.get(Rank.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);
+        assertThat(result.get(Rank.FIVE_MATCHES)).isEqualTo(1);
+        assertThat(result.get(Rank.FOUR_MATCHES)).isEqualTo(1);
+        assertThat(result.get(Rank.THREE_MATCHES)).isEqualTo(0);
+        assertThat(result.get(Rank.NO_MATCH)).isEqualTo(2);
     }
 
 }
