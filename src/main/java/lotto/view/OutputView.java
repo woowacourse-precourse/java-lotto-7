@@ -20,23 +20,27 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printResult(List<LottoResultDto> dtos) {
+    public void printResults(List<LottoResultDto> dtos) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoResultDto dto : dtos) {
-            if (dto.lottoPrize() != LottoPrize.SECOND_PRIZE) {
-                System.out.printf("%d개 일치 (%,d원) - %d개%n",
-                    dto.lottoPrize().getWinningCount(),
-                    dto.lottoPrize().getPrize(),
-                    dto.amount());
-            } else {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
-                    dto.lottoPrize().getWinningCount(),
-                    dto.lottoPrize().getPrize(),
-                    dto.amount());
-            }
+            printResult(dto);
         }
+    }
+
+    private static void printResult(LottoResultDto dto) {
+        if (dto.lottoPrize() != LottoPrize.SECOND_PRIZE) {
+            System.out.printf("%d개 일치 (%,d원) - %d개%n",
+                dto.lottoPrize().getWinningCount(),
+                dto.lottoPrize().getPrize(),
+                dto.amount());
+            return;
+        }
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n",
+            dto.lottoPrize().getWinningCount(),
+            dto.lottoPrize().getPrize(),
+            dto.amount());
     }
 
     public void printInvestment(double investment) {

@@ -26,7 +26,7 @@ public class LottoController {
         WinningNumberRequestDto dto = inputView.getEntireNumber();
         List<LottoResultDto> dtoList = lottoService.getResult(dto, lottoList);
 
-        outputView.printResult(dtoList);
+        outputView.printResults(dtoList);
         return dtoList;
     }
 
