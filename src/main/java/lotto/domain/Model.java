@@ -28,7 +28,7 @@ public class Model {
 
     private void checkWinning() {
         for (Lotto lotto : lottos) {
-            winningAmount += lotto.winningCount(winningNumbers, winningDetail);
+            winningAmount += lotto.compareWinning(winningNumbers, winningDetail);
         }
     }
 

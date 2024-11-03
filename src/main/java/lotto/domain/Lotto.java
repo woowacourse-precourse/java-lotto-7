@@ -24,7 +24,7 @@ public class Lotto {
         }
     }
 
-    public long winningCount(List<Integer> winningNumbers, Map<String, Integer> map) {
+    public long compareWinning(List<Integer> winningNumbers, Map<String, Integer> winningDetail) {
         int count = 0;
         for (int i = 0; i < winningNumbers.size() - 1; i++) {
             if (numbers.contains(winningNumbers.get(i))) {
@@ -34,6 +34,14 @@ public class Lotto {
         if (count == 5 && numbers.contains(winningNumbers.getLast())) {
             count *= 2;
         }
+        Long winning = winningCheck(winningDetail, count);
+        if (winning != null) {
+            return winning;
+        }
+        return 0;
+    }
+
+    private Long winningCheck(Map<String, Integer> map, int count) {
         Winning[] winnings = Winning.values();
         for (Winning winning : winnings) {
             if (winning.getCount() == count) {
@@ -41,7 +49,7 @@ public class Lotto {
                 return winning.getWinningPrice();
             }
         }
-        return 0;
+        return null;
     }
 
     public List<Integer> getNumbers() {
