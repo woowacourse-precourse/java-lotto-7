@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -67,5 +68,27 @@ class LottoTest {
         tickets.forEach(ticket -> {
             assertThat(ticket.getNumbers()).isSorted();
         });
+    }
+
+    @DisplayName("로또 번호와 당첨 번호의 일치하는 개수를 올바르게 반환해야 한다")
+    @Test
+    void 일치하는_번호_개수_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 7, 8, 9);
+
+        int matchCount = lotto.countMatchingNumbers(winningNumbers);
+        assertThat(matchCount).isEqualTo(3);
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있는지 확인해야 한다")
+    @Test
+    void 보너스_번호_포함_여부_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        boolean containsBonus = lotto.containsBonusNumber(6);
+        assertThat(containsBonus).isTrue();
+
+        containsBonus = lotto.containsBonusNumber(7);
+        assertThat(containsBonus).isFalse();
     }
 }

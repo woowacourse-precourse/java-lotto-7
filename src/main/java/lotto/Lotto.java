@@ -39,4 +39,14 @@ public class Lotto {
         }
         return tickets;
     }
+
+    public int countMatchingNumbers(Set<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }
