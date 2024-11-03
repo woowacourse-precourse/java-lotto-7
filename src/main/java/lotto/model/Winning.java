@@ -29,7 +29,7 @@ public enum Winning {
 				.collect(Collectors.toMap(winning -> winning, winning -> INITIAL_VALUE));
 	}
 
-	public static Winning getWinningResult(int count, boolean hasBonusNumber) {
+	public static Winning getWinningResult(long count, boolean hasBonusNumber) {
 		Winning result = Arrays.stream(Winning.values())
 				.filter(winning -> winning.count == count)
 				.findFirst()
