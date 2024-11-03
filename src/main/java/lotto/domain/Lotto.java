@@ -1,14 +1,17 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 import lotto.message.LottoMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final HashSet<Integer> lottoSet;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        this.lottoSet = new HashSet<>(numbers);
     }
 
     private static void validate(List<Integer> numbers) {
@@ -25,4 +28,6 @@ public class Lotto {
     public String toString() {
         return String.join(", ", numbers.toString());
     }
+
+
 }
