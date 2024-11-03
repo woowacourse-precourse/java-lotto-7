@@ -9,17 +9,24 @@ import java.util.List;
 
 public class PurchasedLotto {
     private static final String LOTTO_DELIMITER = "\n";
-    private static final String PAYMENT_NOT_NULL = ERROR_HEADER + "로또 구입 금액이 null이어서는 안 됩니다.";
     private final List<Lotto> lottos;
 
     public PurchasedLotto(List<Lotto> lottos) {
         this.lottos = lottos;
-        purchase();
     }
 
     public static PurchasedLotto from(Payment payment) {
-        validate(payment);
-        return new PurchasedLotto(new ArrayList<>(payment.get() / LOTTO_PRICE));
+        int count = payment.get() / LOTTO_PRICE;
+        return new PurchasedLotto(initialize(count));
+    }
+
+    private static List<Lotto> initialize(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i = 0; i< count; i++) {
+            List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_COUNT);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 
     public List<Lotto> get() {
@@ -37,18 +44,5 @@ public class PurchasedLotto {
 
     public int getCount() {
         return this.lottos.size();
-    }
-
-    private void purchase() {
-        for(int i = 0; i< this.lottos.size(); i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_COUNT);
-            lottos.add(new Lotto(numbers));
-        }
-    }
-
-    private static void validate(Payment payment) {
-        if(payment == null) {
-            throw new IllegalArgumentException(PAYMENT_NOT_NULL);
-        }
     }
 }
