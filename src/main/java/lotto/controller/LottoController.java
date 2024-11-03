@@ -17,7 +17,7 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = repeatUntilValid(this::getLottoMoney);
+        Money money = repeatUntilValid(this::getPurchaseMoney);
         outputView.displayPurchaseQuantity(money.getPurchaseQuantity());
 
         Lottos purchasedLottos = purchaseLotto(money);
@@ -33,10 +33,10 @@ public class LottoController {
         outputView.displayWinningStatistics(winningResult.getWinningResultString(), profit.getProfitString());
     }
 
-    private Money getLottoMoney() {
+    private Money getPurchaseMoney() {
         outputView.requestPurchaseMoney();
-        int inputLottoMoney = inputView.inputLottoMoney();
-        return Money.from(inputLottoMoney);
+        int inputPurchaseMoney = inputView.inputPurchaseMoney();
+        return Money.from(inputPurchaseMoney);
     }
 
     private Lottos purchaseLotto(Money money) {

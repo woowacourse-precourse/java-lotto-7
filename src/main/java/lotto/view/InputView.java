@@ -12,10 +12,10 @@ public class InputView extends InputReader {
     public static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
     public static final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("^(\\d{1,2},){5}\\d{1,2}$");
 
-    public int inputLottoMoney() {
-        String inputLottoMoney = inputMessage();
-        validateInputNumberFormat(inputLottoMoney);
-        return Parser.stringToInt(inputLottoMoney);
+    public int inputPurchaseMoney() {
+        String inputPurchaseMoney = inputMessage();
+        validateInputNumberFormat(inputPurchaseMoney);
+        return Parser.stringToInt(inputPurchaseMoney);
     }
 
     private void validateInputNumberFormat(String input) {
