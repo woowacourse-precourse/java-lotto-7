@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
+import lotto.utils.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5,5";
         String bonusNumber = "6";
 
-        assertThatThrownBy(() -> new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호에 중복이 존재합니다.");
     }
@@ -25,7 +26,7 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "6";
 
-        assertThatThrownBy(() -> new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
     }
@@ -36,7 +37,7 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,,5,6";
         String bonusNumber = "7";
 
-        assertThatThrownBy(() -> new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 유효한 당첨 번호를 입력해주세요.");
     }
@@ -47,7 +48,7 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5.6";
         String bonusNumber = "7";
 
-        assertThatThrownBy(() -> new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 유효한 당첨 번호를 입력해주세요.");
     }
@@ -58,7 +59,7 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "abc";
 
-        assertThatThrownBy(() -> new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber))
+        assertThatThrownBy(() -> new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 유효한 보너스 번호를 입력해주세요.");
     }
@@ -69,9 +70,9 @@ class WinningLottoNumberTest {
         String winningNumbers = "1,2,3,4,5,6";
         String bonusNumber = "7";
 
-        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(WinningLottoNumber.parseWinningNumber(winningNumbers), bonusNumber);
+        WinningLottoNumber winningLottoNumber = new WinningLottoNumber(Parser.parseWinningNumber(winningNumbers), bonusNumber);
 
-        assertThat(winningLottoNumber.getWinningNumber().getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
-        assertThat(winningLottoNumber.getBonusNumber().getBonus()).isEqualTo(7);
+        assertThat(winningLottoNumber.getWinningNumber()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(winningLottoNumber.getBonusNumber()).isEqualTo(7);
     }
 }
