@@ -19,7 +19,7 @@ public class Lottos {
         IntStream.range(0, lottoCount).mapToObj(i -> new Lotto(lottoNumberGenerator.generate())).forEach(lottos::add);
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lotto> get() {
         return lottos;
     }
 }

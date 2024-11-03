@@ -10,12 +10,12 @@ public class LottoResultCalculator {
         return result;
     }
 
-    public void calculate(WinningNumbers winningNumbers, List<Lotto> lottos) {
-        Set<Integer> winningNumbersSet = new HashSet<>(winningNumbers.getWinningNumbers());
+    public void calculate(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos) {
+        Set<Integer> winningNumbersSet = new HashSet<>(winningNumbers);
 
         for (Lotto lotto : lottos) {
             int matchCount = countMatches(lotto.getNumbers(), winningNumbersSet);
-            boolean hasBonus = lottoHasBonus(lotto.getNumbers(), winningNumbers.getBonusNumber());
+            boolean hasBonus = lottoHasBonus(lotto.getNumbers(), bonusNumber);
 
             updateResult(matchCount, hasBonus);
         }

@@ -12,6 +12,7 @@ public class LottoController {
     final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
     final LottoRateCalculator lottoRateCalculator = new LottoRateCalculator();
     private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
 
     public void start() {
         int lottoCount = purchaseLottos();
@@ -23,10 +24,9 @@ public class LottoController {
 
     private void makeWinningNumbers() {
         outputView.printWinningNumbersGuide();
-        String winningNumber = inputView.getWinningNumbers();
+        winningNumbers = new WinningNumbers(inputView.getWinningNumbers());
         outputView.printBonusNumberGuide();
-        String bonusNumber = inputView.getBonusNumber();
-        winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+        bonusNumber = new BonusNumber(inputView.getBonusNumber(), winningNumbers);
     }
 
     private int purchaseLottos() {
@@ -52,11 +52,11 @@ public class LottoController {
 
     private void createLottos(int lottoCount) {
         lottos.createLottos(lottoCount);
-        outputView.printLottos(lottos.getLottos());
+        outputView.printLottos(lottos.get());
     }
 
     private void calculateResults(int price) {
-        lottoResultCalculator.calculate(winningNumbers, lottos.getLottos());
+        lottoResultCalculator.calculate(winningNumbers.get(), bonusNumber.get(), lottos.get());
         lottoRateCalculator.calculate(price, lottoResultCalculator.getResult());
     }
 
