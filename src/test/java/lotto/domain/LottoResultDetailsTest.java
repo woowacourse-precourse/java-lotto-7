@@ -11,10 +11,10 @@ class LottoResultDetailsTest {
     @Test
     public void 발행한_로또와_당첨번호를_비교하여_올바른_rank를_반환한다() {
         Lottos lottos = new Lottos(Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 6, 10)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 7, 10)),
-                new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10))
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)), //5개 일치, 보너스 일치x
+                new Lotto(Arrays.asList(1, 2, 3, 4, 6, 10)), //4개 일치
+                new Lotto(Arrays.asList(1, 2, 3, 4, 7, 10)), //4개 일치
+                new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10)) //3개 일치
         ));
         WinningLottoNumber winningLottoNumber = new WinningLottoNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 15)), "6");
 
