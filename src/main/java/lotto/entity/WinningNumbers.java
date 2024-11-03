@@ -25,7 +25,7 @@ public class WinningNumbers {
                 System.out.println(NotificationMessage.WINNING_NUMBERS.getMessage());
 
                 String[] inputs = Console.readLine().trim().split(DELIMITER);
-                Arrays.stream(inputs).forEach(this::validatePositiveInteger);
+                Arrays.stream(inputs).forEach(this::validateInteger);
 
                 validateMainNumber(inputs);
 
@@ -47,7 +47,7 @@ public class WinningNumbers {
                 System.out.println(NotificationMessage.BONUS_NUMBER.getMessage());
 
                 String bonusInput = Console.readLine().trim();
-                validatePositiveInteger(bonusInput); // 보너스 번호에 대해 유효성 검사
+                validateInteger(bonusInput); // 보너스 번호에 대해 유효성 검사
                 int bonusNumber = Integer.parseInt(bonusInput);
 
                 validateBonusNumber(bonusNumber);
@@ -65,6 +65,7 @@ public class WinningNumbers {
 
         for (String input : inputs) {
             int number = Integer.parseInt(input.trim());
+            validatePositiveInteger(number);
             validateNumberInRange(number);
         }
     }
@@ -82,6 +83,7 @@ public class WinningNumbers {
     }
 
     private void validateBonusNumber(int bonusNumber) {
+        validatePositiveInteger(bonusNumber);
         validateNumberInRange(bonusNumber);
         validateBonusNumberDuplication(bonusNumber);
     }
@@ -92,17 +94,19 @@ public class WinningNumbers {
         }
     }
 
-    private void validatePositiveInteger(String input) {
+    private void validateInteger(String input) {
         try {
             int number = Integer.parseInt(input);
-            if (number < 0) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
-            }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
         }
     }
 
+    private void validatePositiveInteger(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
+        }
+    }
 
     public List<Integer> getMainNumbers() {
         return mainNumbers;
