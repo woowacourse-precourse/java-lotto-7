@@ -38,6 +38,9 @@ public class Input {
 
     private static int parseCost(String input) {
         try {
+            if(Integer.parseInt(input) % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구매 비용은 1,000원 단위로 입력할 수 있습니다.");
+            }
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구매 비용은 숫자만 입력할 수 있습니다.");
