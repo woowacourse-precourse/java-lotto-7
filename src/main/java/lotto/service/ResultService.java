@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -21,7 +22,16 @@ public class ResultService {
 
     public void run() {
         ResultView.displayLottoResult();
-        checkWinningNumbersCount(lottos);
+        loopResult(lottos);
+    }
+
+    public void loopResult(Lottos lottos) {
+        HashMap<Integer, Integer> resultMap = result.getResultMap();
+
+        for (Lotto lotto : lottos.getLottos()) {
+            int winningCount = checkWinningNumbersCount(lotto.getNumber());
+            resultMap.put(winningCount, resultMap.getOrDefault(resultMap.get(winningCount), 0) + 1);
+        }
     }
 
     public int hasBonusNumber(List<Integer> lottoNumbers, int winningNumber) {
@@ -35,16 +45,8 @@ public class ResultService {
         return winningCount == 5;
     }
 
-    public void checkWinningNumbersCount(Lottos lottos) {
-        HashMap<Integer, Integer> resultMap = result.getResultMap();
-        for (Lotto lotto : lottos.getLottos()) {
-            int winningCount = 6 - lotto.getSize();
-
-            if (isFiveWinningNumber(winningCount)) {
-                winningCount = hasBonusNumber(lotto.getNumber(), winningCount);
-            }
-
-            resultMap.put(winningCount, resultMap.getOrDefault(resultMap.get(winningCount), 0) + 1);
-        }
+    public int checkWinningNumbersCount(List<Integer> lottoNumbers) {
+        List<Integer> lottoList = new ArrayList<>(lottoNumbers);
+        return 6 - lottoList.size();
     }
 }
