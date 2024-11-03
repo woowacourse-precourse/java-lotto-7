@@ -15,7 +15,7 @@ public class LottoDrawPrompt {
     private static final String DRAW_RESULT_OUTPUT_MSG = "당첨 통계\n---\n";
     private static final String DRAW_WINNING_OUTPUT_MSG = "%d개 일치 (%s원) - %d개\n";
     private static final String DRAW_WINNING_BONUS_OUTPUT_MSG = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-    private static final String RATE_OF_RETURN_OUTPUT_MSG = "총 수익률은 %.1f%%입니다.\n";
+    private static final String RATE_OF_RETURN_OUTPUT_MSG = "총 수익률은 %s입니다.\n";
 
     public WinningNumber enterWinningNumber() {
         while (true) {
@@ -43,9 +43,16 @@ public class LottoDrawPrompt {
         }
     }
 
-    private String formatPrize(long prize) {
+    private String formatInteger(long value) {
         NumberFormat formatter = NumberFormat.getNumberInstance();
-        return formatter.format(prize);
+        return formatter.format(value);
+    }
+
+    private String formatDecimal(double value) {
+        NumberFormat formatter = NumberFormat.getPercentInstance();
+        formatter.setMinimumFractionDigits(1);
+        formatter.setMaximumFractionDigits(1);
+        return formatter.format(value);
     }
 
     private String getDrawWinningResult(LottoWinningStatistics statistics, LottoRank rank) {
@@ -55,19 +62,19 @@ public class LottoDrawPrompt {
         }
         long prize = LottoWinningRule.getPrize(rank);
         int winningNumber = statistics.search(rank);
-        return String.format(msg, rank.matches, formatPrize(prize), winningNumber);
+        return String.format(msg, rank.matches, formatInteger(prize), winningNumber);
     }
 
     public void printDrawResult(LottoWinningStatistics statistics) {
         System.out.print(DRAW_RESULT_OUTPUT_MSG);
         for (LottoRank rank : LottoRank.reverseValues()) {
             if (rank != LottoRank.NONE) {
-                System.out.println(getDrawWinningResult(statistics, rank));
+                System.out.print(getDrawWinningResult(statistics, rank));
             }
         }
     }
 
     public void printReturnRate(double returnRate) {
-        System.out.printf(RATE_OF_RETURN_OUTPUT_MSG, returnRate);
+        System.out.printf(RATE_OF_RETURN_OUTPUT_MSG, formatDecimal(returnRate));
     }
 }

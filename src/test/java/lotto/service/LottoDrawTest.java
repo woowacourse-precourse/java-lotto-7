@@ -72,19 +72,20 @@ class LottoDrawTest {
 
     static Stream<Arguments> returnRateFactory() {
         return Stream.of(
-                Arguments.arguments(5000, 8000, 62.5),
-                Arguments.arguments(5000, 1000, 500.0),
-                Arguments.arguments(0, 1000, 0.0),
-                Arguments.arguments(1000, 1000, 100.0),
-                Arguments.arguments(333, 1000, 33.3)
+                Arguments.arguments(5000, 8000),
+                Arguments.arguments(5000, 1000),
+                Arguments.arguments(0, 1000),
+                Arguments.arguments(1000, 1000),
+                Arguments.arguments(333, 1000)
         );
     }
 
     @ParameterizedTest
     @MethodSource("returnRateFactory")
-    public void 수익률_테스트(long totalPrize, int amountValue, double expected) throws Exception {
+    public void 수익률_테스트(long totalPrize, int amountValue) throws Exception {
         //Given
         Amount amount = new Amount(amountValue);
+        double expected = (double) totalPrize / amountValue;
 
         //When
         double actual = lottoDraw.calcReturnRate(totalPrize, amount);

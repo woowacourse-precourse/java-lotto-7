@@ -52,6 +52,6 @@ public class LottoDraw {
     }
 
     public double calcReturnRate(long totalPrize, Amount amount) {
-        return Math.round((double) totalPrize / amount.getValue() * PERCENTAGE * DECIMAL_PLACE) / DECIMAL_PLACE;
+        return (double) totalPrize / amount.getValue();
     }
 }
