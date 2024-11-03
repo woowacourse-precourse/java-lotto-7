@@ -10,6 +10,9 @@ public class LottoTickets {
     }
 
     public static LottoTickets from(List<Lotto> lottoTickets) {
+        if (lottoTickets == null || lottoTickets.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 티켓 목록은 비어 있을 수 없습니다.");
+        }
         return new LottoTickets(lottoTickets);
     }
 
