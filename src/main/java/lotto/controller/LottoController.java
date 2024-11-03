@@ -31,9 +31,10 @@ public class LottoController {
 
         LottoRanks lottoRanks = lottoService.evaluateLottos(winningLotto, purchasedLottos);
 
-        double rateOfReturn = lottoRanks.calculateTotalReturnRate(money);
-
         lottoView.showWinningResult(lottoRanks.getRanks());
+
+        double rateOfReturn = lottoRanks.calculateTotalReturnRate(money);
+        lottoView.showRateOfReturn(rateOfReturn);
     }
 
     private WinningLotto getWinningLotto() {

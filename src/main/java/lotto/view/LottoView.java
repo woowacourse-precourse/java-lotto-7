@@ -14,6 +14,7 @@ public class LottoView {
     // TODO: 의존성 주입
     private final RankMessageGenerator rankMessageGenerator = new RankMessageGenerator();
     private final LottoMessageGenerator lottoMessageGenerator = new LottoMessageGenerator();
+    private final RateOfReturnMessageGenerator rateOfReturnMessageGenerator = new RateOfReturnMessageGenerator();
 
     public PurchaseAmount getPurchaseAmountFromUser() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -75,6 +76,11 @@ public class LottoView {
         }
 
         System.out.println();
+    }
+
+    public void showRateOfReturn(double rateOfReturn) {
+        String rateOfReturnMessage = rateOfReturnMessageGenerator.getMessage(rateOfReturn);
+        System.out.println(rateOfReturnMessage);
     }
 
 }
