@@ -27,7 +27,7 @@ public class UserOutputView {
             if (rank == Rank.NONE) continue; // Skip "낙첨" rank
 
             int count = statistics.getOrDefault(rank, 0);
-            System.out.println(rank.getRank() + " (" + rank.getPrize() + "원) - " + count + "개");
+            System.out.println(rank.getDescription() + " - " + count + "개");
         }
     }
 
