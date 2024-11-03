@@ -39,6 +39,14 @@ public class Application {
         }
     }
 
+    public static List<Constants.LottoGrade> getLottoResults( List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber ){
+        List<Constants.LottoGrade> results = new ArrayList<Constants.LottoGrade>();
+        for( Lotto lotto : lottos ){
+            results.add( lotto.getGrade( winNumbers, bonusNumber ) );
+        }
+        return results;
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
     }
