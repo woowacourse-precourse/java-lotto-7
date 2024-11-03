@@ -1,6 +1,7 @@
 package model.result;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public enum Rank {
@@ -32,7 +33,6 @@ public enum Rank {
         if (rank == THIRD) {
             rank = checkSecond(isBonusMatched);
         }
-        System.out.println(rank.toString());
         return rank;
     }
 
@@ -56,7 +56,17 @@ public enum Rank {
                 .toList();
     }
 
+    public static List<Rank> sortedRanksExceptNone() {
+        return ranksExceptNone().stream()
+                .sorted(Comparator.comparingInt(Rank::getMatchingCount))
+                .toList();
+    }
+
     public int getPrize() {
         return prize;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
     }
 }

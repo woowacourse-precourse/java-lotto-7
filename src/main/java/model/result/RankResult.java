@@ -30,4 +30,8 @@ public class RankResult {
                 .sum();
         return Money.from(totalPrizeValue);
     }
+
+    public Integer getCountByRank(Rank rank) {
+        return result.getOrDefault(rank, 0);
+    }
 }

@@ -36,5 +36,6 @@ public class LottoController {
 
         RankResult result = resultService.getRankResult(lottos, winningLotto, bonus);
         EarningsRate earningsRate = resultService.getEarningsRate(result, purchaseAmount);
+        outputView.displayResult(result, earningsRate);
     }
 }
