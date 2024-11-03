@@ -13,6 +13,10 @@ public class Amount {
         this.value = amount;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     private void validateAmount(Integer amount) {
         validateDivisibleByThousand(amount);
         validateAmountRange(amount);

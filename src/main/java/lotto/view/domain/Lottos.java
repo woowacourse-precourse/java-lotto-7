@@ -1,0 +1,18 @@
+package lotto.view.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lottos {
+    private final static int LOTTO_AMOUNT = 1000;
+    private final List<Lotto> lottos;
+
+    public Lottos(Amount amount) {
+        lottos = new ArrayList<>();
+        int lottoCount = calculateLottoCount(amount.getValue());
+    }
+
+    private int calculateLottoCount(Integer amount) {
+        return amount / LOTTO_AMOUNT;
+    }
+}
