@@ -31,10 +31,8 @@ public class InputView {
                     return purchasePrice; // 입력이 올바르면 반환
                 } catch (NumberFormatException e) {
                     System.out.println("[ERROR] " + ErrorMessage.ONLY_NUMBER.getError());
-                    throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
                 } catch (IllegalArgumentException e) {
                     System.out.println(ErrorMessage.NOT_DIV.getError());
-                    throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
                 }
             }
         }
