@@ -2,7 +2,7 @@ package view;
 
 import constants.Constants;
 import lotto.Lottos;
-import lotto.WinningRank;
+import lotto.WinningStatistics;
 
 public class ResultView {
 
@@ -18,7 +18,7 @@ public class ResultView {
 
     public void showWinningStatistics(double revenueRate) {
         System.out.println("당첨 통계\n" + "-".repeat(3));
-        System.out.println(WinningRank.winningStatus());
+        System.out.println(WinningStatistics.winningStatus());
         System.out.println("총 수익률은 " + Constants.AMOUNT_NOTATION.format(revenueRate) + "%입니다.");
     }
 }

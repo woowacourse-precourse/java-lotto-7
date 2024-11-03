@@ -1,12 +1,15 @@
 package lotto;
 
-import constants.Constants;
 import java.util.Arrays;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public enum WinningRank {
 
+    NONE(0, 0) {
+        @Override
+        int calculateRevenue() {
+            return 0;
+        }
+    },
     FIFTH(3, 5_000) {
         @Override
         int calculateRevenue() {
@@ -36,16 +39,7 @@ public enum WinningRank {
         int calculateRevenue() {
             return FIRST.reward * FIRST.successMatch;
         }
-    },
-    NONE(0, 0) {
-        @Override
-        int calculateRevenue() {
-            return 0;
-        }
     };
-
-    private static final String BONUS_STATISTICS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String BASIC_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
 
     private final int requiredMatch;
     private final int reward;
@@ -59,6 +53,14 @@ public enum WinningRank {
 
     abstract int calculateRevenue();
 
+    public int getRequiredMatch() {
+        return requiredMatch;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+
     public int getSuccessMatch() {
         return successMatch;
     }
@@ -69,11 +71,10 @@ public enum WinningRank {
 
     public static WinningRank match(int requiredMatch, boolean hasBonus) {
         if (isMatchSecond(requiredMatch, hasBonus)) {
-            increase(WinningRank.SECOND);
-            return WinningRank.SECOND;
+            return increase(SECOND);
         }
 
-        return getWinningRank(requiredMatch);
+        return increase(getWinningRank(requiredMatch));
     }
 
     private static boolean isMatchSecond(int requiredMatch, boolean hasBonus) {
@@ -81,53 +82,15 @@ public enum WinningRank {
     }
 
     private static WinningRank getWinningRank(int requiredMatch) {
-        Optional<WinningRank> winningRank = Arrays.stream(WinningRank.values())
+        return Arrays.stream(WinningRank.values())
                 .filter(rank -> rank != SECOND)
                 .filter(rank -> rank.requiredMatch == requiredMatch)
-                .findFirst();
-
-        if (winningRank.isEmpty()) {
-            return NONE;
-        }
-
-        increase(winningRank.get());
-
-        return winningRank.get();
+                .findFirst()
+                .orElse(NONE);
     }
 
-    private static void increase(WinningRank rank) {
+    private static WinningRank increase(WinningRank rank) {
         rank.successMatch++;
-    }
-
-    public static String winningStatus() {
-        return Arrays.stream(WinningRank.values())
-                .filter(rank -> rank != NONE)
-                .map(WinningRank::selectStatus)
-                .collect(Collectors.joining("\n"));
-    }
-
-    private static String selectStatus(WinningRank rank) {
-        String reward = formattingReward(rank);
-
-        if (isSecond(rank)) {
-            return secondStatistics(rank, reward);
-        }
-        return statistics(rank, reward);
-    }
-
-    private static String formattingReward(WinningRank rank) {
-        return Constants.AMOUNT_NOTATION.format(rank.reward);
-    }
-
-    private static boolean isSecond(WinningRank rank) {
-        return rank == WinningRank.SECOND;
-    }
-
-    private static String secondStatistics(WinningRank rank, String reward) {
-        return String.format(BONUS_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
-    }
-
-    private static String statistics(WinningRank rank, String reward) {
-        return String.format(BASIC_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
+        return rank;
     }
 }

@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -16,7 +15,7 @@ public class WinningRankTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:FIFTH", "1:FOURTH", "2:THIRD", "3:SECOND", "4:FIRST"}, delimiter = ':')
+    @CsvSource(value = {"0:NONE", "1:FIFTH", "2:FOURTH", "3:THIRD", "4:SECOND", "5:FIRST"}, delimiter = ':')
     void 이름을_통한_당첨_등수_생성_확인(int index, String expectedName) {
         String rankName = WinningRank.values()[index].name();
 
@@ -24,8 +23,21 @@ public class WinningRankTest {
     }
 
     @ParameterizedTest
+    @CsvSource(value = {"NONE:0", "FIFTH:3", "FOURTH:4", "THIRD:5", "SECOND:5", "FIRST:6"}, delimiter = ':')
+    void 등수마다_필요한_로또_번호_매칭_개수(WinningRank rank, int requiredMatch) {
+        assertThat(rank.getRequiredMatch()).isEqualTo(requiredMatch);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"NONE:0", "FIFTH:5000", "FOURTH:50000", "THIRD:1500000", "SECOND:30000000",
+            "FIRST:2000000000"}, delimiter = ':')
+    void 등수별_당첨_금액(WinningRank rank, int reward) {
+        assertThat(rank.getReward()).isEqualTo(reward);
+    }
+
+    @ParameterizedTest
     @CsvSource(value = {"6:true:FIRST", "6:false:FIRST", "5:true:SECOND", "5:false:THIRD", "4:true:FOURTH",
-            "4:false:FOURTH", "3:true:FIFTH", "3:false:FIFTH"}, delimiter = ':')
+            "4:false:FOURTH", "3:true:FIFTH", "3:false:FIFTH", "2:false:NONE", "2:true:NONE"}, delimiter = ':')
     void 당첨_랭킹_매칭(int requiredMatch, boolean hasBonus, String name) {
         WinningRank rank = WinningRank.match(requiredMatch, hasBonus);
         WinningRank expectedRank = WinningRank.valueOf(name);
@@ -48,17 +60,5 @@ public class WinningRankTest {
         WinningRank rank = WinningRank.match(requiredMatch, hasBonus);
 
         assertThat(rank.calculateRevenue()).isEqualTo(expectedRevenue);
-    }
-
-    @Test
-    void 당첨_현황() {
-        WinningRank.match(3, false);
-        WinningRank.match(5, true);
-
-        assertThat(WinningRank.winningStatus()).isEqualTo("3개 일치 (5,000원) - 1개\n"
-                + "4개 일치 (50,000원) - 0개\n"
-                + "5개 일치 (1,500,000원) - 0개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
-                + "6개 일치 (2,000,000,000원) - 0개");
     }
 }
