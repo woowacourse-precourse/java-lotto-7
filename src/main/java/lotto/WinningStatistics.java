@@ -11,6 +11,11 @@ import java.util.stream.Stream;
 import static lotto.WinningCategory.*;
 
 public class WinningStatistics {
+    private static final List<WinningCategory> PRINT_ORDER = List.of(
+            THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_MATCH_WITH_BONUS, SIX_MATCH
+    );
+    private static final int PERCENTAGE_FACTOR = 100;
+    private static final double ROUNDING_FACTOR = 100.0;
     private final List<Lotto> purchasedLottos;
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -77,4 +82,35 @@ public class WinningStatistics {
         }
     }
 
+    public void printStatistics() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (WinningCategory category : PRINT_ORDER) {
+            System.out.print(category.getMatchCount() + "개 일치");
+            if (category == FIVE_MATCH_WITH_BONUS) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.print(" (" + String.format("%,d", category.getPrize()) + "원) - ");
+            System.out.println(statistics.get(category) + "개");
+        }
+    }
+
+    private int getTotalPrize() {
+        int totalPrize = 0;
+        for (WinningCategory category : WinningCategory.values()) {
+            int prize = category.getPrize();
+            int count = statistics.get(category);
+            totalPrize += prize * count;
+        }
+        return totalPrize;
+    }
+
+    private double calculateProfitRate(int budget) {
+        double profitRate = ((double) getTotalPrize() / budget) * PERCENTAGE_FACTOR;
+        return Math.round(profitRate * ROUNDING_FACTOR) / ROUNDING_FACTOR;
+    }
+
+    public void printProfitRate(int budget) {
+        System.out.println("총 수익률은 " + calculateProfitRate(budget) + "%입니다.");
+    }
 }

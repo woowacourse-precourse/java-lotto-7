@@ -16,9 +16,11 @@ public class Application {
         Lotto winningLotto = getValidWinningLotto(winningNumbers);
         int bonusNumber = getValidBonusNumber(winningLotto);
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        //printWinningStatistics();  // TODO : 당첨 통계 처리
+        // 통계 및 수익률 출력
+        WinningStatistics winningStatistics = new WinningStatistics(purchasedLottos, winningLotto, bonusNumber);
+        winningStatistics.countWinningCategory(purchasedLottos);
+        winningStatistics.printStatistics();
+        winningStatistics.printProfitRate(budget);
     }
 
     private static int getValidBudget() {
