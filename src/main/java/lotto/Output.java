@@ -1,39 +1,46 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 
 import static lotto.Constant.*;
 
 public class Output {
-    public static void printLotto(List<Lotto> values) {
+    public static void printLottoPaper(List<Lotto> values) {
         System.out.println("\n" + values.size() + "개를 구매했습니다.");
-        for (Lotto value : values) {
-            System.out.println(Arrays.toString(value.getNumbers().toArray()));
-        }
-
-        System.out.println();
+        values.forEach(value -> System.out.println(Arrays.toString(value.getNumbers().toArray())));
     }
 
-    public static void printWinner(int cost) {
+    public static void printWinningList(double cost) {
         System.out.println("당첨 통계\n---");
+
         for (LottoEnum value : LottoEnum.values()) {
-            if (value.getPrize() == 0) {
+            if (value.getPrize().equals(BigDecimal.valueOf(0))) {
                 break;
             }
             if (value.getMatchCount() == LOTTO_BONUS_CORRECT) {
-                System.out.println("5개 일치, 보너스 볼 일치 (" + prizeToString(value.getPrize()) + "원) - " + value.getWinnerCount() + "개");
+                System.out.println("5개 일치, 보너스 볼 일치 ("
+                        + formatDecimal(value.getPrize(), "#,###") + "원) - "
+                        + formatDecimal(value.getWinnerCount(), "#,###") + "개"
+                );
                 continue;
             }
-            System.out.println(value.getMatchCount() + "개 일치 (" + prizeToString(value.getPrize()) + "원) - " + value.getWinnerCount() + "개");
+
+            System.out.println(value.getMatchCount()
+                    + "개 일치 ("
+                    + formatDecimal(value.getPrize(), "#,###") + "원) - "
+                    + formatDecimal(value.getWinnerCount(), "#,###") + "개");
         }
 
-        System.out.println("총 수익률은 " + new DecimalFormat("#,###.0").format((LottoEnum.sum() / cost) * 100) + "%입니다.");
+        System.out.println("총 수익률은 " +
+                formatDecimal(LottoEnum.sum().divide(BigDecimal.valueOf(cost)).multiply(BigDecimal.valueOf(100)), "#,###.0") +
+                "%입니다.");
+
     }
 
-    public static String prizeToString(int prize) {
-        return NumberFormat.getNumberInstance().format(prize);
+    private static String formatDecimal(BigDecimal number, String pattern) {
+        return new DecimalFormat(pattern).format(number);
     }
 }
