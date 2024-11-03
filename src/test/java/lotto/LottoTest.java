@@ -1,6 +1,7 @@
 package lotto;
 
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -33,7 +34,8 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource
     void 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다(List<Integer> lottoNumber){
-        assertThatThrownBy(() -> new Lotto(lottoNumber));
+        assertThatThrownBy(() -> new Lotto(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     static Stream<List<Integer>> 로또_번호의_개수가_6개가_아니면_예외가_발생한다(){

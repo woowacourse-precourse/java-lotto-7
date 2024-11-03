@@ -1,8 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.BonusNumberValidator;
-import lotto.view.BonusNumberInputView;
+import lotto.view.input.BonusNumberInputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

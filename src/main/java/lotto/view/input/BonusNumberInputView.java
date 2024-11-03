@@ -1,6 +1,6 @@
 package lotto.view.input;
 
-import lotto.messages.InputMessage;
+import lotto.enums.InputMessage;
 import lotto.validator.input.BonusNumberValidator;
 
 public class BonusNumberInputView extends InputView {
