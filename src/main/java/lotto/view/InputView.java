@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.StringToLongConverter;
+import lotto.converter.LottoConverter;
 import lotto.exception.Validator;
 
 public class InputView {
@@ -22,8 +24,15 @@ public class InputView {
         return Validator.inputValid(Console.readLine());
     }
 
-    public List<Integer> enterWinningLottery() {
-        return null;
+    public List<Long> enterWinningLottery() {
+        System.out.println(SystemMessage.ENTER_WINNING_LOTTERY);
+        try {
+            StringToLongConverter stringToLongConverter = new StringToLongConverter(Console.readLine());
+            LottoConverter lottoConverter = new LottoConverter(stringToLongConverter.getResult());
+            return lottoConverter.getLottoNumbers();
+        } catch (IllegalArgumentException e) {
+            return enterWinningLottery();
+        }
     }
 
     public int enterBonusLottery() {

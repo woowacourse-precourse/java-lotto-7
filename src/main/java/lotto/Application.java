@@ -8,6 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = InputView.getInstance();
         System.out.println(inputView.enterPaymentForLottery());
+        System.out.println("result: " + inputView.enterWinningLottery());
         LottoController lottoController = new LottoController();
 
     }
