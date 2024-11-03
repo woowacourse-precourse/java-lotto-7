@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoNumbers {
@@ -21,7 +22,9 @@ public class LottoNumbers {
     }
 
     private List<Integer> createLotto() {
-        return camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> lottoNumbers = (camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1,45,6));
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 
     public void printLottos() {
