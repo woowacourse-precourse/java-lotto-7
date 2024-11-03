@@ -15,7 +15,7 @@ public class Money {
     }
 
     private static void zeroValueCheck(String inputMoney) {
-        if (inputMoney == null || inputMoney.isEmpty()) {
+        if (inputMoney == null || inputMoney.isEmpty() || inputMoney.equals("0")) {
             throw new IllegalArgumentException(MoneyErrorConfig.ZERO_VALUE_ERROR.getErrorMessage());
         }
     }
