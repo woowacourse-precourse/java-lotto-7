@@ -12,9 +12,9 @@ public class Money {
     private final int amount;
 
     private Money(int amount) {
-        validateDivide(amount);
         validateZero(amount);
         validateMaximum(amount);
+        validateDivide(amount);
         this.amount = amount;
     }
 
