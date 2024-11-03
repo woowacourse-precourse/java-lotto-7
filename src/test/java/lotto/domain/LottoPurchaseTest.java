@@ -22,4 +22,14 @@ class LottoPurchaseTest {
         assertEquals("금액은 1,000원으로 나누어 떨어져야 합니다.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("0 이하의 금액 입력 시 예외 발생")
+    void createLottoPurchaseWithZeroOrNegativeAmount() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> LottoPurchase.of(0));
+        assertEquals("금액은 0일 수 없습니다.", exception.getMessage());
+
+        exception = assertThrows(IllegalArgumentException.class, () -> LottoPurchase.of(-1000));
+        assertEquals("금액은 0일 수 없습니다.", exception.getMessage());
+    }
+
 }
