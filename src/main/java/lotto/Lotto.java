@@ -19,7 +19,11 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public List<Integer> getSortedLotto() {
-        this.numbers.stream().sorted();
-        return this.numbers;
+        numbers.stream().sorted();
+        return numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
