@@ -41,5 +41,8 @@ public class Application {
 
         // 형식화된 티켓 출력
         outputView.printFormattedTickets(formattedTickets);
+
+        //당첨 번호 입력
+        outputView.printLottoNumbersInputPrompt();
     }
 }
