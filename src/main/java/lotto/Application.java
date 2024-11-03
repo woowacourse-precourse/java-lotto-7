@@ -8,16 +8,16 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("1구입금액을 입력해 주세요.");
         while (true) {
             String purchase = Console.readLine();
-            Integer purchaseInt = Integer.parseInt(purchase);
-            if (validatePurchase(purchaseInt)) {
+            if (validatePurchase(purchase)) {
+                Integer purchaseInt = Integer.parseInt(purchase);
                 break;
             }
         }
 
-        System.out.println("당첨번호를 입력해 주세요.");
+        System.out.println("2당첨번호를 입력해 주세요.");
         while (true) {
             String winningNum = Console.readLine();
             String winningNumber[] = winningNum.split(",");
@@ -25,14 +25,16 @@ public class Application {
                 break;
             }
         }
-
-
     }
 
-    private static boolean validatePurchase(Integer numbers) {
+
+    private static boolean validatePurchase(String numbers) {
         try {
-            if (numbers % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 금액은 천 원 단위여야 합니다.");
+            if (!(numbers.matches("^[0-9]*$")) ) {
+                throw new IllegalArgumentException("[ERROR] 1숫자가 입력되어야 합니다.");
+            }
+            if (Integer.parseInt(numbers) % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 2금액은 천 원 단위여야 합니다.");
             }
             return true;
         } catch (IllegalArgumentException e) {
@@ -44,10 +46,10 @@ public class Application {
     private static boolean validateWinningNumber(String[] numbers) {
         try {
             if (numbers.length != 6) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 3당첨 번호는 6개여야 합니다.");
             }
             if (!checkNumbersRange(numbers)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 3.1당첨 번호는 1~45 사이 숫자여야 합니다.");
             }
             return true;
         } catch (IllegalArgumentException e) {
@@ -58,6 +60,9 @@ public class Application {
 
     private static boolean checkNumbersRange(String[] numbers) {
         for (String number : numbers) {
+            if (!(number.matches("^[0-9]*$")) ) {
+                throw new IllegalArgumentException("[ERROR] 1숫자가 입력되어야 합니다.");
+            }
             if(!(Integer.parseInt(number) >= 1 && Integer.parseInt(number) <= 45)) {
                 return false;
             }
