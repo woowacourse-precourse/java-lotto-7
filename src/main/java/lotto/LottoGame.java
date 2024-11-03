@@ -11,13 +11,16 @@ import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.external.RandomNumbersGenerator;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class LottoGame {
 
     private final Input input;
+    private final Output output;
 
-    public LottoGame(Input input) {
+    public LottoGame(Input input, Output output) {
         this.input = input;
+        this.output = output;
     }
 
     public void run() {
@@ -29,6 +32,8 @@ public class LottoGame {
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount, randomNumbersGenerator);
 
         LottoTicket lottoTicket = new LottoTicket(lottoMachine.generateLottos());
+
+        output.printLottoTicket(lottoTicket);
 
         WinningLotto winningLotto = new WinningLotto(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
