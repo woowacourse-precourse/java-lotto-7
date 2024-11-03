@@ -12,8 +12,7 @@ public class ProcessService implements ProcessServiceImpl {
     private List<Integer> winningLottoNumber;
     private int winningBonusNumber;
 
-    @Override
-    public int[] count(List<Integer> lotto) {
+    private int[] count(List<Integer> lotto) {
         int[] count = new int[]{0, 0};
 
         for (int number : lotto) {
@@ -29,8 +28,7 @@ public class ProcessService implements ProcessServiceImpl {
         return count;
     }
 
-    @Override
-    public int key(List<Integer> lotto) {
+    private int key(List<Integer> lotto) {
         int[] count = this.count(lotto);
 
         if (count[0] == 3) {
