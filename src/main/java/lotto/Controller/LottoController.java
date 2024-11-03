@@ -29,7 +29,7 @@ public class LottoController {
         outputView.printLottos(lottos);
 
         WinningNumbers winningNumbers = createWinningNumbers();
-        LottoResult result = LottoResult.of(lottos, winningNumbers);
+        LottoResult result = lottoService.createWinningResult(lottos, winningNumbers);
         outputView.printWinningStatistics(result);
     }
 

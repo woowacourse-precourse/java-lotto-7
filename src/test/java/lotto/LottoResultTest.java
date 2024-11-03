@@ -71,8 +71,7 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 8))
         );
-        WinningNumbers winningNumbers = WinningNumbers.from(WinningLottoNumbers.from(winningNumberList),
-                BonusNumber.from(bonusNumber));
+        WinningNumbers winningNumbers = WinningNumbers.from(winningNumberList, bonusNumber);
 
         // when
         LottoResult result = LottoResult.of(lottos, winningNumbers);
@@ -94,8 +93,7 @@ public class LottoResultTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
 
-        WinningNumbers winningNumbers = WinningNumbers.from(WinningLottoNumbers.from(winningNumberList),
-                BonusNumber.from(bonusNumber));
+        WinningNumbers winningNumbers = WinningNumbers.from(winningNumberList, bonusNumber);
 
         LottoResult result = LottoResult.of(lottos, winningNumbers);
 

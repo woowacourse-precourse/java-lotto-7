@@ -10,7 +10,9 @@ public class WinningNumbers {
         validateBonusNumberDuplicate();
     }
 
-    public static WinningNumbers from(WinningLottoNumbers winningNumbers, BonusNumber bonusNumber) {
+    public static WinningNumbers from(String winningNumbersInput, String bonusNumberInput) {
+        WinningLottoNumbers winningNumbers = WinningLottoNumbers.from(winningNumbersInput);
+        BonusNumber bonusNumber = BonusNumber.from(bonusNumberInput);
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
