@@ -4,29 +4,28 @@ import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.LottoConstants.MAX_NUMBER;
 import static lotto.constant.LottoConstants.MIN_NUMBER;
 import static lotto.constant.LottoConstants.NUMBER_COUNT;
+import static lotto.constant.LottoConstants.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.IntStream;
 import lotto.exception.ExactChangeNotPossibleException;
 
 public class LottoShop {
 
-
     public Lottos buy(Integer price) {
         validatePrice(price);
-        return generateLottos(calculateBuyCount(price));
+        return generateLottos(calculateLottoTicketCount(price));
     }
 
     private Lottos generateLottos(int buyCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < buyCount; i++) {
-            lottos.add(generateLotto());
-        }
-        return new Lottos(lottos);
+        return new Lottos(
+                IntStream.range(ZERO, buyCount)
+                        .mapToObj(i -> generateLotto())
+                        .toList()
+        );
     }
 
-    private int calculateBuyCount(Integer price) {
+    private int calculateLottoTicketCount(Integer price) {
         return price / LOTTO_PRICE;
     }
 
@@ -41,7 +40,7 @@ public class LottoShop {
     }
 
     private boolean isExactChangePossible(Integer price) {
-        return price % LOTTO_PRICE == 0;
+        return price % LOTTO_PRICE == ZERO;
     }
 
 }

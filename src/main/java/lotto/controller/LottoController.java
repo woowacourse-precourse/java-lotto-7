@@ -23,7 +23,7 @@ public class LottoController {
 
     public void run() {
         Lottos lottos = lottoService.buyLottos(inputPrice());
-        printBoughtLottosInfo(lottos);
+        printBoughtLottoInfo(lottos);
         WinningLotto winningLotto = inputWinningLotto();
         outputView.printStatistics(LottoStatistics.from(
                 winningLotto,
@@ -62,7 +62,7 @@ public class LottoController {
         });
     }
 
-    private void printBoughtLottosInfo(Lottos lottos) {
+    private void printBoughtLottoInfo(Lottos lottos) {
         outputView.printDisplayBuyCountMessage(LottosDTO.from(lottos));
     }
 
