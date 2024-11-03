@@ -11,8 +11,6 @@ import lotto.view.validator.money.MoneyNullValidator;
 import lotto.view.validator.money.MoneyNumberFormatValidator;
 import lotto.view.validator.money.MoneyUnitValidator;
 import lotto.view.validator.money.MoneyZeroValidator;
-import lotto.view.validator.winningNumber.WinningNumCountValidator;
-import lotto.view.validator.winningNumber.WinningNumDuplicateValidator;
 import lotto.view.validator.winningNumber.WinningNumNullValidator;
 import lotto.view.validator.winningNumber.WinningNumNumberFormatValidator;
 import lotto.view.validator.winningNumber.WinningNumRangeValidator;
@@ -37,9 +35,7 @@ public class InputValidatorFacade {
 
         validators.add(WinningNumNullValidator.initiate());
         validators.add(WinningNumNumberFormatValidator.initiate());
-        validators.add(WinningNumCountValidator.initiate());
         validators.add(WinningNumRangeValidator.initiate());
-        validators.add(WinningNumDuplicateValidator.initiate());
 
         validateAll(validators, input);
     }
