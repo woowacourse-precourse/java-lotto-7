@@ -15,6 +15,7 @@ public enum LottoRank {
     RANK_5(5_000, 3, false),
     LOSE(0, 0, false);
 
+    private static int LOWEST_RANK_MATCH_COUNT = 3;
     public final int prizeMoney;
     public final int matchCount;
     public final boolean matchBonus;
@@ -30,7 +31,7 @@ public enum LottoRank {
     }
 
     public static LottoRank by(int matchCount, boolean matchBonus) {
-        if (matchCount < 3) {
+        if (matchCount < LOWEST_RANK_MATCH_COUNT) {
             return LOSE;
         }
 
