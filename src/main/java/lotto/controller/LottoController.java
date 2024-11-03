@@ -26,8 +26,10 @@ public class LottoController {
         outputView.printGeneratedLottos(numberOfPurchasedLotto, generatedLottos);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        
+
         int bonusNumber = inputView.inputBonusNumber();
+
+        int[] result = LottoService.matchLotto(winningNumbers, bonusNumber, generatedLottos, numberOfPurchasedLotto);
 
 
     }
