@@ -9,7 +9,7 @@ public class BuyController {
     private final LottoMachine lottoMachine;
     private final OutputView outputView;
 
-    public BuyController(final InputView inputView, final LottoMachine lottoMachine, OutputView outputView) {
+    public BuyController(final InputView inputView, final LottoMachine lottoMachine, final OutputView outputView) {
         this.inputView = inputView;
         this.lottoMachine = lottoMachine;
         this.outputView = outputView;
