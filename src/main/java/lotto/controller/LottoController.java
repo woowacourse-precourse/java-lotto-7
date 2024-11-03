@@ -23,11 +23,7 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            start();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        start();
     }
 
     private void start() {
