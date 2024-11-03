@@ -11,7 +11,7 @@ public enum Constants {
     WINNING_STATISTICS("\n당첨 통계\n---"),
     MATCH_COUNT_FORMAT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
     MATCH_COUNT_FORMAT("%d개 일치 (%s원) - %d개"),
-    PROFITABILITY_FORMAT("총 수익률은 %.2f%% 입니다.");
+    PROFITABILITY_FORMAT("총 수익률은 %.1f%% 입니다.");
 
     private final String message;
 
