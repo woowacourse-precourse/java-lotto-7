@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.InputException;
-import lotto.global.ErrorCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +11,16 @@ import static lotto.global.ErrorCode.*;
 
 public class InputView {
 
+    static final String FIRST_PRINT = "구입금액을 입력해 주세요.";
+    static final String SECOND_PRINT = "당첨 번호를 입력해 주세요.";
+    static final String THIRD_PRINT = "보너스 번호를 입력해 주세요.";
     int money;
     int count;
     Lotto winLotto = null;
 
     public void buyMoney() {
         int m = -1;
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(FIRST_PRINT);
         try {
             m = Integer.parseInt(Console.readLine());
             if (m <= 0) {
@@ -38,7 +40,7 @@ public class InputView {
     }
 
     public List<Integer> winNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(SECOND_PRINT);
         StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
         List<Integer> numbers = new ArrayList<>();
         try {
@@ -58,7 +60,7 @@ public class InputView {
 
     public int bonus() {
         int number = -1;
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(THIRD_PRINT);
         try {
             number = Integer.parseInt(Console.readLine());
             winLotto.setBonusNumber(number);

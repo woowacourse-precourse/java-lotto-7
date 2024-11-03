@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMatch {
+
+    static final String SECOND_OUT_PRINT = "당첨 통계\n---\n";
     public int count;
     public ArrayList<List<Integer>> lotto = new ArrayList<>();
     public List<Integer> winLotto;
@@ -63,8 +65,7 @@ public class LottoMatch {
         else if (matchCount == 3) winCounts[0]++;
     }
     private void printStatistics() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(SECOND_OUT_PRINT);
         System.out.printf("3개 일치 (5,000원) - %d개\n", winCounts[0]);
         System.out.printf("4개 일치 (50,000원) - %d개\n", winCounts[1]);
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", winCounts[2]);

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class OutputView {
 
+    static final String FIRST_OUT_PRINT = "개를 구매했습니다.";
     int count;
 
     ArrayList<List<Integer>> lotto = new ArrayList<>();
@@ -15,7 +16,7 @@ public class OutputView {
     }
 
     public void buyCountPrint() {
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(count + FIRST_OUT_PRINT);
     }
 
     public void lottosPrint() {
