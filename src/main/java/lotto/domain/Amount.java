@@ -35,11 +35,15 @@ public class Amount {
     }
 
     private static void validateRange(String input) {
+        int amount = parseInt(input);
+        validateNegativeNumber(amount);
+        validateUnderMinAmount(amount);
+        validateUnit(amount);
+    }
+
+    private static int parseInt(String input) {
         try {
-            int amount = Integer.parseInt(input);
-            validateNegativeNumber(amount);
-            validateUnderMinAmount(amount);
-            validateUnit(amount);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.TOO_BIG_PURCHASE_AMOUNT.getMessage());
         }

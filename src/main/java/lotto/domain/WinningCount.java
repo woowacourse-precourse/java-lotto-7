@@ -10,7 +10,7 @@ public class WinningCount {
     public WinningCount() {
         this.winningCount = new HashMap<>();
         Arrays.stream(Profit.values())
-                .forEach(profit -> this.winningCount.put(profit.toString(), 0));
+                .forEach(profit -> this.winningCount.put(profit.name(), 0));
     }
 
     public void increaseCount(String key) {

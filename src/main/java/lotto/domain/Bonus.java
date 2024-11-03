@@ -36,10 +36,14 @@ public class Bonus {
     }
 
     private static void validateRange(String input, Lotto winningLotto) {
+        int number = parseInt(input);
+        validateNumberRange(number);
+        validateDuplicate(number, winningLotto.getNumbers());
+    }
+
+    private static int parseInt(String input) {
         try {
-            int number = Integer.parseInt(input);
-            validateNumberRange(number);
-            validateDuplicate(number, winningLotto.getNumbers());
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.TOO_BIG_BONUS_NUMBER.getMessage());
         }

@@ -36,18 +36,18 @@ public class Lotto {
         }
     }
 
-    private static int parseInt(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
-        }
-    }
-
     private static String[] getNumbers(String input) {
         return Arrays.stream(input.split(Constant.DELIMITER))
                 .map(String::strip)
                 .toArray(String[]::new);
+    }
+
+    private static int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
+        }
     }
 
     private void validate(List<Integer> numbers) {
