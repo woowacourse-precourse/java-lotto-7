@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import lotto.model.dto.LottosResponse;
 import lotto.model.service.LottoService;
 import lotto.view.ErrorView;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -31,7 +33,8 @@ public class LottoController {
     }
 
     public String issueLottos(Integer customerId) {
-        lottoService.issueLottos(customerId);
+        LottosResponse response = lottoService.issueLottos(customerId);
+        OutputView.printCustomerLottos(response);
         return "success";
     }
 }

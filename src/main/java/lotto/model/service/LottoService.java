@@ -29,6 +29,7 @@ public class LottoService {
         List<Lotto> generatedLottos = IntStream.range(0, count)
                 .mapToObj(iter -> {
                     List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                    numbers.sort(Integer::compareTo);
                     return new Lotto(numbers);
                 })
                 .toList();
