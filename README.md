@@ -7,16 +7,19 @@
 - [X] 로또 구입 금액을 입력받는 기능
   - [X] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
   - [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [X] 사용자의 입력에 숫자 이외의 문자가 있을경우 예외 발생
-    - [X] 사용자의 입력에 숫자가 1000 단위가 아닐경우 예외 발생
+    - [X] 사용자의 입력에 숫자 이외의 문자가 있는지 확인하는 기능
+    - [X] 사용자의 입력에 숫자가 1000 단위인지 확인하는 기능
 - [X] 구입한 금액만큼 로또를 구매하는 기능
   - [X] 로또 1장의 가격은 1,000원이다.
   - [X] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
   - [X] 1개의 로또를 발행할 때 숫자 범위는 1~45에서 중복되지 않는 6개의 숫자를 뽑는다.
 - [X] 구매한 로또 수량 출력하고 로또 번호를 오름차순으로 출력하는 기능
-- [ ] 당첨 번호를 쉼표로 구분하여 입력 받는 기능
-  - [ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
-  - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [X] 당첨 번호를 쉼표로 구분하여 입력 받는 기능
+  - [X] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+  - [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [X] 로또 번호의 개수가 6개인지 확인하는 기능 
+    - [X] 로또 번호에 중복이 없는지 확인하는 기능
+    - [X] 로또 번호가 1부터 45 사이의 숫자인지 범위 검증 기능
 - [ ] 보너스 번호를 입력받는 기능
   - [ ] 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
   - [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
