@@ -10,14 +10,14 @@ public class PriceCalculator {
         this.lottoPurchaseValidator = new LottoPurchaseValidator();
     }
 
-    public void calculateLotto(String input) {
-        parsePrice(input);
-
+    public int calculateLotto(String input) {
+        int price = parsePrice(input);
+        return price / 1000;
     }
 
-    private void parsePrice(String input) {
+    private int parsePrice(String input) {
         validatePrice(input);
-        int price = Integer.parseInt(input);
+        return Integer.parseInt(input);
     }
 
     private void validatePrice(String input){
