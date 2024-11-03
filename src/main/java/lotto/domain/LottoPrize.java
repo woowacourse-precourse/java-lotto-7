@@ -37,7 +37,7 @@ public class LottoPrize {
     }
 
     private static void validateBonusNumber(List<Integer>lottoPrizeNumbers, Integer bonusNumber) {
-        checkLottoNumberRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, new ArrayList<>(bonusNumber));
+        checkLottoNumberRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, new ArrayList<>(List.of(bonusNumber)));
         checkDuplicateBonusNumber(lottoPrizeNumbers, bonusNumber);
     }
 
