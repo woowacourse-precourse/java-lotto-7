@@ -18,6 +18,8 @@ import lotto.view.OutputView;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.util.RepeatInput.repeatUntilValid;
+
 public class Application {
     public static void main(String[] args) {
         TicketService ticketService = new TicketService();
@@ -34,10 +36,11 @@ public class Application {
         WinningNumberGenerationController winningNumberGenerationController = new WinningNumberGenerationController(new WinningNumberGenerator());
         BonusNumberController bonusNumberController = new BonusNumberController();
 
-        Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();
-        BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
-
-        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        WinningNumber winningNumber = repeatUntilValid(() -> {
+            Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();
+            BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
+            return new WinningNumber(winningNumbers, bonusNumber);
+        }, new CommonIo());
 
         RankCalculatorController rankCalculatorController = new RankCalculatorController(winningNumber);
 
