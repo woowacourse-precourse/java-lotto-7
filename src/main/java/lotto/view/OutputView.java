@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class OutputView {
     private static final String NEXT_LINE = "\n";
@@ -26,11 +27,8 @@ public class OutputView {
 
     public static void printWinStatistics(final double profit, final Map<Ranking, Integer> results) {
         System.out.println(ViewMessage.WIN_ALARM_MESSAGE.getMessage());
-        System.out.println(formatRank(Ranking.FIFTH, getCountOrDefault(Ranking.FIFTH, results)));
-        System.out.println(formatRank(Ranking.FOURTH, getCountOrDefault(Ranking.FOURTH, results)));
-        System.out.println(formatRank(Ranking.THIRD, getCountOrDefault(Ranking.THIRD, results)));
-        System.out.println(formatRank(Ranking.SECOND, getCountOrDefault(Ranking.SECOND, results)));
-        System.out.println(formatRank(Ranking.FIRST, getCountOrDefault(Ranking.FIRST, results)));
+        Stream.of(Ranking.FIFTH, Ranking.FOURTH, Ranking.THIRD, Ranking.SECOND, Ranking.FIRST)
+                .forEach(rank -> System.out.println(formatRank(rank, getCountOrDefault(rank, results))));
         System.out.println(MessageFormat.format(ViewMessage.TOTAL_PROFIT_MESSAGE.getMessage(), formatProfit(profit)));
     }
 
