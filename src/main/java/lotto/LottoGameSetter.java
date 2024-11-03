@@ -20,14 +20,48 @@ public class LottoGameSetter {
     }
 
     private static BonusNumber setBonusNumber(Lotto winningNumbers) {
-        return BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
+        BonusNumber bonusNumber;
+
+        while(true) {
+            try {
+                bonusNumber = BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return bonusNumber;
     }
 
     private static Lotto setWinningNumbers() {
-        return Lotto.from(ConsoleInput.getWinningNumbers());
+        Lotto lotto;
+
+        while(true) {
+            try{
+                lotto = Lotto.from(ConsoleInput.getWinningNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return lotto;
     }
 
     private static LottoPrice setTotalPrice() {
-        return LottoPrice.valueOf(ConsoleInput.getTotalPrice());
+
+        LottoPrice lottoPrice;
+
+        while(true) {
+            try {
+                lottoPrice = LottoPrice.valueOf(ConsoleInput.getTotalPrice());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return lottoPrice;
     }
 }

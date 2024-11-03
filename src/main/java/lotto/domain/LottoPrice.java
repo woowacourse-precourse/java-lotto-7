@@ -13,7 +13,11 @@ public class LottoPrice {
     }
 
     public static LottoPrice valueOf(String lottoPriceString) {
-        return valueOf(Integer.parseInt(lottoPriceString));
+        try {
+            return valueOf(Integer.parseInt(lottoPriceString));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
+        }
     }
 
     private static void validate(Integer value) {
