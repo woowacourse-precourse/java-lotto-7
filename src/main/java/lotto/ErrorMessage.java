@@ -58,6 +58,16 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         }
     },
 
+    DUPLICATE_BONUS_WINNING_NUMBER("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.") {
+        // 보너스 번호와 당첨 번호의 중복 여부
+        @Override
+        public void validate(List<Integer> winningNumbers, int bonusNumber) {
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException(getMessage());
+            }
+        }
+    };
+
 
 
 
