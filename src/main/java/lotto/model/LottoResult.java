@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utility.MatchedCountNameEnum;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,11 +15,11 @@ public class LottoResult {
 
     public LottoResult() {
         this.matchedCount = new HashMap<>();
-        matchedCount.put("threeMatched", INITIAL_MATCHED_COUNT);
-        matchedCount.put("fourMatched", INITIAL_MATCHED_COUNT);
-        matchedCount.put("fiveMatched", INITIAL_MATCHED_COUNT);
-        matchedCount.put("fiveWithBonusMatched", INITIAL_MATCHED_COUNT);
-        matchedCount.put("sixMatched", INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountNameEnum.THREE_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountNameEnum.FOUR_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountNameEnum.FIVE_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
+        matchedCount.put(MatchedCountNameEnum.SIX_MATCHED.getMessage(), INITIAL_MATCHED_COUNT);
     }
 
     public void increaseCountByNumberMatchedAndBonusMatched(int numberMatchedCount, boolean isBonusMatched) {

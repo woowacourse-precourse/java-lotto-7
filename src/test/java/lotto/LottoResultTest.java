@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.LottoResult;
+import lotto.utility.MatchedCountNameEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(3, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(3, true);
 
-        assertThat(lottoResult.getMatchThreeNumberCount()).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountNameEnum.THREE_MATCHED.getMessage())).isEqualTo(2);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(4, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(4, true);
 
-        assertThat(lottoResult.getMatchFourNumberCount()).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountNameEnum.FOUR_MATCHED.getMessage())).isEqualTo(2);
     }
 
     @Test
@@ -35,7 +36,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, false);
 
-        assertThat(lottoResult.getMatchFiveNumberCount()).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountNameEnum.FIVE_MATCHED.getMessage())).isEqualTo(2);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, true);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(5, true);
 
-        assertThat(lottoResult.getMatchFiveNumberAndBonusCount()).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountNameEnum.FIVE_WITH_BONUS_MATCHED.getMessage())).isEqualTo(2);
     }
 
     @Test
@@ -51,6 +52,6 @@ public class LottoResultTest {
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(6, false);
         lottoResult.increaseCountByNumberMatchedAndBonusMatched(6, true);
 
-        assertThat(lottoResult.getMatchSixNumberCount()).isEqualTo(2);
+        assertThat(lottoResult.getMatchedCount().get(MatchedCountNameEnum.SIX_MATCHED.getMessage())).isEqualTo(2);
     }
 }
