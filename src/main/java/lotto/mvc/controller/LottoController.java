@@ -159,6 +159,6 @@ public class LottoController {
         BigDecimal purchase = new BigDecimal(purchaseAmount);
         BigDecimal totalWinning = new BigDecimal(totalWinningAmount);
 
-        return totalWinning.divide(purchase, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+        return totalWinning.divide(purchase, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
     }
 }

@@ -1,6 +1,6 @@
 package lotto.mvc.view;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import lotto.mvc.model.Lotto;
@@ -34,7 +34,7 @@ public class OutputView {
         }
     }
 
-    public void showTotalReturn(BigInteger totalReturn) {
-
+    public void showTotalReturn(BigDecimal totalReturn) {
+        System.out.printf("총 수익률은 %s%%입니다.", totalReturn.toPlainString());
     }
 }
