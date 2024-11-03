@@ -7,7 +7,7 @@ public sealed class LottoNumber implements Comparable<LottoNumber> permits Bonus
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
 
-    public final Integer number;
+    private final Integer number;
 
     public LottoNumber(final Integer number) {
         if (number < MIN_VALUE || MAX_VALUE < number) {
@@ -25,7 +25,7 @@ public sealed class LottoNumber implements Comparable<LottoNumber> permits Bonus
         if (other == null) {
             throw new IllegalArgumentException("[ERROR] null과 비교할 수 없습니다.");
         }
-        return number.compareTo(other.number);
+        return number.compareTo(other.getNumber());
     }
 
     @Override
@@ -33,7 +33,7 @@ public sealed class LottoNumber implements Comparable<LottoNumber> permits Bonus
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null) {
             return false;
         }
         LottoNumber that = (LottoNumber) o;

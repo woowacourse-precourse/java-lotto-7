@@ -30,8 +30,8 @@ public record LottoNumbers(List<LottoNumber> lottoNumbers) {
                 .toList());
     }
 
-    public boolean contains(LottoNumber number) {
-        return lottoNumbers.contains(number);
+    public boolean contains(LottoNumber otherNumber) {
+        return lottoNumbers.contains(otherNumber);
     }
 
     public Stream<LottoNumber> stream() {
