@@ -10,11 +10,14 @@ public class LottoTicketIssuer { // 로또 구매 금액을 입력 받아 로또
     private final int purchaseAmount;
     private final int quantity;
 
-
     public LottoTicketIssuer(int totalPayment) {
         LottoPaymentValidator.validate(totalPayment);
         this.purchaseAmount = totalPayment;
-        this.quantity = totalPayment / TICKET_PRICE;
+        this.quantity = calculateQuantity(totalPayment);
+    }
+
+    private int calculateQuantity(int totalPayment) {
+        return totalPayment / TICKET_PRICE;
     }
 
     public List<LottoTicket> issueLottoTickets() {
