@@ -2,8 +2,11 @@ package lotto.io;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import lotto.domain.PurchaseLottos;
+import lotto.domain.LottoResult;
+import lotto.domain.PurchasedLottos;
+import lotto.domain.Rank;
 import lotto.validator.ValidatingParser;
 
 public class IoHandler {
@@ -46,8 +49,8 @@ public class IoHandler {
 		outputHandler.showExceptionMessage(message);
 	}
 
-	public void showPurchaseLottos(PurchaseLottos purchaseLottos) {
-		outputHandler.showPurchaseLottos(purchaseLottos.getLottoSize(), purchaseLottos.getLottos());
+	public void showPurchaseLottos(PurchasedLottos purchasedLottos) {
+		outputHandler.showPurchaseLottos(purchasedLottos.getLottosSize(), purchasedLottos.getPurchasedLottos());
 	}
 
 	public List<Integer> getWinningNumbersFromUser() {
@@ -82,7 +85,12 @@ public class IoHandler {
 		return bonusNumber;
 	}
 
-	public void showWinningReport() {
-		outputHandler.showWinningReport();
+	public void showLottoResult(LottoResult lottoResult) {
+		Map<Rank, Integer> rankCount = lottoResult.getRankCount();
+		String profitRate = lottoResult.getProfitRate();
+		outputHandler.showWinningReportHeader();
+		rankCount.forEach(
+			(key, value) -> outputHandler.showWinningReportBody(key.getMessage(), value));
+		outputHandler.showWinningReportProfitRate(profitRate);
 	}
 }
