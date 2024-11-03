@@ -1,4 +1,4 @@
-package domain;
+package domain.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +22,16 @@ public class Lotto {
 
     public List<LottoNumber> getNumbers() {
         return numbers;
+    }
+
+    public int countMatchingNumbers(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(WinningLotto winningLotto) {
+        return numbers.contains(winningLotto.getBonusNumber());
     }
 
     @Override

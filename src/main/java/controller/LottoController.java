@@ -1,7 +1,9 @@
 package controller;
 
-import domain.Lotto;
-import domain.WinningLotto;
+import domain.lotto.Lotto;
+import domain.lotto.LottoGenerator;
+import domain.lotto.WinningLotto;
+import domain.prize.PrizeResult;
 import purchase.PurchaseAmount;
 import view.InputView;
 

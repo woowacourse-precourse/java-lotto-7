@@ -1,8 +1,8 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.LottoNumber;
-import domain.WinningLotto;
+import domain.lotto.LottoNumber;
+import domain.lotto.WinningLotto;
 import purchase.PurchaseAmount;
 
 import java.util.Arrays;
