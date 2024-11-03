@@ -16,27 +16,39 @@ class NumberParserTest {
     @Nested
     class 숫자_변환_테스트 {
         @Test
-        void 숫자_문자열을_정수로_변환한다() {
+        void 숫자_문자열을_Long으로_변환한다() {
             // given
             String input = "123";
 
             // when
-            Integer result = NumberParser.parse(input);
+            Long result = NumberParser.parse(input);
 
             // then
-            assertThat(result).isEqualTo(123);
+            assertThat(result).isEqualTo(123L);
         }
 
         @Test
-        void 앞뒤_공백이_있는_숫자_문자열을_정수로_변환한다() {
+        void 앞뒤_공백이_있는_숫자_문자열을_Long으로_변환한다() {
             // given
             String input = "  456  ";
 
             // when
-            Integer result = NumberParser.parse(input);
+            Long result = NumberParser.parse(input);
 
             // then
-            assertThat(result).isEqualTo(456);
+            assertThat(result).isEqualTo(456L);
+        }
+
+        @Test
+        void Integer_최대값보다_큰_숫자를_변환한다() {
+            // given
+            String input = "2147483648";  // Integer.MAX_VALUE + 1
+
+            // when
+            Long result = NumberParser.parse(input);
+
+            // then
+            assertThat(result).isEqualTo(2147483648L);
         }
 
         @ParameterizedTest
@@ -73,7 +85,9 @@ class NumberParserTest {
 
         @ParameterizedTest
         @ValueSource(strings = {
-                "1234567890", "9999999999", "10000000000"
+                "12345678901234567890",  // 20자리
+                "9999999999999999999",    // 19자리
+                "10000000000000000000"    // 20자리
         })
         void 최대_자릿수_초과_시_예외가_발생한다(String input) {
             assertThatThrownBy(() -> NumberParser.parse(input))

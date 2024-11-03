@@ -17,11 +17,11 @@ class NumberArrayParserTest {
             String input = "1,2,3,4,5";
 
             // when
-            List<Integer> result = NumberArrayParser.parse(input);
+            List<Long> result = NumberArrayParser.parse(input);
 
             // then
             assertThat(result)
-                    .containsExactly(1, 2, 3, 4, 5)
+                    .containsExactly(1L, 2L, 3L, 4L, 5L)
                     .hasSize(5);
         }
 
@@ -31,11 +31,11 @@ class NumberArrayParserTest {
             String input = " 1 , 2 , 3 , 4 , 5 ";
 
             // when
-            List<Integer> result = NumberArrayParser.parse(input);
+            List<Long> result = NumberArrayParser.parse(input);
 
             // then
             assertThat(result)
-                    .containsExactly(1, 2, 3, 4, 5)
+                    .containsExactly(1L, 2L, 3L, 4L, 5L)
                     .hasSize(5);
         }
 
@@ -45,7 +45,7 @@ class NumberArrayParserTest {
             String input = "";
 
             // when
-            List<Integer> result = NumberArrayParser.parse(input);
+            List<Long> result = NumberArrayParser.parse(input);
 
             // then
             assertThat(result).isEmpty();
@@ -60,11 +60,11 @@ class NumberArrayParserTest {
             String input = "1,,2,,,3,,4,,5";
 
             // when
-            List<Integer> result = NumberArrayParser.parse(input);
+            List<Long> result = NumberArrayParser.parse(input);
 
             // then
             assertThat(result)
-                    .containsExactly(1, 2, 3, 4, 5)
+                    .containsExactly(1L, 2L, 3L, 4L, 5L)
                     .hasSize(5);
         }
 
@@ -75,7 +75,7 @@ class NumberArrayParserTest {
         })
         void 쉼표로만_이루어진_입력은_빈_리스트를_반환한다(String input) {
             // when
-            List<Integer> result = NumberArrayParser.parse(input);
+            List<Long> result = NumberArrayParser.parse(input);
 
             // then
             assertThat(result).isEmpty();

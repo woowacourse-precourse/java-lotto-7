@@ -5,19 +5,19 @@ import static lotto.constant.ExceptionMessage.INVALID_NUMBER_FORMAT;
 import static lotto.constant.ExceptionMessage.NULL_OR_EMPTY_INPUT;
 
 public class NumberParser {
-    private static final int MAX_DIGITS_TO_PREVENT_OVERFLOW = 10;
+    private static final int MAX_DIGITS_TO_PREVENT_OVERFLOW = 19;
 
     private NumberParser() {
     }
 
-    public static Integer parse(String input) {
+    public static Long parse(String input) {
         validateNotNull(input);
 
         String trimmedInput = input.strip();
         validateNotEmpty(trimmedInput);
         validateNotOverflow(trimmedInput);
 
-        return parseToInt(trimmedInput);
+        return parseToLong(trimmedInput);
     }
 
     private static void validateNotNull(String input) {
@@ -38,9 +38,9 @@ public class NumberParser {
         }
     }
 
-    private static Integer parseToInt(String input) {
+    private static Long parseToLong(String input) {
         try {
-            return Integer.parseInt(input);
+            return Long.parseLong(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.message());
         }

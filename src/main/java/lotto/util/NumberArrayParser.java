@@ -10,7 +10,7 @@ public class NumberArrayParser {
     private NumberArrayParser() {
     }
 
-    public static List<Integer> parse(String input) {
+    public static List<Long> parse(String input) {
         if (input.isEmpty()) {
             return new ArrayList<>();
         }
