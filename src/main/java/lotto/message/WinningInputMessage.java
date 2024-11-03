@@ -7,8 +7,8 @@ public enum WinningInputMessage {
     REQUEST_LOTTO_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
 
     // Error message
-    INVALID_WINNING_INPUT_STRING("6개의 숫자와 쉼표로 이루어진 문자열을 입력해주세요."),
-    INVALID_BONUS_NUMBER("1~45 사이의 숫자를 입력해주세요.");
+    INVALID_WINNING_INPUT_STRING("[ERROR] 6개의 숫자와 쉼표로 이루어진 문자열을 입력해주세요."),
+    INVALID_BONUS_NUMBER("[ERROR] 1~45 사이의 숫자를 입력해주세요.");
 
     private final String message;
 
