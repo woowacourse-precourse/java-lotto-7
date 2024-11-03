@@ -9,6 +9,7 @@ class LottoServiceTest {
 
     private static final String VALID_PAYMENT = "8000";
     private static final String VALID_WINNING_NUMBERS = "1,2,3,4,5,6";
+    private static final String VALID_BONUS_NUMBER = "7";
 
     private final LottoService lottoService = new LottoService();
 
@@ -42,6 +43,17 @@ class LottoServiceTest {
 
         // when
         String result = lottoService.saveWinningLottos(VALID_WINNING_NUMBERS);
+
+        // then
+        assertThat(result).isEqualTo("success");
+    }
+
+    @Test
+    void 보너스번호_저장_성공_테스트() {
+        // given
+
+        // when
+        String result = lottoService.saveBonusNumber(VALID_BONUS_NUMBER);
 
         // then
         assertThat(result).isEqualTo("success");

@@ -41,4 +41,14 @@ class NumberParserTest {
         assertThatThrownBy(() -> NumberParser.parseWinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 잘못된_형식의_보너스번호_예외처리_테스트() {
+        // given
+        String invalidBonusNumber = "abc";
+
+        // when / then
+        assertThatThrownBy(() -> NumberParser.parseBonusNumber(invalidBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
