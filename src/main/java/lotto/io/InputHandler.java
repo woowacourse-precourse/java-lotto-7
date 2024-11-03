@@ -25,7 +25,13 @@ public class InputHandler {
         String input = Console.readLine();
 
         return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
+                .map(number -> {
+                    try {
+                        return Integer.parseInt(number.trim());
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("[ERROR] 숫자 형식이 올바르지 않습니다. 당첨 번호를 숫자로 입력해 주세요.");
+                    }
+                })
                 .collect(Collectors.toList());
     }
 
