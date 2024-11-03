@@ -16,6 +16,9 @@ public class LottoController {
 
         OutputView.printBlankLine();
         InputView.getWinningNumbers();
+
+        OutputView.printBlankLine();
+        InputView.getBonusNumber();
     }
 
     private User makeUserToBuyLotto(int amount) {

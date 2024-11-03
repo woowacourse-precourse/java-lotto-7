@@ -26,11 +26,11 @@ public class OutputView {
         System.out.println(sortedLottoNumbers);
     }
 
-    public static void notifyEnterWinningMoney() {
+    public static void notifyEnterWinningNumbers() {
         System.out.println(NotifyMessage.ENTER_WINNING_NUM_MESSAGE.getMessage());
     }
 
-    public static void notifyEnterBonusMoney() {
+    public static void notifyEnterBonusNumber() {
         System.out.println(NotifyMessage.ENTER_BONUS_NUM_MESSAGE.getMessage());
     }
 
