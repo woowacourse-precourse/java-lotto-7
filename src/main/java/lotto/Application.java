@@ -21,11 +21,33 @@ public class Application {
         Set<Integer> numbersInput = Arrays.stream(inputNumbers)
                 .map(String::trim)
                 .map(Integer::parseInt)
+                .filter(value -> {
+                    if(value > 45 || value < 1) {
+                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되지 않는 1~45 사이의 6가지 수여야 합니다.");
+                    }
+                    return true;
+                })
                 .collect(Collectors.toSet());
 
         if(numbersInput.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되지 않는 1~45 사이의 6가지 수여야 합니다.");
         }
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumberInput = readLine();
+        Integer bonusNumber = Integer.parseInt(bonusNumberInput);
+        if(bonusNumber > 45 || bonusNumber <1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
+        }
+        if(numbersInput.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
+        }
+
+
+
+
+
+
 
     }
 }
