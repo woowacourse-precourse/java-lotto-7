@@ -1,38 +1,56 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.ViewMessage;
 import lotto.utils.Converter;
 import lotto.validator.InputValidator;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class InputView {
-    private static final String INPUT_BUY_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String INPUT_WIN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     private InputView(){
     }
 
     public static int inputPurchaseAmount() {
-        System.out.println(INPUT_BUY_MONEY_MESSAGE);
-        String input = Converter.trimInput(Console.readLine());
-        InputValidator.validatePurchaseAmount(input);
-        return Converter.convertToNumber(input);
+        return readLine(
+                ViewMessage.INPUT_BUY_MONEY_MESSAGE.getMessage(),
+                Converter::trimInput,
+                InputValidator::validatePurchaseAmount,
+                Converter::convertToNumber
+        );
     }
 
     public static List<Integer> inputWinNumbers() {
-        System.out.println(INPUT_WIN_NUMBERS_MESSAGE);
-        String input = Converter.trimInput(Console.readLine());
-        InputValidator.validateWinNumbers(input);
-        return Converter.convertNumbers(input);
+        return readLine(
+                ViewMessage.INPUT_WIN_NUMBERS_MESSAGE.getMessage(),
+                Converter::trimInput,
+                InputValidator::validateWinNumbers,
+                Converter::convertNumbers
+        );
     }
 
     public static int inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String input = Converter.trimInput(Console.readLine());
-        InputValidator.validateBonusNumber(input);
-        return Converter.convertToNumber(input);
+        return readLine(
+                ViewMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage(),
+                Converter::trimInput,
+                InputValidator::validateBonusNumber,
+                Converter::convertToNumber
+        );
     }
 
+    private static <T> T readLine(
+            String message,
+            Function<String, String> preProcessor,
+            Consumer<String> validator,
+            Function<String, T> converter
+    ) {
+        System.out.println(message);
+        String input = Console.readLine();
+        input = preProcessor.apply(input);
+        validator.accept(input);
+        return converter.apply(input);
+    }
 }
