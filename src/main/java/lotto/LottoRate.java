@@ -1,9 +1,11 @@
+package lotto;
+
 public enum LottoRate {
-    SIX_MATCH(6, 2000000000),
-    FIVE_MATCH_WITH_BONUS(5, 30000000),
-    FIVE_MATCH(5, 1500000),
-    FOUR_MATCH(4, 50000),
     THREE_MATCH(3, 5000),
+    FOUR_MATCH(4, 50000),
+    FIVE_MATCH(5, 1500000),
+    FIVE_MATCH_WITH_BONUS(5, 30000000),
+    SIX_MATCH(6, 2000000000),
     NONE(0, 0);
 
     private final int matchCount;
