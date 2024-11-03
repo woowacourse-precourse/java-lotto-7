@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoManager;
+import lotto.model.LottoWinnerPrize;
 import lotto.model.PurchasedLotto;
 import lotto.util.ErrorMessage;
 import lotto.util.InputValidator;
@@ -8,7 +10,9 @@ import lotto.util.Separator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -25,8 +29,8 @@ public class LottoController {
         PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseAmount/LOTTO_PRICE);
         OutputView.printPurchasedLottos(purchasedLotto);
 
-        Lotto lotto = createWinningLotto();
-        int bonusNumber = getBonusNumber();
+        LottoManager lottoManager = new LottoManager(createWinningLotto(), getBonusNumber());
+        Map<LottoWinnerPrize, Integer> prizeCount = lottoManager.getWinningPrizes(purchasedLotto.getLottos());
     }
 
     private int getPurchaseAmount() {
