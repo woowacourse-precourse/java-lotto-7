@@ -13,7 +13,7 @@ public class Output {
     private static final String UNIT = "개";
     private static final String CURRENCY = "원";
 
-    public static void printLottoNumbers(List<Lotto> lottoNumbers) {
+    public void printLottoNumbers(List<Lotto> lottoNumbers) {
         printMessage(lottoNumbers.size() + NUMBER_OF_PURCHASE.getMessage());
         for (Lotto lottoNumber : lottoNumbers) {
 //            printMessage(String.valueOf(lottoNumber));
@@ -21,7 +21,7 @@ public class Output {
         }
     }
 
-    public static void printWinningStatistics(List<Integer> amountOfMatches) { // TODO 컬렉션 종류
+    public void printWinningStatistics(List<Integer> amountOfMatches) { // TODO 컬렉션 종류
         printMessage(WINNING_STATISTICS.getMessage());
         for (Integer amountOfMatch : amountOfMatches) {
 

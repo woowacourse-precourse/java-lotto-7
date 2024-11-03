@@ -9,13 +9,22 @@ import lotto.view.Output;
 
 public class LottoController {
     private LottoGenerator generator = new LottoGenerator();
+    private Input purchaseAmountInput;
+    private Input winningNumbersInput;
+    private Output output;
+
+    public LottoController(Input purchaseAmountInput, Input winningNumbersInput, Output output) {
+        this.purchaseAmountInput = purchaseAmountInput;
+        this.winningNumbersInput = winningNumbersInput;
+        this.output = output;
+    }
 
     public void run() {
         try {
-            int purchaseAmount = Input.inputPurchaseAmount();
+            int purchaseAmount = purchaseAmountInput.input();
             int numberOfLottos = purchaseAmount / 1000; // TODO
             List<Lotto> purchasedLottos = generator.generateLottos(numberOfLottos);
-            Output.printLottoNumbers(purchasedLottos);
+            output.printLottoNumbers(purchasedLottos);
         } finally {
             Console.close();
         }
