@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -26,5 +28,17 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(winningLotto::isContained)
                 .count();
+    }
+
+    private List<Integer> getSortedNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = getSortedNumbers();
+        return sortedNumbers.toString();
     }
 }
