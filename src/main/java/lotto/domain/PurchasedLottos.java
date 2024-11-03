@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PurchasedLottos {
@@ -14,17 +15,11 @@ public class PurchasedLottos {
         return new PurchasedLottos(purchasedLottos);
     }
 
-//    public List<LottoResponse> toLottoResponses() {
-//        return lottos.stream()
-//                .map(Lotto::toLottoResponse)
-//                .toList();
-//    }
-
     public int getQuantity() {
         return lottos.size();
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 }
