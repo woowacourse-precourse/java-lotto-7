@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.exception.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
+import lotto.dto.TicketCount;
 import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -20,10 +21,9 @@ public class TicketCountCalculatorTest {
         @DisplayName("구입 금액이 1000원일 때 1개의 티켓을 구매할 수 있다.")
         public void 티켓이_하나인_경우() {
             PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(1000);
+            TicketCount ticketCount = calculator.calculateTotalTicketCount(purchaseTotalPrice);
 
-            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
-
-            assertThat(ticketCount).isEqualTo(1);
+            assertThat(ticketCount.count()).isEqualTo(1);
         }
 
         @Test
@@ -31,7 +31,8 @@ public class TicketCountCalculatorTest {
         public void 티켓이_열다섯인_경우() {
             PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(15000);
 
-            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
+            TicketCount ticketCountDto = calculator.calculateTotalTicketCount(purchaseTotalPrice);
+            int ticketCount = ticketCountDto.count();
 
             assertThat(ticketCount).isEqualTo(15);
         }
@@ -41,7 +42,8 @@ public class TicketCountCalculatorTest {
         public void 티켓이_칠백칠십칠인_경우() {
             PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(777000);
 
-            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
+            TicketCount ticketCountDto = calculator.calculateTotalTicketCount(purchaseTotalPrice);
+            int ticketCount = ticketCountDto.count();
 
             assertThat(ticketCount).isEqualTo(777);
         }
@@ -56,9 +58,10 @@ public class TicketCountCalculatorTest {
         public void 티켓_수가_하나가_아닌_경우() {
             PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(1000);
 
-            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
+            TicketCount ticketCountDto = calculator.calculateTotalTicketCount(purchaseTotalPrice);
+            int count = ticketCountDto.count();
 
-            if (ticketCount != 1) {
+            if (count != 1) {
                 throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);
             }
         }
@@ -68,9 +71,10 @@ public class TicketCountCalculatorTest {
         public void 구입_금액이_사천원이지만_예외_발생하는_경우() {
             PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(4000);
 
-            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
+            TicketCount ticketCountDto = calculator.calculateTotalTicketCount(purchaseTotalPrice);
+            int count = ticketCountDto.count();
 
-            if (ticketCount != 4) {
+            if (count != 4) {
                 throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);
             }
         }

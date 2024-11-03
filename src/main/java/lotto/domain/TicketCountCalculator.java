@@ -1,19 +1,21 @@
 package lotto.domain;
 
 import static lotto.exception.ErrorMessage.*;
+
+import lotto.dto.TicketCount;
 import lotto.exception.CustomIllegalArgumentException;
 
 public class TicketCountCalculator {
     private static final int TICKET_PRICE = 1000;
 
-    public int getTicketCount(PurchaseTotalPrice purchaseTotalPrice) {
+    public TicketCount calculateTotalTicketCount(PurchaseTotalPrice purchaseTotalPrice) {
         int totalPrice = purchaseTotalPrice.totalPrice();
-        int ticketCount = calculateTickets(totalPrice);
+        int ticketCount = divideTotalPriceByTicketPrice(totalPrice);
         validateTicketCount(ticketCount, totalPrice);
-        return ticketCount;
+        return new TicketCount(ticketCount);
     }
 
-    private int calculateTickets(int totalPrice) {
+    private int divideTotalPriceByTicketPrice(int totalPrice) {
         return totalPrice / TICKET_PRICE;
     }
 
