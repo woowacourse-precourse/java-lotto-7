@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
+        int ticketCount = calculateTicketCount(purchaseAmount);
     }
 
     private static int getPurchaseAmount() {
@@ -13,4 +14,9 @@ public class Application {
         System.out.println();
         return purchaseAmount;
     }
+
+    private static int calculateTicketCount(int purchaseAmount) {
+        return purchaseAmount / 1000;
+    }
+
 }
