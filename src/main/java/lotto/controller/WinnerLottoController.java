@@ -16,7 +16,7 @@ public class WinnerLottoController {
         this.viewer = viewer;
     }
 
-    public void create() {
+    public void input() {
         viewer.printMessage(ENTER + "당첨 번호를 입력해주세요.");
         executeWithRetry(viewer::getInput, winnerLottoService::addWinnerLotto);
 

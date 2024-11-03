@@ -17,7 +17,7 @@ public class Application {
         try {
             lottoController.buy();
 
-            winnerLottoController.create();
+            winnerLottoController.input();
 
             statusController.print();
 

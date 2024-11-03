@@ -33,12 +33,8 @@ public class LottoList {
         return DtoMapper.toLottoListDto(this.toString());
     }
 
-    protected void forEach(Consumer<Lotto> lotto){
+    protected void forEach(Consumer<Lotto> lotto) {
         lottoCollection.forEach(lotto);
-    }
-
-    protected void add(Lotto lotto) {
-        this.lottoCollection.add(lotto);
     }
 
     protected int size() {

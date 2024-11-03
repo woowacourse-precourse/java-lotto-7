@@ -12,7 +12,6 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
 
     private final SingleRepository<WinnerLotto> winnerLottoRepository;
 
-
     public WinnerLottoServiceImpl(SingleRepository<WinnerLotto> winnerLottoRepository) {
         this.winnerLottoRepository = winnerLottoRepository;
     }
