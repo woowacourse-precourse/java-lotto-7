@@ -1,19 +1,25 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.INVALID_LOTTO_MONEY_UNIT;
+import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static lotto.constant.ErrorMessage.ZERO_LOTTO_MONEY;
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
 
 public class LottoPurchaseMoney extends Money {
-    public LottoPurchaseMoney(final int money) {
-        super(money);
-        validate(money);
+    public LottoPurchaseMoney(final int amount) {
+        super(amount);
+        validate(amount);
     }
 
-    private void validate(final int money) {
-        if (money == 0) {
+    private void validate(final int amount) {
+        validateNotZero(amount);
+        validateDivisibleByLottoPrice(amount);
+    }
+
+    private void validateNotZero(final int amount) {
+        if (amount == 0) {
             throw new IllegalArgumentException(ZERO_LOTTO_MONEY.getMessage());
         }
+    }
 
     private void validateDivisibleByLottoPrice(final int amount) {
         if (amount % LOTTO_PRICE != 0) {

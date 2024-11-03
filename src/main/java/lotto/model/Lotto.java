@@ -18,14 +18,25 @@ public class Lotto {
     }
 
     public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        this.numbers = generateRandomLottoNumbers();
+    }
+
+    private List<Integer> generateRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
     }
 
     private void validate(List<Integer> numbers) {
+        validateLottoNumberCount(numbers);
+        validateDistinction(numbers);
+    }
+
+    private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
+    }
 
+    private void validateDistinction(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }

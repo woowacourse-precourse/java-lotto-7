@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
+import static lotto.constant.ErrorMessage.DUPLICATED_BONUS_NUMBER;
 
 public class WinningLotto {
     private final Lotto lotto;
@@ -12,7 +12,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto lotto, int bonusNumber) {
+    private void validate(Lotto lotto, final int bonusNumber) {
+        validateLottoNotContainingBonusNumber(lotto, bonusNumber);
+    }
+
+    private void validateLottoNotContainingBonusNumber(Lotto lotto, final int bonusNumber) {
         if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
         }
