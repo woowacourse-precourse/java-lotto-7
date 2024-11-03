@@ -1,5 +1,7 @@
-package lotto;
+package domain.lotto;
 
+import domain.statistics.WinningRank;
+import domain.winningLotto.WinningLotto;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

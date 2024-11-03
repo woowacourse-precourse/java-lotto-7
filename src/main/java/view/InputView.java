@@ -1,9 +1,9 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.BonusNumber;
-import lotto.PurchaseAmount;
-import lotto.WinningNumbers;
+import domain.winningLotto.BonusNumber;
+import domain.lotto.PurchaseAmount;
+import domain.winningLotto.WinningNumbers;
 
 public class InputView {
 

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
+import domain.lotto.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseAmountTest {

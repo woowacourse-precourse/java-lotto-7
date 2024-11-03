@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import domain.statistics.WinningRank;
+import domain.statistics.WinningStatistics;
 import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

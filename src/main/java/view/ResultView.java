@@ -1,8 +1,8 @@
 package view;
 
 import constants.Constants;
-import lotto.Lottos;
-import lotto.WinningStatistics;
+import domain.lotto.Lottos;
+import domain.statistics.WinningStatistics;
 
 public class ResultView {
 

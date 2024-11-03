@@ -1,6 +1,8 @@
-package lotto;
+package domain.winningLotto;
 
 import constants.ErrorMessage;
+import domain.lotto.LottoNumber;
+import domain.lotto.LottoValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
