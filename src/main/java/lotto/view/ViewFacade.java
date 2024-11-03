@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.LottoMatchState;
 import lotto.model.Lottos;
 
 import java.util.Map;
@@ -29,7 +30,7 @@ public class ViewFacade {
         outputView.printIssuedLottos(lottos);
     }
 
-    public void printWinningDetail(Map<String, Integer> winningDetail) {
+    public void printWinningDetail(Map<LottoMatchState, Integer> winningDetail) {
         outputView.printWinningDetail(winningDetail);
     }
 

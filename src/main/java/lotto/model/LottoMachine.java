@@ -1,9 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.LottoMatchState;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +42,11 @@ public class LottoMachine {
 
     public void updateWinningDetail(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            decideWin(lotto);
+            decideMatchState(lotto);
         }
     }
 
-    private void decideWin(Lotto lotto) {
+    private void decideMatchState(Lotto lotto) {
         List<Integer> lottoNums = lotto.getNumbers();
         lottoNums.retainAll(winningNums);
         int matchingCount = lottoNums.size();
@@ -55,14 +54,11 @@ public class LottoMachine {
         if (matchingCount < 3) {
             return;
         }
-        if (matchingCount == 5 && lottoNums.contains(bonusNum)) {
-            stats.addWinningCount(matchingCount + "+");
-            return;
-        }
-        stats.addWinningCount(String.valueOf(matchingCount));
+
+        stats.addWinningCount(LottoMatchState.getMatchState(matchingCount, lottoNums.contains(bonusNum)));
     }
 
-    public Map<String, Integer> getWinningDetail() {
+    public Map<LottoMatchState, Integer> getWinningDetail() {
         return stats.getWinningDetail();
     }
 

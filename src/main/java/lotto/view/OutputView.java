@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.LottoMatchState;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.util.Parser;
@@ -25,14 +26,14 @@ public class OutputView {
         }
     }
 
-    public void printWinningDetail(Map<String, Integer> winningDetail) {
+    public void printWinningDetail(Map<LottoMatchState, Integer> winningDetail) {
         System.out.println();
         System.out.println(STATS_OUTPUT_MESSAGE);
-        System.out.println(THREE_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault("3", 0) + "개");
-        System.out.println(FOUR_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault("4", 0) + "개");
-        System.out.println(FIVE_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault("5", 0) + "개");
-        System.out.println(FIVE_MATCHING_BONUS_OUTPUT_MESSAGE + winningDetail.getOrDefault("5+", 0) + "개");
-        System.out.println(SIX_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault("6", 0) + "개");
+        System.out.println(THREE_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault(LottoMatchState.THREE, 0) + "개");
+        System.out.println(FOUR_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault(LottoMatchState.FOUR, 0) + "개");
+        System.out.println(FIVE_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault(LottoMatchState.FIVE, 0) + "개");
+        System.out.println(FIVE_MATCHING_BONUS_OUTPUT_MESSAGE + winningDetail.getOrDefault(LottoMatchState.FIVE_BONUS, 0) + "개");
+        System.out.println(SIX_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault(LottoMatchState.SIX, 0) + "개");
     }
 
     public void printProfitRate(double profitRate) {

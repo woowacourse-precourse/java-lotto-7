@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.LottoMatchState;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
 import lotto.util.Parser;
@@ -30,7 +31,7 @@ public class LottoController {
         lottoMachine.updateBonusNum(bonusNum);
 
         lottoMachine.updateWinningDetail(lottos);
-        Map<String, Integer> winningDetail = lottoMachine.getWinningDetail();
+        Map<LottoMatchState, Integer> winningDetail = lottoMachine.getWinningDetail();
         viewFacade.printWinningDetail(winningDetail);
         double profitRate = lottoMachine.getProfitRate(purchaseAmount);
         viewFacade.printProfitRate(profitRate);
