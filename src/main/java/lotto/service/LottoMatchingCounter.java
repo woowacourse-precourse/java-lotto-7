@@ -14,7 +14,6 @@ public class LottoMatchingCounter {
     public LottoMatchingCounter(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        initMatchingCount();
     }
 
     private void initMatchingCount() {
@@ -24,17 +23,18 @@ public class LottoMatchingCounter {
     }
 
     public HashMap<String, Integer> countMatchingNumbers(Lotto purchasedLotto) { //당첨 번호와 구매 내역 중 몇 개의 숫자가 일치하는지 센다.
-        List<Integer> numbers = purchasedLotto.getNumbers();
-        countWinningNumbers(numbers);
+        initMatchingCount();
+        List<Integer> lottoNumbers = purchasedLotto.getNumbers();
+        countWinningNumbers(lottoNumbers);
         if (matchingCount.get(WINNING_COUNT) == 5) {
-            countBonusNumber(numbers);
+            countBonusNumber(lottoNumbers);
         }
         return matchingCount;
     }
 
-    private void countWinningNumbers(List<Integer> numbers) {
-        for (Integer number : winningNumbers) {
-            if (numbers.contains(number)) {
+    private void countWinningNumbers(List<Integer> lottoNumbers) {
+        for (Integer number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
                 addCount(WINNING_COUNT);
             }
         }
