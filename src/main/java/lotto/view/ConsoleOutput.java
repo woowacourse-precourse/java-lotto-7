@@ -25,11 +25,11 @@ public class ConsoleOutput {
             Rank rank = entry.getKey();
             if (rank.isMatchBonus()) {
                 System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
-            } else if (rank == Rank.NONE) {
-                System.out.println();
-            } else {
-                System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
             }
+            if (rank == Rank.NONE) {
+                System.out.println();
+            }
+            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getFormattedPrize() + "원) - " + entry.getValue() + "개");
         }
         System.out.println("총 수익률은 " + result.calculateTotalPrizeRate() + "%입니다.");
     }
