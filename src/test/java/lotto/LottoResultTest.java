@@ -1,5 +1,6 @@
 package lotto;
 
+import java.lang.reflect.Field;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,15 @@ public class LottoResultTest {
     private WinningNumbers winningNumbers;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         lottoResult = new LottoResult();
+
+        // Rank Enum의 count 필드를 초기화
+        for (Rank rank : Rank.values()) {
+            Field countField = Rank.class.getDeclaredField("count");
+            countField.setAccessible(true);
+            countField.setInt(rank, 0);
+        }
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
