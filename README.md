@@ -32,10 +32,12 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [X] 구매한 로또 수 출력
 - [X] 구매한 로또 번호 출력
 - [ ] 당첨 번호 입력 받기
+  - [ ] 당첨 번호 메시지 출력
   - [ ] 숫자 6개 입력
     - [ ] 6개 숫자를 구분
   - [ ] 예외 처리
 - [ ] 보너스 숫자 1개 입력 받기
+  - [ ] 보너스 번호 메시지 출력
   - [ ] 예외 처리
 - [ ] 구매한 로또의 당첨 금액 확인
   - [ ] 구매한 로또와 당첨 번호 비교
@@ -89,7 +91,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - 구매 금액
 - 당첨 번호
 - 보너스 숫자
-  출력
+출력
 - 구매로또 번호
 - 당첨 통계
 - 수익률

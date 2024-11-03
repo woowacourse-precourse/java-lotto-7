@@ -12,10 +12,19 @@ class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("구매금액 입력 메시지 출력 확인")
-    void checkMessageFormat() {
+    void requestPurchasePriceMessage() {
         assertSimpleTest(() -> {
-            inputView.displayPurchasePriceMessage();
+            inputView.requestPurchasePriceMessage();
             assertThat(output()).contains("구입금액을 입력해 주세요.");
+        });
+    }
+
+    @Test
+    @DisplayName("당첨번호 입력 메시지 출력 확인")
+    void requestWinningNumberMessage() {
+        assertSimpleTest(() -> {
+            inputView.requestWinningNumberMessage();
+            assertThat(output()).contains("당첨 번호를 입력해 주세요.");
         });
     }
 
