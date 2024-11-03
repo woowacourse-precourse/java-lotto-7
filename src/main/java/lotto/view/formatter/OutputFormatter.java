@@ -3,8 +3,8 @@ package lotto.view.formatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.dto.LottoDto;
-import lotto.model.dto.ResultDto.RankDto;
+import lotto.dto.LottoDto;
+import lotto.dto.ResultDto.RankDto;
 
 public class OutputFormatter {
     private OutputFormatter() {

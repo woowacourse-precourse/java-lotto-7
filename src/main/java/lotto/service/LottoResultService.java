@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.model.customer.Customer;
-import lotto.model.dto.ResultDto;
+import lotto.dto.ResultDto;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Rank;
 import lotto.model.lotto.WinningLotto;

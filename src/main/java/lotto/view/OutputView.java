@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.dto.LottoDto;
-import lotto.model.dto.ResultDto;
+import lotto.dto.LottoDto;
+import lotto.dto.ResultDto;
 import lotto.view.formatter.OutputFormatter;
 
 public class OutputView {

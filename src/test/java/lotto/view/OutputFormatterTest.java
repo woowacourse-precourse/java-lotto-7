@@ -3,8 +3,8 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.dto.LottoDto;
-import lotto.model.dto.ResultDto.RankDto;
+import lotto.dto.LottoDto;
+import lotto.dto.ResultDto.RankDto;
 import lotto.view.formatter.OutputFormatter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

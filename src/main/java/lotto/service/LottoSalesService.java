@@ -5,7 +5,7 @@ import static lotto.controller.ErrorMessages.INVALID_UNIT_OF_PAID_AMOUNT;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.customer.Customer;
-import lotto.model.dto.LottoDto;
+import lotto.dto.LottoDto;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoNumberGenerator;
 import lotto.model.lotto.LottoTicket;

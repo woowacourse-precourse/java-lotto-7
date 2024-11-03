@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import lotto.controller.ErrorMessages;
 import lotto.model.customer.Customer;
-import lotto.model.dto.LottoDto;
+import lotto.dto.LottoDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
