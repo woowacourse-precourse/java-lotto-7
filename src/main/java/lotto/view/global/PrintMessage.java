@@ -2,7 +2,7 @@ package lotto.view.global;
 
 public enum PrintMessage {
 
-    INPUT_AMOUNT("구입금액을 입력해 주세요.`를 출력한다.");
+    INPUT_AMOUNT("구입금액을 입력해 주세요.");
 
     private String message;
 
