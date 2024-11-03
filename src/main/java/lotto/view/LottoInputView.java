@@ -6,6 +6,9 @@ public class LottoInputView {
     public int validateMoney(String input) {
         try {
             int money = Integer.parseInt(input);
+            if (money <= 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0보다 커야 합니다.");
+            }
             if (money % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
             }
