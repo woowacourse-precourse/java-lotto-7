@@ -9,6 +9,8 @@ public class Lotto {
     private static final String TO_STRING_SUFFIX = "]";
     private static final int DELIMITER_SIZE = 2;
     private static final int MAX_SIZE = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,21 +27,25 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().findAny().isPresent()) {
+        if (numbers.stream().distinct().count() != MAX_SIZE) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number <= 0 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MIN_RANGE || number > MAX_RANGE)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이만 가능합니다.");
         }
     }
 
-    public List<Integer> ascNumbers(List<Integer> numbers) {
+    private List<Integer> ascNumbers(List<Integer> numbers) {
         List<Integer> ascNumbers = new ArrayList<>(numbers);
         ascNumbers.sort(Integer::compareTo);
         return ascNumbers;
+    }
+
+    public List<Integer> numbers() {
+        return List.copyOf(numbers);
     }
 
     public String toString() {
