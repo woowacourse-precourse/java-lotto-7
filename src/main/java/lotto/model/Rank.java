@@ -1,5 +1,9 @@
 package lotto.model;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public enum Rank {
     FIRST(6, 2000000000, "6개 일치 (2,000,000,000원)"),
     SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
@@ -36,5 +40,10 @@ public enum Rank {
             return FIFTH;
         }
         return MISS;
+    }
+
+    public static Map<Rank, Long> groupByRankWithCount(List<Rank> ranks) {
+        return ranks.stream()
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }
 }
