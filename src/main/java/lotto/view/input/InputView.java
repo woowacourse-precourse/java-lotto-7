@@ -6,8 +6,6 @@ import lotto.view.constant.ViewConstants;
 import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static String getAmount() {
         System.out.println(ViewConstants.INPUT_PURCHASE_AMOUNT);
         return Console.readLine();

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final DecimalFormat formatter = new DecimalFormat("#,###");
-    private static final DecimalFormat earningsFormatter = new DecimalFormat("#.##");
+    private static final DecimalFormat formatter = new DecimalFormat(ViewConstants.OUTPUT_FORMATTER);
+    private static final DecimalFormat earningsFormatter = new DecimalFormat(ViewConstants.EARNINGS_FORMATTER);
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
         System.out.printf(ViewConstants.PURCHASED_LOTTO_COUNT, lottos.size());
