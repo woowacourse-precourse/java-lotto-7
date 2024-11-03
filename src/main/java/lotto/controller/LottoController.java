@@ -46,7 +46,7 @@ public class LottoController {
 
     private Integer inputMoney() {
         String rawMoney = inputView.inputMoney();
-        inputValidator.validateInputMoney(rawMoney);
+        inputValidator.validateInputNumber(rawMoney);
 
         return Integer.parseInt(rawMoney);
     }
@@ -69,7 +69,7 @@ public class LottoController {
 
     private Integer inputWinningBonusNumber() {
         String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
-        inputValidator.validateInputBonusNumber(rawWinningBonusNumber);
+        inputValidator.validateInputNumber(rawWinningBonusNumber);
 
         return Integer.parseInt(rawWinningBonusNumber);
     }
