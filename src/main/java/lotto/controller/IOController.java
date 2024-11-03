@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.HashSet;
 import java.util.Set;
 import lotto.Lotto;
 import lotto.model.LottoTickets;
@@ -11,7 +10,7 @@ import lotto.view.output.OutputLottoNumbersView;
 
 public class IOController {
     public static int setPurchaseAmount() {
-        int purchaseAmount = 0;
+        int purchaseAmount;
         while (true) {
             try {
                 purchaseAmount = InputPurchaseAmountView.purchaseAmountInput();
@@ -24,7 +23,7 @@ public class IOController {
     }
 
     public static Set<Integer> setWinningNumber() {
-        Set<Integer> winningNumber = new HashSet<>();
+        Set<Integer> winningNumber;
         while (true) {
             try {
                 winningNumber = InputWinningNumberView.WinningNumbersInput();
@@ -52,7 +51,7 @@ public class IOController {
 
     public static void outputLottoTickets(int purchaseAmount, LottoTickets lottoTickets) {
         System.out.println(purchaseAmount + "개를 구매했습니다.");
-        for (Lotto lotto : lottoTickets.getLottoTickets()) {
+        for (Lotto lotto : lottoTickets.getTickets()) {
             OutputLottoNumbersView.lottoNumbersOutput(lotto);
         }
         System.out.println();
