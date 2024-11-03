@@ -43,11 +43,11 @@ public class Application {
                 continue;
             }
             if (rank==Rank.SECOND){
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
                 System.out.println();
                 continue;
             }
-            System.out.printf("%d개 일치 (%d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
+            System.out.printf("%d개 일치 (%,d원) - %d개",rank.getNumberMatch(),rank.getPrize(),result.get(rank));
             System.out.println();
         }
         System.out.printf("총 수익률은 %.1f%%입니다.",lottoResult.getRateOfReturn(result,price));
