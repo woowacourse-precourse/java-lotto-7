@@ -20,4 +20,11 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NON_POSITIVE_NUMBER.getMessage());
         }
     }
+
+    public void validateDivisibleByThousand(String input) {
+        int number = Integer.parseInt(input);
+        if (number % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NON_DIVISIBLE_BY_THOUSAND.getMessage());
+        }
+    }
 }

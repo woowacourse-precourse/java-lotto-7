@@ -30,5 +30,6 @@ public class LottoController {
         validator.validateEmptyInput(input);
         validator.validateNonNumber(input);
         validator.validatePositiveNumber(input);
+        validator.validateDivisibleByThousand(input);
     }
 }
