@@ -22,6 +22,10 @@ public enum ErrorMessage {
     DUPLICATE_NUMBER_IN_WINNING_NUMBERS("[ERROR] 로또 번호 리스트에 중복된 숫자가 포함되어 있습니다."),
 
     NEGATIVE_OR_ZERO_TICKET_COUNT("[ERROR] 티켓 수는 1 이상이어야 합니다."),
+
+    EMPTY_PART_INPUT("[ERROR] 입력값에 빈 항목이 포함되어 있습니다. 쉼표로 구분된 숫자만 입력하세요."),
+    INVALID_VALUE_INPUT("[ERROR] 잘못된 값이 포함되어 있습니다. 숫자만 입력하세요."),
+    INVALID_COMMA_POSITION("[ERROR] 입력 값의 시작 또는 끝에 콤마가 포함될 수 없습니다."),
     ;
 
     private final String message;

@@ -4,11 +4,8 @@ import lotto.domain.TicketCountCalculator;
 import lotto.domain.PurchaseTotalPrice;
 import lotto.domain.TicketIssuer;
 import lotto.domain.WinningNumbersGenerator;
-import lotto.dto.FormattedTickets;
-import lotto.dto.IssuedTickets;
-import lotto.dto.PurchaseTotalPriceInput;
-import lotto.dto.SortedIssuedTickets;
-import lotto.dto.TicketCount;
+import lotto.dto.*;
+import lotto.utils.LottoNumbersInputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.utils.TicketFormatter;
@@ -22,7 +19,7 @@ public class Application {
         // 구입 금액 입력
         outputView.printPurchaseTotalPricePrompt();
         PurchaseTotalPriceInput purchaseTotalPriceInput = inputView.readPurchaseTotalPrice();
-        PurchaseTotalPrice purchaseTotalPrice = PurchaseTotalPrice.from(purchaseTotalPriceInput.totalPrice());
+        PurchaseTotalPrice purchaseTotalPrice = PurchaseTotalPrice.from(purchaseTotalPriceInput.input());
 
         // 티켓 수 계산
         TicketCountCalculator ticketCountCalculator = new TicketCountCalculator();
@@ -44,5 +41,8 @@ public class Application {
 
         //당첨 번호 입력
         outputView.printLottoNumbersInputPrompt();
+        LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
+        LottoNumbersInputParser.parseLottoNumbers(lottoNumbersInput.input());
+
     }
 }
