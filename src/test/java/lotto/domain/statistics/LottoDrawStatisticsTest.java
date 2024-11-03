@@ -26,7 +26,7 @@ class LottoDrawStatisticsTest {
         Assertions.assertThat(lottoDrawStatistics.getWinningLottoCount()).isEqualTo(0);
     }
 
-    @DisplayName("로또 당첨 개수를 업데이트 할 수 있다.")
+    @DisplayName("로또 당첨 개수를 업데이트 한다.")
     @Test
     void updateWinningLottoCount() {
         //given
@@ -39,7 +39,7 @@ class LottoDrawStatisticsTest {
         Assertions.assertThat(statistics.getWinningLottoCount()).isEqualTo(2);
     }
 
-    @DisplayName("해당등수의 당첨금 합계를 구할 수 있다.")
+    @DisplayName("해당등수의 당첨금 합계를 구한다.")
     @Test
     void calculateWinningAmount() {
         //given

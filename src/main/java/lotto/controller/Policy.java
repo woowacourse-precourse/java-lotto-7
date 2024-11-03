@@ -9,7 +9,6 @@ public interface Policy {
     boolean isAmountPositive(int number);
     int getMinNumberLimit();
     int getMaxNumberLimit();
-
     int getWinningNumberCount();
     String getDelimiter();
     String getIntegerRegex();

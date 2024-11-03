@@ -13,7 +13,7 @@ public class LottoDrawStatistics implements Statistics {
         this.winningLottoCount = winningLottoCount;
     }
 
-    public static LottoDrawStatistics initStatistics(Tier lottoTier){
+    public static Statistics initStatistics(Tier lottoTier){
         return new LottoDrawStatistics(lottoTier, 0L);
     }
 

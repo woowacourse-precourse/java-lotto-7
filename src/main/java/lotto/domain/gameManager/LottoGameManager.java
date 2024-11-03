@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.controller.Policy;
+import lotto.controller.TierPolicy;
 import lotto.domain.lottery.Lotteries;
 import lotto.domain.lottery.Lottery;
 import lotto.domain.lottery.Lotto;
+import lotto.domain.statistics.LottoDrawStatistics;
+import lotto.domain.statistics.Statistics;
+import lotto.domain.tier.Tier;
 
 public class LottoGameManager implements GameManager {
 
@@ -29,5 +33,12 @@ public class LottoGameManager implements GameManager {
     public int calculateBuyCount(int lotteryAmount, int inputAmount) {
         return inputAmount/lotteryAmount;
     }
+
+    @Override
+    public List<Statistics> initStatistics(TierPolicy tierPolicy) {
+        List<Tier> tiers = tierPolicy.initTiers();
+        return tiers.stream().map(LottoDrawStatistics::initStatistics).toList();
+    }
+
 
 }
