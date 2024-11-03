@@ -12,4 +12,11 @@ public class NumberParser {
         }
     }
 
+    public static Integer parseInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER);
+        }
+    }
 }

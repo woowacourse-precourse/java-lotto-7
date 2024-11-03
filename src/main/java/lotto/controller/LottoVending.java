@@ -2,13 +2,12 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.Lotto;
 import lotto.parser.NumberParser;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.Validator;
+import lotto.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,6 +37,26 @@ public class LottoVending {
         }
     }
 
+    private List<Integer> getWinningNumbersUntilValid() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = new ArrayList<>();
+
+                String winningNumbersInput = inputView.getWinningNumbers();
+
+                for(String winningNumberInput : winningNumbersInput.split(",")) {
+                    Integer winningNumber = NumberParser.parseInteger(winningNumberInput);
+                    winningNumbers.add(winningNumber);
+                }
+                validator = new WinningNumbersValidator(winningNumbers);
+                validator.validate();
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
     public void take() {
         String errorMessage;
 
@@ -47,44 +66,7 @@ public class LottoVending {
 
         // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
-        List<Integer> winningNumbers = new ArrayList<>();
-        boolean winningNumberInputFailed = true;
-        while (winningNumberInputFailed) {
-            try {
-                String winningNumbersInput = inputView.getWinningNumbers();
-                List<String> separatedWinningNumbersInput = List.of(winningNumbersInput.split(","));
-                if (separatedWinningNumbersInput.size() != 6) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "당첨 번호는 6개를 입력해야 합니다. 입력한 당첨 번호: " + winningNumbersInput;
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                for (String winningNumberInput : separatedWinningNumbersInput) {
-                    try {
-                        winningNumberInput = winningNumberInput.strip();
-                        int winningNumber = Integer.parseInt(winningNumberInput);
-                        if (winningNumber < 1 || winningNumber > 45) {
-                            throw new NumberFormatException();
-                        }
-                        winningNumbers.add(winningNumber);
-                    } catch (NumberFormatException e) {
-                        errorMessage =
-                            ERROR_MESSAGE_PREFIX + "당첨 번호는 1~45 사이의 정수로 입력해주세요. 잘못된 당첨 번호: " + winningNumberInput;
-                        throw new IllegalArgumentException(errorMessage);
-                    }
-                }
-                Set<Integer> noDuplicateNumbers = new HashSet<>();
-                for (Integer number : winningNumbers) {
-                    if (!noDuplicateNumbers.add(number)) {
-                        errorMessage = ERROR_MESSAGE_PREFIX + "당첨 번호가 중복되었습니다. 중복된 당첨 번호: " + number;
-                        throw new IllegalArgumentException(errorMessage);
-                    }
-                }
-                winningNumberInputFailed = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                winningNumbers = new ArrayList<>();
-            }
-        }
-        System.out.println();
+        List<Integer> winningNumbers = getWinningNumbersUntilValid();
 
         //보너스 번호 입력
         outputView.printBonusNumberMessage();
