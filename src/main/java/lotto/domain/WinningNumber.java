@@ -21,8 +21,9 @@ public class WinningNumber {
 
     public WinningNumber(List<Integer> winningNumber, int bonusNumber) {
         validate(winningNumber);
-
         this.winningNumber = new Lotto(winningNumber);
+
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

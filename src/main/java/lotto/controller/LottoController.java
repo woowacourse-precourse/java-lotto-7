@@ -25,14 +25,11 @@ public class LottoController {
     }
 
     public WinningNumberSaveResponse saveLottoWinningNumberInput(String request) {
-        while (true) {
-            try {
-                LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request));
-                return lottoService.saveWinningNumber(request);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        LottoException.throwIllegalArgumentException(
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
+        );
+
+        return lottoService.saveWinningNumber(request);
     }
 
     public void saveBonusNumber(BonusNumberSaveRequest request) {
