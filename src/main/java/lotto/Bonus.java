@@ -4,20 +4,20 @@ import static lotto.Constants.*;
 
 import java.util.List;
 
-public class BonusNumber {
+public class Bonus {
     private static final String BONUS_NUMBER_DUPLICATION_ERROR = ERROR_HEADER + "당첨 번호와 보너스 번호가 같아서는 안 됩니다.";
 
     private final int number;
 
-    private BonusNumber(int number) {
+    private Bonus(int number) {
         validate(number);
         this.number = number;
     }
 
-    public static BonusNumber from(String input) {
+    public static Bonus from(String input) {
         try {
             int value = Integer.parseInt(input);
-            return new BonusNumber(value);
+            return new Bonus(value);
         }
         catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT_ERROR);

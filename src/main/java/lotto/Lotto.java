@@ -37,8 +37,8 @@ public class Lotto {
         return matchingNumber.size();
     }
 
-    public boolean isContained(BonusNumber bonusNumber) {
-        return this.numbers.contains(bonusNumber.get());
+    public boolean isContained(Bonus bonus) {
+        return this.numbers.contains(bonus.get());
     }
 
     private void validate(List<Integer> numbers) {
