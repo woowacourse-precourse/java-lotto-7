@@ -91,7 +91,7 @@ public class Application {
         }
 
         // 5-2. 보너스 번호가 기존에 있는 로또번호와 서로 다른지 확인
-        if (Collections.frequency(winningNumbers, bonusNumber) != 1) {
+        if (Collections.frequency(winningNumbers, bonusNumber) != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
         }
 
