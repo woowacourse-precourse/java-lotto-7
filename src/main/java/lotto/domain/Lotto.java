@@ -1,9 +1,15 @@
 package lotto.domain;
 
+import static lotto.enums.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.enums.Constants.LOTTO_NUMBER_MAXIMUM;
+import static lotto.enums.Constants.LOTTO_NUMBER_MINIMUM;
 import static lotto.enums.ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION;
+import static lotto.enums.ExceptionMessage.LOTTO_NUMBER_DUPLICATE_EXCEPTION;
+import static lotto.enums.ExceptionMessage.LOTTO_NUMBER_RANGE_EXCEPTION;
 
+import java.util.HashSet;
 import java.util.List;
-import lotto.enums.ExceptionMessage;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,10 +19,32 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }
+    }
+
+    private static void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateRange(List<Integer> numbers) {
+        boolean isOutOfRange = numbers.stream()
+                .anyMatch(number -> number < LOTTO_NUMBER_MINIMUM.getValue() ||
+                        number > LOTTO_NUMBER_MAXIMUM.getValue());
+        if (isOutOfRange) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
