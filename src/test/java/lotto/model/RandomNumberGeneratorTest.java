@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,8 @@ class RandomNumberGeneratorTest {
         // given
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         // when
-        int randomNumber = randomNumberGenerator.generate();
+        List<Integer> generatedNumbers = randomNumberGenerator.generate();
         // then
-        Assertions.assertThat(randomNumber).isBetween(1, 45);
+        Assertions.assertThat(generatedNumbers).hasSize(6);
     }
 }

@@ -12,10 +12,6 @@ public class LottoGenerator {
     }
 
     public Lotto generate() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < LOTTO_SIZE; i++) {
-            lottoNumbers.add(numberGenerator.generate());
-        }
-        return new Lotto(lottoNumbers);
+        return new Lotto(numberGenerator.generate());
     }
 }
