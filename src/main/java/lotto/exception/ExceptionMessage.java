@@ -1,7 +1,9 @@
 package lotto.exception;
 
 import static lotto.constants.CommonConstants.LOTTO_SIZE;
+import static lotto.constants.CommonConstants.MAX_LOTTO_NUMBER;
 import static lotto.constants.CommonConstants.MAX_PURCHASE_AMOUNT;
+import static lotto.constants.CommonConstants.MIN_LOTTO_NUMBER;
 import static lotto.constants.CommonConstants.UNIT_PURCHASE_AMOUNT;
 import static lotto.view.InputView.MAX_ATTEMPTS;
 
@@ -14,7 +16,10 @@ public enum ExceptionMessage {
     NULL_LOTTO("로또는 null값일 수 없습니다."),
     INVALID_LOTTO_SIZE("로또 번호는 " + LOTTO_SIZE + "개여야 합니다."),
     INVALID_LOTTO_ORDER("로또 번호는 오름차순으로 정렬되어야 합니다."),
-    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복되지 않아야 합니다.");
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복되지 않아야 합니다."),
+    BLANK_WINNING_LOTTO_NUMBERS("공백이 아닌 당첨 번호를 입력해주세요."),
+    INVALID_WINNING_LOTTO_NUMBERS_PATTERN("당첨 번호는 쉼표(,)로 구분되는 6개의 숫자들로 입력해야 합니다."),
+    OUT_OF_LOTTO_NUMBER_RANGE("로또 번호의 범위는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + "까지 입니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;
