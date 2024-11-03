@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.enums.Rank;
+import lotto.util.enums.Rank;
 
 public class Lotto {
     private static final int LOTTO_NUMBERS_SIZE = 6;
