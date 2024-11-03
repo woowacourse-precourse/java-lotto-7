@@ -2,7 +2,6 @@ package lotto;
 
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -14,15 +13,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     // 로또 번호 클래스 ( Lotto + LottoNumberValidator ) 검증 테스트
-    @DisplayName("[LottoTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("[LottoTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다(List<Integer> lottoNumber) {
+    void 로또_번호의_개수가_6개가_아니면_예외가_발생한다(List<Integer> lottoNumber) {
         assertThatThrownBy(() -> new Lotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("[LottoTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("[LottoTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다(List<Integer> lottoNumber) {
@@ -30,17 +29,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("[LottoTest] 로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다.")
+    @DisplayName("[LottoTest] 로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다(List<Integer> lottoNumber){
         assertThatThrownBy(() -> new Lotto(lottoNumber));
     }
 
-    static Stream<List<Integer>> 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다(){
+    static Stream<List<Integer>> 로또_번호의_개수가_6개가_아니면_예외가_발생한다(){
         return Stream.of(
+                new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
                 new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7)),
-                new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+                new ArrayList<>(List.of(1, 2, 3, 4, 5)),
+                new ArrayList<>(List.of(1, 2, 3, 4)),
+                new ArrayList<>(List.of(1, 2, 3)),
+                new ArrayList<>(List.of(1, 2)),
+                new ArrayList<>(List.of(1)),
+                new ArrayList<>()
         );
     }
 
