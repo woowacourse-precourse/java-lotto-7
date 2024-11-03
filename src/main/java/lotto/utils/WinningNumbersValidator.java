@@ -40,7 +40,7 @@ public class WinningNumbersValidator {
     }
 
     private static void validateSize(List<String> inputNumbers) {
-        if (inputNumbers.size() > 6) {
+        if (inputNumbers.size() != 6) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
     }

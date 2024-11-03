@@ -22,6 +22,21 @@ class WinningNumbersTest {
     @DisplayName("당첨 번호가 6개가 아닌 경우 예외 발생")
     void validateWinningNumbersSize() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5"));
-        assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
+        assertEquals("당첨 번호는 6개여야 합니다.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("당첨 번호에 1~45 범위를 벗어나는 숫자가 포함된 경우 예외 발생")
+    void validateWinningNumbersRange() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5,46"));
+        assertEquals("숫자는 1에서 45 사이여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 중복된 숫자가 있는 경우 예외 발생")
+    void validateWinningNumbersDuplicates() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> WinningNumbers.from("1,2,3,4,5,5"));
+        assertEquals("중복된 숫자가 포함되어 있습니다.", exception.getMessage());
+    }
+
 }

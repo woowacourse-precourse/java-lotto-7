@@ -11,6 +11,7 @@ public class WinningNumbers {
         List<String> winningNumberStrings = splitInput(winningNumbers);
         WinningNumbersValidator.validateWinningNumbers(winningNumberStrings);
         this.winningNumbers = Converter.parseToIntegerList(winningNumberStrings);
+
     }
 
     public static WinningNumbers from(String winningNumbers) {
