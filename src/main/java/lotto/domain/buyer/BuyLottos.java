@@ -32,6 +32,10 @@ public class BuyLottos {
         return Collections.unmodifiableList(lottos);
     }
 
+    public int getLottosSize() {
+        return lottos.size();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

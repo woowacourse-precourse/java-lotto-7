@@ -25,7 +25,7 @@ class BuyerTest {
 
         customLottos = BuyLottos.of(Arrays.asList(customLotto1, customLotto2, customLotto3));
 
-        testBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, customLottos);
+        testBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, customLottos);
     }
 
     @DisplayName("구매한 로또 개수와 Lottos 객체가 동일하면 equals 하다.")
@@ -37,7 +37,7 @@ class BuyerTest {
         BuyLottos cloneCustomLottos = BuyLottos.of(
                 Arrays.asList(cloneCustomLotto1, cloneCustomLotto2, cloneCustomLotto3));
 
-        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, cloneCustomLottos);
+        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, cloneCustomLottos);
 
         assertThat(testBuyer).isEqualTo(cloneTestBuyer);
     }
@@ -51,7 +51,7 @@ class BuyerTest {
         BuyLottos cloneCustomLottos = BuyLottos.of(
                 Arrays.asList(cloneCustomLotto3, cloneCustomLotto2, cloneCustomLotto1));
 
-        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, cloneCustomLottos);
+        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(3 * THOUSAND_UNIT, cloneCustomLottos);
 
         assertThat(testBuyer).isNotEqualTo(cloneTestBuyer);
 
