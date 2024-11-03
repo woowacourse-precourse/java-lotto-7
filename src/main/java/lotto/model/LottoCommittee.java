@@ -33,4 +33,16 @@ public class LottoCommittee {
 
         return Ranking.of(matchingCount, isBonusNumberMatching);
     }
+
+    public HashMap<Ranking, Integer> calculateRanking(List<Lotto> lottos) {
+        HashMap<Ranking, Integer> rankingCountMap = new HashMap<>();
+
+        lottos.forEach(
+                lotto -> {
+                    Ranking ranking = calculateRanking(lotto);
+                    rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0));
+                }
+        );
+        return rankingCountMap;
+    }
 }
