@@ -24,11 +24,16 @@ public class InputView {
     }
 
     static int validatePurchase(String input) {
-        int lottoAmount = Integer.parseInt(input);
-        if (lottoAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 살 수 있습니다");
+        try {
+            int lottoAmount = Integer.parseInt(input);
+            if (lottoAmount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 살 수 있습니다");
+            }
+            return lottoAmount / 1000;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로만 입력되어야 합니다.");
         }
-        return lottoAmount / 1000;
+
     }
 
     static List<Integer> validateWinNumber(String input) {

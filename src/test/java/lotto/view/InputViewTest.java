@@ -21,6 +21,13 @@ class InputViewTest {
     }
 
     @Test
+    void 구입_금액이_숫자로만_구성되지_않을_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> InputView.validatePurchase("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+    @Test
     void 당첨_번호가_올바른_형식일_경우() {
         List<Integer> winNumber = InputView.validateWinNumber("1,2,3,4,5,6");
         assertThat(winNumber).containsExactly(1, 2, 3, 4, 5, 6);
