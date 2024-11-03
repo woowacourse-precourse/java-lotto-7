@@ -23,11 +23,12 @@ public class LottoController {
   }
 
   public void run(){
-    long purchaseAmount= inputMessageService.purchaseAmountAndValidation();
+    long purchaseAmount= inputMessageService.enterPurchaseAmountAndValidation();
     long numberOfPurchases=outputMessageService.numberOfPurchases(purchaseAmount);
     outputMessageView.numberOfPurchases(numberOfPurchases);
     List<Lotto> lottos=lottoService.lottoResults(numberOfPurchases);
     outputMessageView.lottoResults(lottos);
+    Lotto WinningNumbers=inputMessageService.enterWinningNumberAndValidation();
   }
 
 }
