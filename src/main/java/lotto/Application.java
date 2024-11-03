@@ -13,8 +13,8 @@ public class Application {
         // 예외 처리 때문에 가독성이 너무 안좋다. 리팩토링 할 때 이 부분 고려하기.
         while (true) {
             try {
-                String inputMoney = Console.readLine();
-                lottoPieces = buyLotto(inputMoney);
+                String Money = Console.readLine();
+                lottoPieces = buyLotto(Money);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
