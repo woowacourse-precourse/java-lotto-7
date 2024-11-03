@@ -9,17 +9,16 @@ import lotto.global.LottoRank;
 
 public class OutputView {
 
-    public static final String LOTTO_PRINT_MESSAGE = "개를 구매했습니다.";
-    public static final String RESULT_START_MESSAGE = "당첨 통계\n---";
+    public static final String RESULT_START_MESSAGE = "\n당첨 통계\n---";
     public static final String LOTTO_NUMBER_DELIMITER = ",";
 
+    public static final String LOTTO_PRINT_FORMAT = "\n%d개를 구매했습니다.\n";
     public static final String LOTTO_DISPLAY_FORMAT = "[%s]\n";
-    public static final String RESULT_DISPLAY_FORMAT = " - [%S]개\n";
+    public static final String RESULT_DISPLAY_FORMAT = " - [%s]개\n";
     public static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
     public static void printLottos(Lottos lottos) {
-        System.out.print(lottos.getLottos().size());
-        System.out.println(LOTTO_PRINT_MESSAGE);
+        System.out.printf(LOTTO_PRINT_FORMAT, lottos.getLottos().size());
         lottos.getLottos()
                 .forEach(OutputView::printLotto);
     }
@@ -34,6 +33,7 @@ public class OutputView {
     }
 
     public static void printResult(WinningLottos winningLottos) {
+
         System.out.println(RESULT_START_MESSAGE);
 
         for (LottoRank rank : LottoRank.values()) {
@@ -42,5 +42,9 @@ public class OutputView {
         }
 
         System.out.printf(PROFIT_RATE_FORMAT,winningLottos.getProfitRate());
+    }
+
+    public static void printErrorMessage(RuntimeException e) {
+        System.out.println(e.getMessage());
     }
 }
