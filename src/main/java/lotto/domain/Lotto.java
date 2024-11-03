@@ -24,21 +24,31 @@ public class Lotto {
         }
     }
 
-    public long compareWinning(List<Integer> winningNumbers, Map<String, Integer> winningDetail) {
+    public long compareNumbers(List<Integer> winningNumbers, Map<String, Integer> winningDetail) {
         int count = 0;
-        for (int i = 0; i < winningNumbers.size() - 1; i++) {
-            if (numbers.contains(winningNumbers.get(i))) {
-                count++;
-            }
-        }
-        if (count == 5 && numbers.contains(winningNumbers.getLast())) {
-            count *= 2;
-        }
+        count = compareWinningNumbers(winningNumbers, count);
+        count = compareBonusNumber(winningNumbers, count);
         Long winning = winningCheck(winningDetail, count);
         if (winning != null) {
             return winning;
         }
         return 0;
+    }
+
+    private int compareWinningNumbers(List<Integer> winningNumbers, int count) {
+        for (int i = 0; i < winningNumbers.size() - 1; i++) {
+            if (numbers.contains(winningNumbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int compareBonusNumber(List<Integer> winningNumbers, int count) {
+        if (count == 5 && numbers.contains(winningNumbers.getLast())) {
+            count *= 2;
+        }
+        return count;
     }
 
     private Long winningCheck(Map<String, Integer> map, int count) {
