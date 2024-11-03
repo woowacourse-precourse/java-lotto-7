@@ -4,26 +4,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
+import lotto.WinningLotto;
 import lotto.constant.WinningRank;
 
 public class LottoMatchNumberService {
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
+    private final WinningLotto winningLotto;
 
-    public LottoMatchNumberService(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    public LottoMatchNumberService(WinningLotto winningLotto) {
+        this.winningLotto = winningLotto;
     }
 
     public Map<WinningRank, Integer> calculateResults(List<Lotto> userLotto) {
         Map<WinningRank, Integer> results = new HashMap<>();
 
         for (Lotto lotto : userLotto) {
-            int matchCount = (int) lotto.getNumbers().stream()
-                    .filter(winningNumbers::contains)
-                    .count();
-
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            int matchCount = winningLotto.getMatchCount(lotto);
+            boolean bonusMatch = winningLotto.containsBonusNumber(lotto);
 
             WinningRank rank = WinningRank.valueOf(matchCount, bonusMatch);
             results.put(rank, results.getOrDefault(rank, 0) + 1);
