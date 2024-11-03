@@ -1,25 +1,14 @@
 package lotto.dto;
 
-import lotto.exception.ErrorMessage;
-import lotto.exception.LottoException;
+import lotto.validator.DTOValidator;
 
 public record LottoPurchasedAmountInput(String rawAmount) {
 
-    private static void validateLottoPurchasedAmountNotNull(String rawAmount) {
-        if (rawAmount == null) {
-            throw LottoException.from(ErrorMessage.NULL_INPUT_ERROR);
-        }
-    }
-
-    private static void validateLottoPurchasedAmountEmpty(String rawAmount) {
-        if (rawAmount.isEmpty()) {
-            throw LottoException.from(ErrorMessage.EMPTY_INPUT_ERROR);
-        }
-    }
+    private static final DTOValidator dTOValidator = new DTOValidator();
 
     public static LottoPurchasedAmountInput from(String rawAmount) {
-        validateLottoPurchasedAmountNotNull(rawAmount);
-        validateLottoPurchasedAmountEmpty(rawAmount);
+        dTOValidator.NotNull(rawAmount);
+        dTOValidator.Empty(rawAmount);
         return new LottoPurchasedAmountInput(rawAmount);
     }
 }
