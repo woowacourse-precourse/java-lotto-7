@@ -8,7 +8,11 @@ public class LottoView {
 
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        LOTTO_PRICE = Integer.parseInt(Console.readLine());
+        try {
+            LOTTO_PRICE = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 숫자여야 합니다.");
+        }
         return LOTTO_PRICE;
     }
 
