@@ -34,9 +34,14 @@ public class LottoController {
     }
 
     private WinningNumbers inputWinningNumbers() {
-        Lotto winnerLotto = inputLotto();
-        BonusNumber bonusNumber = inputBonus();
-        return new WinningNumbers(winnerLotto, bonusNumber);
+        try {
+            Lotto winnerLotto = inputLotto();
+            BonusNumber bonusNumber = inputBonus();
+            return new WinningNumbers(winnerLotto, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return inputWinningNumbers();
+        }
     }
 
     private Lotto inputLotto() {

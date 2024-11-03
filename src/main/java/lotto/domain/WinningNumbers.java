@@ -31,11 +31,16 @@ public class WinningNumbers {
         List<Integer> numbers = lotto.getNumbers();
 
         for (Integer number : numbers) {
-            if (mainNumbers.contains(number)) {
-                matchCount++;
-            }
+            matchCount += countMatchNumber(number);
         }
         return matchCount;
+    }
+
+    private int countMatchNumber(Integer number) {
+        if (mainNumbers.contains(number)) {
+            return 1;
+        }
+        return 0;
     }
 
     public boolean matchBonus(Lotto lotto) {
