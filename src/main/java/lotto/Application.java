@@ -4,8 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -20,6 +22,9 @@ public class Application {
 
         List<Lotto> purchasedLottos = generateLottos(lottoCount);
         purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+
+        List<Integer> winningNumbers = getWinningNumbers();
+        System.out.println("당첨 번호: " + winningNumbers);
     }
 
     private static int getPurchaseAmount() {
@@ -47,4 +52,13 @@ public class Application {
         Collections.sort(numbers);
         return numbers;
     }
+
+    private static List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 }
+
