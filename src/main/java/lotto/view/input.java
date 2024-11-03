@@ -29,7 +29,7 @@ public class input {
     public static List<String> readWinningNumbers(){
         printWhiteSpace();
         printInputWinningNumbers();
-        return List.of(Console.readLine().split(","));
+        return List.of(Console.readLine().replace(" ", "").split(","));
     }
 
     public static String readBonusNumber(){
