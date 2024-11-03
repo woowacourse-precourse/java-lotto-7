@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrizeTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @ParameterizedTest(name = "{0} 의 10회 당첨 시 총 상금은 {1}")
     @CsvSource(value = {
@@ -37,7 +38,7 @@ class PrizeTest {
         //when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> prize.calculateTotalPrizeMoney(wrongCount))
-                .withMessageStartingWith("[ERROR]");
+                .withMessageStartingWith(ERROR_MESSAGE);
     }
 
     @ParameterizedTest
@@ -48,10 +49,6 @@ class PrizeTest {
         //when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> prize.calculateTotalPrizeMoney(wrongCount))
-                .withMessageStartingWith("[ERROR]");
-    }
-
-    void test() {
-
+                .withMessageStartingWith(ERROR_MESSAGE);
     }
 }
