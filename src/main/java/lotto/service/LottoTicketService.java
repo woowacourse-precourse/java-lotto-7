@@ -1,17 +1,15 @@
 package lotto.service;
 
-import static lotto.constant.LottoConstant.LOTTO_PRICE;
-
 import java.util.List;
 import lotto.domain.LottoNumberGenerater;
-import lotto.repository.LottoRepository;
+import lotto.reposi.LottoRepository;
 import lotto.valuate.PriceValuate;
 
 public class LottoTicketService {
 
     public int purchaseLottoTickets(int price) {
         PriceValuate.isValidPrice(price);
-        return (price / LOTTO_PRICE);
+        return (price / 1000);
     }
 
     public void generateLottoNumbers(int numberOfLottos, LottoRepository lottoRepository) {

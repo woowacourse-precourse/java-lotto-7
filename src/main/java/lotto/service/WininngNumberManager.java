@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.repository.LottoRepository;
+import lotto.reposi.LottoRepository;
 import lotto.valuate.WinnerNumberValuate;
 
 public class WininngNumberManager {

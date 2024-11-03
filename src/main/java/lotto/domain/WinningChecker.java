@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstant.LOTTO_PRICE;
-
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +24,7 @@ public class WinningChecker {
         for (LottoRank rank : LottoRank.values()) {
             sum += rank.getPrize() * matchingResult.get(rank.name());
         }
-        double result = sum / (ticketNumbers * LOTTO_PRICE) * 100;
+        double result = sum / (ticketNumbers * 1000) * 100;
         return result;
     }
 
