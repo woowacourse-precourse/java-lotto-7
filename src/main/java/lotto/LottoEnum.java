@@ -1,6 +1,7 @@
 package lotto;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 import static lotto.Constant.*;
 
@@ -36,11 +37,9 @@ public enum LottoEnum {
     }
 
     public static void increaseWinnerCount(int count) {
-        for (LottoEnum lotto : LottoEnum.values()) {
-            if (lotto.matchCount == count) {
-                lotto.winnerCount = lotto.winnerCount.add(BigDecimal.valueOf(1));
-            }
-        }
+        Arrays.stream(LottoEnum.values())
+                .filter(lotto -> lotto.matchCount == count)
+                .forEach(lotto -> lotto.winnerCount = lotto.winnerCount.add(BigDecimal.valueOf(1)));
     }
 
     public static BigDecimal sum() {
