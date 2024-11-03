@@ -11,11 +11,18 @@ public class Wallet {
     private final Integer money;
 
     public Wallet(Integer money) {
-        validate(money);
+        validatePositive(money);
+        validateUnit(money);
         this.money = money;
     }
 
-    private void validate(Integer money) {
+    private void validatePositive(Integer money) {
+        if (money <= MIN_MONEY_UNIT_CHECK_NUMBER) {
+            throw new MoneyException(ExceptionMessage.INPUT_BONUS_RANGE_EXCEPTION);
+        }
+    }
+
+    private void validateUnit(Integer money) {
         if (money % MIN_MONEY_UNIT != MIN_MONEY_UNIT_CHECK_NUMBER) {
             throw new MoneyException(ExceptionMessage.INPUT_MONEY_UNIT_EXCEPTION);
         }
