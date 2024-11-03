@@ -12,6 +12,7 @@ import lotto.view.OutPutView;
 import lotto.view.OutPutViewInterface;
 
 public class PrintFormatter {
+
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_TICKET_QUANTITY_MESSAGE = "%d개를 구매하셨습니다.";
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -21,6 +22,7 @@ public class PrintFormatter {
         OutPutView.printMessage(PURCHASE_AMOUNT_MESSAGE);
         LottoTicketIssuer lottoTicketIssuer = new LottoTicketIssuer(InputView.inputPurchaseAmount());
         OutPutView.printNewLine();
+
         return lottoTicketIssuer;
     }
 
@@ -33,6 +35,8 @@ public class PrintFormatter {
     public Lotto formatWinningNumbers() {
         OutPutView.printMessage(WINNING_NUMBER_MESSAGE);
         Lotto winningNumbers = new Lotto(Parser.parseWithDelimiter(InputView.inputWinningNumbers()));
+        OutPutView.printNewLine();
+
         return winningNumbers;
     }
 
@@ -40,6 +44,7 @@ public class PrintFormatter {
         OutPutView.printMessage(BONUS_NUMBER_MESSAGE);
         Bonus bonus = new Bonus(InputView.inputBonusNumber());
         OutPutView.printNewLine();
+
         return bonus;
     }
 
