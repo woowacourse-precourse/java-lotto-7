@@ -42,4 +42,8 @@ public class Balance {
     public void setProfitRate(double profitRate) {
         this.profitRate = profitRate;
     }
+
+    public double getProfitRate() {
+        return this.profitRate;
+    }
 }

@@ -97,5 +97,6 @@ public class LottoController {
         for (Rule rule : Rule.values()) {
             OutputView.printResult(rule.getDescription(), rule.getPrize(), user.getResults().get(rule));
         }
+        OutputView.printProfitRate(balance.getProfitRate());
     }
 }
