@@ -14,6 +14,10 @@ public class LottoGenerator {
         this.lottoPrice = lottoPrice;
     }
 
+    public List<Lotto> purchaseLotto(Long purchasePrice) {
+        return generateLottos(purchasePrice / lottoPrice);
+    }
+
     private List<Lotto> generateLottos(Long count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
