@@ -49,7 +49,7 @@ public class Application {
 
     private static void printPurchasedLottos(List<Lotto> purchasedLottos) {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
-        for(Lotto lotto : purchasedLottos) {
+        for (Lotto lotto : purchasedLottos) {
             System.out.println(lotto.getNumbers());
         }
     }
@@ -89,7 +89,7 @@ public class Application {
             int matchCount = lotto.countMatchingNumbers(winningNumbers);
             boolean matchBonus = lotto.contains(bonusNumber);
             LottoRank rank = LottoRank.getRank(matchCount, matchBonus);
-            result.put(rank, result.getOrDefault(rank, 0) + 1)
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         return result;
     }
@@ -105,12 +105,16 @@ public class Application {
             }
             int count = result.getOrDefault(rank, 0);
             totalPrize += rank.getPrize() * count;
-            System.out.printf("%d개 일치 (%d원) - %d개\n", rank.getMatchCount(), rank.getPrize(), count);
+            System.out.printf("%s - %d개\n", rank.getMatchMessage(), count);
         }
 
-        double profixRate = (double) totalPrize / purchaseAmount * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profixRate);
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
-}
 
+    private static String formatCurrency(int amount) {
+        return String.format("%,d", amount);
+    }
+
+}
 
