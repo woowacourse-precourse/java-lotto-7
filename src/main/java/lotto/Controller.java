@@ -17,14 +17,14 @@ public class Controller {
 
     public void start (){
         int money = input.getMoney();
-        int sheets = money / 1000;
-        lottos = service.generator(sheets);
+        lottos = service.generator(money);
         output.printGeneratedNum(lottos);
         winningNum = input.getWinningNum();
         bonusNum = input.getBonusNum();
         winningScore = service.checkWinning(lottos, winningNum);
         int[] resultWinning = service.countWinning(winningScore);
         output.printWinning(resultWinning);
+        float totalProfit = service.calcTotalProfit(resultWinning);
+        output.printTotalProfit(totalProfit);
     }
-    // TODO: 총 이익률 계산
 }

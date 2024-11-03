@@ -11,7 +11,7 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
-    // TODO: 당첨 내역 출력
+
     public void printWinning(int[] resultWinning){
         System.out.println("\n당첨 통계");
         System.out.println("---");
@@ -21,5 +21,8 @@ public class OutputView {
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", resultWinning[6]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", resultWinning[7]);
     }
-    // TODO: 총 이익률 출력
+
+    public void printTotalProfit(float totalProfit){
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", totalProfit);
+    }
 }
