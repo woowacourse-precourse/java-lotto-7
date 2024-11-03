@@ -24,12 +24,6 @@ public class LottoController {
         displayGameResults(lottoGame);
     }
 
-    private List<Integer> parseToIntegerList(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .toList();
-    }
-
     private LottoTicketBundle purchaseTickets(int ticketCount) {
         LottoTicketBundle ticketBundle = LottoTicketBundle.from(lottoGenerateStrategy, ticketCount);
         displayPurchaseInfo(ticketBundle);
@@ -45,6 +39,12 @@ public class LottoController {
         List<Integer> winningNumbers = parseToIntegerList(InputView.getWinningNumbers());
         String bonusNumber = InputView.getBonusNumber(winningNumbers);
         return new WinningTicket(winningNumbers, Integer.parseInt(bonusNumber));
+    }
+
+    private List<Integer> parseToIntegerList(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private void displayGameResults(LottoGame lottoGame) {
