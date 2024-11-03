@@ -8,61 +8,33 @@ import lotto.validator.WinningNumbersValidationMessage;
 
 public class WinningNumbers {
 
-	private static final int WINNING_NUMBERS_COUNT = 6;
-	private static final int MIN_NUMBER_VALUE = 1;
-	private static final int MAX_NUMBER_VALUE = 45;
 	private static final int TOTAL_NUMBERS_COUNT = 7;
 
-	private final List<Integer> winningNumbers;
-	private final int bonusNumber;
+	private final MainWinningNumbers mainWinningNumbers;
+	private final BonusNumber bonusNumber;
 
-	private WinningNumbers(List<Integer> numbers, int bonusNumber) {
-		validateNumbersSize(numbers);
-		validateNumbersInRange(numbers);
-		validateDuplicateNumbers(numbers);
-		validateBonusNumberInRange(bonusNumber);
-		validateWinningNumbersWithBonusNumberDuplicate(numbers, bonusNumber);
-		this.winningNumbers = numbers;
+	private WinningNumbers(MainWinningNumbers mainWinningNumbers, BonusNumber bonusNumber) {
+		validateWinningNumbersWithBonusNumberDuplicate(mainWinningNumbers, bonusNumber);
+		this.mainWinningNumbers = mainWinningNumbers;
 		this.bonusNumber = bonusNumber;
 	}
 
-	public static WinningNumbers of(List<Integer> winningNumbers, int bonusNumber) {
-		return new WinningNumbers(winningNumbers, bonusNumber);
+	public static WinningNumbers of(MainWinningNumbers mainWinningNumbers, BonusNumber bonusNumber) {
+		return new WinningNumbers(mainWinningNumbers, bonusNumber);
 	}
 
-	private void validateNumbersSize(List<Integer> numbers) {
-		if (numbers.size() != WINNING_NUMBERS_COUNT) {
-			throw new IllegalArgumentException(
-				WinningNumbersValidationMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage());
-		}
+	public List<Integer> getMainWinningNumbers() {
+		return mainWinningNumbers.getMainWinningNumbers();
 	}
 
-	private void validateNumbersInRange(List<Integer> numbers) {
-		numbers.forEach(number -> {
-			if (number < MIN_NUMBER_VALUE || number > MAX_NUMBER_VALUE) {
-				throw new IllegalArgumentException(
-					WinningNumbersValidationMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage());
-			}
-		});
+	public int getBonusNumber() {
+		return bonusNumber.getBonusNumber();
 	}
 
-	private void validateDuplicateNumbers(List<Integer> numbers) {
-		Set<Integer> duplicatedNumbers = new HashSet<>(numbers);
-		if (duplicatedNumbers.size() != numbers.size()) {
-			throw new IllegalArgumentException(
-				WinningNumbersValidationMessage.INVALID_WINNING_NUMBERS_DUPLICATION.getMessage());
-		}
-	}
-
-	private void validateBonusNumberInRange(int bonusNumber) {
-		if (bonusNumber < MIN_NUMBER_VALUE || bonusNumber > MAX_NUMBER_VALUE) {
-			throw new IllegalArgumentException(WinningNumbersValidationMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
-		}
-	}
-
-	private void validateWinningNumbersWithBonusNumberDuplicate(List<Integer> numbers, int bonusNumber) {
-		Set<Integer> duplicatedNumbers = new HashSet<>(numbers);
-		duplicatedNumbers.add(bonusNumber);
+	private void validateWinningNumbersWithBonusNumberDuplicate(MainWinningNumbers mainWinningNumbers,
+		BonusNumber bonusNumber) {
+		Set<Integer> duplicatedNumbers = new HashSet<>(mainWinningNumbers.getMainWinningNumbers());
+		duplicatedNumbers.add(bonusNumber.getBonusNumber());
 		if (duplicatedNumbers.size() != TOTAL_NUMBERS_COUNT) {
 			throw new IllegalArgumentException(
 				WinningNumbersValidationMessage.INVALID_WINNING_NUMBERS_WITH_BONUS_NUMBER_DUPLICATION.getMessage());
