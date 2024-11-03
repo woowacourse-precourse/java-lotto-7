@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.application.prize.service.PrizeResponse;
-import lotto.application.statistics.controller.WinnerStatisticsController;
 import lotto.application.ticket.dto.TicketResponse;
+import lotto.usecase.CompileStatisticsUsecase;
 import lotto.usecase.CreatePrizeUsecase;
 import lotto.usecase.CreateTicketUsecase;
 
@@ -10,22 +10,22 @@ public class LottoTicketMachine {
 
     private final CreateTicketUsecase createTicketUsecase;
     private final CreatePrizeUsecase createPrizeUsecase;
-    private final WinnerStatisticsController winStatisticsController;
+    private final CompileStatisticsUsecase compileStatisticsUsecase;
 
     public LottoTicketMachine(
             CreateTicketUsecase createTicketUsecase,
             CreatePrizeUsecase createPrizeUsecase,
-            WinnerStatisticsController winStatisticsController) {
+            CompileStatisticsUsecase compileStatisticsUsecase) {
 
         this.createTicketUsecase = createTicketUsecase;
         this.createPrizeUsecase = createPrizeUsecase;
-        this.winStatisticsController = winStatisticsController;
+        this.compileStatisticsUsecase = compileStatisticsUsecase;
     }
 
     public void run() {
         TicketResponse ticketResponse = createTicketUsecase.execute();
-        PrizeResponse winnerNumbers = createPrizeUsecase.execute();
-        winStatisticsController.create(ticketResponse, winnerNumbers);
+        PrizeResponse prizeResponse = createPrizeUsecase.execute();
+        compileStatisticsUsecase.execute(ticketResponse, prizeResponse);
     }
 
 }
