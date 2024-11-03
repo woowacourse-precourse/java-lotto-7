@@ -1,5 +1,9 @@
 package lotto.model.domain;
 
+import static lotto.message.ErrorMessage.INVALID_PAYMENT_AMOUNT;
+import static lotto.message.ErrorMessage.INVALID_PAYMENT_FORMAT;
+import static lotto.message.ErrorMessage.PAYMENT_IS_BLANK;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +15,35 @@ public class Customer {
     private Integer revenue;
 
     public Customer(String payment) {
-        this.payment = Integer.parseInt(payment);
+        validatePayment(payment);
+        this.payment = parsePayment(payment);
         this.revenue = 0;
         lottos = new ArrayList<>();
+    }
+
+    private void validatePayment(String payment) {
+        checkBlank(payment);
+        checkNumeric(payment);
+    }
+
+    private void checkBlank(String payment) {
+        if (payment.isBlank()) {
+            throw new IllegalArgumentException(PAYMENT_IS_BLANK.getMessage());
+        }
+    }
+
+    private void checkNumeric(String payment) {
+        if (!payment.matches("\\d+")) {
+            throw new IllegalArgumentException(INVALID_PAYMENT_FORMAT.getMessage());
+        }
+    }
+
+    private Integer parsePayment(String payment) {
+        int amount = Integer.parseInt(payment);
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException(INVALID_PAYMENT_AMOUNT.getMessage());
+        }
+        return amount;
     }
 
     public Integer getId() {
