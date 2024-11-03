@@ -1,15 +1,14 @@
 package lotto.config;
 
-import lotto.ErrorCode;
 import lotto.domain.BonusNumber;
+import lotto.domain.LottoResult;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
+import lotto.io.Input;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
-import lotto.domain.LottoResult;
 import lotto.service.ProfitCalculator;
 import lotto.service.WinningChecker;
-import lotto.io.Input;
 
 import java.util.NoSuchElementException;
 import java.util.function.Supplier;
@@ -27,9 +26,9 @@ public class LottoConfig {
         });
 
         Container.register(WinningChecker.class, () -> {
-                    LottoResult result = Container.getInstance(LottoResult.class);
-                    return new WinningChecker(result);
-                });
+            LottoResult result = Container.getInstance(LottoResult.class);
+            return new WinningChecker(result);
+        });
     }
 
     public static void registerInputDependencies() {
@@ -40,7 +39,7 @@ public class LottoConfig {
                 retryOnFail(() -> new WinningNumber(Input.inputWinningNumber())));
 
         Container.register(BonusNumber.class,
-                retryOnFail(()->
+                retryOnFail(() ->
                         new BonusNumber(
                                 Input.inputBonusNumber(),
                                 Container.getInstance(WinningNumber.class))
@@ -49,16 +48,15 @@ public class LottoConfig {
 
     private static <T> Supplier<T> retryOnFail(Supplier<T> supplier) {
         return () -> {
-            int retries = 0;
-            while (retries < MAX_RETRIES) {
+            while (true) {
                 try {
                     return supplier.get();
-                } catch (Exception e) {
+                } catch (NoSuchElementException e) {
+                    throw new NoSuchElementException(e.getMessage());
+                } catch (RuntimeException e) {
                     View.showError(e.getMessage());
-                    retries++;
                 }
             }
-            throw new NoSuchElementException(ErrorCode.MAX_RETRIES_REACHED.getErrorMessage());
         };
     }
 }

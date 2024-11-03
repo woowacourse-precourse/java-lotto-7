@@ -1,20 +1,35 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.ErrorCode;
+
+import java.util.NoSuchElementException;
 
 public class Input {
-    public static String inputPrice() {
+    public static String inputPrice() throws NoSuchElementException {
         View.printInputPrice();
-        return Console.readLine();
+        try {
+            return Console.readLine();
+        } catch (Exception e) {
+            throw new NoSuchElementException(ErrorCode.NO_INPUT.getErrorMessage());
+        }
     }
 
-    public static String inputWinningNumber() {
+    public static String inputWinningNumber() throws NoSuchElementException {
         View.printInputWinningNumber();
-        return Console.readLine();
+        try {
+            return Console.readLine();
+        } catch (Exception e) {
+            throw new NoSuchElementException(ErrorCode.NO_INPUT.getErrorMessage());
+        }
     }
 
-    public static String inputBonusNumber() {
+    public static String inputBonusNumber() throws NoSuchElementException {
         View.printInputBonusNumber();
-        return Console.readLine();
+        try {
+            return Console.readLine();
+        } catch (Exception e) {
+            throw new NoSuchElementException(ErrorCode.NO_INPUT.getErrorMessage());
+        }
     }
 }

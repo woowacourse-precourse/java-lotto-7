@@ -9,7 +9,8 @@ public enum ErrorCode {
     BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨번호와 중복되지 않아야 합니다.", 606),
     LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다.", 701),
     LOTTO_NUMBER_DUPLICATE("로또 번호는 겹치지 않아야 합니다.", 702),
-    MAX_RETRIES_REACHED("최대 시도 횟수를 초과했습니다.", 1000);
+    NO_INPUT("입력값이 없습니다.",1000),
+    MAX_RETRIES_REACHED("최대 시도 횟수를 초과했습니다.", 1001);
 
     private final String errorMessage;
     private final Integer code;
