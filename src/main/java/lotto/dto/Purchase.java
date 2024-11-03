@@ -8,4 +8,8 @@ public class Purchase {
     public Purchase(BigInteger money) {
         this.money = money;
     }
+
+    public BigInteger getMoney() {
+        return money;
+    }
 }
