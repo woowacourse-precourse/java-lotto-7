@@ -8,5 +8,6 @@ public class Application {
         Parser parser = new Parser();
 
         Executor executor = new Executor(ioController, validator, parser);
+        executor.run();
     }
 }
