@@ -17,13 +17,8 @@ public class LottoVendingMachine {
         }
 
         int money = Integer.parseInt(userInput);
-        List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 1; i <= (money / 1000); i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-
-        return lottos;
+        return createLottos(money);
     }
 
     public boolean validateMoney(String userInput) {
@@ -43,7 +38,6 @@ public class LottoVendingMachine {
                 throw new IllegalArgumentException("로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
             }
 
-
             return true;
 
         } catch (NumberFormatException e) {
@@ -53,5 +47,15 @@ public class LottoVendingMachine {
             System.out.println("[ERROR] "+e);
             return false;
         }
+    }
+
+    public List<Lotto> createLottos(int money){
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 1; i <= (money / 1000); i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+
+        return lottos;
     }
 }
