@@ -29,7 +29,7 @@ public class InputNumberValidator {
             return true;
         }
     }
-    
+
     public static boolean isOutOfLottoRange(String winNumbers) {
         List<Integer> winningNumbers = InputSplitter.splitByDelimiter(winNumbers);
 
@@ -104,7 +104,7 @@ public class InputNumberValidator {
         }
     }
 
-    public static void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumber) {
+    public static void validateBonusNumberType(String bonusNumberInput) {
         if (isNotInteger(bonusNumberInput)) {
             throw new NumberFormatException(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
         }
@@ -114,6 +114,9 @@ public class InputNumberValidator {
         if (isOutOfIntegerRange(bonusNumberInput)) {
             throw new NumberFormatException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
+    }
+
+    public static void validateBonusNumberValue(String bonusNumberInput, List<Integer> winningNumber) {
         if (isOutOfLottoRange(bonusNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
@@ -121,4 +124,5 @@ public class InputNumberValidator {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
+
 }
