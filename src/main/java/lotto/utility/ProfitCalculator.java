@@ -7,10 +7,6 @@ import java.util.Map;
 
 public class ProfitCalculator {
     public static String calculate(int purchaseCost, Map<String, Integer> matchedCount) {
-        if (purchaseCost == 0) {
-            return "0.0";
-        }
-
         long revenue = (long)matchedCount.get(MatchedCountNameEnum.THREE_MATCHED.getMessage()) * LottoPrizeEnum.THREE_MATCHED_PRIZE.getAmount()
                 + (long)matchedCount.get(MatchedCountNameEnum.FOUR_MATCHED.getMessage()) * LottoPrizeEnum.FOUR_MATCHED_PRIZE.getAmount()
                 + (long)matchedCount.get(MatchedCountNameEnum.FIVE_MATCHED.getMessage()) * LottoPrizeEnum.FIVE_MATCHED_PRIZE.getAmount()
