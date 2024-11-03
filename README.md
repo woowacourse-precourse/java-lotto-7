@@ -65,10 +65,11 @@
 - service
     |- calculator
         |- ResultCalculator : 당첨 결과 합산 및 당첨 통계 계산
+        |- WinningCalculator : 당첨 결과 계산 및 반환
+        |- BonusCalculator : 보너스 당첨 결과 게산 및 반환
     |- generator
         |- BonusGenerator : 사용자로부터 입력받은 보너스 번호 검증 및 생성
         |- LottoGenerator : 로또 번호 생성 및 로또 티켓 발행
-        |- ResultGenerator : 로또 티켓의 당첨 여부(당첨 번호, 보너스 번호) 판단 및 결과 반환 
         |- WalletGenerator : 사용자로부터 입력받은 돈 검증 및 지갑 생성
         |- WinningGenerator : 사용자로부터 입력받은 당첨 번호 값 검증 및 로또 생성
     |- Payment : 지갑 관련 로직 정의(돈, 구입 로또 개수)
