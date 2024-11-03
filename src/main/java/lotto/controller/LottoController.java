@@ -19,18 +19,7 @@ public class LottoController {
         int bonusNumber = InputView.BonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(new Lotto(winNumbers), bonusNumber);
 
-        int[] rankCount = new int[LottoRank.ranks.size()];
-        for (Lotto lotto : purchaseLottos) {
-            int matchCount = 0;
-            for (int number : lotto.getNumbers()) {
-                if (winningNumbers.getWinningNumber().getNumbers().contains(number)) {
-                    matchCount++;
-                }
-            }
-            boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
-            LottoRank rank = LottoRank.getRank(matchCount, matchBonus);
-            rankCount[LottoRank.ranks.indexOf(rank)]++;
-        }
+        int[] rankCount = calculateRankCounts(purchaseLottos, winningNumbers);
 
         int totalPrize = 0;
         for (int i = 0; i < rankCount.length; i++) {
@@ -48,5 +37,25 @@ public class LottoController {
             lottos.add(new Lotto(numbers));
         }
         return lottos;
+    }
+
+    public int[] calculateRankCounts(List<Lotto> purchaseLottos, WinningNumbers winningNumbers) {
+        int[] rankCounts = new int[LottoRank.ranks.size()];
+        for (Lotto lotto : purchaseLottos) {
+            LottoRank rank = getRanks(lotto, winningNumbers);
+            rankCounts[LottoRank.ranks.indexOf(rank)]++;
+        }
+        return rankCounts;
+    }
+
+    public LottoRank getRanks(Lotto lotto, WinningNumbers winningNumbers) {
+        int matchCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.getWinningNumber().getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+        return LottoRank.getRank(matchCount, matchBonus);
     }
 }
