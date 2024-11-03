@@ -10,9 +10,4 @@ public class WinningNumberService {
     public void save(final WinningNumbersDto dto) {
         winningNumbersRepository.save(WinningNumbers.fromDto(dto));
     }
-
-    public WinningNumbersDto find() {
-        WinningNumbers winningNumbers = winningNumbersRepository.find();
-        return WinningNumbersDto.fromEntity(winningNumbers);
-    }
 }
