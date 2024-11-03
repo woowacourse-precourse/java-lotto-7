@@ -42,4 +42,5 @@ public class Lotto {
         }
         return Constants.LottoGrade.FAILED;
     }
+    public List<Integer> getNumbers() { return this.numbers; }
 }

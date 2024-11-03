@@ -10,20 +10,26 @@ public class Constants {
         public int getNumber(){ return this.number; }
     }
     public enum LottoGrade {
-        FIRST_PRIZE( "6개 일치", 2000000000 ),
-        SECOND_PRIZE( "5개 일치, 보너스 볼 일치", 30000000 ),
-        THIRD_PRIZE( "5개 일치", 1500000 ),
-        FOURTH_PRIZE( "4개 일치", 50000 ),
-        FIFTH_PRIZE( "3개 일치", 5000 ),
-        FAILED( "꽝", 0 );
+        FIRST_PRIZE( "6개 일치", 2000000000, "2,000,000,000원", 1 ),
+        SECOND_PRIZE( "5개 일치, 보너스 볼 일치", 30000000, "30,000,000원", 2 ),
+        THIRD_PRIZE( "5개 일치", 1500000, "1,500,000원", 3 ),
+        FOURTH_PRIZE( "4개 일치", 50000, "50,000원", 4 ),
+        FIFTH_PRIZE( "3개 일치", 5000, "5,000원", 5 ),
+        FAILED( "꽝", 0, "0원", 6 );
         private final String condition;
         private final int prize;
-        LottoGrade( String condition, int prize ){
+        private final String price;
+        private final int grade;
+        LottoGrade( String condition, int prize,  String price, int grade ){
             this.condition = condition;
             this.prize = prize;
+            this.price = price;
+            this.grade = grade;
         }
         public String getCondition() { return this.condition; }
         public int getPrize() { return this.prize; }
+        public String getPrice() { return this.price; }
+        public int getGrade() { return this.grade; }
     }
     public enum TUINotice {
         NOTICE_INPUT_PAYMENT("구입금액을 입력해 주세요.", "" ),
