@@ -12,11 +12,10 @@ class LottoTicketGeneratorTest {
     @Test
     void 구매_가능한_개수만큼_로또가_생성되는지_확인() {
         LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator(
-                new LottoGenerator(),
-                PurchaseAmount.from("10000")
+                new LottoGenerator()
         );
 
-        LottoTicket lottoTicket = lottoTicketGenerator.generateLottoTicket();
+        LottoTicket lottoTicket = lottoTicketGenerator.generateLottoTicket(PurchaseAmount.from("10000"));
         assertThat(lottoTicket.getSize()).isEqualTo(10);
     }
 }

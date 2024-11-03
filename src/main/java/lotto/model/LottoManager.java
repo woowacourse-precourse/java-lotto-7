@@ -1,13 +1,8 @@
 package lotto.model;
 
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lotto.model.draw.BonusNumber;
-import lotto.model.draw.Prize;
 import lotto.model.draw.WinningLotto;
 import lotto.model.draw.DrawResult;
-import lotto.model.lotto.LottoGenerator;
 import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.LottoTicketGenerator;
 import lotto.model.lotto.PurchaseAmount;
@@ -18,37 +13,48 @@ public class LottoManager {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoTicketGenerator lottoTicketGenerator;
 
-    public LottoManager(InputView inputView, OutputView outputView) {
+    private PurchaseAmount purchaseAmount;
+    private LottoTicket lottoTicket;
+    private WinningLotto winningLotto;
+    private BonusNumber bonusNumber;
+    private DrawResult drawResult;
+
+
+    public LottoManager(InputView inputView, OutputView outputView, LottoTicketGenerator lottoTicketGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoTicketGenerator = lottoTicketGenerator;
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = receivePurchaseAmount();
+        buyLottoTicket();
+        draw();
+        displayDrawStatistics();
+    }
 
-        LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator(new LottoGenerator(), purchaseAmount);
-
-        LottoTicket lottoTicket = lottoTicketGenerator.generateLottoTicket();
-
+    private void buyLottoTicket() {
+        purchaseAmount = receivePurchaseAmount();
+        lottoTicket = lottoTicketGenerator.generateLottoTicket(purchaseAmount);
         outputView.printLottoTicket(lottoTicket, purchaseAmount.getPurchasableLottoAmount());
+    }
 
-        WinningLotto winningLotto = receiveWinningNumbers();
-
-        BonusNumber bonusNumber = receiveBonusNumber(winningLotto);
-
-        DrawResult drawResult = DrawResult.of(winningLotto,bonusNumber,lottoTicket);
-
+    private void draw() {
+        winningLotto = receiveWinningNumbers();
+        bonusNumber = receiveBonusNumber();
+        drawResult = DrawResult.of(winningLotto, bonusNumber, lottoTicket);
         drawResult.generateDrawResult();
+    }
 
+    private void displayDrawStatistics() {
         outputView.printDrawResult(drawResult);
         int totalPrizeMoney = drawResult.getTotalPrizeMoney();
         double profitPercentage = purchaseAmount.calculateProfitPercentage(totalPrizeMoney);
         outputView.printProfitPercentage(profitPercentage);
-
     }
 
-    public PurchaseAmount receivePurchaseAmount() {
+    private PurchaseAmount receivePurchaseAmount() {
         while (true) {
             try {
                 return PurchaseAmount.from(inputView.enterPurchaseAmount());
@@ -58,7 +64,7 @@ public class LottoManager {
         }
     }
 
-    public WinningLotto receiveWinningNumbers() {
+    private WinningLotto receiveWinningNumbers() {
         while (true) {
             try {
                 return WinningLotto.from(inputView.enterWinningNumbers());
@@ -68,7 +74,7 @@ public class LottoManager {
         }
     }
 
-    public BonusNumber receiveBonusNumber(WinningLotto winningLotto) {
+    private BonusNumber receiveBonusNumber() {
         while (true) {
             try {
                 BonusNumber bonusNumber = BonusNumber.from(inputView.enterBonusNumbers());
@@ -79,7 +85,5 @@ public class LottoManager {
             }
         }
     }
-
-
 
 }
