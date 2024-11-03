@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.error.LottoErrorMessage;
+import lotto.error.NumberErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,5 +24,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호는_1에서_45사이의_숫자만_가능하다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 10, 11, 12, 13, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NumberErrorMessage.NOT_ALLOWED_NUMBER.getMessage());
+    }
 }
