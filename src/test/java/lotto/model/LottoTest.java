@@ -23,7 +23,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @DisplayName("로또 번호 순서를 정렬해서 반환한다.")
     @Test
     void testGetNumbers() {
