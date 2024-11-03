@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Validator {
@@ -12,6 +13,7 @@ public class Validator {
     public static final String INVALID_AMOUNT_MESSAGE = "[ERROR] 1000원 단위로 입력하셔야 합니다.";
     public static final String INVALID_NUMBER_RANGE_MESSAGE = "[ERROR] 1~45 사이의 숫자여야합니다.";
     public static final String INVALID_NUMBER_LENGTH_MESSAGE = "[ERROR] 로또 번호 6개 입력하셔야 합니다.";
+    public static final String INVALID_NUMBERS_DUPLICATE_MESSAGE = "[ERROR] 중복된 숫자가 포함되어 있습니다.";
 
     private Validator() {
     }
@@ -33,6 +35,12 @@ public class Validator {
     public static void numberInRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_MESSAGE);
+        }
+    }
+
+    public static void numberDuplicate(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(INVALID_NUMBERS_DUPLICATE_MESSAGE);
         }
     }
 
