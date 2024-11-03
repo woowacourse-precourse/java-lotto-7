@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import static java.util.stream.Stream.generate;
 
