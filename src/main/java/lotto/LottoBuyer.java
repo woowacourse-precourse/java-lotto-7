@@ -44,7 +44,7 @@ public class LottoBuyer {
 
     private LottoRank specifyLottoRank(int duplNumber, Lotto lotto) {
         if (duplNumber == 6) {
-            return LottoRank.FRIST;
+            return LottoRank.FIRST;
         }
         if (duplNumber == 5) {
             return checkBonusNumber(lotto);
@@ -92,5 +92,7 @@ public class LottoBuyer {
         return format;
     }
 
-
+    public ArrayList<Lotto> getLottos() {
+        return lottos;
+    }
 }
