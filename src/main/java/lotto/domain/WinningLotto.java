@@ -31,4 +31,18 @@ public class WinningLotto {
         return bonusNumber;
     }
 
+    public LottoRank match(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+
+        int matchCnt = 0;
+        for (int winningNumber : winningNumbers) {
+            if (lottoNumbers.contains(winningNumber)) {
+                matchCnt++;
+            }
+        }
+        boolean matchBonus = lottoNumbers.contains(bonusNumber);
+
+        return LottoRank.valueOf(matchCnt, matchBonus);
+    }
 }
