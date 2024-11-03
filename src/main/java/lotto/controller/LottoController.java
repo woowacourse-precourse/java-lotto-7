@@ -63,7 +63,7 @@ public class LottoController {
         }
 
         long winningAmount = lottoService.calculateWinningAmount();
-        double profitRate = lottoService.calculateProfitRate(winningAmount, Long.parseLong(inputPurchaseAmount));
+        double profitRate = lottoService.calculateProfitRate(winningAmount, purchaseAmount);
         outputView.printProfitRate(profitRate);
     }
 }

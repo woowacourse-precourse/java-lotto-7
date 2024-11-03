@@ -36,7 +36,7 @@ public class LottoService {
                 .sum();
     }
 
-    public double calculateProfitRate(long winningAmount, long purchaseAmount) {
+    public double calculateProfitRate(long winningAmount, int purchaseAmount) {
         double profitRate = (double) winningAmount / purchaseAmount * 100.0;
         return Math.round(profitRate * 100.0) / 100.0;
     }
