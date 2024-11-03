@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.wrapper;
 
 public class BonusNumber {
 

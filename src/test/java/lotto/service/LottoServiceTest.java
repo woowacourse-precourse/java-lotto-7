@@ -1,8 +1,7 @@
 package lotto.service;
 
-import java.util.List;
-import lotto.domain.Amount;
-import lotto.domain.BonusNumber;
+import lotto.wrapper.Amount;
+import lotto.wrapper.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;

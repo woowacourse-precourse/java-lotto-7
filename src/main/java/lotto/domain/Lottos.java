@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.wrapper.BonusNumber;
 
 public class Lottos {
 
