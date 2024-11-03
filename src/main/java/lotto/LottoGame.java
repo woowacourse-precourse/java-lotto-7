@@ -42,13 +42,25 @@ public class LottoGame {
                     .map(Integer::parseInt)
                     .toList();
             Lotto lotto = new Lotto(numbers);
-
-            int bonusNumber = Integer.parseInt(LottoInput.inputBonusNumber());
+            int bonusNumber = createBonusNumber();
 
             return new CorrectLotto(lotto, bonusNumber);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return createCorrectLotto();
+        }
+    }
+
+    private int createBonusNumber() {
+        try {
+            int bonusNumber = Integer.parseInt(LottoInput.inputBonusNumber());
+            if(bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            return bonusNumber;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return createBonusNumber();
         }
     }
 
