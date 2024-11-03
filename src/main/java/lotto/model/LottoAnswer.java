@@ -13,6 +13,10 @@ public class LottoAnswer extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
         validateBonusNumberDuplicated(bonusNumber);

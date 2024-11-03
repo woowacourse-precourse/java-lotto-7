@@ -3,10 +3,16 @@ package lotto.util;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.model.Lotto;
+import lotto.model.LottoAnswer;
 import lotto.model.WinningResult;
 
 public class LottoMatcher {
     private LottoMatcher() {
+    }
+
+    public static WinningResult match(Lotto userLotto, LottoAnswer lottoAnswer) {
+        return match(userLotto.getNumbers(), lottoAnswer.getNumbers(), lottoAnswer.getBonusNumber());
     }
 
     public static WinningResult match(List<Integer> userLotto, List<Integer> winningLotto, int bonusNumber) {
