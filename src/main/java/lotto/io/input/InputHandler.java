@@ -35,4 +35,11 @@ public class InputHandler {
 			.toList();
 	}
 
+	public int getBonusNumber() {
+		String inputBonusNumber = Console.readLine();
+		userInputValidation.validateBonusNumberRange(inputBonusNumber);
+
+		return Integer.parseInt(inputBonusNumber);
+	}
+
 }

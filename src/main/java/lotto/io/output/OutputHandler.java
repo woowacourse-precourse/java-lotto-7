@@ -14,6 +14,7 @@ public class OutputHandler {
 	private static final String PURCHASE_AMOUNT_INPUT_COMMENT = "구입금액을 입력해 주세요.";
 	private static final String PURCHASED_LOTTO_COUNT_COMMENT = "개를 구매했습니다.";
 	private static final String WINNING_NUMBERS_INPUT_COMMENT = "당첨 번호를 입력해 주세요.";
+	private static final String BONUS_NUMBERS_INPUT_COMMENT = "보너스 번호를 입력해 주세요.";
 
 	public void showPurchaseAmountInputComment() {
 		System.out.println(PURCHASE_AMOUNT_INPUT_COMMENT);
@@ -44,6 +45,11 @@ public class OutputHandler {
 	public void showWinningNumbersInputComment() {
 		System.out.println();
 		System.out.println(WINNING_NUMBERS_INPUT_COMMENT);
+	}
+
+	public void showBonusNumberInputComment() {
+		System.out.println();
+		System.out.println(BONUS_NUMBERS_INPUT_COMMENT);
 	}
 
 }
