@@ -1,16 +1,27 @@
 package lotto.view;
 
-import static lotto.view.InstructionMessages.INPUT_WINNING_NUMBERS;
+import static lotto.common.config.InstructionMessages.INPUT_WINNING_NUMBERS;
+import static lotto.common.exception.ExceptionMessages.INVALID_WINNING_NUMBER_FORMAT;
+import static lotto.common.exception.ExceptionMessages.WINNING_NUMBERS_CONTAINS_WHITESPACE;
 
-public class WinningNumbersInput implements Input {
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.common.exception.EmptyInputException;
+import lotto.common.exception.InvalidInputException;
+import lotto.domain.Lotto;
+
+public class WinningNumbersInput implements Input<Lotto, String[]> {
+    private InputValidator inputValidator = new InputValidator(); // TODO
+
     @Override
-    public String input() {
+    public Lotto input() {
         Output.printMessage(INPUT_WINNING_NUMBERS.getMessage());
         while (true) {
             try {
-                String winningNumbers = readInput();
-                validate(winningNumbers);
-                return winningNumbers;
+                String[] winningNumbersInput = splitWinningNumbers(readInput());
+                validate(winningNumbersInput);
+                return new Lotto(convertToIntegerList(winningNumbersInput));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -18,7 +29,25 @@ public class WinningNumbersInput implements Input {
     }
 
     @Override
-    public void validate(String input) {
+    public void validate(String[] input) {
+        for (String stringNumber : input) {
+            if (inputValidator.isEmptyInput(stringNumber)) {
+                throw new EmptyInputException(INVALID_WINNING_NUMBER_FORMAT.getMessages());
+            }
+            if (inputValidator.containsWhiteSpace(stringNumber)) {
+                throw new InvalidInputException(WINNING_NUMBERS_CONTAINS_WHITESPACE.getMessages());
+            }
+        }
 
+    }
+
+    private String[] splitWinningNumbers(String input) {
+        return input.split(",", -1);
+    }
+
+    private List<Integer> convertToIntegerList(String[] input) {
+        return Arrays.stream(input)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

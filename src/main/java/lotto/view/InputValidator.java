@@ -24,4 +24,8 @@ public class InputValidator {
     public boolean isMultipleOfUnitPrice(String input) {
         return Integer.parseInt(input) % unitPrice == 0;
     }
+
+    public boolean containsWhiteSpace(String input) {
+        return input.contains(" ");
+    }
 }
