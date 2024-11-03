@@ -20,8 +20,15 @@ class PurchaseLottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1000원", "만원", " ", ""})
-    void 구매_금액을_숫자로_입력하지_않으면_예외가_발생한다(String input) {
+    @ValueSource(strings = {"-1000", "1000원", "만원", " ", ""})
+    void 구매_금액을_양수로_입력하지_않으면_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> new PurchaseLotto(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1"})
+    void 구매_금액을_천원단위로_입력하지_않으면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> new PurchaseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
