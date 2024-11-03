@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,32 +35,7 @@ public class Lotto {
         }
     }
 
-    public static List<Integer> parseInput(String input) {
-        List<Integer> numbers = new ArrayList<>();
-
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해주세요.");
-        }
-
-        String[] splitNumbers = input.split(",");
-
-        for (String splitNumber : splitNumbers) {
-            String trimmedNumber = splitNumber.trim();
-            if (trimmedNumber.isEmpty()) {
-                throw new IllegalArgumentException("[ERROR] 쉼표 사이에 번호가 없습니다.");
-            }
-            try {
-                int number = Integer.parseInt(trimmedNumber);
-                numbers.add(number);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 번호는 숫자로만 입력해주세요.");
-            }
-        }
-
-        if (input.endsWith(",")) {
-            throw new IllegalArgumentException("[ERROR] 마지막에 쉼표가 포함되어 있습니다.");
-        }
-
-        return numbers;
+    public List<Integer> getNumbers() {
+        return numbers; // 필요에 따라 리스트를 반환하는 메서드
     }
 }
