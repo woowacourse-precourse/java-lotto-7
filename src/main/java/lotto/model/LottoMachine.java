@@ -13,10 +13,10 @@ import java.util.List;
 public class LottoMachine {
     public List<Lotto> buyLottoByPrice(int money) {
         validateDivideByUnit(money);
-        int count = money / LOTTO_UNIT_PRICE;
+        int lottoCount = money / LOTTO_UNIT_PRICE;
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int count = 0; count < lottoCount; count++) {
             int start = LOTTO_START_RANGE;
             int end = LOTTO_END_RANGE;
             int numberCount = LOTTO_NUMBER_COUNT;
