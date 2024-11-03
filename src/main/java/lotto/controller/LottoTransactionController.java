@@ -7,17 +7,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.LookAndFeel;
 import lotto.model.Lotto;
 import lotto.model.LottoTransaction;
 import lotto.model.PrizeRank;
+import lotto.view.LottoTransactionView;
 
 public class LottoTransactionController {
   final int LOTTO_PRICE = 1000; // TODO MainController 말고 다른 곳에 정의할지 생각
 
   final LottoTransaction lottoTransaction;
+  final LottoTransactionView view;
 
   public LottoTransactionController() {
     this.lottoTransaction = new LottoTransaction();
+    this.view = new LottoTransactionView();
   }
 
   // TODO amount 대한 vaildate는 sellLotto 또는 inputView에서 할지 생각
@@ -29,9 +33,9 @@ public class LottoTransactionController {
       Lotto lotto = produceLotto();
       lottos.add(lotto);
     }
-    System.out.println(count + "개를 구매했습니다."); // TODO 출력 처리 이동
     lottoTransaction.setPurchasedLottos(lottos);
     lottoTransaction.setAmount(amount);
+    view.printPurchasedLottoNumbers(lottos);
 
     return lottos;
   }
@@ -46,9 +50,9 @@ public class LottoTransactionController {
       lottos.add(lotto);
     }
 
-    System.out.println(count + "개를 구매했습니다."); // TODO 출력 처리 이동
     lottoTransaction.setPurchasedLottos(lottos);
     lottoTransaction.setAmount(amount);
+    view.printPurchasedLottoNumbers(lottos);
 
     return lottos;
   }
@@ -67,6 +71,17 @@ public class LottoTransactionController {
       lottoTransaction.addRankCount(prizeRank);
     }
     return result;
+  }
+
+  public void showLottoStatistics() {
+
+    int totalPrize = lottoTransaction.getRankCounts().entrySet().stream()
+            .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+            .sum();
+    double rateOfReturn = (double) totalPrize / lottoTransaction.getAmount() * 100;
+
+    view.printWinningLottoStatistics(lottoTransaction.getRankCounts());
+    view.printRateOfReturn(rateOfReturn);
   }
 
   private Lotto produceLotto() {
