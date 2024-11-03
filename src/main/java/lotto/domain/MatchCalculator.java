@@ -6,7 +6,7 @@ public class MatchCalculator {
 
     private final WinningNumber winningNumber;
     private final Lottos lottos;
-    private Map<Prize, Integer> matchResult;
+    private final Map<Prize, Integer> matchResult;
     private int prizeMoney;
 
     public MatchCalculator(WinningNumber winningNumber, Lottos lottos) {
@@ -27,6 +27,7 @@ public class MatchCalculator {
         for (Lotto lotto : lottos.getLottos()) {
             List<Integer> numbers = lotto.getNumbers();
             List<Integer> winningNumbers = winningNumber.getWinningNumber();
+
             int matchCount = (int) numbers.stream()
                     .filter(winningNumbers::contains)
                     .count();
@@ -34,32 +35,14 @@ public class MatchCalculator {
             boolean matchBonus = numbers.contains(winningNumber.getBonusNumber());
 
             Prize prize = determinePrize(matchCount, matchBonus);
-
-            if (prize != null) {
-                matchResult.put(prize, matchResult.get(prize) + 1);
-            }
+            matchResult.put(prize, matchResult.get(prize) + 1);
         }
-
     }
 
     private Prize determinePrize(int matchCount, boolean matchBonus) {
-        if (matchCount == 5) {
-            if (matchBonus) {
-                prizeMoney += Prize.SECOND.getPrizeMoney();
-                return Prize.SECOND;
-            }
-
-            prizeMoney += Prize.THIRD.getPrizeMoney();
-            return Prize.THIRD;
-        }
-
-        for (Prize prize : Prize.values()) {
-            if (prize.getMatchCount() == matchCount) {
-                prizeMoney += prize.getPrizeMoney();
-                return prize;
-            }
-        }
-        return Prize.NOTHING;
+        Prize prize = Prize.findPrize(matchCount, matchBonus);
+        prizeMoney += prize.getPrizeMoney();
+        return prize;
     }
 
     public Map<Prize, Integer> getPrizes() {

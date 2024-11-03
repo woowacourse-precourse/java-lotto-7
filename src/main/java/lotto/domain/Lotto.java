@@ -29,14 +29,16 @@ public class Lotto {
                 .count();
 
         if (result != LOTTO_NUMBER_PICK_COUNT) {
-            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT.getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
+            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT
+                    .getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
         }
     }
 
     private void validateNumberInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (LOTTO_NUMBER_RANGE_START > number || LOTTO_NUMBER_RANGE_END < number) {
-                throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE.getMessageWithArgs(LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END));
+                throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE
+                        .getMessageWithArgs(LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END));
             }
         }
     }
@@ -51,7 +53,8 @@ public class Lotto {
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_PICK_COUNT) {
-            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT.getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
+            throw new IllegalArgumentException(NOT_MATCHED_NUMBER_COUNT
+                    .getMessageWithArgs(LOTTO_NUMBER_PICK_COUNT));
         }
     }
 

@@ -39,21 +39,27 @@ public class OutputView {
         matchResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != Prize.NOTHING)
                 .sorted(Map.Entry.comparingByKey())
-                .forEach(entry -> {
-                    Prize prize = entry.getKey();
-                    int count = entry.getValue();
+                .forEach(OutputView::printDetails);
+    }
 
-                    String matchDescription = prize.getMatchCount() + "개 일치";
+    private static void printDetails(Map.Entry<Prize, Integer> entry) {
+        Prize prize = entry.getKey();
 
-                    if (prize == Prize.SECOND) {
-                        matchDescription = "5개 일치, 보너스 볼 일치";
-                    }
+        String matchDescription = getMatchDescription(prize);
 
-                    System.out.printf("%s (%,d원) - %d개%n",
-                            matchDescription,
-                            entry.getKey().getPrizeMoney(),
-                            count);
-                });
+        System.out.printf("%s (%,d원) - %d개%n",
+                matchDescription,
+                entry.getKey().getPrizeMoney(),
+                entry.getValue());
+    }
+
+    private static String getMatchDescription(Prize prize) {
+        String matchDescription = prize.getMatchCount() + "개 일치";
+
+        if (prize == Prize.SECOND) {
+            matchDescription = "5개 일치, 보너스 볼 일치";
+        }
+        return matchDescription;
     }
 
     public void earnRate(double earnRate) {

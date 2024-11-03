@@ -14,7 +14,7 @@ public class Parser {
         String[] numbers = number.split(NUMBER_DELIMITER);
 
         for (String num : numbers) {
-            int value = stringToInt(num);
+            int value = stringToInt(num.trim());
             result.add(value);
         }
 

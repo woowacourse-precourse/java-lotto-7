@@ -8,8 +8,8 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private NumberGenerator numberGenerator;
-    private PurchaseMoney purchaseMoney;
+    private final NumberGenerator numberGenerator;
+    private final PurchaseMoney purchaseMoney;
 
     public LottoMachine(NumberGenerator numberGenerator, PurchaseMoney purchaseMoney) {
         this.numberGenerator = numberGenerator;

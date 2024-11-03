@@ -62,23 +62,23 @@
     - [x] 예외 메세지 (예외사항 발생시 출력한다 (예: [ERROR] 로또 번호는 n부터 n 사이의 숫자여야 합니다.)
 
 ## - 프로그래밍 요구사항
-- [] JDK 21 버전에서 실행 가능해야한다.
-- [] 프로그램 실행의 시작점은 Application의 main() 이다.
-- [] 제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.
-- [] 프로그램 종료시 System.exit()를 호출하지 않는다.
-- [] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
-- [] 자바 코드 컨벤션을 준수한다. (Java Style Guide를 원칙으로 한다.)
-- [] 사용자 입력은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
-- [] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
-- [] 들여쓰기 깊이는 3이 넘지 않도록 구현한다. (깊이 2까지 가능하다.)
-- [] 3항 연산자는 사용하지 않는다.
-- [] 함수가 한 가지 일만 하도록 최대한 작게 만든다.
-- [] 정리한 기능이 정상적으로 작동하는지 테스트 코드로 확인한다. (JUnit, AssertJ 이용)
-- [] 메서드의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [] else 예약어를 쓰지 않는다. (switch/case도 안된다.)
-- [] Java Enum을 적용한다.
-- [] 구현한 기능에 대한 단위테스트를 작성한다. (UI 로직은 제외)
-- [] 제공된 Lotto 클래스를 사용하여야 한다.
-- [] Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
-- [] numbers의 접근 제어자인 private는 변경할 수 없다.
-- [] Lotto 클래스의 패키지는 변경할 수 있다.
+- [x] JDK 21 버전에서 실행 가능해야한다.
+- [x] 프로그램 실행의 시작점은 Application의 main() 이다.
+- [x] 제공된 라이브러리 이외의 외부 라이브러리는 사용하지 않는다.
+- [x] 프로그램 종료시 System.exit()를 호출하지 않는다.
+- [x] 프로그래밍 요구 사항에서 달리 명시하지 않는 한 파일, 패키지 등의 이름을 바꾸거나 이동하지 않는다.
+- [x] 자바 코드 컨벤션을 준수한다. (Java Style Guide를 원칙으로 한다.)
+- [x] 사용자 입력은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+- [x] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
+- [x] 들여쓰기 깊이는 3이 넘지 않도록 구현한다. (깊이 2까지 가능하다.)
+- [x] 3항 연산자는 사용하지 않는다.
+- [x] 함수가 한 가지 일만 하도록 최대한 작게 만든다.
+- [x] 정리한 기능이 정상적으로 작동하는지 테스트 코드로 확인한다. (JUnit, AssertJ 이용)
+- [x] 메서드의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] else 예약어를 쓰지 않는다. (switch/case도 안된다.)
+- [x] Java Enum을 적용한다.
+- [x] 구현한 기능에 대한 단위테스트를 작성한다. (UI 로직은 제외)
+- [x] 제공된 Lotto 클래스를 사용하여야 한다.
+- [x] Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
+- [x] numbers의 접근 제어자인 private는 변경할 수 없다.
+- [x] Lotto 클래스의 패키지는 변경할 수 있다.

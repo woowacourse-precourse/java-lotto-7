@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import lotto.constant.NumberConstant;
-
 import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.NumberConstant.*;
 
 public class PurchaseMoney {
 
@@ -20,7 +19,7 @@ public class PurchaseMoney {
     }
 
     private void validateDivideLottoPrice(int money) {
-        if (money % NumberConstant.LOTTO_PRICE != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(CAN_NOT_DIVIDE_MONEY.getMessage());
         }
     }
@@ -32,7 +31,7 @@ public class PurchaseMoney {
     }
 
     private void validateTotalAmount(int money) {
-        if (money > 100_000) {
+        if (money > MAX_LOTTO_PURCHASE_MONEY_AMOUNT) {
             throw new IllegalArgumentException(JUST_FOR_FUN.getMessage());
         }
     }
