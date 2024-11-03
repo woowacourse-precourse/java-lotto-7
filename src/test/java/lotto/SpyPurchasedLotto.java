@@ -9,7 +9,7 @@ public class SpyPurchasedLotto extends PurchasedLotto {
 
     public SpyPurchasedLotto(Payment payment) {
         super(new ArrayList<>());
-        lottos = new ArrayList<>(payment.getValue() / 1000);
+        lottos = new ArrayList<>(payment.get() / 1000);
     }
 
     @Override

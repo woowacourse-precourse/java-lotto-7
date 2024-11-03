@@ -6,7 +6,7 @@ public class ReturnRate {
 
     public String calculate(Result result, Payment payment) {
         long totalPrize = result.calculateTotalPrize();
-        double returnRate = ((double) totalPrize / payment.getValue()) * 100;
+        double returnRate = ((double) totalPrize / payment.get()) * 100;
 
         return printFormatted(returnRate);
     }

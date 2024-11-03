@@ -7,11 +7,11 @@ public class Payment {
     private static final String MAX_PURCHASE_LIMIT_EXCEEDED = ERROR_HEADER + "로또 최대 구입 금액은 100,000원 입니다.";
     private static final String INVALID_PURCHASE_AMOUNT = ERROR_HEADER + "로또 구입 금액은 1,000원 단위여야 합니다.";
 
-    private final int value;
+    private final int payment;
 
-    private Payment(int value) {
-        validate(value);
-        this.value = value;
+    private Payment(int payment) {
+        validate(payment);
+        this.payment = payment;
     }
 
     public static Payment from(String input) {
@@ -22,15 +22,15 @@ public class Payment {
         }
     }
 
-    public int getValue() {
-        return this.value;
+    public int get() {
+        return this.payment;
     }
 
-    private void validate(int value) {
-        if(value > MAX_PURCHASE_LIMIT) {
+    private void validate(int payment) {
+        if(payment > MAX_PURCHASE_LIMIT) {
             throw new IllegalArgumentException(MAX_PURCHASE_LIMIT_EXCEEDED);
         }
-        if (value == 0 || value % LOTTO_PRICE != 0) {
+        if (payment == 0 || payment % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }

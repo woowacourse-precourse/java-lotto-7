@@ -18,7 +18,7 @@ public class PurchasedLotto {
 
     public static PurchasedLotto from(Payment payment) {
         validate(payment);
-        return new PurchasedLotto(new ArrayList<>(payment.getValue() / LOTTO_PRICE));
+        return new PurchasedLotto(new ArrayList<>(payment.get() / LOTTO_PRICE));
     }
 
     public List<Lotto> get() {

@@ -15,7 +15,7 @@ public class PaymentTest {
 
         Payment payment = Payment.from(input);
 
-        assertEquals(1000, payment.getValue());
+        assertEquals(1000, payment.get());
     }
 
     @DisplayName("로또 구입 금액이 null일 경우 예외가 발생한다.")
