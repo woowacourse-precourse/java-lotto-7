@@ -35,6 +35,7 @@ public class LottoController {
                 String winningInput = inputView.inputWinningNumber();
                 List<Integer> winningNumbers = ParseNumberUtil.parseNumber(winningInput);
                 numberValidator.checkNumberSize(winningNumbers);
+                numberValidator.checkNumberRange(winningNumbers);
                 numberValidator.checkNumberDuplicated(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {

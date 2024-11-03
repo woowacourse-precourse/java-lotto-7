@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.LottoConstant;
+import lotto.exception.NumberErrorCode;
 
 public class NumberValidator {
     public void checkNumberDuplicated(List<Integer> numbers) {
@@ -21,5 +22,17 @@ public class NumberValidator {
         if (winningNumbers.size() != LottoConstant.PICK_COUNT) {
             throw new IllegalArgumentException(NUMBER_COUNT_ERROR.getMessage());
         }
+    }
+
+    public void checkNumberRange(List<Integer> winningNumbers) {
+        winningNumbers.forEach(number -> {
+            if (isNotInRange(number)) {
+                throw new IllegalArgumentException(NumberErrorCode.NUMBER_RANGE_ERROR.getMessage());
+            }
+        });
+    }
+
+    private boolean isNotInRange(int number) {
+        return number < LottoConstant.START_INDEX || number > LottoConstant.END_INDEX;
     }
 }
