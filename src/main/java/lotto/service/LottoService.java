@@ -1,20 +1,24 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.LottoWinningTierManager;
 
+import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.NUMBER_COUNT;
+import static lotto.constants.LottoConstants.RATE_COUNT;
+import static lotto.constants.LottoConstants.ZERO;
+
 public class LottoService {
     public List<Lotto> purchaseLotto (int lottoPurchaseCount) {
         List<Lotto> purchaseLottoNumbers = new ArrayList<>();
-        for (int i = 0; i < lottoPurchaseCount; i++) {
+        for (int i = ZERO; i < lottoPurchaseCount; i++) {
             purchaseLottoNumbers.add(
-                    new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+                    new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT)));
         }
         return purchaseLottoNumbers;
     }
@@ -27,7 +31,7 @@ public class LottoService {
         }
     }
     public int checkMatchLottoNumbers(Lotto lotto, LottoWinningNumbers winningNumbers) {
-        int matchCount = 0;
+        int matchCount = ZERO;
         for (int lottoNumber : lotto.getNumbers()) {
             if (winningNumbers.getWinningNumbers().contains(lottoNumber)) {
                 matchCount++;
@@ -40,6 +44,6 @@ public class LottoService {
     }
 
     public double calculateTotalProfitRate (LottoWinningTierManager lottoWinningTierManager, int purchaseAmount) {
-        return ((double) lottoWinningTierManager.calculateTotalPrize() / purchaseAmount) * 100;
+        return ((double) lottoWinningTierManager.calculateTotalPrize() / purchaseAmount) * RATE_COUNT;
     }
 }

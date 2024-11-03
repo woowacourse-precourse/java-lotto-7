@@ -1,18 +1,22 @@
 package lotto.domain;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static lotto.constants.LottoConstants.MATCH_FIVE_COUNT;
+import static lotto.constants.LottoConstants.ZERO;
 
 public class LottoWinningTierManager {
     private final Map<LottoWinningTier, Integer> lottoWinningTiers;
 
     public LottoWinningTierManager() {
         lottoWinningTiers = new LinkedHashMap<>();
-        lottoWinningTiers.put(LottoWinningTier.NONE, 0);
-        lottoWinningTiers.put(LottoWinningTier.MATCH_THREE, 0);
-        lottoWinningTiers.put(LottoWinningTier.MATCH_FOUR, 0);
-        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE, 0);
-        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE_WITH_BONUS, 0);
-        lottoWinningTiers.put(LottoWinningTier.MATCH_SIX, 0);
+        lottoWinningTiers.put(LottoWinningTier.NONE, ZERO);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_THREE, ZERO);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FOUR, ZERO);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE, ZERO);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE_WITH_BONUS, ZERO);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_SIX, ZERO);
     }
 
     public Map<LottoWinningTier, Integer> getLottoWinningTiers() {
@@ -29,7 +33,7 @@ public class LottoWinningTierManager {
     }
 
     public void increaseLottoWinningTier(int matchCount, boolean isBonusNumber) {
-        if (matchCount == 5 && isBonusNumber) {
+        if (matchCount == MATCH_FIVE_COUNT && isBonusNumber) {
             checkLottoWinningTier(matchCount, true);
             return;
         }

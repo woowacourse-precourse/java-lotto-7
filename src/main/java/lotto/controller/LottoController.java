@@ -7,8 +7,9 @@ import lotto.service.LottoService;
 import lotto.service.Validate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
 import java.util.List;
+
+import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_UNIT;
 
 public class LottoController {
     private final OutputView outputView = new OutputView();
@@ -78,6 +79,6 @@ public class LottoController {
     public double checkTotalProfitRate () {
         return lottoService.calculateTotalProfitRate(
                 lottoWinningTierManager,
-                purchaseLottoNumbers.size() * 1000);
+                purchaseLottoNumbers.size() * PURCHASE_AMOUNT_UNIT);
     }
 }

@@ -2,12 +2,14 @@ package lotto.view;
 
 import lotto.domain.LottoWinningTierManager;
 
+import static lotto.constants.LottoConstants.EMPTY;
+
 public class OutputView {
     public void printMessage (String message) {
         System.out.println(message);
     }
     public void printNewLine() {
-        printMessage("");
+        printMessage(EMPTY);
     }
     public void printRequestPurchaseAmount () {
         printMessage(RequestMessage.ENTER_PURCHASE_AMOUNT.getMessage());

@@ -5,6 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.exception.exceptionMessage.LOTTO_NUMBER_NOT_EMPTY;
+import static lotto.exception.exceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.NUMBER_COUNT;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,26 +25,26 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT);
         }
     }
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이어야 합니다.");
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
             }
         }
     }
     private void validateNull(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 비어있을 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_NOT_EMPTY);
         }
     }
     private void validateUnique(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
         }
     }
 

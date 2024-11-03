@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 
+import static lotto.constants.LottoConstants.MATCH_FIVE_COUNT;
+
 public enum LottoWinningTier {
     NONE(0, 0, null),
     MATCH_THREE(3, 5000, "3개 일치 (5,000원) - %d개"),
@@ -20,7 +22,7 @@ public enum LottoWinningTier {
     }
 
     public static LottoWinningTier getMatchCountTier (int matchCount, boolean isBonusNumber) {
-        if (matchCount == 5 && isBonusNumber) {
+        if (matchCount == MATCH_FIVE_COUNT && isBonusNumber) {
             return MATCH_FIVE_WITH_BONUS;
         }
         return Arrays.stream(LottoWinningTier.values())
