@@ -36,7 +36,7 @@ public class WinningDetailsTest {
         MyResults expectedResult2 = new MyResults(1, false);
         MyResults expectedResult3 = new MyResults(2, true);
         AtomicReference<List<Lotto>> myLottos = new AtomicReference<>(new ArrayList<>());
-        Lotto answer = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     myLottos.set(Lotto.sortLottoList(lottoCount));
