@@ -14,8 +14,10 @@ public class LottoService {
     public Lottos makeRandomLotto(Long money) {
         List<Lotto> createdLotto = new ArrayList<>();
         for (int i = 0; i < money / 1000; i++) {
-            List<Integer> numbers = pickRandomUniqueSixNumbers();
-            Collections.sort(numbers);
+            List<Integer> numbers = pickRandomUniqueSixNumbers()
+                    .stream()
+                    .sorted()
+                    .toList();
             createdLotto.add(new Lotto(numbers));
         }
 
