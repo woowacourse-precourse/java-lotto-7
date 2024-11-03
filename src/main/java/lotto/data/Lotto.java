@@ -1,4 +1,4 @@
-package lotto;
+package lotto.data;
 
 import lotto.constants.ErrorCode;
 import lotto.constants.Value;

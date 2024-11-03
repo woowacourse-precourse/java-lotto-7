@@ -1,7 +1,6 @@
 package lotto.service;
 
-import lotto.Lotto;
-import lotto.constants.ErrorCode;
+import lotto.data.Lotto;
 import lotto.constants.Value;
 import lotto.data.Database;
 
