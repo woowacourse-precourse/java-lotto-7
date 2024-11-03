@@ -6,9 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -18,8 +15,7 @@ class BonusValidatorTest {
 
     @BeforeEach
     void setup() {
-        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
-        bonusValidator = new BonusValidator(list);
+        bonusValidator = new BonusValidator();
     }
 
     @DisplayName("빈 칸이 입력되면 예외가 발생한다.")
