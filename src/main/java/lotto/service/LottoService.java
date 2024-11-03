@@ -22,4 +22,8 @@ public class LottoService {
         return lottoResults.calculateTotalEarnings();
     }
 
+    private double calculateProfitRate(int ticketCount, long totalEarnings) {
+        return (totalEarnings - (ticketCount * 1000)) / (double)(ticketCount * 1000) * 100;
+    }
+
 }
