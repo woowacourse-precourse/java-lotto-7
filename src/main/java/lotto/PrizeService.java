@@ -32,7 +32,7 @@ public class PrizeService {
                 .mapToDouble(entry -> entry.getKey().getPrize()*entry.getValue())
                 .sum();
 
-        return (returnValue / lottoMoney) * 100;
+        return (returnValue / lottoMoney) * 100 ;
     }
 
 
