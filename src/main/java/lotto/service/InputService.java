@@ -35,7 +35,7 @@ public class InputService {
     }
 
     public static int getLottoPurchaseAmount(User user) {
-        return user.getMoney() / 1000;
+        return user.getNumOfLottos();
     }
 
     public void setLottoPurchaseAmount(int purchaseAmount, User user) {

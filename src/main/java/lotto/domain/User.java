@@ -30,6 +30,6 @@ public class User {
     }
 
     public int getNumOfLottos() {
-        return numOfLottos;
+        return getMoney() / 1000;
     }
 }
