@@ -7,18 +7,18 @@ import java.util.Map;
 
 public enum LottoPrize {
 
-    FIRST_PRIZE(6, false, 2_000_000_000),
-    SECOND_PRIZE(5, true, 30_000_000),
-    THIRD_PRIZE(5, false, 1_500_000),
-    FOURTH_PRIZE(4, false, 50_000),
-    FIFTH_PRIZE(3, false, 5_000),
-    NO_PRIZE(0, false, 0);
+    FIRST_PRIZE(6, false, 2_000_000_000L),
+    SECOND_PRIZE(5, true, 30_000_000L),
+    THIRD_PRIZE(5, false, 1_500_000L),
+    FOURTH_PRIZE(4, false, 50_000L),
+    FIFTH_PRIZE(3, false, 5_000L),
+    NO_PRIZE(0, false, 0L);
 
     private final int winningCount;
     private final boolean bonusExists;
-    private final int prize;
+    private final Long prize;
 
-    LottoPrize(int winningCount, boolean bonusExists, int prize) {
+    LottoPrize(int winningCount, boolean bonusExists, Long prize) {
         this.winningCount = winningCount;
         this.bonusExists = bonusExists;
         this.prize = prize;
@@ -55,7 +55,7 @@ public enum LottoPrize {
         return bonusExists;
     }
 
-    public int getPrize() {
+    public Long getPrize() {
         return prize;
     }
 }
