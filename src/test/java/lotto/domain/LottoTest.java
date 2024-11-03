@@ -64,4 +64,13 @@ class LottoTest {
 
         assertThat(testLotto1.countDuplication(testLotto2)).isEqualTo(4);
     }
+
+    @DisplayName("로또가 범위 외의 숫자를 가지고 있는지 확인합니다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46, -1, 100, -100})
+    void 범위_외_로또_숫자_확인(int target) {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, target)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
 }
