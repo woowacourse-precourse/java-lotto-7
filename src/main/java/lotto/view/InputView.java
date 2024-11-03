@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class InputView {
 
@@ -36,8 +37,14 @@ public class InputView {
         return money % 1000 == 0;
     }
 
+    public static Lotto inputWinningLotto(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return new Lotto(validateWinningLottoInput(input));
+    }
 
-    public static void validateWinningLottoInput(String input){
+
+    public static List<Integer> validateWinningLottoInput(String input){
         if (isEmptyString(input)){
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력해 주세요.");
         }
@@ -52,6 +59,7 @@ public class InputView {
         for (int number : numbers){
             validateNumberRange(number);
         }
+        return numbers;
     }
 
     public static boolean isEmptyString(String input){
