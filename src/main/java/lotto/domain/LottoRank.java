@@ -26,4 +26,8 @@ public enum LottoRank {
         }
         return MISS;
     }
+
+    public int getPrize() {
+        return prize;
+    }
 }
