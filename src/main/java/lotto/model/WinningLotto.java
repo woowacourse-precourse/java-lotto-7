@@ -23,6 +23,7 @@ public class WinningLotto {
 	private Winning getWinningResult(Lotto lotto) {
 		List<LottoNumber> lottoNumbers = lotto.getNumbers();
 		long winningCount = getWinningCount(lottoNumbers);
+		boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
 	}
 
 	private long getWinningCount(List<LottoNumber> lottoNumbers) {
