@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import lotto.domain.core.PurchaseTotalPrice;
 import lotto.dto.result.TicketCount;
-import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -63,7 +62,7 @@ public class TicketCountCalculatorTest {
             int count = ticketCountDto.count();
 
             if (count != 1) {
-                throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);
+                throw new IllegalArgumentException(INVALID_TICKET_COUNT.getMessage());
             }
         }
 
@@ -76,7 +75,7 @@ public class TicketCountCalculatorTest {
             int count = ticketCountDto.count();
 
             if (count != 4) {
-                throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);
+                throw new IllegalArgumentException(INVALID_TICKET_COUNT.getMessage());
             }
         }
     }

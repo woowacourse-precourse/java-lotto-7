@@ -4,7 +4,6 @@ import static lotto.exception.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.result.WinningNumbers;
-import lotto.exception.CustomIllegalArgumentException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,14 +34,14 @@ public class WinningNumbersGenerator {
     private void validateNoDuplicates(List<Integer> numbersPool) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbersPool);
         if (uniqueNumbers.size() != numbersPool.size()) {
-            throw CustomIllegalArgumentException.from(DUPLICATE_NUMBER_IN_POOL);
+            throw new IllegalStateException(DUPLICATE_NUMBER_IN_POOL.getMessage());
         }
     }
 
     private void validateWithinRange(List<Integer> numbersPool) {
         for (int number : numbersPool) {
             if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER) {
-                throw CustomIllegalArgumentException.from(NUMBER_OUT_OF_RANGE);
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
     }

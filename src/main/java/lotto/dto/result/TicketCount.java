@@ -2,8 +2,6 @@ package lotto.dto.result;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 public record TicketCount(int count) {
 
     public TicketCount {
@@ -12,7 +10,7 @@ public record TicketCount(int count) {
 
     private void validateTicketCount(int count) {
         if (count <= 0) {
-            throw CustomIllegalArgumentException.from(NEGATIVE_OR_ZERO_TICKET_COUNT);
+            throw new IllegalArgumentException(NEGATIVE_OR_ZERO_TICKET_COUNT.getMessage());
         }
     }
 }

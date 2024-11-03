@@ -1,7 +1,5 @@
 package lotto.dto.input;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 import static lotto.exception.ErrorMessage.*;
 
 public record PurchaseTotalPriceInput(String input) {
@@ -17,13 +15,13 @@ public record PurchaseTotalPriceInput(String input) {
 
     private void validateTotalPriceNotNull(String input) {
         if (input == null) {
-            throw CustomIllegalArgumentException.from(NULL_INPUT);
+            throw new NullPointerException(NULL_INPUT.getMessage());
         }
     }
 
     private void validateTotalPriceNotEmpty(String input) {
         if (input.isEmpty()) {
-            throw CustomIllegalArgumentException.from(EMPTY_INPUT);
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 }

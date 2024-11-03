@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import lotto.exception.CustomIllegalArgumentException;
 
 import static lotto.exception.ErrorMessage.NOT_INTEGER;
 import static org.assertj.core.api.Assertions.*;
@@ -49,9 +48,9 @@ public class PurchaseTotalPriceParserTest {
         @ValueSource(strings = {"abc", "", "@#$%", "12.34"})
         @DisplayName("정수가 아닌 문자열이나 특수문자가 주어질 경우 예외를 발생시킨다.")
         public void 숫자가_아닌_입력(String input) {
-            assertThatExceptionOfType(CustomIllegalArgumentException.class)
+            assertThatExceptionOfType(NumberFormatException.class)
                     .isThrownBy(() -> PurchaseTotalPriceParser.parse(input))
-                    .withMessage(NOT_INTEGER.getMessage());
+                    .withMessageContaining(NOT_INTEGER.getMessage());
         }
     }
 }

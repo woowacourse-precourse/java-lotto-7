@@ -2,8 +2,6 @@ package lotto.domain.core;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 public class Bonus {
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
@@ -18,13 +16,13 @@ public class Bonus {
 
     private void validateRange(int number) {
         if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-            throw CustomIllegalArgumentException.from(INVALID_NUMBER_RANGE);
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateNotDuplicate(int number, Lotto lotto) {
         if (lotto.getNumbers().contains(number)) {
-            throw CustomIllegalArgumentException.from(DUPLICATE_NUMBER);
+            throw new IllegalStateException(DUPLICATE_NUMBER.getMessage());
         }
     }
 

@@ -4,7 +4,6 @@ import static lotto.exception.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,7 @@ class WinningNumbersTest {
             List<Integer> lottoNumbers = null;
 
             assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(NullPointerException.class)
                     .hasMessage(NULL_LOTTO_NUMBERS.getMessage());
         }
 
@@ -48,7 +47,7 @@ class WinningNumbersTest {
             List<Integer> lottoNumbers = List.of();
 
             assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(EMPTY_LOTTO_NUMBERS.getMessage());
         }
 
@@ -58,7 +57,7 @@ class WinningNumbersTest {
             List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 7, 7);
 
             assertThatThrownBy(() -> new WinningNumbers(lottoNumbers))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(DUPLICATE_NUMBER_IN_WINNING_NUMBERS.getMessage());
         }
     }

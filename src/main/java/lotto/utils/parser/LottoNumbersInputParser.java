@@ -2,8 +2,6 @@ package lotto.utils.parser;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,19 +26,19 @@ public class LottoNumbersInputParser {
 
     private static void checkNotNull(String input) {
         if (input == null) {
-            throw CustomIllegalArgumentException.from(NULL_INPUT);
+            throw new NullPointerException(NULL_INPUT.getMessage());
         }
     }
 
     private static void checkNotEmpty(String input) {
         if (input.isEmpty()) {
-            throw CustomIllegalArgumentException.from(EMPTY_INPUT);
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 
     private static void checkCommaPosition(String input) {
         if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
-            throw CustomIllegalArgumentException.from(INVALID_COMMA_POSITION);
+            throw new IllegalArgumentException(INVALID_COMMA_POSITION.getMessage());
         }
     }
 
@@ -55,7 +53,7 @@ public class LottoNumbersInputParser {
     private static void validateParts(List<String> parts) {
         for (String part : parts) {
             if (part.isEmpty()) {
-                throw CustomIllegalArgumentException.from(EMPTY_PART_INPUT);
+                throw new IllegalArgumentException(EMPTY_PART_INPUT.getMessage());
             }
             validateNumberFormat(part);
         }
@@ -65,7 +63,7 @@ public class LottoNumbersInputParser {
         try {
             Integer.parseInt(part);
         } catch (NumberFormatException e) {
-            throw CustomIllegalArgumentException.from(INVALID_VALUE_INPUT);
+            throw new NumberFormatException(INVALID_VALUE_INPUT.getMessage());
         }
     }
 

@@ -4,7 +4,6 @@ import static lotto.exception.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,7 @@ class LottoTest {
         @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
         void 로또_번호의_개수가_6개가_아니면_예외가_발생한다() {
             assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_SIZE.getMessage());
         }
 
@@ -44,7 +43,7 @@ class LottoTest {
         @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
         void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
             assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalStateException.class)
                     .hasMessage(DUPLICATE_NUMBER.getMessage());
         }
 
@@ -54,7 +53,7 @@ class LottoTest {
         public void 번호_범위_예외(int invalidNumber) {
             List<Integer> outOfRangeNumbers = List.of(1, 2, 3, 4, 5, invalidNumber);
             assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_NUMBER_RANGE.getMessage());
         }
     }

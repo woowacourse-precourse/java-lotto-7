@@ -2,8 +2,6 @@ package lotto.dto.input;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 public record BonusNumberInput(String input) {
 
     public BonusNumberInput {
@@ -17,13 +15,13 @@ public record BonusNumberInput(String input) {
 
     private void validateLottoNumbersNotNull(String input) {
         if (input == null) {
-            throw CustomIllegalArgumentException.from(NULL_INPUT);
+            throw new NullPointerException(NULL_INPUT.getMessage());
         }
     }
 
     private void validateLottoNumbersNotEmpty(String input) {
         if (input.isEmpty()) {
-            throw CustomIllegalArgumentException.from(EMPTY_INPUT);
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 }

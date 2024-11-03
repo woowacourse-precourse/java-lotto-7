@@ -2,8 +2,6 @@ package lotto.utils.parser;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 public class PurchaseTotalPriceParser {
 
     public static int parse(String input) {
@@ -14,7 +12,7 @@ public class PurchaseTotalPriceParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw CustomIllegalArgumentException.from(NOT_INTEGER);
+            throw new NumberFormatException(NOT_INTEGER.getMessage());
         }
     }
 }

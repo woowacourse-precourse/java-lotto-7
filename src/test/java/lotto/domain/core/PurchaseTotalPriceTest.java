@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import lotto.exception.CustomIllegalArgumentException;
 
 import static lotto.exception.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -34,7 +33,7 @@ public class PurchaseTotalPriceTest {
         @DisplayName("한도를 초과하는 금액이 주어질 경우 예외를 발생시킨다.")
         public void 한도초과입력() {
             String input = "100000001";
-            assertThatExceptionOfType(CustomIllegalArgumentException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> PurchaseTotalPrice.from(input))
                     .withMessage(EXCEEDS_LIMIT.getMessage());
         }
@@ -43,7 +42,7 @@ public class PurchaseTotalPriceTest {
         @ValueSource(strings = {"-1000"})
         @DisplayName("음수가 주어질 경우 예외를 발생시킨다.")
         public void 음수입력(String input) {
-            assertThatExceptionOfType(CustomIllegalArgumentException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> PurchaseTotalPrice.from(input))
                     .withMessage(NOT_NEGATIVE.getMessage());
         }
@@ -52,7 +51,7 @@ public class PurchaseTotalPriceTest {
         @ValueSource(strings = {"0"})
         @DisplayName("0이 주어질 경우 예외를 발생시킨다.")
         public void 제로입력(String input) {
-            assertThatExceptionOfType(CustomIllegalArgumentException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> PurchaseTotalPrice.from(input))
                     .withMessage(NOT_ZERO.getMessage());
         }
@@ -61,7 +60,7 @@ public class PurchaseTotalPriceTest {
         @ValueSource(strings = {"1500", "2500", "3500", "4500"})
         @DisplayName("단위의 배수가 아닌 금액이 주어질 경우 예외를 발생시킨다.")
         public void 단위배수가_아닌_입력(String input) {
-            assertThatExceptionOfType(CustomIllegalArgumentException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> PurchaseTotalPrice.from(input))
                     .withMessage(NOT_MULTIPLE_OF_UNIT.getMessage());
         }

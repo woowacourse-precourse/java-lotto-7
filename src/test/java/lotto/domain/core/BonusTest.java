@@ -4,7 +4,6 @@ import static lotto.exception.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,7 @@ class BonusTest {
         public void 보너스_번호_범위_예외(int invalidNumber) {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new Bonus(invalidNumber, lotto))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(INVALID_NUMBER_RANGE.getMessage());
         }
 
@@ -47,7 +46,7 @@ class BonusTest {
         public void 보너스_번호_중복_예외() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new Bonus(1, lotto))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalStateException.class)
                     .hasMessage(DUPLICATE_NUMBER.getMessage());
         }
     }

@@ -4,7 +4,6 @@ import static lotto.exception.ErrorMessage.NEGATIVE_OR_ZERO_TICKET_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class TicketCountTest {
         @DisplayName("티켓 수가 0일 경우 예외를 발생시킨다.")
         void 티켓_수가_0일_경우_예외를_발생시킨다() {
             assertThatThrownBy(() -> new TicketCount(0))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NEGATIVE_OR_ZERO_TICKET_COUNT.getMessage());
         }
 
@@ -40,7 +39,7 @@ class TicketCountTest {
         @DisplayName("티켓 수가 음수일 경우 예외를 발생시킨다.")
         void 티켓_수가_음수일_경우_예외를_발생시킨다() {
             assertThatThrownBy(() -> new TicketCount(-3))
-                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NEGATIVE_OR_ZERO_TICKET_COUNT.getMessage());
         }
     }

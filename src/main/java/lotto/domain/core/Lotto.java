@@ -2,8 +2,6 @@ package lotto.domain.core;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,21 +26,21 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != REQUIRED_NUMBERS_COUNT) {
-            throw CustomIllegalArgumentException.from(INVALID_SIZE);
+            throw new IllegalArgumentException(INVALID_SIZE.getMessage());
         }
     }
 
     private void validateNoDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw CustomIllegalArgumentException.from(DUPLICATE_NUMBER);
+            throw new IllegalStateException(DUPLICATE_NUMBER.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-                throw CustomIllegalArgumentException.from(INVALID_NUMBER_RANGE);
+                throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
             }
         }
     }

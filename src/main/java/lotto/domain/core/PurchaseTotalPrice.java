@@ -2,7 +2,6 @@ package lotto.domain.core;
 
 import static lotto.exception.ErrorMessage.*;
 
-import lotto.exception.CustomIllegalArgumentException;
 import lotto.utils.parser.PurchaseTotalPriceParser;
 
 public record PurchaseTotalPrice(int totalPrice) {
@@ -24,25 +23,25 @@ public record PurchaseTotalPrice(int totalPrice) {
 
     private static void validateNegativeTotalPrice(int totalPrice) {
         if (totalPrice < 0) {
-            throw CustomIllegalArgumentException.from(NOT_NEGATIVE);
+            throw new IllegalArgumentException(NOT_NEGATIVE.getMessage());
         }
     }
 
     private static void validateZeroTotalPrice(int totalPrice) {
         if (totalPrice == 0) {
-            throw CustomIllegalArgumentException.from(NOT_ZERO);
+            throw new IllegalArgumentException(NOT_ZERO.getMessage());
         }
     }
 
     private static void validateTotalPriceWithinLimit(int totalPrice) {
         if (totalPrice > MAX_LIMIT) {
-            throw CustomIllegalArgumentException.from(EXCEEDS_LIMIT);
+            throw new IllegalArgumentException(EXCEEDS_LIMIT.getMessage());
         }
     }
 
     private static void validateTotalPriceMultipleOfUnit(int totalPrice) {
         if (totalPrice % UNIT_PRICE != 0) {
-            throw CustomIllegalArgumentException.from(NOT_MULTIPLE_OF_UNIT);
+            throw new IllegalArgumentException(NOT_MULTIPLE_OF_UNIT.getMessage());
         }
     }
 }
