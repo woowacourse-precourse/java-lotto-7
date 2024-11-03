@@ -13,7 +13,8 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getValidatedPurchaseAmount();
-
+        lottoService.purchaseLottos(purchaseAmount);
+        lottoService.printLottos();
     }
     private int getValidatedPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
