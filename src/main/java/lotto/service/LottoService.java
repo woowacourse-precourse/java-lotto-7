@@ -21,9 +21,11 @@ public class LottoService implements LottosServiceInterface {
 
 
   @Override
-  public List<Integer> checkWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+  public List<Integer> checkWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers,
+      int bonusNumber) {
     // 결과 리스트 초기화
-    List<Integer> winningCounts = Arrays.asList(0, 0, 0, 0, 0); // [3개 일치, 4개 일치, 5개 일치, 5개 + 보너스 일치, 6개 일치]
+    List<Integer> winningCounts = Arrays.asList(0, 0, 0, 0,
+        0); // [3개 일치, 4개 일치, 5개 일치, 5개 + 보너스 일치, 6개 일치]
 
     for (Lotto lotto : lottos) {
       long matchCount = lotto.getNumbers().stream()
@@ -50,6 +52,15 @@ public class LottoService implements LottosServiceInterface {
 
   @Override
   public float calculateYield(List<Integer> winningCounts, int purchaseAmount) {
-    return 1;
+
+    int totalPrize = (winningCounts.get(0) * Prize.FIFTH.getAmount()) +
+        (winningCounts.get(1) * Prize.FOURTH.getAmount()) +
+        (winningCounts.get(2) * Prize.THIRD.getAmount()) +
+        (winningCounts.get(3) * Prize.SECOND.getAmount()) +
+        (winningCounts.get(4) * Prize.FIRST.getAmount());
+
+    float yield = (float) totalPrize / purchaseAmount * 100;
+
+    return Math.round(yield * 10) / 10.0f; // 소수점 둘째 자리에서 반올림
   }
 }
