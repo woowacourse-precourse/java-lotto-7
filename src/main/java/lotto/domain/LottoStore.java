@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.DefaultPrompt.ENTER_BONUS_NUMBER_TEXT;
 import static lotto.constant.DefaultPrompt.ENTER_PURCHASE_AMOUNT_TEXT;
@@ -12,10 +12,10 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.manager.AutomaticLottoMachine;
-import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoNumber;
 import lotto.domain.manager.LottoStatistics;
 import lotto.domain.manager.WinningLottos;
+import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoNumber;
 
 public class LottoStore {
     public static final String ERROR_ONLY_NUMBERS_FOR_THE_PURCHASE_AMOUNT = "[ERROR] 구입금액에는 숫자만을 입력해야 합니다.";
@@ -27,8 +27,7 @@ public class LottoStore {
                 automaticLottoMachine);
 
         Lotto winingLotto = enterWinningNumber();
-        LottoNumber bonus = enterBonusNumber();
-        WinningLottos winningLottos = new WinningLottos(winingLotto, bonus);
+        WinningLottos winningLottos = enterBonusNumber(winingLotto);
         LottoStatistics lottoStatistics = new LottoStatistics(automaticLottoMachine, winningLottos);
         RESULT_WINNING_STATISTICS_LOTTO_TEMPLATE.display(lottoStatistics);
     }
@@ -50,16 +49,17 @@ public class LottoStore {
         }
     }
 
-    private LottoNumber enterBonusNumber() {
+    private WinningLottos enterBonusNumber(Lotto winingLotto) {
         while (true) {
             try {
                 ENTER_BONUS_NUMBER_TEXT.display();
                 String rawBonusNumber = Console.readLine();
                 int bonusNumber = parse(rawBonusNumber);
                 LottoNumber bonus = new LottoNumber(bonusNumber);
-                displayEmptyLine();
+                WinningLottos winningLottos = new WinningLottos(winingLotto, bonus);
 
-                return bonus;
+                displayEmptyLine();
+                return winningLottos;
             } catch (IllegalArgumentException e) {
                 display(e.getMessage());
             }
