@@ -1,5 +1,7 @@
 package lotto.errors;
 
+import lotto.model.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +20,11 @@ public class WinningNumbersErrors {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    // 번호를 6개 입력하지 않았을 때
+    public void validateWinningNumberSize(List<Integer> winningNumbers) {
+        Lotto lotto = new Lotto(winningNumbers);
     }
 
     // 중복된 번호를 입력했을 경우

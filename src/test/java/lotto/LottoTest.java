@@ -64,6 +64,14 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또번호가 6개가 아닐 경우 예외가 발생한다.")
+    void 로또번호가_6개가_아닐_경우_에러() {
+        assertThatThrownBy(() -> errorHandler2.validateWinningNumberSize(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
     @DisplayName("로또 번호가 모든 조건을 만족할 경우 예외가 발생하지 않는다.")
     void 로또번호가_모든_조건을_만족할_경우_정상처리() {
         assertThatNoException().isThrownBy(() -> errorHandler2.errorCheck(List.of(1, 2, 3, 4, 5, 6)));
