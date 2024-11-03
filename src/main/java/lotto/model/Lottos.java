@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 
+import lotto.Lotto;
+
 public class Lottos {
     private final List<Lotto> lottos;
 

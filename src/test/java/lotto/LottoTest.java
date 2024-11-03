@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.enums.ErrorMessage;
-import lotto.model.Lotto;
 
 
 class LottoTest {

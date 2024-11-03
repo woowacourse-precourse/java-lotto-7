@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import lotto.Lotto;
 import lotto.utilities.Random;
 
 public class LottoFactory {
