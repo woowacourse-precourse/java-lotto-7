@@ -7,6 +7,9 @@ import lotto.Model.Lotto;
 import lotto.View.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -76,6 +79,22 @@ public class InputViewTest extends NsTest {
     void checkRangeListTest2(){
         boolean isInRange = true;
         assertThat(!isInRange).isEqualTo(InputView.checkRangeList(List.of(1,2,3,4,5,66)));
+    }
+
+    @Test
+    @DisplayName("checkPurchaseRangeTest 정상 작동 테스트")
+    void checkPurchaseRangeTest(){
+        int purchaseAmount = 1000;
+        assertThatNoException().isThrownBy(()-> inputView.checkPurchaseRange(purchaseAmount));
+    }
+
+    @ParameterizedTest
+    @DisplayName("checkPurchaseRangeTest 범위 벗어난 테스트")
+    @ValueSource(ints = {999, 2000000010})
+    void checkPurchaseRangeErrorTest(int purchaseAmount){
+        assertThatThrownBy(() -> inputView.checkPurchaseRange(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.AMOUNT_RANGE.getError());
     }
 
     @Override
