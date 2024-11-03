@@ -73,4 +73,18 @@ public class LottoResultTest {
 
         assertThat(lottoResult.getCountByRank(Rank.FIFTH)).isEqualTo(1);
     }
+
+    @DisplayName("당첨되지 않는다.")
+    @Test
+    void 당첨되지_않는다() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
+
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 11, 10, 9, 8));
+
+        LottoResult lottoResult = new LottoResult(List.of(lotto), winningLotto);
+
+        assertThat(lottoResult.getCountByRank(Rank.NONE)).isEqualTo(1);
+    }
 }
+
