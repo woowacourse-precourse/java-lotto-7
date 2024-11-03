@@ -1,0 +1,21 @@
+package lotto;
+
+import lotto.money.Money;
+import lotto.store.Lotto;
+import lotto.store.LottoStore;
+
+import java.util.List;
+
+public class LottoBuyer {
+    private final Money seedMoney;
+    private final List<Lotto> myLotto;
+
+    public LottoBuyer(LottoStore store, Money seedMoney) {
+        myLotto = store.sale(seedMoney);
+        if(myLotto.isEmpty())
+            throw new IllegalArgumentException("로또를 구매할 돈이 부족합니다.");
+
+        this.seedMoney = seedMoney;
+    }
+
+}
