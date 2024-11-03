@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.NumbersGenerator;
 import lotto.domain.Budget;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,10 +33,15 @@ public class GameController {
         BigInteger numberOfLotto = budget.numberOfLotto();
         outputView.printNumberOfLotto(numberOfLotto);
         List<List<Integer>> lottoNumbers = new ArrayList<>();
-        while (numberOfLotto.compareTo(BigInteger.ZERO) >= 0) {
+        for (BigInteger idx = BigInteger.ZERO; idx.compareTo(numberOfLotto) < 0; idx = idx.add(BigInteger.ONE)) {
             lottoNumbers.add(numbersGenerator.generate(NUMBER_COUNT));
         }
+        outputView.printNumbersCollections(lottoNumbers);
         List<Integer> winningNumbers = getWinningNumbers();
+        for (List<Integer> numbers : lottoNumbers) {
+            Lotto lotto = new Lotto(numbers);
+            Rank rank = lotto.countRank(winningNumbers);
+        }
     }
 
     private BigInteger readValidBudget() {
@@ -58,4 +65,5 @@ public class GameController {
         }
         return Arrays.stream(numbersInput.split(SPLITTER)).map(Integer::parseInt).toList();
     }
+
 }

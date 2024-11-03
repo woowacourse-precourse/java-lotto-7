@@ -23,10 +23,23 @@ public class Lotto {
         }
     }
 
-    public Long countMatches(List<Integer> numbers) {
+    public Rank countRank(List<Integer> numbers, Integer bonus) {
         if (this.numbers.size() != numbers.size()) {
             throw new IllegalArgumentException(NUMBER_SIZE_NOT_MATCHED.message());
         }
-        return this.numbers.stream().filter(numbers::contains).count();
+        long count = this.numbers.stream().filter(numbers::contains).count();
+        if (count == 6) {
+            return Rank.FIRST;
+        } else if (count == 5) {
+            if (this.numbers.contains(bonus)) {
+                return Rank.SECOND;
+            }
+            return Rank.THIRD;
+        } else if (count == 4) {
+            return Rank.FOURTH;
+        } else if (count == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.BLANK;
     }
 }
