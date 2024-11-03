@@ -82,7 +82,7 @@ public class GameController {
     private Integer readValidBonusNumber(List<Integer> winningNumbers) {
         String bonusInput = inputView.readBonusNumber();
         try {
-            InputValidator.validateNumberInput(bonusInput, winningNumbers);
+            InputValidator.validateBonusNumber(bonusInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return readValidBonusNumber(winningNumbers);

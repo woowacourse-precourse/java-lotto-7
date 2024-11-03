@@ -52,7 +52,7 @@ public class InputValidator {
         });
     }
 
-    public static void validateNumberInput(String numberInput, List<Integer> numbers) {
+    public static void validateBonusNumber(String numberInput, List<Integer> numbers) {
         try {
             int bonusNumber = Integer.parseInt(numberInput);
             if (numbers.contains(bonusNumber)) {
