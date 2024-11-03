@@ -1,4 +1,4 @@
-package lotto.model.calculator;
+package lotto.service;
 
 import java.util.Map;
 import lotto.model.rank.Rank;

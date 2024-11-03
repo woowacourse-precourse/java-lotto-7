@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import static lotto.validator.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.constants.ErrorMessage.NUMBER_FORMAT_ERROR;
 
 import java.util.List;
 

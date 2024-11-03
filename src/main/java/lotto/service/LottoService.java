@@ -1,15 +1,11 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.model.calculator.PrizeCalculator;
-import lotto.model.calculator.RateOfReturnCalculator;
 import lotto.model.handler.PurchaseRequestHandler;
 import lotto.model.handler.WinningLottoRequestHandler;
 import lotto.model.lotto.LottoResult;
-import lotto.model.lotto.LottoResultChecker;
 import lotto.model.lotto.Lottos;
 import lotto.model.winning.WinningNumbersAndBonusNumber;
-import lotto.model.rank.RankChecker;
 import lotto.model.rank.RankResult;
 
 public class LottoService {

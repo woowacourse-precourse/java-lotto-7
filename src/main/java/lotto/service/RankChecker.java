@@ -1,7 +1,9 @@
-package lotto.model.rank;
+package lotto.service;
 
 import java.util.List;
 import lotto.model.lotto.LottoResult;
+import lotto.model.rank.Rank;
+import lotto.model.rank.RankResult;
 
 public class RankChecker {
 

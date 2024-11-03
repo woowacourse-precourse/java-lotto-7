@@ -1,7 +1,10 @@
-package lotto.model.lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoResult;
+import lotto.model.lotto.Lottos;
 import lotto.model.winning.WinningNumbersAndBonusNumber;
 
 public class LottoResultChecker {

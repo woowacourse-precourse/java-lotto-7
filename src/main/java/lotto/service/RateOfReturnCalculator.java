@@ -1,4 +1,4 @@
-package lotto.model.calculator;
+package lotto.service;
 
 public class RateOfReturnCalculator {
 

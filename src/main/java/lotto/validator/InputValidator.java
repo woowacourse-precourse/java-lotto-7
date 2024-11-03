@@ -1,11 +1,11 @@
 package lotto.validator;
 
-import static lotto.validator.ErrorMessage.DUPLICATE_NUMBER_ERROR;
-import static lotto.validator.ErrorMessage.EMPTY_INPUT_ERROR;
-import static lotto.validator.ErrorMessage.INVALID_UNIT_ERROR;
-import static lotto.validator.ErrorMessage.NUMBER_FORMAT_ERROR;
-import static lotto.validator.ErrorMessage.NUMBER_SIZE_ERROR;
-import static lotto.validator.ErrorMessage.OUT_OF_RANGE_ERROR;
+import static lotto.constants.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.constants.ErrorMessage.EMPTY_INPUT_ERROR;
+import static lotto.constants.ErrorMessage.INVALID_UNIT_ERROR;
+import static lotto.constants.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.constants.ErrorMessage.NUMBER_SIZE_ERROR;
+import static lotto.constants.ErrorMessage.OUT_OF_RANGE_ERROR;
 
 import java.util.HashSet;
 import java.util.List;

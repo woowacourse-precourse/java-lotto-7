@@ -1,10 +1,12 @@
-package lotto.model.rank;
+package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.lotto.LottoResult;
+import lotto.model.rank.Rank;
+import lotto.model.rank.RankResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

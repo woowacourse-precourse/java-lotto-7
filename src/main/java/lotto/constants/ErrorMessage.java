@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.constants;
 
 public enum ErrorMessage {
 

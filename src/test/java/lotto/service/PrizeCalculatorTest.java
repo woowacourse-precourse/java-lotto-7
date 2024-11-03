@@ -1,4 +1,4 @@
-package lotto.model.calculator;
+package lotto.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
