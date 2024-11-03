@@ -1,2 +1,4 @@
-package lotto.service;public class CalculateRateManager {
+package lotto.service;
+
+public class CalculateRateManager {
 }
