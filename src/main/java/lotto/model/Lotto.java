@@ -70,7 +70,7 @@ public class Lotto {
         boolean hasOverMaxNumber = numbers.stream()
                 .anyMatch(number -> (number > MAXIMUM_LOTTO_NUMBER.getValue()));
 
-        if (hasOverMaxNumber) {
+        if (!hasOverMaxNumber) {
             throw new LottoNumberOutOfRangeException();
         }
     }
@@ -79,7 +79,7 @@ public class Lotto {
         boolean hasLessMinNumber = numbers.stream()
                 .anyMatch(number -> (number < MINIMUM_LOTTO_NUMBER.getValue()));
 
-        if (hasLessMinNumber) {
+        if (!hasLessMinNumber) {
             throw new LottoNumberOutOfRangeException();
         }
     }
