@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.model.Lotto;
+
 public class OutputView {
 
     public void printPriceInputPrompt() {
@@ -12,5 +15,13 @@ public class OutputView {
 
     public void printPurchasePrompt(int number) {
         System.out.println(number + "개를 구입했습니다.");
+    }
+
+    public void printLottoes(List<Lotto> lottoes) {
+        for (Lotto lotto : lottoes) {
+            List<Integer> numbers = lotto.getNumbers();
+            numbers.sort(Integer::compareTo); // 오름차순 정렬
+            System.out.println(numbers); // [ ] 안에 출력되도록 toString 형태로 출력
+        }
     }
 }

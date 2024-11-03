@@ -16,4 +16,8 @@ public class Lotto {
             throw new IllegalArgumentException( "[ERROR] " + ErrorCode.INVALID_LOTTO_NUMBERS_COUNT.getMessage());
         }
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

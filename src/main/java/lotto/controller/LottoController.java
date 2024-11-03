@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.view.OutputView;
 
@@ -14,7 +16,8 @@ public class LottoController {
 
     public void LottoGameStart() {
         outputView.printPriceInputPrompt();
-        lottoGame.start();
+        List<Lotto> lottoes = lottoGame.purchase();
+        outputView.printLottoes(lottoes);
 
     }
 }

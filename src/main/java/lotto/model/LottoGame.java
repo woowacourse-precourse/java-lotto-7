@@ -17,12 +17,11 @@ public class LottoGame {
         this.inputView = inputView;
     }
 
-    public void start() {
+    public List<Lotto> purchase() {
         int price = getValidatedPrice();
         int lottoCount = countLottoes(price);
         outputView.printPurchasePrompt(lottoCount);
-        List<Lotto> lottoes = generateLottoes(lottoCount);
-
+        return generateLottoes(lottoCount);
     }
 
     public int getValidatedPrice() {
