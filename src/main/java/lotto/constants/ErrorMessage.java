@@ -13,4 +13,5 @@ public class ErrorMessage {
     public static final String NOT_ALLOWED_STARTING_WITH_COMMA = PREFIX + "입력은 쉼표(,)로 시작 되지 않아야 합니다.";
     public static final String INVALID_NUMBER_RANGE = PREFIX + "번호는 1 이상, 45 이하여야 합니다.";
     public static final String NOT_ALLOWED_MINUS = PREFIX + "음수가 입력 되지 않아야 합니다.";
+    public static final String BONUS_NUMBER_CANNOT_DUPLICATED_WITH_WINNING_NUMBER = PREFIX + "보너스 번호는 당첨 번호와 중복 되지 않아야 합니다.";
 }

@@ -26,7 +26,7 @@ public class LottoController {
         Lottos lottos = drawLottoNumbers(purchaseAmount.calculateLottoCount());
         printLottoInformation(lottos.size(), lottos.information());
         WinningNumbers winningNumbers = receiveWinningNumbers();
-        BonusNumber bonusNumber = receiveBonusNumber();
+        BonusNumber bonusNumber = receiveBonusNumber(winningNumbers);
         displayWinningStatistic(lottos, winningNumbers, bonusNumber);
         displayRateOfReturn(purchaseAmount);
     }
@@ -56,9 +56,9 @@ public class LottoController {
         return getValidInput(WinningNumbers::new);
     }
 
-    private BonusNumber receiveBonusNumber() {
+    private BonusNumber receiveBonusNumber(WinningNumbers winningNumbers) {
         outputView.requestBonusNumber();
-        return getValidInput(BonusNumber::new);
+        return getValidInput(input -> new BonusNumber(input, winningNumbers));
     }
 
     private void displayWinningStatistic(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {

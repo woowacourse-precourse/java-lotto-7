@@ -56,8 +56,7 @@ public class Lotto {
 
     public void calculateMatchingNumberCount(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         int count = 0;
-        int bonus = Integer.parseInt(bonusNumber.display());
-        boolean hasBonus = numbers.contains(bonus);
+        boolean hasBonus = numbers.contains(bonusNumber.getBonusNumber());
 
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
@@ -69,23 +68,23 @@ public class Lotto {
     }
 
     private void updateCountStatus(int count, boolean hasBonus) {
-        if (count == 3 && hasBonus == WinnerType.FIFTH.getBonusStatus()) {
+        if (count == 3 && hasBonus == WinnerType.FIFTH.getHasBonus()) {
             WinnerType.FIFTH.increaseCount();
         }
 
-        if (count == 4 && hasBonus == WinnerType.FOURTH.getBonusStatus()) {
+        if (count == 4 && hasBonus == WinnerType.FOURTH.getHasBonus()) {
             WinnerType.FOURTH.increaseCount();
         }
 
-        if (count == 5 && hasBonus == WinnerType.THIRD.getBonusStatus()) {
+        if (count == 5 && hasBonus == WinnerType.THIRD.getHasBonus()) {
             WinnerType.THIRD.increaseCount();
         }
 
-        if (count == 5 && hasBonus == WinnerType.SECOND.getBonusStatus()) {
+        if (count == 5 && hasBonus == WinnerType.SECOND.getHasBonus()) {
             WinnerType.SECOND.increaseCount();
         }
 
-        if (count == 6 && hasBonus == WinnerType.FIRST.getBonusStatus()) {
+        if (count == 6 && hasBonus == WinnerType.FIRST.getHasBonus()) {
             WinnerType.FIRST.increaseCount();
         }
     }

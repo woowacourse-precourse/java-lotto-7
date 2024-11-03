@@ -9,9 +9,8 @@ public enum WinnerType {
     SECOND(5, true, 30_000_000),
     FIRST(6, false, 2_000_000_000);
 
-    private static final String LINE_BREAK = "\n";
     public static final int UNIT = 1000;
-
+    private static final String LINE_BREAK = "\n";
     private final int matchNumberCount;
     private final boolean hasBonus;
     private final int prize;
@@ -56,7 +55,7 @@ public enum WinnerType {
         count++;
     }
 
-    public boolean getBonusStatus() {
+    public boolean getHasBonus() {
         return hasBonus;
     }
 }
