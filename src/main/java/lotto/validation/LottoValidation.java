@@ -17,7 +17,6 @@ public class LottoValidation {
         }
         isSizeSix(numbers);
         isDuplicate(numbers);
-        isAscending(numbers);
     }
 
     private static void isInRange(int num) {
@@ -39,19 +38,6 @@ public class LottoValidation {
         }
         if (numberSet.size() != LOTTO_SIZE) {
             LottoException.exceptionLottoDuplicate();
-        }
-    }
-
-    private static void isAscending(List<Integer> numbers) {
-        int index = COUNT_ONE;
-        for (; index < LOTTO_SIZE; index++) {
-            compareNum(numbers, index);
-        }
-    }
-
-    private static void compareNum(List<Integer> numbers, int index) {
-        if (numbers.get(index - COUNT_ONE) > numbers.get(index)) {
-            LottoException.exceptionLottoAscending();
         }
     }
 

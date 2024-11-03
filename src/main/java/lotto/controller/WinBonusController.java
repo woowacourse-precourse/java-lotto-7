@@ -21,12 +21,12 @@ public class WinBonusController {
     public List<Integer> inputWinning() {
         String winNum = inputView.inputWinningNumber();
         List<String> winningNumbers = Arrays.asList(winNum.split(","));
-        checkValidate(winningNumbers);
+        checkValidateWinning(winningNumbers);
         List<Integer> winNumbers = inputNumbers(winningNumbers);
         return winNumbers;
     }
 
-    private void checkValidate(List<String> winningNumbers) {
+    private void checkValidateWinning(List<String> winningNumbers) {
         try {
             WinBonusValidation.winningValidation(winningNumbers);
         } catch (IllegalArgumentException e) {
@@ -45,9 +45,18 @@ public class WinBonusController {
 
     public int inputBonus(List<Integer> winNumbers) {
         String bonus = inputView.inputBonusNumber();
-        WinBonusValidation.bonusValidation(bonus, winNumbers);
+        checkValidateBonus(bonus, winNumbers);
         int numBonus = Integer.parseInt(bonus);
         return numBonus;
+    }
+
+    private void checkValidateBonus(String bonus, List<Integer> winNumbers) {
+        try {
+            WinBonusValidation.bonusValidation(bonus, winNumbers);
+        } catch (IllegalArgumentException e) {
+            outputErrorView.errorMessage(e);
+            inputBonus(winNumbers);
+        }
     }
 
 }
