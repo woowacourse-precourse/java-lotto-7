@@ -7,63 +7,61 @@ import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
-import lotto.view.View;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
-    public void run(){
-        Lottos purchasedLottos =initLotts();
+    public void run() {
+        Lottos purchasedLottos = initLotts();
         printPurchaseResult(purchasedLottos);
-        WinningNumbers winningNumbers=   inputWinningNumbers();
+        WinningNumbers winningNumbers = inputWinningNumbers();
         printLottoResults(purchasedLottos, winningNumbers);
     }
 
-    private Lottos initLotts(){
+    private Lottos initLotts() {
         try {
-            View.promptForPurchaseAmount();
-            Money money = new Money(View.inputLottoPurchaseAmount());
+            Money money = new Money(InputView.inputLottoPurchaseAmount());
             return new Lottos(money.getLottoQuantity());
-        }catch (IllegalArgumentException e) {
-            View.printException(e);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
             return initLotts();
         }
     }
 
     private void printPurchaseResult(Lottos purchasedLottos) {
-        View.printPurchaseResult(purchasedLottos);
+        OutputView.printPurchaseResult(purchasedLottos);
     }
 
     private WinningNumbers inputWinningNumbers() {
-        Lotto winnerLotto=  inputLotto();
-        BonusNumber bonusNumber = inpuBonus();
-        return new WinningNumbers(winnerLotto,bonusNumber);
+        Lotto winnerLotto = inputLotto();
+        BonusNumber bonusNumber = inputBonus();
+        return new WinningNumbers(winnerLotto, bonusNumber);
     }
 
-    private  Lotto inputLotto(){
-        try{
-            View.promptForWinningLotto();
-            List<Integer> mainWinningNumbers  = View.inputWinningLotto();
+    private Lotto inputLotto() {
+        try {
+            List<Integer> mainWinningNumbers = InputView.inputWinningLotto();
             return new Lotto(mainWinningNumbers);
-        }catch (IllegalArgumentException e) {
-            View.printException(e);
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
             return inputLotto();
         }
     }
 
-    private  BonusNumber inpuBonus(){
-        try{
-            View.promptForWinningBonusNumber();
-            int winningBonusNumberInput=View.inputWinningBonusNumber();
+    private BonusNumber inputBonus() {
+        try {
+            int winningBonusNumberInput = InputView.inputWinningBonusNumber();
             return new BonusNumber(winningBonusNumberInput);
-        }catch (IllegalArgumentException e) {
-            View.printException(e);
-            return inpuBonus();
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return inputBonus();
         }
     }
 
     private void printLottoResults(Lottos purchasedLottos, WinningNumbers winningNumbers) {
         LottoResult lottoResult = createLottoResult(purchasedLottos, winningNumbers);
         double returnRate = calculateReturnRate(purchasedLottos, lottoResult);
-        View.printLottoResults(lottoResult, returnRate);
+        OutputView.printLottoResults(lottoResult, returnRate);
     }
 
     private LottoResult createLottoResult(Lottos purchasedLottos, WinningNumbers winningNumbers) {
@@ -75,8 +73,4 @@ public class LottoController {
     private double calculateReturnRate(Lottos purchasedLottos, LottoResult lottoResult) {
         return lottoResult.calculateReturnRate(purchasedLottos.getSize() * 1000);
     }
-
-
-
-
 }
