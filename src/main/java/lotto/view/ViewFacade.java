@@ -1,6 +1,6 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.model.UserLotto;
 
 import java.util.List;
 
@@ -13,20 +13,22 @@ public class ViewFacade {
         this.outputView = outputView;
     }
 
-    public void getPurchaseAmount() {
-        inputView.getPurchaseAmount();
+    public int getPurchaseAmount() {
+        return inputView.getPurchaseAmount();
     }
 
-    public void getLottoNumber() {
-        inputView.getLottoNumber();
+    public String getLottoNumber() {
+        return inputView.getLottoNumber();
     }
 
-    public void getBonusNumber() {
-        inputView.getBonusNumber();
+    public int getBonusNumber() {
+        return inputView.getBonusNumber();
     }
 
-    public void printUserLotto(List<Integer> userLotto) {
-        outputView.printUserLotto(userLotto);
+    public void printUserLotto(UserLotto userLotto) {
+        for (List<Integer> lottoNumber : userLotto.getUserNumbers()) {
+            System.out.println(lottoNumber);
+        }
     }
 
     public void printResult(List<Integer> results, int rate) {
