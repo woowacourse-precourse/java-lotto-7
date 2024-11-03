@@ -14,7 +14,7 @@ class AnswerNumbersTest {
 
     @ParameterizedTest
     @DisplayName("Answer 객체를 생성할 수 있다.")
-    @ValueSource(strings = {"1,2,3,,4,5,6", "1, 2, 3, 4, 5, 6"})
+    @ValueSource(strings = {"1,2,3,4,5,6", "1, 2, 3, 4, 5, 6"})
     void should_CreateAnswer_WhenGivenNumbers(String input) {
         // when
         AnswerNumbers answer = AnswerNumbers.from(input);
