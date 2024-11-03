@@ -2,10 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.InvalidBonusNumberException;
-import lotto.exception.InvalidDuplicateBonusNumberException;
-import lotto.exception.InvalidDuplicateNumberException;
-import lotto.exception.InvalidPurchaseAmountException;
+import lotto.exception.*;
 
 import java.util.*;
 
@@ -16,7 +13,8 @@ public class InputService {
     private static final String CONVERT_ERROR_MESSAGE = "[ERROR] 잘못된 입력값입니다. 입력값은 숫자여야합니다.";
     private static final String AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.";
     private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호가 중복될 수 없습니다.";
-    private static final String BONUS_NUMBER_ERROR_MESSAGE = "[ERROR] 보너스 번호는 0이상 45이하여야 합니다.";
+    private static final String BONUS_NUMBER_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1이상 45이하여야 합니다.";
+    private static final String BONUS_INVALID_VALUE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 반드시 1개여야 합니다.";
 
     public int purchaseValue() {
         String value = Console.readLine();
@@ -76,6 +74,9 @@ public class InputService {
 
     public int bonusNumberValue() {
         String value = Console.readLine();
+
+        if(checkInvalidValue(value)) throw new InvalidBonusValueException(BONUS_INVALID_VALUE_ERROR_MESSAGE);
+
         int convertValue = convertToInt(value);
         if(convertValue < 1 || convertValue > 45){
             throw new InvalidBonusNumberException(BONUS_NUMBER_ERROR_MESSAGE);
@@ -84,6 +85,12 @@ public class InputService {
             throw new InvalidDuplicateBonusNumberException(DUPLICATE_ERROR_MESSAGE);
         }
         return convertValue;
+    }
+    public boolean checkInvalidValue(String value){
+        if(!value.matches("^\\s*\\d+\\s*$")){
+            return true;
+        }
+        return false;
     }
 
     public boolean checkDuplicateNumber(int number) {
