@@ -8,18 +8,20 @@ import java.util.List;
 public class LotteryMachine {
 
     private final List<Lotto> lottos;
+    private final int paidMoney;
 
-    public LotteryMachine() {
+    public LotteryMachine(int paidMoney) {
+        this.paidMoney = paidMoney;
         this.lottos = new ArrayList<>();
     }
 
-    private int purchaseAmount(int moneyAmount) {
-        return moneyAmount / 1000;
+    private int purchaseAmount() {
+        return paidMoney / 1000;
         // 추후 1,000원 단위 조건 체크 필요.
     }
 
-    public void drawLottos(int moneyAmount) {
-        int count = purchaseAmount(moneyAmount);
+    public void drawLottos() {
+        int count = purchaseAmount();
 
         for (int i = 0; i < count; i++) {
             List<Integer> lotto = pickRandomNumbers();

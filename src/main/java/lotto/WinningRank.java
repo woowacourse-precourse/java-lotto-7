@@ -57,8 +57,7 @@ public enum WinningRank {
         System.out.println(" (" + transferFormat() + "원) - " + count);
     }
 
-    public void printWinningsResult() {
-        System.out.println("당첨 통계\n---");
+    public static void printWinningsResult() {
         for (WinningRank rank : WinningRank.values()) {
             rank.printWinnings();
         }

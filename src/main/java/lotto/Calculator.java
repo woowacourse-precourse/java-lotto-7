@@ -2,17 +2,18 @@ package lotto;
 
 public class Calculator {
 
-    private static double earningRate;
     private static long paidMoney;
     private long winnings;
 
-    public Calculator() {
-        this.earningRate = calculateEarningRate();
+    public Calculator(int paidMoney) {
         this.paidMoney = paidMoney;
         this.winnings = WinningRank.calculateTotalWinnings();
     }
 
-    private double calculateEarningRate() {
+    public double calculateEarningRate() {
+        if (paidMoney == 0) {
+            throw new IllegalArgumentException();
+        }
         return (double) (winnings - paidMoney) / paidMoney * 100;
     }
 
