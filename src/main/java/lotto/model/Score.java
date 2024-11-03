@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +36,13 @@ public enum Score {
     }
 
     public static Map<Score, Integer> aggregate(List<Score> scores) {
-        Map<Score, Integer> scoreCounts = new HashMap<>();
+        Map<Score, Integer> scoreCounts = new LinkedHashMap<>();
 
-        for (Score score : scores) {
-            scoreCounts.put(score, scoreCounts.getOrDefault(score, 0) + 1);
+        for (Score score : values()) {
+            scoreCounts.put(score, (int) scores.stream()
+                    .filter(s -> s == score)
+                    .count());
         }
-
-        Arrays.stream(values())
-                .forEach(score -> scoreCounts.putIfAbsent(score, 0));
 
         return scoreCounts;
     }
