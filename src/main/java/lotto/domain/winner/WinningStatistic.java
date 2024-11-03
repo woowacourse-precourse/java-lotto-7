@@ -43,8 +43,7 @@ public class WinningStatistic {
     }
 
     private void initialize() {
-        ResultState.stream()
-                .filter(ResultState::isWinner)
+        ResultState.winnerStream()
                 .forEach(state -> stateFrequencyAccumulator.put(state, INIT_FREQUENCY));
     }
 

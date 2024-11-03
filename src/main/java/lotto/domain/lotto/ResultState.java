@@ -30,7 +30,7 @@ public enum ResultState implements MessageProvider {
     }
 
     public static ResultState from(int matchCount, boolean hasBonus) {
-        return ResultState.stream()
+        return ResultState.defaultStream()
                 .filter(state -> state.matchCount == matchCount)
                 .filter(state -> state.hasBonus == hasBonus)
                 .findFirst()
@@ -53,12 +53,16 @@ public enum ResultState implements MessageProvider {
         return this.prize;
     }
 
-    public static Stream<ResultState> stream() {
-        return Stream.of(ResultState.values());
-    }
-
     @Override
     public String provideMessage(int count) {
         return String.format(MATCH_TEMPLATE, this.matchCount, this.prize, count);
+    }
+
+    public static Stream<ResultState> defaultStream() {
+        return Stream.of(ResultState.values());
+    }
+
+    public static Stream<ResultState> winnerStream() {
+        return defaultStream().filter(ResultState::isWinner);
     }
 }
