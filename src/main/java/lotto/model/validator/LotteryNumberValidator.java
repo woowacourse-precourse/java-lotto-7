@@ -1,6 +1,7 @@
 package lotto.model.validator;
 
 import static lotto.model.lotto.LotteryRule.*;
+import static lotto.Exceptions.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,7 @@ public class LotteryNumberValidator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTERY_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(WRONG_LOTTERY_NUMBER_SIZE.getMessage());
         }
     }
 
@@ -22,10 +23,10 @@ public class LotteryNumberValidator {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
             if (addedDuplicated(number, uniqueNumbers)) {
-                throw new IllegalArgumentException("[ERROR] 중복되지 않은 숫자를 입력해주세요.");
+                throw new IllegalArgumentException(DUPLICATED_LOTTERY_NUMBER.getMessage());
             }
             if (number < MIN_LOTTERY_NUMBER || number > MAX_LOTTERY_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
+                throw new IllegalArgumentException(OUT_OF_LOTTERY_NUMBER_RANGE.getMessage());
             }
         }
     }

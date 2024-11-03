@@ -14,7 +14,7 @@ public class OutputView {
     public void outputIssuedLottos(Lottos lottos) {
         outputLottoAmount(lottos);
         for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> ascendingLotto = Utils.sortAscending(lotto.getNumbers());
+            List<Integer> ascendingLotto = Sorter.sortAscending(lotto.getNumbers());
             System.out.println(Messages.ISSUED_LOTTO(ascendingLotto));
         }
     }
@@ -30,7 +30,7 @@ public class OutputView {
     }
 
     public void outputWinningRanks(WinningResults winningResults) {
-        List<WinningRank> descendingWinningRanks = Utils.sortDescending(WinningRank.findRanksExceptFail());
+        List<WinningRank> descendingWinningRanks = Sorter.sortDescending(WinningRank.findRanksExceptFail());
         for (WinningRank winningRank : descendingWinningRanks) {
             System.out.println(String.format(
                     "%s (%s원) - %d개"
