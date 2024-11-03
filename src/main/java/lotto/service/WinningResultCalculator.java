@@ -7,14 +7,14 @@ import java.util.List;
 
 public class WinningResultCalculator {
 
-    public static Rank calculateResult(Lotto userLotto, List<Integer> winningNumbers, int bonusNumber) {
-        int matchCount = countMatches(userLotto.getNumbers(), winningNumbers);
-        boolean matchBonus = userLotto.getNumbers().contains(bonusNumber);
+    public static Rank calculateResult(final Lotto userLotto, final List<Integer> winningNumbers, final int bonusNumber) {
+        final int matchCount = countMatches(userLotto.getNumbers(), winningNumbers);
+        final boolean matchBonus = userLotto.getNumbers().contains(bonusNumber);
 
         return Rank.getRank(matchCount, matchBonus);
     }
 
-    private static int countMatches(List<Integer> userNumbers, List<Integer> winningNumbers) {
+    private static int countMatches(final List<Integer> userNumbers, final List<Integer> winningNumbers) {
         return (int) userNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();

@@ -22,10 +22,6 @@ public enum Rank {
         return prize;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public String getDisplayText() {
         if (this == NONE) return "";  // NONE은 출력하지 않음
         String bonusText = matchBonus ? ", 보너스 볼 일치" : "";

@@ -11,12 +11,12 @@ import lotto.util.ValidationUtil;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         ValidationUtil.validateNumberCount(numbers);
         ValidationUtil.validateRange(numbers);
         ValidationUtil.validateNoDuplicates(numbers);
@@ -26,7 +26,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     public static Lotto generateLottoNumber() {
-        List<Integer> generatedNumbers = LottoGenerator.generateLottoNumbers();
+        final List<Integer> generatedNumbers = LottoGenerator.generateLottoNumbers();
         return new Lotto(generatedNumbers);
     }
 

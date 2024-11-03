@@ -9,27 +9,27 @@ import java.util.Set;
 
 
 public class ValidationUtil {
-    public static void validateNumberCount(List<Integer> numbers) {
+    public static void validateNumberCount(final List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
         }
     }
 
-    public static void validateRange(List<Integer> numbers) {
+    public static void validateRange(final List<Integer> numbers) {
         if (!numbers.stream().allMatch(number -> number >= LottoConstants.LOTTO_MIN_NUMBER.getValue() &&
                 number <= LottoConstants.LOTTO_MAX_NUMBER.getValue())) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
-    public static void validateNoDuplicates(List<Integer> numbers) {
+    public static void validateNoDuplicates(final List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 
-    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    public static void validateBonusNumber(final int bonusNumber, final List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
