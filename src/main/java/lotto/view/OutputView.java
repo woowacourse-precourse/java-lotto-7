@@ -16,4 +16,8 @@ public class OutputView {
                 .forEach(System.out::println);
         System.out.println();
     }
+
+    public static void printBlankLine() {
+        System.out.println();
+    }
 }

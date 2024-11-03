@@ -47,4 +47,9 @@ public class LottoService {
         lottoManager.saveWinningLotto(new Lotto(numbers));
         return "success";
     }
+
+    public String saveBonusNumber(String bonusNumber) {
+        lottoManager.saveBonusNumber(bonusNumber);
+        return "success";
+    }
 }

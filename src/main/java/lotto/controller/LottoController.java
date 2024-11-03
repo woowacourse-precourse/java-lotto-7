@@ -18,6 +18,7 @@ public class LottoController {
         Integer customerId = recordPayment();
         issueLottos(customerId);
         recordWinningNumbers();
+        recordBonusNumber();
     }
 
     public Integer recordPayment() {
@@ -50,6 +51,13 @@ public class LottoController {
                 ErrorView.printErrorMessage(e.getMessage());
             }
         }
+        return "success";
+    }
+
+    private String recordBonusNumber() {
+        OutputView.printBlankLine();
+        String bonusNumber = InputView.getBonusNumber();
+        lottoService.saveBonusNumber(bonusNumber);
         return "success";
     }
 }
