@@ -8,20 +8,35 @@ import java.util.List;
 import static service.Constants.*;
 
 public class Validator {
-    public void validateAmount(int amount){
-        if (amount%1000 != 0){
-            throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT.getErrorMessage());
+
+    public int validateAmountNumber(String inputPurchaseAmount){
+        try {
+            return Integer.parseInt(inputPurchaseAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT_NUMBER.getErrorMessage());
         }
     }
 
-    public void validateWinningNumber(List<Integer> numbers){
+    public void validateAmountCount(int amount){
+        if (amount%1000 != 0){
+            throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT_UNIT.getErrorMessage());
+        }
+    }
+
+    public void validateLottoCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(ErrorCode.RESTRICTION_WINNING_NUMBER.getErrorMessage());
+        }
+    }
+
+    public void validateDuplicatedWinningNumber(List<Integer> numbers){
         numbers.forEach(this::validateNumberRange);
         if(numbers.size() != numbers.stream().distinct().count()){
             throw new IllegalArgumentException(ErrorCode.DUPLICATED_WINNING_NUMBER.getErrorMessage());
         }
     }
 
-    public void validateBonusNumber(int bonusNumber, Lotto lotto){
+    public void validateDuplicatedBonusNumber(int bonusNumber, Lotto lotto){
         validateNumberRange(bonusNumber);
         if(lotto.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException(ErrorCode.DUPLICATED_BONUS_NUMBER.getErrorMessage());
