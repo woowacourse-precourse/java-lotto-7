@@ -9,14 +9,22 @@ public class InputView {
     }
 
     public static String inputPurchaseAmount() {
-        String input = Console.readLine().trim();
-        InputValidator.validateInteger(input);
-        return input;
+        return getNumberInput();
     }
 
     public static String inputWinningNums() {
         String input = Console.readLine().trim();
         InputValidator.validateWinningNumbers(input);
+        return input;
+    }
+
+    public static String inputBonusNumber() {
+        return getNumberInput();
+    }
+
+    private static String getNumberInput() {
+        String input = Console.readLine().trim();
+        InputValidator.validateInteger(input);
         return input;
     }
 }
