@@ -11,6 +11,10 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -21,7 +25,7 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public int findHits(List<Integer> winningNumbers, int bonusNumber) {
+    public int findHits(List<Integer> winningNumbers) {
         long hits = numbers.stream().filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
                 .count();
 

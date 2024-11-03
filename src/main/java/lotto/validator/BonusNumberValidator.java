@@ -24,5 +24,5 @@ public class BonusNumberValidator {
             if (input==null || input.isBlank()){
                 throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
             }
-        }
+    }
 }

@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import lotto.common.CommonValidator;
 import lotto.common.ErrorMessage;
 import lotto.common.RegexPattern;
 
@@ -12,7 +11,7 @@ public class WinningNumbersValidator {
     private static final String INPUT_SEPERATOR=",";
 
     public static List<Integer> validateWinningNumbers(String input){
-        CommonValidator.validateNullAndBlank(input);
+        validateNullAndBlank(input);
         validateOnyIntegerAndComma(input);
 
         List<Integer> winningNumbers= Arrays.stream(input.split(INPUT_SEPERATOR))
@@ -26,6 +25,12 @@ public class WinningNumbersValidator {
     private static void validateOnyIntegerAndComma(String input) {
         if (!RegexPattern.ONLY_INTEGER_AND_COMMA.matches(input)){
             throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER);
+        }
+    }
+
+    private static void validateNullAndBlank(String input) {
+        if (input==null || input.isBlank()){
+            throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
         }
     }
 

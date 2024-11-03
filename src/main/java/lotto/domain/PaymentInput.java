@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.common.CommonValidator;
 import lotto.common.ErrorMessage;
 import lotto.common.RegexPattern;
 
@@ -11,7 +10,7 @@ public class PaymentInput {
     private final int lottoCounts;
 
     public PaymentInput(String input){
-        CommonValidator.validateNullAndBlank(input);
+        validateNullAndBlank(input);
         this.payment=validatePositiveNumber(input);
         validateUnit(payment);
         this.lottoCounts= (int) (payment/UNIT);
@@ -35,6 +34,12 @@ public class PaymentInput {
     private void validateUnit(long payment) {
         if (payment%UNIT!=0 || payment==0){
             throw new IllegalArgumentException(ErrorMessage.NOT_UNIT_INPUT);
+        }
+    }
+
+    private static void validateNullAndBlank(String input) {
+        if (input==null || input.isBlank()){
+            throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
         }
     }
 
