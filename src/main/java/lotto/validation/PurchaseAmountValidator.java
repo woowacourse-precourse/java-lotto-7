@@ -1,12 +1,11 @@
 package lotto.validation;
 
-import lotto.enums.Message;
-
 public class PurchaseAmountValidator {
 
     private static final int THOUSAND = 1000;
 
-    private PurchaseAmountValidator() {}
+    private PurchaseAmountValidator() {
+    }
 
     public static void validateDivisibleByThousand(long amount) {
         if (amount % THOUSAND != 0) {

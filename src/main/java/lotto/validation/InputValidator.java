@@ -2,7 +2,8 @@ package lotto.validation;
 
 public class InputValidator {
 
-    private InputValidator() {}
+    private InputValidator() {
+    }
 
     public static void validateNonBlank(String input) {
         if (input.isBlank()) {

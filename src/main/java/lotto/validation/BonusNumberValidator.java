@@ -1,7 +1,6 @@
 package lotto.validation;
 
 import lotto.domain.WinningNumber;
-import lotto.enums.Message;
 import lotto.util.Convertor;
 
 public class BonusNumberValidator {
@@ -9,7 +8,8 @@ public class BonusNumberValidator {
     private static final int MAX_NUMBER_RANGE = 45;
     private static final int MIN_NUMBER_RANGE = 1;
 
-    private BonusNumberValidator() {}
+    private BonusNumberValidator() {
+    }
 
     public static void validateRange(int bonusNumber) {
         if (bonusNumber > MAX_NUMBER_RANGE || bonusNumber < MIN_NUMBER_RANGE) {
