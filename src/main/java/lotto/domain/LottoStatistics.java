@@ -12,6 +12,12 @@ public class LottoStatistics {
         this.rankingCount = new EnumMap<>(LottoRanking.class);
     }
 
+    public int calculateTotalPrize() {
+        return rankingCount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
     private Optional<LottoRanking> calculateRanking(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = calculateMatchCount(lotto, winningLotto.getNumbers());
         boolean matchBonus = isBonusNumberMatched(lotto, winningLotto.getBonusNumber());
