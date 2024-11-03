@@ -3,6 +3,7 @@ package lotto.vendingmachine;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class VendingMachineServiceImpl implements VendingMachineService {
@@ -19,6 +20,7 @@ public class VendingMachineServiceImpl implements VendingMachineService {
 
         for (int i = 0; i < amount; i++) {
             List<Integer> numbers = pickRandomNumbers();
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
