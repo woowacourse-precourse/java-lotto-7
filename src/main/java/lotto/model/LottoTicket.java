@@ -8,13 +8,19 @@ import lotto.dto.LottoTicketStatus;
 public class LottoTicket {
 
     private final List<Lotto> lottos;
+    private final int purchaseAmount;
 
-    public LottoTicket(List<Lotto> lottos) {
+    public LottoTicket(List<Lotto> lottos, int purchaseAmount) {
         this.lottos = lottos;
+        this.purchaseAmount = purchaseAmount;
     }
 
     public int getLottoCount() {
         return lottos.size();
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public LottoTicketStatus getLottoTicketStatus() {
@@ -23,6 +29,6 @@ public class LottoTicket {
                 .map(Lotto::getStatus)
                 .collect(Collectors.toList());
 
-        return new LottoTicketStatus(lottoStatuses);
+        return new LottoTicketStatus(lottoStatuses, purchaseAmount);
     }
 }

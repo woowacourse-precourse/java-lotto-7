@@ -48,8 +48,9 @@ class LottoCalculatorTest {
 
     private static LottoTicket getLottoTicket() {
         List<Integer> numbers = List.of(4, 5, 6, 7, 8, 9);
+        int purchaseAmount = 1000;
         Lotto myLotto = new Lotto(numbers);
-        return new LottoTicket(List.of(myLotto));
+        return new LottoTicket(List.of(myLotto), purchaseAmount);
     }
 
     private static Lotto getWinningLotto() {

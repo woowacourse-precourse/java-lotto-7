@@ -11,7 +11,7 @@ public class LottoStore {
     public static LottoTicket purchaseLottoTicket(int purchaseAmount) {
 
         int lottoCount = getLottoCount(purchaseAmount);
-        return createLottoTicket(lottoCount);
+        return createLottoTicket(lottoCount, purchaseAmount);
 
     }
 
@@ -19,7 +19,7 @@ public class LottoStore {
         return purchaseAmount / UNIT;
     }
 
-    private static LottoTicket createLottoTicket(int lottoCount) {
+    private static LottoTicket createLottoTicket(int lottoCount, int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -27,6 +27,6 @@ public class LottoStore {
             Lotto lotto = new Lotto(randomNumbers);
             lottos.add(lotto);
         }
-        return new LottoTicket(lottos);
+        return new LottoTicket(lottos, purchaseAmount);
     }
 }
