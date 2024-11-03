@@ -103,6 +103,6 @@ public class LottoResultTest {
         double profitRate = result.calculateProfitRate();
 
         // then
-        assertThat(profitRate).isEqualTo(0);
+        assertThat(profitRate).isEqualTo(200000000.0);
     }
 }

@@ -7,9 +7,11 @@ import java.util.Map;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> rankCounts;
+    private final int totalPurchaseAmount;
 
-    private LottoResult(Map<LottoRank, Integer> rankCounts) {
+    private LottoResult(Map<LottoRank, Integer> rankCounts, int totalPurchaseAmount) {
         this.rankCounts = new EnumMap<>(rankCounts);
+        this.totalPurchaseAmount = totalPurchaseAmount;
     }
 
     public static LottoResult of(List<Lotto> lottos, WinningNumbers winningNumbers) {
@@ -22,7 +24,7 @@ public class LottoResult {
             rankCounts.merge(rank, 1, Integer::sum);
         }
 
-        return new LottoResult(rankCounts);
+        return new LottoResult(rankCounts, lottos.size() * 1000);
     }
 
     private static void initializeRankCounts(Map<LottoRank, Integer> rankCounts) {
@@ -35,6 +37,13 @@ public class LottoResult {
     }
 
     public double calculateProfitRate() {
-        return 0;
+        long totalPrize = calculateTotalPrize();
+        return (totalPrize * 100.0) / totalPurchaseAmount;
+    }
+
+    private long calculateTotalPrize() {
+        return rankCounts.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }
