@@ -16,8 +16,8 @@ public class LottoConst {
 
 
     public static final String LOTTO_AMOUNT_REQUEST = "구입금액을 입력해 주세요.";
-    public static final String LOTTO_WINNING_NUMBER_REQUEST = "당첨 번호를 입력해 주세요.";
-    public static final String LOTTO_BONUS_NUMBER_REQUEST = "보너스 번호를 입력해 주세요.";
+    public static final String LOTTO_WINNING_NUMBER_REQUEST = "당첨 번호를 " + DELIMITER + "문자를 구분자로 하여 입력해 주세요.";
+    public static final String LOTTO_BONUS_NUMBER_REQUEST = "보너스 번호 1개를 입력해 주세요.";
 
 
     public static final String NOT_NUMBER_MSG = "올바른 숫자를 입력해주세요.";
