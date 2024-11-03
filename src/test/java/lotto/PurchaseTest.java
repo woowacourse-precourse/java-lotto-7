@@ -22,4 +22,15 @@ public class PurchaseTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 1000원 미만일 경우 예외를 호출한다.")
+    @Test
+    void 구매_금액이_1000원_미만일_경우_예외를_호출한다() {
+        org.junit.jupiter.api.Assertions.assertAll(
+            () -> assertThatThrownBy(() -> new LottoPurchase(900))
+                .isInstanceOf(IllegalArgumentException.class),
+            () -> assertThatThrownBy(() -> new LottoPurchase(-2))
+                .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
 }
