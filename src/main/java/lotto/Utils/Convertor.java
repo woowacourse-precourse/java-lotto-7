@@ -6,14 +6,9 @@ import java.util.stream.Stream;
 
 public class Convertor {
     public static List<Integer> convert(String selectedNumbers) {
-        try {
-            return Stream.of(selectedNumbers.split(","))
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
-            throw new IllegalArgumentException();
-        }
+        return Stream.of(selectedNumbers.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public static List<String> convert(List<Integer> lottoNumbers) {

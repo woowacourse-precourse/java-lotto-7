@@ -17,7 +17,7 @@ public class Controller {
     }
 
     private LottoGame buyLottos() {
-        BuyingPrice buyingPrice = inputHandler.getLottoPrice();
+        BuyingPrice buyingPrice = inputHandler.getPrice();
         Lottos lottos = lottoCreator.createLottos(buyingPrice.getLottoCount());
         return new LottoGame(buyingPrice, lottos);
     }
