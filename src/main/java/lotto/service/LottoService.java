@@ -23,7 +23,7 @@ public class LottoService {
         int startRange = Constants.LOTTO_START_RANGE.getValue();
         int finishRange = Constants.LOTTO_FINISH_RANGE.getValue();
         int lottoCount = Constants.LOTTO_COUNT.getValue();
-        return Randoms.pickUniqueNumbersInRange(startRange, finishRange, lottoCount);
+        return Randoms.pickUniqueNumbersInRange(startRange, finishRange, lottoCount).stream().sorted().toList();
     }
 
     public List<Integer> extractWinningNumbers(String lottoNumbers) {
