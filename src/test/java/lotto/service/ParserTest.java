@@ -103,7 +103,7 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"ㅁ","a","/","-","\\","a3"})
+    @ValueSource(strings = {"ㅁ", "a", "/", "-", "\\", "a3"})
     public void 보너스번호_숫자가_아닌_경우_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -111,7 +111,7 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" ","","    ","\3"})
+    @ValueSource(strings = {" ", "", "    ", "\3"})
     public void 보너스번호에_빈문자열이_입력된_경우_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -119,7 +119,7 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" 0","-1","-10"})
+    @ValueSource(strings = {" 0", "-1", "-10"})
     public void 보너스번호_1보다_작은수가_입력된_경우_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -127,16 +127,16 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"46","1000","134534534"})
+    @ValueSource(strings = {"46", "1000", "134534534"})
     public void 보너스번호_1보다_큰수가_입력된_경우_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-    
+
     @ParameterizedTest
-    @ValueSource(strings = {"1000","59000"})
-    public void 로또_금액에_1000원_단위_입력_테스트(String input) throws Exception{
+    @ValueSource(strings = {"1000", "59000"})
+    public void 로또_금액에_1000원_단위_입력_테스트(String input) throws Exception {
         //given
         int money = Parser.parseMoney(input);
         //when
@@ -145,8 +145,8 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0","-1","-10021312"})
-    public void 로또_금액에_0원이하_입력_예외테스트(String input) throws Exception{
+    @ValueSource(strings = {"0", "-1", "-10021312"})
+    public void 로또_금액에_0원이하_입력_예외테스트(String input) throws Exception {
         Assertions.assertThatThrownBy(() -> Parser.parseMoney(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] " + "금액은 양수이어야 합니다.");

@@ -20,7 +20,7 @@ public class Parser {
 
         validateWinningNumbsSize(winningNumbsStrs);
 
-        return  createWinningnumbs(winningNumbsStrs);
+        return createWinningnumbs(winningNumbsStrs);
     }
 
     public static int parseBonusNum(String inputBonusNumber) {

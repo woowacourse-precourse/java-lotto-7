@@ -12,7 +12,8 @@ import lotto.domain.LottoInfo;
 
 public class LottoGenerator {
     public Lotto generateOne() {
-        List<Integer> immutableRandomNums = Randoms.pickUniqueNumbersInRange(LottoInfo.MIN_NUM_RANGE, LottoInfo.MAX_NUM_RANGE,
+        List<Integer> immutableRandomNums = Randoms.pickUniqueNumbersInRange(LottoInfo.MIN_NUM_RANGE,
+                LottoInfo.MAX_NUM_RANGE,
                 LottoInfo.NUM_SIZE);
         ArrayList<Integer> randomNumbs = new ArrayList<>(immutableRandomNums);
         Collections.sort(randomNumbs);

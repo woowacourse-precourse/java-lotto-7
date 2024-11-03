@@ -33,7 +33,7 @@ public class LottoGeneratorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1001,800,1,234234234})
+    @ValueSource(ints = {1001, 800, 1, 234234234})
     public void 로또_여러개_발행_테스트(int money) {
         Assertions.assertThatThrownBy(() -> lottoGenerator.generateMany(money))
                 .isInstanceOf(IllegalArgumentException.class)

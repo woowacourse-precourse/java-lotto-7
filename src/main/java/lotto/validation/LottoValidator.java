@@ -4,7 +4,6 @@ import static lotto.utils.Utils.makeErrorMessage;
 
 import java.util.List;
 import lotto.domain.LottoInfo;
-import lotto.utils.Utils;
 
 public class LottoValidator {
     public static void isLottoNumInRange(int winningNum) {
