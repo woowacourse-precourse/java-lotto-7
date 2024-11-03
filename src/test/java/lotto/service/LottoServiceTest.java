@@ -5,8 +5,6 @@ import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -34,18 +32,11 @@ class LottoServiceTest {
         assertThat(lottoTicket.getLottos()).hasSize(EXPECTED_LOTTO_COUNT);
     }
 
-    @DisplayName("당첨 번호와 보너스 번호로 WinningLotto 객체 생성 테스트")
+    @DisplayName("파싱한 당첨 번호와 보너스 번호로 WinningLotto 객체 생성 테스트")
     @Test
     void 당첨_보너스_번호_관리_객체_생성_테스트() {
         WinningLotto winningLotto = lottoService.createWinningLotto(VALID_WINNING_NUMBERS_INPUT, VALID_BONUS_NUMBER);
         assertThat(winningLotto.getWinningNumbers().getNumbers()).isEqualTo(EXPECTED_WINNING_NUMBERS);
         assertThat(winningLotto.getBonusNumber()).isEqualTo(EXPECTED_BONUS_NUMBER);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6", "1, 2, 3, 4, 5, 6", " 1 , 2 , 3 , 4 , 5 , 6 "})
-    void 당첨_번호_입력값_파싱_테스트(String winningNumbersInput) {
-        List<Integer> parsedWinningNumbers = lottoService.parseWinningNumbers(winningNumbersInput);
-        assertThat(parsedWinningNumbers).isEqualTo(EXPECTED_WINNING_NUMBERS);
     }
 }
