@@ -17,6 +17,22 @@ public class WinningNumberValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("[WinningNumberInputViewTest] 당첨 번호가 쉼표로 시작하거나 끝나면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {",,,,,", ",1,2,3,4,5,6", "1,2,3,4,5,6,", ",1,2,3,4,5,6,"})
+    void 당첨_번호가_쉼표로_시작하거나_끝나면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new WinningNumberValidator(input).validate())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("[WinningNumberInputViewTest] 당첨 번호에 연속된 쉼표가 있다면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,,2,3,4,,5,6", "1,,,,,2,3,4,5,6", "1,,2,,3,,4,,5,,6", "1,2,3,4,,5,6"})
+    void 당첨_번호에_연속된_쉼표가_있다면_예외가_발생한다(String input){
+        assertThatThrownBy(() -> new WinningNumberValidator(input).validate())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("[WinningNumberValidatorTest] 당첨 번호에 정수 범위를 벗어난 값을 입력하면 예외가 발생한다")
     @ParameterizedTest
     @ValueSource(strings = {"990909999999", "2147483648", "1111111111111111111", "9999999999999999"})
