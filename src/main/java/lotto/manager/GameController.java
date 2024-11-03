@@ -12,12 +12,12 @@ import java.util.List;
 /*
 * 게임 흐름을 알고 게임을 진행하는 클래스
 * */
-public class GameManager {
+public class GameController {
     private final LottoNumberSupplier lottoNumberSupplier;
     private final LottoSeller lottoSeller;
     private final GameResultManager gameResultManager;
 
-    public GameManager(LottoNumberSupplier lottoNumberSupplier) {
+    public GameController(LottoNumberSupplier lottoNumberSupplier) {
         this.lottoNumberSupplier = lottoNumberSupplier;
         this.lottoSeller = new LottoSeller(lottoNumberSupplier);
         this.gameResultManager = new GameResultManager();
