@@ -22,7 +22,7 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void lotto(){
+    public void run(){
         readUserBudget();
         printLottoNumber();
         generateLottos();
@@ -65,14 +65,14 @@ public class LottoController {
         return new Lotto(InputView.inputWinningNumber());
     }
 
-    public int readBonusNumber(){
+    public int readBonusNumber(Lotto lotto){
         OutputView.printBonusNumberInputDescription();
-        return InputView.inputBonusNumber(winningLotto.getWinningNumbers().getNumbers());
+        return InputView.inputBonusNumber(lotto.getNumbers());
     }
 
     public void generateWinningNumbersAndBonusNumber(){
         Lotto lotto = readWinningNumber();
-        int bonusNumber = readBonusNumber();
+        int bonusNumber = readBonusNumber(lotto);
         winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 
