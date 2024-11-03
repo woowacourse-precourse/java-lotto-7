@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,6 +15,8 @@ public class Application {
 
         List<Lotto> tickets = generateTickets(ticketCount);
         printTickets(tickets);
+
+        Lotto winningLotto = getWinningNumbers();
     }
 
     private static int getPurchaseAmount() {
@@ -43,6 +47,18 @@ public class Application {
             System.out.println(ticket.printTicketDetail());
         }
         System.out.println();
+    }
+
+    private static Lotto getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = parseNumbers();
+        return new Lotto(winningNumbers);
+    }
+
+    private static List<Integer> parseNumbers() {
+        return Arrays.stream(Console.readLine().split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
 }
