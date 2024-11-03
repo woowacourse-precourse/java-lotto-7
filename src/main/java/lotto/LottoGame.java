@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoTicket;
+import lotto.domain.NumbersGenerator;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -24,7 +25,8 @@ public class LottoGame {
         String rawPurchaseAmount = input.readPurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
 
-        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, new RandomNumbersGenerator());
+        NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        LottoMachine lottoMachine = new LottoMachine(purchaseAmount, randomNumbersGenerator);
 
         LottoTicket lottoTicket = new LottoTicket(lottoMachine.generateLottos());
 
