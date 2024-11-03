@@ -56,4 +56,15 @@ public class Buyer {
             resultLotto.put(rank, resultLotto.get(rank) + 1);
         }
     }
+
+    public double getTotalRevenue() {
+        double total = 0;
+        double cost = lottos.size() * 1000;
+        for (Rank key : resultLotto.keySet()) {
+            if (resultLotto.get(key) > 0) {
+                total += (key.getPrize() * resultLotto.get(key));
+            }
+        }
+        return Double.parseDouble(String.format("%.1f", (total / cost) * 100));
+    }
 }
