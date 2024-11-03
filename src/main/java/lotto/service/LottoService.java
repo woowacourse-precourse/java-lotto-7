@@ -17,7 +17,9 @@ public class LottoService {
         lottoRepository.saveAll(lottos);
     }
 
-    public void generateLottos(int count) {
+    public List<LottoResponse> generateLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             Lotto lotto = generateLotto();
             lottoRepository.save(lotto);
