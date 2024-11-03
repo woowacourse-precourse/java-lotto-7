@@ -7,6 +7,7 @@ import lotto.model.LottoBonusNumber;
 import lotto.model.LottoCount;
 import lotto.model.LottoMatcher;
 import lotto.model.YieldCalculator;
+import lotto.util.InputValidator;
 import lotto.util.LottoNumberParser;
 import lotto.util.LottoRank;
 import lotto.view.InputView;
@@ -14,19 +15,22 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoNumberParser lottoNumberParser;
-    private AutoLottoGenerator autoLottoGenerator;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final InputValidator inputValidator;
+    private final LottoNumberParser lottoNumberParser;
+    private final AutoLottoGenerator autoLottoGenerator;
+    private final LottoMatcher lottoMatcher;
+    private final YieldCalculator yieldCalculator;
 
-    private LottoMatcher lottoMatcher;
-    private YieldCalculator yieldCalculator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoNumberParser lottoNumberParser,
+    public LottoController(InputView inputView, OutputView outputView, InputValidator inputValidator,
+                           LottoNumberParser lottoNumberParser,
                            AutoLottoGenerator autoLottoGenerator, LottoMatcher lottoMatcher,
                            YieldCalculator yieldCalculator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.inputValidator = inputValidator;
         this.lottoNumberParser = lottoNumberParser;
         this.autoLottoGenerator = autoLottoGenerator;
         this.lottoMatcher = lottoMatcher;
@@ -84,7 +88,7 @@ public class LottoController {
         String purchaseAmount = inputView.enteredPurchaseAmount();
 
         try {
-            LottoCount lottoCount = new LottoCount(purchaseAmount);
+            LottoCount lottoCount = new LottoCount(purchaseAmount, inputValidator);
             return lottoCount.getLottoCount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -107,7 +111,7 @@ public class LottoController {
         String bonusNumber = inputView.enteredLottoBonusNumber();
 
         try {
-            LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(bonusNumber, lottoNumbers);
+            LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(bonusNumber, lottoNumbers, inputValidator);
             return lottoBonusNumber.getLottoBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
