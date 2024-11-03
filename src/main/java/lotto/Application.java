@@ -11,6 +11,14 @@ public class Application {
     private static final int LOTTO_NUMBER_RANGE_START = 1;
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final Map<String, Integer> PRIZE_MONEY = Map.of(
+            "1등", 2_000_000_000,
+            "2등", 30_000_000,
+            "3등", 1_500_000,
+            "4등", 50_000,
+            "5등", 5_000,
+            "꽝", 0
+    );
 
     public static void main(String[] args) {
         try {
@@ -29,6 +37,7 @@ public class Application {
 
             Map<String, Integer> results = checkResults(purchasedLottos, winningNumbers, bonusNumber);
             printResults(results);
+            calculateAndPrintProfit(results, purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -129,6 +138,15 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + results.get("3등") + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get("2등") + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + results.get("1등") + "개");
+    }
+
+    private static void calculateAndPrintProfit(Map<String, Integer> results, int purchaseAmount) {
+        long totalPrizeMoney = 0;
+        for (String prize : results.keySet()) {
+            totalPrizeMoney += PRIZE_MONEY.get(prize) * results.get(prize);
+        }
+        double profitRate = ((double) totalPrizeMoney / purchaseAmount) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }
 
