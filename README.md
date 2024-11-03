@@ -139,13 +139,16 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 2. 로또 당첨 확인하기
 - [x] 당첨 번호를 입력받는다
-    - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
+    - [x] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
+    - [x] 번호가 숫자 이외의 다른 값을 포함한다면 IllegalArgumentException을 던진다
 - [x] 보너스 번호를 입력받는다
-    - [ ] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
+    - [x] 번호가 1 ~ 45 사이에 있는 숫자가 아니라면 IllegalArgumentException을 던진다
+    - [x] 번호가 숫자 이외의 다른 값을 포함한다면 IllegalArgumentException을 던진다
 - [x] 일치하는 개수에 따라 결과를 계산한다
   - [x] 번호가 일치하는 개수를 확인한다
   - [x] 일치하는 번호가 5개일 때만 보너스 번호를 확인한다
 - [x] 결과를 format에 맞게 출력한다
+  - [x] 보너스 번호를 출력할 때만 추가적인 문자열을 출력한다
 
 3. 수익률 계산하기
 - [x] 입력으로 받은 금액과 당첨 금액을 비교해 수익률을 계산한다
