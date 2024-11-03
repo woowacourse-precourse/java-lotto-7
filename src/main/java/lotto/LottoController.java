@@ -9,8 +9,8 @@ public class LottoController {
         int lottoCount = purchaseAmount / 1000;
 
         System.out.println(lottoCount + "개를 구매했습니다.");
-        LOTTO_PROCESSOR.create(lottoCount);
-        LOTTO_PROCESSOR.setWinningNumbers(LOTTO_INPUT.getWinningNumbers());
+        LOTTO_PROCESSOR.createLotto(lottoCount);
+        getWinningNumbers();
         LOTTO_PROCESSOR.setBonusNumber(Integer.parseInt(LOTTO_INPUT.getBonusNumber()));
         LOTTO_PROCESSOR.result(purchaseAmount);
     }
@@ -34,5 +34,17 @@ public class LottoController {
         }
         // 검증 코드 추가
         return amount;
+    }
+
+    // 당첨 번호 검증 후 올바른 당첨 번호까지 루프
+    private static void getWinningNumbers() {
+        while (true) {
+            try {
+                LOTTO_PROCESSOR.setWinningNumbers(LOTTO_INPUT.getWinningNumbers().split(","));
+                return;
+            }catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 }

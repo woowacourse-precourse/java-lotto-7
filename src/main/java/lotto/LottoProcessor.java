@@ -8,11 +8,11 @@ import java.util.List;
 
 public class LottoProcessor {
     List<Lotto> lottos = new ArrayList<>();
-    List<Integer> winningNumbers;
+    Lotto winningNumbers;
     private int bonusNumber;
 
-    public void create(int lottoCount) {
-        // 구매 금액만큼 로또 생성
+    // 구매 금액만큼 로또 생성
+    public void createLotto(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> tempLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(tempLotto);
@@ -21,13 +21,13 @@ public class LottoProcessor {
         }
     }
 
-    public void setWinningNumbers(String input) {
+    public void setWinningNumbers(String[] input) {
         // 당첨 번호를 입력받기
-        String[] inputNumbers = input.split(",");
-        winningNumbers = new ArrayList<>();
-        for (String inputNumber : inputNumbers) {
-            winningNumbers.add(Integer.parseInt(inputNumber));
+        List<Integer> tempWinningNumbers = new ArrayList<>();
+        for (String inputNumber : input) {
+            tempWinningNumbers.add(Integer.parseInt(inputNumber));
         }
+        winningNumbers = new Lotto(tempWinningNumbers);
     }
 
     public void setBonusNumber(int number) {
@@ -47,7 +47,7 @@ public class LottoProcessor {
             int correctNumber = 0;
             int bonusInLotto = 0;
             for (Integer number : numbers) {
-                if (winningNumbers.contains(number)) {
+                if (winningNumbers.getNumbers().contains(number)) {
                     correctNumber += 1;
                 }
                 if (bonusNumber == number) {
