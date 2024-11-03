@@ -72,4 +72,16 @@ class NumberValidatorTest {
         assertThatThrownBy(() -> validator.validate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("보너스 번호와 당첨 번호가 중복되면 예외를 발생한다.")
+    void bonusNumberTest3() {
+        Validator validator = new NumberValidator();
+        String winningNumbers = "1,2,3,4,5,6";
+        String bonusNumber = "1";
+        validator.validate(winningNumbers);
+
+        assertThatThrownBy(() -> validator.validate(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
