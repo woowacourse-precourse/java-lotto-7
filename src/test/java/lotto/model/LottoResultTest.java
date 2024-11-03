@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.LottoWinInfo;
-import lotto.model.draw.Draw;
+import lotto.model.draw.BonusNumber;
 import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Lotto;
 import lotto.model.result.LottoResult;
@@ -13,7 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
-    Draw draw;
+    DrawNumbers drawNumbers;
+    BonusNumber bonusNumber;
     Lotto FIRST_WIN_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     Lotto SECOND_WIN_LOTTO_1 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
     Lotto SECOND_WIN_LOTTO_2 = new Lotto(List.of(1, 2, 3, 4, 6, 7));
@@ -27,9 +28,8 @@ class LottoResultTest {
 
     @BeforeEach
     void setUp() {
-        DrawNumbers drawNumbers = new DrawNumbers("1,2,3,4,5,6");
-        String bonusNumber = "7";
-        draw = new Draw(drawNumbers, bonusNumber);
+        drawNumbers = new DrawNumbers("1,2,3,4,5,6");
+        bonusNumber = new BonusNumber("7", drawNumbers);
     }
 
     @Test
@@ -39,7 +39,7 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(draw, lottoTickets, 0);
+        LottoResult lottoResult = new LottoResult(drawNumbers, bonusNumber, lottoTickets, 0);
         EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
 
         // then
@@ -59,7 +59,7 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(draw, lottoTickets, 0);
+        LottoResult lottoResult = new LottoResult(drawNumbers, bonusNumber, lottoTickets, 0);
         EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
 
         // then

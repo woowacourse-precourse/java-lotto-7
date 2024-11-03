@@ -1,6 +1,7 @@
 package lotto.model.purchase;
 
 import java.util.List;
+import lotto.model.draw.BonusNumber;
 import lotto.model.draw.DrawNumbers;
 
 public class Lotto {
@@ -17,8 +18,8 @@ public class Lotto {
                 .count();
     }
 
-    public boolean hasBonusNumber(final Integer bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean hasBonusNumber(final BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
     }
 
     private void validate(List<Integer> numbers) {

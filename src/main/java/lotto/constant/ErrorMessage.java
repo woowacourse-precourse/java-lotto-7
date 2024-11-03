@@ -26,9 +26,19 @@ public enum ErrorMessage {
             return String.format(this.getMessage(), ERROR_HEADER, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }
     },
-    INVALID_DUPLICATE("%s 당첨 번호는 중복되지 않은 %d개의 숫자를 입력해야 합니다.") {
+    INVALID_DRAW_NUMBER_DUPLICATE("%s 당첨 번호는 중복되지 않은 %d개의 숫자를 입력해야 합니다.") {
         public String getFormatMessage() {
             return String.format(this.getMessage(), ERROR_HEADER, LOTTO_NUMBER_COUNT);
+        }
+    },
+    INVALID_BONUS_NUMBER_FORMAT("%s 보너스 번호는 %d ~ %d 사이의 양수만 입력 가능합니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        }
+    },
+    INVALID_BONUS_NUMBER_DUPLICATE("%s 보너스 번호는 당첨 번호와 중복되지 않는 숫자를 사용해야 합니다.") {
+        public String getFormatMessage() {
+            return String.format(this.getMessage(), ERROR_HEADER);
         }
     };
 

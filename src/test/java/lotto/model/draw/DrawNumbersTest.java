@@ -1,8 +1,8 @@
 package lotto.model.draw;
 
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_COUNT;
+import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_DUPLICATE;
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_FORMAT;
-import static lotto.constant.ErrorMessage.INVALID_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -52,6 +52,6 @@ class DrawNumbersTest {
     void 당첨번호_중복_예외테스트() {
         assertThatThrownBy(() -> new DrawNumbers("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_DUPLICATE.getFormatMessage());
+                .hasMessage(INVALID_DRAW_NUMBER_DUPLICATE.getFormatMessage());
     }
 }

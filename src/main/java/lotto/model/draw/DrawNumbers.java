@@ -1,8 +1,8 @@
 package lotto.model.draw;
 
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_COUNT;
+import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_DUPLICATE;
 import static lotto.constant.ErrorMessage.INVALID_DRAW_NUMBER_FORMAT;
-import static lotto.constant.ErrorMessage.INVALID_DUPLICATE;
 import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
@@ -54,7 +54,7 @@ public class DrawNumbers {
     private void validateNoDuplicates() {
         Set<Integer> uniqueNumbers = new HashSet<>(drawNumbers);
         if (drawNumbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException(INVALID_DUPLICATE.getFormatMessage());
+            throw new IllegalArgumentException(INVALID_DRAW_NUMBER_DUPLICATE.getFormatMessage());
         }
     }
 
