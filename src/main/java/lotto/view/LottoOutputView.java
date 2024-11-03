@@ -6,8 +6,26 @@ import lotto.enums.LottoRank;
 
 public class LottoOutputView {
 
+    private static final String ERR_MESSAGE = "[ERROR] ";
+
+    private static final String WINNING_STATISTICS = "당첨 통계";
+
+    private static final String LINE = "-----------------";
+
+    private static final String BUY_COUNT_MESSAGE = "개를 구매했습니다.";
+
+    private static final String EARNING_RATE_MESSAGE = "총 수익률은 ";
+
+    private static final String EARNING_RATE_PERCENT_MESSAGE = "%입니다.";
+
+    private static final String EQUAL_COUNT = "개 일치";
+
+    private static final String BONUS_BALL_MESSAGE = ", 보너스 볼 일치";
+
+    private static final String MATCH_NUMBER_COUNT = " (%,d원) - %d개";
+
     public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoCount + BUY_COUNT_MESSAGE);
     }
 
     public void printLottoTicket(List<List<Integer>> lottoTicketNumbers) {
@@ -24,27 +42,28 @@ public class LottoOutputView {
     }
 
     private void printEarningRate(double totalEarnings) {
-        System.out.println("총 수익률은 " + totalEarnings + "%입니다.");
+        System.out.println(EARNING_RATE_MESSAGE + totalEarnings + EARNING_RATE_PERCENT_MESSAGE);
     }
 
     private void printRankResult(Map<LottoRank, Integer> rankResults) {
         for (LottoRank rank : LottoRank.values()) {
             StringBuilder result = new StringBuilder();
-            result.append(rank.getMatchCount()).append("개 일치");
+            result.append(rank.getMatchCount()).append(EQUAL_COUNT);
             if (rank == LottoRank.SECOND) {
-                result.append(", 보너스 볼 일치");
+                result.append(BONUS_BALL_MESSAGE);
             }
             System.out.printf(result.toString());
-            System.out.printf(" (%,d원) - %d개\n", rank.getPrize(), rankResults.get(rank));
+            System.out.printf(MATCH_NUMBER_COUNT, rank.getPrize(), rankResults.get(rank));
+            System.out.println();
         }
     }
 
     private void printResultMessage() {
-        System.out.println("당첨 통계");
-        System.out.println("-----------------");
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(LINE);
     }
 
     public void printExceptionMessage(IllegalArgumentException exception) {
-        System.out.println("[ERROR] " + exception.getMessage());
+        System.out.println(ERR_MESSAGE + exception.getMessage());
     }
 }
