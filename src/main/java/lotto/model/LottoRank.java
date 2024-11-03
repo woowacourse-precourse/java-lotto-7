@@ -23,13 +23,20 @@ public enum LottoRank {
     public static final List<LottoRank> ranks = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, MISS);
 
     public static LottoRank getRank(int matchCount, boolean matchBonus) {
-        if (matchCount < 3) {
-            return MISS;
+        if (matchCount == 6) {
+            return FIRST;
         }
-        for (LottoRank rank : ranks) {
-            if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {
-                return rank;
-            }
+        if (matchCount == 5 && matchBonus) {
+            return SECOND;
+        }
+        if (matchCount == 5) {
+            return THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
         }
         return MISS;
     }
