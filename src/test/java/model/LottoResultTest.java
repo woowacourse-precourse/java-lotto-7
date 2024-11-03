@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
     @Test
-    void 매칭_개수와_상금_확인() {
+    void 매칭_개수와_상금_확인_테스트() {
         assertThat(LottoResult.THREE_NUMBER_MATCH.lottoMatchCount()).isEqualTo(3);
         assertThat(LottoResult.THREE_NUMBER_MATCH.lottoPrize()).isEqualTo(5000);
 
@@ -24,7 +24,7 @@ class LottoResultTest {
     }
 
     @Test
-    void 보너스_매치_확인() {
+    void 보너스_매치_확인_테스트() {
         assertThat(LottoResult.isBonusMatch(5, true)).isTrue();
         assertThat(LottoResult.isBonusMatch(5, false)).isFalse();
         assertThat(LottoResult.isBonusMatch(4, true)).isFalse();

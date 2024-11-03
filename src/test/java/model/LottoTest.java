@@ -12,20 +12,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    void 로또_번호의_개수_6개_넘어가면_예외_발생_테스트() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    void 로또_번호_중복_테스트() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("당첨 번호 입력시 1~45 숫자가 아닐시 예외처리 ")
     @Test
-    void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
+    void 로또_번호_범위_벗어남_테스트() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.");
