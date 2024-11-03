@@ -27,7 +27,7 @@ public class NumberMatchCounter {
         }
     }
 
-    public void countPrize() {
+    private void countPrize() {
         for (Lotto lotto : lottoArchive.getLottoList()) {
             Prize prize = checkLotto(lotto.getNumbers());
             if (prize != null) {
