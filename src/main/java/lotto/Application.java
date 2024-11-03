@@ -1,7 +1,10 @@
 package lotto;
 
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoConfig lottoConfig = LottoConfig.getInstance();
+        LottoApplication lottoApplication = lottoConfig.lottoApplication();
+        lottoApplication.execute();
     }
 }
