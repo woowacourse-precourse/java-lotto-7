@@ -4,11 +4,11 @@ public class SingleResult {
     private int count;
     private int bonusCount;
     private int rank;
-    private int prize;
-    
+
     public SingleResult(){
         this.count = 0;
         this.bonusCount = 0;
+        this.rank = 0;
     }
     
     public int getCount(){
@@ -19,4 +19,29 @@ public class SingleResult {
     }
     public void countUp() {this.count++;}
     public void bonusCountUp() {this.bonusCount++;}
+
+    public int getRank() {
+        if (this.count == 6){
+            this.rank = 1;
+        }
+        else if (this.count == 5 && this.bonusCount == 1){
+            this.rank = 2;
+        }
+        else if (this.count == 5){
+            this.rank = 3;
+        }
+        else if (this.count == 4){
+            this.rank = 4;
+        }
+        else if (this.count == 3){
+            this.rank = 5;
+        }
+        else this.rank = 6;
+        return this.rank;
+    }
+
+    public String getPrize(){
+        Prize prize = new Prize();
+        return prize.getPrizeAmount(rank);
+    }
 }

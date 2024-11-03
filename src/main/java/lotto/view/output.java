@@ -1,9 +1,11 @@
 package lotto.view;
 
+import static lotto.constants.Output_Messages.MATCH_MESSAGE;
 import static lotto.view.input.printWhiteSpace;
 
 import java.util.List;
 import lotto.constants.Request_Messages;
+import lotto.controller.LottoController;
 import lotto.model.Lotto;
 
 public class output {
@@ -21,9 +23,16 @@ public class output {
         }
     }
 
-    public static void printBoughtLottos(int count, List<Lotto> Lottos){
-        printOutputTotalCount(count);
-        printLottos(Lottos);
+    public static void printBoughtLottos(LottoController lottoController){
         printWhiteSpace();
+        printOutputTotalCount(lottoController.getTotalCount());
+        printLottos(lottoController.getLottos());
+    }
+
+    public static void printWinCounts(List<Integer> winCounts){
+        printSummaryMessage();
+        for (int i = 0; i < winCounts.size() - 1; i++) {
+            System.out.println(MATCH_MESSAGE[i] + winCounts.get(i) + "개");
+        }
     }
 }

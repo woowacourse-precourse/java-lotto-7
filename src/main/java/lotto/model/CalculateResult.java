@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.view.output.printWinCounts;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CalculateResult {
@@ -8,9 +11,9 @@ public class CalculateResult {
     private final int bonusNumber;
     private final List<SingleResult> results;
 
-    public CalculateResult(Lotto winningLotto, int bonusNumber) {
+    public CalculateResult(WinningLotto winningLotto) {
         this.winningLottoNumbers = winningLotto.getNumbers();
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = winningLotto.getBonusNumber();
         this.results = new ArrayList<>();
     }
 
@@ -25,6 +28,7 @@ public class CalculateResult {
         if (numbers.contains(this.bonusNumber)) {
             result.bonusCountUp();
         }
+        result.getRank();
         return result;
     }
 
@@ -34,7 +38,17 @@ public class CalculateResult {
         }
     }
 
-    public List<SingleResult> getResults(){
-        return this.results;
+    public List<Integer> getWinCounts(){
+        List<Integer> winCounts = new ArrayList<>(Collections.nCopies(6, 0));
+        for (SingleResult singleResult : this.results) {
+            int rank = singleResult.getRank();
+            winCounts.set(rank - 1, winCounts.get(rank - 1) + 1);
+        }
+        return winCounts;
+    }
+
+    public void getTotalResult(){
+        List<Integer> winCounts = getWinCounts();
+        printWinCounts(winCounts);
     }
 }

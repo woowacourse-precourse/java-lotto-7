@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.LottoController;
 
 public class lottoDraw {
     public static List<Integer> pickNumbers(){
@@ -12,11 +13,11 @@ public class lottoDraw {
         return new Lotto(pickNumbers());
     }
 
-    public static List<Lotto> drawLottos(int count){
+    public static void drawAndSetLottos(LottoController lottoController){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < count; i++){
+        for(int i = 0; i < lottoController.getTotalCount(); i++){
             lottos.add(drawLotto());
         }
-        return lottos;
+        lottoController.setLottos(lottos);
     }
 }

@@ -13,7 +13,18 @@ import lotto.model.Lotto;
 import lotto.constants.Error_Messages;
 import lotto.model.WinningLotto;
 
-public class lottoController {
+public class LottoController {
+    private int totalCount;
+    private List<Lotto> lottos;
+
+    public LottoController() {
+        this.totalCount = 0;
+        this.lottos = new ArrayList<Lotto>();
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
     public static int checkTotalAmountIfValid(int totalAmount) {
         if (totalAmount <= 0)
             throw new IllegalArgumentException(Error_Messages.INPUT_NOT_POSITIVE_INT);
@@ -26,15 +37,23 @@ public class lottoController {
         }
     }
 
-    public static int totalCount(){
+    public static void setTotalCount(LottoController lottoController){
         int totalCount = readTotalAmount();
         try{
-            checkTotalAmountIfValid(totalCount);
+            totalCount = checkTotalAmountIfValid(totalCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            totalCount();
+            setTotalCount(lottoController);
         }
-        return totalCount;
+        lottoController.totalCount = totalCount;
+    }
+
+    public int getTotalCount() {
+        return this.totalCount;
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
     }
 
     public static List<Integer> changeStringListToIntList(List<String> stringList) {
@@ -89,10 +108,10 @@ public class lottoController {
         winningLotto.setBonusNumber(bonusNumber);
     }
 
-    public static void getSummary(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        CalculateResult calculator = new CalculateResult(winningLotto, bonusNumber);
-        calculator.calculateMatches(lottos);
-//        calculator.getTotalResult();
+    public static void getSummary(LottoController lottoController, WinningLotto winningLotto) {
+        CalculateResult calculator = new CalculateResult(winningLotto);
+        calculator.calculateMatches(lottoController.getLottos());
+        calculator.getTotalResult();
     }
 }
 

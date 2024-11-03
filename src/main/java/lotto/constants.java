@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class constants {
     public static class Request_Messages{
         public static final String INPUT_TOTAL_AMOUNT = "구입금액을 입력해 주세요.";
@@ -17,10 +20,12 @@ public class constants {
         public static final String DUPLICATE_ERROR = "[ERROR] 번호는 중복되면 안됩니다.";
     }
     public static class Output_Messages{
-        public static final String THREE_MATCH = "3개 일치 (5,000원) - ";
-        public static final String FOUR_MATCH = "4개 일치 (50,000원) - ";
-        public static final String FIVE_MATCH = "5개 일치 (1,500,000원) - ";
-        public static final String FIVE_MATCH_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
-        public static final String SIX_MATCH = "6개 일치 (2,000,000,000원) - ";
+        public static final String[] MATCH_MESSAGE = {
+                "3개 일치 (5,000원) - ",
+                "4개 일치 (50,000원) - ",
+                "5개 일치 (1,500,000원) - ",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
+                "6개 일치 (2,000,000,000원) - "
+        };
     }
 }
