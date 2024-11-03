@@ -1,8 +1,11 @@
 package lotto.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumber;
@@ -12,12 +15,16 @@ public class WinningNumberService {
     private final WinningNumber winningNumber;
 
 
-    public WinningNumberService(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
+    public WinningNumberService(List<Lotto> lottos, String winningNumber, int bonusNumber) {
         this.lottos = lottos;
         this.winningNumber = createWinningNumber(winningNumber, bonusNumber);
     }
 
-    private WinningNumber createWinningNumber(List<Integer> winningNumber, int bonusNumber) {
+    private WinningNumber createWinningNumber(String winningNumbers, int bonusNumber) {
+        List<Integer> winningNumber = Arrays.stream(winningNumbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
         return new WinningNumber(winningNumber, bonusNumber);
     }
 
