@@ -67,4 +67,34 @@ public class LottoDraw {
         }
         return null;
     }
+
+    private static boolean validateBonusNumber(List<Integer> bonusNumber, Lotto winningNumbers) {
+        try {
+            validateBonusNumberSize(bonusNumber);
+            validateBonusNumberRange(bonusNumber.get(0));
+            validateBonusNumberDuplication(bonusNumber.get(0), winningNumbers);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    private static void validateBonusNumberSize(List<Integer> bonusNumber) {
+        if (bonusNumber.size() != 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개만 입력해야 합니다.");
+        }
+    }
+
+    private static void validateBonusNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수이어야 합니다.");
+        }
+    }
+
+    private static void validateBonusNumberDuplication(int number, Lotto winningNumbers) {
+        if (winningNumbers.getNumbers().contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
 }
