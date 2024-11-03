@@ -11,36 +11,48 @@ public class InputView {
 
     public static int inputLottoAmount(){
 
-        int lottoAmount = Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
 
-        try {
-            Validator.validateLottoAmountIsPositiveAndDivisibleByThousand(lottoAmount);
+                int lottoAmount = Integer.parseInt(Console.readLine());
+                Validator.validateLottoAmountIsPositiveAndDivisibleByThousand(lottoAmount);
 
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+                return lottoAmount;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return lottoAmount;
 
     }
 
     public static List<Integer> inputLottoWinningNumbers(){
 
-        List<Integer> lottoWinningNumbers = Validator.validateWinningNumberSeparatorAndNotNumber(Console.readLine());
+        while (true) {
+            try {
 
-        try {
-            Validator.validateAllWinningNumbers(lottoWinningNumbers);
+                List<Integer> lottoWinningNumbers = Validator.validateWinningNumberSeparatorAndNotNumber(Console.readLine());
+                Validator.validateAllWinningNumbers(lottoWinningNumbers);
 
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+                return lottoWinningNumbers;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return lottoWinningNumbers;
     }
 
     public static Integer inputLottoBonusNumber(){
 
-        return Validator.validateSingleBonusNumber(Console.readLine());
+        while (true) {
+            try {
+
+                return Validator.validateSingleBonusNumber(Console.readLine());
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
