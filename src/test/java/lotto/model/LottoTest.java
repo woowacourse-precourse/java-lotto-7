@@ -20,4 +20,15 @@ class LottoTest {
         Assertions.assertThat(lotto).isNotNull();
     }
 
+    @Test
+    @DisplayName("로또 번호가 6개가 아닌 경우 예외가 발생한다.")
+    void should_ThrowException_When_NotSixNumbers() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        // when, then
+        Assertions.assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 번호는 6개여야 합니다.");
+    }
+
 }
