@@ -1,4 +1,4 @@
-package lotto.system.input;
+package lotto.threaed;
 
 import java.util.concurrent.BlockingQueue;
 import lotto.system.message.Message;

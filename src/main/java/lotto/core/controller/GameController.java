@@ -22,6 +22,7 @@ public class GameController {
 
     private final InputController inputController;
     private final OutputView outputView;
+    private static volatile GameController instance;
 
     private GameController(InputController inputController, OutputView outputView,SystemConfig config) {
         this.inputController = inputController;
@@ -30,10 +31,17 @@ public class GameController {
         this.user = new User();
         this.systemConfig = config;
     }
-    public static GameController initialize() {
-        SystemConfig config = SystemConfig.getInstance();
-        OutputView outPutView  = new OutputView(config.getOutputMessageQueue());
-        return new GameController(new InputController(outPutView),outPutView,config);
+    public static GameController getInstance() {
+        if (instance == null) {
+            synchronized (GameController.class) {
+                if (instance == null) {
+                    SystemConfig config = SystemConfig.getInstance();
+                    OutputView outPutView = new OutputView(config.getOutputMessageQueue());
+                    instance = new GameController(new InputController(outPutView), outPutView, config);
+                }
+            }
+        }
+        return instance;
     }
 
     public void run() {
