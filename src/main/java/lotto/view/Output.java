@@ -32,7 +32,7 @@ public class Output {
     }
 
     public static void yield(double yield) {
-        print(String.format("총 수익률은 %.2f%%입니다.\n", yield));
+        print(String.format("총 수익률은 %.1f%%입니다.\n", yield));
     }
 
     private static String getFormat(WinningKind kind) {
