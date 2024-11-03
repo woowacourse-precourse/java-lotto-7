@@ -9,9 +9,9 @@ public class WinningNumbersInputHandler {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     public static List<Integer> promptGetWinningNumbers() {
-        System.out.println("당첨 번호를 입력해주세요.");
-        String input = Console.readLine();
         while (true) {
+            System.out.println("당첨 번호를 입력해주세요.");
+            String input = Console.readLine();
             try {
                 return validateWinningNumbers(input);
             } catch (IllegalArgumentException e) {

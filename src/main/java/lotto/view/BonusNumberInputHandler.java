@@ -9,9 +9,15 @@ public class BonusNumberInputHandler {
     }
 
     public static int promptGetBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        return validateBonusNumber(input);
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                return validateBonusNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int validateBonusNumber(String input) {
