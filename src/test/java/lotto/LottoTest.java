@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -33,5 +34,15 @@ class LottoTest {
                 .hasMessageContaining("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
+    @DisplayName("로또 번호를 올바르게 반환한다.")
+    @Test
+    void 로또_번호를_올바르게_반환한다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+
+        List<Integer> returnedNumbers = lotto.getNumbers();
+
+        assertThat(returnedNumbers).isEqualTo(numbers);
+    }
 
 }
