@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.Rank;
 import lotto.dto.FormattedTickets;
-import lotto.utils.PrizeFormatter;
 import lotto.utils.RankPrizeFormatter;
 
 import java.math.BigDecimal;
