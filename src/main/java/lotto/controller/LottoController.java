@@ -25,7 +25,7 @@ public class LottoController {
         OutputView.inputHowMuchBuy();
         String budget = InputView.input();
         lottoService.validateBudget(budget);
-        LottoGame lottoGame = lottoService.constructLottoGame(budget);
+        LottoGame lottoGame = lottoService.createLottoGame(budget);
 
         OutputView.outputHowManyBuy(lottoGame.getLottos().size());
         List<Lotto> lottos = lottoGame.getLottos();
@@ -38,9 +38,9 @@ public class LottoController {
         OutputView.inputBonusNumber();
         String bonusNumber = InputView.input();
 
-        lottoService.validateLottoNumbers(lottoNumbers, bonusNumber);
+        lottoService.validateLottoInput(lottoNumbers, bonusNumber);
         Integer bonus = Parse.parseInteger(bonusNumber);
-        CustomLotto customLotto = lottoService.constructCustomLotto(lottoNumbers, bonus);
+        CustomLotto customLotto = lottoService.createCustomLotto(lottoNumbers, bonus);
         lottoGame.setCustomLotto(customLotto);
 
 

@@ -81,7 +81,7 @@ class ValidatorTest {
         LottoService lottoService = new LottoService();
 
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            lottoService.constructCustomLotto(lottoNumbers, bonus);
+            lottoService.createCustomLotto(lottoNumbers, bonus);
         });
 
         assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
@@ -99,7 +99,7 @@ class ValidatorTest {
         LottoService lottoService = new LottoService();
 
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> {
-            lottoService.constructCustomLotto(lottoNumbers, bonus);
+            lottoService.createCustomLotto(lottoNumbers, bonus);
         });
 
         assertThat(illegalArgumentException.getMessage()).isEqualTo(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
