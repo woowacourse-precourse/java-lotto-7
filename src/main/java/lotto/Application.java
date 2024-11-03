@@ -23,15 +23,7 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
-        int count = countLotto(money);
-        outputCount(count);
-
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers = randomNumbers();
-            Lotto lotto = new Lotto(numbers);
-            lottoList.add(lotto);
-        }
-        outputnumbers(lottoList);
+        lottoPurchase();
 
         while (true) {
             try {
@@ -59,6 +51,29 @@ public class Application {
         profitRateResult(money, result.totalWinningPrize());
     }
 
+    private static void lottoPurchase() {
+        int money = getMoney();
+        exception(money);
+        int count = countLotto(money);
+        outputCount(count);
+        List<Lotto> lottoList = generateLotto(count);
+        outputnumbers(lottoList);
+    }
+
+    private static List<Lotto> generateLotto(int count) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = randomNumbers();
+            Lotto lotto = new Lotto(numbers);
+            lottoList.add(lotto);
+        }
+        return lottoList;
+    }
+
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+
     private static int getMoney() {
         System.out.println("로또 구매 금액을 입력하세요.");
         try {
@@ -78,7 +93,7 @@ public class Application {
     }
 
     private static int countLotto(int money) {
-        return money / 1000;
+        return money / LOTTO_PRICE;
     }
 
     private static void outputCount(int count) {
@@ -125,7 +140,7 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
 
 
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
         if (winningNumbers.contains(bonusNumber)) {
@@ -137,30 +152,47 @@ public class Application {
     private static LottoResult calculateResult(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
         LottoResult result = new LottoResult();
 
-        for (int i = 0; i < lottoList.size(); i++) {
-            Lotto lotto = lottoList.get(i);
-
-            int matchCount = 0;
-            for (int j = 0; j < lotto.getNumbers().size(); j++) {
-                if (winningNumbers.contains(lotto.getNumbers().get(j))) {
-                    matchCount++;
-                }
+        for (Lotto lotto : lottoList) {
+            int matchCount = countMatches(lotto, winningNumbers);
+            if (matchCount > 0) {
+                applyMatchResult(result, matchCount, isBonusMatched(lotto, bonusNumber));
             }
-
-            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-            result.winningResult(matchCount, bonusMatch);
         }
         return result;
+    }
+
+    private static void applyMatchResult(LottoResult result, int matchCount, boolean bonusMatch) {
+        result.winningResult(matchCount, bonusMatch);
+    }
+
+    private static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
+        int matchCount = 0;
+
+        for (int number : lotto.getNumbers()) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    private static boolean isBonusMatched(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     private static void outputResult(LottoResult result) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + result.getCountOf3Match() + "개");
-        System.out.println("4개 일치 (50,000원) - " + result.getCountOf4Match() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result.getCountOf5Match() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getCountOf5MatchAndBonus() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountOf5MatchAndBonus() + "개");
+        printWinningCount("3개 일치 (5,000원)", result.getCountOf3Match());
+        printWinningCount("4개 일치 (50,000원)", result.getCountOf4Match());
+        printWinningCount("5개 일치 (1,500,000원)", result.getCountOf5Match());
+        printWinningCount("5개 일치, 보너스 볼 일치 (30,000,000원)", result.getCountOf5MatchAndBonus());
+        printWinningCount("6개 일치 (2,000,000,000원)", result.getCountOf6Match());
+    }
+
+    private static void printWinningCount(String message, int count) {
+        System.out.println(message + " - " + count + "개");
     }
 
     private static void profitRateResult(double money, double winningPrize) {
