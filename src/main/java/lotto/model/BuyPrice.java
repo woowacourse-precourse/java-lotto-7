@@ -11,6 +11,7 @@ public class BuyPrice {
         String trimPrice = inputPrice.replaceAll("\\s+", "");
         containStrValidation(trimPrice);
         devideThousandValidation(trimPrice);
+        checkZeroTest(trimPrice);
         this.price = Integer.parseInt(trimPrice);
     }
 
@@ -24,6 +25,13 @@ public class BuyPrice {
         Integer parsePrice = Integer.parseInt(inputPrice);
         if (parsePrice % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 잔돈이 없습니다. 1000원 단위에 맞춰 입력해주세요.");
+        }
+    }
+
+    private void checkZeroTest(String inputPrice) {
+        Integer parsePrice = Integer.parseInt(inputPrice);
+        if (parsePrice == 0) {
+            throw new IllegalArgumentException("[ERROR] 금액을 내셔야 구매가 가능합니다.");
         }
     }
 
