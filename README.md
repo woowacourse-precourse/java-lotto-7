@@ -166,6 +166,8 @@
   - 로또 수익률을 계산한다.
 - displayLottoResultTitle
   - 로또 결과 제목을 출력한다.
+- displayLottoResultState
+  - 로또 결과를 출력한다.
 
 ## 로직
 

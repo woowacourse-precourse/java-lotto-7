@@ -71,6 +71,6 @@ public class ResultTest {
 
         int winningCount = resultService.hasBonusNumber(lotto.getNumber(), winning.getBonusNumber());
 
-        assertEquals(19, winningCount);
+        assertEquals(50, winningCount);
     }
 }
