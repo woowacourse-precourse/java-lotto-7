@@ -49,7 +49,7 @@ public class WinningNumbers {
     private void setBonusNumber() {
         while (true) {
             try {
-                int bonusNumber = Integer.parseInt(this.inputNumberString("보너스 번호를 입력해 주세요."));
+                int bonusNumber = InputValidationUtils.parseInteger(this.inputNumberString("보너스 번호를 입력해 주세요."));
                 InputValidationUtils.validateBonusNumber(
                     bonusNumber, this.winningNumbers.getNumbers()
                 );
