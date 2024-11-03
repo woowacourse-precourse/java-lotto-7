@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoNumberPrintFormat;
+import lotto.model.lotto.constant.LottoNumberPrintFormat;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.LottoPublisher;
 import lotto.number_generator.NumberGenerator;

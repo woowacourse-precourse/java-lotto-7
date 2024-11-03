@@ -1,7 +1,7 @@
 package lotto.utils;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoNumber;
+import lotto.model.lotto.constant.LottoNumber;
 
 import java.util.List;
 import java.util.stream.Collectors;

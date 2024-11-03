@@ -1,4 +1,4 @@
-package lotto.model.lotto;
+package lotto.model.lotto.constant;
 
 public final class LottoNumber {
 
