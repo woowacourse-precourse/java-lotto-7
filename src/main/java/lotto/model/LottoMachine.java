@@ -10,13 +10,14 @@ public class LottoMachine {
 
     private List<Lotto> lottos = new ArrayList<>();
 
-    public void purchaseLottos(int purchaseAmount) {
+    public List<Lotto> purchaseLottos(int purchaseAmount) {
         int count = purchaseAmount / PURCHASE_AMOUNT_UNITS;
 
         for (int i = 0; i < count; i ++) {
             Lotto lotto = new Lotto(LottoNumberGenerator.generate());
             lottos.add(lotto);
         }
+        return lottos;
     }
 
     public List<Lotto> getLottos() {
