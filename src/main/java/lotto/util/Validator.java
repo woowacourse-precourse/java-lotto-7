@@ -28,59 +28,82 @@ public class Validator {
     public static int validatePurchaseAmount(String input) {
         try {
             long purchaseAmount = Long.parseLong(input);
-
-            if (purchaseAmount > Integer.MAX_VALUE) {
-                throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_LARGE.getMessage());
-            } else if (purchaseAmount < PURCHASE_AMOUNT_MINIMUM.getValue()) {
-                throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_SMALL.getMessage());
-            } else if (purchaseAmount % PURCHASE_AMOUNT_UNIT.getValue() != ZERO_VALUE.getValue()) {
-                throw new IllegalArgumentException(PURCHASE_AMOUNT_UNIT_EXCEPTION.getMessage());
-            }
-
+            validateMaximum(purchaseAmount);
+            validateMinimum(purchaseAmount);
+            validateUnit(purchaseAmount);
             return (int) purchaseAmount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_FORMAT_EXCEPTION.getMessage());
         }
     }
 
+    private static void validateMaximum(long purchaseAmount) {
+        if (purchaseAmount > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_LARGE.getMessage());
+        }
+    }
+
+    private static void validateMinimum(long purchaseAmount) {
+        if (purchaseAmount < PURCHASE_AMOUNT_MINIMUM.getValue()) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_TOO_SMALL.getMessage());
+        }
+    }
+
+    private static void validateUnit(long purchaseAmount) {
+        if (purchaseAmount % PURCHASE_AMOUNT_UNIT.getValue() != ZERO_VALUE.getValue()) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_UNIT_EXCEPTION.getMessage());
+        }
+    }
+
     public static List<Integer> validateWinningNumbers(String input) {
         String[] winningNumbers = input.split(DELIMITER);
-
-        Set<String> unique = new HashSet<>(Arrays.asList(winningNumbers));
-        if (unique.size() != WINNING_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION.getMessage());
-        }
-
-        boolean anyMatch = Arrays.stream(winningNumbers)
-                .mapToInt(Integer::parseInt)
-                .anyMatch(number ->
-                        number < LOTTO_NUMBER_MINIMUM.getValue() ||
-                        number > LOTTO_NUMBER_MAXIMUM.getValue());
-        if (anyMatch) {
-            throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION.getMessage());
-        }
-
+        validateSize(winningNumbers);
+        validateRange(winningNumbers);
         return Arrays.stream(winningNumbers)
                 .map(Integer::parseInt)
                 .toList();
     }
 
+    private static void validateSize(String[] winningNumbers) {
+        Set<String> unique = new HashSet<>(Arrays.asList(winningNumbers));
+        if (unique.size() != WINNING_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateRange(String[] winningNumbers) {
+        boolean anyMatch = Arrays.stream(winningNumbers)
+                .mapToInt(Integer::parseInt)
+                .anyMatch(number ->
+                        number < LOTTO_NUMBER_MINIMUM.getValue() ||
+                        number > LOTTO_NUMBER_MAXIMUM.getValue()
+                );
+        if (anyMatch) {
+            throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION.getMessage());
+        }
+    }
+
     public static int validateBonusNumber(List<Integer> winningNumbers, String input) {
         try {
             int bonusNumber = Integer.parseInt(input);
-
-            if (bonusNumber < LOTTO_NUMBER_MINIMUM.getValue() ||
-                    bonusNumber > LOTTO_NUMBER_MAXIMUM.getValue()) {
-                throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
-            }
-
-            if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
-            }
-
+            validateRange(bonusNumber);
+            validateDuplicate(winningNumbers, bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(BONUS_NUMBER_FORMAT_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateRange(int bonusNumber) {
+        if (bonusNumber < LOTTO_NUMBER_MINIMUM.getValue() ||
+                bonusNumber > LOTTO_NUMBER_MAXIMUM.getValue()) {
+            throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }
