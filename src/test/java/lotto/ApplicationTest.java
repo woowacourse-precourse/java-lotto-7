@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,7 +51,7 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
         });
     }
 
