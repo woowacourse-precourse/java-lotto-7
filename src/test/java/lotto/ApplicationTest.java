@@ -53,7 +53,32 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 예외_테스트2(){
+        assertSimpleTest(()->{
+            runException("ABC");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+    @Test
+    void 보너스_번호_범위_테스트(){
+        assertSimpleTest(()->{
+            runException("8000","1,2,3,4,5,6","46");
+            assertThat(output().contains(ERROR_MESSAGE));
 
+        });
+    }
+    @Test
+    void 예외_테스트3() {
+        System.out.println("테스트 시작");
+        try {
+            runException("8000","1,2,3,4,5,6","46");
+        } catch (Exception e) {
+            System.out.println("예외 발생: " + e.getMessage());
+        }
+        System.out.println("출력 확인: " + output());
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});
