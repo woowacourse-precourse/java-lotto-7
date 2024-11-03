@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.winningLotto.DuplicatedWinningNumberException;
+import lotto.exception.winningLotto.InvalidRangeWinningNumberException;
 
 public class WinningLotto {
     private final Lotto winningLotto;
@@ -17,7 +19,7 @@ public class WinningLotto {
 
     private void validateBonusNumberInRange(Integer bonusNumber) {
         if (bonusNumber <= 0 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 정수여야 합니다.");
+            throw new InvalidRangeWinningNumberException();
         }
     }
 
@@ -25,7 +27,7 @@ public class WinningLotto {
         Set<Integer> lottoNumbers = new HashSet<>(winningNumber);
         lottoNumbers.add(bonusNumber);
         if (lottoNumbers.size() != 7) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다");
+            throw new DuplicatedWinningNumberException();
         }
     }
 
