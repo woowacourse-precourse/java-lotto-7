@@ -3,11 +3,11 @@ package lotto.util;
 public class Parser {
     private Parser() {}
 
-    public static int stringParseToInt(String input) {
+    public static int stringToInt(String input) {
         return Integer.parseInt(input);
     }
 
-    public static String[] stringParseToArray(String input) {
+    public static String[] stringToArray(String input) {
         return input.trim().split(",");
     }
 }

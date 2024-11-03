@@ -12,7 +12,7 @@ public class InputView extends InputReader {
         String inputLottoMoney = inputMessage();
         validateInputLottoMoney(inputLottoMoney);
 
-        return Parser.stringParseToInt(inputLottoMoney);
+        return Parser.stringToInt(inputLottoMoney);
     }
 
     private void validateInputLottoMoney(String inputLottoMoney) {
@@ -25,8 +25,8 @@ public class InputView extends InputReader {
         String inputWinningLotto = inputMessage();
         validateInputWinningLotto(inputWinningLotto);
 
-        return Arrays.stream(Parser.stringParseToArray(inputWinningLotto))
-                .map(Parser::stringParseToInt)
+        return Arrays.stream(Parser.stringToArray(inputWinningLotto))
+                .map(Parser::stringToInt)
                 .toList();
     }
 
