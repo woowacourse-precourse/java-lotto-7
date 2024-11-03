@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Input {
@@ -51,6 +52,12 @@ public class Input {
 			if (!numbers.add(s)) {
 				throw new IllegalArgumentException("[ERROR] 당첨번호에 중복이 있을 수 없습니다.");
 			}
+		}
+	}
+
+	public static void validateDuplicateBonusNumber(List<Integer> numbers, String input) {
+		if (numbers.contains(Integer.parseInt(input))) {
+			throw new IllegalArgumentException("[ERROR] 보너스번호와 당첨번호가 중복될 수 없습니다.");
 		}
 	}
 }
