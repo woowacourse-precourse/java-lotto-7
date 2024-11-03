@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.*;
 
 import static lotto.constants.LottoConstants.MAX_NUMBER;
 import static lotto.constants.LottoConstants.MIN_NUMBER;
-import static lotto.constants.LottoErrorMessage.INVALID_NUMBER_SIZE;
-import static lotto.constants.LottoErrorMessage.NUMBER_OUT_OF_RANGE;
+import static lotto.constants.LottoErrorMessage.*;
 
 public class Lotto {
 
@@ -14,7 +13,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateInRange(numbers);
-        this.numbers = numbers;
+        validateDuplicates(numbers);
+
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -29,6 +31,15 @@ public class Lotto {
                 throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
             }
         });
+    }
+
+    private void validateDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueSet = new HashSet<>();
+        for (Integer i : numbers) {
+            if (!uniqueSet.add(i)) {
+                throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
+            }
+        }
     }
 
     @Override

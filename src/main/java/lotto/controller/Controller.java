@@ -25,7 +25,7 @@ public class Controller {
                 totalAmount = Integer.parseInt(inputTotalAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
 
@@ -45,7 +45,7 @@ public class Controller {
                 jackpotNumbers.setLotto(jackpot);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
 
@@ -57,7 +57,7 @@ public class Controller {
                 jackpotNumbers.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
 

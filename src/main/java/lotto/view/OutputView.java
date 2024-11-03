@@ -36,4 +36,8 @@ public abstract class OutputView {
     public static void lineBreaking() {
         System.out.println();
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -23,6 +23,14 @@ public class JackpotNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private static void validateInRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
@@ -33,13 +41,5 @@ public class JackpotNumbers {
         if (lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
         }
-    }
-
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

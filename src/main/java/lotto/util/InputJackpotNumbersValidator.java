@@ -18,9 +18,11 @@ public class InputJackpotNumbersValidator implements Validator {
     }
 
     private static void validateUniqueNumbers(List<Integer> intList) {
-        Set<Integer> uniqueSet = new HashSet<>(intList);
-        if (uniqueSet.size() != 6) {
-            throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
+        Set<Integer> uniqueSet = new HashSet<>();
+        for (Integer i : intList) {
+            if (!uniqueSet.add(i)) {
+                throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
+            }
         }
     }
 }
