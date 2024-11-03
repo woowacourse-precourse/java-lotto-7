@@ -1,7 +1,7 @@
 package lotto.utils;
 
 import java.math.BigDecimal;
-    import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -61,4 +61,13 @@ public class UtilsTest {
 
         assertTrue(Utils.allElementsAreDigits(input));
     }
+
+    @DisplayName("문자열 배열의 크기가 x개 인지 확인한다.")
+    @Test
+    void checkSizeEqual() {
+        String[] input = {"1", "2", "3", "4", "5", "6"};
+
+        assertTrue(Utils.checkSizeEqual(input, 6));
+    }
+
 }
