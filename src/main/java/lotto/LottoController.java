@@ -57,7 +57,8 @@ public class LottoController {
     private BonusNumber requireBonusNumber(WinningNumbers winningNumbers) {
         outputView.printRequireBonusNumber();
         BonusNumber bonusNumber = new BonusNumber(inputView.readBonusNumber());
-        bonusNumber.validateBonusNumber(winningNumbers);
+        bonusNumber.validateBonusNumberInRange();
+        bonusNumber.validateBonusNumberNotDuplicate(winningNumbers);
         return bonusNumber;
     }
 
