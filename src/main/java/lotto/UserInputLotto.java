@@ -59,4 +59,8 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
     private void validatePurchaseAmount(int amount) {
         ErrorMessage.INVALID_PURCHASE_AMOUNT.validateAmount(amount);
     }
+
+    private void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
