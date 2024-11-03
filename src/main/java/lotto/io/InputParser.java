@@ -12,7 +12,7 @@ public class InputParser {
         try {
             return Long.parseLong(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.AMOUNT_FORMAT_ERROR.getValue());
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_FORMAT_ERROR.format());
         }
     }
 
@@ -25,7 +25,7 @@ public class InputParser {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getValue());
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.format());
         }
     }
 }
