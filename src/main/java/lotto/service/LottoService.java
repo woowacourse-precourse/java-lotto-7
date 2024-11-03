@@ -11,12 +11,6 @@ import java.util.List;
 
 public class LottoService {
 
-    private final Validator validator;
-
-    public LottoService(){
-        this.validator = new Validator();
-    }
-
     public LottoGame constructLottoGame(String budget) {
         try{
             int money = Parse.parseInteger(budget);
@@ -27,14 +21,14 @@ public class LottoService {
     }
 
     public void validateBudgetMoney(String budget){
-        validator.validateBudget(budget);
+        Validator.validateBudget(budget);
     }
 
     public void validateLottoNumbers(String lottoNumbers, String bonusNumber) {
         try{
-            validator.validateLottoNumbers(lottoNumbers);
+            Validator.validateLottoNumbers(lottoNumbers);
             int parseNumber = Parse.parseInteger(bonusNumber);
-            validator.validateIntegerRange(parseNumber);
+            Validator.validateIntegerRange(parseNumber);
         }catch (IllegalArgumentException err){
             throw err;
         }
@@ -67,4 +61,7 @@ public class LottoService {
         return sum;
     }
 
+    public void calculateLottoRank(LottoGame lottoGame) {
+        lottoGame.calculateLottoRank();
+    }
 }
