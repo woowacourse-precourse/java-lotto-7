@@ -3,6 +3,8 @@ package lotto;
 import lotto.money.Money;
 import lotto.store.Lotto;
 import lotto.store.LottoStore;
+import lotto.winner.LottoRank;
+import lotto.winner.WinningNumbers;
 
 import java.util.List;
 
@@ -18,4 +20,9 @@ public class LottoBuyer {
         this.seedMoney = seedMoney;
     }
 
+    public List<LottoRank> result(WinningNumbers winningNumbers) {
+        return myLotto.stream()
+                .map(winningNumbers::rank)
+                .toList();
+    }
 }

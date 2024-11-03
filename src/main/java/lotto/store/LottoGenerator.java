@@ -15,7 +15,7 @@ public class LottoGenerator {
         return new Lotto(toLottoNumbers(generateRandomNumbers()));
     }
 
-    public Lotto manual(List<Integer> pick) {
+    public static Lotto manual(List<Integer> pick) {
         return new Lotto(toLottoNumbers(pick));
     }
 
@@ -27,7 +27,7 @@ public class LottoGenerator {
         );
     }
 
-    private List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
+    private static List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
         return numbers.stream().map(LottoNumber::new).toList();
     }
 }

@@ -38,7 +38,7 @@ class LottoGeneratorTest {
         List<Integer> testNumbers = List.of(1, 2, 3, 4, 5, 6);
         numbersGenerator.setTestRandomNumbers(testNumbers);
 
-        Lotto random = generator.manual(testNumbers);
+        Lotto random = LottoGenerator.manual(testNumbers);
 
         assertThat(random.hasSameNumber(toLotto(testNumbers))).isTrue();
     }
@@ -47,7 +47,7 @@ class LottoGeneratorTest {
     @Test
     void test3() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> generator.manual(List.of(1, 2, 3, 4, 5, 100))
+                () -> LottoGenerator.manual(List.of(1, 2, 3, 4, 5, 100))
         );
     }
 
