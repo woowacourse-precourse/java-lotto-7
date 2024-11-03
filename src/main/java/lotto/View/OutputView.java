@@ -1,10 +1,14 @@
-package lotto;
+package lotto.View;
 
 import lotto.message.NotifyMessage;
 import lotto.message.ResultMessage;
 
 public class OutputView {
     private static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
+
+    public static void printBlankLine() {
+        System.out.println();
+    }
 
     public static void notifyEnterMoneyToBuy() {
         System.out.println(NotifyMessage.ENTER_MONEY_MESSAGE.getMessage());
