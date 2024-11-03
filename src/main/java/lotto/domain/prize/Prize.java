@@ -1,0 +1,16 @@
+package lotto.domain.prize;
+
+public class Prize {
+    private final Long id;
+    private final PrizeNumber prizeNumber;
+
+    public Prize(Long id, PrizeNumber prizeNumber) {
+        this.id = id;
+        this.prizeNumber = prizeNumber;
+    }
+
+    public Prize of(Long id, PrizeNumber prizeNumber) {
+        return new Prize(id, prizeNumber);
+    }
+
+}
