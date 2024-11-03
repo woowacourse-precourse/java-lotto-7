@@ -2,22 +2,17 @@ package lotto.application.ticket.config;
 
 
 import lotto.application.prize.repository.paymnet.PaymentWriteRepository;
+import lotto.application.ticket.controller.TicketController;
 import lotto.application.ticket.repository.TicketReadRepository;
 import lotto.application.ticket.repository.TicketWriteRepository;
-import lotto.application.ticket.view.input.TicketInputView;
-import lotto.application.ticket.view.output.TicketOutputView;
 
 public class TicketAppConfig {
-    private final ViewConfig viewConfig;
     private final ControllerConfig controllerConfig;
     private final ServiceConfig serviceConfig;
     private final RepositoryConfig repositoryConfig;
 
     public TicketAppConfig() {
-        this.viewConfig = new ViewConfig(
-                getTicketInputView(),
-                getTicketOutputView()
-        );
+
         this.repositoryConfig = new RepositoryConfig(
                 getTicketWriteRepository(),
                 getTicketReadRepository(),
@@ -36,16 +31,8 @@ public class TicketAppConfig {
         );
     }
 
-    public ControllerConfig getControllerConfig() {
-        return controllerConfig;
-    }
-
-    private TicketInputView getTicketInputView() {
-        return new TicketInputView();
-    }
-
-    private TicketOutputView getTicketOutputView() {
-        return new TicketOutputView();
+    public TicketController getTicketController() {
+        return controllerConfig.getTicketController();
     }
 
     private TicketWriteRepository getTicketWriteRepository() {
