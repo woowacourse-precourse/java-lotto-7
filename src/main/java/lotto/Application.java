@@ -1,9 +1,8 @@
 package lotto;
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static int budget_input() {
@@ -35,15 +34,18 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int budget = budget_input();
-
         List<Integer> winningNumber = new ArrayList<>();
         winningNumber = lotto_input();
-
         int bonusNumber = bonus_input();
 
+        Lotto winningLotto = new Lotto(winningNumber);
 
+        int numToBuy = budget / 1000;
+        LottoCollection lottoTickets = new LottoCollection(numToBuy);
 
-
+        for (Lotto lotto : lottoTickets.getTickets()) {
+            lotto.printLottery();
+        }
 
     }
 }
