@@ -15,11 +15,11 @@ public enum LottoPrize {
     private static final String describePrize = "%d개 일치%s (%s원)";
     private static final String additionalDescribeBonusPrize = ", 보너스 볼 일치";
 
-    private final long matchCount;
+    private final int matchCount;
     private final int prizeMoney;
     private final boolean isRequiredBonusNumber;
 
-    LottoPrize(long matchCount, int prizeMoney, boolean isRequiredBonusNumber) {
+    LottoPrize(int matchCount, int prizeMoney, boolean isRequiredBonusNumber) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.isRequiredBonusNumber = isRequiredBonusNumber;
@@ -33,7 +33,7 @@ public enum LottoPrize {
     }
 
     private static Predicate<LottoPrize> getPrizePredicate(long matchCount, boolean isRequiredBonusNumber) {
-        return prize -> prize.matchCount == matchCount && prize.isRequiredBonusNumber == isRequiredBonusNumber;
+        return prize -> prize.matchCount == matchCount && (!prize.isRequiredBonusNumber || isRequiredBonusNumber);
     }
 
     @Override
@@ -45,7 +45,7 @@ public enum LottoPrize {
         return describePrize.formatted(matchCount, "", formattedPrizeMoney);
     }
 
-    public int getPrizeMoney() {
+    public long getPrizeMoney() {
         return prizeMoney;
     }
 }
