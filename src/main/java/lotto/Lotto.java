@@ -87,4 +87,16 @@ public class Lotto {
         }
         return winLotto;
     }
+
+    public void printWinStatistics() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+
+    }
+
+    public void checkBonusNumber(List<Integer> winNumbers ,int bonusNumber) {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+    }
 }
