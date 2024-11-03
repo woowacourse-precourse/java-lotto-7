@@ -1,9 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -11,6 +14,103 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String PURCHASE_AMOUNT = (Randoms.pickUniqueNumbersInRange(1, 50, 1).getFirst() * 1000 + "");
+
+    // MARK: - read purchase amount test
+    @DisplayName("구매 금액에 정상 금액을 입력했을 경우")
+    @Test
+    void readPurchaseAmountSuccessTest() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT);
+            assertThat(output()).doesNotContain(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("구매 금액에 1000원보다 작은 금액을 입력했을 경우")
+    @Test
+    void readPurchaseAmountFailTest1() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("구매 금액에 문자를 입력했을 경우")
+    @Test
+    void readPurchaseAmountFailTest2() {
+        assertSimpleTest(() -> {
+            runException("1000j", PURCHASE_AMOUNT);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("구매 금액에 1000원 단위가 아닌 값을 입력했을 경우")
+    @Test
+    void readPurchaseAmountFailTest3() {
+        assertSimpleTest(() -> {
+            runException("1200");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    // MARK: - buy lottos test
+    @DisplayName("로또를 정상적으로 구매했을 경우")
+    @Test
+    void buyLottosSuccessTest() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT);
+            assertThat(output()).contains("개를 구매했습니다.");
+        });
+    }
+
+    // MARK: - read winning numbers test
+    @DisplayName("당첨 번호를 정상적으로 입력했을 경우")
+    @Test
+    void readWinningNumbersSuccessTest() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "1,2,3,4,5,6");
+            assertThat(output()).doesNotContain(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 범위를 벗어났을 경우")
+    @Test
+    void readWinningNumbersFailTest1() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "60,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아닌 경우")
+    @Test
+    void readWinningNumbersFailTest2() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "a,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 6개가 아닌 경우")
+    @Test
+    void readWinningNumbersFailTest3() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닌 경우")
+    @Test
+    void readWinningLottoBonusNumberFailTest1() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    // ---
 
     @Test
     void 기능_테스트() {
