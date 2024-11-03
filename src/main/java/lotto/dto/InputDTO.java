@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import lotto.exceptioin.InputException;
+
 import java.util.List;
 
 public class InputDTO {
@@ -7,9 +9,22 @@ public class InputDTO {
 
     private int bonusNumber;
 
-    private List<Integer> allNumbers;
-
     private int money;
+
+    private final InputException inputException = new InputException();
+
+    public InputDTO(List<Integer> winningNumbers, int bonusNumber, int money) {
+        // 입력값 검증
+        inputException.validateLottoNumbers(winningNumbers);
+        inputException.validateBonusNumber(bonusNumber);
+        inputException.validateMoney(money);
+
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+        this.money = money;
+    }
+
+    public InputDTO() {}
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
@@ -27,13 +42,6 @@ public class InputDTO {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getAllNumbers() {
-        return allNumbers;
-    }
-
-    public void setAllNumbers(List<Integer> allNumbers) {
-        this.allNumbers = allNumbers;
-    }
 
     public int getMoney() {
         return money;
