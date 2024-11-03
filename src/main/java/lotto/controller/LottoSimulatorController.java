@@ -7,6 +7,7 @@ import lotto.view.OutputView;
 public class LottoSimulatorController {
     private final InputView inputView;
     private final OutputView outputView;
+    private LottoSimulator lottoSimulator;
 
     public LottoSimulatorController() {
         inputView = new InputView();
@@ -19,7 +20,7 @@ public class LottoSimulatorController {
 
     private void issueLotto() {
         String money = inputView.readMoney();
-        LottoSimulator lottoSimulator = new LottoSimulator(money);
+        lottoSimulator = new LottoSimulator(money);
         lottoSimulator.buyRandomLotto();
         outputView.printLottoGroup(lottoSimulator.getPurchasedLotto());
     }
