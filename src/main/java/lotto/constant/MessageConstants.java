@@ -12,5 +12,5 @@ public class MessageConstants {
     public static final String STATISTICS_DIVIDER = "---";
     public static final String MATCH_RESULT_FORMAT = "%d개 일치 (%,d원) - %d개";
     public static final String MATCH_BONUS_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    public static final String TOTAL_RETURN_RATE = "총 수익률은 %s%입니다.";
+    public static final String TOTAL_RETURN_RATE = "총 수익률은 %s%%입니다.";
 }
