@@ -18,9 +18,9 @@ class LottoRankTest {
             "3, false, FIFTH",
             "2, false, NO_LUCK"
     })
-    void matchRank(int matchLottoCount, boolean bonusNumber, LottoRank lank) {
+    void matchRank(int numberMatchCount, boolean bonusNumberMatch, LottoRank lank) {
         //when
-        LottoRank lottoRank = LottoRank.matchRank(matchLottoCount, bonusNumber);
+        LottoRank lottoRank = LottoRank.matchRank(numberMatchCount, bonusNumberMatch);
 
         //then
         assertThat(lottoRank).isEqualTo(lank);

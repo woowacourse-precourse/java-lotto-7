@@ -8,9 +8,9 @@ public class LottoWinningStrategy implements WinningStrategy {
 
     @Override
     public LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
-        int matchLotto = winningNumbers.countMatchingNumbers(lotto);
-        boolean matchBonus = winningNumbers.isMatchBonusNumber(lotto);
+        int numberMatchCount = winningNumbers.countMatchingNumbers(lotto);
+        boolean bonusNumberMatch = winningNumbers.isMatchBonusNumber(lotto);
 
-        return LottoRank.matchRank(matchLotto, matchBonus);
+        return LottoRank.matchRank(numberMatchCount, bonusNumberMatch);
     }
 }
