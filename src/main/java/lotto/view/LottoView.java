@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.StatisticDto;
 import lotto.exception.LottoException.BonusNumberAlreadyIncludedWinningNumberException;
-import lotto.model.Lotto;
 import lotto.util.Converter;
 import lotto.util.InputValidator;
 import lotto.vo.BonusNumber;
@@ -22,28 +21,46 @@ public class LottoView {
     }
 
     public BuyLottoAmount promptBuyAmount() {
-        String amount = inputView.inputBuyAmount();
-        InputValidator.validateBuyLotteriesAmount(amount);
+        while (true) {
+            try {
+                String amount = inputView.inputBuyAmount();
+                InputValidator.validateBuyLotteriesAmount(amount);
 
-        return new BuyLottoAmount(Integer.parseInt(amount));
+                return new BuyLottoAmount(Integer.parseInt(amount));
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> promptWinningLotto() {
-        String numbers = inputView.inputWinningNumber();
-        InputValidator.validateWinningNumbers(numbers);
+        while (true) {
+            try {
+                String numbers = inputView.inputWinningNumber();
+                InputValidator.validateWinningNumbers(numbers);
 
-        return Converter.convertToIntgerList(numbers);
+                return Converter.convertToIntgerList(numbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     public BonusNumber promptBonusNumber(List<Integer> winningNumbers) {
-        String number = inputView.inputBonusNumber();
-        InputValidator.validateBonusNumber(number);
-        int bonusNumber = Integer.parseInt(number);
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new BonusNumberAlreadyIncludedWinningNumberException();
-        }
+        while (true) {
+            try {
+                String number = inputView.inputBonusNumber();
+                InputValidator.validateBonusNumber(number);
+                int bonusNumber = Integer.parseInt(number);
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new BonusNumberAlreadyIncludedWinningNumberException();
+                }
 
-        return new BonusNumber(bonusNumber);
+                return new BonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     public void displayTicketCount(TicketCount ticketCount) {
