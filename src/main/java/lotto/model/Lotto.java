@@ -3,7 +3,6 @@ package lotto.model;
 import lotto.dto.MatchInfo;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +10,12 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(String numbers) {
+        List<Integer> parsingLottoNumbers = parseLottoNumbers(numbers);
+        validate(parsingLottoNumbers);
+        this.numbers = parsingLottoNumbers;
     }
 
     public MatchInfo makeMatchInfo(Lotto userLotto, int bonusNumber) {
@@ -34,8 +39,32 @@ public class Lotto {
         return formatLottoNumber() + "\n";
     }
 
+    private List<Integer> parseLottoNumbers(String rawLottoNumbers) {
+        List<Integer> parsingNumbers = new ArrayList<>();
+        String[] lottoNumbers = rawLottoNumbers.split(",");
+
+        for (String lottoNumber : lottoNumbers) {
+            try {
+                parsingNumbers.add(Integer.parseInt(lottoNumber));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
+            }
+        }
+
+        return parsingNumbers;
+    }
+
+    private String formatLottoNumber() {
+        List<Integer> sortLottoNumbers = sortLottoNumbers();
+        return String.join(", ", Arrays.toString(sortLottoNumbers.toArray()));
+    }
+
+    private List<Integer> sortLottoNumbers() {
+        return numbers.stream().sorted().toList();
+    }
+
     public void checkBonusNumberDuple(int bonusNumber) {
-        if (numbers.contains(Integer.valueOf(bonusNumber))) {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
         }
     }
@@ -65,14 +94,5 @@ public class Lotto {
             }
             uniqueNumbers.add(number);
         }
-    }
-
-    private String formatLottoNumber() {
-        List<Integer> sortLottoNumbers = sortLottoNumbers();
-        return String.join(", ", Arrays.toString(sortLottoNumbers.toArray()));
-    }
-
-    private List<Integer> sortLottoNumbers() {
-        return numbers.stream().sorted().toList();
     }
 }

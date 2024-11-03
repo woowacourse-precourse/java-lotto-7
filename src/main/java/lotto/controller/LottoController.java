@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.dto.GeneratedLottoInfo;
 import lotto.dto.WinningStatistics;
-import lotto.dto.WinningLottoInfo;
+import lotto.model.Lotto;
 import lotto.model.UserLottoInfo;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
@@ -58,11 +58,25 @@ public class LottoController {
     }
 
     private WinningLotto generatedWinningLotto() {
-        return new WinningLotto(readWinningLottoInfo());
+        Lotto winningLotto = generatedWinningNumber();
+
+        while(true) {
+            try {
+                return new WinningLotto(winningLotto, readBonusNumber());
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
     }
 
-    private WinningLottoInfo readWinningLottoInfo() {
-        return new WinningLottoInfo(readWinningNumber(), readBonusNumber());
+    private Lotto generatedWinningNumber() {
+        while(true) {
+            try {
+                return new Lotto(readWinningNumber());
+            }catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e);
+            }
+        }
     }
 
     private String readWinningNumber() {

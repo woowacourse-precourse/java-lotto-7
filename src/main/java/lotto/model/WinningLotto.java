@@ -1,38 +1,18 @@
 package lotto.model;
 
-import lotto.dto.WinningLottoInfo;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class WinningLotto {
-    private Lotto winningLotto;
-    private int bonusNumber;
+    private final Lotto winningNumber;
+    private final int bonusNumber;
 
-    public WinningLotto(WinningLottoInfo winningLottoInfo) {
-        this.winningLotto = new Lotto(parseLottoNumbers(winningLottoInfo.winningLottoNums()));
+    public WinningLotto(Lotto winningNumber, int bonusNumber) {
+        this.winningNumber = winningNumber;
 
-        validateBonusNumber(winningLottoInfo.bonusNum());
-        this.bonusNumber = winningLottoInfo.bonusNum();
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public Ranking calculateRank(Lotto userLotto) {
-        return Ranking.calculateRanking(winningLotto.makeMatchInfo(userLotto, bonusNumber));
-    }
-
-    private List<Integer> parseLottoNumbers(String rawLottoNumbers) {
-        List<Integer> parsingNumbers = new ArrayList<>();
-        String[] lottoNumbers = rawLottoNumbers.split(",");
-
-        for (String lottoNumber : lottoNumbers) {
-            try {
-                parsingNumbers.add(Integer.parseInt(lottoNumber));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
-            }
-        }
-
-        return parsingNumbers;
+        return Ranking.calculateRanking(winningNumber.makeMatchInfo(userLotto, bonusNumber));
     }
 
     private void validateBonusNumber(int bonusNumber) {
@@ -40,6 +20,6 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
         }
 
-        winningLotto.checkBonusNumberDuple(bonusNumber);
+        winningNumber.checkBonusNumberDuple(bonusNumber);
     }
 }

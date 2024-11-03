@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.dto.GeneratedLottoInfo;
 import lotto.dto.WinningStatistics;
+import lotto.model.UserLottoInfo;
 import lotto.model.WinningLotto;
 
 public class LottoService {
@@ -10,7 +11,7 @@ public class LottoService {
         return userLottoInfo.getUserLottos();
     }
 
-    public WinningStatistics getWinningStatistics(WinningLotto winningLotto, lotto.model.UserLottoInfo userLottoInfo) {
+    public WinningStatistics getWinningStatistics(WinningLotto winningLotto, UserLottoInfo userLottoInfo) {
         return userLottoInfo.getWinningStatistics(winningLotto);
     }
 }

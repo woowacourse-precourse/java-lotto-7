@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 class WinningLottoTest {
@@ -15,33 +17,32 @@ class WinningLottoTest {
     @Test
     void 당첨번호와_보너스번호_정상입력() {
         // given
-        WinningLottoInfo validWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,6", 10);
+        Lotto validWinningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int validBonusNumber = 10;
 
         // when, then
-        winningLotto = new WinningLotto(validWinningLottoInfo);
+        winningLotto = new WinningLotto(validWinningNumber, validBonusNumber);
     }
 
     @DisplayName("당첨번호의 구분자가 쉼표가 아니면 예외발생")
     @Test
     void 당첨번호의_구분자가_쉼표가_아니면_예외발생() {
         // given
-        WinningLottoInfo invalidDelimiterWinningLottoInfo = new WinningLottoInfo("1.2.3.4.5.6", 10);
+        String invalidDelimiterWinningNumbers = "1.2.3.4.5.6";
 
-        // then
+        // when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidDelimiterWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(invalidDelimiterWinningNumbers))
                 .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
     }
 
     @DisplayName("당첨번호가 1~45 사이의 숫자가 아니면 예외발생")
-    @Test
-    void 당첨번호가_1_45_사이의_숫자가_아니면_예외발생() {
-        // given
-        WinningLottoInfo invalidNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,66", 10);
-
-        // then
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,4,5", "1,2,3,4,5,66"})
+    void 당첨번호가_1_45_사이의_숫자가_아니면_예외발생(String overRangeWinningNumbers) {
+        // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidNumberWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(overRangeWinningNumbers))
                 .withMessage("[ERROR] 1~45 사이의 수만 가능합니다.");
     }
 
@@ -49,23 +50,21 @@ class WinningLottoTest {
     @Test
     void 당첨번호가_중복되면_예외발생() {
         // given
-        WinningLottoInfo invalidNumberWinningLottoInfo = new WinningLottoInfo("1,1,1,1,1,1", 10);
+        String dupleWinningNumbers = "1,2,3,4,5,5";
 
-        // then
+        // when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidNumberWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(dupleWinningNumbers))
                 .withMessage("[ERROR] 숫자가 중복되면 안됩니다.");
     }
 
     @DisplayName("당첨번호가 숫자가 아니면 예외발생")
-    @Test
-    void 당첨번호가_숫자가_아니면_예외발생() {
-        // given
-        WinningLottoInfo invalidNumberWinningLottoInfo = new WinningLottoInfo("one,two,three,four,five,six", 10);
-
-        // then
+    @ParameterizedTest
+    @ValueSource(strings = {"one,two,three,four,five,six", "many", "numbers"})
+    void 당첨번호가_숫자가_아니면_예외발생(String notNumberWinningNumbers) {
+        // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidNumberWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(notNumberWinningNumbers))
                 .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
     }
 
@@ -73,12 +72,9 @@ class WinningLottoTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3", "12,3,4,5,6,7,8"})
     void 당첨번호가_6개가_아니면_예외발생(String invalidLengthWinningNumber) {
-        // given
-        WinningLottoInfo invalidNumberWinningLottoInfo = new WinningLottoInfo(invalidLengthWinningNumber, 10);
-
-        // then
+        // given, when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidNumberWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(invalidLengthWinningNumber))
                 .withMessage("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
@@ -86,11 +82,11 @@ class WinningLottoTest {
     @Test
     void 당첨번호에_공백이_포함되면_예외발생() {
         // given
-        WinningLottoInfo invalidNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5 ,6", 10);
+        String invalidNumberWinningLottoInfo = "1,2,3,4,5, 6";
 
-        // then
+        // when, then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidNumberWinningLottoInfo))
+                .isThrownBy(() -> new Lotto(invalidNumberWinningLottoInfo))
                 .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
     }
 
@@ -99,11 +95,11 @@ class WinningLottoTest {
     @ValueSource(ints = {0, 46})
     void 보너스번호가_1_45_외의_숫자인_경우_예외발생(int invalidBonusNumber) {
         // given
-        WinningLottoInfo invalidBonusNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,6", invalidBonusNumber);
+        Lotto validWinningLotto = new Lotto(List.of(1,2,3,4,5,6));
 
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidBonusNumberWinningLottoInfo))
+                .isThrownBy(() -> new WinningLotto(validWinningLotto, invalidBonusNumber))
                 .withMessage("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
     }
 
@@ -111,11 +107,12 @@ class WinningLottoTest {
     @Test
     void 보너스번호가_당첨번호와_중복되면_예외발생() {
         // given
-        WinningLottoInfo invalidBonusNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,6", 3);
+        Lotto validWinningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        int dupleBonusNumber = 3;
 
         // then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLotto(invalidBonusNumberWinningLottoInfo))
+                .isThrownBy(() -> new WinningLotto(validWinningLotto, dupleBonusNumber))
                 .withMessage("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
     }
 }
