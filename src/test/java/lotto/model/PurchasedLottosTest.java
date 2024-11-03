@@ -28,8 +28,4 @@ class PurchasedLottosTest {
         purchasedLottos.forEach(lotto -> Assertions.assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString()));
 
     }
-
-    @Test
-    void getLottos() {
-    }
 }
