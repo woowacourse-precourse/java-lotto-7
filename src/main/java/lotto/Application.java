@@ -43,10 +43,8 @@ public class Application {
 		Map<LottoPrize,Integer> lottoResult = lottoResultFactory.generateLottoResult();
 
 		List<Map<Integer,Boolean>> winningStatus = customer.checkWinningStatus(lottoTickets, lottoPrizeNumbers);
-
-		lottoTicketMachine.generateLottoResult(lottoResult, winningStatus);
-
-
+		String customerLottoResult = lottoTicketMachine.registerLottoResult(lottoResult, winningStatus);
+		OutputInterface.printMessage(customerLottoResult);
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {

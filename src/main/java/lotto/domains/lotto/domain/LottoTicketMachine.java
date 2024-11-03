@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 
 import lotto.domains.lotto.type.LottoPrize;
 import lotto.util.LottoNumberGenerator;
+import lotto.view.OutputInterface;
 
 public class LottoTicketMachine {
 	private final int amount;
@@ -25,7 +26,7 @@ public class LottoTicketMachine {
 			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
 
-	public void generateLottoResult(Map<LottoPrize, Integer> winningStatus, List<Map<Integer, Boolean>> lottoResults) {
+	public String registerLottoResult(Map<LottoPrize, Integer> winningStatus, List<Map<Integer, Boolean>> lottoResults) {
 		lottoResults.forEach(lottoResult-> {
 			for (Map.Entry<Integer, Boolean> entry : lottoResult.entrySet()) {
 				int matchCount = entry.getKey();
@@ -33,6 +34,17 @@ public class LottoTicketMachine {
 				updateWinningStatus(winningStatus, matchCount, hasBonusNumber);
 			}
 		});
+		return toPrettyString(winningStatus);
+	}
+
+	private String toPrettyString(Map<LottoPrize, Integer> winningStatus){
+		return String.format(OutputInterface.WINNING_STATISTICS.toString(),
+			winningStatus.get(LottoPrize.THREE),
+			winningStatus.get(LottoPrize.FOUR),
+			winningStatus.get(LottoPrize.FIVE),
+			winningStatus.get(LottoPrize.FIVE_HAS_BONUS),
+			winningStatus.get(LottoPrize.SIX)
+			);
 	}
 
 	private static void updateWinningStatus(Map<LottoPrize, Integer> winningStatus, int matchCount, boolean hasBonusNumber) {
