@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.dto.LottoStatisticsDto;
 
 public class CliOutputView {
 
@@ -28,4 +29,16 @@ public class CliOutputView {
             .collect(Collectors.joining(", "));
     }
 
+    public void printResult(LottoStatisticsDto lottoStatisticsDto) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        System.out.println("3개 일치 (5,000원) - " + lottoStatisticsDto.fifthCount() + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoStatisticsDto.fourthCount() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoStatisticsDto.thirdCount() + "개");
+        System.out.println(
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoStatisticsDto.secondCount() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoStatisticsDto.firstCount() + "개");
+
+        System.out.println("총 수익률은 " + lottoStatisticsDto.profitRate() + "%입니다.");
+    }
 }
