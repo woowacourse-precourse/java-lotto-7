@@ -14,18 +14,8 @@ public class LottoNumberController {
 		while (true) {
 			String input = InputView.inputWinningNumbers();
 			try {
-				return generateWinningLotto(input);
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-	}
-	
-	public LottoBonus generateBonusNumber(List<Integer> winningNumbers) {
-		while(true) {
-			String input = InputView.inputBonusNumber();
-			try {
-				return generateBonusNumber(input, winningNumbers);
+				List<Integer> winningNumbers = InputValidator.validateWinningNumbers(input);
+				return new Lotto(winningNumbers);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
@@ -33,14 +23,26 @@ public class LottoNumberController {
 	}
 	
 	public Lotto generateWinningLotto(String input) {
-		List<Integer> winningNumbers = InputValidator.validateWinningNumbers(input);
-		LottoValidator.validateLottoNumbers(winningNumbers);
-		return new Lotto(winningNumbers);
+        List<Integer> winningNumbers = InputValidator.validateWinningNumbers(input);
+        LottoValidator.validateLottoNumbers(winningNumbers);
+        return new Lotto(winningNumbers);
+    }
+	
+	public LottoBonus generateBonusNumber(List<Integer> winningNumbers) {
+		while(true) {
+			String input = InputView.inputBonusNumber();
+			try {
+				int bonusNumber = InputValidator.validateInteger(input);
+				return new LottoBonus(bonusNumber, winningNumbers);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	
 	public LottoBonus generateBonusNumber(String input, List<Integer> winningNumbers) {
-		int bonusNumber = InputValidator.validateInteger(input);
-		LottoBonusValidator.validateBonusNumber(bonusNumber, winningNumbers);
-		return new LottoBonus(bonusNumber);
-	}
+        int bonusNumber = InputValidator.validateInteger(input);
+        LottoBonusValidator.validateBonusNumber(bonusNumber, winningNumbers);
+        return new LottoBonus(bonusNumber, winningNumbers);
+    }
 } 
