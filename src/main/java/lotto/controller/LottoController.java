@@ -22,8 +22,7 @@ public class LottoController {
         int bonusNumber = lottoService.setBonusNumber(winNumbers); // 보너스 번호
 
         EnumMap<WinAmount, Integer> WinLottoAmountHistory = lottoService.comPareMyLotto_WinLotto(lottos,
-                winNumbers.getNumbers(),
-                bonusNumber);
+                winNumbers.getNumbers(), bonusNumber);
         double amountPercent = lottoService.resultSum(WinLottoAmountHistory, count);
         lottoService.finalResult(WinLottoAmountHistory, amountPercent);
 
