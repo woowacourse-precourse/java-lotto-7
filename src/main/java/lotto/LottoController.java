@@ -12,24 +12,46 @@ public class LottoController {
 
     private final OutputHandler outputHandler = new OutputHandler();
     private final InputHandler inputHandler = new InputHandler();
-    private final LotteryCashier lotteryCashier = new LotteryCashier();
 
     public void play() {
-        outputHandler.showPriceInputNavigateMessage();
-        Price price = inputHandler.getPriceFromUser();
-
-        Lottos lottos = lotteryCashier.purchaseBy(price);
-        outputHandler.showPurchasedLottos(lottos);
-
-        outputHandler.showWinningNumbersNavigateMessage();
-        WinningNumbers winningNumbers = inputHandler.getWinningNumbersFromUser();
-
-        outputHandler.showBonusNumberNavigateMessage();
-        BonusNumber bonusNumber = inputHandler.getBonusNumberFromUser();
+        Price price = getPriceFromUser();
+        Lottos lottos = purchaseLottos(price);
+        WinningNumbers winningNumbers = getWinningNumbersFromUser();
+        BonusNumber bonusNumber = getBonusNumberFromUser();
 
         LotteryMachine lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
+        WinningStatistic winningStatistic = generateWinningStatistic(lotteryMachine, lottos, price);
+        showWinningStatistic(winningStatistic);
+    }
+
+    private Price getPriceFromUser() {
+        outputHandler.showPriceInputNavigateMessage();
+        return inputHandler.getPriceFromUser();
+    }
+
+    private Lottos purchaseLottos(Price price) {
+        LotteryCashier lotteryCashier = new LotteryCashier();
+        Lottos lottos = lotteryCashier.purchaseBy(price);
+        outputHandler.showPurchasedLottos(lottos);
+        return lottos;
+    }
+
+    private WinningNumbers getWinningNumbersFromUser() {
+        outputHandler.showWinningNumbersNavigateMessage();
+        return inputHandler.getWinningNumbersFromUser();
+    }
+
+    private BonusNumber getBonusNumberFromUser() {
+        outputHandler.showBonusNumberNavigateMessage();
+        return inputHandler.getBonusNumberFromUser();
+    }
+
+    private WinningStatistic generateWinningStatistic(LotteryMachine lotteryMachine, Lottos lottos, Price price) {
         lotteryMachine.draw(lottos);
-        WinningStatistic winningStatistic = lotteryMachine.generateWinningStatisticBy(price);
+        return lotteryMachine.generateWinningStatisticBy(price);
+    }
+
+    private void showWinningStatistic(WinningStatistic winningStatistic) {
         outputHandler.showWinningStatistic(winningStatistic);
     }
 }
