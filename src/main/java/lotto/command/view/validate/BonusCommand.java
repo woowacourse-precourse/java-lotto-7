@@ -16,12 +16,7 @@ public class BonusCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    try {
-      return validate(input);
-    } catch (IllegalArgumentException | IllegalStateException e) {
-      view.displayOutput(e.getMessage());
-      return redo();
-    }
+    return validate(input);
   }
 
   private BonusUserInput validate(String input) {
