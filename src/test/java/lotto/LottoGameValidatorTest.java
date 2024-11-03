@@ -39,6 +39,31 @@ public class LottoGameValidatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"1000", "0", "-123"})
+    void checkIsBlankFalse(String str) {
+        // when
+        boolean result = LottoGameValidator.checkIsBlank(str);
+
+        // then
+        assertThat(result)
+                .isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "\n"})
+    void checkIsBlankTrue(String str) {
+        // when
+        Throwable throwable = catchThrowable(() -> {
+            LottoGameValidator.checkIsBlank(str);
+        });
+
+        // then
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INPUT_BLANK.getMessage());
+    }
+
+    @ParameterizedTest
     @ValueSource(ints = {1000, 0, 12000})
     void checkMoneyValidateTrue(int money) {
         // when

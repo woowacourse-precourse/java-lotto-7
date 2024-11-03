@@ -19,6 +19,14 @@ public class LottoGameValidator {
         return true;
     }
 
+    public static boolean checkIsBlank(String str) {
+        if (Validator.isBlank(str)) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_BLANK.getMessage());
+        }
+
+        return false;
+    }
+
     public static boolean checkMoneyValid(int money) {
         if (money < 0) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_CAN_NOT_MINUS.getMessage());
