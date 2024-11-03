@@ -1,4 +1,4 @@
-package lotto.buyer.domain;
+package lotto.buyer.service;
 
 import lotto.money.domain.Money;
 
