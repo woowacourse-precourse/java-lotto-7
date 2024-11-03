@@ -14,8 +14,19 @@ public class LottoGameController {
     }
 
     public void run() {
-        String purchasePrice = inputView.getPurchasePrice();
-        purchasePriceValidator.validate(purchasePrice);
+        String purchasePrice = getPurchasePrice();
+    }
+
+    private String getPurchasePrice() {
+        String purchasePrice = "";
+        try {
+            purchasePrice = inputView.getPurchasePrice();
+            purchasePriceValidator.validate(purchasePrice);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getPurchasePrice();
+        }
+        return purchasePrice;
     }
 
 }
