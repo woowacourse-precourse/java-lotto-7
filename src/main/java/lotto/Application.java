@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.common.config.MainConfig;
+import lotto.common.controller.MainController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        MainConfig config = new MainConfig();
+        MainController mainController = config.mainController();
+        mainController.control();
     }
 }
