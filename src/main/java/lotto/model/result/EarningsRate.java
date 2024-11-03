@@ -7,7 +7,9 @@ import lotto.model.money.Money;
 
 public class EarningsRate {
 
-    private static final int SCALE = 2;
+    private static final int SCALE = 1;
+    private static final int MAX_SCALE = 5;
+    private static final BigDecimal PERCENT = new BigDecimal("100");
     private static final DecimalFormat df = new DecimalFormat("#,##0.0'%'");
 
     private final BigDecimal value;
@@ -19,7 +21,9 @@ public class EarningsRate {
     public static EarningsRate from(final Money totalPrize, final Money purchaseAmount) {
         BigDecimal total = BigDecimal.valueOf(totalPrize.getValue());
         BigDecimal purchase = BigDecimal.valueOf(purchaseAmount.getValue());
-        BigDecimal rate = total.divide(purchase, SCALE, RoundingMode.HALF_UP);
+        BigDecimal rate = total.divide(purchase, MAX_SCALE, RoundingMode.HALF_UP)
+                .multiply(PERCENT)
+                .setScale(SCALE, RoundingMode.HALF_UP);
         return new EarningsRate(rate);
     }
 
