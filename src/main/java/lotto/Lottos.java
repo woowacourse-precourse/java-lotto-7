@@ -1,10 +1,10 @@
 package lotto;
 
-import domain.statistics.WinningRank;
-import domain.winning.WinningLotto;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lotto.statistics.WinningRank;
+import lotto.winning.WinningLotto;
 
 public class Lottos {
 

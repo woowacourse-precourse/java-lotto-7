@@ -1,7 +1,7 @@
-package domain.statistics;
+package lotto.statistics;
 
-import lotto.PurchaseAmount;
 import java.util.Arrays;
+import lotto.PurchaseAmount;
 
 public class RevenueCalculator {
 

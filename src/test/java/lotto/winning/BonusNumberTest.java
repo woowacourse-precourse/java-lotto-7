@@ -1,11 +1,11 @@
-package domain.winning;
+package lotto.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
-import lotto.LottoNumber;
 import java.util.List;
+import lotto.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {

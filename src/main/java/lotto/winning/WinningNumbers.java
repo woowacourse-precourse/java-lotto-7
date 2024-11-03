@@ -1,11 +1,11 @@
-package domain.winning;
+package lotto.winning;
 
 import constants.ErrorMessage;
-import lotto.LottoNumber;
-import lotto.LottoValidator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import lotto.LottoNumber;
+import lotto.LottoValidator;
 
 public class WinningNumbers {
 

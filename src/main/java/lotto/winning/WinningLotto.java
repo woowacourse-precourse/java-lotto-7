@@ -1,8 +1,8 @@
-package domain.winning;
+package lotto.winning;
 
-import lotto.LottoNumber;
 import java.util.List;
 import java.util.Objects;
+import lotto.LottoNumber;
 
 public class WinningLotto {
 

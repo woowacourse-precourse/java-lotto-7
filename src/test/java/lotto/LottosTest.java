@@ -2,13 +2,10 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import domain.winning.BonusNumber;
-import domain.winning.WinningLotto;
-import domain.winning.WinningNumbers;
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoNumber;
-import lotto.Lottos;
+import lotto.winning.BonusNumber;
+import lotto.winning.WinningLotto;
+import lotto.winning.WinningNumbers;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest {

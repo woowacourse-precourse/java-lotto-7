@@ -1,10 +1,10 @@
-package domain.statistics;
+package lotto.statistics;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
-import lotto.PurchaseAmount;
 import java.util.Arrays;
+import lotto.PurchaseAmount;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
