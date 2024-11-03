@@ -2,13 +2,11 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
-import static lotto.domain.LottoConfig.LOTTO_START;
-import static lotto.domain.LottoConfig.LOTTO_END;
-import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
+import static lotto.domain.LottoConfig.*;
 
 public class LottoTickets {
     private final List<Lotto> lottoTickets;
@@ -18,13 +16,12 @@ public class LottoTickets {
     }
 
     private List<Lotto> createLottoTickets(int numberOfTickets) {
-        List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < numberOfTickets; i++) {
-            List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_START.getUnit(), LOTTO_END.getUnit(), LOTTO_MAX_NUMBER.getUnit());
-            tickets.add(new Lotto(randoms));
-        }
-
-        return tickets;
+        return Stream.generate(() -> new Lotto(Randoms.pickUniqueNumbersInRange(
+                LOTTO_START.getUnit(),
+                LOTTO_END.getUnit(),
+                LOTTO_MAX_NUMBER.getUnit())))
+                .limit(numberOfTickets)
+                .toList();
     }
 
     public List<Lotto> getLottoTickets() {
