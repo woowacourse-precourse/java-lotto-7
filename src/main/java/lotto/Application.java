@@ -12,7 +12,7 @@ public class Application {
             int buyAmount = getBuyAmount();
             List<Lotto> lottoNumbers = lottoPurchase(buyAmount);
             List<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber();
+            int bonusNumber = getBonusNumber(winningNumbers);
             Map<Rank, Integer> rankCount = lottoRankcalculation(lottoNumbers, winningNumbers, bonusNumber);
             statisticsOutput(rankCount, calculateProfit(rankCount, buyAmount));
         } catch (IllegalArgumentException error) {
@@ -91,9 +91,19 @@ public class Application {
                 .collect(Collectors.toList());
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println(Constants.MESSAGE_ENTER_BONUS_NUMBER.getMessageValue());
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        checkBonusNumberDuplication(winningNumbers, bonusNumber);
+
+        return bonusNumber;
+    }
+
+    private static void checkBonusNumberDuplication(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     private static Map<Rank, Integer> lottoRankcalculation(List<Lotto> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
