@@ -22,13 +22,9 @@ public class InputViewImpl implements InputView {
     }
 
     @Override
-    public int bonusNumber() {
+    public String bonusNumber() {
         System.out.print("보너스 번호를 입력하세요: ");
-        return parseBonusNumber(Console.readLine());
-    }
-
-    int parseBonusNumber(String input) {
-        return Integer.parseInt(input);
+        return Console.readLine();
     }
 
     private String winningNumbersInput() {
@@ -46,7 +42,4 @@ public class InputViewImpl implements InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
-
-
 }

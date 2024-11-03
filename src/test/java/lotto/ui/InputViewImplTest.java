@@ -19,7 +19,7 @@ class InputViewImplTest {
         inputView = new InputViewImpl();
     }
 
-    /*@Test
+   /* @Test
     void 번호_쉼표_구분_분리() {
         assertArrayEquals(
                 new String[]{"1", " 2", " 3", " 4", " 5", " 6"},
@@ -34,9 +34,4 @@ class InputViewImplTest {
                 inputView.convertStringsToIntegers(new String[]{"1", " 2", "3", " 4", "5 ", " 6"})
         );
     }*/
-
-    @Test
-    public void testParseBonusNumber_ValidInput() {
-        assertEquals(7, inputView.parseBonusNumber("7"));
-    }
 }

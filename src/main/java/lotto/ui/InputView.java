@@ -5,5 +5,5 @@ import java.util.List;
 public interface InputView {
     String userInput();
     List<Integer> lottoWinningNumbers();
-    int bonusNumber();
+    String bonusNumber();
 }
