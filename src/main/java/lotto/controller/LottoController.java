@@ -1,8 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.dto.BonusLottoNumber;
-import lotto.dto.LottoPurchaseAmount;
+import lotto.dto.LottoPurchaseCost;
 import lotto.dto.MatchLottoResult;
 import lotto.dto.RateOfReturn;
 import lotto.dto.WinningLottoNumbers;
@@ -22,32 +23,48 @@ public class LottoController {
     }
 
     public void run() {
-        LottoPurchaseAmount lottoPurchaseAmount = inputLottoPurchaseAmount();
-        Lottos lottos = buyLottos(lottoPurchaseAmount);
+        LottoPurchaseCost lottoPurchaseCost = inputLottoPurchaseCost();
+        List<Lotto> lottos = lottoService.buyLottos(lottoPurchaseCost);
         outputView.printLottos(lottos);
-        WinningLottoNumbers winningLottoNumbers = makeWinningLottoNumbers();
-        BonusLottoNumber bonusLottoNumber = makeBonusLottoNumber(winningLottoNumbers);
+
+        WinningLottoNumbers winningLottoNumbers = getWinningLottoNumbers();
+        BonusLottoNumber bonusLottoNumber = getBonusLottoNumber(winningLottoNumbers);
+
         MatchLottoResult matchLottoResult = lottoService.matchLottoNumber(lottos, winningLottoNumbers, bonusLottoNumber);
-        RateOfReturn rateOfReturn = lottoService.calcRateOfReturn(lottoPurchaseAmount, matchLottoResult);
+        RateOfReturn rateOfReturn = lottoService.calcRateOfReturn(lottoPurchaseCost, matchLottoResult);
         outputView.printResult(matchLottoResult, rateOfReturn);
     }
 
-    private LottoPurchaseAmount inputLottoPurchaseAmount() {
-        outputView.printLottoPurchaseAmountMessage();
-        return LottoPurchaseAmount.from(inputView.InputLottoPurchaseAmount());
+    private LottoPurchaseCost inputLottoPurchaseCost() {
+        while (true) {
+            try {
+                outputView.printLottoPurchaseCostMessage();
+                return LottoPurchaseCost.from(inputView.InputLottoPurchaseAmount());
+            } catch (Exception e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 
-    private Lottos buyLottos(LottoPurchaseAmount lottoPurchaseAmount) {
-        return lottoService.buyLottos(lottoPurchaseAmount);
+    private WinningLottoNumbers getWinningLottoNumbers() {
+        while (true) {
+            try {
+                outputView.printInputLottoWinningNumbersMessage();
+                return WinningLottoNumbers.from(inputView.InputLottoWinningNumbers());
+            } catch (Exception e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 
-    private WinningLottoNumbers makeWinningLottoNumbers() {
-        outputView.printInputLottoWinningNumbersMessage();
-        return WinningLottoNumbers.from(inputView.InputLottoWinningNumbers());
-    }
-
-    private BonusLottoNumber makeBonusLottoNumber(WinningLottoNumbers winningLottoNumbers) {
-        outputView.printInputLottoBonusNumberMessage();
-        return BonusLottoNumber.from(inputView.InputLottoBonusNumber(), winningLottoNumbers);
+    private BonusLottoNumber getBonusLottoNumber(WinningLottoNumbers winningLottoNumbers) {
+        while (true) {
+            try {
+                outputView.printInputLottoBonusNumberMessage();
+                return BonusLottoNumber.from(inputView.InputLottoBonusNumber(), winningLottoNumbers);
+            } catch (Exception e) {
+                outputView.printErrorMessage(e);
+            }
+        }
     }
 }

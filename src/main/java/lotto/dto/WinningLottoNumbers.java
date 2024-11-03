@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public record WinningLottoNumbers(
-        List<Integer> winningLottoNumber
+        List<Integer> numbers
 ) {
     public static WinningLottoNumbers from(String inputWinningLottoNumbers) {
         validateLottoWinningNumbers(inputWinningLottoNumbers);

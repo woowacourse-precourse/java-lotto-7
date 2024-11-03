@@ -1,12 +1,12 @@
 package lotto.dto;
 
-import java.util.Map;
-import lotto.domain.Result;
+import java.util.TreeMap;
+import lotto.enums.Rank;
 
 public record MatchLottoResult(
-        Map<Integer, Integer> result
+        TreeMap<Rank, Integer> result
 ) {
-    public static MatchLottoResult of(Result result) {
-        return new MatchLottoResult(result.getResult());
+    public static MatchLottoResult of(TreeMap<Rank, Integer> result) {
+        return new MatchLottoResult(result);
     }
 }

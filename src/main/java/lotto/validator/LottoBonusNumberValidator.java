@@ -31,9 +31,10 @@ public class LottoBonusNumberValidator {
         }
     }
 
-    private static void checkDuplicateInWinningLottoNumber(int lottoBonusNumber,
-                                                           WinningLottoNumbers winningLottoNumbers) {
-        if (winningLottoNumbers.winningLottoNumber().contains(lottoBonusNumber)) {
+    private static void checkDuplicateInWinningLottoNumber(
+            int lottoBonusNumber, WinningLottoNumbers winningLottoNumbers
+    ) {
+        if (winningLottoNumbers.numbers().contains(lottoBonusNumber)) {
             throw new IllegalArgumentException("로또 보너스 번호와 로또 당첨 번호가 중복됩니다.");
         }
     }
