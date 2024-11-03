@@ -109,7 +109,7 @@ public class Application {
 
                 System.out.println();
                 return bonusNumber;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println();
             }
@@ -125,7 +125,7 @@ public class Application {
     }
 
     private static void validateBonusNumber(int input) {
-        if(input < 1 || input > 45){
+        if (input < 1 || input > 45) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
