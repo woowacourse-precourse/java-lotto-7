@@ -35,4 +35,32 @@ public class RankTest {
         // then
         assertThat(rank).isEqualTo(Rank.OUT_OF_RANK);
     }
+
+    @Test
+    @DisplayName("일치하는 숫자가 5개이고 보너스 번호도 일치하는 경우 적절한 순위를 반환한다.")
+    void returnSecondPlaceWhenFiveNumbersAndBonusMatch() {
+        // given
+        int matchingCount = 5;
+        boolean bonusNumberMatched = true;
+
+        // when
+        Rank rank = Rank.findRank(matchingCount, bonusNumberMatched);
+
+        // then
+        assertThat(rank).isEqualTo(Rank.SECOND_PLACE);
+    }
+
+    @Test
+    @DisplayName("일치하는 숫자가 5개이고 보너스 번호는 일치하지 않는 경우 적절한 순위를 반환한다.")
+    void returnSecondPlaceWhenFiveNumbersAndBonusDoesNotMatch() {
+        // given
+        int matchingCount = 5;
+        boolean bonusNumberMatched = false;
+
+        // when
+        Rank rank = Rank.findRank(matchingCount, bonusNumberMatched);
+
+        // then
+        assertThat(rank).isEqualTo(Rank.THIRD_PLACE);
+    }
 }
