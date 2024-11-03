@@ -22,13 +22,10 @@ public class LottoNumbersGenerator {
     }
 
     private List<Integer> generateLottoNumbers() {
-        return sort(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE,LOTTO_MAX_RANGE,NUMBER_COUNT));
-    }
-
-    private static List<Integer> sort(List<Integer> playerNumber) {
-        return playerNumber.stream()
-                .sorted()
-                .collect(Collectors.toList());
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, NUMBER_COUNT));
+        Collections.sort(randomNumbers);
+        return randomNumbers;
     }
 
     @Override
