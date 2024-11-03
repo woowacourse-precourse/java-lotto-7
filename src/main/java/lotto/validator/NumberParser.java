@@ -9,16 +9,12 @@ public class NumberParser {
 
     public static List<Integer> toNumbers(String input) {
         input = input.replaceAll(" ", "");
-        
+
         List<String> numbers = splitByDelimiter(input);
         List<Integer> toNumbers = new ArrayList<>();
 
         for (String number : numbers) {
-            try {
-                toNumbers.add(Integer.parseInt(number));
-            } catch (NumberFormatException e) {
-                throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
-            }
+            toNumbers.add(Integer.parseInt(number));
         }
         return toNumbers;
     }
