@@ -49,5 +49,12 @@ public class MatchLotto {
         return totalPrizeMoney;
     }
 
+    private BigDecimal getProfitRate() {
+        BigDecimal profitRate = new BigDecimal(Double.toString(((double)getTotalPrizeMoney() / (double)totalLottoPrice) * 100));
+        return profitRate.setScale(1, RoundingMode.HALF_UP);
+
+    }
+
+
 
 }
