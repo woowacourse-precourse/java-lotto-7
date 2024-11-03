@@ -55,13 +55,17 @@ public class Validator {
         }
     }
 
-    public static void checkForDuplicates(List<Integer> numbers) {
+    public static void checkDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
-
+    public static void checkDuplicateForBonus(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
     public static void lottoNumValidator(String input) {
         nullAndEmptyValidator(input);
 

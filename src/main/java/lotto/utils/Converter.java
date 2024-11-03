@@ -2,7 +2,7 @@ package lotto.utils;
 
 import static lotto.utils.Validator.EMPTY_STRING;
 import static lotto.utils.Validator.WHITESPACE_PATTERN;
-import static lotto.utils.Validator.checkForDuplicates;
+import static lotto.utils.Validator.checkDuplicates;
 import static lotto.view.OutputView.LOTTO_NUMBER_DELIMITER;
 
 import java.util.Arrays;
@@ -27,7 +27,7 @@ public class Converter {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        checkForDuplicates(numbers);
+        checkDuplicates(numbers);
 
         return numbers;
     }
