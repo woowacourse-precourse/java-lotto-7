@@ -12,4 +12,7 @@ public class BonusWinning {
         //1~45 숫자, winning과 중복 검사
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.BonusWinning;
 import lotto.model.Lotto;
 import lotto.model.Winning;
 import lotto.view.Winning_InputView;
@@ -18,7 +19,10 @@ public class WinningController {
         String inputWinningNumbers = winningInputView.getInputWinningNumbers();
         Winning winning = new Winning(inputWinningNumbers);
         List<Integer> winningNumbers = winning.getWinningNumbers();
+
         String inputBonusNumber = winningInputView.getInputBonusNumber();
+        BonusWinning bonusWinning = new BonusWinning(inputBonusNumber);
+        int bonusNumber = bonusWinning.getBonusNumber();
 
     }
 

@@ -1,9 +1,5 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -13,39 +9,7 @@ import lotto.model.Lotto;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구매금액을 입력해 주세요.");
-        int payment = Integer.parseInt(readLine());
-        int numberOfTicket = payment / 1_000;
-        System.out.println();
-        System.out.println(numberOfTicket + "개를 구매했습니다.");
-
-        // 구매자 로또티켓 생성
-        List<Lotto> PurchasedLottoTickets = new ArrayList<>();
-        for (int i = 0; i < numberOfTicket; i++) {
-            PurchasedLottoTickets.add(publishLottoTicket());
-        }
-
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String inputWinningNumbers = readLine();
-
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int inputWinningBonusNumber = Integer.parseInt(readLine()); //유효성 검사 추가해야함
-
-        // 당첨번호 정리
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (String winningNumber : inputWinningNumbers.split(",")) {
-            winningNumbers.add(Integer.valueOf(winningNumber));
-        }
-        Collections.sort(winningNumbers);
-
         // 당첨 확인
-        List<Integer> numberOfMatches = PurchasedLottoTickets.stream()
-                .map(lotto -> (int) lotto.getNumbers().stream()
-                        .filter(winningNumbers::contains)
-                        .count())
-                .collect(Collectors.toList());
 
         // 보너스 당첨 확인
         for (int i = 0; i < numberOfTicket; i++) {
@@ -61,12 +25,6 @@ public class Application {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
-    // 추가 기능
-    public static Lotto publishLottoTicket() {
-        List<Integer> publishedNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        System.out.println(publishedNumber);
-        return new Lotto(publishedNumber);
-    }
 
     public static int matchBonusNumber(Lotto fiveMatchesTicket, int inputBonusNumber) {
         boolean isMatchedWithBonus = fiveMatchesTicket.getNumbers().stream().anyMatch(number -> number == inputBonusNumber);
