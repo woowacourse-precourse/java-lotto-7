@@ -39,7 +39,7 @@ public class WinningResult {
     }
 
     private void addLottoToResultMap(Lotto lotto, long matchCount, boolean containsBonus) {
-        resultMap.keySet().stream()
+        WinningCondition.getAllConditions().stream()
                 .filter(condition -> isMatchingCondition(condition, matchCount, containsBonus))
                 .findFirst()
                 .ifPresent(condition -> resultMap.get(condition).add(lotto));
