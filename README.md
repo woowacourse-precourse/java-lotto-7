@@ -30,4 +30,27 @@
 7. 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다
 8. 제공된 Lotto 클래스를 사용하여 구현해야 한다.
 
+---
 
+## 디렉토리 구조
+
+```bash
+src
+└── lotto
+    ├── controller
+    │   └── LottoController.java    
+    ├── model
+    │   ├── lotto
+    │   │   ├── Lotto.java             # 로또 번호를 관리
+    │   │   ├── LottoGenerator.java    # 로또 번호 생성기
+    │   │   └── LottoNumber.java       # 로또 번호의 유효성을 검사하는 Enum
+    │   └── result
+    │       ├── LottoResult.java       # 당첨 결과 계산 및 관리
+    │       └── Rank.java              # 당첨 등수와 상금을 관리하는 Enum
+    ├── view
+    │   ├── InputView.java             
+    │   └── OutputView.java   
+    └── App.java                
+```
+
+## 
