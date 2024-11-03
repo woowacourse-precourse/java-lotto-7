@@ -10,14 +10,13 @@ public class Application {
     	try {    		
     		int purchaseAmount = InputView.requestPurchaseAmount();
         	int numberOfLottos = purchaseAmount/1000;
-        	System.out.println(numberOfLottos + "개를 구매했습니다.");
-        	
         	
         	List<Lotto> lottos = new ArrayList<>();
             for (int i = 0; i < numberOfLottos; i++) {
                 lottos.add(LottoGenerator.generate());
             }
         	
+            OutputView.printLottoPurchaseInfo(numberOfLottos, lottos);
         	
         	List<Integer> winningNumbers = InputView.requestWinningNumbers();
             int bonusNumber = InputView.requestBonusNumber();
