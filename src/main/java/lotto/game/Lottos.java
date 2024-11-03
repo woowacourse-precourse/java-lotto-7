@@ -1,7 +1,9 @@
 package lotto.game;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoPrize;
 import lotto.dto.WinningNumbers;
+import lotto.io.OutputHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ public class Lottos {
         this.lottos = new ArrayList<>();
     }
 
-    public void addLotto(Lotto lotto) {
+    public void add(Lotto lotto) {
         lottos.add(lotto);
     }
 
