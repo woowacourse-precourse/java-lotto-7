@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import static lotto.common.exception.ExceptionMessages.DUPLICATED_LOTTO_NUMBER;
+import static lotto.common.exception.ExceptionMessages.INVALID_LOTTO_NUMBER_COUNT;
+
 import java.util.List;
 
 public class Lotto {
+    private final static int lottoSize = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,16 +15,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != lottoSize) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessages());
         }
         if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessages());
         }
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
-        return numbers.stream().distinct().count() != numbers.size(); // TODO 6으로 바꿀까?
+        return numbers.stream().distinct().count() != numbers.size();
     }
 
     @Override
