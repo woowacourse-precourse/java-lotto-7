@@ -10,9 +10,9 @@ public enum LottoPrizeInfo {
     FIFTH_PRIZE(3, false, 5_000L),
     NONE(0, false, 0L);
 
-    private final int matchCount;
-    private final boolean hasBonus;
-    private final long prizeAmount;
+    public final int matchCount;
+    public final boolean hasBonus;
+    public final long prizeAmount;
 
     LottoPrizeInfo(int matchCount, boolean hasBonus, long prizeAmount) {
         this.matchCount = matchCount;
@@ -23,7 +23,6 @@ public enum LottoPrizeInfo {
     public long getPrizeAmount() {
         return prizeAmount;
     }
-
 
     public static LottoPrizeInfo getPrizeByMatch(int matchCount, boolean hasBonus) {
         return Arrays.stream(values())

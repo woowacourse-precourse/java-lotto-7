@@ -29,7 +29,7 @@ public class LottoPrizeCalculator {
                 .sum();
     }
 
-    private Map<LottoPrizeInfo, Integer> getPrizeCounts() {
+    public Map<LottoPrizeInfo, Integer> getPrizeCounts() {
         Map<LottoPrizeInfo, Integer> prizeCounts = new HashMap<>();
 
         for (Lotto lotto : lottos) {
