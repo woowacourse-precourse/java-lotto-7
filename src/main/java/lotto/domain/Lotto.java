@@ -16,6 +16,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkNumberCount(numbers);
         checkDuplicate(numbers);
+        checkRange(numbers);
     }
 
     private void checkNumberCount(List<Integer> numbers) {
@@ -29,6 +30,15 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
+    }
+
+    private void checkRange(List<Integer> numbers) {
+        numbers.stream()
+                .forEach(s -> {
+                    if (s > 45 || s < 1) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45를 벗어날 수 없습니다.");
+                    }
+                });
     }
 
     private int matchWinningNumbers(List<Integer> numbers) {
