@@ -1,8 +1,8 @@
-package lotto;
+package lotto.controller;
 
+import lotto.domain.LottoSystem;
 import lotto.domain.Lotto;
 import lotto.domain.LottoProfitRate;
-import lotto.domain.LottoResultDetails;
 import lotto.domain.Lottos;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLottoNumber;
@@ -10,21 +10,21 @@ import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoSystem {
+public class LottoController {
 
-    public LottoSystem() {
+    private final LottoSystem lottoSystem;
 
+    public LottoController(){
+        this.lottoSystem = new LottoSystem();
     }
 
     public void run() {
         PurchasePrice purchasePrice = inputPurchasePrice();
-        int lottoQuantity = purchasePrice.getLottoTicketCount();
-        Lottos lottos = Lottos.of(lottoQuantity);
+        Lottos lottos = lottoSystem.generateLottos(purchasePrice);
         OutputView.displayPurchasedLottoNumbers(lottos);
 
         WinningLottoNumber winningLottoNumber = inputWinningLottoNumber();
-        LottoResultDetails.count(lottos,winningLottoNumber);
-        LottoProfitRate lottoProfitRate = LottoProfitRate.of(purchasePrice);
+        LottoProfitRate lottoProfitRate = lottoSystem.generateLottoResults(lottos,winningLottoNumber,purchasePrice);
         OutputView.printLottoDetails(lottoProfitRate);
     }
 
@@ -66,5 +66,4 @@ public class LottoSystem {
             }
         }
     }
-
 }
