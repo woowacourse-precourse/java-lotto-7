@@ -1,6 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.entity.Lotto;
+import lotto.entity.Price;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +11,12 @@ public class LottoGenerator {
     private final int START_NUMBER = 1;
     private final int END_NUMBER = 45;
     private final int COUNT_OF_LOTTO_NUMBER = 6;
-    private final String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private final String OUTPUT_MESSAGE = "%d개를 구매했습니다.\n";
 
-    private final int price;
+    private final Price price;
     private final List<Lotto> lottoList;
 
-    public LottoGenerator(int price) {
+    public LottoGenerator(Price price) {
         this.price = price;
         lottoList = new ArrayList<>();
 
@@ -34,7 +35,7 @@ public class LottoGenerator {
     }
 
     private int calculateCountOfLotto() {
-        return price / 1000;
+        return price.getValue() / 1000;
     }
 
     private Lotto generateLottoNumber() {
