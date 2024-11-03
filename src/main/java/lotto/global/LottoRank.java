@@ -19,7 +19,7 @@ public enum LottoRank {
 
     public static LottoRank findByMatchCount(int i) {
         if (i == 5) {
-            throw new IllegalStateException(INVALID_MATCH_COUNT.toString());
+            throw new IllegalStateException(INVALID_MATCH_COUNT.getMessage());
         }
 
         for (LottoRank rank : LottoRank.values()) {
@@ -28,7 +28,7 @@ public enum LottoRank {
             }
         }
 
-        throw new IllegalStateException(INVALID_MATCH_COUNT.toString() + i);
+        throw new IllegalStateException(INVALID_MATCH_COUNT.getMessage() + i);
     }
 
     public int getMatchCount() {

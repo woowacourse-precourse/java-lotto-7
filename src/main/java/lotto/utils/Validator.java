@@ -17,15 +17,15 @@ public class Validator {
         try {
             price = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_PRICE_FORMAT.toString());
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT.getMessage());
         }
 
         if (price <= 0) {
-            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NEGATIVE.toString());
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NEGATIVE.getMessage());
         }
 
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_UNIT.toString());
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_UNIT.getMessage());
         }
     }
 
@@ -33,12 +33,12 @@ public class Validator {
         nullAndEmptyValidator(input);
 
         if (!WINNING_NUM_PATTERN.matches(input)) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.toString());
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.getMessage());
         }
 
         List<String> numbers = Arrays.asList(input.split(","));
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUM_COUNT.toString());
+            throw new IllegalArgumentException(INVALID_WINNING_NUM_COUNT.getMessage());
         }
 
         for (String number : numbers) {
@@ -54,17 +54,17 @@ public class Validator {
         try {
             price = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT.toString());
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
 
         if (price <= 0 || 46 <= price) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.toString());
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private static void nullAndEmptyValidator(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_INPUT_FORMAT_NULL.toString());
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT_NULL.getMessage());
         }
     }
 }
