@@ -21,5 +21,21 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @Test
+    void createLotto_invalidNumbers_throwsException() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void createLotto_duplicateNumbers_throwsException() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    }
+
 }
