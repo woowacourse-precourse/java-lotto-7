@@ -41,8 +41,8 @@
     - [X] 랜덤한 번호 추출 <br>
   - [X] Statistics.java <br>
     - [X] 당첨 등수 및 당첨 금액 통계 계산 <br>
-  - [ ] Rate.java <br>
-    - [ ] 수익률 계산 <br>
+  - [X] Rate.java <br>
+    - [X] 수익률 계산 <br>
 ---
 - [X] Validation <br>
   - [X] LottoValidation.java <br>
