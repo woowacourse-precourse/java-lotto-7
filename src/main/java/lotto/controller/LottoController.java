@@ -5,7 +5,7 @@ import static lotto.view.ViewConstants.VIEW_DELIMITER;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.LottoBuyer;
+import lotto.domain.LottoReceipt;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
 import lotto.service.LottoService;
@@ -20,10 +20,10 @@ public class LottoController {
     }
 
     public void run(InputView inputView, InputValidator inputValidator) {
-        LottoBuyer lottoBuyer = lottoService.createLottoBuyer(toBigInteger(inputView.requestPurchaseAmount()));
+        LottoReceipt lottoReceipt = lottoService.createLottoReceipt(toBigInteger(inputView.requestPurchaseAmount()));
         WinningLotto winningLotto = lottoService.createWinningLotto(
                 extractNumbers(inputView.requestWinningLottoNumbers(), inputValidator));
-        WinningReport winningReport = lottoService.createWinningReport(lottoBuyer, winningLotto);
+        WinningReport winningReport = lottoService.createWinningReport(lottoReceipt, winningLotto);
     }
 
     public BigInteger toBigInteger(String input) {

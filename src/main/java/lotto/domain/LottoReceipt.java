@@ -3,11 +3,11 @@ package lotto.domain;
 import java.math.BigInteger;
 import java.util.List;
 
-public class LottoBuyer {
+public class LottoReceipt {
     private final BigInteger purchaseAmount;
     private final LottoTicket purchasedTicket;
 
-    public LottoBuyer(BigInteger purchaseAmount, LottoTicket purchasedTicket) {
+    public LottoReceipt(BigInteger purchaseAmount, LottoTicket purchasedTicket) {
         this.purchaseAmount = purchaseAmount;
         this.purchasedTicket = purchasedTicket;
     }

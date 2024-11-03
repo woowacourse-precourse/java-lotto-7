@@ -7,7 +7,7 @@ import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 
 import java.math.BigInteger;
 import java.util.List;
-import lotto.domain.LottoBuyer;
+import lotto.domain.LottoReceipt;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoSeller;
@@ -34,7 +34,7 @@ public class LottoService {
         return new LottoNumberGenerator(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, COUNT_OF_LOTTO_NUMBERS);
     }
 
-    public LottoBuyer createLottoBuyer(BigInteger amount) {
+    public LottoReceipt createLottoReceipt(BigInteger amount) {
         return lottoSeller.sellAsMuchAs(amount);
     }
 
@@ -42,8 +42,8 @@ public class LottoService {
         return lottoSeller.createWinningLotto(numbers);
     }
 
-    public WinningReport createWinningReport(LottoBuyer lottoBuyer, WinningLotto winningLotto) {
-        List<Winning> winnings = lottoBuyer.checkWinningsBy(winningLotto);
+    public WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
+        List<Winning> winnings = lottoReceipt.checkWinningsBy(winningLotto);
         return new WinningReport(winnings);
     }
 }

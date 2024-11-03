@@ -12,9 +12,9 @@ public class LottoSeller {
         this.lottoMachine = lottoMachine;
     }
 
-    public LottoBuyer sellAsMuchAs(BigInteger amount) {
+    public LottoReceipt sellAsMuchAs(BigInteger amount) {
         LottoTicket lottoTicket = createLottoTicketFor(amount);
-        return new LottoBuyer(amount, lottoTicket);
+        return new LottoReceipt(amount, lottoTicket);
     }
 
     public WinningLotto createWinningLotto(List<Integer> numbers) {
