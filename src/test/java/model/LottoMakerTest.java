@@ -27,7 +27,6 @@ class LottoMakerTest {
         );
     }
 
-    // TODO: 랜덤 테스트가 제대로 안되는 상황 해결
     @Test
     void 로또_생성_번호_테스트() {
         assertRandomUniqueNumbersInRangeTest(

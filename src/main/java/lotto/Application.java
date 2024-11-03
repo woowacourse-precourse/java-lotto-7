@@ -4,6 +4,7 @@ import java.util.List;
 import model.Lotto;
 import model.LottoChecker;
 import model.LottoMaker;
+import model.MoneyCalculator;
 import view.InputView;
 import view.Outputview;
 
@@ -34,12 +35,14 @@ public class Application {
 
         // 7. 당첨된 로또 확인
         LottoChecker lottoChecker = new LottoChecker(inputNumber, bonusNumber);
-        int[] matchNumberCount = lottoChecker.checkLottos(lottos);
+        List<Integer> matchNumberCount = lottoChecker.checkLottos(lottos);
 
         // 8. 당첨 통계
         outputview.showStatistics(matchNumberCount);
 
         // 9. 당첨 금액 계산
+        MoneyCalculator moneyCalculator = new MoneyCalculator(matchNumberCount);
+        long winningAmount = moneyCalculator.getWinningAmount();
 
         // 10. 수익률 계산
 

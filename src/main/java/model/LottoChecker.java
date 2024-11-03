@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoChecker {
@@ -13,10 +14,12 @@ public class LottoChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public int[] checkLottos(List<Lotto> lottos) {
-        // index 0~7은 각각 n개 일치 한다는 정보를 가진다.
-        // x, x, x, 3개, 4개, 5개, 5개+보너스, 6개
-        // ex) matchNumberCount[4] == 2는 4개일치하는 로또가 2개라는 의미이다.
+    public List<Integer> checkLottos(List<Lotto> lottos) {
+        /*
+            index 0~7은 각각 n개 일치 한다는 정보를 가진다.
+            x, x, x, 3개, 4개, 5개, 5개+보너스, 6개
+            ex) matchNumberCount[4] == 2는 4개일치하는 로또가 2개라는 의미이다.
+        */
         int[] matchNumberCount = new int[8];
 
         for (Lotto lotto : lottos) {
@@ -27,7 +30,8 @@ public class LottoChecker {
                 matchNumberCount[matchCount + 1]++;
             }
         }
-        return matchNumberCount;
+
+        return toList(matchNumberCount);
     }
 
     public int checkLotto(Lotto lotto) {
@@ -38,8 +42,12 @@ public class LottoChecker {
         return lottoNumbers.size();
     }
 
-    public boolean getBonusFlag() {
-        return bonusFlag;
+    private List<Integer> toList(int[] matchNumberCount) {
+        List<Integer> matchCountList = new ArrayList<>();
+        for (int count : matchNumberCount) {
+            matchCountList.add(count);
+        }
+        return matchCountList;
     }
 
     private boolean checkBonus(List<Integer> lottoNumber) {

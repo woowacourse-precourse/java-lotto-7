@@ -7,7 +7,7 @@ import model.Lotto;
 public class Outputview {
 
     // TODO: 계산할 때도 가격이 쓰일 것이라 출력 좀 더 신경쓰기
-    //  가격을 따로 저장 한다던가...
+    //  가격을 따로 저장 한다던가... enum?
     private final List<String> statisticsMessages = List.of(
             "3개 일치 (5,000원) - ",
             "4개 일치 (50,000원) - ",
@@ -30,9 +30,9 @@ public class Outputview {
         }
     }
 
-    public void showStatistics(int[] matchNumberCount) {
-        for (int i = 3; i < matchNumberCount.length; i++) {
-            System.out.println(statisticsMessages.get(i - 3) + matchNumberCount[i] + "개");
+    public void showStatistics(List<Integer> matchNumberCount) {
+        for (int i = 3; i < matchNumberCount.size(); i++) {
+            System.out.println(statisticsMessages.get(i - 3) + matchNumberCount.get(i) + "개");
         }
     }
 }

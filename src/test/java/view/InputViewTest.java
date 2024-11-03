@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class InputViewTest {
 
+    // TODO: scanner 때문에 전체 테스트 실패
     @Test
     void 금액_입력_테스트() {
         String simulatedInput = "14000\n";

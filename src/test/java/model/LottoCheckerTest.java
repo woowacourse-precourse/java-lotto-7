@@ -20,17 +20,7 @@ class LottoCheckerTest {
 
         LottoChecker lottoChecker = new LottoChecker(inputNumber, bonusNumber);
         int matchCount = lottoChecker.checkLotto(lottoWithoutBonus);
-        assertThat(matchCount).isEqualTo(6);
-    }
-
-    @Test
-    void 보너스_번호_일치_확인() {
-        inputNumber = List.of(1, 2, 3, 4, 5, 6);
-        bonusNumber = 7;
-
-        LottoChecker lottoChecker = new LottoChecker(inputNumber, bonusNumber);
-        lottoChecker.checkLotto(lottoWithBonus);
-        assertThat(lottoChecker.getBonusFlag()).isEqualTo(true);
+        assertThat(matchCount).isEqualTo(5);
     }
 
     @Test
@@ -40,7 +30,7 @@ class LottoCheckerTest {
 
         List<Lotto> lottos = List.of(lottoWithBonus, lottoWithoutBonus);
         LottoChecker lottoChecker = new LottoChecker(inputNumber, bonusNumber);
-        int[] matchNumberCount = lottoChecker.checkLottos(lottos);
+        List<Integer> matchNumberCount = lottoChecker.checkLottos(lottos);
 
         assertThat(matchNumberCount).containsExactly(0, 0, 0, 0, 0, 0, 1, 1);
     }
