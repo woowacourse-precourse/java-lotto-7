@@ -11,7 +11,7 @@ import lotto.view.global.exception.ErrorMessage;
 
 public class InputView {
 
-    public Integer enterAmount() {
+    public int enterAmount() {
         ConsoleWriter.printlnMessage(PrintMessage.INPUT_AMOUNT.getMessage());
         String input = ConsoleReader.enterMessage();
         validateStringFormat(input);
