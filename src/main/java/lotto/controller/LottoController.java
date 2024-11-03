@@ -31,6 +31,7 @@ public class LottoController {
         int count = handleLottoCount(purchasePrice);
         handleCreatedLottos(count);
         Lotto lottoWinningNumbers = handleWinningNumbers();
+        handleBonusNumber();
     }
 
     private int handlePurchasePrice() {
@@ -106,5 +107,9 @@ public class LottoController {
             validator.validatePositiveNumber(number);
             validator.validateNumberRange(number);
         }
+    }
+
+    private void handleBonusNumber() {
+        output.printBonusNumberInputPrompt();
     }
 }

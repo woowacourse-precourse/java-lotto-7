@@ -41,4 +41,8 @@ public class Output {
     public void printWinningNumbersInputPrompt() {
         System.out.println(Constants.WINNING_NUMBERS_INPUT_PROMPT.getMessage());
     }
+
+    public void printBonusNumberInputPrompt() {
+        System.out.println(Constants.BONUS_NUMBER_INPUT_PROMPT.getMessage());
+    }
 }
