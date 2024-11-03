@@ -1,54 +1,54 @@
 package lotto.service;
 
-import java.util.LinkedHashMap;
-import java.util.List;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.LottoTickets;
+import lotto.model.Rank;
+import lotto.model.WinningNumbers;
+
+import java.util.EnumMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
-import lotto.domain.WinningNumbers;
-import lotto.dto.LottoResultDto;
-import lotto.utils.RankMessages;
 
 public class LottoResults {
-    private final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
+    Map<Rank, Integer> lottoResultMap = new EnumMap<>(Rank.class);
 
-    public LottoResults() {
-        initializeResults();
+    public Map<Rank, Integer> calculateResult(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        refineValue(lottoResultMap);
+        result(tickets, winningNumbers, bonusNumber, lottoResultMap);
+        return lottoResultMap;
     }
 
-    private void initializeResults() {
+    private void refineValue(Map<Rank, Integer> lottoResultMap) {
         for (Rank rank : Rank.values()) {
-            lottoResults.put(rank, 0);
+            lottoResultMap.put(rank, 0);
         }
     }
 
-    public void calculateResults(LottoTickets lottoTickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        for (List<Integer> numbers : lottoTickets.getLottoTickets()) {
-            Lotto lottoTicket = Lotto.from(numbers);
-            Rank rank = determineRank(winningNumbers, bonusNumber, lottoTicket);
-            lottoResults.put(rank, lottoResults.get(rank) + 1);
+    private void result(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber, Map<Rank, Integer> lottoResultMap) {
+        for (Lotto lotto : tickets.getLottoTickets()) {
+            Rank rank = calculateRank(winningNumbers, bonusNumber, lotto);
+            lottoResultMap.put(rank, lottoResultMap.get(rank) + 1);
         }
     }
 
-    private Rank determineRank(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
+    private Rank calculateRank(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
         int matchCount = calculateMatchCount(winningNumbers, lotto);
-        boolean bonusMatch = lotto.contains(bonusNumber.getBonusNumber());
-        return Rank.matchLotto(matchCount, bonusMatch);
+        boolean bonusMatch = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+        Rank matchRank = Rank.matchLotto(matchCount, bonusMatch);
+        return matchRank;
     }
 
     private int calculateMatchCount(WinningNumbers winningNumbers, Lotto lotto) {
-        return (int) winningNumbers.getWinningNumbers().stream()
-                .filter(lotto::contains)
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers.getWinningNumbers()::contains)
                 .count();
     }
 
-    public long calculateTotalEarnings() {
-        return lottoResults.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+    public long calculateTotalEarnings(Map<Rank, Integer> rankMap) {
+        return rankMap.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().calculateTotalEarnings(entry.getValue()))
                 .sum();
     }
+
 
 }

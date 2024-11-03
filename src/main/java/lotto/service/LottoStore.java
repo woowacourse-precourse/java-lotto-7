@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
+import lotto.model.Lotto;
+import lotto.model.LottoTickets;
 
 public class LottoStore {
 
@@ -25,7 +25,7 @@ public class LottoStore {
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         lottoNumbers.sort(Comparator.naturalOrder());
-        return Lotto.from(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
 }

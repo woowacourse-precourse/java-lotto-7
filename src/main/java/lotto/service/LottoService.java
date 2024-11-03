@@ -1,19 +1,19 @@
 package lotto.service;
 
+import lotto.dto.LottoResultDto;
+import lotto.dto.LottoTicketsDto;
+import lotto.model.BonusNumber;
+import lotto.model.LottoTickets;
+import lotto.model.Rank;
+import lotto.model.WinningNumbers;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoPurchase;
-import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
-import lotto.domain.WinningNumbers;
-import lotto.dto.LottoResultDto;
-import lotto.dto.LottoTicketsDto;
-import lotto.utils.RankMessages;
 
 public class LottoService {
+
     private final LottoStore lottoStore;
     private final LottoResults lottoResults;
 
@@ -22,36 +22,22 @@ public class LottoService {
         this.lottoResults = new LottoResults();
     }
 
-    public LottoTicketsDto purchaseLottoTickets(int amount) {
-        LottoTickets tickets = lottoStore.generateLottoTickets(LottoPurchase.of(amount).getTicketCount());
-        return LottoTicketsDto.from(tickets.getLottoTickets());
-    }
-
-    public List<LottoResultDto> calculateResults(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        calculateAndStoreResults(tickets, winningNumbers, bonusNumber);
-        return convertToResultDtos();
-    }
-
-    private void calculateAndStoreResults(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        lottoResults.calculateResults(tickets, winningNumbers, bonusNumber);
-    }
-
-    private List<LottoResultDto> convertToResultDtos() {
-        return lottoResults.getLottoResults().entrySet().stream()
-                .filter(entry -> entry.getKey() != Rank.NONE)
-                .map(this::toLottoResultDto)
+    public List<LottoTicketsDto> purchaseLottoTickets(int amount) {
+        int ticketCount = lottoStore.calculateLottoCount(amount);
+        LottoTickets tickets = lottoStore.generateLottoTickets(ticketCount);
+        return tickets.getLottoTickets().stream()
+                .map(lotto -> new LottoTicketsDto(lotto.getNumbers()))
                 .collect(Collectors.toList());
     }
 
-    private LottoResultDto toLottoResultDto(Map.Entry<Rank, Integer> entry) {
-        Rank rank = entry.getKey();
-        int count = entry.getValue();
-        String description = RankMessages.getMessage(rank.getMatchCount(), rank.isMatchBonus());
-        return new LottoResultDto(description, rank.getPrize(), count);
+    public LottoResultDto calculateResult(LottoTickets tickets, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        Map<Rank, Integer> resultMap = lottoResults.calculateResult(tickets, winningNumbers, bonusNumber);
+        long totalEarnings = lottoResults.calculateTotalEarnings(resultMap);
+        double profitRate = getProfitRate(tickets, (double) totalEarnings);
+        return new LottoResultDto(resultMap, profitRate);
     }
 
-    public double calculateTotalEarningsRate(int purchaseAmount) {
-        long totalEarnings = lottoResults.calculateTotalEarnings();
-        return (double) totalEarnings / purchaseAmount * 100;
+    private double getProfitRate(LottoTickets tickets, double totalEarnings) {
+        return (totalEarnings / (tickets.size() * 1000)) * 100;
     }
 }
