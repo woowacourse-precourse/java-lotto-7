@@ -11,4 +11,12 @@ public class LottoGenerator {
     public List<Integer> getLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT_NUM);
     }
+
+    private LottoGenerator(){
+
+    }
+
+    public static LottoGenerator createLottoGenerator(){
+        return new LottoGenerator();
+    }
 }
