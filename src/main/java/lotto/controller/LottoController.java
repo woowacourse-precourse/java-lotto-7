@@ -17,21 +17,48 @@ public class LottoController {
 
     public void run() {
         OutputView.printInputPurchaseMoneyMessage();
-        String money = InputView.getUserInput();
-        int purchaseMoney = lottoService.getPurchaseMoney(money);
-        int lottoCount = lottoService.getLottoCount(purchaseMoney);
+        int purchaseMoney, lottoCount;
+        while (true) {
+            try {
+                String money = InputView.getUserInput();
+                purchaseMoney = lottoService.getPurchaseMoney(money);
+                lottoCount = lottoService.getLottoCount(purchaseMoney);
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         List<Lotto> lottos = lottoService.generateLottos(lottoCount);
         OutputView.printLottoCountMessage(lottoCount);
         OutputView.printLottoNumbers(lottos);
 
         OutputView.printInputWinningNumbers();
-        String winningNumbersInput = InputView.getUserInput();
-        Lotto winningLotto = lottoService.getWinningLotto(winningNumbersInput);
+        Lotto winningLotto;
+        while (true) {
+            try {
+                String winningNumbersInput = InputView.getUserInput();
+                winningLotto = lottoService.getWinningLotto(winningNumbersInput);
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         OutputView.printInputBonusNumber();
-        String bonusNumberInput = InputView.getUserInput();
-        int bonusNumber = lottoService.getBonusNumber(bonusNumberInput);
+        int bonusNumber;
+        while (true) {
+            try {
+                String bonusNumberInput = InputView.getUserInput();
+                bonusNumber = lottoService.getBonusNumber(bonusNumberInput, winningLotto.getNumbers());
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         Map<String, Integer> matchCounts = lottoService.getMatchCounts(lottos, winningLotto, bonusNumber);
         OutputView.printPrizeStatistics(matchCounts);
