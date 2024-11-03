@@ -9,7 +9,8 @@ public enum ErrorMessage {
     INVALID_LOTTO_NUMBER_RANGE("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다."),
     NEGATIVE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] 로또 번호는 양의 정수여야 합니다."),
     INVALID_WINNING_NUMBERS_FORMAT("[ERROR] 당첨 번호는 숫자와 콤마로만 구성되어야 합니다."),
-    INVALID_BONUS_NUMBER_RANGE("[ERROR] 보너스 번호는 1에서 45 사이의 양의 정수여야 합니다.");
+    INVALID_BONUS_NUMBER_RANGE("[ERROR] 보너스 번호는 1에서 45 사이의 양의 정수여야 합니다."),
+    NEGATIVE_BONUS_NUMBER_NOT_ALLOWED("[ERROR] 보너스 번호는 양의 정수여야 합니다.");
 
     private final String message;
 

@@ -34,6 +34,15 @@ class BonusNumberTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
+
+        @ParameterizedTest
+        @ValueSource(ints = {-5, 0})
+        void 보너스_번호가_양의_정수가_아니면_예외가_발생한다(int invalidNumber) {
+            // when & then
+            assertThatThrownBy(() -> BonusNumber.from(invalidNumber))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ErrorMessage.NEGATIVE_BONUS_NUMBER_NOT_ALLOWED.getMessage());
+        }
     }
 
 }
