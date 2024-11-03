@@ -19,9 +19,6 @@ public class LottoController {
 
     private List<Integer> numbers;
 
-    public LottoController() {
-    }
-
     public void run() {
         start();
     }

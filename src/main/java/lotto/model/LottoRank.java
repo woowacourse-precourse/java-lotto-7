@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum LottoRank {
     MISS(0, 0, "낙첨"),
     FIVE(3, 5000, "3개 일치 (5,000원)"),
@@ -22,32 +24,22 @@ public enum LottoRank {
         return price;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     @Override
     public String toString() {
         return message;
     }
 
     public static LottoRank getRank(int matchCount, boolean isBonusMatched) {
-        if (isSecondRank(matchCount, isBonusMatched)) {
+        if (matchCount == SECOND.matchCount && isBonusMatched) {
             return SECOND;
         }
-        return getMatchCount(matchCount);
-    }
-
-    private static boolean isSecondRank(int matchCount, boolean isBonusMatched) {
-        return SECOND.isMatchCount(matchCount) && isBonusMatched;
-    }
-
-    private static LottoRank getMatchCount(int matchCount) {
-        for (LottoRank rank : values()) {
-            if (rank.isMatchCount(matchCount) && rank != SECOND) {
-                return rank;
-            }
-        }
-        return MISS;
-    }
-
-    public boolean isMatchCount(int number) {
-        return this.matchCount == number;
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .findFirst()
+                .orElse(MISS);
     }
 }
