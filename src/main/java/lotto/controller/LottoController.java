@@ -106,4 +106,19 @@ public class LottoController {
 
         return numbers;
     }
+
+    private void inputBonusNumber() {
+        System.out.println(BONUS_NUMBER_INPUT);
+
+        while (true) {
+            try {
+                String input = Console.readLine();
+                int bonus = convertToNumber(input);
+                lottoService.setBonusNumber(bonus);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
 }
