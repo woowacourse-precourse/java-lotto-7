@@ -10,7 +10,9 @@ public final class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.print("[");
-            String result = lotto.getNumbers().stream().map(String::valueOf).collect(Collectors.joining(","));
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
+            String result = numbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
             System.out.print(result);
             System.out.println("]");
         }
