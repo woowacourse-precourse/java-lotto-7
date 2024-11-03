@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.utils.LottoProfitCalculator;
+import lotto.domain.LottoProfitCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
