@@ -5,6 +5,8 @@ import lotto.utility.ExceptionEnum;
 import java.util.List;
 
 public class Lotto {
+    private static final int REQUIRED_NUMBERS_LENGTH = 6;
+    private static final int MIN_NUMBER = 1;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,14 +17,14 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != REQUIRED_NUMBERS_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateUnderZero(List<Integer> numbers) {
         boolean hasZero = numbers.stream()
-                .anyMatch(num -> num <= 0);
+                .anyMatch(num -> num < MIN_NUMBER);
 
         if (hasZero) {
             throw new IllegalArgumentException(ExceptionEnum.CANNOT_INCLUDE_ZERO.getMessage());

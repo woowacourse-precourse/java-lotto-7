@@ -4,31 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int INITIAL_MATCHED_COUNT = 0;
+    private static final int MATCH_3 = 3;
+    private static final int MATCH_4 = 4;
+    private static final int MATCH_5 = 5;
+    private static final int MATCH_6 = 6;
     private Map<String, Integer> matchedCount;
 
     public LottoResult() {
         this.matchedCount = new HashMap<>();
-        matchedCount.put("threeMatched", 0);
-        matchedCount.put("fourMatched", 0);
-        matchedCount.put("fiveMatched", 0);
-        matchedCount.put("fiveWithBonusMatched", 0);
-        matchedCount.put("sixMatched", 0);
+        matchedCount.put("threeMatched", INITIAL_MATCHED_COUNT);
+        matchedCount.put("fourMatched", INITIAL_MATCHED_COUNT);
+        matchedCount.put("fiveMatched", INITIAL_MATCHED_COUNT);
+        matchedCount.put("fiveWithBonusMatched", INITIAL_MATCHED_COUNT);
+        matchedCount.put("sixMatched", INITIAL_MATCHED_COUNT);
     }
 
     public void increaseCountByNumberMatchedAndBonusMatched(int numberMatchedCount, boolean isBonusMatched) {
-        if (numberMatchedCount == 3) {
+        if (numberMatchedCount == MATCH_3) {
             increaseThree();
             return;
         }
-        if (numberMatchedCount == 4) {
+        if (numberMatchedCount == MATCH_4) {
             increaseFour();
             return;
         }
-        if (numberMatchedCount == 5) {
+        if (numberMatchedCount == MATCH_5) {
             increaseFive(isBonusMatched);
             return;
         }
-        if (numberMatchedCount == 6) {
+        if (numberMatchedCount == MATCH_6) {
             increaseSix();
             return;
         }
