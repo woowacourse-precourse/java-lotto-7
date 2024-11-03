@@ -56,4 +56,8 @@ public class OutputView {
     public static void printTotalProfitRate(double profitRate) {
         System.out.printf(Message.TOTAL_PROFIT_RATE.getMessage(), profitRate);
     }
+
+    public static void printExceptionMessage(String message) {
+        System.out.println(Message.ERROR_PREFIX.getMessage() + message);
+    }
 }

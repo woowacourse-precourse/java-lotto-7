@@ -18,7 +18,7 @@ public class LottoNumberValidator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + "로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -26,7 +26,7 @@ public class LottoNumberValidator {
 
         int deduplicatedNumbersCount = new HashSet<>(numbers).size();
         if (deduplicatedNumbersCount != numbers.size()) {
-            throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + "로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 }
