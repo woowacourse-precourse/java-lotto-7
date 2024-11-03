@@ -9,6 +9,7 @@ public enum StateMessage {
     SIX("6개 일치 (2,000,000,000원) - ");
 
     private String message;
+
     StateMessage(String message) {
         this.message = message;
     }
