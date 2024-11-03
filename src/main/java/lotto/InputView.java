@@ -38,16 +38,16 @@ public class InputView {
         }
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<String> winningNumbers) {
         while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine();
-                int bonusNumber = Integer.parseInt(inputBonusNumber);
+                int bonus = Integer.parseInt(inputBonusNumber);
 
-                Validator.validateBonus(bonusNumber);
+                Validator.validateBonus(bonus, winningNumbers);
 
-                return bonusNumber;
+                return bonus;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

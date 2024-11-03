@@ -12,7 +12,7 @@ public class LottoController {
         OutputView.displayPurchasedTickets(tickets);
 
         List<String> winningNumbers = InputView.getWinningNumber();
-        int bonusNumber = InputView.getBonusNumber();
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
 
         List<Integer> winningNumberList = winningNumbers.stream()
                                                         .map(Integer::parseInt)
