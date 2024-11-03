@@ -23,9 +23,9 @@ public class PublishingService {
         return new Lotto(publishedTicket);
     }
 
-    public List<Lotto> publishByNumberOfTicket (int numberOfTicket) {
+    public List<Lotto> publishByNumberOfTicket (int numberOfTickets) {
         List<Lotto> LottoTickets = new ArrayList<>();
-        for (int i = 0; i < numberOfTicket; i++) {
+        for (int i = 0; i < numberOfTickets; i++) {
             LottoTickets.add(publishLottoTicket());
         }
         return LottoTickets;

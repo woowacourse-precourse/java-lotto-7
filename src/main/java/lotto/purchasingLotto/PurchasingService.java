@@ -13,7 +13,7 @@ public class PurchasingService {
         return purchasingService;
     }
 
-    public int purchaseTickets(String inputPayment) {
+    public int getNumberOfTickets(String inputPayment) {
         int payment = Integer.parseInt(inputPayment);
         return payment / 1_000;
     }

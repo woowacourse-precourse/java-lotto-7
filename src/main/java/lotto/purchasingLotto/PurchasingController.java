@@ -17,10 +17,12 @@ public class PurchasingController {
     public int purchaseLottoTickets() {
         String inputPayment = inputPaymentView.getPayment();
         paymentValidator.validPayment(inputPayment);
+
         PurchasingService purchasing = PurchasingService.getPurchasingService();
-        int payment = purchasing.purchaseTickets(inputPayment);
-        outputPurchasingView.printPurchasing(payment);
-         return payment;
+        int numberOfTickets = purchasing.getNumberOfTickets(inputPayment);
+
+        outputPurchasingView.printPurchasing(numberOfTickets);
+        return numberOfTickets;
     }
 
 }
