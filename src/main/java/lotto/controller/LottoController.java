@@ -34,7 +34,7 @@ public class LottoController {
     public void printPurchaseLottoNumbers () {
         outputView.printPurchasedLottoCount(purchaseLottoNumbers.size());
         for (Lotto lotto : purchaseLottoNumbers) {
-            outputView.printMessage(lotto.getNumbers().toString());
+            outputView.printMessage(lotto.getSortNumbers().toString());
         }
     }
 
