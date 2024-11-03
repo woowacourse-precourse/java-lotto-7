@@ -61,4 +61,12 @@ public class WinningNumbers {
 		}
 	}
 
+	public boolean doesWinningNumbersContains(int lottoNumber) {
+		return winningNumbers.contains(lottoNumber);
+	}
+
+	public boolean isBonusNumberContainedIn(List<Integer> lottoNumbers) {
+		return lottoNumbers.contains(bonusNumber);
+	}
+
 }
