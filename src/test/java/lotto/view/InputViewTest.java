@@ -28,6 +28,15 @@ class InputViewTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스번호 입력 메시지 출력 확인")
+    void requestBonusNumberMessage() {
+        assertSimpleTest(() -> {
+            inputView.requestBonusNumberMessage();
+            assertThat(output()).contains("보너스 번호를 입력해 주세요.");
+        });
+    }
+
     @Override
     protected void runMain() {
     }
