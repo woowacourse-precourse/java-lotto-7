@@ -19,8 +19,8 @@ public enum Prize {
     }
 
     public boolean matches(int numberOfMatches, boolean bonusNumberMatch) {
-        if (this == SECOND_PRIZE) {
-            return numberOfMatches == 5 && bonusNumberMatch;
+        if (this == THIRD_PRIZE) {
+            return numberOfMatches == 5 && !bonusNumberMatch;
         }
         if (this == NO_PRIZE) {
             return numberOfMatches < 3;
