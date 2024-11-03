@@ -11,9 +11,11 @@ import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.WinAmount;
 import lotto.validation.BonusNumberValidate;
+import lotto.validation.BuyLottoValidate;
 import lotto.view.Input;
 import lotto.view.Output;
 
+// util, 컬렉션 수정, 테스트, 리팩토링, 클린 코드
 public class LottoService {
     private final EnumMap<WinAmount, Integer> winLottoAmountHistory;
     private static boolean fiveAndBonus = false;
@@ -25,10 +27,10 @@ public class LottoService {
         }
     }
 
-
     public int buyLotto() {
         try {
-            return Input.InputAmount();
+            String inputAmount = Input.InputAmount();
+            return BuyLottoValidate.lottoBuyValidation(inputAmount);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return buyLotto();
@@ -41,16 +43,14 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
-
     public Lotto setWinNumber() {
-        while (true) {
-            try {
-                String inputWinNumber = Input.InputWinNumber();
-                List<Integer> winNumber = numberSplit(inputWinNumber);
-                return new Lotto(winNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String inputWinNumber = Input.InputWinNumber();
+            List<Integer> winNumber = numberSplit(inputWinNumber);
+            return new Lotto(winNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setWinNumber();
         }
     }
 
@@ -67,21 +67,15 @@ public class LottoService {
         return winNumbers;
     }
 
-
     public int setBonusNumber(Lotto winNumbers) {
-        int bonusNumber;
-        while (true) {
-            try {
-                String inputBonusNumber = Input.InputBonusNumber();
-                bonusNumber = BonusNumberValidate.bonusValidation(winNumbers.getNumbers(), inputBonusNumber);
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String inputBonusNumber = Input.InputBonusNumber();
+            return BonusNumberValidate.bonusValidation(winNumbers.getNumbers(), inputBonusNumber);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return setBonusNumber(winNumbers);
         }
-        return bonusNumber;
     }
-
 
     public EnumMap<WinAmount, Integer> comPareMyLotto_WinLotto(Lotto[] lottos, List<Integer> winNumbers,
                                                                int bonusNumber) {
