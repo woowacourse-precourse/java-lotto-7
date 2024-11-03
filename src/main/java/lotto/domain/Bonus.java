@@ -12,7 +12,6 @@ public class Bonus {
     }
 
     public static Bonus of(String input, Lotto winningLotto) {
-        input = input.trim();
         validate(input, winningLotto);
         return new Bonus(Integer.parseInt(input));
     }
@@ -20,7 +19,9 @@ public class Bonus {
     private static void validate(String input, Lotto winningLotto) {
         validateBlank(input);
         validateNumeric(input);
-        validateRange(input, winningLotto);
+        int number = parseInt(input);
+        validateNumberRange(number);
+        validateDuplicate(number, winningLotto.getNumbers());
     }
 
     private static void validateBlank(String input) {
@@ -33,12 +34,6 @@ public class Bonus {
         if (!input.matches(Constant.NUMERIC_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_BONUS_NUMBER.getMessage());
         }
-    }
-
-    private static void validateRange(String input, Lotto winningLotto) {
-        int number = parseInt(input);
-        validateNumberRange(number);
-        validateDuplicate(number, winningLotto.getNumbers());
     }
 
     private static int parseInt(String input) {
@@ -55,8 +50,8 @@ public class Bonus {
         }
     }
 
-    private static void validateDuplicate(int bonus, List<Integer> numbers) {
-        if (numbers.contains(bonus)) {
+    private static void validateDuplicate(int number, List<Integer> winningLotto) {
+        if (winningLotto.contains(number)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }

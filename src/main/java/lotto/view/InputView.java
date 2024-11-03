@@ -20,6 +20,6 @@ public class InputView {
     }
 
     public String getInput() {
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 }

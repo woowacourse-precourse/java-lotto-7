@@ -11,15 +11,15 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
     public static Lotto of(String input) {
         validateBlank(input);
-        String[] numbers = getNumbers(input);
-        Arrays.stream(numbers).forEach(Lotto::validateNumeric);
-        return new Lotto(Arrays.stream(numbers)
+        List<String> numbers = splitNumbers(input);
+        numbers.forEach(Lotto::validateNumeric);
+        return new Lotto(numbers.stream()
                 .map(Lotto::parseInt)
                 .collect(Collectors.toList()));
     }
@@ -30,16 +30,16 @@ public class Lotto {
         }
     }
 
+    private static List<String> splitNumbers(String input) {
+        return Arrays.stream(input.split(Constant.DELIMITER))
+                .map(String::strip)
+                .collect(Collectors.toList());
+    }
+
     private static void validateNumeric(String input) {
         if (!input.matches(Constant.NUMERIC_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
         }
-    }
-
-    private static String[] getNumbers(String input) {
-        return Arrays.stream(input.split(Constant.DELIMITER))
-                .map(String::strip)
-                .toArray(String[]::new);
     }
 
     private static int parseInt(String input) {
@@ -50,7 +50,7 @@ public class Lotto {
         }
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumbers(List<Integer> numbers) {
         validateNumbersSize(numbers);
         numbers.forEach(this::validateNumberRange);
         validateDuplicate(numbers);
