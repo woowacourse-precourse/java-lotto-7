@@ -11,9 +11,9 @@ public class Application {
         Integer bonusNumber = inputBonusNumber(winNumbers);
 
         LottoService lottoService = new LottoService();
-        LottoStatistics statistics = lottoService.calculateStatistics(lottos, winNumbers, bonusNumber);
+        LottoStatistics statistics = lottoService.calculateStatistics(lottos, winNumbers, bonusNumber, money);
 
-        Print.printStatistics(statistics.getStatistics());
+        Print.printStatistics(statistics);
     }
 
 

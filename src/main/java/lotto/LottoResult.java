@@ -15,6 +15,10 @@ public enum LottoResult {
         this.message = message;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     @Override
     public String toString() {
         return String.format("%s (%,d원)", message, prize);

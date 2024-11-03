@@ -3,8 +3,9 @@ package lotto;
 import java.util.List;
 
 public class LottoService {
-    public LottoStatistics calculateStatistics(List<Lotto> lottos, List<Integer> winNumbers, Integer bonusNumber) {
+    public LottoStatistics calculateStatistics(List<Lotto> lottos, List<Integer> winNumbers, Integer bonusNumber, Integer money) {
         LottoStatistics statistics = new LottoStatistics();
+        statistics.addCost(money);
         for (Lotto lotto : lottos) {
             LottoResult result = checkWinning(lotto, winNumbers, bonusNumber);
             statistics.recordWin(result);

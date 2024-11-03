@@ -13,14 +13,18 @@ public class Print {
         }
     }
 
-    public static void printStatistics(Map<LottoResult, Integer> statistics) {
+    public static void printStatistics(LottoStatistics statistics) {
         System.out.println("\n당첨 통계");
         System.out.println("---------");
 
         for (LottoResult result : LottoResult.values()) {
-            int count = statistics.get(result);
+            int count = statistics.getStatistics().get(result);
             System.out.printf("%s - %d개%n", result, count);
         }
+
+        double yield = statistics.calculateYield();
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
+
     }
 
 }
