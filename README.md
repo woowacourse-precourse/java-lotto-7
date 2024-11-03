@@ -201,3 +201,10 @@ _Implementing functionality in a bottom-up approach_
 12.[x] 당첨 통계 서비스 구현
     - [x] 수익률 계산 기능 구현 
 
+13.[x] 입력 뷰 구현
+    - [x] 금액 입력 뷰 구현 
+    - [x] 당첨 번호 입력 뷰 구현 
+    - [x] 보너스 번호 입력 뷰 구현 
+
+14.[ ] 출력 뷰 구현
+    -  [ ]
