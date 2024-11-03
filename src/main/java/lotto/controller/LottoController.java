@@ -1,9 +1,13 @@
 package lotto.controller;
 
+import java.util.List;
+import java.util.stream.IntStream;
 import lotto.dto.BonusLottoNumBerInput;
 import lotto.dto.LottoPurchasedAmountInput;
 import lotto.dto.WinnerLottoNumbersInput;
 import lotto.exception.LottoException;
+import lotto.model.Lotto;
+import lotto.model.LottoNumberGenerator;
 import lotto.model.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,16 +17,26 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outPutView;
+    private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoController(InputView inputView, OutputView outPutView) {
+    public LottoController(InputView inputView, OutputView outPutView, LottoNumberGenerator lottoNumberGenerator) {
         this.inputView = inputView;
         this.outPutView = outPutView;
+        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public void start() {
         Buyer buyer = processLottoPurchase();
         WinnerLotto winnerLotto = processWinnerLotto();
         processBonusNumber(winnerLotto);
+
+        outPutView.printNumberOfPurchasedLottos(buyer.getNumberOfLottos());
+
+        List<Lotto> purchasedLottoList = IntStream.range(0, buyer.getNumberOfLottos())
+                .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
+                .toList();
+
+        outPutView.printLottoList(purchasedLottoList);
     }
 
     private Buyer processLottoPurchase() {
