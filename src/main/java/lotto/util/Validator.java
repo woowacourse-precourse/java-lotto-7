@@ -2,6 +2,9 @@ package lotto.util;
 
 import lotto.model.Lotto;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class Validator {
 
     public static void validateIsNumeric(String input) {
@@ -22,5 +25,11 @@ public class Validator {
     public static void validateNotBlank(String input) {
         if (input.contains(" "))
             throw new IllegalArgumentException("공백은 포함될 수 없습니다.");
+    }
+
+    public static void validateNoDuplicates(List<Integer> numbers) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size())
+            throw new IllegalArgumentException("중복된 숫자가 포함되어 있습니다.");
     }
 }
