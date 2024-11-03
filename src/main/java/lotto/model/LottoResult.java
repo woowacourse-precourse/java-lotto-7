@@ -16,4 +16,8 @@ public class LottoResult {
     public long calculateTotalProfit() {
         return this.prizes.stream().mapToLong(prize -> prize.getMoney()).sum();
     }
+
+    public int getLottoCount() {
+        return prizes.size();
+    }
 }

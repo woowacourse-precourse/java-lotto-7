@@ -38,7 +38,7 @@ public class LottoController {
         LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
 
         printLottoResult(lottoResult);
-        double profitRate = lottoBank.calculateProfitRate(lottoResult, myLottos.size());
+        double profitRate = lottoBank.calculateProfitRate(lottoResult);
         printProfitRate(profitRate);
     }
 
