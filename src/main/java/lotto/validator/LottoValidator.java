@@ -10,10 +10,19 @@ public class LottoValidator {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBERS_COUNT = 6;
 
-    public static void validate(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNoDuplicates(numbers);
         validateNumberRange(numbers);
+    }
+
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage(MIN_NUMBER, MAX_NUMBER));
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
     }
 
     private static void validateNumberCount(List<Integer> numbers) {
