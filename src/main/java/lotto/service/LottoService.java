@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoConstants;
 import lotto.domain.LottoMachine;
@@ -41,5 +42,15 @@ public class LottoService {
                 .count();
         boolean matchBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
         return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    public int calculateTotalPrize(Map<LottoRank, Integer> results) {
+        int totalPrize = 0;
+        for (Map.Entry<LottoRank, Integer> entry : results.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+        return totalPrize;
     }
 }
