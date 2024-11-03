@@ -12,8 +12,11 @@ public enum Outputs {
     MATCH_COUNT_WITH_BONUS("개 일치, 보너스 볼 일치 ("),
     WON("원"),
     PARENTHESIS_HYPHEN(") - "),
-    NUMBER("개");
+    NUMBER("개"),
 
+    TOTAL_REVENUE_PERCENT("총 수익률은 "),
+    PERCENT("%"),
+    DESU("입니다.");
 
     final String message;
 

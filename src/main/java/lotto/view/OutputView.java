@@ -59,4 +59,11 @@ public class OutputView {
                 rankCount.get(rank.getNumber()) +
                 Outputs.NUMBER.getMessage());
     }
+
+    public void printRevenuePercent(float revenuePercent) {
+        System.out.println(Outputs.TOTAL_REVENUE_PERCENT.getMessage() +
+                revenuePercent +
+                Outputs.PERCENT.getMessage() +
+                Outputs.DESU.getMessage());
+    }
 }

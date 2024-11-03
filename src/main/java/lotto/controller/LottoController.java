@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Ticket;
 import lotto.service.RankCounter;
+import lotto.service.RevenuePercentCalculator;
 import lotto.service.TicketGenerator;
 import lotto.util.InputParser;
 import lotto.validator.BonusValidator;
@@ -39,8 +40,12 @@ public class LottoController {
         RankCounter counter = new RankCounter(tickets, lotto, bonus);
         List<Long> rankCount = counter.getRankCount();
 
+        RevenuePercentCalculator calculator = new RevenuePercentCalculator(rankCount);
+        float revenuePercent = calculator.getRevenuePercent();
+
         outputView.printStatistics();
         outputView.printRanks(rankCount);
+        outputView.printRevenuePercent(revenuePercent);
 
     }
 
