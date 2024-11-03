@@ -39,6 +39,28 @@ class InputViewTest {
     }
 
     @Test
+    @DisplayName("로또 구입 금액 입력 예외 테스트 1")
+    void setLottoPriceExceptionTest() {
+        // given
+        String input = "999";
+
+        // when & then
+        assertThatThrownBy(() -> lottoAmountValidator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 입력 예외 테스트 2")
+    void setLottoPriceExceptionTest2() {
+        // given
+        String input = "abc";
+
+        // when & then
+        assertThatThrownBy(() -> lottoAmountValidator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("당첨 번호 입력 테스트")
     void setWinningNumbersTest() {
         // given
