@@ -57,10 +57,6 @@ public class DrawResult {
         drawResult.put(prize, currentWinningCount + 1);
     }
 
-    public Map<Prize, Integer> getDrawResult() {
-        return drawResult;
-    }
-
     public int calculateTotalPrizeMoney() {
         int totalPrizeMoney = 0;
         Set<Prize> prizes = drawResult.keySet();
@@ -68,6 +64,10 @@ public class DrawResult {
             totalPrizeMoney += prize.calculatePrizeMoney(drawResult.get(prize));
         }
         return totalPrizeMoney;
+    }
+
+    public Map<Prize, Integer> getDrawResult() {
+        return drawResult;
     }
 
 }

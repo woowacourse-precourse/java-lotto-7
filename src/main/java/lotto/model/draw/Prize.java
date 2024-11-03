@@ -38,16 +38,16 @@ public enum Prize {
         return prize;
     }
 
+    public int calculatePrizeMoney(int count) {
+        return prizeMoney*count;
+    }
+
     public int getRank() {
         return rank;
     }
 
     public int getConditionCount() {
         return conditionCount;
-    }
-
-    public int calculatePrizeMoney(int count) {
-        return prizeMoney*count;
     }
 
     public String getMessage() {
