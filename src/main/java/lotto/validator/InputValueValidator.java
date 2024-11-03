@@ -23,19 +23,19 @@ public class InputValueValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자로 입력해야 합니다.");
         }
     }
 
     private static void validatePositiveAmount(int amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 음수가 될 수 없습니다.");
         }
     }
 
     private static void validateAmount(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
