@@ -35,28 +35,24 @@ class LottoMachinTest {
         machine = new LottoMachin();
         output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
-        output.reset();
-        Console.close();
     }
 
     @AfterEach
     void tearDown() {
-        System.setIn(originalIn);  // 입력 스트림 복원
-        System.setOut(originalOut); // 출력 스트림 복원
-        output.reset(); // 출력 스트림 초기화
+        System.setIn(originalIn);
+        System.setOut(originalOut);
+        output.reset();
         Console.close();
     }
 
     @DisplayName("로또 머신이 판매한 로또의 갯수와 실제 구매자가 받은 로또의 개수 비교 테스트")
     @Test
     void sellToTest() {
-        String input = "5000\n";
+        String input = "5000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        LottoMachin lottoMachin = new LottoMachin();
-        lottoMachin.sellTo(consumer);
+        machine.sellTo(consumer);
         assertEquals(5, consumer.getPurchasedLottoCount());
-
     }
 
     @DisplayName("로또 머신이 제공한 구매자의 로또 번호 검증 테스트.")
@@ -68,10 +64,10 @@ class LottoMachinTest {
                         new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
                 )
         );
-        String expectedOutput2 = "[1, 2, 3, 4, 5, 6]\r\n[7, 8, 9, 10, 11, 12]\r\n";
+        String expectedOutput = "[1, 2, 3, 4, 5, 6]\r\n[7, 8, 9, 10, 11, 12]\r\n";
 
         consumer.printPurchasedLottos();
-        assertEquals(expectedOutput2, output.toString());
+        assertEquals(expectedOutput, output.toString());
     }
 
     @DisplayName("로또 머신이 구매자의 로또 번호의 정보를 출력하는 메서드 테스트")
@@ -85,8 +81,7 @@ class LottoMachinTest {
         );
         String expectedOutput = "\r\n2개를 구매했습니다.\r\n[1, 2, 3, 4, 5, 6]\r\n[7, 8, 9, 10, 11, 12]\r\n";
 
-        LottoMachin lottoMachin = new LottoMachin();
-        lottoMachin.printLottoInfo(consumer);
+        machine.printLottoInfo(consumer);
 
         assertEquals(expectedOutput, output.toString());
     }
@@ -102,10 +97,8 @@ class LottoMachinTest {
             inputNumbers.add(Integer.parseInt(number));
         }
         Lotto expected = new Lotto(inputNumbers);
-//        expected.sortLottoNumbers();
 
-        LottoMachin lottoMachin = new LottoMachin();
-        lottoMachin.inputWinningNumbersTo(consumer);
+        machine.inputWinningNumbersTo(consumer);
         boolean result = consumer.selectedWinnerNumberIsEqualsTo(expected);
         assertTrue(result);
     }
@@ -116,8 +109,7 @@ class LottoMachinTest {
         String input = " ";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        LottoMachin lottoMachin = new LottoMachin();
-        assertThatThrownBy(() -> lottoMachin.inputWinningNumbersTo(consumer))
+        assertThatThrownBy(() -> machine.inputWinningNumbersTo(consumer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.EMPTY_MESSAGE.getErrorMessage());
     }
@@ -128,8 +120,7 @@ class LottoMachinTest {
         String input = "1,2,3,4,5\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        LottoMachin lottoMachin = new LottoMachin();
-        assertThatThrownBy(() -> lottoMachin.inputWinningNumbersTo(consumer))
+        assertThatThrownBy(() -> machine.inputWinningNumbersTo(consumer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
     }
