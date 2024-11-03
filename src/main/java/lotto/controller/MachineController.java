@@ -15,11 +15,16 @@ public class MachineController {
 
         User user = new User(purchaseAmount);
         printLottoQuantityAndNumbers(user.getQuantity(), user.getLotto());
+
+        OutputView.printBlankLine();
+
+        OutputView.printInputWinningNumbersMessage();
+        List<Integer> winningNumbers = InputView.readWinningNumbers();
     }
 
     private void printLottoQuantityAndNumbers(int quantity, List<Lotto> lotto) {
         OutputView.printLottoQuantity(quantity);
-        
+
         for (Lotto oneOfLotto : lotto) {
             OutputView.printLottoNumbers(oneOfLotto.getNumbers());
         }

@@ -21,4 +21,8 @@ public class OutputView {
         lotto.sort(Comparator.naturalOrder());
         System.out.println(lotto);
     }
+
+    public static void printInputWinningNumbersMessage() {
+        System.out.println(SystemMessage.INPUT_WINNING_NUMBERS.getMessage());
+    }
 }
