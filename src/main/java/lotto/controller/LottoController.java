@@ -4,6 +4,7 @@ import lotto.model.LottoStatistics;
 import lotto.model.LottoTickets;
 import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
+import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,26 +21,34 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void run(){
-        outputView.printInputPurchaseAmount();
-        int purchaseAmount = inputView.getPurchaseAmount();
-        LottoTickets lottoTickets = lottoService.purchaseLotto(purchaseAmount);
-        outputView.printOutputLottoCount(lottoTickets.getLottoCount());
-        outputView.printOutputLottoNumbers(lottoTickets.getLottos());
+    public void run() {
+        try {
+            outputView.printInputPurchaseAmount();
+            int purchaseAmount = inputView.getPurchaseAmount(); // 여기서 예외 발생 가능
+            PurchaseAmountValidator.validateAmount(purchaseAmount);
+            LottoTickets lottoTickets = lottoService.purchaseLotto(purchaseAmount); // 예외 발생 가능
 
-        outputView.printInputWinnerNumber();
-        List<Integer> winningNumber = inputView.getWinningNumbers();
+            outputView.printOutputLottoCount(lottoTickets.getLottoCount());
+            outputView.printOutputLottoNumbers(lottoTickets.getLottos());
 
-        outputView.printInputBonusNumber();
-        int bonusNumber = inputView.getBonusNumber();
+            outputView.printInputWinnerNumber();
+            List<Integer> winningNumber = inputView.getWinningNumbers();
 
-        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+            outputView.printInputBonusNumber();
+            int bonusNumber = inputView.getBonusNumber();
 
-        LottoStatistics lottoStatistics = new LottoStatistics();
-        lottoStatistics.calculateStatistics(lottoTickets.getLottos(),winningNumbers);
+            WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
 
-        outputView.printOutputLottoStatistics(lottoStatistics.getResultMap());
-        double profit = lottoStatistics.calculateProfit(lottoTickets.getPurchaseAmount());
-        outputView.printOutputProfit(profit);
+            LottoStatistics lottoStatistics = new LottoStatistics();
+            lottoStatistics.calculateStatistics(lottoTickets.getLottos(), winningNumbers);
+
+            outputView.printOutputLottoStatistics(lottoStatistics.getResultMap());
+            double profit = lottoStatistics.calculateProfit(lottoTickets.getPurchaseAmount());
+            outputView.printOutputProfit(profit);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage()); // 예외 메시지 출력
+        }
     }
+
 }

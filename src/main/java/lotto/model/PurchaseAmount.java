@@ -1,14 +1,11 @@
 package lotto.model;
 
-import lotto.validator.PurchaseAmountValidator;
-
 public class PurchaseAmount {
     public static final int LOTTO_PRICE = 1000;
     private final int lottoCount;
     private final int amount;
 
     public PurchaseAmount(int amount) {
-        PurchaseAmountValidator.validateAmount(amount);
         this.amount = amount;
         this.lottoCount = calculateLottoCount(amount);
     }
