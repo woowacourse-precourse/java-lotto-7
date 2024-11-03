@@ -7,12 +7,19 @@ import lotto.constants.LottoInteger;
 import lotto.constants.LottoString;
 import lotto.view.ErrorPrinter;
 
-public class WinningNumberValidator {
-    private static String rawWinningNumber;
-    private static List<Integer> WinningNumbers;
+public class WinNumberValidator {
+    private static String rawWinNumber;
+    private static List<Integer> WinNumbers;
 
-    public static boolean validate(String rawWinningNumber) {
-        WinningNumberValidator.rawWinningNumber = rawWinningNumber;
+    /**
+     * 로또 당첨 번호의 유효성 검사를 진행한다.
+     *
+     * @param rawWinNumber 유효성 검사가 필요한 로또 당첨 번호
+     * @return 유효한 로또 당첨 번호라면 true, 아닐 경우 false
+     */
+
+    public static boolean validate(String rawWinNumber) {
+        WinNumberValidator.rawWinNumber = rawWinNumber;
         if (!isExist()) {
             return false;
         }
@@ -35,20 +42,20 @@ public class WinningNumberValidator {
     }
 
     private static boolean isExist() {
-        if (!rawWinningNumber.isBlank()) {
+        if (!rawWinNumber.isBlank()) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_SHOULD_EXIST);
+        ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_SHOULD_EXIST);
         return false;
     }
 
     private static boolean hasDelimiterCountExactly() {
-        if (rawWinningNumber.chars()
-                .filter(WinningNumberValidator::isDelimiter)
+        if (rawWinNumber.chars()
+                .filter(WinNumberValidator::isDelimiter)
                 .count() == getLottoNumberCount() - 1) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT);
+        ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_CONTAIN_BAD_INPUT);
         return false;
     }
 
@@ -65,32 +72,32 @@ public class WinningNumberValidator {
         if (split.length == LottoInteger.LOTTO_NUMBER_COUNT.getValue()) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_NOT_EQUAL_COUNT);
+        ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_NOT_EQUAL_COUNT);
         return false;
     }
 
     private static String[] splitWithDelimiters() {
-        return rawWinningNumber.split(LottoString.DELIMITER.getValue());
+        return rawWinNumber.split(LottoString.DELIMITER.getValue());
     }
 
     private static boolean isDigit() {
         try {
-            WinningNumbers = Arrays.stream(splitWithDelimiters())
+            WinNumbers = Arrays.stream(splitWithDelimiters())
                     .map(Integer::parseInt)
                     .toList();
             return true;
         } catch (NumberFormatException exception) {
-            ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT);
+            ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_CONTAIN_BAD_INPUT);
         }
         return false;
     }
 
     private static boolean isValidRangeNumbers() {
-        if (WinningNumbers.stream()
-                .allMatch(WinningNumberValidator::isValidRange)) {
+        if (WinNumbers.stream()
+                .allMatch(WinNumberValidator::isValidRange)) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_NOT_IN_BETWEEN_START_AND_END);
+        ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_NOT_IN_BETWEEN_START_AND_END);
         return false;
     }
 
@@ -100,10 +107,10 @@ public class WinningNumberValidator {
     }
 
     private static boolean hasNoDuplication() {
-        if (WinningNumbers.stream().distinct().count() == WinningNumbers.size()) {
+        if (WinNumbers.stream().distinct().count() == WinNumbers.size()) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_NOT_DUPLICATED);
+        ErrorPrinter.errorPrint(InputError.LOTTO_WIN_NUMBER_NOT_DUPLICATED);
         return false;
     }
 }

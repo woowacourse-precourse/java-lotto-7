@@ -13,10 +13,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] !");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] !");
+            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
         }
     }
 
@@ -24,11 +24,17 @@ public class Lotto {
         return numbers;
     }
 
-    public WinRank matchWinLotto(WinLotto winLotto) {
-        int matchCount = (int) winLotto.getNumbers().stream()
+    /**
+     * 당첨 번호와 비교하여 순위를 반환함.
+     *
+     * @param winNumber 당첨 번호가 적힌 로또
+     * @return 로또 당첨 순위
+     */
+    public WinRank compareWinNumber(WinNumber winNumber) {
+        int matchCount = (int) winNumber.numbers().stream()
                 .filter(numbers::contains)
                 .count();
-        boolean matchBonus = numbers.contains(winLotto.getBonusNumber());
+        boolean matchBonus = numbers.contains(winNumber.bonusNumber());
         return getRank(matchCount, matchBonus);
     }
 

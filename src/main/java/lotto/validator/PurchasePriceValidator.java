@@ -8,6 +8,13 @@ public class PurchasePriceValidator {
     private static String rawPurchasePrice;
     private static int intPurchasePrice;
 
+    /**
+     * 로또 구입 금액의 유효성 검사를 진행한다.
+     * 
+     * @param rawPurchasePrice 유효성 검사가 필요한 로또 구입 금액
+     * @return 유효한 로또 구입 금액이면 true, 아닐 경우 false
+     */
+
     public static boolean validate(String rawPurchasePrice) {
         PurchasePriceValidator.rawPurchasePrice = rawPurchasePrice;
         if (!isExist()) {

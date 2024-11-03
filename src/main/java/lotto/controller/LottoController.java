@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.constants.WinRank;
 import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
+import lotto.domain.WinNumber;
 import lotto.factory.LottoFactory;
 import lotto.service.LottoMatcher;
 import lotto.service.LottoMoneyService;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchasePriceValidator;
-import lotto.validator.WinningNumberValidator;
+import lotto.validator.WinNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,16 +38,19 @@ public class LottoController {
         private static final LottoController LOTTO_CONTROLLER = new LottoController();
     }
 
+    /**
+     * 전체적인 로직이 작동하는 곳.
+     */
     public void run() {
         int validPurchasePrice = getValidInteger(validatePurchasePrice());
         List<Lotto> lottoes = lottoFactory.makeLottoes(validPurchasePrice);
         printLottoNumbers(lottoes);
 
-        List<Integer> validWinningNumbers = getValidWinningNumbers(validateWinningNumbers());
-        int validBonusNumber = getValidInteger(validateBonusNumber(validWinningNumbers));
-        WinLotto winLotto = new WinLotto(validWinningNumbers, validBonusNumber);
+        List<Integer> validWinNumbers = getValidWinNumbers(validateWinNumbers());
+        int validBonusNumber = getValidInteger(validateBonusNumber(validWinNumbers));
+        WinNumber winNumber = new WinNumber(validWinNumbers, validBonusNumber);
 
-        LottoMatcher lottoMatcher = new LottoMatcher(lottoes, winLotto);
+        LottoMatcher lottoMatcher = new LottoMatcher(lottoes, winNumber);
         printLottoMatchResult(lottoMatcher);
         printRatioOfBenefit(lottoMatcher, validPurchasePrice);
     }
@@ -68,23 +71,25 @@ public class LottoController {
         return Integer.parseInt(validatedInteger);
     }
 
-    private String validateWinningNumbers() {
+    // 패턴이 동일한 메서드가 두개 더 존재함. 리팩토링 필요!
+    private String validateWinNumbers() {
         boolean pass = false;
-        String rawWinningNumber = "";
+        String rawWinNumber = "";
         while (!pass) {
-            rawWinningNumber = inputView.getRequestWinningNumber();
-            pass = WinningNumberValidator.validate(rawWinningNumber);
+            rawWinNumber = inputView.getRequestWinNumber();
+            pass = WinNumberValidator.validate(rawWinNumber);
         }
         outputView.newLine();
-        return rawWinningNumber;
+        return rawWinNumber;
     }
 
-    private List<Integer> getValidWinningNumbers(String rawWinningNumber) {
-        return Arrays.stream(rawWinningNumber.split(","))
+    private List<Integer> getValidWinNumbers(String rawWinNumber) {
+        return Arrays.stream(rawWinNumber.split(","))
                 .map(Integer::parseInt)
                 .toList();
     }
 
+    // 패턴이 동일한 메서드가 두개 더 존재함. 리팩토링 필요!
     private String validatePurchasePrice() {
         boolean pass = false;
         String rawPurchasePrice = "";
@@ -104,6 +109,7 @@ public class LottoController {
         outputView.newLine();
     }
 
+    // 패턴이 동일한 메서드가 두개 더 존재함. 리팩토링 필요!
     private String validateBonusNumber(List<Integer> validWinningNumbers) {
         boolean pass = false;
         String rawBonusNumber = "";

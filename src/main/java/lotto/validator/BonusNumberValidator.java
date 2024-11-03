@@ -9,7 +9,15 @@ public class BonusNumberValidator {
     private static String rawBonusNumber;
     private static int intBonusNumber;
 
-    public static boolean validate(String rawBonusNumber, List<Integer> validWinningNumbers) {
+    /**
+     * 보너스 번호의 유효성 검사를 진행한다.
+     * 
+     * @param rawBonusNumber 유효성 검사가 필요한 보너스 번호
+     * @param validWinNumbers 유효성 검사가 끝난 당첨 번호
+     * @return 유효한 보너스 번호라면 true, 아닐 경우 false
+     */
+
+    public static boolean validate(String rawBonusNumber, List<Integer> validWinNumbers) {
         BonusNumberValidator.rawBonusNumber = rawBonusNumber;
         if (!isExist()) {
             return false;
@@ -17,7 +25,7 @@ public class BonusNumberValidator {
         if (!isDigit()) {
             return false;
         }
-        if (!isOnlyOne(validWinningNumbers)) {
+        if (!isOnlyOne(validWinNumbers)) {
             return false;
         }
         if (!isValidRange()) {
@@ -48,7 +56,7 @@ public class BonusNumberValidator {
         if (!validWinningNumbers.contains(intBonusNumber)) {
             return true;
         }
-        ErrorPrinter.errorPrint(InputError.BONUS_NUMBER_EXIST_IN_WINNING_NUMBERS);
+        ErrorPrinter.errorPrint(InputError.BONUS_NUMBER_EXIST_IN_WIN_NUMBERS);
         return false;
     }
 
