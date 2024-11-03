@@ -1,7 +1,8 @@
 package lotto.service;
 
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+
 import java.util.List;
-import lotto.constant.LottoConstant;
 import lotto.domain.LottoNumberGenerater;
 import lotto.repository.LottoRepository;
 import lotto.valuate.PriceValuate;
@@ -10,7 +11,7 @@ public class LottoTicketService {
 
     public int purchaseLottoTickets(int price) {
         PriceValuate.isValidPrice(price);
-        return price / LottoConstant.LOTTO_PRICE;
+        return (price / LOTTO_PRICE);
     }
 
     public void generateLottoNumbers(int numberOfLottos, LottoRepository lottoRepository) {
@@ -23,7 +24,7 @@ public class LottoTicketService {
         lottoRepository.saveLottoNumbers(lottoNumber);
     }
 
-    public List<List<Integer>> getRandomLottoNumbers(LottoRepository lottoRepository) {
+    public List<List<Integer>> getLottoNumbers(LottoRepository lottoRepository) {
         return lottoRepository.getLottoNumbers();
     }
 
