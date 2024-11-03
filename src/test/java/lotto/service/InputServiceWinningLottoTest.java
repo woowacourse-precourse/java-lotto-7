@@ -1,38 +1,49 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class InputServiceTest extends NsTest {
+class InputServiceWinningLottoTest extends NsTest {
 
+    private static final String INT_ERROR = "숫자가";
+    private static final String EMPTY_ERROR = "비어있습니다";
     private final InputService InputService = new InputService(new InputView());
+    private WinningLotto winningLotto;
 
-    @AfterEach
-    void closeConsole() {
-        Console.close();
+    @Test
+    void 당첨_번호_빈값_실패() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(EMPTY_ERROR);
+        });
+    }
+
+    @Test
+    void 보너스_숫자_빈값_실패() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(EMPTY_ERROR);
+        });
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1000", "10000"})
-    void 구입_금액_입력_성공(String input) {
-        setInput(input);
-        PurchasePrice purchasePrice = InputService.readPurchasePrice();
-        Assertions.assertThat(purchasePrice.getPurchasePrice()).isEqualTo(Integer.parseInt(input));
+    @ValueSource(strings = {"a", " 1000 "})
+    void 보너스_숫자_int로_변환_실패_문자(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(INT_ERROR);
+        });
     }
 
     @ParameterizedTest
@@ -72,18 +83,15 @@ class InputServiceTest extends NsTest {
 
     @Test
     void 당첨번호_보너스번호_변환성공() {
-        setInput("1,2,3,4,5,6\n7");
-        WinningLotto winningLotto = InputService.readWinningLotto();
-        Assertions.assertThat(winningLotto.countMatches(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
+        assertSimpleTest(() -> {
+            run("1,2,3,4,5,6\n7");
+            Assertions.assertThat(winningLotto.countMatches(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(6);
+        });
     }
 
     @Override
     protected void runMain() {
-        InputService.readWinningLotto();
-    }
-
-    private void setInput(final String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        winningLotto = InputService.readWinningLotto();
     }
 
 }
