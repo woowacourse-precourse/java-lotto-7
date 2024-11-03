@@ -49,6 +49,14 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.numbersLength(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Validator.INVALID_NUMBER_LENGTH_MESSAGE);
+    }
 
+    @Test
+    void 중복된_숫자가_있으면_예외가_발생한다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> Validator.numberDuplicate(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Validator.INVALID_NUMBERS_DUPLICATE_MESSAGE);
     }
 }
