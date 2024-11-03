@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.Lotto;
 import lotto.model.db.Buyer;
@@ -36,7 +37,6 @@ public class CustomLottoIssueService implements LottoIssueService {
         try {
             String inputNums = ConsoleInput.getStringWithQuestion(prompt);
             List<Integer> numbers = parseLottoNums(inputNums);
-            validateLottoNumRange(numbers);
             lotto = new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -44,18 +44,26 @@ public class CustomLottoIssueService implements LottoIssueService {
         return lotto;
     }
 
-    protected void validateLottoNumRange(List<Integer> numbers) {
-        numbers.forEach(this::validateLottoNumRange);
+    private List<Integer> parseLottoNums(String inputNums) {
+        return Arrays.stream(inputNums.split(","))
+                .map(this::parseLottoNum)
+                .collect(Collectors.toList());
+    }
+
+    protected int parseLottoNum(String num) {
+        int lottoNum;
+        try {
+            lottoNum = Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            throw new BusinessException("로또 번호는 정수로 입력해주세요.");
+        }
+        validateLottoNumRange(lottoNum);
+        return lottoNum;
     }
 
     protected void validateLottoNumRange(int num) {
         if (num < 1 || num > 45) {
-            throw new BusinessException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new BusinessException("로또 번호는 1부터 45 사이의 정수여야 합니다.");
         }
-    }
-
-    private static List<Integer> parseLottoNums(String inputNums) {
-        return Arrays.stream(inputNums.split(","))
-                .mapToInt(Integer::parseInt).boxed().toList();
     }
 }
