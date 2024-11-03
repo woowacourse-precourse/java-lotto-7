@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.Lotto;
 
 import static lotto.constants.LottoConstants.*;
@@ -26,7 +27,7 @@ public class LottoService {
 
     private static Map<Integer, Integer> initializeWinningRankCount() {
         Map<Integer, Integer> initialCount = new HashMap<>();
-        for (int rank = FIRST_RANK; rank <= NUMBER_OF_RANKS; rank++) {
+        for (int rank = NUMBER_OF_RANKS; rank >= FIRST_RANK; rank--) {
             initialCount.put(rank, INITIAL_WINNING_COUNT);
         }
 
@@ -68,9 +69,10 @@ public class LottoService {
         if (isSecondRankWinner(matchCount, ticket)) {
             return 2;
         }
-        return MATCH_COUNT_TO_RANK.getOrDefault(matchCount, 0);
+        return RANK_BY_MATCH_COUNT.getOrDefault(matchCount, 0);
     }
 
+    // 테스트용 함수
     public String getWinningAmount() {
         return this.winningAmount.toPlainString();
     }
@@ -83,5 +85,9 @@ public class LottoService {
 
     public String getEarningsRate() {
         return this.earningsRate.toPlainString();
+    }
+
+    public TreeMap<Integer, Integer> getWinningResult() {
+        return new TreeMap<>(winningRankCount);
     }
 }
