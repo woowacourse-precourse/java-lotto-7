@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.dto.IssuedLottosDto;
+import lotto.dto.LottoDto;
 import lotto.model.Game;
 import lotto.model.purchase.PurchaseAmountConverter;
 import lotto.view.View;
@@ -15,6 +18,7 @@ public class LottoController {
 
     public void run() {
         handleLottoPurchase();
+        displayIssuedLottos();
     }
 
     private <T> void executeWithRetry(Runnable action) {
@@ -36,5 +40,12 @@ public class LottoController {
         String input = view.promptPurchaseAmount();
         int amount = PurchaseAmountConverter.convert(input);
         game.purchaseLottos(amount);
+    }
+
+    private void displayIssuedLottos() {
+        List<LottoDto> lottoDtos = game.getIssuedLottos().stream()
+                .map(LottoDto::of)
+                .toList();
+        view.displayIssuedLottos(new IssuedLottosDto(lottoDtos));
     }
 }

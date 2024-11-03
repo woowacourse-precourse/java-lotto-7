@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.dto.IssuedLottosDto;
+
 public interface View {
     void displayException(String message);
 
@@ -8,4 +10,6 @@ public interface View {
     String promptWinningNumbers();
 
     String promptBonusNumber();
+
+    void displayIssuedLottos(IssuedLottosDto issuedLottosDto);
 }
