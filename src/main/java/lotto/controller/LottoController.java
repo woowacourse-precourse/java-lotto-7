@@ -33,10 +33,11 @@ public class LottoController {
 
         WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
-        List<Score> scores = calculateScores(lottos, winningLotto);
-        double profitRate = calculateProfitRate(scores);
+        List<Score> scores = lottos.calculateScore(winningLotto);
+        double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
 
-        printResult(LottoScoreResponses.from(Score.aggregate(scores)), profitRate);
+        outputView.printScores(LottoScoreResponses.from(Score.aggregate(scores)));
+        outputView.printProfitRate(profitRate);
     }
 
     private Lottos purchaseLotto() {
@@ -52,18 +53,5 @@ public class LottoController {
         LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
 
         return new WinningLotto(LottoNumbers.from(winningNumbers), bonusNumber);
-    }
-
-    private List<Score> calculateScores(Lottos lottos, WinningLotto winningLotto) {
-        return lottos.calculateScore(winningLotto);
-    }
-
-    private double calculateProfitRate(List<Score> scores) {
-        return (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
-    }
-
-    private void printResult(LottoScoreResponses lottoScoreResponses, double profitRate) {
-        outputView.printScores(lottoScoreResponses);
-        outputView.printProfitRate(profitRate);
     }
 }
