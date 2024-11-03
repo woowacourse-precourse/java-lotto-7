@@ -57,10 +57,11 @@ public class LottoWinning {
     }
 
     private String updateWinningLotto(int matchCount, boolean hasBonus) {
+        String returnString = matchCount + "개 일치";
         if (matchCount == 5 && hasBonus) {
-            return "5개 일치, 보너스 볼 일치";
+            returnString += ", 보너스 볼 일치";
         }
 
-        return matchCount + "개 일치";
+        return returnString;
     }
 }
