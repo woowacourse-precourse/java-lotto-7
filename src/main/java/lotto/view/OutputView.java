@@ -24,10 +24,10 @@ public class OutputView {
         Map<Rank, Integer> rankCount = result.getRankCount();
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
-                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                System.out.printf("%d개 일치%s (%s원) - %d개%n",
                         rank.getMatchCount(),
                         rank.requiresBonus() ? ", 보너스 볼 일치" : "",
-                        rank.getReward(),
+                        String.format("%,d", rank.getReward()),  // 쉼표를 포함한 금액 형식
                         rankCount.get(rank));
             }
         }
