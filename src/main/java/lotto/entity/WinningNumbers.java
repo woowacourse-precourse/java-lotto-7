@@ -47,7 +47,7 @@ public class WinningNumbers {
                 System.out.println(NotificationMessage.BONUS_NUMBER.getMessage());
 
                 String bonusInput = Console.readLine().trim();
-                validateInteger(bonusInput); // 보너스 번호에 대해 유효성 검사
+                validateInteger(bonusInput);
                 int bonusNumber = Integer.parseInt(bonusInput);
 
                 validateBonusNumber(bonusNumber);
