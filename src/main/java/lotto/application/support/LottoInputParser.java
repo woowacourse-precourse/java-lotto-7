@@ -15,7 +15,7 @@ public class LottoInputParser {
     public int parseAmount(String amount){
         try{
             int parsed = Integer.parseInt(amount);
-            validate(parsed);
+            validateAmount(parsed);
 
             return parsed;
         } catch (NumberFormatException e) {
@@ -24,7 +24,7 @@ public class LottoInputParser {
         return -1;
     }
 
-    private void validate(int amount){
+    private void validateAmount(int amount){
         if((amount % LOTTO_PRICE) != 0){
             Errors.IllegalArgumentException(PURCHASE_AMOUNT_1000_UNIT);
         }
