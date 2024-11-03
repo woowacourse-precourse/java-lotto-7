@@ -14,15 +14,8 @@ public class InputView {
     public Long inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = readLine();
-        inputValidator.validMoney(parseMoney(money));
-        return parseMoney(money);
-    }
-
-    private Long parseMoney(String money) {
-        try {
-            return Long.parseLong(money);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.MONEY_TYPE_ERROR.getMessage());
-        }
+        Long convertMoney = inputValidator.parseMoney(money);
+        inputValidator.validMoney(convertMoney);
+        return convertMoney;
     }
 }

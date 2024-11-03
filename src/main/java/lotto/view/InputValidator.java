@@ -5,6 +5,14 @@ import lotto.constants.Value;
 
 public class InputValidator {
 
+    public Long parseMoney(String money) {
+        try {
+            return Long.parseLong(money);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.MONEY_TYPE_ERROR.getMessage());
+        }
+    }
+
     public void validMoney(Long money) {
         if (money < Value.lottoPrice) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_MIN_PRICE_ERROR.getMessage());
