@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.exception.lotto.DuplicatedLottoNumberException;
 import lotto.exception.lotto.InvalidRangeLottoNumberException;
+import lotto.exception.lotto.InvalidSizeLottoNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,7 +26,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new InvalidRangeLottoNumberException();
+            throw new InvalidSizeLottoNumberException();
         }
     }
 
