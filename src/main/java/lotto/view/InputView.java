@@ -3,7 +3,7 @@ package lotto.view;
 import lotto.util.messages.InputMessage;
 
 public class InputView {
-    public void printInputPrice() {
+    public void printInputPurchasePrice() {
         System.out.println(InputMessage.INPUT_PURCHASE_PRICE.getMessage());
     }
 

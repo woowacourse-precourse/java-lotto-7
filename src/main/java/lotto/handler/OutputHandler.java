@@ -8,9 +8,9 @@ import lotto.view.OutputView;
 public class OutputHandler {
     private final OutputView outputView = new OutputView();
 
-    public void printPurchaseResult(int count, List<DrawingLotto> winningLottos) {
+    public void printPurchaseResult(int count, List<DrawingLotto> drawingLottos) {
         outputView.printCount(count);
-        outputView.printNumbers(winningLottos);
+        outputView.printDrawedNumbers(drawingLottos);
     }
 
     public void printLottoResult(List<Double> matchCounts, double rateOfReturn) {

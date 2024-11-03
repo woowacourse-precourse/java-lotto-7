@@ -16,7 +16,7 @@ public class InputHandler {
         String inputPurchasePrice;
         int price;
 
-        inputView.printInputPrice();
+        inputView.printInputPurchasePrice();
 
         inputPurchasePrice = Console.readLine();
 

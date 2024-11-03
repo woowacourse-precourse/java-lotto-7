@@ -9,7 +9,7 @@ import lotto.util.WinningInfo;
 public class LottoHandler {
     // 입력된 당첨 번호와 발급받은 로또 번호를 대조하여 일치하는 번호의 갯수를 반환
     public List<Double> compareNumbers(DrawingLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
-        return winningLottoTicket.determineWin(lottoTicket.getLottoNumbers(),
+        return winningLottoTicket.determineLotto(lottoTicket.getLottoNumbers(),
                 lottoTicket.getBonusNumber());
     }
 

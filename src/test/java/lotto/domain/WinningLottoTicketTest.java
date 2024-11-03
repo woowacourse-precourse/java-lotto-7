@@ -10,17 +10,17 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningLottoTicketTest {
-    private DrawingLottoTicket winningLottoTicket;
+    private DrawingLottoTicket drawingLottoTicket;
 
     @BeforeEach
     void 테스트를_위한_객체_초기화() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    DrawingLotto winningLotto1 = new DrawingLotto();
-                    DrawingLotto winningLotto2 = new DrawingLotto();
-                    DrawingLotto winningLotto3 = new DrawingLotto();
-                    this.winningLottoTicket = new DrawingLottoTicket(
-                            List.of(winningLotto1, winningLotto2, winningLotto3));
+                    DrawingLotto drawingLotto1 = new DrawingLotto();
+                    DrawingLotto drawingLotto2 = new DrawingLotto();
+                    DrawingLotto drawingLotto3 = new DrawingLotto();
+                    this.drawingLottoTicket = new DrawingLottoTicket(
+                            List.of(drawingLotto1, drawingLotto2, drawingLotto3));
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
@@ -34,7 +34,7 @@ public class WinningLottoTicketTest {
         int bonusNumber = 43;
 
         // when
-        List<Double> result = winningLottoTicket.determineWin(lottoNumbers, bonusNumber);
+        List<Double> result = drawingLottoTicket.determineLotto(lottoNumbers, bonusNumber);
 
         // then
         assertThat(result).isEqualTo(List.of(2.0, 4.0, 2.0));

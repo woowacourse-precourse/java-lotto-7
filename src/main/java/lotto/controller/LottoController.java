@@ -24,18 +24,18 @@ public class LottoController {
 
     public void lottoStart() {
         int purchaseMoney;
-        DrawingLottoTicket winningLottoTicket;
+        DrawingLottoTicket drawingLottoTicket;
         LottoTicket lottoTicket;
 
         try {
             purchaseMoney = inputHandler.getPurchasePrice();
-            winningLottoTicket = makeWinningLottoTicket(purchaseMoney / PRICE_PER_LOTTO);
+            drawingLottoTicket = makeDrawingLottoTicket(purchaseMoney / PRICE_PER_LOTTO);
 
-            outputHandler.printPurchaseResult(purchaseMoney / PRICE_PER_LOTTO, winningLottoTicket.getWinningNumbers());
+            outputHandler.printPurchaseResult(purchaseMoney / PRICE_PER_LOTTO, drawingLottoTicket.getDrawingNumbers());
 
             lottoTicket = makeLottoTicket();
 
-            List<Double> matchNumbers = lottoHandler.compareNumbers(winningLottoTicket, lottoTicket);
+            List<Double> matchNumbers = lottoHandler.compareNumbers(drawingLottoTicket, lottoTicket);
             double rateOfReturn = lottoHandler.calculateRateOfReturn(matchNumbers, purchaseMoney);
 
             outputHandler.printLottoResult(matchNumbers, rateOfReturn);
@@ -45,14 +45,14 @@ public class LottoController {
     }
 
     // 입력된 구입금액 만큼 로또를 발행
-    private DrawingLottoTicket makeWinningLottoTicket(int count) {
-        List<DrawingLotto> winningNumbers = new ArrayList<>();
+    private DrawingLottoTicket makeDrawingLottoTicket(int count) {
+        List<DrawingLotto> drawingNumbers = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            winningNumbers.add(new DrawingLotto());
+            drawingNumbers.add(new DrawingLotto());
         }
 
-        return new DrawingLottoTicket(winningNumbers);
+        return new DrawingLottoTicket(drawingNumbers);
     }
 
     // 입력된 당첨 번호와 보너스 번호로 로또 정보를 발행
