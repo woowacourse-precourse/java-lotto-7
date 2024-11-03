@@ -26,7 +26,6 @@ public class LottoResultManager {
                 }
             }
         }
-        Collections.sort(winningNumbers);
         return winningNumbers;
     }
 
@@ -44,13 +43,13 @@ public class LottoResultManager {
     public int compareLottoNumber(List<Integer> lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matches = 0;
         boolean checkBonusNumber = false;
-        for(int i = 0; i < lotto.size(); i++){
-            if(lotto.get(i).equals(winningNumbers.get(i))){
+        for (Integer integer : lotto) {
+            if (winningNumbers.contains(integer)) {
                 matches++;
             }
-            if(lotto.get(i).equals(bonusNumber)){
-                checkBonusNumber = true;
-            }
+        }
+        if(lotto.contains(bonusNumber)){
+            checkBonusNumber = true;
         }
         int result = 0;
         if(matches == 3) result = 1;
@@ -75,6 +74,16 @@ public class LottoResultManager {
             if (result == 5) saveResult[4]++;
         }
         return saveResult;
+    }
+
+    public void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] saveResult = saveLottoWinningResult(lottos, winningNumbers, bonusNumber);
+        System.out.println("당첨 통계 \n---");
+        System.out.println(LottoWinningResult.THREE_MATCHES.print(saveResult[0]));
+        System.out.println(LottoWinningResult.FOUR_MATCHES.print(saveResult[1]));
+        System.out.println(LottoWinningResult.FIVE_MATCHES.print(saveResult[2]));
+        System.out.println(LottoWinningResult.FIVE_AND_BONUS_MATCHES.print(saveResult[3]));
+        System.out.println(LottoWinningResult.SIX_MATCHES.print(saveResult[4]));
     }
 
 }

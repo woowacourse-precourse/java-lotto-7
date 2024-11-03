@@ -31,6 +31,7 @@ public class LottoController {
         int bonusNumber = lottoResultManager.getBonusNumbers();
 
         lottoResultManager.printResult(lottos, winningNumbers, bonusNumber);
+
     }
 
 }
