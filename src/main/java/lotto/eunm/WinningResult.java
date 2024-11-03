@@ -1,5 +1,8 @@
 package lotto.eunm;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public enum WinningResult {
     THREE(3, 5_000),
     FOUR(4, 50_000),
@@ -15,4 +18,7 @@ public enum WinningResult {
         this.prizeMoney = prizeMoney;
     }
 
+    public String getFormattedPrizeMoney() {
+        return NumberFormat.getInstance(Locale.KOREA).format(prizeMoney);
+    }
 }
