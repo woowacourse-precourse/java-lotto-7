@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import lotto.config.AppConfig;
 import lotto.controller.LottoController;
 import lotto.domain.LottoBuyer;
-import lotto.domain.LottoTicket;
+import lotto.domain.WinningLotto;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 
@@ -19,6 +19,6 @@ public class Application {
         LottoBuyer lottoBuyer = lottoController.buyLottosWith(purchaseAmount);
 
         String input = inputView.requestWinningLottoNumbers();
-        LottoTicket winningLotto = lottoController.extractLottoNumbers(input, inputValidator);
+        WinningLotto winningLotto = lottoController.extractLottoNumbers(input, inputValidator);
     }
 }

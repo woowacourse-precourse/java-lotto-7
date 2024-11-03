@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoBuyer;
-import lotto.domain.LottoTicket;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoRetailer;
 import lotto.view.InputValidator;
 
@@ -21,7 +21,7 @@ public class LottoController {
         return lottoRetailer.sellAsMuchAs(purchaseAmount);
     }
 
-    public LottoTicket extractLottoNumbers(String input, InputValidator inputValidator) {
+    public WinningLotto extractLottoNumbers(String input, InputValidator inputValidator) {
         inputValidator.validateDigitAndDelimiterOnly(input);
         List<Integer> numbers = extractNumbers(input);
         return lottoRetailer.createWinningLotto(numbers);
