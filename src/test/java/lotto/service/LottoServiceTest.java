@@ -1,27 +1,24 @@
 package lotto.service;
 
-import lotto.calculation.LottoTicketManager;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
+import lotto.generator.LottoGenerator;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.domain.LottoGenerator.END_INCLUSIVE;
-import static lotto.domain.LottoGenerator.START_INCLUSIVE;
+import static lotto.generator.LottoGenerator.END_INCLUSIVE;
+import static lotto.generator.LottoGenerator.START_INCLUSIVE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoServiceTest {
 
     private LottoGenerator lottoGenerator;
-    private LottoTicketManager lottoTicketManager;
     private LottoService lottoService;
     @BeforeEach
     void setUp() {
         lottoGenerator = new LottoGenerator();
-        lottoTicketManager = new LottoTicketManager();
-        lottoService = new LottoService(lottoGenerator, lottoTicketManager);
+        lottoService = new LottoService(lottoGenerator);
     }
 
     @Test

@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.domain.LottoGenerator.COUNT;
+import static lotto.generator.LottoGenerator.COUNT;
 
 public class Lotto {
     private final List<Integer> numbers;
