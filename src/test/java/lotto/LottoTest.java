@@ -3,12 +3,14 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import camp.nextstep.edu.missionutils.test.Assertions;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -46,6 +48,28 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }
+
+
+    @Test
+    @DisplayName("매개 변수가 없는 Lotto 생성자는 로또를 발행한다.")
+    void generateLottoTest() {
+        ArrayList<Integer> mockedNumbers = new ArrayList<>(List.of(25, 12, 42, 3, 34, 19));
+        ArrayList<Integer> sortedNumbers = mockedNumbers.stream()
+                .sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+
+        Assertions.assertRandomUniqueNumbersInRangeTest(() -> {
+            Lotto lotto = new Lotto();
+            try {
+                assertThatLottoValidated(lotto, sortedNumbers);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }, mockedNumbers);
+
+    }
+
 
     private static ArrayList<Integer> convertStringToIntegerList(String input) {
         return Stream.of(input.split(","))
