@@ -1,5 +1,5 @@
 package lotto.application.validation;
 
-public interface BaseValidation {
-    void validate(String input);
+public interface BaseValidation<T> {
+    T validate(String input);
 }
