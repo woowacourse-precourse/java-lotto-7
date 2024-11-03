@@ -1,4 +1,4 @@
-package lotto;
+package lotto.lotto;
 
 import java.util.List;
 
@@ -16,9 +16,6 @@ public class Lotto {
         }
     }
 
-    public void addBonusNumber(int number) {
-        numbers.add(number);
-    }
 
     public List<Integer> getNumbersList() {
         return numbers;
