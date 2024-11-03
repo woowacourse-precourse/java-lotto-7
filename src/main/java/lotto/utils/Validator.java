@@ -37,7 +37,6 @@ public class Validator {
         nullAndEmptyValidator(input);
 
         if (!input.matches(WINNING_NUM_PATTERN)) {
-            System.out.println("매치");
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.getMessage());
         }
 
