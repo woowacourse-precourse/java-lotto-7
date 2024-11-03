@@ -27,20 +27,6 @@ public class Lotto {
         }
     }
 
-    public int matchCount(Lotto otherLotto) {
-        int count = 0;
-        for (LottoNumber number : this.numbers) {
-            if (otherLotto.numbers.contains(number)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public boolean matchBonusNumber(LottoNumber bonusNumber) {
-        return numbers.contains(bonusNumber);
-    }
-
     public List<LottoNumber> getLotto() {
         return numbers;
     }
