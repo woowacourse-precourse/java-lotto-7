@@ -41,4 +41,12 @@ public class InputView {
         }
         return inputNumbers;
     }
+
+    public String inputBonusNumber() {
+        System.out.println();
+        System.out.println(IOMessageConstants.INPUT_BONUS_NUMBER);
+        String inputBonusNumber = Console.readLine();
+        System.out.println();
+        return inputBonusNumber;
+    }
 }

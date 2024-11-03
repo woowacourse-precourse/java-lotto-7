@@ -34,5 +34,7 @@ public class LottoController {
 
         String inputMainNumbers = inputView.inputNumbers();
         List<Integer> parsedInputNumbers = separateNumbers.separateInputNumbers(inputMainNumbers);
+        int inputBonusNumber = Integer.parseInt(inputView.inputBonusNumber());
+
     }
 }
