@@ -48,6 +48,6 @@ public class WinningStatistics {
 
         double yield = (double) totalPrizeAmount / purchaseAmount * 100;
 
-        return Math.round(yield * 100) / 100.0;
+        return Math.round(yield * 10) / 10.0;
     }
 }
