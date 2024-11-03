@@ -16,7 +16,7 @@ class WinningResultTest {
     private WinningLotto winningLotto;
 
     @BeforeEach
-    void setUp() {
+    void setUpWinningLotto() {
         Lotto lotto = new Lotto("1,2,3,4,5,6");
         winningLotto = new WinningLotto(
                 lotto, new Bonus("7", lotto)
