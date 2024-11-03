@@ -14,32 +14,32 @@ public class InputView {
     public Integer enterAmount() {
         ConsoleWriter.printlnMessage(PrintMessage.INPUT_AMOUNT.getMessage());
         String input = ConsoleReader.enterMessage();
-        checkStringFormat(input);
-        checkNumberFormat(input);
+        validateStringFormat(input);
+        validateNumberFormat(input);
         return Integer.parseInt(input);
     }
 
     public List<Integer> enterWinningNumbers() {
         ConsoleWriter.printlnMessage(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
         String input = ConsoleReader.enterMessage();
-        checkStringFormat(input);
-        checkNumbersFormat(input);
+        validateStringFormat(input);
+        validateNumbersFormat(input);
         return parseNumber(input);
     }
 
-    private void checkStringFormat(String str) {
+    private void validateStringFormat(String str) {
         if (isEmptyOrBlank(str)) {
             throw CustomException.of(ErrorMessage.BLANK_INPUT_ERROR);
         }
     }
 
-    private void checkNumberFormat(String str) {
+    private void validateNumberFormat(String str) {
         if (isNotPositiveInteger(str)) {
             throw CustomException.of(ErrorMessage.INVALID_AMOUNT_TYPE_ERROR);
         }
     }
 
-    private void checkNumbersFormat(String str) {
+    private void validateNumbersFormat(String str) {
         if (isNotNumberWithDelimiter(str)) {
             throw CustomException.of(ErrorMessage.INVALID_WINNING_NUMBER_STRING_ERROR);
         }
