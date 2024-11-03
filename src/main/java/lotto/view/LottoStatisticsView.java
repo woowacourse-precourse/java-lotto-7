@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.Map;
+import lotto.helper.LottoStatisticsFormatHelper;
 import lotto.model.LottoStatistics;
 import lotto.model.constant.LottoRank;
 
@@ -15,8 +16,7 @@ public class LottoStatisticsView {
             LottoRank.FIFTH, new RankCondition(3, false)
     );
 
-    protected LottoStatisticsView() {
-    }
+    private static final LottoStatisticsFormatHelper lottoStatisticsFormatHelper = new LottoStatisticsFormatHelper();
 
     public static void announceStatistics(LottoStatistics statistics) {
         Map<LottoRank, Integer> matchedByRank = statistics.getMatchedByRank();
@@ -51,8 +51,9 @@ public class LottoStatisticsView {
     }
 
     private static void announcePercentRateOfReturn(double percentRateOfReturn) {
-        double roundedTwoDecimal = Math.round(percentRateOfReturn * 100.0) / 100.0;
-        System.out.println("총 수익률은 " + roundedTwoDecimal + "%입니다.");
+        String formattedPercentRateOfReturn =
+                lottoStatisticsFormatHelper.formatPercentRateOfReturn(percentRateOfReturn);
+        System.out.println("총 수익률은 " + formattedPercentRateOfReturn + "%입니다.");
     }
 
     private record RankCondition(int matchCount, boolean bonusMatch) {
