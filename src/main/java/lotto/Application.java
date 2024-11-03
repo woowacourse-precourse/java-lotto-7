@@ -1,20 +1,19 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.Prize.*;
+import static lotto.model.Prize.*;
 
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        System.out.println("구입금액을 입력해 주세요.");
-        String input_pay = readLine();
-        Integer pay = Integer.valueOf(input_pay);
+
         Integer number_of_times = pay / 1000;
         System.out.println("\n" + number_of_times + "개를 구매했습니다.");
         List<Lotto> all_lottos = new ArrayList<>();
