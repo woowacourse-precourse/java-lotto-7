@@ -1,4 +1,6 @@
-package lotto.validator;
+package lotto.validator.input;
+
+import lotto.validator.Validator;
 
 // 당첨 번호 검증 클래스
 public class WinningNumberValidator implements Validator {

@@ -1,4 +1,6 @@
-package lotto.validator;
+package lotto.validator.input;
+
+import lotto.validator.Validator;
 
 // 보너스 번호 검증 클래스
 public class BonusNumberValidator implements Validator {
