@@ -24,6 +24,10 @@ public class LottoResult {
         return Math.round(rateOfReturn * 100) / 100.0;
     }
 
+    public void displayRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 " + rateOfReturn + "%%입니다.");
+    }
+
     public void displayWinningStatistics() {
         System.out.println("당첨 통계\n---");
         for (Rank rank : Rank.values()) {
