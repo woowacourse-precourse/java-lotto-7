@@ -9,11 +9,19 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int money;
+        int money = initMoney();
         List<Lotto> lottoList = new ArrayList<>();
-        List<Integer> winningNumbers;
-        int bonusNumber;
+        List<Integer> winningNumbers = initWinningNumbers();
+        int bonusNumber = initBonusNumber(winningNumbers);
 
+        lottoPurchase();
+
+        LottoResult result = calculateResult(lottoList, winningNumbers, bonusNumber);
+        displayResults(money, result);
+    }
+
+    private static int initMoney() {
+        int money;
         while (true) {
             try {
                 money = getMoney();
@@ -23,8 +31,11 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
-        lottoPurchase();
+        return money;
+    }
 
+    private static List<Integer> initWinningNumbers() {
+        List<Integer> winningNumbers;
         while (true) {
             try {
                 winningNumbers = inputWinningNumbers();
@@ -33,21 +44,26 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
+        return winningNumbers;
+    }
 
+    private static int initBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
         while (true) {
             try {
                 bonusNumber = inputBonusNumber(winningNumbers);
                 break;
             } catch (NumberFormatException error) {
-                System.out.println("[ERROR]" + " 1개의 숫자 이외의 문자는 입력이 안됩니다.");
+                System.out.println("[ERROR] 1개의 숫자 이외의 문자는 입력이 안됩니다.");
             } catch (IllegalArgumentException error) {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
+        return bonusNumber;
+    }
 
-        LottoResult result = calculateResult(lottoList, winningNumbers, bonusNumber);
+    private static void displayResults(int money, LottoResult result) {
         outputResult(result);
-
         profitRateResult(money, result.totalWinningPrize());
     }
 
