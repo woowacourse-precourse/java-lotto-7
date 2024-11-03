@@ -27,7 +27,7 @@ public class ValidatorOfView {
         }
     }
 
-    public static void isValidateWinningNumber(List<Integer> winningNumbers) {
+    public static void isValidWinningNumber(List<Integer> winningNumbers) {
         if (!isCountSix(winningNumbers.size()))
             throw new IllegalArgumentException(ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_DESC);
 
@@ -38,7 +38,7 @@ public class ValidatorOfView {
             throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBER_DESC);
     }
 
-    public static void isValidateBonusNumber(List<Integer> winningNumbers, int bonusNumber){
+    public static void isValidBonusNumber(List<Integer> winningNumbers, int bonusNumber){
         if(isDuplicateOfBonus(winningNumbers,bonusNumber))
             throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER_DESC);
     }

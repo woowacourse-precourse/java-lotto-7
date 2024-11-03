@@ -13,6 +13,9 @@ public class InputView {
         try{
             budget = Integer.parseInt(Console.readLine());
             ValidatorOfView.isValidBudget(budget);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 입력한 금액이 유효하지 않습니다. 숫자만 입력해 주세요.");
+            return inputBudget();
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBudget();
@@ -32,13 +35,14 @@ public class InputView {
         return winningNumbers;
     }
 
-    public static int inputBonusNumber(){
+    public static int inputBonusNumber(List<Integer> winningNumbers){
         int bonusNumber;
         try{
             bonusNumber = Integer.parseInt(Console.readLine());
+            ValidatorOfView.isValidBonusNumber(winningNumbers,bonusNumber);
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
         return bonusNumber;
     }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -8,6 +9,8 @@ public class OutputView {
     private static final String WINNING_NUMBER_INPUT_DESC = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_INPUT_DESC = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_NUMBER_OUTPUT_DESC = "개를 구매했습니다.";
+    private static final String LOTTO_RESULT_OUTPUT_DESC = "\n당첨 통계\n---";
+
     public static void printBudgetInputDescription(){
         System.out.println(BUDGET_INPUT_DESC);
     }
@@ -23,5 +26,15 @@ public class OutputView {
     public static void printLotto(List<Integer> lotto) {
         System.out.println(lotto);
     }
+    public static void printResultDescription(){
+        System.out.println(LOTTO_RESULT_OUTPUT_DESC);
+    }
 
+    public static void printEachRank(String message, int money, Integer count) {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        String str = message
+                + String.format("(%s원)", formatter.format(money))
+                + String.format(" - %s개", count);
+        System.out.println(str);
+    }
 }

@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoArchive;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.ValidatorOfView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,6 +28,7 @@ public class LottoController {
         generateLottos();
         printLottos();
         generateWinningNumbersAndBonusNumber();
+        printLottoResult();
     }
 
     public void readUserBudget(){
@@ -67,11 +67,26 @@ public class LottoController {
 
     public int readBonusNumber(){
         OutputView.printBonusNumberInputDescription();
-        return InputView.inputBonusNumber();
+        return InputView.inputBonusNumber(winningLotto.getWinningNumbers().getNumbers());
     }
 
     public void generateWinningNumbersAndBonusNumber(){
-        winningLotto = new WinningLotto(readWinningNumber(), readBonusNumber());
+        Lotto lotto = readWinningNumber();
+        int bonusNumber = readBonusNumber();
+        winningLotto = new WinningLotto(lotto, bonusNumber);
+    }
+
+    private void printLottoResult() {
+        OutputView.printResultDescription();
+        lottoService.addRankResult(lottoArchive, winningLotto);
+
+        LottoResult lottoResult = lottoService.addRankResult(lottoArchive, winningLotto);
+        for (LottoPolicy lottoPolicy : lottoResult.getResults().keySet()) {
+            if (lottoPolicy == LottoPolicy.FAIL) {
+                continue;
+            }
+            OutputView.printEachRank(lottoPolicy.getMessage(), lottoPolicy.getMoney(),lottoResult.getResults().get(lottoPolicy));
+        }
     }
 
 }
