@@ -50,9 +50,9 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 로또_번호_입력_형식이_잘못된_경우_예외처리() {
+    void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6,7", "7");
+            runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
