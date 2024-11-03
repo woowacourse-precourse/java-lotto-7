@@ -42,5 +42,27 @@ public class Application {
             numbersLines.add(new Lotto(numbers));
             System.out.println(numbers);
         }
+
+        List<Integer> winningNumbers = new ArrayList<>(); // 추첨 번호
+        while (winningNumbers.size() < 6) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] input = Console.readLine().split(DELIMITER);
+                if (input.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                }
+                for (String number : input) {
+                    int num = parseInt(number.trim());
+                    if (num < 1 || num > 45) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                    winningNumbers.add(num);
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
+
