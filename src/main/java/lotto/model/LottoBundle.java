@@ -11,8 +11,8 @@ public class LottoBundle {
 	private final Price price;
 
 	public LottoBundle(Price price, LottoCreator lottoCreator) {
-		this.count = calculateCount(price.getPrice());
-		this.lottos = createLotto(count, lottoCreator);
+		this.price = price;
+		this.lottos = createLotto(getCount(), lottoCreator);
 	}
 
 	public List<Lotto> getLottos() {
@@ -21,10 +21,6 @@ public class LottoBundle {
 
 	public int getCount() {
 		return price.getPrice() / SINGLE_LOTTO_PRICE;
-	}
-
-	private int calculateCount(int price) {
-		return price / SINGLE_LOTTO_PRICE;
 	}
 
 	private List<Lotto> createLotto(int count, LottoCreator lottoCreator) {
