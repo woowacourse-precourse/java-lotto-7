@@ -45,4 +45,12 @@ class LottoTest {
                 .hasMessageContaining("[ERROR] 로또 번호가 중복되었습니다.");
     }
 
+    @Test
+    @DisplayName("로또 번호가 1에서 45 사이의 숫자가 아니면 예외가 발생한다.")
+    void validateRandomNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 50)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야합니다.");
+    }
+
 }
