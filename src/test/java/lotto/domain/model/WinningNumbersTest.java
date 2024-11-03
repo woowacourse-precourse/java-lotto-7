@@ -57,6 +57,8 @@ public class WinningNumbersTest {
                 .hasMessage(WinningNumbersErrorMessages.DUPLICATE_NUMBER.getMessage());
     }
 
+
+
     @Test
     @DisplayName("당첨 번호 범위가 벗어날 경우 예외가 발생한다.")
     void 당첨_번호_범위가_벗어날_경우_예외가_발생한다() {
@@ -78,7 +80,7 @@ public class WinningNumbersTest {
         // when, then
         assertThatThrownBy(() -> new WinningNumbers(invalidDelimiter))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WinningNumbersErrorMessages.INVALID_DELIMITER.getMessage());
+                .hasMessage(WinningNumbersErrorMessages.INVALID_CHARACTER.getMessage());
     }
 
     @Test
@@ -104,5 +106,17 @@ public class WinningNumbersTest {
 
         // then
         assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(8, 21, 15, 33, 40, 42);
+    }
+
+    @Test
+    @DisplayName("입력된 문자열에 숫자 외에 문자가 있을 경우 예외가 발생한다.")
+    void 입력된_문자열에_숫자_외에_문자가_있을_경우_예외가_발생한다() {
+        // given
+        String numbersWithAlphabet = "1,2,a,4,5,6";
+
+        // when, then
+        assertThatThrownBy(() -> new WinningNumbers(numbersWithAlphabet))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningNumbersErrorMessages.INVALID_CHARACTER.getMessage());
     }
 }

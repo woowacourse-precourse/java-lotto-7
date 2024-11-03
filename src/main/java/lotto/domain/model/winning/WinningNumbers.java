@@ -58,7 +58,7 @@ public class WinningNumbers {
 
     private void checkInvalidCharacters(String input) {
         if (!input.matches(COMMA_SEPARATED_NUMBERS_REGEX)) {
-            throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_DELIMITER.getMessage());
+            throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_CHARACTER.getMessage());
         }
     }
 
