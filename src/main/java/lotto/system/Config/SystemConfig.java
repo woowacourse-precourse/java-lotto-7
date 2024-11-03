@@ -1,6 +1,8 @@
 package lotto.system.Config;
 
+import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -11,7 +13,7 @@ import lotto.system.output.OutputTask;
 
 public class SystemConfig {
     private static volatile SystemConfig instance;
-    private final BlockingQueue<Message> inputMessageQueue;
+    private final Queue<Message> inputMessageQueue;
     private final BlockingQueue<Message> outputMessageQueue;
     private final InputTask inputTask;
     private final OutputTask outputTask;
@@ -26,13 +28,12 @@ public class SystemConfig {
         int maxPoolSize = coreCount * 2;
         BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
         this.threadPool = new ThreadPoolExecutor(coreCount, maxPoolSize, 60, TimeUnit.HOURS, queue);
-        this.inputMessageQueue = new LinkedBlockingQueue<>();
+        this.inputMessageQueue =  new ConcurrentLinkedQueue<>();
         this.outputMessageQueue = new LinkedBlockingQueue<>();
         this.inputTask = new InputTask(inputMessageQueue);
         this.outputTask = new OutputTask(outputMessageQueue);
         this.inputThread = new Thread(inputTask, "InputThread");
         this.outputThread = new Thread(outputTask, "OutputThread");
-
     }
 
     public static SystemConfig getInstance() {
@@ -56,8 +57,6 @@ public class SystemConfig {
         }
     }
 
-
-
     public ThreadPoolExecutor getThreadPool() {
         return threadPool;
     }
@@ -65,7 +64,7 @@ public class SystemConfig {
     public void shutdown() {
         threadPool.shutdown();
     }
-    public BlockingQueue<Message> getInputMessageQueue() {
+    public Queue<Message> getInputMessageQueue() {
         return this.inputMessageQueue;
     }
     public BlockingQueue<Message> getOutputMessageQueue() {
@@ -75,6 +74,7 @@ public class SystemConfig {
         inputTask.stop();
         outputTask.stop();
         outputThread.interrupt();
+        inputThread.interrupt();
         try {
             inputThread.join(1000);
             outputThread.join(1000);

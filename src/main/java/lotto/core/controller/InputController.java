@@ -3,32 +3,34 @@ package lotto.core.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
+import java.util.Queue;
 import lotto.core.domain.model.Money;
 import lotto.core.view.OutputView;
+import lotto.system.input.InputTask;
 import lotto.system.message.Message;
 
 
 public class InputController {
     private final OutputView outputView;
-    private final BlockingQueue<Message> messageBlockingQueue;
+    private final Queue<Message> inputMessageQueue;
 
-    public InputController(OutputView outputView, BlockingQueue<Message> inputMessageQueue) {
+    public InputController(OutputView outputView, Queue<Message> inputMessageQueue) {
         this.outputView = outputView;
-        this.messageBlockingQueue = inputMessageQueue;
+        this.inputMessageQueue = inputMessageQueue;
     }
 
     private String readUserInput() {
         return Console.readLine();
     }
 
-//    private String readUserInput() {
-//        try{
-//            return messageBlockingQueue.take().getContent();
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
+//    public String readUserInput() {
+//        InputTask.userInput();
+//        while (true) {
+//            Message message = inputMessageQueue.poll();
+//            if (message != null) {
+//                return message.getContent();
+//            }
 //        }
-//
 //    }
 
     public Integer getMoney() {

@@ -72,7 +72,6 @@ public class OutputView {
         try {
             outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,message));
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             throw new RuntimeException("메시지 전송 중 오류가 발생했습니다: " + e.getMessage());
         }
     }
