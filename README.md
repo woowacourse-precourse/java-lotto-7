@@ -121,10 +121,10 @@
   - 구매할 로또 수량을 저장한다.
 - displayLottoPurchaseAmount
   - 구매한 로또 수량을 출력한다.
-- makeLottos
-  - Lotto 객체의 정보를 저장할 ArrayList를 생성한다.
 - makeLottoNumber
-  - Lotto 객체에 로또번호를 저장한다.
+  - 구매 가능한 로또 수량만큼 Lotto 객체를 생성하여 로또번호를 저장한다.
+- loopLottos
+  - 구매한 로또들을 순회한다.
 - getRandomLottoNumber
   - 1에서 45 사이의 중복되지 않은 정수 6개를 반환한다.
 - sortAscending
