@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static lotto.validation.Validation.*;
 
@@ -71,6 +72,22 @@ public class Consumer {
 
     public HashMap<LottoRank, Integer> getLottoRankResult() {
         return lottoRankResult;
+    }
+
+    public double calculateYield() {
+        long prizeSum = getPrizeSum();
+        double yield = ((double) prizeSum / getMoney()) * 100;
+        return Math.round(yield * 10) / 10.0;
+    }
+
+    public long getPrizeSum() {
+        long sum = ZERO;
+        for (Map.Entry<LottoRank, Integer> entry : lottoRankResult.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+            sum += rank.getPrice() * count;
+        }
+        return sum;
     }
 
 }
