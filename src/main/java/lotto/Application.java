@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Application {
@@ -9,6 +14,14 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         int purchasePrice = getValidPurchasePrice();
         int lottoQuantity = purchasePrice / 1000;
+
+        // 2 . 로또 번호 생성 및 저장
+        List<Lotto> lottoRepository = new ArrayList<>();
+        for (int i = 0; i < lottoQuantity; i++) {
+            List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(lotto);
+            lottoRepository.add(new Lotto(lotto));
+        }
 
 
     }
