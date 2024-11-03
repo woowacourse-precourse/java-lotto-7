@@ -17,7 +17,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private static final String DEFAULT_MATCH_FORMAT = "%d개 일치 (%,d원) - %d개";
     private static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String RATIO_OF_BENEFIT_FORMAT = "총 수익률은 %.1f%% 입니다.";
+    private static final String RATIO_OF_BENEFIT_FORMAT = "총 수익률은 %.1f%%입니다.";
     private final LottoMoneyService lottoMoneyService;
     private final InputView inputView;
     private final OutputView outputView;

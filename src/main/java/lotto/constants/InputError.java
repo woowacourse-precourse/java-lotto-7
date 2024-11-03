@@ -29,7 +29,7 @@ public enum InputError {
             + LottoInteger.LOTTO_END_NUMBER.getValue()
             + " 사이의 숫자를 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_DUPLICATED("로또 당첨 번호는 중복되면 안됩니다."),
-    //보너스 번호 예외
+    // 보너스 번호 예외
     BONUS_NUMBER_SHOULD_EXIST("보너스 번호를 입력하셔야 합니다."),
     BONUS_NUMBER_NOT_A_NUMBER("보너스 번호는 숫자를 입력하셔야 합니다."),
     BONUS_NUMBER_EXIST_IN_WINNING_NUMBERS("보너스 번호가 이미 당첨 번호에 존재합니다."),
@@ -37,8 +37,11 @@ public enum InputError {
             + LottoInteger.LOTTO_START_NUMBER.getValue()
             + "~"
             + LottoInteger.LOTTO_END_NUMBER.getValue()
-            + " 사이의 숫자를 입력하셔야 합니다.");
+            + " 사이의 숫자를 입력하셔야 합니다."),
+    // 로또 예외
+    LOTTO_NUMBER_SHOULD_ONLY("중복된 번호가 존재합니다."),
 
+    ;
     private final String message;
 
     InputError(String message) {

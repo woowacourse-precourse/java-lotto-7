@@ -1,11 +1,12 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.InputError;
 import lotto.constants.WinRank;
+import lotto.view.ErrorPrinter;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private WinRank rank;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,7 +15,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] !");
+        }
+        if (numbers.stream().distinct().count()!=numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] !");
         }
     }
 
@@ -22,15 +26,16 @@ public class Lotto {
         return numbers;
     }
 
-    public void matchWinLotto(WinLotto winLotto) {
+    public WinRank matchWinLotto(WinLotto winLotto) {
         int matchCount = (int) winLotto.getNumbers().stream()
                 .filter(numbers::contains)
                 .count();
         boolean matchBonus = numbers.contains(winLotto.getBonusNumber());
-        setRank(matchCount, matchBonus);
+        return getRank(matchCount, matchBonus);
     }
 
-    private void setRank(int matchCount, boolean matchBonus) {
+    private WinRank getRank(int matchCount, boolean matchBonus) {
+        WinRank rank = WinRank.ETC;
         switch (matchCount) {
             case 6:
                 rank = WinRank.FIRST;
@@ -48,9 +53,6 @@ public class Lotto {
                 rank = WinRank.FIFTH;
                 break;
         }
-    }
-
-    public WinRank getRank() {
         return rank;
     }
 }
