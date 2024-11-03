@@ -20,5 +20,6 @@ public class LottoController {
 	public void run() {
 		LottoCreateController lottoCreateController = new LottoCreateController(inputView, outputView, lottoCreator);
 		LottoBundle lottoBundle = lottoCreateController.run();
+		LottoDrawController lottoDrawController = new LottoDrawController(inputView, outputView, lottoCreator);
 	}
 }
