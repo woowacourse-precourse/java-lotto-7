@@ -42,8 +42,8 @@ public class Lotto {
 
     public Winning checkWinner(DrawNumbers drawNumbers) {
         int matchCount = drawNumbers.countMatch(numbers);
-        int countBonusNumber = drawNumbers.countBonusNumber(numbers);
+        boolean isMatchBonusNumber = drawNumbers.isMatchBonusNumber(numbers);
 
-        return Winning.getPlaceByMatch(matchCount, countBonusNumber);
+        return Winning.getPlaceByMatch(matchCount, isMatchBonusNumber);
     }
 }
