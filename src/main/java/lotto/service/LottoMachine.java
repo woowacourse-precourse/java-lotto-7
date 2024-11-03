@@ -17,6 +17,8 @@ public class LottoMachine {
         do {
             input = inputView.input(SystemMessage.INPUT_PURCHASE_MONEY_AMOUNT.getMessage());
         } while (!validateMoneyAmount(input));
+    public int calculateNumberLotto(int moneyAmount) {
+        return moneyAmount / 1000;
     }
 
     public boolean validateMoneyAmount(String moneyAmount) {
