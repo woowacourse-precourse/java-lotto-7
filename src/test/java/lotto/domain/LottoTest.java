@@ -30,4 +30,12 @@ class LottoTest {
         assertEquals("[ERROR] 로또 번호는 1에서 45 사이여야 합니다.", exception.getMessage());
     }
 
+    @Test
+    @DisplayName("올바른 6개의 숫자로 Lotto 객체 생성")
+    void createLottoWithValidNumbers() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(validNumbers);
+        assertEquals(validNumbers, lotto.getNumbers());
+    }
+
 }
