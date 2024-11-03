@@ -102,4 +102,36 @@ public class LottoManagementService {
         return WinningRank.NONE;
     }
 
+    // WinningRank별 당첨 통계 계산
+    public Map<WinningRank, Long> getWinningStatistics() {
+        List<UserLotto> winningLottos = getWinningLottos();
+
+        Map<WinningRank, Long> rankCounts = Arrays.stream(WinningRank.values())
+                .filter(rank -> rank != WinningRank.NONE) // NONE을 제외
+                .collect(Collectors.toMap(
+                        rank -> rank, // 각 등수를 키로 설정
+                        rank -> winningLottos.stream() // 해당 등수에 해당하는 로또의 개수를 세어 값으로 설정
+                                .filter(winningLotto -> winningLotto.getWinningRank() == rank)
+                                .count(),
+                        (existing, replacement) -> existing, //같은 키에 대한 중복 처리를 위해 기존 값을 그대로 유지
+                        () -> new EnumMap<>(WinningRank.class)
+                ));
+
+        return rankCounts;
+    }
+
+    // 당첨된 유저 로또 목록만 필터링하여 반환
+    private List<UserLotto> getWinningLottos() {
+        List<UserLotto> userLottos = userLottoRepository.findAll();
+        List<UserLotto> winningLottos = new ArrayList<>();
+
+        userLottos.forEach(userLotto -> {
+            if (userLotto.getWinningRank() != WinningRank.NONE) {
+                winningLottos.add(userLotto);
+            }
+        });
+
+        return winningLottos;
+    }
+
 }
