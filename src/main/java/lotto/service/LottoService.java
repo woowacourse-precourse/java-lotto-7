@@ -23,38 +23,30 @@ public class LottoService {
         return lotteries;
     }
 
-    public void start() {
-
-    }
 
     public void getStatistics(List<Integer> winningLottery, int bonusLottery) {
         initWinningCounts();
         for (Lotto lotto : lotteries) {
-            boolean checkBonus = isBonusMatch(lotto, bonusLottery);
-            countWinning(lotto, winningLottery, checkBonus);
+            countWinning(lotto, winningLottery, bonusLottery);
 
         }
     }
 
-    private void countWinning(Lotto lotto, List<Integer> winningLottery, boolean checkBonus) {
+    private void countWinning(Lotto lotto, List<Integer> winningLottery, int bonusLottery) {
         for (CommonWinningStrategy strategy : CommonWinningStrategy.values()) {
-            if (checkBonus) {
+            List<Integer> checkMatchCount = new ArrayList<>(lotto.getNumbers());
+            checkMatchCount.retainAll(winningLottery);
+
+            if (checkMatchCount.size() == 5 && lotto.getNumbers().contains(bonusLottery)) {
                 winningCounts.put(strategy, winningCounts.get(strategy) + 1);
                 break;
             }
-
-            List<Integer> checkMatchCount = lotto.getNumbers();
-            checkMatchCount.retainAll(winningLottery);
 
             if (checkMatchCount.size() == strategy.getMatch()) {
                 winningCounts.put(strategy, winningCounts.get(strategy) + 1);
                 break;
             }
         }
-    }
-
-    private boolean isBonusMatch(Lotto lotto, int bonusLottery) {
-        return lotto.getNumbers().contains(bonusLottery);
     }
 
     private void initWinningCounts() {

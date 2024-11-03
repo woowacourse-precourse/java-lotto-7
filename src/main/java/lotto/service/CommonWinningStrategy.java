@@ -1,7 +1,7 @@
 package lotto.service;
 
 public enum CommonWinningStrategy {
-    FIFTH(3, 3000, false),
+    FIFTH(3, 5000, false),
     FORTH(4, 50000, false),
     THIRD(5, 1500000, false),
     SECOND(5, 30000000, true),

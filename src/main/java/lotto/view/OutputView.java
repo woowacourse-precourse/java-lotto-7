@@ -40,7 +40,7 @@ public class OutputView {
         if (commonWinningStrategy.getBonusMatch()) {
             sb.append(", 보너스 볼 일치");
         }
-        sb.append(formatLongNumber(commonWinningStrategy.getMoney())).append("-").append(count).append("개");
+        sb.append(formatLongNumber(commonWinningStrategy.getMoney())).append("- ").append(count).append("개");
 
         System.out.println(sb);
     }
