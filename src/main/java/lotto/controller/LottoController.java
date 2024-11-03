@@ -1,26 +1,40 @@
 package lotto.controller;
 
+import java.util.Map;
+import lotto.repository.InMemoryLottoRepository;
+import lotto.repository.LottoRepository;
+import lotto.service.BonusNumberManager;
 import lotto.service.DecideQuantityOfLotto;
 import lotto.service.GenerateLottoNumberManager;
+import lotto.service.WininngNumberManager;
 import lotto.service.WinningManager;
 import lotto.view.OutputView;
-import java.util.List;
+
 public class LottoController {
     OutputView outputView = new OutputView();
-    WinningManager winning = new WinningManager();
+    LottoRepository lottoRepository = new InMemoryLottoRepository();
 
-    public void createLottoNumber(int price){
+    public void createLottoNumber(int price) {
         int num = new DecideQuantityOfLotto().purchaseLottoTickets(price);
-        List<List<Integer>> list = new GenerateLottoNumberManager().generate(num);
-        outputView.result(list);
+        GenerateLottoNumberManager generate = new GenerateLottoNumberManager(lottoRepository);
+        generate.getRandomLottoNumbers();
+        outputView.result(generate.getRandomLottoNumbers());
     }
 
-    public void createWinningNumber(String s){
-        winning.generateWinningNumber(s);
+    public void createWinningNumber(String s) {
+        WininngNumberManager wininngNumberManager = new WininngNumberManager(s, lottoRepository);
+        wininngNumberManager.createWinningNumber();
     }
 
-    public void calculateCorrect(){
+    public void createBonusNumber(String s) {
+        new BonusNumberManager().createBonusNumber(s, lottoRepository);
 
     }
 
+    public void calculateRate() {
+        WinningManager winningManager = new WinningManager();
+        Map<String, Integer> resultMap = winningManager.checkWinning(lottoRepository);
+        outputView.printresult(resultMap);
+        outputView.printRate(winningManager.calculateRate(resultMap, lottoRepository));
+    }
 }
