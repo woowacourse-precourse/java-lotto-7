@@ -19,4 +19,13 @@ public class LottoValidator {
             throw new IllegalArgumentException("[ERROR] 입력한 금액 형식이 숫자 타입이 아닙니다.");
         }
     }
+
+    public static boolean checkRangeLotto(int purchaseAmount){
+        if(purchaseAmount < 1 || purchaseAmount > 45){
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 숫자 범위입니다.");
+        }
+        return true;
+    }
+
+
 }
