@@ -53,21 +53,19 @@ public class LottoTransactionController {
     return lottos;
   }
 
-  public void compareWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
-
+  public Map<List<Integer>, PrizeRank> compareWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
     Set<Integer> _winningNumbers = new HashSet<>(winningNumbers);
     List<Lotto> lotttos = lottoTransaction.getPurchasedLottos();
-
-    System.out.println("당첨 번호:" + winningNumbers); // TODO test용 삭제 예정
+    Map<List<Integer>, PrizeRank> results = new HashMap<>();
 
     for (Lotto lotto : lotttos) {
       List<Integer> numbers = lotto.getNumbers();
       Set<Integer> _numbers = new HashSet<>(numbers);
       _numbers.retainAll(_winningNumbers);
-      System.out.println(numbers + "," + "보너스: " + bonusNumber); // TODO test용 삭제 예정
-      System.out.println("보너스 일치:" + _numbers.contains(bonusNumber) + "\t일치 갯수:"
-              + _numbers.size()); // TODO test용 삭제 예정
+      PrizeRank prizeRank = PrizeRank.getPrizeRank(_numbers.size(), numbers.contains(bonusNumber));
+      results.put(numbers, prizeRank);
     }
+    return results;
   }
 
   private Lotto produceLotto() {

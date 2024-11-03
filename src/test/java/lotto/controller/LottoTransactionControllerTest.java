@@ -61,19 +61,12 @@ public class LottoTransactionControllerTest {
     List<List<Integer>> lottoNumbers = getKeysFromMap(lottoPrizeData);
 
     controller.sellManualLotto(lottoNumbers, 5000);
-    //TODO  compareWinningNumbers() 리턴 받기, 리턴값 수정
-    /**
-     *  ex)  Map<List<Integer>, PrizeRank> Map변수1 = controller.compareWinningNumbers()
-     * */
+    Map<List<Integer>, PrizeRank> mao = controller.compareWinningNumbers(winningNumbers, 45);
 
-    //TODO lottoNumbers 가지고 Map변수1와 this.winningNumbers 값 비교
-    /**
-     *  ex)    for {
-     *    key  = Map변수1.getkey()
-     *    assertEquals(Map변수1[key], this.winningNumbers[key])
-     *  }
-     * */
-
+    for (List<Integer> lottoNumber : lottoNumbers) {
+      assertEquals(lottoPrizeData.get(lottoNumber), mao.get(lottoNumber),
+              "로또 번호 " + lottoNumber + "의 등수 검증 실패");
+    }
   }
 
 
