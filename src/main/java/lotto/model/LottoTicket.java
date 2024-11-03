@@ -19,6 +19,12 @@ public class LottoTicket {
         return new LottoTicket(temp);
     }
 
+    public List<Rank> getRanks(WinningTicket winningTicket) {
+        return ticket.stream()
+                .map(winningTicket::getRank)
+                .collect(Collectors.toList());
+    }
+
     public List<Lotto> getTicket() {
         return ticket;
     }
