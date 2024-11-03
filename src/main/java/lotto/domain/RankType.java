@@ -33,6 +33,6 @@ public enum RankType {
                 return rank;
             }
         }
-        return null;
+        return RankType.FIRST;
     }
 }
