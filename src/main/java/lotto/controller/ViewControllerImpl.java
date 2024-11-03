@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.repository.LottoRepository;
 import lotto.util.ExceptionMessage;
 import lotto.util.Utils;
 import lotto.view.InputView;
@@ -63,8 +64,9 @@ public class ViewControllerImpl implements ViewController {
         return winningNumbers;
     }
 
-    public Integer getBonus(){
+    public void getBonus(){
         outputView.printBonus();
-        return Integer.parseInt(inputView.readLine());
+        int bonus = Integer.parseInt(inputView.readLine());
+        LottoRepository.bonus = bonus;
     }
 }
