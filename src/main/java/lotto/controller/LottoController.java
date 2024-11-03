@@ -33,7 +33,7 @@ public class LottoController {
         outputView.printPublishedLotto(publishedLotto);
         int validBonusNumber = handleBonusInputError();
         LottoMatchEvaluator lottoMatchEvaluator = new LottoMatchEvaluator(validLottoNumbers,validBonusNumber,lottoPublisher);
-        System.out.println(lottoMatchEvaluator.getLottoResults());
+        outputView.printOrderdLottoResult(lottoMatchEvaluator.getLottoResults());
 
     }
 
