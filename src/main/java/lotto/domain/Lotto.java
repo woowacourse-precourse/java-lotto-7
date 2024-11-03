@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.constants.exceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
-import static lotto.constants.exceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
-import static lotto.constants.exceptionMessage.LOTTO_NUMBER_NOT_EMPTY;
-import static lotto.constants.exceptionMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.constants.ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.constants.ExceptionMessage.LOTTO_NUMBER_NOT_EMPTY;
+import static lotto.constants.ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.constants.LottoConstants.MIN_NUMBER;
 import static lotto.constants.LottoConstants.MAX_NUMBER;
 import static lotto.constants.LottoConstants.NUMBER_COUNT;

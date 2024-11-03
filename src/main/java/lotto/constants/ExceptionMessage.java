@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public class exceptionMessage {
+public class ExceptionMessage {
     public static final String INVALID_PURCHASE_AMOUNT = "[ERROR] 구매 금액은 1000원 이상이어야 합니다.";
     public static final String INVALID_PURCHASE_AMOUNT_UNIT = "[ERROR] 구매 금액은 1000원 단위로만 입력할 수 있습니다.";
     public static final String NOT_A_NUMBER = "[ERROR] 구분자를 제외한 입력값은 숫자만 올 수 있습니다.";
