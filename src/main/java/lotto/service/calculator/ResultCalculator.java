@@ -19,7 +19,7 @@ public class ResultCalculator {
     private final List<Integer> prize = Prize.getPrize();
 
     private static final Integer START_PLACE = 1;
-    private static final Integer END_PLACE = 2;
+    private static final Integer END_PLACE = 5;
 
     public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
