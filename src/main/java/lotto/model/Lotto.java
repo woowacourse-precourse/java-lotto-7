@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.util.Constants;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,19 +16,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Constants.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_SIZE);
         }
-        for (int number : numbers) {
-            if (Collections.frequency(numbers, number) > 1) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
-            }
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+        if (numbers.stream().distinct().count() != Constants.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_DUPLICATE);
+        }
+        if (numbers.stream().anyMatch(number -> number < Constants.LOTTO_NUMBER_MIN || number > Constants.LOTTO_NUMBER_MAX)) {
+            throw new IllegalArgumentException(Constants.ERROR_LOTTO_RANGE);
         }
     }
-
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);

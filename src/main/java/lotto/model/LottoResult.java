@@ -1,8 +1,9 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.util.Constants;
 
 public class LottoResult {
     private final Map<Rank, Integer> matchCount;
@@ -10,14 +11,24 @@ public class LottoResult {
 
     public LottoResult(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
         this.matchCount = calculateMatchCount(tickets, winningNumbers, bonusNumber);
-        this.profitRate = calculateProfitRate(tickets.size() * LottoMachine.PRICE_UNIT);
+        this.profitRate = calculateProfitRate(tickets.size() * Constants.PRICE_UNIT);
     }
 
     private Map<Rank, Integer> calculateMatchCount(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
-        Map<Rank, Integer> matchResult = new HashMap<>();
+        if (tickets == null || tickets.contains(null)) {
+            throw new IllegalArgumentException(Constants.ERROR_NULL_MESSAGE);
+        }
+
+        Map<Rank, Integer> matchResult = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            matchResult.put(rank, 0);
+        }
         for (Lotto ticket : tickets) {
             Rank rank = Rank.findRank(ticket.getNumbers(), winningNumbers, bonusNumber);
-            matchResult.put(rank, matchResult.getOrDefault(rank, 0) + 1);
+            if (rank == null) {
+                throw new IllegalArgumentException(Constants.ERROR_NULL_MESSAGE);
+            }
+            matchResult.put(rank, matchResult.get(rank) + 1);
         }
         return matchResult;
     }
