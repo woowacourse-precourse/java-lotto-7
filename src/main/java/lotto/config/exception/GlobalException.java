@@ -1,7 +1,7 @@
 package lotto.config.exception;
 
 public class GlobalException extends IllegalArgumentException{
-    private static final String ERROR_PREFIX = "[ERROR]";
+    private static final String ERROR_PREFIX = "[ERROR] ";
     public GlobalException(String message) {
         super(ERROR_PREFIX + message);
     }
