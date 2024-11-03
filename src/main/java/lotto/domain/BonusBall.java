@@ -11,7 +11,7 @@ public class BonusBall {
         this.bonusNum = bonusNum;
     }
 
-    public int getNum() {
+    public int num() {
         return bonusNum;
     }
 

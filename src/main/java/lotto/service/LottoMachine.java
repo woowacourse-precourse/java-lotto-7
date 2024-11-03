@@ -22,25 +22,57 @@ public class LottoMachine {
     }
 
     public PurchasedLottos issueLotto(int money) {
-        validateMoneyLessThenMax(money);
-        validateMoneyLessThenZero(money);
-        validateMoneyModLottoPrice(money);
-        int lottoCnt = money / LOTTO_PRICE;
+        validateMoney(money);
+        int lottoCount = calculateLottoCount(money);
 
-        // 로또 발행
         List<Lotto> lottos = new ArrayList<>();
-        for (int cnt = 0; cnt < lottoCnt; cnt++) {
+        for (int cnt = 0; cnt < lottoCount; cnt++) {
             List<Integer> numbers = lottoGenerate.randomGenerateInRange();
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
+            lottos.add(new Lotto(numbers));
         }
         
         this.money = money;
         return new PurchasedLottos(lottos);
     }
 
+    public LottoResult calculateLottoWins(PurchasedLottos purchasedLotto, WinningLotto winningLotto) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : purchasedLotto.getLottos()) {
+            boolean bonus = false;
+            List<Integer> lottoNums = lotto.numbers();
+
+            long count = sameNumberCountOf(winningLotto, lottoNums);
+            if (lottoNums.contains(winningLotto.bonusNumber())) {
+                bonus = true;
+            }
+            ranks.add(calculateRank(count, bonus));
+        }
+        return LottoResult.from(ranks);
+    }
+
+    private long sameNumberCountOf(WinningLotto winningLotto, List<Integer> lottoNums) {
+        return winningLotto.numbers()
+                .stream()
+                .filter(lottoNums::contains)
+                .count();
+    }
+
+    private Rank calculateRank(long count, boolean bonus) {
+        return Rank.calculateRank(count, bonus);
+    }
+
+    private int calculateLottoCount(int money) {
+        return money / LOTTO_PRICE;
+    }
+
     public int inMoney() {
         return money;
+    }
+
+    private void validateMoney(int money) {
+        validateMoneyLessThenMax(money);
+        validateMoneyLessThenZero(money);
+        validateMoneyModLottoPrice(money);
     }
 
     private void validateMoneyModLottoPrice(int money) {
@@ -59,31 +91,5 @@ public class LottoMachine {
         if (money > MONEY_MAX) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_MORE_THEN_MAXIMUM.getMsg());
         }
-    }
-
-    public LottoResult winLotto(PurchasedLottos purchasedLotto, WinningLotto winningLotto) {
-        List<Rank> ranks = new ArrayList<>();
-        for (Lotto lotto : purchasedLotto.getLottos()) {
-            boolean bonus = false;
-            List<Integer> lottoNums = lotto.numbers();
-
-            long count = sameNumberCountOf(winningLotto, lottoNums);
-            if (lottoNums.contains(winningLotto.bonusBall().getNum())) {
-                bonus = true;
-            }
-            ranks.add(calculateRank(count, bonus));
-        }
-        return LottoResult.from(ranks);
-    }
-
-    private long sameNumberCountOf(WinningLotto winningLotto, List<Integer> lottoNums) {
-        return winningLotto.lottoNums()
-                .stream()
-                .filter(lottoNums::contains)
-                .count();
-    }
-
-    private Rank calculateRank(long count, boolean bonus) {
-        return Rank.calculateRank(count, bonus);
     }
 }

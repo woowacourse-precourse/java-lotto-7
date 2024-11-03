@@ -85,7 +85,7 @@ class LottoMachineTest {
         WinningLotto winningLotto = winningLottoMake(numbers, bonus);
 
         // when
-        LottoResult lottoResult = lottoMachine.winLotto(purchasedLottos, winningLotto);
+        LottoResult lottoResult = lottoMachine.calculateLottoWins(purchasedLottos, winningLotto);
 
         // then
         Assertions.assertThat(lottoResult.calculateProfit(money))
