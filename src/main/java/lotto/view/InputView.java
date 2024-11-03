@@ -17,12 +17,12 @@ public class InputView {
         return amount;
     }
 
-    private static int getPurchaseAmount() {
+    public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 
-    private static void validatePurchaseAmount(int amount) {
+    public static void validatePurchaseAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
