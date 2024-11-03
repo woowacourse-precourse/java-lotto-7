@@ -40,4 +40,12 @@ public class UtilsTest {
 
         assertThat(lottos.size()).isEqualTo(inputTest / 1000);
     }
+
+    @DisplayName("문자열을 받으면 ,단위로 숫자 리스트 반환하는 로직")
+    @Test
+    void 문자열_쉼표단위_숫자리스트_로직() {
+        String inputTest = "1,2,3,4,5,6";
+
+        assertThat(utils.convertToIntegerList(inputTest)).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
 }
