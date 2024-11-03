@@ -20,4 +20,14 @@ public class Lottos {
             lottos.add(new Lotto(numbers));
         }
     }
+
+    public int size() {
+        return lottos.size();
+    }
+
+    public List<String> getAllLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }

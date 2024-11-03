@@ -8,5 +8,7 @@ public class LottoController {
         int amount = InputView.inputPurchaseAmount();
         Lottos lottos = new Lottos();
         lottos.issueByAmount(amount);
+        OutputView.printPurchasedLottos(lottos);
+
     }
 }
