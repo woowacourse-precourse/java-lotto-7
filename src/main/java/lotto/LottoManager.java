@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.ErrorMessage.PURCHASE_AMOUNT_EXCEED_LIMIT;
+import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_ENOUGH;
+import static lotto.ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_LOTT_PRICE;
 import static lotto.Input.inputBonusNumber;
 import static lotto.Input.inputPurchaseAmount;
 import static lotto.Input.inputWinningNumber;
@@ -12,8 +15,8 @@ import java.util.Map;
 
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
+    private static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final int PERCENTAGE_FACTOR = 100;
-    private static final String PURCHASE_AMOUNT_NOT_ENOUGH_ERROR_MESSAGE = "구입 금액은 최소 1000원 이상입니다.";
     private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
@@ -35,15 +38,32 @@ public class LottoManager {
         try {
             int purchaseAmount = parseInt(inputPurchaseAmount());
             validatePurchaseAmountEnough(purchaseAmount);
+            validatePurchaseAmountMultipleLottoPrice(purchaseAmount);
+            validatePurchaseAmountExceedLimit(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
             return getPurchaseAmount();
         }
     }
 
-    private static void validatePurchaseAmountEnough(int purchaseAmount) {
+    private static void validatePurchaseAmountEnough(final int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_ENOUGH_ERROR_MESSAGE);
+            System.out.println(PURCHASE_AMOUNT_NOT_ENOUGH.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validatePurchaseAmountMultipleLottoPrice(final int purchaseAmount) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
+            System.out.println(PURCHASE_AMOUNT_NOT_MULTIPLE_LOTT_PRICE.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validatePurchaseAmountExceedLimit(final int purchaseAmount) {
+        if (purchaseAmount > MAX_PURCHASE_AMOUNT) {
+            System.out.println(PURCHASE_AMOUNT_EXCEED_LIMIT.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 
