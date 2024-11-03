@@ -22,7 +22,7 @@ public class Lottos {
 
     private Lottos(LottoNumbersGenerator lottoNumbersGenerator) {
         if (lottoNumbersGenerator == null) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 방식이 설정되지 않았습니다.");
+            throw new IllegalArgumentException("로또 구매 방식이 설정되지 않았습니다.");
         }
 
         this.lottoNumbersGenerator = lottoNumbersGenerator;
@@ -40,7 +40,7 @@ public class Lottos {
 
     public List<LottoNumbers> getLottoNumbers() {
         if (lottos == null || lottos.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구매한 로또가 없습니다.");
+            throw new IllegalArgumentException("구매한 로또가 없습니다.");
         }
 
         return lottos.stream()
@@ -50,7 +50,7 @@ public class Lottos {
 
     public WinningStatistics calculateWinningStatistics(WinningLotto winningLotto) {
         if (amountOfPaid == null || lottos == null || lottos.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 계산할 로또가 없습니다.");
+            throw new IllegalArgumentException("계산할 로또가 없습니다.");
         }
         return new WinningStatistics(getWinningResults(winningLotto), amountOfPaid);
     }

@@ -23,8 +23,8 @@ public class Lotto {
     public static int calculateCanBuyLotto(Won amountOfPaid) {
         if (!isMoneyLeftFrom(amountOfPaid)) {
             throw new IllegalArgumentException(String.format(
-                    "[ERROR] 로또 한 장의 가격은 %d 원이며, 거스름돈을 남길 수 없습니다.",
-                    PRICE.getIntValue()));
+                    "로또 한 장의 가격은 %s원이며, 거스름돈을 남길 수 없습니다.",
+                    PRICE));
         }
 
         return getNumberOfLottoAvailable(amountOfPaid);

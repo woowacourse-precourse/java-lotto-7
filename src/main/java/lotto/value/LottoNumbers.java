@@ -9,13 +9,13 @@ public record LottoNumbers(List<LottoNumber> lottoNumbers) {
 
     public LottoNumbers {
         if (lottoNumbers == null) {
-            throw new IllegalArgumentException("[ERROR] null을 지정할 수 없습니다.");
+            throw new IllegalArgumentException("null을 지정할 수 없습니다.");
         }
         if (lottoNumbers.size() != SIZE_OF_NUMBERS) {
-            throw new IllegalArgumentException(String.format("[ERROR] 정상적인 로또 번호의 개수는 %d입니다.", SIZE_OF_NUMBERS));
+            throw new IllegalArgumentException(String.format("정상적인 로또 번호의 개수는 %d입니다.", SIZE_OF_NUMBERS));
         }
         if (isNumbersDuplicated(lottoNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+            throw new IllegalArgumentException("중복된 번호가 있습니다.");
         }
 
         lottoNumbers = List.copyOf(lottoNumbers.stream()

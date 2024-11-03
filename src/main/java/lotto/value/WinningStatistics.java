@@ -14,7 +14,7 @@ public record WinningStatistics(Map<WinningResult, Long> winningTotal, Won amoun
         return winningTotal.entrySet().stream()
                 .filter(entry -> entry.getKey().ranking == rank)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 랭크입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 랭크입니다."));
     }
 
     public BigDecimal getRateReturn() {

@@ -10,10 +10,10 @@ public class Won {
 
     private Won(BigInteger amount) {
         if (amount == null) {
-            throw new IllegalArgumentException("[ERROR] null을 지정할 수 없습니다.");
+            throw new IllegalArgumentException("null을 지정할 수 없습니다.");
         }
         if (isSmallerThanZero(amount)) {
-            throw new IllegalArgumentException("[ERROR] 금액은 음수일 수 없습니다.");
+            throw new IllegalArgumentException("금액은 음수일 수 없습니다.");
         }
         this.amount = amount;
     }
