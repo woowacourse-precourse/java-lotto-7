@@ -18,12 +18,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException(INVALID_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalStateException(INVALID_LOTTO_RANGE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
         }
     }
 
