@@ -135,7 +135,7 @@
   - Lotto 번호를 출력한다.
 - getWinningInput
   - 당첨 번호를 입력받는다.
-- runValidString
+- runValidWinningString
   - 당첨 번호가 올바른 문자열이 아니라면 재입력을 요청한다.
 - isValidString
   - 숫자와 쉼표로 이루어진 문자열인지 확인한다.
@@ -145,6 +145,8 @@
   - HashSet에 당첨 번호 추가한다.
 - getBonusInput
   - 보너스 번호를 입력받는다.
+- runValidBonusString
+  - 보너스 번호가 올바른 문자열이 아니라면 재입력을 요청한다.
 - isLottoNumber
   - 1에서 45 사이의 숫자인지 확인한다.
 - containsWinningNumber
