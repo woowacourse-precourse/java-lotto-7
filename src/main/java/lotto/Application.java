@@ -33,7 +33,7 @@ public class Application {
 		List<Integer> winningNumbers = drawWinningNumbers(inputInterface, lottoService);
 		OutputInterface.printNewLine();
 
-		int bonusNumber = drawBonusNumber(inputInterface);
+		int bonusNumber = drawBonusNumber(inputInterface, lottoService, winningNumbers);
 		OutputInterface.printNewLine();
 
 		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
@@ -79,13 +79,14 @@ public class Application {
 		}
 	}
 
-	private static int drawBonusNumber(InputInterface inputInterface) {
+	private static int drawBonusNumber(InputInterface inputInterface, LottoService lottoService,
+		List<Integer> winningNumbers) {
 		while (true) {
 			try {
 				OutputInterface.printMessage(OutputInterface.ENTER_BONUS_NUMBER);
 				String bonusNumber = inputInterface.readLine();
 
-				return TypeConverter.convertStringToInteger(bonusNumber);
+				return lottoService.drawBonusNumber(bonusNumber, winningNumbers);
 			} catch (IllegalArgumentException exception) {
 				processException(exception);
 			}

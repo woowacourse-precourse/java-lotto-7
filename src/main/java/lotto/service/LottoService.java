@@ -15,6 +15,18 @@ public class LottoService {
 		return saveWinningNumbers(winningNumbers);
 	}
 
+	public int drawBonusNumber(String rawBonusNumber, List<Integer> winningNumbers) {
+		int bonusNumber = TypeConverter.convertStringToInteger(rawBonusNumber);
+		validateIsDuplicateByWinningNumber(bonusNumber, winningNumbers);
+		return bonusNumber;
+	}
+
+	private void validateIsDuplicateByWinningNumber(int bonusNumber, List<Integer> winningNumbers) {
+		if (winningNumbers.contains(bonusNumber)) {
+			throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_IS_DUPLICATED.toString());
+		}
+	}
+
 	private List<Integer> saveWinningNumbers(String winningNumbers) {
 		List<String> splittedWinningNumbers = Spliter.splitByComma(winningNumbers);
 		validateNumberSize(splittedWinningNumbers.size());
