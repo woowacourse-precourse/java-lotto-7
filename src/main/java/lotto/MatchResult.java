@@ -14,4 +14,11 @@ public class MatchResult {
         this.matchedConditions = matchedConditions;
         this.profitRatio = profitRatio;
     }
+
+    public List<MatchCondition> getMatchedConditions() {
+        return matchedConditions;
+    }
+    public Double getProfitRatio() {
+        return profitRatio;
+    }
 }
