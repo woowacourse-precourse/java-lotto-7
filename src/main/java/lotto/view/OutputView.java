@@ -30,6 +30,6 @@ public class OutputView {
     }
 
     public void printInputWinningNumbers() {
-        System.out.println(GUIDE_INPUT_WINNING_NUMBERS);
+        System.out.println(System.lineSeparator() + GUIDE_INPUT_WINNING_NUMBERS);
     }
 }
