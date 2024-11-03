@@ -38,7 +38,7 @@
 - 발행된 로또 수량과 번호를 출력한다.
     - 로또 번호는 오름차순으로 정렬한다.
 - 당첨 내역을 출력한다.
-  - 로또 번호를 당첨 내역 형식에 맞게 포맷팅한다.
+    - 로또 번호를 당첨 내역 형식에 맞게 포맷팅한다.
 - 수익률을 출력한다.
     - 수익률은 소수점 둘째 자리에서 반올림한다.
 - 예외 상황 시 오류 메시지를 출력한다.
@@ -76,8 +76,42 @@ IllegalArgumentException을 발생시키고, "\[ERROR]"로 시작하는 오류 �
 
 ## 📌 최종 기능 명세
 
-| Class | Method | Input | Output | Description |
-|-------|--------|-------|--------|-------------|
+| Package       | Class             | Method                           | Input                      | Output           | Description                             |
+|---------------|-------------------|----------------------------------|----------------------------|------------------|-----------------------------------------|
+| controller    | 	LottoController  | 	run()	                          | 	                          | 	                | 로또 구매 및 처리 실행                           |
+| model.domain	 | Lotto	            | of()	                            | List\<Integer>	            | Lotto	           | 새로운 로또 티켓 인스턴스 생성                       |
+|               |                   | getNumbers()	                    |                            | 	List\<Integer>	 | 로또 티켓에 포함된 번호 목록 반환                     |
+|               |                   | getStringNumbers()	              | 	                          | List\<String>    | 	로또 번호 목록을 문자열로 반환                      |
+|               | WinningLotto      | 	of()	                           | List\<Integer>, Integer	   | WinningLotto	    | 당첨 번호와 보너스 번호로 새로운 당첨 로또 인스턴스 생성        |
+|               |                   | getNumbers()	                    |                            | 	List\<Integer>	 | 당첨 번호 목록 반환                             |
+|               |                   | getBonusNumber()                 | 		                         | Integer	         | 보너스 번호 반환                               |
+| model         | 	RankCounter	     | create()	                        |                            | 	RankCounter     | 	각 등수별 카운터를 초기화한 객체 생성                  |
+|               |                   | getRankCount()                   | 	Rank	                     | Integer          | 	특정 등수의 당첨 개수 반환                        |
+|               |                   | increaseRankCount()              | 	Rank                      | 	                | 	특정 등수의 당첨 개수 증가                        |
+| service       | 	LottoService	    | calculateLottoCount()	           | Integer	                   | Integer	         | 구매 금액을 기반으로 구매할 로또 개수 계산                |
+|               |                   | createWinningTicket()            | 	List\<Integer>, Integer   | 	WinningLotto	   | 당첨 번호와 보너스 번호로 당첨 로또 티켓 생성              |
+|               |                   | createLottoTickets()             | 	Integer                   | 	List\<Lotto>	   | 주어진 개수만큼 로또 티켓 생성                       |
+|               |                   | determineWinning()	              | WinningLotto, List\<Lotto> | 	RankCounter	    | 구매한 로또 티켓의 등수를 판별하여 결과 반환               |
+|               |                   | calculateEarningRate()           | 	RankCounter, Integer      | 	double	         | 당첨 금액을 기반으로 수익률 계산                      |
+| util          | 	Parser	          | parseInputToInt()                | 	String	                   | Integer          | 	문자열 입력을 정수로 변환하고 검증                    |
+|               |                   | parseInputsToIntList()	          | String	                    | List\<Integer>	  | 쉼표로 구분된 문자열 입력을 정수 목록으로 변환              |
+|               |                   | formatLottoTickets()             | List\<Lotto>, String	      | List\<String>    | 	로또 티켓을 출력 형식에 맞게 포맷팅                   |
+| 	             | Validator	        | validateLottoPurchaseAmount()    | 	Integer                   | 		               | 로또 구입 금액 유효성 검증                         |
+|               |                   | validateWinningTicket()	         | List\<Integer>	            | 	                | 당첨 번호 유효성 검증                            |
+|               |                   | validateBonusNumber()            | 	List\<Integer>, Integer   | 		               | 보너스 번호 유효성 검증                           |
+| util.random   | 	LottoRandomUtil	 | getLottoRandomUtil()             | 	                          | 	LottoRandomUtil | 	싱글톤 패턴을 사용하여 LottoRandomUtil의 인스턴스를 반환 |
+|               |                   | issueLottoTicket()	              | Integer, Integer, Integer	 | List\<Integer>	  | 지정된 범위 내에서 중복되지 않는 숫자로 구성된 로또 번호를 발행    |
+| view	         | InputView	        | getLottoPurchaseAmountInput()	   |                            | 	String	         | 로또 구입 금액 입력                             |
+|               |                   | getWinningTicketInput()	         | 	                          | String	          | 당첨 번호 입력                                |
+|               |                   | getBonusNumberInput()            | 	                          | 	String	         | 보너스 번호 입력                               |
+| 	             | OutputView	       | printLottoPurchaseAmountInput()	 |                            | 	                | 	로또 구입 금액 입력 메시지 출력                     |
+|               |                   | printWinningTicketInput()	       | 	                          | 	                | 당첨 번호 입력 메시지 출력                         |
+|               |                   | printBonusNumberInput()          | 	                          | 	                | 	보너스 번호 입력 메시지 출력                       |
+|               |                   | printLottoCount()	               | Integer	                   |                  | 	구입한 로또 개수 출력                           |
+|               |                   | printLottoTicketsDetails()       | 	List\<String>             | 	                | 	로또 티켓의 상세 정보 출력                        |
+|               |                   | printWinningStatistics()	        | RankCounter 	              | 	                | 당첨 통계와 각 등수의 횟수 출력                      |
+|               |                   | printEarningsRate()              | 	double	                   |                  | 	로또 수익률 출력                              |
+|               |                   | printErrorMessage()              | 	IllegalArgumentException  |                  | 	예외 메시지 출력                              |
 
 <br>
 
