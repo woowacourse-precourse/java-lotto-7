@@ -25,14 +25,14 @@ public class LottosTest {
     @Test
     @DisplayName("[success] 로또 개수만큼 로또 객체를 리스트에 담아 저장한다.")
     void saveLottosList() {
-        assertThat(lottos.getLottos().size()).isEqualTo(3);
+        assertThat(lottos.lottos().size()).isEqualTo(3);
     }
 
     @Test
     @DisplayName("[fail] getter로 반환한 로또 리스트를 수정할 경우 예외가 발생한다.")
     void fail_IfModifyLottos() {
         Lotto newLotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 8)));
-        List<Lotto> lottoList = lottos.getLottos();
+        List<Lotto> lottoList = lottos.lottos();
 
         assertThatThrownBy(() -> lottoList.add(newLotto))
                 .isInstanceOf(UnsupportedOperationException.class);

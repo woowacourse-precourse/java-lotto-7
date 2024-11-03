@@ -15,7 +15,7 @@ public class BonusNumberTest {
     void saveBonusNumber() {
         BonusNumber bonusNumber = new BonusNumber(10);
 
-        assertThat(bonusNumber.getNumber()).isEqualTo(10);
+        assertThat(bonusNumber.number()).isEqualTo(10);
     }
 
     @ParameterizedTest

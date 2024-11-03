@@ -18,7 +18,7 @@ public class WinningNumberGeneratorTest {
         String testNumbers = "1,2,3,4,5,6";
 
         WinningNumber winningNumber = NumberGenerator.registerWinningNumber(testNumbers);
-        List<Integer> winningNumberList = winningNumber.getNumbers();
+        List<Integer> winningNumberList = winningNumber.numbers();
 
         for (int i = 0; i < 6; i++) {
             int expectedWinningNumber = i + 1;

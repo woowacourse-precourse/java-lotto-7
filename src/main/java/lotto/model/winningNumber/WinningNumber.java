@@ -4,12 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.validator.LotteryNumberValidator;
 
-public class WinningNumber {
-    private final List<Integer> numbers;
+public record WinningNumber(List<Integer> numbers) {
 
-    public WinningNumber(List<Integer> numbers) {
+    public WinningNumber {
         LotteryNumberValidator.validate(numbers);
-        this.numbers = numbers;
     }
 
     public boolean contains(int number) {
@@ -19,7 +17,8 @@ public class WinningNumber {
         return false;
     }
 
-    public List<Integer> getNumbers() {
+    @Override
+    public List<Integer> numbers() {
         return Collections.unmodifiableList(numbers);
     }
 }

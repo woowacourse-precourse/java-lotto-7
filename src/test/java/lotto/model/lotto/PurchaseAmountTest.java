@@ -17,7 +17,7 @@ public class PurchaseAmountTest {
     void savePurchaseAmount() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
 
-        assertThat(purchaseAmount.getPurchaseAmount()).isEqualTo(10000);
+        assertThat(purchaseAmount.purchaseAmount()).isEqualTo(10000);
     }
 
     @ParameterizedTest

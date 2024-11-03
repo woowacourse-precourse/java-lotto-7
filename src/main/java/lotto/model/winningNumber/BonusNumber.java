@@ -5,12 +5,10 @@ import static lotto.common.Exceptions.OUT_OF_LOTTERY_NUMBER_RANGE;
 
 import lotto.model.lotto.LotteryRule;
 
-public class BonusNumber {
-    private final int number;
+public record BonusNumber(int number) {
 
-    public BonusNumber(int number) {
+    public BonusNumber {
         validate(number);
-        this.number = number;
     }
 
     private void validate(int number) {
@@ -18,9 +16,5 @@ public class BonusNumber {
                 || number > MAX_LOTTERY_NUMBER) {
             throw new IllegalArgumentException(OUT_OF_LOTTERY_NUMBER_RANGE.getMessage());
         }
-    }
-
-    public int getNumber() {
-        return number;
     }
 }

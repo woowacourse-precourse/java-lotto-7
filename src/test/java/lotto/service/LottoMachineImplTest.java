@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class LottoMachineTest {
-    private final LottoMachine lottoMachine = new LottoMachine();
+public class LottoMachineImplTest {
+    private final LottoMachineImpl lottoMachineImpl = new LottoMachineImpl();
 
     WinningResults setUpDefaultWinningResults() {
         Lottos lottos = new Lottos(new ArrayList<>(Arrays.asList(
@@ -35,7 +35,7 @@ public class LottoMachineTest {
                 List.of(1, 2, 3, 4, 5, 6)
         ));
         BonusNumber bonusNumber = new BonusNumber(7);
-        WinningResults winningResults = lottoMachine.checkWinningResults(
+        WinningResults winningResults = lottoMachineImpl.checkWinningResults(
                 lottos, winningNumber, bonusNumber
         );
         return winningResults;
@@ -46,9 +46,9 @@ public class LottoMachineTest {
     void createLottosByPurchaseAmount() {
         PurchaseAmount lottoAmount = new PurchaseAmount(2000);
 
-        Lottos lottos = lottoMachine.issueLottos(lottoAmount);
+        Lottos lottos = lottoMachineImpl.issueLottos(lottoAmount);
 
-        assertThat(lottos.getLottos().size()).isEqualTo(2);
+        assertThat(lottos.lottos().size()).isEqualTo(2);
     }
 
     @ParameterizedTest
@@ -67,9 +67,10 @@ public class LottoMachineTest {
     @CsvSource(value = {"1000000000:203.1555", "55283055:3674.8240487071494", "180000:1128641.6666666665"}
             , delimiter = ':')
     void calculateEarningsRate(int expense, double expectedEarningsRate) {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(expense);
         WinningResults winningResults = setUpDefaultWinningResults();
 
-        assertThat(lottoMachine.calculateEarningsRate(winningResults, expense))
+        assertThat(lottoMachineImpl.calculateEarningsRate(winningResults, purchaseAmount))
                 .isEqualTo(expectedEarningsRate);
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class LotteryNumberValidator {
+
     public static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateEachNumber(numbers);

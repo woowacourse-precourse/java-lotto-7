@@ -7,19 +7,19 @@ import lotto.model.lotto.Lottos;
 import lotto.model.winningNumber.WinningNumber;
 import lotto.model.winningNumber.NumberGenerator;
 import lotto.model.winningResult.WinningResults;
-import lotto.service.LottoMachine;
+import lotto.service.LottoMachineImpl;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoMachine lottoMachine;
+    private final LottoMachineImpl lottoMachineImpl;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine) {
+    public LottoController(InputView inputView, OutputView outputView, LottoMachineImpl lottoMachineImpl) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoMachine = lottoMachine;
+        this.lottoMachineImpl = lottoMachineImpl;
     }
 
     public void run() {
@@ -43,7 +43,7 @@ public class LottoController {
     }
 
     private Lottos issueLottos(PurchaseAmount purchaseAmount) {
-        return lottoMachine.issueLottos(purchaseAmount);
+        return lottoMachineImpl.issueLottos(purchaseAmount);
     }
 
     private void outputIssuedLottos(Lottos lottos) {
@@ -72,13 +72,13 @@ public class LottoController {
 
     private WinningResults checkWinningResults(Lottos lottos, WinningNumber winningNumber,
                                                BonusNumber bonusNumber) {
-        return lottoMachine.checkWinningResults(lottos, winningNumber, bonusNumber);
+        return lottoMachineImpl.checkWinningResults(lottos, winningNumber, bonusNumber);
     }
 
     private void outputWinningResults(WinningResults winningResults, PurchaseAmount purchaseAmount) {
         outputView.outputWinningResultStartLine();
         outputView.outputWinningRanks(winningResults);
-        double earningsRate = lottoMachine.calculateEarningsRate(winningResults, purchaseAmount);
+        double earningsRate = lottoMachineImpl.calculateEarningsRate(winningResults, purchaseAmount);
         outputView.outputEarningsRate(earningsRate);
     }
 }

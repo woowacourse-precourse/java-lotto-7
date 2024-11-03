@@ -3,12 +3,9 @@ package lotto.model.purchaseAmount;
 import static lotto.common.Exceptions.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static lotto.model.lotto.LotteryRule.LOTTO_PRICE;
 
-public class PurchaseAmount {
-    private final int purchaseAmount;
-
-    public PurchaseAmount(int purchaseAmount) {
+public record PurchaseAmount(int purchaseAmount) {
+    public PurchaseAmount {
         validate(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
     }
 
     public int calculateLottoAmount() {
@@ -19,9 +16,5 @@ public class PurchaseAmount {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
         }
-    }
-
-    public int getPurchaseAmount() {
-        return purchaseAmount;
     }
 }

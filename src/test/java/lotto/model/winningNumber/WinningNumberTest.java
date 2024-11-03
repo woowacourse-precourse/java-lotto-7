@@ -23,7 +23,7 @@ public class WinningNumberTest {
         WinningNumber winningNumber = new WinningNumber(testNumbers);
 
         for (int number : testNumbers) {
-            assertThat(winningNumber.getNumbers()).contains(number);
+            assertThat(winningNumber.numbers()).contains(number);
         }
     }
 
@@ -66,7 +66,7 @@ public class WinningNumberTest {
     void fail_IfModifyWinningNumberList() {
         WinningNumber winningNumber = new WinningNumber(
                 new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
-        List<Integer> winningNumberList = winningNumber.getNumbers();
+        List<Integer> winningNumberList = winningNumber.numbers();
 
         assertThatThrownBy(() -> winningNumberList.add(7))
                 .isInstanceOf(UnsupportedOperationException.class);

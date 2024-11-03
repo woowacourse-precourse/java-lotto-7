@@ -13,15 +13,15 @@ public class OutputView {
 
     public void outputIssuedLottos(Lottos lottos) {
         outputLottoAmount(lottos);
-        for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> ascendingLotto = Sorter.sortAscending(lotto.getNumbers());
+        for (Lotto lotto : lottos.lottos()) {
+            List<Integer> ascendingLotto = Sorter.sortAscending(lotto.numbers());
             System.out.println(Messages.ISSUED_LOTTO(ascendingLotto));
         }
     }
 
     private void outputLottoAmount(Lottos lottos) {
         System.out.println(System.lineSeparator() +
-                String.format("%d개를 구매했습니다.", lottos.getLottos().size()));
+                String.format("%d개를 구매했습니다.", lottos.lottos().size()));
     }
 
     public void outputWinningResultStartLine() {
