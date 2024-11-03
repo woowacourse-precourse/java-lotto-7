@@ -32,4 +32,5 @@ public class ParsingUtils {
     private ParsingUtils() {
         // 인스턴스화 방지
     }
+    
 }
