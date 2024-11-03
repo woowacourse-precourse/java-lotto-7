@@ -6,7 +6,7 @@ import lotto.model.LottoBonusNumber;
 import lotto.model.LottoCount;
 import lotto.service.LottoService;
 import lotto.util.InputValidator;
-import lotto.util.LottoRank;
+import lotto.util.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -72,8 +72,8 @@ public class LottoController {
     private void printWinningDetails() {
         outputView.startPrintWinning();
 
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank == LottoRank.NONE) {
+        for (WinningDetails rank : WinningDetails.values()) {
+            if (rank == WinningDetails.NO_WIN) {
                 continue;
             }
             int sameNumberCount = rank.getSameNumberCount();

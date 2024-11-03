@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.util.LottoRank;
+import lotto.util.WinningDetails;
 
 public class YieldCalculator {
 
@@ -20,7 +20,7 @@ public class YieldCalculator {
     private int getTotalPrize() {
         int totalPrize = 0;
 
-        for (LottoRank rank : LottoRank.values()) {
+        for (WinningDetails rank : WinningDetails.values()) {
             String processedWinningPrize = rank.getWinningPrize().replace(COMMA, EMPTY_STRING);
             int winningPrize = Integer.parseInt(processedWinningPrize);
             int matchLottoCount = rank.getMatchLottoCount();

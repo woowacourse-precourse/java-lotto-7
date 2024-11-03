@@ -1,13 +1,13 @@
 package lotto.util;
 
-public enum LottoRank {
+public enum WinningDetails {
 
-    NONE(0, false, "0", 0),
-    FIFTH(3, false, "5,000", 0),
-    FOURTH(4, false, "50,000", 0),
-    THIRD(5, false, "1,500,000", 0),
-    SECOND(5, true, "30,000,000", 0),
-    FIRST(6, false, "2,000,000,000", 0);
+    NO_WIN(0, false, "0", 0),
+    FIFTH_PRIZE(3, false, "5,000", 0),
+    FOURTH_PRIZE(4, false, "50,000", 0),
+    THIRD_PRIZE(5, false, "1,500,000", 0),
+    SECOND_PRIZE(5, true, "30,000,000", 0),
+    FIRST_PRIZE(6, false, "2,000,000,000", 0);
 
 
     private int sameNumberCount;
@@ -17,7 +17,7 @@ public enum LottoRank {
     private int matchedLottoCount;
 
 
-    LottoRank(int sameNumberCount, boolean matchBonusNumber, String winningPrize, int matchedLottoCount) {
+    WinningDetails(int sameNumberCount, boolean matchBonusNumber, String winningPrize, int matchedLottoCount) {
         this.sameNumberCount = sameNumberCount;
         this.matchBonusNumber = matchBonusNumber;
         this.winningPrize = winningPrize;
@@ -26,7 +26,7 @@ public enum LottoRank {
 
 
     public static void addMatchLottoCount(int sameNumberCount, boolean matchBonusNumber) {
-        LottoRank rank = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
+        WinningDetails rank = getLottoRankByLottoNumbers(sameNumberCount, matchBonusNumber);
         rank.matchedLottoCount++;
     }
 
@@ -47,17 +47,17 @@ public enum LottoRank {
     }
 
 
-    private static LottoRank getLottoRankByLottoNumbers(int sameNumberCount, boolean matchBonusNumber) {
+    private static WinningDetails getLottoRankByLottoNumbers(int sameNumberCount, boolean matchBonusNumber) {
         if (sameNumberCount == 5 && matchBonusNumber) {
-            return LottoRank.SECOND;
+            return WinningDetails.SECOND_PRIZE;
         }
 
-        for (LottoRank rank : LottoRank.values()) {
+        for (WinningDetails rank : WinningDetails.values()) {
             if (rank.sameNumberCount == sameNumberCount && !rank.matchBonusNumber) {
                 return rank;
             }
         }
-        return LottoRank.NONE;
+        return WinningDetails.NO_WIN;
     }
 
 }
