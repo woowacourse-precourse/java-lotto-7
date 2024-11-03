@@ -15,20 +15,18 @@ public class DrawResult {
     private static final int INIT_COUNT = 0;
 
     private final Map<Prize, Integer> drawResult;
-    private final WinningLotto winningLotto;
-    private final BonusNumber bonusNumber;
+    private final WinningLottoTicket winningLottoTicket;
     private final LottoTicket lottoTicket;
 
-    private DrawResult(WinningLotto winningLotto, BonusNumber bonusNumber, LottoTicket lottoTicket) {
+    private DrawResult(WinningLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
         drawResult = new TreeMap<>((o1, o2) -> o2.getRank() - o1.getRank());
         initDrawResult();
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
+        this.winningLottoTicket = winningLottoTicket;
         this.lottoTicket = lottoTicket;
     }
 
-    public static DrawResult of(WinningLotto winningLotto, BonusNumber bonusNumber, LottoTicket lottoTicket) {
-        return new DrawResult(winningLotto, bonusNumber, lottoTicket);
+    public static DrawResult of(WinningLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
+        return new DrawResult(winningLottoTicket, lottoTicket);
     }
 
     private void initDrawResult() {
@@ -39,15 +37,15 @@ public class DrawResult {
     }
 
     public void generateDrawResult() {
-        List<Lotto> ticket = lottoTicket.lottoTicket();
+        List<Lotto> ticket = lottoTicket.getLottos();
         for (Lotto lotto : ticket) {
             checkPrize(lotto);
         }
     }
 
     private void checkPrize(Lotto lotto) {
-        int sameNumberCount = lotto.countSameNumber(winningLotto.getWinningLotto());
-        boolean isContainBonusNumber = lotto.isContain(bonusNumber.getNumber());
+        int sameNumberCount = winningLottoTicket.countSameNumber(lotto);
+        boolean isContainBonusNumber = winningLottoTicket.isContainBonusNumber(lotto);
         Prize prize = findPrize(sameNumberCount, isContainBonusNumber);
         updatePrizeCount(prize);
     }

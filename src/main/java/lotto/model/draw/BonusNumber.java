@@ -3,6 +3,8 @@ package lotto.model.draw;
 import static lotto.model.util.constant.LottoConstants.MAX_NUMBER;
 import static lotto.model.util.constant.LottoConstants.MIN_NUMBER;
 
+import lotto.model.lotto.Lotto;
+
 public class BonusNumber {
 
     private static final String INVALID_EMPTY_MESSAGE = "[ERROR] 보너스 번호가 빈 값입니다.";
@@ -49,7 +51,7 @@ public class BonusNumber {
         }
     }
 
-    public void checkDuplicationNumber(WinningLotto winningLotto) {
+    public void checkDuplicationNumber(Lotto winningLotto) {
         if (winningLotto.isContain(number)) {
             throw new IllegalArgumentException(INVALID_DUPLICATION_MESSAGE);
         };

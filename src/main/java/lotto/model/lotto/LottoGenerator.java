@@ -1,17 +1,21 @@
 package lotto.model.lotto;
 
-import static lotto.model.util.constant.LottoConstants.LOTTO_SIZE;
-import static lotto.model.util.constant.LottoConstants.MAX_NUMBER;
-import static lotto.model.util.constant.LottoConstants.MIN_NUMBER;
-
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.strategy.LottoStrategy;
 
 public class LottoGenerator {
 
-    public Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
-        return new Lotto(numbers);
+    public List<Lotto> generateLottos(LottoStrategy lottoStrategy, PurchaseAmount purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        int lottoAmount = purchaseAmount.calculatePurchasableLottoAmount();
+        for (int i = 0; i < lottoAmount; i++) {
+            lottos.add(lottoStrategy.generateLotto());
+        }
+        return lottos;
     }
 
+    public Lotto generateSingleLotto(LottoStrategy lottoStrategy) {
+        return lottoStrategy.generateLotto();
+    }
 }
