@@ -10,6 +10,13 @@ public class InputView {
         return amount;
     }
 
+    public String getAnswer() {
+        System.out.println(ViewMessage.ANSWER_LOTTO_NUMBER.getMessage());
+        String answer = Console.readLine();
+        validate(answer);
+        return answer;
+    }
+
     private void validate(final String input) {
         validateNull(input);
         validateBlank(input);
