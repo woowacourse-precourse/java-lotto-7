@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.lotto.Bonus;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
@@ -21,11 +22,12 @@ public class LottoController {
     public void play() {
         retryRunnable(this::buyTickets);
         Lotto winningNumber = retrySupplier(this::readValidWinningNumber);
-        int bonusNumber = retrySupplier(inputView::readBonusNumber);
+        Bonus bonusNumber = retrySupplier(() -> new Bonus(inputView.readBonusNumber(winningNumber)));
     }
 
     private void buyTickets() {
-        int ticketCount = retrySupplier(this::readValidTicketCount);
+        // Supplier로 변환
+        int ticketCount = retrySupplier(() -> readValidTicketCount());
         outputView.printTicketNumber(ticketCount);
 
         LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
