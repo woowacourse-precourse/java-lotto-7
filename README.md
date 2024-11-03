@@ -72,6 +72,8 @@
         |- LottoGenerator : 로또 번호 생성 및 로또 티켓 발행
         |- WalletGenerator : 사용자로부터 입력받은 돈 검증 및 지갑 생성
         |- WinningGenerator : 사용자로부터 입력받은 당첨 번호 값 검증 및 로또 생성
+    |- printer
+        |- ResultPrinter : 당첨 결과 통계 결과 출력, 상금 계산
     |- Payment : 지갑 관련 로직 정의(돈, 구입 로또 개수)
 - strategy
     |- PlaceAuction : 등수 별 동작 정의(interface)
