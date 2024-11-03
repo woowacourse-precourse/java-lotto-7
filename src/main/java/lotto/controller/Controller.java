@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.util.Validator;
 import lotto.view.NumberInputView;
 import lotto.view.OutputView;
 
@@ -38,7 +39,7 @@ public class Controller {
 
     private WinningLotto createWinningLotto() {
         Lotto winningNumbers = LottoGenerator.createLotto(getWinningNumbers());
-        BonusNumber bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -46,8 +47,9 @@ public class Controller {
         return NumberInputView.getWinningNumbers();
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber(Lotto winningNumbers) {
         int bonusNumber = NumberInputView.getBonusNumber();
+        Validator.validateIsDuplicate(winningNumbers, bonusNumber);
         return new BonusNumber(bonusNumber);
     }
 }

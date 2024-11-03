@@ -1,5 +1,8 @@
 package lotto.util;
 
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+
 public class Validator {
 
     public static void validateIsNumeric(String input) {
@@ -12,5 +15,10 @@ public class Validator {
         if (number < Constants.MIN_NUMBER || number > Constants.MAX_NUMBER) {
             throw new IllegalArgumentException("로또 번호는 1과 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public static void validateIsDuplicate(Lotto winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber))
+            throw new IllegalArgumentException("당첨 번호와 중복된 번호입니다.");
     }
 }
