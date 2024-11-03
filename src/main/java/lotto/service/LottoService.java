@@ -15,7 +15,7 @@ public class LottoService {
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
     public void purchaseLottos(int amount) {
-        int count = amount / LottoConstants.LOTTO_NUMBERS_COUNT;
+        int count = amount / LottoConstants.LOTTO_PRICE;
         for (int i = 0; i < count; i++) {
             Lotto lotto = LottoMachine.generateRandomLotto();
             purchasedLottos.add(lotto);
