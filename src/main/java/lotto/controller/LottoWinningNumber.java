@@ -8,7 +8,6 @@ public class LottoWinningNumber {
     Input input = new Input();
 
     public List<Lotto> input() {
-        input.number();
-        return null;
+        return input.winningNumber();
     }
 }

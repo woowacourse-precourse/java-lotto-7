@@ -14,25 +14,27 @@ public class Input {
         return Integer.parseInt(Console.readLine());
     }
 
-    public List<Lotto> number() {
-        Validation validation = new Validation();
-        System.out.println("당첨 번호를 입력해 주세요.");
+    Validation validation = new Validation();
+    List<Integer> numbers = new ArrayList<>();
+
+    public List<Lotto> winningNumber() {
         String input = Console.readLine();
         validation.number(input);
         String[] numberStrings = input.split(SPLIT);
-        List<Integer> numbers = new ArrayList<>();
 
         for (String numberString : numberStrings) {
             numbers.add(Integer.parseInt(numberString.trim())); // 각 숫자를 정수로 변환 후 추가
         }
         Lotto lotto = new Lotto(numbers);
-
-        List<Lotto> winningNumbers = new ArrayList<>();
-        winningNumbers.add(lotto);
-        return winningNumbers;
+        List<Lotto> Numbers = new ArrayList<>();
+        Numbers.add(lotto);
+        return Numbers;
     }
 
-
-
+    public int bonousNumber() {
+        String input = Console.readLine();
+        validation.number(input);
+        return Integer.parseInt(input.trim());
+    }
 }
 
