@@ -33,11 +33,13 @@ public class ApplicationService {
 
         BonusNumber bonusNumber = this.userInputService.createBonusNumber(winningNumber);
 
-        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, bonusNumber);
-        lottoResultCalculator.inputLottoTicket(lottoTicket);
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, bonusNumber, lottoTicket);
         lottoResultCalculator.run();
         this.prompter.showBlankLine();
 
         this.userOutputService.printWinningStatistics(lottoResultCalculator.getWinningLottos());
+
+        double rateOfReturn = lottoResultCalculator.getRateOfReturn(purchaseAmount);
+        this.userOutputService.printRateOfReturn(rateOfReturn);
     }
 }

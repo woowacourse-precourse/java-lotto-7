@@ -30,4 +30,8 @@ public class PurchaseAmount {
     public int getCountPerUnit() {
         return value / UNIT;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

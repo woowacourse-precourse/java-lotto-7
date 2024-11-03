@@ -7,6 +7,8 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
 public class UserInputService {
+    private static final String COMMA_DELIMITER = ",";
+
     private final Prompter prompter;
     private final InputConverter inputConverter;
 
@@ -56,6 +58,6 @@ public class UserInputService {
     }
 
     private String[] parseWithComma(String input) {
-        return input.split(",");
+        return input.split(COMMA_DELIMITER);
     }
 }

@@ -21,6 +21,10 @@ public class UserOutputService {
         this.prompter.showMessage(lottoTicket.toString());
     }
 
+    public void printRateOfReturn(double rateOfReturn) {
+        this.prompter.showRateOfReturnPrompt(rateOfReturn);
+    }
+
     public void printWinningStatistics(Map<String, Integer> winningLottos) {
         this.prompter.showOutputWinningStatisticsPrompt();
         String winningStatistics = getWinningStatistics(winningLottos);
