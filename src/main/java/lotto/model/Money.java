@@ -10,9 +10,9 @@ public record Money (int amount) {
         return amount / 1000;
     }
 
-    public long calculatePrizeRate(Result result) {
+    public PrizeRate calculatePrizeRate(Result result) {
         long prize = result.calculatePrize();
-        return prize;
+        return new PrizeRate((double) prize / amount * 100);
     }
 
     private void validate(int input) {
