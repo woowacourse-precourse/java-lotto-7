@@ -30,4 +30,17 @@ public class InputView {
                 .toList()
         );
     }
+
+    public BonusNumber inputNumber(WinningNumbers winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        String number = Console.readLine();
+
+        inputValidator.validateNumeric(number);
+
+        int bonusNumber = Integer.parseInt(number);
+        winningNumbers.validateDuplicateByBonusNumber(bonusNumber);
+
+        return new BonusNumber(bonusNumber);
+    }
 }
