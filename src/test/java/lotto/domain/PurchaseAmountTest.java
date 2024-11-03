@@ -14,6 +14,16 @@ public class PurchaseAmountTest {
 
         assertThatThrownBy(() -> new PurchaseAmount(rawPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] " + "구입금액을 숫자로 입력해주세요.");
+                .hasMessage("[ERROR] 구입금액을 숫자로 입력해주세요.");
+    }
+
+    @DisplayName("구입금액 입력 실패 : 문자 입력")
+    @Test
+    void validateDivisibleByThousandTest() {
+        String rawPurchaseAmount = "3030";
+
+        assertThatThrownBy(() -> new PurchaseAmount(rawPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입금액을 1000원 단위로 입력해주세요.");
     }
 }
