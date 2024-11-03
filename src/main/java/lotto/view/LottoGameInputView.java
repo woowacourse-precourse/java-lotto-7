@@ -17,5 +17,10 @@ public class LottoGameInputView {
         return Console.readLine();
     }
 
+    public static String inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
 
 }
