@@ -5,13 +5,13 @@ import java.util.List;
 
 public class MyWallet {
 
-    private final int money;
-    private List<Lotto> lottos;
-    private int winnings;
-    
+    private int money;
+    private final List<Lotto> lottos;
+    private final int winnings;
 
-    public MyWallet(int money) {
-        this.money = money;
+
+    public MyWallet() {
+        this.money = 0;
         this.lottos = new ArrayList<>();
         this.winnings = 0;
     }
@@ -28,7 +28,11 @@ public class MyWallet {
         return winnings;
     }
 
-    public void buyLottos(int money) {
+    public void saveMoney(int money){
+        this.money = money;
+    }
+
+    public void buyLottos() {
         List<Lotto> newLottos = LottoVendingMachine.issueNewLottos(money);
         lottos.addAll(newLottos);
     }
