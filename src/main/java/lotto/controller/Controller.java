@@ -17,17 +17,30 @@ public class Controller {
     private final Validator inputJackpotNumbersValidator = new InputJackpotNumbersValidator();
 
     public void run() {
-        int totalAmount = retryOnError(() -> {
+        int totalAmount = getTotalAmount();
+        int lottoCount = totalAmount / 1000;
+        List<Lotto> purchasedLottos = LottoListGenerator.generateLottos(lottoCount);
+
+        OutputView.printPurchasedLottos(lottoCount, purchasedLottos);
+        OutputView.lineBreaking();
+
+        JackpotNumbers jackpotNumbers = getJackpotNumbers();
+
+        Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
+        OutputView.printWinningStatistics(rankingMap);
+        double earningRate = EarningRateCalculator.calculate(totalAmount, rankingMap);
+        OutputView.printEarningRate(earningRate);
+    }
+
+    private Integer getTotalAmount() {
+        return retryOnError(() -> {
             String inputTotalAmount = InputView.requestAmountToPurchase();
             inputPurchaseAmountValidator.validate(inputTotalAmount);
             return Integer.parseInt(inputTotalAmount);
         });
+    }
 
-        int lottoCount = totalAmount / 1000;
-        List<Lotto> purchasedLottos = LottoListGenerator.generateLottos(lottoCount);
-        OutputView.printPurchasedLottos(lottoCount, purchasedLottos);
-        OutputView.lineBreaking();
-
+    private JackpotNumbers getJackpotNumbers() {
         JackpotNumbers jackpotNumbers = new JackpotNumbers();
         List<Integer> intList = retryOnError(() -> {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
@@ -41,11 +54,7 @@ public class Controller {
             return StringParser.toInt(inputBonusNumber);
         });
         jackpotNumbers.setBonusNumber(bonusNumber);
-
-        Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
-        OutputView.printWinningStatistics(rankingMap);
-        double earningRate = EarningRateCalculator.calculate(totalAmount, rankingMap);
-        OutputView.printEarningRate(earningRate);
+        return jackpotNumbers;
     }
 
     private <T> T retryOnError(Supplier<T> inputAction) {
