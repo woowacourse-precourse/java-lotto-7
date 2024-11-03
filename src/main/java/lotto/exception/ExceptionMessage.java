@@ -18,6 +18,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return EXCEPTION_PREFIX.message + message + System.lineSeparator();
+        return EXCEPTION_PREFIX.message + message;
     }
 }
