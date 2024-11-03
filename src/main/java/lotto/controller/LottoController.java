@@ -27,9 +27,14 @@ public class LottoController {
     }
 
     private void validatePurchasePriceInput(String input) {
-        validator.validateEmptyInput(input);
-        validator.validateNonNumber(input);
-        validator.validatePositiveNumber(input);
-        validator.validateDivisibleByThousand(input);
+        try {
+            validator.validateEmptyInput(input);
+            validator.validateNonNumber(input);
+            validator.validatePositiveNumber(input);
+            validator.validateDivisibleByThousand(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            handlePurchasePrice();
+        }
     }
 }
