@@ -15,6 +15,8 @@ public class Tickets {
         return Collections.unmodifiableList(tickets);
     }
 
+    
+
     public int getTicketCount() {
         return tickets.size();
     }
@@ -23,8 +25,14 @@ public class Tickets {
         this.tickets.add(ticket);
     }
 
+    public int getAutoTicketCount() {
+        return (int) tickets.stream()
+                .filter(Ticket::isAuto)
+                .count();
+    }
+
     public int getManualTicketCount() {
-        return (int)tickets.stream()
+        return (int) tickets.stream()
                 .filter(Predicate.not(Ticket::isAuto))
                 .count();
     }
