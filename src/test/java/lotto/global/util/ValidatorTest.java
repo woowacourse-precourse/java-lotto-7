@@ -3,6 +3,7 @@ package lotto.global.util;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
+import static lotto.global.util.Validator.validateBonusNumber;
 import static lotto.global.util.Validator.validatePrice;
 import static lotto.global.util.Validator.validateWinningNumber;
 
@@ -41,6 +42,18 @@ class ValidatorTest {
 
         //then
         Assertions.assertThatThrownBy(() -> validateWinningNumber(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_NUMBER_EXIST);
+    }
+
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되었을_때_예외_발생() {
+        //given
+        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        String bonusNumber = "6";
+
+        //then
+        Assertions.assertThatThrownBy(() -> validateBonusNumber(winningNumber, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NUMBER_EXIST);
     }

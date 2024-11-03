@@ -56,4 +56,12 @@ public class Validator {
         }
     }
 
+    public static void validateBonusNumber(List<Integer> winningNumbers, String input) {
+        int bonusNumber = Integer.parseInt(input);
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_EXIST);
+        }
+    }
+
 }

@@ -1,6 +1,5 @@
 package lotto;
 
-import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.util.Validator.validatePrice;
 import static lotto.global.util.Validator.validateWinningNumber;
 import static lotto.score.Prize.NO_PRIZE;
