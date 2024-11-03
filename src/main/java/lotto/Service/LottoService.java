@@ -12,13 +12,19 @@ public class LottoService {
     private final List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private static int payment;
 
     public void buyLottos(int amount) {
+        payment = amount;
         int lottoCount = amount / 1000;
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
         }
+    }
+
+    public static int getPayment() {
+        return payment;
     }
 
     public List<Integer> inputLottoNumbers(String input) {

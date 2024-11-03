@@ -27,6 +27,7 @@ public class LottoController {
         System.out.println("당첨 번호 6개를 입력해 주세요 (쉼표로 구분): ");
         String input = Console.readLine();
         List<Integer> winningNumbers = lottoService.inputLottoNumbers(input);
+        InputValidator.valid(winningNumbers);
         lottoService.setWinningNumbers(winningNumbers);
     }
 

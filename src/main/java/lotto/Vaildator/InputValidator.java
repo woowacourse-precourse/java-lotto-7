@@ -30,11 +30,11 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 숫자 외 문자 혹은 공백은 포함할 수 없습니다.");
         }
         int bonusNumber = Integer.parseInt(bonus.trim());
-        if (isRange(bonusNumber)) {
+        if (!isRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45여야 합니다.");
         }
     }
-    
+
     public static void bonusDuple(int bonusNumber, List<Integer> winningNumbers) {
         for (int num : winningNumbers) {
             if (num == bonusNumber) {

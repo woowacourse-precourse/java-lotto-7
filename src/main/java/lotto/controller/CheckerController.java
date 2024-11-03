@@ -9,7 +9,6 @@ public class CheckerController {
 
     public static void checkResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         countMatches(lottos, winningNumbers, bonusNumber);
-
         result();
     }
 
