@@ -22,4 +22,8 @@ public class MoneyCalculator {
         return sum;
     }
 
+    public String getProfitMargin(int inputMoney, long winningAmount) {
+        double profitMargin = (double) winningAmount / inputMoney * 100;
+        return String.format("%.1f%%", profitMargin);
+    }
 }

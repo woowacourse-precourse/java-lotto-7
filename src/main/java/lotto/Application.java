@@ -45,7 +45,9 @@ public class Application {
         long winningAmount = moneyCalculator.getWinningAmount();
 
         // 10. 수익률 계산
+        String profitMargin = moneyCalculator.getProfitMargin(inputMoney, winningAmount);
 
         // 11. 수익률 출력
+        outputview.showProfitMargin(profitMargin);
     }
 }

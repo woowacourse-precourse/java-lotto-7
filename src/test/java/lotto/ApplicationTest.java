@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
-    /*
+    
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -45,7 +44,6 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-    */
 
     @Test
     void 당첨_통계_출력_테스트() {

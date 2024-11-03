@@ -35,4 +35,8 @@ public class Outputview {
             System.out.println(statisticsMessages.get(i - 3) + matchNumberCount.get(i) + "개");
         }
     }
+
+    public void showProfitMargin(String profitMargin) {
+        System.out.println("총 수익률은 " + profitMargin + "입니다.");
+    }
 }
