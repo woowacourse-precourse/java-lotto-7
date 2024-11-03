@@ -8,10 +8,17 @@ public class MoneyValidator {
         limitAmountValidator(money);
         divisibleByThousandValidator(money);
     }
-    private static void divisibleByThousandValidator(Long money) {
-        if (money % LottoConstant.PURCHASE_AMOUNT.getValue() != 0) ErrorMessage.DIVISIBLE_BY_THOUSAND.throwIllegalArgumentException();
+    private static boolean isExceedingPurchaseLimit(long money) {
+        return money > LottoConstant.PURCHASE_LIMIT_AMOUNT.getValue();
     }
-    private static void limitAmountValidator(Long money) {
-        if (money > LottoConstant.PURCHASE_LIMIT_AMOUNT.getValue()) ErrorMessage.AMOUNT_LIMIT.throwIllegalArgumentException();
+
+    private static boolean isNotDivisibleByPurchaseUnit(long money) {
+        return money % LottoConstant.PURCHASE_AMOUNT.getValue() != 0;
+    }
+    private static void divisibleByThousandValidator(long money) {
+        if (isNotDivisibleByPurchaseUnit(money)) ErrorMessage.DIVISIBLE_BY_THOUSAND.throwIllegalArgumentException();
+    }
+    private static void limitAmountValidator(long money) {
+        if (isExceedingPurchaseLimit(money)) ErrorMessage.AMOUNT_LIMIT.throwIllegalArgumentException();
     }
 }

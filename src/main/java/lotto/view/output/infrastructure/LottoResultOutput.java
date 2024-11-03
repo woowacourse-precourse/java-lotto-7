@@ -6,7 +6,7 @@ import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.domain.WinningPlace;
-import lotto.view.output.domain.ResultViewService;
+import lotto.view.output.service.ResultViewService;
 
 public class CommonResultOutput implements ResultViewService {
     @Override
