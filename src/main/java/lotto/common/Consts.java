@@ -13,6 +13,8 @@ public class Consts {
 
     //TODO: 입력 메세지는 INPUT_MESSAGE를 변수명 앞에 계속 붙여도 되겠다.
     public static final String INPUT_MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String INPUT_MESSAGE_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_MESSAGE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     //TODO: 등수 별 상금
     public static final int FIRST_PRIZE_MONEY = 2_000_000_000;
