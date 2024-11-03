@@ -1,13 +1,9 @@
-package utils;
-
-import static exception.ErrorMessage.DUPLICATE_NUMBER_ERROR;
-import static exception.ErrorMessage.LOTTO_NUMBER_CONTAINS_BONUS_NUMBER;
-import static exception.ErrorMessage.NUMBER_RANGE_ERROR;
-import static exception.ErrorMessage.NUMBER_SIZE_ERROR;
+package lotto.utils;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.ErrorMessage;
 
 public class NumberValidation {
 
@@ -21,13 +17,13 @@ public class NumberValidation {
     public static void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> verifyNumbers = new HashSet<>(numbers);
         if (numbers.size() != verifyNumbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
     public static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException(NUMBER_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_SIZE_ERROR.getMessage());
         }
     }
 
@@ -39,13 +35,13 @@ public class NumberValidation {
 
     public static void validateNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
         }
     }
 

@@ -1,10 +1,11 @@
-package domain;
+package lotto.domain;
 
-import static exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
-import static exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
+import static lotto.exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
+import static lotto.exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.domain.Ticket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

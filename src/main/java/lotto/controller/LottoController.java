@@ -1,10 +1,10 @@
-package controller;
+package lotto.controller;
 
 import java.util.List;
-import service.WinningService;
-import utils.NumberValidation;
-import view.InputView;
-import view.OutputView;
+import lotto.service.WinningService;
+import lotto.utils.NumberValidation;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 

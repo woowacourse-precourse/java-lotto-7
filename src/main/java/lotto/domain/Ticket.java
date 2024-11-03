@@ -1,7 +1,7 @@
-package domain;
+package lotto.domain;
 
-import static exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
-import static exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
+import static lotto.exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
+import static lotto.exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
 
 public class Ticket {
 

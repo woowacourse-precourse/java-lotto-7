@@ -1,17 +1,17 @@
-package service;
+package lotto.service;
 
 
-import domain.Lotto;
-import domain.LottoResult;
-import domain.Lottos;
-import domain.Profit;
-import domain.Ticket;
-import domain.WinningPrice;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
+import lotto.domain.Profit;
+import lotto.domain.Ticket;
+import lotto.domain.WinningPrice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import utils.RandomNumber;
-import utils.WinningCalculator;
+import lotto.utils.RandomNumber;
+import lotto.utils.WinningCalculator;
 
 public class WinningService {
 

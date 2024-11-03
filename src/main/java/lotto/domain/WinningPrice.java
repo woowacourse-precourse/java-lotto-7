@@ -1,4 +1,4 @@
-package domain;
+package lotto.domain;
 
 public enum WinningPrice {
     FIFTH_PLACE("3개 일치 (5,000원)", 5_000),

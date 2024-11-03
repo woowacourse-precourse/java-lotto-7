@@ -1,10 +1,11 @@
-package utils;
+package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.RandomNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

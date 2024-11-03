@@ -1,6 +1,6 @@
-package domain;
+package lotto.domain;
 
-import static utils.NumberValidation.*;
+import static lotto.utils.NumberValidation.*;
 
 import java.util.Collections;
 import java.util.List;
