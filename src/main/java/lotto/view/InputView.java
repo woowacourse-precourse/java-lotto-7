@@ -40,7 +40,7 @@ public class InputView {
 
     public static Integer inputLottoBonusNumber(){
 
-        return Integer.parseInt(Console.readLine());
+        return Validator.validateSingleBonusNumber(Console.readLine());
     }
 
 }
