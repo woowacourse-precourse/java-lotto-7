@@ -22,6 +22,7 @@ public class LottoDrawController {
 	private WinningLotto getWinningLotto() {
 		List<Integer> winningNumbers = getWinningNumbers();
 		int bonusNumber = getBonusNumber();
+		return new WinningLotto(winningNumbers, bonusNumber, lottoCreator);
 	}
 
 	private List<Integer> getWinningNumbers() {
