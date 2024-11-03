@@ -2,13 +2,13 @@ package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.lottogenerator.LottoGenerator;
+import lotto.model.lottogenerator.LottoGenerateStrategy;
 
 public class LottoMachine {
-    private final LottoGenerator lottoGenerator;
+    private final LottoGenerateStrategy lottoGenerateStrategy;
 
-    public LottoMachine(final LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoMachine(final LottoGenerateStrategy lottoGenerateStrategy) {
+        this.lottoGenerateStrategy = lottoGenerateStrategy;
     }
 
     public Lottos execute(final int count) {
@@ -20,7 +20,7 @@ public class LottoMachine {
     }
 
     private Lotto generate() {
-        final List<Integer> lotto = lottoGenerator.generate();
+        final List<Integer> lotto = lottoGenerateStrategy.generate();
         return new Lotto(lotto);
     }
 }

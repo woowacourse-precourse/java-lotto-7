@@ -3,7 +3,7 @@ package lotto.model.person;
 import lotto.common.ErrorMessage;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.Lottos;
-import lotto.model.lottogenerator.LottoGenerator;
+import lotto.model.lottogenerator.LottoGenerateStrategy;
 import lotto.model.lottogenerator.RandomLottoNumberGenerator;
 
 public class LottoSeller {
@@ -11,7 +11,7 @@ public class LottoSeller {
     private final LottoMachine lottoMachine;
 
     public LottoSeller() {
-        LottoGenerator generateStrategy = new RandomLottoNumberGenerator();
+        LottoGenerateStrategy generateStrategy = new RandomLottoNumberGenerator();
         this.lottoMachine = new LottoMachine(generateStrategy);
     }
 

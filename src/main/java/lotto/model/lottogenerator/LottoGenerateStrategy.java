@@ -2,6 +2,6 @@ package lotto.model.lottogenerator;
 
 import java.util.List;
 
-public interface LottoGenerator {
+public interface LottoGenerateStrategy {
     List<Integer> generate();
 }
