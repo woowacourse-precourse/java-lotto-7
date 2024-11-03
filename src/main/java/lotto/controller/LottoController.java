@@ -17,6 +17,11 @@ public class LottoController {
     private OutputView outputView;
     private LottoGame lottoGame;
 
+    public LottoController(InputView inputView, OutputView outputView, LottoMachine lottoMachine){
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoMachine = lottoMachine;
+    }
     private void initializeCustomer() {
         customer = new Customer(inputView.readPayAmount());
     }
@@ -29,5 +34,6 @@ public class LottoController {
         outputView.showPurchasedLotteries(all_lottos);
         initializeLottoGame();
         LottoResult result = lottoGame.calculateResult(all_lottos);
+        outputView.showResult(result, customer.getPayAmount());
     }
 }

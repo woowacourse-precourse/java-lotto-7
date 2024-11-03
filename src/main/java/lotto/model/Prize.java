@@ -8,4 +8,8 @@ public enum Prize {
     Prize(Integer p) {
         prize = p;
     }
+
+    public Integer getPrize() {
+        return prize;
+    }
 }

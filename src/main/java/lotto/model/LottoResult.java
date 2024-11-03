@@ -15,4 +15,16 @@ public class LottoResult {
         lottoResult.put(Prize.second, bonus_match);
         lottoResult.put(Prize.first, match_count.get(6));
     }
+    
+    public double calculateEarningsRate(int pay_amount) {
+        double sum = 0;
+        for (Map.Entry<Prize, Integer> entry: lottoResult.entrySet()) {
+            sum += entry.getKey().prize * entry.getValue();
+        }
+        return sum / pay_amount * 100;
+    }
+
+    public Integer getValue(Prize prize) {
+        return lottoResult.get(prize);
+    }
 }
