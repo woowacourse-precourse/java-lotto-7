@@ -15,8 +15,8 @@ public final class OutputView {
     private static final String SUFFIX = "]";
 
     private static final String LOTTO_RESULT_NOTICE = "당첨 통계" + "\n" + "---";
-    private static final String LOTTO_RESULT_INFORMATION = "%d개 일치 (%,d원) - %d 개" + "\n";
-    private static final String LOTTO_RESULT_INFORMATION_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d 개" + "\n";
+    private static final String LOTTO_RESULT_INFORMATION = "%d개 일치 (%,d원) - %d개" + "\n";
+    private static final String LOTTO_RESULT_INFORMATION_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개" + "\n";
     private static final String LOTTO_EARNING_RATE_INFORMATION = "총 수익률은 %.1f%%입니다.";
 
     public static void printLotto(List<Lotto> lottos) {
