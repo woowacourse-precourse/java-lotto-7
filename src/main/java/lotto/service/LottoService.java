@@ -17,13 +17,15 @@ public class LottoService {
         return new MyLotto(makeLottoNumbers(purchase.getAmount()));
     }
 
-    public List<Lotto> makeLottoNumbers(BigInteger amount) {
+    private List<Lotto> makeLottoNumbers(BigInteger amount) {
+        OutputView outputView = new OutputView();
         List<Lotto> lottos = new ArrayList<>();
 
         for (BigInteger i = BigInteger.ZERO; i.compareTo(amount) < 0; i = i.add(BigInteger.ONE)) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
                     .sorted()
                     .toList();
+            outputView.printMyLotto(randomNumbers);
             lottos.add(new Lotto(randomNumbers));
         }
         return lottos;
