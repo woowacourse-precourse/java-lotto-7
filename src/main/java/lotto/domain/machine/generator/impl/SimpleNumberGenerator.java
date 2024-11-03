@@ -1,13 +1,13 @@
-package lotto.domain.machine.impl;
+package lotto.domain.machine.generator.impl;
 
 import java.util.List;
-import lotto.domain.machine.NumberGenerator;
+import lotto.domain.machine.generator.NumberGenerator;
 
 public class SimpleNumberGenerator implements NumberGenerator {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
-    public void setNumbers(List<Integer> numbers) {
+    public SimpleNumberGenerator(List<Integer> numbers) {
         this.numbers = numbers;
     }
 

@@ -11,7 +11,7 @@ public class LottoMoney {
     private static final BigDecimal MAX_LOTTO_MONEY = LOTTO_MONEY_UNIT.multiply(BigDecimal.valueOf(Integer.MAX_VALUE));
     private final BigDecimal money;
 
-    private LottoMoney(BigDecimal money) {
+    protected LottoMoney(BigDecimal money) {
         this.money = money;
     }
 

@@ -3,10 +3,10 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.machine.LottoGenerator;
+import lotto.domain.machine.LottoMachine;
 import lotto.domain.machine.LottoMoney;
-import lotto.domain.machine.impl.RandomNumberGenerator;
-import lotto.domain.machine.impl.SimpleNumberGenerator;
+import lotto.domain.machine.generator.LottoGenerator;
+import lotto.domain.machine.generator.impl.RandomNumberGenerator;
 import lotto.domain.winning.LottoRank;
 import lotto.domain.winning.WinningNumber;
 import lotto.domain.winning.WinningStatistics;
@@ -25,16 +25,12 @@ public class Application {
         try {
             // 금액 입력 + 발행한 로또 출력
             LottoMoney lottoMoney = LottoMoney.from(inputView.displayReadPurchaseAmount());
-            LottoGenerator lottoGenerator = new LottoGenerator(new RandomNumberGenerator());
-            List<Lotto> lottos = lottoGenerator.issueLottos(lottoMoney.getDrawCount());
+            LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator(), lottoMoney);
+            List<Lotto> lottos = lottoMachine.issueLottos();
             outputView.displayPurchasedLotto(PurchasedLottoResponse.of(lottoMoney.getDrawCount(), lottos));
 
             // 당첨 번호 + 보너스 번호 입력 + 로또 추첨 시작
-            List<Integer> winningNumbers = inputView.displayReadWinningNumbers();
-            SimpleNumberGenerator simpleNumberGenerator = new SimpleNumberGenerator();
-            simpleNumberGenerator.setNumbers(winningNumbers);
-
-            LottoGenerator winningLottoGenerator = new LottoGenerator(simpleNumberGenerator);
+            LottoGenerator winningLottoGenerator = new LottoGenerator(inputView::displayReadWinningNumbers);
             Lotto winningLotto = winningLottoGenerator.issueLotto();
             int bonusNumber = inputView.displayReadBonusNumber();
 

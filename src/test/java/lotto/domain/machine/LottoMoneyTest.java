@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoTest {
+class LottoMoneyTest {
 
     @Test
     @DisplayName("천 원 단위의 금액이 아닐 경우, 예외가 발생한다.")
