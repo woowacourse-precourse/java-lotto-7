@@ -63,6 +63,11 @@ public class LottoResult {
         System.out.println("5개 일치 (1,500,000원) - " + rankCount.get(3) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.get(2) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.get(1) + "개");
+        printEarningRate();
+    }
+
+    public void printEarningRate() {
+        System.out.println("총 수익률은 " + getEarningRate() + "%입니다.");
     }
 
     public double getEarningRate() {

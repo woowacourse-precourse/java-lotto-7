@@ -19,10 +19,6 @@ public class Application {
 
         LottoResult lottoResult = new LottoResult(lottoTickets, winningNumbers, bonusNumber);
         lottoResult.print();
-
-        // 6.1 수익률을 계산하는 기능
-        double earningRate = lottoResult.getEarningRate();
-        System.out.println(earningRate);
     }
 
     private static String getInputString(String message) {
