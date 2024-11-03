@@ -22,7 +22,6 @@ public class LottoMachine {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumber = pickUniqueNumbersInRange(Value.lottoStartNumber, Value.lottoEndNumber, Value.lottoNumberCount);
             database.purchaseLottoList.add(new Lotto(lottoNumber));
-            System.out.println(lottoNumber);
         }
     }
 
@@ -52,5 +51,9 @@ public class LottoMachine {
         } else if (overLab == 3) {
             result.addThreeNumberMatch();
         }
+    }
+
+    public Result getResult() {
+        return database.result;
     }
 }
