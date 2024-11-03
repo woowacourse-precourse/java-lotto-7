@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import lotto.domain.LottoNumberDto;
+import lotto.dto.LottoNumberDto;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -29,7 +29,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showCommentForWinningResult() {
+    public void showCommentForLottoResult() {
         System.out.println(System.lineSeparator() + "당첨 통계");
     }
 
@@ -39,12 +39,12 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showWinningResultForSecond(final BigDecimal award, final BigDecimal count) {
+    public void showLottoResultForSecond(final BigDecimal award, final BigDecimal count) {
         System.out.println(", 보너스 볼 일치 (" + numberFormat.format(award) + "원) - " + count + "개");
     }
 
     @Override
-    public void showWinningResult(final BigDecimal award, final BigDecimal count) {
+    public void showLottoResult(final BigDecimal award, final BigDecimal count) {
         System.out.println(" (" + numberFormat.format(award) + "원) - " + count + "개");
     }
 

@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import java.math.BigDecimal;
-import lotto.domain.LottoNumberDto;
+import lotto.dto.LottoNumberDto;
 
 public interface OutputView {
     void showCommentForPurchasePrice();
@@ -12,13 +12,13 @@ public interface OutputView {
 
     void showCommentForBonusNumber();
 
-    void showCommentForWinningResult();
+    void showCommentForLottoResult();
 
     void showCommentForMatchingCount(int matchingCount);
 
-    void showWinningResultForSecond(BigDecimal award, BigDecimal count);
+    void showLottoResultForSecond(BigDecimal award, BigDecimal count);
 
-    void showWinningResult(BigDecimal award, BigDecimal count);
+    void showLottoResult(BigDecimal award, BigDecimal count);
 
     void showProfitRate(BigDecimal profitRate);
 

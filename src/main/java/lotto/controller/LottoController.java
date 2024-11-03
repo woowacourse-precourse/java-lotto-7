@@ -2,16 +2,16 @@ package lotto.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.domain.Lottery;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
-import lotto.domain.NumberGenerator;
-import lotto.domain.PurchasePrice;
-import lotto.domain.Quantity;
-import lotto.support.IntegerConverter;
-import lotto.support.Splitter;
+import lotto.domain.lotto.Lottery;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.LottoResult;
+import lotto.support.generator.NumberGenerator;
+import lotto.domain.price.PurchasePrice;
+import lotto.domain.quantity.Quantity;
+import lotto.support.converter.IntegerConverter;
+import lotto.support.splitter.Splitter;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
