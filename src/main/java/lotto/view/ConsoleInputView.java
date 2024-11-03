@@ -60,7 +60,7 @@ public class ConsoleInputView implements InputView {
 
     private int validateCost(String input, int lottoPrice) {
         try {
-            int cost = Integer.parseInt(input);
+            int cost = Integer.parseInt(input.trim());
             if (cost <= 0) {
                 throw new NumberFormatException();
             }
@@ -73,7 +73,7 @@ public class ConsoleInputView implements InputView {
 
     private int validateBonusNumber(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 정수여야 합니다.");
         }
@@ -93,7 +93,7 @@ public class ConsoleInputView implements InputView {
         try {
             List<String> inputSplit = List.of(input.split(","));
             List<Integer> numbers = inputSplit.stream()
-                .map(Integer::parseInt)
+                .map(number -> Integer.parseInt(number.trim()))
                 .toList();
             return new Lotto(numbers);
         } catch (NumberFormatException e) {
