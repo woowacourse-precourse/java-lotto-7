@@ -33,7 +33,7 @@ public class Lottos {
                 .toList();
     }
 
-    public Map<LottoRanking, Integer> compareWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoResult compareWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         Map<LottoRanking, Integer> compareResult = new HashMap<>();
 
         for (Lotto lotto : lottos) {
@@ -43,6 +43,6 @@ public class Lottos {
             LottoRanking rank = LottoRanking.getRanking(matchCount, hasBonus);
             compareResult.put(rank, compareResult.getOrDefault(rank, 0) + 1);
         }
-        return compareResult;
+        return new LottoResult(compareResult);
     }
 }

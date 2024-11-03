@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
     public void run() {
@@ -13,8 +12,7 @@ public class LottoController {
         List<Integer> winningNumbers = requestWinningNumbers();
         int bonusNumber = requestBonusNumber(winningNumbers);
 
-        Map<LottoRanking, Integer> compareResult = lottos.compareWinningNumbers(winningNumbers, bonusNumber);
-        LottoResult lottoResult = new LottoResult(compareResult);
+        LottoResult lottoResult = lottos.compareWinningNumbers(winningNumbers, bonusNumber);
         OutputView.printWinningStatistics(lottoResult);
 
         double profitRate = lottoResult.calculateProfit(amount);
