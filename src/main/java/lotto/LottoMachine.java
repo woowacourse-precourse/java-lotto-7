@@ -10,6 +10,7 @@ public class LottoMachine {
         List<Lotto> lottos = Lotto.generateLottos(purchaseCount);
         OutputView.printLottos(lottos);
         LottoWinningNumber winningNumber = getWinningNumberFromUser();
+        LottoResultCounter resultCounter = winningNumber.countMatchingNumbers(lottos);
     }
 
     private int getPurchaseCountFromUser() {

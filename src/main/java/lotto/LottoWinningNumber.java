@@ -16,14 +16,23 @@ public class LottoWinningNumber {
         LottoResultCounter resultCounter = new LottoResultCounter();
 
         for (Lotto lotto : lottos) {
-            LottoResult result = LottoWinningNumber.checkResult(lotto);
+            LottoResult result = checkResult(lotto);
             resultCounter.add(result);
         }
 
         return resultCounter;
     }
 
-    private static LottoResult checkResult(Lotto lotto) {
-        return null;
+    public LottoResult checkResult(Lotto lotto) {
+        int count = 0;
+        boolean isBonusMatched = lotto.hasNumber(bonusNumber);
+
+        for (Integer number : lottoNumbers) {
+            if (lotto.hasNumber(number)) {
+                count++;
+            }
+        }
+
+        return LottoResult.getLottoResult(count, isBonusMatched);
     }
 }

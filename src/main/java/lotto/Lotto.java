@@ -33,4 +33,8 @@ public class Lotto {
         List<Integer> lottoNumbers = pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
 }
