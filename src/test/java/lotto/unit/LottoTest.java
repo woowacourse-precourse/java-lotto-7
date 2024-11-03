@@ -28,4 +28,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.DUPLICATE_LOTTO_NUMBER);
     }
+
+    @Test
+    @DisplayName("로또 번호가 1~45 범위를 벗어나는 경우 예외가 발생한다.")
+    void lottoNumbersOutOfRange() {
+        List<Integer> numbers = Arrays.asList(-1, 2, 3, 4, 0, 6);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+    }
 }
