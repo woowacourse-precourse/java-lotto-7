@@ -9,6 +9,7 @@ import lotto.exception.ExceptionMessage;
 
 public class InputView {
     private static final String COMMA = ",";
+
     public int inputNumber() {
         while (true) {
             String input = readLine().trim();
