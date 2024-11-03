@@ -13,6 +13,6 @@ public enum NumberErrorCode implements ErrorCode {
 
     @Override
     public String getMessage() {
-        return "";
+        return message;
     }
 }
