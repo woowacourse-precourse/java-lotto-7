@@ -34,14 +34,18 @@ public class LottoController {
             try {
                 String winningInput = inputView.inputWinningNumber();
                 List<Integer> winningNumbers = ParseNumberUtil.parseNumber(winningInput);
-                numberValidator.checkNumberSize(winningNumbers);
-                numberValidator.checkNumberRange(winningNumbers);
-                numberValidator.checkNumberDuplicated(winningNumbers);
+                validateNumber(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void validateNumber(List<Integer> winningNumbers) {
+        numberValidator.checkNumberSize(winningNumbers);
+        numberValidator.checkNumberRange(winningNumbers);
+        numberValidator.checkNumberDuplicated(winningNumbers);
     }
 
     private int inputMoney(int lottoPrice) {
