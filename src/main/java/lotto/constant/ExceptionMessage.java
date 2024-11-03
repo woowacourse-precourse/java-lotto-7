@@ -1,6 +1,8 @@
 package lotto.constant;
 
 public enum ExceptionMessage {
+
+    /* IllegalArgumentException */
     DUPLICATED_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
     NOT_NUMBER_MONEY("구입금액은 숫자여야 합니다."),
     NOT_NUMBER_BONUS_NUMBER("보너스 번호는 숫자여야 합니다."),
@@ -15,6 +17,9 @@ public enum ExceptionMessage {
         String.format("로또 번호는 %d에서 %d 이내의 숫자여야 합니다.",
             LottoConfig.LOTTO_NUMBER_START_INCLUSIVE,
             LottoConfig.LOTTO_NUMBER_END_INCLUSIVE)),
+
+    /* IllegalStateException */
+    BAD_STATE_REQUEST("잘못된 상태에 대한 요청입니다. %s"),
     ;
 
     private final String message;

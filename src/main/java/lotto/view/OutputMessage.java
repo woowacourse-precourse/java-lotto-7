@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lotto.constant.ExceptionMessage;
 import lotto.constant.Rank;
 
 public enum OutputMessage {
@@ -36,7 +37,7 @@ public enum OutputMessage {
                     .collect(Collectors.joining(DELIMITER))
             );
         }
-        return String.format(message);
+        throw new IllegalStateException(ExceptionMessage.BAD_STATE_REQUEST.getMessage());
     }
 
     public String getMessage(Rank rank, int rankCount) {
@@ -48,7 +49,7 @@ public enum OutputMessage {
                 rankCount
             );
         }
-        return String.format(message);
+        throw new IllegalStateException(ExceptionMessage.BAD_STATE_REQUEST.getMessage());
     }
 
     private String getRankMessage(Rank rank) {
