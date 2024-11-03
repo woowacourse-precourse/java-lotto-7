@@ -2,6 +2,8 @@ package lotto;
 
 public enum ErrorMessage {
 
+    INPUT_BLANK("필수 입력입니다"),
+
     INPUT_MUST_NUMERIC("숫자를 입력해야 합니다"),
     INSERT_MONEY_NOT_DIVIDED_1000("구입 금액은 1000원 단위로 떨어져야 합니다"),
     MONEY_CAN_NOT_MINUS("구입 금액이 음수일 수는 없습니다"),
