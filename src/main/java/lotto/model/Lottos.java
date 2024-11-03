@@ -18,7 +18,7 @@ public class Lottos {
 
     public static Lottos generateBy(RandomNumberGenerator randomNumberGenerator, int size) {
         return new Lottos(IntStream.range(0, size)
-                .mapToObj(count -> Lotto.generateBy(randomNumberGenerator))
+                .mapToObj(iteration -> Lotto.generateBy(randomNumberGenerator))
                 .toList());
     }
 
