@@ -20,6 +20,15 @@ class LottoRankTest {
         Assertions.assertThat(actualRank).isEqualTo(expectedRank);
     }
 
+    @DisplayName("일치하는 수와 보너스 일치 여부에 해당하는 등수가 없다면 에러가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateNotExistMatchRankSources")
+    void 일치하는_수와_보너스_일치_여부에_해당하는_등수가_없다면_에러가_발생한다(int matchCount, boolean matchBonus) {
+        Assertions.assertThatThrownBy(() -> {
+            LottoRank.by(matchCount, matchBonus);
+        }).isInstanceOf(IllegalStateException.class);
+    }
+
     private static Stream<Arguments> generateMatchRankSources() {
         return Stream.of(
                 Arguments.of(0, false, LottoRank.LOSE),
@@ -30,6 +39,19 @@ class LottoRankTest {
                 Arguments.of(5, false, LottoRank.RANK_3),
                 Arguments.of(5, true, LottoRank.RANK_2),
                 Arguments.of(6, false, LottoRank.RANK_1)
+        );
+    }
+
+    private static Stream<Arguments> generateNotExistMatchRankSources() {
+        return Stream.of(
+                Arguments.of(1, true),
+                Arguments.of(2, true),
+                Arguments.of(3, true),
+                Arguments.of(3, true),
+                Arguments.of(4, true),
+                Arguments.of(6, true),
+                Arguments.of(7, false),
+                Arguments.of(7, true)
         );
     }
 }
