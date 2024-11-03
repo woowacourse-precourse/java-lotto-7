@@ -32,13 +32,13 @@ class BonusNumberTest {
     }
 
     @ParameterizedTest
-    @DisplayName("보너스 번호가 범위에 맞지 않는 값을 지닌 경우 예외를 발생한다..")
+    @DisplayName("보너스 번호가 범위에 맞지 않는 값을 지닌 경우 예외를 발생한다.")
     @ValueSource(strings = {"0", "46"})
     void should_ThrowException_When_BonusNumberIsNotInRange(String number) {
         // when, then
         Assertions.assertThatThrownBy(() -> new BonusNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(DomainExceptionMessage.INVALID_BONUS_NUMBER_VALUE.getMessage());
+                .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_VALUE.getMessage());
     }
 
     @Test
