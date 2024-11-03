@@ -2,42 +2,59 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
-    private static final List<Lotto> lotteries = new ArrayList<>();
+    private final List<Lotto> purchasedLottos;
+    private Lotto winningLotto;
+    private int bonusNumber;
 
-    public static void main(String[] args) {
-        String inputMoney = getInputMoney();
-        buyLotto(Integer.parseInt(inputMoney));
-        getWinningNumber();
-        getBonusNumber();
+    public Application() {
+        this.purchasedLottos = new ArrayList<>();
     }
 
-    private static String getInputMoney() {
+    public static void main(String[] args) {
+        try {
+            Application app = new Application();
+            app.play();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void play() {
+        int amount = getPurchaseAmount();
+        purchaseLottos(amount);
+        setWinningNumbers();
+        printResult();
+    }
+
+    private int getPurchaseAmount() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
-                validateMoney(input);
-                return input;
+                validatePurchaseAmount(input);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void validateMoney(String money) {
-        if (money == null || money.trim().isEmpty()) {
+    public void validatePurchaseAmount(String input) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 필수입니다.");
         }
         try {
-            int amount = Integer.parseInt(money);
-            if (amount < LOTTO_PRICE || !checkUnitMoney(amount)) {
+            int amount = Integer.parseInt(input);
+            if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위이며, 1,000원 이상이어야 합니다.");
             }
         } catch (NumberFormatException e) {
@@ -45,119 +62,104 @@ public class Application {
         }
     }
 
-    private static boolean checkUnitMoney(int money) {
-        return money % LOTTO_PRICE == 0;
-    }
-
-    private static void buyLotto(int money) {
-        int count = money / LOTTO_PRICE;
-        System.out.println(count + "개를 구매했습니다.");
+    private void purchaseLottos(int amount) {
+        int count = amount / LOTTO_PRICE;
+        System.out.println("\n" + count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
             Lotto lotto = Lotto.create();
+            purchasedLottos.add(lotto);
             System.out.println(lotto);
-            lotteries.add(lotto);
         }
+        System.out.println();
     }
 
-    public static List<Lotto> getLotteries() {
-        return new ArrayList<>(lotteries);
+    private void setWinningNumbers() {
+        winningLotto = getWinningLotto();
+        bonusNumber = getBonusNumber();
     }
 
-    private static Lotto getWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+    private Lotto getWinningLotto() {
         while (true) {
             try {
-                validateWinningNumber(input);
-                List<Integer> numbers = getWinningNumbers(input);
-                Lotto winningLotto = Lotto.WinningLotto(numbers);
-                Lotto.setBonusNumber(winningLotto, getBonusNumber());
-                return winningLotto;
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> numbers = parseWinningNumbers(input);
+                return Lotto.createWinningLotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static List<Integer> getWinningNumbers(String input) {
+    public List<Integer> parseWinningNumbers(String input) {
+        validateWinningNumberInput(input);
         return Arrays.stream(input.split(","))
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(this::parseNumber)
                 .collect(Collectors.toList());
     }
 
-    private static void validateWinningNumber(String input) {
-        validateEmptyWinningNumber(input);
-        validateIntegerWinningNumber(input);
-        validateRangeWinningNumber(input);
-    }
-
-    private static void validateEmptyWinningNumber(String input) {
+    public void validateWinningNumberInput(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 필수입니다.");
         }
-    }
-
-    private static void validateIntegerWinningNumber(String input) {
-        String[] numbers = input.split(",");
-        for (String number : numbers) {
-            try {
-                Integer.parseInt(number.trim());
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해 주세요.");
-            }
+        if (!input.matches("^\\s*\\d+(\\s*,\\s*\\d+)*\\s*$")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 숫자여야 합니다.");
         }
     }
 
-    private static void validateRangeWinningNumber(String input) {
-        String[] numbers = input.split(",");
-        for (String number : numbers) {
-            int num = Integer.parseInt(number.trim());
+    private int parseNumber(String number) {
+        try {
+            int num = Integer.parseInt(number);
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+            return num;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자 형식이 아닙니다.");
         }
     }
 
-    private static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
+    private int getBonusNumber() {
         while (true) {
             try {
-                validateBonusNumber(input);
-                int bonusNumber = Integer.parseInt(input);
-                return bonusNumber;
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                int number = parseNumber(input.trim());
+                validateBonusNumber(number);
+                return number;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void validateBonusNumber(String input) {
-        validateEmptyBonusNumber(input);
-        validateIntegerBonusNumber(input);
-        validateRangeBonusNumber(input);
-    }
-
-    private static void validateEmptyBonusNumber(String input) {
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 필수입니다.");
+    public void validateBonusNumber(int number) {
+        if (winningLotto.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
-    private static void validateIntegerBonusNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
-        }
+    private void printResult() {
+        Result result = calculateResult();
+        System.out.println("\n당첨 통계\n---");
+        result.printStatistics();
     }
 
-    private static void validateRangeBonusNumber(String input) {
-        int num = Integer.parseInt(input);
-        if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    private Result calculateResult() {
+        Result result = new Result();
+        for (Lotto lotto : purchasedLottos) {
+            Rank rank = determineRank(lotto);
+            result.addRank(rank);
         }
+        result.calculateProfitRate(purchasedLottos.size() * LOTTO_PRICE);
+        return result;
+    }
+
+    private Rank determineRank(Lotto lotto) {
+        int matchCount = lotto.countMatches(winningLotto);
+        boolean hasBonusNumber = lotto.contains(bonusNumber);
+        return Rank.valueOf(matchCount, hasBonusNumber);
     }
 }
 
@@ -205,5 +207,36 @@ enum Rank {
 }
 
 class Result {
+    private final Map<Rank, Integer> rankCounts;
+    private double profitRate;
 
+    public Result() {
+        rankCounts = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            rankCounts.put(rank, 0);
+        }
+    }
+
+    public void addRank(Rank rank) {
+        rankCounts.put(rank, rankCounts.get(rank) + 1);
+    }
+
+    public void calculateProfitRate(int totalPurchaseAmount) {
+        long totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : rankCounts.entrySet()) {
+            totalPrize += (long) entry.getKey().getPrize() * entry.getValue();
+        }
+        profitRate = totalPrize * 100.0 / totalPurchaseAmount;
+    }
+
+    public void printStatistics() {
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                System.out.printf("%s - %d개\n",
+                        rank.getDescription(),
+                        rankCounts.getOrDefault(rank, 0));
+            }
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
 }

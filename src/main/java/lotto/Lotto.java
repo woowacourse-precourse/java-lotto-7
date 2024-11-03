@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -19,18 +20,24 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public static Lotto WinningLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
+    public static Lotto createWinningLotto(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Integer::compareTo);
+        return new Lotto(sortedNumbers);
     }
 
-    public List<Integer> add(int number) {
-        List<Integer> newNumbers = new ArrayList<>(numbers);
-        newNumbers.add(number);
-        return newNumbers;
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
-    public static List<Integer> setBonusNumber(Lotto winningLotto, int number) {
-        return winningLotto.add(number);
+    public int countMatches(Lotto other) {
+        return (int) numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     private void validateNumbers(List<Integer> numbers) {
@@ -63,7 +70,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
     }
-
 }
