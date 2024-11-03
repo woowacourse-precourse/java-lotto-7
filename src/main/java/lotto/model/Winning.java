@@ -10,6 +10,8 @@ public enum Winning {
 	SECOND(5, 30000000, true),
 	FIRST(6, 2000000000, false);
 
+	private static final int INITIAL_VALUE = 0;
+
 	private final int count;
 	private final int prize;
 	private final boolean hasBonusNumber;
