@@ -2,10 +2,12 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.domain.constant.ErrorMessage.PRICE_UNMATCHED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
@@ -50,6 +52,15 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("금액 입력시 1000단위가 아닐경우 예외처리")
+    @Test
+    void 금액_입력시_1000단위가_아닐경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("101");
+            assertThat(output()).contains(PRICE_UNMATCHED.getMessage());
         });
     }
 
