@@ -31,7 +31,7 @@ public class CheckInput {
                 }
 
                 tmpLottoNumber.add(tmpNumber);
-            } catch (Exception e){
+            } catch (NumberFormatException e){
                 throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_FORMAT.getErrorMessage());
             }
         }

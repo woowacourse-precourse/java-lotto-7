@@ -2,7 +2,7 @@ package lotto.exception;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
@@ -43,7 +43,7 @@ class CheckInputTest {
     @Test
     void 로또_당첨번호_범위가_잘못되었을때_예외가_발생한다(){
         IllegalArgumentException exception = assertThrows(
-                IllegalArgumentException.class, () -> CheckInput.checkLottoNumbers("1, 6, 48")
+                IllegalArgumentException.class, () -> CheckInput.checkLottoNumbers("1,2,3,4,5,48")
         );
         assertEquals(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage(), exception.getMessage());
     }

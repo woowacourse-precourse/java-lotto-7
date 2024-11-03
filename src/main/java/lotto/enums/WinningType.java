@@ -17,11 +17,6 @@ public enum WinningType {
         this.count = count;
     }
 
-
-    public int getPrizeMoney(){
-        return prizeMoney;
-    }
-
     public int getCount(){
         return count;
     }
