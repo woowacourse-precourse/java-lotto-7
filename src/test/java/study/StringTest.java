@@ -3,8 +3,6 @@ package study;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-import lotto.message.InputMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +32,16 @@ public class StringTest {
 
         // then
         assertThat(number).containsExactly("1");
+    }
+
+    // 요구사항 2
+    @Test
+    @DisplayName("\"(1,2)\" 값이 주어졌을 때 String의 substring() 메소드를 활용해 () 을 제거하고 \"1,2\"를 반환하는지 확인하는 학습 테스트")
+    public void testSubstringTest() {
+        String numbers = "(1,2)";
+
+        String substring = numbers.substring(1, numbers.length() - 1);
+
+        assertEquals(substring,"1,2");
     }
 }
