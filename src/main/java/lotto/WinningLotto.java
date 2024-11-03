@@ -19,4 +19,8 @@ public class WinningLotto extends Lotto {
         }
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
 }
