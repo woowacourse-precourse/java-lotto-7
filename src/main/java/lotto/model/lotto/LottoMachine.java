@@ -16,6 +16,9 @@ public class LottoMachine {
 
     public List<Integer> createLottoNumbers() {
         return numberGenerator.generate();
+    public double examineLotto(List<Lotto> lottos, long lottoCount) {
+        Long totalPrize = calcTotalPrize(lottos);
+        return ((double) totalPrize * 100) / (lottoCount * Lotto.PRICE);
     }
 
     }
