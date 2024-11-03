@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import lotto.wrapper.BonusNumber;
+import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -14,27 +16,24 @@ public class Lottos {
     }
 
     public Map<Rank, Integer> countMatchesWith(WinningLotto winningLotto) {
-        Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
+        Map<Rank, Integer> rankCounts = initializeRankCounts();
 
-        for (Lotto lotto : lottos) {
-            int matchCount = matchCount(lotto, winningLotto.getWinningNumbers());
-            boolean bonusMatch = lotto.contains(winningLotto.getBonusNumber().getNumber());
-            Rank rank = Rank.valueOf(matchCount, bonusMatch);
-
-            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
-        }
-
-        for (Rank rank : Rank.values()) {
-            rankCounts.putIfAbsent(rank, 0);
-        }
+        lottos.forEach(lotto -> {
+            Rank rank = winningLotto.determineRank(lotto);
+            rankCounts.put(rank, rankCounts.get(rank) + 1);
+        });
 
         return rankCounts;
     }
 
-    private int matchCount(Lotto lotto, Lotto winningLotto) {
-        return (int) lotto.getNumbers().stream()
-                .filter(winningLotto::contains)
-                .count();
+    private Map<Rank, Integer> initializeRankCounts() {
+        return Arrays.stream(Rank.values())
+                .collect(Collectors.toMap(
+                        rank -> rank,
+                        rank -> 0,
+                        (a, b) -> a,
+                        () -> new EnumMap<>(Rank.class)
+                ));
     }
 
     public List<Lotto> getLottos() {
