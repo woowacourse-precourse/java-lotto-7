@@ -10,8 +10,6 @@ public class LottoStrategyRandom implements LottoStrategy {
     private static final Integer range = 6;
 
     public List<Integer> createNumber() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(start, end, range);
-        lottoNumbers.sort(Comparator.naturalOrder());
-        return lottoNumbers;
+        return Randoms.pickUniqueNumbersInRange(start, end, range);
     }
 }

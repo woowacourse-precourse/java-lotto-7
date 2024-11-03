@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGenerator {
     private final LottoStrategy lottoStrategy;
@@ -14,6 +16,8 @@ public class LottoGenerator {
     }
 
     public List<Integer> createLottoNumber() {
-        return lottoStrategy.createNumber();
+        return lottoStrategy.createNumber().stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
     }
 }
