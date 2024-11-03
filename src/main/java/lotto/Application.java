@@ -8,6 +8,9 @@ public class Application {
 
         final int price = getPrice();
 
+        final int numOfLotto = price/1000;
+        System.out.println(numOfLotto + "개를 구매했습니다.");
+
     }
 
     private static int getPrice() {
