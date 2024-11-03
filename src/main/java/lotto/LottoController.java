@@ -13,12 +13,16 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = lottoView.inputPurchaseAmount();
-        List<Lotto> lottos = lottoMachine.buyLotto(purchaseAmount);
-        lottoView.printLotto(lottos);
-        Lotto winning = new Lotto(Arrays.stream(lottoView.inputWinningNumbers().split(",")).map(Integer::parseInt).toList());
-        int bonusNumber = lottoView.inputBonusNumber();
-        List<Grade> grade = LottoComparison.compare(lottos, winning, bonusNumber);
-        lottoView.printWinningResult(grade);
+        try {
+            int purchaseAmount = lottoView.inputPurchaseAmount();
+            List<Lotto> lottos = lottoMachine.buyLotto(purchaseAmount);
+            lottoView.printLotto(lottos);
+            Lotto winning = new Lotto(Arrays.stream(lottoView.inputWinningNumbers().split(",")).map(Integer::parseInt).toList());
+            int bonusNumber = lottoView.inputBonusNumber();
+            List<Grade> grade = LottoComparison.compare(lottos, winning, bonusNumber);
+            lottoView.printWinningResult(grade);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
