@@ -24,19 +24,11 @@ public enum Rank {
     }
 
     public static Rank of(int matchCount, boolean matchBonus) {
-        List<Rank> ranks = Arrays.stream(values())
-            .filter(rankPrice -> rankPrice.matchCount == matchCount)
-            .toList();
-        if (ranks.size() > 1) {
-            return ranks.stream()
-                .filter(rankPrice -> rankPrice.matchBonus == matchBonus)
-                .findAny()
-                .orElseThrow(() -> new IllegalStateException("[ERROR] 존재하지 않는 등수입니다."));
-        }
-        if (ranks.size() == 1) {
-            return ranks.getFirst();
-        }
-        return NONE;
+        return Arrays.stream(values())
+            .filter(rank -> rank.matchCount == matchCount &&
+                (rank.matchBonus == null || rank.matchBonus == matchBonus))
+            .findAny()
+            .orElse(NONE);
     }
 
     public static List<Rank> values(Comparator<Rank> comparator) {
