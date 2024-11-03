@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.View.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,8 @@ class LottoTest {
                 .hasMessageContaining(ErrorMessage.DUPLICATE_NUMBER_ERROR);
     }
 
+    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
     @DisplayName("로또 번호가 범위를 벗어나면 예외가 발생한다.")
     @Test
     void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
@@ -35,14 +38,11 @@ class LottoTest {
                 .hasMessageContaining(ErrorMessage.RANGE_ERROR);
     }
 
-
     @DisplayName("빈 값이 포함된 로또 번호는 예외가 발생한다.")
     @Test
     void 빈_값이_포함된_로또_번호는_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, null)))
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3, 4, 5, null)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.EMPTY_VALUE_ERROR);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

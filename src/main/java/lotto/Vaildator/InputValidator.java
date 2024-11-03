@@ -9,16 +9,17 @@ import lotto.View.ErrorMessage;
 public class InputValidator {
 
     public static void valid(List<Integer> numbers) {
+        validEmpty(numbers);
         for (int num : numbers) {
             validNum(String.valueOf(num));
-            validEmpty(String.valueOf(num));
         }
         validSize(numbers);
         validRange(numbers);
+        isDuplicate(numbers);
     }
 
     public static void validInput(String input) {
-        validEmpty(input);
+        isEmpty(input);
         validNum(input);
         validDuplicate(input);
     }
@@ -31,7 +32,7 @@ public class InputValidator {
     }
 
     public static void validBonus(String bonus) {
-        validEmpty(bonus);
+        isEmpty(bonus);
         isNumeric(bonus);
         int bonusNumber = Integer.parseInt(bonus.trim());
         isRange(bonusNumber);
@@ -55,9 +56,19 @@ public class InputValidator {
         return numbers;
     }
 
-    private static void validEmpty(String input) {
-        for (String number : parseInput(input)) {
-            isEmpty(number);
+    private static void validEmpty(List<Integer> numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            ErrorMessage.printError(ErrorMessage.EMPTY_VALUE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE_ERROR);
+        }
+    }
+
+    public static void emptyContain(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number == null) {
+                ErrorMessage.printError(ErrorMessage.EMPTY_VALUE_ERROR);
+                throw new IllegalArgumentException(ErrorMessage.EMPTY_VALUE_ERROR);
+            }
         }
     }
 
@@ -111,4 +122,20 @@ public class InputValidator {
         }
     }
 
+    public static void isDuplicate(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        boolean duple = numberSet.size() < numbers.size();
+
+        if (duple) {
+            ErrorMessage.printError(ErrorMessage.NUMBER_DUPLICATE_ERROR); // 메시지 출력
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR); // 예외 발생
+        }
+    }
+
+    public static void validPay(int amount) {
+        if (amount % 1000 != 0) {
+            ErrorMessage.printError(ErrorMessage.PAY_ERROR); // 메시지 출력
+            throw new IllegalArgumentException(ErrorMessage.PAY_ERROR); // 예외 발생
+        }
+    }
 }

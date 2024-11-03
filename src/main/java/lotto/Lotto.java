@@ -14,6 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        InputValidator.emptyContain(numbers);
         InputValidator.valid(numbers);
     }
 

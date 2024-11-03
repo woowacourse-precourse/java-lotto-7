@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Vaildator.InputValidator;
+import lotto.View.InputView;
 import lotto.controller.CheckerController;
 
 public class LottoService {
@@ -16,10 +17,23 @@ public class LottoService {
 
     private int lottoCount;
 
-    public void buyLottos(int amount) {
-        payment = amount;
-        lottoCount = amount / 1000;
-        for (int i = 0; i < lottoCount; i++) {
+    public void buyLottos() {
+        while (true) {
+            try {
+                int amount = InputView.inputPay();
+                InputValidator.validPay(amount);
+                payment = amount;
+                lottoCount = amount / 1000;
+                addLottos(lottoCount);
+                break;
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+    }
+
+    private void addLottos(int count) {
+        for (int i = 0; i < count; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
         }
@@ -30,7 +44,21 @@ public class LottoService {
     }
 
     public List<Integer> inputLottoNumbers(String input) {
-        InputValidator.validInput(input);
+        while (true) {
+            try {
+                validateInput(input);
+                return parseLottoNumbers(input);
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
+    }
+
+    private void validateInput(String input) {
+        InputValidator.validInput(input); // 입력 유효성 검사
+    }
+
+    private List<Integer> parseLottoNumbers(String input) {
         String[] splitNumbers = input.split(",");
         List<Integer> numbers = new ArrayList<>();
 

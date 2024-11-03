@@ -18,21 +18,35 @@ public class LottoController {
     }
 
     private static void buyLottos() {
-        int amount = InputView.inputPay();
-        lottoService.buyLottos(amount);
+
+        lottoService.buyLottos();
     }
 
     private static void inputWinningNumbers() {
-        String input = InputView.inputWinningNumbers();
-        List<Integer> winningNumbers = lottoService.inputLottoNumbers(input);
-        InputValidator.valid(winningNumbers);
-        lottoService.setWinningNumbers(winningNumbers);
+        while (true) {
+            try {
+                String input = InputView.inputWinningNumbers();
+                List<Integer> winningNumbers = lottoService.inputLottoNumbers(input);
+                InputValidator.valid(winningNumbers);
+                lottoService.setWinningNumbers(winningNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
     }
 
     private static void inputBonusNumber() {
-        String bonus = InputView.inputBonusNumber();
-        InputValidator.validBonus(bonus);
-        lottoService.setBonusNumber(Integer.parseInt(bonus));
+        while (true) {
+            try {
+                String bonus = InputView.inputBonusNumber();
+                InputValidator.validBonus(bonus);
+                lottoService.setBonusNumber(Integer.parseInt(bonus));
+                break; // 유효한 번호가 입력되면 루프 종료
+            } catch (IllegalArgumentException e) {
+
+            }
+        }
     }
 
     private static void displayLottos() {

@@ -9,11 +9,17 @@ public class InputView {
     private static final String INPUT_BONUSNUMBER = "보너스 번호를 입력해 주세요: ";
 
     public static int inputPay() {
-        System.out.println(INPUT_PAYMENT);
-        String amount = Console.readLine();
-        InputValidator.isNumeric(amount);
-        InputValidator.isEmpty(amount);
-        return Integer.parseInt(amount);
+        while (true) { // 유효한 금액이 입력될 때까지 반복
+            try {
+                System.out.println(INPUT_PAYMENT);
+                String amount = Console.readLine();
+                InputValidator.isNumeric(amount);
+                InputValidator.isEmpty(amount);
+                return Integer.parseInt(amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String inputWinningNumbers() {
