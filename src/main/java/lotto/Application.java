@@ -1,15 +1,15 @@
 package lotto;
 
-import lotto.domain.TicketCountCalculator;
-import lotto.domain.PurchaseTotalPrice;
-import lotto.domain.TicketIssuer;
-import lotto.domain.WinningNumbersGenerator;
+import lotto.domain.*;
 import lotto.dto.*;
+import lotto.utils.BonusNumberInputParser;
 import lotto.utils.LottoNumbersInputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.utils.TicketFormatter;
 import lotto.utils.TicketSorter;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -42,10 +42,15 @@ public class Application {
         //당첨 번호 입력
         outputView.printLottoNumbersInputPrompt();
         LottoNumbersInput lottoNumbersInput = inputView.readLottoNumbers();
-        LottoNumbersInputParser.parse(lottoNumbersInput.input());
+        List<Integer> parsedLottoNumber = LottoNumbersInputParser.parse(lottoNumbersInput.input());
+        Lotto lotto = new Lotto(parsedLottoNumber);
+
 
         //보너스 번호 입력
         outputView.printBonusNumberInputPrompt();
+        BonusNumberInput bonusNumberInput = inputView.readBonusNumber();
+        int parsedBonusNumber = BonusNumberInputParser.parse(bonusNumberInput.input());
+        Bonus bonus = new Bonus(parsedBonusNumber, lotto);
 
     }
 }
