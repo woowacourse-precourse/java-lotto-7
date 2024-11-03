@@ -1,8 +1,10 @@
 package lotto.service;
 
+import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.WinningType;
 import lotto.model.Lotto;
+import lotto.model.PurchasePrice;
 import lotto.model.WinningCriteria;
 import lotto.model.WinningResult;
 
@@ -36,4 +38,21 @@ public class LottoCalculationService {
                 .anyMatch(number -> number == winningBonusNumber);
     }
 
+    public double calculationRateOfReturn(PurchasePrice purchasePrice, WinningResult winningResult) {
+        long allPrizeMoney = calculationAllPrizeMoney(winningResult);
+        return allPrizeMoney / ((double) purchasePrice.getPrice());
+    }
+
+    public long calculationAllPrizeMoney(WinningResult winningResult) {
+        EnumMap<WinningType, Integer> countPerWinningType = winningResult.getCountPerWinningType();
+        List<WinningType> allWinningTypes = List.of(WinningType.values());
+
+        return allWinningTypes.stream()
+                .mapToLong(type -> calculationPrizeMoney(type, countPerWinningType.get(type)))
+                .sum();
+    }
+
+    private long calculationPrizeMoney(WinningType winningType, int count) {
+        return winningType.getPrizeMoney() * count;
+    }
 }
