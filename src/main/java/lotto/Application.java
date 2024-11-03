@@ -26,11 +26,11 @@ public class Application {
     private static int getValidBudget() {
         while (true) {
             try {
-            System.out.println("구입금액을 입력해 주세요.");
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력해 주세요.");
-        }
+                System.out.println("구입금액을 입력해 주세요.");
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력해 주세요.");
+            }
         }
     }
 
@@ -39,7 +39,7 @@ public class Application {
             try {
                 LottoGenerator lottoGenerator = new LottoGenerator();
                 int lottoCount = lottoGenerator.getLottoCount(budget);
-                System.out.println(lottoCount + "개를 구매했습니다.");
+                System.out.println(lottoCount + "\n개를 구매했습니다.");
                 return lottoCount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -62,7 +62,7 @@ public class Application {
     private static List<Integer> getValidWinningNumbers() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String winningNumberInput = Console.readLine();
                 return WinningNumberParser.parse(winningNumberInput);
             } catch (IllegalArgumentException e) {
@@ -85,7 +85,7 @@ public class Application {
     private static int getValidBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(bonusNumber, winningLotto);
                 return bonusNumberValidator.getBonusNumber();

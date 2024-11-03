@@ -1,13 +1,9 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static lotto.WinningCategory.*;
 
 public class WinningStatistics {
@@ -83,7 +79,7 @@ public class WinningStatistics {
     }
 
     public void printStatistics() {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         for (WinningCategory category : PRINT_ORDER) {
             System.out.print(category.getMatchCount() + "개 일치");
