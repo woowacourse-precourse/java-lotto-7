@@ -5,7 +5,7 @@ public class LottoGame {
     public void run() {
         LottoManager lottoManager = getLottoManager();
         do {
-
+            final WinningLotto winningLotto = InputHandler.inputWinningLottoNumbers();
         } while (true);
     }
 
