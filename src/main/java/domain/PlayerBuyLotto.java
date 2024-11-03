@@ -1,7 +1,5 @@
 package domain;
 
-import message.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +21,13 @@ public class PlayerBuyLotto {
 
     public List<Lotto> buyLotto(int lottoPurchased) {
 
-        ManageNumbers manageNumbers = new ManageNumbers();
+        LottoNumbers lottoNumbers = new LottoNumbers();
 
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoPurchased; i++) {
 
-            Lotto lotto = manageNumbers.generateLotto();
+            Lotto lotto = lottoNumbers.generateLotto();
             lottos.add(lotto);
         }
 

@@ -1,25 +1,28 @@
 package domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import message.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class ManageNumbers {
+public class WinningNum {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int NUMS = 6;
+    public List<Integer> generateWinningNumbers(String numbers) {
 
-    public Lotto generateLotto() {
+        Validate validate = new Validate();
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMS);
+        List<Integer> winningNumbers = splitInputtedWinningNums(numbers);
 
-        return new Lotto(numbers);
+        validate.validateIsCountSix(winningNumbers);
+        validate.validateIsInRange(winningNumbers);
+        validate.validateIsDuplicate(winningNumbers);
+
+        Collections.sort(winningNumbers);
+        return winningNumbers;
     }
 
-    public WinningNumbers generateWinningNumbers(String numbers) {
+    public List<Integer> splitInputtedWinningNums(String numbers) {
 
         Validate validate = new Validate();
         List<Integer> winningNumbers = new ArrayList<>();
@@ -35,12 +38,6 @@ public class ManageNumbers {
             winningNumbers.add(Integer.parseInt(number));
         }
 
-        return new WinningNumbers(winningNumbers);
+        return winningNumbers;
     }
-
-    public BonusNumber geterateBonusNumber(String number) {
-
-        return new BonusNumber(number);
-    }
-
 }
