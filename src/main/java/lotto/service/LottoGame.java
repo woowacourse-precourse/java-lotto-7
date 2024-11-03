@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.LottoNumberProvider;
 import lotto.domain.TypeConverter;
+import lotto.domain.WinningResultExtractor;
 import lotto.validator.BonusNumber;
 import lotto.validator.Lotto;
 import lotto.validator.PurchaseAmount;
@@ -9,12 +10,14 @@ import lotto.view.InputReader;
 import lotto.view.OutputWriter;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class LottoGame {
 
     private final InputReader inputReader;
     private final OutputWriter outputWriter;
+    List<Set<Integer>> totalLottoNumbers;
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -31,7 +34,7 @@ public class LottoGame {
         int lottoCount = Integer.parseInt(purchaseAmount) / 1000;
 
         LottoNumberProvider lottoNumberProvider = new LottoNumberProvider();
-        List<Set<Integer>> totalLottoNumbers = lottoNumberProvider.generateAndStoreLottoNumbers(lottoCount);
+        totalLottoNumbers = lottoNumberProvider.generateAndStoreLottoNumbers(lottoCount);
 
         outputWriter.printLottoNumbers(lottoCount, totalLottoNumbers);
     }
@@ -47,6 +50,11 @@ public class LottoGame {
         BonusNumber bonusNumberValidator = new BonusNumber();
         bonusNumberValidator.validateBonusNumber(inputBonusNumber);
         bonusNumber = Integer.parseInt(inputBonusNumber);
+    }
+
+    public void calculateWinningRate() {
+        WinningResultExtractor winningResultExtractor = new WinningResultExtractor();
+        winningResultExtractor.getWinningResult(totalLottoNumbers, winningNumbers, bonusNumber);
     }
 
 }
