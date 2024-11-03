@@ -13,7 +13,7 @@ public class LottoGame {
     public static LottoGame of(int money) {
         return new LottoGame(money);
     }
-
+    
     private LottoGame(int money) {
         this.seedMoney = money;
         drawNewLottoNumber(money/1000);
@@ -43,13 +43,13 @@ public class LottoGame {
 
     public void calculateLottoRank() {
         for (Lotto lotto : lottos) {
-            int matchCount = howMayMatch(lotto, customLotto);
+            int matchCount = getMatchCount(lotto, customLotto);
             if(matchCount<3){
                 continue;
             }
             boolean isBonusMatch = false;
             if (matchCount == 5) {
-                isBonusMatch = isMatchBonus(lotto);
+                isBonusMatch = isBonusNumberMatched(lotto);
             }
             updateRank(matchCount, isBonusMatch);
         }
@@ -64,11 +64,11 @@ public class LottoGame {
         rank.set(matchCount,update);
     }
 
-    private boolean isMatchBonus(Lotto lotto) {
+    private boolean isBonusNumberMatched(Lotto lotto) {
         return lotto.getNumbers().contains(customLotto.getBonus());
     }
 
-    private int howMayMatch(Lotto lotto, CustomLotto customLotto) {
+    private int getMatchCount(Lotto lotto, CustomLotto customLotto) {
         List<Integer> targetNumbers = lotto.getNumbers();
         List<Integer> compareNumbers = customLotto.getNumbers();
 
