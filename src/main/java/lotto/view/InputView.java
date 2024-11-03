@@ -1,48 +1,37 @@
 package lotto.view;
 
-import static lotto.constant.MessageConstant.*;
+import static lotto.constant.MessageConstant.INPUT_BONUS_NUMBER;
+import static lotto.constant.MessageConstant.INPUT_PURCHASE_AMOUNT;
+import static lotto.constant.MessageConstant.INPUT_WINNING_NUMBER;
+import static lotto.constant.MessageConstant.NEWLINE;
+import static lotto.view.InputValidator.validateIsNumeric;
+import static lotto.view.InputValidator.validateNotNullOrBlank;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
     public String readPurchaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT.getMessage());
-        String amount = Console.readLine();
-
-        validateNotNullOrBlank(amount);
-        validateIsNumeric(amount);
-
-        return amount;
+        return readInput(INPUT_PURCHASE_AMOUNT.getMessage());
     }
 
     public String readWinningNumber() {
         System.out.printf(NEWLINE.getMessage());
-        System.out.println(INPUT_WINNING_NUMBER.getMessage());
-        String inputWinning = Console.readLine();
-
-        validateNotNullOrBlank(inputWinning);
-
-        return inputWinning;
+        return readInput(INPUT_WINNING_NUMBER.getMessage());
     }
 
     public String readBonusNumber() {
         System.out.printf(NEWLINE.getMessage());
-        System.out.println(INPUT_BONUS_NUMBER.getMessage());
-        String inputBonus = Console.readLine();
-
-        validateNotNullOrBlank(inputBonus);
-
-        return inputBonus;
+        return readInput(INPUT_BONUS_NUMBER.getMessage());
     }
 
-    private void validateNotNullOrBlank(String input) {
-        if (input == null || input.isBlank())
-            throw new IllegalArgumentException();
-    }
+    private String readInput(String message) {
+        System.out.println(message);
+        String input = Console.readLine();
 
-    private void validateIsNumeric(String input) {
-        if (!input.chars().allMatch(Character::isDigit))
-            throw new IllegalArgumentException();
+        validateNotNullOrBlank(input);
+        validateIsNumeric(input);
+
+        return input;
     }
 }
