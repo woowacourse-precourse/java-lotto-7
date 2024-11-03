@@ -50,7 +50,7 @@ public class Application {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers); // 오름차순 정렬
             lottos.add(new Lotto(numbers));
         }
@@ -133,7 +133,7 @@ public class Application {
         stats.put("3개 일치 (5,000원)", 0);
         stats.put("4개 일치 (50,000원)", 0);
         stats.put("5개 일치 (1,500,000원)", 0);
-        stats.put("5개 + 보너스 일치 (30,000,000원)", 0);
+        stats.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
         stats.put("6개 일치 (2,000,000,000원)", 0);
 
         for (Lotto lotto : lottos) {
@@ -143,7 +143,7 @@ public class Application {
             if (matchCount == 6) {
                 stats.put("6개 일치 (2,000,000,000원)", stats.get("6개 일치 (2,000,000,000원)") + 1);
             } else if (matchCount == 5 && bonusMatch) {
-                stats.put("5개 + 보너스 일치 (30,000,000원)", stats.get("5개 + 보너스 일치 (30,000,000원)") + 1);
+                stats.put("5개 일치, 보너스 볼 일치 (30,000,000원)", stats.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1); // 수정
             } else if (matchCount == 5) {
                 stats.put("5개 일치 (1,500,000원)", stats.get("5개 일치 (1,500,000원)") + 1);
             } else if (matchCount == 4) {
@@ -193,7 +193,7 @@ public class Application {
                 return 50000;
             case "5개 일치 (1,500,000원)":
                 return 1500000;
-            case "5개 + 보너스 일치 (30,000,000원)":
+            case "5개 일치, 보너스 볼 일치 (30,000,000원)": // 수정
                 return 30000000;
             case "6개 일치 (2,000,000,000원)":
                 return 2000000000;
