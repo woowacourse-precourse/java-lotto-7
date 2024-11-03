@@ -11,7 +11,7 @@ public final class OutputView {
         System.out.println();
     }
 
-    public void errorMessagePrint(String errorMessage) {
+    public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage + NEW_LINE);
     }
 }
