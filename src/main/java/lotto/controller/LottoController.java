@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
+import lotto.utils.InputConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,7 +19,6 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    // 의존성 주입을 위한 생성자
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
@@ -26,7 +26,7 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = Integer.parseInt(inputView.getBudget());
+        int purchaseAmount = InputConverter.convertInputNumber(inputView.getBudget());
         Lottos userLottos = purchaseLottos(purchaseAmount);
 
         outputView.printLottoNumbers(userLottos.toDtoList());

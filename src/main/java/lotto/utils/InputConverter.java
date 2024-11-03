@@ -16,12 +16,12 @@ public class InputConverter {
         return lottoNumbers;
     }
 
-    private static int convertBonusNumber(String input) {
+    public static int convertInputNumber(String input) {
         return Integer.parseInt(input);
     }
 
     public static ArrayList<Integer> addBonusNumber(String input, ArrayList<Integer> lottoNumbers) {
-        int bonusNumber = convertBonusNumber(input);
+        int bonusNumber = convertInputNumber(input);
         lottoNumbers.add(bonusNumber);
         return lottoNumbers;
     }
