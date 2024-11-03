@@ -29,6 +29,6 @@
   - 당첨 번호는 중복될수 없다.
   - 당첨 번호는 1~45 사이의 숫자여야 한다.
   - 보너스 번호는 1~45 사이의 숫자여야 한다.
-- [ ] 결과를 출력하고 로또 게임을 종료한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+- [X] 결과를 출력하고 로또 게임을 종료한다.
+- [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
