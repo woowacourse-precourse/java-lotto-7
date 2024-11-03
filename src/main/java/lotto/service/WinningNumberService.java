@@ -8,5 +8,10 @@ public class WinningNumberService {
         return new WinningNumber(winningNumber, bonusNumber);
     }
 
+    public int getMatchCount(List<Integer> lottoNumber, List<Integer> winningNumber) {
+        return (int) lottoNumber.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
 
 }
