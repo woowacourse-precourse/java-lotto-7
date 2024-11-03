@@ -1,19 +1,17 @@
 package lotto.model;
 
 public class LottoResult {
-    private int firstPlaceCount;  // 1등 당첨 횟수
-    private int secondPlaceCount; // 2등 당첨 횟수
-    private int thirdPlaceCount;  // 3등 당첨 횟수
-    private int fourthPlaceCount; // 4등 당첨 횟수
-    private int fifthPlaceCount;  // 5등 당첨 횟수
-    private int noWinCount;       // 꽝 횟수
+    private int[] rankCounts; // 각 등수의 당첨 횟수 (index 0: 1등, index 1: 2등, ..., index 5: 꽝)
 
     public LottoResult() {
-        this.firstPlaceCount = 0;
-        this.secondPlaceCount = 0;
-        this.thirdPlaceCount = 0;
-        this.fourthPlaceCount = 0;
-        this.fifthPlaceCount = 0;
-        this.noWinCount = 0;
+        this.rankCounts = new int[6]; // 0-5 인덱스: 1등-꽝
+    }
+
+    // 각 등수 추가 메서드
+    public void addWin(int rank) {
+        if (rank < 1 || rank > 6) {
+            throw new IllegalArgumentException("Rank must be between 1 and 6.");
+        }
+        rankCounts[rank - 1]++; // rank 1에 대해 index 0에 증가
     }
 }
