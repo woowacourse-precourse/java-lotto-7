@@ -13,7 +13,7 @@ public class RandomNumberService implements RandomNumberServiceImpl {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < tickets; i++) {
-            List<Integer> numbers = randomNumberService.createRandomNumber();
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);;
             lottos.add(new Lotto(numbers));
         }
 
