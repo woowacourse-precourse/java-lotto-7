@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateRange(numbers);
         this.numbers = numbers;
     }
 
@@ -16,7 +17,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateRange(List<Integer> numbers) {
+        numbers.stream().
+                filter(number -> number < 1 || number > 45)
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                });
+    }
+
     public List<Integer> numbers() {
         return this.numbers;
     }
