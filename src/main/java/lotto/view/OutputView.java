@@ -21,7 +21,7 @@ public class OutputView {
         PromptMessage.printLottoCount(numberOfLotto);
     }
 
-    public void printNumbersCollections(List<List<Integer>> numberCollections) {
+    public void printLottoNumbers(List<List<Integer>> numberCollections) {
         StringBuilder builder = new StringBuilder();
         for(List<Integer> numbers: numberCollections) {
             builder.append("[");

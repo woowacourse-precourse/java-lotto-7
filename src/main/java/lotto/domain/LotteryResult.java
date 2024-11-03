@@ -5,15 +5,21 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static lotto.domain.Budget.LOTTO_PRICE;
 
-public class Result {
+public class LotteryResult {
 
-    public final List<Rank> ranks;
+    private final WinningNumber winningNumber;
+    private final List<Rank> ranks;
 
-    public Result(List<Rank> ranks) {
-        this.ranks = ranks;
+    public LotteryResult(List<List<Integer>> numbers, List<Integer> winningNumbers, Integer bonusNumber) {
+        List<Lotto> lottos = numbers.stream().map(Lotto::new).toList();
+        this.winningNumber = new WinningNumber(winningNumbers, bonusNumber);
+        this.ranks = lottos.stream()
+                .map(lotto -> lotto.countRank(winningNumber.getNumbers(), winningNumber.getBonusNumber()))
+                .collect(Collectors.toList());
     }
 
     public Map<Rank, BigInteger> returnCounts() {

@@ -2,8 +2,7 @@ package lotto.controller;
 
 import lotto.NumbersGenerator;
 import lotto.domain.Budget;
-import lotto.domain.LotteryVendor;
-import lotto.domain.Result;
+import lotto.domain.LotteryResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,12 +32,11 @@ public class GameController {
         outputView.printNumberOfLotto(numberOfLotto);
 
         List<List<Integer>> lottoNumbers = generateNumbers(numberOfLotto);
-        outputView.printNumbersCollections(lottoNumbers);
+        outputView.printLottoNumbers(lottoNumbers);
 
         List<Integer> winningNumbers = readValidWinningNumbers();
-        LotteryVendor vendor = createLotteryVendor(lottoNumbers, winningNumbers, readValidBonusNumber(winningNumbers));
+        LotteryResult result = createLotteryResult(lottoNumbers, winningNumbers, readValidBonusNumber(winningNumbers));
 
-        Result result = vendor.calculateResult();
         outputView.printResult(result.returnCounts(), result.returnRate());
     }
 
@@ -48,12 +46,12 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    private LotteryVendor createLotteryVendor(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers, Integer bonusNumber) {
+    private LotteryResult createLotteryResult(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers, Integer bonusNumber) {
         try {
-            return new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+            return new LotteryResult(lottoNumbers, winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return new LotteryVendor(lottoNumbers, winningNumbers, bonusNumber);
+            return new LotteryResult(lottoNumbers, winningNumbers, bonusNumber);
         }
     }
 
