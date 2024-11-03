@@ -28,7 +28,6 @@ public class LottoService {
     }
 
     public void initializeLottoDrawCount() {
-        InputValidator.isDivisibleByThousand(lottoPurchaseAmount);
         this.lottoDrawCount = lottoPurchaseAmount / LottoConstants.TICKET_PRICE.getValue();
     }
 
