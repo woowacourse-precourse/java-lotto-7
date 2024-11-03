@@ -7,10 +7,9 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = getValidPurchaseAmount();
-        System.out.println("");
 
         int numberOfLottos = purchaseAmount / 1000;
-        System.out.println("");
+        System.out.println(numberOfLottos + "개를 구매했습니다.");
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
@@ -20,16 +19,13 @@ public class Application {
         }
 
         List<Integer> winningNumbers = getValidWinningNumbers();
-        System.out.println("");
 
         int bonusNumber = getValidBonusNumber(winningNumbers);
-        System.out.println("");
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateResults(lottos, winningNumbers, bonusNumber);
         lottoResult.printResults();
         lottoResult.printEarningsRate(purchaseAmount);
-
     }
 
     private static int getValidPurchaseAmount() {
@@ -76,5 +72,4 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력이 가능합니다.");
         }
     }
-
 }
