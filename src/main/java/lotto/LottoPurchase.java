@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class LottoPurchase {
 
-    int buy;
-    List<List<Integer>> lottoTickets = new ArrayList<>(); // 구입한 로또 티켓을 저장할 리스트
+    private final int buy;
+    private final List<Lotto> lottoTickets = new ArrayList<>(); // 구입한 로또 티켓을 저장할 리스트
 
     // 구매 개수를 받아 로또 리켓 생성
     public LottoPurchase(int buy) {
@@ -18,14 +18,14 @@ public class LottoPurchase {
         this.buy = buy; // 구입한 개수 저장
         
         for (int i=0; i<buy; i++) {
-            List<Integer> lotto = Lotto(); // 로또 티켓 생성
-            Collections.sort(lotto); // 정렬
-            lottoTickets.add(lotto); // 티켓 추가
+            List<Integer> lottoNumbers = generateLottoNumbers(); // 로또 번호 생성
+            Collections.sort(lottoNumbers); // 정렬
+            lottoTickets.add(new Lotto(lottoNumbers)); // Lotto 객체로 생성하여 리스트에 추가
         }
     }
 
     // 랜덤으로 로또 생성
-    private List<Integer> Lotto() {
+    private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
@@ -34,8 +34,8 @@ public class LottoPurchase {
 
         System.out.println(String.valueOf(buy)+"개를 구매했습니다.");
 
-        for (List<Integer> ticket : lottoTickets) {
-            String result = ticket.stream()
+        for (Lotto ticket : lottoTickets) {
+            String result = ticket.getNumbers().stream()
                     .map(String::valueOf) // Integer를 String으로 변환
                     .collect(Collectors.joining(", ")); // Join
 
@@ -43,5 +43,7 @@ public class LottoPurchase {
         }
     }
 
-
+    public List<Lotto> getLotto() {
+        return lottoTickets;
+    }
 }
