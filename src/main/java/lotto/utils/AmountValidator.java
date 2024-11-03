@@ -15,5 +15,12 @@ public class AmountValidator {
         }
     }
 
+    private static void validateMultipleOfThousand(String input) {
+        int amount = Integer.parseInt(input);
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1000의 배수여야 합니다.");
+        }
+    }
+
 
 }
