@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.global.message.ErrorMessage;
 
 public class BonusNumber {
+    private static final int MINIMUM_LOTTO_NUMBER = 1;
+    private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     private final long number;
 
@@ -18,7 +20,7 @@ public class BonusNumber {
     }
 
     private static boolean isOutOfRange(long number) {
-        return number < 1 || number > 45;
+        return number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER;
     }
 
     public long getNumber() {
