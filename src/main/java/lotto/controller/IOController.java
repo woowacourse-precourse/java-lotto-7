@@ -2,11 +2,14 @@ package lotto.controller;
 
 import java.util.Set;
 import lotto.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.LottoTickets;
+import lotto.model.ResultAnalysis;
 import lotto.view.input.InputBonusNumberView;
 import lotto.view.input.InputPurchaseAmountView;
 import lotto.view.input.InputWinningNumberView;
 import lotto.view.output.OutputLottoNumbersView;
+import lotto.view.output.OutputStatisticsView;
 
 public class IOController {
     public static int setPurchaseAmount() {
@@ -55,5 +58,15 @@ public class IOController {
             OutputLottoNumbersView.lottoNumbersOutput(lotto);
         }
         System.out.println();
+    }
+
+    public static void outputResult(
+            LottoTickets lottoTickets, Set<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
+        LottoResult lottoResult = new LottoResult(lottoTickets.getTickets(), winningNumbers, bonusNumber);
+        OutputStatisticsView.lottoResultOutput(lottoResult.getRanks());
+
+        ResultAnalysis analysis = new ResultAnalysis(lottoResult.getRanks());
+        double returnRatio = analysis.getReturnRatio(purchaseAmount * 1000L);
+        OutputStatisticsView.statisticsOutput(returnRatio);
     }
 }
