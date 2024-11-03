@@ -34,6 +34,10 @@ public class Lotto {
         });
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.stream().map(Object::toString).collect(Collectors.joining(", ", "[", "]"));

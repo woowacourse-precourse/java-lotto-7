@@ -10,6 +10,10 @@ public class LottoBundle {
         this.lottos = lottos;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     @Override
     public String toString() {
         return lottos.stream().map(Lotto::toString).collect(Collectors.joining("\n"));

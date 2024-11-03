@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.model.LottoBundle;
+import lotto.model.LottoRanks;
+import lotto.utils.LottoRank;
 
 public class OutputView {
     public static void printPurchaseAmount(Integer amount) {
@@ -9,5 +11,13 @@ public class OutputView {
 
     public static void printAllLottosNumbers(LottoBundle lottoBundle) {
         System.out.println(lottoBundle.toString());
+    }
+
+    public static void printLottoBundleResultHeader() {
+        System.out.println("당첨 통계\n---");
+    }
+
+    public static void printLottoRankResult(LottoRank lottoRank, Integer amount) {
+        System.out.println(lottoRank.getDescription() + amount + "개");
     }
 }

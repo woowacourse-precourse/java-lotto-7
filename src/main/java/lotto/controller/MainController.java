@@ -1,18 +1,24 @@
 package lotto.controller;
 
 import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.LottoBundle;
 import lotto.model.LottoFactory;
+import lotto.model.LottoRanks;
 import lotto.model.Wallet;
 import lotto.model.WinningNumbers;
+import lotto.utils.LottoRank;
 import lotto.view.OutputView;
 
 import static lotto.view.InputView.readBonusNumber;
 import static lotto.view.InputView.readPurchaseMoney;
 import static lotto.view.InputView.readWinningNumbers;
+import static lotto.view.OutputView.printLottoBundleResultHeader;
+import static lotto.view.OutputView.printLottoRankResult;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -24,7 +30,8 @@ public class MainController {
         OutputView.printAllLottosNumbers(lottoBundle);
         WinningNumbers winningNumbers = askWinningNumbers();
         BonusNumber bonusNumber = askBonusNumber(winningNumbers);
-        
+        LottoRanks lottoRanks = computeLottoBundleResult(lottoBundle, winningNumbers, bonusNumber);
+        makeStatistic(lottoRanks, myWallet);
     }
 
     public static Wallet makeWallet() {
@@ -69,6 +76,32 @@ public class MainController {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public static LottoRanks computeLottoBundleResult(LottoBundle lottoBundle, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<LottoRank> lottoRanks = lottoBundle.getLottos().stream().map(lotto -> computeSingleLottoResult(lotto, winningNumbers, bonusNumber)).filter(Objects::nonNull).toList();
+        
+        return new LottoRanks(lottoRanks);
+    }
+
+    private static LottoRank computeSingleLottoResult(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        Integer matchCount = 0;
+        for (Integer lottoNumber : lotto.getNumbers()) {
+            if (winningNumbers.getWinningNumbers().contains(lottoNumber)) {
+                matchCount++;
+            }
+        }
+        boolean containsBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+        return LottoRank.getLottoRankByMatchResult(matchCount, containsBonusNumber);
+    }
+
+    public static void makeStatistic(LottoRanks lottoRanks, Wallet myWallet) {
+        printLottoBundleResultHeader();
+        for (LottoRank lottoRank : LottoRank.values()) {
+            Integer count = (Integer) (int) lottoRanks.getLottoRanks().stream().filter(l -> l.getMatchCount().equals(lottoRank.getMatchCount())).count();
+            printLottoRankResult(lottoRank, count);
         }
     }
 }
