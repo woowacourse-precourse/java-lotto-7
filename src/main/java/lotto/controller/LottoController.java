@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.Map;
+import java.util.function.Supplier;
 import lotto.model.dto.LottoNumbers;
 import lotto.model.dto.ResultStatistics;
 import lotto.model.lotto.BonusNumber;
@@ -31,16 +32,16 @@ public class LottoController {
         printResult(winningLotto);
     }
 
+    private void purchaseAndPrintLottos() {
+        buyLotto();
+        printBuyingLottos();
+    }
+
     private void buyLotto() {
-        while (true) {
-            try {
-                final int money = enterPurchaseAmount();
-                lottoBuyer.buyLotto(money, lottoSeller);
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+        rerunTemplate(() -> {
+            final int money = enterPurchaseAmount();
+            lottoBuyer.buyLotto(money, lottoSeller);
+        });
     }
 
     private int enterPurchaseAmount() {
@@ -53,21 +54,12 @@ public class LottoController {
         outputView.printLottoNumbers(lottoNumbers);
     }
 
-    private void purchaseAndPrintLottos() {
-        buyLotto();
-        printBuyingLottos();
-    }
-
     private WinningLotto generateWinningLotto() {
-        while (true) {
-            try {
-                final Lotto lotto = enterWinningLotto();
-                final BonusNumber bonusNumber = enterBonusNumber();
-                return new WinningLotto(lotto, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
+        return rerunTemplate(() -> {
+            final Lotto lotto = enterWinningLotto();
+            final BonusNumber bonusNumber = enterBonusNumber();
+            return new WinningLotto(lotto, bonusNumber);
+        });
     }
 
     private Lotto enterWinningLotto() {
@@ -92,5 +84,26 @@ public class LottoController {
     private void printProfitRate() {
         double profit = lottoBuyer.checkProfitRate();
         outputView.printProfit(profit);
+    }
+
+    private <T> T rerunTemplate(final Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void rerunTemplate(final Runnable action) {
+        while (true) {
+            try {
+                action.run();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
