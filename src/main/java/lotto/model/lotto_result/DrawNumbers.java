@@ -20,10 +20,7 @@ public class DrawNumbers {
                 .count();
     }
 
-    public int countBonusNumber(List<Integer> numbers) {
-        if (numbers.contains(bonusNumber)) {
-            return 1;
-        }
-        return 0;
+    public boolean isMatchBonusNumber(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 }
