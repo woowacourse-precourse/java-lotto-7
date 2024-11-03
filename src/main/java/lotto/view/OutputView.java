@@ -31,4 +31,8 @@ public class OutputView {
     public static void printRateEarning(double rateEarning) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateEarning);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

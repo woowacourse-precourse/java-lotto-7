@@ -20,18 +20,42 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = InputView.requestPurchaseAmount();
-        int purchaseAmountInt = InputValidator.validatePurchaseAmount(purchaseAmount);
+        int purchaseAmountInt = 0;
+        while (true) {
+            try {
+                String purchaseAmount = InputView.requestPurchaseAmount();
+                purchaseAmountInt = InputValidator.validatePurchaseAmount(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
 
         LottoTicket lottoTicket = lottoService.generateLottos(purchaseAmountInt);
         OutputView.printPurchaseMessage(lottoTicket.getLottos().size());
         OutputView.printLottos(lottoTicket);
 
-        List<String> winningNumbersInput = InputView.requestWinningNumbers();
-        List<Integer> winningNumbersInteger = InputValidator.validateWinningNumbers(winningNumbersInput);
+        List<Integer> winningNumbersInteger = null;
+        while (true) {
+            try {
+                List<String> winningNumbersInput = InputView.requestWinningNumbers();
+                winningNumbersInteger = InputValidator.validateWinningNumbers(winningNumbersInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
 
-        String bonusNumberInput = InputView.requestBonusNumber();
-        int bonusNumber = InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
+        int bonusNumber = 0;
+        while (true) {
+            try {
+                String bonusNumberInput = InputView.requestBonusNumber();
+                bonusNumber = InputValidator.validateBonusNumber(bonusNumberInput, winningNumbersInteger);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
 
         Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(
                 lottoTicket, winningNumbersInteger, bonusNumber);
