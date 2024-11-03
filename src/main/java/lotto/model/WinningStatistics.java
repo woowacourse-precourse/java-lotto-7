@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public class WinningStatistics {
     private final Map<Rank, Integer> winningStatistics;
 
     public WinningStatistics() {
-        this.winningStatistics = new HashMap<>();
+        this.winningStatistics = new LinkedHashMap<>();
         initializeWinningStatistics();
     }
 
