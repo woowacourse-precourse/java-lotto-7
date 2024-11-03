@@ -14,14 +14,18 @@ public class MemberInputView extends InputView {
 
     public int getPrice() {
         String inputPrice = readInput();
+        int price;
+
         try {
             validator.validate(inputPrice);
+            price = Integer.parseInt(inputPrice);
+            InputValidator validator = new InputValidator();
+            validator.validatePrice(price);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPrice();
         }
-
-        return Integer.parseInt(inputPrice);
+        return price;
     }
 
 }

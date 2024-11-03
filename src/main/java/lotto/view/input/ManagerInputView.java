@@ -9,7 +9,6 @@ import java.util.List;
 public class ManagerInputView extends InputView {
     private static final String INPUT_DELIMITER_COMMA = ",";
 
-
     public Validator<String> validator;
 
     public ManagerInputView() {
@@ -17,12 +16,26 @@ public class ManagerInputView extends InputView {
     }
 
     public List<Integer> getLottoNumbers() {
-        String inputLottoNumbers = readInput();
+        List<Integer> lottoNumbers = new ArrayList<>();
+        boolean validInput = false;
+
+        while (!validInput) {
+            String inputLottoNumbers = readInput();
+            String[] parsedString = parseInputToArray(inputLottoNumbers);
+            try {
+                lottoNumbers = parsedLottoNumbers(parsedString);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoNumbers;
+    }
+
+    private String[] parseInputToArray(String inputLottoNumbers) {
         String[] parsedString = inputLottoNumbers.split(INPUT_DELIMITER_COMMA);
-
         trimFirstElement(parsedString);
-
-        return parsedLottoNumbers(parsedString);
+        return parsedString;
     }
 
     private List<Integer> parsedLottoNumbers(String[] parsedString) {
@@ -40,9 +53,15 @@ public class ManagerInputView extends InputView {
         return Integer.parseInt(lottoNum);
     }
 
+
     public Integer getLottoBonusNumber() {
         String inputLottoBonusNumber = readInput();
-        validator.validate(inputLottoBonusNumber);
+        try {
+            validator.validate(inputLottoBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLottoBonusNumber();
+        }
 
         return Integer.parseInt(inputLottoBonusNumber);
     }
