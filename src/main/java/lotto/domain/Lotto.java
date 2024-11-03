@@ -41,7 +41,12 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
+        getSorted();
         return numbers;
+    }
+
+    private void getSorted() {
+        numbers.sort(Integer::compare);
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
