@@ -12,7 +12,7 @@
 
 ### ▪️ 입력 기능
 
-- [] 잘못된 값을 입력 받은 경우 `IllegalArgumentException`을 발생시키고,
+- [x] 잘못된 값을 입력 받은 경우 `IllegalArgumentException`을 발생시키고,
   "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력 다시 받기
 - [x] 로또 구입 금액 메세지 출력 후 구입 금액 입력 받기
     - [x] 빈 값이 들어온 경우 예외 처리
@@ -67,17 +67,17 @@
 ## 3. ✅ 과제 제출 전 확인 사항 ✅
 ---
 
-- [] Java Enum을 적용하여 구현하였는지 확인
-- [] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않는지 확인
-- [] indent depth 3 안 넘었는지 확인
+- [x] Java Enum을 적용하여 구현하였는지 확인
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않는지 확인
+- [x] indent depth 3 안 넘었는지 확인
 - [] 함수가 단일 역할을 수행하는 작은 함수들로 이뤄져있는지 확인
-- [] 3항 연산자를 쓰지 않았는지 확인
-- [] 관련 함수를 묶어 클래스를 만들고, 객체들이 협력하여 하나의 큰 기능을 수행하는지 확인
+- [x] 3항 연산자를 쓰지 않았는지 확인
+- [x] 관련 함수를 묶어 클래스를 만들고, 객체들이 협력하여 하나의 큰 기능을 수행하는지 확인
 - [] 클래스를 상수, 멤버 변수, 생성자, 메서드 순으로 작성하였는지 확인
-- [] else, switch/case 예약어를 사용하지 않았는지 확인.
-- [] IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리하였는지 확인
-- [] 예외 상황 에러 문구 "[ERROR]"로 시작하는지 확인
-- [] `./gradlew clean test` 명령어로 테스트 모두 통과되는지 확인
+- [x] else, switch/case 예약어를 사용하지 않았는지 확인.
+- [x] IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리하였는지 확인
+- [x] 예외 상황 에러 문구 "[ERROR]"로 시작하는지 확인
+- [x] `./gradlew clean test` 명령어로 테스트 모두 통과되는지 확인
 - [x] camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현했는지 확인
     - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용
     - 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용
