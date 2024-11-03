@@ -16,7 +16,6 @@ public class LottoNumberValidate {
         this.lottoNumber = lottoNumber;
     }
 
-    // 잘못된 패턴 입력시 예외처리 추가해야함
     private List<String> splitNumberString(String numberString) {
         return List.of(numberString.split(","));
     }
