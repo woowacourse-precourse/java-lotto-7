@@ -5,8 +5,17 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.List;
 
 public class InputView {
+    private static final String PURCHASE_AMOUNT_INPUT_QUESTION = "구입금액을 입력해 주세요.";
     private static final String LOTTO_NUMBER_INPUT_QUESTION = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_QUESTION = "보너스 번호를 입력해 주세요.";
+
+    public static int getPurchaseAmount() {
+        return getNumber(PURCHASE_AMOUNT_INPUT_QUESTION);
+    }
+
+    public static int getBonusNumber() {
+        return getNumber(BONUS_NUMBER_INPUT_QUESTION);
+    }
 
     public static List<Integer> getLottoNumber() {
         List<Integer> lottoNumber = null;
@@ -21,18 +30,17 @@ public class InputView {
         return lottoNumber;
     }
 
-    public static int getBonusNumber() {
-        int bonusNumber = 0;
-        while (bonusNumber == 0) {
+    private static int getNumber(String purchaseAmountInputQuestion) {
+        int getPurchaseAmount = 0;
+        while (getPurchaseAmount == 0) {
             try {
-                String input = askInput(BONUS_NUMBER_INPUT_QUESTION);
-                bonusNumber = InputParser.parseBonusNumber(input);
+                String input = askInput(purchaseAmountInputQuestion);
+                getPurchaseAmount = InputParser.parseNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                return getBonusNumber();
             }
         }
-        return bonusNumber;
+        return getPurchaseAmount;
     }
 
     private static String askInput(String question) {
