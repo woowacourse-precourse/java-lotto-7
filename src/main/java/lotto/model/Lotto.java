@@ -1,9 +1,11 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.LottoPrize;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -36,5 +38,15 @@ public class Lotto {
 
     public List<Integer> get() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    public LottoPrize compareNumber(Lotto winningLotto, int bonusNumber) {
+        List<Integer> commonElements = new ArrayList<>(numbers);
+        commonElements.retainAll(winningLotto.get());
+
+        int matchingCount = commonElements.size();
+        boolean hasBonus = matchingCount == 5 && numbers.contains(bonusNumber);
+
+        return LottoPrize.findPrize(matchingCount, hasBonus);
     }
 }
