@@ -13,7 +13,7 @@ public class Parser {
         try {
             money = Integer.parseInt(moneyInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[Error] 구매 금액은 정수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 정수여야 합니다.");
         }
 
         return money;
@@ -27,7 +27,7 @@ public class Parser {
                     .map(Integer::parseInt)
                     .toList();
         } catch (Exception e) {
-            throw new IllegalArgumentException("[Error] 로또 번호 입력은 정수와 ','로 이루어져야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호 입력은 정수와 ','로 이루어져야 합니다.");
         }
 
         return numbers;
@@ -39,7 +39,7 @@ public class Parser {
         try {
             number = Integer.parseInt(numberInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException("[Error] 보너스 번호는 정수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
         }
 
         return number;

@@ -14,7 +14,7 @@ public class GameResultManager {
 
     public Result getResult(Player player) {
         if (winningLotto == null) {
-            throw new RuntimeException("[Error] 아직 당첨 로또를 설정하지 않았습니다.");
+            throw new RuntimeException("[ERROR] 아직 당첨 로또를 설정하지 않았습니다.");
         }
 
         Map<Prize, Integer> prizeCount = getPrizeCountFrom(player);
