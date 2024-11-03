@@ -22,6 +22,8 @@ public class OutputView {
             if (rank == Rank.NONE) continue; // NONE 등수는 출력하지 않음
             printRank(rank, result);
         }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getProfitRate());
     }
 
     private static void printRank(Rank rank, Result result) {
