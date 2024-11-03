@@ -12,7 +12,6 @@ public class LottoResultOutputView implements OutputView {
 
     @Override
     public void print() {
-        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 

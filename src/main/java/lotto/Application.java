@@ -29,13 +29,34 @@ public class Application {
     }
 
     private void run() {
-        int purchaseAmount = InputView.read(PURCHASE_AMOUNT, InputHandler::toInt);
-        OutputView generatedLottoView = controller.purchaseLotto(purchaseAmount);
-        generatedLottoView.print();
+        repeatOnException(this::purchaseLotto);
+        repeatOnException(this::matchWinningNumbers);
+    }
 
+    private void repeatOnException(Runnable runnable) {
+        while (true) {
+            try {
+                runnable.run();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
+    }
+
+    private void purchaseLotto() {
+        int purchaseAmount = InputView.read(PURCHASE_AMOUNT, InputHandler::toInt);
+        OutputView view = controller.purchaseLotto(purchaseAmount);
+
+        view.print();
+    }
+
+    private void matchWinningNumbers() {
         List<Integer> numbers = InputView.read(WINNING_NUMBERS, InputHandler::toNumbers);
         int bonusBall = InputView.read(BONUS_BALL, InputHandler::toInt);
-        OutputView lottoResultView = controller.matchWinningNumbers(numbers, bonusBall);
-        lottoResultView.print();
+        OutputView view = controller.matchWinningNumbers(numbers, bonusBall);
+
+        view.print();
     }
 }

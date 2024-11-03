@@ -12,10 +12,8 @@ public class GeneratedLottoOutputView implements OutputView {
 
     @Override
     public void print() {
-        System.out.println();
         System.out.println(lottoDto.count() + "개를 구매했습니다.");
-        lottoDto.lottos().forEach(numbers ->
-                System.out.println("[" + numbers + "]"));
+        lottoDto.lottos().forEach(numbers -> System.out.println("[" + numbers + "]"));
         System.out.println();
     }
 }
