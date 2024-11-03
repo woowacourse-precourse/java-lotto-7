@@ -19,7 +19,6 @@ public class LottoResult {
         }
     }
 
-
     public void calculateResult(Lottos lottos, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottos.getLottos()) {
             WinningPrize winningPrize = calculateWinningPrize(lotto, winningNumbers);

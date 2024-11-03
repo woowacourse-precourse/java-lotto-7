@@ -7,6 +7,9 @@ import java.util.Set;
 import lotto.global.message.ErrorMessage;
 
 public class Lotto {
+    private static final int LOTTO_SIZE =6;
+    private static final int MINIMUM_LOTTO_NUMBER = 1;
+    private static final int MAXIMUM_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -23,7 +26,7 @@ public class Lotto {
 
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE);
         }
     }
@@ -40,7 +43,7 @@ public class Lotto {
     }
 
     private static boolean isOutOfRange(int number) {
-        return number < 1 || number > 45;
+        return number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER;
     }
 
 
