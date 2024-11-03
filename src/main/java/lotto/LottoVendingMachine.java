@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 
@@ -16,7 +19,17 @@ public class LottoVendingMachine {
     public void vend(){
 
         PurchaseAmount purchaseAmount = inputHandler.inputPurChaseAmount();
+        List<Lotto> purchasedLottos = makeLottos(purchaseAmount.getTicket());
+        outputHandler.printPurchasedLotto(purchaseAmount.getTicket(),purchasedLottos);
 
 
+
+    }
+
+    private List<Lotto> makeLottos(int ticket){
+
+        return IntStream.range(0, ticket)
+                .mapToObj(i -> Lotto.createRandomLotto())
+                .toList();
     }
 }
