@@ -18,13 +18,13 @@ public class LottoController {
 
     public void run() {
         LottoGame lottoGame = createNewLottoGame();
-        outputView.renderGeneratedLottos(lottoGame);
-
         MyLotto myLotto = createMyLotto();
     }
 
     private LottoGame createNewLottoGame() {
-        return new LottoGame(getPurchaseAmount());
+        LottoGame lottoGame = new LottoGame(getPurchaseAmount());
+        outputView.renderGeneratedLottos(lottoGame);
+        return lottoGame;
     }
 
     private Integer getPurchaseAmount() {
