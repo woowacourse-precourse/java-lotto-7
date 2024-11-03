@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.io.message;
 
 import java.util.Collections;
 import java.util.List;

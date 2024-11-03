@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

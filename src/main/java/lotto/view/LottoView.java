@@ -6,6 +6,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
 import lotto.domain.PurchaseAmount;
+import lotto.view.io.InputHandler;
+import lotto.view.io.OutputHandler;
 
 public class LottoView {
     private final InputHandler inputHandler;

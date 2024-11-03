@@ -1,9 +1,12 @@
-package lotto.view;
+package lotto.view.io;
 
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
+import lotto.view.io.message.LottoMessageGenerator;
+import lotto.view.io.message.RankMessageGenerator;
+import lotto.view.io.message.RateOfReturnMessageGenerator;
 
 public class OutputHandler {
 

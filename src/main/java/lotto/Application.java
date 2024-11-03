@@ -3,9 +3,9 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.domain.LottoNumberGenerator;
 import lotto.service.LottoService;
-import lotto.view.InputHandler;
+import lotto.view.io.InputHandler;
 import lotto.view.LottoView;
-import lotto.view.OutputHandler;
+import lotto.view.io.OutputHandler;
 
 public class Application {
 
