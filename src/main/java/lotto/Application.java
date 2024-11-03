@@ -8,8 +8,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int purchaseAmount = inputPurchaseAmount();
-        //System.out.println("Purchased: " + purchaseAmount);
+        int lottoCount = getLottoCount(purchaseAmount);
     }
+
 
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -38,5 +39,9 @@ public class Application {
         if (input % 1000 != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 구입금액은 1000단위이어야 합니다 : " + input);
         }
+    }
+
+    public static int getLottoCount(int input) {
+        return input / 1000;
     }
 }
