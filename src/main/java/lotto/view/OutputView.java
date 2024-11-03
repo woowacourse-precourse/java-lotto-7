@@ -28,6 +28,10 @@ public class OutputView {
 		System.out.println("당첨 번호를 입력해 주세요.");
 	}
 
+	public void printBonusNumberInputMessage() {
+		System.out.println("보너스 번호를 입력해 주세요.");
+	}
+
 	private String getLottoCountMessage(int count) {
 		return count + "개를 구매했습니다.\n";
 	}
