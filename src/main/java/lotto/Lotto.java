@@ -56,4 +56,18 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.NOT_DUPLICATED_BONUS_NUMBER.show());
         }
     }
+
+    public Integer computeMatchNumberCount(Lotto winnerLotto) {
+        Integer count = 0;
+        for (Integer winnerLottoNumber : winnerLotto.numbers) {
+            if (this.numbers.contains(winnerLottoNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean matchBonusNumber(Integer bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
 }
