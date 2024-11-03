@@ -10,7 +10,7 @@ public class CorrectCount {
         this.bonus = false;
     }
 
-    public static CorrectCount of(final int count) {
+    public static CorrectCount from(final int count) {
         return new CorrectCount(count);
     }
 

@@ -59,6 +59,6 @@ public class WinningNumbers {
             }
             ;
         }
-        return CorrectCount.of(correctCount);
+        return CorrectCount.from(correctCount);
     }
 }
