@@ -30,7 +30,7 @@ public class Lottos {
 
     public List<LottoNumbers> getAllLottoNumbers() {
         return lottos.stream()
-                .map(Lotto::getNumbers)
+                .map(Lotto::getLottoNumbers)
                 .toList();
     }
 }

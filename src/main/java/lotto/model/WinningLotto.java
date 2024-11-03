@@ -18,7 +18,7 @@ public class WinningLotto {
     }
 
     public int getMatchCount(Lotto lotto) {
-        return numbers.countMatch(lotto.getNumbers());
+        return numbers.countMatch(lotto.getLottoNumbers());
     }
 
     public boolean isBonusNumberMatches(Lotto lotto) {

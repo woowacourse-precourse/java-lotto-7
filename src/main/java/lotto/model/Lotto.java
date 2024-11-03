@@ -34,7 +34,7 @@ public class Lotto {
         }
     }
 
-    public LottoNumbers getNumbers() {
+    public LottoNumbers getLottoNumbers() {
         return lottoNumbers;
     }
 
