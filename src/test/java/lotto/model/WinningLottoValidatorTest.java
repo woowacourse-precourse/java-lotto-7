@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.common.ConstantsForTest.END_INCLUSIVE;
+import static lotto.common.ConstantsForTest.START_INCLUSIVE;
+import static lotto.common.ConstantsForTest.VALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -11,11 +14,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningLottoValidatorTest {
-
-    private static final int VALID_SIZE = 6;
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
-
     private List<Integer> validWinningNumbers;
 
     @BeforeEach
@@ -27,7 +25,7 @@ public class WinningLottoValidatorTest {
     @DisplayName("보너스 번호와 당첨 번호가 중복되는 경우 예외를 던진다.")
     void throwExceptionWhenBonusNumberAndWinningNumbersAreDuplicated() {
         // given
-        int bonusNumber = validWinningNumbers.get(0);
+        int bonusNumber = validWinningNumbers.getFirst();
 
         // when & then
         assertThatThrownBy(() -> WinningLottoValidator.validate(validWinningNumbers, bonusNumber))

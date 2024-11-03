@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.common.ConstantsForTest.PRICE_OF_LOTTO_TICKET;
 import static lotto.service.ErrorMessages.Sales.INVALID_UNIT_OF_PAID_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -12,8 +13,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoSalesServiceTest {
-
-    private static final int PRICE_OF_LOTTO_TICKET = 1000;
 
     private LottoSalesService lottoSalesService;
 

@@ -2,8 +2,8 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
 import java.util.List;
+import lotto.common.NumberGenerator;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,8 +21,8 @@ public class WinningLottoTest {
 
     @BeforeEach
     void setUp() {
-        numbers = createValidNumbers(START_INCLUSIVE);
-        bonusNumber = numbers.get(VALID_SIZE - 1) + 1;
+        numbers = NumberGenerator.generateNumbersWithSizeAndRange(START_INCLUSIVE, VALID_SIZE);
+        bonusNumber = numbers.getLast();
         winningLotto = new WinningLotto(new Lotto(numbers), bonusNumber);
     }
 
@@ -43,20 +43,12 @@ public class WinningLottoTest {
     @DisplayName("보너스 숫자와의 일치 여부를 올바르게 반환한다.")
     void shouldReturnCorrectBonusMatchStatus() {
         // given
-        Lotto winningNumbers = new Lotto(createValidNumbers(bonusNumber));
+        Lotto winningNumbers = new Lotto(NumberGenerator.generateNumbersWithSizeAndRange(bonusNumber, VALID_SIZE));
 
         // when
         boolean bonusNumberMatched = winningLotto.isBonusNumberMatchedWith(winningNumbers);
 
         // then
         assertThat(bonusNumberMatched).isTrue();
-    }
-
-    private List<Integer> createValidNumbers(int startInclusive) {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < VALID_SIZE; i++) {
-            numbers.add(startInclusive + i);
-        }
-        return numbers;
     }
 }
