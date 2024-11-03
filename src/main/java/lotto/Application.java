@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        int money;
+        int amount;
         int lottoCount;
         List<Lotto> lottos = new ArrayList<>();
         int totalPrice = 0;
@@ -20,18 +20,18 @@ public class Application {
         // 로또 구매
         System.out.println("구입금액을 입력해 주세요.");
         try {
-            money = Integer.parseInt(readLine());
+            amount = Integer.parseInt(readLine());
             System.out.println();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
-        if (money < 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("[ERROR] 0이상의 값을 입력해야 합니다.");
         }
-        if (money % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나눠 떨어지는 값을 입력해야 합니다.");
         }
-        lottoCount = money / LOTTO_PRICE;
+        lottoCount = amount / LOTTO_PRICE;
 
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> randomNumbers = RandomMaker.generateLottoNumbers(NUMBER_COUNT);
@@ -87,6 +87,6 @@ public class Application {
             System.out.println(" - " + rankCountMap.get(rank) + "개");
         }
 
-        System.out.println("총 수익률은 " + String.format("%.1f", (double) totalPrice / money * 100) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", (double) totalPrice / amount * 100) + "%입니다.");
     }
 }
