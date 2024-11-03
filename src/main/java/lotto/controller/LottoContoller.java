@@ -36,10 +36,17 @@ public class LottoContoller {
 
         outputView.printLottoLogs(lottoService.generateLottoLogs());
 
+        String winningNumbersInput = inputView.inputWinningNumbers();
+        String bonusNumberInput = inputView.inputBonusNumber();
+
+        outputView.printWinningReport(lottoService.generateWinningReport(
+                winningNumbersInput, bonusNumberInput
+        ));
+
         double profitRate = lottoService.computeProfitRate(
                 purchaseAmount,
-                inputView.inputWinningNumbers(),
-                inputView.inputBonusNumber()
+                winningNumbersInput,
+                bonusNumberInput
         );
         outputView.printProfitRate(profitRate);
     }

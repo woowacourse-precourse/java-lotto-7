@@ -19,6 +19,11 @@ public class OutputView {
         lottoLogs.forEach(System.out::println);
     }
 
+    public void printWinningReport(List<String> winningReport) {
+        System.out.println("당첨 통계\n" + "---");
+        winningReport.forEach(System.out::println);
+    }
+
     public void printProfitRate(double profitRate) {
         DecimalFormat profitRateFormat = new DecimalFormat("#,##0.0#%");
         System.out.println("총 수익률은 " + profitRateFormat.format(profitRate) + "입니다.");

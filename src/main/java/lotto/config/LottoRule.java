@@ -10,7 +10,6 @@ public enum LottoRule {
     FIFTH(3, false, 5_000),
     NONE(0, false,0);
 
-
     private final int matchCount;
     private final boolean hasBonus;
     private final int prize;
@@ -19,10 +18,6 @@ public enum LottoRule {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
         this.prize = prize;
-    }
-
-    public int getPrize() {
-        return prize;
     }
 
     public static LottoRule findByMatch(int matchCount, boolean hasBonus) {
@@ -34,5 +29,17 @@ public enum LottoRule {
 
     private boolean isRuleMatch(int matchCount, boolean hasBonus) {
         return this.matchCount == matchCount && (!this.hasBonus || hasBonus);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isHasBonus() {
+        return hasBonus;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

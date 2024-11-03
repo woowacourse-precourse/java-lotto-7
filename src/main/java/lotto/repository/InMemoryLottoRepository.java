@@ -2,6 +2,7 @@ package lotto.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
 
@@ -25,18 +26,14 @@ public class InMemoryLottoRepository implements LottoRepository {
         lottoStore.addAll(Lotto.buyLottos(purchaseAmount));
     }
 
-    @Override
-    public int findTotalPrizeByWinningNumbersAndBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public Stream<LottoRule> generatePrizeStreamBy(List<Integer> winningNumbers, int bonusNumber) {
         return lottoStore.stream()
                 .map(i -> LottoRule
                         .findByMatch(
                                 i.countMatchNumber(winningNumbers),
                                 i.hasBonus(bonusNumber)
                         )
-                )
-                .map(LottoRule::getPrize)
-                .mapToInt(Integer::intValue)
-                .sum();
+                );
     }
 
     @Override
