@@ -7,6 +7,8 @@ public class LottoManager {
 
     //구매할 로또 갯수
     private int purchaseAmount;
+    //추후 수익률 계산을 위한 변수
+    private int purchasePrice;
 
     public void setPurchaseAmount(){
         while(true){
@@ -37,6 +39,7 @@ public class LottoManager {
 
     private boolean validateInput(int convertAmount) {
         if (LottoValidator.unitValidator(convertAmount)) {
+            purchasePrice = convertAmount;
             purchaseAmount = convertAmount / 1000;
             return true;
         }
