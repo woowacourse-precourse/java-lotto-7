@@ -3,15 +3,17 @@ package lotto.domain;
 import lotto.message.ErrorMessage;
 import lotto.validation.Validator;
 
-public class Amount {
-    private final int amount;
+public class PurchaseAmount {
 
-    public Amount(String strAmount){
-        this.amount = validateAmount(parseToInt(strAmount));
+    private static final int LOTTO_PRICE = 1000;
+    private final int lottoTickets;
+
+    public PurchaseAmount(String strAmount){
+        this.lottoTickets = validateAmount(parseToInt(strAmount)) / LOTTO_PRICE;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getLottoTickets(){
+        return lottoTickets;
     }
 
     private int parseToInt(String strAmount){

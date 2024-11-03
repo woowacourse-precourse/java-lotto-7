@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.User;
 import lotto.service.UserService;
 
 public class LottoController {
@@ -11,6 +12,7 @@ public class LottoController {
     }
 
     public void run(){
-        int purchaseAmount = userService.inputAmount();
+        int lottoTickets  = userService.inputAmount();
+        User user = userService.priceLotto(lottoTickets);
     }
 }

@@ -17,4 +17,5 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_THOUSAND.getMessage());
         }
     }
+
 }
