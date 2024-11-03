@@ -13,21 +13,21 @@ public class LottoPrice {
     }
 
     private static void validate(Integer value) {
-        if(isDividableByThousand(value)) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
-        }
 
-        if(isNonNegative(value)) {
+        isDividableByThousand(value);
+        isNonNegative(value);
+    }
+
+    private static void isNonNegative(Integer value) {
+        if(value < 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
         }
     }
 
-    private static boolean isNonNegative(Integer value) {
-        return value > 0;
-    }
-
-    private static boolean isDividableByThousand(Integer value) {
-        return value % 1000 != 0;
+    private static void isDividableByThousand(Integer value) {
+        if(value % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000의 배수인 양의 정수를 입력해야 합니다.");
+        }
     }
 
     public Integer getValue() {
