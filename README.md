@@ -8,7 +8,7 @@
 - [2주 차 공통 피드백](https://docs.google.com/document/d/1QW_762N0WC6JvAiDHNBYXzLJ60y1Azex1d7tID0BggM/edit?tab=t.0)을 최대한 반영한다.
 
 ## 개요
-
+입력 받은 로또 구입 금액에 해당하는 만큼의 로또를 발행하고 입력 받은 당첨 번호와 보너스 번호에 대해 당첨 내역과 수익률을 출력한다.
 
 ## 기능 요구 사항
 간단한 로또 발매기를 구현한다.
