@@ -9,12 +9,21 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers) {
         validateNumberCount(numbers);
+        validateNumberRange(numbers);
         this.numbers = numbers;
     }
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 0 || number > 46) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 }
