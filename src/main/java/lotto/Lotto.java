@@ -1,15 +1,17 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortLotto(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -22,8 +24,10 @@ public class Lotto {
         }
     }
 
-    private void sortLotto(List<Integer> beforeSortNumbers) {
-        Collections.sort(beforeSortNumbers);
+    private List<Integer> sortLotto(List<Integer> beforeSortNumbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(beforeSortNumbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     public void printLotto() {
@@ -44,6 +48,14 @@ public class Lotto {
 
     public boolean isNumberInLottoResult(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+
+    public int findDuplicateNumber(List<Integer> lottoNumbers) {
+        Set<Integer> myNumbers = new HashSet<>(numbers);
+        Set<Integer> compareNumbers = new HashSet<>(lottoNumbers);
+        myNumbers.retainAll(compareNumbers);
+        return myNumbers.size();
     }
 
     public List<Integer> getNumbers() {
