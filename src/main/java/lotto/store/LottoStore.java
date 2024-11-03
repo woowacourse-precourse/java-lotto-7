@@ -1,13 +1,13 @@
 package lotto.store;
 
 import lotto.money.Money;
-import lotto.money.ProductPrice;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class LottoStore {
-    private static final ProductPrice lottoPrice = new ProductPrice(1_000);
+    private static final int LOTTO_AMOUNT = 1_000;
+    private static final Money LOTTO_MONEY_UNIT = new Money(LOTTO_AMOUNT);
     private final LottoGenerator lottoGenerator;
 
     public LottoStore(LottoGenerator lottoGenerator) {
@@ -15,10 +15,7 @@ public class LottoStore {
     }
 
     public List<Lotto> sale(Money money) {
-        if(lottoPrice.hasChange(money))
-            throw new IllegalArgumentException("거스름돈이 발생합니다.");
-
-        return createLotto(lottoPrice.countPurchasableProduct(money));
+        return createLotto(money.countBundle(LOTTO_MONEY_UNIT));
     }
 
     private List<Lotto> createLotto(final int purchasableProduct) {
