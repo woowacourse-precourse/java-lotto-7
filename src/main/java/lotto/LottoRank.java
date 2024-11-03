@@ -1,11 +1,11 @@
 package lotto;
 
 public enum LottoRank {
-    THREE_MATCH(3, 5_000, "%d개 일치, (%.f원) - %d개"),
-    FOUR_MATCH(4, 50_000, "%d개 일치, (%.f원) - %d개"),
-    FIVE_MATCH(5, 1_500_000, "%d개 일치, (%.f원) - %d개"),
+    THREE_MATCH(3, 5_000, "%d개 일치 (%,d원) - %d개"),
+    FOUR_MATCH(4, 50_000, "%d개 일치 (%,d원) - %d개"),
+    FIVE_MATCH(5, 1_500_000, "%d개 일치 (%,d원) - %d개"),
     FIVE_MATCH_BONUS(5, 30_000_000, "%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    SIX_MATCH(6, 2_000_000_000, "%d개 일치, (%.f원) - %d개");
+    SIX_MATCH(6, 2_000_000_000, "%d개 일치 (%,d원) - %d개");
 
     LottoRank(int matchCount, int prize, String printFormat) {
         this.matchCount = matchCount;
