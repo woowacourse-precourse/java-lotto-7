@@ -38,7 +38,6 @@ public class DrawNumbersValidator {
     }
 
     public int validateBonusNumber(String bonusNumber) {
-
         validateEmpty(bonusNumber);
         validateNoLetters(bonusNumber);
         int parseBonusNumber = Integer.parseInt(bonusNumber);
@@ -54,7 +53,7 @@ public class DrawNumbersValidator {
     }
     private void validateRange(String number) {
         if (Integer.parseInt(number) < LottoNumber.MIN_VALUE || LottoNumber.MAX_VALUE < Integer.parseInt(number)) {
-            throw new IllegalArgumentException("당첨 번호는 1 ~ 45 범위로 입력해주세요.");
+            throw new IllegalArgumentException("번호는 1 ~ 45 범위로 입력해주세요.");
         }
     }
 
@@ -66,7 +65,7 @@ public class DrawNumbersValidator {
 
     private void validateNoLetters(String number) {
         if (!number.matches(LottoNumber.FORMAT)) {
-            throw new IllegalArgumentException("당첨 번호로는 문자를 입력할 수 없습니다.");
+            throw new IllegalArgumentException("번호로는 문자를 입력할 수 없습니다.");
         }
     }
 
