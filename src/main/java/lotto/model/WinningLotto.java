@@ -19,4 +19,8 @@ public class WinningLotto {
 	private LottoNumber createBonusNumber(int number) {
 		return LottoNumber.from(number);
 	}
+
+	private boolean drawLottoNumber(LottoNumber lottoNumber) {
+		return winningNumbers.getNumbers().contains(lottoNumber);
+	}
 }
