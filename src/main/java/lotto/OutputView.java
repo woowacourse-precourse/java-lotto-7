@@ -47,7 +47,7 @@ public class OutputView {
     }
 
     public void updatePrizeRate(double prizeRate) {
-        System.out.printf("총 수익률은 %.2f" + "%s입니다.", prizeRate, "%");
+        System.out.printf("총 수익률은 %.1f" + "%s입니다.", prizeRate, "%");
     }
 
 }
