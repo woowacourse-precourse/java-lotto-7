@@ -1,7 +1,5 @@
 package lotto.service;
 
-import lotto.Exception.LottoException;
-import lotto.Exception.MoneyException;
 import lotto.model.Lotto;
 import lotto.utils.LottoRules;
 import org.assertj.core.api.Assertions;
@@ -37,7 +35,7 @@ class LottoServiceTest {
     void validateNoDuplicates(int bonusNumber) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
-            lottoService.validateNoDuplicates(winningNumbers, bonusNumber);
+            lottoService.checkBonusNumberDuplication(winningNumbers, bonusNumber);
         });
         assertEquals("[ERROR] 보너스번호는 당첨번호 6개와 중복될 수 없습니다." , exception.getMessage());
     }
