@@ -37,4 +37,8 @@ public enum LottoGrade {
             throw new IllegalArgumentException("해당하는 등급 등록되지 않음");
         }
     }
+
+    public long getPrice() {
+        return price;
+    }
 }
