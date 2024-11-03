@@ -11,8 +11,6 @@ public class TotalPrice implements ReturnRate {
     public static final int THIRD_PLACE_PRICE = 1500000;
     public static final int FOURTH_PLACE_PRICE = 50000;
     public static final int FIFTH_PLACE_PRICE = 5000;
-
-    private static final int DECIMAL_ROUNDING_PLACE = 100;
     private static final int PERCENTAGE_FOR_CALCULATION = 100;
 
     private static final Map<WinningType, Integer> prizeMap =
