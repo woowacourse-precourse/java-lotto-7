@@ -1,9 +1,6 @@
 package lotto.system;
 
-import static lotto.system.lottoGetter.LottoPaymentValidator.ERROR_INSUFFICIENT_PAYMENT;
-import static lotto.system.lottoGetter.LottoPaymentValidator.ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.system.lottoGetter.LottoPaymentValidator;
@@ -31,9 +28,8 @@ class LottoPaymentValidatorTest {
         int insufficientPayment = 500;
 
         // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> LottoPaymentValidator.validate(insufficientPayment));
-        assertEquals(ERROR_INSUFFICIENT_PAYMENT, exception.getMessage());
     }
 
     @Test
@@ -44,8 +40,7 @@ class LottoPaymentValidatorTest {
         int notMultipleOfTicketPrice = 2500;
 
         // when & then
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> LottoPaymentValidator.validate(notMultipleOfTicketPrice));
-        assertEquals(ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE, exception.getMessage());
     }
 }

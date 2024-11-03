@@ -1,11 +1,11 @@
 package lotto.system.lottoGetter;
 
+import static lotto.system.utils.constants.LottoConstants.TICKET_PRICE;
+
 import java.util.List;
 import lotto.system.unit.LottoTicket;
 
 public class LottoTicketIssuer { // 로또 구매 금액을 입력 받아 로또 티켓을 발급하는 객체
-
-    private static final int TICKET_PRICE = 1000;
 
     private final int purchaseAmount;
     private final int quantity;

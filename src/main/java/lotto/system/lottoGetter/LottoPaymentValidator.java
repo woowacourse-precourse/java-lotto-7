@@ -1,10 +1,10 @@
 package lotto.system.lottoGetter;
 
-public class LottoPaymentValidator { // 로또 구매 금액을 검증하는 객체
+import static lotto.system.utils.constants.LottoConstants.TICKET_PRICE;
+import static lotto.system.utils.constants.LottoErrorMessages.INSUFFICIENT_PAYMENT;
+import static lotto.system.utils.constants.LottoErrorMessages.INVALID_MULTIPLE_OF_TICKET_PRICE;
 
-    public static final String ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE = "[ERROR] 로또 구매 금액은 로또 한 장의 가격의 배수여야 합니다.";
-    public static final String ERROR_INSUFFICIENT_PAYMENT = "[ERROR] 로또 구매 금액은 로또 한 장의 가격보다 커야 합니다.";
-    private static final int TICKET_PRICE = 1000;
+public class LottoPaymentValidator { // 로또 구매 금액을 검증하는 객체
 
     public static void validate(int totalPayment) {
         validateSufficientPayment(totalPayment);
@@ -13,13 +13,13 @@ public class LottoPaymentValidator { // 로또 구매 금액을 검증하는 객
 
     private static void validateMultipleOfTicketPrice(int totalPayment) {
         if (totalPayment % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR_INVALID_MULTIPLE_OF_TICKET_PRICE);
+            throw new IllegalArgumentException(INVALID_MULTIPLE_OF_TICKET_PRICE.getMessage());
         }
     }
 
     private static void validateSufficientPayment(int totalPayment) {
         if (totalPayment < TICKET_PRICE) {
-            throw new IllegalArgumentException(ERROR_INSUFFICIENT_PAYMENT);
+            throw new IllegalArgumentException(INSUFFICIENT_PAYMENT.getMessage());
         }
     }
 }

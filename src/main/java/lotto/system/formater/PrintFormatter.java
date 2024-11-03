@@ -1,5 +1,10 @@
 package lotto.system.formater;
 
+import static lotto.system.utils.constants.ViewMessages.BONUS_NUMBER;
+import static lotto.system.utils.constants.ViewMessages.LOTTO_TICKET_QUANTITY;
+import static lotto.system.utils.constants.ViewMessages.PURCHASE_AMOUNT;
+import static lotto.system.utils.constants.ViewMessages.WINNING_NUMBER;
+
 import java.util.List;
 import lotto.system.lottoGetter.LottoTicketIssuer;
 import lotto.system.unit.LottoTicket;
@@ -7,19 +12,12 @@ import lotto.system.utils.Parser;
 import lotto.user.Bonus;
 import lotto.user.Lotto;
 import lotto.view.InputView;
-import lotto.view.InputViewInterface;
 import lotto.view.OutPutView;
-import lotto.view.OutPutViewInterface;
 
 public class PrintFormatter {
 
-    private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_TICKET_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
-    private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    
     public LottoTicketIssuer formatPurchaseInfo() {
-        OutPutView.printMessage(PURCHASE_AMOUNT_MESSAGE);
+        OutPutView.printMessage(PURCHASE_AMOUNT.getMessage());
         LottoTicketIssuer lottoTicketIssuer = new LottoTicketIssuer(InputView.inputPurchaseAmount());
         OutPutView.printNewLine();
 
@@ -27,13 +25,13 @@ public class PrintFormatter {
     }
 
     public void formatLottoTickets(List<LottoTicket> lottoTickets, int quantity) {
-        OutPutView.printMessage(String.format(LOTTO_TICKET_QUANTITY_MESSAGE, quantity));
+        OutPutView.printMessage(LOTTO_TICKET_QUANTITY.getMessage(quantity));
         lottoTickets.forEach(ticket -> OutPutView.printMessage(ticket.toString()));
         OutPutView.printNewLine();
     }
 
     public Lotto formatWinningNumbers() {
-        OutPutView.printMessage(WINNING_NUMBER_MESSAGE);
+        OutPutView.printMessage(WINNING_NUMBER.getMessage());
         Lotto winningNumbers = new Lotto(Parser.parseWithDelimiter(InputView.inputWinningNumbers()));
         OutPutView.printNewLine();
 
@@ -41,7 +39,7 @@ public class PrintFormatter {
     }
 
     public Bonus formatBonusNumber() {
-        OutPutView.printMessage(BONUS_NUMBER_MESSAGE);
+        OutPutView.printMessage(BONUS_NUMBER.getMessage());
         Bonus bonus = new Bonus(InputView.inputBonusNumber());
         OutPutView.printNewLine();
 
