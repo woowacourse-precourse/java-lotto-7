@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -62,7 +63,8 @@ public class Lotto {
     }
 
     public String getLottoNumbersStr(){
-        Collections.sort(numbers);
-        return LottoFormatter.lottoNumbersToStr(numbers);
+        ArrayList <Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return LottoFormatter.lottoNumbersToStr(sortedList);
     }
 }
