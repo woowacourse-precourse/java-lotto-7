@@ -51,4 +51,13 @@ class ValidatorTest {
             validator.validatePositiveNumber(input);
         }, "양수가 아닐 경우 예외 발생");
     }
+
+    @Test
+    void 천_단위가_아닐_경우_예외_발생() {
+        String input = "1500";
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateDivisibleByThousand(input);
+        }, "1000 단위가 아닐 경우 예외 발생");
+    }
 }
