@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputViewImpl implements InputView {
+public class ConsoleInputView implements InputView {
     @Override
     public String getPurchaseAmountInput() {
         System.out.println("구입 금액을 입력해 주세요.");

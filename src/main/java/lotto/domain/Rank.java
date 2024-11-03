@@ -31,6 +31,10 @@ public enum Rank {
         return this.matchCount == matchCount && this.isBonusMatched == isBonusMatched;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
@@ -8,6 +10,7 @@ public class LottoResult {
     private static final int INITIALIZATION_VALUE = 0;
     private static final int INCREMENT_VALUE = 1;
     private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
+    private static final int SCALE_ONE = 1;
 
     private final Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
 
@@ -30,6 +33,10 @@ public class LottoResult {
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
 
-        return ((double) totalPrizeMoney / purchaseAmount) * PERCENTAGE_CONVERSION_FACTOR;
+        double returnOnInvestment = ((double) totalPrizeMoney / purchaseAmount) * PERCENTAGE_CONVERSION_FACTOR;
+
+        return BigDecimal.valueOf(returnOnInvestment)
+                .setScale(SCALE_ONE, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 }

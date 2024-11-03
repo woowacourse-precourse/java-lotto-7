@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.generator.RandomValueGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
@@ -16,6 +17,6 @@ public class LottoTicket {
     }
 
     public List<Lotto> getLottos() {
-        return new ArrayList<>(lottos);
+        return Collections.unmodifiableList(lottos);
     }
 }
