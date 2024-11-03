@@ -10,7 +10,7 @@ public class LottoWinningChecker {
     private HashSet<Integer> winningNumbs;
     private int bonusNumber;
 
-    LottoWinningChecker() {
+    public LottoWinningChecker() {
     }
 
     public void saveWinningNumbs(List<Integer> validatedWinningNumbs) {
