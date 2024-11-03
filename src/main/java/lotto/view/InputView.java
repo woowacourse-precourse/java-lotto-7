@@ -10,4 +10,9 @@ public class InputView {
         System.out.println(ViewMessages.PROMPT_MONEY.getMessage(Constants.MONEY_UNIT.getValue()));
         return Console.readLine();
     }
+
+    public String promptNumbers() {
+        System.out.println(ViewMessages.PROMPT_WINNING_NUMBERS.getMessage());
+        return Console.readLine();
+    }
 }
