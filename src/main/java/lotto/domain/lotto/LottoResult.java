@@ -12,14 +12,20 @@ public class LottoResult {
         this.totalPrize = totalPrize;
     }
 
-    public void calculate(LottoBundle lottoBundle, WinningNumbers winningNumbers) {
+    public void calculate(LottoBundle lottoBundle, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         initializeRankCount();
 
         for (Lotto lotto : lottoBundle.getLottoBundle()) {
-            Rank rank = winningNumbers.determineRank(lotto);
+            Rank rank = determineRank(lotto, winningNumbers, bonusNumber);
             rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
             totalPrize = totalPrize.add(rank.getPrize());
         }
+    }
+
+    private Rank determineRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        int matchCount = winningNumbers.calculateMatchCount(lotto);
+        boolean hasBonusNumber = matchCount == 5 && bonusNumber.hasMatchingBonusNumber(lotto);
+        return Rank.of(matchCount, hasBonusNumber);
     }
 
     private void initializeRankCount() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Investment;
 import lotto.domain.lotto.LottoBundle;
 import lotto.domain.lotto.LottoNumber;
@@ -37,7 +38,8 @@ public class LottoController {
         Investment investment = purchaseLotto();
         LottoBundle lottoBundle = generateLottoBundle(investment.getQuantity());
         WinningNumbers winningNumbers = getWinningNumbers();
-        LottoResult lottoResult = calculateResults(lottoBundle, winningNumbers);
+        BonusNumber bonusNumber = inputBonusNumber();
+        LottoResult lottoResult = calculateResults(lottoBundle, winningNumbers, bonusNumber);
         printResults(lottoResult, investment);
     }
 
@@ -76,9 +78,13 @@ public class LottoController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        List<LottoNumber> winningNumbers = inputWinningNumbers();
-        LottoNumber bonusNumber = inputBonusNumber();
-        return new WinningNumbers(winningNumbers, bonusNumber);
+        try {
+            List<LottoNumber> winningNumbers = inputWinningNumbers();
+            return new WinningNumbers(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private List<LottoNumber> inputWinningNumbers() {
@@ -89,13 +95,14 @@ public class LottoController {
             outputView.printNewLine();
 
             return convertToLottoNumbers(input);
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputWinningNumbers();
         }
     }
 
     private List<LottoNumber> convertToLottoNumbers(String input) {
+
         String[] splitInput = splitter.splitFrom(input);
         List<LottoNumber> numbers = new ArrayList<>();
         for (String splitNumber : splitInput) {
@@ -104,22 +111,24 @@ public class LottoController {
         return numbers;
     }
 
-    private LottoNumber inputBonusNumber() {
+    private BonusNumber inputBonusNumber() {
         try {
             outputView.printBonusNumberGuide();
-            LottoNumber bonusNumber = new LottoNumber(converter.convertToInteger(inputView.readLine()));
+            BonusNumber bonusNumber = new BonusNumber(
+                    new LottoNumber(converter.convertToInteger(inputView.readLine())));
             outputView.printNewLine();
             return bonusNumber;
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputBonusNumber();
         }
     }
 
-    private LottoResult calculateResults(LottoBundle lottoBundle, WinningNumbers winningNumbers) {
+    private LottoResult calculateResults(LottoBundle lottoBundle, WinningNumbers winningNumbers,
+                                         BonusNumber bonusNumber) {
         outputView.printWinningStatistics();
         LottoResult lottoResult = new LottoResult(new EnumMap<>(Rank.class), BigInteger.ZERO);
-        lottoResult.calculate(lottoBundle, winningNumbers);
+        lottoResult.calculate(lottoBundle, winningNumbers, bonusNumber);
         return lottoResult;
     }
 

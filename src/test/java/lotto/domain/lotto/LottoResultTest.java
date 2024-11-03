@@ -22,12 +22,13 @@ class LottoResultTest {
 
         Lotto lotto = new Lotto(numbers);
         List<Lotto> testLottoBundle = new ArrayList<>(List.of(lotto));
-        WinningNumbers winningNumbers = new WinningNumbers(numbers, new LottoNumber(7));
+        WinningNumbers winningNumbers = new WinningNumbers(numbers);
+        BonusNumber bonusNumber = new BonusNumber(new LottoNumber(7));
         LottoBundle lottoBundle = new LottoBundle(testLottoBundle, new RandomIntegerListGenerator(),
                 new AscendingSorter());
         LottoResult lottoResult = new LottoResult(new EnumMap<>(Rank.class), BigInteger.ZERO);
 
-        lottoResult.calculate(lottoBundle, winningNumbers);
+        lottoResult.calculate(lottoBundle, winningNumbers, bonusNumber);
         Map<Rank, Integer> rankCount = lottoResult.getRankCount();
 
         assertThat(rankCount.get(Rank.FIRST)).isEqualTo(1);
