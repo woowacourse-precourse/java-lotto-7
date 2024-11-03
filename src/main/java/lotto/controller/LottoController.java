@@ -28,6 +28,7 @@ public class LottoController {
         lottoGenerator.printLottos(lottos);
 
         lottoResultManager.getWinningNumbers();
+        lottoResultManager.getBonusNumbers();
     }
 
 }

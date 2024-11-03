@@ -11,7 +11,7 @@ public class ValidateValues {
         return 0;
     }
 
-    public static boolean winningNumber(String winningNumber) {
+    public static boolean winningNumberOrBonusNumber(String winningNumber) {
         if(InputValidation.NOT_NUMBER.validate(winningNumber)
             && InputValidation.NOT_INTEGER.validate(winningNumber)
             && InputValidation.NOT_IN_RANGE_1_TO_45.validate(winningNumber)) {

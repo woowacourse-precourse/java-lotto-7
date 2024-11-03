@@ -14,4 +14,9 @@ public class InputView {
         return Console.readLine();
     }
 
+    public static String getBonusNumbers() {
+        System.out.println("보너스 번호를 입력해 주세요. (1부터 45사이의 수 입력)");
+        return Console.readLine();
+    }
+
 }

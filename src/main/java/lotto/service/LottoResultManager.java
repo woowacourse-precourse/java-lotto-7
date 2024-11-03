@@ -18,12 +18,23 @@ public class LottoResultManager {
             StringTokenizer tokenizer = new StringTokenizer(inputWinningNumbers,",");
             while(tokenizer.hasMoreTokens()){
                 String winnerNumber = tokenizer.nextToken();
-                if(ValidateValues.winningNumber(winnerNumber)){
+                if(ValidateValues.winningNumberOrBonusNumber(winnerNumber)){
                     winningNumbers.add(Integer.parseInt(winnerNumber));
                 }
             }
         }
         return winningNumbers;
+    }
+
+    public int getBonusNumbers() {
+        String inputBonusNumber = InputView.getBonusNumbers();
+        int bonusNumber = 0;
+        if(InputValidation.NOT_BLANK.validate(inputBonusNumber)){
+            if(ValidateValues.winningNumberOrBonusNumber(inputBonusNumber)){
+                bonusNumber = Integer.parseInt(inputBonusNumber);
+            }
+        }
+        return bonusNumber;
     }
 
 }
