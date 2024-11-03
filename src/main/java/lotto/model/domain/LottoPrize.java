@@ -15,4 +15,8 @@ public enum LottoPrize {
         this.prize = prize;
         this.message = message;
     }
+
+    public int calculateWholePrize(int count) {
+        return count * prize;
+    }
 }
