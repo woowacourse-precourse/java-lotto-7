@@ -16,9 +16,9 @@ public class StatisticsCalculator {
     }
 
     public Map<RankType, RankResult> calculateStatistics(
-        List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber) {
+        List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
 
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : lottos) {
             int matchCount = LottoMatchCalculator.countMatchedNumbers(lotto, winningNumbers);
             boolean bonusMatched = LottoMatchCalculator.isBonusMatched(lotto, matchCount, bonusNumber);
             incrementRankResult(matchCount, bonusMatched);

@@ -28,14 +28,14 @@ public class LottoController {
 
     public void executeLottoWorkflow() {
         int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottoList = lottoGenerator.generateLottoList(purchaseAmount);
-        outputView.displayLottoList(purchaseAmount, lottoList);
+        List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
+        outputView.displayLottos(purchaseAmount, lottos);
 
         Lotto winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
         Map<RankType, RankResult> statistics =
-            statisticsCalculator.calculateStatistics(lottoList, winningNumbers, bonusNumber);
+            statisticsCalculator.calculateStatistics(lottos, winningNumbers, bonusNumber);
         String earningRate = statisticsCalculator.calculateEarningRate(purchaseAmount);
         outputView.displayStatistics(statistics, earningRate);
     }

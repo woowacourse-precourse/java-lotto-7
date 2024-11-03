@@ -9,9 +9,9 @@ import lotto.util.message.PromptMessage;
 
 public class OutputView {
 
-    public void displayLottoList(int purchaseAmount, List<Lotto> lottoList) {
+    public void displayLottos(int purchaseAmount, List<Lotto> lottos) {
         System.out.println(purchaseAmount + PromptMessage.LOTTO_AMOUNT_MESSAGE);
-        lottoList.forEach(Lotto::displayNumbers);
+        lottos.forEach(Lotto::displayNumbers);
         System.out.println();
     }
 
