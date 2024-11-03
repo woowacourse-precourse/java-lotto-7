@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.dto.LottoResultDto;
 import lotto.dto.LottoTicketsDto;
-import lotto.model.*;
+import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.utils.Converter;
 import lotto.view.InputView;

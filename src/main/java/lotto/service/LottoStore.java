@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoTickets;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 
 public class LottoStore {
 

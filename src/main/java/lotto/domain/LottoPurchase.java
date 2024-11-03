@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import lotto.utils.AmountValidator;
 
@@ -18,10 +18,6 @@ public class LottoPurchase {
 
     public int getAmount() {
         return amount;
-    }
-
-    public int getTicketCount() {
-        return ticketCount;
     }
 
 }

@@ -1,10 +1,10 @@
 package lotto.service;
 
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.LottoTickets;
-import lotto.model.Rank;
-import lotto.model.WinningNumbers;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
 
 import java.util.EnumMap;
 import java.util.Map;
