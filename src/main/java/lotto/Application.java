@@ -5,6 +5,7 @@ public class Application {
         LottoGame lottoGame = new LottoGame();
         try {
             int quantity = lottoGame.getPurchaseAmount();
+            lottoGame.purchaseLottos(quantity);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
