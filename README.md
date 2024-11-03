@@ -66,3 +66,42 @@
 ### test
 - [x] 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드 작성
 - [x] 구현된 기능에 대한 단위 테스트를 작성
+
+# 클래스 구성
+### constant
+- LottoGameRule: 로또 게임 상수를 설정하는 enum 클래스
+- WinningPrize: 로또 당첨 조건과 상금을 설정하는 enum 클래스
+
+### controller
+- LottoGameController: 로또 게임 전반의 입/출력을 담당
+
+### domain
+- BonusNumber: InputParser로 파싱한 숫자를 검증하여 객체 생성
+- Lotto: InputParser로 파싱한 숫자 리스트를 검증하여 객체 생성
+- LottoGame: 구입한 로또, 당첨 번호, 보너스 번호를 입력하여 로또 게임을 셋팅
+- Lottos: 구입한 로또 리스트를 통해 생성
+- Money: InputParser로 파싱한 금액을 검증하여 객체 생성
+- Revenue: 구입 금액과 총 수익을 입력 받아 수익률을 가진 객체 생성
+
+### dto
+- WinningStat: 통계를 출력하기 위한 정보들이 들어있는 record 클래스
+- WinningSummary: 통계를 출력할 수 있는 형태(String)의 데이터가 들어있는 record 클래스
+
+### exception
+- ErrorMessage: 프로그램 전반의 에러 메세지를 담고 있는 enum 클래스
+- LottoException: 프로그램 전반의 오류를 처리하기 위한 커스텀 Exception
+
+### service
+- UserService: 사용자가 게임 설정을 하는 과정에서의 비지니스 로직을 처리
+- LottoService: 로또 객체를 다루는 비지니스 로직을 처리
+- StatService: 통계 정보를 계산하는 비지니스 로직을 처리
+
+### utils
+- InputParser: 사용자의 입력 값에 대한 검증 및 파싱
+- LottoNumberGenerator: 랜덤으로 숫자 리스트를 생성하여 오름차순으로 정렬
+- PriceFormatter: int 형식의 값을 한국 돈 출력 방식의 String 형식으로 변경
+- WinningSummaryGenerator: 계산된 통계 정보를 출력할 수 있는 String 형식으로 만들어 주는 유틸리티 클래스
+
+### view
+- InputView: 입력에 관련된 작업을 처리
+- OutputView: 출력에 관련된 작업을 처리
