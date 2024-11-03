@@ -54,6 +54,20 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_티켓_개수_계산() {
+        run("8000");  // Example input
+        assertThat(output()).contains("8개를 구매했습니다.");
+    }
+
+    @Test
+    void 예외_테스트_구입금액_단위() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
