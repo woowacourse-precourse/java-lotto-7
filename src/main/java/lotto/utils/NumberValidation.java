@@ -41,7 +41,8 @@ public class NumberValidation {
 
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
         }
     }
 

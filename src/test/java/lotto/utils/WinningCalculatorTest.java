@@ -3,7 +3,6 @@ package lotto.utils;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.utils.WinningCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +12,8 @@ public class WinningCalculatorTest {
     @Test
     void match_number_3() {
         assertMatchCount(
-                List.of(1,2,3,10,20,30),
-                List.of(1,2,3,4,5,6),
+                List.of(1, 2, 3, 10, 20, 30),
+                List.of(1, 2, 3, 4, 5, 6),
                 3);
     }
 
@@ -22,8 +21,8 @@ public class WinningCalculatorTest {
     @Test
     void match_number_4() {
         assertMatchCount(
-                List.of(1,2,3,4,10,20),
-                List.of(1,2,3,4,5,6),
+                List.of(1, 2, 3, 4, 10, 20),
+                List.of(1, 2, 3, 4, 5, 6),
                 4);
     }
 
@@ -31,8 +30,8 @@ public class WinningCalculatorTest {
     @Test
     void match_number_5() {
         assertMatchCount(
-                List.of(1,2,3,4,5,6),
-                List.of(1,2,3,4,5,7),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
                 5);
     }
 
@@ -40,15 +39,15 @@ public class WinningCalculatorTest {
     @Test
     void match_number_6() {
         assertMatchCount(
-                List.of(1,2,3,4,5,6),
-                List.of(1,2,3,4,5,6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
                 6);
     }
 
     @DisplayName("보너스 번호가 당첨번호에 포함되어 있다면, true를 반환한다")
     @Test
     void winning_number_contains_bonus_number_then_true() {
-        List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 6;
         boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lottoNumbers,
                 bonusNumber);
@@ -58,7 +57,7 @@ public class WinningCalculatorTest {
     @DisplayName("보너스 번호가 당첨번호에 포함되어 있지 않다면, false를 반환한다")
     @Test
     void winning_number_not_contains_bonus_number_then_true() {
-        List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lottoNumbers,
                 bonusNumber);

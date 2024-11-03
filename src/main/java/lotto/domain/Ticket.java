@@ -6,18 +6,16 @@ import static lotto.exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
 public class Ticket {
 
     private static final int TICKET_PRICE = 1_000;
-
-    public static Ticket from(int purchaseAmount) {
-        return new Ticket(purchaseAmount);
-    }
-
     private int quantity;
     private int purchaseAmount;
-
     private Ticket(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         quantity = purchaseAmount / TICKET_PRICE;
+    }
+
+    public static Ticket from(int purchaseAmount) {
+        return new Ticket(purchaseAmount);
     }
 
     public int getQuantity() {

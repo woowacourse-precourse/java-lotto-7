@@ -14,7 +14,6 @@ public class OutputView {
     private static String BLANK_BOUNDARY = " - ";
     private static String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
 
-
     private OutputView() {
     }
 
@@ -36,6 +35,7 @@ public class OutputView {
         printBoundary();
         printStatistics(lottoResult);
     }
+
     public static void printErrorMessage(String message) {
         System.out.println(message);
     }
@@ -52,9 +52,7 @@ public class OutputView {
             System.out.print(winningPrice.getDescription() + BLANK_BOUNDARY);
             printMatchCount(lottoResult.get(winningPrice));
         }
-
     }
-
 
     private static void printMatchCount(int count) {
         System.out.printf(MATCH_COUNT, count);
@@ -72,5 +70,4 @@ public class OutputView {
     private static void printBlank() {
         System.out.println();
     }
-
 }

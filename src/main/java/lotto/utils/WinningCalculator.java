@@ -7,7 +7,8 @@ public class WinningCalculator {
     private WinningCalculator() {
     }
 
-    public static int countMatchingNumber(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    public static int countMatchingNumber(List<Integer> lottoNumbers,
+            List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();

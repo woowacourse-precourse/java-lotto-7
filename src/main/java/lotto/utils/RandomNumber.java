@@ -16,7 +16,8 @@ public class RandomNumber {
     }
 
     public static List<Integer> create() {
-        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH));
+        List<Integer> randomNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_LENGTH));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
