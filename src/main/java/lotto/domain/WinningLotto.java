@@ -17,4 +17,10 @@ public class WinningLotto
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public int matchCount(Lotto lotto) {
+        return (int) this.lotto.getNumbers().stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+    }
 }

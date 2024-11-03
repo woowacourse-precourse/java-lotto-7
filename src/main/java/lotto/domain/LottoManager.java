@@ -30,4 +30,11 @@ public class LottoManager {
         return lottos;
     }
 
+    public static LottoPrize matchLotto(WinningLotto winningLotto, Lotto lotto) {
+        int matchCount = winningLotto.matchCount(lotto);
+        boolean matchBonus = lotto.contains(winningLotto.getBonusNumber());
+
+        return LottoPrize.valueOf(matchCount, matchBonus);
+    }
+
 }
