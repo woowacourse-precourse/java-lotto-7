@@ -10,24 +10,25 @@ import lotto.service.IdGenerator;
 public class PrizeWriteService {
 
     private final CreatePrizeNumberService createPrizeNumberService;
-    private final PrizeWriteRepository prizeWriteRepository;
+    private final PrizeWriteRepository repository;
     private final IdGenerator idGenerator;
 
-    public PrizeWriteService(CreatePrizeNumberService createPrizeNumberService,
-                             PrizeWriteRepository prizeWriteRepository,
-                             IdGenerator idGenerator) {
+    public PrizeWriteService(
+            CreatePrizeNumberService createPrizeNumberService,
+            PrizeWriteRepository repository,
+            IdGenerator idGenerator) {
+
         this.createPrizeNumberService = createPrizeNumberService;
-        this.prizeWriteRepository = prizeWriteRepository;
+        this.repository = repository;
         this.idGenerator = idGenerator;
     }
 
-    public Long create(int bonusNum, List<Integer> winNums) {
+    public Long create(List<Integer> winNums, int bonusNum) {
         Lotto winLotto = Lotto.of(winNums);
-        PrizeNumber prizeNumber = createPrizeNumberService.execute(bonusNum, winLotto);
+        PrizeNumber prizeNumber = createPrizeNumberService.execute(winLotto, bonusNum);
+        Prize prize = Prize.of(idGenerator.generate(), prizeNumber);
 
-        Prize createdPrize = Prize.of(idGenerator.generate(), prizeNumber);
-        Long savedId = prizeWriteRepository.save(createdPrize);
-
-        return savedId;
+        return repository.save(prize);
     }
+    
 }

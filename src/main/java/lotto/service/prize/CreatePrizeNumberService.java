@@ -7,7 +7,7 @@ import lotto.domain.ticket.Lotto;
 
 public class CreatePrizeNumberService {
 
-    public PrizeNumber execute(int bonusNum, Lotto winLotto) {
+    public PrizeNumber execute(Lotto winLotto, int bonusNum) {
         BonusNumber createdBonusNum = BonusNumber.of(bonusNum, winLotto);
         WinnerNumbers createdWinNums = WinnerNumbers.of(winLotto);
 

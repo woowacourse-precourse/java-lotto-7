@@ -18,4 +18,11 @@ public class PrizeNumberResult {
         );
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getWinnerNumbers() {
+        return winnerNumbers;
+    }
 }

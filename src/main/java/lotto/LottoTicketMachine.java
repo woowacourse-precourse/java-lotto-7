@@ -1,29 +1,30 @@
 package lotto;
 
 import lotto.controller.TicketController;
-import lotto.controller.WinnerNumberController;
 import lotto.controller.WinnerStatisticsController;
 import lotto.dto.TicketResponse;
+import lotto.service.prize.PrizeResponse;
+import lotto.usecase.CreatePrizeUsecase;
 
 public class LottoTicketMachine {
 
     private final TicketController ticketController;
-    private final WinnerNumberController winNumberController;
+    private final CreatePrizeUsecase createPrizeUsecase;
     private final WinnerStatisticsController winStatisticsController;
 
     public LottoTicketMachine(TicketController ticketController,
-                              WinnerNumberController winNumberController,
+                              CreatePrizeUsecase createPrizeUsecase,
                               WinnerStatisticsController winStatisticsController) {
 
         this.ticketController = ticketController;
-        this.winNumberController = winNumberController;
+        this.createPrizeUsecase = createPrizeUsecase;
         this.winStatisticsController = winStatisticsController;
     }
 
     public void run() {
         TicketResponse ticketResponse = ticketController.create();
-        WinnerNumber winnerNumber = winNumberController.create();
-        winStatisticsController.create(ticketResponse, winnerNumber);
+        PrizeResponse winnerNumbers = createPrizeUsecase.execute();
+        winStatisticsController.create(ticketResponse, winnerNumbers);
     }
 
 }
