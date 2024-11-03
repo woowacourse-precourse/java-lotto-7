@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.view.OutputView;
 
 import java.util.HashSet;
