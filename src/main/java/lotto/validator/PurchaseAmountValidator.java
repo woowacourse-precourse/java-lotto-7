@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.constants.CommonConstants.MAX_PURCHASE_AMOUNT;
+import static lotto.constants.CommonConstants.POSITIVE_NUMBER_REGEX;
 import static lotto.constants.CommonConstants.UNIT_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.BLANK_PURCHASE_AMOUNT;
 import static lotto.exception.ExceptionMessage.EXCEEDS_MAX_PURCHASE_AMOUNT;
@@ -11,8 +12,6 @@ import java.util.regex.Pattern;
 import org.junit.platform.commons.util.StringUtils;
 
 public class PurchaseAmountValidator {
-    private static final String POSITIVE_NUMBER_REGEX = "^[1-9][0-9]*$";
-
 
     public static void validate(String purchaseAmount) {
         validateBlank(purchaseAmount);
