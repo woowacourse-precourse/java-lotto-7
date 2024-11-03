@@ -7,4 +7,12 @@ public class LottoService {
         winnerNumbers.retainAll(numbers);
         return winnerNumbers.size();
     }
+
+    private LottoService() {
+
+    }
+
+    public LottoService createLottoService() {
+        return new LottoService();
+    }
 }
