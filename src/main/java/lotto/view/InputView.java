@@ -8,12 +8,19 @@ import lotto.util.Validator;
 
 public class InputView {
     public static List<Integer> convertToList(String input) {
-        return Arrays.stream(input.split(",")).map(String::trim).map(Integer::parseInt).collect(Collectors.toList());
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
-    public int getPurchaseAmount() {
-        String moneyAmount = Console.readLine();
-        return Integer.parseInt(moneyAmount);
+//    public int getPurchaseAmount() {
+//        String moneyAmount = Console.readLine();
+//        return Integer.parseInt(moneyAmount);
+//    }
+
+    public String getPurchaseAmount() {
+        return Console.readLine();
     }
 
     public List<Integer> getWinningNumbers() {

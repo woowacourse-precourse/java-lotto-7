@@ -15,10 +15,11 @@ public class Application {
         WinningNumbersService winningNumbersService = new WinningNumbersService(winningNumbers, new InputView());
 
         LottoController lottoController = new LottoController(
-                new InputView(), new OutputView(), new LottoService(),
+                new InputView(),
+                new OutputView(),
+                new LottoService(),
                 winningNumbersService
         );
-
         lottoController.run();
     }
 }

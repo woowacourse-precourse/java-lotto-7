@@ -45,6 +45,12 @@ public class Validator {
         }
     }
 
+    public static void validateInteger(String input) {
+        if (!input.matches("\\d+")) { // 정수인지 확인
+            throw new IllegalArgumentException(ValidatorErrorMessage.NUMERIC_EXCEPTION.getErrorMessage());
+        }
+    }
+
     public static void validateMoneyUnit(int money) {
         if (money % 1000 != 0 || money <= 0) {
             throw new IllegalArgumentException(ValidatorErrorMessage.MONEY_UNIT_EXCEPTION.getErrorMessage());

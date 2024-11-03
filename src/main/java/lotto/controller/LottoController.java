@@ -41,7 +41,9 @@ public class LottoController {
         while (true) {
             try {
                 outputView.purchaseLottoAmountMesssage();
-                purchaseAmount = inputView.getPurchaseAmount();
+                String input = inputView.getPurchaseAmount();
+                Validator.validateInteger(input);
+                purchaseAmount = Integer.parseInt(input);
                 Validator.validateMoneyUnit(purchaseAmount);
 
                 break;
@@ -49,7 +51,6 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-
         player = new Player(purchaseAmount);
         lottoService.generateLottoTickets(player);
         processPurchase();
