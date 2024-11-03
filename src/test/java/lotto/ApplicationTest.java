@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,11 +13,18 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 정상입력_테스트() {
-        assertSimpleTest(()->{
-            run("8000", "1,2,3,4,5,6");
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lotto.setBonusNum(7);
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.getBonusNum()).isEqualTo(7);
+
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(
                     "구입금액을 입력해주세요.",
-                    "8개를 구매했습니다."
+                    "8개를 구매했습니다.",
+                    "보너스 번호를 입력해 주세요."
             );
         });
     }
@@ -82,6 +91,28 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(
                     ERROR_MESSAGE,
                     "[ERROR] 1부터 45 사이의 숫자를 입력하세요."
+            );
+        });
+    }
+
+    @Test
+    void 보너스번호_중복입력_예외_테스트_1() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    "[ERROR] 1부터 45 사이의 숫자를 입력하세요."
+            );
+        });
+    }
+
+    @Test
+    void 보너스번호_중복입력_예외_테스트_2() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE,
+                    "[ERROR] 당첨번호와 중복되지 않는 번호를 입력하세요."
             );
         });
     }
