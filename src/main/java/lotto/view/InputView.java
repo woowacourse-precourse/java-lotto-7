@@ -48,21 +48,35 @@ public class InputView {
     private static int readUserMoney() {
         System.out.println(INPUT_PURCHASE_AMOUNT_PROMPT_MESSAGE.getMessage());
         String userInput = Console.readLine();
-        int userMoney = validateNumberFormatOfUserMoney(userInput);
+        int userMoney = validateNumberFormat(userInput);
         validateDivisibilityByThousand(userMoney);
 
         return userMoney;
     }
 
-    private static int validateNumberFormatOfUserMoney(String userInput) {
-        int userMoney;
+    private static int validateNumberFormat(String userInput) {
+        int parsedUserInput;
         try {
-            userMoney = Integer.parseInt(userInput);
+            parsedUserInput = Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
         }
 
-        return userMoney;
+        return parsedUserInput;
+    }
+
+    private static WinningNumbersDto readWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBERS_PROMPT_MESSAGE.getMessage());
+        List<Integer> winningLottoNumbers = Arrays.stream(Console.readLine().split(WINNING_LOTTO_DELIMITER))
+                .map(InputView::validateNumberFormat)
+                .toList();
+
+        System.out.println(INPUT_BONUS_NUMBER_PROMPT_MESSAGE.getMessage());
+        int bonusNumber = validateNumberFormat(Console.readLine());
+
+        validateDuplicationOfLottoNumber(winningLottoNumbers, bonusNumber);
+
+        return new WinningNumbersDto(winningLottoNumbers, bonusNumber);
     }
 
     private static void validateDivisibilityByThousand(int userMoney) {
@@ -73,20 +87,6 @@ public class InputView {
 
     private static boolean isMultiplesOfThousand(int userMoney) {
         return (userMoney % MonetaryUnit.A_LOTTO_PRICE.getUnit()) != MULTIPLES_OF_THOUSAND;
-    }
-
-    private static WinningNumbersDto readWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS_PROMPT_MESSAGE.getMessage());
-        List<Integer> winningLottoNumbers = Arrays.stream(Console.readLine().split(WINNING_LOTTO_DELIMITER))
-                .map(Integer::parseInt)
-                .toList();
-
-        System.out.println(INPUT_BONUS_NUMBER_PROMPT_MESSAGE.getMessage());
-        int bonusNumber = Integer.parseInt(Console.readLine());
-
-        validateDuplicationOfLottoNumber(winningLottoNumbers, bonusNumber);
-
-        return new WinningNumbersDto(winningLottoNumbers, bonusNumber);
     }
 
     private static void validateDuplicationOfLottoNumber(List<Integer> winningLottoNumbers, int bonusNumber) {

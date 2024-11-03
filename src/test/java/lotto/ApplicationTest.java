@@ -75,6 +75,24 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("기본당첨번호가 숫자 형식 불일치할시 예외처리입니다.")
+    @Test
+    void 기본_당첨_번호_숫자_형식_불일치_예외_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,i", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 숫자 형식 불일치할시 예외처리입니다.")
+    @Test
+    void 보너스_번호_숫자_형식_불일치_예외_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "i", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
