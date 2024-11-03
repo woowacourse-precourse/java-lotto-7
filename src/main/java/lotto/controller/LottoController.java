@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Service.LottoService;
+import lotto.Vaildator.InputValidator;
 
 public class LottoController {
     private static final LottoService lottoService = new LottoService();
@@ -32,6 +33,7 @@ public class LottoController {
     private static void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요: ");
         String bonus = Console.readLine();
+        InputValidator.validBonus(bonus);
         lottoService.setBonusNumber(Integer.parseInt(bonus));
     }
 
