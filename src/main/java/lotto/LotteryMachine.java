@@ -28,7 +28,7 @@ public class LotteryMachine {
             int countMatchNumbers = lotto.countMatchNumbers(winningNumbers);
             boolean matchBonusNumber = lotto.matchBonusNumber(bonusNumber);
 
-            this.lottoResults.add(LottoResult.createResult(countMatchNumbers, matchBonusNumber));
+            this.lottoResults.add(new LottoResult(countMatchNumbers, matchBonusNumber));
         }
 
         completeDraw();
