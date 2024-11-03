@@ -13,15 +13,15 @@ public class LottoPurchaser {
         this.lottoPurchaseCount = Integer.parseInt(purchaseAmountInput) / LOTTO_PRICE;
     }
 
-    public List<List<Integer>> purchaseLotto() {
-        List<List<Integer>> purchasedLottos = new ArrayList<>();
+    public List<Lotto> purchaseLotto() {
+        List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < lottoPurchaseCount; i++){
             purchasedLottos.add(generateLotto());
         }
         return purchasedLottos;
     }
 
-    private List<Integer> generateLotto() {
-        return pickUniqueNumbersInRange(1, 45, 6);
+    private Lotto generateLotto() {
+        return new Lotto(pickUniqueNumbersInRange(1, 45, 6));
     }
 }
