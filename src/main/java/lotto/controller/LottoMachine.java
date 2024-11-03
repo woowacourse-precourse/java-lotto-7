@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.controller;
 
 import static lotto.view.OutputView.printMessage;
 
