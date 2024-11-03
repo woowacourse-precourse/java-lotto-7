@@ -4,6 +4,8 @@ import lotto.models.constants.RewardTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,52 +28,10 @@ class LottoResultsTest {
         assertEquals(expectedValue, lottoResults.getMatchValue(matchKey));
     }
 
-    @DisplayName("3개의 번호가 일치할 경우 5000을 반환한다.")
-    @Test
-    void 당첨금_5000_계산_기능_테스트() {
-        int matchValue = 3;
-        long expectedValue = 5000;
-
-        lottoResults.recordMatch(matchValue);
-        assertEquals(expectedValue, lottoResults.calculateRewards());
-    }
-
-    @DisplayName("4개의 번호가 일치할 경우 50000을 반환한다.")
-    @Test
-    void 당첨금_50000_계산_기능_테스트() {
-        int matchValue = 4;
-        long expectedValue = 50000;
-
-        lottoResults.recordMatch(matchValue);
-        assertEquals(expectedValue, lottoResults.calculateRewards());
-    }
-
-    @DisplayName("5개의 번호가 일치할 경우 1500000을 반환한다.")
-    @Test
-    void 당첨금_1500000_계산_기능_테스트() {
-        int matchValue = 5;
-        long expectedValue = 1500000;
-
-        lottoResults.recordMatch(matchValue);
-        assertEquals(expectedValue, lottoResults.calculateRewards());
-    }
-
-    @DisplayName("5개의 번호와 보너스 번호가 일치할 경우 30000000을 반환한다.")
-    @Test
-    void 당첨금_30000000_계산_기능_테스트() {
-        int matchValue = 6;
-        long expectedValue = 30000000;
-
-        lottoResults.recordMatch(matchValue);
-        assertEquals(expectedValue, lottoResults.calculateRewards());
-    }
-
-    @DisplayName("6개의 번호가 일치할 경우 2000000000을 반환한다.")
-    @Test
-    void 당첨금_2000000000_계산_기능_테스트() {
-        int matchValue = 7;
-        long expectedValue = 2000000000;
-
+    @DisplayName("각 일치 번호 갯수에 해당하는 당첨금액을 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"3,5000", "4,50000", "5,1500000", "6,30000000", "7,2000000000"})
+    void 당첨금_계산_기능_테스트(int matchValue, int expectedValue) {
         lottoResults.recordMatch(matchValue);
         assertEquals(expectedValue, lottoResults.calculateRewards());
     }
