@@ -16,4 +16,9 @@ public class Lotto {
         }
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

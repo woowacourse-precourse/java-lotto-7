@@ -4,20 +4,17 @@ import lotto.Lotto;
 
 public class LottoController {
     private final LottoPurchase lottoPurchase;
-    private final LottoIssuer lottoIssuer;
     private final LottoWinningNumber lottoWinningNumber;
     private final LottoBonusNumber lottoBonusNumber;
     private final LottoProfitCalculator lottoProfitCalculator;
 
     public LottoController(
             LottoPurchase lottoPurchase,
-            LottoIssuer lottoIssuer,
             LottoWinningNumber lottoWinningNumber,
             LottoBonusNumber lottoBonusNumber,
             LottoProfitCalculator lottoProfitCalculator
     ) {
         this.lottoPurchase = lottoPurchase;
-        this.lottoIssuer = lottoIssuer;
         this.lottoWinningNumber = lottoWinningNumber;
         this.lottoBonusNumber = lottoBonusNumber;
         this.lottoProfitCalculator = lottoProfitCalculator;
@@ -36,9 +33,8 @@ public class LottoController {
                 System.out.println("[ERROR] 금액은 숫자를 입력해주세요");
             }
         }
-        System.out.println(purchaseAmount);
         // Step 2: 개수에 맞게 로또 발행
-        List<Lotto> issuedLotto = lottoIssuer.issueLotto(purchaseAmount);
+        List<Lotto> issuedLotto = lottoPurchase.issueLotto(purchaseAmount);
 
         // Step 3: 로또 당첨번호 입력
         List<Integer> winningNumbers = lottoWinningNumber.winningNumber();
