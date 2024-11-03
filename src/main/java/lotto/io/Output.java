@@ -37,4 +37,8 @@ public class Output {
             System.out.print(Constants.COMMA.getMessage());
         }
     }
+
+    public void printWinningNumbersInputPrompt() {
+        System.out.println(Constants.WINNING_NUMBERS_INPUT_PROMPT.getMessage());
+    }
 }

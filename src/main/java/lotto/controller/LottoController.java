@@ -27,6 +27,7 @@ public class LottoController {
         int purchasePrice = handlePurchasePrice();
         int count = handleLottoCount(purchasePrice);
         handleCreatedLottos(count);
+        handleWinningNumbers();
     }
 
     private int handlePurchasePrice() {
@@ -68,5 +69,9 @@ public class LottoController {
                 .toList();
         lottoList.forEach(lottos::addLotto);
         return lottos;
+    }
+
+    private void handleWinningNumbers() {
+        output.printWinningNumbersInputPrompt();
     }
 }
