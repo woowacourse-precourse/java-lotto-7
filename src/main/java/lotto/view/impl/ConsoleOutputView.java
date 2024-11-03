@@ -31,17 +31,6 @@ public class ConsoleOutputView implements OutputView {
         System.out.printf(RETURN_RATE_NOTICE, returnRate);
     }
 
-    private void printLottoPrize(LottoRank lottoRank, int count) {
-        if (lottoRank == LottoRank.NONE) {
-            return;
-        }
-        if (lottoRank.isMatchBonus()) {
-            System.out.printf(BONUS_MATCHES_NOTICE, lottoRank.getMatchCount(), lottoRank.getPrize(), count);
-            return;
-        }
-        System.out.printf(NONE_BONUS_MATCHES_NOTICE, lottoRank.getMatchCount(), lottoRank.getPrize(), count);
-    }
-
     @Override
     public void printInputAmountNotice() {
         System.out.println(INPUT_AMOUNT_NOTICE);
@@ -55,5 +44,16 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printInputBonusNumberNotice() {
         System.out.println(INPUT_BONUS_NUMBER_NOTICE);
+    }
+
+    private void printLottoPrize(LottoRank lottoRank, int count) {
+        if (lottoRank == LottoRank.NONE) {
+            return;
+        }
+        if (lottoRank.isMatchBonus()) {
+            System.out.printf(BONUS_MATCHES_NOTICE, lottoRank.getMatchCount(), lottoRank.getPrize(), count);
+            return;
+        }
+        System.out.printf(NONE_BONUS_MATCHES_NOTICE, lottoRank.getMatchCount(), lottoRank.getPrize(), count);
     }
 }

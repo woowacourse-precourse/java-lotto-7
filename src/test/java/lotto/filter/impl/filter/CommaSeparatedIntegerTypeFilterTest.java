@@ -12,12 +12,12 @@ class CommaSeparatedIntegerTypeFilterTest {
     @Test
     void testValidInput() {
         String validInput = "123,456,789";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatCode(() -> filter.doFilter(validInput, filterChain))
                     .doesNotThrowAnyException();
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+            softly.assertThat(filterChain.isFilterCalled())
                     .isTrue()
                     .as("Filter chain should be called for valid input");
         });
@@ -26,14 +26,13 @@ class CommaSeparatedIntegerTypeFilterTest {
     @Test
     void testInvalidInput_NonIntegerCharacters() {
         String invalidInput = "123,abc,456";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.")
-                    .as("Input with non-integer characters should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });
@@ -42,14 +41,13 @@ class CommaSeparatedIntegerTypeFilterTest {
     @Test
     void testInvalidInput_IntegerOutOfRange() {
         String invalidInput = "123,2147483648,456";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.")
-                    .as("Input with integer out of range should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });
@@ -58,14 +56,13 @@ class CommaSeparatedIntegerTypeFilterTest {
     @Test
     void testInvalidInput_EmptyString() {
         String invalidInput = "";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.")
-                    .as("Empty input should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });

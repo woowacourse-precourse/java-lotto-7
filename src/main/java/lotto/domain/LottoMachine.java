@@ -28,6 +28,10 @@ public class LottoMachine {
         this.inputAmount = inputAmount;
     }
 
+    public int getInputAmount() {
+        return inputAmount;
+    }
+
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = getLottoNumbers();
         return Lotto.create(lottoNumbers);
@@ -35,15 +39,6 @@ public class LottoMachine {
 
     private int calculateTicketCount() {
         return inputAmount / LOTTO_PRICE;
-    }
-
-    private void validate(Integer inputAmount) {
-        if (inputAmount == 0) {
-            throw new IllegalStateException(ERROR_MESSAGE_PURCHASE_AMOUNT_MISSING);
-        }
-        if (inputAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_PURCHASE_AMOUNT_UNIT);
-        }
     }
 
     private List<Integer> getLottoNumbers() {
@@ -54,7 +49,12 @@ public class LottoMachine {
         );
     }
 
-    public int getInputAmount() {
-        return inputAmount;
+    private void validate(Integer inputAmount) {
+        if (inputAmount == 0) {
+            throw new IllegalStateException(ERROR_MESSAGE_PURCHASE_AMOUNT_MISSING);
+        }
+        if (inputAmount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_PURCHASE_AMOUNT_UNIT);
+        }
     }
 }

@@ -32,6 +32,16 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    public int matchCount(Lotto winningTicket) {
+        return (int) numbers.stream()
+                .filter(winningTicket.numbers::contains)
+                .count();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_MAX_COUNT) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_COUNT);
@@ -43,15 +53,5 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATE);
         }
-    }
-
-    public int matchCount(Lotto winningTicket) {
-        return (int) numbers.stream()
-                .filter(winningTicket.numbers::contains)
-                .count();
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

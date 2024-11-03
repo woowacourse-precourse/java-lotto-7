@@ -12,12 +12,12 @@ class CommaSeparatedNumberInputFormatFilterTest {
     @Test
     void testValidInput() {
         String validInput = "1,2,3,4,5";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatCode(() -> filter.doFilter(validInput, filterChain))
                     .doesNotThrowAnyException();
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+            softly.assertThat(filterChain.isFilterCalled())
                     .isTrue()
                     .as("Filter chain should be called for valid input");
         });
@@ -26,14 +26,13 @@ class CommaSeparatedNumberInputFormatFilterTest {
     @Test
     void testInvalidInput_NonNumericCharacters() {
         String invalidInput = "1,a,3";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.")
-                    .as("Input with non-numeric characters should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });
@@ -42,14 +41,13 @@ class CommaSeparatedNumberInputFormatFilterTest {
     @Test
     void testInvalidInput_IncorrectFormat() {
         String invalidInput = "1,,3";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.")
-                    .as("Input with incorrect format (consecutive commas) should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });
@@ -58,14 +56,13 @@ class CommaSeparatedNumberInputFormatFilterTest {
     @Test
     void testInvalidInput_EmptyString() {
         String invalidInput = "";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.")
-                    .as("Empty input should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("숫자(양의 정수)와 구분자(,)로 이루어진 문자열을 입력해주십시오.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for invalid input");
         });

@@ -7,7 +7,6 @@ import lotto.filter.Filter;
 import lotto.filter.FilterChain;
 
 public class CommaSeparatedIntegerTypeFilter implements Filter {
-
     private static final String DELIMITER = ",";
     private static final String ERROR_MESSAGE_INVALID_INTEGER_RANGE =
             ERROR_HEADER + "입력한 금액이 표현할 수 있는 정수(-2147483648 ~ 2147483647)가 아닙니다.";

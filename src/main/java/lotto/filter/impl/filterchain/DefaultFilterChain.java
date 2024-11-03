@@ -6,7 +6,6 @@ import lotto.filter.Filter;
 import lotto.filter.FilterChain;
 
 public abstract class DefaultFilterChain implements FilterChain {
-
     protected final List<Filter> filters = new ArrayList<Filter>();
     protected int filterListLength = 0;
     protected int position = 0;

@@ -13,12 +13,12 @@ class PositiveIntegerFilterTest {
     @Test
     void testValidPositiveIntegerInput() {
         String validInput = "10";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatCode(() -> filter.doFilter(validInput, filterChain))
                     .doesNotThrowAnyException();
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+            softly.assertThat(filterChain.isFilterCalled())
                     .isTrue()
                     .as("Filter chain should be called for valid positive input");
         });
@@ -27,12 +27,12 @@ class PositiveIntegerFilterTest {
     @Test
     void testZeroInput() {
         String zeroInput = "0";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatCode(() -> filter.doFilter(zeroInput, filterChain))
                     .doesNotThrowAnyException();
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+            softly.assertThat(filterChain.isFilterCalled())
                     .isTrue()
                     .as("Filter chain should be called for zero input");
         });
@@ -41,14 +41,13 @@ class PositiveIntegerFilterTest {
     @Test
     void testNegativeIntegerInput() {
         String negativeInput = "-5";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(negativeInput, filterChain))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("입력한 금액이 음의 정수입니다.")
-                    .as("Negative input should throw IllegalArgumentException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .hasMessageContaining("입력한 금액이 음의 정수입니다.");
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for negative input");
         });
@@ -57,13 +56,12 @@ class PositiveIntegerFilterTest {
     @Test
     void testInvalidNonNumericInput() {
         String invalidInput = "abc";
-        FilterChain filterChain = new TestFilterChain();
+        TestFilterChain filterChain = new TestFilterChain();
 
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> filter.doFilter(invalidInput, filterChain))
-                    .isInstanceOf(NumberFormatException.class)
-                    .as("Non-numeric input should throw NumberFormatException");
-            softly.assertThat(((TestFilterChain) filterChain).isFilterCalled())
+                    .isInstanceOf(NumberFormatException.class);
+            softly.assertThat(filterChain.isFilterCalled())
                     .isFalse()
                     .as("Filter chain should not be called for non-numeric input");
         });

@@ -66,10 +66,14 @@ class LottoServiceImplTest {
         LottoStatistics statistics = lottoService.collectResults(lottoTickets, winningLotto);
 
         assertSoftly(softly -> {
-            softly.assertThat(statistics.getResults().get(LottoRank.FIRST)).isEqualTo(1).as("1 ticket should match FIRST rank");
-            softly.assertThat(statistics.getResults().get(LottoRank.SECOND)).isEqualTo(1).as("1 ticket should match SECOND rank");
-            softly.assertThat(statistics.getResults().get(LottoRank.THIRD)).isEqualTo(1).as("1 ticket should match THIRD rank");
-            softly.assertThat(statistics.getResults().get(LottoRank.NONE)).isEqualTo(0).as("No ticket should match NONE rank");
+            softly.assertThat(statistics.getResults().get(LottoRank.FIRST)).isEqualTo(1)
+                    .as("1 ticket should match FIRST rank");
+            softly.assertThat(statistics.getResults().get(LottoRank.SECOND)).isEqualTo(1)
+                    .as("1 ticket should match SECOND rank");
+            softly.assertThat(statistics.getResults().get(LottoRank.THIRD)).isEqualTo(1)
+                    .as("1 ticket should match THIRD rank");
+            softly.assertThat(statistics.getResults().get(LottoRank.NONE)).isEqualTo(0)
+                    .as("No ticket should match NONE rank");
         });
     }
 
