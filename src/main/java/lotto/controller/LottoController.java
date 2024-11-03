@@ -19,6 +19,7 @@ public class LottoController {
         buyLotto();
         setLottoNumbers();
         setBonusNumber();
+        displayResult();
     }
 
     public void insertMoney() {
@@ -66,5 +67,9 @@ public class LottoController {
                 OutputView.printError(e.getMessage());
             }
         }
+    }
+
+    public void displayResult() {
+        OutputView.printResultMessage();
     }
 }
