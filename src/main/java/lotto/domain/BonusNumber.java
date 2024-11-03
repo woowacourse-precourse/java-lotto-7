@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class BonusNumber {
 
-    private static final String OUT_OF_RANGE = "보너스 넘버는 " + MIN_NUMBER + " ~ " + MAX_NUMBER + "사이어야 합니다.";
     private final int number;
 
     public BonusNumber(int number) {
@@ -37,7 +36,7 @@ public class BonusNumber {
 
     private void validateOutOfRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(OUT_OF_RANGE);
+            throw new IllegalArgumentException(LottoErrorTemplate.NUMBER_OUT_OF_RANGE.format(MIN_NUMBER, MAX_NUMBER));
         }
     }
 }
