@@ -16,18 +16,7 @@ public class Customer {
         return lottoTickets;
     }
 
-    public double calculateProfitRate() {
-        return ((double) (calculateTotalProfit()) / paidAmount) * 100;
+    public int getPaidAmount() {
+        return paidAmount;
     }
-
-    private int calculateTotalProfit() {
-        int totalProfit = 0;
-
-        for (LottoTicket lottoTicket : lottoTickets) {
-            totalProfit += lottoTicket.getProfit();
-        }
-
-        return totalProfit;
-    }
-
 }
