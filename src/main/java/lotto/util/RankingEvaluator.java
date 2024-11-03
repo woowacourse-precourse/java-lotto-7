@@ -9,7 +9,7 @@ import java.util.*;
 public abstract class RankingEvaluator {
 
     public static Map<Ranking, Integer> evaluateAll(List<Lotto> purchasedLottos, JackpotNumbers jackpotNumbers) {
-        Map<Ranking, Integer> rankingCounts = initMap();
+        Map<Ranking, Integer> rankingCounts = initRankingMap();
 
         purchasedLottos.stream()
                 .map(lotto -> evaluateRank(lotto, jackpotNumbers))
@@ -18,7 +18,7 @@ public abstract class RankingEvaluator {
         return rankingCounts;
     }
 
-    private static Map<Ranking, Integer> initMap() {
+    private static Map<Ranking, Integer> initRankingMap() {
         Map<Ranking, Integer> rankingCounts = new LinkedHashMap<>();
         Arrays.stream(Ranking.values())
                         .sorted(Collections.reverseOrder())
