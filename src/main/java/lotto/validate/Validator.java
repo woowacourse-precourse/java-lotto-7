@@ -26,7 +26,7 @@ public class Validator {
     }
 
     public static boolean isOver(int n, int price) {
-        return price <= n;
+        return price < n;
     }
 
     public static boolean isNaturalNum(int n) {
