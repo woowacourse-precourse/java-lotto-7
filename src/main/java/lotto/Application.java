@@ -78,6 +78,7 @@ public class Application {
 
         // 5. 보너스 번호 입력
         int bonusNumber;
+        System.out.println("보너스 번호를 입력해 주세요.");
         try {
             bonusNumber = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
