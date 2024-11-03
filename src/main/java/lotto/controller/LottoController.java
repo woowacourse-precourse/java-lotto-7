@@ -17,18 +17,19 @@ public class LottoController {
 
     public void run() {
         int lottoAmount = lottoInputView.inputPurchaseAmount();
+
         int numberOfTickets = lottoOutputView.outputNumberOfLottoOutput(lottoAmount);
+
         List<Lotto> purchasedLottos = Lotto.makeRandomLottos(numberOfTickets);
-        lottoOutputView.outputMakeRandomLottos(numberOfTickets);
+        lottoOutputView.outputMakeRandomLottos(purchasedLottos);
 
-        Lotto winningNumbers = lottoInputView.inputWinningNumbers();
-        List<Integer> winningNumberList = winningNumbers.lottoNumbers();
-
+        List<Integer> winningNumberList = lottoInputView.inputWinningNumbers().lottoNumbers();
         int bonusNumber = lottoInputView.inputBonusNumber();
 
         LottoResultStatistics statistics = new LottoResultStatistics();
         statistics.setTotalExpense(lottoAmount);
         statistics.analyze(purchasedLottos, winningNumberList, bonusNumber);
+        statistics.calculateTotalEarnings(purchasedLottos, winningNumberList, bonusNumber);
 
         lottoOutputView.outputResultStatistics(statistics);
     }

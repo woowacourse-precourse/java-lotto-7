@@ -6,6 +6,7 @@ public enum LottoResult {
     FIVE_NUMBER_MATCH(5, 1500000),
     FIVE_NUMBER_AND_BONUS_NUMBER_MATCH(5, 30000000),
     SIX_NUMBER_MATCH(6, 2000000000);
+
     private final int matchCount;
     private final int prize;
 

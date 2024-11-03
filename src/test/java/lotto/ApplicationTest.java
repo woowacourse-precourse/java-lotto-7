@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -53,6 +56,52 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 구매_금액이_0일_경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_입력_형식이_잘못된_경우_예외처리() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6,7", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 로또_번호_갯수_검사_테스트() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 2, 3)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    void 로또_일치_수_계산_테스트() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 7, 8, 9, 10);
+
+        int matchCount = lotto.countMatchingNumbers(winningNumbers);
+
+        assertThat(matchCount).isEqualTo(2);
+    }
+
+    @Test
+    void 로또_랜덤_번호_생성_테스트() {
+        List<Lotto> lottos = Lotto.makeRandomLottos(5);
+
+        assertThat(lottos).hasSize(5);
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.lottoNumbers()).hasSize(6);
+            assertThat(lotto.lottoNumbers()).containsExactlyInAnyOrderElementsOf(
+                    lotto.lottoNumbers());
+        }
+    }
+
 
     @Override
     public void runMain() {

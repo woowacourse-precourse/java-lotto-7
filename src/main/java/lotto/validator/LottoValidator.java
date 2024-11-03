@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class LottoValidator {
     public static void validatePurchase(int lottoAmount) {
         validateAmount(lottoAmount);
@@ -17,7 +20,15 @@ public class LottoValidator {
         }
     }
 
-    public static void validateStringInput(String input) {
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
+        for (Integer number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public static void validatePurchaseStringInput(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
@@ -27,4 +38,27 @@ public class LottoValidator {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.");
         }
     }
+
+    public static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static void validateBonusNumberInput(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
+        }
+        String[] numbers = input.split(",");
+        if (numbers.length != 1) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개여야 합니다.");
+        }
+        try {
+            int bonusNumber = Integer.parseInt(numbers[0]);
+            validateBonusNumber(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.");
+        }
+    }
+
 }

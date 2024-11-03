@@ -13,12 +13,12 @@ public class LottoOutputView {
         return lottoTickets;
     }
 
-    public void outputMakeRandomLottos(int count) {
-        List<Lotto> lottos = Lotto.makeRandomLottos(count);
-        for (Lotto lotto : lottos) {
+    public void outputMakeRandomLottos(List<Lotto> purchasedLottos) {
+        for (Lotto lotto : purchasedLottos) {
             System.out.println(lotto.lottoNumbers());
         }
     }
+
     public void outputResultStatistics(LottoResultStatistics statistics) {
         System.out.println();
         System.out.println("당첨 통계");
