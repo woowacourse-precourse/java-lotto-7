@@ -8,7 +8,7 @@ public enum Constants {
     LOTTO_NUMBER_END("]"),
     WINNING_NUMBERS_INPUT_PROMPT("\n당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_INPUT_PROMPT("\n보너스 번호를 입력해 주세요."),
-    WINNING_STATISTICS("당첨 통계\n---"),
+    WINNING_STATISTICS("\n당첨 통계\n---"),
     MATCH_COUNT_FORMAT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
     MATCH_COUNT_FORMAT("%d개 일치 (%d원) - %d개"),
     PROFITABILITY_FORMAT("총 수익률은 %.2f%% 입니다");
