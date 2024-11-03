@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(MatchedNumberEnum.SIX_MATCHED.getMessage() + " - " + matchedCount.get(MatchedCountNameEnum.SIX_MATCHED.getMessage()) + "개");
     }
 
-    public static void outputProfitRate(BigDecimal profitRate) {
+    public static void outputProfitRate(String profitRate) {
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }

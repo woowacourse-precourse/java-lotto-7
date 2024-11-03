@@ -55,7 +55,7 @@ public class LottoController {
     }
 
     private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
-        BigDecimal profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
+        String profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
         OutputView.outputProfitRate(profitRate);
     }
 
