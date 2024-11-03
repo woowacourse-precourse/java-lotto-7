@@ -1,5 +1,6 @@
 package lotto.unit;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.constants.ErrorMessages;
@@ -34,5 +35,13 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 정상적으로 생성된다.")
+    void createWinningNumbersSuccessfully() {
+        String input = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(input);
+        assertThat(winningNumbers.getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
     }
 }
