@@ -139,7 +139,7 @@
 # 🧷 구현할 기능 목록
 - 입력
   - 로또 구입 금액 입력
-    - 숫자가 아닌 경우 IllegalArgumentException 발생 (+다시 입력 받음)
+    - 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - 당첨 번호 입력
     - 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
@@ -166,7 +166,7 @@
 # 🔎 구현 체크
 - 입력
   - [x] 로또 구입 금액 입력
-    - [x] 숫자가 아닌 경우 IllegalArgumentException 발생 (+다시 입력 받음)
+    - [x] 숫자가 아닌 경우 NumberFormatException 발생 (+다시 입력 받음)
     - [x] 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException 발생 (+다시 입력 받음)
   - [ ] 당첨 번호 입력
     - [ ] 1~45 사이의 숫자가 아니면 IllegalArgumentException 발생 (+다시 입력 받음)
@@ -180,7 +180,7 @@
   - [ ] 발행한 로또 수량, 번호 출력
   - [x] 당첨 내역 출력
   - [x] 수익률 출력
-  - [ ] 에러 메세지 출력
+  - [x] 에러 메세지 출력
 - 로또
   - [ ] 중복되지 않는 6개의 랜덤 번호 생성
   - [ ] 로또 번호와 당첨 번호의 일치 여부 판단
