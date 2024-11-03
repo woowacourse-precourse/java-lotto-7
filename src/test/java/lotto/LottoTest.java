@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +21,36 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호의_숫자가_1이상_45이하가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 10, 50)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.ERROR_INVALID_RANGE);
+    }
+
+    @Test
+    void 로또_번호를_당첨번호와_비교하여_일치하는_개수를_반환한다() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = List.of(1, 2, 6, 7, 10, 12);
+
+        // when
+        int countMatchingNumbers = lotto.countMatchingNumbers(winningNumbers);
+
+        // then
+        Assertions.assertThat(countMatchingNumbers).isEqualTo(3);
+    }
+
+    @Test
+    void 로또_번호가_보너스번호와_일치하는지_확인한다() {
+        // given
+        Lotto lotto = new Lotto(List.of(12, 13, 15, 17, 20, 21));
+        int bonusNumber = 15;
+
+        // when
+        boolean hasBonus = lotto.contains(bonusNumber);
+
+        // then
+        Assertions.assertThat(hasBonus).isTrue();
+    }
 }
