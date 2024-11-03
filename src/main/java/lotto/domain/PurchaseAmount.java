@@ -1,22 +1,32 @@
-package lotto.Input;
+package lotto.domain;
 
-public class InputValidator {
-    public int validateInput(String input) {
+public class PurchaseAmount {
+    private static final int UNIT_PRICE = 1000;
+    private final int amount;
+
+    private PurchaseAmount(int amount) {
+        validate(amount);
+        this.amount = amount;
+    }
+
+    public static PurchaseAmount from(String input) {
         validateNumberFormat(input);
         try {
-            int amount = Integer.parseInt(input);
-            validatePositiveAmount(amount);
-            validateThousandUnit(amount);
-            return amount;
+            return new PurchaseAmount(Integer.parseInt(input));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력값이 너무 큽니다.");
         }
     }
 
-    private void validateNumberFormat(String input) {
+    private static void validateNumberFormat(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
+    }
+
+    private void validate(int amount) {
+        validatePositiveAmount(amount);
+        validateThousandUnit(amount);
     }
 
     private void validatePositiveAmount(int amount) {
@@ -26,8 +36,12 @@ public class InputValidator {
     }
 
     private void validateThousandUnit(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % UNIT_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
