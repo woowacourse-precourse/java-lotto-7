@@ -20,6 +20,8 @@ public class BonusCommand implements ValidateCommand {
   }
 
   private BonusUserInput validate(String input) {
+    validateBlank(input);
+    validateWhiteSpace(input);
     int number = validateIntegerRange(input, LOTTO_MINIMUM_NUMBER, LOTTO_MAXIMUM_NUMBER);
     return BonusUserInput.from(number);
   }
