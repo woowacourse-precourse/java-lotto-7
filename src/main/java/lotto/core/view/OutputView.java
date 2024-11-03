@@ -2,22 +2,31 @@ package lotto.core.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 import lotto.core.domain.model.GameResult;
 import lotto.core.domain.model.Lotto;
 import lotto.core.domain.model.Lottos;
 import lotto.core.domain.model.PrizeOption;
+import lotto.system.message.Message;
+import lotto.system.message.MessageType;
 
 
 public class OutputView {
+    private final BlockingQueue<Message> outputMessageQueue;
+
+    public OutputView(BlockingQueue<Message> outputMessageQueue) {
+        this.outputMessageQueue = outputMessageQueue;
+    }
+
     public static void showErrorMessage(String e){
         System.out.println("[ERROR]" + e);
     }
     public void showInputMoneyMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        sendMessage("구입금액을 입력해 주세요.");
     }
 
     public void showLottoAmountMessage(Integer ticketAmount) {
-        System.out.println(ticketAmount + "개를 구매했습니다.");
+        sendMessage(ticketAmount + "개를 구매했습니다.");
     }
 
     public void showUserLottoMessage(Lottos userLottos) {
@@ -27,20 +36,20 @@ public class OutputView {
             result.sort((a,b)->a-b);
             sb.append(result+"\n");
         }
-        System.out.println(sb);
+        sendMessage(sb);
     }
 
     public void showInputLottoNumberMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        sendMessage("당첨 번호를 입력해 주세요.");
     }
 
     public void showInputLottoBonusNumberMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        sendMessage("보너스 번호를 입력해 주세요.");
     }
 
     public void showResultHeadMessage() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        sendMessage("당첨 통계");
+        sendMessage("---");
     }
 
     public void showBallCountResult(GameResult lottosResult) {
@@ -50,12 +59,20 @@ public class OutputView {
                 sb.append(result.getMessage()).append(" - ").append(lottosResult.getResultCounts().getOrDefault(result, 0)).append("개\n");
             }
         }
-        System.out.println(sb);
+        sendMessage(sb);
     }
 
     public void showProfit(GameResult lottosResult) {
         StringBuilder sb = new StringBuilder();
         sb.append("총 수익률은 ").append(String.format("%.1f", lottosResult.getTotalProfit())).append("%입니다.");
-        System.out.println(sb);
+        sendMessage(sb);
+    }
+    private void sendMessage(Object message) {
+        try {
+            outputMessageQueue.put(new Message(MessageType.SYSTEM_OUTPUT,message));
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("메시지 전송 중 오류가 발생했습니다: " + e.getMessage());
+        }
     }
 }

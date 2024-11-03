@@ -8,6 +8,8 @@ import lotto.core.domain.model.Money;
 import lotto.core.domain.model.User;
 import lotto.core.view.OutputView;
 import lotto.system.Config.SystemConfig;
+import lotto.system.message.Message;
+import lotto.system.message.MessageType;
 
 
 public class GameController {
@@ -28,14 +30,22 @@ public class GameController {
         this.user = new User();
         this.systemConfig = config;
     }
-    public static GameController initialize(InputController inputController, OutputView outputView) {
+    public static GameController initialize() {
         SystemConfig config = SystemConfig.getInstance();
-        return new GameController(inputController,outputView,config);
+        return new GameController(new InputController(),new OutputView(config.getOutputMessageQueue()),config);
     }
 
     public void run() {
-        this.startGame();
-        this.showResult();
+        try {
+            systemConfig.startSystem();
+            this.startGame();
+            this.showResult();
+            systemConfig.stopSystem();
+        } catch (RuntimeException  e) {
+            System.out.println(e);
+        } finally {
+            systemConfig.shutdown();
+        }
     }
     public void startGame() {
         this.money = buyLottos();

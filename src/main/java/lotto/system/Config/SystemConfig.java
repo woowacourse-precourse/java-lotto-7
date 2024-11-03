@@ -47,9 +47,7 @@ public class SystemConfig {
     public void startSystem() {
         if (!isSystemRunning) {
             isSystemRunning = true;
-            inputTask.start();
             outputTask.start();
-            inputThread.start();
             outputThread.start();
         }
     }
