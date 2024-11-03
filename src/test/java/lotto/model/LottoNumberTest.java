@@ -7,6 +7,8 @@ import lotto.model.exception.DomainExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoNumberTest {
     @Test
@@ -41,6 +43,16 @@ class LottoNumberTest {
         Assertions.assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_FORMAT.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("적절한 번위의 숫자가 들어오지 않으면 예외를 발생한다.")
+    @ValueSource(strings = {"0", "46"})
+    void should_ThrowException_When_NumberOutOfBound(String number) {
+        //when, then
+        Assertions.assertThatThrownBy(() -> new LottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DomainExceptionMessage.INVALID_NUMBER_VALUE.getMessage());
     }
 
 }
