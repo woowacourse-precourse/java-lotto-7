@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import java.util.Map;
@@ -30,10 +31,12 @@ public class RankCounterTest {
         Map<Rank, Integer> rankCounts = RankCounter.countRanks(lottoTickets);
 
         // then
-        assertThat(rankCounts.get(Rank.FIRST_PLACE)).isEqualTo(1);
-        assertThat(rankCounts.get(Rank.SECOND_PLACE)).isEqualTo(0);
-        assertThat(rankCounts.get(Rank.THIRD_PLACE)).isEqualTo(0);
-        assertThat(rankCounts.get(Rank.FOURTH_PLACE)).isEqualTo(0);
-        assertThat(rankCounts.get(Rank.FIFTH_PLACE)).isEqualTo(0);
+        assertAll(
+                () -> assertThat(rankCounts.get(Rank.FIRST_PLACE)).isEqualTo(1),
+                () -> assertThat(rankCounts.get(Rank.SECOND_PLACE)).isEqualTo(0),
+                () -> assertThat(rankCounts.get(Rank.THIRD_PLACE)).isEqualTo(0),
+                () -> assertThat(rankCounts.get(Rank.FOURTH_PLACE)).isEqualTo(0),
+                () -> assertThat(rankCounts.get(Rank.FIFTH_PLACE)).isEqualTo(0)
+        );
     }
 }
