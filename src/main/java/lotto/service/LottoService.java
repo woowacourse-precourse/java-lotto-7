@@ -1,7 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.component.Lotto;
 import lotto.constant.LottoConstants;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class LottoService {
         return lotto;
     }
 
-    public List<Lotto> generateRandomLottos(int count) {
+    public List<Lotto> createRandomLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++){
             lottos.add(generateRandomLotto());
