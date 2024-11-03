@@ -2,16 +2,35 @@ package domain;
 
 import message.ErrorMessage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlayerBuyLotto {
 
-    public int buyLotto(String purchaseAmount) {
+    private static final int LOTTO_AMOUNT = 1000;
+
+    public int purchasedLottoNums(String purchaseAmount) {
 
         validatePurchaseAmount(purchaseAmount);
 
         int amount = Integer.parseInt(purchaseAmount);
-        int LottoPurchased = amount % 1000;
 
-        return LottoPurchased;
+        return amount % 1000;
+    }
+
+    public List<Lotto> buyLotto(int lottoPurchased) {
+
+        LottoNumbers lottoNumbers = new LottoNumbers();
+
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoPurchased; i++) {
+
+            Lotto lotto = lottoNumbers.generateLotto();
+            lottos.add(lotto);
+        }
+
+        return lottos;
     }
 
     private void validatePurchaseAmount(String purchaseAmount) {
@@ -19,12 +38,15 @@ public class PlayerBuyLotto {
         int amount;
 
         try {
+
             amount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
+
             throw new IllegalArgumentException(ErrorMessage.CONTAINS_LETTER.getErrorMessage());
         }
 
-        if(amount % 100 != 0){
+        if(amount % LOTTO_AMOUNT != 0){
+
             throw new IllegalArgumentException(ErrorMessage.CANNOT_BUY_LOTTO.getErrorMessage());
         }
     }

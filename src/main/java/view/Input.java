@@ -14,6 +14,8 @@ public class Input {
         if(purchaseAmount.isEmpty()){
             throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getErrorMessage());
         }
+        System.out.println();
 
+        return purchaseAmount;
     }
 }
