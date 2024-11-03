@@ -33,31 +33,37 @@ class SeparateApplicationTest extends NsTest {
     lotto = Lotto.from(lottoNumbers);
   }
 
+
+
   /**
    * 당첨 번호와 보너스 번호 입력에 대한 유효성을 검증하는 테스트.
    * 요구사항에 로또 번호와 보너스 번호 사이의 중복을 금지하는 내용이 없으므로
    * 당첨 번호와 보너스 번호 간의 중복이 허용됩니다.
+   *
+   * 2024.11.03 중복 허용 하지 않도록 수정합니다.
    */
   @ParameterizedTest
   @CsvSource(delimiter = '|', value = {
-      // 테스트 케이스 1: 보너스 번호가 당첨 번호 중 하나와 일치 (중복)
       "8000| 1,2,3,4,5,6| 3| 당첨 통계",
-      // 테스트 케이스 2: 보너스 번호가 당첨 번호에 포함되지 않음 (중복되지 않음)
-      "8000| 1,2,3,4,5,6| 7| 당첨 통계",
+      "8000| 1,2,3,4,5,6| 1| 당첨 통계",
   })
-  @DisplayName("[success]main : 당첨 번호와 보너스 번호 중복 입력 검증")
+  @DisplayName("[fail]main : 당첨 번호와 보너스 번호 중복 입력 검증")
   void main_verify_winningNumbersAndBonusNumber_duplicateAllowed(
       String validAmount,
       String validWinningNumbers,
-      String bonusNumber,
+      String invalidBonusNumber,
       String expectedOutput
   ) {
+    String validBonusNumber = "30";
     assertSimpleTest(() -> {
-      run(validAmount, validWinningNumbers, bonusNumber);
+      run(validAmount, validWinningNumbers, invalidBonusNumber, validBonusNumber);
       assertThat(output()).satisfies(
           text -> assertThat(text).containsOnlyOnce("구입금액을 입력해 주세요."),
           text -> assertThat(text).containsOnlyOnce("당첨 번호를 입력해 주세요."),
-          text -> assertThat(text).containsOnlyOnce("보너스 번호를 입력해 주세요."),
+          text -> assertThat(text).containsSubsequence(
+              "보너스 번호를 입력해 주세요.",
+              "보너스 번호를 입력해 주세요."
+          ),
           text -> assertThat(text).contains(expectedOutput)
       );
     });

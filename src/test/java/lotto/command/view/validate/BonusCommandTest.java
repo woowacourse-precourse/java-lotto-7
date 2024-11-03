@@ -4,10 +4,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.exception.ExceptionEnum;
 import lotto.dto.BonusUserInput;
 import lotto.dto.UserInput;
+import lotto.dto.WinningLottoUserInput;
+import lotto.model.lotto.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,12 +28,14 @@ class BonusCommandTest {
 
   @BeforeEach
   void setUp() {
-    command = new BonusCommand();
+    List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+    WinningLottoUserInput userInput = WinningLottoUserInput.from(numbers);
+    command = BonusCommand.from(WinningLotto.from(userInput));
   }
 
   @ParameterizedTest
   @ValueSource(strings = {
-      "1",
+      "8",
       "10",
       "45"
   })
@@ -68,7 +73,7 @@ class BonusCommandTest {
   @Test
   @DisplayName("[fail]execute : 공백이 포함된 입력 처리")
   void execute_shouldThrowExceptionWithSpace() {
-    String inputWithSpace = "1,2,3,4,5,6 ";
+    String inputWithSpace = "1,4,3,4,5,6 ";
     assertThatThrownBy(() -> command.execute(inputWithSpace))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("[ERROR]")
@@ -91,7 +96,11 @@ class BonusCommandTest {
         Arguments.of("46", ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM),
         Arguments.of("50", ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM),
         Arguments.of("abc", ExceptionEnum.INVALID_INTEGER_RANGE),
-        Arguments.of("-1", ExceptionEnum.INPUT_LESS_THAN_MINIMUM)
+        Arguments.of("-1", ExceptionEnum.INPUT_LESS_THAN_MINIMUM),
+        Arguments.of("1", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT),
+        Arguments.of("2", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT),
+        Arguments.of("3", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT),
+        Arguments.of("4", ExceptionEnum.BONUS_NUMBER_NOT_DISTICT)
     );
   }
 }
