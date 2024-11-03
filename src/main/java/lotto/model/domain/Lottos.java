@@ -26,7 +26,7 @@ public class Lottos {
         return lottos;
     }
 
-    public int size() {
+    public int getSize() {
         return lottos.size();
     }
 }
