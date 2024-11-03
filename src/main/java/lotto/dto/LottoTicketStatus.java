@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LottoTicketStatus {
 
-    List<LottoStatus> lottoStatuses;
+    private final List<LottoStatus> lottoStatuses;
 
     public LottoTicketStatus(List<LottoStatus> lottoStatuses) {
         this.lottoStatuses = lottoStatuses;

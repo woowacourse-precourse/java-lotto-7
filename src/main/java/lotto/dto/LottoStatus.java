@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoStatus {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public LottoStatus(List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);

@@ -1,13 +1,13 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoStatus;
 import lotto.dto.LottoTicketStatus;
 
 public class LottoTicket {
-    List<Lotto> lottos;
+
+    private final List<Lotto> lottos;
 
     public LottoTicket(List<Lotto> lottos) {
         this.lottos = lottos;
