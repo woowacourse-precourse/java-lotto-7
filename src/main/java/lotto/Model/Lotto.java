@@ -107,6 +107,26 @@ public class Lotto {
         return result;
     }
 
+    public int totalPrizeMoney(List<Integer> matchNumberCount) {
+        int totalPrize = 0;
+
+        // result 리스트의 인덱스와 당첨 횟수에 따라 총 당첨금 계산
+        for (int i = 0; i < matchNumberCount.size(); i++) {
+            LottoPrizeMoney prize = LottoPrizeMoney.fromRank(i);
+            int count = matchNumberCount.get(i);
+
+            if (count > 0) {
+                totalPrize += count * prize.getPrizeMoney();
+            }
+        }
+
+        return totalPrize;
+    }
+
+    public void earningRate() {
+
+    }
+
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
