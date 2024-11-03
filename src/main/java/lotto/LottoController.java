@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoResultAnalysisService;
@@ -37,6 +36,7 @@ public class LottoController {
 
         outputView.printBonusNumberRequestMessage();
         int bonusNumber = inputView.readBonusNumber();
+        inputView.closeConsole();
 
         List<Integer> winningNumbers = createWinningNumbers(numbers);
         // TODO: 개선 요망
