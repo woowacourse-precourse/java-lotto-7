@@ -1,31 +1,32 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
-    // Todo
-    // 로또 당첨 확인
-    // 로또 당첨 통계
-    // 로또 수익률 계산
-
     private final InputView inputView;
+    private final OutputView outputView;
     private final LottoService lottoService;
 
-    public LottoController(InputView inputView, LottoService lottoService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.lottoService = lottoService;
     }
 
     public void buyLotto() {
         String money = inputView.inputMoney();
         lottoService.buyLotto(money);
+    }
 
-        for (Lotto lotto : lottoService.getAllLottos()) {
-            System.out.println("lotto = " + lotto);
-        }
+    public void printLottoNumbers() {
+        List<Lotto> lottos = lottoService.getAllLottos();
+        outputView.printPurchaseCount(lottos.size());
+        outputView.printLottoNumbers(lottos);
     }
 
     public void checkLotto() {
@@ -34,9 +35,18 @@ public class LottoController {
         lottoService.checkLotto(winnerNumbers, bonusNumber);
     }
 
+    public void printWinningStatistics() {
+        // Todo 당첨 통계 계산 서비스 호출
+        String profitRate = "0";
+        outputView.printWinningStatistics();
+        outputView.printProfitRate(profitRate);
+    }
+
     public void startLottoGame() {
-        
-         buyLotto();
-         checkLotto();
+
+        buyLotto();
+        printLottoNumbers();
+        checkLotto();
+        printWinningStatistics();
     }
 }
