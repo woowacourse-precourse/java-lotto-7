@@ -6,10 +6,9 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        this.numbers.sort(Integer::compareTo);
     }
 
     private void validate(List<Integer> numbers) {
@@ -25,8 +24,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
-    public List<Integer> getNumbers() {
-        return numbers.stream().toList();
+    public static Lotto generateLotto(List<Integer> numbers){
+        List<Integer> sortedNumbers = numbers.stream()
+                .sorted()
+                .toList();
+        return new Lotto(sortedNumbers);
     }
 }
