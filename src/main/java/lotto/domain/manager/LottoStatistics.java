@@ -20,6 +20,7 @@ public class LottoStatistics {
     public LottoStatistics(AutomaticLottoMachine automaticLottoMachine, WinningLottos winningNumbers) {
         winningStatusTable = initialize();
         buildWinningStatus(automaticLottoMachine, winningNumbers);
+
         profitRate = calculateProfitRate(automaticLottoMachine);
     }
 
