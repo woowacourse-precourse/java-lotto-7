@@ -5,11 +5,9 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.message.Place;
 import lotto.message.PrintMessage;
-import lotto.message.Prize;
 
 public class ResultPrinter {
 
-    private final EnumMap<Place, Long> prize = Prize.getPrize();
     private final EnumMap<Place, Long> places;
 
     private ResultPrinter(EnumMap<Place, Long> places) {
@@ -32,13 +30,5 @@ public class ResultPrinter {
         printResult.add(setDetail(PrintMessage.LOTTO_SECOND_PLACE_WINNING, Place.SECOND_PLACE));
         printResult.add(setDetail(PrintMessage.LOTTO_FIRST_PLACE_WINNING, Place.FIRST_PLACE));
         return printResult;
-    }
-
-    public Long getPrizeMoney() {
-        long prizeMoney = 0;
-        for (Place place : Place.values()) {
-            prizeMoney += places.get(place) * prize.get(place);
-        }
-        return prizeMoney;
     }
 }

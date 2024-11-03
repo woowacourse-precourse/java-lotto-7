@@ -9,6 +9,7 @@ import lotto.service.calculator.BonusCalculator;
 import lotto.service.calculator.ResultCalculator;
 import lotto.service.calculator.WinningCalculator;
 import lotto.service.printer.ResultPrinter;
+import lotto.util.PrizeMoneyCalculator;
 import lotto.util.ProfitCalculator;
 import lotto.view.OutputView;
 
@@ -33,6 +34,6 @@ public class ResultController {
                 bonusCalculator.getBonusResult());
         ResultPrinter resultPrinter = ResultPrinter.create(resultCalculator.getPlaces());
         outputView.printWinningDetail(resultPrinter.getDetail());
-        outputView.printProfitRate(ProfitCalculator.calculate(payment, resultPrinter.getPrizeMoney()));
+        outputView.printProfitRate(ProfitCalculator.calculate(payment, PrizeMoneyCalculator.getPrizeMoney(resultCalculator.getPlaces())));
     }
 }
