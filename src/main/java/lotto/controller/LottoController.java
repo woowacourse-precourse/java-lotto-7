@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.UserLotto;
+import lotto.model.PurchasedLotto;
 import lotto.util.ErrorMessage;
 import lotto.util.InputValidator;
 import lotto.util.Separator;
@@ -21,7 +21,7 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        UserLotto userLotto = new UserLotto(purchaseAmount/LOTTO_PRICE);
+        PurchasedLotto purchasedLotto = new PurchasedLotto(purchaseAmount/LOTTO_PRICE);
 
         Lotto lotto = createWinningLotto();
         int bonusNumber = getBonusNumber();

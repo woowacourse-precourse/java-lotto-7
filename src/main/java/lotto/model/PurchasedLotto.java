@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserLotto {
+public class PurchasedLotto {
 
     private static final int MIN_LOTTO_RANGE = 1;
     private static final int MAX_LOTTO_RANGE = 45;
@@ -13,7 +13,7 @@ public class UserLotto {
 
     private List<Lotto> lottos;
 
-    public UserLotto(int lottoQuantity) {
+    public PurchasedLotto(int lottoQuantity) {
         this.lottos = new ArrayList<>(lottoQuantity);
 
         createLottos(lottoQuantity);
