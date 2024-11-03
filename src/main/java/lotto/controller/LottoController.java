@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.io.Input;
 import lotto.io.Output;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.service.LottoService;
 import lotto.util.Validator;
 
@@ -21,6 +23,7 @@ public class LottoController {
     public void playLotto() {
         int purchasePrice = handlePurchasePrice();
         int count = handleLottoCount(purchasePrice);
+        handleCreatedLottos(count);
     }
 
     private int handlePurchasePrice() {
@@ -48,5 +51,18 @@ public class LottoController {
         int count = lottoService.calculateLottoCount(purchasePrice);
         output.printLottoCount(count);
         return count;
+    }
+
+    private void handleCreatedLottos(int count) {
+        Lottos lottos = createLottosWithCount(count);
+    }
+
+    private Lottos createLottosWithCount(int count) {
+        Lottos lottos = new Lottos();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = new Lotto(lottoService.pickLottoNumbers());
+            lottos.addLotto(lotto);
+        }
+        return lottos;
     }
 }
