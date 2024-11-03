@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
+import lotto.domain.LottoWinningTier;
+import lotto.domain.LottoWinningTierManager;
 import lotto.service.LottoService;
 import lotto.service.Validate;
 import lotto.view.InputView;
@@ -9,6 +11,7 @@ import lotto.view.OutputView;
 import lotto.view.RequestMessage;
 import lotto.view.ResultMessage;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final OutputView outputView = new OutputView();
@@ -17,6 +20,7 @@ public class LottoController {
     private final Validate validate = new Validate();
     private List<Lotto> purchaseLottoNumbers;
     private LottoWinningNumbers lottoWinningNumbers;
+    private LottoWinningTierManager lottoWinningTierManager;
 
     public void setPurchaseLottoNumbers () {
         while (true) {
@@ -25,6 +29,9 @@ public class LottoController {
                 String purchaseAmount = inputView.readLine();
                 purchaseLottoNumbers = lottoService.purchaseLotto(
                         validate.validatePurchaseAmount(purchaseAmount));
+                for (Lotto lotto : purchaseLottoNumbers) {
+                    System.out.println(lotto.getNumbers().toString());
+                }
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
@@ -59,5 +66,10 @@ public class LottoController {
                 outputView.printMessage(e.getMessage());
             }
         }
+    }
+
+    public void checkWinningNumbers () {
+        lottoWinningTierManager = new LottoWinningTierManager();
+        lottoService.checkWinningStatus(lottoWinningTierManager, purchaseLottoNumbers, lottoWinningNumbers);
     }
 }
