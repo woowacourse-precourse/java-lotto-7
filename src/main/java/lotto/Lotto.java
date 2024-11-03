@@ -22,6 +22,12 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.ERROR_NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        }
     }
 
     @Override
