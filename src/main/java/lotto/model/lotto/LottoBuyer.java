@@ -7,7 +7,7 @@ public class LottoBuyer {
         this.ownedTickets = store.calculateTicketsCount(budget);
     }
 
-    public int getOwnedTickets() { //소유한 티켓
+    public int getOwnedTickets() {
         return ownedTickets;
     }
 }
