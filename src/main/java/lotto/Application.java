@@ -32,7 +32,7 @@ public class Application {
     }
 
     public static void makeLotto(int lotto_cost) {
-        for (int i = lotto_cost; i >= 0; i -= 1000) {
+        for (int i = lotto_cost; i > 0; i -= 1000) {
             Lotto element = new Lotto(pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(element);
         }
