@@ -1,6 +1,9 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.WinningCondition;
 import lotto.domain.WinningResult;
 
@@ -23,6 +26,18 @@ public class OutputView {
         printlnMessage("---");
         printWinningResult(result);
         printProfitRate(profitRate);
+    }
+
+    public void printlnCreateLottos(Lottos lottos) {
+        int lottoCount = lottos.getLottos().size();
+        printlnMessage(lottoCount + "개를 구매했습니다.");
+
+        for (Lotto lotto : lottos.getLottos()) {
+            String formattedNumbers = lotto.getNumbers().stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", ", "[", "]"));
+            printlnMessage(formattedNumbers);
+        }
     }
 
     private void printWinningResult(WinningResult result) {

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.global.exception.CustomException;
 import lotto.global.exception.ErrorMessage;
 
@@ -65,14 +64,6 @@ public class Lotto {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw CustomException.of(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
         }
-    }
-
-    @Override
-    public String toString() {
-        if (numbers == null || numbers.isEmpty()) {
-            return "";
-        }
-        return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
 
     public List<Integer> getNumbers() {

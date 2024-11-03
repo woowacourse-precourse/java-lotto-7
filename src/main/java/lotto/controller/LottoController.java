@@ -43,7 +43,7 @@ public class LottoController {
 
     private Lottos createLottos(Amount amount) {
         Lottos lottos = new Lottos(amount);
-        outputView.printlnMessageWithEmptyLine(lottos.toString());
+        outputView.printlnCreateLottos(lottos);
         return lottos;
     }
 
