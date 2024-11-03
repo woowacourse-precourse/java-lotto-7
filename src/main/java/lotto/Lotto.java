@@ -20,5 +20,15 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for(int winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     // TODO: 추가 기능 구현
 }

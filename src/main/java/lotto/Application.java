@@ -17,9 +17,13 @@ public class Application {
         printLottos(lottoTickets, lottos);
         List<Integer> winningNumbers =  setWinningNumbers();
         int bonusNumber = setBonusNumber(winningNumbers);
+        List<LottoRank> lottoRanks = new ArrayList<>(matchLottos(lottos, winningNumbers, bonusNumber));
 
-        System.out.println(winningNumbers);
-        System.out.println(bonusNumber);
+        for(LottoRank lottoRank : lottoRanks) {
+            System.out.println(lottoRank);
+            System.out.println(lottoRank.getPrize());
+        }
+
 
     }
 
@@ -119,5 +123,19 @@ public class Application {
         validateNumberDuplicate(winningNumbers,number);
 
         return number;
+    }
+
+    public static List<LottoRank> matchLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoRanks.add(matchRank(lotto, winningNumbers, bonusNumber));
+        }
+        return lottoRanks;
+    }
+
+    public static LottoRank matchRank(Lotto lotto,List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = lotto.countMatchingNumbers(winningNumbers);
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
     }
 }
