@@ -20,10 +20,19 @@ public class Lotto {
                 .collect(Collectors.joining(NUMBER_DELIMITER));
     }
 
+    public int countMatchingNumbers(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    // TODO: 추가 기능 구현
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
