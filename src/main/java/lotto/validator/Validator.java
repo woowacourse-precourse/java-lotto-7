@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class Validator {
-    private final static String NEGATIVE_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 구매 비용이 0 미만입니다.";
+    private final static String NEGATIVE_NUMBER_ERROR_MESSAGE = "[ERROR] 입력값이 0 미만입니다.";
     private final static String LOTTO_NUMBER_ERROR_MESSGAE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private final static String DUPLICATED_NUMBER_ERROR_MESSAGE = "[ERROR] 입력된 당첨 번호 중에서 중복되는 숫자가 있습니다.";
     private final static String NUMBERS_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
