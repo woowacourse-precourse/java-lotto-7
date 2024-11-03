@@ -24,10 +24,10 @@ public class LottoController {
         lottoService.makeLotto(lottoCount);
 
         lottoService.printLottoNumbers();
-        countWonLotto();
+        makeWinningNumbers();
     }
 
-    public void countWonLotto() {
+    public void makeWinningNumbers() {
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         int bonusNumber = inputView.getBonusNumber();
         lottoService.makeWinningLotto(winningNumbers, bonusNumber);
