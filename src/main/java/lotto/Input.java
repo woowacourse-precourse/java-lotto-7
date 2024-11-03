@@ -66,4 +66,10 @@ public class Input {
 			throw new IllegalArgumentException("[ERROR] 입력이 비어있을 수 없습니다.");
 		}
 	}
+
+	public void validateBlank(String input) {
+		if (input.contains(" ")) {
+			throw new IllegalArgumentException("[ERROR] 입력에 공백이 포함되어 있을 수 없습니다.");
+		}
+	}
 }
