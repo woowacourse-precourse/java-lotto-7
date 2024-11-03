@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class MoneyTest {
     @Nested
-    @DisplayName("객체 생성 테스트")
+    @DisplayName("객체 생성 테스트" )
     class CreateMoneyTest {
         @Test
         void Money_객체는_구입금액을_가진다() {
@@ -30,7 +30,7 @@ public class MoneyTest {
     }
 
     @Nested
-    @DisplayName("예외 처리 테스트")
+    @DisplayName("예외 처리 테스트" )
     class MoneyExceptionTest {
         final int LOTTO_COST = 1000;
 

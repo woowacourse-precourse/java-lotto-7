@@ -25,7 +25,7 @@ public class LottoGameTest {
 
             winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-            bonusNumber = new BonusNumber(winningLotto, "7");
+            bonusNumber = new BonusNumber(winningLotto, "7" );
         }
 
         @Test

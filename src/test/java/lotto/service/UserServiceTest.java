@@ -20,7 +20,7 @@ public class UserServiceTest {
         // when
         int actual = userService.calculateLottoQuantity(input);
 
-        Money money = new Money("10000");
+        Money money = new Money("10000" );
         int expected = money.getPrice() / LOTTO_COST;
 
         // then
@@ -46,7 +46,7 @@ public class UserServiceTest {
     void 보너스_번호를_입력받아_BonusNumber_객체를_생성한다() {
         // given
         String input = "7";
-        Lotto winningLotto = userService.createWinningLotto("1,2,3,4,5,6");
+        Lotto winningLotto = userService.createWinningLotto("1,2,3,4,5,6" );
 
         // when
         BonusNumber bonusNumber = userService.createBonusNumber(winningLotto, input);

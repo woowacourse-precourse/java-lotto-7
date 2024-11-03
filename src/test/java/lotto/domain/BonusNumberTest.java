@@ -44,7 +44,7 @@ public class BonusNumberTest {
     }
 
     @Nested
-    @DisplayName("예외 처리 테스트")
+    @DisplayName("예외 처리 테스트" )
     class BonusNumberExceptionTest {
         @Test
         void 보너스_번호가_범위_외의_숫자이면_예외가_발생한다() {
@@ -65,7 +65,7 @@ public class BonusNumberTest {
             // when & then
             assertThatThrownBy(() -> new BonusNumber(winningLotto, input))
                     .isInstanceOf(LottoException.class)
-                    .hasMessage("[ERROR] 당첨 번호와 중복된 번호입니다.");
+                    .hasMessage("[ERROR] 당첨 번호와 중복된 번호입니다." );
         }
     }
 }
