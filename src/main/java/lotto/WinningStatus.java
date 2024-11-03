@@ -9,4 +9,16 @@ public class WinningStatus {
         this.matchedNumberCount = matchedNumberCount;
         this.isBonusNumberMatched = isBonusNumberMatched;
     }
+
+    public WinningRank getWinningRank() {
+        return WinningRank.from(this);
+    }
+
+    public int getMatchedNumberCount() {
+        return matchedNumberCount;
+    }
+
+    public boolean isBonusNumberMatched() {
+        return isBonusNumberMatched;
+    }
 }
