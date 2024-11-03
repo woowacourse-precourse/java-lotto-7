@@ -1,7 +1,7 @@
 package lotto.model.lotto;
 
-import static lotto.util.Constants.MAX_RANGE;
-import static lotto.util.Constants.MIN_RANGE;
+import static lotto.util.Constants.LOTTO_MAX_RANGE;
+import static lotto.util.Constants.LOTTO_MIN_RANGE;
 import static lotto.util.Constants.NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -22,7 +22,7 @@ public class LottoNumbersGenerator {
 
     private List<Integer> generateLottoNumbers() {
         List<Integer> randomNumbers = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, NUMBER_COUNT));
+                Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, NUMBER_COUNT));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }

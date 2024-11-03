@@ -40,5 +40,4 @@ class LottoBuyerTest {
             assertEquals(expectedOwnedTickets, lottoBuyer.getOwnedTickets());
         }
     }
-
 }

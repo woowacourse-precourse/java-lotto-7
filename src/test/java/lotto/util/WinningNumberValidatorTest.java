@@ -48,6 +48,14 @@ class WinningNumberValidatorTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_LENGTH.getMessage());
         }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"46,2,3,4,45,7", "100,101,3,4,5,6","1,2,3,4,5,0"})
+        void 일부터_사십오_범위를_넘어가는_경우(String input) {
+            assertThatThrownBy(() -> validator.validate(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_LOTTO_RANGE.getMessage());
+        }
     }
 
     @Nested

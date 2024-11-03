@@ -1,8 +1,10 @@
 package lotto.util.validator;
 
+import static lotto.util.Constants.LOTTO_MAX_RANGE;
+import static lotto.util.Constants.LOTTO_MIN_RANGE;
+
 import lotto.util.ExceptionMessage;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class WinningNumberValidator implements Validator {
@@ -30,12 +32,25 @@ public class WinningNumberValidator implements Validator {
     }
 
     private List<Integer> validateAndConvertToNumbers(List<String> winningNumbers) {
+        return winningNumbers.stream()
+                .map(this::parseAndValidateNumber)
+                .collect(Collectors.toList());
+    }
+
+    private int parseAndValidateNumber(String numberStr) {
+        int number;
         try {
-            return winningNumbers.stream()
-                    .map(Integer::parseInt)  // 숫자 변환
-                    .collect(Collectors.toList());
+            number = Integer.parseInt(numberStr);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NOT_NUMERIC.getMessage());
+        }
+        validateLottoNumberRange(number);
+        return number;
+    }
+
+    private void validateLottoNumberRange(int number) {
+        if (number < LOTTO_MIN_RANGE || number > LOTTO_MAX_RANGE) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_LOTTO_RANGE.getMessage());
         }
     }
 }
