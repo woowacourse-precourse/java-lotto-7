@@ -16,7 +16,7 @@ public class Application {
         lottoList.printLottoList();
 
         Lotto lotto = inputWinningNumbers();
-        
+
         int bonusNumber = inputBonusNumber(lotto.getLotto());
 
         Result result = new Result(inputMoney);
@@ -37,20 +37,32 @@ public class Application {
     }
 
     private static int validateBonusNumber(List<Integer> winningNumber, String input) {
-        try {
-            int bonusNumber = Integer.parseInt(input.trim());
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
-            }
+        int bonusNumber = parseBonusNumber(input);
+        validateBonusRange(bonusNumber);
+        validateBonusNotInWinningNumbers(winningNumber, bonusNumber);
+        return bonusNumber;
+    }
 
-            if (winningNumber.contains(bonusNumber)) {
-                throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WITH_WINNING_NUMBER.getMessage());
-            }
-            return bonusNumber;
+    private static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
+
+    private static void validateBonusRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private static void validateBonusNotInWinningNumbers(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WITH_WINNING_NUMBER.getMessage());
+        }
+    }
+
 
     private static Lotto inputWinningNumbers() {
         try {
