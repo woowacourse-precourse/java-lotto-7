@@ -3,7 +3,8 @@ package lotto.controller;
 import lotto.model.draw.BonusNumber;
 import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Purchase;
-import lotto.model.result.LottoResult;
+import lotto.model.result.LottoWinCount;
+import lotto.model.result.Profit;
 import lotto.view.LottoDrawView;
 import lotto.view.LottoResultView;
 import lotto.view.PurchaseView;
@@ -51,9 +52,9 @@ public class LottoController {
 
     public void lottoResult() {
         LottoResultView lottoResultView = new LottoResultView();
-        LottoResult lottoResult = new LottoResult(drawNumbers, bonusNumber, purchase.getPurchasedLottoTickets(),
-                purchase.getPayment());
-        lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
-        lottoResultView.displayProfit(lottoResult.getLottoProfit());
+        LottoWinCount lottoWinCount = new LottoWinCount(drawNumbers, bonusNumber, purchase.getPurchasedLottoTickets());
+        Profit profit = new Profit(lottoWinCount.getLottoWinCount(), purchase.getPayment());
+        lottoResultView.displayLottoWins(lottoWinCount.getLottoWinCount());
+        lottoResultView.displayProfit(profit.getProfit());
     }
 }

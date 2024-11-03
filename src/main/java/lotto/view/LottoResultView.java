@@ -3,7 +3,6 @@ package lotto.view;
 import java.util.EnumMap;
 import java.util.Map.Entry;
 import lotto.constant.LottoWinInfo;
-import lotto.model.result.Profit;
 
 public class LottoResultView {
     public void displayLottoWins(final EnumMap<LottoWinInfo, Integer> lottoWinCount) {
@@ -25,7 +24,7 @@ public class LottoResultView {
         System.out.printf("%d개 일치 (%,d원) - %d개\n", numberMatchCount, prize, count);
     }
 
-    public void displayProfit(final Profit profit) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit.getProfit());
+    public void displayProfit(final double profit) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
     }
 }

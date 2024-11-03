@@ -7,9 +7,8 @@ import lotto.model.draw.BonusNumber;
 import lotto.model.draw.DrawNumbers;
 import lotto.model.purchase.Lotto;
 
-public class LottoResult {
+public class LottoWinCount {
     private final EnumMap<LottoWinInfo, Integer> lottoWinCount = new EnumMap<>(LottoWinInfo.class);
-    private final Profit lottoProfit;
 
     {
         for (LottoWinInfo lottoWinInfo : LottoWinInfo.values()) {
@@ -17,10 +16,8 @@ public class LottoResult {
         }
     }
 
-    public LottoResult(final DrawNumbers drawNumbers, final BonusNumber bonusNumber, final List<Lotto> lottoTickets,
-                       final Integer payment) {
+    public LottoWinCount(final DrawNumbers drawNumbers, final BonusNumber bonusNumber, final List<Lotto> lottoTickets) {
         countWinningLottoTickets(drawNumbers, bonusNumber, lottoTickets);
-        lottoProfit = new Profit(lottoWinCount, payment);
     }
 
     private void countWinningLottoTickets(final DrawNumbers drawNumbers, final BonusNumber bonusNumber,
@@ -42,9 +39,5 @@ public class LottoResult {
 
     public EnumMap<LottoWinInfo, Integer> getLottoWinCount() {
         return lottoWinCount;
-    }
-
-    public Profit getLottoProfit() {
-        return lottoProfit;
     }
 }

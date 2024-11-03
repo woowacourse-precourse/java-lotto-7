@@ -2,7 +2,6 @@ package lotto.model.result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.EnumMap;
 import java.util.List;
 import lotto.constant.LottoWinInfo;
 import lotto.model.draw.BonusNumber;
@@ -11,7 +10,7 @@ import lotto.model.purchase.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LottoResultTest {
+class LottoWinCountTest {
     DrawNumbers drawNumbers;
     BonusNumber bonusNumber;
     Lotto FIRST_WIN_LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -38,15 +37,14 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(drawNumbers, bonusNumber, lottoTickets, 0);
-        EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
+        LottoWinCount lottoWinCount = new LottoWinCount(drawNumbers, bonusNumber, lottoTickets);
 
         // then
-        assertThat(lottoWinCount.get(LottoWinInfo.FIRST)).isEqualTo(1);
-        assertThat(lottoWinCount.get(LottoWinInfo.SECOND)).isEqualTo(1);
-        assertThat(lottoWinCount.get(LottoWinInfo.THIRD)).isEqualTo(1);
-        assertThat(lottoWinCount.get(LottoWinInfo.FOURTH)).isEqualTo(1);
-        assertThat(lottoWinCount.get(LottoWinInfo.FIFTH)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FIRST)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.SECOND)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.THIRD)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FOURTH)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FIFTH)).isEqualTo(1);
     }
 
     @Test
@@ -58,14 +56,13 @@ class LottoResultTest {
                 FIFTH_WIN_LOTTO);
 
         // when
-        LottoResult lottoResult = new LottoResult(drawNumbers, bonusNumber, lottoTickets, 0);
-        EnumMap<LottoWinInfo, Integer> lottoWinCount = lottoResult.getLottoWinCount();
+        LottoWinCount lottoWinCount = new LottoWinCount(drawNumbers, bonusNumber, lottoTickets);
 
         // then
-        assertThat(lottoWinCount.get(LottoWinInfo.FIRST)).isEqualTo(0);
-        assertThat(lottoWinCount.get(LottoWinInfo.SECOND)).isEqualTo(2);
-        assertThat(lottoWinCount.get(LottoWinInfo.THIRD)).isEqualTo(3);
-        assertThat(lottoWinCount.get(LottoWinInfo.FOURTH)).isEqualTo(3);
-        assertThat(lottoWinCount.get(LottoWinInfo.FIFTH)).isEqualTo(1);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FIRST)).isEqualTo(0);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.SECOND)).isEqualTo(2);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.THIRD)).isEqualTo(3);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FOURTH)).isEqualTo(3);
+        assertThat(lottoWinCount.getLottoWinCount().get(LottoWinInfo.FIFTH)).isEqualTo(1);
     }
 }
