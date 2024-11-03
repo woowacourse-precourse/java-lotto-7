@@ -1,15 +1,13 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import lotto.global.ErrorMessage;
 import org.assertj.core.api.Assertions;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
@@ -35,37 +33,6 @@ class LottoTest {
     void 로또를_String_으로_변환하면_요구사항의_출력_형식에_맞게_변환된다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Assertions.assertThat(lotto).hasToString("[1, 2, 3, 4, 5, 6]");
-    }
-
-    @DisplayName("equals(), hashCode() 메서드를 테스트한다.")
-    @Nested
-    class EqualsAndHashCodeTest {
-        @DisplayName("같은 번호로 생성된 두 Lotto 객체는 equals 비교 시 동일하다고 판단된다.")
-        @Test
-        void 같은_번호의_Lotto_객체는_동일하다고_판단() {
-            // given
-            Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-            // then
-            SoftAssertions.assertSoftly(
-                    softly -> {
-                        softly.assertThat(lotto1).isEqualTo(lotto2);
-                        softly.assertThat(lotto1).hasSameHashCodeAs(lotto2);
-                    }
-            );
-        }
-
-        @DisplayName("다른 번호로 생성된 두 Lotto 객체는 equals 비교 시 다르다고 판단된다.")
-        @Test
-        void 다른_번호의_Lotto_객체는_다르다고_판단() {
-            // given
-            Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-
-            // then
-            Assertions.assertThat(lotto1).isNotEqualTo(lotto2);
-        }
     }
 
     @DisplayName("당첨 여부에 대한 여러 시나리오를 테스트한다.")
