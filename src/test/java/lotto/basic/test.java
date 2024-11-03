@@ -3,9 +3,8 @@ package lotto.basic;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.service.LottoService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
-import org.assertj.core.api.ThrowableAssert;
+import lotto.view.InputViewImpl;
+import lotto.view.OutputViewImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,7 @@ public class test {
     @Test
     void 금액_입력_테스트() {
         // given
-        InputView inputView = new InputView();
+        InputViewImpl inputView = new InputViewImpl();
         Money expectInput = new Money("14000");
 
         // when
@@ -219,8 +218,8 @@ public class test {
     @Test
     void 번호_맞추기_당첨번호_테스트() {
         // given
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
+        InputViewImpl inputView = new InputViewImpl();
+        OutputViewImpl outputView = new OutputViewImpl();
         LottoService lottoService = new LottoService(inputView, outputView);
         WinningNumbers winningNumbers = new WinningNumbers("1, 2, 3, 4, 5, 6");
         Lotto lotto = new Lotto(List.of(1, 2, 3, 43, 44, 45));
@@ -237,8 +236,8 @@ public class test {
     @Test
     void 번호_맞추기_보너스번호_테스트() {
         // given
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
+        InputViewImpl inputView = new InputViewImpl();
+        OutputViewImpl outputView = new OutputViewImpl();
         LottoService lottoService = new LottoService(inputView, outputView);
         WinningNumbers winningNumbers = new WinningNumbers("31, 32, 33, 34, 35, 36");
         BonusNumber bonusNumber = new BonusNumber("7", winningNumbers);

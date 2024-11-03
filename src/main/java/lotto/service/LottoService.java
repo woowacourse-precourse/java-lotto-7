@@ -4,44 +4,25 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoService {
 
     InputView inputView;
     OutputView outputView;
+    FortuneMachine fortuneMachine;
 
     public LottoService(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.fortuneMachine = fortuneMachine;
     }
 
-    public void run() {
-        Money money = getMoney();
-        FortuneMachine fortuneMachine = getFortuneMachine();
-        Lottos lottos = getLotto(fortuneMachine, money);
-        showLotto(lottos);
-        WinningNumbers winningNumbers = inputView.getWinningNumbers();
-        BonusNumber bonusNumber = inputView.getBonusNumber(winningNumbers);
-        Results results = new Results(lottos.stream()
+    public Results calculateResults(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lottos lottos) {
+        List<Result> resultList = lottos.stream()
                 .map(lotto -> getResult(winningNumbers, bonusNumber, lotto))
-                .toList());
-        outputView.showResults(results, money);
-
-    }
-
-    public Money getMoney() {
-        return inputView.getMoney();
-    }
-
-    public FortuneMachine getFortuneMachine() {
-        return new FortuneMachine();
-    }
-
-    public Lottos getLotto(FortuneMachine fortuneMachine, Money money) {
-        return fortuneMachine.buyLotto(money);
-    }
-
-    public void showLotto(Lottos lottos) {
-        outputView.showLottos(lottos);
+                .toList();
+        return new Results(resultList);
     }
 
     public Result getResult(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
