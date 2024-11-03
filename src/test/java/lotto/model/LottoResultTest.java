@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.enums.LottoWinInfo;
+import lotto.constant.LottoWinInfo;
 import lotto.model.draw.DrawNumber;
 import lotto.model.draw.LottoNumbers;
 import lotto.model.purchase.Lotto;

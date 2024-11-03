@@ -1,8 +1,8 @@
 package lotto.model.purchase;
 
-import static lotto.enums.LottoConstant.LOTTO_NUMBER_COUNT;
-import static lotto.enums.LottoConstant.MAX_LOTTO_NUMBER;
-import static lotto.enums.LottoConstant.MIN_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

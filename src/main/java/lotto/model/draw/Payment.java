@@ -9,7 +9,8 @@ public class Payment {
     }
 
     private void validate(final String payment) {
-        // TODO 예외 처리
+//        validateInteger();
+//        validtaeDivideByePrice();
     }
 
     public int getPayment() {

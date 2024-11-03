@@ -2,7 +2,7 @@ package lotto.model.result;
 
 import java.util.EnumMap;
 import java.util.Map.Entry;
-import lotto.enums.LottoWinInfo;
+import lotto.constant.LottoWinInfo;
 
 public class Profit {
     private final double profit;

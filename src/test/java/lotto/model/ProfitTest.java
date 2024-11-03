@@ -1,14 +1,14 @@
 package lotto.model;
 
-import static lotto.enums.LottoWinInfo.FIFTH;
-import static lotto.enums.LottoWinInfo.FIRST;
-import static lotto.enums.LottoWinInfo.FOURTH;
-import static lotto.enums.LottoWinInfo.SECOND;
-import static lotto.enums.LottoWinInfo.THIRD;
+import static lotto.constant.LottoWinInfo.FIFTH;
+import static lotto.constant.LottoWinInfo.FIRST;
+import static lotto.constant.LottoWinInfo.FOURTH;
+import static lotto.constant.LottoWinInfo.SECOND;
+import static lotto.constant.LottoWinInfo.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.EnumMap;
-import lotto.enums.LottoWinInfo;
+import lotto.constant.LottoWinInfo;
 import lotto.model.result.Profit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

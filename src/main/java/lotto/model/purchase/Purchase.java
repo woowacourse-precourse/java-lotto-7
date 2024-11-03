@@ -1,6 +1,6 @@
 package lotto.model.purchase;
 
-import static lotto.enums.LottoConstant.PRICE;
+import static lotto.constant.LottoConstant.PRICE;
 
 import java.util.List;
 import lotto.model.draw.Payment;

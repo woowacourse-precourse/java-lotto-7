@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.constant;
 
 import java.util.Arrays;
 import java.util.Optional;
