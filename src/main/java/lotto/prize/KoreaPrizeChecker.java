@@ -1,4 +1,7 @@
-package lotto;
+package lotto.prize;
+
+import lotto.Lotto;
+import lotto.WinningLotto;
 
 public class KoreaPrizeChecker implements WinningStrategy {
 

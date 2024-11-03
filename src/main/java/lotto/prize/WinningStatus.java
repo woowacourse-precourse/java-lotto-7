@@ -1,4 +1,4 @@
-package lotto;
+package lotto.prize;
 
 public enum WinningStatus {
 
