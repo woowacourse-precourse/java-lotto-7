@@ -31,7 +31,7 @@ public class OutputView {
             }
 
             int matchingCount = ranking.getMatchingCount();
-            String bonus = ranking.hasBonus() ? ", 보너스 볼 일치" : "";
+            String bonus = getBonusText(ranking);
             String formattedPrizeAmount = decimalFormat.format(ranking.getPrizeAmount());
 
             System.out.println(matchingCount + "개 일치" + bonus
@@ -39,6 +39,13 @@ public class OutputView {
                     + results.getOrDefault(ranking, 0) + "개"
             );
         }
+    }
+
+    private String getBonusText(Ranking ranking) {
+        if (ranking.hasBonus()) {
+            return ", 보너스 볼 일치";
+        }
+        return "";
     }
 
     public void printProfitRate(double profitRate) {

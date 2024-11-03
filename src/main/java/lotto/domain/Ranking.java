@@ -29,7 +29,7 @@ public enum Ranking {
             return FIRST;
         }
         if (matchNumbersCount == 5) {
-            return bonusMatch ? SECOND : THIRD;
+            return getSecondOrThirdRanking(bonusMatch);
         }
         if (matchNumbersCount == 4) {
             return FOURTH;
@@ -38,6 +38,13 @@ public enum Ranking {
             return FIFTH;
         }
         return FAIL;
+    }
+
+    private static Ranking getSecondOrThirdRanking(boolean bonusMatch) {
+        if (bonusMatch) {
+            return SECOND;
+        }
+        return THIRD;
     }
 
     public int getPrizeAmount() { // 상금 금액
