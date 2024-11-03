@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.util.Constants.ZERO;
+import static lotto.util.Constants.COUNT;
+import static lotto.util.Constants.RANK_DELIMITER;
+import static lotto.util.Constants.LINE_SEPARATOR;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,7 +19,7 @@ public class Result {
 
     private void initializeResult() {
         for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
+            result.put(rank, ZERO);
         }
     }
 
@@ -29,9 +34,9 @@ public class Result {
         for (Rank rank : result.keySet()) {
             if (rank != Rank.NONE) {
                 resultView.append(rank.getMessage())
-                        .append(" - ")
+                        .append(RANK_DELIMITER)
                         .append(result.get(rank))
-                        .append("개\n");
+                        .append(COUNT + LINE_SEPARATOR);
             }
         }
 

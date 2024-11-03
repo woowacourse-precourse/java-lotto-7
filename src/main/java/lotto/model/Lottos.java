@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.Constants.LINE_SEPARATOR;
+
 import java.util.List;
 
 public class Lottos {
@@ -18,7 +20,7 @@ public class Lottos {
 
         for (Lotto lotto : lottos) {
             lottoNumbers.append(lotto.getLottoNumbers())
-                    .append("\n");
+                    .append(LINE_SEPARATOR);
         }
 
         return lottoNumbers.toString();

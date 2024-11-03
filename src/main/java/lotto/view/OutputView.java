@@ -8,6 +8,7 @@ public class OutputView {
     private static final String COUNT_PURCHASE_LOTTO = "개를 구매했습니다.";
     private static final String RESULT_LIST = "당첨 통계";
     private static final String DIVIDE_LINE = "---";
+    private static final String TOTAL_PRIZE_RATE = "총 수익률은 %s입니다.";
 
     public static void printLottoNumbers(Lottos lottos) {
         System.out.println(lottos.getSize() + COUNT_PURCHASE_LOTTO);
@@ -21,6 +22,6 @@ public class OutputView {
     }
 
     public static void printPrizeRate(String result) {
-        System.out.printf("총 수익률은 %s입니다.", result);
+        System.out.printf(TOTAL_PRIZE_RATE, result);
     }
 }
