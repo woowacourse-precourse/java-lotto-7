@@ -22,7 +22,6 @@ public class OutputHandler {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-
     public void askBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
@@ -67,6 +66,10 @@ public class OutputHandler {
     private void showRateOfReturn(double rateOfReturn) {
         String rateOfReturnMessage = rateOfReturnMessageGenerator.getMessage(rateOfReturn);
         System.out.println(rateOfReturnMessage);
+    }
+
+    public void showInvalidInputException(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
     }
 
 }

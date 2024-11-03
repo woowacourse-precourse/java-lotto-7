@@ -47,4 +47,8 @@ public class LottoView {
         outputHandler.showWinningStatistics(ranks, rateOfReturn);
     }
 
+    public void showInvalidInputException(IllegalArgumentException e) {
+        outputHandler.showInvalidInputException(e);
+    }
+
 }
