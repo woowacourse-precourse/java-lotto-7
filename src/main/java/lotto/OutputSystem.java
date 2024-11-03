@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class OutputSystem {
     public static void printMessageForPurchaseAmount() {
@@ -10,9 +11,9 @@ public class OutputSystem {
     public static void printMessageForLottoCountAndNumbers(int lottoPurchaseAmount) {
         int lottoCount = Lotto.lottoCount(lottoPurchaseAmount);
         System.out.println("\n"+lottoCount+"개를 구매했습니다.");
-        int[][] lottoNumbers = Lotto.purchaseLottoNumbers(lottoCount);
-        for(int[] purchaseLottoNumber: lottoNumbers){
-            System.out.println(Arrays.toString(purchaseLottoNumber));
+        List<List<Integer>> lottoNumbers = Lotto.purchaseLottoNumbers(lottoCount);
+        for(List<Integer> purchaseLottoNumber: lottoNumbers){
+            System.out.println(Arrays.toString(purchaseLottoNumber.toArray()));
         }
     }
 

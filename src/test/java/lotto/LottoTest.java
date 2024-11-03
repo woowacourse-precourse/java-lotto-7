@@ -45,20 +45,20 @@ class LottoTest {
     @DisplayName("구매한 로또 번호를 담은 리스트의 사이즈 확인")
     @Test
     void purchaseLottoNumbersCountTest(){
-        assertThat(Lotto.purchaseLottoNumbers(8).length).isEqualTo(8);
+        assertThat(Lotto.purchaseLottoNumbers(8).size()).isEqualTo(8);
     }
 
     @DisplayName("구매한 로또 번호의 길이 확인")
     @Test
     void purchaseLottoNumbersSizeTest(){
-        int[][] lottoNumbers = Lotto.purchaseLottoNumbers(8);
-        for(int[] lottoNumber: lottoNumbers){
-            assertThat(lottoNumber.length).isEqualTo(6);
+        List<List<Integer>> lottoNumbers = Lotto.purchaseLottoNumbers(8);
+        for(List<Integer> lottoNumber: lottoNumbers){
+            assertThat(lottoNumber.size()).isEqualTo(6);
         }
     }
 
     // 구매한 로또 번호의 범위 확인
-    private boolean lottoNumberRangeCheck(int[] lottoNumbers){
+    private boolean lottoNumberRangeCheck(List<Integer> lottoNumbers){
         for(int lottoNumber: lottoNumbers){
             if(lottoNumber<1 || lottoNumber>45){
                 return false;
@@ -70,26 +70,23 @@ class LottoTest {
     @DisplayName("구매한 로또 번호가 1- 45 사이인지 확인")
     @Test
     void purchaseLottoNumbersRangeTest(){
-        int[][] lottoNumbers = Lotto.purchaseLottoNumbers(8);
-        for(int[] lottoNumber: lottoNumbers){
+        List<List<Integer>> lottoNumbers = Lotto.purchaseLottoNumbers(8);
+        for(List<Integer> lottoNumber: lottoNumbers){
             assertThat(lottoNumberRangeCheck(lottoNumber)).isTrue();
         }
     }
 
     // 구매한 로또 번호 중복 확인
-    private boolean lottoNumbersUniqueCheck(int[] lottoNumbers){
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for(int number: lottoNumbers){
-            uniqueNumbers.add(number);
-        }
-        return uniqueNumbers.size() == lottoNumbers.length;
+    private boolean lottoNumbersUniqueCheck(List<Integer> lottoNumbers){
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+        return uniqueNumbers.size() == lottoNumbers.size();
     }
 
     @DisplayName("구매한 로또 번호가 중복되는지 확인")
     @Test
     void purchaseLottoNumbersUniqueTest(){
-        int[][] lottoNumbers = Lotto.purchaseLottoNumbers(8);
-        for(int[] lottoNumber: lottoNumbers){
+        List<List<Integer>> lottoNumbers = Lotto.purchaseLottoNumbers(8);
+        for(List<Integer> lottoNumber: lottoNumbers){
             assertThat(lottoNumbersUniqueCheck(lottoNumber)).isTrue();
         }
     }
