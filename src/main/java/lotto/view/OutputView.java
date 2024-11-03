@@ -13,7 +13,7 @@ public class OutputView {
     private final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
     private final String LOTTO_NUMBER_START = "[";
     private final String LOTTO_NUMBER_END = "]";
-    private final String COMMA_STRING = " ,";
+    private final String COMMA_STRING = ", ";
 
 
     public void printPurchaseLottoMessage(Integer count){
@@ -30,9 +30,10 @@ public class OutputView {
         System.out.println(lottoNumber);
     }
 
-    public void printLottoResults(List<LottoResult> results, String returns){
+    public void printLottoResults(List<LottoResult> results){
         System.out.println(LOTTO_RESULT_STATISTICS_MESSAGE);
         List<LottoResult> resultValues = Arrays.stream(LottoResult.values())
+                .filter(result -> !result.equals(LottoResult.NO_MATCH))
                 .collect(Collectors.toList())
                 .reversed();
 
@@ -43,7 +44,6 @@ public class OutputView {
 
             printLottoResult(result, count);
         }
-        printRateOfReturn(returns);
     }
 
     private void printLottoResult(LottoResult result,Integer count){
@@ -68,7 +68,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    private void printRateOfReturn(String returns){
+    public void printRateOfReturn(String returns){
         String rateOfReturn = String.format(RATE_OF_RETURN_MESSAGE, returns);
         System.out.println(rateOfReturn);
     }
