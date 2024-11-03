@@ -10,6 +10,12 @@ public class BonusNumber {
         this.bonusNumber = Integer.parseInt(input);
     }
 
+
+    // 일단 getter 사용하자..
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(String input) {
         if (input.contains(COMMA)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
