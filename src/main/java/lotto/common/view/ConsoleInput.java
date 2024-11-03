@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class ConsoleInput {
+public final class ConsoleInput {
 
     public static final char DEFAULT_DELIMITER = ',';
 
-    public ConsoleInput() {
-        
+    private ConsoleInput() {
+
     }
 
     public static String readString() {
