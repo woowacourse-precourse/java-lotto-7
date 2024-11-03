@@ -1,0 +1,33 @@
+package lotto.model;
+
+import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBERS_SIZE;
+
+import java.util.HashSet;
+import java.util.List;
+
+public class Lotto {
+
+    private static final int LOTTO_SIZE = 6;
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
+        validateLottoSize(numbers);
+        validateUniqueLottoNumbers(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validateUniqueLottoNumbers(List<Integer> numbers) {
+        HashSet<Integer> set = new HashSet<>(numbers);
+        if (numbers.size() != set.size()) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
+        }
+    }
+
+    private void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
+        }
+    }
+
+    // TODO: 추가 기능 구현
+}
