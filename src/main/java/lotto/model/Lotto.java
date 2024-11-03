@@ -14,7 +14,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        for (Integer number : numbers) {
+            checkLottoNum(number);
+        }
     }
 
+    private void checkLottoNum(int number){
+        if (number>45 || number<1){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 부터 45 사이여야 합니다.");
+        }
+    }
     // TODO: 추가 기능 구현
 }

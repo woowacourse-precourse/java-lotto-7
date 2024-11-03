@@ -15,6 +15,7 @@ public class Controller {
     public void start() {
         getMoney();
         Output.requestHowManyLottos(parsingService.getMoney());
+        buyLotto(parsingService.getMoney());
     }
 
     private void getMoney(){
@@ -40,6 +41,13 @@ public class Controller {
         validService.checkBig(money);
         validService.checkNum(money);
         validService.check1000s(money);
+    }
+
+    private void  buyLotto(int money){
+        int published_lotto_count=money/1000;
+        for ( int count =1 ; count<published_lotto_count;count++){
+
+        }
     }
 
 
