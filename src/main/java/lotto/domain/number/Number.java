@@ -34,6 +34,11 @@ public class Number implements Comparable<Number> {
         return this.value == other.value;
     }
 
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(value);
+    }
+
     private static class Validator {
         private static void validate(int value) {
             validateRange(value, LottoDetail.MIN_VALUE, LottoDetail.MAX_VALUE);
