@@ -140,4 +140,89 @@ class LottoServiceTest {
         assertEquals(0, results.getOrDefault(Rank.SECOND, 0));
         assertEquals(1, results.getOrDefault(Rank.FIRST, 0));
     }
+
+    @Test
+    void 다섯번째_등수의_당첨금은_5천원이다() {
+        //given
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
+        int bonusNumber = 10;
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+
+        //then
+        assertEquals(5_000, winningAmount);
+    }
+
+    @Test
+    void 네번째_등수의_당첨금은_5만원이다() {
+        //given
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 8, 9);
+        int bonusNumber = 10;
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+
+        //then
+        assertEquals(50_000, winningAmount);
+    }
+
+    @Test
+    void 세번째_등수의_당첨금은_1백5십만원이다() {
+        //given
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 9);
+        int bonusNumber = 10;
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+
+        //then
+        assertEquals(1_500_000, winningAmount);
+    }
+
+    @Test
+    void 두번째_등수의_당첨금은_3천만원이다() {
+        //given
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 9);
+        int bonusNumber = 6;
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+
+        //then
+        assertEquals(30_000_000, winningAmount);
+    }
+
+    @Test
+    void 첫번째_등수의_당첨금은_20억원이다() {
+        //given
+        List<Lotto> lottos = lottoService.getLottos();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+
+        //when
+        long winningAmount = lottoService.calculateWinningAmount();
+
+        //then
+        assertEquals(2_000_000_000, winningAmount);
+    }
 }
