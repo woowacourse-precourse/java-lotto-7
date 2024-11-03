@@ -99,7 +99,7 @@ public class InputValidator {
         if (lottoNumbers.size() < LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력한 로또 번호의 개수가 부족합니다.");
         } else if (lottoNumbers.size() > LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력한 로또 번호의 개수가 한도를 초과했습니다.");
+            throw new IllegalArgumentException(ERROR_HEADER.getValue() + "입력한 로또 번호의 개수가 6개를 초과했습니다.");
         }
     }
 
