@@ -65,11 +65,11 @@ public class WinningStatistics {
         return winningStatistics.getOrDefault(winningRank, 0);
     }
 
-    private boolean hasBonus(LottoNumbersGenerator lottoNumberGenerator) { // 이름 변경
+    private boolean hasBonus(LottoNumbersGenerator lottoNumberGenerator) {
         return lottoNumberGenerator.getLottoNumbers().contains(lottoDraw.getBonusNumber());
     }
 
-    private int calculateMatch(LottoNumbersGenerator lottoNumberGenerator) { // 이름 변경
+    private int calculateMatch(LottoNumbersGenerator lottoNumberGenerator) {
         List<Integer> intersection = new ArrayList<>(lottoNumberGenerator.getLottoNumbers());
         intersection.retainAll(lottoDraw.getWinningNumbers());
         return intersection.size();

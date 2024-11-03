@@ -10,7 +10,7 @@ public abstract class AbstractValidator<T> implements Validator<T> {
     public T validate(String userInput) throws IllegalArgumentException {
         String trimmedInput = Validator.removeSpace(userInput);
         validateNumber(trimmedInput);
-        return convertAndValidate(trimmedInput);  // 검증된 값 반환
+        return convertAndValidate(trimmedInput);
     }
 
     protected abstract T convertAndValidate(String input) throws IllegalArgumentException;
