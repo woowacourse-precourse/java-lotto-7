@@ -7,10 +7,16 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-    	List<Lotto> lottos = purchaseLottos();
-        WinningNumber winningNumber = inputWinningNumber();
-        BonusNumber bonusNumber = inputBonusNumber(winningNumber);
-        
+    	try {
+            List<Lotto> lottos = purchaseLottos();
+            WinningNumber winningNumber = inputWinningNumber();
+            BonusNumber bonusNumber = inputBonusNumber(winningNumber);
+            
+            LottoResult result = new LottoResult(lottos, winningNumber, bonusNumber);
+            LottoResultView.printStatistics(result, lottos.size());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     	
     	
     }
@@ -24,15 +30,19 @@ public class Application {
     	            int amount = Integer.parseInt(input);
     	            List<Lotto> lottos = LottoMachine.issue(amount);
     	            
-    	            System.out.printf("%d개를 구매했습니다.\n", lottos.size());
-    	            lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-    	            return lottos;
+    	            printPurchasedLottos(lottos);
+                    return lottos;
     	    	}catch (IllegalArgumentException e) {
     	            System.out.println(e.getMessage());
     	        }
     	 }
     	
     }
+    private static void printPurchasedLottos(List<Lotto> lottos) {
+        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+    
     private static void validatePurchaseAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
