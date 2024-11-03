@@ -14,6 +14,7 @@ public class NumberInputView extends InputView {
         System.out.println(REQUEST_WINNING_NUMBER);
         String input = inputValue();
 
+        Validator.validateNotBlank(input);
         return Converter.convertLottoNumber(input);
     }
 
@@ -21,6 +22,7 @@ public class NumberInputView extends InputView {
         System.out.println(REQUEST_BONUS_NUMBER);
         String input = inputValue();
 
+        Validator.validateNotBlank(input);
         Validator.validateIsNumeric(input);
         return Integer.parseInt(input);
     }

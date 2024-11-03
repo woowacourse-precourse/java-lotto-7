@@ -50,6 +50,7 @@ public class Controller {
     private BonusNumber getBonusNumber(Lotto winningNumbers) {
         int bonusNumber = NumberInputView.getBonusNumber();
         Validator.validateIsDuplicate(winningNumbers, bonusNumber);
+        Validator.validateLottoRange(bonusNumber);
         return new BonusNumber(bonusNumber);
     }
 }
