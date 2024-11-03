@@ -5,6 +5,8 @@ import lotto.exception.BusinessException;
 
 public class ConsoleInput {
 
+    private ConsoleInput() {}
+
     public static String getStringWithQuestion(String question) {
         System.out.println(question);
         return Console.readLine();
