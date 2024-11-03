@@ -28,25 +28,16 @@ public class LottoController {
         //여기에 유효성 검증
         outputView.howManyBuy(cost);
         lottoMainService.buyLotto(cost);
-
         List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO();
-        for (LottoDTO dto : allLottosAsDTO) {
-            outputView.printLottoNumbers(dto);
-        }
-
+        outputView.printLottoNumbers(allLottosAsDTO);
         String hitLottoInput = inputView.PrintLottoInputMsg();
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
         //여기에 유효성 검증
-
         lottoMainService.saveHitLotto(hitLottoInput, bonusNumberInput);
-
         HitLottoDTO dto = lottoMainService.getAllHitLottosAsDTO();
-
         lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers());
-
         StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
         outputView.statisticStart(stats);
-
         double profit = lottoMainService.sumPrize(stats,cost);
         outputView.profitMessage(profit);
     }

@@ -19,8 +19,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoNumbers(LottoDTO lottoNumber) {
-        System.out.println(lottoNumber.getNumbers());
+    public void printLottoNumbers(List<LottoDTO> allLottosAsDTO) {
+        for (LottoDTO dto : allLottosAsDTO) {
+            System.out.println(dto.getNumbers());
+        }
     }
 
 
