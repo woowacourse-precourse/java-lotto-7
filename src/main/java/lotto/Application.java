@@ -35,9 +35,9 @@ public class Application {
 
     private static int getPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        final String input = Console.readLine();
+        final String inputForPrice = Console.readLine();
         try {
-            int price = isNotNum(input);
+            int price = isNotNum(inputForPrice);
             if (price % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
             }
@@ -48,9 +48,9 @@ public class Application {
         }
     }
 
-    public static int isNotNum(String input) {
+    public static int isNotNum(String inputForPrice) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(inputForPrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
