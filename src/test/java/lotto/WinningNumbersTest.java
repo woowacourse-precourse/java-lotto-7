@@ -56,7 +56,7 @@ class WinningNumbersTest {
                 .hasMessage("[ERROR] 숫자로 변환할 수 없는 값이 입력되었습니다.");
     }
 
-    @DisplayName("중복된 값 입력시")
+    @DisplayName("보너스와 중복되는 경우")
     @Test
     void 중복된_값_입력시_예외테스트() {
         String winningNumbers = "1,2,3,4,5,6";
@@ -65,6 +65,17 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    @DisplayName("중복된 값 입력시")
+    @Test
+    void 중복된_값_입력된_경우_예외테스트() {
+        String winningNumbers = "1,2,3,4,5,5";
+        String bonusNumber = "7";
+
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호에는 중복된 숫자가 포함될 수 없습니다.");
     }
 
 }
