@@ -28,20 +28,16 @@ public class LottoPrize {
     }
 
     public Double calculateRateOfReturn(Map<Rank, Integer> prizeCountForRanks, Purchase purchase) {
-        long totalPrize = calculateTotalPrize(prizeCountForRanks);
+        long totalPrizeMoney = calculateTotalPrizeMoney(prizeCountForRanks);
         int cost = purchase.getCost();
-        double rateOfReturn = ((double) totalPrize / cost) * HUNDRED_PERCENT;
+        double rateOfReturn = ((double) totalPrizeMoney / cost) * HUNDRED_PERCENT;
         return roundToFirstDecimal(rateOfReturn);
     }
 
-    private long calculateTotalPrize(Map<Rank, Integer> prizeCountForRanks) {
+    private long calculateTotalPrizeMoney(Map<Rank, Integer> prizeCountForRanks) {
         return Stream.of(Rank.values())
-                .mapToLong(rank -> calculateTotalPrizeForRank(prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE), rank))
+                .mapToLong(rank -> rank.calculatePrizeMoney(prizeCountForRanks.getOrDefault(rank, DEFAULT_VALUE)))
                 .sum();
-    }
-
-    private long calculateTotalPrizeForRank(int count, Rank rank) {
-        return count * rank.getPrizeMoney();
     }
 
     private static double roundToFirstDecimal(double rateOfReturn) {

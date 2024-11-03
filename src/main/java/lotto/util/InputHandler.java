@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.Purchase;
 import java.util.function.Function;
 
+import static lotto.constant.IOMessage.BLANK_LINE;
 import static lotto.constant.IOMessage.BONUS_NUMBER_INPUT_MESSAGE;
 import static lotto.constant.IOMessage.LOTTO_NUMBER_INPUT_MESSAGE;
 import static lotto.constant.IOMessage.ORDER_AMOUNT_INPUT_MESSAGE;
@@ -50,7 +51,7 @@ public class InputHandler {
     }
 
     private static String getInput(String message) {
-        System.out.println("");
+        System.out.println(BLANK_LINE);
         System.out.println(message);
         return Console.readLine().trim();
     }

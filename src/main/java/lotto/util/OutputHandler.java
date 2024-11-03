@@ -5,6 +5,7 @@ import lotto.model.Lottos;
 import lotto.constant.LottoConfig.Rank;
 import java.util.Map;
 
+import static lotto.constant.IOMessage.BLANK_LINE;
 import static lotto.constant.IOMessage.BONUS_MESSAGE;
 import static lotto.constant.IOMessage.COUNT_MESSAGE;
 import static lotto.constant.IOMessage.HEAD_MESSAGE;
@@ -15,7 +16,7 @@ import static lotto.constant.SystemConfig.DEFAULT_VALUE;
 public class OutputHandler {
 
     public static void printCount(int count) {
-        output("");
+        output(BLANK_LINE);
         output(String.format(COUNT_MESSAGE, count));
     }
 
@@ -26,7 +27,7 @@ public class OutputHandler {
     }
 
     public static void printLottoResult(Map<Rank, Integer> results) {
-        output("");
+        output(BLANK_LINE);
         output(HEAD_MESSAGE);
         for(Rank rank : Rank.values()){
             if(rank == Rank.NOTHING) {

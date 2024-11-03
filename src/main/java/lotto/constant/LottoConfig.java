@@ -27,6 +27,10 @@ public class LottoConfig {
             this.prizeMoney = prizeMoney;
         }
 
+        public long calculatePrizeMoney(int count) {
+            return count * prizeMoney;
+        }
+
         public int getMatchedCount() {
             return matchedCount;
         }
