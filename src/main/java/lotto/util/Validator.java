@@ -14,4 +14,10 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NON_NUMBER.getMessage());
         }
     }
+
+    public void validatePositiveNumber(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.NON_POSITIVE_NUMBER.getMessage());
+        }
+    }
 }

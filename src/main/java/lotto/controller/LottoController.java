@@ -29,5 +29,6 @@ public class LottoController {
     private void validatePurchasePriceInput(String input) {
         validator.validateEmptyInput(input);
         validator.validateNonNumber(input);
+        validator.validatePositiveNumber(input);
     }
 }
