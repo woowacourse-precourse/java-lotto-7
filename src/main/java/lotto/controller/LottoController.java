@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private final List<Lotto> lottos; // 로또 번호 리스트
-    private LottoMachine lottoMachine; // 로또 머신
+    private final List<Lotto> lottos;
+    private LottoMachine lottoMachine;
     private LottoResult lottoResult;
 
     public LottoController() {

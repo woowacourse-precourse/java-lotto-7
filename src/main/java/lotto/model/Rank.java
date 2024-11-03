@@ -25,10 +25,6 @@ public enum Rank {
         return prize;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public static Rank getRank(int matchingCount, boolean hasBonus) {
         if (matchingCount == 6) return FIRST;
         if (matchingCount == 5) return hasBonus ? SECOND : THIRD;
