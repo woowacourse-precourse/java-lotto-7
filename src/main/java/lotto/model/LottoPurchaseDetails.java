@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.constants.CommonConstants.LOTTO_SIZE;
+import static lotto.constants.CommonConstants.MAX_LOTTO_NUMBER;
+import static lotto.constants.CommonConstants.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,18 +12,15 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoPurchaseDetails {
-    private static final int START = 1;
-    private static final int END = 45;
-    private static final int COUNT = 6;
     private static final String PURCHASED_NUM_LOTTO_MESSAGE = "%d개를 구매했습니다.";
     private static final String NEW_LINE = "\n";
 
-    private final long numLottto;
+    private final long numLotto;
     private final List<Lotto> lottoGroup;
 
-    public LottoPurchaseDetails(long numLottto) {
-        this.numLottto = numLottto;
-        lottoGroup = generateLottoGroup(numLottto);
+    public LottoPurchaseDetails(long numLotto) {
+        this.numLotto = numLotto;
+        lottoGroup = generateLottoGroup(numLotto);
     }
 
     public List<Lotto> getLottoGroup() {
@@ -29,7 +30,7 @@ public class LottoPurchaseDetails {
     public String getPurchaseDetailsMessage() {
         StringBuilder purchaseDetailsMessage = new StringBuilder();
 
-        purchaseDetailsMessage.append(String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLottto)).append(NEW_LINE);
+        purchaseDetailsMessage.append(String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLotto)).append(NEW_LINE);
         for (Lotto lotto : lottoGroup) {
             purchaseDetailsMessage.append(lotto.getNumbers()).append(NEW_LINE);
         }
@@ -65,7 +66,7 @@ public class LottoPurchaseDetails {
     }
 
     private static Lotto generateLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(START, END, COUNT);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
