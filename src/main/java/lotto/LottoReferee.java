@@ -11,6 +11,6 @@ public class LottoReferee {
     }
 
     public void judgeWinning() {
-        List<WinningStatus> winningStatuses = lottoManager.compareWinningLotto();
+        final List<WinningStatus> winningStatuses = lottoManager.compareWinningLotto();
     }
 }
