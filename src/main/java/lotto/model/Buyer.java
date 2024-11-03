@@ -39,4 +39,12 @@ public class Buyer {
     public boolean hasBonusNumber(int number, Lotto lotto) {
         return lotto.getNumbers().contains(number);
     }
+
+    public Rank getRank(int matchCount, boolean hasBonusNumber) {
+        Rank rank = Rank.values()[matchCount];
+        if (rank == Rank.THIRD && hasBonusNumber) {
+            rank = Rank.SECOND;
+        }
+        return rank;
+    }
 }
