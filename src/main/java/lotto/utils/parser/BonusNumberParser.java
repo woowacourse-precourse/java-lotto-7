@@ -35,6 +35,7 @@ public class BonusNumberParser {
     private static void checkDuplicatedCheck(Lotto winningNumbers, int bonusNumber) {
         LottoNumbers lottoNumbers = winningNumbers.getLottoNumbers();
         List<Integer> winningLottoNumbers = lottoNumbers.getLottoNumbers();
+
         if (winningLottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER.getMessage());
         }
