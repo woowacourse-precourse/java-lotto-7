@@ -4,7 +4,7 @@ import lotto.enums.lotto.LottoMessage;
 
 public class InputView {
 
-    public void printInputLottoParchaseAmount(){
+    public void printInputLottoPurchaseAmount(){
         System.out.println(LottoMessage.PRINT_INPUT_LOTTO_PURCHASE_AMOUNT.getMessage());
     }
 
