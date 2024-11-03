@@ -2,7 +2,6 @@ package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
