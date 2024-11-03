@@ -21,12 +21,14 @@
 - [X] 올바른 당첨 번호 입력 받기 - InputValidator#getValidPrizeNumber
 - [X] 쉼표를 기준으로 문자열 분리 - InputValidator#splitString
 - [X] 분리된 문자열 배열을 정수형 숫자로 변환 - InputValidator#convertIntegers
+- [X] 입력된 당첨 번호가 1-45 범위 내에 있는지 검사 - InputValidator#isValidRange
 - [X] 입력된 당첨 번호가 6개인지 검사 - InputValidator#isValidLength
 - [X] 중복되지 않는 번호인지 검사 - InputValidator#isDuplicate
 
 #### 보너스 번호
 - [X] 올바른 보너스 번호 입력 받기 - InputValidator#getValidBonusNumber
 - [X] 보너스 번호를 정수형 숫자로 변환 - InputValidator#convertInteger
+- [X] 입력된 보너스 번호가 1-45 범위 내에 있는지 검사 - InputValidator#isValidRange
 - [X] 입력 받은 당첨 번호와 중복되지 않는지 검사 - InputValidator#isDuplicateWithPrizeNumber
 
 ---
