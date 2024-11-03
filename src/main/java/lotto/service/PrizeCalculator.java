@@ -25,7 +25,7 @@ public class PrizeCalculator {
 
     public void calculatePrizes(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.compareTo(winningLotto.getNumber());
+            int matchCount = lotto.compareTo(winningLotto.getWinningLotto());
 
 
             for(Prize prize : Prize.values()){
@@ -41,12 +41,15 @@ public class PrizeCalculator {
     private void updatePrizeCount(Lotto lotto, WinningLotto winningLotto, Prize prize, int matchCount) {
 
         if (matchCount == prize.getRanking()) {
-            if (lotto.hasBonusNumber(winningLotto.getBonusNumber()) && prize.equals(Prize.THIRD)) { // 추후에 이 조건이 바뀔수도 있다면 이걸 따로 조건검색하는 메소드를 만드는것도 괜찮을거 같다
+            if (isNotThirdPrize(lotto,winningLotto,prize)) { // 번호는 5개가 맞았고 보너스 번호도 있다면 2등이지만 prize를 앞에서부터 도는 순서상 3등일때도 인식될수 있기 때문에 3등인지 여부를 검사한다
                 return;
             }
 
             prizeCount.put(prize, prizeCount.get(prize) + 1);
         }
+    }
+    private boolean isNotThirdPrize(Lotto lotto, WinningLotto winningLotto, Prize prize){
+        return lotto.hasBonusNumber(winningLotto.getBonusNumber()) && prize.equals(Prize.THIRD);
     }
 
     public double calculateWinningRate(int amountInput) {
