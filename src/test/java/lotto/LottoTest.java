@@ -2,10 +2,9 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -21,5 +20,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void Lotto_객체의_로또_번호를_오름차순으로_정렬한다() {
+        Lotto lotto = new Lotto(List.of(4, 9, 44, 32, 29, 1));
+        List<Integer> expected = List.of(1, 4, 9, 29, 32, 44);
+        List<Integer> actual = lotto.getSortedLottoNumbers();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void 로또_번호가_1미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_45초과면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
