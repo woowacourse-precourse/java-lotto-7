@@ -82,7 +82,7 @@ public class LottoServiceImpl implements LottoService {
             prizeSum += calculatePrizeForRankCount(rankCount);
         }
         double profitability = (double) prizeSum / purchasePrice * 100;
-        return Math.round(profitability * 100.0) / 100.0;
+        return Math.round(profitability * 10.0) / 10.0;
     }
 
     private long calculatePrizeForRankCount(RankCount rankCount) {
