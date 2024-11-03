@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.validator.InputValidator;
 
 public class RetryUtil {
     public static String retryReadPurchaseAmount(Supplier<String> supplier) {
