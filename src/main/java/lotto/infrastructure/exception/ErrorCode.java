@@ -6,7 +6,9 @@ public enum ErrorCode {
     INVALID_LOTTO_NUMBER("로또 번호는 숫자로만 이루어져야 합니다."),
     INVALID_LOTTO_DELIMITER_POSITION("로또 번호 앞 뒤에 구분자가 포함될 수 없습니다."),
     INVALID_LOTTO_CONSECUTIVE_DELIMITERS("로또 번호에 연속적인 구분자가 포함될 수 없습니다."),
-    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1 이상 45 이하의 숫자입니다.");
+    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1 이상 45 이하의 숫자입니다."),
+    INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
+    INVALID_LOTTO_DUPLICATED_NUMBER("중복된 로또 번호가 포함될 수 없습니다.");
 
     private final String ERROR_PREFIX = "[ERROR] ";
     private final String message;

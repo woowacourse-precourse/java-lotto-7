@@ -70,15 +70,4 @@ public class InputValidatorTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(INVALID_LOTTO_CONSECUTIVE_DELIMITERS.getMessage());
     }
-
-    @Test
-    void 로또_번호가_1에서_45_사이를_벗어나면_예외를_발생한다() {
-        // given
-        String lottoNumbers = "1,2,3,4,5,47";
-
-        // when & then
-        assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-    }
 }

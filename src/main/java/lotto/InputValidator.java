@@ -17,16 +17,6 @@ public class InputValidator {
         validateNoConsecutiveDelimiters(lottoNumbers);
         validateProperDelimiterPosition(lottoNumbers);
         validateOnlyNumbers(lottoNumbers);
-        validateProperRangeNumber(lottoNumbers);
-    }
-
-    private void validateProperRangeNumber(String lottoNumbers) {
-        for (String lottoNumber : lottoNumbers.split(DELIMITER)) {
-            int number = Integer.parseInt(lottoNumber);
-            if (number < 1 || number > 45) {
-	throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-            }
-        }
     }
 
     private void validateNoConsecutiveDelimiters(String lottoNumbers) {
