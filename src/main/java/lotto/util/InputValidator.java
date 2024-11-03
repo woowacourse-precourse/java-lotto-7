@@ -46,7 +46,7 @@ public class InputValidator {
     
     private static void validateIsDigit(String uncheckedInput) {
         if(uncheckedInput.isBlank()){
-            throw new IllegalArgumentException(BLANK_MONEY.getMessage());
+            throw new NullPointerException(BLANK_MONEY.getMessage());
         }
         for(char c: uncheckedInput.toCharArray()){
             if(!Character.isDigit(c)){
