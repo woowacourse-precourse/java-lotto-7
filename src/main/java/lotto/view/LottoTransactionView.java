@@ -29,9 +29,8 @@ public class LottoTransactionView {
 
 
   public void printRateOfReturn(double rateOfReturn) {
-    final String message = "총 수익률은 %.1f%입니다.";
-
-    System.out.println(String.format(message, rateOfReturn));
+    final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn));
   }
 
   public void printPurchasedLottoNumbers(List<Lotto> lottos) {
