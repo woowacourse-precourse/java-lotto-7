@@ -2,11 +2,11 @@ package lotto.view;
 
 import static java.util.stream.Collectors.joining;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.dto.LottoResultDto;
 
 public final class OutputView {
     private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다." + "\n";
@@ -24,9 +24,9 @@ public final class OutputView {
         printPurchasedResultInformation(lottos);
     }
 
-    public static void printLottoResult(Map<LottoResult, Integer> result, int money) {
+    public static void printLottoResult(LottoResultDto lottoResultDto) {
         printLottoResultHeader();
-        printLottoResultInformation(result, money);
+        printLottoResultInformation(lottoResultDto);
     }
 
     // 로또 구매 결과 관련 private 메서드
@@ -51,20 +51,16 @@ public final class OutputView {
         System.out.println(LOTTO_RESULT_NOTICE);
     }
 
-    private static void printLottoResultInformation(Map<LottoResult, Integer> result, int money) {
-        List<LottoResult> list = Arrays.stream(LottoResult.values())
-                .filter(lottoResult -> !lottoResult.equals(LottoResult.NONE))
-                .toList();
-        double sum = 0;
-        for (LottoResult lottoResult : list) {
+    private static void printLottoResultInformation(LottoResultDto resultDto) {
+        Map<LottoResult, Integer> result = resultDto.result();
+        for (LottoResult lottoResult : result.keySet()) {
             int matchedCount = lottoResult.getMatchedCount();
             int rewardAmount = lottoResult.getRewardAmount();
-            int winningCount = result.getOrDefault(lottoResult, 0);
-            sum += winningCount * rewardAmount;
+            int winningCount = resultDto.result().get(lottoResult);
             String resultInformation = getResultInformation(lottoResult);
             System.out.printf(resultInformation, matchedCount, rewardAmount, winningCount);
         }
-        System.out.printf(LOTTO_EARNING_RATE_INFORMATION, sum * 100 / money);
+        System.out.printf(LOTTO_EARNING_RATE_INFORMATION, resultDto.profitRate());
     }
 
     private static String getResultInformation(LottoResult lottoResult) {

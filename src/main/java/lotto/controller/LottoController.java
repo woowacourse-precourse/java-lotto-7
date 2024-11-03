@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.dto.LottoResultDto;
 import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -77,6 +78,7 @@ public class LottoController {
     }
 
     private void printResult(Map<LottoResult, Integer> result, int money) {
-        OutputView.printLottoResult(result, money);
+        LottoResultDto lottoResultDto = LottoResultDto.of(result, money);
+        OutputView.printLottoResult(lottoResultDto);
     }
 }
