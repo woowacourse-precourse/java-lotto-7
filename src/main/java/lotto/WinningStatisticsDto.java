@@ -19,7 +19,7 @@ public class WinningStatisticsDto {
         return map;
     }
 
-    public double getWinningStatistics(int purchaseAmount) {
+    public double getLottoYield(int purchaseAmount) {
         long totalPrize = winningStatistics.entrySet().stream()
             .mapToLong(entry -> (long) entry.getKey().getPrizeAmount() * entry.getValue())
             .sum();
