@@ -48,4 +48,17 @@ public class LottoResultTest {
 
         assertThat(results.get(LottoRank.FOURTH)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("3등 당첨 테스트")
+    public void winningLottoCompareTest_3th() {
+        LottoTicket lottoTicket = new LottoTicket(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 10))
+        ));
+
+        lottoResult.compare(lottoTicket, winningLotto);
+        Map<LottoRank, Integer> results = lottoResult.getRankResults();
+
+        assertThat(results.get(LottoRank.THIRD)).isEqualTo(1);
+    }
 }
