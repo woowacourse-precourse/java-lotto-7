@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.dto.LottoPurchaseDetails;
+import lotto.dto.WinningStatistics;
 
 public class OutputView {
     private static final String PURCHASE_AMOUNT_REQUEST = "구입금액을 입력해 주세요.";
@@ -27,6 +28,11 @@ public class OutputView {
     public void printBonusNumberRequestMessage() {
         printNewLine();
         printMessage(BONUS_NUMBER_REQUEST);
+    }
+
+    public void printWinningStatisticsMessage(WinningStatistics winningStatistics) {
+        printNewLine();
+        printMessage(winningStatistics.getWinningStatisticsMessage());
     }
 
     private void printNewLine() {
