@@ -1,9 +1,6 @@
 package lotto.view;
 
-import lotto.view.response.LottoNumberResponse;
-import lotto.view.response.LottoScoreResponse;
-import lotto.view.response.LottoScoreResponses;
-import lotto.view.response.PurchaseLottoResponse;
+import lotto.view.response.*;
 
 import java.util.stream.Collectors;
 
@@ -49,8 +46,8 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printProfitRate(double profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
+    public void printProfitRate(LottoProfitResponse response) {
+        System.out.printf(PROFIT_RATE_MESSAGE, response.getProfitRate());
     }
 
     private void printLotto(LottoNumberResponse response) {

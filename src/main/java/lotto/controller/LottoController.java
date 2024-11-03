@@ -11,6 +11,7 @@ import lotto.model.shop.LottoShop;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.response.LottoProfitResponse;
 import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
 
@@ -37,7 +38,7 @@ public class LottoController {
         double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
 
         outputView.printScores(LottoScoreResponses.from(Score.aggregate(scores)));
-        outputView.printProfitRate(profitRate);
+        outputView.printProfitRate(LottoProfitResponse.from(profitRate));
     }
 
     private Lottos purchaseLotto() {
