@@ -58,6 +58,9 @@ public class Lotto {
 
     @Override
     public String toString() {
+        if (numbers == null || numbers.isEmpty()) {
+            return "";
+        }
         return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
 }
