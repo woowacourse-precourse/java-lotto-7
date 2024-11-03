@@ -8,10 +8,6 @@ import lotto.Result;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public Lotto(String numbers) {
         Validator.lottoNumberValidate(numbers);
         this.numbers = stringToList(numbers);
