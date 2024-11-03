@@ -16,6 +16,14 @@ public class InputView {
         return amount;
     }
 
+    public static List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateEmpty(input);
+        List<String> values = Utils.splitNumbers(input);
+        return Utils.convertNumbers(values);
+    }
+
     private static void validateEmpty(String input) {
         if (input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 빈 값이 입력되었습니다.");
