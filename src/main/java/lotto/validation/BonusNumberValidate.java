@@ -1,11 +1,10 @@
 package lotto.validation;
 
-import static lotto.constants.LottoRule.Lotto_Number_Max;
-import static lotto.constants.LottoRule.Lotto_Number_Min;
-
 import java.util.List;
 
 public class BonusNumberValidate {
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
 
     public static int bonusValidation(List<Integer> winNumbers, String inputBonusAmount) {
         int bonus = checkInputBonus(inputBonusAmount);
@@ -23,8 +22,7 @@ public class BonusNumberValidate {
     }
 
     public static void checkNumberRange(int amount) {
-        if (amount < Lotto_Number_Min.getValue() ||
-                amount > Lotto_Number_Max.getValue()) {
+        if (amount < LOTTO_NUMBER_MIN || amount > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException();
         }
     }
