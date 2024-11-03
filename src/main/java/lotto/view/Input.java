@@ -22,4 +22,9 @@ public class Input {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public String readBonusNumber() {
+        System.out.println("\n" + "보너스 번호를 입력해주세요.");
+        return Console.readLine();
+    }
 }

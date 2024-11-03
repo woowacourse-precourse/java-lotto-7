@@ -43,9 +43,10 @@ public class LottoGame {
     public void result(LottoTicket lottoTicket) {
 
         List<Integer> winningNumbers = input.readWinningLotto();
+        String rawBonusNumber = input.readBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(
-                List.of(1, 2, 3, 4, 5, 6), 7
+                winningNumbers, 7
         );
 
         Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
