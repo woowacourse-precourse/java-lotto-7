@@ -20,4 +20,8 @@ public enum LottoResult {
     public int getWinningMoney() {
         return this.winningMoney;
     }
+
+    public boolean isMatch(int match, boolean bonusMatch) {
+        return match == this.match && (!this.bonusMatch || bonusMatch);
+    }
 };
