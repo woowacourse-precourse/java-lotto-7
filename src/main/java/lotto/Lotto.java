@@ -11,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -40,13 +40,18 @@ public class Lotto {
         }
     }
 
-    //  > 크기, 값의 범위, 중복 여부
     public String toString() {
         return numbers.toString();
     }
 
-    //- [ ] 번호를 정렬한다.
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
+
+    //- [x] 번호를 정렬한다.
     //- [ ] 우승 로또와 맞는 개수를 전달한다.
     //- [ ] 보너스볼을 체크한다.
-    //- [ ] 로또 번호를 전달한다.
+    //- [x] 로또 번호를 전달한다.
 }
