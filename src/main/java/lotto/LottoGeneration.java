@@ -57,4 +57,11 @@ public class LottoGeneration {
         }
         return lottoSets;
     }
+
+    public static void printLotto(List<Lotto> lottoSets, int quantity) {
+        System.out.println(quantity + "개를 구매했습니다.");
+        for (Lotto lotto : lottoSets) {
+            lotto.printNumbers();
+        }
+    }
 }
