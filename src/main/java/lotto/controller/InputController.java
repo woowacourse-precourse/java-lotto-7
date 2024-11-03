@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.util.MoneyValidator;
+import lotto.util.ViewUtil;
 import lotto.view.PurchaseView;
 
 public class InputController {
@@ -15,6 +16,7 @@ public class InputController {
         while (true) {
             try {
                 String money = purchaseView.getMoney();
+                ViewUtil.printEmptyLine();
                 return MoneyValidator.validate(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
