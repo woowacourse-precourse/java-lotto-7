@@ -17,19 +17,19 @@ public class LottoController {
         this.lottoMoney = lottoMoney;
     }
     public void startLotto() {
-        generatingRandomLottoNumbers();
-        generatingLottoSet();
+        generateRandomLottoNumbers();
+        generateLottoSet();
     }
 
-    public List<Integer> generatingRandomLottoNumbers(){
+    public List<Integer> generateRandomLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBERS, LOTTO_NUMBER_COUNT);
     }
 
-    public void generatingLottoSet(){
+    public void generateLottoSet(){
         int lottoSetCount = calculateLottoSetCount();
         printLottoSetCount(lottoSetCount);
         for (int i=0; i<lottoSetCount; i++){
-            List<Integer> lottoNumber = generatingRandomLottoNumbers();
+            List<Integer> lottoNumber = generateRandomLottoNumbers();
             Collections.sort(lottoNumber);
             printLottoNumbers(lottoNumber);
         }
