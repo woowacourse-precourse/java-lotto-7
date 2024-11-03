@@ -1,6 +1,7 @@
 package lotto.model;
 
 public class LottoResult {
+    private static final Integer PERCENT=100;
     private final int totalSpent;
     private final int[] rankCounts;
 
@@ -18,6 +19,6 @@ public class LottoResult {
         for (Rank rank : Rank.values()) {
             totalPrize += getCount(rank) * rank.getPrize();
         }
-        return (double) totalPrize / totalSpent * 100;
+        return (double) totalPrize / totalSpent * PERCENT;
     }
 }

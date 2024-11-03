@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.model.PurchaseAmount;
 
 import java.util.ArrayList;
 import java.util.List;
