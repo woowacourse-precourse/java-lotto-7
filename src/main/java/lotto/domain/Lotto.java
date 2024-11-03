@@ -25,23 +25,31 @@ public class Lotto {
     }
 
     private void numberValidate(List<Integer> numbers) {
+
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)로 구분된 6개의 정수여야 합니다.");
         }
+
     }
 
     private void rangeValidate(List<Integer> numbers) {
+
         for (int number : numbers) {
+
             if (!(1 <= number && number <= 45)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이의 정수여야 합니다.");
             }
+
         }
     }
 
     private void duplicationValidate(List<Integer> numbers) {
+
         Set<Integer> duplicatedNumber = new HashSet<>(numbers);
+
         if (duplicatedNumber.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 중 중복된 숫자가 있습니다.");
         }
+
     }
 }

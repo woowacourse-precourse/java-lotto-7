@@ -17,7 +17,7 @@ public class UserLottoNumberInput {
                 System.out.println();
                 return lotto;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨 번호는 쉼표(,)로 구분된 6개의 숫자여야 합니다");
+                System.out.println("[ERROR] 당첨 번호는 쉼표(,)로 구분된 6개의 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

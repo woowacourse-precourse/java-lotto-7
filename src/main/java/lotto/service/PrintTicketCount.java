@@ -15,20 +15,26 @@ public class PrintTicketCount {
     }
 
     public void printCountAndTickets(List<List<Integer>> tickets) {
+
         printCount();
         repeatPrintTicket(tickets);
+
     }
 
     public List<List<Integer>> getLottoTickets() {
         for (int i = 0; i < lottoTicketCount; i++) {
+
             getLottoTicket();
+
         }
 
         return tickets;
     }
 
     private void getLottoTicket() {
+
         List<Integer> lottoTicket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+
         Collections.sort(lottoTicket);
         tickets.add(lottoTicket);
     }

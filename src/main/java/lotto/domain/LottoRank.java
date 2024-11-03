@@ -22,18 +22,22 @@ public enum LottoRank {
     }
 
     public String getDescription() {
+
         if (bonusMatch) {
             return String.format("%d개 일치, 보너스 볼 일치", matchCount);
         }
+
         return String.format("%d개 일치", matchCount);
     }
 
     public static LottoRank calculateRank(int matchCount, boolean bonusMatch) {
+
         if (matchCount == FIRST.matchCount) return FIRST;
         if (matchCount == BONUS_SECOND.matchCount && bonusMatch) return BONUS_SECOND;
         if (matchCount == SECOND.matchCount && !bonusMatch) return SECOND;
         if (matchCount == FOURTH.matchCount) return FOURTH;
         if (matchCount == THIRD.matchCount) return THIRD;
         return null;  // 등수가 없는 경우
+
     }
 }

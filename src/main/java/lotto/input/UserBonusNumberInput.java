@@ -11,10 +11,13 @@ public class UserBonusNumberInput {
     public int validation(List<Integer> lottoNumbers) {
         while (true) {
             try {
+
                 bonusNumber = rangeValidation(parseInput(getInput()));
                 bonusDuplicationCheck(lottoNumbers);
+
                 System.out.println();
                 return bonusNumber;
+
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 오류 메시지 출력 후 재입력
             }
@@ -22,7 +25,9 @@ public class UserBonusNumberInput {
     }
 
     private String getInput() {
+
         System.out.println("보너스 번호를 입력해 주세요.");
+
         return Console.readLine();
     }
 
@@ -35,13 +40,16 @@ public class UserBonusNumberInput {
     }
 
     private int rangeValidation(int bonusNumber) {
+
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 정수여야 합니다.");
         }
+
         return bonusNumber;
     }
 
     private void bonusDuplicationCheck(List<Integer> lottoNumbers) {
+
         Set<Integer> bonusCheck = new HashSet<>(lottoNumbers);
 
         if (!bonusCheck.add(bonusNumber)) {
