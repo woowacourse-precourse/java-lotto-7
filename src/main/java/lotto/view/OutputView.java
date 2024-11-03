@@ -25,6 +25,8 @@ public class OutputView {
     private static final int NOT_EXIST = 0;
     private static final DecimalFormat DOUBLE_FORMATTER = new DecimalFormat("###,###.0");
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+
     private OutputView() {
     }
 
@@ -68,5 +70,9 @@ public class OutputView {
 
     private static String toProfitFormat(double profit) {
         return "총 수익률은 %s%%입니다.".formatted(DOUBLE_FORMATTER.format(profit));
+    }
+
+    public static void printExceptionMessage(Exception exception) {
+        System.out.println(ERROR_PREFIX + exception.getMessage());
     }
 }
