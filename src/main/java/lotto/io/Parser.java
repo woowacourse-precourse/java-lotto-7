@@ -13,7 +13,7 @@ public class Parser {
         try {
             money = Integer.parseInt(moneyInput);
         } catch (Exception e) {
-            throw new IllegalArgumentException("구매 금액은 정수여야 합니다.");
+            throw new IllegalArgumentException("[Error] 구매 금액은 정수여야 합니다.");
         }
 
         return money;
