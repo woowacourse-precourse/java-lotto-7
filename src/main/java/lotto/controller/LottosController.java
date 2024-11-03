@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningNumbers;
@@ -26,5 +27,12 @@ public class LottosController {
             System.out.println(e.getMessage());
             run();
         }
+    }
+
+    private WinningNumbers inputWinningNumbers() {
+        String winningNumbersInput = InputView.inputWinningNumbers();
+        List<Integer> winningNumbers = parseWinningNumbers(winningNumbersInput);
+        int bonusNumber = InputView.inputBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 }
