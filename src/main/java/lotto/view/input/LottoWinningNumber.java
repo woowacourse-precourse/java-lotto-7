@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.model.Lotto;
 
 public class LottoWinningNumber {
 
@@ -14,8 +13,17 @@ public class LottoWinningNumber {
 
     public HashMap<Integer, String> input() {
         String winningNumber = inputWinningNumbers();
+        System.out.println();
         String bonusNumber = inputBonusNumber(winningNumber);
         return combineWinningNumbersAndBonus(winningNumber, bonusNumber);
+    }
+
+    public void validateWinningNumbersForTest(String winningNumber) {
+        validateWinningNumbers(winningNumber);
+    }
+
+    public void validateBonusNumberForTest(String bonusNumber, String winningNumber) {
+        validateBonusNumber(bonusNumber, winningNumber);
     }
 
     private String inputWinningNumbers() {
@@ -45,10 +53,14 @@ public class LottoWinningNumber {
     }
 
     private void validateWinningNumbers(String winningNumber) {
-        List<Integer> numbers = parseNumbers(winningNumber);
-        validateNumberCount(numbers);
-        validateNoDuplicates(numbers);
-        validateNumberRange(numbers);
+        try {
+            List<Integer> numbers = parseNumbers(winningNumber);
+            validateNumberCount(numbers);
+            validateNoDuplicates(numbers);
+            validateNumberRange(numbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputMessageEnum.INVALID_NUMBER_ERROR.getMessage());
+        }
     }
 
     private void validateNumberCount(List<Integer> numbers) {
@@ -71,9 +83,13 @@ public class LottoWinningNumber {
     }
 
     private void validateBonusNumber(String bonusNumber, String winningNumber) {
-        int bonus = Integer.parseInt(bonusNumber);
-        validateBonusNumberRange(bonus);
-        validateBonusNotInWinning(bonus, parseNumbers(winningNumber));
+        try {
+            int bonus = Integer.parseInt(bonusNumber);
+            validateBonusNumberRange(bonus);
+            validateBonusNotInWinning(bonus, parseNumbers(winningNumber));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputMessageEnum.INVALID_NUMBER_ERROR.getMessage());
+        }
     }
 
     private void validateBonusNumberRange(int bonus) {
@@ -91,8 +107,8 @@ public class LottoWinningNumber {
 
     private HashMap<Integer, String> combineWinningNumbersAndBonus(String winningNumber,
         String bonusNumber) {
-        Lotto numbers = new Lotto(parseNumbers(winningNumber));
-        numbers.getNumbers().forEach(n -> winningNumbers.put(n, "winningNumber"));
+        List<Integer> numbers = parseNumbers(winningNumber);
+        numbers.forEach(n -> winningNumbers.put(n, "winningNumber"));
         winningNumbers.put(Integer.parseInt(bonusNumber), "bonusNumber");
         return winningNumbers;
     }
