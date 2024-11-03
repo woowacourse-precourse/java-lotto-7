@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -62,5 +63,30 @@ class LottoProfitCalculatorTest {
 
         //then
         assertEquals(profitRate.compareTo(expectedRate), 0);
+    }
+
+    @DisplayName("수익률을 계산할 때 유효하지 않은 구매 금액이 주어지면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -100, Integer.MIN_VALUE})
+    public void shouldThrowException_whenCalculateProfitRate_givenInvalidPayment(int payment) {
+        //given
+        BigDecimal profit = BigDecimal.valueOf(8000L);
+
+        //when &then
+        assertThrows(IllegalArgumentException.class,
+            () -> calculator.getProfitRate(profit, payment));
+    }
+
+    @DisplayName("수익률을 계산할 때 유효하지 않은 당첨금이 주어지면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(longs = {-1, -100, Integer.MIN_VALUE})
+    public void shouldThrowException_whenCalculateProfitRate_givenInvalidPayment(long invalidAmount) {
+        //given
+        BigDecimal profit = BigDecimal.valueOf(invalidAmount);
+        int payment = 8000;
+
+        //when &then
+        assertThrows(IllegalArgumentException.class,
+            () -> calculator.getProfitRate(profit, payment));
     }
 }
