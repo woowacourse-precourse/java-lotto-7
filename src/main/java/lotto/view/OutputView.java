@@ -9,10 +9,11 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningPrize;
+import lotto.global.message.OutputMessage;
 
 public class OutputView {
     public static void printException(IllegalArgumentException e) {
-        System.out.println("[ERROR] : " + e.getMessage());
+        System.out.printf(OutputMessage.ERROR_FORMAT, e.getMessage());
     }
 
     public static void printPurchaseResult(Lottos purchasedLottos) {
@@ -21,7 +22,7 @@ public class OutputView {
     }
 
     private static void printPurchaseCount(Lottos purchasedLottos) {
-        System.out.printf("\n%d개를 구매했습니다.", purchasedLottos.getSize());
+        System.out.printf(OutputMessage.PURCHASE_COUNT_FORMAT, purchasedLottos.getSize());
     }
 
     private static void printLottoNumbers(Lottos purchasedLottos) {
@@ -41,8 +42,8 @@ public class OutputView {
     }
 
     private static void printResultHeader() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        System.out.println(OutputMessage.STATISTICS_HEADER);
+        System.out.println(OutputMessage.STATISTICS_DELIMITER);
     }
 
     private static void printPrizeStatistics(Map<WinningPrize, Integer> results) {
@@ -62,13 +63,13 @@ public class OutputView {
     }
 
     private static void printPrizeResult(WinningPrize prize, int count) {
-        System.out.printf("%s (%,d원) - %d개%n",
+        System.out.printf(OutputMessage.PRIZE_RESULT_FORMAT,
                 prize.getDescription(),
                 prize.getPrize(),
                 count);
     }
 
     private static void printReturnRate(double returnRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+        System.out.printf(OutputMessage.RETURN_RATE_FORMAT, returnRate);
     }
 }
