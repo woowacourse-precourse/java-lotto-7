@@ -13,21 +13,26 @@ public class LottoResult {
 
     private void initializeResults() {
         for (WinningPrize winningPrize : WinningPrize.values()) {
-            if (winningPrize != WinningPrize.NONE_PRIZE) {
-                results.put(winningPrize, 0);
-            }
+            initializeValidPrize(winningPrize);
+        }
+    }
+    private void initializeValidPrize(WinningPrize winningPrize) {
+        if (winningPrize != WinningPrize.NONE_PRIZE) {
+            results.put(winningPrize, 0);
         }
     }
 
     public void calculateResult(Lottos lottos, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottos.getLottos()) {
             WinningPrize winningPrize = calculateWinningPrize(lotto, winningNumbers);
-            if (winningPrize != WinningPrize.NONE_PRIZE) {
-                addResult(winningPrize);
-            }
+            addValidResult(winningPrize);
         }
     }
-
+    private void addValidResult(WinningPrize winningPrize) {
+        if (winningPrize != WinningPrize.NONE_PRIZE) {
+            addResult(winningPrize);
+        }
+    }
     private WinningPrize calculateWinningPrize(Lotto lotto, WinningNumbers winningNumbers) {
         int matchCount = winningNumbers.countMatchNumbers(lotto);
         boolean matchBonus = winningNumbers.matchBonus(lotto);
