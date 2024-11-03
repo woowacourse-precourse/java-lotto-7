@@ -2,16 +2,13 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
-import lotto.domain.LottoWinningTier;
 import lotto.domain.LottoWinningTierManager;
 import lotto.service.LottoService;
 import lotto.service.Validate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.RequestMessage;
-import lotto.view.ResultMessage;
+
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
     private final OutputView outputView = new OutputView();
@@ -22,20 +19,29 @@ public class LottoController {
     private LottoWinningNumbers lottoWinningNumbers;
     private LottoWinningTierManager lottoWinningTierManager;
 
+    // 복권 구매
     public void setPurchaseLottoNumbers () {
         while (true) {
             try {
-                outputView.printMessage(RequestMessage.ENTER_PURCHASE_AMOUNT.getMessage());
-                String purchaseAmount = inputView.readLine();
+                String purchaseAmount = inputView.requestPurchaseAmount();
                 purchaseLottoNumbers = lottoService.purchaseLotto(
                         validate.validatePurchaseAmount(purchaseAmount));
+                lottoService.sortPurchaseLotto(purchaseLottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
         }
     }
+    // 구매한 복권 출력
+    public void printPurchaseLottoNumbers () {
+        outputView.printPurchasedLottoCount(purchaseLottoNumbers.size());
+        for (Lotto lotto : purchaseLottoNumbers) {
+            outputView.printMessage(lotto.getNumbers().toString());
+        }
+    }
 
+    // 당첨 번호, 보너스 번호 입력
     public void setWinningNumbers () {
         List<Integer> winningNumbers = initializeWinningNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(
@@ -45,8 +51,7 @@ public class LottoController {
     private List<Integer> initializeWinningNumbers () {
         while (true) {
             try {
-                outputView.printMessage(RequestMessage.ENTER_WINNING_NUMBERS.getMessage());
-                String winningNumbersInput = inputView.readLine();
+                String winningNumbersInput = inputView.requestWinningNumbers();
                 return validate.validateWinningNumbers(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
@@ -56,8 +61,7 @@ public class LottoController {
     private int initializeBonusNumber (List<Integer> winningNumbers) {
         while (true) {
             try {
-                outputView.printMessage(RequestMessage.ENTER_BONUS_NUMBER.getMessage());
-                String bonusNumberInput = inputView.readLine();
+                String bonusNumberInput = inputView.requestBonusNumber();
                 return validate.validateBonusNumber(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
@@ -65,8 +69,19 @@ public class LottoController {
         }
     }
 
-    public void checkWinningNumbers () {
+    public void verifyLottoResults() {
         lottoWinningTierManager = new LottoWinningTierManager();
-        lottoService.checkWinningStatus(lottoWinningTierManager, purchaseLottoNumbers, lottoWinningNumbers);
+        lottoService.updateWinningStatus(lottoWinningTierManager, purchaseLottoNumbers, lottoWinningNumbers);
+    }
+
+    public void printResult () {
+        outputView.printStartWinResult();
+        outputView.printLottoPlace(lottoWinningTierManager);
+        outputView.printTotalProfitRate(checkTotalProfitRate());
+    }
+    public double checkTotalProfitRate () {
+        return lottoService.calculateTotalProfitRate(
+                lottoWinningTierManager,
+                purchaseLottoNumbers.size() * 1000);
     }
 }

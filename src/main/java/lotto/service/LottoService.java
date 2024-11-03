@@ -3,13 +3,10 @@ package lotto.service;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoWinningNumbers;
-import lotto.domain.LottoWinningTier;
 import lotto.domain.LottoWinningTierManager;
 
 public class LottoService {
@@ -21,8 +18,13 @@ public class LottoService {
         }
         return purchaseLottoNumbers;
     }
+    public void sortPurchaseLotto (List<Lotto> purchaseLottoNumbers) {
+        for (Lotto lotto : purchaseLottoNumbers) {
+            lotto.getNumbers().sort(Integer::compareTo);
+        }
+    }
 
-    public void checkWinningStatus(LottoWinningTierManager lottoWinningTierManager, List<Lotto> purchaseLottoNumbers, LottoWinningNumbers winningNumbers) {
+    public void updateWinningStatus(LottoWinningTierManager lottoWinningTierManager, List<Lotto> purchaseLottoNumbers, LottoWinningNumbers winningNumbers) {
         for (Lotto lotto : purchaseLottoNumbers) {
             lottoWinningTierManager.increaseLottoWinningTier(
                     checkMatchLottoNumbers(lotto, winningNumbers),

@@ -6,18 +6,20 @@ public class LottoWinningTierManager {
     private final Map<LottoWinningTier, Integer> lottoWinningTiers;
 
     public LottoWinningTierManager() {
-        lottoWinningTiers = new HashMap<>(Map.of(
-                LottoWinningTier.NONE, 0,
-                LottoWinningTier.MATCH_THREE, 0,
-                LottoWinningTier.MATCH_FOUR, 0,
-                LottoWinningTier.MATCH_FIVE, 0,
-                LottoWinningTier.MATCH_FIVE_WITH_BONUS, 0,
-                LottoWinningTier.MATCH_SIX, 0
-        ));
+        lottoWinningTiers = new LinkedHashMap<>();
+        lottoWinningTiers.put(LottoWinningTier.NONE, 0);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_THREE, 0);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FOUR, 0);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE, 0);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_FIVE_WITH_BONUS, 0);
+        lottoWinningTiers.put(LottoWinningTier.MATCH_SIX, 0);
     }
 
     public Map<LottoWinningTier, Integer> getLottoWinningTiers() {
         return lottoWinningTiers;
+    }
+    public int getWinningTierCount (LottoWinningTier lottoWinningTier) {
+        return lottoWinningTiers.get(lottoWinningTier);
     }
 
     public int calculateTotalPrize() {
