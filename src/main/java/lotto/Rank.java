@@ -27,6 +27,15 @@ public enum Rank {
         return prize;
     }
 
+    public static Rank getRank(int numberMatch, boolean bonus){
+        for(Rank rank : Rank.values()){
+            if(rank.getNumberMatch()==numberMatch && rank.getBonus()==bonus){
+                return rank;
+            }
+        }
+
+    }
+
 
 
 }
