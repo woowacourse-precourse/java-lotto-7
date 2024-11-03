@@ -77,29 +77,29 @@
 
 ### 1. 구매금액 입력 및 처리
 
-1. `LottoController`에서 **구매 금액 입력** 프롬프트를 `OutputView`로 출력
-2. `LottoController`가 `InputView`를 호출하여 금액을 입력 받음
-3. **입력 값 검증**: `InputValidator`로 구매 금액을 검증하고, 예외 발생 시 에러 메시지 출력 후 재입력 받기
-4. 올바른 금액 입력 시 `LottoService`를 호출하여 로또 번호를 생성하고 `Lotto` 객체 목록 반환
-5. `LottoController`에서 생성된 로또 번호를 `OutputView`를 통해 출력
+1. **프롬프트 출력**: `LottoController`에서 **구매 금액 입력** 프롬프트를 `OutputView`로 출력
+2. **입력 받기**: `LottoController`가 `InputView`를 호출하여 금액을 입력 받음
+3. **입력 값 검증 및 재입력**: `InputValidator`로 구매 금액을 검증하고, 예외 발생 시 에러 메시지 출력 후 재입력 받기
+4. **로또 객체 생성 및 반환**: 올바른 금액 입력 시 `LottoService`를 호출하여 로또 번호를 생성하고 `Lotto` 객체 목록 반환
+5. **로또 번호 출력**: `LottoController`에서 생성된 로또 번호를 `OutputView`를 통해 출력
 
 ### 2. 당첨 번호 입력 및 처리
 
-1. `LottoController`에서 **당첨 번호 입력** 프롬프트를 `OutputView`로 출력
-2. `InputView`를 호출하여 당첨 번호 입력 받기
-3. **당첨 번호 검증**: `InputValidator`로 당첨 번호를 검증하고, 예외 발생 시 에러 메시지 출력 후 재입력 받기
+1. **프롬프트 출력**: `LottoController`에서 **당첨 번호 입력** 프롬프트를 `OutputView`로 출력
+2. **입력 받기**: `InputView`를 호출하여 당첨 번호 입력 받기
+3. **당첨 번호 검증 및 재입력**: `InputValidator`로 당첨 번호를 검증하고, 예외 발생 시 에러 메시지 출력 후 재입력 받기
 
 ### 3. 보너스 번호 입력 및 처리
 
-1. `LottoController`에서 **보너스 번호 입력** 프롬프트를 `OutputView`로 출력
-2. `InputView`를 호출하여 보너스 번호 입력 받기
-3. **보너스 번호 검증**: `InputValidator`를 통해 당첨 번호와의 중복 여부를 포함한 보너스 번호 유효성 검증, 예외 발생 시 에러 메시지 출력 후 재입력
+1. **프롬프트 출력**: `LottoController`에서 **보너스 번호 입력** 프롬프트를 `OutputView`로 출력
+2. **입력 받기**: `InputView`를 호출하여 보너스 번호 입력 받기
+3. **보너스 번호 검증 및 재입력**: `InputValidator`를 통해 당첨 번호와의 중복 여부를 포함한 보너스 번호 유효성 검증, 예외 발생 시 에러 메시지 출력 후 재입력
 
 ### 4. 당첨 결과 및 수익률 계산
 
-1. `LottoController`가 `LottoService`에 당첨 번호, 보너스 번호, 로또 리스트를 전달하여 당첨 결과 계산
-2. **수익률 계산**: `LottoController`에서 당첨 결과와 구입 금액을 기반으로 `LottoService`에 수익률 계산 요청
-3. 계산된 당첨 결과와 수익률을 `OutputView`로 전달하여 최종 결과 출력
+1. **당첨 결과 계산**: `LottoController`가 `LottoService`에 당첨 번호, 보너스 번호, 로또 리스트를 전달하여 당첨 결과 계산
+2. **수익률 계산 요청**: `LottoController`에서 당첨 결과와 구입 금액을 기반으로 `LottoService`에 수익률 계산 요청
+3. **최종 결과 출력**: 계산된 당첨 결과와 수익률을 `OutputView`로 전달하여 최종 결과 출력
 
 ## 구현할 기능 목록
 
