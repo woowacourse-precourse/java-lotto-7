@@ -1,12 +1,12 @@
 package lotto.validation;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static lotto.constants.ErrorMessage.*;
-import static lotto.validation.WinningNumberValidation.parsedWinningNumbers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -66,24 +66,26 @@ class BonusNumberValidationTest {
     @DisplayName("보너스 번호는 로또번호와 중복되지 않는다.")
     void 보너스_번호는_로또번호와_중복되지_않는다() {
         //given
-        parsedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
+        int bonusNumber = 7;
+
         //then
-        BonusNumberValidation.validateDuplication(bonusNumber);
+        BonusNumberValidation.validateDuplication(lotto, bonusNumber);
     }
 
     @Test
     @DisplayName("보너스 번호는 로또번호와 중복이면 예외가 발생한다.")
     void 보너스_번호는_로또번호와_중복이면_예외가_발생한다() {
         //given
-        parsedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 4;
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
+        int bonusNumber = 4;
+
         //then
-        assertThatThrownBy(() -> BonusNumberValidation.validateDuplication(bonusNumber))
+        assertThatThrownBy(() -> BonusNumberValidation.validateDuplication(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_CAN_NOT_BE_DUPLICATED_LOTTO_NUMBER.getErrorMessage());
 

@@ -36,13 +36,12 @@ public class InputView {
         }
     }
 
-    public void readBonusNumber() {
+    public int readBonusNumber(Lotto winningNumber) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine();
-                BonusNumberValidation.validate(inputBonusNumber);
-                return;
+                return BonusNumberValidation.parseBonusNumber(winningNumber, inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

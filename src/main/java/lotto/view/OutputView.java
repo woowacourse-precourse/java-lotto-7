@@ -17,9 +17,9 @@ public class OutputView {
         System.out.println(lotto);
     }
 
-    public void printLottoResult(Lottos lottos) {
+    public void printLottoResult(Lotto winningNumber, int bonusNumber, Lottos lottos) {
         System.out.println("당첨 통계\n---");
-        lottos.getMatchCount();
+        lottos.getMatchCount(winningNumber, bonusNumber);
         for (LottoOperator value : LottoOperator.values()) {
             System.out.println(value.getResult());
         }
