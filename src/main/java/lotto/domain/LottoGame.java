@@ -13,8 +13,10 @@ public class LottoGame {
 
     private final List<Lotto> generatedLottos;
     private final Integer lottoCount;
+    private final Integer purchaseAmount;
 
     public LottoGame(final Integer purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
         this.lottoCount = calcLottoCount(purchaseAmount);
         this.generatedLottos = generateLottos();
     }
@@ -25,6 +27,10 @@ public class LottoGame {
 
     public Integer getLottoCount() {
         return lottoCount;
+    }
+
+    public Integer getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     private Integer calcLottoCount(final Integer purchaseAmount) {
