@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.validator.ValidatorUtils.PRICE_ERROR_MESSAGE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -28,6 +29,6 @@ public class PriceValidatorTest {
     void 유효하지않은_구입금액_검사(int price) {
         assertThatThrownBy(() -> priceValidator.validate(price))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위의 양수를 입력해 주세요.");
+                .hasMessageContaining(PRICE_ERROR_MESSAGE);
     }
 }
