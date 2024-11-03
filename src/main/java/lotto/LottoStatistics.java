@@ -37,15 +37,20 @@ public class LottoStatistics {
 
     private void updateRank(int count, List<Integer> winningNumbers, int bonusNum) {
         if (count == 6) savePot.put(Rank.checkRank(count, false), savePot.get(Rank.FIRST) + 1);
-        if (count == 5)
-            if (winningNumbers.contains(bonusNum)) savePot.put(Rank.checkRank(count, true), savePot.get(Rank.SECOND) + 1);
-            if (!winningNumbers.contains(bonusNum)) savePot.put(Rank.checkRank(count, false), savePot.get(Rank.THIRD) + 1);
+        if (count == 5) {
+            if (winningNumbers.contains(bonusNum)) {
+                savePot.put(Rank.SECOND, savePot.get(Rank.SECOND) + 1);
+            }
+            if (!winningNumbers.contains(bonusNum)) {
+                savePot.put(Rank.THIRD, savePot.get(Rank.THIRD) + 1);
+            }
+        }
         if (count == 4) savePot.put(Rank.checkRank(count, false), savePot.get(Rank.FOURTH) + 1);
         if (count == 3) savePot.put(Rank.checkRank(count, false), savePot.get(Rank.FIFTH) + 1);
         if (count < 3) savePot.put(Rank.checkRank(0, false), savePot.get(Rank.NONE) + 1);
     }
-        public void caculate(){
 
+    public void caculate(){
         for (Rank rank : Rank.values()) {
             int count = savePot.get(rank);
             totalRevenue += (count * rank.getWinningAmount());

@@ -46,10 +46,7 @@ public class LottoManager {
         List<Integer> winningNumbers;
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                winningNumbers = Arrays.stream(Console.readLine().split(","))
-                        .map(Integer::parseInt)
-                        .toList();
+                winningNumbers = convertInputToList();
                 checkBonusNumber = new ArrayList<>(winningNumbers);
                 new Lotto(winningNumbers);
                 break;
@@ -57,8 +54,14 @@ public class LottoManager {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println(winningNumbers);
         return winningNumbers;
+    }
+
+    private List<Integer> convertInputToList() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Arrays.stream(Console.readLine().split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private int inputBonusNumber() {

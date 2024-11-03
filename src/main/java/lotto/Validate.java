@@ -10,6 +10,7 @@ public class Validate {
             for(char c:purchaseValue.toCharArray()){
                 if(!Character.isDigit(c)) throw new IllegalArgumentException("[ERROR] 입력값 오류");
             }
+            if(Integer.parseInt(purchaseValue)%1000 != 0) throw new IllegalArgumentException("[ERROR] 입력값 오류");
     }
 
     public void bonusNumValidate(List<Integer> bonusCheckList){
