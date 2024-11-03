@@ -1,13 +1,10 @@
 package lotto.Model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.View.InputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,35 +21,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> lottoNumberPublication() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
-    }
-
-    public List<Integer> getSortedLottoNumbers() {
-        List<Integer> numbers = lottoNumberPublication();
-        Collections.sort(numbers);
-        return numbers;
-    }
-
-    public int theNumberOfLotto(int lottoPurchase, int price) {
-        return lottoPurchase / price;
-    }
-
-    public int convertStringToInt(String input) {
-        return Integer.parseInt(input);
-    }
-
-    public List<List<Integer>> totalLotto(int count) {
-        List<List<Integer>> publicationNumbers = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            publicationNumbers.add(getSortedLottoNumbers());
-        }
-
-        return publicationNumbers;
-    }
-
     private int findLottoRank(long matchingCount, int bonusNumber) {
         boolean hasBonusMatch = numbers.contains(bonusNumber);
 
@@ -75,14 +43,8 @@ public class Lotto {
         return 0;
     }
 
-    public List<Integer> findMatchNumber() {
-        int PRICE = 1000;
-        int lottoPurchase = convertStringToInt(InputView.lottoPurchase());
-        int count = theNumberOfLotto(lottoPurchase, PRICE);
-        int bonusNumber = convertStringToInt(InputView.bonusNumber());
-        List<List<Integer>> lotto = totalLotto(count);
+    public List<Integer> findMatchNumber(List<List<Integer>> lotto, int bonusNumber) {
         List<Integer> duplicateCountList = new ArrayList<>();
-
         Set<Integer> set = new HashSet<>(numbers);
 
         for (List<Integer> numbers : lotto) {
@@ -110,8 +72,7 @@ public class Lotto {
     public int totalPrizeMoney(List<Integer> matchNumberCount) {
         int totalPrize = 0;
 
-        // result 리스트의 인덱스와 당첨 횟수에 따라 총 당첨금 계산
-        for (int i = 0; i < matchNumberCount.size(); i++) {
+        for (int i = 1; i < matchNumberCount.size(); i++) {
             LottoPrizeMoney prize = LottoPrizeMoney.fromRank(i);
             int count = matchNumberCount.get(i);
 
@@ -123,15 +84,39 @@ public class Lotto {
         return totalPrize;
     }
 
-    public void earningRate() {
+    public double earningRate(int totalPrize, int totalInvestment) {
 
+        return ((double) totalPrize / totalInvestment) * 100;
     }
 
-    public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Lotto lotto = new Lotto(numbers);
-
-        List<Integer> p = lotto.findMatchNumberCount(lotto.findMatchNumber());
-        System.out.println(p);
-    }
+//    public static void main(String[] args) {
+//        LottoPublication lottoPublication = new LottoPublication();
+//
+//        int PRICE = 1000;
+//        int lottoPurchase = convertStringToInt(InputView.lottoPurchase());
+//        int count = theNumberOfLotto(lottoPurchase, PRICE);
+//        System.out.println();
+//        System.out.println(count + "개를 구매했습니다.");
+//        printLotto(lottoPublication.totalLotto(count));
+//
+//        System.out.println();
+//        List<Integer> numbers = convertStringToList(InputView.lottoCastLotsLot());
+//        Lotto lotto = new Lotto(numbers);
+//
+//        System.out.println();
+//        int bonusNumber = convertStringToInt(InputView.bonusNumber());
+//
+//        List<Integer> findMatchNumberCount = lotto.findMatchNumberCount(
+//                lotto.findMatchNumber(lottoPublication.totalLotto(count), bonusNumber));
+//
+//        System.out.println();
+//        System.out.println("당첨 통계");
+//        System.out.println("---");
+//        printWinningStatistics(findMatchNumberCount);
+//
+//        int totalPrizeMoney = lotto.totalPrizeMoney(findMatchNumberCount);
+//        double earningRate = lotto.earningRate(totalPrizeMoney, lottoPurchase);
+//
+//        printEarningRate(earningRate);
+//    }
 }
