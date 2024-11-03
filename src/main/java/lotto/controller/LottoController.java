@@ -3,6 +3,8 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.LottoNumbers;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.Prize;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
@@ -35,8 +37,13 @@ public class LottoController {
     }
 
     private PurchasePrice requestPurchasePrice() {
-        outputView.displayPurchasePriceRequest();
-        return new PurchasePrice(inputView.getInteger());
+        try {
+            outputView.displayPurchasePriceRequest();
+            return new PurchasePrice(inputView.getInteger());
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return requestPurchasePrice();
+        }
     }
 
     private void respondPurchaseQuantity(final PurchasePrice purchasePrice) {
@@ -51,12 +58,31 @@ public class LottoController {
     }
 
     private WinningNumbers requestWinningNumbers() {
-        outputView.displayMainNumbersRequest();
-        String mainNumbers = inputView.getString();
-        outputView.displayBonusNumberRequest();
-        int bonusNumber = inputView.getInteger();
+        Lotto mainNumbers = requestMainNumbers();
+        BonusNumber bonusNumber = requestBonusNumber(mainNumbers);
+        return new WinningNumbers(mainNumbers, bonusNumber);
+    }
 
-        return lottoService.createWinningNumbers(mainNumbers, bonusNumber);
+    private Lotto requestMainNumbers() {
+        try {
+            outputView.displayMainNumbersRequest();
+            String mainNumbers = inputView.getString();
+            return lottoService.createMainNumbers(mainNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return requestMainNumbers();
+        }
+    }
+
+    private BonusNumber requestBonusNumber(Lotto mainNumbers) {
+        try {
+            outputView.displayBonusNumberRequest();
+            int bonusNumber = inputView.getInteger();
+            return BonusNumber.of(bonusNumber, mainNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.displayErrorMessage(e.getMessage());
+            return requestBonusNumber(mainNumbers);
+        }
     }
 
     private void respondWinningResult(

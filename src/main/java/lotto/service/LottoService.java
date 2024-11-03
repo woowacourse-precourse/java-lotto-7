@@ -7,7 +7,6 @@ import lotto.model.Prize;
 import lotto.model.Lotto;
 import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
-import lotto.model.WinningNumbers;
 import lotto.util.NumberValidator;
 
 public class LottoService {
@@ -23,10 +22,9 @@ public class LottoService {
         return new LottoTickets(lottoTickets);
     }
 
-    public WinningNumbers createWinningNumbers(final String numbersInput, final int bonusNumber) {
-        List<Integer> numbers = parseNumbers(numbersInput);
-        Lotto mainNumbers = new Lotto(numbers);
-        return new WinningNumbers(mainNumbers, bonusNumber);
+    public Lotto createMainNumbers(final String mainNumbersInput) {
+        List<Integer> mainNumbers = parseNumbers(mainNumbersInput);
+        return new Lotto(mainNumbers);
     }
 
     private List<Integer> parseNumbers(final String input) {

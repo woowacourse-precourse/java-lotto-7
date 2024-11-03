@@ -55,4 +55,8 @@ public class OutputView {
     private String formatRateOfReturn(final double rateOfReturn) {
         return String.format(OutputMessage.RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
+
+    public void displayErrorMessage(final String message) {
+        System.err.println(message);
+    }
 }
