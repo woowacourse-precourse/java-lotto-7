@@ -24,13 +24,13 @@ public class InputValidator {
     // 검증 메서드들
     private static void validateNotNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException(InputErrorMessage.NULL_INPUT.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.NULL_INPUT.getInfoMessage());
         }
     }
 
     private static void validateNotEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException(InputErrorMessage.NULL_INPUT.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.NULL_INPUT.getInfoMessage());
         }
     }
 
@@ -38,7 +38,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_INPUT_TYPE.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_INPUT_TYPE.getInfoMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class InputValidator {
                     .map(String::trim)
                     .map(InputValidator::validateNumeric).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputErrorMessage.INVALID_INPUT_TYPE.getMessage());
+            throw new IllegalArgumentException(InputErrorMessage.INVALID_INPUT_TYPE.getInfoMessage());
         }
     }
 }
