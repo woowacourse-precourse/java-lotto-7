@@ -8,70 +8,86 @@ import java.util.regex.Pattern;
 import lotto.global.ErrorMessage;
 
 public class InputValidator {
-
-    private static final Pattern POSITIVE_INTEGER_REGEX = Pattern.compile("\\d+");
-    private static final int MONEY_THRESHOLD = 1000;
+    private static final Pattern POSITIVE_INTEGER_PATTERN = Pattern.compile("\\d+");
+    private static final int MINIMUM_MONEY_AMOUNT = 0;
+    private static final int MONEY_UNIT = 1000;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int REQUIRED_LOTTO_NUMBER_COUNT = 6;
+    private static final String NUMBER_SEPARATOR = ",";
 
     private InputValidator() {
         throw new UnsupportedOperationException();
     }
 
-    public static void validateMoney(String input) {
-        if (!POSITIVE_INTEGER_REGEX.matcher(input).matches()) {
+    public static void validateMoneyInput(String input) {
+        validateIsPositiveInteger(input);
+        int money = Integer.parseInt(input);
+        validateMoneyAmount(money);
+    }
+
+    public static void validateLottoNumbersInput(String input) {
+        String[] numbers = splitNumbers(input);
+        validateNumbersCount(numbers);
+        validateEachLottoNumber(numbers);
+        checkForDuplicateNumbers(numbers);
+    }
+
+    public static void validateBonusNumberInput(String input, List<Integer> winningNumbers) {
+        validateIsPositiveInteger(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateLottoNumberRange(bonusNumber);
+        checkBonusNumberNotInWinningNumbers(bonusNumber, winningNumbers);
+    }
+
+    private static void validateIsPositiveInteger(String input) {
+        if (!POSITIVE_INTEGER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
+    }
 
-        int money = Integer.parseInt(input);
-
-        if (money == 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
-        }
-
-        if (money % MONEY_THRESHOLD != 0) {
+    private static void validateMoneyAmount(int money) {
+        if (money <= MINIMUM_MONEY_AMOUNT || money % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
         }
     }
 
-    public static void validateNumbers(String input){
-        if (!input.contains(",")){
+    private static String[] splitNumbers(String input) {
+        if (!input.contains(NUMBER_SEPARATOR)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS.getMessage());
         }
+        return input.split(NUMBER_SEPARATOR);
+    }
 
-        String[] choice = input.split(",");
-        if (choice.length != 6){
+    private static void validateNumbersCount(String[] numbers) {
+        if (numbers.length != REQUIRED_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_SIZE_OF_NUMBERS.getMessage());
         }
+    }
 
-        Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(choice));
-        if (uniqueNumbers.size() != choice.length) {
+    private static void validateEachLottoNumber(String[] numbers) {
+        Arrays.stream(numbers).forEach(number -> {
+            validateIsPositiveInteger(number);
+            validateLottoNumberRange(Integer.parseInt(number));
+        });
+    }
+
+    private static void checkForDuplicateNumbers(String[] numbers) {
+        Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(numbers));
+        if (uniqueNumbers.size() != numbers.length) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS_IN_LOTTO.getMessage());
         }
-
-        Arrays.stream(choice).forEach(InputValidator::validateNumber);
     }
 
-    public static void validateBonusNumber(String input, List<Integer> winningNumbers){
-        validateNumber(input);
-        validateDuplicatedBonusNumber(input, winningNumbers);
-    }
-
-    private static void validateDuplicatedBonusNumber(String input, List<Integer> winningNumbers) {
-        int bonusNumberInt = Integer.parseInt(input);
-        if (winningNumbers.contains(bonusNumberInt)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
+    private static void validateLottoNumberRange(int number) {
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
-    private static void validateNumber(String input) {
-        try {
-            int number = Integer.parseInt(input);
-
-            // 숫자가 1 이상 45 이하인지 확인
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+    private static void checkBonusNumberNotInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
 }

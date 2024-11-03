@@ -6,51 +6,47 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
+    private static final int REQUIRED_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        validateNumbers(numbers);
+        this.numbers = List.copyOf(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private void validateNumbers(List<Integer> numbers) {
+        if (numbers.size() != REQUIRED_NUMBER_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + REQUIRED_NUMBER_COUNT + "개여야 합니다.");
         }
-        if (hasDuplicate(numbers)) {
+        checkForDuplicates(numbers);
+    }
+
+    private void checkForDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
 
-    private boolean hasDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() != numbers.size();
-    }
-
-    public Prize match(List<Integer> winningNumbers, int bonusNumber) {
+    public Prize match(WinningTicket winningTicket) {
         int matchCount = (int) numbers.stream()
-                .filter(winningNumbers::contains)
+                .filter(winningTicket::contains)
                 .count();
 
-        boolean bonusNumberIncluded = numbers.contains(bonusNumber);
-
-        return Prize.valueOf(matchCount, bonusNumberIncluded);
+        boolean bonusMatch = winningTicket.isBonusNumberMatched(numbers);
+        return Prize.valueOf(matchCount, bonusMatch);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Lotto lotto)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Lotto lotto)) return false;
         return Objects.equals(numbers, lotto.numbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(numbers);
+        return Objects.hash(numbers);
     }
 
     @Override

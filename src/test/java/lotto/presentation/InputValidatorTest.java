@@ -17,7 +17,7 @@ class InputValidatorTest {
         @DisplayName("양의 정수가 아닌 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenMoneyIsNotPositiveInteger() {
-            assertThatThrownBy(() -> InputValidator.validateMoney("1000j"))
+            assertThatThrownBy(() -> InputValidator.validateMoneyInput("1000j"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
@@ -25,7 +25,7 @@ class InputValidatorTest {
         @DisplayName("0을 입력한 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenMoneyIsZero() {
-            assertThatThrownBy(() -> InputValidator.validateMoney("0"))
+            assertThatThrownBy(() -> InputValidator.validateMoneyInput("0"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_MONEY.getMessage());
         }
@@ -33,7 +33,7 @@ class InputValidatorTest {
         @DisplayName("1000으로 나누어 떨어지지 않는 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenMoneyIsNotMultipleOfThousand() {
-            assertThatThrownBy(() -> InputValidator.validateMoney("1500"))
+            assertThatThrownBy(() -> InputValidator.validateMoneyInput("1500"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_MONEY.getMessage());
         }
@@ -41,7 +41,7 @@ class InputValidatorTest {
         @DisplayName("양의 정수이면서 1000의 배수인 경우 예외를 발생시키지 않는다.")
         @Test
         void shouldNotThrowExceptionWhenMoneyIsValid() {
-            InputValidator.validateMoney("3000"); // 예외가 발생하지 않음
+            InputValidator.validateMoneyInput("3000"); // 예외가 발생하지 않음
         }
     }
 
@@ -52,7 +52,7 @@ class InputValidatorTest {
         @DisplayName("쉼표로 구분되지 않은 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumbersAreNotCommaSeparated() {
-            assertThatThrownBy(() -> InputValidator.validateNumbers("1 2 3 4 5 6"))
+            assertThatThrownBy(() -> InputValidator.validateLottoNumbersInput("1 2 3 4 5 6"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBERS.getMessage());
         }
@@ -60,7 +60,7 @@ class InputValidatorTest {
         @DisplayName("숫자가 6개가 아닌 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumbersAreNotSix() {
-            assertThatThrownBy(() -> InputValidator.validateNumbers("1,2,3,4,5"))
+            assertThatThrownBy(() -> InputValidator.validateLottoNumbersInput("1,2,3,4,5"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_SIZE_OF_NUMBERS.getMessage());
         }
@@ -68,7 +68,7 @@ class InputValidatorTest {
         @DisplayName("1~45 범위를 벗어나는 숫자가 포함된 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumberOutOfRange() {
-            assertThatThrownBy(() -> InputValidator.validateNumbers("1,2,3,4,5,46"))
+            assertThatThrownBy(() -> InputValidator.validateLottoNumbersInput("1,2,3,4,5,46"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
@@ -76,7 +76,7 @@ class InputValidatorTest {
         @DisplayName("올바른 형식의 숫자들이 6개인 경우 예외를 발생시키지 않는다.")
         @Test
         void shouldNotThrowExceptionWhenNumbersAreValid() {
-            InputValidator.validateNumbers("1,2,3,4,5,6"); // 예외가 발생하지 않음
+            InputValidator.validateLottoNumbersInput("1,2,3,4,5,6"); // 예외가 발생하지 않음
         }
     }
 
@@ -89,7 +89,7 @@ class InputValidatorTest {
         @DisplayName("양의 정수가 아닌 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumberIsNotPositiveInteger() {
-            assertThatThrownBy(() -> InputValidator.validateBonusNumber("abc", winningNumbers))
+            assertThatThrownBy(() -> InputValidator.validateBonusNumberInput("abc", winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
@@ -97,7 +97,7 @@ class InputValidatorTest {
         @DisplayName("숫자가 1 미만인 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumberIsLessThanOne() {
-            assertThatThrownBy(() -> InputValidator.validateBonusNumber("0", winningNumbers))
+            assertThatThrownBy(() -> InputValidator.validateBonusNumberInput("0", winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
@@ -105,7 +105,7 @@ class InputValidatorTest {
         @DisplayName("숫자가 45를 초과하는 경우 예외를 발생시킨다.")
         @Test
         void shouldThrowExceptionWhenNumberIsGreaterThanFortyFive() {
-            assertThatThrownBy(() -> InputValidator.validateBonusNumber("46", winningNumbers))
+            assertThatThrownBy(() -> InputValidator.validateBonusNumberInput("46", winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
@@ -113,7 +113,7 @@ class InputValidatorTest {
         @DisplayName("보너스 번호가 중복되는 경우 예외가 발생한다.")
         @Test
         void shouldThrowExceptionWhenNumberIsDuplicated() {
-            assertThatThrownBy(() -> InputValidator.validateBonusNumber("6", winningNumbers))
+            assertThatThrownBy(() -> InputValidator.validateBonusNumberInput("6", winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
@@ -121,7 +121,7 @@ class InputValidatorTest {
         @DisplayName("1 이상 45 이하의 숫자인 경우 예외를 발생시키지 않는다.")
         @Test
         void shouldNotThrowExceptionWhenNumberIsInValidRange() {
-            InputValidator.validateBonusNumber("23", winningNumbers); // 예외가 발생하지 않음
+            InputValidator.validateBonusNumberInput("23", winningNumbers); // 예외가 발생하지 않음
         }
     }
 }

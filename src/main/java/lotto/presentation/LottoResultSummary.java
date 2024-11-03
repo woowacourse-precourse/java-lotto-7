@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Prize;
 
-public class LottoResultFormatter {
+public class LottoResultSummary {
     private final Map<Prize, Integer> prizes;
     private static final String MATCH_FORMAT = "%d개 일치";
     private static final String REWARD_FORMAT = " (%s원)";
@@ -14,7 +14,7 @@ public class LottoResultFormatter {
     private static final String BONUS_TEXT = ", 보너스 볼 일치";
     private static final String SEPARATOR = System.lineSeparator();
 
-    public LottoResultFormatter(List<Prize> winnings) {
+    public LottoResultSummary(List<Prize> winnings) {
         prizes = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
             prizes.put(prize, 0);

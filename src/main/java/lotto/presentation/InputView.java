@@ -1,53 +1,70 @@
 package lotto.presentation;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import lotto.global.ErrorMessage;
 
 public class InputView {
-    private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";
-    private static final String INPUT_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String PROMPT_MONEY = "구입금액을 입력해 주세요.";
+    private static final String PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     private InputView() {
         throw new UnsupportedOperationException();
     }
 
-    public static String getMoney() {
-        System.out.println(INPUT_MONEY);
-        return validateInput(InputValidator::validateMoney);
+    public static int getMoney() {
+        System.out.println(PROMPT_MONEY);
+        String rawInput = getValidatedInput(InputValidator::validateMoneyInput);
+        return parseToInteger(rawInput);
     }
 
-    public static String getNumbers() {
-        System.out.println(INPUT_NUMBERS);
-        return validateInput(InputValidator::validateNumbers);
+    public static List<Integer> getWinningNumbers() {
+        System.out.println(PROMPT_WINNING_NUMBERS);
+        String rawInput = getValidatedInput(InputValidator::validateLottoNumbersInput);
+        return parseToIntegerList(rawInput);
     }
 
-    public static String getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println(INPUT_BONUS_NUMBER);
-        return validateInput(rawInput -> InputValidator.validateBonusNumber(rawInput, winningNumbers));
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println(PROMPT_BONUS_NUMBER);
+        String rawInput = getValidatedInput(input -> InputValidator.validateBonusNumberInput(input, winningNumbers));
+        return parseToInteger(rawInput);
     }
 
-    private static String validateInput(Consumer<String> validator) {
+    private static String getValidatedInput(Consumer<String> validator) {
         String input = readLine();
         try {
             validator.accept(input);
             return input;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return validateInput(validator);
+            return getValidatedInput(validator);
         }
     }
 
     private static String readLine() {
         try {
             return Console.readLine();
-        } catch (NoSuchElementException unsupported) {
-            // 테스트 라이브러리는 NoSuch... 를 ignore 하기 때문에, 메시지만 출력하고 예외는 그대로 발생시킨다.
+        } catch (NoSuchElementException e) {
             System.out.println(ErrorMessage.NO_LINES_FOUND.getMessage());
             throw new NoSuchElementException(ErrorMessage.NO_LINES_FOUND.getMessage());
         }
+    }
+
+    private static int parseToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    private static List<Integer> parseToIntegerList(String input) {
+        return Arrays.stream(input.split(","))
+                .map(InputView::parseToInteger)
+                .toList();
     }
 }

@@ -87,13 +87,13 @@ class InputViewTest {
 
     @Nested
     @DisplayName("당첨 번호 입력 테스트")
-    class WinningNumbersInputTests {
+    class WinningTicketInputTests {
 
         @DisplayName("쉼표로 구분되지 않은 당첨 번호 입력 시 에러 메시지가 출력된다")
         @Test
         void inputWinningNumbersNotCommaSeparated() {
             setInput("1 2 3 4 5 6");
-            runConsoleTest(InputView::getNumbers);
+            runConsoleTest(InputView::getWinningNumbers);
             assertThatOutputContains(ErrorMessage.INVALID_NUMBERS);
         }
 
@@ -101,7 +101,7 @@ class InputViewTest {
         @Test
         void inputWinningNumbersOutOfRange() {
             setInput("1,2,3,4,5,46");
-            runConsoleTest(InputView::getNumbers);
+            runConsoleTest(InputView::getWinningNumbers);
             assertThatOutputContains(ErrorMessage.INVALID_NUMBER_RANGE);
         }
 
@@ -109,7 +109,7 @@ class InputViewTest {
         @Test
         void inputDuplicateWinningNumbers() {
             setInput("1,2,3,4,5,5");
-            runConsoleTest(InputView::getNumbers);
+            runConsoleTest(InputView::getWinningNumbers);
             assertThatOutputContains(ErrorMessage.DUPLICATED_NUMBERS_IN_LOTTO);
         }
     }

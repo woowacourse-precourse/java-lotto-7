@@ -1,45 +1,55 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
-import lotto.global.ErrorMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoGameTest {
-    private LottoGame lottoGame;
-    private final LottoGenerateStrategy stubStrategy = () -> List.of(1, 2, 3, 4, 5, 6);
+
+    private LottoGenerateStrategy strategy;
+    private WinningTicket winningTicket;
+    private ProfitCalculator profitCalculator;
 
     @BeforeEach
     void setUp() {
-        int userInput = 1000;
-        lottoGame = new LottoGame(userInput, stubStrategy);
+        strategy = () -> List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
+        int bonusNumber = 8;
+        winningTicket = new WinningTicket(winningNumbers, bonusNumber);
+        int money = 5000;
+        profitCalculator = new ProfitCalculator(money);
     }
 
-    @DisplayName("생성자 테스트")
+    @DisplayName("구매한 티켓 개수를 반환한다")
     @Test
-    void construct() {
-        Assertions.assertThat(lottoGame).isNotNull();
+    void getPurchasedTicketsCount_returnsCorrectTicketCount() {
+        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        assertThat(lottoGame.getPurchasedTicketsCount()).isEqualTo(5);
     }
 
-    @DisplayName("사용자 입력 금액이 올바르지 않으면 예외가 발생한다")
+    @DisplayName("구매한 티켓 목록을 반환한다")
     @Test
-    void validation() {
-        int invalidUserInput = 1001; // 1000 으로 떨어지지 않음
-        assertThatThrownBy(() -> new LottoGame(invalidUserInput, stubStrategy))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_MONEY.getMessage());
+    void getPurchasedTickets_returnsCorrectTicketList() {
+        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        String expectedTickets = "[1, 2, 3, 4, 5, 6]\n".repeat(5).trim();
+        assertThat(lottoGame.getPurchasedTickets()).isEqualTo(expectedTickets);
     }
 
-    @DisplayName("수익률 계산에 성공한다")
+    @DisplayName("당첨 결과를 올바르게 계산하여 반환한다")
     @Test
-    void getEarningRate() {
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        LottoGame customGame = new LottoGame(1000, () -> numbers);
-        float earningRate = customGame.getEarningRate(numbers, 7);
-        Assertions.assertThat(earningRate).isEqualTo(200_000_000.0f);
+    void getPrizes_returnsCorrectPrizeList() {
+        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        List<Prize> prizes = lottoGame.getPrizes();
+        assertThat(prizes).containsOnly(Prize.FIVE);  // 각 티켓이 5개 일치
+    }
+
+    @DisplayName("수익률을 올바르게 계산한다")
+    @Test
+    void calculateEarningRate_returnsCorrectEarningRate() {
+        LottoGame lottoGame = new LottoGame(profitCalculator, strategy, winningTicket);
+        float earningRate = lottoGame.calculateEarningRate();
+        assertThat(earningRate).isEqualTo(150000.0f);
     }
 }

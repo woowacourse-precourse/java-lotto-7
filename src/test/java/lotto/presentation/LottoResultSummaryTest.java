@@ -7,14 +7,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-class LottoResultFormatterTest {
+class LottoResultSummaryTest {
 
     @DisplayName("모든 등수가 0개여도 요약 형식이 포함된다.")
     @Test
     void generateSummary_AllPrizesIncludedWithZeroes() {
         // given
         List<Prize> winnings = List.of(Prize.NONE);
-        LottoResultFormatter resultFactory = new LottoResultFormatter(winnings);
+        LottoResultSummary resultFactory = new LottoResultSummary(winnings);
 
         // when
         String summary = resultFactory.generateSummary();
@@ -39,7 +39,7 @@ class LottoResultFormatterTest {
                 Prize.THREE, Prize.THREE, Prize.FIVE_BONUS,
                 Prize.SIX
         );
-        LottoResultFormatter resultFactory = new LottoResultFormatter(winnings);
+        LottoResultSummary resultFactory = new LottoResultSummary(winnings);
 
         // when
         String summary = resultFactory.generateSummary();
@@ -61,7 +61,7 @@ class LottoResultFormatterTest {
     void generateSummary_SinglePrizeMultipleTimes() {
         // given
         List<Prize> winnings = List.of(Prize.FOUR, Prize.FOUR, Prize.FOUR);
-        LottoResultFormatter resultFactory = new LottoResultFormatter(winnings);
+        LottoResultSummary resultFactory = new LottoResultSummary(winnings);
 
         // when
         String summary = resultFactory.generateSummary();

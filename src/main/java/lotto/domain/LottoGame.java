@@ -1,40 +1,32 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.global.ErrorMessage;
 
 public class LottoGame {
-    private static final int MONEY_THRESHOLD = 1000;
-    private final int inputMoney;
-    private final LottoGroup lottoGroup;
+    private final LottoTicketBundle lottoTicketBundle;
+    private final WinningTicket winningTicket;
+    private final ProfitCalculator profitCalculator;
 
-    public LottoGame(int inputMoney, LottoGenerateStrategy lottoGenerateStrategy) {
-        validate(inputMoney);
-        this.inputMoney = inputMoney;
-        this.lottoGroup = LottoGroup.from(lottoGenerateStrategy, convertToCount(inputMoney));
+    public LottoGame(ProfitCalculator profitCalculator, LottoGenerateStrategy strategy, WinningTicket winningTicket) {
+        this.profitCalculator = profitCalculator;
+        this.lottoTicketBundle = LottoTicketBundle.from(strategy, profitCalculator.getTicketCount());
+        this.winningTicket = winningTicket;
     }
 
-    private void validate(int money){
-        if (money % MONEY_THRESHOLD != 0){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
-        }
+    public List<Prize> getPrizes() {
+        return lottoTicketBundle.getPrizes(winningTicket);
     }
 
-    public float getEarningRate(List<Integer> choices, int bonusNumber) {
-        int totalReward = lottoGroup.getTotalReward(choices, bonusNumber);
-        float earningRate = (float) totalReward / inputMoney * 100;
-        return Math.round(earningRate * 10) / 10.0f;
+    public float calculateEarningRate() {
+        int totalReward = lottoTicketBundle.getTotalReward(winningTicket);
+        return profitCalculator.calculateEarningRate(totalReward);
     }
 
-    private int convertToCount(int money){
-        return money / MONEY_THRESHOLD;
+    public String getPurchasedTickets() {
+        return lottoTicketBundle.toString();
     }
 
-    public String getPurchasedLotto(){
-        return lottoGroup.toString();
-    }
-
-    public List<Prize> getPrizes(List<Integer> choices, int bonusNumber){
-        return lottoGroup.getPrizes(choices, bonusNumber);
+    public int getPurchasedTicketsCount() {
+        return profitCalculator.getTicketCount();
     }
 }

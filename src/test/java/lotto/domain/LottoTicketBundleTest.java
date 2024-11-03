@@ -6,9 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoGroupTest {
+class LottoTicketBundleTest {
 
-    private LottoGroup lottoGroup;
+    private LottoTicketBundle lottoTicketBundle;
+    private WinningTicket winningTicket;
 
     @BeforeEach
     void setUp() {
@@ -33,21 +34,24 @@ class LottoGroupTest {
         };
 
         // from 메서드를 통해 LottoGroup을 초기화
-        lottoGroup = LottoGroup.from(fixedStrategy, 8);
+        lottoTicketBundle = LottoTicketBundle.from(fixedStrategy, 8);
+
+        List<Integer> choices = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        winningTicket = new WinningTicket(choices, bonusNumber);
     }
 
     @DisplayName("로또그룹 생성에 성공한다.")
     @Test
     void containsLottoList() {
-        Assertions.assertThat(lottoGroup).isNotNull();
+        Assertions.assertThat(lottoTicketBundle).isNotNull();
     }
 
     @DisplayName("당첨 내역을 정확하게 반환한다.")
     @Test
     void getPrizes() {
-        List<Integer> choices = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        List<Prize> prizes = lottoGroup.getPrizes(choices, bonusNumber);
+        List<Prize> prizes = lottoTicketBundle.getPrizes(winningTicket);
         Assertions.assertThat(prizes)
                 .hasSize(1)
                 .containsExactly(
@@ -58,9 +62,7 @@ class LottoGroupTest {
     @DisplayName("당첨 여부를 판별하여 당첨금 총합을 계산한다.")
     @Test
     void getTotalReward() {
-        List<Integer> choices = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        int winning = lottoGroup.getTotalReward(choices, bonusNumber);
+        int winning = lottoTicketBundle.getTotalReward(winningTicket);
         Assertions.assertThat(winning).isEqualTo(5000);
     }
 
@@ -76,6 +78,6 @@ class LottoGroupTest {
                 [7, 11, 30, 40, 42, 43]
                 [2, 13, 22, 32, 38, 45]
                 [1, 3, 5, 14, 22, 45]""";
-        Assertions.assertThat(lottoGroup).hasToString(expected);
+        Assertions.assertThat(lottoTicketBundle).hasToString(expected);
     }
 }

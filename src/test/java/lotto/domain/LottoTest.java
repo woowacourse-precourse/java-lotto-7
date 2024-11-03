@@ -75,10 +75,9 @@ class LottoTest {
         @Test
         void 당첨_번호가_입력되면_일치율을_계산한다() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
-            int bonusNumber = 13;
+            WinningTicket winningTicket = new WinningTicket(List.of(7, 8, 9, 10, 11, 12), 13);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.NONE);
         }
@@ -87,10 +86,9 @@ class LottoTest {
         @Test
         void 세_개_일치() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-            List<Integer> winningNumbers = List.of(1, 2, 3, 10, 11, 12);
-            int bonusNumber = 13;
+            WinningTicket winningTicket = new WinningTicket(List.of(1, 2, 3, 10, 11, 12), 13);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.THREE);
         }
@@ -99,10 +97,9 @@ class LottoTest {
         @Test
         void 네_개_일치() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
-            List<Integer> winningNumbers = List.of(1, 2, 3, 4, 11, 12);
-            int bonusNumber = 13;
+            WinningTicket winningTicket = new WinningTicket(List.of(1, 2, 3, 4, 11, 12), 13);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.FOUR);
         }
@@ -111,10 +108,9 @@ class LottoTest {
         @Test
         void 다섯_개_일치_보너스_불일치() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
-            List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 12);
-            int bonusNumber = 13;
+            WinningTicket winningTicket = new WinningTicket(List.of(1, 2, 3, 4, 5, 12), 13);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.FIVE);
         }
@@ -123,10 +119,9 @@ class LottoTest {
         @Test
         void 다섯_개_일치_보너스_일치() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
-            List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 12);
-            int bonusNumber = 9;
+            WinningTicket winningTicket = new WinningTicket(List.of(1, 2, 3, 4, 5, 12), 9);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.FIVE_BONUS);
         }
@@ -135,10 +130,9 @@ class LottoTest {
         @Test
         void 여섯_개_일치() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-            int bonusNumber = 7;
+            WinningTicket winningTicket = new WinningTicket(List.of(1, 2, 3, 4, 5, 6), 7);
 
-            Prize match = lotto.match(winningNumbers, bonusNumber);
+            Prize match = lotto.match(winningTicket);
 
             Assertions.assertThat(match).isEqualTo(Prize.SIX);
         }

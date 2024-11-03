@@ -12,12 +12,13 @@ public class OutputView {
         System.out.println(quantity + PURCHASE_AMOUNT_IS);
     }
 
-    public static void printPurchasedLottos(String lottoGroup) {
-        System.out.println(lottoGroup);
+    public static void printPurchasedLottos(String purchasedLottos) {
+        System.out.println(purchasedLottos);
     }
 
     public static void printEarningRate(float earningRate) {
-        System.out.printf((EARNING_RATE) + "%n", earningRate);
+        String formattedRate = String.format(EARNING_RATE, earningRate);
+        System.out.println(formattedRate);
     }
 
     public static void printResult(String summary) {
