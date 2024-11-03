@@ -32,7 +32,7 @@ class LottoServiceTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         // when
-        LottoRanks lottoRanks = lottoService.evaluateLottos(winningLotto, lottos);
+        LottoRanks lottoRanks = lottoService.compareLottos(winningLotto, lottos);
 
         // then
         assertThat(lottoRanks.getRanks()).hasSize(3)

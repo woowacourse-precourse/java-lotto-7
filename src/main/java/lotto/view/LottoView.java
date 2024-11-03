@@ -42,11 +42,15 @@ public class LottoView {
     }
 
     public void showPurchasedLottos(List<Lotto> purchasedLottos) {
+        outputHandler.showPurchasedLottoQuantity(purchasedLottos.size());
         outputHandler.showPurchasedLottos(purchasedLottos);
+        outputHandler.showEmptyLine();
     }
 
     public void showWinningStatistics(Map<LottoRank, Integer> ranks, double rateOfReturn) {
-        outputHandler.showWinningStatistics(ranks, rateOfReturn);
+        outputHandler.showWinningStatisticsComments();
+        outputHandler.showRanks(ranks);
+        outputHandler.showRateOfReturn(rateOfReturn);
     }
 
     public void showLottoApplicationException(LottoApplicationException exception) {

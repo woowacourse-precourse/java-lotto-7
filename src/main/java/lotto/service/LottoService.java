@@ -31,7 +31,7 @@ public class LottoService {
         return lottos;
     }
 
-    public LottoRanks evaluateLottos(WinningLotto winningLotto, List<Lotto> lottos) {
+    public LottoRanks compareLottos(WinningLotto winningLotto, List<Lotto> lottos) {
         LottoRanks lottoRanks = new LottoRanks();
 
         for (Lotto lotto : lottos) {

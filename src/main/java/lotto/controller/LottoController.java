@@ -24,13 +24,13 @@ public class LottoController {
 
     public void run() {
         Money money = getMoneyFromUser();
-        List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
-        lottoView.showPurchasedLottos(purchasedLottos);
 
-        WinningLotto winningLotto = getWinningLotto();
+        List<Lotto> purchasedLottos = purchaseLotto(money);
+        WinningLotto winningLotto = getWinningLottoFromUser();
 
-        LottoRanks lottoRanks = lottoService.evaluateLottos(winningLotto, purchasedLottos);
+        LottoRanks lottoRanks = lottoService.compareLottos(winningLotto, purchasedLottos);
         double rateOfReturn = lottoRanks.calculateTotalReturnRate(money);
+
         lottoView.showWinningStatistics(lottoRanks.getRanks(), rateOfReturn);
     }
 
@@ -39,12 +39,18 @@ public class LottoController {
         return purchaseAmount.toMoney();
     }
 
-    private WinningLotto getWinningLotto() {
-        Lotto lotto = repeatUntilCorrectInput(lottoView::getWinningNumbersFromUser);
-        return repeatUntilCorrectInput(() -> getWinningLotto(lotto));
+    private List<Lotto> purchaseLotto(Money money) {
+        List<Lotto> lottos = lottoService.purchaseBy(money);
+        lottoView.showPurchasedLottos(lottos);
+        return lottos;
     }
 
-    private WinningLotto getWinningLotto(Lotto lotto) {
+    private WinningLotto getWinningLottoFromUser() {
+        Lotto lotto = repeatUntilCorrectInput(lottoView::getWinningNumbersFromUser);
+        return repeatUntilCorrectInput(() -> getWinningLottoFromUser(lotto));
+    }
+
+    private WinningLotto getWinningLottoFromUser(Lotto lotto) {
         LottoNumber bonusNumber = lottoView.getBonusNumberFromUser();
         return new WinningLotto(lotto, bonusNumber);
     }
