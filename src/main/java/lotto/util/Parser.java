@@ -4,16 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputParser {
+public class Parser {
     private final static String DELIMITER = ",";
     private final static int LOTTO_PRICE = 1000;
 
-    private InputParser() {
+    private Parser() {
     }
 
-    public static int parsePurchaseAmount(String input) {
-        int amount = Integer.parseInt(input);
-        return amount / LOTTO_PRICE;
+    public static int parseToInt(String input) {
+        return Integer.parseInt(input);
+    }
+
+    public static int parsePurchaseAmount(int cost) {
+        return cost / LOTTO_PRICE;
     }
 
     public static List<Integer> parseWinningNumbers(String input) {
