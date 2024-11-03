@@ -6,9 +6,8 @@ import lotto.domain.model.PrizeCategory;
 
 import java.util.List;
 
-/**
- * 사용자 출력을 담당하는 LottoOutputView 클래스
- */
+
+ //사용자 출력을 담당하는 클래스
 public class LottoOutputView {
 
     public void displayErrorMessage(String message) {
@@ -24,19 +23,16 @@ public class LottoOutputView {
         System.out.println(OutputMessages.WINNING_STATISTICS_HEADER.getMessage());
         System.out.println("---");
 
-        // 낮은 일치 수부터 높은 일치 수로 정렬된 순서로 출력
         List<PrizeCategory> sortedCategories = prizeCategories.stream()
-                .sorted(Comparator.comparingInt(PrizeCategory::getMatchCount)).toList();
+                .sorted(Comparator.comparingInt(PrizeCategory::getMatchCount))
+                .toList();
 
         for (PrizeCategory category : sortedCategories) {
             int count = prizeCounts[category.ordinal()];
-            if (category == PrizeCategory.SECOND) {
-                System.out.println(OutputMessages.BONUS_MATCH_STATISTICS.format(category.getMatchCount(),
-                        formatCurrency(category.getPrize()), count));
-            } else {
-                System.out.println(OutputMessages.MATCH_STATISTICS.format(category.getMatchCount(),
-                        formatCurrency(category.getPrize()), count));
-            }
+            String message = (category == PrizeCategory.SECOND)
+                    ? OutputMessages.BONUS_MATCH_STATISTICS.format(category.getMatchCount(), formatCurrency(category.getPrize()), count)
+                    : OutputMessages.MATCH_STATISTICS.format(category.getMatchCount(), formatCurrency(category.getPrize()), count);
+            System.out.println(message);
         }
     }
 
@@ -44,12 +40,6 @@ public class LottoOutputView {
         System.out.println(OutputMessages.TOTAL_PROFIT_RATE.format(profitRate));
     }
 
-    /**
-     * 숫자를 통화 형식(세자리마다 콤마)으로 변환합니다.
-     *
-     * @param amount 금액
-     * @return 통화 형식의 문자열
-     */
     private String formatCurrency(int amount) {
         return String.format("%,d", amount);
     }
