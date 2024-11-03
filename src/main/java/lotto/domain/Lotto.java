@@ -16,5 +16,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 로또 번호를 반환한다.
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

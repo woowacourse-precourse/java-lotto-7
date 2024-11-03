@@ -1,10 +1,14 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.util.LottoParser;
 import lotto.util.LottoValidator;
 
 public class LottoMachineService {
     private final LottoMachine lottoMachine = LottoMachine.getInstance();
+    private Lotto winningLotto;
 
     public void inputLottoPurchaseAmount(String purchaseAmount) {
         int validPrice = LottoValidator.validNumber(purchaseAmount);
@@ -12,10 +16,14 @@ public class LottoMachineService {
         lottoMachine.savePurchaseAmount(validPrice);
     }
 
-    // TODO: 보너스 번호를 입력받는다.
     public void inputBonusNumber(String bonusNumber) {
         int validBonusNumber = LottoValidator.validNumber(bonusNumber);
         lottoMachine.saveBonusNumber(validBonusNumber);
+    }
+
+    public void inputWinningNumbers(String numbers) {
+        List<Integer> winningNumbers = LottoParser.parsingNumber(numbers);
+        lottoMachine.saveWinningNumbers(winningNumbers);
     }
 
     // TODO: 로또 번호들을 발급한다.
