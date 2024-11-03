@@ -4,6 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorCode;
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class Input {
@@ -76,13 +80,13 @@ public class Input {
     }
 
     private void validateWinningNumber(String input) throws IllegalArgumentException {
-        isWinningNumberRightFormat(input);
+        validateWinningNumberRightFormat(input);
+        validateWinningNumberDuplicate(input);
     }
 
     private void validateBonusNumber(String input) throws IllegalArgumentException {
         validateInputNumeric(input);
-        Integer bonusNumber = Integer.parseInt(input);
-        validateBonusNumberInRange(bonusNumber);
+        validateBonusNumberInRange(input);
     }
 
     private void validateInputNumeric(String price) {
@@ -100,16 +104,35 @@ public class Input {
         }
     }
 
-    private void isWinningNumberRightFormat(String input) {
+    private void validateWinningNumberRightFormat(String input) {
         if (!isWinningNumberPattern.matcher(input).matches()) {
             throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_PROPER.getErrorMessage());
         }
     }
 
+    private void validateWinningNumberDuplicate(String input) {
+        List<Integer> numbers = Arrays.stream(input.split(COMMA))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if(nonDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_DUPLICATE.getErrorMessage());
+        }
+    }
 
-    private void validateBonusNumberInRange(Integer bonusNumber) {
+
+    private void validateBonusNumberInRange(String input) {
+        int bonusNumber = Integer.parseInt(input);
         if (!(bonusNumber > 0 && bonusNumber < 46)) {
             throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_IN_RANGE.getErrorMessage());
+        }
+    }
+
+    private void validateBonusNumberDuplicate(String input) {
+        int bonusNumber = Integer.parseInt(input);
+        if(winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_DUPLICATE.getErrorMessage());
         }
     }
 
