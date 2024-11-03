@@ -1,8 +1,8 @@
 package lotto.domain.lottoForm;
 
 import lotto.domain.number.BonusNumber;
-import lotto.domain.number.Number;
 import lotto.domain.number.LottoNumber;
+import lotto.domain.number.Number;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,11 +12,11 @@ import static lotto.message.ErrorMessage.NON_INTEGER_LOTTO;
 
 public class WinningNumbers extends LottoForm {
     private final String SPLIT_DELIMITER = ",";
-    private final List<LottoNumber> numbers2;
+    private final List<LottoNumber> numbers;
 
     public WinningNumbers(String input) {
         List<Integer> rawNumbers = convertToIntegers(input);
-        this.numbers2 = validateAndSort(rawNumbers).stream()
+        this.numbers = validateAndSort(rawNumbers).stream()
                 .map(LottoNumber::new)
                 .toList();
     }
@@ -33,8 +33,8 @@ public class WinningNumbers extends LottoForm {
     }
 
     public void validateDuplicate(BonusNumber bonusNumber) {
-        numbers2.stream()
-                .filter(lottoNumber2 -> lottoNumber2.isSame(bonusNumber))
+        numbers.stream()
+                .filter(lottoNumber -> lottoNumber.isSame(bonusNumber))
                 .findAny()
                 .ifPresent(foundLottoNumber -> {
                     throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
@@ -42,7 +42,7 @@ public class WinningNumbers extends LottoForm {
     }
 
     public boolean contains(Number number) {
-        return numbers2.stream()
-                .anyMatch(lottoNumber2 -> lottoNumber2.isSame(number));
-    };
+        return numbers.stream()
+                .anyMatch(lottoNumber -> lottoNumber.isSame(number));
+    }
 }

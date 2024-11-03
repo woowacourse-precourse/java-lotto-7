@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoConstants.*;
-import static lotto.message.ErrorMessage.*;
+import static lotto.LottoConstants.LOTTO_SIZE;
+import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
+import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 
 public abstract class LottoForm {
 
