@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.lotto.LottoNumbersGenerator;
+import lotto.model.draw.LottoNumbersGenerator;
 import lotto.model.lotto.LottoTickets;
 
 public class OutputView {

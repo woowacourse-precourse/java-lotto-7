@@ -1,4 +1,4 @@
-package lotto.model.lotto;
+package lotto.model.draw;
 
 import static lotto.util.Constants.LOTTO_MAX_RANGE;
 import static lotto.util.Constants.LOTTO_MIN_RANGE;

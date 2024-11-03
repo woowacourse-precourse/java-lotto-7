@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.model.draw.LottoNumbersGenerator;
 
 public class LottoTickets {
 

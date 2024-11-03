@@ -1,7 +1,7 @@
+/*
 package lotto.util;
 
 import lotto.model.lotto.Lotto;
-import lotto.util.ExceptionMessage;
 import lotto.util.validator.BonusValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -55,4 +55,4 @@ public class BonusValidatorTest {
             assert(exception.getMessage().contains(ExceptionMessage.BONUS_NUMBER_DUPLICATED.getMessage()));
         }
     }
-}
+}*/

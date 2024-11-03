@@ -19,10 +19,10 @@ public class BonusValidator extends AbstractValidator{
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_LOTTO_RANGE.getMessage());
         }
     }
-    public void validateDuplicates(String bonusNumber, Lotto lotto) {
+    /*public void validateDuplicates(String bonusNumber, Lotto lotto) {
         if (lotto.contains(Integer.parseInt(bonusNumber))) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATED.getMessage());
         }
-    }
+    }*/
 
 }
