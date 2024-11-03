@@ -49,4 +49,7 @@ public class OutputView {
         return String.format("%,d", amount);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.err.println("ERROR: " + errorMessage);
+    }
 }
