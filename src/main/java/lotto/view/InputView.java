@@ -1,9 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
     private static String readInput() {
@@ -21,18 +21,13 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
-        String input = readInput();
-        String[] winningNumbers = input.split(",");
-
-        return convertStringArrayToIntegerList(winningNumbers);
-    }
-
-    private static List<Integer> convertStringArrayToIntegerList(String[] numbers) {
-        List<Integer> result = new ArrayList<>();
-        for (String number : numbers) {
-            result.add(Integer.parseInt(number));
+        while (true) {
+            try {
+                return WinningNumbersValidator.validate(readInput());
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
-        return result;
     }
 
     public static int readBonusNumber() {
