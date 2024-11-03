@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import lotto.model.CheckLotto;
-import lotto.model.Lotto;
-import lotto.model.LottoNumbers;
+import lotto.model.lotto.CheckLotto;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

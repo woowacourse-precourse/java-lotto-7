@@ -2,9 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import lotto.model.BonusNumber;
-import lotto.model.Cost;
-import lotto.model.Lotto;
+import lotto.model.cost.Cost;
+import lotto.model.lotto.BonusNumber;
+import lotto.model.lotto.Lotto;
 
 public class InputView {
 
@@ -21,6 +21,5 @@ public class InputView {
     public int getBonusNumber(Lotto lotto) {
         return BonusNumber.of(Integer.parseInt(Console.readLine().trim()), lotto).getBonusNumber();
     }
-
 
 }

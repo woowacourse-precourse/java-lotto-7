@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 public class BonusNumber {
 
@@ -30,7 +30,8 @@ public class BonusNumber {
     }
 
     private void isBonusNumberInRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LottoRange.MIN_NUMBER.getDescription()
+                || bonusNumber > LottoRange.MAX_NUMBER.getDescription()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
         }
     }

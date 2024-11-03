@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class Lotto {
     }
 
     private void isLottoInRange(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoRange.MIN_NUMBER.getDescription() || number > LottoRange.MAX_NUMBER.getDescription()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자를 입력해주세요.");
         }
     }
