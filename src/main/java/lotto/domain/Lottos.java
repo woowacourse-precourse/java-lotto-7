@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoNumberType.*;
 
 public class Lottos {
 
@@ -32,9 +32,9 @@ public class Lottos {
         IntStream.range(START_INDEX, count)
                 .mapToObj(i -> Lotto.from(
                         Randoms.pickUniqueNumbersInRange(
-                                MINIMUM_LOTTO_NUMBER,
-                                MAXIMUM_LOTTO_NUMBER,
-                                LOTTO_SIZE
+                                MINIMUM_LOTTO_NUMBER.getNumber(),
+                                MAXIMUM_LOTTO_NUMBER.getNumber(),
+                                LOTTO_SIZE.getNumber()
                         )
                 )).forEach(lottos::add);
     }

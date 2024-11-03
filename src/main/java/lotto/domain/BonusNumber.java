@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoNumberType.*;
 import static lotto.constants.exception.ErrorMessage.*;
 
 public class BonusNumber {
@@ -47,7 +47,8 @@ public class BonusNumber {
         }
 
         private static void validateBonusNumberInRange(int bonusNumber) {
-            if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
+            if (bonusNumber < MINIMUM_LOTTO_NUMBER.getNumber()
+                    || bonusNumber > MAXIMUM_LOTTO_NUMBER.getNumber()) {
                 throw new IllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }

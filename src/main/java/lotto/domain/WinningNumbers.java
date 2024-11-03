@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.*;
 
-import static lotto.constants.LottoConstants.*;
+import static lotto.constants.LottoNumberType.*;
 import static lotto.constants.exception.ErrorMessage.*;
 
 public class WinningNumbers {
@@ -58,7 +58,7 @@ public class WinningNumbers {
         }
 
         private static void validateWinningNumbersCount(List<String> delimitedWinningNumbers) {
-            if (delimitedWinningNumbers.size() != LOTTO_SIZE) {
+            if (delimitedWinningNumbers.size() != LOTTO_SIZE.getNumber()) {
                 throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
             }
         }
@@ -76,7 +76,9 @@ public class WinningNumbers {
 
         private static void validateWinningNumbersInRange(List<Integer> positiveWinningNumbers) {
             boolean hasOutOfRangeNumber = positiveWinningNumbers.stream()
-                    .anyMatch(lottoNumber -> lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER);
+                    .anyMatch(
+                            lottoNumber -> lottoNumber < MINIMUM_LOTTO_NUMBER.getNumber()
+                                    || lottoNumber > MAXIMUM_LOTTO_NUMBER.getNumber());
 
             if (hasOutOfRangeNumber) {
                 throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE.getMessage());
