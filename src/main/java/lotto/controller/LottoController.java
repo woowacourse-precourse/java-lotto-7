@@ -21,7 +21,7 @@ public class LottoController {
     private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
-        lottoShop = LottoShop.openShop();
+        lottoShop = LottoShop.open();
         this.inputView = inputView;
         this.outputView = outputView;
     }

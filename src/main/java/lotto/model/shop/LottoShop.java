@@ -8,7 +8,7 @@ public class LottoShop {
         this.ticketSeller = ticketSeller;
     }
 
-    public static LottoShop openShop() {
+    public static LottoShop open() {
         LottoMachine lottoMachine = prepareLottoMachine();
         TicketSeller ticketSeller = hireTicketSeller(lottoMachine);
         return new LottoShop(ticketSeller);
