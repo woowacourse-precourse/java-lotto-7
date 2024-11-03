@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
@@ -7,8 +8,11 @@ import lotto.model.LottoRank;
 public class OutputView {
     public static void printLottoTicket(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+
         for (Lotto lotto : lottoTickets) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
+            System.out.println(numbers);
         }
     }
 
