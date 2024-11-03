@@ -21,20 +21,8 @@ public class Application {
         // 3.7 형식에 맞는 당첨 번호가 입력될 때까지 반복하여 입력을 받는 기능
         ArrayList<Integer> winningNumbers = getWinningNumbers();
 
-        // 4.1 보너스 번호를 입력 받는 기능
-        String bonusNumberInput = getInputString("보너스 번호를 입력해 주세요.");
-
-        try {
-            // 4.2 입력된 보너스 번호를 정수로 변환할 수 없는 경우 예외 처리하는 기능
-            validateNumericString(bonusNumberInput);
-            // 4.3 입력된 보너스 번호가 범위(1~45)에 맞지 않는 경우 예외 처리하는 기능
-            int bonusNumber = Integer.parseInt(bonusNumberInput);
-            validateLottoNumberInRange(bonusNumber);
-            // 4.4 당첨 번호와 중복되는 보너스 번호가 입력된 경우 예외 처리하는 기능
-            validateNewNumber(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        // 4.5 형식에 맞는 보너스 번호가 입력될 때까지 반복하여 입력을 받는 기능
+        int bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private static String getInputString(String message) {
@@ -185,6 +173,29 @@ public class Application {
     private static void validateNewNumber(ArrayList<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 기존에 중복되는 값이 있습니다.");
+        }
+    }
+
+    private static void validateBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
+        validateNumericString(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        validateLottoNumberInRange(bonusNumber);
+        validateNewNumber(winningNumbers, bonusNumber);
+    }
+
+    private static int getValidatedBonusNumber(ArrayList<Integer> winningNumbers, String bonusNumberInput) {
+        validateBonusNumber(winningNumbers, bonusNumberInput);
+        return Integer.parseInt(bonusNumberInput);
+    }
+
+    private static int getBonusNumber(ArrayList<Integer> winningNumbers) {
+        while (true) {
+            String bonusNumberInput = getInputString("보너스 번호를 입력해 주세요.");
+            try {
+                return getValidatedBonusNumber(winningNumbers, bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
