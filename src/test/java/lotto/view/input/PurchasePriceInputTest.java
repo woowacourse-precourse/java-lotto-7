@@ -47,7 +47,7 @@ public class PurchasePriceInputTest extends NsTest {
     @DisplayName("로또 구입 금액이 1억원 이상일 때 예외 처리")
     @Test
     void shouldThrowExceptionWhenPurchasePriceExceedsLimit() {
-        assertThatThrownBy(() -> runException("999999999"))
+        assertThatThrownBy(() -> runException("999999000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 구입 금액은 1억 미만이어야 합니다.");
     }
