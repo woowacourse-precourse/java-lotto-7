@@ -40,8 +40,16 @@ public class LottoController {
     }
 
     public String recordWinningNumbers() {
-        String winningNumbersInput = InputView.getWinningNumbers();
-        lottoService.saveWinningLottos(winningNumbersInput);
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                String winningNumbersInput = InputView.getWinningNumbers();
+                lottoService.saveWinningLottos(winningNumbersInput);
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                ErrorView.printErrorMessage(e.getMessage());
+            }
+        }
         return "success";
     }
 }
