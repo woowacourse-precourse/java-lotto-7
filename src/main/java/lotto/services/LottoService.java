@@ -7,6 +7,7 @@ import static lotto.validation.InputValidator.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class LottoService {
@@ -50,9 +51,25 @@ public class LottoService {
         return bonus.getNumber();
     }
 
+    public void generateStatistics () {
+        statistics = new Statistics();
 
+        List<List<Integer>> issuedLotto = getAllIssuedLotto();
+        List<Integer> winningNumbers = getWinningNumber();
+        int bonusNumber = getBonusNumber();
+
+        StatisticsCalculator statisticsCalculator = new StatisticsCalculator(statistics);
+        statisticsCalculator.calculateStatistics(issuedLotto, winningNumbers, bonusNumber);
     }
 
+    public Map<Prize, Integer> getStatistics() {
+        return statistics.get();
+    }
 
+    public double calculateYield() {
+        int totalPurchaseAmount = getIssueAmount();
+        YieldCalculator yieldCalculator = new YieldCalculator(statistics);
+        return yieldCalculator.calculateYield(totalPurchaseAmount);
+    }
 
 }
