@@ -3,7 +3,10 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.Lotto;
+import lotto.model.LottoGame;
 import lotto.model.LottoPurchase;
+import lotto.model.WinningLotto;
 import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,21 +37,25 @@ public final class LottoGameController {
 
     private void play() {
         LottoPurchase lottoPurchase = buyLotto();
-//        LottoGame lottoGame = playLottoGame(lottoPurchase);
+        LottoGame lottoGame = playLottoGame(lottoPurchase);
     }
 
     private LottoPurchase buyLotto() {
         LottoPurchase lottoPurchase = new LottoPurchase(readMoney());
 
         outputView.print(resultFormatter.formatLottoPurchaseResult(lottoPurchase.getLottoPurchaseResult()));
+        outputView.printNewLine();
 
         return lottoPurchase;
     }
 
-    private void playLottoGame(LottoPurchase lottoPurchase) {
-        List<Integer> WinningLottoNumbers = readWinningLottoNumbers();
+    private LottoGame playLottoGame(LottoPurchase lottoPurchase) {
+        List<Integer> winningLottoNumbers = readWinningLottoNumbers();
+        Lotto winningLotto = new Lotto(winningLottoNumbers);
         int bonusNumber = readBonusNumber();
 
+        return new LottoGame(lottoPurchase.getLottoTickets(), new WinningLotto(winningLotto, bonusNumber),
+                lottoPurchase.getMoney());
     }
 
     private int readMoney() {
@@ -61,6 +68,7 @@ public final class LottoGameController {
 
     private List<Integer> readWinningLottoNumbers() {
         String numbersInput = inputView.getNumbersInput();
+        outputView.printNewLine();
 
         Validator.validateNumbersInput(numbersInput);
 
@@ -71,6 +79,7 @@ public final class LottoGameController {
 
     private int readBonusNumber() {
         String bonusNumberInput = inputView.getBonusInput();
+        outputView.printNewLine();
 
         Validator.validateBonusNumberInput(bonusNumberInput);
 
