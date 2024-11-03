@@ -3,7 +3,7 @@ package lotto.valid;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.config.exception.input.InputException;
-import lotto.valid.ValidInput;
+import lotto.helper.valid.ValidInput;
 import org.junit.jupiter.api.Test;
 
 public class ValidInputTest {
