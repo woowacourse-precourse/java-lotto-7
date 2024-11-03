@@ -14,19 +14,13 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        int purchaseAmount;
-        int purchaseCount;
-        List<Lotto> issuedLotto;
-        Set<Integer> inputWinningLottoNumber;
-        int bonusNumber;
-        Map<Ranking, Integer> rankingCountMap;
-        int winningPrize;
-        double profitRate;
+        List<Lotto> issuedLotto = null;
+        int purchaseCount = 0;
 
         while (true) {
             try {
                 // 구입 금액 입력
-                purchaseAmount = InputView.getPurchaseAmount();
+                int purchaseAmount = InputView.getPurchaseAmount();
                 // 로또 구매 개수 계산
                 purchaseCount = LottoIssueCount.calculateNumberOfLottoIssue(purchaseAmount);
                 // 로또 구매 개수 출력
@@ -41,6 +35,7 @@ public class LottoController {
             }
         }
 
+        Set<Integer> inputWinningLottoNumber;
         while (true) {
             try {
                 //당첨 번호 입력
@@ -51,6 +46,7 @@ public class LottoController {
             }
         }
 
+        int bonusNumber;
         while (true) {
             try {
                 //보너스 번호 입력
@@ -62,13 +58,13 @@ public class LottoController {
         }
 
         //당첨 번호와 발권된 로또 번호 비교, 계산
-        rankingCountMap = LottoResultChecker.calculateRankingCount(
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(
                 inputWinningLottoNumber, issuedLotto, bonusNumber);
         //당첨 통계 출력
         OutputView.printLottoResult(rankingCountMap);
         //총 수익률 출력
-        winningPrize = LottoResultChecker.calculateWinningPrize(rankingCountMap);
-        profitRate = LottoResultChecker.calculateProfit(purchaseCount, winningPrize);
+        int winningPrize = LottoResultChecker.calculateWinningPrize(rankingCountMap);
+        double profitRate = LottoResultChecker.calculateProfit(purchaseCount, winningPrize);
         OutputView.printProfitRate(profitRate);
     }
 }
