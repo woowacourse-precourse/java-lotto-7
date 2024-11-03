@@ -22,9 +22,12 @@ class LottoAnswerTest {
         List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
         Lotto lotto = new Lotto(lottoNumbers);
 
-        int[] answer = {6,0};
+        Rank rank = Rank.SIX_MATCHES;
         //when
-        assertThat(lottoAnswer.getLottoAgreement(lotto)).isEqualTo(answer);
+        Rank lottoRank = lottoAnswer.getLottoRank(lotto);
+
+        //then
+        assertThat(lottoRank).isEqualTo(rank);
     }
 
 

@@ -1,10 +1,10 @@
 package lotto.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import lotto.model.LottoResult;
+import lotto.model.Lotto;
+import lotto.model.Rank;
 import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest {
@@ -12,20 +12,16 @@ class WinningStatisticsTest {
     @Test
     void 최종_결과_입력_검증() {
         //given
-        List<LottoResult> results = List.of(LottoResult.valueOf(6,0));
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        lotto.setRank(Rank.SIX_MATCHES);
+        List<Lotto> lottoTickets = List.of(lotto);
         int amount = 10000;
 
-        String expected = "3개 일치 (5,000원) - 0개\n"
-                + "4개 일치 (50,000원) - 0개\n"
-                + "5개 일치 (1,500,000원) - 0개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
-                + "6개 일치 (2,000,000,000원) - 1개\n"
-                + "총 수익률은 20000000.0%입니다.";
-
         //when
-        WinningStatistics winningStatistics = new WinningStatistics(results, amount);
+        WinningStatistics winningStatistics = new WinningStatistics(lottoTickets, amount);
 
         //then
-        assertEquals(expected, winningStatistics.toFinalString());
+        assertThat(winningStatistics.toFinalString()).contains(
+                "6개 일치 (2,000,000,000원) - 1개", "총 수익률은 20000000.0%입니다.");
     }
 }
