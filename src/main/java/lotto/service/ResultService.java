@@ -20,10 +20,16 @@ public class ResultService {
         checkWinningNumbersCount(lottos);
     }
 
+    public boolean isFiveWinningNumber(int winningCount) {
+        return winningCount == 5;
+    }
+
     public void checkWinningNumbersCount(Lottos lottos) {
         HashMap<Integer, Integer> resultMap = result.getResultMap();
         for (Lotto lotto : lottos.getLottos()) {
             int winningCount = 6 - lotto.getSize();
+
+            isFiveWinningNumber(winningCount);
 
             resultMap.put(winningCount, resultMap.getOrDefault(resultMap.get(winningCount), 0) + 1);
         }
