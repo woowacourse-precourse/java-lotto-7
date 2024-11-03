@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoArchive;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,33 +17,24 @@ public class LottoController {
     static int budget;
     static int lottoNumber;
     private LottoArchive lottoArchive;
+    private WinningLotto winningLotto;
 
     public LottoController(LottoService lottoService) {
         this.lottoService = lottoService;
     }
-
 
     public void lotto(){
         readUserBudget();
         printLottoNumber();
         generateLottos();
         printLottos();
+        generateWinningNumbersAndBonusNumber();
     }
 
     public void readUserBudget(){
         OutputView.printBudgetInputDescription();
         budget = InputView.inputBudget();
         lottoNumber = budget/1000;
-    }
-
-    public List<Integer> readWinningNumber(){
-        OutputView.printWinningNumberInputDescription();
-        return InputView.inputWinningNumber();
-    }
-
-    public int readBonusNumber(){
-        OutputView.printBonusNumberInputDescription();
-        return InputView.inputBonusNumber();
     }
 
     public void printLottoNumber(){
@@ -66,6 +58,20 @@ public class LottoController {
             Collections.sort(sortedSet);
             OutputView.printLotto(sortedSet);
         }
+    }
+
+    public Lotto readWinningNumber(){
+        OutputView.printWinningNumberInputDescription();
+        return new Lotto(InputView.inputWinningNumber());
+    }
+
+    public int readBonusNumber(){
+        OutputView.printBonusNumberInputDescription();
+        return InputView.inputBonusNumber();
+    }
+
+    public void generateWinningNumbersAndBonusNumber(){
+        winningLotto = new WinningLotto(readWinningNumber(), readBonusNumber());
     }
 
 }
