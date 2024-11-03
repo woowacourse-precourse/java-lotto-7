@@ -14,8 +14,8 @@ project/
 │   ├── UserMoney
 │   └── WinningNumbers
 ├── 📁 service
+│   ├── InputHandler
 │   ├── LottoMachine
-│   ├── LottoService
 │   └── PrizeCalculator
 ├── 📁 util
 │   ├── ErrorMessage
