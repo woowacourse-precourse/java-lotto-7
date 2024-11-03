@@ -24,6 +24,7 @@ public class LottoController {
         OutputView.printMessage(WINNING_STATISTICS.getText());
         List<LottoRankType> lottoRankTypes = LottoResult.of(lottos, winningNumbers, bonusNumber).getLottoRankTypes();
         String profitRate = LottoProfitCalculator.calculateProfitRate(lottoRankTypes, purchaseAmount);
+        OutputView.printLottoResultPrompt(lottoRankTypes);
         OutputView.printLottoProfitRate(profitRate);
     }
 
