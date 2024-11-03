@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 public class WinningResult {
-    private enum Result{
+    enum Result{
         FIRST(6,2000000000),
         SECOND(5,30000000),
         THIRD(5,1500000),
@@ -33,13 +33,21 @@ public class WinningResult {
      * winningLottos(당첨 번호) 와 각각의 번호를 대조하여 맞춘 갯수를 센다.
      * 5개 맞춘 번호들은 추가적으로 bonusNumber(보너스 번호)도 맞는지 확인하여 2등과 3등을 구분한다.
      */
-    public void calculateResult(List<List<Integer>> soldLottos, List<Integer> winningLottos, int bonusNumber){
+    public void calculateWinningResult(List<List<Integer>> soldLottos, List<Integer> winningLottos, int bonusNumber){
         for (List<Integer> soldLotto : soldLottos){
             int matchCount = matchCount(soldLotto, winningLottos);
-            boolean matchBonusNumber = matchBonusNumber(winningLottos, bonusNumber);
+            boolean matchBonusNumber = matchBonusNumber(soldLotto, bonusNumber);
 
             saveResult(matchCount, matchBonusNumber);
         }
+    }
+
+    public double getReturnResult(int purchaseMoney){
+        long totalMoney = 0L;
+        for (Result result : Result.values()){
+            totalMoney += (long) result.money * winningResult.get(result);
+        }
+        return ((double)totalMoney/purchaseMoney)*100;
     }
 
     //getResult()에서 구매한 로또번호 6개를 넘겨주면 당첨 번호와 맞는 갯수를 리턴한다.
@@ -53,24 +61,28 @@ public class WinningResult {
         return matchCount;
     }
 
-    private boolean matchBonusNumber(List<Integer> winningLottos, int bonusNumber){
-        return winningLottos.contains(bonusNumber);
+    private boolean matchBonusNumber(List<Integer> soldLotto, int bonusNumber){
+        return soldLotto.contains(bonusNumber);
     }
 
     private void saveResult(int matchCount, boolean matchBonusNumber){
         if (matchCount == 6){
             winningResult.put(Result.FIRST, winningResult.get(Result.FIRST)+1);
+            return;
         }
         if (matchCount == 5 && matchBonusNumber){
             winningResult.put(Result.SECOND, winningResult.get(Result.SECOND)+1);
+            return;
         }
         if (matchCount == 5){
             winningResult.put(Result.THIRD, winningResult.get(Result.THIRD)+1);
+            return;
         }
         if (matchCount==4){
             winningResult.put(Result.FOURTH, winningResult.get(Result.FOURTH)+1);
+            return;
         }
-        if (matchCount==5){
+        if (matchCount==3){
             winningResult.put(Result.FIFTH, winningResult.get(Result.FIFTH)+1);
         }
     }

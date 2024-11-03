@@ -46,7 +46,7 @@ public class LottoController {
 
         //당첨 결과 처리
         List<Integer> winningResult = lottoService.winningResult();
-
+        double returnResult = lottoService.returnResult(purchasePrice);
         //결과 출력
     }
 

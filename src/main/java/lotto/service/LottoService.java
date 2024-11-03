@@ -14,10 +14,12 @@ public class LottoService {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private final SoldLotto soldLotto;
     private final WinningLotto winningLotto;
+    private final WinningResult winningResult;
 
-    public LottoService(SoldLotto soldLotto, WinningLotto winningLotto){
+    public LottoService(SoldLotto soldLotto, WinningLotto winningLotto, WinningResult winningResult){
         this.soldLotto = soldLotto;
         this.winningLotto = winningLotto;
+        this.winningResult = winningResult;
     }
 
     public String buyLotto(int lottoCount) {
@@ -37,8 +39,11 @@ public class LottoService {
     }
 
     public List<Integer> winningResult(){
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateResult(soldLotto.getSoldLotto(), winningLotto.getWinningLotto(), winningLotto.getBonusNumber());
+        winningResult.calculateWinningResult(soldLotto.getSoldLotto(), winningLotto.getWinningLotto(), winningLotto.getBonusNumber());
         return null;
+    }
+
+    public double returnResult(int purchasePrice){
+        return winningResult.getReturnResult(purchasePrice);
     }
 }
