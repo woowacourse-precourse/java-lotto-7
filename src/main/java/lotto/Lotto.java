@@ -78,4 +78,13 @@ public class Lotto {
             System.out.println(lottos.get(i));
         }
     }
+
+    public List<Integer> splitWinNumbers(String winNumbers) {
+        List<Integer> winLotto = new ArrayList<>();
+        String[] winNumber = winNumbers.split(",");
+        for (int i = 0; i < winNumber.length; i++) {
+            winLotto.add(Integer.parseInt(winNumber[i]));
+        }
+        return winLotto;
+    }
 }
