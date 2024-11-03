@@ -42,11 +42,11 @@ public class WinningLottoNumber {
         return new BonusNumber(bonus, winningNumber);
     }
 
-    public Lotto getWinningNumber() {
-        return winningNumber;
+    public List<Integer> getWinningNumber() {
+        return winningNumber.getNumbers();
     }
 
-    public BonusNumber getBonusNumber() {
-        return bonusNumber;
+    public int getBonusNumber() {
+        return bonusNumber.getBonus();
     }
 }
