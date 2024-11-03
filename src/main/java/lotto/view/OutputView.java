@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.model.WinningStatus;
@@ -19,7 +20,11 @@ public class OutputView {
     }
 
     public void printLottoNumbers(List<Integer> numbers){
-        System.out.println(numbers);
+        String sortedNumber = numbers.stream()
+                .sorted()
+                .toList()
+                .toString();
+        System.out.println(sortedNumber);
     }
 
     public void printEnter() {

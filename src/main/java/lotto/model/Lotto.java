@@ -11,7 +11,6 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

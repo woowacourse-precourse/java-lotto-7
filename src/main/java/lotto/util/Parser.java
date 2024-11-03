@@ -1,7 +1,6 @@
 package lotto.util;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Parser {
@@ -18,8 +17,8 @@ public class Parser {
     public static List<Integer> parseStringToList(String winningNumbers) {
         try {
             return Stream.of(winningNumbers.split(WINNING_NUMBER_DELIMITER))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+                .map(Integer::parseInt)
+                .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
