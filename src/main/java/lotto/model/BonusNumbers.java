@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.regex.Pattern;
 
 public class BonusNumbers {
-    private Integer bonusPrizeNumber;
+    private final Integer bonusPrizeNumber;
 
     public BonusNumbers(String bonusPrizeNumber) {
         bonusValidation(bonusPrizeNumber);
@@ -11,12 +11,6 @@ public class BonusNumbers {
         bonusSizeCheck();
     }
 
-    /**
-     * 보너스 번호는 단일 숫자여야한다.
-     * 때문에 정규식에서 숫자값이 아니면 죄다 예외를 던져야한다.
-     *
-     * @param bonusPrizeNumber
-     */
     private void bonusValidation(String bonusPrizeNumber) {
         bonusPrizeNumber = bonusPrizeNumber.replaceAll("\\s", "");
         Pattern bonusPattern = Pattern.compile("[\\D]");
