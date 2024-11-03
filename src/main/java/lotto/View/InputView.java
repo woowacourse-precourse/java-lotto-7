@@ -64,4 +64,10 @@ public class InputView {
         return numbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45);
     }
+
+    public static void checkPurchaseRange(int purchaseAmount){
+        if(!(purchaseAmount >= 1000 && purchaseAmount <= 200000000)){
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_RANGE.getError());
+        }
+    }
 }

@@ -10,7 +10,8 @@ public enum ErrorMessage {
     BONUS_DUPLICATE("보너스 숫자는 기존 당첨 번호들과 달라야 합니다."),
     LOTTO_NUM("로또 번호는 6개여야 합니다."),
     LOTTO_RANGE("로또 번호는 1 이상 45 이하여야 합니다."),
-    LOTTO_DUPLICATE("로또 번호끼리는 중복이 되면 안 됩니다.");
+    LOTTO_DUPLICATE("로또 번호끼리는 중복이 되면 안 됩니다."),
+    AMOUNT_RANGE("로또는 1000원 이상 2억원 이하로만 사실 수 있습니다.");
 
     private String message;
 
