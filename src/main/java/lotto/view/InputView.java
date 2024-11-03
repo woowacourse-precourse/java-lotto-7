@@ -25,4 +25,5 @@ public class InputView {
         System.out.println(message);
         return Console.readLine();
     }
+
 }

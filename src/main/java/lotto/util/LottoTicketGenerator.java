@@ -21,5 +21,4 @@ public class LottoTicketGenerator {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-
 }

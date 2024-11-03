@@ -93,4 +93,5 @@ class LottoGameControllerTest extends NsTest {
     public void runMain() {
         controller.run();
     }
+    
 }

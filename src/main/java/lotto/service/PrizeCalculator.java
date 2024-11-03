@@ -35,4 +35,5 @@ public class PrizeCalculator {
     private double roundToTwoDecimalPlaces(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
+
 }

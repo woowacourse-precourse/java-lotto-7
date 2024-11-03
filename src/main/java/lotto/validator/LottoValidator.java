@@ -36,4 +36,5 @@ public class LottoValidator {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_INVALID.getMessage());
         }
     }
+
 }

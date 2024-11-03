@@ -24,7 +24,7 @@ public class OutputView {
         System.out.printf(ViewMessage.PROFIT_RATE.getMessage(), profitRate);
     }
 
-   
+
     private void printPurchaseCount(int count) {
         System.out.printf(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), count);
     }
@@ -49,4 +49,5 @@ public class OutputView {
         int count = prizeCounts.getOrDefault(tier, 0);
         System.out.printf(message.getMessage(), numberFormat.format(tier.getPrizeAmount()), count);
     }
+
 }

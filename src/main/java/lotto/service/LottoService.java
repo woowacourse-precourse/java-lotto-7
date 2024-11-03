@@ -59,4 +59,5 @@ public class LottoService {
     public List<Lotto> getLottoTickets() {
         return lottoTickets;
     }
+
 }

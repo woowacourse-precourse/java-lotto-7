@@ -37,4 +37,5 @@ public class LottoValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
     }
+    
 }

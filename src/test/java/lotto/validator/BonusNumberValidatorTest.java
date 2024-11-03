@@ -45,4 +45,5 @@ public class BonusNumberValidatorTest {
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATE_INVALID.getMessage());
     }
+    
 }
