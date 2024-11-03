@@ -19,20 +19,24 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers){
+    private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> !isInRange(number))) {
             throw new IllegalArgumentException("[ERROR] 숫자가 유효 범위를 벗어났습니다.");
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers){
-        if(numbers.stream().anyMatch(new HashSet<>()::add)){
+    private void validateDuplicated(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(new HashSet<>()::add)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
-    private boolean isInRange(int number){
-        return (number >=0) && (number <=45);
+    private boolean isInRange(int number) {
+        return (number >= 0) && (number <= 45);
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 
     // TODO: 추가 기능 구현

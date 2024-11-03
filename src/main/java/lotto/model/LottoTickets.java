@@ -15,10 +15,20 @@ public class LottoTickets {
             lottoTickets.add(generateLottoTicket());
         }
 
-        this.lottoTickets = List.copyOf(lottoTickets);
+        this.lottoTickets = lottoTickets;
     }
 
     private Lotto generateLottoTicket() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    public List<List<Integer>> getLottoTicketsNumbers() {
+        List<List<Integer>> lottoTicketsNumbers = new ArrayList<>();
+
+        for (Lotto lotto : lottoTickets) {
+            lottoTicketsNumbers.add(lotto.getNumbers());
+        }
+
+        return lottoTicketsNumbers;
     }
 }

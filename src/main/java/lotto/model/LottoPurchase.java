@@ -18,4 +18,8 @@ public class LottoPurchase {
     public int getMoney() {
         return money;
     }
+
+    public LottoPurchaseResult getLottoPurchaseResult() {
+        return new LottoPurchaseResult(getLottoTickets().getLottoTicketsNumbers(), money);
+    }
 }
