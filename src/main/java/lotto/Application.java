@@ -14,6 +14,10 @@ public class Application {
             Lotto winningLotto = getWinningNumbers(); // 당첨 번호 입력 및 객체 생성
             final int bonusNumber = getBonusNumber(winningLotto); // 보너스 번호 입력 및 반환
 
+            // LottoResult 객체를 생성, 결과 출력
+            LottoResult lottoResult = new LottoResult(userLottos, winningLotto, bonusNumber);
+            lottoResult.printResult();
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
