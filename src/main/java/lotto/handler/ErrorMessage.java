@@ -1,7 +1,7 @@
 package lotto.handler;
 
 public enum ErrorMessage {
-    CASTING_ERROR("클래스 타입이 맞지 않습니다.");
+    CASTING_ERROR("클래스 타입이 맞지 않거나 컨텐츠가 없습니다.");
 
     private final String errorMessage;
 
