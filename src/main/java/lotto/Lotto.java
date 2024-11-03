@@ -40,4 +40,14 @@ public class Lotto {
     public void printNumbers() {
         System.out.println("Lotto Numbers: " + numbers);
     }
+
+    public int countMatchingNumbersWithSameObject(Lotto anotherLotto) {
+        int count = 0;
+        for (int element : anotherLotto.getNumbers()) {
+            if (numbers.contains(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
