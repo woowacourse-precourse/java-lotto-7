@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -29,6 +30,15 @@ public class LottoWinningChecker {
         int winningCount = calculateWinningCount(numbers);
 
         return decideLottoRank(winningCount, numbers);
+    }
+
+    public int[] checkRanks(List<Lotto> lottos) {
+        int[] rankCounts = new int[LottoRank.values().length];
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = checkRank(lotto);
+            rankCounts[lottoRank.ordinal()]++;
+        }
+        return rankCounts;
     }
 
     private int calculateWinningCount(List<Integer> numbers) {
