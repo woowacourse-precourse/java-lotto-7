@@ -27,9 +27,11 @@ public class Lotto {
 
     public LottoRank checkWinningStatus(List<Integer> winningNumbers, int bonusNumber) {
 
-        int matchCount = (int) winningNumbers.stream()
-                .filter(numbers::contains)
-                .count();
+        int matchCount = (int) winningNumbers.stream().filter(numbers::contains).count();
+
+        if (matchCount < 3) {
+            return null;
+        }
 
         if (matchCount != 5) {
             return LottoRank.findByMatchCount(matchCount);
