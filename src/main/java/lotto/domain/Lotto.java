@@ -4,6 +4,8 @@ import static lotto.domain.constant.ErrorMessage.DUPLICATED;
 import static lotto.domain.constant.ErrorMessage.OUT_OF_RANGE;
 import static lotto.domain.constant.ErrorMessage.VALUE_COUNT;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,7 +69,9 @@ public class Lotto {
     }
 
     public String toString() {
-        return numbers.toString();
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 
 }
