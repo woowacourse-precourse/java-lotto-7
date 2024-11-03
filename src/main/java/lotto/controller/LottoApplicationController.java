@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.aop.RetryHandler;
+import lotto.controller.lottoController.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStatics;
 import lotto.domain.Money;
@@ -16,21 +17,21 @@ import lotto.io.OutputHandler;
 
 public class LottoApplicationController {
 
+    private final LottoController lottoController;
     private final InputHandler inputHandler;
     private final OutputHandler outputHandler;
     private final RetryHandler retryHandler;
-    private final NumberPicker numberPicker;
 
     public LottoApplicationController(
+            LottoController lottoController,
             InputHandler inputHandler,
             OutputHandler outputHandler,
-            RetryHandler retryHandler,
-            NumberPicker numberPicker
+            RetryHandler retryHandler
     ) {
+        this.lottoController = lottoController;
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
         this.retryHandler = retryHandler;
-        this.numberPicker = numberPicker;
     }
 
     public void run() {
@@ -39,7 +40,7 @@ public class LottoApplicationController {
             return new Money(amount);
         });
 
-        List<Lotto> purchasedLottos = Lotto.purchase(money, numberPicker);
+        List<Lotto> purchasedLottos = lottoController.purchaseLottos(money);
 
         outputHandler.handlePurchasedLottos(PurchasedLottos.from(purchasedLottos));
 
