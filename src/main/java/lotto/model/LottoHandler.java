@@ -15,8 +15,8 @@ public class LottoHandler {
     private int bonusNumber;
 
     public void buyLottos(int lottoTickets) {
-        for(int num = 0; num < lottoTickets; num++) {
-            Lottos lottoNumbers= Lottos.generateLottoNumbers();
+        for (int num = 0; num < lottoTickets; num++) {
+            Lottos lottoNumbers = Lottos.generateLottoNumbers();
             lottos.add(lottoNumbers);
         }
     }
@@ -53,12 +53,21 @@ public class LottoHandler {
         return bonusNumber;
     }
 
+    public void staticsResults(Customer customer) {
+        customer.initializeRankingResults();
+
+        for (Lottos lotto : lottos) {
+            Ranking ranking = checkedResult(winningLottoNumbers, lotto);
+            customer.updateLottoRanking(ranking);
+        }
+    }
+
 
     public Ranking checkedResult(Lotto winningLotto, Lottos buyLottos) {
         int rankedNumber = checkSameNumber(winningLotto.getNumbers(), buyLottos.getLottoNumbers());
         boolean checkedBonus = checkedBonusNumber(getBonusNumber(), buyLottos);
         Ranking ranking = Ranking.values()[rankedNumber];
-        if(ranking == Ranking.FIVE && checkedBonus) {
+        if (ranking == Ranking.FIVE && checkedBonus) {
             return Ranking.FIVE_BONUS;
         }
         return ranking;
@@ -70,12 +79,13 @@ public class LottoHandler {
 
     private int checkSameNumber(List<Integer> winningLottoNumbers, List<Integer> buyLottoNumbers) {
         int count = 0;
-        for(int num : buyLottoNumbers) {
+        for (int num : buyLottoNumbers) {
             if (winningLottoNumbers.contains(num)) {
                 count++;
             }
         }
         return count;
     }
+
 
 }

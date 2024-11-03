@@ -1,10 +1,12 @@
 package lotto.constants;
 
+import java.util.Arrays;
+
 public enum Ranking {
 
     ZERO(0,0,"0"),
-    ONE(0,0,"0"),
-    TWO(0,0,"0"),
+    ONE(1,0,"0"),
+    TWO(2,0,"0"),
     THREE(3,5000,"5,000"),
     FOUR(4,50000,"50,000"),
     FIVE(5,1500000,"1,500,000"),
@@ -32,4 +34,6 @@ public enum Ranking {
     public String getStrWinnings() {
         return strWinnings;
     }
+
+
 }
