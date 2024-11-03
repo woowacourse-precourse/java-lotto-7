@@ -71,7 +71,7 @@ public class LottoResult {
 
     public void calculateReturnOnInvestment(long totalInvestment) {
         long totalPrize = calculateTotalPrize();
-        double returnOnInvestment = (double) (totalPrize - totalInvestment) / totalInvestment * 100;
+        double returnOnInvestment = (double) totalPrize / totalInvestment * 100;
 
         returnOnInvestment = Math.round(returnOnInvestment * 10.0) / 10.0;
 
