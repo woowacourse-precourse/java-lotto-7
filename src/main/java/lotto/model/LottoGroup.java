@@ -11,31 +11,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoPurchaseDetails {
-    private static final String PURCHASED_NUM_LOTTO_MESSAGE = "%d개를 구매했습니다.";
-    private static final String NEW_LINE = "\n";
+public class LottoGroup {
+    private final List<Lotto> lottos;
 
-    private final long numLotto;
-    private final List<Lotto> lottoGroup;
-
-    public LottoPurchaseDetails(long numLotto) {
-        this.numLotto = numLotto;
-        lottoGroup = generateLottoGroup(numLotto);
+    public LottoGroup(long numLotto) {
+        lottos = generateLottoGroup(numLotto);
     }
 
-    public List<Lotto> getLottoGroup() {
-        return lottoGroup;
-    }
-
-    public String getPurchaseDetailsMessage() {
-        StringBuilder purchaseDetailsMessage = new StringBuilder();
-
-        purchaseDetailsMessage.append(String.format(PURCHASED_NUM_LOTTO_MESSAGE, numLotto)).append(NEW_LINE);
-        for (Lotto lotto : lottoGroup) {
-            purchaseDetailsMessage.append(lotto.getNumbers()).append(NEW_LINE);
-        }
-
-        return purchaseDetailsMessage.toString();
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     private List<Lotto> generateLottoGroup(long numLotto) {
