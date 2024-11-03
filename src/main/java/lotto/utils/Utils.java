@@ -3,6 +3,7 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,9 @@ public class Utils {
 
     public static List<Integer> generateLottoNumber(){
 
-        return Randoms.pickUniqueNumbersInRange(LOTTO_WIN_MIN_NUM, LOTTO_WIN_MAX_NUM, LOTTO_NUM_AMOUNT);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_WIN_MIN_NUM, LOTTO_WIN_MAX_NUM, LOTTO_NUM_AMOUNT);
+        Collections.sort(lottoNumbers);
 
+        return lottoNumbers;
     }
 }
