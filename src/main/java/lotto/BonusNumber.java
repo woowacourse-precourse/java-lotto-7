@@ -1,54 +1,43 @@
 package lotto;
 
+import static lotto.Constants.*;
+
 import java.util.List;
 
 public class BonusNumber {
-    private final int value;
+    private static final String BONUS_NUMBER_DUPLICATION_ERROR = ERROR_HEADER + "당첨 번호와 보너스 번호가 같아서는 안 됩니다.";
 
-    private BonusNumber(int value) {
-        validate(value);
-        this.value = value;
+    private final int number;
+
+    private BonusNumber(int number) {
+        validate(number);
+        this.number = number;
     }
 
     public static BonusNumber from(String input) {
         try {
-            validate(input);
             int value = Integer.parseInt(input);
             return new BonusNumber(value);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] " + "문자가 입력됐거나 숫자 범위를 초과하였습니다.");
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
         }
     }
 
-    private static void validate(String input) {
-        if (input == null) {
-            throw new IllegalArgumentException("[ERROR] " + "보너스 번호가 null이어서는 안 됩니다.");
-        }
-        if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] " + "보너스 번호가 빈 문자여서는 안 됩니다.");
-        }
-    }
-
-    public int getValue() {
-        return this.value;
+    public int get() {
+        return this.number;
     }
 
     public void isDuplicated(WinningNumber winningNumber) {
-        if(winningNumber == null) {
-            throw new IllegalArgumentException("[ERROR] " + "당첨 번호가 null이어서는 안 됩니다.");
-        }
         List<Integer> winningNumbers = winningNumber.getNumbers();
-        for (Integer number : winningNumbers) {
-            if(number == this.value) {
-                throw new IllegalArgumentException("[ERROR] " + "당첨 번호와 보너스 번호가 같아서는 안 됩니다.");
-            }
+        if (winningNumbers.contains(this.number)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR);
         }
     }
 
-    private static void validate(int value) {
-        if (value < 1 || value > 45) {
-            throw new IllegalArgumentException("[ERROR] " + "보너스 번호는 1에서 45 사이여야 합니다.");
+    private static void validate(int number) {
+        if (number < LOTTO_MIN_VALUE || number > LOTTO_MAX_VALUE) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR);
         }
     }
 }

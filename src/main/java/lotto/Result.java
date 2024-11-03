@@ -31,7 +31,7 @@ public class Result {
 
     public void calculate(WinningNumber winning, BonusNumber bonus, PurchasedLotto purchasedLotto) {
         List<Integer> winningNumbers = winning.getNumbers();
-        int bonusNumber = bonus.getValue();
+        int bonusNumber = bonus.get();
         List<Lotto> purchasedLottos = purchasedLotto.get();
 
         for(Lotto lotto : purchasedLottos) {
