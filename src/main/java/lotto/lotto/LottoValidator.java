@@ -14,11 +14,23 @@ public class LottoValidator {
         for (Integer number : numbers) {
             validateNumberInRange(number);
         }
+
+        validateDuplicateNumber(numbers);
     }
 
     private static void validateNumberInRange(int number) {
         if (number < Random.START_INCLUSIVE || number > Random.END_INCLUSIVE) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private static void validateDuplicateNumber(List<Integer> numbers) {
+        long count = numbers.stream()
+                .distinct()
+                .count();
+
+        if (count != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 }
