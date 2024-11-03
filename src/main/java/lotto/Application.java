@@ -20,7 +20,7 @@ public class Application {
     private static final String MESSAGE_ENTER_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String MESSAGE_ENTER_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String MESSAGE_STATISTICS_HEADER = "\n당첨 통계\n---";
-    private static final String TOTAL_PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %.2f%s";
+    private static final String TOTAL_PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%s";
 
     private static final int NO_MATCH = 0;
     private static final int DEFAULT = 0;
