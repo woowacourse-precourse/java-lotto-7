@@ -1,10 +1,10 @@
-package lotto.view;
+package lotto.view.output;
 
 import lotto.entity.Lotto;
 
 import java.util.List;
 
-public class LottoGeneratorOutputView implements OutputView{
+public class LottoGeneratorOutputView implements OutputView {
     private final String OUTPUT_MESSAGE = "%d개를 구매했습니다.\n";
     private final List<Lotto> lottoList;
 
