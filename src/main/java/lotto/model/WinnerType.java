@@ -24,7 +24,6 @@ public enum WinnerType {
 
     public static String information() {
         StringBuilder stringBuilder = new StringBuilder();
-
         for (WinnerType winnerType : WinnerType.values()) {
             stringBuilder.append(winnerType.matchNumberCount).append("개 일치");
             if (winnerType.hasBonus) {
@@ -35,14 +34,12 @@ public enum WinnerType {
             stringBuilder.append(" - ").append(winnerType.count).append("개");
             stringBuilder.append(LINE_BREAK);
         }
-
         return stringBuilder.toString();
     }
 
     public static double calculateRateOfReturn(int lottoCount) {
         int investmentAmount = lottoCount * UNIT;
         int profit = 0;
-
         for (WinnerType winnerType : WinnerType.values()) {
             if (winnerType.count > 0) {
                 profit += winnerType.prize * winnerType.count;
