@@ -2,7 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -16,6 +17,7 @@ public class Application {
         Lotto.printLottos(lottos);
 
         Lotto winningNumbers = inputWinningNumbers();
+        System.out.println(winningNumbers);
     }
 
 
@@ -62,8 +64,22 @@ public class Application {
     private static Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        //int[] numbers = parseWinningNumbers(input);
-        Lotto winningNumbers = new Lotto(Arrays.asList());
+        List<Integer> numbers = parseWinningNumbers(input);
+        Lotto winningNumbers = new Lotto(numbers);
         return winningNumbers;
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        String[] splitNumbers = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String number : splitNumbers) {
+            try {
+                numbers.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 정수형이어야 합니다.");
+            }
+        }
+        return numbers;
     }
 }
