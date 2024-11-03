@@ -14,7 +14,6 @@ public class ValidatorTest {
     void isEmpty() {
         String empty = "";
 
-        assertThatThrownBy(() -> {Validator.isEmpty(empty);}).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> {
             Validator.isEmpty(empty);
         }).isInstanceOf(IllegalArgumentException.class);
