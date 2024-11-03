@@ -34,10 +34,11 @@ public class Lotto {
         }
     }
 
-    public static void start(Integer money) {
+    public static List<Lotto> start(Integer money) {
         List<Lotto> lottos = generateLottos(money);
         System.out.println(lottos.size() + "개를 구매했습니다.");
         Print.printLottos(lottos);
+        return lottos;
     }
 
     private static List<Lotto> generateLottos(int money) {
@@ -57,5 +58,41 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString(); // 로또 번호 리스트를 직접 문자열로 반환
+    }
+
+
+    public LottoResult checkWinning(List<Integer> winningNumbers, Integer bonusNumber) {
+        int matchCount = countMatchingNumbers(winningNumbers);
+        return determineResult(matchCount, bonusNumber);
+    }
+
+    private int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private LottoResult determineResult(int matchCount, Integer bonusNumber) {
+        if (matchCount == 3) {
+            return LottoResult.THREE_MATCH;
+        }
+        if (matchCount == 4) {
+            return LottoResult.FOUR_MATCH;
+        }
+        if (matchCount == 5) {
+            return bonusNumberMatch(bonusNumber) ? LottoResult.FIVE_BONUS_MATCH : LottoResult.FIVE_MATCH;
+        }
+        if (matchCount == 6) {
+            return LottoResult.SIX_MATCH;
+        }
+        return null;
+    }
+
+    private boolean bonusNumberMatch(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
