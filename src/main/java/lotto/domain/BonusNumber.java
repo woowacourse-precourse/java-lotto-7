@@ -22,4 +22,8 @@ public class BonusNumber {
     public boolean isSame(int number) {
         return number == value;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

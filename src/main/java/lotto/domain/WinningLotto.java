@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.Lotto;
+import lotto.constant.ExceptionMessage;
 
 public class WinningLotto {
 
@@ -8,8 +9,16 @@ public class WinningLotto {
     private final BonusNumber bonusNumber;
 
     public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        validateDuplicate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateDuplicate(Lotto lotto, BonusNumber bonusNumber) {
+        if (lotto.contains(bonusNumber.getValue())) {
+            ExceptionMessage message = ExceptionMessage.DUPLICATE_BONUS;
+            throw new IllegalArgumentException(message.getMessage());
+        }
     }
 
     public boolean contains(int number) {
