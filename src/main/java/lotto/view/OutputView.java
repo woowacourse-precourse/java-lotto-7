@@ -45,4 +45,8 @@ public class OutputView {
             System.out.printf(RankMessage.findByRank(i).getMessage(), results.get(i));
         }
     }
+
+    public static void printRateOfReturn(float rateOfReturn) {
+        System.out.printf(SystemMessage.RATE_OF_RETURN.getMessage(), rateOfReturn);
+    }
 }

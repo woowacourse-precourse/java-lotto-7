@@ -59,5 +59,6 @@ public class MachineController {
 
         OutputView.printWinningStatistics();
         OutputView.printResults(results);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 }
