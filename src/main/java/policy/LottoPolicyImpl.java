@@ -15,6 +15,5 @@ public class LottoPolicyImpl implements LottoPolicy {
         Validator.lottoNumbersShouldBeSix(lotto);
         // 로또는 오름차순 정렬이 되어 있어야 한다.
         Validator.lottoShouldBeSortedInAscendingOrder(lotto);
-
     }
 }
