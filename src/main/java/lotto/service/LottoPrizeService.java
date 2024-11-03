@@ -30,14 +30,14 @@ public class LottoPrizeService {
         }
     }
 
-    private static LottoPrize checkEachLottoPrize(Lotto winnerLotto, int bonusNumber, Lotto targetLotto) {
+    static LottoPrize checkEachLottoPrize(Lotto winnerLotto, int bonusNumber, Lotto targetLotto) {
         int matchCount = calculateMatchCount(winnerLotto, targetLotto);
         boolean hasBonusNumber = checkBonusNumber(bonusNumber, targetLotto);
 
         return determinePrize(matchCount, hasBonusNumber);
     }
 
-    private static int calculateMatchCount(Lotto winnerLotto, Lotto targetLotto) {
+    static int calculateMatchCount(Lotto winnerLotto, Lotto targetLotto) {
         int count = ZERO;
         List<Integer> winnerLottoNumbers = winnerLotto.getNumbers();
         List<Integer> targetLottoNumbers = targetLotto.getNumbers();
