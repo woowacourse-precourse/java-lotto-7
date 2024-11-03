@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 public class Input {
 
     public static int getMoneyForPurchaseLotto() {
-        System.out.println(OutputMessage.ENTER_PURCHASE_AMOUNT.getOutputMessage());
+        Output.println(OutputMessage.ENTER_PURCHASE_AMOUNT.getOutputMessage());
         while (true) {
             try {
                 return parseAndValidatePurchaseAmount(Console.readLine());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.println(e.getMessage());
             }
         }
     }

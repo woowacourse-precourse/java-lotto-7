@@ -2,6 +2,7 @@ package domain.lotto;
 
 import domain.consumer.Consumer;
 import domain.rank.MatchCount;
+import io.Output;
 import java.util.Map;
 
 public class WoowahanLottoCompany {
@@ -29,7 +30,7 @@ public class WoowahanLottoCompany {
                 lottoMachin.inputWinningNumbersTo(consumer);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.println(e.getMessage());
             }
         }
     }
@@ -40,7 +41,7 @@ public class WoowahanLottoCompany {
                 lottoMachin.inputBonusNumbersTo(consumer);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.println(e.getMessage());
             }
         }
     }
