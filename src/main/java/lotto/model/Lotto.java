@@ -20,10 +20,12 @@ public class Lotto {
         if(notDuplicateNumber.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호는 기입될수 없습니다.");
         }
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이의 숫자여야 합니다.");
+            }
+        }
 
-    }
-    public String showNumbers(){
-        return numbers.toString();
     }
     public List<Integer> getNumbers(){
         return numbers;
@@ -41,7 +43,7 @@ public class Lotto {
     public boolean hasBonusNumber(int bonusNumber){
         return numbers.contains(bonusNumber);
     }
-    public List<Integer> sortNumbers(List<Integer> numbers){
+    private List<Integer> sortNumbers(List<Integer> numbers){
 
         return numbers.stream()
                 .sorted()
