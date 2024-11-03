@@ -3,12 +3,12 @@ package lotto.model;
 public class LottoGame {
 
     private final LottoTickets lottoTickets;
-    private final LottoDrawResult lottoDrawResult;
+    private final WinningLotto winningLotto;
     private final int money;
 
-    public LottoGame(LottoTickets lottoTickets, LottoDrawResult lottoDrawResult, int money) {
+    public LottoGame(LottoTickets lottoTickets, WinningLotto winningLotto, int money) {
         this.lottoTickets = lottoTickets;
-        this.lottoDrawResult = lottoDrawResult;
+        this.winningLotto = winningLotto;
         this.money = money;
     }
 }
