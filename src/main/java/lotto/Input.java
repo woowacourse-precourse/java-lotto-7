@@ -92,4 +92,15 @@ public class Input {
 		validateInteger(input);
 		validateRemainder(input);
 	}
+
+	public void validateLuckyNumber(String input) {
+		validateEmpty(input);
+		validateBlank(input);
+		validateSeparator(input);
+		validateSeparatorSplit(input);
+		validateDuplicate(input);
+		validateLuckyNumberInteger(input);
+		validateLuckyNumberRange(input);
+		validateNumberCount(input);
+	}
 }
