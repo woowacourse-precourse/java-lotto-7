@@ -20,9 +20,13 @@ public class LottoController {
 
     public void run() {
 
-        this.getInputs();
-        this.runLotto();
-        this.outputResult();
+        try {
+            this.getInputs();
+            this.runLotto();
+            this.outputResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
