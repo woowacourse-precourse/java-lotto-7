@@ -2,12 +2,24 @@ package lotto.view;
 
 import lotto.domain.WinningCondition;
 import lotto.domain.WinningResult;
-import lotto.view.console.ConsoleWriter;
 
 public class OutputView {
+    public void printlnMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void printlnMessageWithEmptyLine(String message) {
+        printlnMessage(message);
+        printEmptyLine();
+    }
+
+    public void printEmptyLine() {
+        System.out.println();
+    }
+
     public void printResult(WinningResult result, double profitRate) {
-        ConsoleWriter.printlnMessage("당첨 통계");
-        ConsoleWriter.printlnMessage("---");
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (WinningCondition winningCondition : WinningCondition.getAllConditions().reversed()) {
             String format = determineFormat(winningCondition);
             String str = String.format(
@@ -16,10 +28,10 @@ public class OutputView {
                     String.format("%,d", winningCondition.getRewardAmount()),
                     result.getResultMap().get(winningCondition).size()
             );
-            ConsoleWriter.printlnMessage(str);
+            System.out.println(str);
         }
         String str = String.format("총 수익률은 %s%%입니다.", profitRate);
-        ConsoleWriter.printlnMessage(str);
+        System.out.println(str);
     }
 
     private String determineFormat(WinningCondition winningCondition) {

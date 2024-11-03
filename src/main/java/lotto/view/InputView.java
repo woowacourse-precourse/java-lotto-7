@@ -1,35 +1,33 @@
 package lotto.view;
 
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.view.console.ConsoleReader;
-import lotto.view.console.ConsoleWriter;
 import lotto.global.PrintMessage;
 import lotto.global.exception.CustomException;
 import lotto.global.exception.ErrorMessage;
 
 public class InputView {
-
     public int enterAmount() {
-        ConsoleWriter.printlnMessage(PrintMessage.INPUT_AMOUNT.getMessage());
-        String input = ConsoleReader.enterMessage();
+        System.out.println(PrintMessage.INPUT_AMOUNT.getMessage());
+        String input = Console.readLine();
         validateStringFormat(input);
         validateNumberFormat(input);
         return Integer.parseInt(input);
     }
 
     public List<Integer> enterWinningNumbers() {
-        ConsoleWriter.printlnMessage(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
-        String input = ConsoleReader.enterMessage();
+        System.out.println(PrintMessage.INPUT_WINNING_NUMBERS.getMessage());
+        String input = Console.readLine();
         validateStringFormat(input);
         validateNumbersFormat(input);
         return parseNumber(input);
     }
 
     public int enterBonusNumber() {
-        ConsoleWriter.printlnMessage(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
-        String input = ConsoleReader.enterMessage();
+        System.out.println(PrintMessage.INPUT_BONUS_NUMBER.getMessage());
+        String input = Console.readLine();
         validateStringFormat(input);
         validateNumberFormat(input);
         return Integer.parseInt(input);

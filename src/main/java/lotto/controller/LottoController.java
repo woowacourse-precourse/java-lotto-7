@@ -7,7 +7,6 @@ import lotto.domain.WinningResult;
 import lotto.global.exception.CustomException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.console.ConsoleWriter;
 
 public class LottoController {
     private final InputView inputView;
@@ -32,27 +31,27 @@ public class LottoController {
     private Amount requestAmount() {
         try {
             Amount amount = new Amount(inputView.enterAmount());
-            ConsoleWriter.printEmptyLine();
+            outputView.printEmptyLine();
             return amount;
         } catch (CustomException e) {
-            ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
+            outputView.printlnMessageWithEmptyLine(e.getMessage());
             return requestAmount();
         }
     }
 
     private Lottos createLottos(Amount amount) {
         Lottos lottos = new Lottos(amount);
-        ConsoleWriter.printlnMessageWithEmptyLine(lottos.toString());
+        outputView.printlnMessageWithEmptyLine(lottos.toString());
         return lottos;
     }
 
     private Lotto requestWinningNumbers() {
         try {
             Lotto lotto = new Lotto(inputView.enterWinningNumbers());
-            ConsoleWriter.printEmptyLine();
+            outputView.printEmptyLine();
             return lotto;
         } catch (CustomException e) {
-            ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
+            outputView.printlnMessageWithEmptyLine(e.getMessage());
             return requestWinningNumbers();
         }
     }
@@ -61,10 +60,10 @@ public class LottoController {
         try {
             int number = inputView.enterBonusNumber();
             winningNumbers.validateNumber(number);
-            ConsoleWriter.printEmptyLine();
+            outputView.printEmptyLine();
             return number;
         } catch (CustomException e) {
-            ConsoleWriter.printlnMessageWithEmptyLine(e.getMessage());
+            outputView.printlnMessageWithEmptyLine(e.getMessage());
             return requestBonusNumber(winningNumbers);
         }
     }
