@@ -7,6 +7,7 @@ import java.util.List;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.Rank;
 import lotto.generator.SortedLottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,10 +47,10 @@ class LottoServiceTest {
         LottoResult lottoResult = lottoService.match(lottos, winNumber, bonusNumber);
 
         //then
-        assertThat(lottoResult.getFirst()).isEqualTo(1);
-        assertThat(lottoResult.getSecond()).isEqualTo(1);
-        assertThat(lottoResult.getThird()).isEqualTo(1);
-        assertThat(lottoResult.getFourth()).isEqualTo(1);
-        assertThat(lottoResult.getFifth()).isEqualTo(1);
+        assertThat(lottoResult.count(Rank.FIRST)).isEqualTo(1);
+        assertThat(lottoResult.count(Rank.SECOND)).isEqualTo(1);
+        assertThat(lottoResult.count(Rank.THIRD)).isEqualTo(1);
+        assertThat(lottoResult.count(Rank.FOURTH)).isEqualTo(1);
+        assertThat(lottoResult.count(Rank.FIFTH)).isEqualTo(1);
     }
 }

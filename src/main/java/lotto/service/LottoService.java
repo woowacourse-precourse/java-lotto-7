@@ -7,6 +7,7 @@ import java.util.List;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.Rank;
 import lotto.generator.SortedLottoNumberGenerator;
 
 public class LottoService {
@@ -27,10 +28,9 @@ public class LottoService {
     }
 
     public LottoResult match(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
-        LottoResult lottoResult = new LottoResult();
-        for (Lotto lotto : lottos) {
-            lottoResult.add(lotto.matchCount(winNumber, bonusNumber), lotto.bonus(bonusNumber));
-        }
-        return lottoResult;
+        List<Rank> ranks = lottos.stream()
+                .map(lotto -> Rank.match(lotto, winNumber, bonusNumber))
+                .toList();
+        return new LottoResult(ranks);
     }
 }
