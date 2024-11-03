@@ -21,15 +21,18 @@ public class Lotto {
         }
     }
 
-    public int compare(Lotto winningLotto) {
-        List<Integer> match = this.numbers.stream()
-                .filter(o -> winningLotto.numbers.stream().anyMatch(Predicate.isEqual(o)))
-                .collect(Collectors.toList());
-
-        return (int)match.size();
+    public int countMatches(Lotto winningLotto) {
+        List<Integer> matches = getMatchingNumbers(winningLotto);
+        return matches.size();
     }
 
-    public boolean bonuscheck(int bonusNumber) {
+    private List<Integer> getMatchingNumbers(Lotto winningLotto) {
+        return this.numbers.stream()
+                .filter(o -> winningLotto.numbers.stream().anyMatch(Predicate.isEqual(o)))
+                .collect(Collectors.toList());
+    }
+
+    public boolean hasBonusNumber(int bonusNumber) {
         return this.numbers.stream()
                 .anyMatch(number -> number == bonusNumber);
     }
