@@ -13,16 +13,16 @@ public class LottoShopImpl implements LottoShop {
     }
 
     @Override
-    public List<Lotto> publishTickets(int purchaseAmount) {
+    public LottoTickets publishTickets(int purchaseAmount) {
         int purchaseQuantity = purchaseAmount / LOTTO_PRICE;
         return generateTickets(purchaseQuantity);
     }
 
-    private List<Lotto> generateTickets(int purchaseQuantity) {
+    private LottoTickets generateTickets(int purchaseQuantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < purchaseQuantity; i++) {
             lottoTickets.add(lottoMachine.generateLotto());
         }
-        return lottoTickets;
+        return new LottoTickets(lottoTickets);
     }
 }
