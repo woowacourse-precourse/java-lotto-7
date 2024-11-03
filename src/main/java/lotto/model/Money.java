@@ -23,6 +23,10 @@ public class Money {
         return amount / LottoGameConfig.LOTTO_PRICE_UNIT;
     }
 
+    public double getRateOfReturn(int winningAmount) {
+        return (double) winningAmount / amount * 100;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,10 +44,6 @@ public class Money {
         if (amount < 0) {
             throw new LottoGameException(MoneyException.INVALID_AMOUNT);
         }
-    }
-
-    public double getRateOfReturn(int winningAmount) {
-        return (double) winningAmount / amount * 100;
     }
 
 }
