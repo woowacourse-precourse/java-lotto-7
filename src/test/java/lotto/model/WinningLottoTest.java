@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
+import static lotto.constant.ErrorMessage.DUPLICATED_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class WinningLottoTest {
         void 당첨_번호와_보너스_번호_중복됨(Lotto lotto, int bonusNumber) {
             assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(DUPLICATED_BONUS.getMessage());
+                    .hasMessage(DUPLICATED_BONUS_NUMBER.getMessage());
         }
 
         static Stream<Arguments> duplicatedLottoAndBonusArguments() {

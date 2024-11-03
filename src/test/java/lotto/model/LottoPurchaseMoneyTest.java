@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.INVALID_LOTTO_MONEY_UNIT;
 import static lotto.constant.ErrorMessage.NEGATIVE_MONEY;
+import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static lotto.constant.ErrorMessage.ZERO_LOTTO_MONEY;
 import static lotto.constant.LottoInfo.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,7 +66,7 @@ public class LottoPurchaseMoneyTest {
         void 돈이_로또_가격_단위_아님(final int money) {
             assertThatThrownBy(() -> new LottoPurchaseMoney(money))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(INVALID_LOTTO_MONEY_UNIT.getMessage());
+                    .hasMessage(NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
         }
     }
 }

@@ -2,7 +2,8 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
+import static lotto.constant.ErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_A_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -104,7 +105,7 @@ class ApplicationTest extends NsTest {
         void 당첨_번호와_보너스_번호_중복() {
             assertSimpleTest(() -> {
                 runException("1000", "1,2,3,4,5,6", "6");
-                assertThat(output()).contains(DUPLICATED_BONUS.getMessage());
+                assertThat(output()).contains(DUPLICATED_BONUS_NUMBER.getMessage());
             });
         }
     }

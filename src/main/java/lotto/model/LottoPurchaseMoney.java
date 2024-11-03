@@ -15,8 +15,9 @@ public class LottoPurchaseMoney extends Money {
             throw new IllegalArgumentException(ZERO_LOTTO_MONEY.getMessage());
         }
 
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(INVALID_LOTTO_MONEY_UNIT.getMessage());
+    private void validateDivisibleByLottoPrice(final int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
         }
     }
 
