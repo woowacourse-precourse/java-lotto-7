@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.PriceCalculator;
@@ -33,7 +34,8 @@ public class LottoController {
         Lottos generatedLottos = lottoNumberGenerator.generateLottoNumbers(lottoCount);
         resultDisplayer.showPurchasedLottos(lottoCount, generatedLottos);
 
-        String WinningLottoNumber = winningNumberInput.getNumber();
+        String winningNumber = winningNumberInput.getNumber();
+        Lotto parsedWinningNumbers = winningNumberSplitter.split(winningNumber);
     }
 }
 
