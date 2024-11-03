@@ -97,4 +97,8 @@ public class OutputHandler {
 			count);
 	}
 
+	public void showErrorMessage(String errorMessage) {
+		System.out.println(errorMessage);
+	}
+
 }
