@@ -17,7 +17,7 @@ public class PickLottoTest {
     private TicketCount ticketCount;
 
     @BeforeEach
-    public void GetThreeLottos(){
+    public void GetThreeLottos() {
         // given
         InputAmount inputAmount = new InputAmount("3000");
         this.ticketCount = new TicketCount(inputAmount);
@@ -25,7 +25,7 @@ public class PickLottoTest {
 
     @DisplayName("로또 발매 시 입력받은 개수와 같은 개수의 로또가 발매된다.")
     @Test
-    public void SameNumberOfTicketsWhenLotteryIssued(){
+    public void SameNumberOfTicketsWhenLotteryIssued() {
         // given
         PickLottoService pickLottoService = new PickLottoService();
 
@@ -47,7 +47,7 @@ public class PickLottoTest {
         PurchasedLottos purchasedLottos = pickLottoService.auto(ticketCount);
 
         // then
-        for(Lotto nowTicket : purchasedLottos.get()) {
+        for (Lotto nowTicket : purchasedLottos.get()) {
             List<Integer> lottoNums = nowTicket.get();
             assertThat(lottoNums).isSortedAccordingTo(comparator);
         }
