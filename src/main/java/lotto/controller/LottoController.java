@@ -17,15 +17,19 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public void draw() {
+    public void start() {
         int purchaseAmount = makeLottoPurchaseAmountRecursion();
 
         List<Lotto> autoLottos = makeAutoLottos(purchaseAmount);
+
+        OutputView.outputAutoLottos(autoLottos);
 
         Lotto winningNumbers = makeWinningNumbersRecursion();
         WinningLotto winningLotto = addBonusNumbersToWinningNumbersRecursion(winningNumbers);
 
         WinningResult winningResult = makeLottoWinningResult(autoLottos, winningLotto);
+
+        OutputView.outputWinningResult(winningResult, purchaseAmount);
     }
 
     private int makeLottoPurchaseAmountRecursion() {

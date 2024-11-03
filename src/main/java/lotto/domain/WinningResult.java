@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class WinningResult {
 
@@ -35,5 +36,18 @@ public class WinningResult {
 
     public double calculateRateOfReturn(int purchaseAmount) {
         return (sumTotalReward() / (double) purchaseAmount) * 100;
+    }
+
+    @Override
+    public String toString() {
+        return lottoScore.keySet().stream()
+                .filter(lottoRank -> !lottoRank.equals(LottoRank.NONE)) // 낙첨은 제외
+                .map(lottoRank -> String.format(
+                        "%s (%,d원) - %d개",
+                        lottoRank.getDescription(),
+                        lottoRank.getReward(),
+                        lottoScore.getOrDefault(lottoRank, 0)
+                ))
+                .collect(Collectors.joining("\n"));
     }
 }

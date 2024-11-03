@@ -7,6 +7,6 @@ public class Application {
 
         LottoController lottoController = new LottoController();
 
-        lottoController.draw();
+        lottoController.start();
     }
 }
