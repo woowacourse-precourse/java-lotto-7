@@ -2,7 +2,6 @@ package lotto.Integration;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public class LottoIntegrationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    @DisplayName("모든 등수가 한번씩 당첨")
     void 통합_테스트_전체_당첨() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
