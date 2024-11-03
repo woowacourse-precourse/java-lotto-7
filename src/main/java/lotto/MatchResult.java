@@ -40,11 +40,9 @@ public enum MatchResult {
     public abstract void win(WinningStatics statics);
 
     private final int match;
-    private final boolean bonus;
 
     MatchResult(int match, boolean bonus) {
         this.match = match;
-        this.bonus = bonus;
     }
 
     public static MatchResult valueOf(int match, boolean bonus) {

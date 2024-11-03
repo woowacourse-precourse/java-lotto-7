@@ -12,19 +12,19 @@ public class UserInput {
     private static final String SEPARATOR = ",";
 
     public int getPurchaseAmount() {
-        while (true){
+        while (true) {
             try {
                 String input = Console.readLine().trim();
                 validateEmptyInput(input);
                 return LottoShop.validatePurchaseAmount(input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     public Lotto getWinningNumbers() {
-        while (true){
+        while (true) {
             try {
                 String input = Console.readLine().trim();
                 validateEmptyInput(input);
@@ -32,19 +32,19 @@ public class UserInput {
                 return new Lotto(Arrays.stream(input.split(SEPARATOR))
                         .map(UserInput::validateNumber)
                         .collect(Collectors.toCollection(ArrayList::new)));
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     public int getBonusNumber() {
-        while (true){
+        while (true) {
             try {
                 String input = Console.readLine().trim();
                 validateEmptyInput(input);
                 return validateNumber(input);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
