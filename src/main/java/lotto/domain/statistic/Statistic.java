@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain.statistic;
 
 import java.util.List;
-import lotto.prize.WinningStatus;
-import lotto.user.User.UserLottoInfo;
+import lotto.domain.prize.WinningStatus;
+import lotto.domain.user.User.UserLottoInfo;
 
 public class Statistic {
 

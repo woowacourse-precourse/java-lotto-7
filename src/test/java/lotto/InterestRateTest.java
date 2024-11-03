@@ -3,8 +3,10 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotto.prize.WinningStatus;
-import lotto.user.User.UserLottoInfo;
+import lotto.domain.Lotto;
+import lotto.domain.prize.WinningStatus;
+import lotto.domain.statistic.Statistic;
+import lotto.domain.user.User.UserLottoInfo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,7 +38,7 @@ public class InterestRateTest {
     void 수익률_계산() {
         double interestRate = statistic.getInterestRate(userLottoInfos, purchaseCost);
 
-        assertThat(interestRate).isEqualTo(14);
+        assertThat(interestRate).isEqualTo(1400.0);
     }
 
 }

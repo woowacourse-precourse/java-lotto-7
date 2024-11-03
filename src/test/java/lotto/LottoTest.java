@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -48,4 +49,6 @@ class LottoTest {
         assertThat(sortedNumbers).containsExactly(1, 3, 6, 8, 13, 45);
 
     }
+
+
 }

@@ -1,8 +1,6 @@
-package lotto.prize;
+package lotto.domain.prize;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.WinningLotto;
 
 public interface WinningStrategy {
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,9 +18,7 @@ public class Lotto {
     }
 
     private static List<Integer> AscNumberList(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -29,7 +27,7 @@ public class Lotto {
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    public static void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != getDistinctSize(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }

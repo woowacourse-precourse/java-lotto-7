@@ -1,8 +1,8 @@
-package lotto.user;
+package lotto.domain.user;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.prize.WinningStatus;
+import lotto.domain.Lotto;
+import lotto.domain.prize.WinningStatus;
 
 public class User {
     private final Integer purchaseCost;

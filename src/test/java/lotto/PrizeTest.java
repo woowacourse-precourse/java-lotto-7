@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.List;
-import lotto.prize.KoreaPrizeChecker;
-import lotto.prize.WinningStatus;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
+import lotto.domain.prize.KoreaPrizeChecker;
+import lotto.domain.prize.WinningStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
