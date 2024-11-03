@@ -17,4 +17,8 @@ public class LottoTicket {
 			.map(Lotto::toString)
 			.collect(Collectors.joining("\n"));
 	}
+
+	public List<Lotto> getTickets() {
+		return new ArrayList<>(tickets);
+	}
 }
