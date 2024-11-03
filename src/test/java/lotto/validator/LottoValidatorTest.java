@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.validator.model.LottoNumberValidator;
+import lotto.validator.entity.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,29 +11,30 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoNumberValidatorTest {
-    // 로또 번호 검증 클래스 ( LottoNumberValidator ) 테스트
-    @DisplayName("[LottoNumberValidatorTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
+public class LottoValidatorTest {
+    // 로또 번호 검증 클래스 ( LottoValidator.java ) 테스트
+
+    @DisplayName("[LottoValidatorTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호의_개수가_6개가_아니면_예외가_발생한다(List<Integer> lottoNumber) {
-        assertThatThrownBy(() -> new LottoNumberValidator(lottoNumber).validate())
+        assertThatThrownBy(() -> new LottoValidator(lottoNumber).validate())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("[LottoNumberValidatorTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
+    @DisplayName("[LottoValidatorTest] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다(List<Integer> lottoNumber) {
-        assertThatThrownBy(() -> new LottoNumberValidator(lottoNumber).validate())
+        assertThatThrownBy(() -> new LottoValidator(lottoNumber).validate())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("[LottoNumberValidatorTest] 로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다")
+    @DisplayName("[LottoValidatorTest] 로또 번호가 1 과 45 사이의 숫자가 아닐 경우 예외가 발생한다")
     @ParameterizedTest
     @MethodSource
     void 로또_번호가_1_과_45_사이의_숫자가_아니면_예외가_발생한다(List<Integer> lottoNumber){
-        assertThatThrownBy(() -> new LottoNumberValidator(lottoNumber).validate())
+        assertThatThrownBy(() -> new LottoValidator(lottoNumber).validate())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

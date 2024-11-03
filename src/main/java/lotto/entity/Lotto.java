@@ -1,7 +1,7 @@
 package lotto.entity;
 
 import lotto.validator.Validator;
-import lotto.validator.model.LottoNumberValidator;
+import lotto.validator.entity.LottoValidator;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ public class Lotto {
     private final Validator validator;
 
     public Lotto(List<Integer> numbers) {
-        this.validator = new LottoNumberValidator(numbers);
+        this.validator = new LottoValidator(numbers);
         validate();
         this.numbers = sort(numbers);
     }
