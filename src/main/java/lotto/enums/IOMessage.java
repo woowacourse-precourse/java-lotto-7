@@ -15,7 +15,7 @@ public enum IOMessage implements SystemMessage {
     PRINT_FIVE_MATCHING_QUANTITY_AND_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     PRINT_SIX_MATCHING_QUANTITY("6개 일치 (2,000,000,000원) - "),
     PRINT_TOTAL_RETURN_RATE("총 수익률은 %.1f%%입니다."),
-    PRINT_NO_MONEY_EARNED("아쉽게도 수익이 발생하지 않았습니다. 다음 기회를 노려보세요!");
+    PRINT_NO_MONEY_EARNED("총 수익률은 0.0%%입니다.");
 
     private final String message;
 
