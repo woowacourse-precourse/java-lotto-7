@@ -2,6 +2,7 @@ package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,5 +59,17 @@ public class StringTest {
         assertEquals(firstChar,'a');
         assertEquals(secondChar, 'b');
         assertEquals(lastChar, 'c');
+    }
+
+    @Test
+    @DisplayName("String의 charAt() 메소드를 활용해 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생하는 부분에 대한 학습 테스트")
+    public void testStringIndexOutOfBoundsExceptionTest() {
+        String word = "abc";
+
+        int index = 5;  // 0~2가 아닌 임의의 수만 'StringIndexOutOfBoundsException' 발생 가능
+
+        assertThrows(StringIndexOutOfBoundsException.class, () -> {
+            word.charAt(index);
+        });
     }
 }
