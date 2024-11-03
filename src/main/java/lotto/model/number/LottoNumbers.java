@@ -1,5 +1,6 @@
 package lotto.model.number;
 
+import lotto.model.exception.LottoNumberInvalidException;
 import lotto.model.number_generator.RandomNumberGenerator;
 
 import java.util.List;
@@ -17,11 +18,18 @@ public class LottoNumbers {
     }
 
     public static LottoNumbers generateBy(int size, RandomNumberGenerator randomNumberGenerator) {
+        validateSize(size);
         List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, size);
 
         return new LottoNumbers(numbers.stream()
                 .map(LottoNumber::from)
                 .toList());
+    }
+
+    private static void validateSize(int size) {
+        if (size > LottoNumber.MAX_NUMBER - LottoNumber.MIN_NUMBER + 1) {
+            throw LottoNumberInvalidException.tooManyLottoNumbersSize();
+        }
     }
 
     public List<Integer> mapToInt() {
