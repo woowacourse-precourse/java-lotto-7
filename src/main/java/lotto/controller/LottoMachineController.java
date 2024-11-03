@@ -28,9 +28,9 @@ public class LottoMachineController {
 
   public void runLottoMachine() {
     tryReadMoney();
-    int buyedLottosQuantity = getLottosQuantity();
-    printQuantityOfLottos(buyedLottosQuantity);
-    tryMakeLotto(buyedLottosQuantity);
+    int boughtLottosQuantity = getLottosQuantity();
+    printQuantityOfLottos(boughtLottosQuantity);
+    tryMakeLotto(boughtLottosQuantity);
     printAllLottos(lottos.allLottosToString());
     tryReadBonusAndWinningNumbers();
     List<WinningType> winningResults = getWinningStatistic(winningNumbers, lottos);
@@ -50,19 +50,19 @@ public class LottoMachineController {
   }
 
   private int getLottosQuantity() {
-    return money.buyedLottosQuantity();
+    return money.boughtLottosQuantity();
   }
 
-  private void printQuantityOfLottos(int buyedLottosQuantity) {
-    outputView.printQuantityOfLottos(buyedLottosQuantity);
+  private void printQuantityOfLottos(int boughtLottosQuantity) {
+    outputView.printQuantityOfLottos(boughtLottosQuantity);
   }
 
-  private void tryMakeLotto(int buyedLottosQuantity) {
+  private void tryMakeLotto(int boughtLottosQuantity) {
     try {
-      lottos = factory.createLottos(buyedLottosQuantity);
+      lottos = factory.createLottos(boughtLottosQuantity);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      tryMakeLotto(buyedLottosQuantity);
+      tryMakeLotto(boughtLottosQuantity);
     }
   }
 

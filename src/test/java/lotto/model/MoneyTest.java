@@ -25,6 +25,6 @@ class MoneyTest {
   void 금액으로_구매할_수_있는_로또_개수가_올바르게_계산된다() {
     Money money = new Money("15000");
     int expectedQuantity = 15;
-    assertThat(money.buyedLottosQuantity()).isEqualTo(expectedQuantity);
+    assertThat(money.boughtLottosQuantity()).isEqualTo(expectedQuantity);
   }
 }

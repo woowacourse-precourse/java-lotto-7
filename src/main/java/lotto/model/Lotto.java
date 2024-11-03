@@ -16,7 +16,7 @@ public class Lotto {
   }
 
   private void validate(List<Integer> numbers) {
-    LottoNumberValidator.mainValidator(numbers);
+    LottoNumberValidator.validateLottoNumbers(numbers);
   }
 
   public String sortedNumbersToString() {
@@ -33,9 +33,6 @@ public class Lotto {
   }
 
   public boolean compareBonusNumber(Integer bonusNumber) {
-    if (numbers.contains(bonusNumber)) {
-      return true;
-    }
-    return false;
+    return numbers.contains(bonusNumber);
   }
 }

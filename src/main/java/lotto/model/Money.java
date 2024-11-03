@@ -8,12 +8,12 @@ public class Money {
   private final Integer money;
 
   public Money(String money) {
-    Integer intMoney = parserToInt(money);
+    Integer intMoney = parseToInt(money);
     validate(intMoney);
     this.money = intMoney;
   }
 
-  private Integer parserToInt(String money) {
+  private Integer parseToInt(String money) {
     return Parser.parseNumberToInt(money);
   }
 
@@ -21,7 +21,7 @@ public class Money {
     MoneyValidator.validateMoney(money);
   }
 
-  public int buyedLottosQuantity() {
+  public int boughtLottosQuantity() {
     return money / MoneyConstants.LOTTO_PRICE;
   }
 

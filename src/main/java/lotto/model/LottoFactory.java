@@ -1,9 +1,9 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.utilities.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.utilities.Random;
 
 public class LottoFactory {
   public static List<Lotto> createLottos(int quantityOfLottos) {

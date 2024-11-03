@@ -6,7 +6,7 @@ public class Splitter {
   private static final String DELIMITER = ",";
 
   public static List<String> splitWinningNumbers(String winningNumbers) {
-    List<String> splittedWinningNumbers = List.of(winningNumbers.split(DELIMITER));
-    return splittedWinningNumbers;
+    List<String> splitWinningNumbers = List.of(winningNumbers.split(DELIMITER));
+    return splitWinningNumbers;
   }
 }

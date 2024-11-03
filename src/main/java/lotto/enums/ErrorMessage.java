@@ -12,8 +12,7 @@ public enum ErrorMessage implements SystemMessage {
   INVALID_LOTTO_NUMBER("로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 발행하겠습니다."),
   INVALID_CALCULATE("계산 과정에서 예상치 못한 오류가 발생했습니다.");
 
-
-  private final String ERROR_LOG_LEVEL = "[ERROR] ";
+  private static final String ERROR_LOG_LEVEL = "[ERROR] ";
   private final String message;
 
   ErrorMessage(String message) {

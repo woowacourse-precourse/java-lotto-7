@@ -8,7 +8,7 @@ import lotto.enums.ErrorMessage;
 public class LottoNumberValidator {
   private static final int QUANTITY_OF_LOTTO_NUMBERS = 6;
 
-  public static void mainValidator(List<Integer> lottoNumbers) {
+  public static void validateLottoNumbers(List<Integer> lottoNumbers) {
     validateNumbers(lottoNumbers);
     validateDuplicate(lottoNumbers);
   }

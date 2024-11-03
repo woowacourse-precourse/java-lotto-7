@@ -6,10 +6,10 @@ import lotto.enums.IOMessage;
 import lotto.enums.WinningType;
 
 public class OutputView {
-  public void printQuantityOfLottos(int buyedLottosQuantity) {
+  public void printQuantityOfLottos(int boughtLottosQuantity) {
     System.out.println(
         System.lineSeparator()
-            + buyedLottosQuantity
+            + boughtLottosQuantity
             + IOMessage.PRINT_QUANTITY_OF_LOTTOS.getMessage());
   }
 

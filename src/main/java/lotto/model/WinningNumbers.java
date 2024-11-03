@@ -11,8 +11,8 @@ public class WinningNumbers {
 
   public WinningNumbers(String winningNumbers, String bonusNumber) {
     List<String> splittedWinningNumbers = splitWinningNumbers(winningNumbers);
-    List<Integer> parseredWinningNumbers = paserWinningNumbers(splittedWinningNumbers);
-    Integer parseredBonusNumber = paserBonusNumber(bonusNumber);
+    List<Integer> parseredWinningNumbers = parseWinningNumbers(splittedWinningNumbers);
+    Integer parseredBonusNumber = parseBonusNumber(bonusNumber);
     parseredWinningNumbers.add(0, parseredBonusNumber);
     validate(parseredWinningNumbers);
     parseredBonusNumber = parseredWinningNumbers.remove(0);
@@ -24,11 +24,11 @@ public class WinningNumbers {
     return Splitter.splitWinningNumbers(winningNumbers);
   }
 
-  private List<Integer> paserWinningNumbers(List<String> winningNumbers) {
+  private List<Integer> parseWinningNumbers(List<String> winningNumbers) {
     return Parser.parseNumbersToInt(winningNumbers);
   }
 
-  private Integer paserBonusNumber(String bonusNumber) {
+  private Integer parseBonusNumber(String bonusNumber) {
     return Parser.parseNumberToInt(bonusNumber);
   }
 
