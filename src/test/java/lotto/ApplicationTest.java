@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.controller.LottoController;
+import lotto.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +60,7 @@ class ApplicationTest extends NsTest {
     @Test
     @DisplayName("유효한 구입 금액 입력 테스트")
     void testValidPurchaseAmount() {
-        assertEquals(1000, LottoController.validatePurchaseAmount("1000"));
+        assertEquals(1000, InputValidator.validatePurchaseAmount("1000"));
     }
 
     @Test
@@ -68,9 +68,9 @@ class ApplicationTest extends NsTest {
     void testInvalidPurchaseAmountNonInteger() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> LottoController.validatePurchaseAmount("abcd")
+                () -> InputValidator.validatePurchaseAmount("abcd")
         );
-        assertEquals("[ERROR] 구입금액은 정수여야합니다", exception.getMessage());
+        assertEquals("[ERROR] 구입금액은 정수여야 합니다.", exception.getMessage());
     }
 
     @Test
@@ -78,9 +78,9 @@ class ApplicationTest extends NsTest {
     void testInvalidPurchaseAmountNotMultipleOfThousand() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> LottoController.validatePurchaseAmount("1500")
+                () -> InputValidator.validatePurchaseAmount("1500")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
+        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
     }
 
     @Test
@@ -88,15 +88,15 @@ class ApplicationTest extends NsTest {
     void testInvalidPurchaseAmountNegativeOrZero() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> LottoController.validatePurchaseAmount("0")
+                () -> InputValidator.validatePurchaseAmount("0")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
+        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
 
         exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> LottoController.validatePurchaseAmount("-1000")
+                () -> InputValidator.validatePurchaseAmount("-1000")
         );
-        assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
+        assertEquals("[ERROR] 구입금액은 1,000원 단위여야 합니다.", exception.getMessage());
     }
 
 
