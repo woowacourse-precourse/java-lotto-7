@@ -12,8 +12,7 @@ public class InputView {
 
         Validator.validateInput(input);
 
-        int lottoAmount = getLottoAmount(input);
-        return lottoAmount;
+        return getLottoAmount(input);
     }
 
     private static int getLottoAmount(String input) {

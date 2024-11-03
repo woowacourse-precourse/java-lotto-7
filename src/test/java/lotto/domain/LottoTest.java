@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,4 +22,17 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호에 1 미만이나 45 초과 수가 있다면 예외가 발생한다. - 0 미만 존재")
+    @Test
+    void 로또_번호에_1_미만이나_45_초과_수가_있다면_예외가_발생한다_0미만() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 1 미만이나 45 초과 수가 있다면 예외가 발생한다. - 45 초과 존재")
+    @Test
+    void 로또_번호에_1_미만이나_45_초과_수가_있다면_예외가_발생한다_45초과() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
