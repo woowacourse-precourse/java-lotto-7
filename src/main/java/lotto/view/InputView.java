@@ -1,16 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.Validator;
 
 public abstract class InputView {
+    protected Validator validator;
+    protected String inputValue;
+
     public String input(){
         printInputMessage();
 
-        String input = removeWhiteSpace(Console.readLine());
+        this.inputValue = removeWhiteSpace(Console.readLine());
 
-        validate(input);
+        initializeValidator();
+        validate();
 
-        return input;
+        return inputValue;
     }
 
     private String removeWhiteSpace(String inputValue) {
@@ -18,5 +23,7 @@ public abstract class InputView {
     }
 
     protected abstract void printInputMessage();
-    protected abstract void validate(String input);
+
+    protected abstract void initializeValidator();
+    protected abstract void validate();
 }
