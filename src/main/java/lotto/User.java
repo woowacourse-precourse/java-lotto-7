@@ -31,6 +31,9 @@ public class User {
 
     public Lotto inputPurchaseLottos() {
         List<Integer> userLottoNumbers = new ArrayList<>();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+
         String[] userLotto = Console.readLine().split(",");
 
         for (String lotto : userLotto) {
@@ -42,6 +45,8 @@ public class User {
 
     public int inputBonusNumber() {
         int bonus;
+
+        System.out.println("보너스 번호를 입력해 주세요.");
 
         while (true) {
             try {
