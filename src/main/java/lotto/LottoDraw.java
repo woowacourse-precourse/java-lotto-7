@@ -49,4 +49,26 @@ public class LottoDraw {
     private void increasePrizeCount(LottoPrize prize) {
         prizeCount.put(prize, prizeCount.get(prize) + 1);
     }
+
+    public void printResults(int purchaseAmount) {
+        System.out.println("\n당첨 통계\n---");
+        Arrays.stream(LottoPrize.values())
+                .forEach(prize -> System.out.printf("%s (%,d원) - %d개\n",
+                        prize.getDescription(),
+                        prize.getPrize(),
+                        prizeCount.get(prize)));
+
+        printProfitRate(purchaseAmount);
+    }
+
+    private void printProfitRate(int purchaseAmount) {
+        double totalPrize = 0;
+        for (Map.Entry<LottoPrize, Integer> entry : prizeCount.entrySet()) {
+            int prize = entry.getKey().getPrize();
+            int count = entry.getValue();
+            totalPrize += (long) prize * count;
+        }
+        double profitRate = (totalPrize / purchaseAmount) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
 }
