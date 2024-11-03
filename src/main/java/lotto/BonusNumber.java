@@ -4,6 +4,7 @@ public class BonusNumber {
     private static int BONUS_NUMBER;
 
     public BonusNumber(int bonusNumber) {
+        validate(bonusNumber);
         this.BONUS_NUMBER = bonusNumber;
     }
 
