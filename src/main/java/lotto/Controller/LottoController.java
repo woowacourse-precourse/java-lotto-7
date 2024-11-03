@@ -33,7 +33,6 @@ public class LottoController {
         OutputView.printReturn(myInfo.getMyReturn());
     }
 
-    //함수 길이 문제
     public void gainPurchaseAmount() {
         int purchasePrice = 0;
         try {
@@ -43,8 +42,7 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             if (e.getMessage().equals(ErrorMessage.NOT_DIV.getError())) {
                 OutputView.printError(ErrorMessage.NOT_DIV.getError());
-                gainPurchaseAmount();
-                return;
+                gainPurchaseAmount(); return;
             }
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
             gainPurchaseAmount();
