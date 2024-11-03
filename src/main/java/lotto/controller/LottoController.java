@@ -23,7 +23,7 @@ public class LottoController {
     public void run(){
         purchaseLotto();
         setWinningLotto();
-        getLottoResult(); // todo.
+        getLottoResult();
     }
 
     private void purchaseLotto(){
@@ -47,6 +47,10 @@ public class LottoController {
         Validator.validateBonusNumberInWinningNumber(winningNumbers, bonusNumber);
 
         lottoService.setNumbers(winningNumbers, bonusNumber);
+    }
+
+    private void getLottoResult(){
+        // todo.
     }
 
 
