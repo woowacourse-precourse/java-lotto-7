@@ -8,10 +8,12 @@ import static lotto.view.OutputView.*;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseLotto;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 
 public class LottoController {
     private final PurchaseLotto purchaseLotto;
     private WinningLotto winningLotto;
+    private int purchaseAmount;
 
     public LottoController(PurchaseLotto purchaseLotto) {
         this.purchaseLotto = purchaseLotto;
@@ -20,12 +22,13 @@ public class LottoController {
     public void run() {
         purchaseLotto();
         setWinningLotto();
+        getWinningStatistics();
     }
 
     private void purchaseLotto() {
         try {
             String rawInput = requestInput(INPUT_PURCHASE_AMOUNT.getMessage());
-            int purchaseAmount = convertInput(rawInput);
+            purchaseAmount = convertInput(rawInput);
             int purchaseCount = calculatePurchaseCount(purchaseAmount);
             issueLottoTickets(purchaseCount);
             printPurchaseCount(purchaseCount);
@@ -39,6 +42,16 @@ public class LottoController {
     private void setWinningLotto() {
         inputWinningNumbers();
         inputBonusNumber();
+    }
+
+    private void getWinningStatistics() {
+        print(WINNING_STATISTICS_MESSAGE.getMessage());
+        print(HORIZON.getMessage());
+
+        WinningResult winningResult = new WinningResult();
+        winningResult.checkPurchaseLotto(purchaseLotto, winningLotto);
+
+        printWinningStatistics(winningResult.getWinningStatistics(), winningResult.getRateOfReturn(purchaseAmount));
     }
 
     private int convertInput(String input) {
