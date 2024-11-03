@@ -111,7 +111,11 @@ public class DrawNumbersTest {
     }
 
     private static void buildLottoResult(String winningNumbers, String bonusNumber) {
-        DrawNumbers drawNumbers = new DrawNumbers(winningNumbers, bonusNumber);
+        DrawNumbersBuilder builder = new DrawNumbersBuilder();
+
+        DrawNumbers drawNumbers = builder.winningNumbers(winningNumbers)
+                .bonusNumber( bonusNumber)
+                .build();
     }
 
     private static Arguments makeArguments(String winningNumber, String bonusNumber) {
