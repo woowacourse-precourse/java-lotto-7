@@ -2,6 +2,9 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Validation validation = new Validation();
+        InputManager inputManager = new InputManager();
+        LottoService service = new LottoService(validation, inputManager);
+        service.run();
     }
 }
