@@ -20,4 +20,8 @@ public class LottoPrice {
             throw new IllegalArgumentException(CAN_NOT_BUY_LOTTO_AMOUNT);
         }
     }
+
+    public int cacluateGameCount() {
+        return gameMoney / GAME_PRICE;
+    }
 }
