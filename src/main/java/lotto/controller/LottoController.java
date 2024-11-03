@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.AttemptCount;
 import lotto.model.BonusNumber;
+import lotto.model.LottoManager;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.util.GenerateNumbers;
@@ -32,6 +33,10 @@ public class LottoController {
 
         WinningNumbers winningNumbers = createWinningNumbersFromInput();
         BonusNumber bonusNumber = createBonusNumberFromInput(winningNumbers);
+
+        LottoManager lottoManager = new LottoManager(lottos, winningNumbers, bonusNumber);
+
+        outputView.printResults(lottoManager.getResults(), lottoManager.calculateRateOfReturn(purchaseAmount));
     }
 
     private WinningNumbers createWinningNumbersFromInput() {
