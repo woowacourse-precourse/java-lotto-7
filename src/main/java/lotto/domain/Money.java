@@ -21,6 +21,14 @@ public class Money {
         return ticketCount;
     }
 
+    public long getEarnedMoney() {
+        return earnedMoney;
+    }
+
+    public long getSpentMoney() {
+        return spentMoney;
+    }
+
     public double getRateOfReturn() {
         double rateOfReturn = ((float) earnedMoney / spentMoney) * 100;
         return Math.round(rateOfReturn * 10) / 10.0;
