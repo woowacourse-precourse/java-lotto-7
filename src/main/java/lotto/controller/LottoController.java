@@ -20,7 +20,7 @@ public class LottoController {
 
     private Lottos initLotts() {
         try {
-            Money money = new Money(InputView.inputLottoPurchaseAmount());
+            Money money = new Money(InputView.inputNumber("구입금액을 입력해 주세요."));
             return new Lottos(money.getLottoQuantity());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
@@ -50,7 +50,7 @@ public class LottoController {
 
     private BonusNumber inputBonus() {
         try {
-            int winningBonusNumberInput = InputView.inputWinningBonusNumber();
+            long winningBonusNumberInput = InputView.inputNumber("\n보너스 번호를 입력해 주세요.");
             return new BonusNumber(winningBonusNumberInput);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
