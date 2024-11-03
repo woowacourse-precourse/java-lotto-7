@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchasedLotto {
-    private static final String PAYMENT_NOT_NULL = "로또 구입 금액이 null이어서는 안 됩니다.";
+    private static final String LOTTO_DELIMITER = "\n";
+    private static final String PAYMENT_NOT_NULL = ERROR_HEADER + "로또 구입 금액이 null이어서는 안 됩니다.";
     private final List<Lotto> lottos;
 
     public PurchasedLotto(List<Lotto> lottos) {
@@ -27,7 +28,8 @@ public class PurchasedLotto {
     public String getFormatted() {
         StringBuilder result = new StringBuilder();
         for (Lotto lotto : this.lottos) {
-            result.append(lotto.getPrintFormatNumber()).append("\n");
+            result.append(lotto.getPrintFormatNumber());
+            result.append(LOTTO_DELIMITER);
         }
         return result.toString();
     }
@@ -45,7 +47,7 @@ public class PurchasedLotto {
 
     private static void validate(Payment payment) {
         if(payment == null) {
-            throw new IllegalArgumentException(ERROR_HEADER + PAYMENT_NOT_NULL);
+            throw new IllegalArgumentException(PAYMENT_NOT_NULL);
         }
     }
 }
