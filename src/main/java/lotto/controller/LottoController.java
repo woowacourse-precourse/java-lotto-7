@@ -37,8 +37,8 @@ public class LottoController {
         List<Lotto> purchasedLottos = lottoService.purchaseLotto(numberOfLottos);
         outputView.printPurchasedLottos(purchasedLottos);
 
-        List<Integer> winningNumbers = inputView.getLottoInput();
-        Guess guess = inputView.getBonusNumberInput(winningNumbers);
+        Lotto lotto = inputView.getLottoInput();
+        Guess guess = inputView.getBonusNumberInput(lotto.getLotto());
 
         List<Rank> results = lottoResultService.determineRanks(guess, purchasedLottos);
         outputView.printWinningStatistics(results);

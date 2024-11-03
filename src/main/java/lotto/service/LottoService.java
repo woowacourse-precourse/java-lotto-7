@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.enums.ErrorCode;
+import lotto.exception.FormatException;
 
 public class LottoService {
 
     public List<Integer> generateLotto(String str) {
-        return Arrays.stream(str.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(str.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new FormatException(ErrorCode.PARSING_INTEGER_ERROR);
+        }
     }
 
     public List<Lotto> purchaseLotto(int numberOfLottos) {

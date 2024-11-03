@@ -8,6 +8,7 @@ import static lotto.constants.CommonConstants.INPUT_PROMPT_WINNING_NUMBERS;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.Guess;
+import lotto.domain.Lotto;
 import lotto.exception.CommonException;
 import lotto.exception.FormatException;
 import lotto.service.LottoService;
@@ -40,16 +41,14 @@ public class InputView {
         }
     }
 
-    public List<Integer> getLottoInput() {
+    public Lotto getLottoInput() {
         System.out.println(INPUT_PROMPT_WINNING_NUMBERS);
         while (true) {
             try {
                 String lotto = Console.readLine();
-                validatorService.validateParsing(lotto);
                 List<Integer> lottoNumbers = lottoService.generateLotto(lotto);
-                validatorService.validateLottoNumbers(lottoNumbers);
-                return lottoNumbers;
-            } catch (CommonException e) {
+                return new Lotto(lottoNumbers);
+            } catch (CommonException | FormatException e) {
                 System.out.println(e.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
