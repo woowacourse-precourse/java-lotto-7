@@ -1,6 +1,6 @@
 package lotto.exception;
 
-public enum LottoException {
+public enum LottoErrorMessages {
     ERROR_UNIT("[ERROR] "),
     PAY_INPUT_ERROR("숫자만 입력 가능합니다."),
     NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
@@ -11,7 +11,7 @@ public enum LottoException {
 
     private String text;
 
-    LottoException(String text) {
+    LottoErrorMessages(String text) {
         this.text = text;
     }
 
