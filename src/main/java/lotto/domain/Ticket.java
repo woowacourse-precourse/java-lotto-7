@@ -16,7 +16,7 @@ public class Ticket {
         this.price = price;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        validate(price, winningNumbers, bonusNumber);
+        validate(winningNumbers, bonusNumber);
         this.result = makeResult();
     }
 
@@ -37,25 +37,7 @@ public class Ticket {
         return Math.round(earningRate * 10) / 10.0;
     }
 
-    private void validate(int price, List<Integer> winningNumbers, int bonusNumber) {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입은 1,000원 단위로 구입해야 합니다.");
-        }
-
-        for (int winningNumber : winningNumbers) {
-            if (winningNumber < 0 || winningNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45숫자만 가능합니다.");
-            }
-        }
-
-        if (bonusNumber < 0 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45숫자만 가능합니다.");
-        }
-
-        if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
-        }
-
+    private void validate(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }

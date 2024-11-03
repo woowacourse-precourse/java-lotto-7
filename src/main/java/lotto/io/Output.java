@@ -8,8 +8,7 @@ import lotto.domain.Prize;
 import lotto.domain.Ticket;
 
 public abstract class Output {
-    public static void lottos(Ticket ticket) {
-        List<Lotto> lottos = ticket.getLottos();
+    public static void lottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구입했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
