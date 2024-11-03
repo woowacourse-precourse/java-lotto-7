@@ -23,4 +23,15 @@ public enum LottoPrize {
         this.prizeMoney = prizeMoney;
         this.description = description;
     }
+
+    public static Optional<LottoPrize> calculatePrize(int matchCount, boolean matchBonus) {
+        if (matchCount == 5 && matchBonus) {
+            return Optional.of(SECOND_PRIZE);
+        }
+
+        return Arrays.stream(values())
+                .filter(prize -> prize.numberMatch == matchCount)
+                .filter(prize -> prize.bonusNumberMatch == 0)
+                .findFirst();
+    }
 }
