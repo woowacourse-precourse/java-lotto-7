@@ -62,7 +62,7 @@ class UserRepositoryTest {
                 .isEqualTo(owner);
         assertThat(saved.getId())
                 .isEqualTo(OWNER);
-        assertThat(saved.getLotto())
+        assertThat(saved.getWinningLotto())
                 .isEqualTo(lotto);
         assertThat(saved.getBonus())
                 .isEqualTo(7);

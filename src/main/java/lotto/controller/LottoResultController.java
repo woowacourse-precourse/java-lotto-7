@@ -10,8 +10,8 @@ public class LottoResultController implements Controller {
 
     @Override
     public View execute() {
-        int[] matchCnts = calculationService.getMatchCnts();
-        double rateOfReturn = calculationService.getRateOfReturn(matchCnts);
-        return new LottoResultView(matchCnts, rateOfReturn);
+        int[] rankCnts = calculationService.getRankCnts();
+        double rateOfReturn = calculationService.getRateOfReturn(rankCnts);
+        return new LottoResultView(rankCnts, rateOfReturn);
     }
 }

@@ -8,7 +8,7 @@ import lotto.constant.UserId;
 
 public class Buyer implements User {
 
-    private UserId id;
+    private final UserId id;
     private List<Lotto> lotties;
 
     private Buyer(UserId userId, List<Lotto> lotties) {
@@ -31,5 +31,9 @@ public class Buyer implements User {
 
     public List<Lotto> getLotties() {
         return lotties;
+    }
+
+    public int getLottoCnt() {
+        return lotties.size();
     }
 }

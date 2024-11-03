@@ -7,18 +7,18 @@ import lotto.constant.UserId;
 
 public class Owner implements User {
 
-    private UserId id;
-    private Lotto lotto;
+    private final UserId id;
+    private Lotto winningLotto;
     private Integer bonus;
 
-    private Owner(UserId id, Lotto lotto, Integer bonus) {
+    private Owner(UserId id, Lotto winningLotto, Integer bonus) {
         this.id = id;
-        this.lotto = lotto;
+        this.winningLotto = winningLotto;
         this.bonus = bonus;
     }
 
-    public static Owner from(Lotto lotto, int bonus) {
-        return new Owner(OWNER, lotto, bonus);
+    public static Owner from(Lotto winningLotto, int bonus) {
+        return new Owner(OWNER, winningLotto, bonus);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class Owner implements User {
         return id;
     }
 
-    public Lotto getLotto() {
-        return lotto;
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public int getBonus() {

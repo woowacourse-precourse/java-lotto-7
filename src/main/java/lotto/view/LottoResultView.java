@@ -2,11 +2,11 @@ package lotto.view;
 
 public class LottoResultView implements View {
 
-    private final int[] matchCnts;
+    private final int[] rankCnts;
     private final double rateOfReturn;
 
-    public LottoResultView(int[] matchCnts, double calcRateOfReturn) {
-        this.matchCnts = matchCnts;
+    public LottoResultView(int[] rankCnts, double calcRateOfReturn) {
+        this.rankCnts = rankCnts;
         this.rateOfReturn = calcRateOfReturn;
     }
 
@@ -14,11 +14,11 @@ public class LottoResultView implements View {
     public String render() {
         return "\n당첨 통계" +
                 "\n---" +
-                "\n3개 일치 (5,000원) - " + matchCnts[5] + "개" +
-                "\n4개 일치 (50,000원) - " + matchCnts[4] + "개" +
-                "\n5개 일치 (1,500,000원) - " + matchCnts[3] + "개" +
-                "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCnts[2] + "개" +
-                "\n6개 일치 (2,000,000,000원) - " + matchCnts[1] + "개" +
+                "\n3개 일치 (5,000원) - " + rankCnts[5] + "개" +
+                "\n4개 일치 (50,000원) - " + rankCnts[4] + "개" +
+                "\n5개 일치 (1,500,000원) - " + rankCnts[3] + "개" +
+                "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCnts[2] + "개" +
+                "\n6개 일치 (2,000,000,000원) - " + rankCnts[1] + "개" +
                 "\n총 수익률은 " + rateOfReturn + "%입니다.";
 
     }
