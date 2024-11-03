@@ -22,7 +22,7 @@ public class InputParser {
     public static List<Integer> validateAndParseWinningNumbers(String rawInput) {
         validateNotEmpty(rawInput, InputErrorMessage.WINNING_NUMBERS_EMPTY);
         validateFormat(rawInput);
-        return parseNumberList(rawInput);
+        return parseIntegers(rawInput);
     }
 
     public static int validateAndParseBonusNumber(String rawInput) {
@@ -50,13 +50,17 @@ public class InputParser {
         }
     }
 
-    private static List<Integer> parseNumberList(String input) {
+    private static List<Integer> parseIntegers(String input) {
         try {
-            return Arrays.stream(input.split(SEPARATOR))
-                    .map(Integer::parseInt)
-                    .toList();
+            return splitAndParseToIntegers(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(InputErrorMessage.WINNING_NUMBERS_INVALID.get());
         }
+    }
+
+    private static List<Integer> splitAndParseToIntegers(String input) {
+        return Arrays.stream(input.split(SEPARATOR))
+                .map(Integer::parseInt)
+                .toList();
     }
 }
