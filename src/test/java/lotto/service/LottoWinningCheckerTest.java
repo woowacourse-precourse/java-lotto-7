@@ -1,14 +1,11 @@
 package lotto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.PrizeInfo;
+import lotto.utils.Parser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

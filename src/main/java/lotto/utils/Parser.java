@@ -1,11 +1,10 @@
-package lotto.service;
+package lotto.utils;
 
 import static lotto.domain.LottoInfo.PRICE_FOR_ONE;
 import static lotto.utils.Utils.makeErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.utils.Utils;
 import lotto.validation.LottoValidator;
 
 public class Parser {

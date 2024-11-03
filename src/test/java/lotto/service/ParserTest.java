@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.utils.Parser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
