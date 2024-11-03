@@ -2,9 +2,10 @@ package lotto.domain.rule;
 
 public enum ResultCalculateRules {
 
-    DEFAULT_COUNT(0L),
     PERCENTAGE_MULTIPLIER(100.0f),
-    ROUNDING_SCALE(100);
+    ROUNDING_SCALE(100),
+    DEFAULT_COUNT(0L),
+    ZERO_LOTTO_PRICE(0);
 
     private final Number value;
 

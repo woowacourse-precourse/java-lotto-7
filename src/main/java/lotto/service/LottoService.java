@@ -3,6 +3,7 @@ import lotto.domain.AutoLotto;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.domain.rule.LottoRules;
+import lotto.domain.rule.ResultCalculateRules;
 import lotto.domain.rule.WinningRules;
 import java.util.stream.Collectors;
 import java.util.*;
@@ -10,7 +11,6 @@ import java.util.*;
 import static lotto.domain.message.LottoErrorMessage.WINNING_NUMBER_FORMAT_ERROR;
 import static lotto.domain.rule.LottoRules.AUTO_LOTTO_PRICE;
 import static lotto.domain.message.LottoPriceErrorMessage.INVALID_LOTTO_PRICE_DIVISIBLE_OR_ZERO;
-import static lotto.domain.rule.ResultCalculateRules.*;
 import static lotto.utils.DefaultErrorMessage.INVALID_INTEGER_FORMAT;
 import static lotto.utils.DefaultErrorMessage.NULL_OR_EMPTY_INPUT;
 
@@ -58,15 +58,15 @@ public class LottoService {
     }
 
     public float calculateWinningStatistics(Map<WinningRules, Long> results, List<AutoLotto> autoLottos) {
-        long totalPrize = 0;
+        long totalPrize = ResultCalculateRules.ZERO_LOTTO_PRICE.getValue().longValue();
         for (WinningRules rank : WinningRules.values()) {
             if (rank != WinningRules.NO_MATCH) {
-                totalPrize += rank.getPrize() * results.getOrDefault(rank, 0L);
+                totalPrize += rank.getPrize() * results.getOrDefault(rank, ResultCalculateRules.DEFAULT_COUNT.getValue().longValue());
             }
         }
-        double winningStatistics = ((double) totalPrize / (autoLottos.size() * LottoRules.AUTO_LOTTO_PRICE.getValue())) * 100;
+        double winningStatistics = ((double) totalPrize / (autoLottos.size() * LottoRules.AUTO_LOTTO_PRICE.getValue())) * ResultCalculateRules.PERCENTAGE_MULTIPLIER.getValue().floatValue();
 
-        return (float) Math.round(winningStatistics * 100) / 100.0f;
+        return (float) Math.round(winningStatistics * ResultCalculateRules.ROUNDING_SCALE.getValue().intValue()) / ResultCalculateRules.ROUNDING_SCALE.getValue().intValue();
     }
 
     private WinningRules determineWinningRule(AutoLotto autoLotto, WinningLotto winningLotto) {
