@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
@@ -8,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUniqueNumbers(numbers);
         this.numbers = numbers;
         sortNumbers();
     }
@@ -28,16 +32,23 @@ public class Lotto {
         return lottos;
     }
 
-    private void sortNumbers(){
-        for(int i = 0; i < numbers.size() - 1; i++){
-            for(int j = 1; j < numbers.size() - i; j++){
+    public void validateUniqueNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    private void sortNumbers() {
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            for (int j = 1; j < numbers.size() - i; j++) {
                 swap(j);
             }
         }
     }
 
-    private void swap(int j){
-        if(numbers.get(j) < numbers.get(j - 1)){
+    private void swap(int j) {
+        if (numbers.get(j) < numbers.get(j - 1)) {
             int temp = numbers.get(j);
             numbers.set(j, numbers.get(j - 1));
             numbers.set(j - 1, temp);
