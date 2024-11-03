@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.factory.LottoGeneratorFactory;
 import lotto.service.generator.LottoGenerator;
 import lotto.service.Payment;
 import lotto.view.OutputView;
@@ -23,7 +24,7 @@ public class LottoController {
         Integer lottoCount = payment.getLottoCount();
         outputView.printBuyResult(lottoCount);
 
-        LottoGenerator lottoGenerator = LottoGenerator.create(lottoCount);
+        LottoGenerator lottoGenerator = LottoGeneratorFactory.create(lottoCount);
         lottoTicket = lottoGenerator.getLottoTicket();
         outputView.printLottoTicket(lottoTicket);
         outputView.printlnMessage(PrintMessage.LINE_SPACE);

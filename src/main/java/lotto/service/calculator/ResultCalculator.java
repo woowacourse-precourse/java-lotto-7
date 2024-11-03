@@ -21,13 +21,9 @@ public class ResultCalculator {
     private static final Integer START_PLACE = 1;
     private static final Integer END_PLACE = 2;
 
-    private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
+    public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
         calculate(winningResult, bonusResult);
-    }
-
-    public static ResultCalculator create(List<Integer> winningResult, List<Integer> bonusResult) {
-        return new ResultCalculator(winningResult, bonusResult);
     }
 
     private void init(List<Integer> bonusResult) {

@@ -13,13 +13,9 @@ public class ResultGenerator {
     private final List<Integer> winningResult = new ArrayList<>();
     private final List<Integer> bonusResult = new ArrayList<>();
 
-    private ResultGenerator(List<Lotto> lottoTicket, Lotto winning, Bonus bonus) {
+    public ResultGenerator(List<Lotto> lottoTicket, Lotto winning, Bonus bonus) {
         compareTicketToWinning(lottoTicket, winning);
         compareTicketToBonus(lottoTicket, bonus);
-    }
-
-    public static ResultGenerator create(List<Lotto> lottoTicket, Lotto winning, Bonus bonus) {
-        return new ResultGenerator(lottoTicket, winning, bonus);
     }
 
     private void compareTicketToWinning(List<Lotto> lottoTicket, Lotto winning) {

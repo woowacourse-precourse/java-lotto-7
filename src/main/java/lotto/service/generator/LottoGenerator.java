@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.factory.LottoFactory;
 
 public class LottoGenerator {
 
@@ -14,12 +15,8 @@ public class LottoGenerator {
     private final Integer lottoCount;
     private final List<Lotto> lottoTicket = new ArrayList<>();
 
-    private LottoGenerator(Integer lottoCount) {
+    public LottoGenerator(Integer lottoCount) {
         this.lottoCount = lottoCount;
-    }
-
-    public static LottoGenerator create(Integer lottoCount) {
-        return new LottoGenerator(lottoCount);
     }
 
     private List<Integer> generateNumber() {
@@ -27,7 +24,7 @@ public class LottoGenerator {
     }
 
     private Lotto changeNumberToLotto(List<Integer> number) {
-        return Lotto.create(number);
+        return LottoFactory.create(number);
     }
 
     public List<Lotto> getLottoTicket() {

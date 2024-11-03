@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.factory.BonusGeneratorFactory;
 import lotto.service.generator.BonusGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -30,7 +31,7 @@ public class BonusController {
         try {
             outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
             String lottoBonus = inputView.inputUser();
-            return BonusGenerator.create(winning, lottoBonus);
+            return BonusGeneratorFactory.create(winning, lottoBonus);
         } catch (IllegalArgumentException e) {
             System.out.println("ERROR");
         }

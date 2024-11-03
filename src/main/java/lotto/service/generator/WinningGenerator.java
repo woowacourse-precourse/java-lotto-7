@@ -3,6 +3,7 @@ package lotto.service.generator;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.factory.LottoFactory;
 
 public class WinningGenerator {
 
@@ -11,13 +12,9 @@ public class WinningGenerator {
 
     private final Lotto winning;
 
-    private WinningGenerator(String winning) {
+    public WinningGenerator(String winning) {
         validate(winning);
-        this.winning = Lotto.create(change(winning));
-    }
-
-    public static WinningGenerator create(String winning) {
-        return new WinningGenerator(winning);
+        this.winning = LottoFactory.create(change(winning));
     }
 
     private boolean IsContainSeparator(String winning) {

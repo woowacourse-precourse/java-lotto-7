@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.factory.PaymentFactory;
 import lotto.service.Payment;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,7 +30,7 @@ public class PaymentController {
         try {
             outputView.printlnMessage(PrintMessage.INPUT_LOTTO_PURCHASE_AMOUNT);
             String money = inputView.inputUser();
-            return Payment.create(money);
+            return PaymentFactory.create(money);
         } catch (IllegalArgumentException e) {
             System.out.println("ERROR");
         }
