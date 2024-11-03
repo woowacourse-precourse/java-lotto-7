@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
-import static lotto.view.ErrorMessages.DUPLICATION_LOTTO_NUMBER;
-import static lotto.view.ErrorMessages.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.view.ErrorMessages.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,7 +38,7 @@ public class Lotto {
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
         if (lottoNumbers.size() < LOTTO_MAX_NUMBER.getUnit()) {
-            throw new IllegalArgumentException(DUPLICATION_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATION_IN_BASIC_LOTTO_NUMBER.getMessage());
         }
     }
 

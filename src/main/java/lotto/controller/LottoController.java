@@ -6,6 +6,7 @@ import lotto.service.LottoService;
 
 import java.util.List;
 
+import static lotto.view.ErrorMessages.DUPLICATION_IN_BASIC_AND_BONUS;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
@@ -56,7 +57,7 @@ public class LottoController {
 
     private void validateDuplicationOfLottoNumber(List<Integer> winningLottoNumbers, int bonusNumber) {
         if (winningLottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 기본 당첨 숫자와 보너스 숫자가 중복됩니다.");
+            throw new IllegalArgumentException(DUPLICATION_IN_BASIC_AND_BONUS.getMessage());
         }
     }
 }

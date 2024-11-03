@@ -18,10 +18,6 @@ public enum Rank {
         this.bonusCount = bonusCount;
     }
 
-    private static boolean isRankMatched(int basicCount, int bonusCount, Rank rank) {
-        return basicCount == rank.basicCount && bonusCount == rank.bonusCount;
-    }
-
     public static Rank calculateRank(int basicCount, int bonusCount) {
         for (Rank rank : Rank.values()) {
             if (isRankMatched(basicCount, bonusCount, rank)) {
@@ -30,6 +26,10 @@ public enum Rank {
         }
 
         return NONE;
+    }
+
+    private static boolean isRankMatched(int basicCount, int bonusCount, Rank rank) {
+        return basicCount == rank.basicCount && bonusCount == rank.bonusCount;
     }
 
     public int getPrize() {
