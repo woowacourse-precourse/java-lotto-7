@@ -25,8 +25,8 @@ public class WinningStatistics {
     private int sixMatches=0;
     private double profitRate = 0;
 
-    public WinningStatistics(List<LottoResult> winnings, int amount){
-        List<Rank> ranks = winnings.stream()
+    public WinningStatistics(List<LottoResult> lottoResults, int amount){
+        List<Rank> ranks = lottoResults.stream()
                 .map(LottoResult::getRank)
                 .toList();
 
