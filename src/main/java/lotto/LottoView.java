@@ -7,9 +7,9 @@ import java.util.ListIterator;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoView {
-    public int getPurchasePrice(){
+    public String getPurchasePrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(readLine());
+        return readLine();
     }
     public int getNumberOfPurchase(int purchaseNumber){
         int numberOfPurchases = purchaseNumber / 1000;

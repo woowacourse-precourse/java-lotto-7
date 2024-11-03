@@ -22,19 +22,15 @@ public class LottoController {
         winningNumbers = new LinkedList<>();
     }
     public void startLotto(){
-        purchasePrice = view.getPurchasePrice();
+        while(!setValidPurchasePrice());
 
-        if(purchasePrice % 1000 != 0){
-            // 예외 처리
-        }
         // 로또 번호 생성
         numberOfPurchases = view.getNumberOfPurchase(purchasePrice);
         createLottoNumbers();
         view.printLottoNumbers(lottoNumbers);
 
-        // 당첨 번호 입력
-        String numberString = view.getWinningNumbers();
-        splitAndParse(numberString);
+        // 당첨 번호 입력 및 저장
+        while(!validWinningNumber());
 
         // 보너스 번호 입력
         bonusNumber = view.getBonusNumber();
@@ -45,20 +41,47 @@ public class LottoController {
 
         view.finalResult(statistic);
     }
-    public void createLottoNumbers(){
-        // 로또 번호 생성 및 리스트에 추가
-        for(int i = 0; i < numberOfPurchases; i++){
-            Lotto pickedNumbers = new Lotto(model.getLottoNumber());
-            pickedNumbers.sortNumbers();
-            lottoNumbers.add(pickedNumbers);
+    public boolean setValidPurchasePrice(){
+        try {
+            String purchasePriceString = view.getPurchasePrice();
+            purchasePrice = Integer.parseInt(purchasePriceString);
+            return true;
+        }catch (NumberFormatException e){
+            System.out.println("\n[ERROR] 구매금액은 숫자로만 작성해야합니다.");
+            return false;
         }
     }
-    public void splitAndParse(String numberString){
-        if(!numberString.matches("[0-9,]+")){
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
+    public void createLottoNumbers(){
+        // 로또 번호 생성 및 리스트에 추가
+
+        for(int i = 0; i < numberOfPurchases; i++){
+            try {
+                lottoNumbers.add(model.getLottoNumber());
+            }catch (IllegalArgumentException e){
+                i--;
+            }
         }
+    }
+    public void setWinninNumber(String numberString){
         for(String n:numberString.split(",")){
             winningNumbers.add(Integer.parseInt(n));
+        }
+    }
+    public boolean validWinningNumber(){
+        String numberString;
+        try{
+            numberString = view.getWinningNumbers();
+            if(!numberString.matches("[0-9,]+")){
+                throw new IllegalArgumentException("\n[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
+            }
+            else if(numberString.split(",").length != 6){
+                throw new IllegalArgumentException("\n[ERROR] 당첨번호는 6개여야 합니다.");
+            }
+            setWinninNumber(numberString);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            return false;
         }
     }
     public void matchNumbers(){
@@ -75,5 +98,4 @@ public class LottoController {
             }
         }
     }
-
 }
