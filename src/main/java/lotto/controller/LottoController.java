@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.dto.LottoStatisticsResponse;
 import lotto.model.dto.LottosResponse;
 import lotto.model.service.LottoService;
 import lotto.view.ErrorView;
@@ -71,7 +72,8 @@ public class LottoController {
     }
 
     public String checkWinnings(Integer customerId) {
-        lottoService.statisticsWinningOfCustomerLottos(customerId);
+        LottoStatisticsResponse response = lottoService.statisticsWinningOfCustomerLottos(customerId);
+        OutputView.printWinningStatistics(response);
         return "success";
     }
 
