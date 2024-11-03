@@ -19,7 +19,11 @@ public class BonusWinLottoNumber {
                     "보너스 번호는 기본 당첨 번호와 중복되면 안 됩니다.";
     
     private final int number;
-    
+
+    /**
+     * @param 문자열
+     * @throws 문자열이 형식에 맞지 않으면 IllegalArgumentException 호출
+     */
     public BonusWinLottoNumber(String bonusNumber, BasicWinLottoNumbers numbers) {
         if (isEmpty(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());

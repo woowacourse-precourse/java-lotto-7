@@ -36,7 +36,11 @@ public class BasicWinLottoNumbers {
     private static final Pattern PATTERN = Pattern.compile(REGEX_FORMAT);
     
     private final Set<Integer> numbers;
-    
+
+    /**
+     * @param 문자열
+     * @throws 문자열이 형식에 맞지 않으면 IllegalArgumentException 호출
+     */
     public BasicWinLottoNumbers(String numbersToValidate) {
         validateInput(numbersToValidate);
 

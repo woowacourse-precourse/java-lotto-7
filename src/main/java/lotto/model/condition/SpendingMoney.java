@@ -27,7 +27,11 @@ public class SpendingMoney {
                     "구매 금액은 " + Constants.LOTTO_TICKET_PRICE + "보다 커야 합니다.";
     
     private final long money;
-    
+
+    /**
+     * @param 문자열(숫자)
+     * @throws 숫자가 형식에 맞지 않으면 IllegalArgumentException 호출
+     */
     public SpendingMoney(String numberToValidate) {
         if (isEmpty(numberToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
