@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -50,6 +52,41 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "1000원", "\n", " ", "-1", "0"})
+    void 금액_입력_예외_테스트(String moneyInput) {
+        assertSimpleTest(() -> {
+            runException(moneyInput);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5", "1,1,1,1,1,1", "1번,2번,3번,4번,5번,6번", "1,2,3,4,5,46", "\n", " "})
+    void 로또_숫자_입력_예외_테스트(String lottoInput) {
+        assertSimpleTest(() -> {
+            runException("2000", lottoInput);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-1", "46", "1번", "\n", " "})
+    void 보너스_숫자_입력_예외_테스트(String bonusInput) {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", bonusInput);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_숫자_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
