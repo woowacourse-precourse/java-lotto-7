@@ -29,4 +29,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
         }
     }
+
+    public int getValue() {
+        return value;
+    }
 }

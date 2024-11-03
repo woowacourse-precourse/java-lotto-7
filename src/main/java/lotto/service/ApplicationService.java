@@ -22,11 +22,19 @@ public class ApplicationService {
 
     public void run() {
         PurchaseAmount purchaseAmount = this.userInputService.createPurchaseAmount();
+
         LottoTicket lottoTicket = this.lottoService.createLottoTicket(purchaseAmount);
         this.prompter.showBlankLine();
+
         this.userOutputService.printPurchasedLottoTicket(lottoTicket);
+
         Lotto winningNumber = this.userInputService.createWinningNumber();
         this.prompter.showBlankLine();
+
         BonusNumber bonusNumber = this.userInputService.createBonusNumber(winningNumber);
+
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, bonusNumber);
+        lottoResultCalculator.inputLottoTicket(lottoTicket);
+        lottoResultCalculator.run();
     }
 }
