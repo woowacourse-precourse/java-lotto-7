@@ -23,6 +23,12 @@ public class LottoController {
 
         List<Integer> winningNumbers = getValidatedWinningNumbers();
         int bonusNumber = getValidatedBonusNumber();
+
+        Map<Rank, Integer> result = lottoChecker.checkWinningStatus(tickets, winningNumbers, bonusNumber);
+        ResultView.printResult(result);
+
+        double yield = lottoChecker.calculateTotalYield(result, purchaseAmount);
+        ResultView.printYield(yield);
     }
 
     private int getValidatedPurchaseAmount() {

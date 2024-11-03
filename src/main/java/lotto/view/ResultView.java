@@ -13,4 +13,17 @@ public class ResultView {
             System.out.println(ticket.getNumbers());
         }
     }
+
+    public static void printResult(Map<Rank, Integer> result) {
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                System.out.printf("%s (%,d원) - %d개\n", rank.getDescription(), rank.getPrize(), result.getOrDefault(rank, 0));
+            }
+        }
+    }
+
+    public static void printYield(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
+    }
 }
