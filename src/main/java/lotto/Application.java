@@ -39,7 +39,7 @@ public class Application {
             try {
                 LottoGenerator lottoGenerator = new LottoGenerator();
                 int lottoCount = lottoGenerator.getLottoCount(budget);
-                System.out.println(lottoCount + "\n개를 구매했습니다.");
+                System.out.println("\n" + lottoCount + "개를 구매했습니다.");
                 return lottoCount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
