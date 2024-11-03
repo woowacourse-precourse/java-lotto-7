@@ -1,10 +1,14 @@
 package lotto.message;
 
 public enum ErrorMessage {
-    INVALID_LOTTO_NUMBER_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
+    INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
+    INVALID_NUMBER("잘못된 입력입니다."),
+    INVALID_THOUSAND("1000원 단위로 입력해주세요. "),
+    NEGATIVE_NUMBER("1000 이상의 숫자를 입력해주세요."),
 
     ;
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
 
     ErrorMessage(String message){
@@ -12,6 +16,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage(){
-        return message;
+        return ERROR_PREFIX + message;
     }
 }

@@ -11,7 +11,12 @@ public class UserService {
     }
 
     public int inputAmount(){
-        Amount amount = new Amount(inputView.inputAmountView());
-        return amount.getAmount();
+        try {
+            Amount amount = new Amount(inputView.inputAmountView());
+            return amount.getAmount();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputAmount();
+        }
     }
 }
