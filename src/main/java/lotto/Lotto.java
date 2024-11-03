@@ -22,4 +22,8 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
 }
