@@ -9,6 +9,7 @@ public class OutputView {
 
     private static final String PURCHASED_LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.\n";
     private static final String REPORT_FORMAT = "%d개 일치 (%d원) - %d개\n";
+    private static final String YIELD_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
     public void printErrorMessage(String message) {
         System.out.println(message);
@@ -28,5 +29,9 @@ public class OutputView {
         for (LottoPrize prize : LottoPrize.values()) {
             System.out.printf(REPORT_FORMAT, prize.getMatchCount(), prize.getPrize(), matchCountMap.get(prize));
         }
+    }
+
+    public void printYield(double yield) {
+        System.out.printf(YIELD_FORMAT, yield);
     }
 }
