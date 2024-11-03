@@ -24,4 +24,5 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 + 입력값 검증
   + 검증 실패시 실패 사유 출력 후 입력 재실행
 + 금액에 따른 로또 발행
++ 당첨 결과 확인
 + 당첨 결과 계산
