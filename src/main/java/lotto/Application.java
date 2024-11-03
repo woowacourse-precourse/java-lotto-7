@@ -9,16 +9,7 @@ public class Application {
     public static void main(String[] args) {
         int amount = getAmount();
         int lottoCount = calculateLottoCount(amount);
-        System.out.println();
-
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto(generateRandomLottoNumbers());
-            purchasedLottos.add(lotto);
-            System.out.println(lotto.getNumbers());
-        }
-        System.out.println();
+        List<Lotto> purchasedLottos = purchaseLottos(lottoCount);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto winningLotto = new Lotto();
@@ -29,6 +20,18 @@ public class Application {
         System.out.println();
         //구매한 로또 번호와 당첨 번호 비교, 당첨 결과 확인
         showResult(purchasedLottos, winningLotto, bonusNumber);
+    }
+
+    private static List<Lotto> purchaseLottos(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = new Lotto(generateRandomLottoNumbers());
+            purchasedLottos.add(lotto);
+            System.out.println(lotto.getNumbers());
+        }
+        System.out.println();
+        return purchasedLottos;
     }
 
     private static int calculateLottoCount(int amount) {
