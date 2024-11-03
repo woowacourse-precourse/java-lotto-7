@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constant.ErrorMessage.DUPLICATION_ERROR;
 import static lotto.constant.ErrorMessage.NUMBER_COUNT_ERROR;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,8 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateDuplication(numbers);
-        sortLottoNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
@@ -36,7 +36,9 @@ public class Lotto {
         return numbers;
     }
 
-    private void sortLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }
