@@ -13,4 +13,6 @@ public class FixedNumberGenerator implements LottoNumberGenerator {
     public List<Integer> generate() {
         return fixedNumber;
     }
+
+
 }
