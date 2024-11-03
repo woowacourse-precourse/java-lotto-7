@@ -18,12 +18,12 @@ public class PublishingService {
         return publishingService;
     }
 
-    public static Lotto publishLottoTicket() {
+    public Lotto publishLottoTicket() {
         List<Integer> publishedTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(publishedTicket);
     }
 
-    public List<Lotto> publishByNumberOfTicket (int numberOfTickets) {
+    public List<Lotto> publishByNumberOfTickets(int numberOfTickets) {
         List<Lotto> LottoTickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
             LottoTickets.add(publishLottoTicket());

@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 
 public class OutputPublishedTicketsView {
-    public void printPublishedTicket(List<Integer> publishedNumber) {
-        System.out.println(publishedNumber);
+    public void printLottoNumbers(List<Integer> LottoNumbers) {
+        System.out.println(LottoNumbers);
     }
 }
