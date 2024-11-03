@@ -1,19 +1,23 @@
 package lotto;
 
+import java.math.BigDecimal;
+
+import static lotto.Constant.*;
+
 public enum LottoEnum {
-    FIFTH(3, 5000, 0),
-    FOURTH(4, 50000, 0),
-    THIRD(5, 1500000, 0),
-    SECOND(Constant.LOTTO_BONUS_CORRECT, 30000000, 0),
-    FIRST(6, 2000000000, 0),
-    NONE(0, 0,0);
+    FIFTH(3, new BigDecimal(5000), new BigDecimal(0)),
+    FOURTH(4, new BigDecimal(50000), new BigDecimal(0)),
+    THIRD(5, new BigDecimal(1500000), new BigDecimal(0)),
+    SECOND(LOTTO_BONUS_CORRECT, new BigDecimal(30000000), new BigDecimal(0)),
+    FIRST(6, new BigDecimal(2000000000), new BigDecimal(0)),
+    NONE(0, new BigDecimal(0), new BigDecimal(0));
 
 
     private final int matchCount;
-    private final int prize;
-    private int winnerCount;
+    private final BigDecimal prize;
+    private BigDecimal winnerCount;
 
-    LottoEnum(int matchCount, int prize, int winnerCount) {
+    LottoEnum(int matchCount, BigDecimal prize, BigDecimal winnerCount) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.winnerCount = winnerCount;
@@ -23,26 +27,26 @@ public enum LottoEnum {
         return matchCount;
     }
 
-    public int getPrize() {
+    public BigDecimal getPrize() {
         return prize;
     }
 
-    public int getWinnerCount() {
+    public BigDecimal getWinnerCount() {
         return winnerCount;
     }
 
     public static void increaseWinnerCount(int count) {
-        for(LottoEnum lotto : LottoEnum.values()) {
-            if(lotto.matchCount == count) {
-                lotto.winnerCount++;
+        for (LottoEnum lotto : LottoEnum.values()) {
+            if (lotto.matchCount == count) {
+                lotto.winnerCount = lotto.winnerCount.add(BigDecimal.valueOf(1));
             }
         }
     }
 
-    public static double sum() {
-        double totalPrize = 0;
-        for(LottoEnum lotto : LottoEnum.values()) {
-            totalPrize += lotto.getPrize() * lotto.winnerCount;
+    public static BigDecimal sum() {
+        BigDecimal totalPrize = new BigDecimal(0);
+        for (LottoEnum lotto : LottoEnum.values()) {
+            totalPrize = totalPrize.add(lotto.getWinnerCount().multiply(lotto.getPrize()));
         }
         return totalPrize;
     }

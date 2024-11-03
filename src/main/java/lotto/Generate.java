@@ -9,9 +9,9 @@ import java.util.List;
 import static lotto.Constant.*;
 
 public class Generate {
-    int cost;
+    double cost;
 
-    public Generate(int cost) {
+    public Generate(double cost) {
         this.cost = cost;
     }
 
