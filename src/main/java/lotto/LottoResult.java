@@ -29,6 +29,14 @@ public class LottoResult {
         }
     }
 
+    private double calculateReturnRate(final int inputPurchasePrice) {
+        long totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : rankCounts.entrySet()) {
+            totalPrize += (long) entry.getKey().getPrizeMoney() * entry.getValue();
+        }
+        return (double) totalPrize / inputPurchasePrice * RETURN_RATE_DENOMINATOR;
+    }
+
     public List<Lotto> setLottos(final int inputPurchasePrice) {
         int purchaseQuantity = inputPurchasePrice / PRICE_PER_LOTTO;
         System.out.println("\n" + purchaseQuantity + Message.PURCHASE_QUANTITY.getMessage());
