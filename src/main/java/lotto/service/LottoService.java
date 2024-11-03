@@ -47,7 +47,8 @@ public class LottoService {
             sortAscending(LottoNumbers);
 
             if (!LottosValidate.isAscendingNumber(LottoNumbers)) {
-                throw new IllegalStateException(LottoMessage.IS_NOT_ASCENDING_NUMBER.getMessage());
+                System.out.println(LottoMessage.IS_NOT_ASCENDING_NUMBER.getMessage());
+                sortAscending(LottoNumbers);
             }
 
             LottosView.displayLottoNumbers(LottoNumbers);

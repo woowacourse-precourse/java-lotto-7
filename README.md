@@ -133,6 +133,24 @@
   - Lotto 번호가 오름차순 되었는지 확인한다.
 - displayLottoNumbers
   - Lotto 번호를 출력한다.
+- getWinningInput
+  - 당첨 번호를 입력받는다.
+- isValidString
+  - 6개의 숫자와 쉼표로 이루어진 문자열인지 확인한다.
+- addWinningNumber
+  - HashSet에 당첨 번호 추가한다.
+- getBonusInput
+  - 보너스 번호를 입력받는다.
+- isLottoNumber
+  - 1에서 45 사이의 숫자인지 확인한다.
+- containsWinningNumber
+  - Lotto에 HashSet과 동일한 값이 있는지 확인한다.
+- removeWinningNumber
+  - Lotto에서 동일한 값 제거한다.
+- containsBonusNumber
+  - Lotto에 보너스 번호와 동일한 값이 있는지 확인한다.
+- checkBonusNumber
+  - 보너스 번호 상태를 변경한다.
 
 ## 로직
 
