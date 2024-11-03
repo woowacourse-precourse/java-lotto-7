@@ -1,4 +1,4 @@
-package lotto.numberSelector;
+package lotto;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import java.util.List;

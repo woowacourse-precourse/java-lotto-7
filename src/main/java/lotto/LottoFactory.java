@@ -1,8 +1,4 @@
-package lotto.item.itemFactory;
-
-import lotto.item.Item;
-import lotto.item.Lotto;
-import lotto.numberSelector.NumberSelector;
+package lotto;
 
 public class LottoFactory implements ItemFactory<Lotto> {
 

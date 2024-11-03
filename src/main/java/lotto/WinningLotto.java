@@ -1,4 +1,4 @@
-package lotto.item;
+package lotto;
 
 import java.util.List;
 

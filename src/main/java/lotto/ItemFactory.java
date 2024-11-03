@@ -1,6 +1,4 @@
-package lotto.item.itemFactory;
-
-import lotto.item.Item;
+package lotto;
 
 public interface ItemFactory<T extends Item> {
     T createItem();

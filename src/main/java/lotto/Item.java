@@ -1,4 +1,4 @@
-package lotto.item;
+package lotto;
 
 public interface Item {
     String toString();

@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Objects;
-import lotto.item.Lotto;
-import lotto.shop.LottoShop;
 import org.junit.jupiter.api.Test;
 
 class LottoShopTest {

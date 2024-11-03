@@ -1,10 +1,6 @@
 package lotto;
 
 import java.util.List;
-import lotto.customer.LottoCustomer;
-import lotto.item.Lotto;
-import lotto.item.WinningLotto;
-import lotto.shop.LottoShop;
 
 public class Application {
     public static void main(String[] args) {

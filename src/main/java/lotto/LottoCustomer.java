@@ -1,14 +1,8 @@
-package lotto.customer;
+package lotto;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Prize;
-import lotto.item.Item;
-import lotto.item.Lotto;
-import lotto.item.WinningLotto;
-import lotto.numberSelector.NumberSelector;
-import lotto.shop.LottoShop;
 
 public class LottoCustomer implements Customer<Lotto>{
 

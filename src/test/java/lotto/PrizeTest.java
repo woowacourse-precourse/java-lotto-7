@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.item.Lotto;
-import lotto.item.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,8 +1,6 @@
-package lotto.shop;
+package lotto;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import lotto.item.Item;
 
 public interface Shop<T extends Item> {
     void setItem(Class<? extends Item> itemType, int price);

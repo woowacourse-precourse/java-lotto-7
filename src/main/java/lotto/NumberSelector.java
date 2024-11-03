@@ -1,4 +1,4 @@
-package lotto.numberSelector;
+package lotto;
 
 import java.util.List;
 

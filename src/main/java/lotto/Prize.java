@@ -1,8 +1,5 @@
 package lotto;
 
-import lotto.item.Lotto;
-import lotto.item.WinningLotto;
-
 public enum Prize {
     DRAW(0, 0),
     FIFTH(3, 5_000),

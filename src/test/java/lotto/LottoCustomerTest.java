@@ -6,9 +6,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.customer.LottoCustomer;
-import lotto.item.Lotto;
-import lotto.item.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 class LottoCustomerTest extends NsTest {

@@ -1,14 +1,9 @@
-package lotto.shop;
+package lotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.item.Item;
-import lotto.item.Lotto;
-import lotto.item.itemFactory.LottoFactory;
-import lotto.numberSelector.NumberSelector;
-import lotto.numberSelector.RandomSelector;
 
 public class LottoShop implements Shop<Lotto>{
 
