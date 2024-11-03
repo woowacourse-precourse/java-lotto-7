@@ -11,6 +11,8 @@ import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class LottoApplicationServiceImpl implements LottoApplicationService {
     private static final int FULL_MATCH_COUNT = 6;
@@ -22,24 +24,40 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
 
     @Override
     public boolean validateAmount(String input) {
+        validateNotBlank(input);
+        validateNumeric(input);
+        int amount = parseAmount(input);
+        validatePositiveAmount(amount);
+        validateDivisibleByLottoPrice(amount);
+        return true;
+    }
+
+    private void validateNotBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
         }
+    }
 
+    private void validateNumeric(String input) {
         if (!input.matches(NUMERIC_REGEX)) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
         }
+    }
 
-        int amount = Integer.parseInt(input);
+    private int parseAmount(String input) {
+        return Integer.parseInt(input);
+    }
+
+    private void validatePositiveAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
         }
+    }
 
+    private void validateDivisibleByLottoPrice(int amount) {
         if (amount % GlobalConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
         }
-
-        return true;
     }
 
     @Override
@@ -75,26 +93,16 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
         return new Lotto(randomNumbers);
     }
 
-    private Rank determineRank(Lotto lotto, WinningContext context) {
-        int matchCount = getMatchCount(lotto, context);
-        boolean hasBonus = hasBonusNumber(lotto, context.getBonusNumber());
 
-        if (matchCount == FULL_MATCH_COUNT) {
-            return Rank.FIRST;
-        }
-        if (isSecondPlace(matchCount, hasBonus)) {
-            return Rank.SECOND;
-        }
-        if (matchCount == FIVE_MATCH_COUNT) {
-            return Rank.THIRD;
-        }
-        if (matchCount == FOUR_MATCH_COUNT) {
-            return Rank.FOURTH;
-        }
-        if (matchCount == THREE_MATCH_COUNT) {
-            return Rank.FIFTH;
-        }
-        return Rank.NO_WIN;
+    private Rank determineRank(Lotto lotto, WinningContext context) {
+        Map<Integer, Supplier<Rank>> rankMap = Map.of(
+                FULL_MATCH_COUNT, () -> Rank.FIRST,
+                FIVE_MATCH_COUNT, () -> hasBonusNumber(lotto, context.getBonusNumber()) ? Rank.SECOND : Rank.THIRD,
+                FOUR_MATCH_COUNT, () -> Rank.FOURTH,
+                THREE_MATCH_COUNT, () -> Rank.FIFTH
+        );
+
+        return rankMap.getOrDefault(getMatchCount(lotto, context), () -> Rank.NO_WIN).get();
     }
 
     private int getMatchCount(Lotto lotto, WinningContext context) {
@@ -107,7 +115,4 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
         return lotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
-    private boolean isSecondPlace(int matchCount, boolean hasBonus) {
-        return matchCount == FIVE_MATCH_COUNT && hasBonus;
-    }
 }
