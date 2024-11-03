@@ -66,4 +66,8 @@ public class Output {
         }
         System.out.printf((Constants.MATCH_COUNT_FORMAT.getMessage()) + "%n", matchNumbersCount, prize, count);
     }
+
+    public void printProfitability(double profitability) {
+        System.out.printf(Constants.PROFITABILITY_FORMAT.getMessage() + "%n", profitability);
+    }
 }

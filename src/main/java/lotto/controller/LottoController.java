@@ -147,5 +147,6 @@ public class LottoController {
 
     private void handleProfitability(List<RankCount> winningStatistics, int count) {
         double profitability = lottoService.calculateProfitability(winningStatistics, count * 1000);
+        output.printProfitability(profitability);
     }
 }
