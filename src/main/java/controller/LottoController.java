@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+
     private final PurchaseAmount purchaseAmount;
     private final List<Lotto> purchasedLottos = new ArrayList<>();
     private final PrizeCalculator prizeCalculator = new PrizeCalculator();
@@ -30,7 +31,7 @@ public class LottoController {
                 OutputView.printPurchasedLottos(purchasedLottos);
                 winningLotto = InputView.readWinningNumbers();
                 PrizeResult prizeResult = prizeCalculator.calculate(purchasedLottos, winningLotto);
-                OutputView.printPrizeStatistics(prizeCalculator.getPrizeResult(), purchaseAmount.getAmount());
+                OutputView.printPrizeStatistics(prizeResult, purchaseAmount.getAmount());
                 isRunning = false; // 정상 종료
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
@@ -46,4 +47,8 @@ public class LottoController {
         }
     }
 
+    private void calculatePrize() {
+        PrizeResult prizeResult = prizeCalculator.calculate(purchasedLottos, winningLotto);
+        // prizeResult는 이미 PrizeCalculator 내에 저장되어 있음
+    }
 }

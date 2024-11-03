@@ -3,6 +3,7 @@ package view;
 import camp.nextstep.edu.missionutils.Console;
 import domain.lotto.LottoNumber;
 import domain.lotto.WinningLotto;
+import exception.InvalidInputException;
 import purchase.PurchaseAmount;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class InputView {
             int amount = Integer.parseInt(input);
             return new PurchaseAmount(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new InvalidInputException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
     }
 
@@ -32,7 +33,7 @@ public class InputView {
                     .map(LottoNumber::new)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            throw new InvalidInputException("[ERROR] 당첨 번호는 숫자여야 합니다.");
         }
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
@@ -41,7 +42,7 @@ public class InputView {
         try {
             bonusNumber = new LottoNumber(Integer.parseInt(bonusInput.trim()));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new InvalidInputException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
 
         return new WinningLotto(winningNumbers, bonusNumber);
