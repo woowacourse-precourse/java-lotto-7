@@ -26,5 +26,7 @@ public class Application {
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
+        List<Integer> winningNumbers = inputHandler.winningNumbersInput();
+        int bonusNumber = inputHandler.bonusNumberInput();
     }
 }
