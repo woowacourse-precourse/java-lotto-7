@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import static lotto.domain.LottoPrize.NO_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,10 @@ class LottoPrizeTest {
                 6개 일치 (2,000,000,000원)""";
 
         // When
-        String resultLottoPrizeToString = Arrays.stream(LottoPrize.values()).map(LottoPrize::toString)
+        String resultLottoPrizeToString = Arrays.stream(LottoPrize.values())
+                .filter(prize -> prize != NO_PRIZE)
+                .sorted(Comparator.comparingLong(LottoPrize::getPrizeMoney))
+                .map(LottoPrize::toString)
                 .collect(Collectors.joining("\n"));
 
         // Then
