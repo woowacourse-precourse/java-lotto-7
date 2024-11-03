@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,12 +42,13 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        getSorted();
-        return numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        getSorted(sortedNumbers);
+        return sortedNumbers;
     }
 
-    private void getSorted() {
-        numbers.sort(Integer::compare);
+    private void getSorted(List<Integer> sortedNumbers) {
+        sortedNumbers.sort(Integer::compareTo);
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {
