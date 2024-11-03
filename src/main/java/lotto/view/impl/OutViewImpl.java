@@ -28,12 +28,15 @@ public class OutViewImpl implements OutPutView {
 
         for (WinningRank rank : List.of(WinningRank.FIFTH, WinningRank.FOURTH, WinningRank.THIRD, WinningRank.SECOND,
                 WinningRank.FIRST)) {
-            if (rank != WinningRank.NONE) {
-                String formattedPrize = numberFormat.format(rank.getPrize());
-                String bonusMessage = rank.requiresBonus() ? ", 보너스 볼 일치" : "";
-                PRINT_HOW_MANY_WINNING_MESSAGE.printGameMessage(rank.getMatchCount(), bonusMessage, formattedPrize,
-                        results.getOrDefault(rank, 0));
+            String formattedPrize = numberFormat.format(rank.getPrize());
+            String bonusMessage = "";
+
+            if (rank.requiresBonus()) {
+                bonusMessage = ", 보너스 볼 일치";
             }
+
+            int count = results.getOrDefault(rank, 0);
+            PRINT_HOW_MANY_WINNING_MESSAGE.printGameMessage(rank.getMatchCount(), bonusMessage, formattedPrize, count);
         }
     }
 
