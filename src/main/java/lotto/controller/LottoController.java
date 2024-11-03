@@ -4,6 +4,7 @@ import static lotto.util.Validator.validateBonusNumber;
 import static lotto.util.Validator.validatePurchaseAmount;
 import static lotto.util.Validator.validateWinningNumbers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -25,43 +26,60 @@ public class LottoController {
     }
 
     public void run() {
+        int purchaseAmount = getPurchaseAmount();
+        generateAndDisplayLottos(purchaseAmount);
+        calculateAndPrintResults();
+        displayProfitRate(purchaseAmount);
+    }
+
+    private int getPurchaseAmount() {
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        int purchaseAmount = validatePurchaseAmount(inputPurchaseAmount);
+        return validatePurchaseAmount(inputPurchaseAmount);
+    }
+
+    private void generateAndDisplayLottos(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         lottoService.generateLottos(lottoCount);
         outputView.printLottoCount(lottoCount);
 
         List<Lotto> lottos = lottoService.getLottos();
         lottos.forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
+    }
 
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        List<Integer> winningNumbers = validateWinningNumbers(inputWinningNumbers);
-        String inputBonusNumber = inputView.inputBonusNumber();
-        int bonusNumber = validateBonusNumber(winningNumbers, inputBonusNumber);
-
-        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
+    private void calculateAndPrintResults() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        lottoService.saveLottoRanks(winningNumbers, getBonusNumber(winningNumbers));
         Map<Rank, Integer> results = lottoService.getResults();
 
         outputView.printWinningStatisticsHeader();
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) {
-                continue;
-            }
-            if (rank.isRequiresBonus()) {
-                outputView.printMatchWithBonusResult(
-                        rank.getMatchCount(),
-                        rank.getWinningAmount(),
-                        results.getOrDefault(rank, 0)
-                );
-                continue;
-            }
-            outputView.printMatchResult(
-                    rank.getMatchCount(),
-                    rank.getWinningAmount(),
-                    results.getOrDefault(rank, 0)
-            );
-        }
+        Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NONE)
+                .forEach(rank -> printResults(rank, results));
+    }
 
+    private List<Integer> getWinningNumbers() {
+        String inputWinningNumbers = inputView.inputWinningNumbers();
+        return validateWinningNumbers(inputWinningNumbers);
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        String inputBonusNumber = inputView.inputBonusNumber();
+        return validateBonusNumber(winningNumbers, inputBonusNumber);
+    }
+
+    private void printResults(Rank rank, Map<Rank, Integer> results) {
+        int matchCount = rank.getMatchCount();
+        int winningAmount = rank.getWinningAmount();
+        int winningCount = results.getOrDefault(rank, 0);
+
+        if (rank.isRequiresBonus()) {
+            outputView.printMatchWithBonusResult(matchCount, winningAmount, winningCount);
+            return;
+        }
+        outputView.printMatchResult(matchCount, winningAmount, winningCount);
+    }
+
+    private void displayProfitRate(int purchaseAmount) {
         long winningAmount = lottoService.calculateWinningAmount();
         double profitRate = lottoService.calculateProfitRate(winningAmount, purchaseAmount);
         outputView.printProfitRate(profitRate);
