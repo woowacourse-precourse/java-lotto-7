@@ -13,8 +13,9 @@ import java.util.List;
 public class OutputView {
 
     private static final String PROFIT_RATE_FORMAT = "#,##0.0";
+    private static final DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
 
-    public void printTicketCount(int count) {
+    public void printPurchaseTicketCount(int count) {
         System.out.printf(NEWLINE.getMessage());
         System.out.printf(OUTPUT_PURCHASE_TICKET.getMessage(), count);
         System.out.printf(NEWLINE.getMessage());
@@ -36,7 +37,6 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
         System.out.printf(OUTPUT_PROFIT_RATE.getMessage(), decimalFormat.format(profitRate));
     }
 }
