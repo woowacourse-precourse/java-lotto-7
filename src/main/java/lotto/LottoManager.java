@@ -12,10 +12,9 @@ public class LottoManager {
     }
 
     private List<Lotto> createLottos(final int lottoAmount) {
+        System.out.println(lottoAmount + "개를 구매했습니다.");
         return IntStream.range(0, lottoAmount)
                 .mapToObj(lotto -> LottoGenerator.generate())
                 .toList();
     }
-
-
 }

@@ -11,6 +11,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
         Collections.sort(this.numbers);
+        System.out.println(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
