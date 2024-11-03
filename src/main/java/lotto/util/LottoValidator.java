@@ -28,7 +28,7 @@ public class LottoValidator {
         }
     }
 
-    private static void validateSingleNumberRange(int number) {
+    public static void validateSingleNumberRange(int number) {
         if (number < NUMBER_RANGE_MIN.getValue() || number > NUMBER_RANGE_MAX.getValue()) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
