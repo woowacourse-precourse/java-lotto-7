@@ -12,7 +12,7 @@ public class Controller {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    private int chooseNumberOfLottoContinuously(){
+    private int chooseNumberOfLottoContinuously() {
         LottoCreator lottoCreator = new LottoCreator();
         int numberOfLotto;
         int purchasePrice;
@@ -42,7 +42,7 @@ public class Controller {
                 .collect(Collectors.toList());
     }
 
-    private WinningLotto createWinningLotto(){
+    private WinningLotto createWinningLotto() {
         String winningNumbersBeforeConvert = inputView.inputWinningNumbers();
         List<Integer> winningNumbers = convertToIntegerList(winningNumbersBeforeConvert);
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
@@ -51,12 +51,19 @@ public class Controller {
         return winningLotto;
     }
 
-    public void printStatistics(){
+    private void printStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusBallNumber) {
         ProfitCalculator profitCalculator = new ProfitCalculator();
-        List<Lotto> lottoTickets = purchaseLottos();
-        List<Integer> winningNumbers = createWinningLotto().getWinningNumbers();
-        int bonusBallNumber = createWinningLotto().getBonusNumber();
+        OutputView outputView = new OutputView();
         profitCalculator.calculateRankCount(lottoTickets, winningNumbers, bonusBallNumber);
         profitCalculator.calculateProfit();
+        outputView.outputStatistics(profitCalculator.getRankCounts(), profitCalculator.getProfitRate());
+    }
+
+    public void runLotto() {
+        List<Lotto> lottoTickets = purchaseLottos();
+        WinningLotto winningLotto = createWinningLotto();
+        List<Integer> winningNumbers = winningLotto.getWinningNumbers();
+        int bonusBallNumber = winningLotto.getBonusNumber();
+        printStatistics(lottoTickets, winningNumbers, bonusBallNumber);
     }
 }

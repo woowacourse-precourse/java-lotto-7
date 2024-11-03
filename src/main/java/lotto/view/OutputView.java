@@ -18,15 +18,21 @@ public class OutputView {
         }
     }
 
-    private void outputMatchCount(Map<LottoRank, Integer> rankCounts){
+    private void outputMatchCounts(Map<LottoRank, Integer> rankCounts){
         for (Map.Entry<LottoRank, Integer> rankCount : rankCounts.entrySet()) {
             LottoRank lottoRank = rankCount.getKey();
             int count = rankCount.getValue();
-            System.out.println(count+"개 일치");
+            outputMatchCount(lottoRank, count);
+        }
+    }
+
+    private void outputMatchCount(LottoRank lottoRank, int count){
+        if(lottoRank.getMatchCount()!=0){
+            System.out.printf(lottoRank.getMatchCount()+"개 일치");
             if(lottoRank == LottoRank.SECOND){
-                System.out.println(", 보너스 볼 일치");
+                System.out.printf(", 보너스 볼 일치");
             }
-            System.out.printf("("+String.format("%,d",lottoRank.getPrize())+") - "+count+"개");
+            System.out.printf(" ("+String.format("%,d",lottoRank.getPrize())+"원) - "+count+"개\n");
         }
     }
 
@@ -37,7 +43,7 @@ public class OutputView {
     public void outputStatistics(Map<LottoRank, Integer> rankCounts, double profitRate){
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        outputMatchCount(rankCounts);
+        outputMatchCounts(rankCounts);
         System.out.println();
         outputProfitRate(profitRate);
     }

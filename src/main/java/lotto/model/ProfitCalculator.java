@@ -53,11 +53,11 @@ public class ProfitCalculator {
         this.purchasePrice = purchasePrice;
     }
 
-    public double getProfitRate() {
-        return profitRate;
+    public Map<LottoRank, Integer> getRankCounts() {
+        return rankCounts;
     }
 
-    public int getPurchasePrice() {
-        return purchasePrice;
+    public double getProfitRate() {
+        return profitRate;
     }
 }
