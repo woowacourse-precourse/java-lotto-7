@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import lotto.model.LottoTicket;
@@ -16,7 +18,7 @@ public class LottoPurchaseController {
 		List<LottoTicket> tickets = LottoTicketGenerator.generateTickets(purchasePrice);
 		int ticketsCount = tickets.size();
 		OutputView.displayPurchaseCount(ticketsCount);
-		OutputView.displayLottoTickets(tickets);
+		OutputView.displayLottoTickets(getSortedTicketNumbers(tickets));
 
 		return tickets;
 	}
@@ -37,4 +39,14 @@ public class LottoPurchaseController {
 		LottoTicketValidator.validatePurchasePrice(parsedPrice);
 		return parsedPrice;
 	}
+	
+	private List<List<Integer>> getSortedTicketNumbers(List<LottoTicket> tickets) {
+        List<List<Integer>> sortedTicketNumbers = new ArrayList<>();
+        for (LottoTicket ticket : tickets) {
+            List<Integer> sortedNumbers = new ArrayList<>(ticket.getNumbers());
+            Collections.sort(sortedNumbers);
+            sortedTicketNumbers.add(sortedNumbers);
+        }
+        return sortedTicketNumbers;
+    }
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import lotto.model.LottoRank;
-import lotto.model.LottoTicket;
 
 public class OutputView {
 	private static final String TICKET_COUNT_MESSAGE = "개를 구매했습니다.";
@@ -14,9 +13,9 @@ public class OutputView {
 		System.out.println(ticketCount + TICKET_COUNT_MESSAGE);
 	}
 
-	public static void displayLottoTickets(List<LottoTicket> tickets) {
-		for (LottoTicket ticket : tickets) {
-			System.out.println(ticket.getNumbers());
+	public static void displayLottoTickets(List<List<Integer>> sortedTicketNumbers) {
+		for (List<Integer> tickets : sortedTicketNumbers) {
+			System.out.println(tickets);
 		}
 	}
 
