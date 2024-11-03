@@ -50,4 +50,5 @@ public class OutputView {
     public void println() {
         System.out.println();
     }
+
 }

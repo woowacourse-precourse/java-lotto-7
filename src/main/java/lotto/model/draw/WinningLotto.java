@@ -14,9 +14,7 @@ public class WinningLotto {
     private WinningLotto(Lotto winningLotto) {
         this.winningLotto = winningLotto;
     }
-    // 사용자로 부터 입력받은 승리 넘버를 직접 분리하고 검증하고 WinningLotto를 생성하고 있음...
-    // WinningLotto의 책임을 분리할 수 있는 방법을 찾아보자...
-    // 수동 로또 생성 전략을 이용해서 해당 전략에 위와 같은 책임을 위임하는 방식으로 리펙토링 고려!!
+
     public static WinningLotto from(String input) {
         validateInputEmpty(input);
         List<String> splitInput = List.of(input.split(INPUT_DELIMITER_REGEX, -1));
@@ -41,7 +39,7 @@ public class WinningLotto {
             throw new IllegalArgumentException(INVALID_NUMERIC_MESSAGE);
         }
     }
-    // winningLotto가 해당 숫자를 가지고 있는지 반롼
+
     public boolean isContain(int number) {
         return winningLotto.isContain(number);
     }
