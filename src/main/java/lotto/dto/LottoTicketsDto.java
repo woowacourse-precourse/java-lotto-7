@@ -3,17 +3,13 @@ package lotto.dto;
 import java.util.List;
 
 public class LottoTicketsDto {
-    private final List<List<Integer>> tickets;
+    private final List<Integer> numbers;
 
-    private LottoTicketsDto(List<List<Integer>> tickets) {
-        this.tickets = tickets;
+    public LottoTicketsDto(List<Integer> numbers) {
+        this.numbers = numbers;
     }
 
-    public static LottoTicketsDto from(List<List<Integer>> tickets) {
-        return new LottoTicketsDto(tickets);
-    }
-
-    public List<List<Integer>> getTickets() {
-        return List.copyOf(tickets);
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
