@@ -7,7 +7,8 @@ public enum Constants {
     MIN_MONEY(1),
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),
-    LOTTO_NUMBER_COUNT(6);
+    LOTTO_NUMBER_COUNT(6),
+    ROUND_TO(1);
 
     private final long number;
 

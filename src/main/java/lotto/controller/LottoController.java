@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Bonus;
@@ -42,7 +43,7 @@ public class LottoController {
         List<Long> rankCount = counter.getRankCount();
 
         RevenuePercentCalculator calculator = new RevenuePercentCalculator(rankCount);
-        float revenuePercent = calculator.getRevenuePercent();
+        BigDecimal revenuePercent = calculator.getRevenuePercent();
 
         outputView.printStatistics();
         outputView.printRanks(rankCount);

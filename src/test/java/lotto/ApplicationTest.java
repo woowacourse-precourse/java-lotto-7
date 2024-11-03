@@ -6,14 +6,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import lotto.util.Errors;
+import lotto.view.Outputs;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
 
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
     @Test
-    void 기능_테스트() {
+    void 기본_기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -47,10 +47,44 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 당첨_기능_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "6,5,4,3,2,45", "1");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 45]",
+                            "[2, 3, 4, 5, 6, 45]",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 68666666.7%입니다."
+                    );
+                },
+                List.of(45, 5, 4, 3, 2, 1),
+                List.of(6, 5, 45, 4, 3, 2),
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 숫자가_아닌_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(
+                    Errors.ERROR.getMessage() + Outputs.SPACE.getMessage() + Errors.NOT_A_WHOLE_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    void 범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,46,3,4,5");
+            assertThat(output()).contains(
+                    Errors.ERROR.getMessage() + Outputs.SPACE.getMessage() + Errors.NOT_IN_LOTTO_RANGE.getMessage());
         });
     }
 

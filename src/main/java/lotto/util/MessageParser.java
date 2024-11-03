@@ -13,8 +13,4 @@ public class MessageParser {
                 Errors.ERROR.getMessage(),
                 message);
     }
-
-    public static float roundToTenth(float number) {
-        return Math.round(number * 10) / 10f;
-    }
 }

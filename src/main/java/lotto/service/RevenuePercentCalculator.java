@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import lotto.util.Constants;
 import lotto.util.Ranks;
@@ -15,22 +17,25 @@ public class RevenuePercentCalculator {
         this.rankCount = rankCount;
     }
 
-    public float getRevenuePercent() {
-        long revenueSum = 0;
+    public BigDecimal getRevenuePercent() {
+        BigDecimal revenueSum = BigDecimal.ZERO;
+        ;
         long moneySpent = rankCount.stream().mapToLong(Long::longValue).sum() * Constants.LOTTO_PRICE.getNumber();
 
         for (Ranks rank : Ranks.values()) {
-            revenueSum += getRevenue(rank);
+            revenueSum = revenueSum.add(getRevenue(rank));
         }
 
-        return ((float) revenueSum / moneySpent) * 100;
+        return revenueSum.multiply(new BigDecimal("100"))
+                .divide(new BigDecimal(Long.toString(moneySpent)), Constants.ROUND_TO.getNumber(),
+                        RoundingMode.HALF_UP);
     }
 
-    private long getRevenue(Ranks rank) {
+    private BigDecimal getRevenue(Ranks rank) {
         long count = rankCount.get(rank.getNumber());
         int prize = rank.getPrize();
 
-        return count * prize;
+        return new BigDecimal(Long.toString(count * prize));
     }
 
 

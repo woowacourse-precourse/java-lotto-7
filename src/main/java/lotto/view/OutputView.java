@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.model.Ticket;
 import lotto.util.MessageParser;
@@ -60,9 +61,9 @@ public class OutputView {
                 Outputs.NUMBER.getMessage());
     }
 
-    public void printRevenuePercent(float revenuePercent) {
+    public void printRevenuePercent(BigDecimal revenuePercent) {
         System.out.println(Outputs.TOTAL_REVENUE_PERCENT.getMessage() +
-                MessageParser.roundToTenth(revenuePercent) +
+                revenuePercent +
                 Outputs.PERCENT.getMessage() +
                 Outputs.DESU.getMessage());
     }
