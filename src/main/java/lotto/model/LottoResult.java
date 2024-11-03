@@ -49,14 +49,22 @@ public class LottoResult {
         revenue += addRevenue;
     }
 
-    public void computeProfitRate(int lottoAmount) {
-        System.out.println(revenue);
-        if (revenue == 0) {
-            System.out.println("총 수익률은 0% 입니다.");
-        } else {
-            double percent = (double) revenue / (lottoAmount *1000) * 100 ;
-            System.out.println("총 수익률은 " + String.format("%.1f", percent) + "%입니다.");
-        }
+    public void finalizeLottoResultsProcess(int lottoAmount) {
+        printResults();
+        Double profitRate = computeProfitRate(lottoAmount);
+        printProfitRate(profitRate);
     }
+
+    public double computeProfitRate(int lottoAmount) {
+        if (revenue == 0) {
+            return 0;
+        }
+        return (double) revenue / (lottoAmount *1000) * 100;
+    }
+
+    public void printProfitRate(double profitRate) {
+            System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+    }
+
 }
 

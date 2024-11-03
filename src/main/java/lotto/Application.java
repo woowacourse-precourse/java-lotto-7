@@ -22,8 +22,7 @@ public class Application {
         Integer bonusNumber = lottoInput.inputBonusNumber();
 
         lottoChecker.lottoCheckingProcess(allLottos, winningNumbers, bonusNumber, lottoResult);
-        lottoResult.printResults();
-        lottoResult.computeProfitRate(allLottos.size());
+        lottoResult.finalizeLottoResultsProcess(allLottos.size());
     }
 
     private static List<Lotto> generateLottos(LottoInput lottoInput) {
