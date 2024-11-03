@@ -9,7 +9,7 @@ import java.util.List;
 public class WinningNumbers {
     public static final String DELIMITER = ",";
 
-    private String numberString;
+    private String inputNumbers;
     private Lotto winningNumbers;
     private int bonusNumber;
 
@@ -28,7 +28,7 @@ public class WinningNumbers {
     public void init() {
         while (true) {
             try {
-                this.numberString = this.inputNumberString("당첨 번호를 입력해 주세요.");
+                this.inputNumbers = this.inputNumberString("당첨 번호를 입력해 주세요.");
                 this.setWinningNumbers();
                 this.setBonusNumber();
                 break;
@@ -39,7 +39,7 @@ public class WinningNumbers {
     }
 
     private void setWinningNumbers() {
-        List<Integer> numbers = Arrays.stream(this.numberString.split(DELIMITER))
+        List<Integer> numbers = Arrays.stream(this.inputNumbers.split(DELIMITER))
             .map(String::trim)
             .map(InputValidationUtils::parseInteger)
             .toList();

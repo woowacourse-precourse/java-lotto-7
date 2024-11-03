@@ -129,7 +129,7 @@ public class LottoRunner {
             Lotto lotto = new Lotto(this.getRandomNumbers());
             lotteries.add(lotto);
             lottoSelectionOutput
-                .append(lotto.getNumberString())
+                .append(lotto.formatNumbers())
                 .append(System.lineSeparator());
         }
         System.out.println(lottoSelectionOutput);

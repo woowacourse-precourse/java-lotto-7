@@ -18,7 +18,7 @@ class LottoTest {
         String expected = "[5, 8, 12, 17, 23, 34]";
 
         Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 8, 12, 17, 23, 34)));
-        String result = lotto.getNumberString();
+        String result = lotto.formatNumbers();
 
         assertEquals(expected, result, "로또 번호를 형식에 맞춰 반환해야 합니다.");
     }

@@ -17,7 +17,7 @@ public class Lotto {
         return this.numbers;
     }
 
-    public String getNumberString() {
+    public String formatNumbers() {
         return this.numbers.stream()
             .map(String::valueOf)
             .collect(Collectors.joining(", ", "[", "]"));
