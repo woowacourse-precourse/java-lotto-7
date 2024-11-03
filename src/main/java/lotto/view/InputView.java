@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.ErrorMessages;
+import lotto.utils.LoggerUtils;
 import lotto.utils.Validator;
 
 /**
@@ -23,9 +25,11 @@ public class InputView {
         try {
             int amount = Integer.parseInt(Console.readLine().trim());
             Validator.validatePurchaseAmount(amount);
+            LoggerUtils.logInfo("유효한 구입 금액 입력: " + amount);
             return amount;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해 주세요.");
+            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
 
@@ -40,6 +44,7 @@ public class InputView {
         String input = Console.readLine();
         List<Integer> numbers = parseAndValidateWinningNumbers(input);
         Validator.validateWinningNumbers(numbers);
+        LoggerUtils.logInfo("유효한 당첨 번호 입력: " + numbers);
         return numbers;
     }
 
@@ -54,11 +59,14 @@ public class InputView {
         try {
             int bonusNumber = Integer.parseInt(Console.readLine().trim());
             Validator.validateBonusNumber(bonusNumber);
+            LoggerUtils.logInfo("유효한 보너스 번호 입력: " + bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
+            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
+
 
     /**
      * 문자열을 파싱하고 당첨 번호 유효성을 검증
@@ -74,7 +82,8 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 숫자 형식이어야 합니다.");
+            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
 }
