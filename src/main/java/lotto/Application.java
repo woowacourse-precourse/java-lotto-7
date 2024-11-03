@@ -8,6 +8,9 @@ public class Application {
         // 1.5 형식에 맞는 구입 금액이 입력될 때까지 반복하여 입력을 받는 기능
         int purchaseAmount = getPurchaseAmount();
 
+        // 2.1 구매할 로또의 개수를 계산하는 기능
+        int lottoCount = calculateLottoCount(purchaseAmount);
+
 
     }
 
@@ -53,6 +56,10 @@ public class Application {
         validatePositiveNumber(purchaseAmount);
         validateThousandUnit(purchaseAmount);
         return purchaseAmount;
+    }
+
+    private static int calculateLottoCount(int purchaseAmount) {
+        return purchaseAmount / 1000;
     }
 
 
