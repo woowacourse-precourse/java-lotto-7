@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoRanks;
+import lotto.domain.MatchResult;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 
 public class LottoService {
 
@@ -31,24 +32,17 @@ public class LottoService {
         return lottos;
     }
 
-    public Map<LottoRank, Integer> evaluateLottos(Lotto winninglotto, LottoNumber bonusNumber, List<Lotto> lottos) {
+    public Map<LottoRank, Integer> evaluateLottos(WinningLotto winningLotto, List<Lotto> lottos) {
         LottoRanks lottoRanks = new LottoRanks();
 
         for (Lotto lotto : lottos) {
-            int matchingNumberCount = getMatchingNumberCount(winninglotto, lotto);
-            boolean bonusMatched = isBonusNumberMatched(lotto, bonusNumber);
-            LottoRank.findBy(matchingNumberCount, bonusMatched)
+            MatchResult matchResult = winningLotto.match(lotto);
+
+            LottoRank.findBy(matchResult.matchingNumberCount(), matchResult.bonusMatched())
                     .ifPresent(lottoRanks::add);
         }
+
         return lottoRanks.getRanks();
-    }
-
-    private int getMatchingNumberCount(Lotto winninglotto, Lotto lotto) {
-        return winninglotto.countMatchingNumbers(lotto);
-    }
-
-    private boolean isBonusNumberMatched(Lotto lotto, LottoNumber bonusNumber) {
-        return lotto.contains(bonusNumber);
     }
 
 }

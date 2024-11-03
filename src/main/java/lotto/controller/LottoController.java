@@ -7,6 +7,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
 import lotto.domain.Money;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -25,16 +26,16 @@ public class LottoController {
         List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
         lottoView.showPurchasedLottos(purchasedLottos);
 
-        getWinningLotto();
-        Lotto winningLotto = Lotto.of(List.of(1,2,3,4,5,6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        WinningLotto winningLotto = getWinningLotto();
 
-        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, purchasedLottos);
+        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, purchasedLottos);
         lottoView.showWinningResult(ranks);
     }
 
-    private void getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         Lotto lotto = lottoView.getWinningNumberFromUser();
+        LottoNumber bonusNumber = lottoView.getBonusNumberFromUser();
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     private Money getMoneyFromUser() {

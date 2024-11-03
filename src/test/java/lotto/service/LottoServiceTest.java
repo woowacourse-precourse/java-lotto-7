@@ -10,6 +10,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
@@ -20,7 +21,7 @@ class LottoServiceTest {
     @Test
     void 구매한_로또를_평가하여_순위를_확인할_수_있다() {
         // given
-        Lotto winningLotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
         List<Lotto> lottos = List.of(
                 Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
@@ -28,9 +29,10 @@ class LottoServiceTest {
                 Lotto.of(List.of(1, 2, 3, 4, 5, 45)),
                 Lotto.of(List.of(11, 12, 13, 14, 15, 16))
         );
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         // when
-        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, lottos);
+        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, lottos);
 
         // then
         assertThat(ranks).hasSize(3)

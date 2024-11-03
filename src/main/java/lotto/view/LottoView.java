@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
 import lotto.domain.PurchaseAmount;
 
@@ -29,6 +30,13 @@ public class LottoView {
 
         return Lotto.of(numbers);
     }
+    
+    public LottoNumber getBonusNumberFromUser() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        int intInput = toInt(input);
+        return new LottoNumber(intInput);
+    }
 
     // TODO: 변환하는 책임 다른 클래스로 분리하기, 테스트 작성 필요
     private List<Integer> toIntList(String[] split) {
@@ -36,6 +44,14 @@ public class LottoView {
             return Arrays.stream(split)
                     .map(Integer::valueOf)
                     .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+        }
+    }
+
+    private int toInt(String input) {
+        try {
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
         }
