@@ -33,10 +33,17 @@ public class LottoProcessor {
     }
 
     public void setBonusNumber(int number) {
+        final int MIN_LOTTO_NUMBER = 1;
+        final int MAX_LOTTO_NUMBER = 45;
+
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("보너스 번호 범위는 1에서 45사이 입니다.");
+        }
         // 보너스 번호가 당첨 번호에 있는지 확인
         if (winningNumbers.getNumbers().contains(number)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+
         bonusNumber = number;
     }
 
