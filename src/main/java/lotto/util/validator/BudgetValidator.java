@@ -1,6 +1,7 @@
-package lotto.util;
+package lotto.util.validator;
 
 import java.util.regex.Pattern;
+import lotto.util.ExceptionMessage;
 
 public class BudgetValidator implements Validator {
     private static final Pattern NUMBER_REGEX = Pattern.compile("^[0-9]*$");
