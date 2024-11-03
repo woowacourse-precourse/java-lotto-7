@@ -119,6 +119,7 @@
     - 로또 번호로 6개의 숫자로 이루어있는지 검증한다. (validateNumbersSize)
     - 로또 번호 내 중복이 있는지 검증한다. (validateDuplicateNumbers)
   - 로또 내 번호를 오름차순으로 정렬한다 (sortAscendingLotto)
+- [x] 로또의 번호를 반환받는 기능 (getLottoNumbers)
 - [x] 로또가 동일한지 확인하는 기능 (equals)
 - [x] 로또의 해시코드를 가져오는 기능 (hashCode)
 - [x] 로또를 출력하는 기능 (toString)

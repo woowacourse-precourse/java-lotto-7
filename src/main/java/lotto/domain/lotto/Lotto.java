@@ -10,41 +10,45 @@ import lotto.domain.number.Number;
 import lotto.domain.number.Numbers;
 
 public class Lotto {
-    private final Numbers numbers;
+    private final Numbers lottoNumbers;
 
-    Lotto(final Numbers numbers) {
-        validate(numbers);
-        this.numbers = sortAscendingLotto(numbers);
+    Lotto(final Numbers lottoNumbers) {
+        validate(lottoNumbers);
+        this.lottoNumbers = sortAscendingLotto(lottoNumbers);
     }
 
-    private void validate(final Numbers numbers) {
-        validateNumbersSize(numbers);
-        validateDuplicateNumbers(numbers);
+    private void validate(final Numbers lottoNumbers) {
+        validateNumbersSize(lottoNumbers);
+        validateDuplicateNumbers(lottoNumbers);
     }
 
-    private void validateNumbersSize(final Numbers numbers) {
-        if (numbers.getNumbers().size() != LOTTO_TOTAL_NUMBERS) {
+    private void validateNumbersSize(final Numbers lottoNumbers) {
+        if (lottoNumbers.getNumbers().size() != LOTTO_TOTAL_NUMBERS) {
             throw new IllegalArgumentException(INVALID_LOTTO_TOTAL_NUMBER.getMessage());
         }
     }
 
-    private void validateDuplicateNumbers(final Numbers numbers) {
-        long sizeWithOutDuplicate = numbers.getNumbers().stream()
+    private void validateDuplicateNumbers(final Numbers lottoNumbers) {
+        long sizeWithOutDuplicate = lottoNumbers.getNumbers().stream()
                 .distinct()
                 .count();
 
-        if (numbers.getNumbers().size() != sizeWithOutDuplicate) {
+        if (lottoNumbers.getNumbers().size() != sizeWithOutDuplicate) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
-    private Numbers sortAscendingLotto(final Numbers numbers) {
-        List<Integer> sortedNumbers = numbers.getNumbers().stream()
+    private Numbers sortAscendingLotto(final Numbers lottoNumbers) {
+        List<Integer> sortedNumbers = lottoNumbers.getNumbers().stream()
                 .map(Number::getNumber)
                 .sorted()
                 .toList();
 
         return Numbers.of(sortedNumbers);
+    }
+
+    public Numbers getLottoNumbers() {
+        return lottoNumbers;
     }
 
     @Override
@@ -56,21 +60,21 @@ public class Lotto {
             return false;
         }
         Lotto lotto = (Lotto) obj;
-        return Objects.equals(numbers, lotto.numbers);
+        return Objects.equals(lottoNumbers, lotto.lottoNumbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numbers);
+        return Objects.hash(lottoNumbers);
     }
 
     @Override
     public String toString() {
-        String numbers = this.numbers.getNumbers().stream().
+        String lottoNumbers = this.lottoNumbers.getNumbers().stream().
                 map(Number::getNumber)
                 .toList().
                 toString();
-        
-        return numbers + "\n";
+
+        return lottoNumbers + "\n";
     }
 }
