@@ -18,16 +18,11 @@ public class Lotto {
         }
     }
 
-    // 보너스 볼 획득 및 5개 일치 시 0으로 리턴. 그 외에는 당첨된 숫자 리턴.
+    // 보너스 볼 획득 및 5개 일치 시 0으로 리턴. 그 외에는 당첨된 숫자 개수 리턴.
     public int getWinningNumberCount(List<Integer> inputNumbers, int bonusNumber) {
-        int count = 0;
-        boolean hasBonus = false;
-        for (Integer number : numbers) {
-            if(inputNumbers.contains(number)) count++;
-            else if(number == bonusNumber) hasBonus = true;
-        }
+        int count = (int) inputNumbers.stream().filter(numbers::contains).count();
 
-        if(hasBonus && count == 5) return 0;
+        if(inputNumbers.contains(bonusNumber) && count == 5) return 0;
         return count;
     }
 
