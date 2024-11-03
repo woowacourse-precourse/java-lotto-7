@@ -1,0 +1,26 @@
+package lotto;
+
+public enum LottoResult {
+    SIX(6, 0),
+    FIVE_WITH_BONUS(5, 1),
+    FIVE(5, 0),
+    FOUR(4, 0),
+    THREE(3, 0),
+    NONE(0, 0);
+
+    private final Integer defaultMatchCount;
+    private final Integer bonusMatchCount;
+
+    LottoResult(Integer defaultMatchCount, Integer bonusMatchCount) {
+        this.defaultMatchCount = defaultMatchCount;
+        this.bonusMatchCount = bonusMatchCount;
+    }
+
+    public static LottoResult fromMatchCounts(Integer defaultMatchCount, Integer bonusMatchCount) {
+        for (LottoResult result : LottoResult.values()) {
+            if (result.defaultMatchCount.equals(defaultMatchCount) && result.bonusMatchCount.equals(bonusMatchCount))
+                return result;
+        }
+        return NONE; // 일치하는 값이 없을 경우 NONE 반환
+    }
+}

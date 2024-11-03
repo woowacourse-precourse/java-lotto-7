@@ -57,5 +57,6 @@ public class Application {
         }
 
         LottoManager lottoManager = new LottoManager(lottos, winningLotto, bonusNumber);
+        lottoManager.processResult();
     }
 }

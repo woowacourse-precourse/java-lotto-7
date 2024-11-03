@@ -27,5 +27,16 @@ public class Lotto {
         numbers.sort(Integer::compareTo);
     }
 
+    public Integer get(int index) {
+        return numbers.get(index);
+    }
+
+    public Boolean checkContains(Integer number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
     // TODO: 추가 기능 구현
 }
