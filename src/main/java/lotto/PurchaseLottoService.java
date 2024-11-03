@@ -15,13 +15,9 @@ public class PurchaseLottoService implements PurchaseLottoUseCase {
     }
 
     @Override
-    public void purchase(int count) {
-        List<Lotto> purchasedLottos = lottoFactory.createByCount(count);
+    public void purchase(int money) {
+        int purchaseCount = money / UNIT_OF_MONEY;
+        List<Lotto> purchasedLottos = lottoFactory.createByCount(purchaseCount);
         lottoRepository.saveAll(purchasedLottos);
-    }
-
-    @Override
-    public int calculatePurchaseCount(int money) {
-        return money / UNIT_OF_MONEY;
     }
 }

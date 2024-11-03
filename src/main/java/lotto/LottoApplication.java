@@ -12,11 +12,17 @@ public class LottoApplication {
 
     public void execute() {
         purchaseLotto();
+
+        showPurchaseLotto();
+
+
     }
 
     private void purchaseLotto() {
         int money = applicationView.requestMoney();
-        int purchaseCount = purchaseLottoUseCase.calculatePurchaseCount(money);
-        purchaseLottoUseCase.purchase(purchaseCount);
+        purchaseLottoUseCase.purchase(money);
+    }
+
+    private void showPurchaseLotto() {
     }
 }
