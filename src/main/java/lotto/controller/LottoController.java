@@ -11,17 +11,17 @@ import lotto.view.OutputHandler;
 import java.util.*;
 
 public class LottoController {
-    private InputHandler inputHandler;
-    private OutputHandler outputHandler;
-    private LottoManager lottoManager;
+    private final InputHandler inputHandler;
+    private final OutputHandler outputHandler;
+    private final LottoManager lottoManager;
     private WinningLotto winningLotto;
-    private PrizeCalculator prizeCalculator;
+    private final PrizeCalculator prizeCalculator;
 
-    public LottoController() {
-        this.inputHandler = new InputHandler();
-        this.outputHandler = new OutputHandler();
-        this.lottoManager = new LottoManager();
-        this.prizeCalculator = new PrizeCalculator();
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, LottoManager lottoManager, PrizeCalculator prizeCalculator) {
+        this.inputHandler = inputHandler;
+        this.outputHandler = outputHandler;
+        this.lottoManager = lottoManager;
+        this.prizeCalculator = prizeCalculator;
 
     }
 
