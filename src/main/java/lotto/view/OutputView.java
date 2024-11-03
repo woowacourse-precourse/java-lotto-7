@@ -2,6 +2,10 @@ package lotto.view;
 
 import lotto.domain.Rank;
 import lotto.dto.FormattedTickets;
+import lotto.utils.PrizeFormatter;
+import lotto.utils.RankPrizeFormatter;
+
+import java.math.BigDecimal;
 
 public class OutputView {
     private static final String PURCHASE_TOTAL_PRICE_PROMPT = "구입 금액을 입력해 주세요.";
@@ -10,6 +14,7 @@ public class OutputView {
     private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String STATISTICS_DIVIDER = "---";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printPurchaseTotalPricePrompt() {
         System.out.println(PURCHASE_TOTAL_PRICE_PROMPT);
@@ -38,10 +43,11 @@ public class OutputView {
     }
 
     public void printRankStatistics(Rank rank, int count) {
-        System.out.printf("%d개 일치%s (%d원) - %d개%n",
-                rank.getMatchCount(),
-                rank.hasBonus() ? ", 보너스 볼 일치" : "",
-                rank.getPrize(),
-                count);
+        String formattedStatistics = RankPrizeFormatter.formatRankStatistics(rank, count);
+        System.out.println(formattedStatistics);
+    }
+
+    public void printProfitRate(BigDecimal profitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE + "%n", profitRate);
     }
 }

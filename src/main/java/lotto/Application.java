@@ -66,7 +66,19 @@ public class Application {
 
         // 당첨 내역 출력
         for (Rank rank : Rank.values()) {
-            outputView.printRankStatistics(rank, rankCounts.get(rank));
+            if (rank != Rank.NO_MATCH) {
+                outputView.printRankStatistics(rank, rankCounts.getOrDefault(rank, 0));
+            }
         }
+
+        // 총 상금 계산
+        int totalPrizeAmount = PrizeCalculator.calculateTotalPrize(rankCounts);
+
+        // 수익률 계산
+        ProfitResult profitResult = ProfitCalculator.calculateProfit(purchaseTotalPrice.totalPrice(), totalPrizeAmount);
+
+        // 수익률 출력
+        outputView.printProfitRate(profitResult.profitRate());
+
     }
 }
