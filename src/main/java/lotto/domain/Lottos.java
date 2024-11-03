@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import lotto.util.StringMaker;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -34,13 +35,6 @@ public class Lottos {
     }
 
     public String toString() {
-        StringBuilder lottoPurchaseResult = new StringBuilder();
-        lottoPurchaseResult.append("\n").append(this.size()).append("개를 구매했습니다.\n");
-        lottos.forEach(lotto -> {
-                    lottoPurchaseResult.append("[");
-                    lottoPurchaseResult.append(lotto.getValue().stream().map(LottoNumber::getValue).map(String::valueOf).collect(Collectors.joining(", ")));
-                    lottoPurchaseResult.append("]\n");
-                });
-        return String.valueOf(lottoPurchaseResult);
+        return StringMaker.make(lottos);
     }
 }
