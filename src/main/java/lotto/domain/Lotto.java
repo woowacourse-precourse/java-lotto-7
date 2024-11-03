@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import lotto.domain.numberPicker.NumberPicker;
 import lotto.domain.validator.ParamsValidator;
 import lotto.exception.lotto.LottoNumberCountInvalidException;
 import lotto.exception.lotto.LottoNumberDuplicatedException;
@@ -44,5 +42,10 @@ final public class Lotto {
         return (int) this.numbers.stream()
                 .filter(otherLotto.numbers::contains)
                 .count();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
