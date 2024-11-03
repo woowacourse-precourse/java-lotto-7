@@ -12,6 +12,7 @@ import static lotto.view.LottoMessageFormats.*;
 
 public class InputView {
     private static final String WINNING_LOTTO_DELIMITER = ",";
+    private static final int MULTIPLES_OF_THOUSAND = 0;
 
     private InputView() {
     }
@@ -65,9 +66,13 @@ public class InputView {
     }
 
     private static void validateDivisibilityByThousand(int userMoney) {
-        if (userMoney % MonetaryUnit.USER_MONEY_PRICE.getUnit() != 0) {
+        if (isMultiplesOfThousand(userMoney)) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
+    }
+
+    private static boolean isMultiplesOfThousand(int userMoney) {
+        return (userMoney % MonetaryUnit.A_LOTTO_PRICE.getUnit()) != MULTIPLES_OF_THOUSAND;
     }
 
     private static WinningNumbersDto readWinningNumbers() {
@@ -78,6 +83,7 @@ public class InputView {
 
         System.out.println(INPUT_BONUS_NUMBER_PROMPT_MESSAGE.getMessage());
         int bonusNumber = Integer.parseInt(Console.readLine());
+
         validateDuplicationOfLottoNumber(winningLottoNumbers, bonusNumber);
 
         return new WinningNumbersDto(winningLottoNumbers, bonusNumber);

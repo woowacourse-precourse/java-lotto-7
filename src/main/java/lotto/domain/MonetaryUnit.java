@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public enum MonetaryUnit {
-    USER_MONEY_PRICE(1000),
+    A_LOTTO_PRICE(1000),
     PERCENTAGE(100);
 
     private final int unit;

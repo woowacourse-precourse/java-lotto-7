@@ -33,12 +33,20 @@ public class OutputView {
             if (rank.equals(Rank.NONE)) {
                 continue;
             }
-            if (rank.equals(Rank.SECOND)) {
-                System.out.printf((OUTPUT_BONUS_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
-                continue;
-            }
-            System.out.printf((OUTPUT_MATCH_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
+            printUserLottoStatistics(userRanks, rank);
         }
+    }
+
+    private static void printUserLottoStatistics(List<Rank> userRanks, Rank rank) {
+        if (rank.equals(Rank.SECOND)) {
+            System.out.printf((OUTPUT_BONUS_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
+            return;
+        }
+        System.out.printf((OUTPUT_MATCH_RESULT_FORMAT.getMessage()), rank.getBasicCount(), formatRankPrize(rank.getPrize()), calculateNumberOfRanks(rank, userRanks));
+    }
+
+    public static void printRateOfReturn(Double returnOfRate) {
+        System.out.printf((OUTPUT_RETURN_RATE_MESSAGE_FORMAT.getMessage()), returnOfRate);
     }
 
     private static String formatRankPrize(int rankPrize) {
@@ -51,9 +59,5 @@ public class OutputView {
         return (int) userRanks.stream()
                 .filter(userRank -> userRank.equals(rank))
                 .count();
-    }
-
-    public static void printRateOfReturn(Double returnOfRate) {
-        System.out.printf((OUTPUT_RETURN_RATE_MESSAGE_FORMAT.getMessage()), returnOfRate);
     }
 }

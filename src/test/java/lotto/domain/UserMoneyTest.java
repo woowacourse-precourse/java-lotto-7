@@ -3,7 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.domain.MonetaryUnit.USER_MONEY_PRICE;
+import static lotto.domain.MonetaryUnit.A_LOTTO_PRICE;
 import static lotto.domain.DefaultUserMoney.USER_MONEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,6 +14,6 @@ class UserMoneyTest {
         UserMoney userMoney = new UserMoney(USER_MONEY.getUnit());
         int count = userMoney.calculateNumberOfLotto();
 
-        assertEquals(count, USER_MONEY.getUnit()/USER_MONEY_PRICE.getUnit());
+        assertEquals(count, USER_MONEY.getUnit()/ A_LOTTO_PRICE.getUnit());
     }
 }

@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static lotto.domain.DefaultUserMoney.USER_MONEY;
 import static lotto.domain.DefaultUserMoney.USER_MONEY_TEN_THOUSAND;
 import static lotto.domain.MonetaryUnit.PERCENTAGE;
-import static lotto.domain.MonetaryUnit.USER_MONEY_PRICE;
+import static lotto.domain.MonetaryUnit.A_LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
@@ -25,7 +25,7 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService();
         LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(USER_MONEY.getUnit());
 
-        assertThat(lottoTicketsDto.getLottoTickets()).hasSize(USER_MONEY.getUnit() / USER_MONEY_PRICE.getUnit());
+        assertThat(lottoTicketsDto.getLottoTickets()).hasSize(USER_MONEY.getUnit() / A_LOTTO_PRICE.getUnit());
     }
 
     @DisplayName("모든 구매한 로또와 당첨로또를 비교한다.")
