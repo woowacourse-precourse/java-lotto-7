@@ -1,10 +1,15 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +26,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @CsvSource(value =
+            {"3,4,12,15,26,34:6:false",
+            "3,4,6,12,15,26:5:true",
+            "3,4,12,15,26,35:5:false"},
+            delimiter = ':')
+    void 로또의_당첨을_확인한다(String numbers, int count, boolean bonus) {
+        Lotto lotto = new Lotto(Arrays.stream(numbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()));
+        InputValidator.winningNumberValidator("3,4,12,15,26,34");
+        InputValidator.bonusNumberValidator("6");
+
+        assertThat(lotto.confirmWinning().getMatchCount()).isEqualTo(count);
+        assertThat(lotto.confirmWinning().getBonusMatch()).isEqualTo(bonus);
+    }
 }
