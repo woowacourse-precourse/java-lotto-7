@@ -29,14 +29,14 @@ public class LottoController {
         // 구입금액 받기
         int inputAmount = inputView.inputAmount();
         // 로또 객체 생성
-        Lotteries lotteries = gameManager.initLottery(policy, inputAmount);
+        Lotteries boughtLotteries = gameManager.initLottery(policy, inputAmount);
         // 생성한 로또 객체 출력
-        outputView.printLotteries(lotteries);
+        outputView.printLotteries(boughtLotteries);
         // 당첨번호 받기
-        List<Integer> integers = inputView.inputWinningNumber();
+        List<Integer> winningNumbers = inputView.inputWinningNumber();
         //보너스 번호 받기
-        int bonusNumber = inputView.inputBonusNumber(integers);
-        // 로또 추첨
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+        // 로또 당첨번호와 대조
 
         //수익률 계산
 

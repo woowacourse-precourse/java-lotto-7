@@ -39,6 +39,10 @@ public class LottoGameManager implements GameManager {
         List<Tier> tiers = tierPolicy.initTiers();
         return tiers.stream().map(LottoDrawStatistics::initStatistics).toList();
     }
+    @Override
+    public void checkWinningStatus(Lotteries boughtLotteries,List<Integer> winningNumbers,int bonusNumber){
+
+    }
 
 
 }

@@ -14,4 +14,6 @@ public interface GameManager {
 
     List<Statistics> initStatistics(TierPolicy tierPolicy);
 
+    void checkWinningStatus(Lotteries boughtLotteries,List<Integer> winningNumbers,int bonusNumber);
+
 }
