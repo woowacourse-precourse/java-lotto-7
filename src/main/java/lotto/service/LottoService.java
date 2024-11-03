@@ -30,12 +30,11 @@ public class LottoService {
     }
 
     public Double calculateRateOfReturn(int userMoney, List<Rank> ranks) {
-        double prizeSum = 0;
-        for (Rank rank : ranks) {
-            prizeSum += rank.getPrize();
-        }
+        double prizeSum = ranks.stream()
+                .mapToDouble(Rank::getPrize)
+                .sum();
+        int roundingUnit = ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit();
 
-        return (double) Math.round((prizeSum / userMoney) * PERCENTAGE.getUnit() * ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit())
-                / (ROUND_UP_TO_TWO_DECIMAL_PLACES.getUnit());
+        return (double) Math.round((prizeSum / userMoney) * PERCENTAGE.getUnit() * roundingUnit) / roundingUnit;
     }
 }
