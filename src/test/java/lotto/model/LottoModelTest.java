@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,6 +25,20 @@ public class LottoModelTest {
 
         assertThat(lottos.size()).isEqualTo(lottoCount);
 
+    }
+
+    @DisplayName("The saving win Lotto logic should storage the win Lotto numbers and bonus number from input")
+    @Test
+    void testSetWinLottoNumbersAndBonusNumber(){
+        LottoModel lottoModel = new LottoModel();
+
+        List<Integer> winLottoNumber = List.of(1,2,3,4,5,6);
+        int bonusNumber = 7;
+
+        lottoModel.setWinLottoWithBonusNumber(winLottoNumber,bonusNumber);
+
+        assertThat(lottoModel.readWinLotto().getNumbers()).isEqualTo(winLottoNumber);
+        assertThat(lottoModel.readBonusNumber()).isEqualTo(bonusNumber);
     }
 
 
