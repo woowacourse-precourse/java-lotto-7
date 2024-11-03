@@ -16,7 +16,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 class LottoServiceTest {
 
     private LottoService lottoService;
@@ -110,5 +109,5 @@ class LottoServiceTest {
     private double calculateWinningPrice(int totalPrize) {
         return ((double) totalPrize / 1000) * 100;
     }
-    
+
 }
