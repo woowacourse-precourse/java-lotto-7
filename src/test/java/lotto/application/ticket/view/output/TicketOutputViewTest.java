@@ -11,7 +11,7 @@ class TicketOutputViewTest {
         TicketResponse ticketResponse = new TicketResponse(2, List.of(
                 Lotto.of(List.of(8, 21, 23, 41, 42, 43)),
                 Lotto.of(List.of(3, 5, 11, 16, 32, 38))
-        ));
+        ), 2000);
         TicketOutputView ticketOutputView = new TicketOutputView();
         ticketOutputView.show(ticketResponse);
     }

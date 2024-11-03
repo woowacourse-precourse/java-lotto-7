@@ -1,5 +1,7 @@
 package lotto.application.ticket.domain.ticket;
 
+import static lotto.application.ticket.domain.payment.LottoPrice.BASIC_PRICE;
+
 import java.util.List;
 
 public class Ticket {
@@ -48,5 +50,9 @@ public class Ticket {
 
     public Lottos getLottos() {
         return lottos;
+    }
+
+    public int getTotalPrice() {
+        return BASIC_PRICE * getLottosSize();
     }
 }

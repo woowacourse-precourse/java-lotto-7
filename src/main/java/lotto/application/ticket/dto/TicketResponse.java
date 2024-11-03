@@ -7,11 +7,12 @@ import lotto.application.ticket.domain.ticket.Ticket;
 
 public record TicketResponse(
         int lottosSize,
-        List<Lotto> lottos
+        List<Lotto> lottos,
+        int totalPrice
 ) {
 
     public static TicketResponse from(Ticket ticket) {
-        return new TicketResponse(ticket.getLottosSize(), ticket.getLottosValue());
+        return new TicketResponse(ticket.getLottosSize(), ticket.getLottosValue(), ticket.getTotalPrice());
 
     }
 

@@ -2,6 +2,7 @@ package lotto.usecase;
 
 import lotto.application.prize.service.PrizeResponse;
 import lotto.application.statistics.controller.StatisticsController;
+import lotto.application.statistics.dto.StatisticsResponse;
 import lotto.application.statistics.view.StatisticsOutputView;
 import lotto.application.ticket.dto.TicketResponse;
 
@@ -22,5 +23,5 @@ public class CompileStatisticsUsecase {
 
         outputView.show(response);
     }
-    
+
 }

@@ -21,6 +21,7 @@ public class StatisticsResult {
         return rankCounter.getCount(rank);
     }
 
+
     private double calculateRate(int totalPrize, int purchaseAmount) {
         return (totalPrize / (double) purchaseAmount) * PERCENTAGE;
     }
