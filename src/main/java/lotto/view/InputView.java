@@ -1,5 +1,11 @@
 package lotto.view;
 
+import static lotto.message.ExceptionMessage.DUPLICATED_NUMBER;
+import static lotto.message.ExceptionMessage.DUPLICATED_WITH_WINNING_NUMBERS;
+import static lotto.message.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.message.ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.message.ExceptionMessage.WRONG_NUMBER_FORMAT;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,19 +33,20 @@ public class InputView {
                 int number = Integer.parseInt(splitString.trim());
 
                 if (number < 1 && number > 45) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
                 }
+
                 if (numbers.contains(number)) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+                    throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
                 }
                 numbers.add(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 번호는 숫자만 입력할 수 있습니다.");
+                throw new IllegalArgumentException(WRONG_NUMBER_FORMAT.getMessage());
             }
         }
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 번호는 정확히 6개를 입력해야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
 
         return Collections.unmodifiableList(numbers);
@@ -51,14 +58,14 @@ public class InputView {
         try {
             bonusNumber = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 입력 할 수 있습니다.");
+            throw new IllegalArgumentException(WRONG_NUMBER_FORMAT.getMessage());
         }
 
         if (LottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 입력하신 보너스 번호는 이미 당첨 번호에 존재합니다.");
+            throw new IllegalArgumentException(DUPLICATED_WITH_WINNING_NUMBERS.getMessage());
         }
         if (bonusNumber < 1 && bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
         return bonusNumber;
     }

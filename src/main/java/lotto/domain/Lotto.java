@@ -15,10 +15,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
-        }
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 
     public static Lottos buyAsMoney(int money) {
@@ -37,16 +35,6 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
-    }
-
     public int countMatchingNumbers(Lotto winningLotto) {
         int matchingNumberCount = 0;
         for (Integer number : numbers) {
@@ -60,5 +48,17 @@ public class Lotto {
     public boolean contains(int bonusNumber) {
         boolean iscontainBonusNumber = numbers.contains(bonusNumber);
         return iscontainBonusNumber;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+        }
     }
 }

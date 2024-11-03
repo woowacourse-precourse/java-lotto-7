@@ -23,7 +23,7 @@ public final class Lottos {
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
             boolean isMatchBonus = lotto.contains(bonusNumber);
-            String rank = getLottoRank(matchCount,isMatchBonus);
+            String rank = determineLottoRank(matchCount,isMatchBonus);
 
             lottosResult.computeIfPresent(rank, (key,value)-> value+1);
         }
@@ -33,7 +33,7 @@ public final class Lottos {
         return lottosResult;
     }
 
-    private String getLottoRank(int matchCount, boolean isMatchBonus) {
+    private String determineLottoRank(int matchCount, boolean isMatchBonus) {
         if (matchCount == 6) {
             return "1등";
         }
@@ -52,12 +52,12 @@ public final class Lottos {
         return "꽝";
     }
 
-
     public double calculateReturns(Map<String, Integer> lottoResult, int usingMoney) {
         double value = getTotalPrizeMoney(lottoResult) / (double) usingMoney * 100;
 
         return Math.round(value*10)/10.0;
     }
+
     public int getTotalPrizeMoney(Map<String, Integer> lottoResult) {
         int totalPrize = 0;
         totalPrize += lottoResult.get("1등") * 2000000000;
