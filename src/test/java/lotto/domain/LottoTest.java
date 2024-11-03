@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +23,52 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생해야 한다.")
+    void 로또_번호가_범위를_벗어나면_예외가_발생해야_한다() {
+        List<Integer> outOfRangeNumbers = Arrays.asList(0, 2, 3, 4, 5, 6); // 0은 범위 밖
+        assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
+    void 로또_번호는_오름차순으로_정렬되어야_한다() {
+        List<Integer> unsortedNumbers = Arrays.asList(5, 3, 1, 6, 2, 4);
+        Lotto lotto = new Lotto(unsortedNumbers);
+        List<Integer> sortedNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertThat(lotto.getNumbers()).isEqualTo(sortedNumbers);
+    }
+
+    @Test
+    @DisplayName("두 로또 객체는 동일한 번호를 가지면 동일한 객체여야 한다.")
+    void 두_로또_객체는_동일한_번호를_가지면_동일한_객체여야_한다() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto1 = new Lotto(numbers);
+        Lotto lotto2 = new Lotto(numbers);
+        assertThat(lotto1).isEqualTo(lotto2);
+        assertThat(lotto1.hashCode()).isEqualTo(lotto2.hashCode());
+    }
+
+    @Test
+    @DisplayName("두 로또 객체는 다른 번호를 가지면 동일한 객체가 아니어야 한다.")
+    void 두_로또_객체는_다른_번호를_가지면_동일한_객체가_아니어야_한다() {
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        assertThat(lotto1).isNotEqualTo(lotto2);
+    }
+
+    @Test
+    @DisplayName("특정 번호가 로또에 포함되어 있으면 true를 반환해야 한다.")
+    void 특정_번호가_로또에_포함되어_있으면_true를_반환해야_한다() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.containsNumber(3)).isTrue();
+    }
+
+    @Test
+    @DisplayName("특정 번호가 로또에 포함되어 있지 않으면 false를 반환해야 한다.")
+    void 특정_번호가_로또에_포함되어_있지_않으면_false를_반환해야_한다() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.containsNumber(7)).isFalse();
+    }
 }
