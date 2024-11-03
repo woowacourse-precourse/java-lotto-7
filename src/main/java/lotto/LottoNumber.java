@@ -13,6 +13,10 @@ public class LottoNumber {
         return new LottoNumber(value);
     }
 
+    public static LottoNumber valueOf(String value) {
+        return valueOf(Integer.parseInt(value));
+    }
+
     private static void validate(Integer value) {
         isBetweenLottoNumberRule(value);
     }

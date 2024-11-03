@@ -13,6 +13,10 @@ public class BonusNumber {
         return new BonusNumber(value);
     }
 
+    public static BonusNumber of(String value, LottoNumbers numbers) {
+        return of(LottoNumber.valueOf(value), numbers);
+    }
+
     private static void validate(LottoNumber value, LottoNumbers numbers) {
         isNotDuplicated(value, numbers);
     }

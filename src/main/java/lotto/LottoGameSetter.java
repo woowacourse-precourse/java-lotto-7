@@ -5,45 +5,29 @@ import lotto.console.ConsoleInput;
 import lotto.console.ConsoleOutput;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LottoGameSetter {
 
     public LottoGame set() {
 
         LottoPrice totalPrice = setTotalPrice();
-
         Integer totalLottoCount = setTotalLottoCount(totalPrice);
-
         Lottos lottos = drawLottery(totalLottoCount);
 
         printDrawingResult(lottos);
 
         LottoNumbers winningNumbers = setWinningNumbers();
-
         BonusNumber bonusNumber = setBonusNumber(winningNumbers);
 
         return LottoGame.of(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
     private BonusNumber setBonusNumber(LottoNumbers winningNumbers) {
-        String bonusNumberInput = ConsoleInput.getBonusNumberInput();
-        Integer bonusNumber = Integer.parseInt(bonusNumberInput);
-
-        return BonusNumber.of(LottoNumber.valueOf(bonusNumber), winningNumbers);
+        return BonusNumber.of(ConsoleInput.getBonusNumberInput(), winningNumbers);
     }
 
     private LottoNumbers setWinningNumbers() {
-        String input = ConsoleInput.getWinningNumbers();
-        String[] inputNumbers = input.split(",");
-
-        Set<LottoNumber> winningNumbers = Arrays.stream(inputNumbers)
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .map(LottoNumber::valueOf)
-                .collect(Collectors.toSet());
-
-        return LottoNumbers.of(winningNumbers);
+        return LottoNumbers.from(ConsoleInput.getWinningNumbers());
     }
 
     private void printDrawingResult(Lottos lottos) {
@@ -65,7 +49,6 @@ public class LottoGameSetter {
     }
 
     private LottoPrice setTotalPrice() {
-        String totalPrice = ConsoleInput.getTotalPrice();
-        return LottoPrice.valueOf(Integer.parseInt(totalPrice));
+        return LottoPrice.valueOf(ConsoleInput.getTotalPrice());
     }
 }

@@ -12,6 +12,10 @@ public class LottoPrice {
         return new LottoPrice(lottoPrice);
     }
 
+    public static LottoPrice valueOf(String lottoPriceString) {
+        return valueOf(Integer.parseInt(lottoPriceString));
+    }
+
     private static void validate(Integer value) {
 
         isDividableByThousand(value);
