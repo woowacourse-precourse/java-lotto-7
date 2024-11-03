@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.Validator;
 import lotto.view.message.InputMessage;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 
 import static lotto.view.message.InputMessage.*;
 import static lotto.common.ErrorMessage.EMPTY_INPUT;
@@ -39,8 +41,6 @@ public class InputView {
     }
 
     private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
-        if (inputValue == null || inputValue.isEmpty()) {
-            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
-        }
+        Validator.checkEmpty(inputValue);
     }
 }
