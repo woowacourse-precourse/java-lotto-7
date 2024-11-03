@@ -1,6 +1,6 @@
-package lotto;
+package lotto.ticket;
 
-import static lotto.Lotto.LOTTO_PRICE;
+import static lotto.ticket.Lotto.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

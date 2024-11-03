@@ -1,10 +1,10 @@
-package ticket.lotto;
+package ticket;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.LottoIssuer;
-import lotto.Ticket;
+import lotto.ticket.LottoIssuer;
+import lotto.ticket.Ticket;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

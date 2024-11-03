@@ -1,4 +1,4 @@
-package lotto;
+package lotto.ticket;
 
 import java.util.List;
 
