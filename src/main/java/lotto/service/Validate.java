@@ -5,64 +5,95 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constants.LottoConstants.SEPARATOR;
+import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.NUMBER_COUNT;
+import static lotto.constants.LottoConstants.PURCHASE_AMOUNT_UNIT;
+import static lotto.constants.LottoConstants.ZERO;
+import static lotto.exception.exceptionMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.exception.exceptionMessage.INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.exception.exceptionMessage.NOT_A_NUMBER;
+import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.exception.exceptionMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.exception.exceptionMessage.DUPLICATE_LOTTO_NUMBER;
+
 public class Validate {
     // 구매 금액
     public int validatePurchaseAmount (String purchaseAmountInput) {
-        int purchaseAmount = validateInputIsDigit(purchaseAmountInput, "[ERROR] 구매 금액은 숫자만 올 수 있습니다.");
-        if (purchaseAmount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 이상이어야 합니다.");
+        int purchaseAmount = validateInputIsDigit(purchaseAmountInput);
+        checkPurchaseAmountRange(purchaseAmount);
+        checkPurchaseAmountUnit(purchaseAmount);
+        return purchaseAmount / PURCHASE_AMOUNT_UNIT;
+    }
+    private void checkPurchaseAmountRange (int purchaseAmount) {
+        if (purchaseAmount < PURCHASE_AMOUNT_UNIT) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로만 입력할 수 있습니다.");
+    }
+    private void checkPurchaseAmountUnit (int purchaseAmount) {
+        if (purchaseAmount % PURCHASE_AMOUNT_UNIT != ZERO) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT);
         }
-        return purchaseAmount;
     }
 
     // 당첨 번호
     public List<Integer> validateWinningNumbers (String winningNumbersInput) {
         List<Integer> winningNumbers = new ArrayList<>();
-        for (String winningNumber : winningNumbersInput.split(",")) {
-            winningNumbers.add(validateInputIsDigit(winningNumber, "[ERROR] 로또 번호는 숫자만 올 수 있습니다."));
-        }
-        for (int winningNumber : winningNumbers) {
-            validateNumberRange(winningNumber, "[ERROR] 로또 번호는 1~45 사이에 존재해야 합니다.");
-        }
+        checkWinningNumbersIsDigit(winningNumbers, winningNumbersInput);
+        checkWinningNumbersSize(winningNumbers);
+        checkWinningNumbersRange(winningNumbers);
         validateDuplicateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
-    public void validateDuplicateWinningNumbers (List<Integer> winningNumbersInput) {
+    private void checkWinningNumbersIsDigit (List<Integer> winningNumbers, String winningNumbersInput) {
+        for (String winningNumber : winningNumbersInput.split(SEPARATOR)) {
+            winningNumbers.add(validateInputIsDigit(winningNumber));
+        }
+    }
+    private void checkWinningNumbersSize (List<Integer> winningNumbers) {
+        if (winningNumbers.size() != NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT);
+        }
+    }
+    private void checkWinningNumbersRange (List<Integer> winningNumbers) {
+        for (int winningNumber : winningNumbers) {
+            validateNumberRange(winningNumber);
+        }
+    }
+    private void validateDuplicateWinningNumbers (List<Integer> winningNumbersInput) {
         Set<Integer> winningNumbers = new HashSet<>(winningNumbersInput);
         if (winningNumbers.size() != winningNumbersInput.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
         }
     }
 
     // 보너스 번호
     public int validateBonusNumber (String bonusNumberInput, List<Integer> winningNumbers) {
-        int bonusNumber = validateInputIsDigit(bonusNumberInput, "[ERROR] 보너스 번호는 숫자만 올 수 있습니다.");
-        validateNumberRange(bonusNumber, "[ERROR] 보너스 번호는 1~45 사이에 존재해야 합니다.");
+        int bonusNumber = validateInputIsDigit(bonusNumberInput);
+        validateNumberRange(bonusNumber);
         validateDuplicateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
     }
-    public void validateDuplicateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    private void validateDuplicateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
             if (bonusNumber == winningNumber) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
             }
         }
     }
 
     // 공통 사용 메서드
-    public int validateInputIsDigit (String inputNumber, String errorMessage) {
+    private int validateInputIsDigit (String inputNumber) {
         try {
             return Integer.parseInt(inputNumber);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(errorMessage);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_A_NUMBER);
         }
     }
-    public void validateNumberRange(int bonusNumber, String errorMessage) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(errorMessage);
+    private void validateNumberRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 }
