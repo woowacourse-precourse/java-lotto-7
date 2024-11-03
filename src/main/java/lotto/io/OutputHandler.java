@@ -16,4 +16,9 @@ public class OutputHandler {
     public void showLottos(LottoPool lottoPool) {
         lottoPool.display();
     }
+
+    public void askWinningNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
