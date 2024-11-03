@@ -2,9 +2,11 @@ package lotto;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.prompt.LottoDrawPrompt;
+import lotto.prompt.LottoPurchasePrompt;
 
 public class Application {
-    
+
     private static String readAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
@@ -21,6 +23,10 @@ public class Application {
     }
 
     public static void main(String[] args) {
+        lotto.controller.LottoMachine lottoMachine2 = new lotto.controller.LottoMachine();
+        lottoMachine2.purchase(new LottoPurchasePrompt());
+        lottoMachine2.draw(new LottoDrawPrompt());
+        System.exit(0);
         LottoMachine lottoMachine = new LottoMachine();
         int amount;
         Lotto winningNumbers;

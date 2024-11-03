@@ -40,7 +40,7 @@ public class LottoNumber {
             return true;
         }
         if (!(o instanceof LottoNumber that)) {
-            return false; // null 체크 및 클래스 타입 체크
+            return false;
         }
         return number == that.number;
     }
