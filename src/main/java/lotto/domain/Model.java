@@ -26,22 +26,23 @@ public class Model {
         winningDetail = CreateWinningMap.create();
     }
 
-    private void checkWinning() {
-        for (Lotto lotto : lottos) {
-            winningAmount += lotto.compareNumbers(winningNumbers, winningDetail);
-        }
-    }
-
-    public String calculate() {
-        return CalculateRoi.calculate(winningAmount, amount);
-    }
-
-    public void setWinningNumbers(String winningNumbers) {
+    public void initializeWinningNumbers(String winningNumbers) {
         this.winningNumbers = CreateWinningNumber.create(winningNumbers);
     }
 
     public void appendBonusNumber(String bonusNumber) {
         AddBonusNumber.add(winningNumbers, bonusNumber);
+        calculateTotalWinnings();
+    }
+
+    private void calculateTotalWinnings() {
+        for (Lotto lotto : lottos) {
+            winningAmount += lotto.compareNumbers(winningNumbers, winningDetail);
+        }
+    }
+
+    public String computeRoi() {
+        return CalculateRoi.calculate(winningAmount, amount);
     }
 
     public List<Lotto> getLottos() {
@@ -53,7 +54,6 @@ public class Model {
     }
 
     public Map<String, Integer> getWinningDetail() {
-        checkWinning();
         return winningDetail;
     }
 }

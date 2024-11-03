@@ -48,7 +48,7 @@ public class Controller {
                 input::readWinningNumbers,
                 new NumberValidator()
         );
-        model.setWinningNumbers(winningNumbers);
+        model.initializeWinningNumbers(winningNumbers);
     }
 
     private void setBonusNumber(Model model) {
@@ -61,6 +61,6 @@ public class Controller {
 
     private void printResult(Model model) {
         output.printWinningDetail(model.getWinningDetail());
-        output.printResult(model.calculate());
+        output.printResult(model.computeRoi());
     }
 }
