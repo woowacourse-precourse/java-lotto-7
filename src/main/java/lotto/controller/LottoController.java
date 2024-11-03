@@ -19,15 +19,15 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = setPurchaseAmount();
-        outputView.printLottoCount(purchaseAmount);
-        Lottos lottos = lottoService.generateLottos(purchaseAmount);
+        int purchaseCount= setPurchaseCount();
+        outputView.printLottoCount(purchaseCount);
+        Lottos lottos = lottoService.generateLottos(purchaseCount);
         outputView.printLottoNumbers(lottos);
         Lotto winningLotto = setWinLotto();
         int bonusNumber = setBonusNumber(winningLotto);
     }
 
-    private int setPurchaseAmount() {
+    private int setPurchaseCount() {
         String purchaseAmount = inputView.getPurchaseAmount();
         return PurchaseAmountProcessor.calculatePurchaseCount(purchaseAmount);
     }
