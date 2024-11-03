@@ -46,4 +46,18 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
+
+    public Integer parseBonusNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_TYPE_ERROR.getMessage());
+        }
+    }
+
+    public void validBonusNumber(Integer bonusNumber) {
+        if (bonusNumber < Value.lottoStartNumber || bonusNumber > Value.lottoEndNumber) {
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
 }

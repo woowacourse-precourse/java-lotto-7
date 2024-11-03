@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.constants.ErrorCode;
-
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -15,17 +13,25 @@ public class InputView {
 
     public Long inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        String money = readLine();
-        Long convertMoney = inputValidator.parseMoney(money);
-        inputValidator.validMoney(convertMoney);
-        return convertMoney;
+        String inputMoney = readLine();
+        Long money = inputValidator.parseMoney(inputMoney);
+        inputValidator.validMoney(money);
+        return money;
     }
 
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbers = readLine();
-        List<Integer> winningNumber = inputValidator.parseNumbers(winningNumbers);
+        String input = readLine();
+        List<Integer> winningNumber = inputValidator.parseNumbers(input);
         inputValidator.validWinningNumber(winningNumber);
         return winningNumber;
+    }
+
+    public Integer inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = readLine();
+        Integer bonusNumber = inputValidator.parseBonusNumber(input);
+        inputValidator.validBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 }
