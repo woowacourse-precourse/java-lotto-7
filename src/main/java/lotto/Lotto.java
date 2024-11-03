@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,5 +19,13 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    public int getMatchingCount(List<Integer> winningNumber) {
+        return Math.toIntExact(numbers.stream().filter(o -> winningNumber.stream().anyMatch(Predicate.isEqual(o))).count());
+    }
+
+    public boolean isMatchBonus(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }
