@@ -64,6 +64,8 @@ public class InputView {
                 inputValidator.validateIsIn(winningNumbers, bonusNumber);
                 inputValidator.validateIsInBound(bonusNumber);
                 return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.INVALID_DATA_TYPE.get());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
