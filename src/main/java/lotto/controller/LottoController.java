@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoGame;
+import lotto.domain.LottoResult;
 import lotto.domain.MyLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,8 +18,7 @@ public class LottoController {
     }
 
     public void run() {
-        LottoGame lottoGame = createNewLottoGame();
-        MyLotto myLotto = createMyLotto();
+        getResult(createNewLottoGame(), createMyLotto());
     }
 
     private LottoGame createNewLottoGame() {
@@ -57,5 +57,11 @@ public class LottoController {
             outputView.renderErrorMessage(e.getMessage());
             return getBonusNumber(winningNumbers);
         }
+    }
+
+    private void getResult(final LottoGame lottoGame, final MyLotto myLotto) {
+        final LottoResult lottoResult = new LottoResult(lottoGame.getPurchaseAmount());
+        lottoGame.getGeneratedLottos().forEach(lotto -> lottoResult.checkLottoRank(lotto, myLotto));
+        outputView.renderResult(lottoResult.getLottoRankBoard(), lottoResult.calcRateOfReturn());
     }
 }
