@@ -1,10 +1,22 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class InputParserTest {
+    @Test
+    void 숫자하나_분석_정상() {
+        assertThat(InputParser.parseInt(" 1")).isEqualTo(1);
+    }
+
+    @Test
+    void 숫자배열_분석_정상() {
+        assertThat(InputParser.parseIntList("1, 2,3, 4, 5 ,6")).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
     @Test
     void 빈문자열_예외() {
         assertThatThrownBy(() -> InputParser.parseInt(""))
