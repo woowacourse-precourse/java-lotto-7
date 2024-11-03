@@ -3,6 +3,7 @@ package lotto.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.DisplayName;
@@ -33,5 +34,22 @@ class LottoCreatorTest {
 
 		// then
 		assertEquals(uniqueNumbers.size(), purchasedLotto.getNumbers().size());
+	}
+
+	@Test
+	@DisplayName("파라미터로 전달받은 정수 리스트를 토대로 당첨 로또를 생성할 수 있다.")
+	void 정수_리스트를_토대로_당첨_로또를_생성한다() {
+		// given
+		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+		// when
+		Lotto winningLotto = lottoCreator.createWinningLotto(numbers);
+
+		// then
+		assertEquals(numbers.size(), winningLotto.getNumbers().size());
+		assertIterableEquals(numbers, winningLotto.getNumbers().stream()
+				.map(LottoNumber::getNumber)
+				.toList());
+
 	}
 }
