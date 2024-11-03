@@ -1,6 +1,9 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_END_RANGE;
+import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppErrorType.BONUS_NUMBER_DUPLICATE_ERROR;
+import static lotto.common.AppErrorType.NUMBER_RANGE_ERROR;
 
 import java.util.List;
 
@@ -12,10 +15,17 @@ public class WinningLotto {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
 
-        validateBonusNumber();
+        validateBonusNumberRange();
+        validateDuplicatedBonusNumber();
     }
 
-    private void validateBonusNumber() {
+    private void validateBonusNumberRange() {
+        if (LOTTO_START_RANGE > bonusNumber || bonusNumber > LOTTO_END_RANGE) {
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplicatedBonusNumber() {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         if (lottoNumbers.contains(bonusNumber)) {
