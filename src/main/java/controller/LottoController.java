@@ -3,9 +3,11 @@ package controller;
 import domain.lotto.Lotto;
 import domain.lotto.LottoGenerator;
 import domain.lotto.WinningLotto;
+import domain.prize.PrizeCalculator;
 import domain.prize.PrizeResult;
 import purchase.PurchaseAmount;
 import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class LottoController {
                 generateLottos();
                 OutputView.printPurchasedLottos(purchasedLottos);
                 winningLotto = InputView.readWinningNumbers();
-                calculatePrize();
+                PrizeResult prizeResult = prizeCalculator.calculate(purchasedLottos, winningLotto);
                 OutputView.printPrizeStatistics(prizeCalculator.getPrizeResult(), purchaseAmount.getAmount());
                 isRunning = false; // 정상 종료
             } catch (IllegalArgumentException e) {
@@ -44,8 +46,4 @@ public class LottoController {
         }
     }
 
-    private void calculatePrize() {
-        PrizeResult prizeResult = prizeCalculator.calculate(purchasedLottos, winningLotto);
-        // prizeResult는 이미 PrizeCalculator 내에 저장되어 있음
-    }
 }
