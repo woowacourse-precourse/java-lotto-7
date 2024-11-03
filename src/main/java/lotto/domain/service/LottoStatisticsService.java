@@ -5,8 +5,13 @@ import lotto.domain.model.WinningNumbers;
 import lotto.domain.model.PrizeCategory;
 import java.util.List;
 
-//로또 당첨 통계 계산을 담당하는 클래스
+//로또 당첨 통계 및 수익률 계산을 담당하는 클래스
 public class LottoStatisticsService {
+    private final LottoPrizeService prizeService;
+
+    public LottoStatisticsService() {
+        this.prizeService = new LottoPrizeService();
+    }
 
     /**
      * 각 당첨 등급별 당첨 횟수를 계산.
@@ -17,7 +22,6 @@ public class LottoStatisticsService {
      */
     public int[] calculatePrizeCounts(List<Lotto> tickets, WinningNumbers winningNumbers) {
         int[] prizeCounts = new int[PrizeCategory.values().length];
-        LottoPrizeService prizeService = new LottoPrizeService();
 
         for (Lotto ticket : tickets) {
             PrizeCategory prize = prizeService.calculatePrize(ticket, winningNumbers);
@@ -25,12 +29,11 @@ public class LottoStatisticsService {
                 prizeCounts[prize.ordinal()]++;
             }
         }
-
         return prizeCounts;
     }
 
     /**
-     * 총 상금을계산.
+     * 총 상금을 계산.
      *
      * @param prizeCounts 당첨 횟수 배열
      * @return 총 상금
