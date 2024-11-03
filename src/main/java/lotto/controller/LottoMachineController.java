@@ -24,7 +24,7 @@ public class LottoMachineController {
         PurchaseAmount purchaseAmount = RetryUtil.retry(this::readPurchaseAmount);
 
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount.getPurchaseAmount());
-        outputView.printBuyingLottos(lottoMachine.getBuyingLotto());
+        outputView.printBuyingLottos(lottoMachine.getBuyingLottos());
 
         Lotto lotto = RetryUtil.retry(this::readLotto);
         Bonus bonus = RetryUtil.retry(() -> readBonus(lotto));

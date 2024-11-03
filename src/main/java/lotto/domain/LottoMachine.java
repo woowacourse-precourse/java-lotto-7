@@ -15,7 +15,7 @@ public class LottoMachine {
                 .toList();
     }
 
-    public List<String> getBuyingLotto() {
+    public List<String> getBuyingLottos() {
         return buyingLottos.stream()
                 .map(Lotto::toString)
                 .toList();
