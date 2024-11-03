@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoAmount;
-import lotto.domain.RandomLottoNumbers;
+import lotto.domain.*;
 import lotto.view.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class LottoController {
@@ -17,6 +16,7 @@ public class LottoController {
     private static final String REGEX = "^([^,]+,){5}[^,]+$";
     private static List<Lotto> myLottos;
     private static Lotto winningNumbers;
+    private static int bonusNumber;
 
     public void run(){
         try{
@@ -35,7 +35,10 @@ public class LottoController {
         OutputView.printMyLottoNumber(myLottos);
 
         WinningNumbers();
-        System.out.println(winningNumbers.getNumbers());
+        bonusNumber();
+
+        calculateLottoResult();
+
 
     }
     // 로또 개수
@@ -94,6 +97,21 @@ public class LottoController {
         }
     }
 
+    // 보너스 번호 입력 및 유효 검사
+    private static void bonusNumber(){
+        int IntegerBonusNumber = convertToInt(InputView.inputBonusNumber());
+        Lotto.validateBonusNumbers(winningNumbers.getNumbers(), IntegerBonusNumber);
+        bonusNumber = IntegerBonusNumber;
+    }
+
+    private static void calculateLottoResult(){
+        LottoResult lottoResult = new LottoResult(winningNumbers, bonusNumber);
+        for (Lotto lotto : myLottos) {
+            LottoPrize prize = lottoResult.calculateResults(lotto);
+            lottoResult.setResults(prize);
+        }
+        lottoResult.printResults();
+    }
 
 
 

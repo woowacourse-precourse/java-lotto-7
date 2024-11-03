@@ -10,6 +10,8 @@ public class ExceptionMessage {
     private static final String OUT_OF_RANGE_LOTTO_NUMBERS = "[ERROR] 로또의 번호는 1~45 사이의 정수입니다!";
     private static final String INVALID_DELIMITER = "[ERROR] 로또의 번호의 입력 구분자는 쉼표(,)입니다!";
 
+    private static final String INVALID_BONUS_NUMBER = "[ERROR] 보너스 번호는 로또번호와 중복되면 안됩니다!";
+
 
     public static void priceNumberException(){
         System.out.println(NOT_NUMBER);
@@ -33,6 +35,10 @@ public class ExceptionMessage {
 
     public static void delimiterException(){
         System.out.println(INVALID_DELIMITER);
+    }
+
+    public static void bonusNumberException(){
+        System.out.println(INVALID_BONUS_NUMBER);
     }
 
 }

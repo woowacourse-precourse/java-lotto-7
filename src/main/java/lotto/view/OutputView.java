@@ -15,4 +15,14 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public static void printResultMessage() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+    public static void printLottoResult(String message, int count) {
+        System.out.println(message + " - " + count + "개");
+    }
+
+
 }
