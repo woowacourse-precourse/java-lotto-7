@@ -27,7 +27,10 @@ public class LottoChecker {
         input = input.trim();
         String[] inputNums = input.split(",");
         try {
-            winningNumbers.add(Integer.parseInt(inputNums[0]));
+            for (int i = 0; i < inputNums.length; i++) {
+                int number = Integer.parseInt(inputNums[i]);
+                winningNumbers.add(number);
+            }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자 이외의 입력이 감지되었습니다.");
         }
@@ -66,7 +69,7 @@ public class LottoChecker {
         if (winningNumbers.contains(num)) {
             count++;
         }
-        if(bonusNumber == num) {
+        if (bonusNumber == num) {
             count += 10;
         }
 
