@@ -50,4 +50,8 @@ public class LottoService {
         return new LottoResultDto(description, rank.getPrize(), count);
     }
 
+    public double calculateTotalEarningsRate(int purchaseAmount) {
+        long totalEarnings = lottoResults.calculateTotalEarnings();
+        return (double) totalEarnings / purchaseAmount * 100;
+    }
 }
