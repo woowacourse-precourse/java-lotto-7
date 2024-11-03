@@ -1,14 +1,15 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -19,11 +20,14 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return this.numbers;
+    private void validateUniqueNumber() {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
     }
 }
