@@ -21,18 +21,11 @@ public class Validator{
         isOutOfRange(input);
     }
 
-    public static List<Integer> toNumberList(String input){
-        return Arrays.stream(input.split(","))
-                .map(Validator::toNumeric)
-                .collect(Collectors.toList());
-    }
-
-    public static Integer toNumeric(String input) {
+    public static void isNumeric(String input) {
         String regex = "^[0-9]*$";
         if(!Pattern.matches(regex, input)){
             throw new InputException(ExceptionMessage.INVALID_INPUT_ERROR);
         }
-        return Integer.parseInt(input);
     }
 
     private static void isBlank(Integer input){

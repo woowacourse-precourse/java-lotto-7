@@ -8,7 +8,6 @@ import lotto.model.Number;
 import lotto.model.WinningNumbers;
 
 import static lotto.console.ConsoleManager.*;
-import static lotto.validate.Validator.*;
 
 public class InputView {
     public Amount getAmount(){
