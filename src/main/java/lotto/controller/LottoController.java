@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.model.LottoPrizeCalculator.*;
 import static lotto.validation.PurchaseAmountValidation.*;
 import static lotto.validation.WinningNumberValidation.parseValidatedBonusNumber;
 import static lotto.view.InputView.*;
@@ -7,7 +8,6 @@ import static lotto.view.OutputView.*;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.LottoPrizeCalculator;
 import lotto.model.LottoTickets;
 import lotto.model.Prize;
 import lotto.model.WinningLotto;
@@ -23,11 +23,10 @@ public class LottoController {
         LottoTickets lottoTickets = new LottoTickets(attemptCount);
         WinningLotto winningLotto = createWinningLotto();
 
-        Map<Prize,Integer> lottoResult = LottoPrizeCalculator.calculate(lottoTickets,winningLotto);
-        double profitRatio = LottoPrizeCalculator.calculateProfitRatio(attemptCount,LottoPrizeCalculator.getTotalAmount());
-        printWinningStatisticsMessage();
-        printResult(lottoResult);
-        printProfitRatio(profitRatio);
+        Map<Prize, Integer> lottoResult = calculate(lottoTickets, winningLotto);
+        double profitRatio = calculateProfitRatio(attemptCount, getTotalAmount());
+
+        printResultStatistics(lottoResult, profitRatio);
     }
 
     private WinningLotto createWinningLotto() {
@@ -53,4 +52,11 @@ public class LottoController {
         String winningNumber = UserInput();
         return WinningNumberValidation.parseValidatedWinningNumber(winningNumber);
     }
+
+    private void printResultStatistics(Map<Prize, Integer> lottoResult, double profitRatio) {
+        printWinningStatisticsMessage();
+        printResult(lottoResult);
+        printProfitRatio(profitRatio);
+    }
+
 }

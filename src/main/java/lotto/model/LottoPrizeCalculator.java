@@ -16,30 +16,30 @@ public class LottoPrizeCalculator {
 
             if (prize != null) {
                 prizeCountMap.put(prize, prizeCountMap.getOrDefault(prize, 0) + 1);
-                totalAmount+=prize.getPrizeMoney();
+                totalAmount += prize.getPrizeMoney();
             }
         }
         return prizeCountMap;
     }
 
-    public static double calculateProfitRatio(int attemptCount,int totalAmount){
-        double totalCost = attemptCount*1000.0;
-        return (totalAmount / totalCost) *100.0;
+    public static double calculateProfitRatio(int attemptCount, int totalAmount) {
+        double totalCost = attemptCount * 1000.0;
+        return (totalAmount / totalCost) * 100.0;
     }
 
     private static Prize comparePrize(List<Integer> lottoNumbers, WinningLotto winningLotto) {
         List<Integer> winningNumber = winningLotto.getWinningNumber();
-        boolean matchBonus = false;
-
         lottoNumbers.retainAll(winningNumber);
         int matchCount = lottoNumbers.size();
-        if (matchCount == 5) {
-            int bonusNumber = winningLotto.getBonusNumber();
-            if (lottoNumbers.contains(bonusNumber)) {
-                matchBonus = true;
-            }
+
+        if (matchCount != 5) {
+            return Prize.valueOf(matchCount, false);
         }
-        return Prize.valueOf(matchCount,matchBonus);
+
+        int bonusNumber = winningLotto.getBonusNumber();
+        boolean matchBonus = lottoNumbers.contains(bonusNumber);
+
+        return Prize.valueOf(matchCount, matchBonus);
     }
 
     public static int getTotalAmount() {
