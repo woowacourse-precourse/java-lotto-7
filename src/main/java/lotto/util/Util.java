@@ -20,6 +20,10 @@ public class Util {
         return formatter.format(amount);
     }
 
+    public static void nextLine() {
+        System.out.println();
+    }
+
     public static List<String> seperateInput(String input) {
         String[] numbersInputs = input.split(NUMBER_DELIMITER);
 

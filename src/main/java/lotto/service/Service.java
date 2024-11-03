@@ -25,6 +25,7 @@ public class Service {
     public void inputAmount() throws IllegalArgumentException {
         InputGuide.ACCOUNT.guidePrint();
         String inputAccount = Console.readLine();
+        Util.nextLine();
         numberValidate(inputAccount);
         amount = Integer.parseInt(inputAccount);
         lottoCount = LottoGenerator.howManyLottos(amount);
@@ -35,11 +36,14 @@ public class Service {
 
         Output.purchaseCount(lottoCount);
         Output.purchasedLottos(lottos);
+        Util.nextLine();
     }
 
     public void inputSelectedNumbers() {
         InputGuide.NUMBER_SELECT.guidePrint();
-        List<String> inputs = Util.seperateInput(Console.readLine());
+        String input = Console.readLine();
+        Util.nextLine();
+        List<String> inputs = Util.seperateInput(input);
 
         List<Integer> selectedNumbers = Util.toNumbers(inputs);
         host.setSelectedNumbers(selectedNumbers);
@@ -48,6 +52,7 @@ public class Service {
     public void inputBonusNumber() {
         InputGuide.BONUS.guidePrint();
         String bonusInput = Console.readLine();
+        Util.nextLine();
         numberValidate(bonusInput);
         host.setBonusNumber(Integer.parseInt(bonusInput));
     }
