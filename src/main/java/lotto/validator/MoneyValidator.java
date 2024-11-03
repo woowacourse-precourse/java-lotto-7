@@ -2,7 +2,7 @@ package lotto.validator;
 
 public class MoneyValidator {
     public static void validateMoneyInputNotNull(String inputMoney) {
-        if (inputMoney == null) {
+        if (inputMoney == null || inputMoney.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 돈을 입력해야 합니다.");
         }
     }

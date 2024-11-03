@@ -73,7 +73,7 @@ class LottoTest {
         assertThatThrownBy(() -> {
             lottoController.validateBonusNumber(lottos, bonus);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 보너스 번호와 중복되지 않아야 한다.");
+                .hasMessage("[ERROR] 로또 번호는 보너스 번호와 중복되지 않아야 합니다.");
     }
 
     @DisplayName("보너스 번호를 입력해야 한다.")
@@ -129,7 +129,7 @@ class LottoTest {
         assertThatThrownBy(() -> {
             moneyController.validateMoneyInput(money);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 돈은 숫자를 입력해야 합니다.");
+                .hasMessage("[ERROR] 돈을 입력해야 합니다.");
     }
 
     @DisplayName("돈은 숫자여야 합니다.")
@@ -153,4 +153,6 @@ class LottoTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1000원 단위로 입력하셔야 합니다.");
     }
+
+
 }

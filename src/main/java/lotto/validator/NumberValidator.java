@@ -15,7 +15,7 @@ public class NumberValidator {
         List<Integer> allNumbers = new ArrayList<>(numbers.size());
         for (Integer number : numbers) {
             if (allNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 한다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
             }
             allNumbers.add(number);
         }
