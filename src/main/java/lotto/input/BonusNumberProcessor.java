@@ -4,6 +4,7 @@ import static lotto.exception.ExceptionMessage.*;
 
 import java.util.List;
 import lotto.util.InputUtil;
+import lotto.util.utils;
 
 public class BonusNumberProcessor {
 
@@ -16,17 +17,12 @@ public class BonusNumberProcessor {
 
         int bonusNumber = Integer.parseInt(input);
 
-        validateRange(bonusNumber);
+        utils.validateRange(bonusNumber);
         validateDuplicate(winNumber, bonusNumber);
 
         return bonusNumber;
     }
 
-    private static void validateRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER.getMessage());
-        }
-    }
 
     private static void validateDuplicate(List<Integer> winNumber, int bonusNumber) {
         if (winNumber.contains(bonusNumber)) {
