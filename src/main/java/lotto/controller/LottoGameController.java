@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.model.LottoGameResult;
 import lotto.model.LottoPurchase;
 import lotto.model.WinningLotto;
 import lotto.validator.Validator;
@@ -60,7 +61,9 @@ public final class LottoGameController {
     }
 
     private void showLottoGameResult(LottoGame lottoGame) {
+        LottoGameResult lottoGameResult = lottoGame.calculateLottoResults();
 
+        outputView.print(resultFormatter.formatLottoGameResult(lottoGameResult));
     }
 
     private int readMoney() {
