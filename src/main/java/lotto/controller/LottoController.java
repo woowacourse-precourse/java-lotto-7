@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
@@ -56,6 +57,7 @@ public class LottoController {
         }
 
         // 수익률 출력
+        printProfitRate(prices, money);
     }
 
     private int inputLottoMoney() {
@@ -102,7 +104,9 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
         int lottoCount = money / 1000;
         while (lottoCount-- > 0) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> sortedUniqueNumbers = uniqueNumbers.stream().sorted().toList();
+            Lotto lotto = new Lotto(sortedUniqueNumbers);
             lottos.add(lotto);
         }
         return lottos;
@@ -146,5 +150,15 @@ public class LottoController {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호와 중복되는 보너스 번호입니다.");
         }
+    }
+
+    private void printProfitRate(Map<Price, Integer> prices, int money) {
+        Long profit = 0L;
+        for (var price : prices.entrySet()) {
+            profit += price.getKey().getProfit(price.getValue());
+        }
+        double profitRate = (double) profit / (double) money;
+        double profitPercentage = (double) Math.round(profitRate * 1000) / 10;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitPercentage);
     }
 }

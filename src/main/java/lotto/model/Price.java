@@ -22,12 +22,16 @@ public enum Price {
 
     public void print(int count) {
         if (this == SECOND) {
-            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d 개\n", matchCount, money, count);
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", matchCount, money, count);
         }
-        System.out.printf("%d개 일치 (%,d원) - %d 개\n", matchCount, money, count);
+        System.out.printf("%d개 일치 (%,d원) - %d개\n", matchCount, money, count);
     }
 
     public static List<Price> getValues() {
         return List.of(FIFTH, FORTH, THIRD, SECOND, FIRST);
+    }
+
+    public Long getProfit(int count) {
+        return money * count;
     }
 }
