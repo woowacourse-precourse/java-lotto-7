@@ -7,8 +7,7 @@ public enum WinRank {
     THIRD(5),
     FOURTH(4),
     FIFTH(3),
-    ETC(0)
-    ;
+    ETC(0);
 
     private final int matchCount;
 

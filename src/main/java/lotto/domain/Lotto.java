@@ -1,9 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.constants.InputError;
 import lotto.constants.WinRank;
-import lotto.view.ErrorPrinter;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +15,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] !");
         }
-        if (numbers.stream().distinct().count()!=numbers.size()) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] !");
         }
     }
