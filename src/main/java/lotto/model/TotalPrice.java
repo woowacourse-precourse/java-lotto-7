@@ -46,7 +46,7 @@ public class TotalPrice implements ReturnRate {
                     * DECIMAL_ROUNDING_PLACE)
             / (double) DECIMAL_ROUNDING_PLACE;
         } catch (ArithmeticException e) {
-            throw new ArithmeticException(ErrorMessage.INVALID_CALCULATE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CALCULATE.getMessage());
         }
     }
 }
