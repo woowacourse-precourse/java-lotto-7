@@ -13,17 +13,20 @@ import lotto.model.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.Buyer;
+import lotto.model.YieldAnalyst;
 
 public class LottoController {
 
     private final InputView inputView;
     private final OutputView outPutView;
     private final LottoNumberGenerator lottoNumberGenerator;
+    private final YieldAnalyst yieldAnalyst;
 
     public LottoController(InputView inputView, OutputView outPutView, LottoNumberGenerator lottoNumberGenerator) {
         this.inputView = inputView;
         this.outPutView = outPutView;
         this.lottoNumberGenerator = lottoNumberGenerator;
+        this.yieldAnalyst = new YieldAnalyst();
     }
 
     public void start() {
@@ -40,8 +43,10 @@ public class LottoController {
         outPutView.printLottoList(purchasedLottoList);
 
         LottoReport lottoReport = LottoReport.of(purchasedLottoList, winnerLotto);
-
         outPutView.printReport(lottoReport.getMatchCountMap());
+
+        double yield = yieldAnalyst.calculateYield(buyer.getPurchaseAmount(), lottoReport.getTotalEarnings());
+        outPutView.printYield(yield);
     }
 
     private Buyer processLottoPurchase() {
