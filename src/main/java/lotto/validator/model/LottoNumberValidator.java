@@ -1,10 +1,12 @@
-package lotto.validator;
+package lotto.validator.model;
+
+import lotto.validator.Validator;
 
 import java.util.HashSet;
 import java.util.List;
 
 // 로또 번호 검증 클래스
-public class LottoNumberValidator implements Validator{
+public class LottoNumberValidator implements Validator {
     private final List<Integer> numbers;
 
     public LottoNumberValidator(List<Integer> numbers){
