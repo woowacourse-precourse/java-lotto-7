@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import static org.assertj.core.api.Assertions.*;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +103,21 @@ public class ValidatorTest {
 
         assertThatThrownBy(() -> {
             Validator.oneNumberRange(min, max, number);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 중복이면 예외발생하는 테스트")
+    void isDuplicateBonusNumber() {
+        List<Integer> winningNumber = new ArrayList<>();
+        int bonusNumber = 1;
+
+        for (int i = 1; i <= 6; i++) {
+            winningNumber.add(i);
+        }
+
+        assertThatThrownBy(() -> {
+            Validator.isDuplicateBonusNumber(winningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 }
