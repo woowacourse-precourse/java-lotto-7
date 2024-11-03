@@ -44,6 +44,18 @@ public enum ErrorMessage {      // 예외별 메시지 관리
         }
     },
 
+    INVAILD_INPUT_NUMBER("[ERROR] 올바른 숫자를 입력해주세요") {
+        // 사용자가 입력한 유효 숫자 확인 여부
+        @Override
+        public void validate(String numbers) {
+            try {
+                Integer.parseInt(numbers);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(getMessage());
+            }
+        }
+    },
+
 
 
 
