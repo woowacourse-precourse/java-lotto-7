@@ -55,4 +55,17 @@ class InputViewTest {
         String lastMessage = messages[messages.length - 2];
         assertEquals(ErrorMessage.INVALID_AMOUNT.getMessage(), lastMessage);
     }
+
+    @Test
+    @DisplayName("유효한 당첨 번호 입력 시 WinningNumbers 생성")
+    void createWinningNumbersWithValidMainAndBonusNumbers() {
+        setInput("1,2,3,4,5,6\n7\n");
+
+        WinningNumbers winningNumbers = InputView.getWinningNumbers();
+        List<Integer> expectedMainNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int expectedBonusNumber = 7;
+
+        assertEquals(expectedMainNumbers, winningNumbers.getMainNumbers());
+        assertEquals(expectedBonusNumber, winningNumbers.getBonusNumber());
+    }
 }
