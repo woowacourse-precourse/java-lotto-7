@@ -1,7 +1,7 @@
 package lotto.view;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
@@ -10,8 +10,9 @@ public class OutputView {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoTickets) {
-            List<Integer> numbers = lotto.getNumbers();
-            Collections.sort(numbers);
+            List<Integer> numbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
             System.out.println(numbers);
         }
     }
