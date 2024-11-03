@@ -35,6 +35,5 @@ class LottoWinningCalculatorTest {
         );
 
         assertThat(lottoWinningResult.getLottoWinningResult()).isEqualTo(compareResult);
-
     }
 }

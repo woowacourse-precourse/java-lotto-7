@@ -28,5 +28,4 @@ class LottoWinningStrategyTest {
         //then
         assertThat(lottoRank).isEqualTo(LottoRank.FIRST);
     }
-
 }

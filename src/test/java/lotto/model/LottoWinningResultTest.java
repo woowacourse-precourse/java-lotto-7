@@ -7,8 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class
-LottoWinningResultTest {
+class LottoWinningResultTest {
 
     @DisplayName("총 수익률을 계산할 수 있다.")
     @Test
