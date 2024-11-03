@@ -8,16 +8,16 @@ public class LottoGame {
     private final LottoPrice totalPrice;
     private final Lottos lottos;
     private final LottoNumbers winningNumbers;
-    private final Integer bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    private LottoGame(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, Integer bonusNumber) {
+    private LottoGame(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, BonusNumber bonusNumber) {
         this.totalPrice = totalPrice;
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, Integer bonusNumber) {
+    public static LottoGame of(LottoPrice totalPrice, Lottos lottos, LottoNumbers winningNumbers, BonusNumber bonusNumber) {
         return new LottoGame(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
@@ -34,6 +34,6 @@ public class LottoGame {
     }
 
     public Integer getBonusNumber() {
-        return bonusNumber;
+        return bonusNumber.getValue().getValue();
     }
 }

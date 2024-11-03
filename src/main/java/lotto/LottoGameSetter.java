@@ -21,22 +21,17 @@ public class LottoGameSetter {
 
         LottoNumbers winningNumbers = setWinningNumbers();
 
-        Integer bonusNumber = setBonusNumber(winningNumbers);
+        BonusNumber bonusNumber = setBonusNumber(winningNumbers);
 
         return LottoGame.of(totalPrice, lottos, winningNumbers, bonusNumber);
     }
 
-    private Integer setBonusNumber(LottoNumbers winningNumbers) {
+    private BonusNumber setBonusNumber(LottoNumbers winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumberInput = readLine();
         Integer bonusNumber = Integer.parseInt(bonusNumberInput);
-        if(bonusNumber > 45 || bonusNumber <1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
-        }
-        if(winningNumbers.contains(LottoNumber.valueOf(bonusNumber))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 1~45 사이의 한가지 수여야 합니다.");
-        }
-        return bonusNumber;
+
+        return BonusNumber.of(LottoNumber.valueOf(bonusNumber), winningNumbers);
     }
 
     private LottoNumbers setWinningNumbers() {
