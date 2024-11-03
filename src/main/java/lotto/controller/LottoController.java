@@ -13,20 +13,25 @@ public class LottoController {
     }
 
     public void run() {
-        recordPayment();
+        Integer customerId = recordPayment();
+        issueLottos(customerId);
     }
 
-    public String recordPayment() {
-        boolean isCorrect = false;
-        while (!isCorrect) {
+    public Integer recordPayment() {
+        Integer customerId = 0;
+        while (customerId == 0) {
             try {
                 String payment = InputView.getPayment();
-                lottoService.savePayment(payment);
-                isCorrect = true;
+                customerId = lottoService.savePayment(payment);
             } catch (IllegalArgumentException e) {
                 ErrorView.printErrorMessage(e.getMessage());
             }
         }
+        return customerId;
+    }
+
+    public String issueLottos(Integer customerId) {
+        lottoService.issueLottos(customerId);
         return "success";
     }
 }
