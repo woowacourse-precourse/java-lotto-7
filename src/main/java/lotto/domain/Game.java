@@ -64,14 +64,14 @@ public class Game {
     }
 
     // 수익률 계산
-    public long calculateRateOfReturn(int purchaseAmount, int[] results) {
+    public double calculateRateOfReturn(int purchaseAmount, int[] results) {
         int revenue = 0;
 
         for (int i = 0; i < results.length; i++) {
             revenue += results[i] * PRIZE_AMOUNTS[i];
         }
 
-        return (long) revenue * 100 / purchaseAmount;
+        return (float) (revenue/purchaseAmount) * 100.0;
     }
 
     private void validateLottoMaxCount(List<Lotto> lottos) {
@@ -80,14 +80,14 @@ public class Game {
         }
     }
 
-    public void validateRange(int bonusNumber) {
+    private void validateRange(int bonusNumber) {
         Integer parsedNumber = bonusNumber;
         if (!parsedNumber.toString().matches(LOTTO_NUMBER_RANGE_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45까지 입니다.");
         }
     }
 
-    public void validateDuplicate(Lotto winningLotto, int bonusNumber) {
+    private void validateDuplicate(Lotto winningLotto, int bonusNumber) {
         boolean hasDuplicate = winningLotto.getNumbers().stream()
                 .anyMatch(number -> number == bonusNumber);
 
