@@ -16,11 +16,14 @@ public class LottoValidator {
     }
 
     private static void validateLottoNumberRange(List<Integer> numbers) {
-        boolean hasOutOfRangeNumber = numbers.stream()
-                .anyMatch(LottoValidator::isOutOfRange);
-        if (hasOutOfRangeNumber) {
+        if (hasOutOfRangeNumber(numbers)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_RANGE);
         }
+    }
+
+    private static boolean hasOutOfRangeNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(LottoValidator::isOutOfRange);
     }
 
     private static boolean isOutOfRange(Integer number) {
@@ -29,13 +32,17 @@ public class LottoValidator {
     }
 
     private static void validateLottoNumbersDuplication(List<Integer> numbers) {
-        long distinctCount = numbers.stream()
-                .distinct()
-                .count();
-        int count = numbers.size();
-        if (distinctCount != count) {
+        long distinctCount = getDistinctCount(numbers);
+        int totalCount = numbers.size();
+        if (distinctCount != totalCount) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATION);
         }
+    }
+
+    private static long getDistinctCount(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count();
     }
 
     private static void validateLottoNumbersSize(List<Integer> numbers) {
