@@ -1,21 +1,15 @@
 package lotto.validator;
 
-import lotto.common.CommonValidator;
 import lotto.common.ErrorMessage;
 import lotto.common.RegexPattern;
 
-import java.util.List;
-
 public class BonusNumberValidator {
-    private static final Integer MININUM_NUMBER = 1;
-    private static final Integer MAXIM1UM_NUMBER = 45;
 
     public static int validateBonusNumber(String input){
-        CommonValidator.validateNullAndBlank(input);
-        int bonusNumber=validatePositiveNumber(input);
-        validateBonusNumberInRange(bonusNumber);
+        validateNullAndBlank(input);
+        validatePositiveNumber(input);
 
-        return bonusNumber;
+        return Integer.parseInt(input);
     }
 
     private static int validatePositiveNumber(String input){
@@ -26,9 +20,9 @@ public class BonusNumberValidator {
 
     }
 
-    private static void validateBonusNumberInRange(int bonusNumber) {
-        if (bonusNumber<MININUM_NUMBER || bonusNumber>MAXIM1UM_NUMBER){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
+    private static void validateNullAndBlank(String input) {
+            if (input==null || input.isBlank()){
+                throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
+            }
         }
-    }
 }
