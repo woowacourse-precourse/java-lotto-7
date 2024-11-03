@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.messages.InputMessage;
+import lotto.validator.BonusNumberValidator;
 
 public class BonusNumberInputView extends InputView{
     @Override
@@ -9,7 +10,12 @@ public class BonusNumberInputView extends InputView{
     }
 
     @Override
-    protected void validate(String input) {
+    protected void initializeValidator() {
+        validator = new BonusNumberValidator(inputValue);
+    }
 
+    @Override
+    protected void validate() {
+        validator.validate();
     }
 }
