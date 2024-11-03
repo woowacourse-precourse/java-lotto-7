@@ -29,10 +29,9 @@ public class WinningNumbers {
     }
 
     private void validateNumberDuplication(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (numbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
-            }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
         }
     }
+
 }

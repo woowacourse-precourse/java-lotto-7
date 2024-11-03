@@ -46,4 +46,20 @@ public class WinningNumbersTest {
             .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
+    @Test
+    void 당첨_번호가_중복되지_않으면_예외가_발생하지_않는다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertDoesNotThrow(() -> new WinningNumbers(numbers));
+    }
+
+    @Test
+    void 당첨_번호가_중복되면_예외가_발생한다() {
+        List<Integer> numbers = List.of(1, 2, 2, 4, 5, 5);
+
+        assertThatThrownBy(() -> new WinningNumbers(numbers))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 로또 번호는 중복되어서는 안됩니다.");
+    }
+
 }
