@@ -5,9 +5,10 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
+
     public static final Money ZERO = Money.from(0);
     private static final int ZERO_THRESHOLD = 0;
-    public static final int DECIMAL_PRECISION = 4;
+    private static final int DECIMAL_PRECISION = 4;
 
     private final BigDecimal amount;
 
@@ -33,7 +34,8 @@ public class Money {
     }
 
     public Money divideWithRoundHalfUp(Money money) {
-        return new Money(this.amount.divide(money.amount, DECIMAL_PRECISION, RoundingMode.HALF_UP));
+        BigDecimal result = this.amount.divide(money.amount, DECIMAL_PRECISION, RoundingMode.HALF_UP);
+        return new Money(result);
     }
 
     public boolean isLessThan(Money other) {

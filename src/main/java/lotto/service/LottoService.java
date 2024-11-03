@@ -30,6 +30,7 @@ public class LottoService {
     }
 
     public double calculateEarningRate(PurchasedLottos purchasedLottos, EnumMap<Ranking, Integer> statistics) {
-        return earningRateCalculator.calculateEarningRate(purchasedLottos, statistics);
+        int quantity = purchasedLottos.getQuantity();
+        return earningRateCalculator.calculateEarningRate(quantity, statistics);
     }
 }

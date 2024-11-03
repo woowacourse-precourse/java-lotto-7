@@ -1,6 +1,5 @@
 package lotto.domain.constant;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,7 +12,7 @@ class RankingTest {
 
     @ParameterizedTest
     @MethodSource("provideRankingTestCases")
-    void test(int matchingCount, boolean hasBonusNumber, Ranking expectedRanking) {
+    void 일치하는_번호_및_보너스번호_여부에_따라_랭킹을_결정한다(int matchingCount, boolean hasBonusNumber, Ranking expectedRanking) {
         //given
         //when
         Ranking ranking = Ranking.getRanking(matchingCount, hasBonusNumber);
