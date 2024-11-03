@@ -17,11 +17,21 @@ public class Validator {
         if (numbers.stream().distinct().toList().size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복되는 숫자가 있습니다.");
         }
+
+        for (Integer number : numbers) {
+            checkLottoNumber(number);
+        }
     }
 
     public static void checkPositiveNumber(int number) {
         if (!(number > 0)) {
             throw new IllegalArgumentException("[ERROR] 양수가 아닙니다.");
+        }
+    }
+
+    public static void checkLottoNumber(int bonusNumber) {
+        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 1이상 45 이하의 수가 아닙니다.");
         }
     }
 }
