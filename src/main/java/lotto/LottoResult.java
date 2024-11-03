@@ -71,7 +71,7 @@ public class LottoResult {
         System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 
-    private int extractPrize(String message) {
+    public int extractPrize(String message) {
         int startIndex = message.indexOf("(") + 1;
         int endIndex = message.indexOf("원");
         String prize = message.substring(startIndex, endIndex).replace(",", "");
