@@ -35,4 +35,14 @@ public class LottoDraw {
             }
         }
     }
+
+    private static Lotto makeWinningNumbersToLotto(String input) {
+        try {
+            Lotto winningNumbers = new Lotto(splitAndTrimInput(input));
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
