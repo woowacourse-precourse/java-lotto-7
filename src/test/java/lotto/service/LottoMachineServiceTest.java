@@ -28,4 +28,16 @@ class LottoMachineServiceTest {
         // then
         assertEquals(1000, lottoMachine.getPurchaseAmount());
     }
+
+    @Test
+    void 보너스번호를_입력받는다() {
+        // given
+        String bonusNumber = "12";
+
+        // when
+        lottoMachineService.inputBonusNumber(bonusNumber);
+
+        // then
+        assertEquals(12, lottoMachine.getBonusNumber());
+    }
 }
