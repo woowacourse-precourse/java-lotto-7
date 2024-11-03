@@ -35,4 +35,15 @@ class LottoResultTest {
         assertThat(lottoResult.getRankCount(Rank.FOURTH)).isEqualTo(1);
         assertThat(lottoResult.getRankCount(Rank.FIFTH)).isEqualTo(1);
     }
+
+    @DisplayName("총 수익률을 올바르게 계산해야 한다")
+    @Test
+    void 총_수익률_계산_테스트() {
+        int purchaseAmount = 5000;
+        double expectedProfitRate = 40631100.0;
+
+        double profitRate = lottoResult.calculateProfitRate(purchaseAmount);
+
+        assertThat(profitRate).isEqualTo(expectedProfitRate);
+    }
 }

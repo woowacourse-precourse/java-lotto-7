@@ -29,4 +29,14 @@ public class LottoResult {
     public int getRankCount(Rank rank) {
         return rankCount.getOrDefault(rank, 0);
     }
+
+    public double calculateProfitRate(int purchaseAmount) {
+        int totalPrize = rankCount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+
+        return Math.round(profitRate * 100) / 100.0;
+    }
 }
