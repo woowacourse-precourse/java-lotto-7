@@ -12,6 +12,14 @@ public class LottoChecker {
         this.bonusNumber = bonusNumber;
     }
 
+    public double calculateRateOfReturn(int[] totalRanks) {
+        int prizeAmount =
+                5000 * totalRanks[5] + 50000 * totalRanks[4] + 1500000 * totalRanks[3] + 30000000 * totalRanks[2]
+                        + 2000000000 * totalRanks[1];
+        int ticketNums = totalRanks[0] + totalRanks[1] + totalRanks[2] + totalRanks[3] + totalRanks[4] + totalRanks[5];
+        return (double) prizeAmount / (ticketNums * 1000) * 100;
+    }
+
     public void showLottoResult(int[] totalRanks) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -21,12 +29,7 @@ public class LottoChecker {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + totalRanks[2] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + totalRanks[1] + "개");
 
-        int prizeAmount =
-                5000 * totalRanks[5] + 50000 * totalRanks[4] + 1500000 * totalRanks[3] + 30000000 * totalRanks[2]
-                        + 2000000000 * totalRanks[1];
-        int ticketNums = totalRanks[0] + totalRanks[1] + totalRanks[2] + totalRanks[3] + totalRanks[4] + totalRanks[5];
-        double rateOfReturn = (double) prizeAmount / (ticketNums * 1000) * 100;
-
+        double rateOfReturn = calculateRateOfReturn(totalRanks);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
