@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public enum Winning {
 	NONE(0, 0, false),
@@ -20,6 +22,11 @@ public enum Winning {
 		this.count = count;
 		this.prize = prize;
 		this.hasBonusNumber = hasBonusNumber;
+	}
+
+	public static Map<Winning, Integer> initializeWinningResults() {
+		return Arrays.stream(Winning.values())
+				.collect(Collectors.toMap(winning -> winning, winning -> INITIAL_VALUE));
 	}
 
 	public static Winning getWinningResult(int count, boolean hasBonusNumber) {
