@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.converter.StringToIntegerConverter;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Money;
@@ -26,9 +27,15 @@ public class LottoController {
         OutputView.printPurchaseLottoNumbers(purchasedLottoNumberSets);
 
         Lotto winningLotto = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber();
 
     }
 
+    private BonusNumber getBonusNumber() {
+        OutputView.printBonusNumberInputMessage();
+        String bonusNumber = InputView.inputBonusNumber();
+        return BonusNumber.from(StringToIntegerConverter.convert(bonusNumber));
+    }
 
     private Lotto getWinningNumber() {
         OutputView.printWinningNumberInputMessage();
