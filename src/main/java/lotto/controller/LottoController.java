@@ -12,44 +12,64 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public void run() {
-        try {
-            int purchaseAmount = InputView.inputPurchaseAmount();
-            LottoService lottoService = new LottoService();
-            lottoService.purchaseLottos(purchaseAmount);
-            System.out.println();
-            OutputView.printPurchasedLottos(lottoService.getPurchasedLottos());
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                int purchaseAmount = inputPurchaseAmount();
+                LottoService lottoService = new LottoService();
+                lottoService.purchaseLottos(purchaseAmount);
+                System.out.println();
+                OutputView.printPurchasedLottos(lottoService.getPurchasedLottos());
 
-            System.out.println();
-            WinningNumbers winningNumbers = inputWinningNumbers();
+                System.out.println();
+                WinningNumbers winningNumbers = inputWinningNumbers();
 
-            Map<LottoRank, Integer> results = lottoService.calculateResults(winningNumbers);
-            int totalPrize = lottoService.calculateTotalPrize(results);
-            double yield = lottoService.calculateYield(purchaseAmount, totalPrize);
+                Map<LottoRank, Integer> results = lottoService.calculateResults(winningNumbers);
+                int totalPrize = lottoService.calculateTotalPrize(results);
+                double yield = lottoService.calculateYield(purchaseAmount, totalPrize);
 
-            System.out.println();
-            OutputView.printResults(results, yield);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            run();
+                System.out.println();
+                OutputView.printResults(results, yield);
+                isRunning = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int inputPurchaseAmount() {
+        while (true) {
+            try {
+                return InputView.inputPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private WinningNumbers inputWinningNumbers() {
-        String winningNumbersInput = InputView.inputWinningNumbers();
-        List<Integer> winningNumbers = parseWinningNumbers(winningNumbersInput);
-        System.out.println();
-        int bonusNumber = InputView.inputBonusNumber();
+        List<Integer> winningNumbers = inputWinningNumberList();
+        int bonusNumber = inputBonusNumber(winningNumbers);
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
-        try {
-            return Arrays.stream(input.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+    private int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return InputView.inputBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> inputWinningNumberList() {
+        while (true) {
+            try {
+                return InputView.inputWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
