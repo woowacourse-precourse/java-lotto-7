@@ -5,9 +5,18 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
+    // LottoTest를 수정하지 않기 위해 접근지정자 유지
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto createUserLotto(List<Integer> numbers){
+        return new Lotto(numbers);
+    }
+
+    public static Lotto createWinningLotto(List<Integer> numbers){
+        return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
