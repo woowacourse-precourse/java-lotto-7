@@ -62,9 +62,7 @@ class LottoRankManagerTest {
         lottoRankManager.updateLottoRank(3, false);
         lottoRankManager.updateLottoRank(5, true);
 
-        System.out.println(lottoRankManager.getLottoRankResult());
         long prizeSum = lottoRankManager.getPrizeSum();
-        System.out.println(prizeSum);
         long expectedSum = LottoRank.FAVE_RANK.getPrice() * 2 + LottoRank.SECOND_RANK.getPrice();
         assertEquals(expectedSum, prizeSum);
     }
