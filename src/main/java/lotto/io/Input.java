@@ -2,13 +2,36 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.ErrorCode;
+import lotto.Lotto;
 
 import java.util.regex.Pattern;
 
 public class Input {
     private static final Pattern isWinningNumberPattern = Pattern.compile("^(0?[1-9]|[1-3][0-9]|4[0-5])(,(0?[1-9]|[1-3][0-9]|4[0-5])){5}$");
+    private static final String COMMA = ",";
+    private final Integer price;
+    private final Lotto winningNumber;
+    private final Integer bonusNumber;
 
-    public static String inputPrice() {
+    public Input() {
+        this.price = Integer.parseInt(inputPrice());
+        this.winningNumber = inputWinningNumber();
+        this.bonusNumber = Integer.parseInt(inputBonusNumber());
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public Lotto getWinningNumber() {
+        return winningNumber;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
+    private String inputPrice() {
         while (true) {
             View.printInputPrice();
             String price = Console.readLine();
@@ -21,21 +44,20 @@ public class Input {
         }
     }
 
-    public static String inputWinningNumber() {
+    private Lotto inputWinningNumber() {
         while (true) {
             View.printInputWinningNumber();
             String winningNumber = Console.readLine();
             try {
                 validateWinningNumber(winningNumber);
-                return winningNumber;
+                return Lotto.generateWinningNumber(winningNumber, COMMA);
             } catch (IllegalArgumentException e) {
                 View.showError(e.getMessage());
             }
-
         }
     }
 
-    public static String inputBonusNumber() {
+    private String inputBonusNumber() {
         while (true) {
             View.printInputBonusNumber();
             String bonusNumber = Console.readLine();
@@ -48,23 +70,22 @@ public class Input {
         }
     }
 
-    private static void validatePrice(String input) throws IllegalArgumentException {
+    private void validatePrice(String input) throws IllegalArgumentException {
         validateInputNumeric(input);
-        Integer price = Integer.parseInt(input);
-        validatePriceDivisible(price);
+        validatePriceDivisible(input);
     }
 
-    private static void validateWinningNumber(String input) throws IllegalArgumentException {
-        isWinningNumberFormat(input);
+    private void validateWinningNumber(String input) throws IllegalArgumentException {
+        isWinningNumberRightFormat(input);
     }
 
-    private static void validateBonusNumber(String input) throws IllegalArgumentException {
+    private void validateBonusNumber(String input) throws IllegalArgumentException {
         validateInputNumeric(input);
         Integer bonusNumber = Integer.parseInt(input);
         validateBonusNumberInRange(bonusNumber);
     }
 
-    private static void validateInputNumeric(String price) {
+    private void validateInputNumeric(String price) {
         try {
             Integer.parseInt(price);
         } catch (NumberFormatException e) {
@@ -72,19 +93,21 @@ public class Input {
         }
     }
 
-    private static void validatePriceDivisible(Integer price) {
+    private void validatePriceDivisible(String input) {
+        int price = Integer.parseInt(input);
         if (price % 1000 != 0) {
             throw new NumberFormatException(ErrorCode.PRICE_DIVIDABLE_BY_UNIT.getErrorMessage());
         }
     }
 
-    private static void isWinningNumberFormat(String input) {
+    private void isWinningNumberRightFormat(String input) {
         if (!isWinningNumberPattern.matcher(input).matches()) {
             throw new IllegalArgumentException(ErrorCode.WIN_NUMBER_PROPER.getErrorMessage());
         }
     }
 
-    private static void validateBonusNumberInRange(Integer bonusNumber) {
+
+    private void validateBonusNumberInRange(Integer bonusNumber) {
         if (!(bonusNumber > 0 && bonusNumber < 46)) {
             throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_IN_RANGE.getErrorMessage());
         }

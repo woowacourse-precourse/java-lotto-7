@@ -6,20 +6,17 @@ import lotto.io.View;
 
 
 public class Application {
-    private static final String COMMA = ",";
-    private final Integer price;
     private final LottoGenerator lottoGenerator;
     private final LottoResult lottoResult;
     private final WinningChecker winningChecker;
+    private final Integer price;
 
     public Application() {
-        this.price = Integer.parseInt(Input.inputPrice());
-        Lotto winningNumber = Lotto.generateWinningNumber(Input.inputWinningNumber(), COMMA);
-        Integer bonusNumber = Integer.parseInt(Input.inputBonusNumber());
-
+        Input input = new Input();
+        this.price = input.getPrice();
         this.lottoGenerator = new LottoGenerator();
         this.lottoResult = new LottoResult();
-        this.winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
+        this.winningChecker = new WinningChecker(input.getWinningNumber(), input.getBonusNumber(), lottoResult);
     }
 
     public static void main(String[] args) {
@@ -46,7 +43,7 @@ public class Application {
         View.printProfit(lottoResult.getProfitRate(lottos));
     }
 
-    private Integer getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
