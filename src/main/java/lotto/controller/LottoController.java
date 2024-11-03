@@ -21,7 +21,7 @@ public class LottoController {
         lottoService.getLotteries().forEach(each -> System.out.println(each.getNumbers()));
 
         winningLottery = InputView.getInstance().enterWinningLottery();
-        bonusLottery = InputView.getInstance().enterBonusLottery();
+        bonusLottery = InputView.getInstance().enterBonusLottery(winningLottery);
 
     }
 

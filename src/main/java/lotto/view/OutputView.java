@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     private String formatDoubleNumber(double number) {
-        return String.format("%,f", number);
+        return String.format("%,.1f", number);
     }
 
     private double roundToTwoDecimalPlaces(long number) {

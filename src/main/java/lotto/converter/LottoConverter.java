@@ -18,10 +18,10 @@ public class LottoConverter {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public LottoConverter(String bonusNumberString) {
+    public LottoConverter(String bonusNumberString, List<Integer> winningLottery) {
         int bonusNumber = Validator.isNumeric(bonusNumberString);
         Validator.isRightRange(bonusNumber);
-        isAlreadyExistInLotteries(bonusNumber);
+        isAlreadyExistInLotteries(bonusNumber, winningLottery);
         this.bonusNumber = bonusNumber;
     }
 
@@ -64,8 +64,8 @@ public class LottoConverter {
 
     }
 
-    private void isAlreadyExistInLotteries(int bonusNumber) {
-        if (this.lottoNumbers.contains(bonusNumber)) {
+    private void isAlreadyExistInLotteries(int bonusNumber, List<Integer> winningLottery) {
+        if (winningLottery.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.IS_DUPLICATED);
         }
     }
