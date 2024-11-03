@@ -11,6 +11,10 @@ public record LottoNumber(int number) {
         validate(number);
     }
 
+    public static LottoNumber from(int number) {
+        return new LottoNumber(number);
+    }
+
     private void validate(final int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new LottoException("로또 번호는 " + MIN_NUMBER + "에서 " + MAX_NUMBER + " 사이의 값이어야 합니다.");
