@@ -20,7 +20,7 @@ public class InputView {
 
     private static void validateEmpty(String inputValue) {
         if (inputValue == null || inputValue.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+            throw new IllegalArgumentException("입력값이 없습니다.");
         }
     }
 
@@ -29,7 +29,7 @@ public class InputView {
             long amount = Long.parseLong(inputValue);
             validateNegative(amount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException("유효한 숫자 형식이 아닙니다.");
         }
     }
 
@@ -40,8 +40,8 @@ public class InputView {
     }
 
 
-    public static List<Integer> inputWinningLotto() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+    public static List<Integer> inputWinningLotto(String message) {
+        System.out.println(message);
         String winningLottoInput = Console.readLine();
         validateEmpty(winningLottoInput);
         validateCommaFormat(winningLottoInput);
@@ -76,7 +76,7 @@ public class InputView {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 쉼표(,)로 구분된 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("쉼표(,)로 구분된 숫자만 입력 가능합니다.");
         }
     }
 

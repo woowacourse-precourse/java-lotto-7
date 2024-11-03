@@ -7,6 +7,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
+import lotto.global.message.InputMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,7 +21,7 @@ public class LottoController {
 
     private Lottos initLotts() {
         try {
-            Money money = new Money(InputView.inputNumber("구입금액을 입력해 주세요."));
+            Money money = new Money(InputView.inputNumber(InputMessage.PURCHASE_AMOUNT));
             return new Lottos(money.getLottoQuantity());
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
@@ -40,7 +41,7 @@ public class LottoController {
 
     private Lotto inputLotto() {
         try {
-            List<Integer> mainWinningNumbers = InputView.inputWinningLotto();
+            List<Integer> mainWinningNumbers = InputView.inputWinningLotto(InputMessage.WINNING_NUMBERS);
             return new Lotto(mainWinningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
@@ -50,7 +51,7 @@ public class LottoController {
 
     private BonusNumber inputBonus() {
         try {
-            long winningBonusNumberInput = InputView.inputNumber("\n보너스 번호를 입력해 주세요.");
+            long winningBonusNumberInput = InputView.inputNumber(InputMessage.BONUS_NUMBER);
             return new BonusNumber(winningBonusNumberInput);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
