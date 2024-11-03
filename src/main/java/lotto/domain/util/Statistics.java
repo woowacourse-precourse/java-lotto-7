@@ -6,26 +6,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.global.common.Rank;
 
 public final class Statistics {
 
-    private final Map<Rank, Integer> rankMap;
+    private final Lotteries lotteries;
+    private final Map<Rank, Integer> resultCountMap;
 
-    private Statistics(List<Rank> ranks) {
-        this.rankMap = countRanks(ranks);
+    private Statistics(Lotteries lotteries, Lotto winningLotto, int bonusNumber) {
+        this.lotteries = lotteries;
+        this.resultCountMap = countRanks(checkLotteries(winningLotto, bonusNumber));
     }
 
-    public static Statistics of(List<Rank> ticketResults) {
-        return new Statistics(ticketResults);
+    public static Statistics of(Lotteries lotteries, Lotto winningLotto, int bonusNumber) {
+        return new Statistics(lotteries, winningLotto, bonusNumber);
     }
 
     public double calculateProfitRate() {
-        final double seed = Lotto.TICKET_PRICE * rankMap.size();
+        final double seed = Lotto.TICKET_PRICE * resultCountMap.size();
         int profit = 0;
 
-        for (Entry<Rank, Integer> entry : rankMap.entrySet()){
+        for (Entry<Rank, Integer> entry : resultCountMap.entrySet()){
             profit += entry.getKey().price * entry.getValue();
         }
 
@@ -42,11 +45,18 @@ public final class Statistics {
         return statistics;
     }
 
+    private List<Rank> checkLotteries(Lotto winningLotto, int bonus) {
+        return lotteries.getLotteries()
+                .stream()
+                .map(ticket -> ticket.check(winningLotto, bonus))
+                .toList();
+    }
+
     @Override
     public String toString() {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NONE)
-                .map(rank -> String.format("%s - %d개", rank, rankMap.get(rank)))
+                .map(rank -> String.format("%s - %d개", rank, resultCountMap.get(rank)))
                 .collect(Collectors.joining("\n"));
     }
 }

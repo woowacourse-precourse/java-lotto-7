@@ -22,12 +22,6 @@ public class Lotteries {
         return List.copyOf(lotteries);
     }
 
-    public List<Rank> getTicketsResult(Lotto winningLotto, int bonus) {
-        return lotteries.stream()
-                .map(ticket -> ticket.check(winningLotto, bonus))
-                .toList();
-    }
-
     private static List<Lotto> generateTicketList(int count) {
         List<Lotto> ticketList = new ArrayList<>();
 
