@@ -58,4 +58,21 @@ public class LottoList {
         if (matchCount == 3) return LottoRank.FIFTH;
         return LottoRank.NONE;
     }
+    // 총 당첨금액 계산
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        Map<LottoRank, Integer> statistics = calculateWinningStat();
+
+        for (LottoRank rank : LottoRank.values()) {
+            totalPrize += rank.getPrize() * statistics.get(rank);
+        }
+
+        return totalPrize;
+    }
+    // 수익률 계산 (소수점 둘째 자리에서 반올림)
+    public double calculateProfitRate() {
+        int totalPrize = calculateTotalPrize();
+        int totalCost = lottoList.size() * LOTTO_PRICE;
+        return Math.round((double) totalPrize / totalCost * 1000) / 10.0;
+    }
 }
