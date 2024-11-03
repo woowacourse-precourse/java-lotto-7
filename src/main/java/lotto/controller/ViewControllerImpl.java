@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.util.ExceptionMessage;
+import lotto.util.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,7 +31,18 @@ public class ViewControllerImpl implements ViewController {
 
     @Override
     public void validateNumberSize(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6){
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_SIZE_ERROR);
+        }
+    }
 
+    public List<Integer> parsingWinningNumbers(String number) {
+        String[] split = number.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String s : split) {
+            winningNumbers.add(Integer.parseInt(s.trim()));
+        }
+        return winningNumbers;
     }
 
     public Integer getMoney(){
@@ -41,5 +54,12 @@ public class ViewControllerImpl implements ViewController {
     public void showNumber(Integer lottoCount){
         outputView.printCount(lottoCount);
         outputView.printLottoNumber();
+    }
+
+    public List<Integer> getWinningNumber(){
+        outputView.printWinningNumber();
+        List<Integer> winningNumbers = this.parsingWinningNumbers(inputView.readLine());
+        validateNumberSize(winningNumbers);
+        return winningNumbers;
     }
 }

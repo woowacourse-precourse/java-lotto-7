@@ -26,4 +26,8 @@ public class OutputView {
         LottoRepository.lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
+    public void printWinningNumber(){
+        System.out.println();
+        System.out.println(Utils.WINNING_NUMBER);
+    }
 }

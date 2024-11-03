@@ -25,6 +25,10 @@ public class LottoServiceImpl implements LottoService {
         return LottoRepository.lottos;
     }
 
+    public void saveWinningNumber(List<Integer> winningNumbers) {
+        LottoRepository.winningNumbers.addAll(winningNumbers);
+    }
+
     @Override
     public void calWinning() {
 
