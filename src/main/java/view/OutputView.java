@@ -23,17 +23,17 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void printPurchaseQuantity(BigDecimal purchaseQuantity) {
+    public static void printPurchaseQuantity(BigDecimal purchaseQuantity) {
         System.out.println("\n" + purchaseQuantity + "개를 구매했습니다.");
     }
 
-    public void printLottos(Set<Lotto> lottos) {
+    public static void printLottos(Set<Lotto> lottos) {
         lottos.stream()
               .map(Lotto::getNumbers)
               .forEach(System.out::println);
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public static void printLottoResult(LottoResult lottoResult) {
         printResultMessage();
         Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
 
@@ -42,12 +42,12 @@ public class OutputView {
               .forEach(rank -> printLottoRank(rank, rankCounts.get(rank)));
     }
 
-    private void printResultMessage() {
+    private static void printResultMessage() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 
-    private void printLottoRank(LottoRank lottoRank, int matchCount) {
+    private static void printLottoRank(LottoRank lottoRank, int matchCount) {
         DecimalFormat prizeFormatter = new DecimalFormat("#,###");
         String formattedPrize = prizeFormatter.format(lottoRank.getPrize());
 
@@ -58,7 +58,7 @@ public class OutputView {
         System.out.printf(" (%s원) - %d개\n", formattedPrize, matchCount);
     }
 
-    public void printReturnOnInvestment(BigDecimal returnOnInvestment) {
+    public static void printReturnOnInvestment(BigDecimal returnOnInvestment) {
         System.out.printf("총 수익률은 %,.1f%%입니다.%n", returnOnInvestment);
     }
 }

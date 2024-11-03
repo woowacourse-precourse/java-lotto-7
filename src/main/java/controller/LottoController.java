@@ -12,15 +12,10 @@ import view.OutputView;
 
 public class LottoController {
 
-    InputView inputView;
-    OutputView outputView;
     LottoService lottoService;
     RandomNumberGenerator randomNumberGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService,
-                           RandomNumberGenerator randomNumberGenerator) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LottoController(LottoService lottoService, RandomNumberGenerator randomNumberGenerator) {
         this.lottoService = lottoService;
         this.randomNumberGenerator = randomNumberGenerator;
     }
@@ -45,13 +40,13 @@ public class LottoController {
 
     private BigDecimal calculateAndPrintPurchaseQuantity(BigDecimal purchaseAmount) {
         BigDecimal purchaseQuantity = lottoService.calculatePurchaseQuantity(purchaseAmount);
-        outputView.printPurchaseQuantity(purchaseQuantity);
+        OutputView.printPurchaseQuantity(purchaseQuantity);
         return purchaseQuantity;
     }
 
     private Lottos generateAndPrintLottos(BigDecimal purchaseQuantity) {
         Lottos lottos = Lottos.of(purchaseQuantity, randomNumberGenerator);
-        outputView.printLottos(lottos.getLottos());
+        OutputView.printLottos(lottos.getLottos());
         return lottos;
     }
 
@@ -66,13 +61,13 @@ public class LottoController {
     private LottoResult calculateAndPrintLottoResult(Lottos lottos, LottoPurchaseInfo lottoPurchaseInfo) {
         LottoResult lottoResult = lottoService.calculateLottoResult(
                 lottos, lottoPurchaseInfo.getNumbers(), lottoPurchaseInfo.getBonusNumber());
-        outputView.printLottoResult(lottoResult);
+        OutputView.printLottoResult(lottoResult);
         return lottoResult;
     }
 
     private void calculateAndPrintReturnOnInvestment(LottoPurchaseInfo lottoPurchaseInfo, LottoResult lottoResult) {
         BigDecimal returnOnInvestment = lottoService.calculateReturnOnInvestment(lottoPurchaseInfo, lottoResult);
-        outputView.printReturnOnInvestment(returnOnInvestment);
+        OutputView.printReturnOnInvestment(returnOnInvestment);
     }
 }
 
