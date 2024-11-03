@@ -8,27 +8,32 @@ import java.util.*;
 
 public class OutputHandler {
 
-    public void promptForAmountInput(){
+    public void promptForAmountInput() {
         System.out.println(Constants.PROMPT_PURCHASE_AMOUNT);
     }
-    public void promptForLottoNumber(){
+
+    public void promptForLottoNumber() {
         System.out.println(Constants.NEXT_LINE + Constants.PROMPT_WINNING_LOTTO_NUMBER);
     }
-    public void promptForBonusNumber(){
-        System.out.println(Constants.NEXT_LINE +Constants.PROMPT_BONUS_LOTTO_NUMBER);
+
+    public void promptForBonusNumber() {
+        System.out.println(Constants.NEXT_LINE + Constants.PROMPT_BONUS_LOTTO_NUMBER);
     }
-    public void displayPurchasedLottoCount(int count){
+
+    public void displayPurchasedLottoCount(int count) {
         System.out.println(Constants.NEXT_LINE + count + Constants.PROMPT_PURCHASED_LOTTO_COUNT);
     }
 
     public void displayPrizes(EnumMap<Prize, Integer> prizeCount) {
         System.out.println(Constants.NEXT_LINE + Constants.PRIZE_STATISTICS_HEADER + Constants.NEXT_LINE + Constants.PRIZE_STATISTICS_DIVIDER);
+
         for (Prize prize : Prize.values()) {
+
             long moneyWithoutComma = prize.getPrizeMoney();
             String moneyWithComma = formatCurrency(moneyWithoutComma);
 
 
-            if(prize.equals(Prize.SECOND)){
+            if (prize.equals(Prize.SECOND)) {
                 System.out.println(String.format(Constants.SECOND_PRIZE_MESSAGE, prize.getRanking(), moneyWithComma, prizeCount.get(prize)));
                 continue;
             }

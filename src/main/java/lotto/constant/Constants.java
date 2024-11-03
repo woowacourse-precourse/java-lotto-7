@@ -1,8 +1,6 @@
 package lotto.constant;
 
 public final class Constants {
-    private Constants() {
-    }
 
     //에러 메세지
     public static final String ERROR_NO_BLANK_OR_NULL = "[ERROR] 빈칸 없이 입력해주세요.";
@@ -43,4 +41,8 @@ public final class Constants {
     public static final String SECOND_PRIZE_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     public static final String PRIZE_MESSAGE = "%d개 일치 (%s원) - %d개";
     public static final String WINNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
+
+
+    private Constants() {
+    }
 }

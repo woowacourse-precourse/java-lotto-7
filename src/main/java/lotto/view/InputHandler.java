@@ -18,6 +18,7 @@ public class InputHandler {
 
 
     public void validateInputAmount(String input) throws IllegalArgumentException {
+
         if (InputValidator.isNullOrBlank(input)) {
             throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
 
@@ -26,6 +27,7 @@ public class InputHandler {
             throw new IllegalArgumentException(Constants.ERROR_MORE_THAN_THOUSAND);
         }
         int numericInput = parseInt(input);
+
         if (!InputValidator.isThousandUnit(numericInput)) {
             throw new IllegalArgumentException(Constants.ERROR_THOUSAND_UNIT);
         }
@@ -42,6 +44,7 @@ public class InputHandler {
     }
 
     private void validateLottoInput(String lottoNumber) {
+
         if (InputValidator.isNullOrBlank(lottoNumber)) {
             throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
         }
@@ -69,6 +72,7 @@ public class InputHandler {
     }
 
     private void validateBonusNumber(String bonusNumber, List<Integer> lottoNumber) {
+
         if (InputValidator.isNullOrBlank(bonusNumber)) {
             throw new IllegalArgumentException(Constants.ERROR_NO_BLANK_OR_NULL);
         }
@@ -89,10 +93,11 @@ public class InputHandler {
                 .collect(Collectors.toList());
     }
 
-    private int parseInt(String number){
-        try{
+    private int parseInt(String number) {
+
+        try {
             return Integer.parseInt(number);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new NumberFormatException(Constants.ERROR_FORMAT_IS_NUMBER);
         }
     }

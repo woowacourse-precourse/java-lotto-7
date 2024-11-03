@@ -12,7 +12,8 @@ public class WinningLotto {
     public Lotto getWinningLotto() {
         return winningLotto;
     }
-    public int getBonusNumber(){
+
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

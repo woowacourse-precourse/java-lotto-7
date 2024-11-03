@@ -23,7 +23,6 @@ public class LottoController {
         this.outputHandler = outputHandler;
         this.lottoManager = lottoManager;
         this.prizeCalculator = prizeCalculator;
-
     }
 
     public void run() {
@@ -43,10 +42,7 @@ public class LottoController {
         outputHandler.displayPrizes(prizeResult);
 
         outputHandler.displayWinningRate(calculateWinningRate(amountInput));
-
-
     }
-
 
 
     private double calculateWinningRate(int amountInput) {
@@ -71,11 +67,9 @@ public class LottoController {
     }
 
     private List<Lotto> generateLottos(int count) {
-
         lottoManager.buyLottos(count);
 
         return lottoManager.getLottos();
-
     }
 
     private void displayLottos(List<Lotto> lottos) {
@@ -85,7 +79,9 @@ public class LottoController {
     }
 
     private WinningLotto generateWinningLotto() {
+
         while (true) {
+
             try {
                 outputHandler.promptForLottoNumber();
                 List<Integer> lottoNumbers = inputHandler.getLottoNumber();
@@ -100,12 +96,14 @@ public class LottoController {
     }
 
     private int getInputBonusNumber(Lotto winningLotto) {
+
         while (true) {
+
             try {
                 outputHandler.promptForBonusNumber();
                 List<Integer> winningLottoNumbers = winningLotto.getNumbers();
                 return inputHandler.getBonusNumber(winningLottoNumbers);
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -116,5 +114,4 @@ public class LottoController {
 
         return prizeCalculator.getPrizeCount();
     }
-
 }

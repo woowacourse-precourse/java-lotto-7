@@ -16,11 +16,11 @@ public enum Prize {
         this.prizeMoney = prizeMoney;
     }
 
-    public int getRanking(){
+    public int getRanking() {
         return this.ranking;
     }
 
-    public long getPrizeMoney(){
+    public long getPrizeMoney() {
         return this.prizeMoney;
     }
 }
