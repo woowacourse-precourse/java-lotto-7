@@ -2,9 +2,17 @@ package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.Arrays;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class WinningStatisticsTest {
+
+    @BeforeEach
+    void set_up() {
+        Arrays.stream(WinningRank.values()).forEach(WinningRank::resetSuccessMatch);
+    }
+
     @Test
     void 당첨_현황() {
         WinningRank.match(3, false);
