@@ -28,10 +28,14 @@ public class Seller {
         int howmany = money / 1000;
 
         for (int i = 0; i < howmany; i++) {
-            lottos.add(new Lotto(getRandomNumber()));
+            setLottoTicket(lottos, new Lotto(getRandomNumber()));
         }
 
         return lottos;
+    }
+
+    public void setLottoTicket(List<Lotto> lottos, Lotto lotto) {
+        lottos.add(lotto);
     }
 
     public List<Integer> getRandomNumber() {
