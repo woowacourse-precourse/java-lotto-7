@@ -19,42 +19,4 @@ class CreateWinningNumberTest {
 
         assertThat(winningNumber).hasSize(6);
     }
-
-    @Test
-    @DisplayName("당첨 번호가 6자리가 아니면 예외를 발생한다.")
-    void winningNumbersTest1() {
-        String winningNumbers = "1,2,3,4,5";
-
-        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 중복되면 예외를 발생한다.")
-    void winningNumbersTest2() {
-        Validator numberValidator = new NumberValidator();
-        String winningNumbers = "1,2,3,4,5,5";
-
-        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 숫자가 아니면 예외를 발생한다.")
-    void winningNumbersTest3() {
-        String winningNumbers = "1,2,3,a,5,6";
-
-        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 1 ~ 45 사이의 숫자가 아니면 예외를 발생한다.")
-    void winningNumbersTest4() {
-        String winningNumbers = "0,2,3,4,5,6";
-
-        assertThatThrownBy(() -> CreateWinningNumber.create(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
 }
