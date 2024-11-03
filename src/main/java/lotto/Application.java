@@ -30,11 +30,12 @@ public class Application {
             // 4.3 입력된 보너스 번호가 범위(1~45)에 맞지 않는 경우 예외 처리하는 기능
             int bonusNumber = Integer.parseInt(bonusNumberInput);
             validateLottoNumberInRange(bonusNumber);
+            // 4.4 당첨 번호와 중복되는 보너스 번호가 입력된 경우 예외 처리하는 기능
+            validateNewNumber(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
     private static String getInputString(String message) {
         System.out.println("\n" + message);
@@ -178,6 +179,12 @@ public class Application {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void validateNewNumber(ArrayList<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 기존에 중복되는 값이 있습니다.");
         }
     }
 }
