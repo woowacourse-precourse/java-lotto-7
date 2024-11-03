@@ -23,4 +23,8 @@ public record Money(int amount) {
         throw new IllegalArgumentException("[ERROR] 잔액이 충분하지 않습니다.");
     }
 
+    public boolean isEmpty() {
+        return this.amount == 0;
+    }
+
 }

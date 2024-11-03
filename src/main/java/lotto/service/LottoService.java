@@ -32,7 +32,7 @@ public class LottoService {
         return lottos;
     }
 
-    public Map<LottoRank, Integer> evaluateLottos(WinningLotto winningLotto, List<Lotto> lottos) {
+    public LottoRanks evaluateLottos(WinningLotto winningLotto, List<Lotto> lottos) {
         LottoRanks lottoRanks = new LottoRanks();
 
         for (Lotto lotto : lottos) {
@@ -42,7 +42,7 @@ public class LottoService {
                     .ifPresent(lottoRanks::add);
         }
 
-        return lottoRanks.getRanks();
+        return lottoRanks;
     }
 
 }

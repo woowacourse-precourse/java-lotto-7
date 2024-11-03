@@ -9,6 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoRank;
+import lotto.domain.LottoRanks;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,10 @@ class LottoServiceTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         // when
-        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, lottos);
+        LottoRanks lottoRanks = lottoService.evaluateLottos(winningLotto, lottos);
 
         // then
-        assertThat(ranks).hasSize(3)
+        assertThat(lottoRanks.getRanks()).hasSize(3)
                 .contains(
                         entry(LottoRank.FIRST, 1),
                         entry(LottoRank.SECOND, 1),
