@@ -32,6 +32,10 @@ public enum Rank {
         return Arrays.stream(values()).filter(rank -> rank.matchCount == matchCount).findAny().orElse(Rank.NONE);
     }
 
+    public long calculateTotalEarnings(int count) {
+        return count * prize;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
