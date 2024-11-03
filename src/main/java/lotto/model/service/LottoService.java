@@ -5,15 +5,19 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.domain.Customer;
 import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoManager;
 import lotto.model.dto.LottosResponse;
 import lotto.model.repository.LottoRepository;
+import lotto.model.service.parser.NumberParser;
 
 public class LottoService {
 
     private final LottoRepository lottoRepository;
+    private final LottoManager lottoManager;
 
     public LottoService() {
         this.lottoRepository = new LottoRepository();
+        this.lottoManager = new LottoManager();
     }
 
     public Integer savePayment(String payment) {
@@ -36,5 +40,11 @@ public class LottoService {
 
         lottoRepository.updateCustomerLottos(customerId, generatedLottos);
         return new LottosResponse(generatedLottos);
+    }
+
+    public String saveWinningLottos(String winningNumbers) {
+        List<Integer> numbers = NumberParser.parseWinningNumbers(winningNumbers);
+        lottoManager.saveWinningLotto(new Lotto(numbers));
+        return "success";
     }
 }
