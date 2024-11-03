@@ -10,7 +10,7 @@ import lotto.model.ticket.LottoTickets;
 import lotto.model.win.LottoWinningSet;
 import lotto.model.shop.TicketSeller;
 import lotto.model.win.WinningNumbers;
-import lotto.util.InputUtil;
+import lotto.util.RetryHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,7 +33,7 @@ public class LottoController {
     }
 
     private LottoTickets purchaseAndShowLottoTickets() {
-        LottoTickets lottoTickets = InputUtil.retryIfError(this::getLottoTicketsFromUserInput);
+        LottoTickets lottoTickets = RetryHandler.retryIfError(this::getLottoTicketsFromUserInput);
         showPurchasedTickets(lottoTickets);
         return lottoTickets;
     }
@@ -59,23 +59,27 @@ public class LottoController {
     }
 
     private LottoWinningSet getWinningSetFromUserInput() {
-        WinningNumbers winningNumbers = InputUtil.retryIfError(this::readWinningNumbers);
-        return InputUtil.retryIfError(() -> {
-            BonusNumber bonusNumber = readBonusNumber();
-            return new LottoWinningSet(winningNumbers, bonusNumber);
+        WinningNumbers winningNumbers = RetryHandler.retryIfError(this::getWinningNumbersFromUser);
+        return RetryHandler.retryIfError(() -> {
+            BonusNumber bonusNumber = getBonusNumberFromUser();
+            return getLottoWinningSet(winningNumbers, bonusNumber);
         });
     }
 
-    private WinningNumbers readWinningNumbers() {
+    private WinningNumbers getWinningNumbersFromUser() {
         String rawInputWinningNumbers = inputView.requestWinningNumbers();
         List<Integer> numbers = InputParser.validateAndParseWinningNumbers(rawInputWinningNumbers);
         return new WinningNumbers(numbers);
     }
 
-    private BonusNumber readBonusNumber() {
+    private BonusNumber getBonusNumberFromUser() {
         String rawInputBonusNumber = inputView.requestBonusNumber();
         int bonusNumber = InputParser.validateAndParseBonusNumber(rawInputBonusNumber);
         return new BonusNumber(bonusNumber);
+    }
+
+    private LottoWinningSet getLottoWinningSet(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return new LottoWinningSet(winningNumbers, bonusNumber);
     }
 
     private void evaluateAndShowResults(LottoWinningSet winningSet, LottoTickets lottoTickets) {

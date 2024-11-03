@@ -1,8 +1,8 @@
 package lotto.util;
 
-public class InputUtil {
+public class RetryHandler {
 
-    private InputUtil() {
+    private RetryHandler() {
     }
 
     public static <T> T retryIfError(SupplierWithException<T> method) {
