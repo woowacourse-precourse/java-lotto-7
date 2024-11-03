@@ -5,7 +5,7 @@ import lotto.utils.ExceptionMessage;
 
 import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
-import static lotto.utils.StringValidator.hasBlank;
+import static lotto.utils.StringValidator.containsBlank;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
 
 public class BonusWinLottoNumber {
@@ -20,7 +20,7 @@ public class BonusWinLottoNumber {
         if (isEmpty(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
         }
-        if (hasBlank(bonusNumber)) {
+        if (containsBlank(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
         }
         if (containsNotDigit(bonusNumber)) {

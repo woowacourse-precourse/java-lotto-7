@@ -8,7 +8,7 @@ public final class StringValidator {
         return lineToValidate.isEmpty();
     }
     
-    public static boolean hasBlank(String lineToValidate) {
+    public static boolean containsBlank(String lineToValidate) {
         return lineToValidate.contains(" ");
     }
     

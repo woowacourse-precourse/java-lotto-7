@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static lotto.utils.StringValidator.hasBlank;
+import static lotto.utils.StringValidator.containsBlank;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
 
@@ -45,7 +45,7 @@ public class BasicWinLottoNumbers {
         if (isEmpty(numbersToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
         }
-        if (hasBlank(numbersToValidate)) {
+        if (containsBlank(numbersToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
         }
         if (isIncorrectNumberCount(numbersToValidate)) {

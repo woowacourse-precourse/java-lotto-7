@@ -5,7 +5,7 @@ import lotto.utils.ExceptionMessage;
 
 import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
-import static lotto.utils.StringValidator.hasBlank;
+import static lotto.utils.StringValidator.containsBlank;
 
 public class SpendingMoney {
     
@@ -27,7 +27,7 @@ public class SpendingMoney {
         if (isEmpty(numberToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
         }
-        if (hasBlank(numberToValidate)) {
+        if (containsBlank(numberToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
         }
         if (containsNotDigit(numberToValidate)) {
