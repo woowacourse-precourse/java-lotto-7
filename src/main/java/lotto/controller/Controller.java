@@ -25,9 +25,9 @@ public class Controller {
         OutputView.lineBreaking();
 
         JackpotNumbers jackpotNumbers = getJackpotNumbers();
-
         Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
         OutputView.printWinningStatistics(rankingMap);
+
         double earningRate = EarningRateCalculator.calculate(totalAmount, rankingMap);
         OutputView.printEarningRate(earningRate);
     }

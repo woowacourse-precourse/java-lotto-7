@@ -19,7 +19,7 @@ public abstract class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         rankingMap.forEach((ranking, count) -> {
-            if (ranking.isRequiresBonus()) {
+            if (ranking.equals(Ranking.SECOND)) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
             }
             if (ranking.equals(Ranking.NONE)) {
