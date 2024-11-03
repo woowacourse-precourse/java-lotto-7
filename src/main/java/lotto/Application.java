@@ -1,16 +1,28 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseNum;
+        int winningNum;
+        int bonusNum;
 
-        purchaseNum = getNum();
+        purchaseNum = getPurchaseNum();
+        Lotto[] lottos = new Lotto[purchaseNum];
 
+        System.out.println("purchaseNum" + "개를 구매했습니다.");
+        for(int i = 0; i < purchaseNum; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos[i] = new Lotto(numbers);
+        }
+        winningNum = getWinningNum();
+        bonusNum = getBonusNum();
     }
 
-    public static int getNum() {
+    public static int getPurchaseNum() {
         System.out.println("구입금액을 입력해 주세요.");
         int sum = Integer.parseInt(Console.readLine());
 
@@ -20,7 +32,8 @@ public class Application {
         return sum / 1000;
     }
 
-    public static int calculateLottoNum() {
+    public static int getWinningNum() {
 
     }
+
 }
