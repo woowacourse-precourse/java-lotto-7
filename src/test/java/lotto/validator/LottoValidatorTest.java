@@ -13,4 +13,12 @@ public class LottoValidatorTest {
     void 로또_구입_금액_예외_발생(String inputString) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> LottoValidator.validateInputMoney(inputString));
     }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"1,a,b,4,5,6", "1,2,3,4,5", "1,1,3,3,5,6", "0,2,3,4,5,6", "0,2,3,4,5,46"})
+    void 로또_당첨_번호_예외_발생(String inputString) {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> LottoValidator.validateWinningNumbers(inputString));
+    }
 }
