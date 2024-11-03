@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ValidatorTest {
@@ -23,6 +24,28 @@ public class ValidatorTest {
     void 에러_숫자로_구성되지_않은_문자열(String str) {
         // when
         boolean result = Validator.isNumeric(str);
+
+        // then
+        assertThat(result)
+                .isFalse();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"2000:1000", "0:1000"}, delimiter = ':')
+    void isDividedTure(int num, int divider) {
+        // when
+        boolean result = Validator.isDivided(num, divider);
+
+        // then
+        assertThat(result)
+                .isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"2500:1000", "123:1000"}, delimiter = ':')
+    void isDividedFalse(int num, int divider) {
+        // when
+        boolean result = Validator.isDivided(num, divider);
 
         // then
         assertThat(result)
