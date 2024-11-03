@@ -37,6 +37,7 @@ public enum Rank {
                 return rank;
             }
         }
+        return null;
     }
 
     private static Rank decideSecondOrThird(boolean bonus){
