@@ -3,7 +3,9 @@ package lotto.view;
 import lotto.exception.LottoException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -61,6 +63,7 @@ public class InputView {
         List<String> winningNumbers = Arrays.asList(input.split(WINNING_NUMBER_DELIMITER));
         winningNumbers.forEach(this::validateNumber);
         validateCount(winningNumbers);
+        validateWinningNumbersDuplicate(winningNumbers);
     }
 
     public void validateBonusNumber(final String input, final List<Integer> winningNumbers) {
@@ -87,6 +90,12 @@ public class InputView {
     public void validateRange(final Integer num) {
         if (num < LOTTO_LEAST_NUM || num > LOTTO_MAX_NUM) // 입력 받은 당첨 번호 혹은 보너스 번호가 1~45 범위를 벗어날 경우
             throw new IllegalArgumentException(LottoException.LOTTO_RANGE_NOT_VALID.getMessage());
+    }
+
+    public void validateWinningNumbersDuplicate(final List<String> winningNumbers) {
+        Set<String> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() != winningNumbers.size())
+            throw new IllegalArgumentException(LottoException.WINNING_NUMBERS_DUPLICATED.getMessage()); // 당첨 번호 중 중복 값이 있을 경우
     }
 
     public void validateDuplicate(final String bonusNumberInput, final List<Integer> winningNumbers) {
