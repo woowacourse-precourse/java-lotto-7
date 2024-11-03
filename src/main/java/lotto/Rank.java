@@ -1,6 +1,6 @@
 package lotto;
 
-public enum Winning {
+public enum Rank {
     FIFTH( 5000, "3개 일치 (5,000원) - "),
     FOURTH( 50000, "4개 일치 (50,000원) - "),
     THIRD( 1500000, "5개 일치 (1,500,000원) - "),
@@ -10,7 +10,7 @@ public enum Winning {
     private final int prize;
     private final String printFormat;
 
-    Winning(int prize, String printFormat) {
+    Rank(int prize, String printFormat) {
         this.prize = prize;
         this.printFormat = printFormat;
     }

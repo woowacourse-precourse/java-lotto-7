@@ -10,16 +10,16 @@ import java.util.stream.Collectors;
 public class Result {
     private static final String WINNING_DETAIL_FORMAT = "%s%d개\n";
 
-    private final Map<Winning, Integer> winningDetails;
+    private final Map<Rank, Integer> winningDetails;
 
     public Result() {
         this.winningDetails = new LinkedHashMap<>();
-        for (Winning winning : Winning.values()) {
-            winningDetails.put(winning, 0);
+        for (Rank rank : Rank.values()) {
+            winningDetails.put(rank, 0);
         }
     }
 
-    public Map<Winning, Integer> getWinningDetails() {
+    public Map<Rank, Integer> getWinningDetails() {
         return Collections.unmodifiableMap(winningDetails);
     }
 
@@ -44,23 +44,23 @@ public class Result {
                 .sum();
     }
 
-    private String getFormattedWinningDetail(Winning condition, Integer count) {
+    private String getFormattedWinningDetail(Rank condition, Integer count) {
         return String.format(WINNING_DETAIL_FORMAT, condition.getPrintFormat(), count);
     }
 
     private void addWinningDetails(int matchingCount, boolean isBonusContained) {
-        Winning satisfiedWinning = getSatisfiedWinning(matchingCount, isBonusContained);
-        if(satisfiedWinning != null) {
-            winningDetails.put(satisfiedWinning, winningDetails.get(satisfiedWinning) + 1);
+        Rank satisfiedRank = getSatisfiedRank(matchingCount, isBonusContained);
+        if(satisfiedRank != null) {
+            winningDetails.put(satisfiedRank, winningDetails.get(satisfiedRank) + 1);
         }
     }
 
-    private Winning getSatisfiedWinning(int matchingCount, boolean isBonusContained) {
-        if (matchingCount == FIRST_MATCHING_COUNT) return Winning.FIRST;
-        if (matchingCount == SECOND_MATCHING_COUNT && isBonusContained) return Winning.SECOND;
-        if (matchingCount == THIRD_MATCHING_COUNT) return Winning.THIRD;
-        if (matchingCount == FOURTH_MATCHING_COUNT) return Winning.FOURTH;
-        if (matchingCount == FIFTH_MATCHING_COUNT) return Winning.FIFTH;
+    private Rank getSatisfiedRank(int matchingCount, boolean isBonusContained) {
+        if (matchingCount == FIRST_MATCHING_COUNT) return Rank.FIRST;
+        if (matchingCount == SECOND_MATCHING_COUNT && isBonusContained) return Rank.SECOND;
+        if (matchingCount == THIRD_MATCHING_COUNT) return Rank.THIRD;
+        if (matchingCount == FOURTH_MATCHING_COUNT) return Rank.FOURTH;
+        if (matchingCount == FIFTH_MATCHING_COUNT) return Rank.FIFTH;
         return null;
     }
 }
