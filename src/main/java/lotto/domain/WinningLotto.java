@@ -1,15 +1,15 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class WinningLotto {
+public class WinningLotto extends Lotto {
 
-    private final Lotto winninglotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winninglotto, int bonusNumber) {
-        this.winninglotto = winninglotto;
+    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        super(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
@@ -18,7 +18,7 @@ public class WinningLotto {
 
         for (Lotto lotto : lottoTicket.getLottos()) {
             int matchCount = (int) lotto.getNumbers().stream()
-                    .filter(winninglotto.getNumbers()::contains)
+                    .filter(super.getNumbers()::contains)
                     .count();
 
             boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);

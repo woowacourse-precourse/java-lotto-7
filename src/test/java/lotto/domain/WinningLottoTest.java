@@ -18,7 +18,7 @@ class WinningLottoTest {
     void lottoWinningResultTest(List<Lotto> lottoList, Map<Rank, Integer> expectedResults) {
         LottoTicket lottoTicket = new LottoTicket(lottoList);
         WinningLotto winningLotto = new WinningLotto(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
+                List.of(1, 2, 3, 4, 5, 6), 7
         );
 
         Map<Rank, Integer> result = winningLotto.lottoWinningResult(lottoTicket);
