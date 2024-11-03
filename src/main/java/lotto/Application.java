@@ -13,7 +13,12 @@ public class Application {
         String winNumbers = "";
         Integer cost;
         System.out.println("구입 금액을 입력해 주세요.");
-        cost = Integer.parseInt(Console.readLine());
+        try {
+            cost = Integer.parseInt(Console.readLine());
+        } catch(NumberFormatException e) {
+            System.out.println("[ERROR] 구입 금액은 정수여야 합니다.");
+            return;
+        }
         lotto.printLottoCount(cost);
         lottoCount = lotto.getLottoCount(cost);
         lottos = lotto.getLottos(lottoCount);

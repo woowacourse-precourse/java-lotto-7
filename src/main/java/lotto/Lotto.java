@@ -22,7 +22,6 @@ public class Lotto {
         duplicate(numbers);
         this.numbers = numbers;
     }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -63,7 +62,8 @@ public class Lotto {
 
     public List getRandomNumber() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(randomNumbers);
+        List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(sortedNumbers);
         return randomNumbers;
     }
 
