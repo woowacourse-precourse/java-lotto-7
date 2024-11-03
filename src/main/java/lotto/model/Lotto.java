@@ -16,7 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (numbers.stream().allMatch(num -> num < 1 && num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.");
         }
         Set<Integer> numSet = new HashSet<>(numbers);
@@ -30,7 +30,7 @@ public class Lotto {
                 .anyMatch(num -> num.equals(bonusNumber)); //int인데 Integer와 비교 가능?
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }
