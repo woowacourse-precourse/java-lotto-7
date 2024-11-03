@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoErrorMessage;
@@ -13,6 +14,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        numbers = new ArrayList<>(numbers);
         validateNumbers(numbers);
 
         Collections.sort(numbers);
