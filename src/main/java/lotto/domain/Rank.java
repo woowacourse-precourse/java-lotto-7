@@ -45,4 +45,8 @@ public enum Rank {
     public BigInteger getPrize() {
         return prize;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }
