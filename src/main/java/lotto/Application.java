@@ -23,6 +23,12 @@ public class Application {
             lottoRepository.add(new Lotto(lotto));
         }
 
+        // 3 . 로또 번호 출력
+        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        for (Lotto lotto : lottoRepository) {
+            System.out.println(lotto.getNumbers());
+        }
+
 
     }
 
