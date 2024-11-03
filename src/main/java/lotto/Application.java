@@ -1,12 +1,25 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         try {
             int purchaseAmount = getPurchaseAmount();
 
+            int numberOfLottos = purchaseAmount / 1000;
+            System.out.println("");
+            System.out.println(numberOfLottos + "개를 구매했습니다.");
+
+            for (int i = 0; i < numberOfLottos; i++) {
+                Lotto lotto = LottoGenerator.generateLotto();
+                System.out.println(lotto.getNumbers());
+            }
+
+            List<Integer> winningNumbers = WinningNumbers.getWinningNumbers();
+
+//            System.out.println("당첨 번호: " + winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -26,4 +39,5 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력이 가능합니다.");
         }
     }
+
 }
