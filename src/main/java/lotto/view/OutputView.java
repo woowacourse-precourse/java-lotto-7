@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.draw.LottoNumbersGenerator;
 import lotto.model.lotto.LottoTickets;
+import lotto.model.result.WinningStatistics;
 
 public class OutputView {
 
@@ -26,4 +27,9 @@ public class OutputView {
             System.out.println(lottoNumbers.getLottoNumbers());
         }
     }
+
+    public void printWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println(winningStatistics.toString());
+    }
+
 }

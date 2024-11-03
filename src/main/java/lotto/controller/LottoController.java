@@ -5,6 +5,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoBuyer;
 import lotto.model.lotto.LottoStore;
 import lotto.model.lotto.LottoTickets;
+import lotto.model.result.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,11 +24,11 @@ public class LottoController {
         retryRunnable(this::buyTickets);
         Lotto winningNumber = retrySupplier(this::readValidWinningNumber);
         Bonus bonusNumber = retrySupplier(() -> new Bonus(inputView.readBonusNumber()));
+
     }
 
     private void buyTickets() {
-        // Supplier로 변환
-        int ticketCount = retrySupplier(() -> readValidTicketCount());
+        int ticketCount = retrySupplier(this::readValidTicketCount);
         outputView.printTicketNumber(ticketCount);
 
         LottoTickets lottoTickets = LottoTickets.createTickets(ticketCount);
@@ -45,6 +46,7 @@ public class LottoController {
     private Lotto readValidWinningNumber() {
         return new Lotto(inputView.readWinningNumber());
     }
+
 
     private void retryRunnable(Runnable action) {
         while (true) {
