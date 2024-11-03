@@ -29,6 +29,17 @@ public class LottoController {
         printResultStatistics(lottoResult, profitRatio);
     }
 
+    private int getAttemptCount() {
+        printPurchaseAmountInputMessage();
+        try {
+            String purchaseAmount = UserInput();
+            return parseValidatedLottoCount(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getAttemptCount();
+        }
+    }
+
     private WinningLotto createWinningLotto() {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
@@ -39,12 +50,6 @@ public class LottoController {
         printBonusNumberInputMessage();
         String bonusNumber = UserInput();
         return parseValidatedBonusNumber(bonusNumber, winningNumber);
-    }
-
-    private int getAttemptCount() {
-        printPurchaseAmountInputMessage();
-        String purchaseAmount = UserInput();
-        return parseValidatedLottoCount(purchaseAmount);
     }
 
     private List<Integer> getWinningNumber() {
