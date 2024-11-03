@@ -31,10 +31,16 @@ public class LottoController {
      * 구매 갯수 set
      */
     private int setQuantity() {
-        OutputView.printPurchaseAmountMessage();
-        String input = InputView.getPurchaseAmount();
+        while(true) {
+            try {
+                OutputView.printPurchaseAmountMessage();
+                String input = InputView.getPurchaseAmount();
 
-        return InputParser.parsePurchaseAmount(input);
+                return InputParser.parsePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -59,13 +65,19 @@ public class LottoController {
      * WinningLotto set
      */
     private WinningLotto setWinningLotto() {
-        OutputView.printWinningLottoNumbersMessage();
-        String winningNumbers = InputView.getWinningLottoNumbers();
+        while(true) {
+            try {
+                OutputView.printWinningLottoNumbersMessage();
+                String winningNumbers = InputView.getWinningLottoNumbers();
 
-        OutputView.printBonusNumberMessage();
-        int bonusNumber = InputView.getBonusNumber();
+                OutputView.printBonusNumberMessage();
+                int bonusNumber = InputView.getBonusNumber();
 
-        return InputParser.parseWinningLotto(winningNumbers, bonusNumber);
+                return InputParser.parseWinningLotto(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     /**

@@ -80,4 +80,11 @@ public class OutputView {
     public static void printProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
+
+    /**
+     * 에러 메세지 출력
+     */
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
