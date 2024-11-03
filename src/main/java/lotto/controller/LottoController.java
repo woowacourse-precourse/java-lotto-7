@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.model.UserLottoList;
+
 public class LottoController {
 
     private final InputController inputController;
@@ -11,5 +13,6 @@ public class LottoController {
     public void run() {
         int money = inputController.getMoney();
 
+        UserLottoList userLottoList = new UserLottoList(money);
     }
 }
