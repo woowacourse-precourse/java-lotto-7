@@ -70,5 +70,10 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
             }
         }
+
+        // 4-4. 6개의 숫자가 입력되었는지 확인
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
     }
 }
