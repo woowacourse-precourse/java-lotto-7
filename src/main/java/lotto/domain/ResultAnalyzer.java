@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -9,11 +9,15 @@ import java.util.Set;
 public class ResultAnalyzer {
 
     public Map<LottoRank, Integer> getRankCounts(List<Lotto> tickets, List<Integer> winningNumbers, int bonusNumber) {
-        Map<LottoRank, Integer> rankCount = new HashMap<>();
+        Map<LottoRank, Integer> rankCount = new LinkedHashMap<>();
+
+        for (LottoRank rank : LottoRank.values()) {
+            rankCount.put(rank, 0);
+        }
 
         for (Lotto ticket : tickets) {
             LottoRank rank = determineRank(ticket, winningNumbers, bonusNumber);
-            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+            rankCount.put(rank, rankCount.get(rank) + 1);
         }
 
         return rankCount;

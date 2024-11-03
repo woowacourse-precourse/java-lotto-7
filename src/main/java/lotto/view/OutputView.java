@@ -18,11 +18,12 @@ public class OutputView {
     public void displayResults(Map<LottoRank, Integer> results) {
         System.out.print(PrintMessage.RESULT_STATISTICS_HEADER.getMessage());
 
-        LottoRank[] ranks = {LottoRank.FIRST, LottoRank.SECOND, LottoRank.THIRD, LottoRank.FOURTH, LottoRank.FIFTH};
-        for (LottoRank rank : ranks) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.NONE) {
+                continue;
+            }
             int count = results.getOrDefault(rank, 0);
-            System.out.printf(PrintMessage.RANK_RESULT_MESSAGE.getMessage(),
-                    rank.getMatchCount(), rank.getFormattedPrize(), count);
+            System.out.println(rank.formatMessage(count));
         }
     }
 
