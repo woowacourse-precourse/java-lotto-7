@@ -1,12 +1,10 @@
-package ticket.lotto;
+package lotto;
 
-import static ticket.lotto.Lotto.LOTTO_PRICE;
+import static lotto.Lotto.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import ticket.Ticket;
-import ticket.TicketIssuer;
 
 public class LottoIssuer implements TicketIssuer {
 
@@ -22,7 +20,8 @@ public class LottoIssuer implements TicketIssuer {
         return lottoTickets;
     }
 
-    private void validatePurchaseAmount(int ticketPurchaseAmount) {
+    @Override
+    public void validatePurchaseAmount(int ticketPurchaseAmount) {
         if (ticketPurchaseAmount == 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0원보다 커야합니다.");
         }

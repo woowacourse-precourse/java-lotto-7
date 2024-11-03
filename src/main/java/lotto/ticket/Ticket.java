@@ -1,4 +1,4 @@
-package ticket;
+package lotto;
 
 public interface Ticket {
     String getTicketInfo();
