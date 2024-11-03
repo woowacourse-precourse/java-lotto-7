@@ -62,9 +62,15 @@ public class LottoGameController {
         }
 
         OutputView.printMessage();
-
-        String bonusNumberInput = userInput.bonusNumber();
-        winningNumbers.registerBonus(bonusNumberInput);
+        while (true){
+            try {
+                String bonusNumberInput = userInput.bonusNumber();
+                winningNumbers.registerBonus(bonusNumberInput);
+                break;
+            }catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
 
         game.setWinningNumbers(winningNumbers);
     }
