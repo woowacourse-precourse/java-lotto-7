@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.LottoException;
 
 
 public class InputView {
@@ -16,8 +17,7 @@ public class InputView {
 
     public int RequestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT);
-        String input = Console.readLine();
-        return parseInt(input); // TODO: 검증 로직 추가
+        return TryGetPurchaseAmount();
     }
 
     public List<Integer> RequestWinningNumbers() {
@@ -33,4 +33,16 @@ public class InputView {
         String input = Console.readLine();
         return parseInt(input); // TODO: 검증 로직 추가
     }
+
+    private int TryGetPurchaseAmount() {
+        try{
+            String input = Console.readLine();
+            return parseInt(input);
+        }catch(NumberFormatException e){
+            System.out.println(LottoException.INVALID_NUMBER_FORMAT);
+            return TryGetPurchaseAmount();
+        }
+    }
+
+
 }
