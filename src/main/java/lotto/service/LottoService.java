@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.User;
+import lotto.view.LottosView;
 
 public class LottoService {
 
@@ -18,7 +19,7 @@ public class LottoService {
 
     public void run() {
         makeLottoNumber(user, lottos);
-        sortAscending();
+        LottosView.displayLottoNumbers(lottos);
     }
 
     public static void makeLottoNumber(User user, Lottos lottos) {
@@ -34,12 +35,8 @@ public class LottoService {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public void sortAscending() {
-        for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> numbers = lotto.getNumber();
-
-            Collections.sort(numbers);
-        }
+    public static void sortAscending(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
     }
 
 

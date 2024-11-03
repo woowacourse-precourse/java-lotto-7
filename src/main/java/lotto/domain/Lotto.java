@@ -20,4 +20,9 @@ public class Lotto {
     public List<Integer> getNumber() {
         return numbers;
     }
+
+    @Override
+    public String toString() {
+        return String.join(", ", numbers.toString());
+    }
 }
