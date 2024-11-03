@@ -21,4 +21,9 @@ public class StringConverter {
         return text.trim();
     }
 
+    public static String[] split(String text) {
+        validateNotBlank(text);
+        return text.split(",");
+    }
+
 }
