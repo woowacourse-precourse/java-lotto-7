@@ -28,9 +28,9 @@ public class LottoTicketMachine {
 
 	public String registerLottoResult(Map<LottoPrize, Integer> winningStatus, List<Map<Integer, Boolean>> lottoResults) {
 		lottoResults.forEach(lottoResult-> {
-			for (Map.Entry<Integer, Boolean> entry : lottoResult.entrySet()) {
-				int matchCount = entry.getKey();
-				boolean hasBonusNumber = entry.getValue();
+			for (Map.Entry<Integer, Boolean> matches : lottoResult.entrySet()) {
+				int matchCount = matches.getKey();
+				boolean hasBonusNumber = matches.getValue();
 				updateWinningStatus(winningStatus, matchCount, hasBonusNumber);
 			}
 		});
