@@ -29,6 +29,26 @@ public class LottoResult {
         }
     }
 
+    public void start() {
+        int inputPurchasePrice = inputView.getInputPurchasePrice();
+        List<Lotto> purchasedLottos = setLottos(inputPurchasePrice);
+        Lotto userLotto = inputView.getUserLotto();
+        int inputBonusNumber = inputView.getInputBonusNumber();
+        calculateResult(purchasedLottos, userLotto, inputBonusNumber);
+        outputView.printWinningStatistics(rankCounts, calculateReturnRate(inputPurchasePrice));
+    }
+
+    private void calculateResult(final List<Lotto> purchasedLottos,
+                                 final Lotto userLotto,
+                                 final int inputBonusNumber) {
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = countMatches(lotto, userLotto);
+            boolean matchBonus = lotto.getNumbers().contains(inputBonusNumber);
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            addWinningResult(rank);
+        }
+    }
+
     public void addWinningResult(final Rank rank) {
         rankCounts.put(rank, rankCounts.get(rank) + WINNING_STATISTICS_PLUS);
     }
