@@ -1,8 +1,6 @@
 package lotto.view;
 
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 import lotto.dto.LottoResultDto;
 import lotto.dto.LottoTicketsDto;
 import lotto.utils.RankMessages;

@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import lotto.utils.AmountValidator;
+import lotto.utils.PurchaseValidator;
 
 public class LottoPurchase {
     private final int amount;
     private final int ticketCount;
 
     private LottoPurchase(int amount) {
-        AmountValidator.validateAmount(String.valueOf(amount));
+        PurchaseValidator.validateAmount(String.valueOf(amount));
         this.amount = amount;
         this.ticketCount = amount / 1000;
     }
