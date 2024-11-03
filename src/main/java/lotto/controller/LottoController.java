@@ -5,7 +5,6 @@ import lotto.model.Score;
 import lotto.model.WinningLotto;
 import lotto.model.number.LottoNumber;
 import lotto.model.number.LottoNumbers;
-import lotto.model.number_generator.DefaultRandomNumberGenerator;
 import lotto.model.number_generator.RandomNumberGenerator;
 import lotto.model.shop.LottoShop;
 import lotto.util.retryer.Retryer;
@@ -20,11 +19,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class LottoController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
 
-    private final RandomNumberGenerator randomNumberGenerator = new DefaultRandomNumberGenerator();
-    private final LottoShop lottoShop = new LottoShop();
+    private final RandomNumberGenerator randomNumberGenerator;
+    private final LottoShop lottoShop;
+
+    public LottoController(InputView inputView,
+                           OutputView outputView,
+                           RandomNumberGenerator randomNumberGenerator,
+                           LottoShop lottoShop) {
+
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.randomNumberGenerator = randomNumberGenerator;
+        this.lottoShop = lottoShop;
+    }
 
     public void run() {
         AtomicInteger purchaseMoney = new AtomicInteger();
