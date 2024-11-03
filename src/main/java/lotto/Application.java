@@ -21,12 +21,11 @@ public class Application {
         // 구입 금액 입력 받아서 purchasePrice에 저장
         purchasePrice = Input.intInput();
 
+        // 구앱 금액이 1,000원 단위로 입력되었는지 확인
+        Error.isThousand(purchasePrice);
+
         // 로또 개수 저장
-        if (purchasePrice%1000==0) {
-            lottoCount = purchasePrice/1000;
-        } else {
-            throw new IllegalArgumentException("구입 금액은 천 원 단위로 입력 가능합니다.");
-        }
+        lottoCount = purchasePrice/1000;
 
         // 구매 수량 출력
         Print.purchasePrint(lottoCount);
@@ -53,6 +52,7 @@ public class Application {
         for (int i = 0; i< inputNumber.length; i++) {
             temporaryNumber.add(Integer.parseInt(inputNumber[i]));
         }
+        Error.duplicates(temporaryNumber);
 
         // 로또 클래스로 당첨 번호 저장
         winningNumber = new Lotto(temporaryNumber);
