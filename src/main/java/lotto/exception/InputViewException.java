@@ -106,5 +106,9 @@ public class InputViewException {
         }
     }
 
+    public void validateInputBonusNumber(String inputBonusNumber) {
+        validateIfInputContainsWhitespace(inputBonusNumber);
+    }
+
 
 }
