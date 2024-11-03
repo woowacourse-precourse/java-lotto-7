@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.enums.Delimiter;
 
 public class Converter {
 
@@ -11,7 +12,7 @@ public class Converter {
     }
 
     public static List<Integer> convertStringToIntegerList(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(Delimiter.COMMA.getDelimiter()))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -28,6 +29,6 @@ public class Converter {
     public static String convertListToString(List<Integer> input) {
         return input.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(Delimiter.COMMA.getDelimiter()));
     }
 }
