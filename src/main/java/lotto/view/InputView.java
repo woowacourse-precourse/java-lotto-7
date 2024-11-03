@@ -12,7 +12,7 @@ public class InputView {
         return getNumberInput();
     }
 
-    public static String inputWinningNums() {
+    public static String inputWinningNumber() {
         String input = Console.readLine().trim();
         InputValidator.validateWinningNumbers(input);
         return input;

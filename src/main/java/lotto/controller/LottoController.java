@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.converter.StringToIntegerConverter;
@@ -23,8 +24,20 @@ public class LottoController {
         List<Lotto> purchasedLotto = getLottoNumbers(purchaseAmount);
         List<LottoNumberDto> purchasedLottoNumberSets = getLottoNumberDtos(purchasedLotto);
         OutputView.printPurchaseLottoNumbers(purchasedLottoNumberSets);
+
+        Lotto winningLotto = getWinningNumber();
+
     }
 
+
+    private Lotto getWinningNumber() {
+        OutputView.printWinningNumberInputMessage();
+        String winningNumberInput = InputView.inputWinningNumber();
+        List<Integer> winningNumber = Arrays.stream(winningNumberInput.split(","))
+                .map(StringToIntegerConverter::convert)
+                .toList();
+        return new Lotto(winningNumber);
+    }
 
     private static List<LottoNumberDto> getLottoNumberDtos(List<Lotto> purchasedLotto) {
         return purchasedLotto.stream()
