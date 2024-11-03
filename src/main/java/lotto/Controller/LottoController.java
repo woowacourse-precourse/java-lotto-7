@@ -1,10 +1,12 @@
 package lotto.Controller;
 
 import java.util.List;
+import lotto.BonusNumber;
 import lotto.Input.InputView;
 import lotto.Output.OutputView;
 import lotto.Service.LottoService;
 import lotto.WinningLottoNumbers;
+import lotto.WinningNumbers;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
@@ -45,11 +47,28 @@ public class LottoController {
         }
     }
 
-    private WinningLottoNumbers createWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
+        WinningLottoNumbers winningNumbers = createWinningLottoNumbers();
+        BonusNumber bonusNumber = createBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private WinningLottoNumbers createWinningLottoNumbers() {
         while (true) {
             try {
                 String input = inputView.readWinningNumbers();
                 return WinningLottoNumbers.from(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber createBonusNumber() {
+        while (true) {
+            try {
+                String input = inputView.readBonusNumber();
+                return BonusNumber.from(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
