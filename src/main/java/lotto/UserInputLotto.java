@@ -60,6 +60,15 @@ public class UserInputLotto {   // 사용자가 입력하는 값에 대한 클�
         ErrorMessage.INVALID_PURCHASE_AMOUNT.validateAmount(amount);
     }
 
+    private void validateInputPrizeNumbers(List<Integer> numbers) {
+        //
+        ErrorMessage.INVALID_WINNING_NUMBER.validate(numbers);
+        ErrorMessage.DUPLICATE_WINNING_NUMBER.validate(numbers);
+        for (int number : numbers) {
+            ErrorMessage.INVALID_NUMBER_RANGE.validate(number);
+        }
+    }
+
     private void printErrorMessage(String message) {
         System.out.println(message);
     }
