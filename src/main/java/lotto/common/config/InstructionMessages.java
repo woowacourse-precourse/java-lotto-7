@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.common.config;
 
 public enum InstructionMessages {
     INPUT_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
