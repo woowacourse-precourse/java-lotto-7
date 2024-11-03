@@ -3,7 +3,7 @@ package lotto.util;
 import lotto.constant.ExceptionMessage;
 
 public class NumberValidator {
-    private static final String NUMBER_PATTERN = "\\+d";
+    private static final String NUMBER_PATTERN = "\\d+";
 
     public static void validateNumberFormat(final String input) {
         if (isNotNumber(input)) {

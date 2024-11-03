@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
@@ -12,7 +11,6 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
         this.numbers = numbers;
     }
 
@@ -52,10 +50,6 @@ public class Lotto {
 
     private boolean isInvalidRange(final int number) {
         return number < Rule.MIN_LOTTO_NUMBER || number > Rule.MAX_LOTTO_NUMBER;
-    }
-
-    private void sort(final List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
     }
 
     public List<Integer> getNumbers() {

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,8 +24,13 @@ public class OutputView {
     private String buildLottoNumbers(final List<LottoNumbers> lottoNumbers) {
         return lottoNumbers.stream()
                 .map(LottoNumbers::numbers)
-                .map(List::toString)
+                .map(this::getSortedList)
                 .collect(Collectors.joining(OutputMessage.LINE_SEPARATOR));
+    }
+
+    private String getSortedList(final List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
+        return numbers.toString();
     }
 
     public void displayWinningNumbersRequest() {
