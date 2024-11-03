@@ -27,5 +27,8 @@ public class LottoHolder {
             }
         }
     }
+    public Map<Ranking, Integer> getRankCounts() {
+        return rankCounts;
+    }
     
 }
