@@ -21,7 +21,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number < Constants.MIN_LOTTO_NUMBER || number > Constants.MIN_LOTTO_NUMBER)
+                .filter(number -> number < Constants.MIN_LOTTO_NUMBER || number > Constants.MAX_LOTTO_NUMBER)
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException();
@@ -38,5 +38,11 @@ public class Lotto {
         if (Set.copyOf(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        numbers.sort(Integer::compareTo);
+        return numbers.toString();
     }
 }
