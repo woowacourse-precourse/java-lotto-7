@@ -4,8 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,5 +50,19 @@ public class UtilsTest {
         String inputTest = "1,2,3,4,5,6";
 
         assertThat(utils.convertToIntegerList(inputTest)).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("로또 번호 6개가 맞으면 Map에 Rank.ONE부분이 +1이 된다.")
+    @Test
+    void 로또번호_6개정답_Map_ONE갯수추가_로직() {
+        List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumber = new Lotto(numbers);
+        int bonusNumber = 7;
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(numbers));
+
+        Map<Rank, Integer> resultCounts = utils.evaluateLottoRanks(winningNumber, bonusNumber, lottos);
+
+        assertThat(resultCounts.get(Rank.ONE)).isEqualTo(1);
     }
 }
