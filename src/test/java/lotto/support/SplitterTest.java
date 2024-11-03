@@ -42,7 +42,7 @@ public class SplitterTest {
     }
 
     @Test
-    @DisplayName("빈 문자열이면 예외가 발생한다")
+    @DisplayName("공백이면 예외가 발생한다")
     void 실패_문자열구분_공백() {
         // Given
         Splitter splitter = new Splitter(",");

@@ -54,19 +54,6 @@ public class PurchasePriceTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"0", "-1000"})
-        @DisplayName("구입 금액이 자연수가 아닐 경우 예외가 발생한다")
-        void 실패_생성_자연수아님(String input) {
-            // Given
-
-            // When & Then
-            assertThatThrownBy(() -> new PurchasePrice(input))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
-                    .hasMessageContaining("구입 금액은 자연수여야 합니다");
-        }
-
-        @ParameterizedTest
         @ValueSource(strings = {"a20", "1000.0", "1000 0"})
         @DisplayName("구입 금액이 정수가 아닐 경우 예외가 발생한다")
         void 실패_생성_정수X(String input) {
@@ -77,6 +64,19 @@ public class PurchasePriceTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 숫자로만 이루어져야 합니다");
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"0", "-1000"})
+        @DisplayName("구입 금액이 자연수가 아닐 경우 예외가 발생한다")
+        void 실패_생성_자연수아님(String input) {
+            // Given
+
+            // When & Then
+            assertThatThrownBy(() -> new PurchasePrice(input))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
+                    .hasMessageContaining("구입 금액은 자연수여야 합니다");
         }
 
         @Test

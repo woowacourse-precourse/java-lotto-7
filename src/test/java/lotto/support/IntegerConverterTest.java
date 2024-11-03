@@ -64,11 +64,11 @@ public class IntegerConverterTest {
         }
 
         @Test
-        @DisplayName("공백 포함될 경우 예외가 발생한다")
+        @DisplayName("문자열 안에 공백 포함될 경우 예외가 발생한다")
         void 실패_변환_공백포함() {
             // Given
             IntegerConverter converter = new IntegerConverter();
-            List<String> numbers = List.of("1 ");
+            List<String> numbers = List.of("1 0");
 
             // When & Then
             assertThatThrownBy(() -> converter.convertFrom(numbers))
@@ -91,7 +91,7 @@ public class IntegerConverterTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .isExactlyInstanceOf(InvalidConvertException.class)
                     .hasMessageStartingWith("[ERROR] ")
-                    .hasMessageContaining("Integer 타입의 정수가 아닙니다");
+                    .hasMessageContaining("null일 수 없습니다");
         }
 
         @ParameterizedTest

@@ -75,7 +75,6 @@ public class LotteryTest {
                 put(LottoRank.THIRD, BigDecimal.ZERO);
                 put(LottoRank.FOURTH, BigDecimal.ZERO);
                 put(LottoRank.FIFTH, BigDecimal.ZERO);
-                put(LottoRank.NON_MATCH, BigDecimal.ZERO);
             }};
             assertThat(result).extracting("result").isEqualTo(expected);
         }

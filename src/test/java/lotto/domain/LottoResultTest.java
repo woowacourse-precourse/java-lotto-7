@@ -26,7 +26,6 @@ class LottoResultTest {
             put(LottoRank.THIRD, BigDecimal.ZERO);
             put(LottoRank.FOURTH, BigDecimal.ZERO);
             put(LottoRank.FIFTH, BigDecimal.ZERO);
-            put(LottoRank.NON_MATCH, BigDecimal.ZERO);
         }});
     }
 

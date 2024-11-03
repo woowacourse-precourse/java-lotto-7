@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,10 +19,10 @@ class LottoRankTest {
         // Given
 
         // When
-        LottoRank rank = LottoRank.findRank(matchingCount, isBonus);
+        Optional<LottoRank> rank = LottoRank.findRank(matchingCount, isBonus);
 
         // Then
-        assertThat(rank).isEqualTo(expected);
+        assertThat(rank.get()).isEqualTo(expected);
     }
 
     private static Stream<Arguments> 성공_로또등수확인() {
@@ -32,13 +33,7 @@ class LottoRankTest {
                 Arguments.of(4, true, LottoRank.FOURTH),
                 Arguments.of(4, false, LottoRank.FOURTH),
                 Arguments.of(3, true, LottoRank.FIFTH),
-                Arguments.of(3, false, LottoRank.FIFTH),
-                Arguments.of(2, true, LottoRank.NON_MATCH),
-                Arguments.of(2, false, LottoRank.NON_MATCH),
-                Arguments.of(1, true, LottoRank.NON_MATCH),
-                Arguments.of(1, false, LottoRank.NON_MATCH),
-                Arguments.of(0, true, LottoRank.NON_MATCH),
-                Arguments.of(0, false, LottoRank.NON_MATCH)
+                Arguments.of(3, false, LottoRank.FIFTH)
         );
     }
 }
