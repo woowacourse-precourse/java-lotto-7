@@ -4,10 +4,13 @@ import static lotto.constant.ExceptionMessage.AMOUNT_MUST_BE_NON_NEGATIVE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class MoneyTest {
@@ -110,21 +113,22 @@ class MoneyTest {
     @Nested
     class 나눗셈_가능_여부_테스트 {
         @ParameterizedTest
-        @CsvSource({
-                "1000, 1000, true",
-                "2000, 1000, true",
-                "1000, 3000, false",
-                "0, 1000, true"
-        })
-        void 금액이_주어진_수로_나누어_떨어지는지_확인한다(long amount, long divisor, boolean expected) {
-            // given
-            Money money = Money.from(amount);
-
+        @MethodSource("provideDivisibilityTestCases")
+        void 금액이_주어진_Money로_나누어_떨어지는지_확인한다(Money money, Money divisor, boolean expected) {
             // when
             boolean result = money.isDivisibleBy(divisor);
 
             // then
             assertThat(result).isEqualTo(expected);
+        }
+
+        private static Stream<Arguments> provideDivisibilityTestCases() {
+            return Stream.of(
+                    Arguments.of(Money.from(1000), Money.from(1000), true),  // 같은 금액
+                    Arguments.of(Money.from(2000), Money.from(1000), true),  // 배수 관계
+                    Arguments.of(Money.from(1000), Money.from(3000), false), // 나누어떨어지지 않음
+                    Arguments.of(Money.from(0), Money.from(1000), true)      // 0원
+            );
         }
     }
 

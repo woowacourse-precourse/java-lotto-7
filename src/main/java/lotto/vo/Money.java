@@ -35,8 +35,8 @@ public class Money {
         return new Money(result);
     }
 
-    public boolean isDivisibleBy(long divisor) {
-        return this.value % divisor == 0;
+    public boolean isDivisibleBy(Money other) {
+        return this.value % other.value == 0;
     }
 
     @Override
