@@ -2,10 +2,6 @@ package lotto.presentation;
 
 import java.util.List;
 import lotto.domain.IssuedLotto;
-import lotto.domain.IssuedRandomLotto;
-import lotto.domain.Lotto;
-import lotto.domain.LottoProfitCalculator;
-import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.dto.LottoStatisticsDto;
 import lotto.presentation.view.InputView;
