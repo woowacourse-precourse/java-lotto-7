@@ -18,7 +18,7 @@ public class LottoController {
         OutputView.printPurchasedLottoCountAndNumber(lottos);
 
         List<Integer> winningNumber = InputView.inputWinningNumber();
-        Integer bonusNumber = InputView.inputBonusNumber();
+        Integer bonusNumber = InputView.inputBonusNumber(winningNumber);
         LottoCommittee committee = new LottoCommittee(winningNumber, bonusNumber);
 
         HashMap<Ranking, Integer> rankingCountMap = committee.calculateRanking(lottos);

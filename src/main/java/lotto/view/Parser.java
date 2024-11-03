@@ -18,7 +18,6 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ERROR_NON_NUMERIC_PURCHASE_AMOUNT_MESSAGE);
         }
-        Validator.validatePurchaseAmount(purchaseAmount);
 
         return purchaseAmount;
     }
@@ -31,7 +30,6 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ERROR_NON_NUMERIC_WINNING_NUMBER_MESSAGE);
         }
-        Validator.validateWinningNumber(winningNumbers);
 
         return winningNumber.stream().toList();
     }
@@ -43,7 +41,6 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(ERROR_NON_NUMERIC_BONUS_NUMBER_MESSAGE);
         }
-        Validator.validateBonusNumber(bonusNumber);
 
         return bonusNumber;
     }
