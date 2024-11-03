@@ -8,8 +8,8 @@ public class LottoChecker {
     private int bonusNumber;
 
     public LottoChecker(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = new ArrayList<>();
-        this.bonusNumber = 0;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> lottoCheck(Customer customer) {
