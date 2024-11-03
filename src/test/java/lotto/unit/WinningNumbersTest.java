@@ -26,4 +26,13 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.DUPLICATE_WINNING_NUMBER);
     }
+
+    @Test
+    @DisplayName("당첨 번호가 1~45 범위를 벗어나는 경우 예외가 발생한다.")
+    void winningNumbersOutOfRange() {
+        String input = "0,2,3,4,5,6";
+        assertThatThrownBy(() -> new WinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
+    }
 }
