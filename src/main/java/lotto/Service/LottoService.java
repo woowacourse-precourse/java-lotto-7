@@ -33,4 +33,8 @@ public class LottoService {
         lotto = new Lotto(lottoNumberList);
     }
 
+    public void generateBonusNumber(int number) {
+        bonusNumber = new BonusNumber(number, lotto);
+    }
+
 }
