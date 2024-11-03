@@ -30,11 +30,11 @@ public class WinningNumbersInput implements Input<Lotto, String[]> {
 
     @Override
     public void validate(String[] input) {
-        for (String stringNumber : input) {
-            if (inputValidator.isEmptyInput(stringNumber)) {
+        for (String oneNumber : input) {
+            if (inputValidator.isEmptyInput(oneNumber)) {
                 throw new EmptyInputException(INVALID_WINNING_NUMBER_FORMAT.getMessages());
             }
-            if (inputValidator.containsWhiteSpace(stringNumber)) {
+            if (inputValidator.containsWhiteSpace(oneNumber)) {
                 throw new InvalidInputException(WINNING_NUMBERS_CONTAINS_WHITESPACE.getMessages());
             }
         }
