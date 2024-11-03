@@ -2,21 +2,19 @@ package lotto.exceptioin;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputException {
 
-    private final Scanner scanner = new Scanner(System.in);
-
     // 로또 구매 금액을 입력받아 검증하는 메서드
     public int getValidMoney() {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                int money = Integer.parseInt(scanner.nextLine().trim());
+                String input = System.console().readLine().trim();
+                int money = Integer.parseInt(input);
                 validateMoney(money);
                 return money;
             } catch (IllegalArgumentException e) {
@@ -30,7 +28,7 @@ public class InputException {
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                String input = scanner.nextLine().trim();
+                String input = System.console().readLine().trim();
                 List<Integer> winningNumbers = Stream.of(input.split(","))
                         .map(String::trim)
                         .map(Integer::parseInt)
@@ -48,7 +46,8 @@ public class InputException {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                int bonusNumber = Integer.parseInt(scanner.nextLine().trim());
+                String input = System.console().readLine().trim();
+                int bonusNumber = Integer.parseInt(input);
                 validateBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
