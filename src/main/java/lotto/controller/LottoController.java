@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.Service.LottoService;
-import lotto.exception.InvalidInputException;
 import lotto.model.Lotto;
 import lotto.view.ViewFacade;
 
@@ -25,9 +24,8 @@ public class LottoController {
         repeatUntilLottoValid();
         repeatUntilBonusNumberValid();
 
-        List<Integer> result = service.calculateResult();
-        double rate = service.calculateRate();
-        viewFacade.printResult(result, rate);
+        service.calculate();
+        viewFacade.printResult(service.getResult(), service.getRate());
     }
 
     private void repeatUntilPurchaseValid() {
@@ -65,7 +63,7 @@ public class LottoController {
                 int num = Integer.parseInt(bonusNumber);
                 service.generateBonusNumber(num);
                 return;
-            } catch (InvalidInputException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력하세요.");
             }
         }
