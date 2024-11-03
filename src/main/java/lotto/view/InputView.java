@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.util.ErrorResponse.INVALID_BONUS_NUMBER;
+import static lotto.util.ErrorResponse.INVALID_BONUS_NUMBER_DUPLICATE;
 import static lotto.util.ErrorResponse.INVALID_LOTTO_NUMBER;
 import static lotto.util.PrintVariable.BONUS_NUM_INPUT;
 import static lotto.util.PrintVariable.FIRST_BUY_MONEY_INPUT;
@@ -59,13 +60,13 @@ public class InputView {
         }
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(Lotto lotto) {
         while (true) {
             try {
-                outputView.printStringLineFeed("\n".concat(BONUS_NUM_INPUT.value()));
+                outputView.printStringLineFeed(BONUS_NUM_INPUT.value());
                 String num = Console.readLine();
 
-                validateBonusNumber(num);
+                validateBonusNumber(num, lotto);
 
                 return Integer.parseInt(num);
             } catch (IllegalArgumentException e) {
@@ -74,12 +75,15 @@ public class InputView {
         }
     }
 
-    private void validateBonusNumber(String num) {
+    private void validateBonusNumber(String num, Lotto lotto) {
         if (!num.matches("[0-9]+")) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
         }
         if (Integer.parseInt(num) < 1 || Integer.parseInt(num) > 45) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
+        }
+        if (lotto.getNumbers().contains(Integer.parseInt(num))) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }

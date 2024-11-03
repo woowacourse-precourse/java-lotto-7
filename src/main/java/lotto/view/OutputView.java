@@ -1,7 +1,11 @@
 package lotto.view;
 
-import static lotto.util.PrintVariable.BUY_STATUS_STRING;
+import static lotto.util.PrintVariable.BUY_STATUS_FORMAT;
+import static lotto.util.PrintVariable.EARNING_RESULT_FORMAT;
+import static lotto.util.PrintVariable.LOTTO_RESULT_FORMAT;
+import static lotto.util.PrintVariable.LOTTO_RESULT_WITH_BONUS_FORMAT;
 import static lotto.util.PrintVariable.OUTPUT_START;
+import static lotto.util.PrintVariable.RESULT_START_FORMAT;
 
 import lotto.domain.Lottoes;
 import lotto.domain.type.LottoRank;
@@ -16,8 +20,7 @@ public class OutputView {
     public void printLottoesStatus(Lottoes lottoes) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\n".concat(String.valueOf(lottoes.getLottoes().size()))).append(BUY_STATUS_STRING.value()).append("\n");
-
+        sb.append(String.format(BUY_STATUS_FORMAT.value(), lottoes.getLottoes().size()));
         lottoes.getLottoes().forEach(lotto -> sb.append(lotto.toString()).append("\n"));
 
         System.out.println(sb);
@@ -25,7 +28,7 @@ public class OutputView {
 
     public void printLottoResult(LottoCalculateResponse result) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n").append(OUTPUT_START.value()).append("\n---\n");
+        sb.append(String.format(RESULT_START_FORMAT.value(), OUTPUT_START.value()));
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
@@ -34,19 +37,19 @@ public class OutputView {
             }
         }
 
-        sb.append("총 수익률은 ").append(result.earningRate()).append("%입니다.");
+        sb.append(String.format(EARNING_RESULT_FORMAT.value(), result.earningRate()));
         System.out.print(sb);
     }
 
     private String makePerLottoResult(LottoRank rank, int count) {
         if (rank == LottoRank.FIVE_WITH_BONUS) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개\n",
+            return String.format(LOTTO_RESULT_WITH_BONUS_FORMAT.value(),
                     rank.getMatchCount(),
                     rank.getFormattedPrize(),
                     count);
         }
 
-        return String.format("%d개 일치 (%s) - %d개\n",
+        return String.format(LOTTO_RESULT_FORMAT.value(),
                 rank.getMatchCount(),
                 rank.getFormattedPrize(),
                 count);

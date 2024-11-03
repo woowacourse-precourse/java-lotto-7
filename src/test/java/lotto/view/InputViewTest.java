@@ -3,6 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import org.junit.jupiter.api.AfterEach;
@@ -86,10 +87,11 @@ public class InputViewTest {
     public void testValidInputBonusNumber() {
         //given
         String simulatedInput = "7\n";
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         //when
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(lotto);
 
         //then
         assertThat(bonusNumber).isEqualTo(7);
@@ -100,10 +102,11 @@ public class InputViewTest {
     public void testInvalidInputBonusNumber() {
         //given
         String simulatedInput = "invalid\n7\n"; // 줄바꿈 추가
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         //when
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(lotto);
 
         //then
         assertThat(bonusNumber).isEqualTo(7);

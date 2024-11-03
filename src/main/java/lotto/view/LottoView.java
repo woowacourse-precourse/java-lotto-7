@@ -28,7 +28,7 @@ public class LottoView {
         outputView.printLottoesStatus(lottoes);
 
         Lotto lotto = inputView.inputOwnLotto();
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(lotto);
 
         LottoCalculateResponse result =
                 lottoController.calculateLotto(LottoCalculateRequest.of(lottoes, lotto, bonusNumber, money));

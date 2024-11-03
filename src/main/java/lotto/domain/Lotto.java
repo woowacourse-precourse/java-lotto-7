@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.util.ErrorResponse.INVALID_LOTTO_COUNT;
+import static lotto.util.ErrorResponse.INVALID_LOTTO_NUMBER;
 import static lotto.util.ErrorResponse.INVALID_LOTTO_NUM_DUPLICATE;
 
 import java.util.HashSet;
@@ -20,6 +21,9 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_LOTTO_COUNT.getMessage());
+        }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
 
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
