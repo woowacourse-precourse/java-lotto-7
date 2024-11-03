@@ -2,7 +2,7 @@ package lotto.view.output;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.List;
+import lotto.domain.LottoNumberDto;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -54,7 +54,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void showLotto(final List<Integer> numbers) {
-        System.out.println(numbers);
+    public void showLotto(final LottoNumberDto numbers) {
+        System.out.println(numbers.numbers());
     }
 }

@@ -66,7 +66,7 @@ public class LottoController {
     }
 
     private List<Lotto> drawLottos(final Quantity quantity) {
-        return Lotto.createAsMuchAs(quantity, generator);
+        return Lotto.makeAsMuchAs(generator.generateNumbersBy(quantity.getQuantity()));
     }
 
     private Lotto makeWinningLotto() {

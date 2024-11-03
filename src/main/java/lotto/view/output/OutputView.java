@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import java.math.BigDecimal;
-import java.util.List;
+import lotto.domain.LottoNumberDto;
 
 public interface OutputView {
     void showCommentForPurchasePrice();
@@ -22,5 +22,5 @@ public interface OutputView {
 
     void showProfitRate(BigDecimal profitRate);
 
-    void showLotto(List<Integer> numbers);
+    void showLotto(LottoNumberDto numbers);
 }
