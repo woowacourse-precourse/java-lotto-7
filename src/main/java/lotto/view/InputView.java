@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.util.LottoParser;
 import lotto.util.Validator;
 
@@ -20,12 +21,13 @@ public class InputView {
         }
     }
 
-    public List<Integer> readPickNumbers() {
+    public Lotto readPickNumbers() {
         while (true) {
             try {
                 String input = getInput();
                 Validator.validateCommaSeparatedNumbers(input);
-                return LottoParser.parse(input);
+                List<Integer> pickedNumbers = LottoParser.parse(input);
+                return new Lotto(pickedNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
