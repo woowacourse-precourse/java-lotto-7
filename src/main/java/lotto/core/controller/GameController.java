@@ -1,6 +1,7 @@
 package lotto.core.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import lotto.core.domain.model.GameResult;
 import lotto.core.domain.model.Lotto;
 import lotto.core.domain.model.Lottos;
@@ -8,8 +9,7 @@ import lotto.core.domain.model.Money;
 import lotto.core.domain.model.User;
 import lotto.core.view.OutputView;
 import lotto.system.Config.SystemConfig;
-import lotto.system.message.Message;
-import lotto.system.message.MessageType;
+
 
 
 public class GameController {
@@ -41,10 +41,7 @@ public class GameController {
             this.startGame();
             this.showResult();
             systemConfig.stopSystem();
-        } catch (RuntimeException  e) {
-            System.out.println(e);
-        } finally {
-            systemConfig.shutdown();
+        } catch (NoSuchElementException ignore) {
         }
     }
     public void startGame() {

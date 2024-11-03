@@ -8,8 +8,13 @@ import lotto.core.view.OutputView;
 
 
 public class InputController {
+
+    private String readUserInput() {
+        return Console.readLine();
+    }
+
     public Integer getMoney() {
-        String given = Console.readLine();
+        String given = readUserInput();
         try {
             int givenMoney = checkNumber(given);
             Money.checkMoney(givenMoney);
@@ -21,7 +26,7 @@ public class InputController {
     }
 
     public List<Integer> getLottoNumber() {
-        String given = Console.readLine();
+        String given = readUserInput();
         try {
             List<Integer> arr = Arrays.stream(given.split(",")).map(this::checkNumber).toList();
             lottoNumberRangeCheck(arr);
@@ -33,7 +38,7 @@ public class InputController {
     }
 
     public Integer getBonusNumber() {
-        String given = Console.readLine();
+        String given = readUserInput();
         try {
             Integer bonusNumber = checkNumber(given);
             lottoNumberRangeCheck(bonusNumber);

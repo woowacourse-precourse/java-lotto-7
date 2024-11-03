@@ -68,9 +68,7 @@ public class SystemConfig {
         return this.outputMessageQueue;
     }
     public void stopSystem() {
-        inputTask.stop();
         outputTask.stop();
-        inputThread.interrupt();
         outputThread.interrupt();
         try {
             inputThread.join(1000);
