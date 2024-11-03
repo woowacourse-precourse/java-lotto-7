@@ -1,16 +1,17 @@
 package lotto.controller;
 
-import lotto.view.PurchaseView;
+import lotto.model.PurchaseLotto;
 
 public class LottoController {
 
-    private final PurchaseView purchaseView;
+    private final InputController inputController;
 
-    public LottoController(final PurchaseView purchaseView) {
-        this.purchaseView = purchaseView;
+    public LottoController(final InputController inputController) {
+        this.inputController = inputController;
     }
 
     public void run() {
-        String moneyTemp = purchaseView.getMoney();
+        PurchaseLotto purchaseLotto = inputController.moneyToLottoList();
+
     }
 }

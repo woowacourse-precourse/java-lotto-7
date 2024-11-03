@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.InputController;
 import lotto.controller.LottoController;
 import lotto.view.PurchaseView;
 
@@ -8,7 +9,9 @@ public class Application {
 
         PurchaseView purchaseView = new PurchaseView();
 
-        LottoController lottoController = new LottoController(purchaseView);
+        InputController inputController = new InputController(purchaseView);
+
+        LottoController lottoController = new LottoController(inputController);
         lottoController.run();
     }
 }
