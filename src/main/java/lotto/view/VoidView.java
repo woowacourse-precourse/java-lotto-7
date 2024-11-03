@@ -4,6 +4,6 @@ public class VoidView implements View {
 
     @Override
     public String render() {
-        return null;
+        return "";
     }
 }
