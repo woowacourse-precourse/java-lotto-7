@@ -38,7 +38,7 @@ public class Lotto {
     }
 
     public boolean isContained(Bonus bonus) {
-        return this.numbers.contains(bonus.get());
+        return this.numbers.contains(bonus.getNumber());
     }
 
     private void validate(List<Integer> numbers) {
