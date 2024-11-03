@@ -8,11 +8,10 @@ import lotto.utils.NumberList;
 public class LottoModel {
 
     private List<Lotto> lottoRepository;
-    private NumberList numberList;
+
 
     public LottoModel(){
         this.lottoRepository = new ArrayList<Lotto>();
-        this.numberList = new NumberList();
     }
 
     public List<Lotto> createLotto(int count){
@@ -33,11 +32,10 @@ public class LottoModel {
 
 
     private Lotto createLotto(){
-        this.numberList.generateRandomNumberList();
+        NumberList numberList = new NumberList();
+        numberList.generateRandomNumberList();
 
         Lotto newLotto = new Lotto(numberList);
-
-        this.numberList.clear();
 
         return newLotto;
     }
