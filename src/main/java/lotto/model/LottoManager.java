@@ -7,6 +7,10 @@ import java.util.Map;
 import lotto.util.LottoResultChecker;
 
 public class LottoManager {
+    private static final Rank NONE_RANK_FILTER = Rank.NONE;
+    private static final long INITIAL_RANK_COUNT = 0L;
+    private static final int PERCENTAGE_MULTIPLIER = 100;
+
     private final Lottos lottos;
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
@@ -28,40 +32,34 @@ public class LottoManager {
     private Map<Rank, Long> initializeResultsMap() {
         Map<Rank, Long> results = new LinkedHashMap<>();
         Arrays.stream(Rank.values())
-                .filter(rank -> rank != Rank.NONE)
-                .forEach(rank -> results.put(rank, 0L));
+                .filter(rank -> rank != NONE_RANK_FILTER)
+                .forEach(rank -> results.put(rank, INITIAL_RANK_COUNT));
         return results;
     }
 
     private void updateRankCount(Map<Rank, Long> results) {
         lottos.getLottos().stream()
                 .map(this::getRank)
-                .filter(rank -> rank != Rank.NONE)
+                .filter(rank -> rank != NONE_RANK_FILTER)
                 .forEach(rank -> results.put(rank, results.get(rank) + 1));
     }
 
     private Rank getRank(Lotto lotto) {
         int matchCount = LottoResultChecker.countMatchingNumbers(lotto.getNumbers(), winningNumbers.winningNumbers());
         boolean hasBonus = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+
         return Rank.determineRank(matchCount, hasBonus);
     }
 
-    public Double calculateRateOfReturn(int purchaseAmount) {
-        long totalWinningAmount = calculateTotalWinningAmount();
-        return (double) totalWinningAmount / purchaseAmount * 100; // 수익률 계산
+    public double calculateRateOfReturn(int purchaseAmount) {
+        long totalWinningAmount = calculateTotalWinningPrizesAmount();
+        return (double) totalWinningAmount / purchaseAmount * PERCENTAGE_MULTIPLIER;
     }
 
-    private long calculateTotalWinningAmount() {
-        long totalWinningAmount = 0;
-
-        for (Map.Entry<Rank, Long> entry : results.entrySet()) {
-            Rank rank = entry.getKey();
-            long count = entry.getValue();
-
-            totalWinningAmount += count * rank.getPrize();
-        }
-
-        return totalWinningAmount;
+    private long calculateTotalWinningPrizesAmount() {
+        return results.entrySet().stream()
+                .mapToLong(entry -> entry.getValue() * entry.getKey().getPrize())
+                .sum();
     }
 
     public Map<Rank, Long> getResults() {

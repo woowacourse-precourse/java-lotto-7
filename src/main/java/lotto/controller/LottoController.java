@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import dto.LottoResultDTO;
-import dto.LottosDTO;
+import lotto.dto.LottoResultDTO;
+import lotto.dto.LottosDTO;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.AttemptCount;
@@ -10,6 +10,7 @@ import lotto.model.LottoManager;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.util.GenerateNumbers;
+import lotto.util.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,7 +26,7 @@ public class LottoController {
     }
 
     public void start() {
-        int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
+        int purchaseAmount = Integer.parseInt(RetryUtil.retryReadPurchaseAmount(inputView::readPurchaseAmount));
         AttemptCount attemptCount = new AttemptCount(purchaseAmount);
         Lottos lottos = new Lottos(attemptCount.getCount(), generateNumbers);
 
@@ -42,7 +43,7 @@ public class LottoController {
     }
 
     private WinningNumbers createWinningNumbersFromInput() {
-        String input = inputView.readWinningNumber();
+        String input = RetryUtil.retryReadWinningNumber(inputView::readWinningNumber);
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
@@ -52,7 +53,8 @@ public class LottoController {
 
 
     private BonusNumber createBonusNumberFromInput(WinningNumbers winningNumbers) {
-        int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
+        int bonusNumber = Integer.parseInt(
+                RetryUtil.retryReadBonusNumber(inputView::readBonusNumber, winningNumbers.winningNumbers()));
 
         return new BonusNumber(bonusNumber, winningNumbers.winningNumbers());
     }
