@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.PrizeTier ;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -38,6 +39,26 @@ public class Lotto {
     }
 
 
+    public int getMatchedNumbersCount(Lotto target){
 
-    // TODO: 추가 기능 구현
+        Set<Integer> numSet = new HashSet<Integer>(target.getNumbers());
+        int matchCount = 0;
+        int totalCount = numbers.size() + target.getNumbers().size();
+        numSet.addAll(numbers);
+        matchCount = totalCount - numSet.size();
+
+        return matchCount;
+    }
+
+    public boolean isNumberIncluded(int number){
+        return numbers.contains(number);
+    }
+
+    public PrizeTier  checkPrizeTier (Lotto winLotto, int bonusNum){
+
+        boolean isBonusNumMatch = this.isNumberIncluded(bonusNum);
+        int matchCount = this.getMatchedNumbersCount(winLotto);
+
+        return PrizeTier .checkPrizeTier (matchCount,isBonusNumMatch);
+    }
 }
