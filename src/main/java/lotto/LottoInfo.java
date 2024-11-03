@@ -1,15 +1,21 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoInfo {
-    List<Integer> lotteryNumbers;
+    public static List<Integer> lotteryNumbers;
+    public static List<List<Integer>> AllLotteryNumbers = new ArrayList<>();
+    Lotto lotto;
     int theNumberOfLotto;
-    String lottoNumbers = "";
 
-    public void printLottoInfo() {
+    public LottoInfo() {
+        printLottoInfo();
+    }
+
+    private void printLottoInfo() {
         showTheNumberOfLotto();
         showLottoNumbers();
     }
@@ -31,12 +37,15 @@ public class LottoInfo {
         for (int i = 0; i < theNumberOfLotto; i++) {
             setRandomNumbers();
         }
-        System.out.println(lottoNumbers);
+        System.out.println();
     }
 
     private void setRandomNumbers() {
         lotteryNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lotteryNumbers);
-        lottoNumbers = lottoNumbers + lotteryNumbers.toString() + "\n";
+        AllLotteryNumbers.add(lotteryNumbers);
+
+        lotto = new Lotto(lotteryNumbers);
+        System.out.println(lotto.getNumbers());
     }
 }
