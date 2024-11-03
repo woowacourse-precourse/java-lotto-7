@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -51,6 +52,16 @@ class LottoTest {
                 new LottoNumber(5),
                 new LottoNumber(5))))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("일치 번호 개수 반환")
+    void calcMatchCount() {
+        assertSimpleTest(() -> {
+            Lotto lotto = Lotto.from("1,3,5,14,22,45");
+            Lotto other = Lotto.from("1,2,3,4,5,6");
+            assertThat(lotto.calcMatchCount(other)).isEqualTo(3);
+        });
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
