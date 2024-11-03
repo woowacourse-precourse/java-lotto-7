@@ -1,5 +1,12 @@
 package lotto.view;
 
+import static lotto.constants.OutputMessage.DIVIDING_LINE;
+import static lotto.constants.OutputMessage.LINE_BREAK;
+import static lotto.constants.OutputMessage.LOTTO_DETAIL_FORMAT;
+import static lotto.constants.OutputMessage.PROFIT_RATE_MESSAGE;
+import static lotto.constants.OutputMessage.PURCHASE_QUANTITY_MESSAGE;
+import static lotto.constants.OutputMessage.WINNING_DETAIL_MESSAGE;
+
 import java.util.List;
 import lotto.domain.LottoProfitRate;
 import lotto.domain.Rank;
@@ -7,12 +14,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
 public class OutputView {
-
-    private static final String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";
-    private static final String LINE_BREAK = "\n";
-    private static final String WINNING_DETAIL_MESSAGE = "\n당첨 통계";
-    private static final String DIVIDING_LINE = "---";
-
     public static void displayPurchasedLottoNumbers(Lottos lottos) {
         printPurchaseQuantity(lottos.getLottoCount());
         printLottoNumbers(lottos.getLottos());
@@ -25,16 +26,16 @@ public class OutputView {
     }
 
     private static void printPurchaseQuantity(int lottoQuantity) {
-        String message = String.format("%s%d%s", LINE_BREAK, lottoQuantity, PURCHASE_QUANTITY_MESSAGE);
+        String message = String.format("%s%d%s", LINE_BREAK.getMessage(), lottoQuantity, PURCHASE_QUANTITY_MESSAGE.getMessage());
         System.out.println(message);
     }
 
     public static void printLottoDetails(LottoProfitRate lottoProfitRate){
-        System.out.println(WINNING_DETAIL_MESSAGE);
-        System.out.println(DIVIDING_LINE);
+        System.out.println(WINNING_DETAIL_MESSAGE.getMessage());
+        System.out.println(DIVIDING_LINE.getMessage());
         for (Rank rank : Rank.values()) {
-            System.out.printf("%s (%,d원) - %d개\n", rank.getMessage(), rank.getPrize(), rank.getCount());
+            System.out.printf(LOTTO_DETAIL_FORMAT.getMessage(), rank.getMessage(), rank.getPrize(), rank.getCount());
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.",lottoProfitRate.getLottoProfitRate());
+        System.out.printf(PROFIT_RATE_MESSAGE.getMessage(),lottoProfitRate.getLottoProfitRate());
     }
 }

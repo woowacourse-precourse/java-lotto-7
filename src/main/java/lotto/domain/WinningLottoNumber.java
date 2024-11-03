@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.PUT_VALID_BONUS_NUMBER;
+import static lotto.constants.ErrorMessage.PUT_VALID_LOTTO_NUMBERS;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +26,7 @@ public class WinningLottoNumber {
             try {
                 winningNumbers.add(Integer.parseInt(lottoNumber));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 유효한 당첨 번호를 입력해주세요.");
+                throw new IllegalArgumentException(PUT_VALID_LOTTO_NUMBERS.getMessage());
             }
         }
         return new Lotto(winningNumbers);
@@ -34,7 +37,7 @@ public class WinningLottoNumber {
         try {
             bonus = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 보너스 번호를 입력해주세요.");
+            throw new IllegalArgumentException(PUT_VALID_BONUS_NUMBER.getMessage());
         }
         return new BonusNumber(bonus, winningNumber);
     }

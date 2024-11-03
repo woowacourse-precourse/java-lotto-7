@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER;
+import static lotto.constants.ErrorMessage.INPUT_LOTTO_NUMBER_OUT_OF_RANGE;
+
 public class BonusNumber {
 
     private int bonus;
@@ -16,13 +19,13 @@ public class BonusNumber {
 
     private void checkNumberRange(int number){
         if(number < 1 || number > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 숫자 범위를 벗어납니다.");
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
     private void checkNumberDuplicated(int number, Lotto winningNumber){
         if (winningNumber.getNumbers().contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException(CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER.getMessage());
         }
     }
 

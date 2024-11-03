@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import static lotto.constants.ErrorMessage.IS_NOT_DIVISIBLE_BY_THOUSAND_WON;
+import static lotto.constants.ErrorMessage.PURCAHSE_PRICE_MUST_BE_NATURAL_NUMBER;
+
 public class PurchasePriceValidator {
 
     public static void validator(String price) {
@@ -11,17 +14,17 @@ public class PurchasePriceValidator {
         try {
             int amount = convertToInteger(price);
             if (amount < 1) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액이 자연수가 아닙니다.");
+                throw new IllegalArgumentException(PURCAHSE_PRICE_MUST_BE_NATURAL_NUMBER.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액이 자연수가 아닙니다.");
+            throw new IllegalArgumentException(PURCAHSE_PRICE_MUST_BE_NATURAL_NUMBER.getMessage());
         }
     }
 
     private static void checkDivideIntoThousand(String price) {
         int amount = convertToInteger(price);
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어떨어지지 않습니다.");
+            throw new IllegalArgumentException(IS_NOT_DIVISIBLE_BY_THOUSAND_WON.getMessage());
         }
     }
 
