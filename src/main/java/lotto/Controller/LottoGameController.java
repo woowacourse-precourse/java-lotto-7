@@ -16,6 +16,6 @@ public class LottoGameController {
     }
 
     public void gameStart() {
-        inputView.showPaymentPriceMessage();
+        inputView.inputPaymentPrice();
     }
 }
