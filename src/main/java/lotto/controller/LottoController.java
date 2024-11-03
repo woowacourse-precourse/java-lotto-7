@@ -112,5 +112,19 @@ public class LottoController {
     private void handleBonusNumber() {
         output.printBonusNumberInputPrompt();
         String bonusNumber = input.inputString();
+
+        validateBonusNumber(bonusNumber);
+    }
+
+    private void validateBonusNumber(String input) {
+        try {
+            validator.validateEmptyInput(input);
+            validator.validateNonNumber(input);
+            validator.validatePositiveNumber(input);
+            validator.validateNumberRange(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            handleBonusNumber();
+        }
     }
 }
