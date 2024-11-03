@@ -29,4 +29,18 @@ class WinningTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호에 음수가 있으면 예외가 발생한다.")
+    @Test
+    void 당첨_번호에_음수가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, -9)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 보너스_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Winning(List.of(1, 2, 3, 4, 5, 6)).validateBonusNumber(1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
