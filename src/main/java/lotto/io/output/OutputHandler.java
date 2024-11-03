@@ -11,11 +11,12 @@ public class OutputHandler {
 	private static final String LOTTO_SIGN_DELIMITER = ", ";
 	private static final String LOTTO_SIGN_PREFIX = "[";
 	private static final String LOTTO_SIGN_SUFFIX = "]";
-	private static final String PURCHASE_AMOUNT_COMMENT = "구입금액을 입력해 주세요.";
+	private static final String PURCHASE_AMOUNT_INPUT_COMMENT = "구입금액을 입력해 주세요.";
 	private static final String PURCHASED_LOTTO_COUNT_COMMENT = "개를 구매했습니다.";
+	private static final String WINNING_NUMBERS_INPUT_COMMENT = "당첨 번호를 입력해 주세요.";
 
-	public void showPurchaseComment() {
-		System.out.println(PURCHASE_AMOUNT_COMMENT);
+	public void showPurchaseAmountInputComment() {
+		System.out.println(PURCHASE_AMOUNT_INPUT_COMMENT);
 	}
 
 	public void showPurchasedLottos(Lottos lottos) {
@@ -38,6 +39,11 @@ public class OutputHandler {
 		}
 
 		return stringJoiner.toString();
+	}
+
+	public void showWinningNumbersInputComment() {
+		System.out.println();
+		System.out.println(WINNING_NUMBERS_INPUT_COMMENT);
 	}
 
 }
