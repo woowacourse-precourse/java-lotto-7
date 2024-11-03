@@ -38,6 +38,7 @@ public class LottoController {
         OutputView.printEmpty();
         WinningNumber winningNumber = getWinningNumber();
         Map<LottoResult, Integer> matchResults = matchService.calculateMatchResults(lottos, winningNumber);
+        InputView.closeConsole();
 
         printWinningResult(matchResults);
         printReturnRate(matchResults, lottos);

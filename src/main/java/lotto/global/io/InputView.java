@@ -19,4 +19,8 @@ public abstract class InputView {
         return Console.readLine();
     }
 
+    public static void closeConsole() {
+        Console.close();
+    }
+
 }
