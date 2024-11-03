@@ -21,6 +21,28 @@ public class RandomNumberGeneratorTest {
         Assertions.assertThat(count).isEqualTo(6);
     }
 
+    @RepeatedTest(100)
+    void 숫자_생성_범위_초과_테스트() {
+        List<Integer> generateNumbers = RandomNumberGenerator.generate();
+
+        long count = generateNumbers.stream()
+                .filter(num -> num > 45)
+                .count();
+
+        Assertions.assertThat(count).isEqualTo(0);
+    }
+
+    @RepeatedTest(100)
+    void 숫자_생성_범위_미만_테스트() {
+        List<Integer> generateNumbers = RandomNumberGenerator.generate();
+
+        long count = generateNumbers.stream()
+                .filter(num -> num < 1)
+                .count();
+
+        Assertions.assertThat(count).isEqualTo(0);
+    }
+
     @Test
     void 숫자_생성_독립성_테스트() {
         List<Integer> generateNumbers = RandomNumberGenerator.generate();
