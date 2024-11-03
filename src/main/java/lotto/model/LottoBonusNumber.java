@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Objects;
 import lotto.util.InputValidator;
 import lotto.view.error.ErrorType;
 import lotto.view.error.InputErrorException;
