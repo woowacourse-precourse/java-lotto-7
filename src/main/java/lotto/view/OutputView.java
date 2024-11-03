@@ -1,4 +1,4 @@
-package lotto.common.view;
+package lotto.view;
 
 import static lotto.common.constant.PromptMessage.*;
 

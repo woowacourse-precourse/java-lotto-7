@@ -1,7 +1,8 @@
-package lotto.common.view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.common.model.PriceToBuyLotto;
+import lotto.exception.PriceToBuyLottoException;
+import lotto.model.PriceToBuyLotto;
 
 import static lotto.common.constant.ErrorMessage.*;
 
@@ -13,8 +14,8 @@ public class InputView {
         try {
             String userInputPriceToBuyLotto = Console.readLine();
             priceToBuyLotto = PriceToBuyLotto.of(userInputPriceToBuyLotto);
-        } catch (NumberFormatException e) {
-            PRICE_SHOULD_BE_INTEGER.printErrorMessage();
+        } catch(PriceToBuyLottoException e){
+            e.printErrorMessage();
             priceToBuyLotto = getPriceToBuyLotto();
         }finally{
             Console.close();
