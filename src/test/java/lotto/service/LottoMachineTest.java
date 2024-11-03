@@ -69,7 +69,7 @@ class LottoMachineTest {
 
         // when
         PurchasedLottos purchasedLottos = lottoMachine.issueLotto(money);
-        List<Lotto> lottos = purchasedLottos.getLottos();
+        List<Lotto> lottos = purchasedLottos.lottos();
 
         // then
         for (Lotto lotto : lottos) {
