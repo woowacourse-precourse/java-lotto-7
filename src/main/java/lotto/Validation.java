@@ -13,7 +13,7 @@ public class Validation {
     }
 
     void isRightInputLottos(String lottos) {
-        if(!lottos.matches(regexWinningNumber)) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자의 6개여야 합니다.");
+        if(!lottos.matches(regexWinningNumber)) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 다른 숫자 6개여야 합니다.");
     }
 
     void isDistinctNumber(List<Integer> winnings) {
@@ -27,6 +27,6 @@ public class Validation {
     }
 
     public void isContainWinningNumber(int bonusNumber, List<Integer> winnings) {
-        if(winnings.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 당첨 번호가 포함되어있지 않은 번호를 입력해 주세요");
+        if(winnings.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 당첨 번호가 포함되어있지 않은 번호를 입력해 주세요.");
     }
 }
