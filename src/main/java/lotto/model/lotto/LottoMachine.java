@@ -19,5 +19,14 @@ public class LottoMachine {
         return ((double) totalPrize * 100) / (lottoCount * Lotto.PRICE);
     }
 
+    private Long calcTotalPrize(List<Lotto> lottos) {
+        Optional<Long> optionalTotalPrize = lottos.stream()
+                .map(lotto -> {
+                    Winning winning = lotto.checkWinner(drawNumbers);
+                    winning.increaseCount();
+                    return winning.getPrizeMoney();
+                })
+                .reduce(Long::sum);
+        return optionalTotalPrize.get();
     }
 }
