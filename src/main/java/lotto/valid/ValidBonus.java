@@ -7,7 +7,7 @@ import lotto.config.exception.bonus.BonusExceptionMessage;
 
 public class ValidBonus {
 
-    public static void checkInputDuplicate(List<Integer> numbers, int number) {
+    public static void checkDuplicateNumber(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw new BonusException(BonusExceptionMessage.HAS_DUPLICATE_BONUS_NUMBER);
         }

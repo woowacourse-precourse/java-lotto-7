@@ -12,7 +12,7 @@ public class Bonus {
     }
 
     private void validate(List<Integer> numbers, int bonusNumber) {
-        ValidBonus.checkInputDuplicate(numbers, bonusNumber);
+        ValidBonus.checkDuplicateNumber(numbers, bonusNumber);
         ValidBonus.checkRangeNumber(bonusNumber);
     }
 
