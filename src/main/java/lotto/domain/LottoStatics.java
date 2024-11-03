@@ -34,4 +34,8 @@ final public class LottoStatics {
 
         return prizeCount;
     }
+
+    public EnumMap<LottoPrize, Long> getPrizeCount() {
+        return new EnumMap<>(this.prizeCount);
+    }
 }
