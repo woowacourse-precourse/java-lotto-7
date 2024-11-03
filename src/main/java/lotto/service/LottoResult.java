@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private Integer totalBenefit;
     private final HashMap<WinningInfo, Integer> result = new HashMap<>();
 
     public LottoResult() {
@@ -15,7 +14,6 @@ public class LottoResult {
     }
 
     private void initResult() {
-        totalBenefit = 0;
         result.put(WinningInfo.FIRST_WINNER, 0);
         result.put(WinningInfo.SECOND_WINNER, 0);
         result.put(WinningInfo.THIRD_WINNER, 0);
@@ -30,16 +28,8 @@ public class LottoResult {
         }
     }
 
-    public Double getProfitRate(Lottos lottos) {
-        calculateTotalBenefit();
-        double profit = (double) (totalBenefit / lottos.getLottoCount()) / 1000.0 * 100.0;
-        return Math.round(profit * 10.0) / 10.0;
-    }
-
-    private void calculateTotalBenefit() {
-        for (Map.Entry<WinningInfo, Integer> entry : result.entrySet()) {
-            totalBenefit += entry.getKey().getWinningAmount() * entry.getValue();
-        }
+    public HashMap<WinningInfo, Integer> getResult() {
+        return result;
     }
 
     @Override

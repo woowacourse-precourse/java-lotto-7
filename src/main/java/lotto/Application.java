@@ -8,6 +8,7 @@ import lotto.io.Input;
 import lotto.io.View;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoResult;
+import lotto.service.ProfitCalculator;
 import lotto.service.WinningChecker;
 
 
@@ -19,24 +20,18 @@ public class Application {
         Input input = Container.getInstance(Input.class);
         LottoGenerator lottoGenerator = Container.getInstance(LottoGenerator.class);
         LottoResult lottoResult = Container.getInstance(LottoResult.class);
+        ProfitCalculator profitCalculator = Container.getInstance(ProfitCalculator.class);
         WinningChecker winningChecker = Container.getInstance(WinningChecker.class);
 
         Lottos lottos = lottoGenerator.generateLottos(input.getPrice());
         winningChecker.calculate(lottos);
+        Double profitRate = profitCalculator.getProfitRate(lottos);
 
-        printIssuedLottos(lottos);
-        printResult(lottos, lottoResult);
+        View.printLotto(lottos.getLottoCount(), lottos.toString());
+        View.printWinningResult(lottoResult.toString());
+        View.printProfit(profitRate);
 
         Container.reset();
-    }
-
-    private static void printIssuedLottos(Lottos lottos) {
-        View.printLotto(lottos.getLottoCount(), lottos.toString());
-    }
-
-    private static void printResult(Lottos lottos, LottoResult lottoResult) {
-        View.printWinningResult(lottoResult.toString());
-        View.printProfit(lottoResult.getProfitRate(lottos));
     }
 
 }
