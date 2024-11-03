@@ -1,4 +1,4 @@
-package lotto;
+package lotto.logic;
 
 import lotto.input.InputValidationMessage;
 import lotto.input.WinLotto;
@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        getBonusNum(numbers);
+       // getBonusNum(numbers);
         this.numbers = numbers;
     }
 
@@ -37,15 +37,4 @@ public class Lotto {
 
     }
 
-    public static void getNumsers(){
-        new Lotto(WinLotto.inputWinLotto());
-    }
-
-    public static void getBonusNum(List<Integer> numbers) {
-        int bonusNum = WinLotto.inputBonusLotto();
-
-        if (numbers.contains(bonusNum)) {
-            throw new IllegalArgumentException(InputValidationMessage.MESSAGE_BONUS_NUMBER_CANNOT_DUPLICATE.getMessage());
-        }
-    }
 }
