@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import java.util.HashSet;
-import java.util.Set;
 import lotto.service.LottoResult;
-import lotto.util.ErrorMessage;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
@@ -31,29 +28,38 @@ public class LottoController {
         outputView.showHowManyLotto(purchasedLotto);
         outputView.showAllLottoNums(purchasedLotto);
 
-        Lotto lotto = inputWinningLotto();
-        BonusBall bonusNumbers = inputBonusNumber(lotto);
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumbers);
+        WinningLotto winningLotto = createWinningLotto();
 
-        LottoResult lottoResult = lottoMachine.winLotto(purchasedLotto, winningLotto);
+        LottoResult lottoResult = lottoMachine.calculateLottoWins(purchasedLotto, winningLotto);
 
         outputView.showWinStatus(lottoResult);
         outputView.showProfit(lottoResult, lottoMachine.inMoney());
     }
 
-    private BonusBall inputBonusNumber(Lotto lotto) {
+    private WinningLotto createWinningLotto() {
+        Lotto lotto = inputLottoNumbers();
+
         while (true) {
             try {
-                BonusBall bonusBall = new BonusBall(inputView.lottoBonusNumInput());
-                validateBonusNumberDuplication(lotto, bonusBall);
-                return bonusBall;
+                BonusBall bonusBall = inputBonusNumber();
+                return new WinningLotto(lotto, bonusBall);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private Lotto inputWinningLotto() {
+    private BonusBall inputBonusNumber() {
+        while (true) {
+            try {
+                return new BonusBall(inputView.lottoBonusNumInput());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto inputLottoNumbers() {
         while (true) {
             try {
                 String[] rawNumbers = inputView.lottoNumsInput();
@@ -72,14 +78,6 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void validateBonusNumberDuplication(Lotto lotto, BonusBall bonus) {
-        Set<Integer> duplication = new HashSet<>(lotto.numbers());
-        duplication.add(bonus.getNum());
-        if (duplication.size() != 7) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());
         }
     }
 }
