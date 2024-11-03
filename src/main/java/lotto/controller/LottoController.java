@@ -25,8 +25,18 @@ public class LottoController {
 
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
         printPurchaseHistory(lottoPurchaseHistory);
-
         lottoGame.enterWinningNumber(inputWinningNumber());
+        inputBonusNumber(lottoGame.getWinningNumbers());
+    }
+
+    private void inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String bonusInput = inputView.inputBonusNumber();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> inputWinningNumber() {

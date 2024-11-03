@@ -15,6 +15,11 @@ public class InputView {
         return input();
     }
 
+    public String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return input();
+    }
+
     private String input() {
         return readLine().trim();
     }

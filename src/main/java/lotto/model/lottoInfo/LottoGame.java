@@ -20,4 +20,8 @@ public class LottoGame {
     public Integer getPrice() {
         return price.getPrice();
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getWinningNumbers();
+    }
 }

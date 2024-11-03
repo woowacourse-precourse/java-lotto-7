@@ -8,4 +8,8 @@ public class WinningNumber {
     public WinningNumber(List<Integer> numbers) {
         this.winningNumbers = numbers;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }
