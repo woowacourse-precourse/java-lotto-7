@@ -9,6 +9,7 @@ public class LottoResultChecker {
   public void run(List<Lotto> lottoList, List<Integer> winnerNumber) {
     checkLottoAll(lottoList, winnerNumber);
     lottoResultMessage();
+    answerRate();
   }
 
   private void checkLottoAll(List<Lotto> lottoList, List<Integer> winningNumber) {
@@ -59,5 +60,19 @@ public class LottoResultChecker {
         System.out.printf(rank.getDescription() + " - %d개\n", count);
       }
     }
+  }
+
+  private void answerRate() {
+    long beforeMyMoney = 0;
+    long AfterMyMoney = 0;
+    WinningRank[] rankList = WinningRank.values();
+    for (WinningRank rank : rankList) {
+      if (map.get(rank) != null) {
+        beforeMyMoney += map.get(rank) * 1000;
+        AfterMyMoney += (long) rank.getPrize() * map.get(rank);
+      }
+    }
+    double rate = ((double) AfterMyMoney / beforeMyMoney) * 100.0;
+    System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
   }
 }
