@@ -20,6 +20,10 @@ public class LottoManagementSystem {
         return bonusNumber;
     }
 
+    public void recordRank(List<Integer> numbers){
+
+    }
+
     private int returnRank(List<Integer> numbers) {
         int matchCount = 0;
 
