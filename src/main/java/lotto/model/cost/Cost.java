@@ -17,7 +17,7 @@ public class Cost {
 
         isCostNegative(cost);
 
-        isCostNotDuplicated(cost);
+        isCostBlank(cost);
     }
 
     private void isValidUnitCost(int cost) {
@@ -32,7 +32,7 @@ public class Cost {
         }
     }
 
-    private void isCostNotDuplicated(int cost) {
+    private void isCostBlank(int cost) {
         if (cost == 0 || String.valueOf(cost).isBlank()) {
             throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
         }
