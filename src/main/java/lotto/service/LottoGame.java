@@ -48,7 +48,7 @@ public class LottoGame {
         winningNumbers = lottoValidator.getWinningNumbers();
 
         BonusNumber bonusNumberValidator = new BonusNumber();
-        bonusNumberValidator.validateBonusNumber(inputBonusNumber);
+        bonusNumberValidator.validateBonusNumber(inputBonusNumber, winningNumbers);
         bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 
