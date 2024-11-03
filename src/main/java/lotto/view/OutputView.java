@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class OutputView {
         StringBuilder builder = new StringBuilder();
         for(List<Integer> numbers: numberCollections) {
             builder.append("[");
-            List<String> tokens = numbers.stream().map(num -> Integer.toString(num)).toList();
+            List<String> tokens = numbers.stream().sorted().map(num -> Integer.toString(num)).toList();
             builder.append(String.join(DELIMITER, tokens)).append("]\n");
         }
         System.out.println(builder.append("\n"));
