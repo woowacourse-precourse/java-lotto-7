@@ -1,5 +1,6 @@
 package lotto.vaildate;
 
+import static lotto.eunm.LottoConstants.*;
 import static lotto.vaildate.ErrorMessage.*;
 
 import java.util.List;
@@ -9,11 +10,11 @@ public class Validate {
     public static int purchasePriceValidate(String price) {
         int purchasePrice = parseIntegerValidate(price);
 
-        if (purchasePrice % 1000 != 0 || purchasePrice < 0) {
+        if (validPurchasePrice(purchasePrice)) {
             throw new IllegalArgumentException(INPUT_AMOUNT_IN_THOUSANDS);
         }
 
-        return purchasePrice / 1000;
+        return purchasePrice / TICKET_PRICE_UNIT.value;
     }
 
     public static int parseIntegerValidate(String value) {
@@ -38,14 +39,18 @@ public class Validate {
         return parsedValue;
     }
 
+    private static boolean validPurchasePrice(int purchasePrice) {
+        return (purchasePrice % TICKET_PRICE_UNIT.value) != MINIMUM_NUMBER.value || purchasePrice < MINIMUM_NUMBER.value;
+    }
+
     private static void validateWinningNumberCount(List<Integer> validNumbers) {
-        if (validNumbers.size() != 6) {
+        if (validNumbers.size() != LOTTO_NUMBERS_COUNT.value) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT);
         }
     }
 
     private static void validateUniqueNumber(List<Integer> winningNumbers) {
-        if (winningNumbers.stream().distinct().count() != 6) {
+        if (winningNumbers.stream().distinct().count() != LOTTO_NUMBERS_COUNT.value) {
             throw new IllegalArgumentException(UNIQUE_NUMBER);
         }
     }
@@ -61,7 +66,7 @@ public class Validate {
     }
 
     private static boolean isLottoRange(Integer number) {
-        return number < 0 || number > 45;
+        return number < MINIMUM_NUMBER.value || number > MAX_LOTTO_NUMBER.value;
     }
 
     private static void validateBonusNumber(int number) {

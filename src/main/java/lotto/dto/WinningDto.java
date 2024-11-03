@@ -18,11 +18,11 @@ public class WinningDto {
 
     public static WinningDto of(int[] numbers) {
         Map<WinningResult, Integer> winning = new LinkedHashMap<>();
-        winning.put(THREE, numbers[3]);
-        winning.put(FOUR, numbers[4]);
-        winning.put(FIVE, numbers[5]);
-        winning.put(FIVE_AND_BONUS, numbers[6]);
-        winning.put(SIX, numbers[7]);
+        winning.put(THREE, numbers[THREE.winningCount]);
+        winning.put(FOUR, numbers[FOUR.winningCount]);
+        winning.put(FIVE, numbers[FIVE.winningCount]);
+        winning.put(FIVE_AND_BONUS, numbers[FIVE_AND_BONUS.winningCount]);
+        winning.put(SIX, numbers[SIX.winningCount]);
 
         return new WinningDto(winning, 0);
     }

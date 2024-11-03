@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.eunm.LottoConstants.*;
+import static lotto.eunm.WinningResult.*;
+
 import java.util.List;
 import lotto.Lotto;
 import lotto.dto.LottoDto;
@@ -10,7 +13,7 @@ public class LottoService {
     public WinningDto statisticsNumbers(LottoDto lottoDto) {
         int[] numbers = calculateLottoNumber(lottoDto, lottoDto.getLottos(), lottoDto.getWinningNumbers());
         WinningDto winningDto = WinningDto.of(numbers);
-        winningDto.setPrice(totalPrice(winningDto, lottoDto.getLottosSize() * 1000));
+        winningDto.setPrice(totalPrice(winningDto, lottoDto.getLottosSize() * TICKET_PRICE_UNIT.value));
         return winningDto;
     }
 
@@ -33,7 +36,7 @@ public class LottoService {
 
     private static void updateMatchStatistics(LottoDto lottoDto, Lotto lotto, int matchedCount, int[] matchStatistics) {
         if (isBonusMatch(lottoDto, lotto, matchedCount)) {
-            matchStatistics[6]++;
+            matchStatistics[FIVE_AND_BONUS.winningCount]++;
             return;
         }
 
@@ -43,11 +46,11 @@ public class LottoService {
     }
 
     private static boolean isValidMatchCount(int matchedCount, int[] matchStatistics) {
-        return matchedCount > 0 && matchedCount < matchStatistics.length;
+        return matchedCount > MINIMUM_NUMBER.value && matchedCount < matchStatistics.length;
     }
 
     private static boolean isBonusMatch(LottoDto lottoDto, Lotto lotto, int matchedCount) {
-        return matchedCount == 4 && matchedBonusNumber(lottoDto, lotto);
+        return matchedCount == FOUR.winningCount && matchedBonusNumber(lottoDto, lotto);
     }
 
     private static boolean matchedBonusNumber(LottoDto lottoDto, Lotto lotto) {
@@ -60,13 +63,13 @@ public class LottoService {
 
     private static int getTotalPrize(WinningDto winningDto) {
         return winningDto.getWinningCount().entrySet().stream()
-                .filter(entry -> entry.getValue() != 0)
+                .filter(entry -> entry.getValue() != MINIMUM_NUMBER.value)
                 .mapToInt(entry -> entry.getKey().prizeMoney * entry.getValue())
                 .sum();
     }
 
     private double calculateProfit(int totalPrize, int buyPrice) {
-        return ((double) totalPrize / buyPrice) * 100;    // 수익률 계산: (당첨금 / 구매금액) * 100
+        return ((double) totalPrize / buyPrice) * PERCENTAGE_BASE.value;    // 수익률 계산: (당첨금 / 구매금액) * 100
     }
 
 }
