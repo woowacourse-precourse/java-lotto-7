@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WinningLotto {
 
     private final Lotto winninglotto;
@@ -10,27 +13,21 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int checkRank(Lotto lotto) {
+    public Map<Rank, Integer> calculateRanks(LottoTicket lottoTicket) {
+        Map<Rank, Integer> rankCounts = new HashMap<>();
 
-        long matchCount = lotto.getNumbers().stream()
-                .filter(winninglotto.getNumbers()::contains)
-                .count();
+        for (Lotto lotto : lottoTicket.getLottos()) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(winninglotto.getNumbers()::contains)
+                    .count();
 
-        if (matchCount == 6) {
-            return 1;
+            boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
+
+            Rank rank = Rank.findRank(matchCount, hasBonusNumber);
+
+            rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
         }
-        if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
-            return 2;
-        }
-        if (matchCount == 5) {
-            return 3;
-        }
-        if (matchCount == 4) {
-            return 4;
-        }
-        if (matchCount == 3) {
-            return 5;
-        }
-        return 0;
+
+        return rankCounts;
     }
 }
