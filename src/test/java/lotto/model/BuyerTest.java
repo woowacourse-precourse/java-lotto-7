@@ -36,4 +36,18 @@ public class BuyerTest {
         assertThat(buyer.hasBonusNumber(7, new Lotto(List.of(1, 2, 13, 41, 7, 8)))).isTrue();
         assertThat(buyer.hasBonusNumber(15, new Lotto(List.of(1, 2, 13, 41, 7, 8)))).isFalse();
     }
+
+    @Test
+    @DisplayName("몇등 당첨 반환 테스트")
+    void testGetRank() {
+        Buyer buyer = new Buyer();
+        assertEquals(buyer.getRank(0, true), Rank.EMPTY_0);
+        assertEquals(buyer.getRank(1, true), Rank.EMPTY_1);
+        assertEquals(buyer.getRank(2, true), Rank.EMPTY_2);
+        assertEquals(buyer.getRank(3, true), Rank.FIFTH);
+        assertEquals(buyer.getRank(4, true), Rank.FOURTH);
+        assertEquals(buyer.getRank(6, true), Rank.FIRST);
+        assertEquals(buyer.getRank(5, true), Rank.SECOND);
+        assertEquals(buyer.getRank(5, false), Rank.THIRD);
+    }
 }
