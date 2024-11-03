@@ -12,7 +12,7 @@ public class ValidInput {
         }
     }
 
-    public static void checkInputPositive(String input) {
+    private static void checkInputPositive(String input) {
         if (Integer.parseInt(input) <= 0) {
             throw new InputException(InputExceptionMessage.POSITIVE_INPUT);
         }
@@ -33,7 +33,7 @@ public class ValidInput {
         }
     }
 
-    public static void checkInputDelimiter(String input) {
+    private static void checkInputDelimiter(String input) {
         if (!input.contains(",")) {
             throw new InputException(InputExceptionMessage.NOT_EXIST_DELIMITER);
         }
@@ -41,8 +41,8 @@ public class ValidInput {
 
     public static void checkInputMoney(String input) {
         checkInputEmpty(input);
-        checkInputPositive(input);
         checkInputNumber(input);
+        checkInputPositive(input);
         checkInputUnit(input);
     }
 
