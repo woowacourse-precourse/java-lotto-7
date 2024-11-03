@@ -45,21 +45,21 @@
   - [ ] Rate.java <br>
     - [ ] 수익률 계산 <br>
 ---
-- [ ] Validation <br>
-  - [ ] LottoValidation.java <br>
-    - [ ] 공백 시 예외 처리 <br>
-    - [ ] 숫자 아닐 시 예외 처리 <br>
-    - [ ] 1 ~ 45 사이 아닐 시 예외 처리 <br>
-    - [ ] 중복 시 예외 처리 <br>
-  - [ ] MoneValidation.java <br>
-    - [ ] 공백 시 예외 처리 <br>
-    - [ ] 숫자 아닐 시 예외 처리 <br>
-    - [ ] 1000으로 나눠떨어지지 않으면 예외 처리 <br>
-  - [ ] BounusValidation.java <br>
-    - [ ] 공백 시 예외 처리 <br>
-    - [ ] 숫자 아닐 시 예외 처리 <br>
-    - [ ] 1 ~ 45 사이 아닐 시 예외 처리 <br>
-    - [ ] 당첨 번호와 중복 시 예외 처리 <br>
+- [X] Validation <br>
+  - [X] LottoValidation.java <br>
+    - [X] 공백 시 예외 처리 <br>
+    - [X] 숫자 아닐 시 예외 처리 <br>
+    - [X] 1 ~ 45 사이 아닐 시 예외 처리 <br>
+    - [X] 중복 시 예외 처리 <br>
+  - [X] MoneValidation.java <br>
+    - [X] 공백 시 예외 처리 <br>
+    - [X] 숫자 아닐 시 예외 처리 <br>
+    - [X] 1000으로 나눠떨어지지 않으면 예외 처리 <br>
+  - [X] BounusValidation.java <br>
+    - [X] 공백 시 예외 처리 <br>
+    - [X] 숫자 아닐 시 예외 처리 <br>
+    - [X] 1 ~ 45 사이 아닐 시 예외 처리 <br>
+    - [X] 당첨 번호와 중복 시 예외 처리 <br>
 ---
 - [ ] View <br>
   - [X] Input.java <br>
