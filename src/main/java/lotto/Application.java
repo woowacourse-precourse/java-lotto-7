@@ -38,10 +38,17 @@ public class Application {
         }
     }
 
+    public static void outputLottoNumbers() {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.printNumbers());
+        }
+    }
+
     public static void buyLotto() {
         int lotto_cost = inputAmount();
         makeLotto(lotto_cost);
-        // outputLottoNumbers();
+        outputLottoNumbers();
     }
 
     public static void main(String[] args) {
