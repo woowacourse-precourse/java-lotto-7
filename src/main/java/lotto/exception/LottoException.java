@@ -1,8 +1,8 @@
 package lotto.exception;
 
-public class LottoException extends IllegalArgumentException {
+import static lotto.constant.error.LottoErrorConstants.PREFIX_ERROR_MESSAGE;
 
-    private static final String PREFIX_ERROR_MESSAGE = "[ERROR] ";
+public class LottoException extends IllegalArgumentException {
 
     public LottoException(ErrorCode errorCode) {
         super(PREFIX_ERROR_MESSAGE + errorCode.getMessage());
