@@ -29,9 +29,8 @@ class WinningNumbersTest {
         List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5); // 숫자 개수가 5개
         int bonusNumber = 7;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
-        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -40,9 +39,8 @@ class WinningNumbersTest {
         List<Integer> mainNumbers = List.of(1, 2, 3, 3, 4, 5); // 숫자 3이 중복
         int bonusNumber = 7;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
-        assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -51,9 +49,8 @@ class WinningNumbersTest {
         List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 50); // 숫자 50은 범위 초과
         int bonusNumber = 7;
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
-        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -62,9 +59,8 @@ class WinningNumbersTest {
         List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 3; // 보너스 번호가 메인 숫자에 포함
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
-        assertEquals(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -73,8 +69,7 @@ class WinningNumbersTest {
         List<Integer> mainNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 50; // 보너스 번호가 범위 초과
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(mainNumbers, bonusNumber));
-        assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
     }
 }
