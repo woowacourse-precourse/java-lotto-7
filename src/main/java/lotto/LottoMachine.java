@@ -14,6 +14,7 @@ public class LottoMachine {
         initAmount();
         issueLottoTickets();
         initUserPick();
+        ResultCalculator.calculateResult(data);
     }
 
     public Data getData() { return data; }

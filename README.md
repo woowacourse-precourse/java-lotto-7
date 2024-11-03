@@ -234,7 +234,7 @@ public class Lotto {
     - Lotto 클래스를 상속받은 클래스에 숫자를 저장한다.
 
 - 추첨 결과를 계산한다.
-    - enum 클래스 Rank를 ArrayList로 관리한다.
+    - enum 클래스 Rank를 활용한다.
     - 로또 번호와 당첨 번호를 비교하여 해당하는 Rank에 저장한다.
 
 - 추첨 결과를 출력한다.
