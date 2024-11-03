@@ -1,6 +1,7 @@
 package lotto.global.util;
 
 import static lotto.global.constant.Config.LOTTO_PRICE;
+import static lotto.global.constant.ErrorMessage.DIVISION_BY_ZERO;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
@@ -75,5 +76,15 @@ public class Validator {
 
     public static void validateLottoWinningSet(UniqueNumber uniqueNumber) {
         validateDuplicateNumber(uniqueNumber);
+    }
+
+    public static void validateRateOfReturn(int investmentMoney) {
+        validateDivisionByZero(investmentMoney);
+    }
+
+    private static void validateDivisionByZero(int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException(DIVISION_BY_ZERO);
+        }
     }
 }

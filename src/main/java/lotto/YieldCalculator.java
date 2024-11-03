@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.global.util.Validator.validateRateOfReturn;
+
 import java.util.Map;
 import lotto.score.Prize;
 
@@ -14,6 +16,7 @@ public class YieldCalculator {
     }
 
     public String calculateRateOfReturn(int investmentMoney, int prizeMoney) {
+        validateRateOfReturn(investmentMoney);
         return String.format("%.1f", (double) prizeMoney / investmentMoney * 100) + "%";
     }
 }

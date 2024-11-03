@@ -1,10 +1,12 @@
 package lotto.global.util;
 
+import static lotto.global.constant.ErrorMessage.DIVISION_BY_ZERO;
 import static lotto.global.constant.ErrorMessage.DUPLICATE_NUMBER_EXIST;
 import static lotto.global.constant.ErrorMessage.LOTTO_PRICE_DIVISIBILITY;
 import static lotto.global.constant.ErrorMessage.NUMBER_FORMAT_PROBLEM;
 import static lotto.global.util.Validator.validateBonusNumber;
 import static lotto.global.util.Validator.validatePrice;
+import static lotto.global.util.Validator.validateRateOfReturn;
 import static lotto.global.util.Validator.validateWinningNumber;
 
 import java.util.Arrays;
@@ -81,4 +83,14 @@ class ValidatorTest {
                 .hasMessage(NUMBER_FORMAT_PROBLEM);
     }
 
+    @Test
+    void 수익률_계산시_투자_금액이_0일때_예외_발생() {
+        //given
+        int investmentMoney = 0;
+
+        //then
+        Assertions.assertThatThrownBy(() -> validateRateOfReturn(investmentMoney))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DIVISION_BY_ZERO);
+    }
 }
