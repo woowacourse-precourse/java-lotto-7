@@ -1,6 +1,7 @@
 package lotto.view.controller;
 
 import lotto.view.InputView;
+import lotto.view.domain.Amount;
 
 public class LottoController {
     private final InputView inputView;
@@ -10,6 +11,6 @@ public class LottoController {
     }
 
     public void run() {
-        inputView.enterAmount();
+        Amount inputAmount = new Amount(inputView.enterAmount());
     }
 }
