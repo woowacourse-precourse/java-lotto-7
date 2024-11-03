@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.service.InputMessageService;
 import lotto.service.LottoService;
 import lotto.service.OutputMessageService;
@@ -24,7 +26,8 @@ public class LottoController {
     long purchaseAmount= inputMessageService.purchaseAmountAndValidation();
     long numberOfPurchases=outputMessageService.numberOfPurchases(purchaseAmount);
     outputMessageView.numberOfPurchases(numberOfPurchases);
-
+    List<Lotto> lottos=lottoService.lottoResults(numberOfPurchases);
+    outputMessageView.lottoResults(lottos);
   }
 
 }
