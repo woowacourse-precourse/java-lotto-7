@@ -18,11 +18,9 @@ public class Lottos {
 
     private static List<Lotto> purchaseLotto(int lottoQuantity) {
         List<Lotto> lottoList = new ArrayList<>();
-        int i = 0;
-        while (i < lottoQuantity) {
+        for (int lottoCount = 0; lottoCount < lottoQuantity; lottoCount++) {
             List<Integer> numbers = LottoNumberGenerator.generate();
             lottoList.add(new Lotto(numbers));
-            i++;
         }
         return lottoList;
     }
