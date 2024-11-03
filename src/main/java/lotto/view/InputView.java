@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InputView {
 
-    public static int inputInitialCapital(){
+    public static int budget(){
         int initialCapital = Integer.parseInt(Console.readLine());
         validateThousandUnit(initialCapital);
         return initialCapital;
@@ -18,7 +18,7 @@ public class InputView {
         }
     }
 
-    public static List<Integer> inputWinningNumber(){
+    public static List<Integer> winningNumber(){
         return stringToIntegerList(Console.readLine());
     }
 
@@ -28,7 +28,7 @@ public class InputView {
                 .toList();
     }
 
-    public static Integer inputBonusNumber(){
+    public static Integer bonusNumber(){
         return Integer.parseInt(Console.readLine());
     }
 }

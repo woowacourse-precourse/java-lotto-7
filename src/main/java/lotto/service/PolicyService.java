@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.List;
 import lotto.policy.LottoNumberPolicy;
-import lotto.policy.LottoNumberScalePolicy;
 import lotto.policy.LottoPricePolicy;
 import lotto.policy.PrizeMoneyPolicy;
 
@@ -32,9 +31,9 @@ public class PolicyService {
         return rankAndMoney.getLast();
     }
 
-    public int getLottoNumberScale(){
-        return LottoNumberScalePolicy.LOTTO_NUMBER_SCALE.getNumberScale();
-    }
+//    public int getLottoNumberScale(){
+//        return LottoNumberScalePolicy.LOTTO_NUMBER_SCALE.getNumberScale();
+//    }
 
     public int getLottoMaxNumber(){
         return LottoNumberPolicy.MAX_NUMBER.number();

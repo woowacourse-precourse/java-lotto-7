@@ -16,7 +16,7 @@ class LottoMatchingMachineTest {
     LottoMatchingMachine lottoMatchingMachine;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         this.lottoMatchingMachine = new LottoMatchingMachine
                 (new Lotto(List.of(1,2,3,4,5,6)), new Bonus(7));
     }
@@ -24,7 +24,7 @@ class LottoMatchingMachineTest {
     @ParameterizedTest
     @DisplayName("숫자 매치 확인")
     @MethodSource("lottoInstance")
-    public void 숫자_매치(Lotto purchasedLotto, int matched){
+    void 숫자_매치(Lotto purchasedLotto, int matched){
         //when
         int matchedNumber = lottoMatchingMachine.match(purchasedLotto);
         //then
@@ -46,7 +46,7 @@ class LottoMatchingMachineTest {
 
     @Test
     @DisplayName("보너스 매치 확인")
-    public void 보너스_매치(){
+    void 보너스_매치(){
         //given
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
         //when, then

@@ -3,6 +3,7 @@ package lotto.service;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.stream.Stream;
+import lotto.policy.LottoNumberPolicy;
 import lotto.policy.PrizeMoneyPolicy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,18 +23,18 @@ class PolicyServiceTest {
 
     @Test
     @DisplayName("로또 번호 스케일(6) 테스트")
-    public void 로또_번호_스케일(){
+    void 로또_번호_스케일(){
         //given
         int expectation = 6;
         //then
-        int lottoNumberScale = policyService.getLottoNumberScale();
+        int lottoNumberScale = LottoNumberPolicy.NUMBER_SCALE.number();
         //when
         assertThat(expectation).isEqualTo(lottoNumberScale);
     }
 
     @Test
     @DisplayName("로또 번호 최대값(45) 테스트")
-    public void 로또_번호_최대값(){
+    void 로또_번호_최대값(){
         //given
         int expectation = 45;
         //then
@@ -44,7 +45,7 @@ class PolicyServiceTest {
 
     @Test
     @DisplayName("로또 번호 최소값(1) 테스트")
-    public void 로또_번호_최소값(){
+    void 로또_번호_최소값(){
         //given
         int expectation = 1;
         //then
@@ -55,7 +56,7 @@ class PolicyServiceTest {
 
     @Test
     @DisplayName("로또 티켓값(1,000원) 테스트")
-    public void 로또_티켓값_테스트(){
+    void 로또_티켓값_테스트(){
         //given
         int expectation = 1000;
         //then
@@ -67,7 +68,7 @@ class PolicyServiceTest {
     @ParameterizedTest(name = "로또 숫자 일치 개수 : {0}, 상금 : {1} ")
     @DisplayName("4개 일치_50,000원 테스트")
     @MethodSource("matchedNumberAndMoney")
-    public void 일치_테스트(int number, int money, boolean bonusMatch){
+    void 일치_테스트(int number, int money, boolean bonusMatch){
         //then
         PrizeMoneyPolicy result = policyService.getRankAndPrizeMoney(number, bonusMatch);
         //when
