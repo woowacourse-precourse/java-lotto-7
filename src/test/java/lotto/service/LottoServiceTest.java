@@ -1,6 +1,7 @@
 package lotto.service;
 
 
+import java.util.Iterator;
 import java.util.List;
 import lotto.domain.model.Lotto;
 import org.junit.jupiter.api.Assertions;
@@ -18,5 +19,19 @@ public class LottoServiceTest {
         List<Lotto> testLottos = lottoService.createRandomLottos(ticket).lottos();
 
         Assertions.assertEquals(testLottos.size(), ticket);
+    }
+
+    @Test
+    @DisplayName("입력한 당첨 번호로 로또를 생성한다")
+    void make_lotto_with_winning_input() {
+        String winningInputs = "1,2,3,4,5,6";
+        Lotto comparsionWinningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Iterator<Integer> iterator = comparsionWinningLotto.getNumbers().iterator();
+
+        Lotto winningLotto = lottoService.createWinningLottoNumbers(winningInputs);
+
+        winningLotto.getNumbers().forEach(
+                number -> Assertions.assertEquals(number, iterator.next())
+        );
     }
 }

@@ -28,6 +28,7 @@ public class LottoController {
             outputView.printNumbers(lotto.getNumbers());
         }
 
-        String winningNumbers = inputView.getWinningNumberInput();
+        String winningNumberInput = inputView.getWinningNumberInput();
+        Lotto winningLottoNumbers = lottoService.createWinningLottoNumbers(winningNumberInput);
     }
 }

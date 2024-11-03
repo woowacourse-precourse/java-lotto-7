@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.RandomLottos;
 import lotto.domain.model.Lotto;
@@ -24,5 +25,13 @@ public class LottoService {
         int price = Parser.parseToInt(priceInput);
 
         return TicketMaker.make(price);
+    }
+
+    public Lotto createWinningLottoNumbers(String numbersInput) {
+        List<Integer> numbers = Arrays.stream(Parser.splitWithDelimiter(numbersInput))
+                .map(Parser::parseToInt)
+                .toList();
+
+        return new Lotto(numbers);
     }
 }
