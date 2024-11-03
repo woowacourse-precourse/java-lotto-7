@@ -10,4 +10,8 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 구입금액을 확인해주세요.");
         }
     }
+
+    public static String inputLottoNumbers() {
+        return Console.readLine();
+    }
 }

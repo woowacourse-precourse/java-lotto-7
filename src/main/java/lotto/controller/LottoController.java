@@ -39,5 +39,6 @@ public class LottoController {
 
     public void setLottoNumbers() {
         OutputView.printLottoNumbersGuide();
+        InputView.inputLottoNumbers();
     }
 }
