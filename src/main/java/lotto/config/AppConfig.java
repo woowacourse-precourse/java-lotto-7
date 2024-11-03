@@ -16,7 +16,7 @@ public class AppConfig {
     }
 
     public InputView inputView() {
-        return new InputView();
+        return new InputView(lottoValidator());
     }
 
     public OutputView outputView() {
@@ -32,6 +32,6 @@ public class AppConfig {
     }
 
     public LottoService lottoService() {
-        return InMemoryLottoService.getInstance(lottoValidator(), lottoRepository());
+        return InMemoryLottoService.getInstance(lottoRepository());
     }
 }
