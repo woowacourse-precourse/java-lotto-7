@@ -59,6 +59,14 @@ public enum Winning {
         return prizeMoney;
     }
 
+    public void clear() {
+        count = 0;
+    }
+
+    public long getCount() {
+        return count;
+    }
+
     private boolean isMatch(String winningNumberMatch, boolean isMatchBonusNumber) {
         return this.winningNumberMatch.equals(winningNumberMatch)
                 && this.isMatchBonusNumber == isMatchBonusNumber;
@@ -75,13 +83,5 @@ public enum Winning {
                 .append("원) - ")
                 .append(count)
                 .append("개\n");
-    }
-
-    public void clear() {
-        count = 0;
-    }
-
-    public long getCount() {
-        return count;
     }
 }

@@ -19,14 +19,14 @@ public class OutputView {
         return sb.toString();
     }
 
-    private double getRoundRevenueRate(double revenueRate) {
-        return Math.round(revenueRate * 100) / 100.0;
-    }
-
     public void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.numbersToString());
         }
         System.out.println();
+    }
+
+    private double getRoundRevenueRate(double revenueRate) {
+        return Math.round(revenueRate * 100) / 100.0;
     }
 }

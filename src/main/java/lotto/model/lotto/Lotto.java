@@ -20,6 +20,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Winning checkWinner(DrawNumbers drawNumbers) {
+        int matchCount = drawNumbers.countMatch(numbers);
+        boolean isMatchBonusNumber = drawNumbers.isMatchBonusNumber(numbers);
+
+        return Winning.getPlaceByMatch(matchCount, isMatchBonusNumber);
+    }
+
+    public String numbersToString() {
+        return LottoNumberPrintFormat.PREFIX + getJoinedNumbers() + LottoNumberPrintFormat.SUFFIX;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBERS_COUNT.getMessage());
@@ -30,10 +41,6 @@ public class Lotto {
         }
     }
 
-    public String numbersToString() {
-        return LottoNumberPrintFormat.PREFIX + getJoinedNumbers() + LottoNumberPrintFormat.SUFFIX;
-    }
-
     private String getJoinedNumbers() {
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
@@ -41,12 +48,5 @@ public class Lotto {
         return sortedNumbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(LottoNumberPrintFormat.DELIMITER));
-    }
-
-    public Winning checkWinner(DrawNumbers drawNumbers) {
-        int matchCount = drawNumbers.countMatch(numbers);
-        boolean isMatchBonusNumber = drawNumbers.isMatchBonusNumber(numbers);
-
-        return Winning.getPlaceByMatch(matchCount, isMatchBonusNumber);
     }
 }

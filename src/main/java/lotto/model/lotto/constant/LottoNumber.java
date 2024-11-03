@@ -6,6 +6,5 @@ public final class LottoNumber {
     public static final int MAX_VALUE = 45;
     public static final String FORMAT = "-?\\d+";
     
-    private LottoNumber() {
-    }
+    private LottoNumber() {}
 }

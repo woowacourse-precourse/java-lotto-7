@@ -7,7 +7,6 @@ import java.util.List;
 
 public class LottoPublisher {
 
-
     private final NumberGenerator numberGenerator;
 
     public LottoPublisher(NumberGenerator numberGenerator) {
