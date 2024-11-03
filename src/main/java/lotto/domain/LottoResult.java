@@ -13,6 +13,7 @@ public class LottoResult {
     private static final int SCALE_ONE = 1;
 
     private final Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
+    private double returnOnInvestment;
 
     public LottoResult() {
         for (Rank rank : Rank.values()) {
@@ -28,15 +29,17 @@ public class LottoResult {
         return Collections.unmodifiableMap(winningResults);
     }
 
-    public double calculateReturnOnInvestment(int purchaseAmount) {
+    public void calculateReturnOnInvestment(int purchaseAmount) {
         int totalPrizeMoney = winningResults.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
 
-        double returnOnInvestment = ((double) totalPrizeMoney / purchaseAmount) * PERCENTAGE_CONVERSION_FACTOR;
-
-        return BigDecimal.valueOf(returnOnInvestment)
+        this.returnOnInvestment = BigDecimal.valueOf(((double) totalPrizeMoney / purchaseAmount) * PERCENTAGE_CONVERSION_FACTOR)
                 .setScale(SCALE_ONE, RoundingMode.HALF_UP)
                 .doubleValue();
+    }
+
+    public double getReturnOnInvestment() {
+        return returnOnInvestment;
     }
 }

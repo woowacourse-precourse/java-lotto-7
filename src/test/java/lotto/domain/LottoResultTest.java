@@ -50,9 +50,9 @@ class LottoResultTest {
         lottoResult.addResult(Rank.FIRST);
         lottoResult.addResult(Rank.FIFTH);
 
-        double returnOnInvestment = lottoResult.calculateReturnOnInvestment(PURCHASE_AMOUNT);
+        lottoResult.calculateReturnOnInvestment(PURCHASE_AMOUNT);
         double expectedReturnOnInvestment = ((double) (Rank.FIRST.getPrizeMoney() + Rank.FIFTH.getPrizeMoney()) / PURCHASE_AMOUNT) * PERCENTAGE_CONVERSION_FACTOR;
 
-        assertThat(returnOnInvestment).isEqualTo(expectedReturnOnInvestment);
+        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(expectedReturnOnInvestment);
     }
 }

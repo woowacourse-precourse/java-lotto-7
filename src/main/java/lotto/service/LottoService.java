@@ -7,5 +7,5 @@ import lotto.domain.WinningLotto;
 public interface LottoService {
     LottoTicket generateLottoTicket(String purchaseAmountInput);
     WinningLotto createWinningLotto(String winningNumbersInput, String bonusNumberInput);
-    LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto);
+    LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto, String purchaseAmount);
 }

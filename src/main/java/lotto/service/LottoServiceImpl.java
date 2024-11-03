@@ -29,12 +29,14 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
+    public LottoResult createLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto, String purchaseAmountInput) {
         LottoResult lottoResult = new LottoResult();
+
         lottoTicket.getLottos().forEach(lotto -> {
            Rank rank = calculateRank(lotto, winningLotto);
            lottoResult.addResult(rank);
         });
+        lottoResult.calculateReturnOnInvestment(parsePurchaseAmount(purchaseAmountInput));
 
         return lottoResult;
     }

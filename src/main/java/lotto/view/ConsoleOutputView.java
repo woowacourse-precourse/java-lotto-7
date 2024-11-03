@@ -20,19 +20,28 @@ public class ConsoleOutputView implements OutputView {
     public void printWinningStatistics(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
+
         for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                System.out.printf("%d개 일치 (%s원) - %d개%n",
-                        rank.getMatchCount(),
-                        NumberFormat.getInstance().format(rank.getPrizeMoney()),
-                        lottoResult.getWinningResults().get(rank)
-                );
+            if (rank == Rank.NONE) {
+                continue;
             }
+
+            String resultMessage = formatResultMessage(rank, lottoResult.getWinningResults().get(rank));
+            System.out.println(resultMessage);
         }
     }
 
     @Override
     public void printReturnOnInvestment(double returnOnInvestment) {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", returnOnInvestment);
+    }
+
+    private String formatResultMessage(Rank rank, int count) {
+        if (rank == Rank.SECOND) {
+            return String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개",
+                    NumberFormat.getInstance().format(rank.getPrizeMoney()), count);
+        }
+        return String.format("%d개 일치 (%s원) - %d개",
+                rank.getMatchCount(), NumberFormat.getInstance().format(rank.getPrizeMoney()), count);
     }
 }
