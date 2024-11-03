@@ -13,10 +13,6 @@ public class Amount {
         this.value = amount;
     }
 
-    public Integer getValue() {
-        return value;
-    }
-
     private void validateAmount(Integer amount) {
         validateDivisibleByThousand(amount);
         validateAmountRange(amount);
@@ -32,5 +28,9 @@ public class Amount {
         if (amount < MINIMUM_AMOUNT || amount > MAXIMUM_AMOUNT) {
             throw CustomException.of(ErrorMessage.INVALID_INPUT_NUMBER);
         }
+    }
+
+    public Integer getValue() {
+        return value;
     }
 }

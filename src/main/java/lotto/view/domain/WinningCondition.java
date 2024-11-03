@@ -22,8 +22,8 @@ public enum WinningCondition {
         this.rewardAmount = rewardAmount;
     }
 
-    public int getRank() {
-        return rank;
+    public static List<WinningCondition> getAllConditions() {
+        return Arrays.asList(values());
     }
 
     public int getWinningNumberCount() {
@@ -36,9 +36,5 @@ public enum WinningCondition {
 
     public int getRewardAmount() {
         return rewardAmount;
-    }
-
-    public static List<WinningCondition> getAllConditions() {
-        return Arrays.asList(values());
     }
 }

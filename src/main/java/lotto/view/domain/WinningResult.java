@@ -13,10 +13,6 @@ public class WinningResult {
         purchasedLottos.getLottos().forEach(lotto -> processLotto(lotto, winningNumbers, bonusNumber));
     }
 
-    public Map<WinningCondition, List<Lotto>> getResultMap() {
-        return resultMap;
-    }
-
     public double getProfitRate(Amount purchasedAmount) {
         long totalWinningAmount = resultMap.keySet().stream()
                 .map(key -> key.getRewardAmount() * resultMap.get(key).size())
@@ -49,5 +45,9 @@ public class WinningResult {
     private boolean isMatchingCondition(WinningCondition condition, long matchCount, boolean containsBonus) {
         return condition.getWinningNumberCount() == matchCount
                 && (!condition.mustIncludeBonusNumber() || containsBonus);
+    }
+
+    public Map<WinningCondition, List<Lotto>> getResultMap() {
+        return resultMap;
     }
 }

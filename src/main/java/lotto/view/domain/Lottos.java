@@ -17,10 +17,6 @@ public class Lottos {
         }
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     private int calculateLottoCount(Integer amount) {
         return amount / LOTTO_AMOUNT;
     }
@@ -29,5 +25,9 @@ public class Lottos {
     public String toString() {
         return lottos.size() + "개를 구매했습니다.\n"
                 + lottos.stream().map(Lotto::toString).collect(Collectors.joining("\n"));
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

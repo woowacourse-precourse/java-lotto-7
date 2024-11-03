@@ -23,10 +23,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public void validateNumber(int number) {
         validateUniqueNumber(number);
         validateNumberRange(number);
@@ -77,5 +73,9 @@ public class Lotto {
             return "";
         }
         return "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
