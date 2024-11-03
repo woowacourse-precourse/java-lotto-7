@@ -24,4 +24,19 @@ class StatisticsResultTest {
         assertThat(result.getCount(Rank.THIRD)).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("수익률 계산")
+    void 수익률_계산() {
+        // given
+        RankCounter counter = new RankCounter();
+        counter.add(Rank.FIFTH);  // 5000원
+        StatisticsResult result = StatisticsResult.from(counter);
+
+        // when
+        double profitRate = result.calculateProfitRate(8000);
+
+        // then
+        assertThat(profitRate).isEqualTo(62.5);  // (5,000 / 8,000)* 100
+    }
+
 }
