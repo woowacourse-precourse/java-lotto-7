@@ -5,13 +5,13 @@ import lotto.shop.bandingmachine.DrawnNumbers;
 
 public class UserStorage {
 
-    private List<DrawnNumbers> drawnNumberPacks;
+    private static List<DrawnNumbers> drawnNumberPacks;
 
-    void save(List<DrawnNumbers> drawnNumberPacks) {
-        this.drawnNumberPacks = drawnNumberPacks;
+    public static void save(List<DrawnNumbers> drawnNumberPacks) {
+        UserStorage.drawnNumberPacks = drawnNumberPacks;
     }
 
-    List<DrawnNumbers> getDrawnNumberPacks() {
+    public static List<DrawnNumbers> get() {
         return drawnNumberPacks;
     }
 }

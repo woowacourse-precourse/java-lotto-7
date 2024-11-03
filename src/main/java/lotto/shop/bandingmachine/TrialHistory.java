@@ -25,19 +25,19 @@ public class TrialHistory {
         this.drawnNumberPacks = drawnNumberPacks;
     }
 
-    Integer getPayment() {
+    public Integer getPayment() {
         return payment;
     }
 
-    Integer getTotalCount() {
+    public Integer getTotalCount() {
         return totalCount;
     }
 
-    Integer getPrintCount() {
+    public Integer getPrintCount() {
         return printCount;
     }
 
-    List<DrawnNumbers> getDrawnNumberPacks() {
+    public List<DrawnNumbers> getDrawnNumberPacks() {
         return drawnNumberPacks;
     }
 
