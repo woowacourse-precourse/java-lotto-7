@@ -1,7 +1,4 @@
-package lotto;
-
-import domain.lotto.LottoNumber;
-import domain.lotto.WinningLotto;
+package domain.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +36,6 @@ public class Lotto {
     public boolean containsBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
-
     @Override
     public String toString() {
         return numbers.stream()
