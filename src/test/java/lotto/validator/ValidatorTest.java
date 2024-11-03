@@ -41,4 +41,14 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLottoWinningNumbersCount(lottoWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 중복된_숫자가_있는_경우_예외_테스트(){
+        //given
+        List<Integer> lottoWinningNumbers = Arrays.asList(8, 21, 23, 41, 41, 44);
+
+        //when & then
+        assertThatThrownBy(() -> Validator.validateDuplicateWinningNumbers(lottoWinningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
