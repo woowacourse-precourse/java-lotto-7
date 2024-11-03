@@ -89,6 +89,9 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이 정수여야 합니다.");
         }
 
+        if(bonus<1 || bonus>45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이 정수여야 합니다.");
+        }
         return bonus;
 
     }
