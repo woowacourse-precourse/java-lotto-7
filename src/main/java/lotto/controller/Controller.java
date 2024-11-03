@@ -23,10 +23,8 @@ public class Controller {
         Winning winning = createWinning();
 
         ScoreBoard scoreBoard = new ScoreBoard(lottos, winning);
-        outputView.printMessage(STATISTICS);
-        List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
-        lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
-        outputView.printResult(scoreBoard.getRate().getDescription());
+
+        displayLottoDraw(scoreBoard);
     }
 
     private List<Lotto> pickLottos() {
@@ -37,6 +35,13 @@ public class Controller {
     private Winning createWinning() {
         Winning winning = inputView.inputWinningNumbers();
         return inputView.inputBonusNumber(winning);
+    }
+
+    private void displayLottoDraw(ScoreBoard scoreBoard) {
+        outputView.printMessage(STATISTICS);
+        List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
+        lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
+        outputView.printResult(scoreBoard.getRate().getDescription());
     }
 
 }
