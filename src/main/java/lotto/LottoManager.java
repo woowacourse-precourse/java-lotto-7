@@ -25,6 +25,7 @@ public class LottoManager {
                 .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
                 .forEach(this::saveRankOnRecord);
         Output.printWinningStatistics(winningRecord);
+        int totalWinningAmount = calculateTotalWinningAmount();
     }
 
     private void saveRankOnRecord(final Rank rank) {
@@ -35,5 +36,14 @@ public class LottoManager {
     private List<Lotto> purchaseLottoes(final int purchaseAmount) {
         int totalLottoCount = purchaseAmount / LOTTO_PRICE;
         return LottoMachine.issueLottoes(totalLottoCount);
+    }
+
+    private int calculateTotalWinningAmount() {
+        int totalWinningAmount = 0;
+        for (Rank rank : Rank.values()) {
+            int winningRankCount = winningRecord.getOrDefault(rank, 0);
+            totalWinningAmount += winningRankCount * rank.getWinningAmount();
+        }
+        return totalWinningAmount;
     }
 }
