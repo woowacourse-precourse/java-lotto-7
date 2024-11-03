@@ -56,7 +56,7 @@ public class Application {
         outputLottoNumbers();
     }
 
-    public static void checkSetVaild(Set<String> uniqueNumbers) {
+    public static void checkLottoVaild(Set<String> uniqueNumbers) {
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
         }
@@ -73,7 +73,7 @@ public class Application {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = readLine();
                 Set<String> uniqueNumbers = new HashSet<>(Arrays.asList(input.split(",")));
-                checkSetVaild(uniqueNumbers);
+                checkLottoVaild(uniqueNumbers);
                 break;
             } catch (Exception e) {
                 System.out.println(e);
