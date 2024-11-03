@@ -10,6 +10,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Result;
 
 public class LottoService {
     public LottoService() {
@@ -41,15 +42,15 @@ public class LottoService {
         return new BonusNumber(Console.readLine());
     }
 
-    public long getTotalPrize(Lottos lottos, Lotto winningNumber, BonusNumber bonusNumber) {
-        long totalPrize = 0;
+    public Result getResult(Lottos lottos, Lotto winningNumber, BonusNumber bonusNumber) {
+        Result result = new Result();
 
         for (Lotto lotto : lottos.getLottos()) {
             Prize prize = lotto.match(winningNumber, bonusNumber);
-            totalPrize += prize.getMoney();
+            result.addPrize(prize);
         }
 
-        return totalPrize;
+        return result;
     }
 
     public double calculateEarningRate(long totalPrize, Money money) {

@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Result;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -43,8 +44,11 @@ public class LottoController {
     }
 
     private void calculatePrize() {
-        long totalPrize = lottoService.getTotalPrize(lottos, winningNumber, bonusNumber);
-        double earningRate = lottoService.calculateEarningRate(totalPrize, money);
+        Result result = lottoService.getResult(lottos, winningNumber, bonusNumber);
+        double earningRate = lottoService.calculateEarningRate(result.getTotalPrize(), money);
+
+        OutputView.printResults(result);
+        OutputView.printEarningRate(earningRate);
     }
 
 }
