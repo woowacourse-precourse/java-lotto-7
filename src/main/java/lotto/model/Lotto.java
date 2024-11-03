@@ -23,6 +23,9 @@ public class Lotto {
         if (numbers.stream().anyMatch(num -> num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {

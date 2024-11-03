@@ -59,9 +59,9 @@ public class ValidationUtils {
             throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_WINNING_NUMBER.getMessage());
         }
         try {
-            Integer.parseInt(s); // int로 파싱을 시도하여 범위를 벗어나는지 검사
+            Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT.getMessage()); // 범위 초과 시 예외 메시지
+            throw new IllegalArgumentException(InputErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT.getMessage());
         }
     }
 }
