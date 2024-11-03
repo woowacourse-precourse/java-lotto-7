@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.Map;
-import lotto.model.LottoRank;
+import lotto.model.domain.LottoRank;
 
 public class OutputView {
     private OutputView() {

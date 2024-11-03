@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 public enum LottoRank {
     DEFAULT(0,0,0, false, false),
