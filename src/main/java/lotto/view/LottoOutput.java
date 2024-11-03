@@ -11,8 +11,6 @@ import java.util.Map;
 import static lotto.Rank.*;
 
 public class LottoOutput {
-    private static final String PROFIT_FORMAT = "총 수익률은 %.1f%%입니다.\n";
-
     public static void outputLottoNumbers(LottoCost lottoCost, List<Lotto> lottos) {
         System.out.println();
         System.out.println(lottoCost.divideCostByUnit() + "개를 구매했습니다.");
@@ -35,6 +33,8 @@ public class LottoOutput {
                         System.out.println(rank.getRankResult(count));
                     }
                 });
-        System.out.printf(PROFIT_FORMAT, rankCalculator.getProfit());
+        String formattedValue = String.format("%,.1f", rankCalculator.getProfit());
+
+        System.out.printf("총 수익률은 "+ formattedValue +"%%입니다.");
     }
 }
