@@ -9,20 +9,20 @@ public class Validator {
         }
     }
 
-    public void validateNegativeInput(int input) {
-        if(input <= 0) {
+    public void validatePositiveInput(int money) {
+        if(money <= 0) {
             throw new IllegalArgumentException(
-                "[ERROR] 0 또는 음수룰 입력할 수 없습니다 : " + input
+                "[ERROR] 0 또는 음수룰 입력할 수 없습니다. 다시 입력해주세요."
             );
         }
     }
 
-    public int validateNumericInput(String input) {
+    public int validateFormatInput(String input) {
         try {
             return Integer.parseInt(input);
         } catch(NumberFormatException e) {
             throw new IllegalArgumentException(
-                "[ERROR] 숫자 외 다른 문자가 입력되었습니다. 다시 입력해주세요."
+                "[ERROR] 숫자 외 다른 문자가 입력되었거나 입력 제한 범위를 초과했습니다. 다시 입력해주세요."
             );
         }
     }

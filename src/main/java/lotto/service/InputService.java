@@ -2,8 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.NoSuchElementException;
-
 public class InputService {
     private final Validator validator = new Validator();
     public int inputPaidMoney() {
@@ -11,8 +9,9 @@ public class InputService {
             try {
                 String input = Console.readLine();
                 validator.validateEmptyInput(input);
-                int money = validator.validateNumericInput(input);
+                int money = validator.validateFormatInput(input);
                 validator.validateThousandUnitInput(money);
+                validator.validatePositiveInput(money);
                 return money;
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
