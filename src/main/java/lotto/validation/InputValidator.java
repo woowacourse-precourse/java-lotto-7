@@ -7,6 +7,8 @@ public class InputValidator {
 
     private static final int MAX_LOTTO_NUMBER_COUNT = 6;
 
+    private InputValidator() {}
+
     public static void validateNonBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(Message.ERROR_PREFIX.getMessage() + "입력값이 비어 있거나 공백으로만 구성되었습니다.");

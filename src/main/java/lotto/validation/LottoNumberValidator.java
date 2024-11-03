@@ -9,6 +9,8 @@ public class LottoNumberValidator {
 
     private static final int LOTTO_SIZE = 6;
 
+    private LottoNumberValidator() {}
+
     public static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);

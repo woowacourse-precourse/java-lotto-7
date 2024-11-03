@@ -9,6 +9,8 @@ public class BonusNumberValidator {
     private static final int MAX_NUMBER_RANGE = 45;
     private static final int MIN_NUMBER_RANGE = 1;
 
+    private BonusNumberValidator() {}
+
     public static void validateRange(String input) {
         int bonusNum = Convertor.convertToInt(input);
         if (bonusNum > MAX_NUMBER_RANGE || bonusNum < MIN_NUMBER_RANGE) {

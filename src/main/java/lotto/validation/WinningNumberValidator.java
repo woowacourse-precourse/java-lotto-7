@@ -8,6 +8,8 @@ public class WinningNumberValidator {
     private static final int MAX_NUMBER_RANGE = 45;
     private static final int MIN_NUMBER_RANGE = 1;
 
+    private WinningNumberValidator() {}
+
     public static void validateRange(String input) {
         int winningNum = Convertor.convertToInt(input);
         if (winningNum > MAX_NUMBER_RANGE || winningNum < MIN_NUMBER_RANGE) {
