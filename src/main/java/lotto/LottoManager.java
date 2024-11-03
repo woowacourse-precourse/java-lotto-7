@@ -6,13 +6,10 @@ import static lotto.view.Input.inputWinningNumbers;
 import static lotto.InputParser.parseInt;
 import static lotto.InputParser.parseWinningNumbers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.view.Output;
 
 public class LottoManager {
-    private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
@@ -21,11 +18,12 @@ public class LottoManager {
         lottoes.forEach(Output::printLotto);
         WinningNumbers winningNumbers = getWinningNumbers();
         BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+        WinningRecord winningRecord = new WinningRecord();
         lottoes.stream()
                 .map(lotto -> lotto.getRank(winningNumbers, bonusNumber))
-                .forEach(this::saveRankOnRecord);
+                .forEach(winningRecord::put);
         Output.printWinningStatistics(winningRecord);
-        int totalWinningAmount = calculateTotalWinningAmount();
+        int totalWinningAmount = winningRecord.calculateTotalWinningAmount();
         Output.printReturnRate(purchaseAmount.calculateReturnRate(totalWinningAmount));
     }
 
@@ -60,21 +58,7 @@ public class LottoManager {
         }
     }
 
-    private void saveRankOnRecord(final Rank rank) {
-        int rankCount = winningRecord.getOrDefault(rank, 0);
-        winningRecord.put(rank, ++rankCount);
-    }
-
     private List<Lotto> purchaseLottoes(final PurchaseAmount purchaseAmount) {
         return LottoMachine.purchaseLottoes(purchaseAmount);
-    }
-
-    private int calculateTotalWinningAmount() {
-        int totalWinningAmount = 0;
-        for (Rank rank : Rank.values()) {
-            int winningRankCount = winningRecord.getOrDefault(rank, 0);
-            totalWinningAmount += winningRankCount * rank.getWinningAmount();
-        }
-        return totalWinningAmount;
     }
 }

@@ -7,9 +7,9 @@ import static lotto.Rank.SECOND;
 import static lotto.Rank.THIRD;
 
 import java.util.List;
-import java.util.Map;
 import lotto.Lotto;
 import lotto.Rank;
+import lotto.WinningRecord;
 
 public class Output {
     private static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";
@@ -20,7 +20,6 @@ public class Output {
     private static final String RANK_STATISTIC_FORMAT = "%d개 일치 (%,d원) - %d개\n";
     private static final String FIFTH_STATISTIC_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String RETURN_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
-    private static final int DEFAULT_WINNING_RANK_COUNT = 0;
     private static final List<Rank> winningRanks = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
 
     public static void printPurchaseMessage(final int purchasedLottoesCount) {
@@ -32,12 +31,12 @@ public class Output {
         System.out.println(LOTTO_NUMBER_PREFIX + lottoNumbers + LOTTO_NUMBER_SUFFIX);
     }
 
-    public static void printWinningStatistics(final Map<Rank, Integer> winningRecord) {
+    public static void printWinningStatistics(final WinningRecord winningRecord) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         for (Rank rank : winningRanks) {
             int winningNumberMatchCount = rank.getWinningNumberMatchCount();
             int winningAmount = rank.getWinningAmount();
-            int rankCount = winningRecord.getOrDefault(rank, DEFAULT_WINNING_RANK_COUNT);
+            int rankCount = winningRecord.get(rank);
             String rankStatisticFormat = getRankStatisticFormat(rank);
             printRankStatistic(rankStatisticFormat, winningNumberMatchCount, winningAmount, rankCount);
         }
@@ -55,7 +54,7 @@ public class Output {
         System.out.printf(rankStatisticFormat, winningNumberMatchCount, winningAmount, rankCount);
     }
 
-    public static void printReturnRate(double returnRate) {
+    public static void printReturnRate(final double returnRate) {
         System.out.printf(RETURN_RATE_FORMAT, returnRate);
     }
 }
