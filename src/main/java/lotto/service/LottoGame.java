@@ -68,7 +68,7 @@ public class LottoGame {
                 .count();
     }
 
-    private double calculateProfitStatics(int totalPrize){
+    public double calculateProfitStatics(int totalPrize){
 
         int totalSpent = userLottoList.size() * 1000;
 
@@ -79,6 +79,7 @@ public class LottoGame {
         return winningResultCount;
     }
 
-
-
+    public int getTotalPrize() {
+        return totalPrize;
+    }
 }

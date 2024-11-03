@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.WinningResult;
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGameTest {
@@ -17,7 +19,7 @@ class LottoGameTest {
     private LottoGame lottoGame;
     @BeforeEach
     void setUp() {
-        lottoGame = new LottoGame(5000); // 구입 금액 5000원 -> 로또 5개 생성
+        lottoGame = new LottoGame(5000);
     }
 
     @Test
@@ -27,7 +29,7 @@ class LottoGameTest {
         List<Lotto> userLottoList = lottoGame.generateUserLotto();
 
         //then
-        assertEquals(5, userLottoList.size());
+        assertThat(userLottoList.size()).isEqualTo(5);
     }
 
     @Test
@@ -45,8 +47,29 @@ class LottoGameTest {
 
         // then
         Map<WinningResult, Integer> winningResultCount = lottoGame.getWinningResultCount();
-        assertEquals(1, winningResultCount.get(WinningResult.THREE_MATCH));
-        assertEquals(0, winningResultCount.get(WinningResult.SIX_MATCH));
+        assertThat(winningResultCount.get(WinningResult.THREE_MATCH)).isEqualTo(1);
+        assertThat(winningResultCount.get(WinningResult.SIX_MATCH)).isEqualTo(0);
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        lottoGame.getUserLottoList().add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+
+        int expectedPrize = WinningResult.SIX_MATCH.getPrize();
+        int totalSpent = lottoGame.getUserLottoList().size() * 1000;
+        double expectedProfit = (double) expectedPrize / totalSpent * 100;
+
+        // when
+        lottoGame.generateWinningResults(winningNumbers, bonusNumber);
+        double actualProfit = lottoGame.calculateProfitStatics(lottoGame.getTotalPrize());
+
+        // then
+        assertThat(actualProfit).isCloseTo(expectedProfit, Percentage.withPercentage(0.01));
+
     }
 
 
