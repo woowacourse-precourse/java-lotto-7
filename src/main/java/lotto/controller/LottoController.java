@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.util.Validator.validateBonusNumber;
 import static lotto.util.Validator.validatePurchaseAmount;
 import static lotto.util.Validator.validateWinningNumbers;
 
@@ -36,8 +37,9 @@ public class LottoController {
         String inputWinningNumbers = inputView.inputWinningNumbers();
         List<Integer> winningNumbers = validateWinningNumbers(inputWinningNumbers);
         String inputBonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = validateBonusNumber(winningNumbers, inputBonusNumber);
 
-        lottoService.saveLottoRanks(winningNumbers, Integer.parseInt(inputBonusNumber));
+        lottoService.saveLottoRanks(winningNumbers, bonusNumber);
         Map<Rank, Integer> results = lottoService.getResults();
 
         outputView.printWinningStatisticsHeader();
