@@ -1,7 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.constant.LottoConstants;
+import lotto.domain.constant.GlobalConstants;
 import lotto.domain.model.bonus.BonusNumber;
 import lotto.domain.model.lotto.Lotto;
 import lotto.domain.model.winning.WinningContext;
@@ -35,7 +35,7 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
         }
 
-        if (amount % LottoConstants.LOTTO_PRICE != 0) {
+        if (amount % GlobalConstants.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
         }
 
@@ -60,7 +60,7 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
 
     @Override
     public List<Lotto> generateLottos(int amount) {
-        int count = amount / LottoConstants.LOTTO_PRICE;
+        int count = amount / GlobalConstants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -71,7 +71,7 @@ public class LottoApplicationServiceImpl implements LottoApplicationService {
     }
 
     private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(GlobalConstants.MIN_LOTTO_NUMBER, GlobalConstants.MAX_LOTTO_NUMBER, GlobalConstants.LOTTO_NUMBER_COUNT);
         return new Lotto(randomNumbers);
     }
 

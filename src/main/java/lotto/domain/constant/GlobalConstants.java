@@ -1,6 +1,6 @@
 package lotto.domain.constant;
 
-public class LottoConstants {
+public class GlobalConstants {
     public static final int LOTTO_NUMBER_COUNT = 6;
     public static final int LOTTO_PRICE = 1000;
     public static final int MAX_LOTTO_NUMBER = 45;

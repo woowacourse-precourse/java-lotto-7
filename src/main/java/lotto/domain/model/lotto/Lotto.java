@@ -1,6 +1,6 @@
 package lotto.domain.model.lotto;
 
-import lotto.domain.constant.LottoConstants;
+import lotto.domain.constant.GlobalConstants;
 import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.*;
@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != GlobalConstants.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_SIZE.getMessage());
         }
     }
@@ -34,7 +34,7 @@ public class Lotto {
     }
 
     private void checkRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER)) {
+        if (numbers.stream().anyMatch(num -> num < GlobalConstants.MIN_LOTTO_NUMBER || num > GlobalConstants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(LottoErrorMessages.OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
     }

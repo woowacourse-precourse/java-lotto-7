@@ -1,6 +1,6 @@
 package lotto.domain.model.winning;
 
-import lotto.domain.constant.LottoConstants;
+import lotto.domain.constant.GlobalConstants;
 import lotto.exception.winning.WinningNumbersErrorMessages;
 
 import java.util.Arrays;
@@ -76,7 +76,7 @@ public class WinningNumbers {
     }
 
     private void checkRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER)) {
+        if (numbers.stream().anyMatch(num -> num < GlobalConstants.MIN_LOTTO_NUMBER || num > GlobalConstants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }

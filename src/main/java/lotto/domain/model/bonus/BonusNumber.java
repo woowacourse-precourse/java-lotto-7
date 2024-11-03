@@ -1,6 +1,6 @@
 package lotto.domain.model.bonus;
 
-import lotto.domain.constant.LottoConstants;
+import lotto.domain.constant.GlobalConstants;
 import lotto.exception.bonus.BonusErrorMessages;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class BonusNumber {
     }
 
     private void checkRange(int num) {
-        if (num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER) {
+        if (num < GlobalConstants.MIN_LOTTO_NUMBER || num > GlobalConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(BonusErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
