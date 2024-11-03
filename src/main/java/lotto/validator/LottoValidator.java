@@ -1,12 +1,10 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.LottoConstants;
 
 public class LottoValidator {
 
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
-    public static final int LOTTO_NUMBER_COUNT = 6;
     public static final String ERROR_MESSAGE_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.";
     public static final String ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATION = "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.";
     public static final String ERROR_MESSAGE_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
@@ -26,7 +24,8 @@ public class LottoValidator {
     }
 
     private static boolean isOutOfRange(Integer number) {
-        return number > MAX_LOTTO_NUMBER || number < MIN_LOTTO_NUMBER;
+        return number > LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                || number < LottoConstants.MIN_LOTTO_NUMBER.getValue();
     }
 
     private static void validateLottoNumbersDuplication(List<Integer> numbers) {
@@ -40,7 +39,7 @@ public class LottoValidator {
     }
 
     private static void validateLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != LottoConstants.LOTTO_COUNT.getValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_COUNT);
         }
     }

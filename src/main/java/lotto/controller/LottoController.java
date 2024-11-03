@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.Map;
+import lotto.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.LottoRevenueCalculator;
@@ -11,8 +12,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
-    public static final int LOTTO_PRICE = 1000;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -53,7 +52,7 @@ public class LottoController {
     }
 
     private static int calculatePurchaseCountBy(int money) {
-        return money / LOTTO_PRICE;
+        return money / LottoConstants.LOTTO_PRICE.getValue();
     }
 
     private Lotto getLottoWinningNumbers() {
@@ -77,7 +76,6 @@ public class LottoController {
             }
         }
     }
-
 
     private WinningLotto createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {
         while (true) {

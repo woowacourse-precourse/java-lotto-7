@@ -1,9 +1,10 @@
 package lotto.validator;
 
+import lotto.LottoConstants;
+
 public class MoneyInputValidator {
 
     public static final String NUMERIC_REGEX = "\\d+";
-    public static final int LOTTO_PRICE = 1000;
     public static final int ZERO = 0;
     public static final String ERROR_MESSAGE_MONEY_INPUT_FORMAT = "[ERROR] 구입 금액은 양의 숫자로만 입력해야 합니다.";
     public static final String ERROR_MESSAGE_MONEY_LESS_THAN_THOUSAND = "[ERROR] 구입 금액은 1000원 이상으로만 입력해야 합니다.";
@@ -34,7 +35,7 @@ public class MoneyInputValidator {
     }
 
     private static boolean isLessThanThousand(int money) {
-        return money < LOTTO_PRICE;
+        return money < LottoConstants.LOTTO_PRICE.getValue();
     }
 
     private static void validateIsDivisibleByThousand(String input) {
@@ -45,6 +46,6 @@ public class MoneyInputValidator {
     }
 
     private static boolean isNotDivisibleByThousand(int money) {
-        return money % LOTTO_PRICE != ZERO;
+        return money % LottoConstants.LOTTO_PRICE.getValue() != ZERO;
     }
 }
