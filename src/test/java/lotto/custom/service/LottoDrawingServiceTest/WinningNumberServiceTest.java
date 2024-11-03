@@ -27,7 +27,7 @@ public class WinningNumberServiceTest {
     void 서비스_당첨번호입력_빈문자열일때_테스트() {
         assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_STRING_INPUT);
     }
 
     @DisplayName("서비스_당첨번호입력_공백으로구성되어있을때_테스트")
@@ -35,7 +35,7 @@ public class WinningNumberServiceTest {
     void 서비스_당첨번호입력_공백으로구성되어있을때_테스트() {
         assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
     @DisplayName("서비스_당첨번호입력_쉼표공백숫자를제외한문자가존재할때_테스트")
@@ -43,7 +43,7 @@ public class WinningNumberServiceTest {
     void 서비스_당첨번호입력_쉼표공백숫자를제외한문자가존재할때_테스트() {
         assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3*4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_CHARACTERS);
+                .hasMessage(ErrorMessages.INVALID_CHARACTERS_INPUT);
     }
 
     @DisplayName("서비스_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트")

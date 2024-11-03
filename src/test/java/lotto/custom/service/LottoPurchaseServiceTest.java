@@ -22,7 +22,7 @@ public class LottoPurchaseServiceTest {
     void 서비스_구입금액입력_빈문자열일때_테스트() {
         assertThatThrownBy(() -> lottoPurchaseService.run(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_STRING_INPUT);
     }
 
     @DisplayName("서비스_구입금액입력_공백으로구성되어있을때_테스트")
@@ -30,7 +30,7 @@ public class LottoPurchaseServiceTest {
     void 서비스_구입금액입력_공백으로구성되어있을때_테스트() {
         assertThatThrownBy(() -> lottoPurchaseService.run("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
     @DisplayName("서비스_구입금액입력_숫자외의문자가있을때_테스트")
@@ -38,7 +38,7 @@ public class LottoPurchaseServiceTest {
     void 서비스_구입금액입력_숫자외의문자가있을때_테스트() {
         assertThatThrownBy(() -> lottoPurchaseService.run("123#5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS_INPUT);
     }
 
     @DisplayName("서비스_구입금액입력_int타입의범위를벗어날때_테스트")

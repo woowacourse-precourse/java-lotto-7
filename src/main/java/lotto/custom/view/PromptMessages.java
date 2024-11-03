@@ -11,5 +11,5 @@ public class PromptMessages {
 
     public static final String DISPLAY_LOTTO_RESULT_PROMPT = "당첨 통계";
 
-    public static final String SEPARATOR = "---";
+    public static final String SEPARATOR_PROMPT = "---";
 }

@@ -21,9 +21,9 @@ public class InputValidator {
     // 구입 금액 입력 유효성 검증
 
     public void validatePurchaseAmountInput(String input) {
-        exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, DIGIT_ONLY_REGEX);
-        exceptions.integerOverflow(input);
+        exceptions.checkEmptyInput(input);
+        exceptions.checkInvalidCharacters(input, DIGIT_ONLY_REGEX);
+        exceptions.checkIntegerOverflow(input);
         validateAmountDivisibilityByLOTTOPRICE(input);
     }
 
@@ -36,9 +36,9 @@ public class InputValidator {
     // 당첨 번호 입력 유효성 검증
 
     public void validateWinningNumbersInput(String input) {
-        exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, DIGIT_COMMA_SPACE_ONLY_REGEX);
-        exceptions.spacesBetweenNumbers(input);
+        exceptions.checkEmptyInput(input);
+        exceptions.checkInvalidCharacters(input, DIGIT_COMMA_SPACE_ONLY_REGEX);
+        exceptions.checkSpacesBetweenNumbers(input);
     }
 
     public void validateWinningNumbers(List<Integer> numbers) {
@@ -61,7 +61,7 @@ public class InputValidator {
 
     public void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            exceptions.outOfRange(number, LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END,
+            exceptions.checkOutOfRange(number, LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END,
                     CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
@@ -69,15 +69,15 @@ public class InputValidator {
     // 보너스 번호 입력 유효성 검증
 
     public void validateBonusNumberInput(String input) {
-        exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, DIGITS_SPACE_ONLY_REGEX);
-        exceptions.spacesBetweenNumbers(input);
+        exceptions.checkEmptyInput(input);
+        exceptions.checkInvalidCharacters(input, DIGITS_SPACE_ONLY_REGEX);
+        exceptions.checkSpacesBetweenNumbers(input);
     }
 
     public void validateBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumberIsNotDuplicate(winningNumbers, bonusNumber);
 
-        exceptions.outOfRange(bonusNumber, LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END,
+        exceptions.checkOutOfRange(bonusNumber, LOTTO_NUMBER_RANGE_START, LOTTO_NUMBER_RANGE_END,
                 CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
     }
 

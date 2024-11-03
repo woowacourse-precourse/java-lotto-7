@@ -9,9 +9,9 @@ public class RegexConstants {
 
     public static final String CONSECUTIVE_COMMAS_REGEX = ",+";
 
+    public static final String SINGLE_COMMA = ","; // 연속된 쉼표를 하나의 쉼표로 줄이는 표현식에 사용
+
     public static final String LEADING_TRAILING_COMMA_REGEX = "^,|,$";
 
-    public static final String EMPTY_STRING = "";
-
-    public static final String SINGLE_COMMA = ",";
+    public static final String EMPTY_STRING = ""; // 앞뒤에 존재하는 쉼표를 제거하는 표현식에 사용
 }

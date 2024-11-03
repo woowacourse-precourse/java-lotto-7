@@ -24,6 +24,11 @@ public class Lotto {
         validateNumberRange(numbers);
     }
 
+    /*
+    아래 두 코드들은 common.Exceptions 와 validator.InputValidator 의 코드와 겹치나,
+    lotto의 원형을 최대한 유지하기 위해 이와 같이 작성되었습니다.
+     */
+
     private void validateUniqueNumbers(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUMBERS_PER_TICKET) {
             throw new IllegalArgumentException(LOTTO_NUMBERS_MUST_BE_UNIQUE);

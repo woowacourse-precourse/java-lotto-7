@@ -28,13 +28,13 @@ public class OutputView {
     public void displayLottoResult(List<Integer> result) {
         System.out.println();
         System.out.println(PromptMessages.DISPLAY_LOTTO_RESULT_PROMPT);
-        System.out.println(PromptMessages.SEPARATOR);
+        System.out.println(PromptMessages.SEPARATOR_PROMPT);
         int index = 0;
         for (LottoPrize prize : LottoPrize.values()) {
-            String PrizeMoney = String.format("%,d", prize.getPrizeMoney());
+            String prizeMoney = String.format("%,d", prize.getPrizeMoney());
 
             System.out.println(prize.getPrizeDescription() +
-                    " (" + PrizeMoney + "원) - " +
+                    " (" + prizeMoney + "원) - " +
                     result.get(index++) + "개");
         }
     }

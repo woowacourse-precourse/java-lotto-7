@@ -26,7 +26,7 @@ public class InputValidatorTest {
     void 유효성검증_구입금액입력_빈문자열일때_테스트() {
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_STRING_INPUT);
     }
 
     @DisplayName("유효성검증_구입금액입력_공백으로구성되어있을때_테스트")
@@ -34,7 +34,7 @@ public class InputValidatorTest {
     void 유효성검증_구입금액입력_공백으로구성되어있을때_테스트() {
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
     @DisplayName("유효성검증_구입금액입력_숫자외의문자가있을때_테스트")
@@ -42,7 +42,7 @@ public class InputValidatorTest {
     void 유효성검증_구입금액입력_숫자외의문자가있을때_테스트() {
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("123#5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS_INPUT);
     }
 
     @DisplayName("유효성검증_구입금액입력_int타입의범위를벗어날때_테스트")
@@ -76,7 +76,7 @@ public class InputValidatorTest {
     void 유효성검증_당첨번호입력_빈문자열일때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbersInput(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_STRING_INPUT);
     }
 
     @DisplayName("유효성검증_당첨번호입력_공백으로구성되어있을때_테스트")
@@ -84,7 +84,7 @@ public class InputValidatorTest {
     void 유효성검증_당첨번호입력_공백으로구성되어있을때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbersInput("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
     @DisplayName("유효성검증_당첨번호입력_숫자쉼표공백을제외한문자가존재할때_테스트")
@@ -92,7 +92,7 @@ public class InputValidatorTest {
     void 유효성검증_당첨번호입력_숫자쉼표공백을제외한문자가존재할때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateWinningNumbersInput("1, 2, 3*4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_CHARACTERS);
+                .hasMessage(ErrorMessages.INVALID_CHARACTERS_INPUT);
     }
 
     @DisplayName("유효성검증_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트")
@@ -145,7 +145,7 @@ public class InputValidatorTest {
     void 유효성검증_보너스번호입력_빈문자열일때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateBonusNumberInput(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
+                .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_STRING_INPUT);
     }
 
     @DisplayName("유효성검증_보너스번호입력_공백으로구성되어있을때_테스트")
@@ -153,7 +153,7 @@ public class InputValidatorTest {
     void 유효성검증_보너스번호입력_공백으로구성되어있을때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
+                .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY_INPUT);
     }
 
     @DisplayName("유효성검증_보너스번호입력_숫자와공백을제외한문자가존재할때_테스트")
@@ -161,7 +161,7 @@ public class InputValidatorTest {
     void 유효성검증_보너스번호입력_숫자와공백을제외한문자가존재할때_테스트() {
         assertThatThrownBy(() -> inputValidator.validateBonusNumberInput("*"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.INVALID_CHARACTERS_INPUT);
     }
 
     @DisplayName("유효성검증_보너스번호입력_숫자와숫자사이에공백이존재할때_테스트") // 고칠 것
