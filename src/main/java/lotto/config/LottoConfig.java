@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.model.AutoLottoGenerator;
 import lotto.model.LottoMatcher;
 import lotto.model.YieldCalculator;
+import lotto.service.LottoService;
 import lotto.util.InputValidator;
 import lotto.util.LottoNumberParser;
 import lotto.view.InputView;
@@ -18,6 +19,8 @@ public class LottoConfig {
     private static final AutoLottoGenerator autoLottoGenerator = new AutoLottoGenerator(inputValidator);
     private static final LottoMatcher lottoMatcher = new LottoMatcher();
     private static final YieldCalculator yieldCalculator = new YieldCalculator();
+    private static final LottoService lottoService =
+            new LottoService(lottoNumberParser, autoLottoGenerator, lottoMatcher, yieldCalculator);
 
     private LottoConfig() {
     }
@@ -27,10 +30,7 @@ public class LottoConfig {
                 inputView,
                 outputView,
                 inputValidator,
-                lottoNumberParser,
-                autoLottoGenerator,
-                lottoMatcher,
-                yieldCalculator
+                lottoService
         );
     }
 }
