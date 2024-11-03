@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.ui.InputView;
 import lotto.ui.ResultView;
@@ -27,7 +28,7 @@ public class LottoController {
             try {
                 int purchaseAmount = purchaseAmount();
                 resultView.displayLottos(lottoService.generateLottos(purchaseAmount));
-                int bonusNumber = bonusNumber(winningNumbers());
+                createWinningLotto().validateBonusNumber(validator);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -39,17 +40,17 @@ public class LottoController {
         return validator.validate(inputView.userInput());
     }
 
-    private List<Integer> winningNumbers() {
+    private WinningLotto createWinningLotto() {
+        return new WinningLotto(getWinningNumbers(), getBonusNumber());
+    }
+
+    private List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers = inputView.lottoWinningNumbers();
         validator.winningNumbers(winningNumbers);
         return winningNumbers;
     }
 
-    private int bonusNumber(List<Integer> winningNumbers) {
-        String bonusNumberInput = inputView.bonusNumber();
-        int bonusNumber = validator.parseInput(bonusNumberInput);
-        validator.validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
+    private int getBonusNumber() {
+        return validator.parseInput(inputView.bonusNumber());
     }
-
 }

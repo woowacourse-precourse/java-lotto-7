@@ -23,8 +23,7 @@ public class LottoGenerator {
     }
 
     private static int calculate(int amount) {
-        int ticketCount = amount / LOTTO_TICKET_PRICE;
-        return ticketCount;
+        return amount / LOTTO_TICKET_PRICE;
     }
 
     private static List<Integer> generateLottoNumbers() {
