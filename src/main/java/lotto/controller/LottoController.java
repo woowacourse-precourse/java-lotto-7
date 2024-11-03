@@ -12,38 +12,42 @@ import lotto.view.OutputView;
 public class LottoController {
     OutputView outputView;
     InputView inputView;
+
+    private Player player; // Player 인스턴스를 필드로 추가
+    private int purchaseAmount; // 구매 금액을 필드로 추가
+
     LottoService lottoService;
     WinningNumbersService winningNumbersService;
 
-
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, WinningNumbersService winningNumbersService) {
+    public LottoController(InputView inputView,
+                           OutputView outputView,
+                           LottoService lottoService,
+                           WinningNumbersService winningNumbersService
+    ) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
         this.winningNumbersService = winningNumbersService;
     }
 
-    public Player createPlayer(int purchaseAmount) {
-        return new Player(purchaseAmount);
-    }
-
-    private void processPurchase(int purchaseAmount) {
-        Player player = createPlayer(purchaseAmount);
-        int ticketCount = lottoService.calculateTicketCount(player.getPurchaseAmount());
-        outputView.purchaseLottoCountMessage(ticketCount);
-    }
-
-    //TODO:  분리 예정
     public void run() {
-        outputView.purchaseLottoAmountMesssage();
-        int perchaseAmount = inputView.getPurchaseAmount();
+        setupLotto();
+        progressLotto();
+        resultLotto();
+    }
 
-        Player player = new Player(perchaseAmount);
+    private void setupLotto() {
+        outputView.purchaseLottoAmountMesssage();
+
+        purchaseAmount = inputView.getPurchaseAmount();
+        player = new Player(purchaseAmount);
 
         lottoService.generateLottoTickets(player);
 
-        processPurchase(player.getPurchaseAmount());
+        processPurchase();
+    }
 
+    private void progressLotto() {
         outputView.printLottoNumbers(player.getLottoNumbers());
 
         outputView.enterWinningNumbers();
@@ -53,11 +57,16 @@ public class LottoController {
 
         outputView.enterBonusNumber();
         winningNumbersService.inputBonusNumber();
+    }
 
+    private void resultLotto() {
         outputView.WinningStatistics();
-
         outputView.matchWinningCount(player.checkWinning());
-
         outputView.promptTotalReturnRate(player.getRateOfReturn(player.getWinningMoney()));
+    }
+
+    private void processPurchase() {
+        int ticketCount = lottoService.calculateTicketCount(player.getPurchaseAmount());
+        outputView.purchaseLottoCountMessage(ticketCount);
     }
 }
