@@ -1,11 +1,16 @@
 package lotto.exception;
 
 public enum ExceptionMessage {
-    PURCHASE_PRICE_BLANK_INPUT("[ERROR] 로또 구입 금액은 공백이 될 수 없습니다."),
+    PURCHASE_PRICE_BLANK_INPUT("[ERROR] 로또 구입 금액은 빈 값이 될 수 없습니다."),
     PURCHASE_PRICE_NOT_NUMBER("[ERROR] 로또 구입 금액은 숫자를 입력해주세요."),
     PURCHASE_PRICE_NEGATIVE_NUMBER("[ERROR] 로또 구입 금액은 양수를 입력해주세요."),
     PURCHASE_PRICE_UPPER_LIMIT("[ERROR] 로또 구입 금액은 1억 미만이어야 합니다."),
-    PURCHASE_PRICE_NOT_MULTIPLE_OF_THOUSAND("[ERROR] 로또 구입 금액은 1000단위로 입력해야 합니다.");
+    PURCHASE_PRICE_NOT_MULTIPLE_OF_THOUSAND("[ERROR] 로또 구입 금액은 1000단위로 입력해야 합니다."),
+    WINNING_NUMBER_OUT_OF_RANGE("[ERROR] 당첨 번호는 1~45 사이의 숫자여야 합니다."),
+    WINNING_NUMBER_DUPLICATE("[ERROR] 당첨 번호에 중복된 숫자가 있습니다."),
+    WINNING_NUMBER_BLANK_INPUT("[ERROR] 당첨 번호는 빈 값이 될 수 없습니다."),
+    WINNING_NUMBER_NOT_NUMBER("[ERROR] 당첨 번호는 숫자로만 입력해주세요."),
+    WINNING_NUMBER_SIZE_INSUFFICIENT("[ERROR] 당첨 번호는 6개를 입력해주세요.");
 
     private final String message;
 
