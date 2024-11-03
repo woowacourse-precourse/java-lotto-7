@@ -16,6 +16,10 @@ public class LottoService {
         lottoResult = new LottoResult();
     }
 
+    public int toInt(String lottoCost){
+        return Integer.parseInt(lottoCost);
+    }
+
     public int purchaseLottoCount(int lottoCost) {
         int ticketCount = lottoCost / Constants.PURCHASE_FORM;
 

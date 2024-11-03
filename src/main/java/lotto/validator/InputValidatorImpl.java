@@ -2,9 +2,9 @@ package lotto.validator;
 
 import lotto.util.Constants;
 
-public class InputValidator {
+public class InputValidatorImpl implements inputValidator {
 
-    public void validatePriceForm(int price) {
+    public void validateCostForm(int price) {
         if(price % Constants.PURCHASE_FORM != 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야합니다.");
     }
@@ -20,7 +20,7 @@ public class InputValidator {
 
     public void validateNumberRange(int number) {
         if(number <= 0 || number > Constants.MAX_NUM){
-            throw new IllegalArgumentException("[ERROR] 구입 금액이 0원 이하일 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액이 0원 이하이거나 최대한도를 넘을 수 없습니다.");
         }
     }
 

@@ -5,6 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +16,7 @@ public class OutputView {
 
         for(int i=0; i<ticketCount; i++){
             List<Integer> numbers = lottoTickets.get(i).getNumbers();
+            Collections.sort(numbers);
 
             String joinLotto = String.join(", ", numbers.stream().map(String::valueOf).toArray(String[]::new));
             System.out.println("[" + joinLotto + "]");
