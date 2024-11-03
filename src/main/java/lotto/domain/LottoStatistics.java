@@ -12,6 +12,13 @@ public class LottoStatistics {
         this.rankingCount = new EnumMap<>(LottoRanking.class);
     }
 
+    public void make(List<Lotto> lottos, WinningLotto winningLotto) {
+        lottos.stream()
+                .map(lotto -> calculateRanking(lotto, winningLotto))
+                .filter(Optional::isPresent)
+                .forEach(rankingOptional -> rankingCount.merge(rankingOptional.get(), 1, Integer::sum));
+    }
+
     public int calculateTotalPrize() {
         return rankingCount.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
