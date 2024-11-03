@@ -2,7 +2,10 @@ package lotto.view;
 
 import static java.util.stream.Collectors.joining;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.WinningRank;
 
 public class OutputView {
 
@@ -10,6 +13,17 @@ public class OutputView {
     private static final String LOTTO_DELIMITER = ", ";
     private static final String LOTTO_PREFIX = "[";
     private static final String LOTTO_SUFFIX = "]";
+
+    private static final String RESULT_TITLE = """
+            당첨 통계
+            ---
+            """;
+    private static final List<WinningRank> OUTPUT_ORDER = List.of(WinningRank.FIFTH_RANK,
+            WinningRank.FOURTH_RANK, WinningRank.THIRD_RANK, WinningRank.SECOND_RANK, WinningRank.FIRST_RANK);
+    private static final String RANK_DELIMITER = "\n";
+    private static final DecimalFormat LONG_FORMATTER = new DecimalFormat("###,###");
+    private static final int NOT_EXIST = 0;
+    private static final DecimalFormat DOUBLE_FORMATTER = new DecimalFormat("###,###.0");
 
     private OutputView() {
     }
@@ -29,5 +43,30 @@ public class OutputView {
         return lotto.stream()
                 .map(Object::toString)
                 .collect(joining(LOTTO_DELIMITER, LOTTO_PREFIX, LOTTO_SUFFIX));
+    }
+
+    public static void printResult(Map<WinningRank, Integer> result, double profit) {
+        System.out.println(RESULT_TITLE);
+        System.out.println(toResultFormat(result));
+        System.out.println(toProfitFormat(profit));
+    }
+
+    private static String toResultFormat(Map<WinningRank, Integer> result) {
+        return OUTPUT_ORDER.stream()
+                .map(rank -> toRankFormat(rank, result.getOrDefault(rank, NOT_EXIST)))
+                .collect(joining(RANK_DELIMITER));
+    }
+
+    private static String toRankFormat(WinningRank rank, int count) {
+        if (rank.isNeedBonusMatch()) {
+            return "%d개 일치, 보너스 볼 일치 (%s원) - %d개"
+                    .formatted(rank.getMatchCountLimit(), LONG_FORMATTER.format(rank.getWinningAmount()), count);
+        }
+        return "%d개 일치 (%s원) - %d개"
+                .formatted(rank.getMatchCountLimit(), LONG_FORMATTER.format(rank.getWinningAmount()), count);
+    }
+
+    private static String toProfitFormat(double profit) {
+        return "총 수익률은 %s%%입니다.".formatted(DOUBLE_FORMATTER.format(profit));
     }
 }

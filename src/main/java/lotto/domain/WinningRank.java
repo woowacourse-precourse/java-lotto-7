@@ -44,6 +44,14 @@ public enum WinningRank {
         return isBonusMatch || !isNeedBonusMatch;
     }
 
+    public int getMatchCountLimit() {
+        return matchCountLimit;
+    }
+
+    public boolean isNeedBonusMatch() {
+        return isNeedBonusMatch;
+    }
+
     public long getWinningAmount() {
         return winningAmount;
     }
