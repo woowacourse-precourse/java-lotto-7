@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 public class LottoService {
     private final Selling selling = new Selling();
     private final Benefit benefit = new Benefit();
@@ -26,12 +27,23 @@ public class LottoService {
     }
 
     private int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
     private int[] getWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String[] winningInput = Console.readLine().split(",");
+        int[] winningNumbers = new int[6];
+        for (int i = 0; i < 6; i++) {
+            winningNumbers[i] = Integer.parseInt(winningInput[i].trim());
+        }
+        return winningNumbers;
     }
 
     private int getPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
     private void displayBenefit(int amount, int[] ranks) {
