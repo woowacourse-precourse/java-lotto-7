@@ -10,11 +10,15 @@ public class Application {
         int purchaseAmount = readValidPurchaseAmount();
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
+
         List<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
         printLottoTickets(lottoTickets);
 
         Map<Rank, Integer> result = calculateResults(lottoTickets, winningNumbers, bonusNumber);
         printResults(result);
+
+        int totalPrize = calculateTotalPrize(result);
+        printProfitRate(totalPrize, purchaseAmount);
     }
 
     private static int readValidPurchaseAmount() {
@@ -133,14 +137,14 @@ public class Application {
         return resultMap;
     }
 
-    private static int getMatchCount(Lotto ticket, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for (int number : ticket.getNumbers()) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
+    private static int calculateTotalPrize(Map<Rank, Integer> results) {
+        int totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
         }
-        return matchCount;
+        return totalPrize;
     }
 
     private static void printResults(Map<Rank, Integer> results) {
@@ -155,5 +159,14 @@ public class Application {
                         results.getOrDefault(rank, 0));
             }
         }
+    }
+
+    private static void printProfitRate(int totalPrize, int purchaseAmount) {
+        double profitRate = calculateProfitRate(totalPrize, purchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+    
+    private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }
