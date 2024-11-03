@@ -10,6 +10,8 @@ import lotto.validation.LottoNumbersValidator;
 import lotto.validation.LottoPurchaseValidator;
 
 public class InputView {
+    private final static String COMMA = ",";
+
     public static int inputLottoPurchase() {
         String lottoPurchase = Console.readLine();
         LottoPurchaseValidator.validate(lottoPurchase);
@@ -19,7 +21,7 @@ public class InputView {
     public static Lotto inputWinningNumbers() {
         String winningNumber = Console.readLine();
         LottoNumberValidator.validateWinningNumbers(winningNumber);
-        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))
+        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(COMMA))
                 .map(Integer::parseInt)
                 .toList();
         LottoNumbersValidator.validate(winningNumbers);

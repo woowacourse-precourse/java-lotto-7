@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import static lotto.util.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.util.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.validation.LottoNumberValidator.validateBonusNumber;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class BonusNumberValidator {
 
     private static void validateLottoRange(String input) {
         int inputNumber = Integer.parseInt(input);
-        if (inputNumber < 1 || inputNumber > 45) {
+        if (inputNumber < MIN_LOTTO_NUMBER.getValue() || inputNumber > MAX_LOTTO_NUMBER.getValue()) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_RANGE_INVALID);
         }
     }
