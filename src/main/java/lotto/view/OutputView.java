@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -16,10 +17,15 @@ public class OutputView {
     public static void printResults(Map<LottoRank, Integer> results, double yield) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank == LottoRank.NONE) {
-                continue;
-            }
+        List<LottoRank> rankOrder = Arrays.asList(
+                LottoRank.FIFTH,
+                LottoRank.FOURTH,
+                LottoRank.THIRD,
+                LottoRank.SECOND,
+                LottoRank.FIRST
+        );
+
+        for (LottoRank rank : rankOrder) {
             int count = results.getOrDefault(rank, 0);
             System.out.println(rank.getMessage() + " - " + count + "개");
         }
