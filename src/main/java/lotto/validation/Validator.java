@@ -51,7 +51,8 @@ public class Validator {
     }
 
     public static void isDuplicateBonusNumber(List<Integer> winningNumberData, int bonusNumber) {
-        if (Utils.isNumberInList(winningNumberData, bonusNumber)) {
+        if (winningNumberData.contains(bonusNumber)) {
+//        if (Utils.isNumberInList(winningNumberData, bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
