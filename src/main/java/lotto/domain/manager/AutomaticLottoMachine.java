@@ -31,6 +31,10 @@ public class AutomaticLottoMachine {
         return lottos.size();
     }
 
+    public int getAmount() {
+        return lottos.size() * LOTTO_PRICE_UNIT;
+    }
+
     public Stream<Lotto> getLottos() {
         return this.lottos.stream();
     }

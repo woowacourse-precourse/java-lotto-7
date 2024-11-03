@@ -21,17 +21,21 @@ public enum Rank {
         this.description = description;
     }
 
-    public static Rank calculate(int matchCount, boolean matchBonus) {
+    public static Rank getRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus)
                 .findAny()
-                .orElseThrow(()-> new IllegalArgumentException("기존 순위에 포함되지 않은 경우의수가 존재합니다."));
+                .orElseThrow(() -> new IllegalArgumentException("기존 순위에 포함되지 않은 경우의수가 존재합니다."));
     }
 
     public static boolean contains(int matchCount) {
         return Arrays.stream(Rank.values())
                 .map(rank -> rank.matchCount)
                 .anyMatch(originalMatchCount -> originalMatchCount == matchCount);
+    }
+
+    public static int calculateReward(Rank rank, int count) {
+        return rank.reward * count;
     }
 
     public String getDescription() {

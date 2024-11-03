@@ -36,7 +36,7 @@ class RankTest {
     void 순위를_매길수있는_상태값이_들어오면_그에맞는_순위를_반환한다(int matchCount, boolean isMatchBonus, Rank expectedRank) {
         //given
         //when
-        Rank rank = Rank.calculate(matchCount, isMatchBonus);
+        Rank rank = Rank.getRank(matchCount, isMatchBonus);
         //then
         assertThat(rank).isNotNull();
         assertThat(rank).isEqualTo(expectedRank);
@@ -49,7 +49,7 @@ class RankTest {
         //when
         //then
         assertThatThrownBy(() -> {
-            Rank.calculate(matchCount, isMatchBonus);
+            Rank.getRank(matchCount, isMatchBonus);
         }).isInstanceOf(IllegalArgumentException.class);
     }
 

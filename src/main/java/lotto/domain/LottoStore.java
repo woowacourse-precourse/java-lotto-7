@@ -21,14 +21,14 @@ public class LottoStore {
     public static final String ERROR_ONLY_NUMBERS_FOR_THE_PURCHASE_AMOUNT = "[ERROR] 구입금액에는 숫자만을 입력해야 합니다.";
 
     public void open() {
-        var automaticLottoMachine = issue();
+        var automaticLottoMachine = enterPurchaseAmount();
         RESULT_PURCHASE_AMOUNT_AND_AUTOMATIC_LOTTO_TEMPLATE.display(
                 automaticLottoMachine.getQuantity(),
                 automaticLottoMachine);
 
         Lotto winingLotto = enterWinningNumber();
         WinningLottos winningLottos = enterBonusNumber(winingLotto);
-        LottoStatistics lottoStatistics = new LottoStatistics(automaticLottoMachine, winningLottos);
+        var lottoStatistics = new LottoStatistics(automaticLottoMachine, winningLottos);
         RESULT_WINNING_STATISTICS_LOTTO_TEMPLATE.display(lottoStatistics);
     }
 
@@ -73,25 +73,23 @@ public class LottoStore {
                 .toList();
     }
 
-    private AutomaticLottoMachine issue() {
+    private AutomaticLottoMachine enterPurchaseAmount() {
         while (true) {
             try {
-                int amount = enterPurchaseAmount();
+                ENTER_PURCHASE_AMOUNT_TEXT.display();
+                String rawAmount = Console.readLine();
+                validateEnter(rawAmount);
+
+                int amount = parse(rawAmount);
+                var automaticLottoMachine = new AutomaticLottoMachine(amount);
+
                 displayEmptyLine();
 
-                return new AutomaticLottoMachine(amount);
+                return automaticLottoMachine;
             } catch (IllegalArgumentException e) {
                 display(e.getMessage());
             }
         }
-    }
-
-    private int enterPurchaseAmount() {
-        ENTER_PURCHASE_AMOUNT_TEXT.display();
-        String rawAmount = Console.readLine();
-        validateEnter(rawAmount);
-
-        return parse(rawAmount);
     }
 
 
