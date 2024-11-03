@@ -10,9 +10,8 @@ public class LottoValidator implements Validator<List<Integer>> {
     private static final String LOTTO_NUMBER_SIZE_IS_SIX = ErrorMessage + "로또 번호는 6개의 숫자여야 합니다.";
     private static final String LOTTO_NUMBER_NO_DUPLICATE = ErrorMessage + "로또 번호는 중복되면 안됩니다.";
     private static final String LOTTO_NUMBER_IS_RANGE = ErrorMessage + "로또 번호의 범위는 1~45 입니다.";
-    private static final String LOTTO_PRICE_UNIT_ERROR = ErrorMessage + "로또 가격은 " + LottoConstants.LOTTO_PRICE +"원 단위여야 합니다.";
-    private static final String LOTTO_PRICE_MINIMUM_ERROR = ErrorMessage + "로또 가격은 " + LottoConstants.LOTTO_PRICE + "원 이상이어야 합니다.";
-
+    private static final String INPUT_IS_DUPLICATE = "[ERROR] 입력값이 기존 로또 번호와 중복됩니다.";
+    private static final String INPUT_OUT_OF_RANGE = "[ERROR] 입력값이 범위를 벗어났습니다.";
 
     @Override
     public void validate(List<Integer> numbers) {
@@ -21,12 +20,20 @@ public class LottoValidator implements Validator<List<Integer>> {
         validateRange(numbers);
     }
 
-    public void validatePrice(int price) {
-        if (price < LottoConstants.LOTTO_PRICE) {
-            throw new IllegalArgumentException(LOTTO_PRICE_MINIMUM_ERROR);
+    public void validateBonusNumber(int bonusNumber, List<Integer> existingNumbers) {
+        validateRange(bonusNumber);
+        validateNoDuplicate(bonusNumber, existingNumbers);
+    }
+
+    public void validateRange(int number) {
+        if (number < LottoConstants.MIN_LOTTO_NUMBER || number > LottoConstants.MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(INPUT_OUT_OF_RANGE);
         }
-        if (price % LottoConstants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(LOTTO_PRICE_UNIT_ERROR);
+    }
+
+    public void validateNoDuplicate(int number, List<Integer> existingNumbers) {
+        if (existingNumbers.contains(number)) {
+            throw new IllegalArgumentException(INPUT_IS_DUPLICATE);
         }
     }
 

@@ -25,18 +25,17 @@ public enum LottoPrize {
     }
 
     public static LottoPrize findPrize(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            return LOTTO_MATCH_1ST;
-        } else if (matchCount == 5 && bonusMatch) {
-            return LOTTO_MATCH_2ND;
-        } else if (matchCount == 5) {
-            return LOTTO_MATCH_3RD;
-        } else if (matchCount == 4) {
-            return LOTTO_MATCH_4TH;
-        } else if (matchCount == 3) {
-            return LOTTO_MATCH_5TH;
-        }
-        return LOTTO_MATCH_ZERO;
+        if (matchCount == 6) {return LottoPrize.LOTTO_MATCH_1ST;}
+
+        if (matchCount == 5 && bonusMatch) {return LottoPrize.LOTTO_MATCH_2ND;}
+
+        if (matchCount == 5) {return LottoPrize.LOTTO_MATCH_3RD;}
+
+        if (matchCount == 4) {return LottoPrize.LOTTO_MATCH_4TH;}
+
+        if (matchCount == 3) {return LottoPrize.LOTTO_MATCH_5TH;}
+
+        return LottoPrize.LOTTO_MATCH_ZERO;
     }
 
 }
