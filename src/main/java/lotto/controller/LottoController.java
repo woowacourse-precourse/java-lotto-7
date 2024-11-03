@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.info.LottoInfo;
 import lotto.model.Computer;
@@ -23,6 +24,8 @@ public class LottoController {
 
         Computer computer = new Computer(winningNumbers, bonusNumber);
         computer.compareToWinningNumbers(user.getLotto());
+
+        showResult(computer.getResult(), computer.getProfitRate(money));
     }
 
     private User makeUserToBuyLotto(int amount) {
@@ -30,14 +33,20 @@ public class LottoController {
 
         OutputView.printBlankLine();
         OutputView.notifyAmount(amount);
-        printLottoNumbers(user.getLotto());
+        showLottoNumbers(user.getLotto());
 
         return user;
     }
 
-    private void printLottoNumbers(List<Lotto> lotto) {
+    private void showLottoNumbers(List<Lotto> lotto) {
         for (Lotto oneLotto : lotto) {
             OutputView.printLottoNumbers(oneLotto.getNumbers());
         }
+    }
+
+    private void showResult(HashMap<Integer, Integer> result, double profitRate) {
+        OutputView.printBlankLine();
+        OutputView.printStatistics(result.get(5), result.get(4), result.get(3), result.get(2), result.get(1),
+                profitRate);
     }
 }

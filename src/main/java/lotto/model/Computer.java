@@ -25,11 +25,11 @@ public class Computer {
         for (Lotto oneLotto : lotto) {
             int matchCount = getMatchCount(oneLotto.getNumbers());
             boolean bonusMatch = oneLotto.getNumbers().contains(bonusNumber);
-            //System.out.println(matchCount + " " + bonusMatch);
             WinningInfo rank = WinningInfo.getRankByMatchCountAndBonus(matchCount, bonusMatch);
-            result.put(rank.getRank(), result.get(rank.getRank()) + 1);
+            if (rank != null) {
+                result.put(rank.getRank(), result.getOrDefault(rank.getRank(), 0) + 1);
+            }
         }
-        System.out.println(result);
     }
 
     private int getMatchCount(List<Integer> lottoNumbers) {
@@ -40,5 +40,22 @@ public class Computer {
             }
         }
         return matchCount;
+    }
+
+    public HashMap<Integer, Integer> getResult() {
+        return result;
+    }
+
+    public double getProfitRate(int purchaseAmount) {
+        int totalWinnings = result.entrySet().stream()
+                .mapToInt(entry -> {
+                    int rank = entry.getKey();
+                    int count = entry.getValue();
+                    int prize = WinningInfo.findByRank(rank).getWinningPrice();
+                    return prize * count;
+                })
+                .sum();
+
+        return (double) totalWinnings / purchaseAmount * 100;
     }
 }

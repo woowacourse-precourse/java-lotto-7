@@ -44,4 +44,11 @@ public enum WinningInfo {
                 .findFirst()
                 .orElse(null);
     }
+
+    public static WinningInfo findByRank(int rank) {
+        return Arrays.stream(values())
+                .filter(info -> info.getRank() == rank)
+                .findFirst()
+                .orElse(null);
+    }
 }
