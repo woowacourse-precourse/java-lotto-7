@@ -22,7 +22,7 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers){
+    private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             utils.validateRange(number);
         }
@@ -34,6 +34,11 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
+
+    public int countMatchNumber(Lotto winLotto) {
+        return (int) numbers.stream().filter(winLotto.numbers::contains).count();
+    }
+
 
     public List<Integer> getNumbers() {
         return numbers;

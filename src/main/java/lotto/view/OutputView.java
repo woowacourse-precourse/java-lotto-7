@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.Map;
 import lotto.domain.*;
+import lotto.service.ResultCalculator;
 
 public class OutputView {
     public void printLottoCount(int lottoCount) {
@@ -15,11 +17,25 @@ public class OutputView {
     }
 
 
-    public static void printWinningDetails() {
+    public void printWinningDetails(ResultCalculator resultCalculator) {
+        System.out.println();
+        System.out.println("당첨 통계\n---");
+
+        Map<LottoRank, Integer> results = resultCalculator.getResult();
+        results.forEach((rank, count) -> {
+            if (rank == LottoRank.NONE) return;;
+            String resultMessage = formatPrizeMessage(rank, count);
+            System.out.println(resultMessage);
+        });
 
     }
 
-    public static void printYield(double yield) {
+    private String formatPrizeMessage(LottoRank rank, int count) {
+        return String.format(rank.getDescription() + " - %d개",
+                count);
+    }
+
+    public void printYield(double yield) {
         System.out.printf("총 수익률은 %.2f%%입니다.%n", yield);
     }
 }

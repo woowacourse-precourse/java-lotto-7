@@ -14,4 +14,8 @@ public class LottoService {
         return new Lottos(lottos);
     }
 
+    public ResultCalculator calculateResult(Lottos lottos, Lotto winLotto, int bonusNumber){
+        return new ResultCalculator(lottos, winLotto, bonusNumber);
+    }
+
 }
