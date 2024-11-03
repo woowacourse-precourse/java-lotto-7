@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.domain.Pocket;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
@@ -19,6 +20,8 @@ public class LottoController {
         Pocket pocket = new Pocket(lottoService.activateLottoMachine(money));
         OutputView.printPurchasedLottoCount(pocket);
 
+        String inputWinningNumbers = InputView.requestLottoWinningNumbers();
+        List<Integer> winningLottoNumbers = lottoService.winningNumbersGenerator(inputWinningNumbers);
 
     }
 }
