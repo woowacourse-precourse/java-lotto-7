@@ -37,4 +37,8 @@ public class LottoPrice {
     public Integer getValue() {
         return lottoPrice;
     }
+
+    public Integer getTotalLottoCount() {
+        return lottoPrice / 1000;
+    }
 }
