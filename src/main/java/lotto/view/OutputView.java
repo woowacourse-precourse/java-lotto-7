@@ -9,6 +9,7 @@ import static lotto.view.ViewMessage.PRINT_MATCH_4;
 import static lotto.view.ViewMessage.PRINT_MATCH_5;
 import static lotto.view.ViewMessage.PRINT_MATCH_5_AND_BONUS;
 import static lotto.view.ViewMessage.PRINT_MATCH_6;
+import static lotto.view.ViewMessage.PRINT_RETURN_RATE;
 import static lotto.view.ViewMessage.PRINT_TICKET_COUNT;
 import static lotto.view.ViewMessage.PRINT_WINNING_STATISTICS;
 
@@ -53,6 +54,10 @@ public class OutputView {
         printMessage(PRINT_MATCH_5.getMessage(), lottoResult.getWinningCount(LottoRank.THIRD));
         printMessage(PRINT_MATCH_5_AND_BONUS.getMessage(), lottoResult.getWinningCount(LottoRank.SECOND));
         printMessage(PRINT_MATCH_6.getMessage(), lottoResult.getWinningCount(LottoRank.FIRST));
+    }
+
+    public static void printReturnRate(double returnRate) {
+        printMessage(PRINT_RETURN_RATE.getMessage(), returnRate);
     }
 
     private static void printMessage() {
