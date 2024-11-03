@@ -16,16 +16,22 @@ public class LottoVendingMachineTest {
 
 
         @Test
-        void 로또_구입_금액의_범위는_1000원_이상_50000원_이하이다() {
+        void 로또_구입_금액은_1000원_이상이다() {
 
             LottoVendingMachine machine = new LottoVendingMachine();
 
             String minMoney = "0";
-            String maxMoney = "51000";
-
 
             assertThat(machine.validateMoney(minMoney))
                     .isEqualTo(false);
+        }
+
+        @Test
+        void 로또_구입_금액은_50000원_이하이다() {
+
+            LottoVendingMachine machine = new LottoVendingMachine();
+
+            String maxMoney = "51000";
 
             assertThat(machine.validateMoney(maxMoney))
                     .isEqualTo(false);

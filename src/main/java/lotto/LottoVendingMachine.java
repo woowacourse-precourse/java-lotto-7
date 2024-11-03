@@ -21,6 +21,7 @@ public class LottoVendingMachine {
         return createLottos(money);
     }
 
+    //Todo: 리팩토링 필요
     public boolean validateMoney(String userInput) {
 
         try {
@@ -43,9 +44,11 @@ public class LottoVendingMachine {
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
             return false;
+
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] "+e.getMessage());
             return false;
+
         }
     }
 
