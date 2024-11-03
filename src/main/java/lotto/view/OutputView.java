@@ -24,22 +24,22 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void displayStatistics(Map<Prize, Integer> winningCount, double profitRate) {
+    public void displayStatistics(Map<Prize, Integer> prizeCount, double profitRate) {
         String result = System.lineSeparator()
                 + RESULT_TITLE + System.lineSeparator()
                 + DIVIDER + System.lineSeparator()
-                + getWinningResult(winningCount)
+                + getPrizeResult(prizeCount)
                 + getProfitRateResult(profitRate);
         System.out.println(result);
         Console.close();
     }
 
-    private String getWinningResult(Map<Prize, Integer> winningCount) {
-        return String.format(THREE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_3))
-                + String.format(FOUR_MATCHES_RESULT, winningCount.get(Prize.MATCHES_4))
-                + String.format(FIVE_MATCHES_RESULT, winningCount.get(Prize.MATCHES_5))
-                + String.format(FIVE_MATCHES_BONUS_MATCH_RESULT, winningCount.get(Prize.MATCHES_5_BONUS_MATCH))
-                + String.format(SIX_MATCHES_RESULT, winningCount.get(Prize.MATCHES_6));
+    private String getPrizeResult(Map<Prize, Integer> prizeCount) {
+        return String.format(THREE_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_3))
+                + String.format(FOUR_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_4))
+                + String.format(FIVE_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_5))
+                + String.format(FIVE_MATCHES_BONUS_MATCH_RESULT, prizeCount.get(Prize.MATCHES_5_BONUS_MATCH))
+                + String.format(SIX_MATCHES_RESULT, prizeCount.get(Prize.MATCHES_6));
     }
 
     private String getProfitRateResult(double profitRate) {

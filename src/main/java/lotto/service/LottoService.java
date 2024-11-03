@@ -12,8 +12,8 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
+import lotto.domain.PrizeCount;
 import lotto.domain.ProfitRate;
-import lotto.domain.WinningCount;
 
 public class LottoService {
 
@@ -23,18 +23,18 @@ public class LottoService {
                 .collect(Collectors.toList()));
     }
 
-    public WinningCount getWinningCount(Lottos issuedLottos, Lotto winningLotto, Bonus bonusNumber) {
-        WinningCount winningCount = new WinningCount();
+    public PrizeCount getPrizeCount(Lottos issuedLottos, Lotto winningLotto, Bonus bonusNumber) {
+        PrizeCount prizeCount = new PrizeCount();
         for (Lotto issuedLotto : issuedLottos.getLottos()) {
             int matchCount = getMatchCount(issuedLotto, winningLotto);
             boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
-            calculateWinningCount(winningCount, matchCount, isBonusMatch);
+            calculatePrizeCount(prizeCount, matchCount, isBonusMatch);
         }
-        return winningCount;
+        return prizeCount;
     }
 
-    public ProfitRate getProfitRate(Amount amount, WinningCount winningCount) {
-        return ProfitRate.of(amount.getAmount(), getTotalPrize(winningCount.getWinningCount()));
+    public ProfitRate getProfitRate(Amount amount, PrizeCount prizeCount) {
+        return ProfitRate.of(amount.getAmount(), getTotalPrize(prizeCount.getPrizeCount()));
     }
 
     private int getIssuedCount(Amount amount) {
@@ -58,12 +58,12 @@ public class LottoService {
         return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
-    private void calculateWinningCount(WinningCount winningCount, int matchCount, boolean isBonusMatch) {
+    private void calculatePrizeCount(PrizeCount prizeCount, int matchCount, boolean isBonusMatch) {
         if (matchCount < Constant.MIN_PRIZE_COUNT) {
             return;
         }
         String prizeName = getPrizeName(matchCount, isBonusMatch);
-        winningCount.increaseCount(Prize.valueOf(prizeName));
+        prizeCount.increaseCount(Prize.valueOf(prizeName));
     }
 
     private String getPrizeName(int matchCount, boolean isBonusMatch) {
@@ -74,9 +74,9 @@ public class LottoService {
         return prizeName;
     }
 
-    private int getTotalPrize(Map<Prize, Integer> winningCount) {
+    private int getTotalPrize(Map<Prize, Integer> prizeCount) {
         int totalPrize = 0;
-        for (Entry<Prize, Integer> entry : winningCount.entrySet()) {
+        for (Entry<Prize, Integer> entry : prizeCount.entrySet()) {
             Prize prize = entry.getKey();
             Integer count = entry.getValue();
             totalPrize += prize.calculate(count);

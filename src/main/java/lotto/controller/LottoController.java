@@ -4,8 +4,8 @@ import lotto.domain.Amount;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.PrizeCount;
 import lotto.domain.ProfitRate;
-import lotto.domain.WinningCount;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,10 +29,10 @@ public class LottoController {
         Lotto winningLotto = getWinningLotto();
         Bonus bonusNumber = getBonusNumber(winningLotto);
 
-        WinningCount winningCount = lottoService.getWinningCount(issuedLottos, winningLotto, bonusNumber);
-        ProfitRate profitRate = lottoService.getProfitRate(amount, winningCount);
+        PrizeCount prizeCount = lottoService.getPrizeCount(issuedLottos, winningLotto, bonusNumber);
+        ProfitRate profitRate = lottoService.getProfitRate(amount, prizeCount);
 
-        outputView.displayStatistics(winningCount.getWinningCount(), profitRate.getProfitRate());
+        outputView.displayStatistics(prizeCount.getPrizeCount(), profitRate.getProfitRate());
     }
 
     private Amount getPurchaseAmount() {
