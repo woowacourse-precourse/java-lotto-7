@@ -1,17 +1,20 @@
 package lotto.view;
 
-public enum InputView {
-    PROMPT_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
-    PROMPT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    PROMPT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+import camp.nextstep.edu.missionutils.Console;
 
-    private final String message;
-
-    InputView(String message) {
-        this.message = message;
+public class InputView {
+    public String promptPurchaseAmount() {
+        System.out.println("구입 금액을 입력해 주세요.");
+        return Console.readLine();
     }
 
-    public void printMessage() {
-        System.out.println(message);
+    public String promptWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public String promptBounusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
     }
 }
