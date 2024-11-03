@@ -33,6 +33,7 @@ public class Lotto {
     }
 
     public int checkBonus(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) return 1;
         return 0;
     }
 }
