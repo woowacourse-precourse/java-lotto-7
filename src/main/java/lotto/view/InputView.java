@@ -31,6 +31,7 @@ public class InputView {
     private int getPriceInput() {
         System.out.println(INPUT_PRICE);
         String str = Console.readLine();
+        System.out.println();
         return inputValidator.validatePrice(str);
     }
 
@@ -38,6 +39,7 @@ public class InputView {
         while(true){
             try{
                 List<String> winningNumbers = readWinningNumbers();
+                System.out.println();
                 return inputValidator.validateWinningNumbers(winningNumbers);
             }catch (IllegalArgumentException ex) {
                 System.out.println(ex.getMessage());
@@ -56,6 +58,7 @@ public class InputView {
         while(true){
             try{
                 String bonus = readBonusNumber();
+                System.out.println();
                 return inputValidator.validateBonusNumber(bonus);
             }catch (IllegalArgumentException ex){
                 System.out.println(ex.getMessage());

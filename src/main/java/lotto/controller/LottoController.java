@@ -38,5 +38,6 @@ public class LottoController {
         for(Lotto lotto:lottoTicket){
             System.out.println(lotto);
         }
+        System.out.println();
     }
 }
