@@ -12,37 +12,44 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
 
     public void run() {
-        PurchasedPrice purchasedPrice = null;
-        while (purchasedPrice == null) {
-            try {
-                purchasedPrice = new PurchasedPrice(InputView.readPurchasedPrice());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
+        PurchasedPrice purchasedPrice = getPurchasedPrice();
         Lottos purchasedLottos = generate(purchasedPrice);
         OutputView.printPurchasedLottos(purchasedLottos);
 
-        Lotto winningNumbers = null;
-        while (winningNumbers == null) {
-            try {
-                winningNumbers = new Lotto(InputView.readWinningNumbers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        BonusNumber bonusNumber = null;
-        while (bonusNumber == null) {
-            try {
-                bonusNumber = new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Lotto winningNumbers = getWinningNumbers();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
 
         printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
+    }
+
+    private PurchasedPrice getPurchasedPrice() {
+        while (true) {
+            try {
+                return new PurchasedPrice(InputView.readPurchasedPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto getWinningNumbers() {
+        while (true) {
+            try {
+                return new Lotto(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber getBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                return new BonusNumber(InputView.readBonusNumber(), winningNumbers.getNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lottos generate(PurchasedPrice purchasedPrice) {
