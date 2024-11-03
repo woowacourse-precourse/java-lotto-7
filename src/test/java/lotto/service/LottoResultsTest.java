@@ -35,4 +35,20 @@ class LottoResultsTest {
         assertEquals(0, result.get(Rank.THREE));
         assertEquals(0, result.get(Rank.NONE));
     }
+
+    @Test
+    @DisplayName("총 수익 계산 확인")
+    void calculateTotalEarnings() {
+        LottoTickets tickets = LottoTickets.from(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+        ));
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
+        BonusNumber bonusNumber = BonusNumber.from("7", winningNumbers);
+
+        Map<Rank, Integer> result = lottoResults.calculateResult(tickets, winningNumbers, bonusNumber);
+        long totalEarnings = lottoResults.calculateTotalEarnings(result);
+
+        assertEquals(2_000_000_000 + 1_500_000, totalEarnings);
+    }
 }
