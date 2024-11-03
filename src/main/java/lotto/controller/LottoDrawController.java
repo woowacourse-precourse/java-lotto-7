@@ -20,9 +20,13 @@ public class LottoDrawController {
 	}
 
 	private WinningLotto getWinningLotto() {
-		List<Integer> winningNumbers = getWinningNumbers();
-		int bonusNumber = getBonusNumber();
-		return new WinningLotto(winningNumbers, bonusNumber, lottoCreator);
+		try {
+			List<Integer> winningNumbers = getWinningNumbers();
+			int bonusNumber = getBonusNumber();
+			return new WinningLotto(winningNumbers, bonusNumber, lottoCreator);
+		} catch (IllegalArgumentException exception) {
+			outputView.printErrorMessage(exception.getMessage());
+		}
 	}
 
 	private List<Integer> getWinningNumbers() {
