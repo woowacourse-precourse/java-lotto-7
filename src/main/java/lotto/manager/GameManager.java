@@ -5,7 +5,7 @@ import lotto.domain.Player;
 import lotto.domain.Result;
 import lotto.io.Reader;
 import lotto.io.Writer;
-import lotto.util.LottoNumberSupplier;
+import lotto.util.function.LottoNumberSupplier;
 
 import java.util.List;
 

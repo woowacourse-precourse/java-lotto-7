@@ -2,7 +2,7 @@ package lotto.manager;
 
 import lotto.domain.Lotto;
 import lotto.domain.Player;
-import lotto.util.LottoNumberSupplier;
+import lotto.util.function.LottoNumberSupplier;
 
 import java.util.ArrayList;
 import java.util.List;

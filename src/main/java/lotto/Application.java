@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.manager.GameManager;
-import lotto.util.LottoNumberSupplier;
-import lotto.util.LottoNumberSupplierImpl;
+import lotto.util.function.LottoNumberSupplier;
+import lotto.util.function.LottoNumberSupplierImpl;
 
 public class Application {
 
