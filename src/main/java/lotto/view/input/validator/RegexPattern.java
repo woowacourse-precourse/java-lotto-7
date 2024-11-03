@@ -1,4 +1,4 @@
-package lotto.view.input.domain;
+package lotto.view.input.validator;
 
 import java.util.regex.Pattern;
 

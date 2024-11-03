@@ -1,4 +1,4 @@
-package lotto.view.input.domain;
+package lotto.view.input.service;
 
 public interface InputService {
     String input();

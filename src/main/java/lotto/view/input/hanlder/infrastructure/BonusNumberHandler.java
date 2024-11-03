@@ -1,6 +1,6 @@
 package lotto.view.input.hanlder.infrastructure;
 
-import lotto.view.input.domain.InputService;
+import lotto.view.input.service.InputService;
 import lotto.view.input.hanlder.service.InputHandlerService;
 
 import java.util.function.Function;

@@ -1,7 +1,6 @@
 package lotto.view.input.validator;
 
 import lotto.constant.ErrorMessage;
-import lotto.view.input.domain.RegexPattern;
 
 public class InputValidator {
     public static void moneyValidate(String input) {
