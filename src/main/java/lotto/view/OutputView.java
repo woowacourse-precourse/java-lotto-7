@@ -7,6 +7,7 @@ import java.util.List;
 public class OutputView {
 
     public void printLottoNumber(int number){
+        System.out.println();
         System.out.println(number + "개를 구매했습니다.");
     }
 
