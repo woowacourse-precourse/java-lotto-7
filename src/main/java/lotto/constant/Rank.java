@@ -1,6 +1,6 @@
-package lotto.component;
+package lotto.constant;
 
-public enum Prize {
+public enum Rank {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
     THIRD(5, false, 1_500_000),
@@ -13,20 +13,17 @@ public enum Prize {
     private final boolean isBonusMatched;
     private final int prize;
 
-    Prize(int matchCount, boolean isBonusMatched, int prize) {
+    Rank(int matchCount, boolean isBonusMatched, int prize) {
         this.correctNumberCount = matchCount;
         this.isBonusMatched = isBonusMatched;
         this.prize = prize;
     }
 
-    Prize(int prize) {
+    Rank(int prize) {
         this(0, false, prize);
     }
 
-    public static Prize getRank(LottoMatchCounts matchCounts) {
-        int matchCount = matchCounts.getCorrectNumberCount();
-        boolean isBonusMatched = matchCounts.isBonusMatched();
-
+    public static Rank getRank(int matchCount, boolean isBonusMatched) {
         if (matchCount == 6) return FIRST;
         if (matchCount == 5 && isBonusMatched) return SECOND;
         if (matchCount == 5 && !isBonusMatched) return THIRD;

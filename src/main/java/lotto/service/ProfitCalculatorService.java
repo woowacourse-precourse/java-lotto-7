@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.component.Prize;
+import lotto.constant.Rank;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class ProfitCalculatorService {
         return instance;
     }
 
-    public Long calculateWinningAmount(Map<Prize, Integer> prizeResults){
+    public Long calculateWinningAmount(Map<Rank, Integer> prizeResults){
         return prizeResults.entrySet().stream()
             .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
             .sum();

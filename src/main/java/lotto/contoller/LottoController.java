@@ -1,70 +1,90 @@
 package lotto.contoller;
 
-import lotto.constant.LottoConstants;
-import lotto.component.Lotto;
-import lotto.component.Prize;
-import lotto.domain.WinningLotto;
+import lotto.constant.GameConfig;
+import lotto.model.RandomLotto;
+import lotto.model.Lotto;
+import lotto.constant.Rank;
+import lotto.model.WinningLotto;
 import lotto.service.ProfitCalculatorService;
-import lotto.service.WinningStatisticsService;
-import lotto.service.LottoService;
+import lotto.service.ResultStatisticsService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoController {
 
-    private final LottoService lottoService;
-    private final WinningStatisticsService checkResultService;
+    private final ResultStatisticsService resultStatisticsService;
     private final ProfitCalculatorService benefitService;
 
-    private WinningLotto winningLotto;
 
-    public LottoController(LottoService lottoService,
-                           WinningStatisticsService checkResultService,
+    public LottoController(ResultStatisticsService resultStatisticsService,
                            ProfitCalculatorService benefitService) {
-        this.lottoService = lottoService;
-        this.checkResultService = checkResultService;
+        this.resultStatisticsService = resultStatisticsService;
         this.benefitService = benefitService;
     }
 
     public void start(){
         int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottoTickets = createLottoTickets(purchaseAmount/ LottoConstants.LOTTO_PRICE);
-        winningLotto = getWinningLotto();
-        showGameResults(purchaseAmount, lottoTickets);
+        List<Lotto> lottoTickets = createLottoTickets(purchaseAmount/ GameConfig.LOTTO_PRICE);
+        WinningLotto winningLotto = getWinningLotto();
+        winningLotto = getBonusNumber(winningLotto);
+        showGameResults(purchaseAmount, lottoTickets, winningLotto);
     }
 
     public int getPurchaseAmount(){
-        OutputView.requestPurchaseAmount();
-        int purchaseAmount = InputView.readPurchasePrice();
-        //valid
-        return purchaseAmount;
+        while(true) {
+            try {
+                OutputView.requestPurchaseAmount();
+                return InputView.readPurchasePrice();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Lotto> createLottoTickets(int numberOfTickets){
-        List<Lotto> lottoTickets = lottoService.createRandomLottos(numberOfTickets);
+        List<Lotto> lottoTickets = Stream.generate(RandomLotto::new)
+                .limit(numberOfTickets)
+                .collect(Collectors.toList());
         OutputView.printLottoTickets(numberOfTickets, lottoTickets);
         return lottoTickets;
     }
 
     public WinningLotto getWinningLotto(){
-        OutputView.requestWinningNumbers();
-        Lotto lotto = new Lotto(InputView.readWinningNumbers());
-        OutputView.requestBonusNumber();
-        int bonusNumber = InputView.readBonusNumber();
-        return new WinningLotto(lotto, bonusNumber);
+        while(true) {
+            try {
+                OutputView.requestWinningNumbers();
+                return new WinningLotto(InputView.readWinningNumbers());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public void showGameResults(int purchasePrice, List<Lotto> purchasedLotto){
+    public WinningLotto getBonusNumber(WinningLotto winningLotto){
+        while(true) {
+            try {
+                OutputView.requestBonusNumber();
+                winningLotto.setBonusNumber(InputView.readBonusNumber());
+                return winningLotto;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public void showGameResults(int purchaseAmount, List<Lotto> purchasedLotto, WinningLotto winningLotto){
         OutputView.printResultTitle();
-        Map<Prize, Integer> prizeResults = checkResultService.collectWinningStatistics(purchasedLotto, winningLotto);
+        Map<Rank, Integer> prizeResults = resultStatisticsService.collectWinningStatistics(purchasedLotto, winningLotto);
         OutputView.printWinningResults(prizeResults);
-        showBenefitRate(purchasePrice, prizeResults);
+        showBenefitRate(purchaseAmount, prizeResults);
     }
 
-    public void showBenefitRate(int purchaseAmount , Map<Prize, Integer> prizeResults){
+    public void showBenefitRate(int purchaseAmount , Map<Rank, Integer> prizeResults){
         Long totalWinningAmount = benefitService.calculateWinningAmount(prizeResults);
         Double benefitRate = benefitService.calculateBenefitRate(purchaseAmount, totalWinningAmount);
         OutputView.printBenefitRate(String.valueOf(benefitRate));
