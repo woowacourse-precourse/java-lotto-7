@@ -8,14 +8,11 @@ import static lotto.model.Winning.NONE;
 import static lotto.model.Winning.getFromValue;
 import static lotto.model.Winning.getTotalWinningPrice;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 
 public class Lottos {
     public static int WINING_RATE_DECIMAL_PLACE = 1;
@@ -23,8 +20,10 @@ public class Lottos {
     private static int WINNING_RATE_MULTIPLIER = 100;
     private final Map<Lotto, Winning> lottos = new LinkedHashMap<>();
 
-    public void allocateLottosByRandomNumber(List<Integer> randomNumbers, Function<List<Integer>, Lotto> create) {
-        lottos.put(create.apply(randomNumbers), NONE);
+    public Lotto allocateLottosByRandomNumber(List<Integer> randomNumbers, Function<List<Integer>, Lotto> create) {
+        Lotto lotto = create.apply(randomNumbers);
+        lottos.put(lotto, NONE);
+        return lotto;
     }
 
     public String toStringAllLottoNumber() {
@@ -35,6 +34,10 @@ public class Lottos {
 
     public int size() {
         return lottos.size();
+    }
+
+    public Winning getWinning(Lotto lotto) {
+        return lottos.get(lotto);
     }
 
     public void setByCorrectCount(List<Integer> winningNumber, int bonusNumber) {
