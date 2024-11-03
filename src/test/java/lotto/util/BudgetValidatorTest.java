@@ -19,7 +19,7 @@ class BudgetValidatorTest {
     class invalidInput {
         @DisplayName("정수가 아닌 입력의 경우 예외 처리한다.")
         @ParameterizedTest
-        @ValueSource(strings = {"하이", "burpee", "   안 녕 하  시  렵 니 까   ", "-10", "-1 2 3"})
+        @ValueSource(strings = {"하이", "burpee", "   안 녕 하  시  렵 니 까   ","1.1234","-10", "-1 2 3"})
         void 정수_아닌_입력(String input) {
             assertThatThrownBy(() -> budgetValidator.validate(input))
                     .isInstanceOf(IllegalArgumentException.class)
