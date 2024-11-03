@@ -16,10 +16,10 @@ public class LottoController {
     }
 
     public void run() {
-        OutputView.printInputPurchaseAmountMessage();
-        String purchaseAmountInput = InputView.getUserInput();
-        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-        int lottoCount = purchaseAmount / 1000;
+        OutputView.printInputPurchaseMoneyMessage();
+        String Money = InputView.getUserInput();
+        int purchaseMoney = Integer.parseInt(Money);
+        int lottoCount = purchaseMoney / 1000;
 
         List<Lotto> lottos = lottoService.generateLottos(lottoCount);
         OutputView.printLottoCountMessage(lottoCount);
@@ -37,7 +37,7 @@ public class LottoController {
         OutputView.printPrizeStatistics(matchCounts);
 
         long totalPrizeMoney = lottoService.getPrizeMoney(matchCounts);
-        String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseAmount);
+        String rateOfReturn = lottoService.getRateOfReturn(totalPrizeMoney, purchaseMoney);
         OutputView.printRateOfReturn(rateOfReturn);
 
     }
