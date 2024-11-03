@@ -20,6 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         Validator.isEqualListSize(numbers, LOTTO_NUMBER_COUNT);
+        Validator.isNotDuplicate(numbers);
         numbers.forEach(number -> {
             Validator.isNumberWithinRange(number, LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM);
         });
