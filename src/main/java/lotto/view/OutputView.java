@@ -1,7 +1,9 @@
 package lotto.view;
 
+import lotto.model.LottoResult;
 import lotto.model.Lotto;
 import lotto.model.PurchaseAmount;
+import lotto.model.Rank;
 
 import java.util.List;
 
@@ -16,14 +18,14 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
-    public static void printResultStatistics(int[] matchCounts, double profitRate) {
+    public static void printResult(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("%d개 일치 (%s) - %d개\n", 3, "5,000원", matchCounts[0]);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 4, "50,000원", matchCounts[1]);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 5, "1,500,000원", matchCounts[2]);
-        System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", 5, "30,000,000원", matchCounts[3]);
-        System.out.printf("%d개 일치 (%s) - %d개\n", 6, "2,000,000,000원", matchCounts[4]);
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+        System.out.println("3개 일치 (5,000원) - " + lottoResult.getCount(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoResult.getCount(Rank.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoResult.getCount(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResult.getCount(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoResult.getCount(Rank.FIRST) + "개");
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoResult.calculateYield());
     }
 }

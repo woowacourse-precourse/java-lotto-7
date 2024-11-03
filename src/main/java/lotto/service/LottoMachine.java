@@ -14,10 +14,10 @@ public class LottoMachine {
     public LottoMachine(PurchaseAmount purchaseAmount, List<Lotto> lottos) {
         this.purchaseAmount = purchaseAmount;
         this.lottos = lottos;
-        genrateLotts();
+        generateLotts();
     }
 
-    private void genrateLotts() {
+    private void generateLotts() {
         int count= purchaseAmount.getMoney()/PurchaseAmount.LOTTE_PRICE;
         for (int i=0;i<count;i++){
             Lotto lotto = new Lotto(RandomNumberGenerator.genreateNumbers());
