@@ -12,11 +12,20 @@ public class LottoController {
         int money = InputView.getMoneyToBuy();
         int amount = money / LottoInfo.PRICE.getNumber();
 
+        User user = makeUserToBuyLotto(amount);
+
+        OutputView.printBlankLine();
+        InputView.getWinningNumbers();
+    }
+
+    private User makeUserToBuyLotto(int amount) {
         User user = new User(amount);
 
         OutputView.printBlankLine();
         OutputView.notifyAmount(amount);
         printLottoNumbers(user.getLotto());
+
+        return user;
     }
 
     private void printLottoNumbers(List<Lotto> lotto) {
