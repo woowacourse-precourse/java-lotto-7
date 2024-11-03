@@ -13,4 +13,5 @@ public class LottoConstants {
     public static final int GAME_PRICE = 1000;
 
     public static final String INPUT_IS_NOT_NUMBER = "[ERROR] 입력된 값이 숫자가 아닙니다.";
+    public static final String NOT_MATCH_COUNT = "[ERROR] 잘못된 match count 입니다.";
 }
