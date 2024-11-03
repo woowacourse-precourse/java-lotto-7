@@ -2,7 +2,7 @@ package lotto.domain;
 
 public enum LottoPrice {
 
-    THREE(3, false, 3000),
+    THREE(3, false, 5000),
     FOUR(4, false, 50000),
     FIVE(5, false, 1500000),
     FIVE_BONUS(5, true, 30000000),
@@ -19,6 +19,10 @@ public enum LottoPrice {
         this.lottoCount = lottoCount;
         this.isBonus = isBonus;
         this.lottoPrice = lottoPrice;
+    }
+
+    public boolean isSameLottoPrice(int lottoPrice) {
+        return this.lottoPrice == lottoPrice;
     }
 
     public static int getByLottoCount(int lottoCount, boolean isBonus) {

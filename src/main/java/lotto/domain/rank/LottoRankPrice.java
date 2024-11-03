@@ -2,19 +2,12 @@ package lotto.domain.rank;
 
 import lotto.domain.LottoPrice;
 
-public class LottoRank {
+public class LottoRankPrice {
 
-    private final int lottoCount;
     private final int price;
 
-
-    public LottoRank(int lottoCount, boolean isBonus) {
-        this.lottoCount = lottoCount;
+    public LottoRankPrice(int lottoCount, boolean isBonus) {
         this.price = calculatePrice(lottoCount, isBonus);
-    }
-
-    public int getLottoCount() {
-        return lottoCount;
     }
 
     public int getPrice() {

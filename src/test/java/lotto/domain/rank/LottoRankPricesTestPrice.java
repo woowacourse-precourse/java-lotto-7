@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")
-class LottoRanksTest {
+class LottoRankPricesTestPrice {
 
     private List<Lotto> lottos;
     private WinningLotto winningLotto;
@@ -28,18 +28,31 @@ class LottoRanksTest {
     }
 
     @Test
-    void 각_로또에_대한_등수를_정확히_생성한다() {
+    void 각_로또에_대한_당첨_개수를_생성한다() {
         // given
-        LottoRanks lottoRanks = new LottoRanks(lottos, winningLotto);
+        LottoRankPrices lottoRankPrices = new LottoRankPrices(lottos, winningLotto);
 
         // when
-        List<LottoRank> ranks = lottoRanks.displayLottoRanks();
+        List<Integer> sortedRanks = lottoRankPrices.sortRanks();
 
         // then
-        assertThat(ranks).hasSize(4);
-        assertThat(ranks.get(0).getLottoCount()).isEqualTo(6);
-        assertThat(ranks.get(1).getLottoCount()).isEqualTo(5);
-        assertThat(ranks.get(2).getLottoCount()).isEqualTo(4);
-        assertThat(ranks.get(3).getLottoCount()).isEqualTo(3);
+        assertThat(sortedRanks.get(0)).isEqualTo(1);
+        assertThat(sortedRanks.get(1)).isEqualTo(1);
+        assertThat(sortedRanks.get(2)).isEqualTo(0);
+        assertThat(sortedRanks.get(3)).isEqualTo(1);
+        assertThat(sortedRanks.get(4)).isEqualTo(1);
+    }
+
+    @Test
+    void 전체_당첨금액을_계산한다() {
+        // given
+        LottoRankPrices lottoRankPrices = new LottoRankPrices(lottos, winningLotto);
+        double expected = 2030055000.0;
+
+        // when
+        double actual = lottoRankPrices.sumLottoPrice();
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 }
