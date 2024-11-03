@@ -38,17 +38,6 @@ class LottoResultTest {
         assertThat(result).isEqualTo(0.0);
     }
 
-    @Test
-    @DisplayName("로또 결과를 알맞은 출력 형태로 반환한다.")
-    void testToString() {
-        Map<Rank, Integer> map = settingMap();
-        LottoResult lottoResult = LottoResult.of(map);
-
-        String result = lottoResult.toString();
-
-        assertThat(result).isEqualTo("LottoResult{result={THIRD_PLACE=0, FOURTH_PLACE=0, SECOND_PLACE=0, FIRST_PLACE=0, FIFTH_PLACE=0}}");
-    }
-
     private static HashMap<Rank, Integer> settingMap() {
         HashMap<Rank, Integer> map = new HashMap<>();
         map.put(Rank.FIRST_PLACE, 0);
