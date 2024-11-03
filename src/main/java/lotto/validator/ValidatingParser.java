@@ -40,7 +40,7 @@ public class ValidatingParser {
 
 	private void validateNumberOverFlow(String input) {
 		if (input.length() > MAX_NUMBER_LENGTH) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_OVER_FLOW.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_PURCHASE_AMOUNT_OVER_FLOW.getMessage());
 		}
 	}
 
@@ -48,20 +48,19 @@ public class ValidatingParser {
 		try {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
 		}
 	}
 
 	private void validatePositiveNumber(int validNumber) {
 		if (validNumber < MIN_POSITIVE_NUMBER) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_NEGATIVE.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_PURCHASE_AMOUNT_NEGATIVE.getMessage());
 		}
 	}
 
 	private void validateDelimiter(String input) {
-		System.out.println(input);
 		if (!input.contains(DELIMITER)) {
-			throw new IllegalArgumentException(LottoValidationMessage.MISSING_WINNING_NUMBERS_DELIMITER.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.MISSING_WINNING_NUMBERS_DELIMITER.getMessage());
 		}
 	}
 
@@ -70,31 +69,31 @@ public class ValidatingParser {
 			.map(number -> {
 				if (number.length() > MAX_NUMBER_LENGTH) {
 					throw new IllegalArgumentException(
-						LottoValidationMessage.INVALID_WINNING_NUMBERS_OVER_FLOW.getMessage());
+						InputValidationMessage.INVALID_WINNING_NUMBERS_OVER_FLOW.getMessage());
 				}
 				try {
 					return Integer.parseInt(number);
 				} catch (NumberFormatException e) {
 					throw new IllegalArgumentException(
-						LottoValidationMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+						InputValidationMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
 				}
 			}).toList();
 	}
 
 	private int parsedValidateBonusNumber(String input) {
 		if (input.length() > MAX_NUMBER_LENGTH) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_BONUS_NUMBER_OVER_FLOW.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_BONUS_NUMBER_OVER_FLOW.getMessage());
 		}
 		try {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_BONUS_NUMBER_FORMAT.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_BONUS_NUMBER_FORMAT.getMessage());
 		}
 	}
 
 	private void validatePositiveBonusNumber(int parsedBonusNumber) {
 		if (parsedBonusNumber < MIN_POSITIVE_NUMBER) {
-			throw new IllegalArgumentException(LottoValidationMessage.INVALID_BONUS_NUMBER_NEGATIVE.getMessage());
+			throw new IllegalArgumentException(InputValidationMessage.INVALID_BONUS_NUMBER_NEGATIVE.getMessage());
 		}
 	}
 }
