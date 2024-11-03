@@ -5,8 +5,10 @@ import lotto.application.LottoResultUseCase;
 import lotto.application.PurchaseLottoUseCase;
 import lotto.application.RetrieveLottoUseCase;
 import lotto.domain.Lotto;
+import lotto.domain.WinResult;
 import lotto.view.ApplicationView;
 import lotto.view.converter.MessageParser;
+import lotto.view.dto.WinningInfo;
 
 public class LottoApplication {
 
@@ -37,6 +39,7 @@ public class LottoApplication {
 
         drawWinner();
 
+        showResult();
     }
 
     private void purchaseLotto() {
@@ -54,5 +57,10 @@ public class LottoApplication {
         int bonusNumber = applicationView.requestBonusNumber();
         lottoResultUseCase.createWinLotto(messageParser.toNumbers(winNumber), bonusNumber);
         lottoResultUseCase.checkWinning();
+    }
+
+    private void showResult() {
+        WinResult winResult = lottoResultUseCase.getWinResult();
+        applicationView.printWinningResult(WinningInfo.from(winResult));
     }
 }

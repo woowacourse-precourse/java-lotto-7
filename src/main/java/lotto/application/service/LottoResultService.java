@@ -44,8 +44,15 @@ public class LottoResultService implements LottoResultUseCase {
         lottos.forEach(lotto -> {
             MatchingInfo matchingInfo = lottoMatcher.checkMatchCount(winLotto, lotto);
             LottoRank lottoRank = LottoRank.findByMatchingInfo(matchingInfo);
-            winResult.plusCount(lottoRank.name());
+            if (lottoRank != null) {
+                winResult.plusCount(lottoRank.name());
+            }
         });
         winResultHistory.add(winResult);
+    }
+
+    @Override
+    public WinResult getWinResult() {
+        return winResultHistory.getRecent();
     }
 }

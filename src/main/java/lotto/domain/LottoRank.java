@@ -4,11 +4,11 @@ import java.util.Arrays;
 import lotto.application.service.vo.MatchingInfo;
 
 public enum LottoRank {
-    FIRST(6, false, "2,000,000,000"),
-    SECOND(5, true, "30,000,000"),
-    THIRD(5, false, "1,500,000"),
+    FIFTH(3, false, "5,000"),
     FOURTH(4, false, "50,000"),
-    FIFTH(3, false, "5,000");
+    THIRD(5, false, "1,500,000"),
+    SECOND(5, true, "30,000,000"),
+    FIRST(6, false, "2,000,000,000");
 
     private int matchedCount;
     private boolean requireBonusNumber;
@@ -18,6 +18,18 @@ public enum LottoRank {
         this.matchedCount = matchedCount;
         this.requireBonusNumber = requireBonusNumber;
         this.prize = prize;
+    }
+
+    public int getMatchedCount() {
+        return matchedCount;
+    }
+
+    public boolean isRequireBonusNumber() {
+        return requireBonusNumber;
+    }
+
+    public String getPrize() {
+        return prize;
     }
 
     public static LottoRank findByMatchingInfo(MatchingInfo matchingInfo) {
