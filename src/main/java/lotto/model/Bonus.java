@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.valid.ValidBonus;
+import lotto.helper.valid.ValidBonus;
 
 public class Bonus {
     private int bonusNumber;
