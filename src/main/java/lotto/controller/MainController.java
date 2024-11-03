@@ -15,6 +15,7 @@ import static lotto.view.InputView.readPurchaseMoney;
 import static lotto.view.InputView.readWinningNumbers;
 import static lotto.view.OutputView.printLottoBundleResultHeader;
 import static lotto.view.OutputView.printLottoRankResult;
+import static lotto.view.OutputView.printTotalProfit;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +33,7 @@ public class MainController {
         BonusNumber bonusNumber = askBonusNumber(winningNumbers);
         LottoRanks lottoRanks = computeLottoBundleResult(lottoBundle, winningNumbers, bonusNumber);
         makeStatistic(lottoRanks, myWallet);
+        calculateProfit(lottoRanks, myWallet);
     }
 
     public static Wallet makeWallet() {
@@ -103,5 +105,12 @@ public class MainController {
             Integer count = (Integer) (int) lottoRanks.getLottoRanks().stream().filter(l -> l.getMatchCount().equals(lottoRank.getMatchCount())).count();
             printLottoRankResult(lottoRank, count);
         }
+    }
+
+    public static void calculateProfit(LottoRanks lottoRanks, Wallet wallet) {
+        Double totalReward = Double.valueOf(lottoRanks.getLottoRanks().stream().mapToInt(LottoRank::getReward).sum());
+        System.out.println(totalReward + " " + wallet.getMoney());
+        Double profit = totalReward / wallet.getMoney();
+        printTotalProfit(profit);
     }
 }

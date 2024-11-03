@@ -30,4 +30,8 @@ public class Wallet {
     public Integer getAffordableLottoAmount() {
         return money / 1000;
     }
+
+    public Integer getMoney() {
+        return money;
+    }
 }

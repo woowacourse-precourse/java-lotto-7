@@ -20,4 +20,8 @@ public class OutputView {
     public static void printLottoRankResult(LottoRank lottoRank, Integer amount) {
         System.out.println(lottoRank.getDescription() + amount + "개");
     }
+
+    public static void printTotalProfit(Double profit) {
+        System.out.println("총 수익률은 " + profit * 100 + "%입니다.");
+    }
 }
