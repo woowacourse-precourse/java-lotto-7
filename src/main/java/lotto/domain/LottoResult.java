@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
     private static final int INITIALIZATION_VALUE = 0;
+    private static final int INCREMENT_VALUE = 1;
     private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
 
     private final Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
@@ -16,11 +18,11 @@ public class LottoResult {
     }
 
     public void addResult(Rank rank) {
-        winningResults.put(rank, winningResults.get(rank) + 1);
+        winningResults.computeIfPresent(rank, (key, value) -> value + INCREMENT_VALUE);
     }
 
     public Map<Rank, Integer> getWinningResults() {
-        return new EnumMap<>(winningResults);
+        return Collections.unmodifiableMap(winningResults);
     }
 
     public double calculateReturnOnInvestment(int purchaseAmount) {
