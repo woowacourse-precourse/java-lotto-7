@@ -7,7 +7,6 @@ public class RateOfReturnMessageGenerator {
 
     public String getMessage(double rateOfReturn) {
         return String.format(RATE_OF_RETURN_MESSAGE_FORMAT, rateOfReturn);
-
     }
 
 }

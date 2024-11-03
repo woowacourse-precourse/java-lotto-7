@@ -2,8 +2,6 @@ package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.HashMap;
-import java.util.Map;
 import lotto.domain.LottoRank;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -22,13 +20,8 @@ class RankMessageGeneratorTest {
             """)
     @ParameterizedTest
     void 로또_순위_메세지를_생성할_수_있다(LottoRank lottoRank, int matchingCount, String expectedMessage) {
-        // given
-        Map<LottoRank, Integer> ranks = new HashMap<>() {{
-            put(lottoRank, matchingCount);
-        }};
-
         // when
-        String message = rankMessageGenerator.getMessage(lottoRank, ranks);
+        String message = rankMessageGenerator.getMessage(lottoRank, matchingCount);
 
         // then
         assertThat(message).isEqualTo(expectedMessage);

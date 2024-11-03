@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.Map;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoRank.BonusCondition;
 
@@ -12,12 +11,12 @@ public class RankMessageGenerator {
     private static final String BONUS_CONDITION = "보너스 볼 일치";
     private static final String REWARD_FORMAT = "%,d원";
     private static final int DEFAULT_COUNT = 0;
-    private static final String MATCHING_NUMBER_COUNT_FORMAT = "%d개";
+    private static final String MATCH_NUMBER_COUNT_FORMAT = "%d개";
 
-    public String getMessage(LottoRank lottoRank, Map<LottoRank, Integer> ranks) {
+    public String getMessage(LottoRank lottoRank, Integer matchCount) {
         String matchConditionMessage = getMatchConditionMessage(lottoRank);
         String rewardMessage = getRewardMessage(lottoRank);
-        String matchingCountMessage = getMatchingNumberCountMessage(ranks, lottoRank);
+        String matchingCountMessage = getMatchingNumberCountMessage(matchCount);
 
         return String.format(FULL_MESSAGE_FORMAT, matchConditionMessage, rewardMessage, matchingCountMessage);
     }
@@ -35,8 +34,8 @@ public class RankMessageGenerator {
         return matchCountMessage;
     }
 
-    private String getNeededCountMessage(int matchingCount) {
-        return String.format(NEEDED_COUNT_FORMAT, matchingCount);
+    private String getNeededCountMessage(int neededCount) {
+        return String.format(NEEDED_COUNT_FORMAT, neededCount);
     }
 
     private String getRewardMessage(LottoRank lottoRank) {
@@ -44,9 +43,11 @@ public class RankMessageGenerator {
         return String.format(REWARD_FORMAT, rewardAmount);
     }
 
-    private String getMatchingNumberCountMessage(Map<LottoRank, Integer> ranks, LottoRank lottoRank) {
-        int matchCount = ranks.getOrDefault(lottoRank, DEFAULT_COUNT);
-        return String.format(MATCHING_NUMBER_COUNT_FORMAT, matchCount);
+    private String getMatchingNumberCountMessage(Integer matchCount) {
+        if (matchCount == null) {
+            matchCount = DEFAULT_COUNT;
+        }
+        return String.format(MATCH_NUMBER_COUNT_FORMAT, matchCount);
     }
 
 }

@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.LottoRank;
 import lotto.domain.LottoRanks;
 import lotto.domain.Money;
 import lotto.domain.PurchaseAmount;
@@ -30,22 +28,19 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
 
         LottoRanks lottoRanks = lottoService.evaluateLottos(winningLotto, purchasedLottos);
-
-        lottoView.showWinningResult(lottoRanks.getRanks());
-
         double rateOfReturn = lottoRanks.calculateTotalReturnRate(money);
-        lottoView.showRateOfReturn(rateOfReturn);
-    }
-
-    private WinningLotto getWinningLotto() {
-        Lotto lotto = lottoView.getWinningNumberFromUser();
-        LottoNumber bonusNumber = lottoView.getBonusNumberFromUser();
-        return new WinningLotto(lotto, bonusNumber);
+        lottoView.showWinningStatistics(lottoRanks.getRanks(), rateOfReturn);
     }
 
     private Money getMoneyFromUser() {
         PurchaseAmount purchaseAmount = lottoView.getPurchaseAmountFromUser();
         return purchaseAmount.toMoney();
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto lotto = lottoView.getWinningNumbersFromUser();
+        LottoNumber bonusNumber = lottoView.getBonusNumberFromUser();
+        return new WinningLotto(lotto, bonusNumber);
     }
 
 }
