@@ -55,7 +55,7 @@ public class LottoCreateServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {14001,-1000})
+    @ValueSource(ints = {14001, -1000})
     void 구입금액은_양수이고_1000원으로_나누어_떨어져야_한다(int money) {
         //when & then
         assertThatThrownBy(() -> lottoCreateService.createLottosWithMoney(money))
