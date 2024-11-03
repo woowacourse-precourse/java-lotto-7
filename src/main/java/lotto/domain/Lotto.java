@@ -1,12 +1,12 @@
 package lotto.domain;
 
-import static lotto.constants.LottoBuyException.NEGATIVE_NUMBER_NOT_ALLOWED;
 import static lotto.constants.LottoRule.LOTTO_NUMBER_SIX;
 import static lotto.constants.LottoRule.Lotto_Number_Max;
 import static lotto.constants.LottoRule.Lotto_Number_Min;
 import static lotto.constants.LottoRule.SAME_NUMBER_COUNT;
 import static lotto.constants.LottoWinNumberException.NUMBER_ONLY_SIX;
 import static lotto.constants.LottoWinNumberException.NUMBER_RANGE;
+import static lotto.constants.LottoWinNumberException.SAME_NUMBER_NOT_ALLOWED;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Lotto {
     private void checkSameNumber(List<Integer> numbers) {
         for (int number : numbers) {
             if (Collections.frequency(numbers, number) > SAME_NUMBER_COUNT.getValue()) {
-                throw new IllegalArgumentException(NEGATIVE_NUMBER_NOT_ALLOWED.getMessage());
+                throw new IllegalArgumentException(SAME_NUMBER_NOT_ALLOWED.getMessage());
             }
         }
     }
