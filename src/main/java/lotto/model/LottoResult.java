@@ -23,5 +23,21 @@ public class LottoResult {
         }
         result.put(5 + 10, 0);  // 보너스 포함 5개 일치
     }
+
+    public void recordResult(int matchCount, boolean bonusMatch) {
+
+    }
+
+    public void printResults() {
+
+    }
+
+    public void addRevenue(Integer addRevenue) {
+
+    }
+
+    public void computeProfitRate(int lottoAmount) {
+
+    }
 }
 
