@@ -130,13 +130,34 @@ public class Application {
         }
     }
 
-    private int countMatches(List<Integer> lottos, List<Integer> winningNumbers) {
-        int count = 0;
-        for (int lotto : lottos) {
-            if (winningNumbers.contains(lotto)) {
-                count++;
+    private int countMatches(List<Integer> lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = 0;
+        for (int number : lotto) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
             }
         }
-        return count;
+
+        if(matchCount == 6) {
+            Lotto.MatchType.SIX.increaseCount();
+            return 0;
+        }
+        if(matchCount == 5) {
+            if(lotto.contains(bonusNumber)) {
+                Lotto.MatchType.FIVE_WITH_BONUS.increaseCount();
+                return 0;
+            }
+            Lotto.MatchType.FIVE.increaseCount();
+            return 0;
+        }
+        if(matchCount == 4) {
+            Lotto.MatchType.FOUR.increaseCount();
+            return 0;
+        }
+        if(matchCount == 3) {
+            Lotto.MatchType.THREE.increaseCount();
+            return 0;
+        }
+        return 0;
     }
 }
