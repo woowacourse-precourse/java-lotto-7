@@ -6,6 +6,7 @@ import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -87,7 +88,8 @@ public class InMemoryLottoService implements LottoService {
     }
 
     private List<Integer> createLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> lottoNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
