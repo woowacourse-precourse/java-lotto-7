@@ -5,11 +5,13 @@ import java.util.List;
 import lotto.config.LottoConfig;
 
 public class User {
+    private final int quantity;
     private final List<Lotto> lotto;
 
     public User(int purchaseAmount) {
         int quantity = calculateQuantity(purchaseAmount);
 
+        this.quantity = quantity;
         this.lotto = buyLotto(quantity);
     }
 
@@ -24,6 +26,10 @@ public class User {
 
     private int calculateQuantity(int purchaseAmount) {
         return purchaseAmount / LottoConfig.PRICE.getNumber();
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public List<Lotto> getLotto() {

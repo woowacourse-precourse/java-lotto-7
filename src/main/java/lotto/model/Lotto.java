@@ -26,4 +26,8 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_NUMBER.getNumber(),
                 LottoConfig.MAX_NUMBER.getNumber(), LottoConfig.SIZE.getNumber());
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
