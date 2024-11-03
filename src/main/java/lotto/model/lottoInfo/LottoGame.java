@@ -14,5 +14,4 @@ public class LottoGame {
     public Integer getPrice() {
         return price.getPrice();
     }
-
 }

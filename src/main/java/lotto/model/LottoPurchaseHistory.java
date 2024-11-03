@@ -22,5 +22,7 @@ public class LottoPurchaseHistory {
         return new Lotto(LottoRandomUtil.chooseRandomNumber());
     }
 
-
+    public List<Lotto> getPurchaseHistory() {
+        return purchaseHistory;
+    }
 }

@@ -19,6 +19,7 @@ public class LottoController {
         LottoGame lottoGame = new LottoGame(new StandardLottoPrice(), new PriceDataImpl());
         int money = inputMoney(lottoGame.getPrice());
         LottoPurchaseHistory lottoPurchaseHistory = buyLotto(money, lottoGame.getPrice());
+        printPurchaseHistory(lottoPurchaseHistory);
     }
 
     private int inputMoney(int lottoPrice) {
@@ -38,5 +39,9 @@ public class LottoController {
     private LottoPurchaseHistory buyLotto(int money, int lottoPrice) {
         int lottoAmount = money / lottoPrice;
         return lottoService.buyLotto(lottoAmount);
+    }
+
+    private void printPurchaseHistory(LottoPurchaseHistory lottoPurchaseHistory) {
+        outputView.printPurchaseHistory(lottoPurchaseHistory.getPurchaseHistory());
     }
 }
