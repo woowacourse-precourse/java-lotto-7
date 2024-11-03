@@ -13,6 +13,17 @@ public class LottoProfitCalculator {
         this.issuedLotto = issuedRandomLotto;
     }
 
+    public double calculateRateOfProfit() {
+        if (lottoRanks.isEmpty()) {
+            return 0.0;
+        }
+        int profit = 0;
+        for (LottoRank lottoRank : lottoRanks) {
+            profit += lottoRank.getPrize();
+        }
+        return Math.round((profit / (double) issuedLotto.getLottoPurchaseAmount() * 100) * 10) / 10.0;
+    }
+
     public List<LottoRank> calculateLottoStatistics() {
         for (Lotto issuedLotto : issuedLotto.getIssuedLottos()) {
             int hitLottoNumbers = calculateHitLottoNumbers(issuedLotto);

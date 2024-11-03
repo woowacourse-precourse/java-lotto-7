@@ -40,6 +40,11 @@ public class IssuedRandomLotto implements IssuedLotto {
         return Collections.unmodifiableList(issuedLottos);
     }
 
+    @Override
+    public int getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
+    }
+
     private int calculateQuantity() {
         return lottoPurchaseAmount / LottoConfig.LOTTO_PRICE.getValue();
     }
