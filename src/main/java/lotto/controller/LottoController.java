@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.constant.ErrorMessage.STACK_OVERFLOW_ERROR_MESSAGE;
 import static lotto.constant.LottoMessage.*;
 import static lotto.util.StringProcessor.*;
 import static lotto.view.InputView.*;
@@ -20,9 +21,13 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseLotto();
-        setWinningLotto();
-        getWinningStatistics();
+        try {
+            purchaseLotto();
+            setWinningLotto();
+            getWinningStatistics();
+        } catch (StackOverflowError stackOverflowError) {
+            print(STACK_OVERFLOW_ERROR_MESSAGE.getMessage());
+        }
     }
 
     private void purchaseLotto() {
