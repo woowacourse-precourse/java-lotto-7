@@ -1,14 +1,14 @@
-package lotto.common;
+package lotto.config;
 
 import java.util.List;
-import lotto.publishingLotto.model.Lotto;
+import lotto.model.Lotto;
 import lotto.view.Publishing_OutputTicketsView;
 import lotto.view.Purchasing_OutputView;
 import lotto.view.Winning_InputView;
-import lotto.winningLotto.WinningController;
-import lotto.publishingLotto.PublishingController;
-import lotto.purchasingLotto.PurchasingController;
-import lotto.purchasingLotto.PaymentValidator;
+import lotto.controller.WinningController;
+import lotto.controller.PublishingController;
+import lotto.controller.PurchasingController;
+import lotto.validator.PaymentValidator;
 import lotto.view.Purchasing_InputView;
 
 public class LottoFactory {

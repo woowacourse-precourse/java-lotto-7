@@ -1,7 +1,7 @@
-package lotto.winningLotto;
+package lotto.controller;
 
 import java.util.List;
-import lotto.publishingLotto.model.Lotto;
+import lotto.model.Lotto;
 import lotto.view.Winning_InputView;
 
 public class WinningController {
@@ -12,4 +12,6 @@ public class WinningController {
         this.LottoTickets = LottoTickets;
         this.winningInputView = winningInputView;
     }
+
+    public
 }

@@ -1,4 +1,4 @@
-package lotto.publishingLotto.model;
+package lotto.model;
 
 import java.util.List;
 

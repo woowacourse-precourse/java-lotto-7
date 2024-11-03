@@ -1,4 +1,4 @@
-package lotto.purchasingLotto;
+package lotto.service;
 
 public class PurchasingService {
     private static PurchasingService purchasingService;

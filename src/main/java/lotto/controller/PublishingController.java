@@ -1,7 +1,8 @@
-package lotto.publishingLotto;
+package lotto.controller;
 
 import java.util.List;
-import lotto.publishingLotto.model.Lotto;
+import lotto.service.PublishingService;
+import lotto.model.Lotto;
 import lotto.view.Publishing_OutputTicketsView;
 
 public class PublishingController {

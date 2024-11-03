@@ -1,5 +1,7 @@
-package lotto.purchasingLotto;
+package lotto.controller;
 
+import lotto.validator.PaymentValidator;
+import lotto.service.PurchasingService;
 import lotto.view.Purchasing_InputView;
 import lotto.view.Purchasing_OutputView;
 
