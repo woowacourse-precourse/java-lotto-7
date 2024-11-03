@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
+import lotto.parser.NumberParser;
+import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,43 +16,34 @@ public class LottoVending {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
     private final InputView inputView;
     private final OutputView outputView;
+    private Validator validator;
 
     public LottoVending(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void take() {
+    private long getPurchaseAmountUntilValid() {
+        while (true) {
+            try {
+                String purchaseAmountInput = inputView.getPurchaseAmount();
 
+                Long purchaseAmount = NumberParser.parseLong(purchaseAmountInput);
+                validator = new PurchaseAmountValidator(purchaseAmount);
+                validator.validate();
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    public void take() {
         String errorMessage;
 
         // 구입 금액 입력, 검증 및 파싱
         outputView.printPurchaseAmountMessage();
-        long purchaseAmount = 0;
-        boolean purchaseAmountInputFailed = true;
-        while (purchaseAmountInputFailed) {
-            try {
-                String purchaseAmountInput = inputView.getPurchaseAmount();
-                try {
-                    purchaseAmount = Long.parseLong(purchaseAmountInput);
-                } catch (NumberFormatException e) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "구입 금액은 양수로 입력해주세요. 입력한 금액: " + purchaseAmountInput;
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                if (purchaseAmount % 1000 != 0) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "구입 금액은 1,000원 단위로 입력해주세요.";
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                if (purchaseAmount > 4611686000L) {
-                    errorMessage = ERROR_MESSAGE_PREFIX + "구입 금액은 4,611,686,000원보다 클 수 없습니다. 입력한 금액: " + purchaseAmount;
-                    throw new IllegalArgumentException(errorMessage);
-                }
-                purchaseAmountInputFailed = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.println();
+        long purchaseAmount = getPurchaseAmountUntilValid();
 
         // 당첨 번호 입력, 검증 및 파싱
         outputView.printWinningNumbersMessage();
@@ -93,7 +87,7 @@ public class LottoVending {
         System.out.println();
 
         //보너스 번호 입력
-        outputView.printWinningNumbersMessage();
+        outputView.printBonusNumberMessage();
         int bonusNumber = 0;
         boolean bonusInputFailed = true;
         while (bonusInputFailed) {
