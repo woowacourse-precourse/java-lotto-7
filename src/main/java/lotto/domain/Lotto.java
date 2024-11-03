@@ -13,17 +13,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void init(){
-        numbers.clear();
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers){
+    private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");

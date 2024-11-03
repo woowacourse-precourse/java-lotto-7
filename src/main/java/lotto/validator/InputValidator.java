@@ -11,5 +11,5 @@ public interface InputValidator {
 
     public void validateEmpty(String string);
 
-    public void validateNumbersForm(String string) ;
+    public void validateNumbersForm(String string);
 }

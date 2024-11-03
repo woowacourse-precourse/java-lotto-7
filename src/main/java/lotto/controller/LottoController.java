@@ -26,7 +26,7 @@ public class LottoController {
         outputView = new OutputView();
     }
 
-    public void run(){
+    public void run() {
 
         int lottoCost = inputLottoCost();
 
@@ -49,13 +49,13 @@ public class LottoController {
 
     private int inputLottoCost() {
 
-        while(true){
+        while (true) {
             try {
                 String lottoCost = inputView.inputLottoCost();
                 lottoValidateService.validateLottoCost(lottoCost);
 
                 return lottoService.toInt(lottoCost);
-            }catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -63,19 +63,19 @@ public class LottoController {
 
     private List<Integer> inputWinningNumbers() {
 
-        while(true){
-            try{
+        while (true) {
+            try {
                 String winningNumbers = inputView.inputWinningNumbers();
                 lottoValidateService.validateWinningNumbers(winningNumbers);
 
                 return transformIntWinningNumbers(winningNumbers);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Integer> transformIntWinningNumbers(String winningNumbers){
+    private List<Integer> transformIntWinningNumbers(String winningNumbers) {
 
         List<String> splitWinningNumbers = lottoService.splitWinningNumbers(winningNumbers);
         List<String> trimWinningNumbers = lottoService.trimWinningNumbers(splitWinningNumbers);
@@ -84,15 +84,15 @@ public class LottoController {
         return winningNumbersInt;
     }
 
-    private int inputLottoBonusNumber(){
+    private int inputLottoBonusNumber() {
 
-        while(true){
-            try{
+        while (true) {
+            try {
                 String bonusNumber = inputView.inputLottoBonusNumber();
                 lottoValidateService.validateBonusNumbers(bonusNumber);
 
                 return lottoService.toInt(bonusNumber);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -102,12 +102,12 @@ public class LottoController {
     private Map<LottoRank, Integer> processResults(int ticketCount, LottoWinningNumbers winningNumbersSet) {
 
         Map<LottoRank, Integer> lottoResultMap = lottoService.getResult();
-        for(int i=0; i<ticketCount; i++){
+        for (int i = 0; i < ticketCount; i++) {
             int countMatchingNumbers = lottoService.checkWinningNumbers(winningNumbersSet, i);
             LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(countMatchingNumbers);
             // 당첨번호와 일치하는 개수로 LottoRank(enum)를 찾는다
 
-            if(rankByMatchCount != null){
+            if (rankByMatchCount != null) {
                 rankByMatchCount = lottoService.compareBonusNumber(rankByMatchCount, winningNumbersSet.getBonusNumber());
                 lottoService.putLottoResultMap(rankByMatchCount, lottoResultMap);
             }

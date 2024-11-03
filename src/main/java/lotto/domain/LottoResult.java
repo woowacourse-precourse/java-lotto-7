@@ -11,8 +11,8 @@ public class LottoResult {
         init();
     }
 
-    public void init(){
-        for(LottoRank lottoRank : LottoRank.values()){
+    public void init() {
+        for (LottoRank lottoRank : LottoRank.values()) {
             result.put(lottoRank, 0);
         }
     }

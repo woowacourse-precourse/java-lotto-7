@@ -14,7 +14,7 @@ public class OutputView {
     public void printLottoTickets(List<Lotto> lottoTickets, int ticketCount) {
         System.out.println(ticketCount + Constants.PURCHASE_LOTTO_OUTPUT);
 
-        for(int i=0; i<ticketCount; i++){
+        for (int i = 0; i < ticketCount; i++) {
             List<Integer> numbers = lottoTickets.get(i).getNumbers();
 
             String joinLotto = String.join(", ", numbers.stream().map(String::valueOf).toArray(String[]::new));
@@ -28,8 +28,8 @@ public class OutputView {
         double rate = result.getRate();
 
         System.out.println(Constants.RESULT_LOTTO_OUTPUT);
-        for(LottoRank lottoRank : LottoRank.values()){
-            System.out.println(lottoRank.getMatch()+" - "+lottoResults.get(lottoRank)+"개");
+        for (LottoRank lottoRank : LottoRank.values()) {
+            System.out.println(lottoRank.getMatch() + " - " + lottoResults.get(lottoRank) + "개");
         }
         System.out.println("총 수익률은 " + rate + "%입니다.");
     }

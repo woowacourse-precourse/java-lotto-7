@@ -16,7 +16,7 @@ public class LottoServiceImpl implements LottoService {
         lottoResult = new LottoResult();
     }
 
-    public int toInt(String lottoCost){
+    public int toInt(String lottoCost) {
         return Integer.parseInt(lottoCost);
     }
 
@@ -27,7 +27,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     public List<Lotto> generateRandomLottoNumbers(int ticketCount) {
-        for(int i=0; i<ticketCount; i++){
+        for (int i = 0; i < ticketCount; i++) {
             List<Integer> numbers = sortRandomLottoNumbers();
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
@@ -69,21 +69,21 @@ public class LottoServiceImpl implements LottoService {
         return lottoResult;
     }
 
-    public Map<LottoRank, Integer> getResult(){
+    public Map<LottoRank, Integer> getResult() {
         return lottoResult.getResult();
     }
 
-    public void putLottoResult(Map<LottoRank, Integer> lottoResultMap){
+    public void putLottoResult(Map<LottoRank, Integer> lottoResultMap) {
         lottoResult.setResult(lottoResultMap);
     }
 
-    public void putLottoResultMap(LottoRank rankByMatchCount, Map<LottoRank, Integer> lottoResultMap){
+    public void putLottoResultMap(LottoRank rankByMatchCount, Map<LottoRank, Integer> lottoResultMap) {
         lottoResultMap.put(rankByMatchCount, lottoResultMap.getOrDefault(rankByMatchCount, 0) + 1);
     }
 
     public LottoRank compareBonusNumber(LottoRank rankByMatchCount, int bonusNumber) {
-        if(rankByMatchCount.getMatchCount() == Constants.BONUS_MATCH_COUNT){
-            if(lottoList.contains(bonusNumber)){
+        if (rankByMatchCount.getMatchCount() == Constants.BONUS_MATCH_COUNT) {
+            if (lottoList.contains(bonusNumber)) {
                 return LottoRank.SECOND;
             }
         }
@@ -100,7 +100,7 @@ public class LottoServiceImpl implements LottoService {
         return count;
     }
 
-    public void setLottoRate(double rate){
+    public void setLottoRate(double rate) {
         lottoResult.setRate(rate);
     }
 
@@ -113,7 +113,7 @@ public class LottoServiceImpl implements LottoService {
 
     public int sumAmount(Map<LottoRank, Integer> lottoResultMap) {
         int amount = 0;
-        for(LottoRank lottoRank : LottoRank.values()){
+        for (LottoRank lottoRank : LottoRank.values()) {
             int price = lottoRank.getPrice();
             amount += price * lottoResultMap.get(lottoRank);
         }
