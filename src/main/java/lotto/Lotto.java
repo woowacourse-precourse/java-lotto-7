@@ -72,10 +72,10 @@ public class Lotto {
         if (correct == 6) {
             LottoWinner.FIRST.incrementCount();
         }
-        if (correct == 5) {
-            if (this.numbers.contains(bonusNumber)) {
-                LottoWinner.SECOND.incrementCount();
-            }
+        if (correct == 5 && this.numbers.contains(bonusNumber)) {
+            LottoWinner.SECOND.incrementCount();
+        }
+        if (correct == 5 && !this.numbers.contains(bonusNumber)) {
             LottoWinner.THIRD.incrementCount();
         }
         if (correct == 4) {
