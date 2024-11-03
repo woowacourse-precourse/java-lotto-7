@@ -1,5 +1,7 @@
 package lotto.io;
 
+import lotto.LottoPool;
+
 public class LottoIOHandler {
 
     private final InputHandler inputHandler = new InputHandler();
@@ -12,5 +14,9 @@ public class LottoIOHandler {
 
     public void showLottoQuantity(int quantity) {
         outputHandler.showLottoQuantity(quantity);
+    }
+
+    public void showLottos(LottoPool lottoPool) {
+        outputHandler.showLottos(lottoPool);
     }
 }

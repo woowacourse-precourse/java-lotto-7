@@ -1,5 +1,7 @@
 package lotto.io;
 
+import lotto.LottoPool;
+
 public class OutputHandler {
 
     public void askLottoPurchaseAmount() {
@@ -7,6 +9,11 @@ public class OutputHandler {
     }
 
     public void showLottoQuantity(int quantity) {
+        System.out.println();
         System.out.println(quantity + "개를 구매했습니다.");
+    }
+
+    public void showLottos(LottoPool lottoPool) {
+        lottoPool.display();
     }
 }

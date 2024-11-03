@@ -13,6 +13,8 @@ public class LottoMachine {
         lottoIOHandler.showLottoQuantity(quantity);
 
         LottoPool lottoPool = generateLottoPool(quantity);
+
+        lottoIOHandler.showLottos(lottoPool);
     }
 
     private int calculateQuantity(int purchaseAmount) {
