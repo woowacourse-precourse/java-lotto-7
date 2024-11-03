@@ -30,8 +30,7 @@ public class PublishLottoTicketService {
 
     private Lotto createLotto() {
         try {
-            List<Integer> randoms = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            return new Lotto(randoms);
+            return Lotto.newRandomNumbers();
         } catch (IllegalArgumentException ignored) {
             return null;
         }

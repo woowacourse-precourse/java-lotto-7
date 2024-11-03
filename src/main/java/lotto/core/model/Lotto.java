@@ -53,4 +53,9 @@ public class Lotto {
     public boolean containsBonusNumber(LottoNumber bonusNumber) {
         return this.numbers.contains(bonusNumber.value());
     }
+
+    public static Lotto newRandomNumbers() {
+        List<Integer> numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
 }
