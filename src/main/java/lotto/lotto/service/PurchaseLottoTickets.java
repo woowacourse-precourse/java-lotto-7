@@ -1,5 +1,7 @@
-package lotto.lotto.domain;
+package lotto.lotto.service;
 
-public interface PurchaseLottoTicketsService {
+import lotto.lotto.domain.LottoTickets;
+
+public interface PurchaseLottoTickets {
     LottoTickets purchase(int count);
 }
