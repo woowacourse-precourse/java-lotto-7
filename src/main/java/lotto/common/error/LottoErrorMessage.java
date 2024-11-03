@@ -8,7 +8,6 @@ public enum LottoErrorMessage implements ErrorMessage {
     INVALID_WINNER_NUMBERS("당첨 번호가 1에서 45 사이여야 합니다.");
 
 
-    private static final String ERROR_PREFIX = "[ERROR]";
     private final String info;
     private final String message;
 

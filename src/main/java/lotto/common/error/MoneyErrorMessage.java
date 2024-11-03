@@ -8,7 +8,6 @@ public enum MoneyErrorMessage implements ErrorMessage {
     INVALID_PURCHASE_AMOUNT_VALUE("구입 금액은 0원 이상이어야 합니다.");
 
 
-    private static final String ERROR_PREFIX = "[ERROR]";
     private final String info;
     private final String message;
 

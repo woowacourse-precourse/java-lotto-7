@@ -7,7 +7,7 @@ public enum BonusNumErrorMessage implements ErrorMessage {
     CONFLICT_BONUS_NUMBER("보너스 번호가 당첨 번호에 포함될 수 없습니다.");
 
 
-    private static final String ERROR_PREFIX = "[ERROR]";
+
     private final String info;
     private final String message;
 
