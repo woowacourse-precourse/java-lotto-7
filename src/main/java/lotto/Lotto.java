@@ -1,6 +1,9 @@
-package lotto.model;
+package lotto;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -8,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         isCountEqualsToSix(numbers);
+        isDuplicationExist(numbers);
         isRangeValid(numbers);
         this.numbers = numbers;
     }
@@ -15,6 +19,16 @@ public class Lotto {
     private void isCountEqualsToSix(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private void isDuplicationExist(List<Integer> numbers) {
+        Set<Integer> duplicates = numbers.stream()
+                .filter(i -> Collections.frequency(numbers, i) > 1)
+                .collect(Collectors.toSet());
+
+        if (!duplicates.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 

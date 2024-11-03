@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.List;
 import lotto.model.LottoRank;
-import lotto.model.LottoResult;
 
 public class OutputView {
     private final String LOTTO_COUNT_NOTICE = "개를 구매했습니다.";
