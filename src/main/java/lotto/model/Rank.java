@@ -34,4 +34,12 @@ public enum Rank {
     private boolean matchCorrect(int correctCount) {
         return this.correctCount == correctCount;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

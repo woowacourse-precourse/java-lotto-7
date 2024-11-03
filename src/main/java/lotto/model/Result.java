@@ -1,13 +1,13 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Result {
     private Map<Rank, Integer> result;
 
     public Result() {
-        result = new HashMap<>();
+        result = new LinkedHashMap<>();
 
         initializeResult();
     }
@@ -21,5 +21,20 @@ public class Result {
     public void updateResult(Rank rank) {
         int current = result.get(rank);
         result.put(rank, current + 1);
+    }
+
+    public String getResult() {
+        StringBuilder resultView = new StringBuilder();
+
+        for (Rank rank : result.keySet()) {
+            if (rank != Rank.NONE) {
+                resultView.append(rank.getMessage())
+                        .append(" - ")
+                        .append(result.get(rank))
+                        .append("개\n");
+            }
+        }
+
+        return resultView.toString();
     }
 }
