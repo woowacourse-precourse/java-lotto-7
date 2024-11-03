@@ -26,9 +26,21 @@ public class LottoController {
             outputView.printBuyLotto(money);
             outputView.printLottos(lottos);
 
+            WinningLotto winningLotto = createWinningLotto();
+            LottoStatistic statistic = new LottoStatistic(lottos, winningLotto, money.getMoney());
 
+            outputView.printWinningStatistic(statistic);
+            outputView.printProfitRate(statistic.calculateProfitRate());
         } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
         }
     }
 
+    private WinningLotto createWinningLotto() {
+        List<LottoNumber> winningNumbers = inputView.getLottoNumber().stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
+        LottoNumber bonusNumber = new LottoNumber(inputView.getBonusLottoNumber());
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
 }
