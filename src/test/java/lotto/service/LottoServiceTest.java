@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.Exception.LottoException;
 import lotto.Exception.MoneyException;
 import lotto.model.Lotto;
 import lotto.utils.LottoRules;
@@ -28,5 +29,16 @@ class LottoServiceTest {
     void purchaseLottoTickets(int count) {
         List<Lotto> lottoTickets = lottoService.purchaseLottoTickets(LottoRules.LOTTO_PRICE * count);
         assertEquals(lottoTickets.size(), count);
+    }
+
+    @ParameterizedTest
+    @DisplayName("당첨번호와 보너스번호 중복 확인 기능 테스트")
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void validateNoDuplicates(int bonusNumber) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+            lottoService.validateNoDuplicates(winningNumbers, bonusNumber);
+        });
+        assertEquals("[ERROR] 보너스번호는 당첨번호 6개와 중복될 수 없습니다." , exception.getMessage());
     }
 }
