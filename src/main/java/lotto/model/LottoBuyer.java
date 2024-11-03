@@ -1,10 +1,11 @@
 package lotto.model;
 
-import java.util.List;
-import java.util.stream.IntStream;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
 import lotto.factory.LottoMachine;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoBuyer {
 

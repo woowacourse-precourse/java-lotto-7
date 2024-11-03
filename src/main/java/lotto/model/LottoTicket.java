@@ -5,9 +5,10 @@ import lotto.exception.LottoException;
 
 public record LottoTicket(Lotto lotto, Money price) {
     public LottoTicket {
-      validate(lotto, price);
+        validate(lotto, price);
     }
-    private void validate(Lotto lotto, Money price){
+
+    private void validate(Lotto lotto, Money price) {
         if (lotto == null) {
             throw new LottoException(ErrorMessages.LOTTO_NULL);
         }
@@ -15,6 +16,7 @@ public record LottoTicket(Lotto lotto, Money price) {
             throw new LottoException(ErrorMessages.PRICE_NULL);
         }
     }
+
     @Override
     public String toString() {
         return lotto.toString();

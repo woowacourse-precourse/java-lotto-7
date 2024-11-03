@@ -1,8 +1,9 @@
 package lotto.model;
 
-import java.math.BigDecimal;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+
+import java.math.BigDecimal;
 
 public record Money(int amount) {
     public Money {

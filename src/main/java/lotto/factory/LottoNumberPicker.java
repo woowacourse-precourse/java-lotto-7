@@ -1,8 +1,9 @@
 package lotto.factory;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.List;
 import lotto.model.Lotto;
+
+import java.util.List;
 
 public class LottoNumberPicker {
     private static final int MIN_NUMBER = 1;
@@ -10,7 +11,7 @@ public class LottoNumberPicker {
     private static final int PICK_COUNT = 6;
 
     public static Lotto pickSortedRandomNumbers() {
-         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT)
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_COUNT)
                 .stream()
                 .sorted()
                 .toList();

@@ -1,16 +1,21 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.List;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class WinningNumbersTest {
+
+    private Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
 
     @Nested
     @DisplayName("WinningNumbers 유효성 검사")
@@ -58,9 +63,5 @@ class WinningNumbersTest {
             assertThat(winningNumbers.mainNumbers()).isEqualTo(mainNumbers);
             assertThat(winningNumbers.bonusNumber()).isEqualTo(7);
         }
-    }
-
-    private Lotto createLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
     }
 }

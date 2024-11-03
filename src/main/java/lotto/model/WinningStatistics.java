@@ -1,10 +1,11 @@
 package lotto.model;
 
+import lotto.exception.ErrorMessages;
+import lotto.exception.LottoException;
+
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 
 public class WinningStatistics {
     private static final int INITIAL_COUNT = 0;
@@ -16,9 +17,10 @@ public class WinningStatistics {
         this.statistics = initializeStatistics();
     }
 
-    public Integer getStatisticResultByRule(WinningRule rule){
+    public Integer getStatisticResultByRule(WinningRule rule) {
         return statistics.get(rule);
     }
+
     private Map<WinningRule, Integer> initializeStatistics() {
         Map<WinningRule, Integer> initialStats = new TreeMap<>();
         for (WinningRule rule : WinningRule.values()) {

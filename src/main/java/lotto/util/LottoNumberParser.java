@@ -1,10 +1,11 @@
 package lotto.util;
 
-import java.util.List;
-import java.util.stream.Stream;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
 import lotto.model.Lotto;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoNumberParser {
     public static Lotto parseLotto(String command, String delimiter) {

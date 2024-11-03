@@ -11,6 +11,7 @@ public class ApplicationConfig {
     public LottoController createLottoController() {
         return new LottoController(createLottoInputView(), createLottoOutputView(), createLottoService());
     }
+
     private LottoService createLottoService() {
         return new LottoService(createLottoBuyer(), createLottoMachine());
     }

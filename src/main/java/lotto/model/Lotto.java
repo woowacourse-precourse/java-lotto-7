@@ -1,10 +1,11 @@
 package lotto.model;
 
+import lotto.exception.ErrorMessages;
+import lotto.exception.LottoException;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
 
 public record Lotto(List<Integer> numbers) {
     private static final int MIN_LOTTO_NUMBER = 1;

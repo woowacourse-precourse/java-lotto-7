@@ -20,12 +20,12 @@ public record WinningAnalysisReport(WinningStatistics winningStatistics, ProfitR
         }
     }
 
+    public static WinningAnalysisReportBuilder builder() {
+        return new WinningAnalysisReportBuilder();
+    }
+
     @Override
     public String toString() {
         return winningStatistics + String.format(TOTAL_PROFIT_RATE_MESSAGE, profitRate.getRate());
-    }
-
-    public static WinningAnalysisReportBuilder builder() {
-        return new WinningAnalysisReportBuilder();
     }
 }

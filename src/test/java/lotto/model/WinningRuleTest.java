@@ -1,13 +1,14 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WinningRuleTest {
 
@@ -80,7 +81,7 @@ class WinningRuleTest {
         @DisplayName("NOT_MATCHED의 winning 체크")
         @Test
         void winningRule_NOT_MATCHED_확인() {
-            assertEquals(false, WinningRule.NOT_MATCHED.isWinning());
+            assertFalse(WinningRule.NOT_MATCHED.isWinning());
         }
     }
 }

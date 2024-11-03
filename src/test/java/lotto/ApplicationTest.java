@@ -16,6 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    private static Stream<Arguments> provideInvalidInputs() {
+        return Stream.of(
+                Arguments.of("1000j", ERROR_MESSAGE),  // 잘못된 입력 형식
+                Arguments.of("8000\n1,2,3,4,5,6\n46\n", ERROR_MESSAGE),  // 유효하지 않은 보너스 번호
+                Arguments.of("8000\n1,2,3,4,5,6\n\n", ERROR_MESSAGE),  // 빈 보너스 번호 입력
+                Arguments.of("8000\n1,2,3,4,5,6\n3,4", ERROR_MESSAGE) // 잘못된 보너스 번호 형식
+        );
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -59,16 +68,8 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    private static Stream<Arguments> provideInvalidInputs() {
-        return Stream.of(
-                Arguments.of("1000j", ERROR_MESSAGE),  // 잘못된 입력 형식
-                Arguments.of("8000\n1,2,3,4,5,6\n46\n", ERROR_MESSAGE),  // 유효하지 않은 보너스 번호
-                Arguments.of("8000\n1,2,3,4,5,6\n\n", ERROR_MESSAGE),  // 빈 보너스 번호 입력
-                Arguments.of("8000\n1,2,3,4,5,6\n3,4", ERROR_MESSAGE) // 잘못된 보너스 번호 형식
-        );
-    }
     @Override
     public void runMain() {
-        Application.main(new String[] {});
+        Application.main(new String[]{});
     }
 }

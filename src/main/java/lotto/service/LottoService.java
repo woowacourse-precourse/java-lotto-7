@@ -1,11 +1,7 @@
 package lotto.service;
 
 import lotto.factory.LottoMachine;
-import lotto.model.LottoBuyer;
-import lotto.model.Money;
-import lotto.model.LottoTickets;
-import lotto.model.WinningAnalysisReport;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 
 public class LottoService {
     private final LottoMachine lottoMachine;

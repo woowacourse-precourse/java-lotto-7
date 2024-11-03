@@ -1,10 +1,10 @@
 package lotto.model;
 
-import java.math.BigDecimal;
-import java.util.Objects;
-
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+
+import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * ProfitRate는 수익률을 나타내는 도메인 클래스입니다.
@@ -28,7 +28,7 @@ public class ProfitRate {
 
     private static BigDecimal calculateRate(int totalProfits, Money originMoney) {
         return BigDecimal.valueOf(totalProfits)
-                .divide(originMoney.toBigDecimal(), 3, BigDecimal.ROUND_HALF_UP)
+                .divide(originMoney.toBigDecimal(), 3, java.math.RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
                 .max(BigDecimal.ZERO);
     }

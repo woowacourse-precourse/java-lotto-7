@@ -1,9 +1,9 @@
 package lotto.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import lotto.exception.ErrorMessages;
 import lotto.exception.LottoException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 

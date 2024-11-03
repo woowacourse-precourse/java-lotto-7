@@ -1,14 +1,15 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.math.BigDecimal;
+import lotto.exception.ErrorMessages;
+import lotto.exception.LottoException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.exception.ErrorMessages;
-import lotto.exception.LottoException;
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class ProfitRateTest {
 
     @DisplayName("수익률을 올바르게 계산한다.")
