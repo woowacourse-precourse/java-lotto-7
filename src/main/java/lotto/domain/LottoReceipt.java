@@ -6,27 +6,22 @@ import java.math.RoundingMode;
 import java.util.List;
 
 public class LottoReceipt {
-    private final BigInteger purchaseAmount;
-    private final LottoTicket purchasedTicket;
+    private final BigInteger totalAmount;
+    private final LottoTicket issuedTicket;
 
-    public LottoReceipt(BigInteger purchaseAmount, LottoTicket purchasedTicket) {
-        this.purchaseAmount = purchaseAmount;
-        this.purchasedTicket = purchasedTicket;
+    public LottoReceipt(BigInteger totalAmount, LottoTicket issuedTicket) {
+        this.totalAmount = totalAmount;
+        this.issuedTicket = issuedTicket;
     }
 
-    public List<Winning> checkWinningsBy(WinningLotto winningLotto) {
-        List<Integer> totalMatchingNumbers = compareTo(winningLotto);
-        return Winning.tellWinningBy(totalMatchingNumbers);
-    }
-
-    private List<Integer> compareTo(WinningLotto winningLotto) {
-        return purchasedTicket.lottos().stream()
-                .map(winningLotto::countMatchingNumbersWith)
+    public List<Winning> checkWinningsWith(WinningLotto winningLotto) {
+        return issuedTicket.lottos().stream()
+                .map(winningLotto::checkWinningWith)
                 .toList();
     }
 
     public BigDecimal calculateRateOfReturn(BigInteger totalPrize) {
         BigDecimal scaledTotalPrize = new BigDecimal(totalPrize).scaleByPowerOfTen(2);
-        return scaledTotalPrize.divide(new BigDecimal(purchaseAmount), 1, RoundingMode.HALF_UP);
+        return scaledTotalPrize.divide(new BigDecimal(totalAmount), 1, RoundingMode.HALF_UP);
     }
 }

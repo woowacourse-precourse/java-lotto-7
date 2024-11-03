@@ -15,9 +15,9 @@ class LottoReceiptTest {
     @DisplayName("총 수익률을 계산하고 소수점 둘째 자리에서 반올림한다.")
     @ParameterizedTest
     @MethodSource
-    void calculateRateOfReturnBy(BigInteger purchaseAmount, BigInteger totalPrize, BigDecimal expected) {
+    void calculateRateOfReturnBy(BigInteger totalAmount, BigInteger totalPrize, BigDecimal expected) {
         LottoTicket lottoTicket = new LottoTicket(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
-        LottoReceipt lottoReceipt = new LottoReceipt(purchaseAmount, lottoTicket);
+        LottoReceipt lottoReceipt = new LottoReceipt(totalAmount, lottoTicket);
 
         BigDecimal actual = lottoReceipt.calculateRateOfReturn(totalPrize);
 

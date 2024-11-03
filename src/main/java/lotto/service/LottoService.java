@@ -43,7 +43,7 @@ public class LottoService {
     }
 
     public WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
-        List<Winning> winnings = lottoReceipt.checkWinningsBy(winningLotto);
+        List<Winning> winnings = lottoReceipt.checkWinningsWith(winningLotto);
         return new WinningReport(winnings);
     }
 }

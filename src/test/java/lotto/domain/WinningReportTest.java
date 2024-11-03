@@ -4,6 +4,7 @@ import static lotto.domain.Winning.FIFTH;
 import static lotto.domain.Winning.FIRST;
 import static lotto.domain.Winning.FOURTH;
 import static lotto.domain.Winning.NONE;
+import static lotto.domain.Winning.SECOND;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -51,7 +52,7 @@ class WinningReportTest {
 
     private static Stream<Arguments> provideWinningValues() {
         return Stream.of(
-                Arguments.of(List.of(FIRST, NONE, FOURTH, FOURTH, FOURTH, FIFTH, NONE))
+                Arguments.of(List.of(FIRST, NONE, FOURTH, FOURTH, SECOND, FOURTH, FIFTH, NONE))
         );
     }
 }
