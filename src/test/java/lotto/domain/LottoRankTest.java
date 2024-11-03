@@ -22,4 +22,12 @@ public class LottoRankTest {
 
         assertThat(rank).isEqualTo(LottoRank.SECOND);
     }
+
+    @DisplayName("3등 매칭")
+    @Test
+    void matchingThird() {
+        LottoRank rank = LottoRank.valueOf(5, false);
+
+        assertThat(rank).isEqualTo(LottoRank.THIRD);
+    }
 }
