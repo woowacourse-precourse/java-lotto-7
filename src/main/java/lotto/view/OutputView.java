@@ -13,6 +13,11 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public static void printLottos(List<Lotto> lottos) {
+        println(lottos.size() + LOTTO_PURCHASE_MESSAGE);
+        lottos.forEach(OutputView::printLotto);
+    }
+
     private static void printLotto(Lotto lotto) {
         println(lotto.getNumbers().toString());
     }
