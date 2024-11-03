@@ -134,7 +134,7 @@ public class Application {
                 })
                 .sum();
 
-        double earnRate = ((double) totalEarned / totalPrice) * 10;
+        double earnRate = ((double) totalEarned / totalPrice) * 100;
         Double roundedEarnRate = Math.round(earnRate * 100) / 100.0;
 
         StringBuilder winStatsResult = new StringBuilder();
