@@ -18,17 +18,16 @@ import lotto.domain.WinningCount;
 public class LottoService {
 
     public Lottos issueLottos(Amount amount) {
-        List<Lotto> lottos = IntStream.range(0, getIssuedCount(amount))
+        return new Lottos(IntStream.range(0, getIssuedCount(amount))
                 .mapToObj(i -> issueLotto())
-                .collect(Collectors.toList());
-        return new Lottos(lottos);
+                .collect(Collectors.toList()));
     }
 
     public WinningCount getWinningCount(Lottos issuedLottos, Lotto winningLotto, Bonus bonusNumber) {
         WinningCount winningCount = new WinningCount();
         for (Lotto issuedLotto : issuedLottos.getLottos()) {
-            boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
             int matchCount = getMatchCount(issuedLotto, winningLotto);
+            boolean isBonusMatch = isBonusMatch(issuedLotto, bonusNumber);
             calculateWinningCount(winningCount, matchCount, isBonusMatch);
         }
         return winningCount;
@@ -49,14 +48,14 @@ public class LottoService {
         return new Lotto(lotto);
     }
 
-    private boolean isBonusMatch(Lotto issuedLotto, Bonus bonusNumber) {
-        return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
-    }
-
     private int getMatchCount(Lotto issuedLotto, Lotto winningLotto) {
         return (int) issuedLotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
+    }
+
+    private boolean isBonusMatch(Lotto issuedLotto, Bonus bonusNumber) {
+        return issuedLotto.getNumbers().contains(bonusNumber.getNumber());
     }
 
     private void calculateWinningCount(WinningCount winningCount, int matchCount, boolean isBonusMatch) {
