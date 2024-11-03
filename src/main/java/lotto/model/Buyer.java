@@ -47,4 +47,13 @@ public class Buyer {
         }
         return rank;
     }
+
+    public void matchLottos(List<Integer> winningNumber, int bonusNumber) {
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(winningNumber, lotto);
+            boolean hasBonusNumber = hasBonusNumber(bonusNumber, lotto);
+            Rank rank = getRank(matchCount, hasBonusNumber);
+            resultLotto.put(rank, resultLotto.get(rank) + 1);
+        }
+    }
 }
