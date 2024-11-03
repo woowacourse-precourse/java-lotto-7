@@ -1,6 +1,5 @@
 package lotto.basic;
 
-import lotto.store.number.NumbersGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

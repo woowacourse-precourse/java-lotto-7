@@ -1,6 +1,8 @@
 package lotto.store;
 
 import lotto.money.Money;
+import lotto.store.lotto.Lotto;
+import lotto.store.lotto.LottoGenerator;
 
 import java.util.LinkedList;
 import java.util.List;

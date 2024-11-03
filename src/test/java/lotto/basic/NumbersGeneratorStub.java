@@ -1,7 +1,5 @@
 package lotto.basic;
 
-import lotto.store.number.NumbersGenerator;
-
 import java.util.List;
 
 public class NumbersGeneratorStub extends NumbersGenerator {

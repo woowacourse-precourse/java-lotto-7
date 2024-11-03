@@ -1,6 +1,7 @@
 package lotto.store;
 
 import lotto.money.Money;
+import lotto.store.lotto.Lotto;
 
 import java.util.List;
 

@@ -1,7 +1,9 @@
 package lotto.store;
 
 import lotto.money.Money;
-import lotto.store.number.NumbersGenerator;
+import lotto.store.lotto.Lotto;
+import lotto.store.lotto.LottoGenerator;
+import lotto.basic.NumbersGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

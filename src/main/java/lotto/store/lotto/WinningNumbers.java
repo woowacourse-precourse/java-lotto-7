@@ -1,7 +1,4 @@
-package lotto.winner;
-
-import lotto.store.Lotto;
-import lotto.store.LottoNumber;
+package lotto.store.lotto;
 
 import java.util.Objects;
 

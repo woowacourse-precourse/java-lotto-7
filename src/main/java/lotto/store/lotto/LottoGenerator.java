@@ -1,6 +1,6 @@
-package lotto.store;
+package lotto.store.lotto;
 
-import lotto.store.number.NumbersGenerator;
+import lotto.basic.NumbersGenerator;
 
 import java.util.List;
 

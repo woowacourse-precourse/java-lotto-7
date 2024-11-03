@@ -1,4 +1,4 @@
-package lotto.store;
+package lotto.store.lotto;
 
 import java.util.List;
 

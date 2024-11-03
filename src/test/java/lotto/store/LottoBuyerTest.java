@@ -1,11 +1,12 @@
-package lotto;
+package lotto.store;
 
 import lotto.money.Money;
-import lotto.store.Lotto;
+import lotto.store.LottoBuyer;
+import lotto.store.lotto.Lotto;
 import lotto.store.LottoStoreStub;
-import lotto.winner.LottoRank;
-import lotto.winner.TestWinningNumbers;
-import lotto.winner.WinningNumbers;
+import lotto.store.lotto.LottoRank;
+import lotto.store.lotto.TestWinningNumbers;
+import lotto.store.lotto.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;

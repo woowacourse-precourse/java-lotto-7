@@ -1,8 +1,5 @@
-package lotto.winner;
+package lotto.store.lotto;
 
-import lotto.store.Lotto;
-import lotto.store.LottoGenerator;
-import lotto.store.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
