@@ -5,6 +5,7 @@ import lotto.model.rank.Rank;
 import lotto.model.rank.RankResult;
 
 public class OutputView {
+
     private static final String NUMBER_OF_PURCHASES_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String BREAK_LINE = "---";

@@ -50,8 +50,8 @@ public class LottoController {
     private List<Integer> getNumbersInput() {
         while (true) {
             try {
-                List<String> lottoInput = InputView.readNumbers();
-                return lottoService.getNumbers(lottoInput);
+                List<String> numbersInput = InputView.readNumbers();
+                return lottoService.getNumbers(numbersInput);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
