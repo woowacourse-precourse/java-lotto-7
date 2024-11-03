@@ -18,4 +18,12 @@ public class WinningStatisticsDto {
         }
         return map;
     }
+
+    public double getWinningStatistics(int purchaseAmount) {
+        long totalPrize = winningStatistics.entrySet().stream()
+            .mapToLong(entry -> (long) entry.getKey().getPrizeAmount() * entry.getValue())
+            .sum();
+
+        return ((double) totalPrize / purchaseAmount) * 100;
+    }
 }
