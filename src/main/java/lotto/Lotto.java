@@ -1,6 +1,5 @@
 package lotto;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,9 +32,9 @@ public class Lotto {
         seperateParagraph();
 
         System.out.println( numLotto + "개를 구매했습니다." );
-        List<Lotto> lottos = new ArrayList<Lotto>();
-        inputRandomLottos(lottos, numLotto);
-        outputRandomLottos(lottos, numLotto);
+        List<Lotto> lottos = new ArrayList<>();
+        setRandomLottos(lottos, numLotto);
+        outputRandomLottos(lottos);
         seperateParagraph();
 
 
@@ -45,14 +44,14 @@ public class Lotto {
         //출력
     }
 
-    private static void outputRandomLottos(final List<Lotto> lottos, final int numLotto) {
+    private static void outputRandomLottos(final List<Lotto> lottos) {
         for(Lotto lotto : lottos) {
             printNums(lotto);
         }
     }
 
     private static void printNums(final Lotto lotto) {
-        int lastNum = lotto.numbers.get(lotto.numbers.size() - 1);
+        int lastNum = lotto.numbers.getLast();
 
         System.out.print("[");
         for(int num : lotto.numbers){
@@ -65,7 +64,7 @@ public class Lotto {
 
     }
 
-    private static void inputRandomLottos(
+    private static void setRandomLottos(
             List<Lotto> lottos,
             final int numLotto
     ) {
@@ -90,27 +89,12 @@ public class Lotto {
         return price;
     }
 
-    private static List<String> splitNums(final String nums){
-        return List.of(nums.split(","));
-    }
-
     private static int divPriceBy1000(final int price){
         return price/1000;
     }
 
-
-    private static List<Integer> parsing(final String nums){
-        List<Integer> lottoNums = new ArrayList<>();
-        List<String> splitNums = List.of(nums.split(","));
-        for(String num : splitNums){
-            lottoNums.add(Integer.parseInt(num));
-        }
-        return lottoNums;
-    }
-
     private static void chkDuplicate(final List<Integer> numbers) throws IllegalArgumentException {
-        Set<Integer> set = new HashSet<>();
-        set.addAll(numbers);
+        Set<Integer> set = new HashSet<>(numbers);
         if(set.size() != numbers.size()){
             throw new IllegalArgumentException("숫자가 중복되지 않아야 합니다.");
         }
@@ -120,10 +104,6 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
-    }
-
-    private static void errorMessage(IllegalArgumentException e){
-        System.out.println("[ERROR] " + e.getMessage());
     }
 
 }

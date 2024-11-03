@@ -28,7 +28,12 @@
 - 로또 <span style="color:red">1장의 가격은 1,000원</span>이다. 
 
 ---
+## ㅁ 랜덤 복권 숫자 출력  
 
+- 우테코에서 제공한 `pickUniqueNumbersInRange` 메서드를 이용한다.   
+  ㄴ>`pickUniqueNumbersInRange` : 일정 범위의 숫자를 일정 개수만큼 반환
+
+---
 ## ㅁ 당첨 번호 입력
 - <U>당첨 번호와 보너스 번호를 입력</U>받는다.  
   ㄴ> <span style="color:red">쉼표(,)를 기준</span>으로 구분
