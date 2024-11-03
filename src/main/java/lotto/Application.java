@@ -1,7 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -32,6 +36,16 @@ public class Application {
 
     private static int calculateTicketCount(int amount){
         return amount / LOTTO_PRICE;
+    }
+    private static List<Lotto> generateLottoTickets(int ticketCount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < ticketCount; i++) {
+            Set<Integer> numbers = new TreeSet<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoTickets.add(new Lotto(new ArrayList<>(numbers)));
+        }
+
+        return lottoTickets;
     }
 
 
