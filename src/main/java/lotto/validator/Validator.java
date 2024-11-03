@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 
@@ -14,7 +13,7 @@ public final class Validator {
 
     public static void validateNumbersInput(String numbersInput) {
         validateNotBlank(numbersInput);
-        List<String> numberStrings = Arrays.asList(numbersInput.split(","));
+        List<String> numberStrings = List.of(numbersInput.split(","));
         for (String numberString : numberStrings) {
             validateIsInteger(numberString);
             validateIsPositive(numberString);
