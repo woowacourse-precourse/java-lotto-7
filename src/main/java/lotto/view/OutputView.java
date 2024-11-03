@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.message.IOMessage;
 import lotto.message.WinningNumMessage;
 import lotto.model.Lotto;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public class OutputView {
 
     public void printLottoCount(int lottoCount) {
-        System.out.printf("%d개를 구매했습니다.%n", lottoCount);
+        System.out.printf(IOMessage.NUMBER_OF_PURCHASES.getMessage(), lottoCount);
     }
 
     public void printLottos(List<Lotto> lottos) {
@@ -18,7 +19,7 @@ public class OutputView {
     }
 
     public void printWinningStatistics(int[] matchCounts) {
-        System.out.println("당첨 통계\n---");
+        System.out.printf(IOMessage.WINNING_STATISTICS_OUTPUT.getMessage());
         System.out.printf(WinningNumMessage.MATCHES_3_WINNING.getMessage(), matchCounts[0]);
         System.out.printf(WinningNumMessage.MATCHES_4_WINNING.getMessage(), matchCounts[1]);
         System.out.printf(WinningNumMessage.MATCHES_5_WINNING.getMessage(), matchCounts[2]);
@@ -27,6 +28,6 @@ public class OutputView {
     }
 
     public void printYield(double yield) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", yield);
+        System.out.printf(IOMessage.RATE_OF_RETURN_OUTPUT.getMessage(), yield);
     }
 }
