@@ -17,7 +17,7 @@ public class Lotto {
         validateSize(newNumbers);
         validateNumbersRange(newNumbers);
         validateDuplicateNumbers(newNumbers);
-        this.numbers = newNumbers;
+        this.numbers = newNumbers.stream().sorted().toList();
     }
 
     private void validateSize(List<Integer> numbers) {

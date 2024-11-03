@@ -1,11 +1,11 @@
 package lotto.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -26,5 +26,13 @@ class LottoTest {
     void 로또_번호가_1에서_45사이가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호는 오름차순으로 생성된다.")
+    @Test
+    void 로또_번호는_오름차순_이다() {
+        Lotto lotto = new Lotto(List.of(13, 1, 14, 4, 2, 6));
+        assertThat(lotto.getNumbers())
+                .containsExactly(1, 2, 4, 6, 13, 14);
     }
 }
