@@ -27,7 +27,7 @@ public class Generate {
     }
 
     public List<Integer> getSubGame() {
-        List<Integer> subGame = Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_NUMBERS_LIMIT);
+        List<Integer> subGame = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_NUMBERS_LIMIT));
         Collections.sort(subGame);
 
         return subGame;
