@@ -1,9 +1,5 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.PurchasedLottos;
-
-import java.util.TreeSet;
 
 public class OutputView {
 
@@ -13,6 +9,14 @@ public class OutputView {
 
     public static void showPurchasedLottos(String purchasedLottos) {
         System.out.println(purchasedLottos);
+    }
+
+    public static void announceWinningStatistics(String winningStatistics, double lottoYield){
+        System.out.println("당첨통계");
+        System.out.println("---");
+        System.out.println(winningStatistics);
+        System.out.println("총 수익률은 " + lottoYield + "%입니다.");
+        System.out.println("---");
     }
 
 }

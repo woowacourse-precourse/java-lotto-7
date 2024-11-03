@@ -10,9 +10,7 @@ public class PurchasedLottos {
         this.purchasedLottos = lotto;
     }
 
-    public String getPurchasedLottos() {
-        return purchasedLottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 }
