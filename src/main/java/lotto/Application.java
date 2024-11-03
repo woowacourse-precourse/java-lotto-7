@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,6 +14,8 @@ public class Application {
         // 2.1 구매할 로또의 개수를 계산하는 기능
         int lottoCount = calculateLottoCount(purchaseAmount);
 
+        //2.2 로또의 번호를 생성하는 기능
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
     }
 
