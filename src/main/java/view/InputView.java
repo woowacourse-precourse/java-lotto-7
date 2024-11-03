@@ -1,31 +1,66 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import common.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import validator.InputValidator;
 
 public class InputView {
 
     public int inputLottoPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int LottoPurchaseAmount = Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String LottoPurchaseAmount = Console.readLine();
+                if (InputValidator.validatePurchaseAmount(LottoPurchaseAmount)) {
+                    return Integer.parseInt(LottoPurchaseAmount);
+                }
 
-        return LottoPurchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     public List<Integer> inputWinnerLottoNumbers() {
-        System.out.println("\n당첨 번호를 입력해주세요.");
-        String input = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해주세요.");
+                String input = Console.readLine();
 
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                List<Integer> numbers = Arrays.stream(input.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+
+                if (InputValidator.validateWinnerLottoNumbers(numbers)){
+                    return numbers;
+                }
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+
+                if (InputValidator.validateBonusNumber(bonusNumber))
+                    return bonusNumber;
+
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.ERROR_INVALID_NUMBER_FORMAT.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
 }
