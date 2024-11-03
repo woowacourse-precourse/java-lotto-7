@@ -1,8 +1,11 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,5 +29,15 @@ public class UtilsTest {
         String inputTest = "123";
 
         assertDoesNotThrow(() -> utils.parseStringToInt(inputTest));
+    }
+
+    @DisplayName("로또를 구매하면 1000원당 1개의 로또를 받는 로직")
+    @Test
+    void 구매금액_단위_1000당_로또_1개() {
+        int inputTest = 10000;
+
+        List<Lotto> lottos = utils.generateRandomLottoNumbers(inputTest);
+
+        assertThat(lottos.size()).isEqualTo(inputTest / 1000);
     }
 }
