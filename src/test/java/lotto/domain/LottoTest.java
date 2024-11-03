@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -36,6 +38,102 @@ class LottoTest {
 
         //then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Nested
+    @DisplayName("getEqualCount(Lotto otherLotto) 기능 테스트")
+    class whenCallGetEqualCount {
+
+        private Lotto target;
+
+        @BeforeEach
+        void setUp() {
+            target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        }
+
+        @Test
+        @DisplayName("1개가 일치하는 경우")
+        void whenEqual1Return1() {
+            //given
+            Lotto other = new Lotto(List.of(10, 7, 8, 9, 1, 11));
+            int expected = 1;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("2개가 일치하는 경우")
+        void whenEqual2Return2() {
+            //given
+            Lotto other = new Lotto(List.of(2, 7, 8, 9, 1, 11));
+            int expected = 2;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("3개가 일치하는 경우")
+        void whenEqual3Return3() {
+            //given
+            Lotto other = new Lotto(List.of(2, 7, 8, 9, 1, 3));
+            int expected = 3;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("4개가 일치하는 경우")
+        void whenEqual4Return4() {
+            //given
+            Lotto other = new Lotto(List.of(2, 4, 8, 9, 1, 3));
+            int expected = 4;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("5개가 일치하는 경우")
+        void whenEqual5Return5() {
+            //given
+            Lotto other = new Lotto(List.of(2, 4, 5, 9, 1, 3));
+            int expected = 5;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @Test
+        @DisplayName("6개가 일치하는 경우")
+        void whenEqual6Return6() {
+            //given
+            Lotto other = new Lotto(List.of(2, 4, 5, 6, 1, 3));
+            int expected = 6;
+
+            //when
+            int actual = target.getEqualCount(other);
+
+            //then
+            assertThat(actual).isEqualTo(expected);
+        }
     }
 
     @Nested
