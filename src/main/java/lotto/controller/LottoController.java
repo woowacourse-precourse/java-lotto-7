@@ -18,5 +18,6 @@ public class LottoController {
         LottoGame lottoGame = new LottoGame(inputReader, outputWriter);
         lottoGame.issueLottoNumbers();
         lottoGame.convertAndValidateWinningNumbers();
+        lottoGame.calculateWinningRate();
     }
 }

@@ -20,6 +20,7 @@ public class LottoGame {
     List<Set<Integer>> totalLottoNumbers;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private String purchaseAmount;
 
     public LottoGame(InputReader inputReader, OutputWriter outputWriter) {
         this.inputReader = inputReader;
@@ -27,7 +28,7 @@ public class LottoGame {
     }
 
     public void issueLottoNumbers() {
-        String purchaseAmount = inputReader.inputPurchaseAmount();
+        purchaseAmount = inputReader.inputPurchaseAmount();
 
         PurchaseAmount purchaseAmountValidator = new PurchaseAmount();
         purchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
@@ -55,6 +56,9 @@ public class LottoGame {
     public void calculateWinningRate() {
         WinningResultExtractor winningResultExtractor = new WinningResultExtractor();
         winningResultExtractor.getWinningResult(totalLottoNumbers, winningNumbers, bonusNumber);
+        String winningRate = winningResultExtractor.getWinningRate(Integer.parseInt(purchaseAmount));
+
+        outputWriter.printWinningStatistics(winningRate, winningResultExtractor.totalMatchCounts, winningResultExtractor.bonusCount);
     }
 
 }

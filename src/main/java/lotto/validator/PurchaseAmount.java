@@ -39,7 +39,7 @@ public class PurchaseAmount {
     }
 
     private void validateNotMultipleOfThousand(int purchaseAmount) {
-        if (purchaseAmount % PURCHASE_UNIT != 0 && purchaseAmount >= PURCHASE_UNIT) {
+        if (purchaseAmount % PURCHASE_UNIT != 0 || purchaseAmount >= PURCHASE_UNIT) {
             throw new IllegalArgumentException(NOT_MULTIPLE_OF_THOUSAND_ERROR);
         }
     }
