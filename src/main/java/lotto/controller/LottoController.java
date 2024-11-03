@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoResult;
 import lotto.dto.Result;
 import lotto.domain.LotteryMachine;
 import lotto.domain.User;
@@ -15,6 +16,8 @@ public class LottoController {
     }
     public void run() {
         startLottoPurchase();
+        checkLottery();
+        showLottoPrizeResult();
     }
 
     public void startLottoPurchase() {
@@ -29,17 +32,22 @@ public class LottoController {
             }
         }
     }
-    public void inputWinningNumbers() {
+    public void checkLottery() {
         while(true) {
             try{
                 Result result = new Result(InputView.inputWinningNumbers());
                 result.setBonusNumber(InputView.inputBonusNumber());
                 lotteryMachine.checkLottery(user,result);
-                outputView.printLottoResult(user.getLottoResult());
                 break;
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+    public void showLottoPrizeResult() {
+        LottoResult lottoResult = user.getLottoResult();
+        long totalPrize = lottoResult.calculateLottoPrize();
+        outputView.printLottoResult(lottoResult);
+        outputView.showRateOfReturn(user.getPurchaseAmount(),totalPrize);
     }
 }

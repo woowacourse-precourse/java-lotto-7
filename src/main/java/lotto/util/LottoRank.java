@@ -24,7 +24,7 @@ public enum LottoRank {
         countToLottoRank.put(1,NONE);
         countToLottoRank.put(0,NONE);
     }
-    public static final LottoRank[] allLottoRank = new LottoRank[] {LottoRank.FIRST,LottoRank.SECOND,LottoRank.THIRD,LottoRank.FOURTH,LottoRank.FIFTH};
+    public static final LottoRank[] allLottoRank = new LottoRank[] {LottoRank.FIFTH,LottoRank.FOURTH,LottoRank.THIRD,LottoRank.SECOND,LottoRank.FIRST};
 
     private final int rank;
     private final int sameNumberCount;
