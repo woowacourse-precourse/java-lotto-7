@@ -1,32 +1,38 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.BonusNumberValidate;
+import lotto.util.PriceValidate;
+import lotto.util.WinningNumberValidate;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class InputView {
+public class InputView extends View {
 
-    private final String PRICE_PROMPT = "구입금액을 입력해 주세요.";
-    private final String WINNING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
-    private final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
     private final String SPLIT_DELIMITER = ",";
 
     public int getPrice() {
         System.out.println(PRICE_PROMPT);
-        return stringToInt(Console.readLine());
+        String price = Console.readLine().trim();
+        PriceValidate.validate(price);
+        return stringToInt(price);
     }
 
     public List<Integer> getWinningNumber() {
         br();
         System.out.println(WINNING_NUMBER_PROMPT);
-        return stringToList(Console.readLine());
+        String winningNumber = Console.readLine();
+        WinningNumberValidate.validate(winningNumber);
+        return stringToList(winningNumber);
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumber) {
         br();
         System.out.println(BONUS_NUMBER_PROMPT);
-        return stringToInt(Console.readLine());
+        String bonusNumber = Console.readLine().trim();
+        BonusNumberValidate.validate(bonusNumber, winningNumber);
+        return stringToInt(bonusNumber);
     }
 
     private int stringToInt(String string) {
@@ -35,12 +41,9 @@ public class InputView {
 
     private List<Integer> stringToList(String winningNumber) {
         return Arrays.stream(winningNumber.split(SPLIT_DELIMITER))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
-    }
-
-    void br() {
-        System.out.println();
     }
 
 }
