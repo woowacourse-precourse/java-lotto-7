@@ -47,6 +47,7 @@ public class LottoInputHandler {
     private <T> T getValidatedInput(Supplier<String> inputSupplier,
                                     Function<String, T> parseFunction,
                                     Consumer<T> validationFunction) {
+        // 입력.파싱,검증을 순차적으로 실행하고 예외 발생 시 오류 메시지 출력 후 재시도
         while (true) {
             try {
                 String input = getInputAndValidate(inputSupplier);
@@ -66,6 +67,7 @@ public class LottoInputHandler {
     }
 
     private <T> T parseInput(String input, Function<String, T> parseFunction) {
+        // 입력값을 특정 타입으로 파싱
         return parseFunction.apply(input);
     }
 
