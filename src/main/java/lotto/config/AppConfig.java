@@ -19,6 +19,6 @@ public class AppConfig {
     }
 
     public LottoController createLottoController() {
-        return new LottoController(createLottoService().getLottoRetailer());
+        return new LottoController(createLottoService());
     }
 }

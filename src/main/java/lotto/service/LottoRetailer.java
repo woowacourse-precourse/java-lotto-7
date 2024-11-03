@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.math.BigInteger;
 import java.util.List;
-import lotto.domain.LottoTicket;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoSeller;
+import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
 
 public class LottoRetailer {

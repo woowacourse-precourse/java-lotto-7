@@ -7,33 +7,41 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoBuyer;
 import lotto.domain.WinningLotto;
-import lotto.service.LottoRetailer;
+import lotto.domain.WinningReport;
+import lotto.service.LottoService;
 import lotto.view.InputValidator;
+import lotto.view.InputView;
 
 public class LottoController {
-    private final LottoRetailer lottoRetailer;
+    private final LottoService lottoService;
 
-    public LottoController(LottoRetailer lottoRetailer) {
-        this.lottoRetailer = lottoRetailer;
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
     }
 
-    public LottoBuyer buyLottosWith(BigInteger purchaseAmount) {
-        return lottoRetailer.sellAsMuchAs(purchaseAmount);
+    public void run(InputView inputView, InputValidator inputValidator) {
+        LottoBuyer lottoBuyer = lottoService.createLottoBuyer(toBigInteger(inputView.requestPurchaseAmount()));
+        WinningLotto winningLotto = lottoService.createWinningLotto(
+                extractNumbers(inputView.requestWinningLottoNumbers(), inputValidator));
+        WinningReport winningReport = lottoService.createWinningReport(lottoBuyer, winningLotto);
     }
 
-    public WinningLotto extractLottoNumbers(String input, InputValidator inputValidator) {
+    public BigInteger toBigInteger(String input) {
+        return new BigInteger(input);
+    }
+
+    public List<Integer> extractNumbers(String input, InputValidator inputValidator) {
         inputValidator.validateDigitAndDelimiterOnly(input);
-        List<Integer> numbers = extractNumbers(input);
-        return lottoRetailer.createWinningLotto(numbers);
+        return extractNumbers(input);
     }
 
     private List<Integer> extractNumbers(String input) {
         return Arrays.stream(input.split(VIEW_DELIMITER))
-                .map(this::convertToInteger)
+                .map(this::toInteger)
                 .toList();
     }
 
-    private int convertToInteger(String input) {
+    private int toInteger(String input) {
         return Integer.parseInt(input);
     }
 }
