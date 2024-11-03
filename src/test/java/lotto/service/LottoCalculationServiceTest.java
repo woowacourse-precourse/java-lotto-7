@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.constant.WinningType;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.PurchasePrice;
 import lotto.model.WinningCriteria;
 import lotto.model.WinningResult;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,4 +48,36 @@ class LottoCalculationServiceTest {
         return new WinningCriteria(winningLotto, winningBonusNumber);
     }
 
+    @DisplayName("당첨 상금 계산")
+    @Test
+    void 당첨_상금_계산() {
+        WinningResult winningResult = new WinningResult(List.of(
+                WinningType.FIRST, WinningType.SECOND, WinningType.THIRD,
+                WinningType.FORT, WinningType.FIFTH, WinningType.NONE));
+
+        long actualPrizeMoney = lottoCalculationService.calculationAllPrizeMoney(winningResult);
+
+        long expectedPrizeMoney = WinningType.FIRST.getPrizeMoney() + WinningType.SECOND.getPrizeMoney() +
+                WinningType.THIRD.getPrizeMoney() + WinningType.FORT.getPrizeMoney() +
+                WinningType.FIFTH.getPrizeMoney() + WinningType.NONE.getPrizeMoney();
+        assertThat(actualPrizeMoney).isEqualTo(expectedPrizeMoney);
+    }
+
+    @DisplayName("수익률  계산")
+    @Test
+    void 수익률_계산() {
+        int price = 6000;
+        PurchasePrice purchasePrice = new PurchasePrice(price);
+        WinningResult winningResult = new WinningResult(List.of(
+                WinningType.FIRST, WinningType.SECOND, WinningType.THIRD,
+                WinningType.FORT, WinningType.FIFTH, WinningType.NONE));
+
+        double actualRate = lottoCalculationService.calculationRateOfReturn(purchasePrice, winningResult);
+
+        long expectedPrizeMoney = WinningType.FIRST.getPrizeMoney() + WinningType.SECOND.getPrizeMoney() +
+                WinningType.THIRD.getPrizeMoney() + WinningType.FORT.getPrizeMoney() +
+                WinningType.FIFTH.getPrizeMoney() + WinningType.NONE.getPrizeMoney();
+        double expectedRate = expectedPrizeMoney / (double) price;
+        assertThat(actualRate).isEqualTo(expectedRate);
+    }
 }
