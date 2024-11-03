@@ -10,14 +10,16 @@ public class ProfitCalculator {
     private static final int FOURTH_PRIZE = 50_000;
     private static final int FIFTH_PRIZE = 5_000;
 
-    public static double calculateProfitRate(Map<String, Integer> lottoResult, int purchaseAmount) {
+    public static double calculateProfitRate(Map<Rank, Integer> lottoResult, int purchaseAmount) {
         int totalPrize = 0;
 
-        totalPrize += lottoResult.getOrDefault("1등", 0) * FIRST_PRIZE ;
-        totalPrize += lottoResult.getOrDefault("2등", 0) * SECOND_PRIZE ;
-        totalPrize += lottoResult.getOrDefault("3등", 0) * THIRD_PRIZE;
-        totalPrize += lottoResult.getOrDefault("4등", 0) * FOURTH_PRIZE;
-        totalPrize += lottoResult.getOrDefault("5등", 0) * FIFTH_PRIZE;
+        for (Map.Entry<Rank, Integer> entry : lottoResult.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+
+            totalPrize += rank.getPrize() * count;
+
+        }
 
         double profitRate = ((double) totalPrize / purchaseAmount) * 100;
         return Math.round(profitRate * 10) / 10.0;
