@@ -29,13 +29,54 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
 
+        // 4 . 당첨 & 보너스 번호 입력
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumber = getValidWinningNo();
 
+
+    }
+
+    private static List<Integer> getValidWinningNo() {
+        while (true) {
+            try {
+                int[] numbers = getIntArray(split(Console.readLine()));
+                validLotto(numbers);
+                List<Integer> winningNumber = new ArrayList<>();
+                for (int number : numbers) {
+                    winningNumber.add(number);
+                }
+                return winningNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+            }
+        }
+    }
+
+    private static void validLotto(int[] numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요!");
+            }
+        }
+    }
+
+    private static int[] getIntArray(String[] input) {
+        int[] number = new int[input.length];
+        for (int i = 0; i < number.length; i++) {
+            number[i] = getParseInt(input[i]);
+        }
+        return number;
+    }
+
+    private static String[] split(String input) {
+        return input.split(",");
     }
 
     private static int getValidPurchasePrice() {
         while (true) {
             try {
-                int purchasePrice = getInt(Console.readLine());
+                int purchasePrice = getParseInt(Console.readLine());
                 if (purchasePrice < 1000 || purchasePrice % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 구매 금액은 1000이상, 1000원 단위여야 합니다.");
                 }
@@ -47,7 +88,7 @@ public class Application {
         }
     }
     
-    private static int getInt(String input) {
+    private static int getParseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
