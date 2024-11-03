@@ -1,9 +1,9 @@
 package lotto.exception;
 
-import lotto.constant.LottoErrorMessages;
+import static lotto.constant.LottoErrorMessages.BONUS_NUMBER_DUPLICATE;
 
 public class BonusNumberDuplicateException extends LottoException {
     public BonusNumberDuplicateException() {
-        super(LottoErrorMessages.BONUS_NUMBER_DUPLICATE.getMessage());
+        super(BONUS_NUMBER_DUPLICATE);
     }
 }

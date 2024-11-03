@@ -1,19 +1,13 @@
 package lotto.constant;
 
-public enum LottoErrorMessages {
-    INVALID_LOTTO_SIZE("번호의 개수는 6개여야 합니다."),
-    NUMBER_OUT_OF_RANGE("번호는 1~45 사이의 숫자여야 합니다."),
-    DUPLICATE_NUMBER("중복되지 않는 숫자여야 합니다."),
-    BONUS_NUMBER_DUPLICATE("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+public class LottoErrorMessages {
+    public static final String INVALID_INPUT_FORMAT = "[ERROR] 입력값이 숫자여야 합니다.";
+    public static final String INVALID_LOTTO_SIZE = "[ERROR] 번호의 개수는 6개여야 합니다.";
+    public static final String NUMBER_OUT_OF_RANGE = "[ERROR] 번호는 1~45 사이의 숫자여야 합니다.";
+    public static final String DUPLICATE_NUMBER = "[ERROR] 중복되지 않는 숫자여야 합니다.";
+    public static final String BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
+    public static final String INVALID_PURCHASE_AMOUNT = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
-    private final String message;
-
-    LottoErrorMessages(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return ERROR_PREFIX + message;
+    private LottoErrorMessages() {
     }
 }

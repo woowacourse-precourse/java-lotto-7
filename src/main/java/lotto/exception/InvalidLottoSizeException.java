@@ -1,9 +1,9 @@
 package lotto.exception;
 
-import lotto.constant.LottoErrorMessages;
+import static lotto.constant.LottoErrorMessages.INVALID_LOTTO_SIZE;
 
 public class InvalidLottoSizeException extends LottoException {
     public InvalidLottoSizeException() {
-        super(LottoErrorMessages.INVALID_LOTTO_SIZE.getMessage());
+        super(INVALID_LOTTO_SIZE);
     }
 }
