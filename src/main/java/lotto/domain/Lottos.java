@@ -5,15 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Lottos {
+
+    private static final Lottos instance = new Lottos(); // 싱글톤 패턴 적용
+
     private final List<Lotto> lottoList = new ArrayList<>();
     private final int[] winningLottoCounts = new int[7];
-    private final List<Integer> inputLottoNumbers;
-    private final Integer bonusNumber;
+    private List<Integer> inputLottoNumbers;
+    private Integer bonusNumber;
 
-    public Lottos(List<Integer> numbers, Integer bonusNumber) {
-        this.inputLottoNumbers = numbers;
-        this.bonusNumber = bonusNumber;
+    private Lottos() {
         Arrays.fill(winningLottoCounts, 0);
+    }
+
+    public static Lottos getInstance() {
+        return instance;
     }
 
     public void add(Lotto lotto) {
@@ -34,6 +39,14 @@ public class Lottos {
 
     public Integer getBonusNumber() {
         return bonusNumber;
+    }
+
+    public void setInputLottoNumbers(List<Integer> inputLottoNumbers) {
+        this.inputLottoNumbers = inputLottoNumbers;
+    }
+
+    public void setBonusNumber(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     public void countUp(int index) {
