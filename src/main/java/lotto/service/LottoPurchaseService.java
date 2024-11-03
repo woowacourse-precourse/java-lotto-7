@@ -1,6 +1,4 @@
-package lotto;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
+package lotto.service;
 
 public class LottoPurchaseService {
 

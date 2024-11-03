@@ -1,6 +1,7 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.vo.Lotto;
 
 import java.util.ArrayList;
 
