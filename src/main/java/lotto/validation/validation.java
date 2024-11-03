@@ -77,4 +77,7 @@ public class validation {
     private static int parseBounsNumber(String input_bouns_number) {
         return Integer.parseInt(input_bouns_number);
     }
+    private static boolean check_invalidAmount(String purchase_amount) {
+        return (purchase_amount.matches("^[0-9]+$") && Integer.parseInt(purchase_amount) % 1000 == 0 && Integer.parseInt(purchase_amount) > 0);
+    }
 }

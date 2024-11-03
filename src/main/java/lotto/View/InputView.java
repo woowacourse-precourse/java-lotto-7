@@ -49,7 +49,5 @@ public class InputView {
             }
         }
     }
-    public static boolean check_invalidAmount(String purchase_amount) {
-        return (purchase_amount.matches("^[0-9]+$") && Integer.parseInt(purchase_amount) % 1000 == 0 && Integer.parseInt(purchase_amount) > 0);
-    }
+
 }
