@@ -10,6 +10,10 @@ public class InputHandler {
         return handleError(inputView::inputPurchasePrice);
     }
 
+    public WinningNumbers inputWinningNumbers() {
+        return handleError(inputView::inputNumbers);
+    }
+
     private <T> T handleError(Supplier<T> supplier) {
         while (true) {
             try {
