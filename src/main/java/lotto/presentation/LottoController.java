@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoProfitCalculator;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
+import lotto.domain.dto.LottoStatisticsDto;
 import lotto.presentation.view.InputView;
 import lotto.presentation.view.OutputView;
 import lotto.service.LottoService;
@@ -31,9 +32,7 @@ public class LottoController {
         int bonusNumber = inputView.getValidBonusNumber(winningNumbers);
         LottoResult lottoResult = lottoService.createLottoResult(winningNumbers, bonusNumber);
 
-        LottoProfitCalculator lottoProfitCalculator = lottoService.createLottoProfitCalculator(lottoResult,
-                issuedLotto);
-        double lottoRateOfProfit = lottoService.calculateRateOfProfit(lottoProfitCalculator);
-//        outputView.printLottoRateOfProfit(lottoProfitCalculator.getLottoRanks(), lottoRateOfProfit);
+        LottoStatisticsDto lottoStatisticsDto = lottoService.calculateLottoStatistics(lottoResult, issuedLotto);
+        outputView.printLottoRateOfProfit(lottoStatisticsDto);
     }
 }

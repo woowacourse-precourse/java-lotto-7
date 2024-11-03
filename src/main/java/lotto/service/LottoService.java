@@ -6,6 +6,7 @@ import lotto.domain.IssuedLotto;
 import lotto.domain.IssuedRandomLotto;
 import lotto.domain.LottoProfitCalculator;
 import lotto.domain.LottoResult;
+import lotto.domain.dto.LottoStatisticsDto;
 
 public class LottoService {
     private final RandomNumberGenerator randomNumberGenerator;
@@ -24,13 +25,11 @@ public class LottoService {
         return new LottoResult(winningNumbers, bonusNumber);
     }
 
-    public LottoProfitCalculator createLottoProfitCalculator(LottoResult lottoResult, IssuedLotto issuedLotto) {
+    public LottoStatisticsDto calculateLottoStatistics(LottoResult lottoResult, IssuedLotto issuedLotto) {
         LottoProfitCalculator calculator = new LottoProfitCalculator(lottoResult, issuedLotto);
-        return calculator;
-    }
-
-    public double calculateRateOfProfit(LottoProfitCalculator calculator) {
         calculator.calculateLottoStatistics();
-        return calculator.calculateRateOfProfit();
+        double lottoRateOfProfit = calculator.calculateRateOfProfit();
+
+        return LottoStatisticsDto.of(calculator.getLottoRanks(), lottoRateOfProfit);
     }
 }
