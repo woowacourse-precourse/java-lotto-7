@@ -25,20 +25,22 @@ public class OutputView {
     public void printDetailResult() {
         StringBuilder result = new StringBuilder();
         for (PrizeTable prizeTable : PrizeTable.values()) {
-
-            int matchNumberCount = prizeTable.getMatchNumbers();
-            int prizeMoney = prizeTable.getPrizeMoney();
-            int winningQuantity = prizeTable.getWinningCount();
-
-            if (!prizeTable.equals(FIVE_BONUS_MATCHES)) {
-                result.append(String.format("%d개 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney, winningQuantity));
-            }
-            if (prizeTable.equals(FIVE_BONUS_MATCHES)) {
-                result.append(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney,
-                        winningQuantity));
-            }
+            appendPrizeDetail(result, prizeTable);
         }
         System.out.println(result);
+    }
+
+    private void appendPrizeDetail(StringBuilder result, PrizeTable prizeTable) {
+        int matchNumberCount = prizeTable.getMatchNumbers();
+        int prizeMoney = prizeTable.getPrizeMoney();
+        int winningQuantity = prizeTable.getWinningCount();
+
+        if (prizeTable.equals(FIVE_BONUS_MATCHES)) {
+            result.append(
+                    String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney, winningQuantity));
+        } else {
+            result.append(String.format("%d개 일치 (%,d원) - %d개%n", matchNumberCount, prizeMoney, winningQuantity));
+        }
     }
 
     public void printRateOfReturn(int totalPrizeMoney, int purchaseMoney) {
