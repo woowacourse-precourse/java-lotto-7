@@ -35,13 +35,14 @@ public class DefaultLottoMatchChecker implements LottoMatchChecker{
 
         if (count == 4) return LottoMatchStatus.FOUR_MATCH_RESULT;
 
-        if (count == 5){
-            if (bonus) return LottoMatchStatus.FIVE_MATCH_WITH_BONUS_RESULT;
-            return LottoMatchStatus.FIVE_MATCH_RESULT;
-        }
+        if (count == 5) return LottoMatchStatus.FIVE_MATCH_RESULT;
+
+        if (bonus && count == 5) return LottoMatchStatus.FIVE_MATCH_WITH_BONUS_RESULT;
 
         if (count == 6) return LottoMatchStatus.SIX_MATCH_RESULT;
 
         return null;
     }
 }
+
+

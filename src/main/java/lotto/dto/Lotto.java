@@ -7,7 +7,7 @@ import lotto.utils.ErrorMessages;
 import lotto.utils.NumberConstants;
 
 public class Lotto {
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

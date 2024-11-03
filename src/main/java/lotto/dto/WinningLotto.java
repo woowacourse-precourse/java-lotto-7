@@ -22,7 +22,7 @@ public class WinningLotto extends Lotto{
     }
 
     public List<Integer> getNumbers() {
-        return super.numbers;
+        return super.getNumbers();
     }
 
     public int getBonusNumber() {
