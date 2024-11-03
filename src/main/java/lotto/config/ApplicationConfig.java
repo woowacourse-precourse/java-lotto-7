@@ -21,7 +21,8 @@ public class ApplicationConfig {
     }
 
     private LottoInput createLottoInputView() {
-        return new LottoInput();
+        final int retryCount = 5;
+        return new LottoInput(retryCount);
     }
 
     private LottoOutput createLottoOutputView() {
