@@ -15,21 +15,22 @@ public class UserNumbers {
         makeUserNumbers();
     }
 
-    private void initField(int purchaseAmount) {
-        purchaseCount = purchaseAmount / 1000;
-        userNumbers = new ArrayList<>();
-    }
-
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("로또 한 장 가격은 1000원 입니다. 올바른 금액을 입력해주세요.");
         }
     }
 
+    private void initField(int purchaseAmount) {
+        purchaseCount = purchaseAmount / 1000;
+        userNumbers = new ArrayList<>();
+    }
+
     private void makeUserNumbers() {
-        while (purchaseCount-- > 0) {
+        int count = purchaseCount;
+        while (count-- > 0) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            new UserNumber(lottoNumber);
+            userNumbers.add(new UserNumber(lottoNumber));
         }
     }
 
@@ -37,8 +38,11 @@ public class UserNumbers {
         return userNumbers;
     }
 
+    public int getPurchaseAmount() {
+        return purchaseCount * 1000;
+    }
+
     public int getPurchaseCount() {
         return purchaseCount;
     }
-
 }
