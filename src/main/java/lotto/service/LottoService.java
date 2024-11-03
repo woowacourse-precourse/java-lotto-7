@@ -1,10 +1,12 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.view.ValidatorOfView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class LottoService {
     private static final String DELIMITER_COMMA = ",";
@@ -19,4 +21,7 @@ public class LottoService {
         return winningNumbers.stream().toList();
     }
 
+    public Lotto createLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
 }
