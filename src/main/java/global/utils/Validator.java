@@ -1,10 +1,14 @@
 package global.utils;
 
+import static global.utils.StringUtil.PurchaseAmount.parsingPurchaseAmount;
+import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
+import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
 import static lotto.constant.LottoStatic.ERROR_MSG_PREFIX;
 import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
 import static lotto.constant.LottoStatic.LOTTO_NUMBER_COUNTS;
 import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static lotto.constant.LottoStatic.PURCHASE_AMOUNT_UNIT;
+import static lotto.constant.LottoStatic.WEEKLY_NUMBER_SEPARATOR;
 
 import java.math.BigInteger;
 import java.util.HashSet;
@@ -20,7 +24,7 @@ public class Validator {
         blankValidate(inputPurchaseAmount);
         decimalValidate(inputPurchaseAmount);
         notStartWithZeroValidate(inputPurchaseAmount);
-        purchaseAmount = parsingValidate(inputPurchaseAmount);
+        purchaseAmount = parsingPurchaseAmount(inputPurchaseAmount);
         greaterThanZeroValidate(purchaseAmount);
         purchaseAmountUnitValidate(purchaseAmount);
     }
@@ -34,7 +38,18 @@ public class Validator {
         }
     }
 
-    public static void validateSplitWeeklyNumbers(List<String> splitWeeklyNumbers) {
+    public static void validateWeeklyNumbers(String inputWeeklyNumbers) {
+        List<String> splitInput;
+        List<Integer> weeklyNumbers;
+
+        separatorAtStartOrEndValidate(inputWeeklyNumbers);
+        splitInput = splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
+        validateSplitWeeklyNumbers(splitInput);
+        weeklyNumbers = parsingWeeklyNumbers(splitInput);
+        validateParsedWeeklyNumbers(weeklyNumbers);
+    }
+
+    private static void validateSplitWeeklyNumbers(List<String> splitWeeklyNumbers) {
 
         for (String input : splitWeeklyNumbers) {
             blankValidate(input);
@@ -46,11 +61,17 @@ public class Validator {
         splitWeeklyNumbersCountValidate(splitWeeklyNumbers);
     }
 
-    public static void validateParsedWeeklyNumbers(List<Integer> parsedWeeklyNumbers) {
+    private static void validateParsedWeeklyNumbers(List<Integer> parsedWeeklyNumbers) {
         numbersDuplicateValidate(parsedWeeklyNumbers);
         for (int num : parsedWeeklyNumbers) {
             greaterThanZeroValidate(BigInteger.valueOf(num));
             lottoNumberRangeValidate(num);
+        }
+    }
+
+    private static void separatorAtStartOrEndValidate(String input) {
+        if (input.startsWith(WEEKLY_NUMBER_SEPARATOR) || input.endsWith(WEEKLY_NUMBER_SEPARATOR)) {
+            throw new IllegalArgumentException(ERROR_MSG_PREFIX + "공백이 포함된 입력은 불가합니다." + input);
         }
     }
 
@@ -76,19 +97,6 @@ public class Validator {
         if (input.contains(".")) {
             throw new IllegalArgumentException(ERROR_MSG_PREFIX + "소수의 입력은 불가합니다." + input);
         }
-    }
-
-    //TODO: parsing과 Validate의 간극, 있어야 할 위치 고민
-    private static BigInteger parsingValidate(String input) {
-        BigInteger parsedValue;
-
-        try {
-            parsedValue = new BigInteger(input);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(ERROR_MSG_PREFIX + "숫자가 아닌 값은 입력할 수 없습니다.");
-        }
-
-        return parsedValue;
     }
 
     private static void greaterThanZeroValidate(BigInteger value) {

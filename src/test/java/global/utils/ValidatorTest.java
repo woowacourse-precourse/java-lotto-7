@@ -5,8 +5,6 @@ import static lotto.constant.LottoStatic.LOTTO_END_NUMBER;
 import static lotto.constant.LottoStatic.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import global.utils.StringUtil.WeeklyNumber;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -112,7 +110,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"01000",  "010000", "0500000"})
+    @ValueSource(strings = {"01000", "010000", "0500000"})
     @DisplayName("구매 금액의 유효성 검사시, 앞에 0이 붙은 값은 입력될 수 없다.")
     void t009(String purchaseAmount) {
         assertThatThrownBy(() -> Validator.validatePurchaseAmount(purchaseAmount))
@@ -125,49 +123,37 @@ class ValidatorTest {
     @ValueSource(strings = {"1", "1,2,3,4,5,6,7", "1,2,3,4,5"})
     @DisplayName("입력한 당첨 번호의 갯수가 6개여야 한다")
     void t010(String weeklyNumbers) {
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(weeklyNumbers);
-
-        assertThatThrownBy(() -> Validator.validateSplitWeeklyNumbers(splitNumbers))
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("6개");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,", ",2,3,4,5,6","1,2,3,4,5, 6"})
+    @ValueSource(strings = {"1,2,3,4,5,", ",2,3,4,5,6", "1,2,3,4,5, 6"})
     @DisplayName("입력한 당첨 번호에 공백이나 무입력이 포함될 수 없다")
     void t011(String weeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(weeklyNumbers);
-
-        assertThatThrownBy(() -> Validator.validateSplitWeeklyNumbers(splitNumbers))
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("공백");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1.1,2,3,4,5,6", "1,2,3,4,5,6.0","1,2,3,4.12,5,6"})
+    @ValueSource(strings = {"1.1,2,3,4,5,6", "1,2,3,4,5,6.0", "1,2,3,4.12,5,6"})
     @DisplayName("입력한 당첨 번호에 소수가 포함될 수 없다")
     void t012(String weeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(weeklyNumbers);
-
-        assertThatThrownBy(() -> Validator.validateSplitWeeklyNumbers(splitNumbers))
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("소수");
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4,5", "-1,2,3,4,5,6","1,2,3,4,5,-60000"})
+    @ValueSource(strings = {"0,1,2,3,4,5", "-1,2,3,4,5,6", "1,2,3,4,5,-60000"})
     @DisplayName("입력한 당첨 번호가 0보다 작거나 같을 수 없다")
-    void t013(String inputWeeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
-        List<Integer> weeklyNumbers = WeeklyNumber.parsingWeeklyNumbers(splitNumbers);
-
-        assertThatThrownBy(() -> Validator.validateParsedWeeklyNumbers(weeklyNumbers))
+    void t013(String weeklyNumbers) {
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("0");
@@ -177,38 +163,27 @@ class ValidatorTest {
     @ValueSource(strings = {"1,2,3,4,5,+6", "+1,2,3,4,5,+6"})
     @DisplayName("입력한 당첨 번호의 숫자에 '+' 기호가 있을 수 없다")
     void t014(String weeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(weeklyNumbers);
-
-        assertThatThrownBy(() -> Validator.validateSplitWeeklyNumbers(splitNumbers))
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("+");
     }
 
-    //FIXME: 변환하는 시기에 대해
-//    @ParameterizedTest
-//    @ValueSource(strings = {"1,2,3,4,5, a", "one,2,3,4,5,+6"})
-//    @DisplayName("입력한 당첨 번호에 숫자 이외의 것이 입력될 수 없다")
-//    void t015(String weeklyNumbers) {
-//
-//        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(weeklyNumbers);
-//
-//        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining(ERROR_PREFIX)
-//                .hasMessageContaining("숫자");
-//    }
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,a", "one,2,3,4,5,6"})
+    @DisplayName("입력한 당첨 번호에 숫자 이외의 것이 입력될 수 없다")
+    void t015(String weeklyNumbers) {
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_PREFIX)
+                .hasMessageContaining("숫자");
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,5", "1,1,1,1,1,1"})
     @DisplayName("입력한 당첨 번호는 서로 중복되지 않아야 한다")
-    void t016(String inputWeeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
-        List<Integer> weeklyNumbers = WeeklyNumber.parsingWeeklyNumbers(splitNumbers);
-
-        assertThatThrownBy(() -> Validator.validateParsedWeeklyNumbers(weeklyNumbers))
+    void t016(String weeklyNumbers) {
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("중복");
@@ -217,12 +192,8 @@ class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,46", "1,2,3,400,500,600"})
     @DisplayName("입력한 당첨 번호는 1 이상 45 이하여야 한다.")
-    void t017(String inputWeeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
-        List<Integer> weeklyNumbers = WeeklyNumber.parsingWeeklyNumbers(splitNumbers);
-
-        assertThatThrownBy(() -> Validator.validateParsedWeeklyNumbers(weeklyNumbers))
+    void t017(String weeklyNumbers) {
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining(String.valueOf(LOTTO_START_NUMBER))
@@ -232,11 +203,8 @@ class ValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,06", "01,2,3,4,5,6"})
     @DisplayName("입력한 당첨 번호의 앞에 0이 붙을수 없다")
-    void t018(String inputWeeklyNumbers) {
-
-        List<String> splitNumbers = WeeklyNumber.splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
-
-        assertThatThrownBy(() -> Validator.validateSplitWeeklyNumbers(splitNumbers))
+    void t018(String weeklyNumbers) {
+        assertThatThrownBy(() -> Validator.validateWeeklyNumbers(weeklyNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX)
                 .hasMessageContaining("0");

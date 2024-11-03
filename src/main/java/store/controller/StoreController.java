@@ -1,12 +1,7 @@
 package store.controller;
 
-import static global.utils.StringUtil.WeeklyNumber.parsingWeeklyNumbers;
-import static global.utils.StringUtil.WeeklyNumber.splitWeeklyNumberWithSeparator;
-import static global.utils.Validator.validateParsedWeeklyNumbers;
-import static global.utils.Validator.validateSplitWeeklyNumbers;
+import static global.utils.Validator.validateWeeklyNumbers;
 
-import java.util.ArrayList;
-import java.util.List;
 import store.service.StoreService;
 import store.view.StoreInputView;
 import store.view.StoreOutputView;
@@ -26,15 +21,13 @@ public class StoreController {
     public void setWeeklyNumbers() {
 
         String inputWeeklyNumbers = storeInputView.inputWeeklyNumbers();
-        List<String> splitInput = splitWeeklyNumberWithSeparator(inputWeeklyNumbers);
-        List<Integer> weeklyNumbers = new ArrayList<>();
 
         try {
-            validateSplitWeeklyNumbers(splitInput);
-            weeklyNumbers = parsingWeeklyNumbers(splitInput);
-            validateParsedWeeklyNumbers(weeklyNumbers);
+            validateWeeklyNumbers(inputWeeklyNumbers);
         } catch (Exception e) {
             setWeeklyNumbers();
+            return;
         }
+
     }
 }

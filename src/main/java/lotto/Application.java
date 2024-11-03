@@ -5,6 +5,10 @@ import lotto.repository.LottoRepositoryImpl;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
+import store.controller.StoreController;
+import store.service.StoreService;
+import store.view.StoreInputView;
+import store.view.StoreOutputView;
 
 public class Application {
 
@@ -12,9 +16,17 @@ public class Application {
     private static final LottoOutputView lottoOutputView = new LottoOutputView();
     private static final LottoRepositoryImpl lottoRepository = new LottoRepositoryImpl();
     private static final LottoService lottoService = new LottoService(lottoRepository);
-    private static final LottoController lottoController = new LottoController(lottoInputView, lottoOutputView, lottoService);
+    private static final LottoController lottoController = new LottoController(lottoInputView, lottoOutputView,
+            lottoService);
+
+    private static final StoreInputView storeInputView = new StoreInputView();
+    private static final StoreOutputView storeOutputView = new StoreOutputView();
+    private static final StoreService storeService = new StoreService();
+    private static final StoreController storeController =
+            new StoreController(storeInputView, storeOutputView, storeService);
 
     public static void main(String[] args) {
         lottoController.payingForLotto();
+        storeController.setWeeklyNumbers();
     }
 }
