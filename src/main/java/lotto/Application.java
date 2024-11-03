@@ -1,10 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         int amount = getAmount();
+        //int[] numbers = getNumbers();
     }
 
     public static int getAmount() {
@@ -19,7 +22,7 @@ public class Application {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다");
             }
             if (amount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.")
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.");
             }
             return amount;
         } catch (NumberFormatException e) {
@@ -27,5 +30,4 @@ public class Application {
         }
 
     }
-
 }
