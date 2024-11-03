@@ -25,6 +25,7 @@ public enum Winning {
 				.filter(winning -> winning.count == count)
 				.findFirst()
 				.orElse(NONE);
+		result = checkIfSecond(result, hasBonusNumber);
 		return result;
 	}
 
