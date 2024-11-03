@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.ExceptionMessage;
 
 public class LottoGenerator {
     private static final int LOTTO_NUMBER_COUNT = 6;
@@ -15,7 +16,14 @@ public class LottoGenerator {
     }
 
     public List<Lotto> purchaseLotto(Long purchasePrice) {
+        validatePrice(purchasePrice);
         return generateLottos(purchasePrice / lottoPrice);
+    }
+
+    private void validatePrice(Long purchasePrice) {
+        if (purchasePrice == 0L || purchasePrice % lottoPrice != 0L) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_PRICE.getMessage());
+        }
     }
 
     private List<Lotto> generateLottos(Long count) {
