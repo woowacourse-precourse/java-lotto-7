@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Parser {
 
-    private static final String ERROR_NON_NUMERIC_PURCHASE_AMOUNT_MESSAGE = "[ERROR] 구입 금액은 숫자로 이루어져 있어야 합니다.";
+    private static final String ERROR_NON_NUMERIC_PURCHASE_AMOUNT_MESSAGE =
+            "[ERROR] 구입 금액은 정수 범위의 숫자로 이루어져 있어야 합니다.";
     private static final String ERROR_NON_NUMERIC_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 숫자로 이루어져 있어야 합니다.";
     private static final String ERROR_NON_NUMERIC_BONUS_NUMBER_MESSAGE = "[ERROR] 보너스 번호는 숫자로 이루어져 있어야 합니다.";
 
