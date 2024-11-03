@@ -8,6 +8,7 @@ import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 public class BonusNumber {
     private int bonusNumber;
 
+
     public BonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
         validateRange(bonusNumber);
         validateNumber(bonusNumber, lottoNumbers);

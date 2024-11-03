@@ -29,4 +29,19 @@ class LottoTest {
         assertThatThrownBy(() -> new BonusNumber(6, lotto.getNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호의 범위가 1~45 가 아니면 예외가 발생한다")
+    @Test
+    void bonusNumberRangeTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> new BonusNumber(46, lotto.getNumbers()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 범위가 1~45 가 아니면 예외가 발생한다")
+    @Test
+    void lottoNumbersRangeTest() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 47, 6)))
+        .isInstanceOf(IllegalArgumentException.class);
+    }
 }
