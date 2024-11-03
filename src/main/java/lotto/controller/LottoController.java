@@ -41,7 +41,7 @@ public class LottoController {
         return price;
     }
 
-    private int validateNumber(String amount) throws IllegalArgumentException {
+    private static int validateNumber(String amount){
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {

@@ -6,7 +6,7 @@ public class Exception {
         System.out.println("[ERROR] 숫자만 입력해 주세요.");
     }
     public static void numberException() {
-        System.out.println("[ERROR] 금액은 숫자만 등록 가능합니다.");
+        System.out.println("[ERROR] 숫자 형식이 아닙니다.");
     }
 
     public static void naturalException() {
