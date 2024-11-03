@@ -14,6 +14,17 @@ public class LottoMachine {
         this.money = money;
         this.lottoCount = money/1000;
     }
+    public Lotto singleLottoGenerator() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    public List<Lotto> multipleLottoGenerator() {
+        List<Lotto> lottoBundle = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottoBundle.add(singleLottoGenerator());
+        }
+        return lottoBundle;
+    }
 
     public int getMoney() {
         return money;
@@ -35,16 +46,6 @@ public class LottoMachine {
         }
     }
 
-    public Lotto singleLottoGenerator() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-    }
 
-    public List<Lotto> multipleLottoGenerator() {
-        List<Lotto> lottoBundle = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottoBundle.add(singleLottoGenerator());
-        }
-        return lottoBundle;
-    }
 
 }
