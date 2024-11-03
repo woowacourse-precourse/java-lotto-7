@@ -1,9 +1,13 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.RankResult;
+import lotto.domain.RankType;
 import lotto.model.InputParser;
 import lotto.model.LottoGenerator;
+import lotto.model.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,17 +20,25 @@ public class LottoController {
         this.outputView = OutputView.getInstance();
     }
 
-    public void startLottoSaleProcess() {
+    public void executeLottoWorkflow() {
         InputParser inputParser = new InputParser();
         int purchaseAmount = getPurchaseAmount(inputParser);
 
         LottoGenerator lottoGenerator = new LottoGenerator(purchaseAmount);
         List<Lotto> generatedlottoList = lottoGenerator.getLottoList();
+
         outputView.displayLottoList(purchaseAmount, generatedlottoList);
 
         Lotto winningNumbers = getWinningNumbers(inputParser);
         System.out.println();
         int bonusNumber = getBonusNumber(winningNumbers, inputParser);
+
+        WinningStatistics winningStatistics = new WinningStatistics();
+        winningStatistics.calculateRankResults(generatedlottoList, winningNumbers, bonusNumber);
+
+        Map<RankType, RankResult> statistics = winningStatistics.getStatistics();
+        String earningRate = winningStatistics.calculateEarningRate(purchaseAmount);
+
     }
 
     public int getPurchaseAmount(InputParser inputParser) {
