@@ -26,13 +26,29 @@ public class OutputView {
         System.out.println("---");
 
         for (WinningResult result : WinningResult.values()) {
-            System.out.printf("%d개 일치 (%s원) - %d개%n",
-                    result.getMatchCount(),
-                    String.format("%,d", result.getPrize()),
-                    winningResultCount.get(result)
-            );
+            if (result == WinningResult.FIVE_MATCH_BONUS) {
+                printBonusMatchResult(result, winningResultCount);
+                continue;
+            }
+            printRegularMatchResult(result, winningResultCount);
         }
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+
+    private static void printBonusMatchResult(WinningResult result, Map<WinningResult, Integer> winningResultCount) {
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
+                result.getMatchCount(),
+                String.format("%,d", result.getPrize()),
+                winningResultCount.getOrDefault(result, 0)
+        );
+    }
+
+    private static void printRegularMatchResult(WinningResult result, Map<WinningResult, Integer> winningResultCount) {
+        System.out.printf("%d개 일치 (%s원) - %d개%n",
+                result.getMatchCount(),
+                String.format("%,d", result.getPrize()),
+                winningResultCount.getOrDefault(result, 0)
+        );
     }
 }

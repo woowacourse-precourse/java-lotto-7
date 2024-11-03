@@ -51,13 +51,13 @@ public class Validator {
 
         try{
             if(!lottoWinningNumbers.contains(",")){
-                throw new IllegalArgumentException("쉼표를 이용해서 번호를 구분해 주세요.");
+                throw new IllegalArgumentException("[ERROR] 쉼표를 이용해서 번호를 구분해 주세요.");
             }
 
             return Utils.splitWinningNumber(lottoWinningNumbers);
 
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 
@@ -67,7 +67,16 @@ public class Validator {
             return Integer.parseInt(bonusNumber);
 
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("숫자를 하나만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 하나만 입력해 주세요.");
+        }
+    }
+
+    public static int validateIsNumeric(String lottoPrice) {
+        try {
+            return Integer.parseInt(lottoPrice);
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 }

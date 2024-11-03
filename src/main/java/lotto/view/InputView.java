@@ -14,7 +14,7 @@ public class InputView {
         while (true) {
             try {
 
-                int lottoAmount = Integer.parseInt(Console.readLine());
+                int lottoAmount = Validator.validateIsNumeric(Console.readLine());
                 Validator.validateLottoAmountIsPositiveAndDivisibleByThousand(lottoAmount);
 
                 return lottoAmount;
