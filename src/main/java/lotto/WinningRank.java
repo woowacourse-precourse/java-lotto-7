@@ -39,11 +39,11 @@ public enum WinningRank {
         return null;
     }
 
-    public String getResultMessage(int count, boolean bonusMatched) {
+    public String getResultMessage(int count) {
         StringBuilder message = new StringBuilder();
         message.append(correct).append("개 일치");
 
-        if (Boolean.TRUE.equals(isBonus) && bonusMatched) {
+        if (Boolean.TRUE.equals(isBonus)) {
             message.append(", 보너스 볼 일치");
         }
 
