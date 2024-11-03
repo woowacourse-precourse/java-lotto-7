@@ -29,4 +29,9 @@ public class LottoService {
         lottoResults.calculateResults(tickets,winningNumbers,bonusNumber);
         return lottoResults.generateResultDtos();
     }
+
+    public double calculateTotalEarningsRate(int purchaseAmount) {
+        long totalEarnings = lottoResults.calculateTotalEarnings();
+        return (double) totalEarnings / purchaseAmount * 100;
+    }
 }
