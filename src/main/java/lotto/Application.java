@@ -14,9 +14,9 @@ public class Application {
         // TODO: 프로그램 구현
 
         Parser parser = new Parser();
-        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto numbers = new Lotto(List.of(7, 12, 19, 22, 34, 41));
         WinningNumber winNum = new WinningNumber(numbers);
-        winNum.addBonusNumber(7);
+        winNum.addBonusNumber(30);
 
         NumberGenerator numberGenerator = new NumberGenerator();
         PurchaseMoney purchaseMoney = new PurchaseMoney(100000);

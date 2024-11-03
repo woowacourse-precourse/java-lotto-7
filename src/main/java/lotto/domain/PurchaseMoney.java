@@ -27,13 +27,13 @@ public class PurchaseMoney {
 
     private void validatePositiveNumber(int money) {
         if (money <= 0) {
-            throw new IllegalArgumentException("양수만 입력 가능합니다.");
+            throw new IllegalArgumentException(ONLY_POSITIVE_NUMBER.getMessage());
         }
     }
 
     private void validateTotalAmount(int money) {
         if (money > 100_000) {
-            throw new IllegalArgumentException("사장님 재미로만 하세요");
+            throw new IllegalArgumentException(JUST_FOR_FUN.getMessage());
         }
     }
 

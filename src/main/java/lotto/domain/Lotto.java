@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
 
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.*;
 import static lotto.constant.NumberConstant.*;
 
 public class Lotto {
@@ -24,7 +26,7 @@ public class Lotto {
     private void validateNumberInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (LOTTO_NUMBER_RANGE_START > number || LOTTO_NUMBER_RANGE_END < number) {
-                throw new IllegalArgumentException("로또 범위내로 입력해주세요.");
+                throw new IllegalArgumentException(OUT_OF_LOTTO_RANGE.getMessage());
             }
         }
     }
@@ -32,7 +34,7 @@ public class Lotto {
     private void validatePositiveNumber(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number <= 0) {
-                throw new IllegalArgumentException("양수가 아닙니다.");
+                throw new IllegalArgumentException(ONLY_POSITIVE_NUMBER.getMessage());
             }
         }
     }
@@ -43,7 +45,7 @@ public class Lotto {
                 .count();
 
         if (result != LOTTO_NUMBER_PICK_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(NOT_MATCHED_WINNING_NUMBER_COUNT.getMessage());
         }
     }
 
