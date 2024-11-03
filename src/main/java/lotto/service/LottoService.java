@@ -61,9 +61,9 @@ public class LottoService {
     }
 
     public double getProfitRate(LottoArchive lottoArchive, LottoResult lottoResult) {
-        int amount = lottoArchive.getLottoAmount();
+        int totalSpent = lottoArchive.getLottoAmount() * 1000;
         int totalProfit = getTotalProfit(lottoResult);
-        return totalProfit / (double) amount * 100;
+        return (totalProfit / (double) totalSpent) * 100;
     }
 
     private int getTotalProfit(LottoResult lottoResult) {

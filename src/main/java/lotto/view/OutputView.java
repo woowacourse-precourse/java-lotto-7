@@ -11,24 +11,30 @@ public class OutputView {
     private static final String LOTTO_NUMBER_OUTPUT_DESC = "개를 구매했습니다.";
     private static final String LOTTO_RESULT_OUTPUT_DESC = "\n당첨 통계\n---";
 
-    public static void printBudgetInputDescription(){
+    public static void printBudgetInputDescription() {
         System.out.println(BUDGET_INPUT_DESC);
     }
-    public static void printWinningNumberInputDescription(){
+
+    public static void printWinningNumberInputDescription() {
         System.out.println(WINNING_NUMBER_INPUT_DESC);
     }
-    public static void printBonusNumberInputDescription(){
+
+    public static void printBonusNumberInputDescription() {
         System.out.println(BONUS_INPUT_DESC);
     }
-    public static void printLottoNumber(int lottoNumber){
-        System.out.println(NEW_LINE+lottoNumber+LOTTO_NUMBER_OUTPUT_DESC);
+
+    public static void printLottoNumber(int lottoNumber) {
+        System.out.println(NEW_LINE + lottoNumber + LOTTO_NUMBER_OUTPUT_DESC);
     }
+
     public static void printLotto(List<Integer> lotto) {
         System.out.println(lotto);
     }
-    public static void printResultDescription(){
+
+    public static void printResultDescription() {
         System.out.println(LOTTO_RESULT_OUTPUT_DESC);
     }
+
     public static void printEachRank(String message, int money, Integer count) {
         DecimalFormat formatter = new DecimalFormat("###,###");
         String str = message
@@ -36,9 +42,9 @@ public class OutputView {
                 + String.format(" - %s개", count);
         System.out.println(str);
     }
+
     public static void printProfitRate(double profitRate) {
-        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        DecimalFormat formatter = new DecimalFormat("0.0");
         System.out.printf("총 수익률은 %s%%입니다.%n", formatter.format(profitRate));
     }
-
 }
