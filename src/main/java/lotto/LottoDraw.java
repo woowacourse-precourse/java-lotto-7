@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,16 @@ public class LottoDraw {
                 numberList.add(Integer.parseInt(part));
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 정수이어야 합니다.");
+            }
+        }
+    }
+
+    public static Lotto inputWinnigNumbers() {
+        while (true) {
+            String input = Console.readLine();
+            Lotto winningNumbers = makeWinningNumbersToLotto(input);
+            if (winningNumbers != null) {
+                return winningNumbers;
             }
         }
     }
