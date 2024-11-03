@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.enums.ErrorCode;
 import lotto.enums.Value;
 
 public class LottoMachine {
@@ -12,10 +13,10 @@ public class LottoMachine {
 
     private void validMoney(Long money) {
         if (money < Value.lottoPrice) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 최소 1000원입니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_MIN_PRICE_ERROR.getMessage());
         }
         if (money % Value.lottoPrice != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 가능합니다.");
+            throw new IllegalArgumentException(ErrorCode.LOTTO_PRICE_ERROR.getMessage());
         }
     }
 }
