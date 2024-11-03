@@ -32,8 +32,8 @@ public class OutputFormatter {
 
     private static String createFormat(Map<LottoRank, Integer> winningResult, LottoRank lottoRank) {
         String lottoDescription = lottoRank.getDescription();
-        Integer winningCount = winningResult.getOrDefault(lottoRank, 0);
+        Integer lottoWinningCount = winningResult.getOrDefault(lottoRank, 0);
 
-        return lottoDescription + " - " + winningCount + "개";
+        return lottoDescription + " - " + lottoWinningCount + "개";
     }
 }
