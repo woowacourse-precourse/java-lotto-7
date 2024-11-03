@@ -55,6 +55,4 @@ class LottoTest {
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
