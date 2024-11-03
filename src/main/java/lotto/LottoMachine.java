@@ -12,6 +12,17 @@ public class LottoMachine {
     List<Integer> winningNum;
     int bonus;
 
+    public int checkMoney(String str) {
+        int length = str.length();
+        for (int i = 0; i < length; i++) {
+            if(str.charAt(i) < '0' || str.charAt(i) > '9') {
+                System.out.println("[ERROR] 금액은 숫자로 입력해주세요.");
+                return 0;
+            }
+        }
+        return Integer.parseInt(str);
+    }
+
     public List<Lotto> buyLotto(int pay) {
 
         List<Lotto> lottos = new ArrayList<>();

@@ -11,7 +11,7 @@ public class Application {
         LottoMachine machine = new LottoMachine();
         List<Lotto> lottos;
         System.out.println("구입금액을 입력해 주세요.");
-        int pay = Integer.parseInt(Console.readLine());
+        int pay = machine.checkMoney(Console.readLine());
         int prize;
 
         lottos = machine.buyLotto(pay);
